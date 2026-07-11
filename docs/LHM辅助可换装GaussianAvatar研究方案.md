@@ -957,69 +957,104 @@ for iteration in range(cfg.train.iterations):
 
 ## 12. 五人分工
 
-### 负责人：总集成与论文主线
+本项目共 5 人：负责人 1 人 + 组员 A/B/C/D 4 人。推荐采用“负责人控方向与验收，最强代码组员做模型主程，其他组员负责可独立验收模块”的协作方式。
+
+### 负责人：项目负责人 / 方法负责人 / 论文主线
 
 负责内容：
 
 ```text
-1. 维护最终 pipeline。
-2. 维护 configs/canon_dress_gs.yaml。
-3. 集成 train_dressable.py。
-4. 集成 scene/dressable_gaussian_model.py。
-5. 每晚合并各组员交付物。
-6. 撰写论文 method、contribution、pipeline figure。
+1. 决定并维护最终 pipeline。
+2. 固定核心接口、tensor shape、目录规范和验收标准。
+3. 维护 configs/canon_dress_gs.yaml。
+4. 审核各组员 PR，控制 dev-dressable 与 main 的合并节奏。
+5. 每晚做集成验收，检查一个 batch 是否能跑通。
+6. 统筹实验设计、结果表格、论文叙事和 method 主线。
+7. 不长期陷入某一个底层模块的具体实现，避免项目无人控盘。
 ```
 
 交付物：
 
 ```text
-可运行的 train_dressable.py
+最终 pipeline 文档
+核心接口与 tensor shape 规范
 完整 pipeline figure
 论文 method 初稿
+实验计划与结果表格模板
 每日进度表
 ```
 
-### 组员 A：MMLPHuman 复现与 base_gs
+验收重点：
+
+```text
+每个模块是否符合接口。
+每个 PR 是否能跑最小样例。
+每晚 dev-dressable 是否能完成一次 debug_one_batch。
+论文中的方法描述是否与代码实现一致。
+```
+
+### 组员 A：数据与 base_gs
 
 负责内容：
 
 ```text
-1. 跑通 MMLPHuman 原始 train.py / test.py。
-2. 整理 scene/gaussian_model.py 的调用链。
-3. 从 THuman / SMPL-X canonical naked mesh 初始化 base_gs。
-4. 绑定 anchors / control points / LBS weights。
-5. 用 300 个 hand-strict pose 验证 base_gs 渲染稳定性。
-```
-
-交付物：
-
-```text
-outputs/mmlphuman_reproduce/
-outputs/base_naked_gaussian/checkpoint_latest.pth
-docs/base_gs_render_check.md
-base_gs 三视角与多姿态可视化
-```
-
-### 组员 B：数据、mask、LHM prior
-
-负责内容：
-
-```text
-1. 整理 data_dressable/ 目录。
-2. 生成 train / val / test JSON 索引。
-3. 检查 condition、target_rgb、mask、pose、camera 对齐。
-4. 为每套服装准备 reference image。
-5. 运行 LHM 生成 dressed Gaussian prior。
-6. 保存 lhm_prior/gaussians.ply 和 metadata.json。
+1. 跑通 MMLPHuman 原始 train.py / test.py，记录 baseline 复现流程。
+2. 整理 THuman / SMPL-X 白模 condition 数据。
+3. 生成 / 检查 condition、target_rgb、mask、pose、camera 文件。
+4. 生成 train / val / test JSON 索引。
+5. 从 THuman / SMPL-X canonical naked mesh 初始化 base_gs。
+6. 绑定 anchors / control points / LBS weights。
+7. 用 hand-strict pose 验证 base_gs 渲染稳定性。
 ```
 
 交付物：
 
 ```text
 data_dressable/identity_000/splits/*.json
-每套服装的 lhm_prior/gaussians.ply
+outputs/mmlphuman_reproduce/
+outputs/base_naked_gaussian/checkpoint_latest.pth
 docs/data_quality_report.md
+docs/base_gs_render_check.md
+base_gs 三视角与多姿态可视化
+```
+
+验收重点：
+
+```text
+给定 identity_id 和 pose_id，可以稳定读取 condition / mask / pose / camera。
+给定 canonical SMPL-X mesh，可以得到 base_gs checkpoint。
+base_gs 在多个姿态和视角下渲染不崩。
+```
+
+### 组员 B：LHM teacher prior
+
+负责内容：
+
+```text
+1. 为每套服装准备 reference image。
+2. 运行 LHM 生成 dressed human / dressed Gaussian prior。
+3. 将 LHM 输出整理为统一字段格式。
+4. 保存 lhm_prior/gaussians.ply 和 metadata.json。
+5. 输出每套服装的 LHM prior 多视角检查图。
+6. 记录 LHM 失败样例与质量筛选规则。
+```
+
+交付物：
+
+```text
+每套服装的 lhm_prior/gaussians.ply
+每套服装的 lhm_prior/metadata.json
+utils/lhm_prior_utils.py 中的 LHM 读取辅助函数
+docs/lhm_prior_quality_report.md
 LHM prior 三视角可视化
+```
+
+验收重点：
+
+```text
+给定 cloth_id，可以读取对应 LHM prior。
+LHM prior 字段包含 xyz / scale / rotation / opacity / sh。
+LHM prior 可视化能够看出服装几何和人体大致合理。
 ```
 
 ### 组员 C：Anchor alignment 与 offset target
@@ -1045,7 +1080,15 @@ docs/alignment_visualization.md
 offset heatmap 图片
 ```
 
-### 组员 D：HyperNetwork 与 clothing offsets
+验收重点：
+
+```text
+给定 base_gs 和 LHM prior，可以输出 aligned anchor_offsets.pt。
+offset target 的 shape 与文档一致。
+offset heatmap 能显示服装区域的主要变化。
+```
+
+### 组员 D：模型主程 / HyperNetwork 与 clothing offsets
 
 负责内容：
 
@@ -1055,7 +1098,9 @@ offset heatmap 图片
 3. 实现 clothing offset MLP。
 4. 实现 compute_clothing_offsets。
 5. 实现 compose_dressed_gaussians。
-6. 输出参数量和显存统计。
+6. 与负责人一起搭建 train_dressable.py 和 scene/dressable_gaussian_model.py 的核心 forward。
+7. 实现 test_dressable.py 的基础批量渲染与指标入口。
+8. 输出参数量、显存统计、训练速度和渲染结果。
 ```
 
 交付物：
@@ -1064,31 +1109,23 @@ offset heatmap 图片
 scene/clothing_embedding.py
 scene/clothing_hypernetwork.py
 scene/dressable_gaussian_model.py 的 offset 相关部分
+train_dressable.py 的模型调用主线
+test_dressable.py 的基础评估入口
 docs/model_parameter_report.md
 canonical dressed Gaussian ply 可视化
-```
-
-### 组员 E：实验、指标与可视化
-
-负责内容：
-
-```text
-1. 实现 test_dressable.py。
-2. 批量渲染 same-pose cloth switching。
-3. 批量渲染 novel pose / novel view。
-4. 计算 PSNR / SSIM / LPIPS / Mask IoU。
-5. 生成论文图表和视频。
-```
-
-交付物：
-
-```text
-test_dressable.py
 outputs/eval/metrics.csv
 outputs/eval/cloth_switching_grid.png
 outputs/eval/novel_pose_video.mp4
 outputs/eval/novel_view_video.mp4
-论文实验表格
+```
+
+验收重点：
+
+```text
+给定 cloth_id + pose + camera，可以完成一次 forward。
+loss 可以正常 backward。
+可以保存一张 rendered image。
+可以批量导出 same-pose cloth switching / novel pose / novel view 可视化。
 ```
 
 ### 论文初稿分工
@@ -1097,12 +1134,11 @@ outputs/eval/novel_view_video.mp4
 
 | 成员 | 论文素材责任 | 7 月 18 日前交付 |
 |---|---|---|
-| 负责人 | Abstract、Introduction、Method 总体、Contribution、Pipeline figure | 完整论文 v1、方法主图、贡献点表述 |
-| 组员 A | MMLPHuman baseline、base_gs 构建、pose-driven rendering 复用说明 | baseline 复现描述、base_gs 可视化、MMLPHuman 代码调用链图 |
-| 组员 B | 数据集构建、白模 condition、GPT-image-2 生成数据、LHM prior | data construction section、数据流程图、LHM prior 可视化 |
+| 负责人 | Abstract、Introduction、Method 总体、Contribution、Pipeline figure、实验设计 | 完整论文 v1、方法主图、贡献点表述、主结果表和消融表模板 |
+| 组员 A | MMLPHuman baseline、数据集构建、白模 condition、base_gs 构建、pose-driven rendering 复用说明 | baseline 复现描述、data construction section、base_gs 可视化、MMLPHuman 代码调用链图 |
+| 组员 B | LHM prior、服装 reference、teacher prior 质量控制 | LHM prior 方法段落、LHM prior 可视化、失败样例和筛选规则 |
 | 组员 C | SMPL-X surface-aware anchor alignment、offset target | alignment method 段落、anchor offset heatmap、target 数据结构说明 |
-| 组员 D | Clothing embedding、HyperNetwork、FiLM / low-rank modulation | model section 细节、网络结构图、参数量统计 |
-| 组员 E | 实验设置、指标、可视化、表格模板 | experiment section 初稿、主结果表模板、消融表模板、可视化版式 |
+| 组员 D | Clothing embedding、HyperNetwork、FiLM / low-rank modulation、训练与评估入口 | model section 细节、网络结构图、参数量统计、基础实验结果与可视化 |
 
 7 月 18 日论文初稿最低标准：
 
@@ -1152,19 +1188,16 @@ dev-dressable
   feature/integration-train
 
 组员 A:
-  feature/base-gs
+  feature/data-base-gs
 
 组员 B:
-  feature/data-lhm
+  feature/lhm-prior
 
 组员 C:
   feature/anchor-alignment
 
 组员 D:
   feature/hypernetwork-offset
-
-组员 E:
-  feature/evaluation
 ```
 
 每日开发流：
@@ -1190,14 +1223,14 @@ dev-dressable
 | 文件 / 目录 | 主负责人 | 说明 |
 |---|---|---|
 | `configs/canon_dress_gs.yaml` | 负责人 | 全局路径、loss 权重、训练参数 |
-| `train_dressable.py` | 负责人 | 训练主入口，只由负责人集成 |
+| `train_dressable.py` | 负责人 + 组员 D | 训练主入口，由负责人控制接口、组员 D 实现模型调用主线 |
 | `scene/dressable_gaussian_model.py` | 负责人 + 组员 D | 模型总装、dressed Gaussians 合成、render 接口 |
-| `scene/dressable_dataset.py` | 组员 B | 多服装数据读取 |
+| `scene/dressable_dataset.py` | 组员 A | 多服装数据读取 |
 | `scene/clothing_embedding.py` | 组员 D | `cloth_id -> z_c` |
 | `scene/clothing_hypernetwork.py` | 组员 D | HyperNetwork / FiLM / low-rank modulation |
 | `utils/lhm_prior_utils.py` | 组员 B + 组员 C | LHM prior 读取与坐标处理 |
 | `utils/gaussian_alignment.py` | 组员 C | SMPL-X surface-aware anchor alignment |
-| `test_dressable.py` | 组员 E | 测试、指标、批量渲染 |
+| `test_dressable.py` | 组员 D | 测试、指标、批量渲染，负责人验收结果 |
 | `docs/*.md` | 负责人 | 方案、进度、实验记录 |
 
 原 MMLPHuman 核心文件默认不直接大改：
@@ -1783,22 +1816,21 @@ git push -u origin dev-dressable
 ```powershell
 git checkout dev-dressable
 git pull
-git checkout -b feature/base-gs
+git checkout -b feature/data-base-gs
 ```
 
 其他组员替换分支名：
 
 ```text
-feature/data-lhm
+feature/lhm-prior
 feature/anchor-alignment
 feature/hypernetwork-offset
-feature/evaluation
 feature/integration-train
 ```
 
 ### 18.3 数据索引生成
 
-组员 B 运行：
+组员 A 运行：
 
 ```powershell
 python tools/build_dressable_index.py `
@@ -1902,7 +1934,7 @@ python tools/visualize_anchor_offsets.py `
 
 ### 18.7 Dataset batch 检查
 
-负责人或组员 B 运行：
+负责人或组员 A 运行：
 
 ```powershell
 python tools/check_dressable_batch.py `
@@ -1964,7 +1996,7 @@ outputs/canon_dress_gs/vis/
 
 ### 18.10 测试与评估
 
-组员 E 运行：
+组员 D 运行，负责人验收结果：
 
 ```powershell
 python test_dressable.py `
