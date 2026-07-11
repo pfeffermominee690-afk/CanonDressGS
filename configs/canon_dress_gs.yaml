@@ -1,0 +1,64 @@
+# Final project config for CanonDressGS.
+
+project:
+  name: canon_dress_gs
+  identity_id: identity_000
+  seed: 20260711
+
+paths:
+  data_root: data_dressable/identity_000
+  split_dir: data_dressable/identity_000/splits
+  base_checkpoint: outputs/base_naked_gaussian/checkpoint_latest.pth
+  output_dir: outputs/canon_dress_gs
+  eval_dir: outputs/eval
+
+data:
+  image_height: 1024
+  image_width: 1024
+  num_workers: 4
+  train_split: train
+  val_split: val
+  test_splits:
+    - test_same_pose_cloth_switch
+    - test_novel_pose
+    - test_novel_view
+
+model:
+  num_clothes: 12
+  cloth_embedding_dim: 64
+  hypernetwork:
+    hidden_dim: 128
+    num_layers: 3
+    rank: 8
+    modulation: film_low_rank
+  anchors:
+    neighbors_per_gaussian: 4
+  gaussian:
+    rotation_format: quaternion
+    sh_dim: 48
+
+training:
+  iterations: 30000
+  batch_size: 1
+  lr:
+    clothing_embedding: 0.001
+    hypernetwork: 0.001
+    offset_mlp: 0.001
+    gaussian_basis: 0.0005
+  freeze_base_gs: true
+  log_interval: 100
+  save_interval: 2000
+  vis_interval: 500
+
+loss:
+  lambda_ssim: 0.2
+  lambda_lpips: 0.1
+  lambda_mask: 0.5
+  lambda_lhm: 1.0
+  lambda_smooth: 0.05
+  lambda_region: 0.1
+  lambda_scale: 0.01
+
+debug:
+  debug_one_batch: false
+  check_tensor_shapes: true
