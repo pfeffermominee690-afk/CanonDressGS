@@ -8,6 +8,7 @@ from typing import Any
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+FIXED_GAIN = 32.0
 
 MODULE_FILES = {
     "module1": [
@@ -83,8 +84,8 @@ def _difference(control: Image.Image, candidate: Image.Image) -> tuple[Image.Ima
     delta = np.abs(right - left)
     scalar = delta.max(axis=2)
     raw = Image.fromarray(np.round(np.clip(delta, 0, 1) * 255).astype(np.uint8), "RGB")
-    gain = Image.fromarray(np.round(np.clip(delta * 8.0, 0, 1) * 255).astype(np.uint8), "RGB")
-    heat = np.stack((np.clip(scalar * 8, 0, 1), np.clip(scalar * 4, 0, 1), np.zeros_like(scalar)), axis=2)
+    gain = Image.fromarray(np.round(np.clip(delta * FIXED_GAIN, 0, 1) * 255).astype(np.uint8), "RGB")
+    heat = np.stack((np.clip(scalar * FIXED_GAIN, 0, 1), np.clip(scalar * FIXED_GAIN / 2, 0, 1), np.zeros_like(scalar)), axis=2)
     overlay = np.clip(0.55 * left + 0.45 * heat, 0, 1)
     return raw, gain, Image.fromarray(np.round(overlay * 255).astype(np.uint8), "RGB"), float(delta.max())
 
@@ -105,7 +106,7 @@ def build(module: str, input_dir: Path, output_dir: Path, inspection: dict[str, 
             diff_max[name] = maximum
             tiles.extend([
                 _tile(raw, f"{name} | absolute diff | max={maximum:.6f}"),
-                _tile(gain, f"{name} | absolute diff x8 fixed gain"),
+                _tile(gain, f"{name} | absolute diff x{int(FIXED_GAIN)} fixed gain"),
                 _tile(overlay, f"{name} | fixed-gain locality overlay"),
             ])
     columns = 4; tile_w, tile_h = tiles[0].size
