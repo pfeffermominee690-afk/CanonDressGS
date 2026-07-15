@@ -1,5 +1,9 @@
 # Artifact Index
 
+| Run ID | Module | 状态 | Git commit | Base | 输出目录 | 关键证据 |
+|---|---|---|---|---|---|---|
+| GATE5-FULL-ATTRIBUTE-CONTRACT-001 | Full Pipeline Module 1 | PASS | `1cd44ba61ad4ee0be08eb762bb24987918a6d616` | `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/GATE5-FULL-ATTRIBUTE-CONTRACT-001` | six-channel real render/gradient PASS; zero/state exact; old xyz checkpoint PASS |
+
 | Run ID | Gate | 状态 | Git commit | Config | Checkpoint | 输出目录 | 关键证据 |
 |---|---|---|---|---|---|---|---|
 | GATE4-REAL-OVERFIT100-001 | 4-C | PASS / STRONG | `e8baa03efb46c5244693f5aa798810dd5dbaacde` | `configs/canon_dress_gs_gate4c_overfit100.yaml` | step-100 `784b5af0...`; base `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-OVERFIT100-001` | 90 resumed steps finite; RGB-all L1 vs zero -63.23%; raw/RGB sensitivity 11.11x/7.81x step-10; independent inference deterministic |

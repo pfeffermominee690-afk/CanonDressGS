@@ -1,5 +1,11 @@
 # Paper Evidence Matrix
 
+| 论文主张 | 状态 | 代码/Run | 当前证据 | 限制 |
+|---|---|---|---|---|
+| MMLP-Human canonical override 可安全承载六类 Gaussian raw residual | SUPPORTED | GATE5-FULL-ATTRIBUTE-CONTRACT-001 / `1cd44ba` | 六通道分别产生非零真实 render 变化和 finite 非零梯度；base grad 0；zero/state exact | 这是属性合同验收，不是 image-conditioned full decoder 或训练结果 |
+| Full attribute contract 与 Gate 4-C xyz-only checkpoint 向后兼容 | SUPPORTED | GATE5-FULL-ATTRIBUTE-CONTRACT-001 | step-100 checkpoint 恢复到 100；新通道默认 disabled/zero | checkpoint 未包含 v1 metadata，当前结果记录确定性 migration |
+| SH-rest residual 可进入真实 renderer | SUPPORTED-WITH-CONDITION | GATE5-FULL-ATTRIBUTE-CONTRACT-001 | degree-1 control 下 RGB 非零变化、梯度 finite/non-zero，状态恢复 | 正式 base 原始 `sh_degree=0`；未来使用 SHN 必须显式配置 degree，不得静默声称已启用 |
+
 | 论文主张 | 状态 | 代码/Run | 当前证据 | 缺口与允许表述 |
 |---|---|---|---|---|
 | 当前 image-conditioned geometry pipeline 可从 step 10 resume 至 step 100 并独立推理 | SUPPORTED | GATE4-REAL-OVERFIT100-001 / `e8baa03` | 90 新增 steps finite；base grad 0；checkpoint roundtrip zero diff；独立入口不读 teacher/target RGB/mask | 单 subject、单 controlled synthetic deformation；不等价于真实服装泛化 |

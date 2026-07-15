@@ -1,5 +1,13 @@
 # Project Status
 
+## 2026-07-16 Full Dressable Module 1
+
+- Full Gaussian Attribute Contract：**PASS**，Run ID `GATE5-FULL-ATTRIBUTE-CONTRACT-001`。
+- Full Pipeline branch：`pipeline/full-dressable-20260715`，独立本地/云端 clean worktree；geometry worktree 继续冻结。
+- 六类 typed residual、raw canonical composition、wxyz local quaternion composition、真实 render/gradient/state restore 和旧 xyz-only checkpoint migration 均已验收。
+- 正式 checkpoint 的 `sh_degree=0`；SH-rest 单通道验收显式使用可恢复 degree-1 control。未来启用 `delta_shN` 必须把 degree 写入 config/checkpoint metadata，不得静默启用。
+- 本轮未实现 Decoder、未训练、未启动 Module 2。
+
 ## 2026-07-16 Gate 4-C 状态更新
 
 - Gate 4-C 100-step overfit + independent inference：工程 **PASS**，效果分级 **STRONG**。

@@ -1,5 +1,21 @@
 # Project Ledger
 
+## LEDGER-20260716-004 — Full Dressable Module 1 Gaussian Attribute Contract
+
+- 类型/状态：IMPLEMENTATION + REAL ACCEPTANCE / PASS
+- branch：`pipeline/full-dressable-20260715`
+- 基线 tag：`gate4c-geometry-baseline-20260715` -> `1d46d018eef08453cef7151bb39c9fb5b5fc07d4`
+- 核心 commits：`7a82dbb`、`d00b812`、`9f4ee2c`、`1cd44ba`
+- base checkpoint SHA256：`abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`
+- 实际 shapes：xyz/scaling/rotation/opacity/sh0/shN = `[200000,3] / [200000,3] / [200000,4] / [200000] / [200000,1,3] / [200000,3,3]`
+- quaternion：`wxyz`；local `normalize(q_base * q_delta)`
+- 六通道真实 render diff 与梯度：PASS；base gradient count 0
+- zero override 与 base render：RGB/alpha max diff 0
+- state restore：pose/Rh/Th/cache/SH degree 和六个 raw base tensors restored
+- legacy step-100 checkpoint：restored step 100；缺失新 metadata 时仅 `delta_xyz` enabled，其余 disabled/zero
+- 输出：`/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/GATE5-FULL-ATTRIBUTE-CONTRACT-001`
+- 训练：未启动
+
 ## LEDGER-20260716-002 — Gate 4-C 100-step Overfit and Independent Inference
 
 - 时间：2026-07-16 Asia/Shanghai
