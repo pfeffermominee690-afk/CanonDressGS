@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import torch
+from PIL import Image
 from torchvision.utils import make_grid, save_image
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +26,8 @@ from train_dressable import (
     load_image_training_checkpoint,
     train_image_conditioned,
 )
+from scene.dressable_dataset import ImageConditionedEpisodeDataset
+from utils.gaussian_alignment import load_anchor_offset_target
 from utils.dressable_checkpoint_utils import iter_base_parameters
 
 
@@ -32,6 +35,8 @@ EXPECTED_MODEL_FINGERPRINT = (
     "64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4"
 )
 EXPECTED_CHECKPOINT_SHA256 = "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70"
+REQUESTED_REFERENCES = (("0", "cam18"), ("1000", "cam00"))
+REQUESTED_TARGET = ("2000", "cam09")
 
 
 def _sha256(path: Path) -> str:
@@ -88,6 +93,125 @@ def _single_reference_episode(episode: dict[str, Any], index: int = 0) -> dict[s
     return result
 
 
+def _canonical_record_id(frame_id: Any, view_id: Any) -> tuple[str, str]:
+    try:
+        frame = str(int(str(frame_id)))
+    except ValueError as error:
+        raise ValueError(f"invalid frame ID: {frame_id!r}") from error
+    view_text = str(view_id).lower()
+    if view_text.startswith("cam"):
+        view_text = view_text[3:]
+    try:
+        view = f"cam{int(view_text):02d}"
+    except ValueError as error:
+        raise ValueError(f"invalid camera ID: {view_id!r}") from error
+    return frame, view
+
+
+def _resolve_protocol_records(
+    frames: list[dict[str, Any]],
+    references: tuple[tuple[str, str], ...] = REQUESTED_REFERENCES,
+    target: tuple[str, str] = REQUESTED_TARGET,
+) -> tuple[list[int], int]:
+    normalized = [_canonical_record_id(item["frame_id"], item["view_id"]) for item in frames]
+
+    def unique_index(requested: tuple[str, str]) -> int:
+        wanted = _canonical_record_id(*requested)
+        matches = [index for index, value in enumerate(normalized) if value == wanted]
+        if len(matches) != 1:
+            raise ValueError(f"protocol record {wanted} matched {len(matches)} manifest entries")
+        return matches[0]
+
+    reference_indices = [unique_index(item) for item in references]
+    target_index = unique_index(target)
+    if target_index in reference_indices or len(set(reference_indices)) != len(reference_indices):
+        raise ValueError("target/reference overlap or duplicate reference detected")
+    return reference_indices, target_index
+
+
+def _build_fixed_episode(dataset: ImageConditionedEpisodeDataset) -> dict[str, Any]:
+    split_clothes = dataset.manifest["splits"][dataset.split]
+    if len(split_clothes) != 1:
+        raise ValueError("fixed Gate 4-A protocol requires exactly one clothing entry")
+    cloth_name = split_clothes[0]
+    cloth = dataset._resolved_clothes[cloth_name]
+    frames = cloth["frames"]
+    reference_indices, target_index = _resolve_protocol_records(frames)
+    references = [dataset._load_frame(frames[index]) for index in reference_indices]
+    target = dataset._load_frame(frames[target_index])
+    anchor_target = None
+    anchor_metadata: dict[str, Any] = {}
+    if cloth["anchor_offset_target"] is not None:
+        loaded = load_anchor_offset_target(cloth["anchor_offset_target"], device="cpu")
+        anchor_target, anchor_metadata = loaded["target"], loaded["metadata"]
+    episode = {
+        "identity_id": dataset.identity_id,
+        "cloth_name": cloth_name,
+        "cloth_id": torch.tensor(dataset._cloth_id_map[cloth_name], dtype=torch.long),
+        "episode_index": target_index,
+        "reference_images": torch.stack([item["rgb"] for item in references]),
+        "reference_cloth_masks": torch.stack([item["clothing_mask"] for item in references]),
+        "reference_foreground_masks": torch.stack([item["foreground_mask"] for item in references]),
+        "reference_poses": torch.stack([item["pose"] for item in references]),
+        "reference_Rh": torch.stack([item["Rh"] for item in references]),
+        "reference_Th": torch.stack([item["Th"] for item in references]),
+        "reference_cameras": [item["camera"] for item in references],
+        "reference_frame_ids": [item["frame_id"] for item in references],
+        "reference_view_ids": [item["view_id"] for item in references],
+        "reference_valid_mask": torch.ones(len(references), dtype=torch.float32),
+        "target_rgb": target["rgb"],
+        "target_foreground_mask": target["foreground_mask"],
+        "target_clothing_mask": target["clothing_mask"],
+        "target_pose": target["pose"],
+        "target_Rh": target["Rh"],
+        "target_Th": target["Th"],
+        "target_camera": target["camera"],
+        "target_frame_id": target["frame_id"],
+        "target_view_id": target["view_id"],
+        "anchor_offset_target": anchor_target,
+        "anchor_metadata": anchor_metadata,
+        "metadata": {
+            "reference_clothing_mask_fallback": [item["clothing_mask_fallback"] for item in references],
+            "target_clothing_mask_fallback": target["clothing_mask_fallback"],
+            "reference_rh_th_fallback": [item["rh_th_fallback"] for item in references],
+            "target_rh_th_fallback": target["rh_th_fallback"],
+        },
+    }
+    dataset._validate_episode_output(episode)
+    resolved_references = tuple(
+        _canonical_record_id(frame, view)
+        for frame, view in zip(episode["reference_frame_ids"], episode["reference_view_ids"])
+    )
+    resolved_target = _canonical_record_id(episode["target_frame_id"], episode["target_view_id"])
+    if resolved_references != REQUESTED_REFERENCES or resolved_target != REQUESTED_TARGET:
+        raise RuntimeError("resolved protocol does not match requested protocol")
+    return episode
+
+
+def _as_chw_render(tensor: torch.Tensor, expected_channels: int) -> torch.Tensor:
+    if not isinstance(tensor, torch.Tensor) or tensor.ndim != 3:
+        raise ValueError("render tensor must be rank-3 HWC or CHW")
+    first_matches = tensor.shape[0] == expected_channels
+    last_matches = tensor.shape[-1] == expected_channels
+    if first_matches == last_matches:
+        raise ValueError(f"ambiguous or invalid render shape: {tuple(tensor.shape)}")
+    value = tensor if first_matches else tensor.permute(2, 0, 1)
+    if not torch.isfinite(value).all():
+        raise ValueError("render tensor contains NaN or Inf")
+    return value.detach().float().clamp(0, 1).contiguous().cpu()
+
+
+def save_render_tensor(path: str | Path, tensor: torch.Tensor, expected_channels: int) -> None:
+    if expected_channels not in (1, 3):
+        raise ValueError("expected_channels must be 1 or 3")
+    value = _as_chw_render(tensor, expected_channels)
+    if expected_channels == 1:
+        array = value.mul(255).round().to(torch.uint8).squeeze(0).numpy()
+        Image.fromarray(array, mode="L").save(Path(path))
+    else:
+        save_image(value, Path(path))
+
+
 def _grad_norm(parameters) -> float:
     squares = []
     for parameter in parameters:
@@ -142,6 +266,7 @@ def main() -> None:
     )
     parser.add_argument("--device", default="cuda")
     args = parser.parse_args()
+    attempt_id = "attempt_" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
     config = load_config(args.config)
     if args.manifest is not None:
@@ -157,12 +282,22 @@ def main() -> None:
     if not image_config.get("reference_region_path"):
         raise ValueError("Gate 4-A requires a reference-only region artifact")
 
-    result = train_image_conditioned(
-        config,
-        output_dir=args.output_dir,
-        device=args.device,
-        debug_one_batch=True,
-    )
+    original_sample_episode = ImageConditionedEpisodeDataset.sample_episode
+
+    def fixed_sample_episode(self, index, sampling_salt=0, deterministic=False):
+        del index, sampling_salt, deterministic
+        return _build_fixed_episode(self)
+
+    ImageConditionedEpisodeDataset.sample_episode = fixed_sample_episode
+    try:
+        result = train_image_conditioned(
+            config,
+            output_dir=args.output_dir,
+            device=args.device,
+            debug_one_batch=True,
+        )
+    finally:
+        ImageConditionedEpisodeDataset.sample_episode = original_sample_episode
     model = result["model"]
     dataset = result["dataset"]
     episode = result["last_episode"]
@@ -170,6 +305,15 @@ def main() -> None:
     output = result["last_outputs"]["primary"]
     if episode is None or losses is None or output is None:
         raise RuntimeError("one-batch trainer did not expose acceptance diagnostics")
+    resolved_references = [
+        _canonical_record_id(frame, view)
+        for frame, view in zip(episode["reference_frame_ids"], episode["reference_view_ids"])
+    ]
+    resolved_target = _canonical_record_id(episode["target_frame_id"], episode["target_view_id"])
+    if tuple(resolved_references) != REQUESTED_REFERENCES or resolved_target != REQUESTED_TARGET:
+        raise RuntimeError("trainer output protocol does not match the pre-registered protocol")
+    if resolved_target in resolved_references:
+        raise RuntimeError("target observation leaked into Condition A references")
     step_one_losses = losses
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -313,6 +457,12 @@ def main() -> None:
         raise RuntimeError(f"disabled offset channels are nonzero: {disabled_max}")
 
     condition_b = _single_reference_episode(episode)
+    condition_b_records = [
+        _canonical_record_id(frame, view)
+        for frame, view in zip(condition_b["reference_frame_ids"], condition_b["reference_view_ids"])
+    ]
+    if resolved_target in condition_b_records:
+        raise RuntimeError("target observation leaked into Condition B references")
     _, sensitivity_output = run_fixed_eval(condition_b)
     sensitivity_raw = raw_anchor_offsets(sensitivity_output)
     sensitivity = {
@@ -417,6 +567,7 @@ def main() -> None:
         raise ValueError("current checkpoint file SHA256 changed")
     input_manifest = {
         "created_at": datetime.now(timezone.utc).isoformat(),
+        "attempt_id": attempt_id,
         "git": {"branch": _git("branch", "--show-current"), "commit": _git("rev-parse", "HEAD"), "status": _git("status", "--short")},
         "environment": {"python": platform.python_version(), "pytorch": torch.__version__, "cuda": torch.version.cuda, "gpu": torch.cuda.get_device_name(0)},
         "base_checkpoint": {"path": str(checkpoint_file), "size": checkpoint_file.stat().st_size, "sha256": checkpoint_sha, "historical_warning": "Current SHA256 differs from historical 64ac7f2d... acceptance fingerprint."},
@@ -424,6 +575,27 @@ def main() -> None:
         "reference_only_region": {"path": str(region_path), "sha256": _sha256(region_path), "threshold": config["image_conditioning"]["reference_gate_threshold"], "reference_views": config["image_conditioning"]["reference_views"], "target_view_used": False},
         "reference_frames": episode["reference_frame_ids"], "reference_cameras": episode["reference_view_ids"],
         "target_frame": episode["target_frame_id"], "target_camera": episode["target_view_id"],
+        "protocol": {
+            "requested": {
+                "condition_a_references": [list(item) for item in REQUESTED_REFERENCES],
+                "target": list(REQUESTED_TARGET),
+                "condition_b_references": [list(REQUESTED_REFERENCES[0])],
+                "target_view_used": False,
+            },
+            "resolved": {
+                "condition_a_references": [list(item) for item in resolved_references],
+                "target": list(resolved_target),
+                "condition_b_references": [list(item) for item in condition_b_records],
+                "target_view_used": False,
+                "target_reference_overlap": False,
+            },
+            "reference_records": [
+                {"frame_id": frame, "camera_id": view}
+                for frame, view in resolved_references
+            ],
+            "target_record": {"frame_id": resolved_target[0], "camera_id": resolved_target[1]},
+            "matches_requested": True,
+        },
         "config": config,
     }
     manifest_tmp = output_dir / "input_manifest.json.tmp"
@@ -436,14 +608,56 @@ def main() -> None:
     markdown_tmp = output_dir / "one_batch_diagnostics.md.tmp"
     markdown_tmp.write_text(markdown, encoding="utf-8")
     markdown_tmp.replace(output_dir / "one_batch_diagnostics.md")
-    save_image(make_grid(episode["reference_images"].cpu(), nrow=2), output_dir / "reference_contact_sheet.png")
-    save_image(episode["target_rgb"].cpu(), output_dir / "target_rgb.png")
-    save_image(pred_rgb.detach().cpu(), output_dir / "predicted_rgb.png")
-    save_image(pred_alpha.detach().cpu(), output_dir / "predicted_alpha.png")
-    comparison = make_grid([episode["target_rgb"].cpu(), pred_rgb.detach().cpu(), (episode["target_rgb"].cpu() - pred_rgb.detach().cpu()).abs()], nrow=3)
+    partial_path.write_text(
+        json.dumps(
+            {
+                "status": "RUNNING",
+                "failure_stage": "image_persistence",
+                "completed": [
+                    "fixed_protocol", "step_1_saved", "checkpoint_roundtrip",
+                    "backward_gradients", "reference_sensitivity", "diagnostics",
+                ],
+                "checkpoint_roundtrip": roundtrip,
+                "reference_sensitivity": sensitivity,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    references_chw = episode["reference_images"].detach().float().clamp(0, 1).cpu()
+    target_rgb_chw = _as_chw_render(episode["target_rgb"], 3)
+    predicted_rgb_chw = _as_chw_render(pred_rgb, 3)
+    target_alpha_chw = _as_chw_render(episode["target_foreground_mask"], 1)
+    predicted_alpha_chw = _as_chw_render(pred_alpha, 1)
+    save_image(make_grid(references_chw, nrow=2), output_dir / "reference_contact_sheet.png")
+    save_render_tensor(output_dir / "target_rgb.png", target_rgb_chw, 3)
+    save_render_tensor(output_dir / "predicted_rgb.png", predicted_rgb_chw, 3)
+    save_render_tensor(output_dir / "predicted_alpha.png", predicted_alpha_chw, 1)
+    rgb_error = (target_rgb_chw - predicted_rgb_chw).abs()
+    comparison = make_grid(
+        [
+            references_chw[0], references_chw[1], target_rgb_chw,
+            predicted_rgb_chw, rgb_error,
+            target_alpha_chw.expand(3, -1, -1),
+            predicted_alpha_chw.expand(3, -1, -1),
+        ],
+        nrow=4,
+    )
     save_image(comparison, output_dir / "comparison.png")
     shutil.copyfile(checkpoint, output_dir / "checkpoint_step_000001.pth") if checkpoint.name != "checkpoint_step_000001.pth" else None
-    (output_dir / "GATE_ACCEPTANCE.md").write_text("# Gate 4-A Acceptance\n\nStatus: **PASS**\n\nReal one-batch, reference-only gate, backward, sensitivity and checkpoint roundtrip verified.\n", encoding="utf-8")
+    acceptance = (
+        "# Gate 4-A Acceptance\n\n"
+        "Status: **PASS**\n\n"
+        "The fixed pre-registered reference/target protocol, real one-batch forward/backward, "
+        "reference-only gate, same-state checkpoint roundtrip, diagnostics, and render persistence "
+        "were verified.\n\n"
+        "Feature-level sensitivity is established at step 1; output-level sensitivity is not yet "
+        "established at step 1. This is not evidence of final clothing-change capability.\n\n"
+        "## Gate 4-B hard acceptance\n\n"
+        "After continuous training, raw anchor offset difference and rendered RGB difference between "
+        "legal reference conditions must both be greater than zero.\n"
+    )
+    (output_dir / "GATE_ACCEPTANCE.md").write_text(acceptance, encoding="utf-8")
     partial_path.unlink(missing_ok=True)
 
     print(f"checkpoint path: {checkpoint_path}")
@@ -471,4 +685,28 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as error:
+        default_output = "/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-ONEBATCH-001"
+        output_value = default_output
+        if "--output_dir" in sys.argv:
+            position = sys.argv.index("--output_dir")
+            if position + 1 < len(sys.argv):
+                output_value = sys.argv[position + 1]
+        failure_path = Path(output_value) / "one_batch_diagnostics.partial.json"
+        failure_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            partial = json.loads(failure_path.read_text(encoding="utf-8")) if failure_path.is_file() else {}
+        except json.JSONDecodeError:
+            partial = {}
+        partial.update(
+            {
+                "status": "FAIL",
+                "failure_stage": partial.get("failure_stage") or "unclassified",
+                "exception_type": type(error).__name__,
+                "exception_message": str(error),
+            }
+        )
+        failure_path.write_text(json.dumps(partial, indent=2), encoding="utf-8")
+        raise
