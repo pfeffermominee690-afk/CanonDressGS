@@ -121,6 +121,61 @@ def main() -> None:
     _assert_base_unchanged(base_model, before)
     print("DressableGaussianModel zero-offset test: PASS")
 
+    mask = torch.zeros(num_gaussians, dtype=torch.bool)
+    mask[4:12] = True
+    mask_2d = mask[:, None]
+
+    xyz_offset = torch.tensor([0.01, 0.0, 0.0], dtype=torch.float32)
+    scaling_offset = 0.02
+    opacity_offset = 0.1
+
+    dressable_model.set_manual_clothing_offset(
+        gaussian_mask=mask_2d,
+        xyz_offset=xyz_offset,
+        scaling_offset=scaling_offset,
+        opacity_offset=opacity_offset,
+    )
+    dressed = dressable_model(cloth_id=0)
+
+    expected_xyz = base_model._xyz + mask_2d.to(base_model._xyz.dtype) * xyz_offset.reshape(1, 3)
+    if not torch.allclose(dressed["xyz"], expected_xyz):
+        raise AssertionError("manual xyz offsets were not applied correctly")
+    print("manual xyz offset test: PASS")
+
+    expected_scaling = base_model._scaling + mask_2d.to(base_model._scaling.dtype) * scaling_offset
+    if not torch.allclose(dressed["scaling"], expected_scaling):
+        raise AssertionError("manual scaling offsets were not applied correctly")
+    print("manual scaling offset test: PASS")
+
+    expected_opacity = base_model._opacity + mask.to(base_model._opacity.dtype) * opacity_offset
+    if not torch.allclose(dressed["opacity"], expected_opacity):
+        raise AssertionError("manual opacity offsets were not applied correctly")
+    print("manual opacity offset test: PASS")
+
+    unmasked = ~mask
+    if not torch.equal(dressed["xyz"][unmasked], base_model._xyz[unmasked]):
+        raise AssertionError("unmasked xyz parameters changed")
+    if not torch.equal(dressed["scaling"][unmasked], base_model._scaling[unmasked]):
+        raise AssertionError("unmasked scaling parameters changed")
+    if not torch.equal(dressed["opacity"][unmasked], base_model._opacity[unmasked]):
+        raise AssertionError("unmasked opacity parameters changed")
+    if not torch.equal(dressed["rotation"], base_model._rotation):
+        raise AssertionError("rotation changed in manual offset stage")
+    if not torch.equal(dressed["sh0"], base_model._sh0):
+        raise AssertionError("sh0 changed in manual offset stage")
+    if not torch.equal(dressed["shN"], base_model._shN):
+        raise AssertionError("shN changed in manual offset stage")
+    print("unmasked parameters unchanged: PASS")
+
+    _assert_base_unchanged(base_model, before)
+
+    dressable_model.clear_manual_clothing_offset()
+    dressed = dressable_model(cloth_id=0)
+    _assert_zero_offset_identity(dressed, base_model)
+    print("clear manual offset test: PASS")
+
+    if base_model._xyz.grad is not None:
+        base_model._xyz.grad.zero_()
     loss = dressed["xyz"].sum()
     loss.backward()
     if base_model._xyz.grad is None:
@@ -128,6 +183,20 @@ def main() -> None:
     if not torch.equal(base_model._xyz.grad, torch.ones_like(base_model._xyz)):
         raise AssertionError("base xyz gradient is not the expected all-ones tensor")
     print("gradient test: PASS")
+
+    invalid_shape_checks = [
+        lambda: dressable_model.set_manual_clothing_offset(torch.ones(num_gaussians + 1)),
+        lambda: dressable_model.set_manual_clothing_offset(mask, xyz_offset=torch.ones(2)),
+        lambda: dressable_model.set_manual_clothing_offset(mask, scaling_offset=torch.ones(num_gaussians, 2)),
+        lambda: dressable_model.set_manual_clothing_offset(mask, opacity_offset=torch.ones(num_gaussians, 1)),
+    ]
+    for check in invalid_shape_checks:
+        try:
+            check()
+        except (TypeError, ValueError):
+            continue
+        raise AssertionError("invalid shape did not raise TypeError or ValueError")
+    print("invalid shape test: PASS")
 
     _assert_base_unchanged(base_model, before)
     print("base parameters unchanged: PASS")

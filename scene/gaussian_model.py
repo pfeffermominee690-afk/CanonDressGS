@@ -204,17 +204,22 @@ class GaussianModel:
 
     @property
     def get_cano_scaling(self):
-        if 'get_cano_scaling' in self.cache_dict: return self.cache_dict['get_cano_scaling'] 
+        return self.compute_cano_scaling()
+
+    def compute_cano_scaling(self, canonical_overrides=None):
+        if canonical_overrides is None and 'get_cano_scaling' in self.cache_dict: return self.cache_dict['get_cano_scaling']
+        raw_scaling = self._get_canonical_override(canonical_overrides, 'scaling', self._scaling)
         if not self.is_gsparam_bs: 
-            scaling = self.scaling_activation(self._scaling)
+            scaling = self.scaling_activation(raw_scaling)
         else:
             features = self.get_encoded_feature_gsparam_weight
             dscaling = torch.einsum('nc,ncl->nl', features, self.scaling_bs)
 
-            scaling = self._scaling + dscaling
+            scaling = raw_scaling + dscaling
             scaling = self.scaling_activation(scaling)
         
-        self.cache_dict['get_cano_scaling'] = scaling
+        if canonical_overrides is None:
+            self.cache_dict['get_cano_scaling'] = scaling
         return scaling
     
     @property
@@ -259,22 +264,26 @@ class GaussianModel:
 
     @property
     def get_cano_rotation(self):
+        return self.compute_cano_rotation()
+
+    def compute_cano_rotation(self, canonical_overrides=None):
+        raw_rotation = self._get_canonical_override(canonical_overrides, 'rotation', self._rotation)
         if not self.is_gsparam_bs: 
-            rotation = self.rotation_activation(self._rotation)
+            rotation = self.rotation_activation(raw_rotation)
         else:
             features = self.get_encoded_feature_gsparam_weight
             drotation = torch.einsum('nc,ncl->nl', features, self.rotation_bs)
 
-            rotation = self._rotation + drotation
+            rotation = raw_rotation + drotation
             rotation = self.rotation_activation(rotation)
 
         return rotation
 
-    def get_covariance(self, scaling_modifier=1):
+    def get_covariance(self, scaling_modifier=1, canonical_overrides=None):
         rots = self.get_Gweights[:,:3,:3].contiguous()
         covs = quat_scale_to_covar_preci(
-            quats=self.get_cano_rotation,
-            scales=self.get_cano_scaling * scaling_modifier,
+            quats=self.compute_cano_rotation(canonical_overrides),
+            scales=self.compute_cano_scaling(canonical_overrides) * scaling_modifier,
             compute_preci=False,
         )[0]
 
@@ -362,43 +371,60 @@ class GaussianModel:
     
     @property
     def get_cano_xyz(self):
-        if 'get_cano_xyz' in self.cache_dict: return self.cache_dict['get_cano_xyz']
-        xyz = self._xyz + self.get_dxyz + torch.tanh(self.xyz_offset) * 0.008   # A trick to allow Gaussians to move freely within a small range
-        self.cache_dict['get_cano_xyz'] = xyz
+        return self.compute_cano_xyz()
+
+    def compute_cano_xyz(self, canonical_overrides=None):
+        if canonical_overrides is None and 'get_cano_xyz' in self.cache_dict: return self.cache_dict['get_cano_xyz']
+        raw_xyz = self._get_canonical_override(canonical_overrides, 'xyz', self._xyz)
+        xyz = raw_xyz + self.get_dxyz + torch.tanh(self.xyz_offset) * 0.008   # A trick to allow Gaussians to move freely within a small range
+        if canonical_overrides is None:
+            self.cache_dict['get_cano_xyz'] = xyz
         return xyz
 
     @property
     def get_xyz(self):
-        if 'get_xyz' in self.cache_dict: return self.cache_dict['get_xyz']
-        xyz = self.get_cano_xyz
+        return self.compute_xyz()
+
+    def compute_xyz(self, canonical_overrides=None):
+        if canonical_overrides is None and 'get_xyz' in self.cache_dict: return self.cache_dict['get_xyz']
+        xyz = self.compute_cano_xyz(canonical_overrides)
         xyz = torch.einsum('vij,vj->vi', self.get_Gweights, F.pad(xyz,(0,1),value=1))[:,:3]
         if self.Rh is not None: xyz = torch.einsum('ij,vj->vi', self.Rh, xyz) 
         xyz = xyz + self.Th
 
-        self.cache_dict['get_xyz'] = xyz
+        if canonical_overrides is None:
+            self.cache_dict['get_xyz'] = xyz
         return xyz
 
     @property
     def get_opacity(self):
+        return self.compute_opacity()
+
+    def compute_opacity(self, canonical_overrides=None):
+        raw_opacity = self._get_canonical_override(canonical_overrides, 'opacity', self._opacity)
         if not self.is_gsparam_bs:
-            opacity = self.opacity_activation(self._opacity)     
+            opacity = self.opacity_activation(raw_opacity)
         else:
             features = self.get_encoded_feature_gsparam_weight
             dopacity = torch.einsum('nc,nc->n', features, self.opacity_bs)
 
-            opacity = self._opacity + dopacity
+            opacity = raw_opacity + dopacity
             opacity = self.opacity_activation(opacity)
 
         return opacity
 
     @property
     def get_sh(self):
-        if 'get_sh' in self.cache_dict: return self.cache_dict['get_sh']
+        return self.compute_sh()
 
+    def compute_sh(self, canonical_overrides=None):
+        if canonical_overrides is None and 'get_sh' in self.cache_dict: return self.cache_dict['get_sh']
+        raw_sh0 = self._get_canonical_override(canonical_overrides, 'sh0', self._sh0)
+        raw_shN = self._get_canonical_override(canonical_overrides, 'shN', self._shN)
         if self.sh_degree == 0: 
-            sh = self._sh0
+            sh = raw_sh0
         else:
-            sh = torch.cat([self._sh0, self._shN], dim=1)
+            sh = torch.cat([raw_sh0, raw_shN], dim=1)
 
         if self.is_gsparam_bs:
 
@@ -412,28 +438,30 @@ class GaussianModel:
 
             sh = sh + dsh
 
-        self.cache_dict['get_sh'] = sh
+        if canonical_overrides is None:
+            self.cache_dict['get_sh'] = sh
         return sh
 
-    def get_color(self, cam_pos):
-        if 'get_color' in self.cache_dict: return self.cache_dict['get_color']
+    def get_color(self, cam_pos, canonical_overrides=None):
+        if canonical_overrides is None and 'get_color' in self.cache_dict: return self.cache_dict['get_color']
 
         if self.sh_degree > 0:
             rots = self.get_Gweights[:,:3,:3]
             # with torch.set_grad_enabled(False):
             #     rots = polar_decomposition_newton_schulz(rots)
 
-            dirs = F.normalize(cam_pos - self.get_xyz, dim=-1)
+            dirs = F.normalize(cam_pos - self.compute_xyz(canonical_overrides), dim=-1)
             invrots = rots.transpose(-1,-2)
             dirs = torch.einsum('nij,nj->ni',invrots, dirs)
         else:
             dirs = torch.ones_like(self._xyz)
 
-        sh = self.get_sh
+        sh = self.compute_sh(canonical_overrides)
         color = spherical_harmonics(self.sh_degree, dirs, sh)
         color = torch.clamp_min(color + 0.5, 0)
 
-        self.cache_dict['get_color'] = color
+        if canonical_overrides is None:
+            self.cache_dict['get_color'] = color
 
         return color
 
@@ -557,18 +585,19 @@ class GaussianModel:
         
         self.cache_dict = {}
 
-    def render(self, cam, override_color=None, scaling_modifier=1.0, background=None):
-        sh = self.get_sh      # can be faster
-        covars = self.get_covariance(scaling_modifier)
+    def render(self, cam, override_color=None, scaling_modifier=1.0, background=None, canonical_overrides=None):
+        self._validate_canonical_overrides(canonical_overrides)
+        sh = self.compute_sh(canonical_overrides)      # can be faster
+        covars = self.get_covariance(scaling_modifier, canonical_overrides)
         if override_color is None:
             cam_pos = torch.linalg.inv_ex(cam['w2c'])[0][:3,3]
-            override_color = self.get_color(cam_pos)
+            override_color = self.get_color(cam_pos, canonical_overrides)
         
         image, alpha, info = rasterization(
-            means=self.get_xyz,
+            means=self.compute_xyz(canonical_overrides),
             quats=None,
             scales=None,
-            opacities=self.get_opacity,
+            opacities=self.compute_opacity(canonical_overrides),
             colors=override_color,
             viewmats=cam['w2c'][None],  # [1, 4, 4]
             Ks=cam['K'][None],  # [1, 3, 3]
@@ -580,6 +609,36 @@ class GaussianModel:
             covars=covars,
         )
         return image[0], alpha[0], info
+
+    def _get_canonical_override(self, canonical_overrides, key, fallback):
+        if canonical_overrides is None:
+            return fallback
+        if key not in canonical_overrides:
+            raise KeyError(f"canonical_overrides is missing required key: {key}")
+        return canonical_overrides[key]
+
+    def _validate_canonical_overrides(self, canonical_overrides):
+        if canonical_overrides is None:
+            return
+        required_shapes = {
+            'xyz': self._xyz.shape,
+            'scaling': self._scaling.shape,
+            'rotation': self._rotation.shape,
+            'opacity': self._opacity.shape,
+            'sh0': self._sh0.shape,
+            'shN': self._shN.shape,
+        }
+        for key, expected_shape in required_shapes.items():
+            if key not in canonical_overrides:
+                raise KeyError(f"canonical_overrides is missing required key: {key}")
+            value = canonical_overrides[key]
+            if not isinstance(value, torch.Tensor):
+                raise TypeError(f"canonical_overrides[{key!r}] must be a torch.Tensor, got {type(value)!r}")
+            if value.shape != expected_shape:
+                raise ValueError(
+                    f"canonical_overrides[{key!r}] has shape {tuple(value.shape)}, "
+                    f"expected {tuple(expected_shape)}"
+                )
 
     def init_body(self):
         # Rots = batch_rodrigues(smpl.smpl_bigpose.reshape(-1,3)).cuda()
