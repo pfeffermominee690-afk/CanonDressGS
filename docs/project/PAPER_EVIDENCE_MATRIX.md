@@ -1,5 +1,10 @@
 # Paper Evidence Matrix
 
+| 论文主张 | 状态 | 代码/Run | 当前证据 | 缺口与允许表述 |
+|---|---|---|---|---|
+| 固定 reference 条件在连续训练后影响 geometry 与 target render | CURRENT-BACKBONE-SUPPORTED | GATE4-REAL-SMOKE10-001 / `6f39433` | 10-step 后 A/B raw anchor offset MAE `6.57478e-07`，rendered RGB MAE `6.46310e-07`；target 未用于 condition | 仅单 subject、单固定 target、10-step smoke；不等价于换装泛化或独立推理完成 |
+| 当前 clean pipeline 可完成真实 10-step image-conditioned optimization | SUPPORTED | GATE4-REAL-SMOKE10-001 / `6f39433` | loss 连续下降；trainable 模块 step-10 梯度非零；base 梯度为零；checkpoint roundtrip 零差异 | 只支持 smoke stability 和条件敏感性，不支持 100/300-step 收敛结论 |
+
 论文主张必须绑定代码 commit、实验 Run ID、配置和可复核指标。`SUPPORTED` 只用于证据闭环；历史记录、诊断和计划不得升级为正式结论。
 
 | 论文主张 | 状态 | 代码/Run | 当前证据 | 缺口与允许表述 |

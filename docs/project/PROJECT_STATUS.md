@@ -1,5 +1,15 @@
 # Project Status
 
+## 2026-07-16 Gate 4-B 状态更新
+
+- Gate 4-A：PASS（固定预注册协议和正式验收证据已闭合）。
+- Gate 4-B real 10-step smoke：PASS，Run ID `GATE4-REAL-SMOKE10-001`，执行 commit `6f394339727d1b9e351ff1c98d3ff484397923c7`。
+- 固定协议：Condition A 为 `f000_c018 + f1000_c000`，Condition B 为 `f000_c018`，target 为 `f2000_c009`；`target_view_used=false`。
+- total loss：`0.069504388 -> 0.052702554`；10 步全部 finite；base grad count 为 0；scale/opacity 禁用通道严格为 0。
+- step-10 sensitivity：raw anchor offset MAE `6.57478096855e-07`，rendered RGB MAE `6.46310184038e-07`，满足 Gate 4-B 硬验收。
+- step-10 checkpoint roundtrip：raw/gated anchor offset、RGB、alpha 的 max/mean diff 全部为 0。
+- 下一任务：等待确认后规划 100-step overfit；本轮未启动 100/300-step 训练。
+
 更新时间：2026-07-15
 
 ## 当前状态

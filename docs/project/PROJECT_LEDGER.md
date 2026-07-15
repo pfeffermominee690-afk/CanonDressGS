@@ -1,5 +1,24 @@
 # Project Ledger
 
+## LEDGER-20260716-001 — Gate 4-B Real Image-conditioned 10-step Smoke
+
+- 时间：2026-07-16T00:49:03+08:00
+- 类型/状态：EXPERIMENT / PASS
+- Run ID：`GATE4-REAL-SMOKE10-001`
+- branch/commit：`pipeline/imagecond-mvp-20260715` / `6f394339727d1b9e351ff1c98d3ff484397923c7`
+- config：`configs/canon_dress_gs_gate4b_smoke10.yaml`，SHA256 `935d188956a4c44d4dbf8a3081fd335f8d68d299a192f993508d848f676fbbdd`
+- 命令：`/root/autodl-tmp/conda_envs/mmlphuman/bin/python -m tools.run_gate4b_smoke10`
+- 输出：`/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-SMOKE10-001`
+- 协议：A=`f000_c018 + f1000_c000`，B=`f000_c018`，target=`f2000_c009`，`target_view_used=false`
+- 当前 base SHA256：`abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`；不得与历史 `64ac7f2d...` 合并表述
+- step-10 checkpoint SHA256：`6d001694e28e9b1065abc731691288ccd73afdd8483afd0351152a041bb5446c`
+- total loss：`0.069504388 -> 0.052702554`
+- step-10 gradients：encoder `0.00462416`，aggregator `1.78386e-05`，HyperNetwork `0.0242637`，Anchor MLP `0.999694`；base grad count `0`
+- sensitivity：raw anchor `6.57478e-07`，gated anchor `4.95539e-07`，Gaussian `4.86841e-07`，RGB `6.46310e-07`，alpha `6.42821e-07`（MAE）
+- roundtrip：raw/gated anchor、RGB、alpha max/mean diff 均为 `0`
+- 稳定性：全部 step finite；禁用通道为 0；末三步 allocated-memory range `1122816` bytes
+- Git：云端 worktree clean；legacy 仓库继续冻结；未启动 100/300-step 训练
+
 本文件只允许在末尾追加记录。既有条目不得改写或删除；纠错使用新条目引用旧条目。
 
 ## LEDGER-20260715-001 — 治理基线启动
