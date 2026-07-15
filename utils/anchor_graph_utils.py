@@ -87,7 +87,7 @@ def _expand_topology(anchors, topology, graph_k, chunk_size):
                 if nxt not in seen: queue.append(nxt)
         if len(selected)<graph_k:
             candidates=_chunked_xyz_knn(anchors[root:root+1], graph_k+1, chunk_size, database=anchors)[0].tolist()
-            selected.extend(x for x in candidates if x not in seen and x != root) 
+            selected.extend(x for x in candidates if x not in seen and x != root)
         chosen=torch.tensor(selected[:graph_k],device=anchors.device)
         order=torch.argsort(torch.linalg.vector_norm(anchors[chosen]-anchors[root],dim=-1),stable=True)
         result.append(chosen[order])

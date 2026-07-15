@@ -126,7 +126,18 @@ class ImageConditionedDressableModel(nn.Module):
             raise RuntimeError("initialize online completion before formal forward")
         if reference_valid_mask.float().sum()<=0:
             raise ValueError("formal online forward rejects all-invalid references")
-        encoded=self.encode_global_clothing(reference_images,reference_cloth_masks,reference_valid_mask)
+        zero_clothing_mask=bool(reference_cloth_masks.count_nonzero().item()==0)
+        if zero_clothing_mask:
+            encoded=self.encode_global_clothing(
+                reference_images,torch.ones_like(reference_cloth_masks),reference_valid_mask
+            )
+            encoded={**encoded,
+                "global_clothing_embedding":torch.zeros_like(encoded["global_clothing_embedding"]),
+                "feature_maps":torch.zeros_like(encoded["feature_maps"]),
+                "feature_cloth_masks":torch.zeros_like(encoded["feature_cloth_masks"]),
+            }
+        else:
+            encoded=self.encode_global_clothing(reference_images,reference_cloth_masks,reference_valid_mask)
         projection=self.anchor_image_projector.project_and_sample(
             canonical_anchors=self.canonical_anchors,feature_maps=encoded["feature_maps"],
             reference_poses=reference_poses,reference_cameras=reference_cameras,
