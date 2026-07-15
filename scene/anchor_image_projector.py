@@ -215,8 +215,18 @@ class AnchorImageProjector(nn.Module):
             )
             visibility = visibility * depth_outputs["depth_confidence"]
         online_visibility = in_frame_float*positive_depth_float*angle_confidence*foreground_confidence
-        if "depth_confidence" in depth_outputs:
-            online_visibility=online_visibility*depth_outputs["depth_confidence"]
+        online_depth_outputs: dict[str, torch.Tensor] = {}
+        if surface_depth_maps is not None:
+            online_depth_outputs = compute_anchor_depth_visibility(
+                anchor_depth=depth, surface_depth_maps=depth_maps,
+                sampling_grid=sampling_grid, positive_depth_mask=positive_depth,
+                in_frame_mask=in_frame,
+                foreground_mask_hit=geometric_valid & (foreground_confidence >= 0.5),
+                abs_tolerance=depth_abs_tolerance, rel_tolerance=depth_rel_tolerance,
+                align_corners=self.align_corners, surface_alpha_maps=alpha_maps,
+                min_surface_alpha=depth_alpha_threshold,
+            )
+            online_visibility=online_visibility*online_depth_outputs["depth_confidence"]
         outputs = {
             "sampled_features": sampled_features,
             "projected_pixels": pixels,
@@ -231,6 +241,9 @@ class AnchorImageProjector(nn.Module):
             "per_view_cloth_probability": online_cloth_probability,
             "per_view_visibility": online_visibility.clamp(0,1),
             "foreground_confidence": foreground_confidence,
+            "online_depth_confidence": online_depth_outputs.get(
+                "depth_confidence", torch.ones_like(online_visibility)
+            ),
         }
         if not all(torch.isfinite(value).all() for value in outputs.values()):
             raise FloatingPointError("anchor projection produced NaN or Inf")
