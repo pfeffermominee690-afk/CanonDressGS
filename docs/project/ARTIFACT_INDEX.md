@@ -2,6 +2,10 @@
 
 | Run ID | Gate | 状态 | Git commit | Config | Checkpoint | 输出目录 | 关键证据 |
 |---|---|---|---|---|---|---|---|
+| GATE4-REAL-OVERFIT100-001 | 4-C | PASS / STRONG | `e8baa03efb46c5244693f5aa798810dd5dbaacde` | `configs/canon_dress_gs_gate4c_overfit100.yaml` | step-100 `784b5af0...`; base `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-OVERFIT100-001` | 90 resumed steps finite; RGB-all L1 vs zero -63.23%; raw/RGB sensitivity 11.11x/7.81x step-10; independent inference deterministic |
+
+| Run ID | Gate | 状态 | Git commit | Config | Checkpoint | 输出目录 | 关键证据 |
+|---|---|---|---|---|---|---|---|
 | GATE4-REAL-SMOKE10-001 | 4-B | PASS | `6f394339727d1b9e351ff1c98d3ff484397923c7` | `configs/canon_dress_gs_gate4b_smoke10.yaml` | step-10 `6d001694...`; base `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-SMOKE10-001` | loss `0.069504388 -> 0.052702554`; raw sensitivity `6.57478e-07`; RGB sensitivity `6.46310e-07`; roundtrip zero diff |
 
 正式实验必须先分配唯一 Run ID。路径使用绝对路径，二进制产物记录 SHA256；未知字段写 `PENDING`，禁止猜测。

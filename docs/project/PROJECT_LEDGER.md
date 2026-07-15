@@ -1,5 +1,25 @@
 # Project Ledger
 
+## LEDGER-20260716-002 — Gate 4-C 100-step Overfit and Independent Inference
+
+- 时间：2026-07-16 Asia/Shanghai
+- 类型/状态：EXPERIMENT / PIPELINE PASS / EFFECT STRONG
+- Run ID：`GATE4-REAL-OVERFIT100-001`
+- branch/commit：`pipeline/imagecond-mvp-20260715` / `e8baa03efb46c5244693f5aa798810dd5dbaacde`
+- config：`configs/canon_dress_gs_gate4c_overfit100.yaml`；resolved SHA256 `3ee295ea0fa09e6eecb3f77d386dcf8dd0b546daa7d30b489eeb1df39db42503`
+- 命令：`/root/autodl-tmp/conda_envs/mmlphuman/bin/python -m tools.run_gate4c_overfit100`
+- 输出：`/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-OVERFIT100-001`
+- resume：Gate 4-B step 10 -> step 100；90 个新增 step 全部 finite
+- step-100 checkpoint SHA256：`784b5af0b55de6ce40946c64d7774ee7f745ed86240491d8ada1525f41b172e3`
+- loss：step 11 `0.050672099`，step 100 `0.024047337`；early/late mean 相对下降 `48.6181%`
+- 冻结/禁用：base grad count 始终 0；scaling/opacity 均严格为 0；末十步显存 range `4513280` bytes
+- unified evaluation：step-100 RGB-all/foreground/alpha L1 `0.00124963 / 0.0147991 / 0.000519729`，foreground PSNR `27.7492`，mask IoU `0.993598`
+- anchor：step-100 xyz MAE `0.00391920`，L2 mean error `0.00823399`，active MAE `0.00771490`，cosine `0.376112`
+- sensitivity：step-100 raw/RGB MAE `7.30441e-06 / 5.04538e-06`，分别为 step-10 的约 `11.11x / 7.81x`
+- roundtrip：raw/gated anchor、RGB、alpha max/mean diff 全部为 0
+- independent inference：step=100；target/teacher reads 均 false；两次推理 max diff 全部为 0；anchor/Gaussian shapes `[10000,3] / [200000,3]`
+- 保守限制：独立 inference 事后图像指标与统一评估有漂移，后续需复核；未启动 300-step
+
 ## LEDGER-20260716-001 — Gate 4-B Real Image-conditioned 10-step Smoke
 
 - 时间：2026-07-16T00:49:03+08:00

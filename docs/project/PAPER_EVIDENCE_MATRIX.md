@@ -2,6 +2,12 @@
 
 | 论文主张 | 状态 | 代码/Run | 当前证据 | 缺口与允许表述 |
 |---|---|---|---|---|
+| 当前 image-conditioned geometry pipeline 可从 step 10 resume 至 step 100 并独立推理 | SUPPORTED | GATE4-REAL-OVERFIT100-001 / `e8baa03` | 90 新增 steps finite；base grad 0；checkpoint roundtrip zero diff；独立入口不读 teacher/target RGB/mask | 单 subject、单 controlled synthetic deformation；不等价于真实服装泛化 |
+| Step-100 prediction 优于 frozen zero baseline | CURRENT-BACKBONE-SUPPORTED | GATE4-REAL-OVERFIT100-001 | unified evaluation：RGB-all/foreground/alpha L1 改善 `63.23%/64.49%/81.98%`；anchor xyz MAE 改善约 `4.63%` | 仅当前 `abbf67b5...` backbone、单 target；独立 inference 指标与进程内评估存在漂移，需分层报告 |
+| 连续训练增强 reference output-level conditioning | SUPPORTED-WITH-LIMIT | GATE4-REAL-OVERFIT100-001 | step-100 raw/RGB sensitivity 为 step-10 的约 `11.11x/7.81x` | sensitivity 在 step 50 达峰后回落，不能写成单调增强；尚不能声称完整换装能力 |
+
+| 论文主张 | 状态 | 代码/Run | 当前证据 | 缺口与允许表述 |
+|---|---|---|---|---|
 | 固定 reference 条件在连续训练后影响 geometry 与 target render | CURRENT-BACKBONE-SUPPORTED | GATE4-REAL-SMOKE10-001 / `6f39433` | 10-step 后 A/B raw anchor offset MAE `6.57478e-07`，rendered RGB MAE `6.46310e-07`；target 未用于 condition | 仅单 subject、单固定 target、10-step smoke；不等价于换装泛化或独立推理完成 |
 | 当前 clean pipeline 可完成真实 10-step image-conditioned optimization | SUPPORTED | GATE4-REAL-SMOKE10-001 / `6f39433` | loss 连续下降；trainable 模块 step-10 梯度非零；base 梯度为零；checkpoint roundtrip 零差异 | 只支持 smoke stability 和条件敏感性，不支持 100/300-step 收敛结论 |
 

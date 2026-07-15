@@ -1,5 +1,15 @@
 # Project Status
 
+## 2026-07-16 Gate 4-C 状态更新
+
+- Gate 4-C 100-step overfit + independent inference：工程 **PASS**，效果分级 **STRONG**。
+- 执行 commit：`e8baa03efb46c5244693f5aa798810dd5dbaacde`；从 Gate 4-B step 10 成功 resume，仅新增 steps 11–100。
+- loss 趋势：steps 10–19 mean `0.048088079`，steps 81–100 mean `0.024708561`，相对下降 `48.6181%`。
+- 统一评估 step 100 相对 zero：RGB-all L1 改善 `63.23%`，foreground RGB L1 改善 `64.49%`，alpha L1 改善 `81.98%`，foreground PSNR 提升 `7.918 dB`，mask IoU 提升 `0.030019`。
+- conditioning sensitivity：step 10/50/100 raw MAE 为 `6.57478e-07 / 1.63975e-05 / 7.30441e-06`；RGB MAE 为 `6.46310e-07 / 1.27474e-05 / 5.04538e-06`。step 100 明显高于 step 10，但峰值在 step 50，非单调增强。
+- 独立 inference：未读取 teacher、target RGB/mask 或 cloth-id condition；重复推理所有输出 max diff 为 0。
+- 待复核：独立 inference 的事后图像指标与训练进程内统一评估不一致；两层证据必须分开表述。未启动 300-step。
+
 ## 2026-07-16 Gate 4-B 状态更新
 
 - Gate 4-A：PASS（固定预注册协议和正式验收证据已闭合）。
