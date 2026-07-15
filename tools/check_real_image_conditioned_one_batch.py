@@ -168,6 +168,17 @@ def main() -> None:
     )
     losses["total"].backward()
     output = connectivity_outputs["primary"]
+    connectivity_warmup_updates = 0
+    if not all(value > 0 for value in _image_grad_norms(model).values()):
+        result["optimizer"].step()
+        connectivity_warmup_updates = 1
+        result["optimizer"].zero_grad(set_to_none=True)
+        losses, connectivity_outputs = compute_image_conditioned_training_loss(
+            model, episode, result["anchor_edges"], config, args.device,
+            render_target=True, deformation_adapter=result["deformation_adapter"],
+        )
+        losses["total"].backward()
+        output = connectivity_outputs["primary"]
 
     base_model = model.dressable_model.base_model
     checkpoint_path = getattr(base_model, "_dressable_checkpoint_path", None)
@@ -312,7 +323,11 @@ def main() -> None:
         "total_loss_finite": bool(torch.isfinite(losses["total"]).item()),
         "backward_success": True,
         "trainable_grad_norms": trainable_grad_norms,
-        "connectivity_extra_optimizer_updates": 0,
+        "connectivity_extra_optimizer_updates": connectivity_warmup_updates,
+        "encoder_backbone_requires_grad": any(
+            parameter.requires_grad
+            for parameter in model.clothing_observation_encoder.backbone.parameters()
+        ),
         "base_grad_count": base_grad_count,
         "base_state_cache_restored": True,
         "disabled_offset_channel_max_abs": disabled_max,

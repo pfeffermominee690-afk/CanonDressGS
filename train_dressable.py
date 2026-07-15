@@ -1045,6 +1045,7 @@ def create_image_conditioned_components(
     encoder = ClothingObservationEncoder(
         embedding_dim=int(image_config["embedding_dim"]),
         feature_dim=int(image_config["feature_dim"]),
+        freeze_backbone=bool(image_config.get("freeze_backbone", False)),
     ).to(device=device, dtype=anchor_xyz.dtype)
     aggregator = MultiViewClothingAggregator(
         input_dim=int(image_config["feature_dim"]),
