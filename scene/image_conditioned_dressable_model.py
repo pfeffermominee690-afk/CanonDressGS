@@ -10,6 +10,8 @@ from scene.anchor_image_projector import AnchorImageProjector
 from scene.clothing_observation_encoder import ClothingObservationEncoder
 from scene.dressable_gaussian_model import DressableGaussianModel
 from scene.multiview_clothing_aggregator import MultiViewClothingAggregator
+from scene.canonical_clothing_completion import CanonicalClothingCompleter
+from utils.anchor_graph_utils import validate_anchor_graph
 from utils.dressable_camera_utils import build_mmlphuman_camera
 from utils.mmlphuman_state_utils import mmlphuman_state_transaction
 
@@ -93,6 +95,76 @@ class ImageConditionedDressableModel(nn.Module):
                 raise ValueError("canonical_anchors must be finite and floating point")
             anchors = canonical_anchors.detach().clone().to(device=device, dtype=dtype)
         self.register_buffer("canonical_anchors", anchors)
+        self.canonical_clothing_completer: CanonicalClothingCompleter | None = None
+        self.register_buffer("anchor_graph_indices", torch.empty(0, dtype=torch.long), persistent=False)
+        self.register_buffer("anchor_graph_weights", torch.empty(0, device=device, dtype=dtype), persistent=False)
+
+    def initialize_online_completion(
+        self, anchor_graph_indices: torch.Tensor, anchor_graph_weights: torch.Tensor,
+        hidden_dim: int = 128, num_blocks: int = 4,
+    ) -> None:
+        A=self.canonical_anchors.shape[0]
+        validate_anchor_graph(anchor_graph_indices,anchor_graph_weights,A,anchor_graph_indices.shape[1])
+        local_dim=self.multiview_aggregator.output_dim
+        global_dim=self.dressable_model.clothing_film_generator.clothing_dim
+        self.canonical_clothing_completer=CanonicalClothingCompleter(
+            local_dim,global_dim,3,hidden_dim,num_blocks
+        ).to(device=self.canonical_anchors.device,dtype=self.canonical_anchors.dtype)
+        self.anchor_graph_indices=anchor_graph_indices.to(self.canonical_anchors.device)
+        self.anchor_graph_weights=anchor_graph_weights.to(self.canonical_anchors)
+
+    def encode_clothing_online(
+        self, reference_images: torch.Tensor, reference_cloth_masks: torch.Tensor,
+        reference_foreground_masks: torch.Tensor, reference_poses: torch.Tensor,
+        reference_cameras: Sequence[dict[str, Any]], reference_valid_mask: torch.Tensor,
+        deformation_fn=None, surface_depth_maps=None, surface_alpha_maps=None,
+        require_depth_visibility: bool = True,
+    ) -> dict[str, Any]:
+        """Create online reference-only evidence and learned canonical completion."""
+
+        if self.canonical_clothing_completer is None or self.anchor_graph_indices.numel()==0:
+            raise RuntimeError("initialize online completion before formal forward")
+        if reference_valid_mask.float().sum()<=0:
+            raise ValueError("formal online forward rejects all-invalid references")
+        encoded=self.encode_global_clothing(reference_images,reference_cloth_masks,reference_valid_mask)
+        projection=self.anchor_image_projector.project_and_sample(
+            canonical_anchors=self.canonical_anchors,feature_maps=encoded["feature_maps"],
+            reference_poses=reference_poses,reference_cameras=reference_cameras,
+            image_height=reference_images.shape[-2],image_width=reference_images.shape[-1],
+            feature_cloth_masks=encoded["feature_cloth_masks"],
+            reference_cloth_masks=reference_cloth_masks,
+            reference_foreground_masks=reference_foreground_masks,
+            deformation_fn=deformation_fn,surface_depth_maps=surface_depth_maps,
+            surface_alpha_maps=surface_alpha_maps,require_depth_visibility=require_depth_visibility,
+        )
+        observed=self.multiview_aggregator.aggregate_online_observations(
+            projection["sampled_features"],projection["per_view_visibility"],
+            projection["per_view_cloth_probability"],reference_valid_mask,
+        )
+        anchors=self.canonical_anchors
+        center=anchors.mean(0,keepdim=True); scale=(anchors-center).abs().amax().clamp_min(1e-8)
+        completion=self.canonical_clothing_completer(
+            encoded["global_clothing_embedding"],observed["observed_surface_feature"],
+            observed["observed_clothing_feature"],observed["observed_clothing_probability"],
+            observed["observation_coverage"],(anchors-center)/scale,
+            self.anchor_graph_indices,self.anchor_graph_weights,
+        )
+        return {"global_clothing_embedding":encoded["global_clothing_embedding"],
+                "completion":completion,"projection":projection,"observed":observed}
+
+    def compute_online_six_channel_residuals(self, **online_inputs) -> dict[str, Any]:
+        """Formal Module-3 path; no teacher, target image, cloth ID, or temporary gate."""
+
+        forbidden={"teacher","target_rgb","target_foreground_mask","target_clothing_mask","cloth_id","reference_only_gate"}.intersection(online_inputs)
+        if forbidden: raise ValueError(f"forbidden online conditioning fields: {sorted(forbidden)}")
+        online=self.encode_clothing_online(**online_inputs); completion=online["completion"]
+        raw,bounded,gated=self.dressable_model.compute_film_anchor_residuals(
+            completion.gate_bundle(),clothing_embedding=online["global_clothing_embedding"],
+            anchor_clothing_features=completion.completed_anchor_features,
+        )
+        gaussian=self.dressable_model.interpolate_anchor_clothing_residuals(gated)
+        return {**online,"raw_anchor_residuals":raw,"bounded_anchor_residuals":bounded,
+                "gated_anchor_residuals":gated,"gaussian_residuals":gaussian}
 
     def encode_global_clothing(
         self,
