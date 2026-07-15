@@ -6,6 +6,14 @@ from typing import TYPE_CHECKING, Any
 import torch
 from torch import nn
 
+from scene.gaussian_clothing_residuals import (
+    AnchorClothingResiduals,
+    CanonicalGaussianOverrides,
+    GaussianClothingResiduals,
+    compose_canonical_gaussian_overrides,
+    interpolate_anchor_clothing_residuals,
+)
+
 from scene.anchor_clothing_mlp import AnchorClothingMLP
 from scene.clothing_embedding import ClothingEmbedding
 from scene.clothing_hypernetwork import ClothingFiLMGenerator
@@ -446,6 +454,30 @@ class DressableGaussianModel(nn.Module):
             "delta_scaling": delta_scaling,
             "delta_opacity": delta_opacity.reshape(base_model._opacity.shape),
         }
+
+    def interpolate_anchor_clothing_residuals(
+        self,
+        anchor_residuals: AnchorClothingResiduals,
+    ) -> GaussianClothingResiduals:
+        """Interpolate the version-1 full attribute contract to Gaussian space."""
+
+        return interpolate_anchor_clothing_residuals(
+            anchor_residuals,
+            self.gaussian_anchor_indices,
+            self.gaussian_anchor_weights,
+            self._require_base_model(),
+        )
+
+    def compose_canonical_gaussian_overrides(
+        self,
+        gaussian_residuals: GaussianClothingResiduals,
+        enabled_channels,
+    ) -> CanonicalGaussianOverrides:
+        """Compose raw canonical attributes without bypassing base pose bases."""
+
+        return compose_canonical_gaussian_overrides(
+            self._require_base_model(), gaussian_residuals, enabled_channels
+        )
 
     def clothing_offset_regularization(
         self,
