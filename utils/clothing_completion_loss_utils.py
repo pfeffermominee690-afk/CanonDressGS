@@ -32,6 +32,8 @@ def gate_classification_metrics(prediction: torch.Tensor, target: torch.Tensor, 
 
 def completion_losses(output, geometry_target, appearance_target, graph_indices, graph_weights,
                       held_out_mask=None, held_out_target=None) -> dict[str,torch.Tensor]:
+    geometry_inactive=geometry_target < 0.5
+    appearance_inactive=appearance_target < 0.5
     losses={
         "geometry_gate_bce":F.binary_cross_entropy(output.geometry_gate.clamp(1e-6,1-1e-6),geometry_target),
         "geometry_gate_dice":binary_dice_loss(output.geometry_gate,geometry_target),
@@ -40,7 +42,10 @@ def completion_losses(output, geometry_target, appearance_target, graph_indices,
         "observed_reprojection":F.smooth_l1_loss(output.geometry_gate*output.observation_coverage,output.observed_clothing_probability*output.observation_coverage),
         "gate_graph_smoothness":graph_smoothness(output.geometry_gate,graph_indices,graph_weights)+graph_smoothness(output.appearance_gate,graph_indices,graph_weights),
         "feature_graph_smoothness":graph_smoothness(output.completed_anchor_features,graph_indices,graph_weights),
-        "gate_sparsity":output.geometry_gate.mean()+output.appearance_gate.mean(),
+        "gate_sparsity":(
+            _safe_masked_mean(output.geometry_gate,geometry_inactive)
+            + _safe_masked_mean(output.appearance_gate,appearance_inactive)
+        ),
     }
     if held_out_mask is not None and held_out_mask.any():
         losses["feature_reconstruction"]=F.smooth_l1_loss(output.completed_anchor_features[held_out_mask],held_out_target[held_out_mask])
@@ -53,3 +58,7 @@ def _pair(prediction,target):
         raise ValueError("gate tensors must have matching [A,1] shapes")
     if not torch.isfinite(prediction).all() or not torch.isfinite(target).all(): raise ValueError("gate contains NaN or Inf")
     return prediction,target
+
+
+def _safe_masked_mean(value: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+    return value[mask].mean() if mask.any() else value.sum()*0
