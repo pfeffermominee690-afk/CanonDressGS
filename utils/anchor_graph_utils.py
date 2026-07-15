@@ -31,6 +31,14 @@ def build_surface_aware_anchor_graph(
         source = "base_anchor_topology_nbr_vt_plus_two_hop"
     neighbor_xyz = anchors[indices]
     distances = torch.linalg.vector_norm(neighbor_xyz - anchors[:, None], dim=-1)
+    flat_distances = distances.flatten()
+    distance_quantiles = torch.quantile(
+        flat_distances, torch.tensor([0.5, 0.9, 0.99], device=anchors.device)
+    )
+    shortcut_threshold = torch.maximum(
+        distance_quantiles[0] * 10.0, distance_quantiles[2] * 2.0
+    )
+    shortcut_candidates = flat_distances > shortcut_threshold
     sigma = distances.median(dim=1, keepdim=True).values.clamp_min(1e-8)
     weights = torch.exp(-distances.square() / (2 * sigma.square()))
     weights = weights / weights.sum(dim=1, keepdim=True).clamp_min(1e-12)
@@ -46,6 +54,15 @@ def build_surface_aware_anchor_graph(
         "distance": {
             "min": float(distances.min()), "median": float(distances.median()),
             "mean": float(distances.mean()), "max": float(distances.max()),
+            "p90": float(distance_quantiles[1]), "p99": float(distance_quantiles[2]),
+        },
+        "shortcut_audit": {
+            "method": "spatial outlier screen; topology/body-part labels unavailable",
+            "threshold": float(shortcut_threshold),
+            "candidate_edge_count": int(shortcut_candidates.sum()),
+            "candidate_edge_ratio": float(shortcut_candidates.float().mean()),
+            "left_right_limb_check": "unavailable_without_body_part_ids",
+            "arm_torso_check": "unavailable_without_body_part_ids",
         },
         "metadata_paths": [], "normal_filter": "unavailable",
         "body_part_filter": "unavailable", "deterministic": True,
