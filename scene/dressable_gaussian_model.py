@@ -17,6 +17,7 @@ from scene.gaussian_clothing_residuals import (
 from scene.anchor_clothing_mlp import AnchorClothingMLP
 from scene.clothing_embedding import ClothingEmbedding
 from scene.clothing_hypernetwork import ClothingFiLMGenerator
+from scene.clothing_gate_bundle import ClothingGateBundle
 
 if TYPE_CHECKING:
     from scene.gaussian_model import GaussianModel
@@ -411,6 +412,33 @@ class DressableGaussianModel(nn.Module):
             anchor_clothing_features=anchor_clothing_features,
         )
         return self._apply_offset_channel_gate(offsets)
+
+    def configure_six_channel_decoder(self, channel_config: dict) -> None:
+        base = self._require_base_model()
+        if self.anchor_clothing_mlp is None:
+            raise RuntimeError("anchor clothing generator has not been initialized")
+        shN_flat_dim = int(torch.tensor(base._shN.shape[1:]).prod().item())
+        shn = channel_config.get("shN", {})
+        if shn.get("enabled"):
+            if "sh_degree" not in shn:
+                raise ValueError("enabled shN requires explicit sh_degree")
+            degree = int(shn["sh_degree"])
+            capacity = int(round((base._shN.shape[1] + 1) ** 0.5 - 1))
+            if degree < 1 or degree > capacity:
+                raise ValueError("configured sh_degree exceeds _shN capacity")
+        self.anchor_clothing_mlp.configure_six_channel_decoder(channel_config, shN_flat_dim)
+
+    def compute_film_anchor_residuals(
+        self, gate_bundle: ClothingGateBundle, *, cloth_id=None,
+        clothing_embedding=None, anchor_clothing_features=None,
+    ) -> tuple[AnchorClothingResiduals, AnchorClothingResiduals]:
+        if self.anchor_clothing_mlp is None or self.clothing_film_generator is None:
+            raise RuntimeError("FiLM clothing generator has not been initialized")
+        film = self._compute_film_parameters(cloth_id=cloth_id, clothing_embedding=clothing_embedding)
+        bounded = self.anchor_clothing_mlp.forward_film_six_channel(
+            self.anchor_features, film["film_gamma"], film["film_beta"], anchor_clothing_features
+        )
+        return bounded, gate_bundle.apply(bounded)
 
     def interpolate_anchor_offsets_to_gaussians(
         self,

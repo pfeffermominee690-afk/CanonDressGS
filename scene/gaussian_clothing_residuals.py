@@ -228,19 +228,44 @@ def interpolate_anchor_clothing_residuals(
         raise ValueError("at least one anchor residual channel must be present")
     anchor_count = present[0].shape[0]
     anchor_residuals.validate(anchor_count, base_model)
-    if gaussian_anchor_indices.ndim != 2 or gaussian_anchor_weights.shape != gaussian_anchor_indices.shape:
-        raise ValueError("interpolation indices/weights must have matching [N,K] shapes")
-    weights = gaussian_anchor_weights.unsqueeze(-1)
+    if gaussian_anchor_indices.shape[0] != base_model._xyz.shape[0]:
+        raise ValueError("interpolation row count must equal the base Gaussian count")
     values: dict[str, torch.Tensor | None] = {}
     for name in CHANNELS:
         value = getattr(anchor_residuals, name)
         if value is None:
             values[name] = None
             continue
-        interpolated = (value[gaussian_anchor_indices] * weights).sum(dim=1)
+        interpolated = interpolate_anchor_field(value, gaussian_anchor_indices, gaussian_anchor_weights)
         target_shape = getattr(GaussianClothingResiduals.zeros(base_model), name).shape
         values[name] = interpolated.reshape(target_shape)
     return GaussianClothingResiduals(**values).validate(base_model)
+
+
+def interpolate_anchor_field(
+    anchor_field: torch.Tensor,
+    anchor_indices: torch.Tensor,
+    anchor_weights: torch.Tensor,
+) -> torch.Tensor:
+    """Interpolate any shape-safe ``[A,C]`` anchor field without changing semantics."""
+
+    if not isinstance(anchor_field, torch.Tensor) or anchor_field.ndim != 2 or anchor_field.shape[1] <= 0:
+        raise ValueError("anchor_field must have shape [A,C] with C>0")
+    if anchor_indices.ndim != 2 or anchor_weights.shape != anchor_indices.shape:
+        raise ValueError("anchor_indices/weights must have matching [N,K] shapes")
+    if anchor_indices.dtype != torch.long:
+        raise TypeError("anchor_indices must use torch.long")
+    if anchor_field.device != anchor_indices.device or anchor_field.device != anchor_weights.device:
+        raise ValueError("field, indices, and weights must share one device")
+    if anchor_field.dtype != anchor_weights.dtype:
+        raise ValueError("field and weights must share one dtype")
+    if not torch.isfinite(anchor_field).all() or not torch.isfinite(anchor_weights).all():
+        raise ValueError("interpolation field/weights contain NaN or Inf")
+    if anchor_indices.numel() == 0 or anchor_indices.min() < 0 or anchor_indices.max() >= anchor_field.shape[0]:
+        raise IndexError("anchor interpolation index is out of bounds")
+    if not torch.allclose(anchor_weights.sum(dim=1), torch.ones(anchor_weights.shape[0], device=anchor_weights.device, dtype=anchor_weights.dtype), atol=1e-5, rtol=0):
+        raise ValueError("anchor interpolation weight rows must sum to one")
+    return (anchor_field[anchor_indices] * anchor_weights.unsqueeze(-1)).sum(dim=1)
 
 
 def residual_contract_metadata(base_model: Any, enabled_channels: Iterable[str]) -> dict[str, Any]:
