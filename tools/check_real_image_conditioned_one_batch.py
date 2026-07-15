@@ -56,6 +56,23 @@ def _stats(value: torch.Tensor) -> dict[str, Any]:
     }
 
 
+def _comparison(
+    before: torch.Tensor,
+    after: torch.Tensor,
+    *,
+    atol: float,
+    rtol: float,
+) -> dict[str, Any]:
+    difference = (before.detach().float() - after.detach().float()).abs()
+    return {
+        "max_abs_diff": float(difference.max().item()),
+        "mean_abs_diff": float(difference.mean().item()),
+        "atol": atol,
+        "rtol": rtol,
+        "allclose": bool(torch.allclose(before, after, atol=atol, rtol=rtol)),
+    }
+
+
 def _single_reference_episode(episode: dict[str, Any], index: int = 0) -> dict[str, Any]:
     result = copy.deepcopy(episode)
     tensor_keys = (
@@ -153,32 +170,14 @@ def main() -> None:
     output = result["last_outputs"]["primary"]
     if episode is None or losses is None or output is None:
         raise RuntimeError("one-batch trainer did not expose acceptance diagnostics")
-
-    # Reuse the same batch after the single optimizer update for connectivity
-    # diagnostics. This performs backward only and never makes a second update.
-    result["optimizer"].zero_grad(set_to_none=True)
-    losses, connectivity_outputs = compute_image_conditioned_training_loss(
-        model,
-        episode,
-        result["anchor_edges"],
-        config,
-        args.device,
-        render_target=True,
-        deformation_adapter=result["deformation_adapter"],
+    step_one_losses = losses
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    partial_path = output_dir / "one_batch_diagnostics.partial.json"
+    partial_path.write_text(
+        json.dumps({"status": "RUNNING", "failure_stage": None, "completed": ["step_1_saved"]}, indent=2),
+        encoding="utf-8",
     )
-    losses["total"].backward()
-    output = connectivity_outputs["primary"]
-    connectivity_warmup_updates = 0
-    if not all(value > 0 for value in _image_grad_norms(model).values()):
-        result["optimizer"].step()
-        connectivity_warmup_updates = 1
-        result["optimizer"].zero_grad(set_to_none=True)
-        losses, connectivity_outputs = compute_image_conditioned_training_loss(
-            model, episode, result["anchor_edges"], config, args.device,
-            render_target=True, deformation_adapter=result["deformation_adapter"],
-        )
-        losses["total"].backward()
-        output = connectivity_outputs["primary"]
 
     base_model = model.dressable_model.base_model
     checkpoint_path = getattr(base_model, "_dressable_checkpoint_path", None)
@@ -198,6 +197,90 @@ def main() -> None:
     ):
         raise ValueError("model canonical anchors do not equal base_model.xyz_vt")
 
+    checkpoint = output_dir / "checkpoint_step_000001.pth"
+    if not checkpoint.is_file():
+        raise FileNotFoundError("formal one-batch checkpoint was not saved")
+
+    def run_fixed_eval(fixed_episode: dict[str, Any]) -> tuple[dict[str, torch.Tensor], dict[str, Any]]:
+        model.eval()
+        with torch.no_grad():
+            fixed_losses, fixed_outputs = compute_image_conditioned_training_loss(
+                model, fixed_episode, result["anchor_edges"], config, args.device,
+                render_target=True, deformation_adapter=result["deformation_adapter"],
+            )
+        return fixed_losses, fixed_outputs["primary"]
+
+    pre_reload_losses, pre_reload_output = run_fixed_eval(episode)
+    restored_step = load_image_training_checkpoint(
+        checkpoint, model, result["optimizer"], config, dataset, fingerprint
+    )
+    if restored_step != result["step"]:
+        raise RuntimeError("saved checkpoint step did not round-trip")
+    post_reload_losses, post_reload_output = run_fixed_eval(episode)
+
+    def raw_anchor_offsets(fixed_output: dict[str, Any]) -> dict[str, torch.Tensor]:
+        with torch.no_grad():
+            return model.dressable_model.compute_film_anchor_offsets(
+                clothing_embedding=fixed_output["global_clothing_embedding"],
+                anchor_clothing_features=fixed_output["anchor_clothing_features"],
+            )
+
+    pre_raw = raw_anchor_offsets(pre_reload_output)
+    post_raw = raw_anchor_offsets(post_reload_output)
+    roundtrip = {
+        "global_clothing_embedding": _comparison(
+            pre_reload_output["global_clothing_embedding"], post_reload_output["global_clothing_embedding"], atol=1e-7, rtol=1e-6
+        ),
+        "raw_anchor_delta_xyz": _comparison(pre_raw["delta_xyz"], post_raw["delta_xyz"], atol=1e-7, rtol=1e-6),
+        "gated_anchor_delta_xyz": _comparison(
+            pre_reload_output["anchor_offsets"]["delta_xyz"], post_reload_output["anchor_offsets"]["delta_xyz"], atol=1e-7, rtol=1e-6
+        ),
+        "gaussian_delta_xyz": _comparison(
+            pre_reload_output["gaussian_offsets"]["delta_xyz"], post_reload_output["gaussian_offsets"]["delta_xyz"], atol=1e-7, rtol=1e-6
+        ),
+        "rendered_rgb": _comparison(pre_reload_output["render"][0], post_reload_output["render"][0], atol=1e-6, rtol=1e-5),
+        "rendered_alpha": _comparison(pre_reload_output["render"][1], post_reload_output["render"][1], atol=1e-6, rtol=1e-5),
+    }
+    if not all(item["allclose"] for item in roundtrip.values()):
+        partial_path.write_text(
+            json.dumps({"status": "FAIL", "failure_stage": "checkpoint_roundtrip", "checkpoint_roundtrip": roundtrip}, indent=2),
+            encoding="utf-8",
+        )
+        raise RuntimeError(f"same-state checkpoint roundtrip mismatch: {roundtrip}")
+    partial_path.write_text(
+        json.dumps({"status": "RUNNING", "failure_stage": None, "completed": ["step_1_saved", "checkpoint_roundtrip"], "checkpoint_roundtrip": roundtrip}, indent=2),
+        encoding="utf-8",
+    )
+
+    # Connectivity diagnostics may use one in-memory warmup update, but are
+    # intentionally isolated from the formal step-1 checkpoint comparison.
+    model.train()
+    result["optimizer"].zero_grad(set_to_none=True)
+    connectivity_losses, connectivity_outputs = compute_image_conditioned_training_loss(
+        model, episode, result["anchor_edges"], config, args.device,
+        render_target=True, deformation_adapter=result["deformation_adapter"],
+    )
+    connectivity_losses["total"].backward()
+    connectivity_warmup_updates = 0
+    if not all(value > 0 for value in _image_grad_norms(model).values()):
+        result["optimizer"].step()
+        connectivity_warmup_updates = 1
+        result["optimizer"].zero_grad(set_to_none=True)
+        connectivity_losses, connectivity_outputs = compute_image_conditioned_training_loss(
+            model, episode, result["anchor_edges"], config, args.device,
+            render_target=True, deformation_adapter=result["deformation_adapter"],
+        )
+        connectivity_losses["total"].backward()
+    trainable_grad_norms = _image_grad_norms(model)
+    if not all(value > 0 for value in trainable_grad_norms.values()):
+        raise RuntimeError(f"one-batch backward did not reach every image-conditioned module: {trainable_grad_norms}")
+    base_grad_count = sum(parameter.grad is not None for parameter in iter_base_parameters(base_model))
+    if base_grad_count != 0:
+        raise RuntimeError(f"frozen base received {base_grad_count} gradients")
+
+    # Restore the formal step-1 state before sensitivity and final evidence.
+    load_image_training_checkpoint(checkpoint, model, result["optimizer"], config, dataset, fingerprint)
+    _, output = run_fixed_eval(episode)
     render = output["render"]
     if not isinstance(render, tuple) or len(render) < 2:
         raise RuntimeError("target rendering did not return RGB and alpha")
@@ -217,20 +300,9 @@ def main() -> None:
     if output.get("target_state_cache_restored") is not True:
         raise RuntimeError("target render did not restore base state/cache")
 
-    trainable_grad_norms = _image_grad_norms(model)
-    if not all(value > 0 for value in trainable_grad_norms.values()):
-        raise RuntimeError(
-            "one-batch backward did not reach every image-conditioned module: "
-            f"{trainable_grad_norms}"
-        )
-    base_grad_count = sum(
-        parameter.grad is not None for parameter in iter_base_parameters(base_model)
-    )
-    if base_grad_count != 0:
-        raise RuntimeError(f"frozen base received {base_grad_count} gradients")
-
     anchor_offsets = output["anchor_offsets"]
     gaussian_offsets = output["gaussian_offsets"]
+    raw_offsets = raw_anchor_offsets(output)
     disabled_max = {
         "anchor_scaling": float(anchor_offsets["delta_scaling"].abs().max().item()),
         "anchor_opacity": float(anchor_offsets["delta_opacity"].abs().max().item()),
@@ -240,45 +312,14 @@ def main() -> None:
     if any(value != 0 for value in disabled_max.values()):
         raise RuntimeError(f"disabled offset channels are nonzero: {disabled_max}")
 
-    checkpoint = Path(args.output_dir) / "checkpoint_latest.pth"
-    if not checkpoint.is_file():
-        raise FileNotFoundError("one-batch checkpoint was not saved")
-    restored_step = load_image_training_checkpoint(
-        checkpoint,
-        model,
-        result["optimizer"],
-        config,
-        dataset,
-        fingerprint,
-    )
-    if restored_step != result["step"]:
-        raise RuntimeError("saved checkpoint step did not round-trip")
-
-    result["optimizer"].zero_grad(set_to_none=True)
-    roundtrip_losses, roundtrip_outputs = compute_image_conditioned_training_loss(
-        model, episode, result["anchor_edges"], config, args.device,
-        render_target=True, deformation_adapter=result["deformation_adapter"],
-    )
-    roundtrip_output = roundtrip_outputs["primary"]
-    roundtrip_anchor_max_abs = float(
-        (roundtrip_output["anchor_offsets"]["delta_xyz"] - anchor_offsets["delta_xyz"])
-        .abs().max().item()
-    )
-    roundtrip_rgb_max_abs = float(
-        (roundtrip_output["render"][0] - pred_rgb).abs().max().item()
-    )
-    if roundtrip_anchor_max_abs > 1e-7 or roundtrip_rgb_max_abs > 1e-6:
-        raise RuntimeError("checkpoint roundtrip changed model output")
-
     condition_b = _single_reference_episode(episode)
-    sensitivity_losses, sensitivity_outputs = compute_image_conditioned_training_loss(
-        model, condition_b, result["anchor_edges"], config, args.device,
-        render_target=True, deformation_adapter=result["deformation_adapter"],
-    )
-    sensitivity_output = sensitivity_outputs["primary"]
+    _, sensitivity_output = run_fixed_eval(condition_b)
+    sensitivity_raw = raw_anchor_offsets(sensitivity_output)
     sensitivity = {
         "condition_a_reference_count": int(episode["reference_images"].shape[0]),
         "condition_b_reference_count": 1,
+        "condition_b_reference_frames": condition_b["reference_frame_ids"],
+        "condition_b_reference_cameras": condition_b["reference_view_ids"],
         "condition_b_target_view_used": False,
         "global_embedding_l2": float(torch.linalg.vector_norm(
             output["global_clothing_embedding"] - sensitivity_output["global_clothing_embedding"]
@@ -286,11 +327,17 @@ def main() -> None:
         "anchor_feature_mean_abs": float((
             output["anchor_clothing_features"] - sensitivity_output["anchor_clothing_features"]
         ).abs().mean().item()),
-        "anchor_offset_mean_abs": float((
+        "raw_anchor_offset_mean_abs": float((
+            raw_offsets["delta_xyz"] - sensitivity_raw["delta_xyz"]
+        ).abs().mean().item()),
+        "gated_anchor_offset_mean_abs": float((
             anchor_offsets["delta_xyz"] - sensitivity_output["anchor_offsets"]["delta_xyz"]
         ).abs().mean().item()),
         "rendered_rgb_mean_abs": float((
             pred_rgb - sensitivity_output["render"][0]
+        ).abs().mean().item()),
+        "rendered_alpha_mean_abs": float((
+            pred_alpha - sensitivity_output["render"][1]
         ).abs().mean().item()),
     }
     if not any(value > 0 for key, value in sensitivity.items() if key.endswith(("_l2", "_abs"))):
@@ -319,10 +366,14 @@ def main() -> None:
         "target_view_id": episode["target_view_id"],
         "render_rgb_shape": list(pred_rgb.shape),
         "render_alpha_shape": list(pred_alpha.shape),
-        "losses": {key: float(value.detach().item()) for key, value in losses.items()},
-        "total_loss_finite": bool(torch.isfinite(losses["total"]).item()),
+        "losses": {key: float(value.detach().item()) for key, value in step_one_losses.items()},
+        "total_loss_finite": bool(torch.isfinite(step_one_losses["total"]).item()),
         "backward_success": True,
         "trainable_grad_norms": trainable_grad_norms,
+        "projector_trainable_parameter_count": sum(
+            parameter.numel() for parameter in model.anchor_image_projector.parameters()
+            if parameter.requires_grad
+        ),
         "connectivity_extra_optimizer_updates": connectivity_warmup_updates,
         "encoder_backbone_requires_grad": any(
             parameter.requires_grad
@@ -332,8 +383,7 @@ def main() -> None:
         "base_state_cache_restored": True,
         "disabled_offset_channel_max_abs": disabled_max,
         "checkpoint_round_trip_step": restored_step,
-        "checkpoint_roundtrip_anchor_max_abs": roundtrip_anchor_max_abs,
-        "checkpoint_roundtrip_rgb_max_abs": roundtrip_rgb_max_abs,
+        "checkpoint_roundtrip": roundtrip,
         "reference_sensitivity": sensitivity,
         "data": {
             "reference_images": _stats(episode["reference_images"]),
@@ -347,6 +397,7 @@ def main() -> None:
         "anchor_visibility_shape": list(output["anchor_visibility"].shape),
         "aggregated_visible_anchor_ratio": float((output["anchor_visibility"] > 0).float().mean().item()),
         "anchor_delta_xyz": _stats(anchor_offsets["delta_xyz"]),
+        "raw_anchor_delta_xyz": _stats(raw_offsets["delta_xyz"]),
         "anchor_delta_xyz_mean_norm": float(anchor_offsets["delta_xyz"].norm(dim=-1).mean().item()),
         "anchor_delta_xyz_max_norm": float(anchor_offsets["delta_xyz"].norm(dim=-1).max().item()),
         "gaussian_delta_xyz": _stats(gaussian_offsets["delta_xyz"]),
@@ -358,10 +409,6 @@ def main() -> None:
     }
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    (output_dir / "diagnostics.json").write_text(
-        json.dumps(_jsonable(diagnostics), indent=2), encoding="utf-8"
-    )
-
     checkpoint_file = Path(checkpoint_path)
     manifest_path = Path(config["image_conditioning"]["manifest_path"])
     region_path = Path(config["image_conditioning"]["reference_region_path"])
@@ -379,10 +426,16 @@ def main() -> None:
         "target_frame": episode["target_frame_id"], "target_camera": episode["target_view_id"],
         "config": config,
     }
-    (output_dir / "input_manifest.json").write_text(json.dumps(input_manifest, indent=2), encoding="utf-8")
-    (output_dir / "one_batch_diagnostics.json").write_text(json.dumps(_jsonable(diagnostics), indent=2), encoding="utf-8")
-    markdown = "# Gate 4-A Real One-batch Diagnostics\n\n- Status: PASS\n- Commit: `" + input_manifest["git"]["commit"] + "`\n- Loss: `" + str(diagnostics["losses"]["total"]) + "`\n- Anchor delta: `" + str(diagnostics["anchor_delta_xyz"]["shape"]) + "`\n- Gaussian delta: `" + str(diagnostics["gaussian_delta_xyz"]["shape"]) + "`\n- Gradients: `" + json.dumps(trainable_grad_norms) + "`\n- Sensitivity: `" + json.dumps(sensitivity) + "`\n"
-    (output_dir / "one_batch_diagnostics.md").write_text(markdown, encoding="utf-8")
+    manifest_tmp = output_dir / "input_manifest.json.tmp"
+    diagnostics_tmp = output_dir / "one_batch_diagnostics.json.tmp"
+    manifest_tmp.write_text(json.dumps(input_manifest, indent=2), encoding="utf-8")
+    diagnostics_tmp.write_text(json.dumps(_jsonable(diagnostics), indent=2), encoding="utf-8")
+    manifest_tmp.replace(output_dir / "input_manifest.json")
+    diagnostics_tmp.replace(output_dir / "one_batch_diagnostics.json")
+    markdown = "# Gate 4-A Real One-batch Diagnostics\n\n- Status: PASS\n- Commit: `" + input_manifest["git"]["commit"] + "`\n- Loss: `" + str(diagnostics["losses"]["total"]) + "`\n- Anchor delta: `" + str(diagnostics["anchor_delta_xyz"]["shape"]) + "`\n- Gaussian delta: `" + str(diagnostics["gaussian_delta_xyz"]["shape"]) + "`\n- Gradients: `" + json.dumps(trainable_grad_norms) + "`\n- Roundtrip: `" + json.dumps(roundtrip) + "`\n- Sensitivity: `" + json.dumps(sensitivity) + "`\n"
+    markdown_tmp = output_dir / "one_batch_diagnostics.md.tmp"
+    markdown_tmp.write_text(markdown, encoding="utf-8")
+    markdown_tmp.replace(output_dir / "one_batch_diagnostics.md")
     save_image(make_grid(episode["reference_images"].cpu(), nrow=2), output_dir / "reference_contact_sheet.png")
     save_image(episode["target_rgb"].cpu(), output_dir / "target_rgb.png")
     save_image(pred_rgb.detach().cpu(), output_dir / "predicted_rgb.png")
@@ -391,6 +444,7 @@ def main() -> None:
     save_image(comparison, output_dir / "comparison.png")
     shutil.copyfile(checkpoint, output_dir / "checkpoint_step_000001.pth") if checkpoint.name != "checkpoint_step_000001.pth" else None
     (output_dir / "GATE_ACCEPTANCE.md").write_text("# Gate 4-A Acceptance\n\nStatus: **PASS**\n\nReal one-batch, reference-only gate, backward, sensitivity and checkpoint roundtrip verified.\n", encoding="utf-8")
+    partial_path.unlink(missing_ok=True)
 
     print(f"checkpoint path: {checkpoint_path}")
     print(f"checkpoint fingerprint: {fingerprint}")
@@ -410,7 +464,9 @@ def main() -> None:
     print(f"trainable grad norms: {trainable_grad_norms}")
     print(f"base grad count: {base_grad_count}")
     print(f"disabled channel max abs: {disabled_max}")
-    print(f"diagnostics: {(output_dir / 'diagnostics.json').resolve()}")
+    print(f"checkpoint roundtrip: {roundtrip}")
+    print(f"reference sensitivity: {sensitivity}")
+    print(f"diagnostics: {(output_dir / 'one_batch_diagnostics.json').resolve()}")
     print("CanonDressGS Gate 4-A real one-batch check: PASS")
 
 
