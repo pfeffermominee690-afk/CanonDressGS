@@ -109,17 +109,25 @@ def main() -> None:
         episode["target_camera"], episode["target_rgb"].shape[-2], episode["target_rgb"].shape[-1], device
     )
     background = torch.ones(3, device=device, dtype=base._xyz.dtype)
+    audited_sh_degree = int(base.sh_degree)
 
-    def render(overrides=None):
-        with mmlphuman_state_transaction(base, episode["target_pose"], episode["target_Rh"], episode["target_Th"]):
-            return base.render(camera, background=background, canonical_overrides=None if overrides is None else overrides.as_dict())
+    def render(overrides=None, sh_degree=None):
+        original_degree = base.sh_degree
+        try:
+            if sh_degree is not None:
+                base.sh_degree = int(sh_degree)
+            with mmlphuman_state_transaction(base, episode["target_pose"], episode["target_Rh"], episode["target_Th"]):
+                return base.render(camera, background=background, canonical_overrides=None if overrides is None else overrides.as_dict())
+        finally:
+            base.sh_degree = original_degree
 
     before = clone_base(base)
     base_rgb, base_alpha, info = render()
     radii = info.get("radii") if isinstance(info, dict) else None
     if not isinstance(radii, torch.Tensor):
         raise KeyError("renderer info lacks radii needed for visible Gaussian selection")
-    visible = torch.nonzero(radii.reshape(-1) > 0, as_tuple=False).reshape(-1)
+    visible_mask = radii.reshape(-1, radii.shape[-1]).amax(dim=0) > 0
+    visible = torch.nonzero(visible_mask, as_tuple=False).reshape(-1)
     if visible.numel() < 8:
         raise RuntimeError("fewer than eight visible Gaussians")
     count = min(64, visible.numel())
@@ -136,9 +144,14 @@ def main() -> None:
     render_metrics, gradient_metrics, rendered = {}, {}, {}
     for channel in CHANNELS:
         channel_indices = rotation_selected if channel == "delta_rotvec" else selected
+        evaluation_degree = 1 if channel == "delta_shN" else int(base.sh_degree)
+        channel_base_rgb, channel_base_alpha = (
+            render(sh_degree=evaluation_degree)[:2]
+            if channel == "delta_shN" else (base_rgb, base_alpha)
+        )
         residuals, leaf = make_residual(base, channel, channel_indices, requires_grad=True)
         overrides = compose_canonical_gaussian_overrides(base, residuals, [channel])
-        rgb, alpha, _ = render(overrides)
+        rgb, alpha, _ = render(overrides, sh_degree=evaluation_degree)
         loss = rgb.float().mean() + 0.1 * alpha.float().mean()
         if loss.requires_grad:
             loss.backward()
@@ -147,7 +160,8 @@ def main() -> None:
             "selected_gaussian_count": int(channel_indices.numel()),
             "selected_indices": channel_indices.detach().cpu().tolist(),
             "amplitude": AMPLITUDES[channel], "residual": tensor_stats(leaf),
-            "rgb": diff_stats(base_rgb, rgb), "alpha": diff_stats(base_alpha, alpha),
+            "evaluation_sh_degree": evaluation_degree,
+            "rgb": diff_stats(channel_base_rgb, rgb), "alpha": diff_stats(channel_base_alpha, alpha),
             "rgb_finite_ratio": float(torch.isfinite(rgb).float().mean().item()),
             "alpha_finite_ratio": float(torch.isfinite(alpha).float().mean().item()),
             "base_parameter_max_diff": base_difference(base, before),
@@ -171,6 +185,7 @@ def main() -> None:
         "base_alpha_before_after": diff_stats(base_alpha, final_alpha),
         "base_parameter_max_diff": base_difference(base, before),
         "state_restore": bool(diff_stats(base_rgb, final_rgb)["max_abs_diff"] == 0 and diff_stats(base_alpha, final_alpha)["max_abs_diff"] == 0),
+        "sh_degree_restored": int(base.sh_degree) == audited_sh_degree,
     }
     contract = residual_contract_metadata(base, CHANNELS)
     contract.update({
@@ -208,7 +223,7 @@ def main() -> None:
     pass_render = all(value["rgb"]["max_abs_diff"] > 0 or value["alpha"]["max_abs_diff"] > 0 for value in render_metrics.values())
     pass_grad = all(value["exists"] and value["finite_ratio"] == 1 and value["norm"] > 0 and value["base_gradient_count"] == 0 for value in gradient_metrics.values())
     pass_zero = zero_equivalence["rgb"]["max_abs_diff"] == 0 and zero_equivalence["alpha"]["max_abs_diff"] == 0
-    pass_state = state_restore["state_restore"] and not any(state_restore["base_parameter_max_diff"].values())
+    pass_state = state_restore["state_restore"] and state_restore["sh_degree_restored"] and not any(state_restore["base_parameter_max_diff"].values())
     passed = pass_render and pass_grad and pass_zero and pass_state and compatibility["status"] == "PASS"
     (output / "base_attribute_contract.json").write_text(json.dumps(contract, indent=2), encoding="utf-8")
     (output / "acceptance_metrics.json").write_text(json.dumps(render_metrics, indent=2), encoding="utf-8")

@@ -69,3 +69,5 @@ rotation_composition: "local: q_dressed = normalize(q_base * q_delta)"
 ```
 
 Missing channels remain disabled/zero; no new channel is randomly enabled.
+
+The audited formal checkpoint has `sh_degree=0` although `_shN` has shape `[N,3,3]`. Enabling `delta_shN` therefore also requires an explicit SH-degree setting of at least 1. The acceptance test uses a temporary, fully restored degree-1 transaction and a degree-matched zero-SHN control. This setting must be checkpoint/config metadata in a future decoder; it must never be enabled silently when loading the old xyz-only checkpoint.

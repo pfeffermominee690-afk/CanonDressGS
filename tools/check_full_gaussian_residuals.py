@@ -62,6 +62,9 @@ def main() -> None:
     assert torch.allclose(quaternion_multiply_wxyz(identity, z180), z180)
     x90 = axis_angle_to_quaternion_wxyz(torch.tensor([[math.pi / 2, 0, 0.0]]))
     assert x90[0, 0] > 0 and x90[0, 1] > 0 and x90[0, 3] == 0
+    zero_rotvec = torch.zeros(32, 3, requires_grad=True)
+    axis_angle_to_quaternion_wxyz(zero_rotvec).sum().backward()
+    assert zero_rotvec.grad is not None and torch.isfinite(zero_rotvec.grad).all()
 
     anchors = AnchorClothingResiduals.zeros(4, base, ["delta_xyz", "delta_shN"])
     indices = torch.tensor([[0, 1], [1, 2], [2, 3], [0, 3], [1, 3], [0, 2], [2, 3]])

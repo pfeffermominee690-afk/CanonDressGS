@@ -157,7 +157,7 @@ def axis_angle_to_quaternion_wxyz(rotvec: torch.Tensor) -> torch.Tensor:
         raise ValueError("rotvec must end in dimension 3")
     angle = torch.linalg.vector_norm(rotvec, dim=-1, keepdim=True)
     half = angle * 0.5
-    scale = torch.where(angle > 1e-8, torch.sin(half) / angle, 0.5 - angle.square() / 48)
+    scale = 0.5 * torch.sinc(angle / (2 * torch.pi))
     return torch.cat([torch.cos(half), rotvec * scale], dim=-1)
 
 
