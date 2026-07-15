@@ -6,6 +6,7 @@
 |---|---|---|---|---|
 | Frozen MMLPHuman 可接收 canonical xyz offsets | HISTORICAL-SUPPORTED | 历史 Gate 1/2 | 已保存 acceptance | checkpoint 指纹漂移；只能注明历史验收 |
 | Image-conditioned 模块可完成 one-batch forward/backward | HISTORICAL-SUPPORTED | Gate 2 | encoder/aggregator/HyperNetwork/Anchor MLP 有非零梯度，base 梯度为零 | 使用 foreground mask 临时代替 clothing mask，不证明服装泛化 |
+| 当前 clean baseline 可完成真实 MMLP-Human gated one-batch forward/backward | PARTIAL | GATE4-REAL-ONEBATCH-001 / `a6639d3` | step-1 total loss 0.05546812；梯度通过；same-state checkpoint roundtrip 六类输出全零差异 | 实际 reference/target 采样不匹配预注册 gate views，最终图片/acceptance 不完整；不得写 Gate 4-A PASS |
 | Controlled synthetic geometry 可学习 | PARTIAL | Gate 3-A/3-B | 100/300-step 记录存在 | matched protocol 和版本漂移限制结论强度 |
 | Reference-only threshold 0.40 优于 0.50 | CURRENT-BACKBONE-SUPPORTED | GATE-REFONLY-THRESHOLD-ABLATION-001 | float RGB-all/foreground/alpha 均小幅改善 | 仅当前 backbone、单一 frame/camera；不是历史 reproduction |
 | Reference-only gate 的主要瓶颈是 coverage | DIAGNOSTIC-SUPPORTED | GATE-REFONLY-FN-DIAG-001 | 359 FN 中 334 在两个 reference views 均不可见 | 尚未完成 K-sweep，不声称已解决 |

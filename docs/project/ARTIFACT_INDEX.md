@@ -8,6 +8,7 @@
 | GATE-REFONLY-FN-DIAG-001 | 3-C1 | PASS-DIAGNOSIS | legacy dirty worktree | CLI manifest | current backbone `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/gates/gate_3b/GATE-REFONLY-FN-DIAG-001` | 359 FN；334 在两个 reference views 均不可见 |
 | GATE-REFONLY-THRESHOLD-ABLATION-001 | 3-C2 | PARTIAL | legacy dirty worktree | input manifest | current backbone `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/gates/gate_3b/GATE-REFONLY-THRESHOLD-ABLATION-001` | 0.40 相对 0.50：float RGB-all MAE 改善 0.537% |
 | GATE4-MVP-BASELINE-001 | 4 | PLANNED | PENDING | PENDING | PENDING | PENDING | 14 项 Gate 4 验收 |
+| GATE4-REAL-ONEBATCH-001 | 4-A | PARTIAL | `a6639d375355a09d0d451630e46cb37e813e363f` | `configs/canon_dress_gs_mvp_real.yaml` | step-1；base `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-ONEBATCH-001` | same-state roundtrip 全零差异；实际 reference/target 采样与预注册协议不一致，最终图片/acceptance 不完整 |
 
 ## Checkpoint 漂移警告
 

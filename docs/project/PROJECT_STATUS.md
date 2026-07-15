@@ -10,7 +10,7 @@
 | legacy 云端仓库 | FROZEN | `/root/autodl-tmp/canondressgs_work/mmlphuman_code` 仅作历史实验与只读证据来源 |
 | 干净云端执行目录 | PASS | `pipeline/imagecond-mvp-20260715@aa9bdaa918554fae18bd51132be023f5d9759dbe`，Git clean |
 | Gate 3-C | PARTIAL | threshold 0.40 是当前-backbone 简单 baseline，不关闭 Gate 3-C |
-| Gate 4 MVP | IN PROGRESS | 当前里程碑：Gate 4-A Real Image-conditioned One-batch |
+| Gate 4 MVP | PARTIAL | Gate 4-A real gated forward/backward 已运行；checkpoint roundtrip 验收工具比较基准仍需最小修正 |
 | 论文证据包 | IN PROGRESS | 已建立 evidence matrix，尚无 Gate 4 端到端结果 |
 
 ## 已知阻塞与风险
@@ -41,3 +41,5 @@
 ## 最近一次验收
 
 Gate 3-C2 current-backbone fixed-offset threshold ablation：PARTIAL。0.40 相对 0.50 的 float RGB-all MAE 改善约 0.537%，但覆盖问题仍存在，不足以关闭 Gate 3-C。
+
+Gate 4-A `GATE4-REAL-ONEBATCH-001`：PARTIAL。commit `a6639d375355a09d0d451630e46cb37e813e363f` 已证明 same-state checkpoint roundtrip 六类输出全部零差异，真实 forward/backward、梯度和 reference sensitivity 已落盘；但实际采样为 reference `f2000_c009 + f1000_c000`、target `f000_c018`，与预注册 reference `f000_c018 + f1000_c000`、target `f2000_c009` 不一致，且 HWC renderer tensor 导致最终 PNG/acceptance 写入停止。不得写 Gate 4-A PASS。

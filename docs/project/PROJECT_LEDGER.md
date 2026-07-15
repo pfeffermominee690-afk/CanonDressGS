@@ -63,3 +63,39 @@
 - synthetic/mock training、gradient、checkpoint roundtrip：PASS
 - 范围限制：未运行真实 MMLPHuman rendering，未启动 Gate 4 训练
 - legacy 仓库：`/root/autodl-tmp/canondressgs_work/mmlphuman_code` 继续冻结，未触碰
+
+## LEDGER-20260715-005 — Gate 4-A Real Image-conditioned One-batch
+
+- 时间：2026-07-15 Asia/Shanghai
+- 类型：EXPERIMENT
+- 状态：PARTIAL
+- Run ID：`GATE4-REAL-ONEBATCH-001`
+- 最终执行 commit：`774e95d3e80488cf0968d4112dd641e81f9bf623`
+- 修复 commits：`436c07ccb4a863e79370bd514e66c8fb1a0a6bc6`、`9f723c079b85c5f854ac0b3d725ac03e87e29333`、`774e95d3e80488cf0968d4112dd641e81f9bf623`
+- 配置：`configs/canon_dress_gs_mvp_real.yaml`
+- 当前 checkpoint SHA256：`abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`
+- episode：`/root/autodl-tmp/canondressgs_work/data_dressable/gate3b_synthetic_hoodie_expand_018.json`
+- reference-only region SHA256：`20ed6dbc95664b16b6fedac0acf046ea7368a35490dfb440b2d3bfa2eccdc126`
+- gate：threshold 0.40，`target_view_used=false`
+- 输出：`/root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-ONEBATCH-001`
+- 结果：真实 gated step-1 forward/backward 成功；total loss `0.05546812`
+- 梯度门禁：最终运行已越过 HyperNetwork/Anchor MLP/encoder/aggregator 梯度检查
+- 阻塞：checkpoint roundtrip 比较使用了 warmup 后内存输出与 reload 的 step-1 checkpoint 输出，比较状态不一致
+- 结论：不得写 PASS；未启动 100/300-step 训练
+
+## LEDGER-20260715-006 — Gate 4-A Same-state Roundtrip 重跑
+
+- 时间：2026-07-15 Asia/Shanghai
+- 类型：EXPERIMENT
+- 状态：PARTIAL
+- Run ID：`GATE4-REAL-ONEBATCH-001`
+- 执行 commit：`a6639d375355a09d0d451630e46cb37e813e363f`
+- 修复 commit：`a6639d375355a09d0d451630e46cb37e813e363f` (`fix(gate4): compare checkpoint roundtrip at identical state`)
+- same-state roundtrip：global embedding、raw/gated anchor xyz、Gaussian xyz、RGB、alpha 的 max/mean diff 全为 0，全部 allclose
+- anchor/Gaussian shape：`[10000,3]` / `[200000,3]`
+- render shape：RGB `[1150,1330,3]`，alpha `[1150,1330,1]`，finite ratio 1.0
+- 梯度：encoder `1.0067e-4`、aggregator `3.1657e-7`、HyperNetwork `4.3848e-3`、Anchor MLP `1.0781`；base grad count 0
+- sensitivity：embedding L2 `0.0018960`，anchor feature MAE `0.00464356`；offset/render 差异为 0，整体非全零
+- 协议偏差：实际 reference 为 `f2000_c009 + f1000_c000`、target 为 `f000_c018`，不匹配 gate 的预注册 reference views
+- 持久化阻塞：renderer 输出是 HWC，直接传给 `torchvision.save_image` 导致 predicted PNG 与 `GATE_ACCEPTANCE.md` 未生成
+- 结论：PARTIAL；未启动 100/300-step 训练
