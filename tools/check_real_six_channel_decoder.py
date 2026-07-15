@@ -77,6 +77,28 @@ def main():
   return encoded,raw,bounded,gated,gaussian,overrides,rendered
  with torch.no_grad():
   migrated_head_zero={name:float(getattr(model.dressable_model.anchor_clothing_mlp,name).weight.abs().max()) for name in ('scaling_head','rotation_head','opacity_head','sh0_head','shN_head')}
+  def legacy_eval():
+   encoded= predict()[0]
+   anchor=model.dressable_model.compute_film_anchor_offsets(
+    clothing_embedding=encoded['global_clothing_embedding'],
+    anchor_clothing_features=encoded['anchor_clothing_features'],
+   )
+   gated_xyz=anchor['delta_xyz']*gate
+   anchor_typed=AnchorClothingResiduals(delta_xyz=gated_xyz)
+   gaussian_typed=model.dressable_model.interpolate_anchor_clothing_residuals(anchor_typed)
+   legacy_overrides=model.dressable_model.compose_canonical_gaussian_overrides(gaussian_typed,['delta_xyz'])
+   rendered=render(episode['target_pose'],episode['target_Rh'],episode['target_Th'],episode['target_camera'],legacy_overrides,0)
+   return encoded,anchor['delta_xyz'],gated_xyz,gaussian_typed.delta_xyz,rendered
+  legacy_before=legacy_eval()
+  model.load_state_dict(old['model'],strict=True)
+  legacy_after=legacy_eval()
+  legacy_diffs={
+   'global_embedding':diff(legacy_before[0]['global_clothing_embedding'],legacy_after[0]['global_clothing_embedding']),
+   'anchor_features':diff(legacy_before[0]['anchor_clothing_features'],legacy_after[0]['anchor_clothing_features']),
+   'raw_xyz':diff(legacy_before[1],legacy_after[1]), 'gated_xyz':diff(legacy_before[2],legacy_after[2]),
+   'Gaussian_xyz':diff(legacy_before[3],legacy_after[3]), 'RGB':diff(legacy_before[4][0],legacy_after[4][0]),
+   'alpha':diff(legacy_before[4][1],legacy_after[4][1]),
+  }
  model.train(); optimizer.zero_grad(set_to_none=True); encoded,raw,bounded,gated,gaussian,overrides,pred=predict()
  losses={}
  for name in CHANNELS: losses[name]=F.smooth_l1_loss(getattr(gated,name),getattr(teacher,name))
@@ -98,7 +120,7 @@ def main():
  ck=out/'checkpoint_step_000001.pth'; torch.save(snapshot,ck); before=predict(); model.load_state_dict(torch.load(ck,map_location=device,weights_only=True)['model'],strict=True); after=predict(); roundtrip={"embedding":diff(before[0]['global_clothing_embedding'],after[0]['global_clothing_embedding']),"local":diff(before[0]['anchor_clothing_features'],after[0]['anchor_clothing_features']),"rgb":diff(before[-1][0],after[-1][0]),"alpha":diff(before[-1][1],after[-1][1])}
  for stage,index_value in (("raw",1),("bounded",2),("gated",3),("Gaussian",4)):
   roundtrip.update({f"{stage}.{n}":diff(getattr(before[index_value],n),getattr(after[index_value],n)) for n in CHANNELS})
- compatibility={"old_checkpoint":str(Path(args.old_checkpoint).resolve()),"old_checkpoint_sha256":sha(args.old_checkpoint),"legacy_decoder_keys":[k for k in old['model'] if 'anchor_clothing_mlp' in k or 'clothing_film_generator' in k],"new_head_weights_after_migration_max_abs":migrated_head_zero,"legacy_output_diffs":{"global_embedding":{"max_abs_diff":0.0,"mean_abs_diff":0.0},"anchor_features":{"max_abs_diff":0.0,"mean_abs_diff":0.0},"raw_xyz":{"max_abs_diff":0.0,"mean_abs_diff":0.0},"gated_xyz":{"max_abs_diff":0.0,"mean_abs_diff":0.0},"Gaussian_xyz":{"max_abs_diff":0.0,"mean_abs_diff":0.0},"RGB":{"max_abs_diff":0.0,"mean_abs_diff":0.0},"alpha":{"max_abs_diff":0.0,"mean_abs_diff":0.0}},"xyz_head_key_preserved":'dressable_model.anchor_clothing_mlp.output_layer.weight' in old['model'],"status":"PASS" if not any(migrated_head_zero.values()) else 'FAIL'}
+ compatibility={"old_checkpoint":str(Path(args.old_checkpoint).resolve()),"old_checkpoint_sha256":sha(args.old_checkpoint),"legacy_decoder_keys":[k for k in old['model'] if 'anchor_clothing_mlp' in k or 'clothing_film_generator' in k],"new_head_weights_after_migration_max_abs":migrated_head_zero,"legacy_output_diffs":legacy_diffs,"xyz_head_key_preserved":'dressable_model.anchor_clothing_mlp.output_layer.weight' in old['model'],"status":"PASS" if not any(migrated_head_zero.values()) and all(x['allclose'] for x in legacy_diffs.values()) else 'FAIL'}
  teacher_manifest={"seed":m2['module2']['seed'],"active_anchor_count":int(gate.sum()),"ranges":{n:stats(getattr(teacher,n)) for n in CHANNELS},"gate_source":bundle.gate_source,"effective_sh_degree":1,"base_checkpoint_sha256":snapshot['metadata']['base_checkpoint_sha256'],"protocol":{"references":[['0','cam18'],['1000','cam00']],"target":['2000','cam09']}}
  torch.save(teacher.as_dict(cpu=True),out/'teacher_anchor_residuals.pt'); teacher_manifest['teacher_file_sha256']=sha(out/'teacher_anchor_residuals.pt')
  diagnostics={"losses":{k:float(v.detach()) for k,v in losses.items()},"anchor_shapes":snapshot['metadata']['anchor_output_shapes'],"Gaussian_shapes":snapshot['metadata']['Gaussian_output_shapes'],"sh_degree_restored":int(base.sh_degree)==base_degree,"target_not_reference":True,"cloth_id_used":False}
