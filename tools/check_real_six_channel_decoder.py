@@ -41,7 +41,9 @@ def main():
  adapter=MMLPHumanAnchorDeformationAdapter.from_mmlphuman_base(base,canonical_anchors=model.canonical_anchors,lbs_grid_path=config['base']['lbs_grid_path'])
  region=torch.load(config['image_conditioning']['reference_region_path'],map_location='cpu',weights_only=True)['cloth_region_weight'].float().reshape(-1)
  gate=(region>=float(config['image_conditioning']['reference_gate_threshold'])).to(device=device,dtype=base._xyz.dtype).reshape(-1,1)
- bundle=TemporaryReferenceGateAdapter.from_reference_gate(gate,region.to(device=device,dtype=base._xyz.dtype).reshape(-1,1))
+ bundle=TemporaryReferenceGateAdapter.from_reference_gate(
+  gate, region.clamp(0,1).to(device=device,dtype=base._xyz.dtype).reshape(-1,1)
+ )
  A=model.canonical_anchors.shape[0]; index=torch.arange(A,device=device,dtype=base._xyz.dtype); phase=index/97
  teacher=AnchorClothingResiduals(
   delta_xyz=torch.stack((torch.zeros_like(phase),.018*torch.sin(phase),.009*torch.cos(phase)),1)*gate,
