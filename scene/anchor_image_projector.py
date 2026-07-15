@@ -40,6 +40,8 @@ class AnchorImageProjector(nn.Module):
         image_height: int,
         image_width: int,
         feature_cloth_masks: torch.Tensor | None = None,
+        reference_cloth_masks: torch.Tensor | None = None,
+        reference_foreground_masks: torch.Tensor | None = None,
         canonical_normals: torch.Tensor | None = None,
         deformation_fn: Callable[[torch.Tensor, torch.Tensor, int], torch.Tensor]
         | None = None,
@@ -156,6 +158,19 @@ class AnchorImageProjector(nn.Module):
                 align_corners=self.align_corners,
             ).squeeze(-1).permute(0, 2, 1).clamp(0, 1)
 
+        def sample_image_mask(value: torch.Tensor | None, name: str) -> torch.Tensor:
+            if value is None:
+                return torch.ones(num_views,num_anchors,1,device=device,dtype=dtype)
+            mask=value.to(device=device,dtype=dtype)
+            if tuple(mask.shape)!=(num_views,1,image_height,image_width):
+                raise ValueError(f"{name} must have shape [K,1,H,W]")
+            if not torch.isfinite(mask).all() or ((mask<0)|(mask>1)).any():
+                raise ValueError(f"{name} must be finite in [0,1]")
+            return F.grid_sample(mask,grid_for_sample,mode="bilinear",padding_mode="zeros",align_corners=self.align_corners).squeeze(-1).permute(0,2,1).clamp(0,1)
+
+        online_cloth_probability=sample_image_mask(reference_cloth_masks,"reference_cloth_masks")
+        foreground_confidence=sample_image_mask(reference_foreground_masks,"reference_foreground_masks")
+
         if normals is None:
             angle_confidence = torch.ones(
                 num_views, num_anchors, 1, device=device, dtype=dtype
@@ -199,6 +214,9 @@ class AnchorImageProjector(nn.Module):
                 min_surface_alpha=depth_alpha_threshold,
             )
             visibility = visibility * depth_outputs["depth_confidence"]
+        online_visibility = in_frame_float*positive_depth_float*angle_confidence*foreground_confidence
+        if "depth_confidence" in depth_outputs:
+            online_visibility=online_visibility*depth_outputs["depth_confidence"]
         outputs = {
             "sampled_features": sampled_features,
             "projected_pixels": pixels,
@@ -210,6 +228,9 @@ class AnchorImageProjector(nn.Module):
             "foreground_mask_hit": foreground_mask_hit.to(dtype=dtype),
             "view_angle_confidence": angle_confidence,
             "visibility_confidence": visibility,
+            "per_view_cloth_probability": online_cloth_probability,
+            "per_view_visibility": online_visibility.clamp(0,1),
+            "foreground_confidence": foreground_confidence,
         }
         if not all(torch.isfinite(value).all() for value in outputs.values()):
             raise FloatingPointError("anchor projection produced NaN or Inf")

@@ -96,3 +96,37 @@ class MultiViewClothingAggregator(nn.Module):
             "anchor_visibility": weight_sums.clamp(0, 1),
             "normalized_view_weights": normalized,
         }
+
+    def aggregate_online_observations(
+        self,
+        sampled_features: torch.Tensor,
+        per_view_visibility: torch.Tensor,
+        per_view_cloth_probability: torch.Tensor,
+        reference_valid_mask: torch.Tensor,
+    ) -> dict[str, torch.Tensor]:
+        """Preserve separate surface and clothing-evidence weighted features."""
+
+        if sampled_features.ndim != 3:
+            raise ValueError("sampled_features must be [K,A,C]")
+        K,A,C=sampled_features.shape
+        if C!=self.input_dim or per_view_visibility.shape!=(K,A,1) or per_view_cloth_probability.shape!=(K,A,1):
+            raise ValueError("online observation tensors have incompatible shapes")
+        valid=torch.as_tensor(reference_valid_mask,device=sampled_features.device,dtype=sampled_features.dtype)
+        if valid.shape not in ((K,),(K,1)) or not torch.isfinite(valid).all() or ((valid<0)|(valid>1)).any():
+            raise ValueError("reference_valid_mask must be finite [K] in [0,1]")
+        valid=valid.reshape(K,1,1)
+        if valid.sum()<=0: raise ValueError("all reference views are invalid")
+        visibility=per_view_visibility.to(sampled_features).clamp(0,1)*valid
+        cloth=per_view_cloth_probability.to(sampled_features).clamp(0,1)
+        projected=self.feature_projection(sampled_features)
+        surface_sum=visibility.sum(0); clothing_weights=visibility*cloth; clothing_sum=clothing_weights.sum(0)
+        surface=(visibility*projected).sum(0)/surface_sum.clamp_min(self.eps)
+        clothing=(clothing_weights*projected).sum(0)/clothing_sum.clamp_min(self.eps)
+        surface=torch.where((surface_sum>self.eps).expand(-1,self.output_dim),surface,torch.zeros_like(surface))
+        clothing=torch.where((clothing_sum>self.eps).expand(-1,self.output_dim),clothing,torch.zeros_like(clothing))
+        probability=(visibility*cloth).sum(0)/surface_sum.clamp_min(self.eps)
+        probability=torch.where(surface_sum>self.eps,probability,torch.zeros_like(probability)).clamp(0,1)
+        coverage=(surface_sum/valid.sum().clamp_min(1)).clamp(0,1)
+        return {"observed_surface_feature":surface,"observed_clothing_feature":clothing,
+                "observed_clothing_probability":probability,"observation_coverage":coverage,
+                "surface_observed_mask":surface_sum>self.eps,"clothing_observed_mask":clothing_sum>self.eps}
