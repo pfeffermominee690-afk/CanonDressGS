@@ -137,8 +137,7 @@ class FullDressableInferenceDataset(_FullDressableBase):
             "target_pose": target["pose"], "target_R_global": target["R_global"],
             "target_Rh": target["R_global"], "target_Th": target["Th"], "target_K": target["K"],
             "target_w2c": target["w2c"], "target_camera": {"K": target["K"], "w2c": target["w2c"], "width": target["width"], "height": target["height"]},
-            "target_condition_id": target["condition_id"], "outfit_id": outfit["outfit_id"],
-            "outfit_metadata": outfit.get("metadata", {}),
+            "target_condition_id": target["condition_id"],
         })
         forbidden = FORBIDDEN_INFERENCE_FIELDS.intersection(result)
         if forbidden:

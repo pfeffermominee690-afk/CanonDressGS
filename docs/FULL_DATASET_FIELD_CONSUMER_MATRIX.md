@@ -13,7 +13,7 @@
 | target pose/R/Th | float | forbidden as clothing condition | target deformation | renderer | yes |
 | target K/w2c | float | forbidden as clothing condition | no | target camera | yes |
 | teacher | optional descriptor | forbidden | forbidden for gate | optional training/eval | **no** |
-| outfit ID/metadata | routing/audit | **forbidden as condition** | no | grouping | metadata only |
+| outfit ID/metadata | training routing/audit | **forbidden as condition** | no | grouping | **not returned** |
 | cloth embedding | absent | forbidden | forbidden | forbidden | **no** |
 
 Current-code aliases are `reference_cloth_masks` (model) versus contract loader `reference_clothing_masks`, and `Rh` versus contract `R_global`. The v1 loader provides `reference_Rh`/`target_Rh` aliases while retaining the explicit canonical names. A training adapter must rename `reference_clothing_masks` to `reference_cloth_masks`; this freeze does not silently change either meaning.
