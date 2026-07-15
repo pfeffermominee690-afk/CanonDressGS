@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import glob
 import json
 import random
@@ -1355,6 +1356,7 @@ def compute_image_conditioned_training_loss(
         reference_geometry_diagnostics=(
             None if geometry is None else geometry["diagnostics"]
         ),
+        reference_only_gate=episode.get("reference_only_gate"),
     )
     prediction = output["anchor_offsets"]
     target = episode.get("anchor_offset_target")
@@ -1603,6 +1605,7 @@ def evaluate_image_conditioned(
     render_background: list[float] | None = None,
     deformation_adapter: MMLPHumanAnchorDeformationAdapter | None = None,
     image_conditioning_config: dict[str, Any] | None = None,
+    reference_only_gate: torch.Tensor | None = None,
     require_mmlphuman_state_transaction: bool = False,
 ) -> dict[str, Any]:
     """Export one deterministic episode per clothing item."""
@@ -1617,6 +1620,8 @@ def evaluate_image_conditioned(
             continue
         seen.add(cloth_name)
         episode = dataset.sample_episode(index, deterministic=True)
+        if reference_only_gate is not None:
+            episode["reference_only_gate"] = reference_only_gate
         conditioning = image_conditioning_config or {}
         require_depth = bool(conditioning.get("require_depth_visibility", False))
         background_tensor = torch.tensor(
@@ -1817,6 +1822,29 @@ def train_image_conditioned(
     model, optimizer, anchor_features, anchor_edges = create_image_conditioned_components(
         dataset, config, base_model, device
     )
+    reference_only_gate = None
+    region_path_value = image_config.get("reference_region_path")
+    if region_path_value:
+        if image_config.get("target_view_used") is not False:
+            raise ValueError("reference-only gate requires target_view_used=false")
+        region_path = Path(region_path_value)
+        actual_region_sha = hashlib.sha256(region_path.read_bytes()).hexdigest()
+        expected_region_sha = image_config.get("reference_region_sha256")
+        if expected_region_sha and actual_region_sha != expected_region_sha:
+            raise ValueError("reference-only region SHA256 mismatch")
+        region_object = torch.load(region_path, map_location="cpu", weights_only=True)
+        if not isinstance(region_object, dict) or "cloth_region_weight" not in region_object:
+            raise ValueError("reference-only region lacks cloth_region_weight")
+        region_score = region_object["cloth_region_weight"].float().reshape(-1)
+        if region_score.shape != (model.canonical_anchors.shape[0],):
+            raise ValueError("reference-only region anchor count mismatch")
+        if not torch.isfinite(region_score).all():
+            raise ValueError("reference-only region contains NaN or Inf")
+        region_score = region_score.clamp(0, 1)
+        threshold = float(image_config.get("reference_gate_threshold", 0.5))
+        reference_only_gate = (region_score >= threshold).to(
+            device=device, dtype=model.dressable_model.anchor_features.dtype
+        )
     deformation_adapter = None
     if require_real_base:
         lbs_grid_path = base_config.get("lbs_grid_path")
@@ -1867,6 +1895,8 @@ def train_image_conditioned(
         except StopIteration:
             iterator = iter(loader)
             episode = next(iterator)
+        if reference_only_gate is not None:
+            episode["reference_only_gate"] = reference_only_gate
         second = None
         if bool(config["train"].get("dual_reference_consistency", False)) and step % int(
             config["train"].get("consistency_every", 1)
@@ -1940,6 +1970,7 @@ def train_image_conditioned(
                 render_background=config.get("render", {}).get("background"),
                 deformation_adapter=deformation_adapter,
                 image_conditioning_config=image_config,
+                reference_only_gate=reference_only_gate,
                 require_mmlphuman_state_transaction=require_real_base,
             )
     save_image_training_checkpoint(
@@ -1961,6 +1992,7 @@ def train_image_conditioned(
         render_background=config.get("render", {}).get("background"),
         deformation_adapter=deformation_adapter,
         image_conditioning_config=image_config,
+        reference_only_gate=reference_only_gate,
         require_mmlphuman_state_transaction=require_real_base,
     )
     return {
@@ -1970,6 +2002,7 @@ def train_image_conditioned(
         "anchor_features": anchor_features,
         "anchor_edges": anchor_edges,
         "deformation_adapter": deformation_adapter,
+        "reference_only_gate": reference_only_gate,
         "history": history,
         "last_losses": last_losses,
         "last_outputs": last_outputs,

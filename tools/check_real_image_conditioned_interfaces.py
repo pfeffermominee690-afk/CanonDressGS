@@ -401,6 +401,17 @@ def main() -> None:
             raise AssertionError("target render did not install pose/Rh/Th")
         print("target pose Rh Th transaction test: PASS")
 
+        reference_gate = torch.zeros(anchors.shape[0])
+        reference_gate[: anchors.shape[0] // 2] = 1
+        gated_output = model.forward_episode(
+            model_episode,
+            deformation_fn=lambda value, pose_value, index: value,
+            reference_only_gate=reference_gate,
+        )
+        if gated_output["anchor_offsets"]["delta_xyz"][anchors.shape[0] // 2 :].abs().max() != 0:
+            raise AssertionError("reference-only gate did not zero excluded anchors")
+        print("reference-only offset gate test: PASS")
+
         anchor_offsets = render_output["anchor_offsets"]
         gaussian_offsets = render_output["gaussian_offsets"]
         if anchor_offsets["delta_scaling"].abs().max() != 0 or anchor_offsets[
@@ -438,7 +449,7 @@ def main() -> None:
             raise AssertionError("global-only compatibility path regressed")
         print("legacy synthetic global-only compatibility test: PASS")
 
-    print("Gate 2 image-conditioned interface checks: 21 PASS")
+    print("Gate 2 image-conditioned interface checks: 22 PASS")
 
 
 if __name__ == "__main__":

@@ -357,6 +357,7 @@ class ImageConditionedDressableModel(nn.Module):
         require_depth_visibility: bool = False,
         require_mmlphuman_state_transaction: bool = False,
         reference_geometry_diagnostics: dict[str, Any] | None = None,
+        reference_only_gate: torch.Tensor | None = None,
     ) -> dict[str, Any]:
         """Run one reference-target episode without using its cloth identifier."""
 
@@ -425,13 +426,32 @@ class ImageConditionedDressableModel(nn.Module):
             clothing_embedding=encoded["global_clothing_embedding"],
             anchor_clothing_features=encoded["anchor_clothing_features"],
         )
+        if reference_only_gate is not None:
+            gate = self._to_model_float(
+                reference_only_gate, device, dtype, "reference_only_gate"
+            ).reshape(-1, 1)
+            if gate.shape != (anchors.shape[0], 1):
+                raise ValueError(
+                    f"reference_only_gate has shape {tuple(gate.shape)}, "
+                    f"expected {(anchors.shape[0], 1)}"
+                )
+            if ((gate < 0) | (gate > 1)).any():
+                raise ValueError("reference_only_gate must be in [0,1]")
+            anchor_offsets = {
+                key: value * gate for key, value in anchor_offsets.items()
+            }
         gaussian_offsets = self.dressable_model.interpolate_anchor_offsets_to_gaussians(
             anchor_offsets
         )
-        dressed = self.dressable_model.get_dressed_canonical_params(
-            clothing_embedding=encoded["global_clothing_embedding"],
-            anchor_clothing_features=encoded["anchor_clothing_features"],
-        )
+        base_model = self.dressable_model.base_model
+        dressed = {
+            "xyz": base_model._xyz + gaussian_offsets["delta_xyz"],
+            "scaling": base_model._scaling + gaussian_offsets["delta_scaling"],
+            "opacity": base_model._opacity + gaussian_offsets["delta_opacity"],
+            "rotation": base_model._rotation,
+            "sh0": base_model._sh0,
+            "shN": base_model._shN,
+        }
         rendered = None
         target_state_cache_restored = None
         if render_target:

@@ -25,12 +25,11 @@ train:
   log_every: 1
   save_every: 1
   eval_every: 1
-  output_dir: outputs/gates/gate_2/GATE-ONEBATCH-REAL-001
+  output_dir: /root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-ONEBATCH-001
   resume: null
 
 image_conditioning:
-  # Planned cloud artifact. Replace only this path when the fixed episode is ready.
-  manifest_path: /root/autodl-tmp/canondressgs_work/data_dressable/debug_episode_v1.json
+  manifest_path: /root/autodl-tmp/canondressgs_work/data_dressable/gate3b_synthetic_hoodie_expand_018.json
   split: train
   allow_clothing_mask_fallback: false
   allow_missing_rh_th: false
@@ -45,6 +44,11 @@ image_conditioning:
   use_projection_confidence: true
   use_view_angle_confidence: false
   unknown_anchor_mode: learned
+  reference_region_path: /root/autodl-tmp/canondressgs_work/outputs/gates/gate_3b/GATE-MULTIVIEW-CLOTH-VOTES-001/anchor_clothing_region_reference_only_f000_c018_f1000_c000.pt
+  reference_region_sha256: 20ed6dbc95664b16b6fedac0acf046ea7368a35490dfb440b2d3bfa2eccdc126
+  reference_gate_threshold: 0.4
+  reference_views: [f000_c018, f1000_c000]
+  target_view_used: false
 
 base:
   model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
