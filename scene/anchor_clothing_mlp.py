@@ -78,7 +78,10 @@ class AnchorClothingMLP(nn.Module):
             if self.shN_head.out_features != shN_flat_dim:
                 raise ValueError("shN head has already been initialized with another width")
             return
-        self.shN_head = self._zero_head(shN_flat_dim)
+        self.shN_head = self._zero_head(shN_flat_dim).to(
+            device=self.output_layer.weight.device,
+            dtype=self.output_layer.weight.dtype,
+        )
 
     def configure_six_channel_decoder(self, config: dict, shN_flat_dim: int) -> None:
         self.initialize_six_channel_heads(shN_flat_dim)
