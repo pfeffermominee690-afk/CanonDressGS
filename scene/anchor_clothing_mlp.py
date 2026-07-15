@@ -106,6 +106,15 @@ class AnchorClothingMLP(nn.Module):
         self, anchor_features: torch.Tensor, film_gamma: list[torch.Tensor],
         film_beta: list[torch.Tensor], anchor_clothing_features: torch.Tensor | None = None,
     ) -> AnchorClothingResiduals:
+        return self.forward_film_six_channel_outputs(
+            anchor_features, film_gamma, film_beta, anchor_clothing_features
+        )[1]
+
+    def forward_film_six_channel_outputs(
+        self, anchor_features: torch.Tensor, film_gamma: list[torch.Tensor],
+        film_beta: list[torch.Tensor], anchor_clothing_features: torch.Tensor | None = None,
+    ) -> tuple[AnchorClothingResiduals, AnchorClothingResiduals]:
+        """Return raw head tensors and bounded/disabled-aware residual tensors."""
         if self.shN_head is None:
             raise RuntimeError("initialize/configure six-channel heads before forward")
         hidden = self._film_hidden(anchor_features, film_gamma, film_beta, anchor_clothing_features)
@@ -130,10 +139,12 @@ class AnchorClothingMLP(nn.Module):
         )
         scale = self.channel_bounds["rotation"] * unit_scale
         bounded["delta_rotvec"] = raw["delta_rotvec"] * scale
-        return AnchorClothingResiduals(**{
+        raw_bundle = AnchorClothingResiduals(**raw)
+        bounded_bundle = AnchorClothingResiduals(**{
             name: value if name in self.enabled_residual_channels else torch.zeros_like(value)
             for name, value in bounded.items()
         })
+        return raw_bundle, bounded_bundle
 
     def forward(
         self,

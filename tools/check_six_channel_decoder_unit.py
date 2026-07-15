@@ -21,7 +21,8 @@ def main():
  with torch.no_grad():
   for head in (mlp.output_layer,mlp.scaling_head,mlp.rotation_head,mlp.opacity_head,mlp.sh0_head,mlp.shN_head): head.weight.fill_(.01)
  anchor=torch.randn(A,5); local=torch.randn(A,6); gamma=[torch.zeros(1,8),torch.zeros(1,8)]; beta=[x.clone() for x in gamma]
- residual=mlp.forward_film_six_channel(anchor,gamma,beta,local)
+ raw_residual,residual=mlp.forward_film_six_channel_outputs(anchor,gamma,beta,local)
+ assert all(x.shape==y.shape for x,y in zip(raw_residual.as_dict().values(),residual.as_dict().values()))
  assert [tuple(x.shape) for x in residual.as_dict().values()]==[(A,3),(A,3),(A,3),(A,1),(A,3),(A,9)]
  zero=torch.zeros(A,1); one=torch.ones(A,1)
  g=ClothingGateBundle(zero,one).apply(residual); assert not g.delta_sh0.count_nonzero() == 0 and g.delta_xyz.count_nonzero()==0 and g.delta_opacity_logit.count_nonzero()>0

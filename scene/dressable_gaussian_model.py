@@ -431,14 +431,14 @@ class DressableGaussianModel(nn.Module):
     def compute_film_anchor_residuals(
         self, gate_bundle: ClothingGateBundle, *, cloth_id=None,
         clothing_embedding=None, anchor_clothing_features=None,
-    ) -> tuple[AnchorClothingResiduals, AnchorClothingResiduals]:
+    ) -> tuple[AnchorClothingResiduals, AnchorClothingResiduals, AnchorClothingResiduals]:
         if self.anchor_clothing_mlp is None or self.clothing_film_generator is None:
             raise RuntimeError("FiLM clothing generator has not been initialized")
         film = self._compute_film_parameters(cloth_id=cloth_id, clothing_embedding=clothing_embedding)
-        bounded = self.anchor_clothing_mlp.forward_film_six_channel(
+        raw, bounded = self.anchor_clothing_mlp.forward_film_six_channel_outputs(
             self.anchor_features, film["film_gamma"], film["film_beta"], anchor_clothing_features
         )
-        return bounded, gate_bundle.apply(bounded)
+        return raw, bounded, gate_bundle.apply(bounded)
 
     def interpolate_anchor_offsets_to_gaussians(
         self,
