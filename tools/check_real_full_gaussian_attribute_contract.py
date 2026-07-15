@@ -145,6 +145,7 @@ def main() -> None:
     zero_equivalence = {"rgb": diff_stats(base_rgb, zero_rgb), "alpha": diff_stats(base_alpha, zero_alpha)}
 
     render_metrics, gradient_metrics, rendered = {}, {}, {}
+    shn_control_rgb = None
     for channel in CHANNELS:
         channel_indices = rotation_selected if channel == "delta_rotvec" else selected
         evaluation_degree = 1 if channel == "delta_shN" else int(base.sh_degree)
@@ -152,6 +153,8 @@ def main() -> None:
             render(sh_degree=evaluation_degree)[:2]
             if channel == "delta_shN" else (base_rgb, base_alpha)
         )
+        if channel == "delta_shN":
+            shn_control_rgb = channel_base_rgb.detach()
         residuals, leaf = make_residual(base, channel, channel_indices, requires_grad=True)
         overrides = compose_canonical_gaussian_overrides(base, residuals, [channel])
         rgb, alpha, _ = render(overrides, sh_degree=evaluation_degree)
@@ -219,6 +222,11 @@ def main() -> None:
     del old_model, old_optimizer, old_base
 
     save_render_tensor(output / "base_rgb.png", base_rgb, 3)
+    save_render_tensor(output / "zero_override_rgb.png", zero_rgb, 3)
+    save_render_tensor(output / "post_restore_rgb.png", final_rgb, 3)
+    if shn_control_rgb is None:
+        raise RuntimeError("degree-1 zero-SHN control was not rendered")
+    save_render_tensor(output / "shN_degree1_zero_control_rgb.png", shn_control_rgb, 3)
     panels = [_as_chw_render(base_rgb, 3)]
     for channel in CHANNELS:
         panels.extend([_as_chw_render(rendered[channel], 3), (_as_chw_render(rendered[channel], 3) - _as_chw_render(base_rgb, 3)).abs()])
