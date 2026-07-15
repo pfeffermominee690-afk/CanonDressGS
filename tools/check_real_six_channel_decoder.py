@@ -19,6 +19,7 @@ from tools.check_real_image_conditioned_one_batch import _as_chw_render, _build_
 from utils.dressable_camera_utils import build_mmlphuman_camera
 from utils.mmlphuman_anchor_deformation import MMLPHumanAnchorDeformationAdapter
 from utils.mmlphuman_state_utils import mmlphuman_state_transaction
+from utils.loss_utils import ssim_loss
 
 DISPLAY={"delta_xyz":"xyz","delta_log_scaling":"scaling","delta_rotvec":"rotation","delta_opacity_logit":"opacity","delta_sh0":"sh0","delta_shN":"shN"}
 
@@ -78,7 +79,7 @@ def main():
  losses={}
  for name in CHANNELS: losses[name]=F.smooth_l1_loss(getattr(gated,name),getattr(teacher,name))
  prgb=_as_chw_render(pred[0],3); palpha=_as_chw_render(pred[1],1); trgb=_as_chw_render(teacher_target[0],3); talpha=_as_chw_render(teacher_target[1],1)
- losses.update(rgb_l1=F.l1_loss(prgb,trgb),ssim=1-training.ssim(prgb.unsqueeze(0),trgb.unsqueeze(0)),alpha_bce=F.binary_cross_entropy(palpha.clamp(1e-6,1-1e-6),talpha.clamp(0,1)),alpha_dice=1-(2*(palpha*talpha).sum()+1)/(palpha.sum()+talpha.sum()+1),non_region=sum((getattr(gated,n)*(1-gate)).abs().mean() for n in CHANNELS),regularization=sum(getattr(gated,n).square().mean() for n in CHANNELS))
+ losses.update(rgb_l1=F.l1_loss(prgb,trgb),ssim=ssim_loss(pred[0],teacher_target[0]),alpha_bce=F.binary_cross_entropy(palpha.clamp(1e-6,1-1e-6),talpha.clamp(0,1)),alpha_dice=1-(2*(palpha*talpha).sum()+1)/(palpha.sum()+talpha.sum()+1),non_region=sum((getattr(gated,n)*(1-gate)).abs().mean() for n in CHANNELS),regularization=sum(getattr(gated,n).square().mean() for n in CHANNELS))
  total=sum(losses.values()); total.backward()
  heads={"xyz_head":model.dressable_model.anchor_clothing_mlp.output_layer,"scaling_head":model.dressable_model.anchor_clothing_mlp.scaling_head,"rotation_head":model.dressable_model.anchor_clothing_mlp.rotation_head,"opacity_head":model.dressable_model.anchor_clothing_mlp.opacity_head,"sh0_head":model.dressable_model.anchor_clothing_mlp.sh0_head,"shN_head":model.dressable_model.anchor_clothing_mlp.shN_head}
  gradients={}
