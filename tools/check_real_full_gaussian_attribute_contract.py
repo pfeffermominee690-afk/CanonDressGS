@@ -126,7 +126,10 @@ def main() -> None:
     radii = info.get("radii") if isinstance(info, dict) else None
     if not isinstance(radii, torch.Tensor):
         raise KeyError("renderer info lacks radii needed for visible Gaussian selection")
-    visible_mask = radii.reshape(-1, radii.shape[-1]).amax(dim=0) > 0
+    gaussian_dimensions = [index for index, size in enumerate(radii.shape) if size == base._xyz.shape[0]]
+    if len(gaussian_dimensions) != 1:
+        raise ValueError(f"cannot identify Gaussian dimension in radii shape {tuple(radii.shape)}")
+    visible_mask = radii.movedim(gaussian_dimensions[0], 0).reshape(base._xyz.shape[0], -1).amax(dim=1) > 0
     visible = torch.nonzero(visible_mask, as_tuple=False).reshape(-1)
     if visible.numel() < 8:
         raise RuntimeError("fewer than eight visible Gaussians")
