@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import argparse, hashlib, json, subprocess, sys
+import argparse, copy, hashlib, json, subprocess, sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import matplotlib.pyplot as plt
@@ -89,12 +89,17 @@ def main():
  initial_total=sum(float(weights.get(k,0))*v for k,v in initial_parts.items())
  initial_loss=float(initial_total.detach())
  logs=[{'step':0,'total':initial_loss,**{k:float(v.detach()) for k,v in initial_parts.items()}}]
+ best_step=None; best_loss=float('inf'); best_state=None
  for step in range(1,int(cfg['max_steps'])+1):
   optimizer.zero_grad(set_to_none=True); outputs={n:complete(n) for n in subsets}; hold=complete('S12',True); parts=loss_parts(outputs,hold)
   total=sum(float(weights.get(k,0))*v for k,v in parts.items()); total.backward(); optimizer.step()
   record={'step':step,'total':float(total.detach()),**{k:float(v.detach()) for k,v in parts.items()}}; logs.append(record)
+  if step>=int(cfg['min_steps']) and record['total']<best_loss:
+   best_step=step; best_loss=record['total']; best_state=copy.deepcopy(completer.state_dict())
   if step in (1,10,25,50,100): checkpoints.add(step)
- final_outputs={n:complete(n) for n in subsets}; final_loss=logs[-1]['total']; loss_drop=(initial_loss-final_loss)/max(initial_loss,1e-12)
+ if best_state is None: raise RuntimeError('no eligible completion checkpoint was produced')
+ completer.load_state_dict(best_state,strict=True)
+ final_outputs={n:complete(n) for n in subsets}; final_loss=best_loss; loss_drop=(initial_loss-final_loss)/max(initial_loss,1e-12)
  # Baselines and gate metrics.
  observed_gate=evidence['S12'][1]['observed_clothing_probability']*(evidence['S12'][1]['observation_coverage']>0).to(base._xyz.dtype)
  diffusion=observed_gate.clone()
@@ -151,7 +156,7 @@ def main():
  pass_engineering=gradient['completer']>0 and all(v>0 for k,v in gradient.items() if k not in ('base_grad_count','completer','frozen_image_backbone_grad_count')) and gradient['base_grad_count']==0 and gradient['frozen_image_backbone_grad_count']==0 and all(v['allclose'] for v in roundtrip.values()) and repeat_allclose and base.sh_degree==base_degree
  s12=metrics['S12']; learned_un=s12['geometry']['unobserved'].get('recall',0); observed_un=baseline['observed_only']['geometry']['unobserved'].get('recall',0); coverage_monotonic=s12['coverage_mean']>=max(metrics['S1']['coverage_mean'],metrics['S2']['coverage_mean']); pass_learning=loss_drop>=.3 and s12['geometry']['all']['F1']>=.9 and s12['geometry']['all']['IoU']>=.82 and s12['appearance']['all']['F1']>=.9 and s12['appearance']['all']['IoU']>=.82 and learned_un>=.6 and learned_un-observed_un>=.15 and s12['geometry']['inactive_mean']<=.1 and s12['appearance']['inactive_mean']<=.1 and feature_metrics['relative_improvement']>=.2 and coverage_monotonic
  passed=pass_engineering and pass_learning and render_metrics['learned']['clothing_rgb_l1']<render_metrics['observed_only']['clothing_rgb_l1'] and render_metrics['learned']['mask_iou']>=render_metrics['observed_only']['mask_iou']
- summary={"status":"PASS" if passed else "PARTIAL","loss_drop":loss_drop,"engineering":pass_engineering,"learning":pass_learning,"coverage_monotonic":coverage_monotonic,"coverage_formula_conflict":"mean over valid references cannot be monotonic when single-view coverages differ" if not coverage_monotonic else None,"metrics":metrics,"baseline":baseline,"feature":feature_metrics,"render":render_metrics,"gradient":gradient}
+ summary={"status":"PASS" if passed else "PARTIAL","loss_drop":loss_drop,"selected_step":best_step,"selection_rule":"minimum training total after min_steps; no acceptance metric used","engineering":pass_engineering,"learning":pass_learning,"coverage_monotonic":coverage_monotonic,"coverage_formula_conflict":"mean over valid references cannot be monotonic when single-view coverages differ" if not coverage_monotonic else None,"metrics":metrics,"baseline":baseline,"feature":feature_metrics,"render":render_metrics,"gradient":gradient}
  (out/'forward.log').write_text(json.dumps(summary,indent=2)); (out/'GATE_ACCEPTANCE.md').write_text(f"# Gate 6 Online Completion\n\nStatus: **{'PASS' if passed else 'PARTIAL'}**\n\n- Engineering: {'PASS' if pass_engineering else 'FAIL'}\n- Learning thresholds: {'PASS' if pass_learning else 'FAIL'}\n- Coverage formula conflict: {summary['coverage_formula_conflict'] or 'none'}\n- Independent inference: evaluator reload parity only; separate-process proof pending\n",encoding='utf-8'); print(json.dumps(summary,indent=2))
  if not passed: raise RuntimeError('Module 3 acceptance remains partial')
 
