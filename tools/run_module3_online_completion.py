@@ -92,10 +92,11 @@ def main():
  best_step=None; best_loss=float('inf'); best_state=None
  for step in range(1,int(cfg['max_steps'])+1):
   optimizer.zero_grad(set_to_none=True); outputs={n:complete(n) for n in subsets}; hold=complete('S12',True); parts=loss_parts(outputs,hold)
-  total=sum(float(weights.get(k,0))*v for k,v in parts.items()); total.backward(); optimizer.step()
+  total=sum(float(weights.get(k,0))*v for k,v in parts.items())
   record={'step':step,'total':float(total.detach()),**{k:float(v.detach()) for k,v in parts.items()}}; logs.append(record)
   if step>=int(cfg['min_steps']) and record['total']<best_loss:
    best_step=step; best_loss=record['total']; best_state=copy.deepcopy(completer.state_dict())
+  total.backward(); optimizer.step()
   if step in (1,10,25,50,100): checkpoints.add(step)
  if best_state is None: raise RuntimeError('no eligible completion checkpoint was produced')
  completer.load_state_dict(best_state,strict=True)
