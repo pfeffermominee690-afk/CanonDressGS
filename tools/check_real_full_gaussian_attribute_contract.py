@@ -140,10 +140,9 @@ def main() -> None:
         overrides = compose_canonical_gaussian_overrides(base, residuals, [channel])
         rgb, alpha, _ = render(overrides)
         loss = rgb.float().mean() + 0.1 * alpha.float().mean()
-        loss.backward()
+        if loss.requires_grad:
+            loss.backward()
         gradient = leaf.grad
-        if gradient is None:
-            raise RuntimeError(f"{channel} gradient is missing")
         render_metrics[channel] = {
             "selected_gaussian_count": int(channel_indices.numel()),
             "selected_indices": channel_indices.detach().cpu().tolist(),
@@ -154,13 +153,17 @@ def main() -> None:
             "base_parameter_max_diff": base_difference(base, before),
         }
         gradient_metrics[channel] = {
-            "exists": True, "finite_ratio": float(torch.isfinite(gradient).float().mean().item()),
-            "norm": float(gradient.float().norm().item()), "max_abs": float(gradient.float().abs().max().item()),
+            "exists": gradient is not None,
+            "finite_ratio": 0.0 if gradient is None else float(torch.isfinite(gradient).float().mean().item()),
+            "norm": 0.0 if gradient is None else float(gradient.float().norm().item()),
+            "max_abs": 0.0 if gradient is None else float(gradient.float().abs().max().item()),
+            "loss_requires_grad": bool(loss.requires_grad),
             "base_gradient_count": sum(value.grad is not None for value in base_tensors(base).values()),
         }
         rendered[channel] = rgb.detach()
         save_render_tensor(output / f"{DISPLAY[channel]}_rgb.png", rgb, 3)
-        leaf.grad = None
+        if leaf.grad is not None:
+            leaf.grad = None
 
     final_rgb, final_alpha, _ = render()
     state_restore = {
@@ -177,7 +180,9 @@ def main() -> None:
         "activations": {"scaling": "torch.exp", "opacity": "torch.sigmoid", "rotation": "torch.nn.functional.normalize"},
         "renderer_getters": {"xyz": "compute_xyz", "scaling_rotation": "get_covariance", "opacity": "compute_opacity", "sh": "compute_sh/get_color"},
         "visible_gaussian_count": int(visible.numel()), "seed": args.seed,
+        "sh_degree": int(base.sh_degree),
     })
+    (output / "base_attribute_contract.json").write_text(json.dumps(contract, indent=2), encoding="utf-8")
 
     saved = torch.load(args.old_image_checkpoint, map_location="cpu", weights_only=True)
     old_config = saved["config"]
