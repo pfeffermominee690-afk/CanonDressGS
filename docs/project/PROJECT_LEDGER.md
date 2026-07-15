@@ -36,3 +36,30 @@
 - synthetic/mock image-conditioned training、gradient、checkpoint resume：PASS
 - 范围限制：未运行真实 MMLPHuman 端到端 rendering，不构成 Gate 4 MVP acceptance
 - Git：未 stage、未 commit、未部署
+
+## LEDGER-20260715-004 — 云端干净执行基线部署
+
+- 时间：2026-07-15T22:02:26+08:00
+- 类型：DEPLOYMENT
+- 状态：PASS
+- 本地分支：`pipeline/imagecond-mvp-20260715`
+- 本地 commit：`aa9bdaa918554fae18bd51132be023f5d9759dbe`
+- bare remote：`/root/autodl-tmp/canondressgs_work/git/canondressgs.git`
+- cloud remote URL：`canondress-cloud:/root/autodl-tmp/canondressgs_work/git/canondressgs.git`
+- 云端执行目录：`/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_pipeline_mvp`
+- 云端分支：`pipeline/imagecond-mvp-20260715`
+- 云端 commit：`aa9bdaa918554fae18bd51132be023f5d9759dbe`
+- 云端 Git 状态：clean，modified count 0
+- Python：3.10.20
+- PyTorch：2.4.1+cu121
+- CUDA runtime：12.1
+- CUDA available：True
+- GPU：NVIDIA GeForce RTX 4090
+- py_compile：PASS
+- image-conditioned interfaces：21 PASS
+- dataset：20 PASS
+- clothing losses：10 PASS
+- Dressable model：9 PASS
+- synthetic/mock training、gradient、checkpoint roundtrip：PASS
+- 范围限制：未运行真实 MMLPHuman rendering，未启动 Gate 4 训练
+- legacy 仓库：`/root/autodl-tmp/canondressgs_work/mmlphuman_code` 继续冻结，未触碰

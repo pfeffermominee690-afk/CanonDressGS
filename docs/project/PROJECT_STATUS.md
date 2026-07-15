@@ -6,11 +6,11 @@
 
 | 项目 | 状态 | 说明 |
 |---|---|---|
-| 治理基线 | READY FOR STAGE REVIEW | 正式分支、治理文档、清单和脚本已建立；等待精确 stage 清单确认和首个基线 commit |
+| 治理基线 | PASS | 两个本地基线 commit 已完成，云端 bare remote 与干净执行 worktree 已验证 |
 | legacy 云端仓库 | FROZEN | `/root/autodl-tmp/canondressgs_work/mmlphuman_code` 仅作历史实验与只读证据来源 |
-| 干净云端执行目录 | BLOCKED | 必须等待本地基线 commit 后创建 |
+| 干净云端执行目录 | PASS | `pipeline/imagecond-mvp-20260715@aa9bdaa918554fae18bd51132be023f5d9759dbe`，Git clean |
 | Gate 3-C | PARTIAL | threshold 0.40 是当前-backbone 简单 baseline，不关闭 Gate 3-C |
-| Gate 4 MVP | NOT STARTED | 治理基线 commit 后立即开始 |
+| Gate 4 MVP | IN PROGRESS | 当前里程碑：Gate 4-A Real Image-conditioned One-batch |
 | 论文证据包 | IN PROGRESS | 已建立 evidence matrix，尚无 Gate 4 端到端结果 |
 
 ## 已知阻塞与风险
@@ -34,9 +34,9 @@
 
 ## 接下来三个任务
 
-1. 用户确认精确 stage 清单，完成治理与 MVP 源码基线 commit。
-2. 建立云端 bare remote 和干净执行 worktree，验证 branch/HEAD/clean/import 一致。
-3. 执行 Gate 4-A/B：接口、reference sensitivity、forward/backward、冻结梯度和禁用通道验收。
+1. 在真实 MMLP-Human、真实 reference images/poses/cameras 上完成 Gate 4-A one-batch。
+2. 验证 reference sensitivity、真实 render backward、冻结梯度和 checkpoint roundtrip。
+3. Gate 4-A PASS 后才进入 100/300-step overfit。
 
 ## 最近一次验收
 
