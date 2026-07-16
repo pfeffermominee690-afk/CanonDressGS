@@ -1,6 +1,24 @@
 # Module 4A — Full-Attribute Representation Oracle Infrastructure
 
-Status: implementation baseline
+Status: **PASS_WITH_CUDA_NONDETERMINISM**
+
+Final adjudication commit basis: `15457ffaa3753854f19fbc2ad35f0c150067af75`
+
+The Oracle method and infrastructure pass. Checkpoint model/optimizer/RNG/
+sampler/global-step restoration, graph/interpolation/config fingerprints,
+pre-raster tensors, and the no-raster optimizer step are exact. Functional
+interrupted resume therefore passes.
+
+The current gsplat/CUDA raster backward contains nondeterministic reductions,
+so independent processes are not expected to reproduce an identical multi-step
+parameter trajectory. The first observed difference occurs in CUDA raster
+backward attribute gradients; independent control processes show the same
+single-step noise scale as resumed execution. This limitation must not be
+described as approximate checkpoint restore, optimizer restore error, or resume
+failure.
+
+Historical PARTIAL reports and their original numeric measurements remain valid
+audit evidence. This final adjudication supersedes only their status label.
 
 The representation oracles optimize one outfit-level canonical residual shared by
 every pose and camera. They are capacity upper bounds, not inference methods:
