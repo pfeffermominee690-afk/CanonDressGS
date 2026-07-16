@@ -115,10 +115,37 @@ def non_raster_step(fixture: Fixture):
     return {"pre": pre, "gradients": gradients, "parameters": post, "optimizer": fixture.optimizer.state_dict()}
 
 
+def traced_full_step(fixture: Fixture):
+    fixture.optimizer.zero_grad(set_to_none=True)
+    output, rendered, parts = fixture.loss()
+    rendered[0].retain_grad(); rendered[1].retain_grad()
+    overrides = output.canonical_overrides.as_dict()
+    for value in overrides.values(): value.retain_grad()
+    pre = fixture.snapshot(output, rendered, parts)
+    parts["closure_total"].backward()
+    return {
+        "pre": pre,
+        "image_loss_gradients": {
+            "dLoss_dRGB": rendered[0].grad.detach().cpu(),
+            "dLoss_dAlpha": rendered[1].grad.detach().cpu(),
+        },
+        "raster_backward_canonical_attribute_gradients": {
+            name: None if value.grad is None else value.grad.detach().cpu()
+            for name, value in overrides.items()
+        },
+        "raw_parameter_gradients": {
+            name: None if parameter.grad is None else parameter.grad.detach().cpu()
+            for name, parameter in fixture.model.named_parameters()
+        },
+    }
+
+
 def worker(args):
     fixture = load_fixture(args, args.kind)
     if args.mode == "no_raster":
         result = non_raster_step(fixture)
+    elif args.mode == "trace":
+        result = traced_full_step(fixture)
     elif args.mode == "three_step":
         result = {"steps": []}
         for step in range(3):
@@ -233,13 +260,35 @@ def main():
     ): p.add_argument(f"--{name}", required=True, type=Path)
     p.add_argument("--resume-source", type=Path); p.add_argument("--device", default="cuda")
     p.add_argument("--worker", action="store_true"); p.add_argument("--kind", choices=("gaussian", "anchor"))
-    p.add_argument("--mode", choices=("full", "no_raster", "three_step"), default="full"); p.add_argument("--worker-output", type=Path)
+    p.add_argument("--mode", choices=("full", "no_raster", "three_step", "trace"), default="full"); p.add_argument("--worker-output", type=Path)
+    p.add_argument("--trace-only", action="store_true")
     args = p.parse_args()
     torch.backends.cudnn.deterministic = True; torch.backends.cudnn.benchmark = False
     torch.backends.cuda.matmul.allow_tf32 = False; torch.backends.cudnn.allow_tf32 = False
     torch.use_deterministic_algorithms(True, warn_only=True)
     if args.worker: worker(args); return
     root = args.output_dir.resolve(); root.mkdir(parents=True, exist_ok=True)
+    if args.trace_only:
+        for kind in ("gaussian", "anchor"):
+            args.resume_source = args.output_dir.parent / "GATE7-ORACLE-CLOSURE-001" / f"{kind}_resume" / "resume_source.pth"
+            directory = root / kind; directory.mkdir(exist_ok=True)
+            traces = run_workers(args, kind, "trace", 2, directory / "workers_trace")
+            comparison = compare_results(traces[0], traces[1])
+            stages = (
+                ("pre_raster_and_forward", ("pre.",)),
+                ("loss_gradient_wrt_rgb_alpha", ("image_loss_gradients.",)),
+                ("cuda_raster_backward_attribute_gradients", ("raster_backward_canonical_attribute_gradients.",)),
+                ("raw_oracle_parameter_gradients", ("raw_parameter_gradients.",)),
+            )
+            first = "none"; paths = []
+            for stage, prefixes in stages:
+                paths = [name for name, value in comparison.items() if name.startswith(prefixes) and value["max_abs_diff"] > 0]
+                if paths: first = stage; break
+            (directory / "first_difference_trace.json").write_text(json.dumps({
+                "first_nonzero_difference_stage": first, "supporting_paths": paths,
+                "tensor_differences": comparison,
+            }, indent=2), encoding="utf-8")
+        return
     env = environment(); (root / "environment_determinism.json").write_text(json.dumps(env, indent=2), encoding="utf-8")
     protocol = {
         "control_control_processes": 5, "resume_control_repeats": 3, "no_raster_processes": 2,
