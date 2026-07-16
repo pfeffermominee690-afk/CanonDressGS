@@ -119,6 +119,53 @@ def _gradient_snapshot(model: torch.nn.Module, base: Any) -> dict[str, Any]:
     }
 
 
+def test_real_render_requires_grad(
+    rendered_rgb: torch.Tensor,
+    rendered_alpha: torch.Tensor,
+) -> bool:
+    return bool(
+        rendered_rgb.requires_grad
+        and rendered_alpha.requires_grad
+        and rendered_rgb.grad_fn is not None
+        and rendered_alpha.grad_fn is not None
+    )
+
+
+def test_rgb_loss_reaches_six_channel_decoder(
+    gradient_metrics: dict[str, Any],
+) -> bool:
+    heads = gradient_metrics["six_channel_heads"]
+    geometry = ("xyz", "scaling", "rotation", "opacity")
+    appearance = ("sh0", "shN")
+    return bool(
+        any(heads[name]["norm"] > 0 for name in geometry)
+        and any(heads[name]["norm"] > 0 for name in appearance)
+    )
+
+
+def test_alpha_loss_reaches_geometry_channels(
+    gradient_metrics: dict[str, Any],
+) -> bool:
+    heads = gradient_metrics["six_channel_heads"]
+    return bool(
+        all(
+            heads[name]["norm"] > 0
+            for name in ("xyz", "scaling", "rotation", "opacity")
+        )
+    )
+
+
+def test_frozen_base_has_no_grad(
+    gradient_metrics: dict[str, Any],
+    base_max_change: dict[str, float],
+) -> bool:
+    return bool(
+        gradient_metrics["frozen_base_grad_count"] == 0
+        and gradient_metrics["frozen_image_backbone"]["parameter_count_with_grad"] == 0
+        and not any(base_max_change.values())
+    )
+
+
 def _cpu_camera(camera: dict[str, Any]) -> dict[str, Any]:
     return {
         key: value.detach().cpu() if isinstance(value, torch.Tensor) else value
@@ -204,7 +251,10 @@ def _build_model(
     return base, model, checkpoint, gate4
 
 
-def _run_real_closure(args: argparse.Namespace) -> dict[str, Any]:
+def _run_real_closure(
+    args: argparse.Namespace,
+    unit_results: dict[str, str],
+) -> dict[str, Any]:
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device)
@@ -375,28 +425,23 @@ def _run_real_closure(args: argparse.Namespace) -> dict[str, Any]:
         name: float((getattr(base, name).detach() - before).abs().max())
         for name, before in base_before.items()
     }
-    rgb_head_norms = gradients["rgb_only"]["six_channel_heads"]
-    alpha_head_norms = gradients["alpha_only"]["six_channel_heads"]
     combined_metrics = gradients["combined_image_only"]
     tests = {
-        "test_real_render_requires_grad": (
-            rgb.requires_grad
-            and alpha.requires_grad
-            and rgb.grad_fn is not None
-            and alpha.grad_fn is not None
+        "test_real_render_requires_grad": test_real_render_requires_grad(
+            rgb,
+            alpha,
         ),
-        "test_rgb_loss_reaches_six_channel_decoder": (
-            any(rgb_head_norms[name]["norm"] > 0 for name in ("xyz", "scaling", "rotation", "opacity"))
-            and any(rgb_head_norms[name]["norm"] > 0 for name in ("sh0", "shN"))
-        ),
-        "test_alpha_loss_reaches_geometry_channels": all(
-            alpha_head_norms[name]["norm"] > 0
-            for name in ("xyz", "scaling", "rotation", "opacity")
-        ),
-        "test_frozen_base_has_no_grad": (
-            combined_metrics["frozen_base_grad_count"] == 0
-            and combined_metrics["frozen_image_backbone"]["parameter_count_with_grad"] == 0
-            and not any(base_max_change.values())
+        "test_rgb_loss_reaches_six_channel_decoder":
+            test_rgb_loss_reaches_six_channel_decoder(
+                gradients["rgb_only"],
+            ),
+        "test_alpha_loss_reaches_geometry_channels":
+            test_alpha_loss_reaches_geometry_channels(
+                gradients["alpha_only"],
+            ),
+        "test_frozen_base_has_no_grad": test_frozen_base_has_no_grad(
+            combined_metrics,
+            base_max_change,
         ),
         "combined_image_loss_reaches_shared_trunk": (
             combined_metrics["shared_trunk"]["norm"] > 0
@@ -415,7 +460,11 @@ def _run_real_closure(args: argparse.Namespace) -> dict[str, Any]:
         ),
     }
     diagnostics = {
-        "status": "PASS" if all(tests.values()) else "FAIL",
+        "status": (
+            "PASS"
+            if all(tests.values()) and all(value == "PASS" for value in unit_results.values())
+            else "FAIL"
+        ),
         "scope": "one real forward and image-only backward; no optimizer step and no training",
         "root_cause": (
             "tools.check_real_image_conditioned_one_batch._as_chw_render detached "
@@ -468,6 +517,7 @@ def _run_real_closure(args: argparse.Namespace) -> dict[str, Any]:
         "gradients": gradients,
         "base_max_parameter_change": base_max_change,
         "tests": tests,
+        "unit_tests": unit_results,
         "environment": {
             "python": sys.version,
             "torch": torch.__version__,
@@ -489,6 +539,7 @@ def _run_real_closure(args: argparse.Namespace) -> dict[str, Any]:
                 "losses": diagnostics["losses"],
                 "gradients": gradients,
                 "tests": tests,
+                "unit_tests": unit_results,
             },
             indent=2,
         )
@@ -588,8 +639,7 @@ def main() -> None:
     missing = [name for name in required if getattr(args, name) is None]
     if missing:
         parser.error(f"missing real closure arguments: {', '.join(missing)}")
-    diagnostics = _run_real_closure(args)
-    diagnostics["unit_tests"] = unit_results
+    _run_real_closure(args, unit_results)
 
 
 if __name__ == "__main__":
