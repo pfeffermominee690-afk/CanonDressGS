@@ -144,10 +144,18 @@ class Fixture:
             self.sample["target_rgb"].permute(1, 2, 0).cpu(),
         ).to(self.device)
         parts["deterministic_cpu_ssim"] = deterministic_ssim
-        parts["closure_total"] = (
-            parts["total"] - weights.ssim * parts["ssim"]
-            + weights.ssim * deterministic_ssim + 5 * supervision + .1 * gate
-        )
+        deterministic_render_total = rendered[0].new_zeros(())
+        for name in (
+            "rgb", "lpips", "alpha", "clothing_rgb", "clothing_alpha",
+            "non_clothing_rgb", "non_clothing_alpha", "xyz_magnitude",
+            "scaling_magnitude", "rotation_magnitude", "opacity_magnitude",
+            "sh0_magnitude", "shN_magnitude", "geometry_gate_sparsity",
+            "appearance_gate_sparsity", "gate_binary", "graph_gate_smoothness",
+            "graph_residual_smoothness",
+        ):
+            deterministic_render_total = deterministic_render_total + getattr(weights, name) * parts[name]
+        deterministic_render_total = deterministic_render_total + weights.ssim * deterministic_ssim
+        parts["closure_total"] = deterministic_render_total + 5 * supervision + .1 * gate
         return output, rendered, parts
 
     def snapshot(self, output, rendered, parts):
