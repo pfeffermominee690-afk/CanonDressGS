@@ -148,7 +148,7 @@ def main() -> None:
         base_render = render(None)
         learned_render = render(residuals)
         teacher_render = render(teacher)
-        zero = AnchorClothingResiduals.zeros(base, CHANNELS)
+        zero = AnchorClothingResiduals.zeros(10000, base, CHANNELS)
         rotation_only = AnchorClothingResiduals(**{
             name: (residuals.delta_rotvec if name == "delta_rotvec" else getattr(zero, name)) for name in CHANNELS
         })
