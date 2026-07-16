@@ -29,6 +29,7 @@ from utils.full_training_checkpoint_utils import (
     save_full_training_checkpoint, validate_full_training_checkpoint,
 )
 from utils.mmlphuman_state_utils import mmlphuman_state_transaction
+from utils.loss_utils import ssim_loss
 from utils.oracle_loss_utils import OracleLossWeights, oracle_rendering_loss
 
 
@@ -138,7 +139,15 @@ class Fixture:
         active = ((target.delta_xyz.reshape(target.delta_xyz.shape[0], -1).abs().sum(1) + target.delta_sh0.reshape(target.delta_sh0.shape[0], -1).abs().sum(1)) > 1e-8).float().reshape(-1, 1)
         gate = F.binary_cross_entropy(output.geometry_gate.clamp(1e-6, 1-1e-6), active) + F.binary_cross_entropy(output.appearance_gate.clamp(1e-6, 1-1e-6), active)
         parts = {**parts, "supervision": supervision, "gate_supervision": gate}
-        parts["closure_total"] = parts["total"] + 5 * supervision + .1 * gate
+        deterministic_ssim = ssim_loss(
+            chw(rendered[0], 3).permute(1, 2, 0).cpu(),
+            self.sample["target_rgb"].permute(1, 2, 0).cpu(),
+        ).to(self.device)
+        parts["deterministic_cpu_ssim"] = deterministic_ssim
+        parts["closure_total"] = (
+            parts["total"] - weights.ssim * parts["ssim"]
+            + weights.ssim * deterministic_ssim + 5 * supervision + .1 * gate
+        )
         return output, rendered, parts
 
     def snapshot(self, output, rendered, parts):
