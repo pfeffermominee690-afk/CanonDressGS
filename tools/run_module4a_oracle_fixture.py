@@ -73,7 +73,7 @@ def main():
             br, ba, _ = render(condition, None); tr, ta, _ = render(condition, teacher_overrides)
             br, ba, tr, ta = chw(br, 3), chw(ba, 1), chw(tr, 3), chw(ta, 1)
             clothing = (((tr - br).abs().mean(0, keepdim=True) > .005) | ((ta - ba).abs() > .005)).float() * (ta > .01)
-            fixture.append({**condition, "base_rgb": br, "base_alpha": ba, "target_rgb": tr, "target_alpha": ta, "clothing": clothing})
+            fixture.append({**condition, "base_rgb": br, "base_alpha": ba, "target_rgb": tr, "target_alpha": ta, "foreground": (ta > .01).float(), "clothing": clothing})
     manifest = {"fixture_only": True, "oracle_type": "representation_capacity_upper_bound", "conditions": [x["id"] for x in fixture], "split": {"train": ["reference_0", "reference_1"], "validation": ["target"], "test": ["target"]}}
     (out / "fixture_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     (out / "oracle_split.json").write_text(json.dumps(manifest["split"], indent=2), encoding="utf-8")
@@ -95,7 +95,7 @@ def main():
             stage = 1 if step < 5 else 2 if step < 10 else 3
             oracle.configure_stage(stage); sample=fixture[step % 2]
             optimizer.zero_grad(set_to_none=True); output=oracle(base); pred=render(sample, output.canonical_overrides)
-            parts=oracle_rendering_loss(prediction_rgb=pred[0],prediction_alpha=pred[1],target_rgb=sample["target_rgb"],target_foreground_mask=sample["target_alpha"],target_clothing_mask=sample["clothing"],base_rgb=sample["base_rgb"],base_alpha=sample["base_alpha"],oracle_output=output,weights=loss_weights)
+            parts=oracle_rendering_loss(prediction_rgb=pred[0],prediction_alpha=pred[1],target_rgb=sample["target_rgb"],target_foreground_mask=sample["foreground"],target_clothing_mask=sample["clothing"],base_rgb=sample["base_rgb"],base_alpha=sample["base_alpha"],oracle_output=output,weights=loss_weights)
             supervision=sum(F.smooth_l1_loss(getattr(output.raw_residuals,n),getattr(target_residual,n)) for n in ("delta_xyz","delta_log_scaling","delta_rotvec","delta_opacity_logit","delta_sh0","delta_shN"))
             active=((target_residual.delta_xyz.reshape(target_residual.delta_xyz.shape[0],-1).abs().sum(1)+target_residual.delta_sh0.reshape(target_residual.delta_sh0.shape[0],-1).abs().sum(1))>1e-8).float().reshape(-1,1)
             gate_loss=F.binary_cross_entropy(output.geometry_gate.clamp(1e-6,1-1e-6),active)+F.binary_cross_entropy(output.appearance_gate.clamp(1e-6,1-1e-6),active)
@@ -130,8 +130,8 @@ def evaluate(oracle,fixture,render,base,weights):
     with torch.no_grad():
         output=oracle(base)
         for sample in fixture:
-            pred=render(sample,output.canonical_overrides); parts=oracle_rendering_loss(prediction_rgb=pred[0],prediction_alpha=pred[1],target_rgb=sample["target_rgb"],target_foreground_mask=sample["target_alpha"],target_clothing_mask=sample["clothing"],base_rgb=sample["base_rgb"],base_alpha=sample["base_alpha"],oracle_output=output,weights=weights)
-            values["total"]+=float(parts["total"]); values["clothing_rgb"]+=float(parts["clothing_rgb"]); values["mask_iou"]+=float(mask_iou(pred[1],sample["target_alpha"])); values["non_clothing_rgb"]+=float(parts["non_clothing_rgb"])
+            pred=render(sample,output.canonical_overrides); parts=oracle_rendering_loss(prediction_rgb=pred[0],prediction_alpha=pred[1],target_rgb=sample["target_rgb"],target_foreground_mask=sample["foreground"],target_clothing_mask=sample["clothing"],base_rgb=sample["base_rgb"],base_alpha=sample["base_alpha"],oracle_output=output,weights=weights)
+            values["total"]+=float(parts["total"]); values["clothing_rgb"]+=float(parts["clothing_rgb"]); values["mask_iou"]+=float(mask_iou(pred[1],sample["foreground"])); values["non_clothing_rgb"]+=float(parts["non_clothing_rgb"])
     return {k:v/len(fixture) for k,v in values.items()}
 
 
