@@ -1,0 +1,45 @@
+oracle_type: representation_capacity_upper_bound
+initial_gate_probability: 0.05
+enable_shn: false
+base_sh_degree: 0
+configured_sh_degree: 0
+effective_sh_degree: 0
+bounds:
+  xyz: 0.05
+  log_scaling: 0.35
+  rotation: 0.2617993878
+  opacity_logit: 2.0
+  sh0: 0.25
+  shN: 0.10
+optimizer:
+  class: Adam
+  geometry_residuals_lr: 0.001
+  appearance_residuals_lr: 0.002
+  geometry_gate_lr: 0.001
+  appearance_gate_lr: 0.001
+  gradient_clip_norm: 1.0
+schedule:
+  - {stage: 0, name: base_evaluation, steps: 0}
+  - {stage: 1, name: appearance_initialization, steps: 10}
+  - {stage: 2, name: geometry, steps: 10}
+  - {stage: 3, name: joint_refinement, steps: 30}
+loss:
+  rgb: 1.0
+  ssim: 0.2
+  lpips: 0.0
+  alpha: 0.5
+  clothing_rgb: 1.0
+  clothing_alpha: 0.5
+  non_clothing_rgb: 0.25
+  non_clothing_alpha: 0.25
+  xyz_magnitude: 0.001
+  scaling_magnitude: 0.001
+  rotation_magnitude: 0.001
+  opacity_magnitude: 0.0001
+  sh0_magnitude: 0.0001
+  shN_magnitude: 0.0001
+  geometry_gate_sparsity: 0.0001
+  appearance_gate_sparsity: 0.0001
+  gate_binary: 0.00001
+  graph_gate_smoothness: 0.0001
+  graph_residual_smoothness: 0.0001
