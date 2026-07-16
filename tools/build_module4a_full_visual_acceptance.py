@@ -67,8 +67,8 @@ def overlay(points, score, request, base, output_path, background_image):
     device = base._xyz.device
     with mmlphuman_state_transaction(base, request["target_pose"].to(device), request["target_Rh"].to(device), request["target_Th"].to(device)):
         posed = base.get_xyz.detach().cpu()
-    w2c = request["target_camera"]["w2c"].float()
-    K = request["target_camera"]["K"].float()
+    w2c = torch.as_tensor(request["target_camera"]["w2c"], dtype=torch.float32)
+    K = torch.as_tensor(request["target_camera"]["K"], dtype=torch.float32)
     homogeneous = torch.cat((posed, torch.ones(posed.shape[0], 1)), 1)
     camera = homogeneous @ w2c.T
     z = camera[:, 2]
