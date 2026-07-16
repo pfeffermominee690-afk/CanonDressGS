@@ -447,7 +447,6 @@ def _run_real_closure(args: argparse.Namespace) -> dict[str, Any]:
             "manifest_sha256": _sha256(args.manifest),
             "checkpoint": str(args.module3_checkpoint.resolve()),
             "checkpoint_sha256": _sha256(args.module3_checkpoint),
-            "dataset_manifest_fingerprint": dataset.manifest_fingerprint,
             "outfit_id": sample["outfit_id"],
             "target": sample["target_condition_id"],
             "references": sample["reference_condition_ids"],
