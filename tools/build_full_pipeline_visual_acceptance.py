@@ -25,11 +25,14 @@ MODULE_FILES = {
         "channel_comparison.png",
     ],
     "module3": [
+        "reference_1.png", "reference_2.png",
+        "reference_clothing_mask_1.png", "reference_clothing_mask_2.png",
         "observed_probability_S1.png", "observed_probability_S2.png", "observed_probability_S12.png",
         "geometry_gate_S1.png", "geometry_gate_S2.png", "geometry_gate_S12.png",
         "appearance_gate_S1.png", "appearance_gate_S2.png", "appearance_gate_S12.png",
         "teacher_gate.png", "observed_only_gate.png", "diffusion_gate.png", "learned_completed_gate.png",
         "teacher_gate_render.png", "observed_only_render.png", "diffusion_render.png", "learned_gate_render.png",
+        "non_clothing_leakage_overlay.png", "rotation_non_clothing_leakage_overlay.png",
         "render_comparison.png", "feature_holdout_comparison.png", "loss_curve.png",
     ],
 }
