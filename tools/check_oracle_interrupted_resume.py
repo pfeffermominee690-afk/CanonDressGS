@@ -4,10 +4,13 @@ import argparse
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 from typing import Any
+
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 import torch
 import torch.nn.functional as F
@@ -47,6 +50,9 @@ class Fixture:
     def __init__(self, args: argparse.Namespace, kind: str):
         self.args, self.kind = args, kind
         self.device = torch.device(args.device)
+        torch.use_deterministic_algorithms(True)
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True
         self.pipeline = training.load_config(args.pipeline_config)
         self.oracle_config = yaml.safe_load(args.oracle_config.read_text(encoding="utf-8"))
         self.base = training.load_frozen_mmlphuman_base(
@@ -206,6 +212,9 @@ def compare(left: Any, right: Any, path="", output=None):
             for key in left: compare(left[key], right[key], f"{path}.{key}".strip("."), output)
     elif isinstance(left, list):
         for index, value in enumerate(left): compare(value, right[index], f"{path}[{index}]", output)
+    elif isinstance(left, (int, float)) and isinstance(right, (int, float)):
+        difference = abs(float(left) - float(right))
+        output[path] = {"max_abs": difference, "allclose": difference <= 1e-7, "bitwise_equal": left == right}
     elif left != right:
         output[path] = {"allclose": False, "left": str(left), "right": str(right)}
     return output
