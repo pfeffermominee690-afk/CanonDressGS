@@ -196,9 +196,10 @@ def validate_closure_checkpoint(checkpoint, fixture: Fixture):
 def compare(left: Any, right: Any, path="", output=None):
     output = {} if output is None else output
     if isinstance(left, torch.Tensor):
-        diff = (left.float() - right.float()).abs()
+        left_cpu, right_cpu = left.detach().cpu(), right.detach().cpu()
+        diff = (left_cpu.float() - right_cpu.float()).abs()
         atol, rtol = (1e-6, 1e-5) if path.endswith(("rgb", "alpha")) else (1e-7, 1e-6)
-        output[path] = {"max_abs": float(diff.max()) if diff.numel() else 0.0, "mean_abs": float(diff.mean()) if diff.numel() else 0.0, "allclose": bool(torch.allclose(left, right, atol=atol, rtol=rtol)), "bitwise_equal": bool(torch.equal(left, right))}
+        output[path] = {"max_abs": float(diff.max()) if diff.numel() else 0.0, "mean_abs": float(diff.mean()) if diff.numel() else 0.0, "allclose": bool(torch.allclose(left_cpu, right_cpu, atol=atol, rtol=rtol)), "bitwise_equal": bool(torch.equal(left_cpu, right_cpu))}
     elif isinstance(left, dict):
         if set(left) != set(right): output[path] = {"allclose": False, "key_mismatch": True}
         else:
