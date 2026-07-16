@@ -95,6 +95,14 @@ def _binary_loss(gate: torch.Tensor) -> torch.Tensor:
     return (gate * (1.0 - gate)).mean()
 
 
+def _gate_like(gate: torch.Tensor, value: torch.Tensor) -> torch.Tensor:
+    if value.shape[0] != gate.shape[0]:
+        raise ValueError("gate and residual leading dimensions must match")
+    if value.ndim == 1:
+        return gate[:, 0]
+    return gate.reshape((-1,) + (1,) * (value.ndim - 1))
+
+
 def _edge_smoothness(value: torch.Tensor, indices: torch.Tensor | None) -> torch.Tensor:
     if indices is None or indices.numel() == 0:
         return value.sum() * 0
@@ -244,12 +252,12 @@ class GaussianResidualOracle(_ResidualOracleBase):
         appearance_gate = torch.sigmoid(self.appearance_gate_logits)
         opacity_gate = torch.maximum(geometry_gate, appearance_gate)
         gated = GaussianClothingResiduals(
-            delta_xyz=raw.delta_xyz * geometry_gate,
-            delta_log_scaling=raw.delta_log_scaling * geometry_gate,
-            delta_rotvec=raw.delta_rotvec * geometry_gate,
-            delta_opacity_logit=raw.delta_opacity_logit * opacity_gate,
-            delta_sh0=raw.delta_sh0 * appearance_gate.reshape((-1,) + (1,) * (raw.delta_sh0.ndim - 1)),
-            delta_shN=raw.delta_shN * appearance_gate.reshape((-1,) + (1,) * (raw.delta_shN.ndim - 1)),
+            delta_xyz=raw.delta_xyz * _gate_like(geometry_gate, raw.delta_xyz),
+            delta_log_scaling=raw.delta_log_scaling * _gate_like(geometry_gate, raw.delta_log_scaling),
+            delta_rotvec=raw.delta_rotvec * _gate_like(geometry_gate, raw.delta_rotvec),
+            delta_opacity_logit=raw.delta_opacity_logit * _gate_like(opacity_gate, raw.delta_opacity_logit),
+            delta_sh0=raw.delta_sh0 * _gate_like(appearance_gate, raw.delta_sh0),
+            delta_shN=raw.delta_shN * _gate_like(appearance_gate, raw.delta_shN),
         ).validate(base_model)
         return OracleForwardOutput(
             raw_residuals=raw,
