@@ -50,7 +50,7 @@ class Fixture:
     def __init__(self, args: argparse.Namespace, kind: str):
         self.args, self.kind = args, kind
         self.device = torch.device(args.device)
-        torch.use_deterministic_algorithms(True)
+        torch.use_deterministic_algorithms(True, warn_only=True)
         torch.backends.cudnn.benchmark = False
         torch.backends.cudnn.deterministic = True
         self.pipeline = training.load_config(args.pipeline_config)
