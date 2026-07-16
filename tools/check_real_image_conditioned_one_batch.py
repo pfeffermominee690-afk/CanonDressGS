@@ -198,13 +198,19 @@ def _as_chw_render(tensor: torch.Tensor, expected_channels: int) -> torch.Tensor
     value = tensor if first_matches else tensor.permute(2, 0, 1)
     if not torch.isfinite(value).all():
         raise ValueError("render tensor contains NaN or Inf")
-    return value.detach().float().clamp(0, 1).contiguous().cpu()
+    return value.contiguous()
 
 
 def save_render_tensor(path: str | Path, tensor: torch.Tensor, expected_channels: int) -> None:
     if expected_channels not in (1, 3):
         raise ValueError("expected_channels must be 1 or 3")
-    value = _as_chw_render(tensor, expected_channels)
+    value = (
+        _as_chw_render(tensor, expected_channels)
+        .detach()
+        .float()
+        .clamp(0, 1)
+        .cpu()
+    )
     if expected_channels == 1:
         array = value.mul(255).round().to(torch.uint8).squeeze(0).numpy()
         Image.fromarray(array, mode="L").save(Path(path))
