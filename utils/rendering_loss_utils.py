@@ -141,6 +141,7 @@ def region_aware_dual_target_loss(
     target_transition_mask: torch.Tensor,
     target_clothing_mask: torch.Tensor,
     target_foreground_mask: torch.Tensor,
+    target_base_foreground_mask: torch.Tensor,
     *,
     edit_weight: float = 1.0,
     preserve_weight: float = 1.0,
@@ -148,6 +149,9 @@ def region_aware_dual_target_loss(
     transition_weight: float = 0.25,
     clothing_weight: float = 1.0,
     alpha_weight: float = 0.5,
+    alpha_edit_weight: float = 1.0,
+    alpha_transition_weight: float = 0.25,
+    alpha_base_weight: float = 1.0,
 ) -> dict[str, torch.Tensor]:
     """Supervise clothing edits while preserving frozen subject identity pixels.
 
@@ -181,14 +185,43 @@ def region_aware_dual_target_loss(
     protected = _normalized_masked_l1(prediction, base_target, masks["protected"])
     transition = _normalized_masked_l1(prediction, edit_target, masks["transition"])
     clothing = _normalized_masked_l1(prediction, edit_target, masks["clothing"])
-    alpha = alpha_mask_loss(pred_alpha, target_foreground_mask)
+    alpha_reference = _as_nchw(pred_alpha, channels=1, name="pred_alpha")
+    alpha_edit_target = _as_nchw(
+        target_foreground_mask, channels=1, name="target_foreground_mask",
+    ).to(device=alpha_reference.device, dtype=alpha_reference.dtype)
+    alpha_base_target = _as_nchw(
+        target_base_foreground_mask,
+        channels=1,
+        name="target_base_foreground_mask",
+    ).to(device=alpha_reference.device, dtype=alpha_reference.dtype)
+    if alpha_reference.shape != alpha_edit_target.shape or alpha_reference.shape != alpha_base_target.shape:
+        raise ValueError("prediction and dual alpha targets must have identical shapes")
+    alpha_protected_mask = masks["protected"].to(
+        device=alpha_reference.device, dtype=alpha_reference.dtype,
+    )
+    alpha_edit_mask = masks["edit_core"].to(device=alpha_reference.device, dtype=alpha_reference.dtype) * (1 - alpha_protected_mask)
+    alpha_transition_mask = masks["transition"].to(device=alpha_reference.device, dtype=alpha_reference.dtype) * (1 - alpha_protected_mask)
+    alpha_base_mask = torch.maximum(
+        masks["preserve"].to(device=alpha_reference.device, dtype=alpha_reference.dtype),
+        alpha_protected_mask,
+    )
+    alpha_edit = _normalized_masked_alpha_loss(alpha_reference, alpha_edit_target, alpha_edit_mask)
+    alpha_transition = _normalized_masked_alpha_loss(
+        alpha_reference, alpha_edit_target, alpha_transition_mask,
+    )
+    alpha_base = _normalized_masked_alpha_loss(alpha_reference, alpha_base_target, alpha_base_mask)
+    alpha_total = (
+        alpha_edit_weight * alpha_edit["total"]
+        + alpha_transition_weight * alpha_transition["total"]
+        + alpha_base_weight * alpha_base["total"]
+    )
     total = (
         edit_weight * edit
         + preserve_weight * preserve
         + protected_weight * protected
         + transition_weight * transition
         + clothing_weight * clothing
-        + alpha_weight * alpha["total"]
+        + alpha_weight * alpha_total
     )
     return {
         "edit": edit,
@@ -196,9 +229,16 @@ def region_aware_dual_target_loss(
         "protected": protected,
         "transition": transition,
         "clothing": clothing,
-        "alpha_bce": alpha["bce"],
-        "alpha_dice": alpha["dice"],
-        "alpha": alpha["total"],
+        "alpha_edit_bce": alpha_edit["bce"],
+        "alpha_edit_dice": alpha_edit["dice"],
+        "alpha_edit": alpha_edit["total"],
+        "alpha_transition_bce": alpha_transition["bce"],
+        "alpha_transition_dice": alpha_transition["dice"],
+        "alpha_transition": alpha_transition["total"],
+        "alpha_base_bce": alpha_base["bce"],
+        "alpha_base_dice": alpha_base["dice"],
+        "alpha_base": alpha_base["total"],
+        "alpha": alpha_total,
         "total": total,
     }
 
@@ -250,6 +290,25 @@ def _normalized_masked_l1(
         return prediction.sum() * 0
     expanded = mask.expand_as(prediction)
     return (torch.abs(prediction - target) * expanded).sum() / expanded.sum()
+
+
+def _normalized_masked_alpha_loss(
+    prediction: torch.Tensor,
+    target: torch.Tensor,
+    mask: torch.Tensor,
+    eps: float = 1e-6,
+) -> dict[str, torch.Tensor]:
+    if mask.sum().item() == 0:
+        zero = prediction.sum() * 0
+        return {"bce": zero, "dice": zero, "total": zero}
+    clamped = prediction.clamp(eps, 1 - eps)
+    bce_values = F.binary_cross_entropy(clamped, target, reduction="none")
+    bce = (bce_values * mask).sum() / mask.sum()
+    intersection = (prediction * target * mask).sum()
+    dice = 1 - (2 * intersection + eps) / (
+        (prediction * mask).sum() + (target * mask).sum() + eps
+    )
+    return {"bce": bce, "dice": dice, "total": bce + dice}
 
 
 def _repository_or_fallback_ssim(prediction: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
