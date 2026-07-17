@@ -45,3 +45,12 @@
 | 10k-anchor 表示保留 Gaussian Oracle 的足够容量 | NOT SUPPORTED | 同上 | edit/clothing retention 为 0.569–0.660，全部低于 0.75；Anchor 六组视觉均 FAIL | Gaussian upper bound 本身失败，因此也不得单独归因为 anchor bottleneck |
 | O05 失败证明 body Gaussian topology 不足并需要 garment Gaussian layer | UNSUPPORTED | 同上 | O05 未形成长下摆，但 Gaussian O00 也未通过 | 决策矩阵 case D；先审计 optimization/objective/composition/data chain，不得提出已证实 topology 结论 |
 | Module 4B Oracle 证明正式 image-conditioned 或 unseen-outfit inference 能力 | UNSUPPORTED | 同上 | Oracle 不读取 reference、不经过 image backbone，直接使用 target supervision 优化 | 必须明确这是 representation oracle，不是 CanonDressGS 推理路径 |
+
+## 2026-07-18 Module 4B-R evidence
+
+| Paper claim | Status | Code / Run | Current evidence | Limitation / permitted wording |
+|---|---|---|---|---|
+| The current formal rotation residual is trainable from exact zero initialization | REFUTED | `SUBJECT02-MODULE4B-ROOT-CAUSE-001/attempt_001` / `5b7031b` | The exact-zero shortcut returns base rotation and disconnects autograd; finite-difference covariance at zero is nonzero on a high-anisotropy Gaussian | Describe as a formal composition implementation defect, not mathematical rotation degeneracy |
+| The current base human representation contains usable continuous body support under O00 long sleeves | REFUTED | same run | Opacity-down visual probe creates holes/background; skin recoloring produces tubular recolored sleeve shells; skin-like DC fraction is 4.26% | This supports `BASE_SUPPORT_MISSING` for the audited O00 region, not a universal proof that a garment Gaussian layer is required |
+| Module 4B failure is caused by duplicate gate application | NOT SUPPORTED | same run | Static/numeric path trace finds exactly one render-effective gate multiplication | Gate values remain suppressive, but R1 was not adjudicated because D1 was stopped by R2 |
+| V5.3 objective masks accidentally preserve the old sleeve | NOT SUPPORTED | same run | Front/back old-sleeve edit-core overlap is 98.10%/90.59%; preserve, protected, and alpha-base pixel overlap are zero; edit and alpha-edit gradients are nonzero | Tiny Gaussian-center gradients from other masks reflect splat footprint, not pixel-mask overlap |

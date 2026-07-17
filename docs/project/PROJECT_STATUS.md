@@ -1,5 +1,15 @@
 # Project Status
 
+## 2026-07-18 Module 4B-R Oracle root-cause audit
+
+- Run ID: `SUBJECT02-MODULE4B-ROOT-CAUSE-001/attempt_001`.
+- Status: **COMPLETE / FAIL**, root-cause cases **R2 + R3**.
+- R2: the formal zero-rotvec shortcut disconnects the zero-initialized rotation residual from autograd, although nonzero anisotropic covariance probes respond correctly.
+- R3: actual A/B/C visual inspection shows holes/background penetration when old-sleeve opacity is reduced and no continuous inner arm/body support.
+- No double gate and no objective/mask conflict were found. Fixed-open D1 was correctly skipped by the preregistered `ROTATION_PATH_BROKEN` stop; new optimizer steps: `0`.
+- Formal composition must be fixed and minimally regression-tested in a separately authorized task. Module 4B rerun and formal image-conditioned training remain blocked.
+- Evidence: `docs/MODULE4B_ORACLE_ROOT_CAUSE_AUDIT.md` and the cloud output directory recorded in `ARTIFACT_INDEX.md`.
+
 ## 2026-07-16 Full Dressable Module 1
 
 - Full Gaussian Attribute Contract：**PASS**，Run ID `GATE5-FULL-ATTRIBUTE-CONTRACT-001`。

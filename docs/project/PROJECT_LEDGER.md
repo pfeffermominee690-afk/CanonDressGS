@@ -175,3 +175,20 @@
 - 状态：**FAIL / decision case D**
 - 输出：`/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001`
 - 停止：未启动正式 image-conditioned training，未实现 garment Gaussian layer，未扩展数据规模
+
+## LEDGER-20260718-008 — Module 4B-R Oracle root-cause audit
+
+- Time: 2026-07-18 Asia/Shanghai
+- Type: READ-ONLY DIAGNOSTIC / VISUAL ACCEPTANCE / SEAL
+- Run ID: `SUBJECT02-MODULE4B-ROOT-CAUSE-001/attempt_001`
+- Frozen formal baseline: `e01daa19cd134bce9a2d96bb793eccf097d9c833`
+- Diagnostic implementation: `5b7031b018aa74649ac3ea815b47e9566b38a3bb`
+- Evidence supplement: `1ec490f0f3454b168ff9f9303f0302f03e94ce5f`
+- Input: sealed `SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001`; base SHA256 `abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MODULE4B-ROOT-CAUSE-001/attempt_001`
+- Optimizer steps: `0`; D1 fixed-open skipped on preregistered `ROTATION_PATH_BROKEN` technical stop
+- Findings: no double gate; gate parameters are optimized but remain below 0.10; rotation zero-init autograd path is disconnected; objective/mask conflict false; base under-sleeve support missing
+- Visual inspection: actual lossless contact sheets opened; B exposes holes/background and C recolors the sleeve shell rather than revealing an inner arm
+- Root-cause cases: `R2`, `R3`
+- Tests: root-cause 10/10, existing Module 4B 12/12, full-attribute Oracle, full-training checkpoint, py_compile, and `git diff --check` all PASS
+- Status: **FAIL**; Module 4B rerun and formal image-conditioned training remain prohibited
