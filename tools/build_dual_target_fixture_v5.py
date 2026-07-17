@@ -413,6 +413,7 @@ def main() -> None:
             raw_hands = _read_mask(Path(generated_files["projected_hand_protection.png"]["path"]))
             raw_shoes = _read_mask(Path(generated_files["base_shoe_seed.png"]["path"])) | _read_mask(Path(generated_files["projected_feet_protection.png"]["path"]))
             old, protected = base_data["old"], base_data["protected"]
+            new = new & ~protected
             change = old | new
             support = _morph(change, radius, "dilate")
             core = _morph(change, radius, "erode")
@@ -467,6 +468,7 @@ def main() -> None:
                 "target_transition_mask": staging / "dual_target_masks_v5" / outfit / "target_transition_mask" / f"{condition}.png",
                 "target_protected_mask": staging / "dual_target_masks_v5" / outfit / "target_protected_mask" / f"{condition}.png",
                 "target_foreground_mask": staging / "dual_target_masks_v5" / outfit / "target_foreground_mask" / f"{condition}.png",
+                "target_base_foreground_mask": staging / "dual_target_masks_v5" / outfit / "target_base_foreground_mask" / f"{condition}.png",
                 "target_clothing_mask": staging / "dual_target_masks_v5" / outfit / "target_clothing_mask" / f"{condition}.png",
                 "target_old_clothing_mask": staging / "dual_target_masks_v5" / outfit / "target_old_clothing_mask" / f"{condition}.png",
                 "target_revealed_skin_mask": staging / "revealed_skin_masks_v5" / outfit / f"{condition}.png",
@@ -478,6 +480,7 @@ def main() -> None:
                 "target_transition_mask": transition_target,
                 "target_protected_mask": protected,
                 "target_foreground_mask": raw_foreground,
+                "target_base_foreground_mask": base_data["foreground"],
                 "target_clothing_mask": new,
                 "target_old_clothing_mask": old,
                 "target_revealed_skin_mask": revealed,
@@ -493,8 +496,9 @@ def main() -> None:
                 "core_outside_edit": int((edit_core & ~edit).sum()),
                 "transition_outside_edit": int((transition_target & ~edit).sum()),
                 "clothing_outside_foreground_ratio": float((new & ~raw_foreground).sum() / max(int(new.sum()), 1)),
+                "clothing_protected_overlap": int((new & protected).sum()),
             }
-            if any(mask_checks[key] for key in ("edit_protected_overlap", "protected_outside_preserve", "edit_preserve_overlap", "edit_preserve_uncovered", "core_outside_edit", "transition_outside_edit")):
+            if any(mask_checks[key] for key in ("edit_protected_overlap", "protected_outside_preserve", "edit_preserve_overlap", "edit_preserve_uncovered", "core_outside_edit", "transition_outside_edit", "clothing_protected_overlap")):
                 raise AssertionError(f"dual-target mask contract failed for {sample}: {mask_checks}")
             mask_record = {
                 "sample_id": sample,
@@ -576,7 +580,7 @@ def main() -> None:
         "created_at": _now(),
         "radius_evidence": radius_evidence,
         "records": mask_records,
-        "status": "PASS" if all(not any(record["checks"][key] for key in ("edit_protected_overlap", "protected_outside_preserve", "edit_preserve_overlap", "edit_preserve_uncovered")) for record in mask_records) else "FAIL",
+        "status": "PASS" if all(not any(record["checks"][key] for key in ("edit_protected_overlap", "protected_outside_preserve", "edit_preserve_overlap", "edit_preserve_uncovered", "core_outside_edit", "transition_outside_edit", "clothing_protected_overlap")) for record in mask_records) else "FAIL",
     })
     _contact_sheet(identity_contact, audit / "raw_edit_identity_contact_sheet_v5.png")
     _contact_sheet(mask_contact, audit / "dual_target_mask_contact_sheet_v5.png")

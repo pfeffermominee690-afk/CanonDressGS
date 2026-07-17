@@ -13,7 +13,7 @@ from torch.utils.data import Dataset
 DUAL_TARGET_FIELDS = frozenset({
     "target_edit_rgb", "target_base_rgb", "target_edit_mask",
     "target_edit_core_mask", "target_preserve_mask", "target_transition_mask",
-    "target_protected_mask", "target_old_clothing_mask",
+    "target_protected_mask", "target_base_foreground_mask", "target_old_clothing_mask",
     "target_revealed_skin_mask",
 })
 

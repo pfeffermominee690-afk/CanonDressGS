@@ -13,6 +13,7 @@
     "expected_outfits": {"type": "array", "items": {"type": "string", "pattern": "^O[0-9]{2}$"}},
     "expected_condition_count": {"type": "integer", "minimum": 1},
     "identity_visual_adjudication": {"type": "object"},
+    "protected_region_final_adjudication": {"type": "object"},
     "conditions": {"type": "array", "items": {"$ref": "#/$defs/condition"}},
     "splits": {
       "type": "object", "additionalProperties": false, "required": ["train", "val", "test"],
@@ -52,18 +53,19 @@
         "target_transition_mask": {"type": "string"},
         "target_protected_mask": {"type": "string"},
         "target_foreground_mask": {"type": "string"},
+        "target_base_foreground_mask": {"type": "string"},
         "target_clothing_mask": {"type": "string"},
         "target_old_clothing_mask": {"type": "string"},
         "target_revealed_skin_mask": {"type": "string"},
         "checksums": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
-        "identity_audit_status": {"enum": ["PASS", "WARN", "FAIL"]}
+        "identity_audit_status": {"enum": ["PASS", "WARN", "FAIL", "PROTECTED_ONLY_DIAGNOSTIC_WARN", "FORWARD_RELEVANT_IDENTITY_FAIL"]}
       },
       "allOf": [{
         "if": {"required": ["target_edit_rgb"]},
         "then": {"required": [
           "target_edit_rgb", "target_base_rgb", "target_edit_mask", "target_edit_core_mask",
           "target_preserve_mask", "target_transition_mask", "target_protected_mask",
-          "target_foreground_mask", "target_clothing_mask", "target_old_clothing_mask",
+          "target_foreground_mask", "target_base_foreground_mask", "target_clothing_mask", "target_old_clothing_mask",
           "target_revealed_skin_mask"
         ]}
       }]

@@ -78,7 +78,7 @@ def main() -> None:
             if any((arr.shape[1], arr.shape[0]) != expected_size for arr in images.values()): raise ValueError(f"size mismatch {outfit['outfit_id']}/{cid}")
             fg, cloth = images["foreground_mask"] >= 128, images["clothing_mask"] >= 128
             outside_ratios.append(float(np.logical_and(cloth, ~fg).sum() / max(cloth.sum(), 1)))
-            if obs.get("identity_audit_status") == "FAIL":
+            if obs.get("identity_audit_status") in {"FAIL", "FORWARD_RELEVANT_IDENTITY_FAIL"}:
                 identity_failures.append(f"{outfit['outfit_id']}/{cid}")
             if supervision_mode == "dual_target_region_aware_v1":
                 missing = [name for name in (*DUAL_RGB_FIELDS, *DUAL_MASK_FIELDS) if name not in obs]
@@ -113,6 +113,7 @@ def main() -> None:
                     "edit_preserve_uncovered": int((~(edit | preserve)).sum()),
                     "core_outside_edit": int((core & ~edit).sum()),
                     "transition_outside_edit": int((transition & ~edit).sum()),
+                    "clothing_protected_overlap": int((dual_masks["target_clothing_mask"] & protected).sum()),
                     "foreground_alias_mismatch": int(np.logical_xor(dual_masks["target_foreground_mask"], fg).sum()),
                     "clothing_alias_mismatch": int(np.logical_xor(dual_masks["target_clothing_mask"], cloth).sum()),
                 }
