@@ -106,7 +106,9 @@ def _base_named_tensors(base: Any) -> list[tuple[str, torch.Tensor]]:
     seen: set[int] = set()
 
     def append(name: str, value: torch.Tensor) -> None:
-        if id(value) not in seen:
+        # Lazy modules may retain non-materialized meta buffers. They have no
+        # bytes to mutate or hash and are excluded from the bytewise state set.
+        if value.device.type != "meta" and id(value) not in seen:
             seen.add(id(value))
             output.append((name, value))
 
