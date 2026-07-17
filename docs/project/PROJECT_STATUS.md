@@ -1,5 +1,15 @@
 # Project Status
 
+## 2026-07-18 R3 under-clothes body support design and arm probe
+
+- Run ID: `SUBJECT02-R3-BASE-SUPPORT-DESIGN-001/attempt_001`; formal execution commit `3a54340642ab1dacc5b00615f80ec4098b73c83f`.
+- Status: **PARTIAL / `R3_UNRESOLVED`**; shell handling `not_applicable`; next permitted stage `ACQUIRE_OR_RECONSTRUCT_CLEAN_BODY_ASSET`.
+- No verified clean subject02 body scan or complete hidden-body texture was found. Formal SMPL-X/LBS binding exists, while subject02 skin evidence is sufficient only for a diagnostic arm prior.
+- The frozen 4k/12k arm probes are finite in front/back/left/right and repair the old-sleeve holes: Medium recall minimum `0.921262`, mean `0.956477`; background leakage falls from `0.852605` to `0.037713`.
+- The probe does not pass: covered-support visibility reaches `0.065114` against the `0.01` limit, with shoulder/wrist seams and uniform tubular appearance in actual visual inspection.
+- No optimizer was created, optimizer steps are `0`, and the formal 200k-Gaussian base fingerprint is bitwise exact before/after.
+- Module 4B rerun and formal image-conditioned training remain prohibited. The only blocker is an unresolved fixed-identity body-support representation.
+
 ## 2026-07-18 R2 zero-initialized rotation autograd closure
 
 - Run ID: `SUBJECT02-ROTATION-AUTOGRAD-R2-001/attempt_001`.

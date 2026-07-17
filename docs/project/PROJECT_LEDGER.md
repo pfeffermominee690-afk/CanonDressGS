@@ -207,3 +207,23 @@
 - Freeze: optimizer absent, optimizer steps 0, base gradients none, base fingerprint bitwise exact
 - Regression: rotation 12/12 CUDA, Module 4B-R 10/10, Module 4B contract 12/12, full attribute, dressable model, dataset, region-aware loss 28/28, checkpoint, py_compile, and diff check all PASS
 - Status: **PASS**; R2 closed, R3 base-support design remains the next separately authorized scope
+
+## LEDGER-20260718-010 — R3 under-clothes body support representation design and arm probe
+
+- Time: 2026-07-18 Asia/Shanghai
+- Type: ASSET AUDIT / REPRESENTATION DESIGN / FROZEN DIAGNOSTIC PROBE / VISUAL ACCEPTANCE / SEAL
+- Run ID: `SUBJECT02-R3-BASE-SUPPORT-DESIGN-001/attempt_001`
+- Frozen starting HEAD: `9ce539629f58de52bff4fb39e34ac2318f387f9d`
+- Probe implementation: `5e58d0194c204fc7e65a8e931028f6f1f6fe5cc5`
+- Formal execution commit: `3a54340642ab1dacc5b00615f80ec4098b73c83f`
+- Config: `configs/audit/r3_body_support_design_v1.yaml`, SHA256 `cdd214082028dabb2577256e20dfe5b8d44ac2de82d2f066f74b1f4194a22334`
+- Base checkpoint: `abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`; base fingerprint before/after `de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9`
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-R3-BASE-SUPPORT-DESIGN-001/attempt_001`
+- Asset finding: clean body geometry `uncertain`; clean texture `partial`; full under-clothes surface `partial`; formal LBS/surface binding `true`
+- Probe: Low 4,000 and Medium 12,000 frozen arm Gaussians; formal SMPL-X barycentric 55-joint LBS; subject02-only SH0; front/back/left/right finite
+- Medium metrics: repair recall min/mean `0.921262/0.956477`; P1/P2 background leakage mean `0.852605/0.037713`; outside envelope max `0`; covered visibility max `0.065114` versus limit `0.01`
+- Visual result: holes repaired without pose explosion, but shoulder/wrist seams, side-view overlap, and uniform tubular appearance remain
+- Freeze: optimizer absent, optimizer steps `0`, formal inputs unchanged, base bitwise exact
+- Tests: R3 8/8 plus R2, Module 4B-R, Module 4B, full attribute/checkpoint/dataset/V5.3 regressions, py_compile, and diff check PASS
+- Status: **PARTIAL / `R3_UNRESOLVED`**; shell handling `not_applicable`; next stage `ACQUIRE_OR_RECONSTRUCT_CLEAN_BODY_ASSET`
+- Stop: Module 4B was not rerun, formal image-conditioned training was not started, and no garment Gaussian layer was implemented
