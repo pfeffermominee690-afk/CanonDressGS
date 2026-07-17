@@ -106,6 +106,17 @@ def main() -> None:
                 preserve = dual_masks["target_preserve_mask"]
                 transition = dual_masks["target_transition_mask"]
                 protected = dual_masks["target_protected_mask"]
+                raw_clothing = None
+                if "target_clothing_mask_raw" in obs:
+                    raw_path = Path(obs["target_clothing_mask_raw"])
+                    raw_path = raw_path if raw_path.is_absolute() else root / raw_path
+                    with Image.open(raw_path) as image:
+                        if image.mode != "L": raise ValueError(f"{raw_path}: expected L")
+                        raw_clothing = np.asarray(image) >= 128
+                    if (raw_clothing.shape[1], raw_clothing.shape[0]) != expected_size:
+                        dual_contract_failures.append({"sample": f"{outfit['outfit_id']}/{cid}", "reason": "raw_clothing_size_mismatch"})
+                        continue
+                safe_clothing = dual_masks["target_clothing_mask"]
                 dual_checks = {
                     "protected_outside_preserve": int((protected & ~preserve).sum()),
                     "edit_protected_overlap": int((edit & protected).sum()),
@@ -113,7 +124,15 @@ def main() -> None:
                     "edit_preserve_uncovered": int((~(edit | preserve)).sum()),
                     "core_outside_edit": int((core & ~edit).sum()),
                     "transition_outside_edit": int((transition & ~edit).sum()),
-                    "clothing_protected_overlap": int((dual_masks["target_clothing_mask"] & protected).sum()),
+                    "clothing_protected_overlap": int((safe_clothing & protected).sum()),
+                    "clothing_outside_foreground": int((safe_clothing & ~dual_masks["target_foreground_mask"]).sum()),
+                    "safe_clothing_formula_mismatch": (
+                        int(np.logical_xor(
+                            safe_clothing,
+                            raw_clothing & dual_masks["target_foreground_mask"] & ~protected,
+                        ).sum())
+                        if raw_clothing is not None else 0
+                    ),
                     "foreground_alias_mismatch": int(np.logical_xor(dual_masks["target_foreground_mask"], fg).sum()),
                     "clothing_alias_mismatch": int(np.logical_xor(dual_masks["target_clothing_mask"], cloth).sum()),
                 }

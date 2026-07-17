@@ -179,6 +179,11 @@ def region_aware_dual_target_loss(
         raise ValueError("protected mask must be a subset of preserve mask")
     if torch.any((masks["edit_core"] > 0) & (masks["protected"] > 0)):
         raise ValueError("edit core and protected masks must not overlap")
+    foreground = _prepare_mask(target_foreground_mask, prediction)
+    if torch.any((masks["clothing"] > 0) & (masks["protected"] > 0)):
+        raise ValueError("clothing supervision mask must exclude protected pixels")
+    if torch.any(masks["clothing"] > foreground):
+        raise ValueError("clothing supervision mask must be a subset of target foreground")
 
     edit = _normalized_masked_l1(prediction, edit_target, masks["edit_core"])
     preserve = _normalized_masked_l1(prediction, base_target, masks["preserve"])
@@ -187,7 +192,7 @@ def region_aware_dual_target_loss(
     clothing = _normalized_masked_l1(prediction, edit_target, masks["clothing"])
     alpha_reference = _as_nchw(pred_alpha, channels=1, name="pred_alpha")
     alpha_edit_target = _as_nchw(
-        target_foreground_mask, channels=1, name="target_foreground_mask",
+        foreground, channels=1, name="target_foreground_mask",
     ).to(device=alpha_reference.device, dtype=alpha_reference.dtype)
     alpha_base_target = _as_nchw(
         target_base_foreground_mask,

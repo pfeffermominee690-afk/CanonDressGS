@@ -22,6 +22,7 @@ from scene.full_dressable_dataset import (  # noqa: E402
     FullDressableTrainingDataset,
     select_forward_conditioning_fields,
 )
+from tools.build_protected_region_fixture_v5_1 import build_safe_clothing_mask  # noqa: E402
 from utils.rendering_loss_utils import region_aware_dual_target_loss  # noqa: E402
 
 
@@ -170,6 +171,29 @@ class DualTargetSupervisionTests(unittest.TestCase):
         self.assertFalse(torch.any(~(edit | preserve)))
         self.assertTrue(torch.all(self.sample["target_clothing_mask"] <= self.sample["target_foreground_mask"]))
 
+    def test_dual_target_builder_clips_protected_from_clothing(self) -> None:
+        raw = np.zeros((HEIGHT, WIDTH), dtype=bool)
+        raw[1:5, 1:7] = True
+        foreground = np.zeros_like(raw)
+        foreground[1:5, 2:6] = True
+        protected = np.zeros_like(raw)
+        protected[2, 3] = True
+        safe = build_safe_clothing_mask(raw, foreground, protected)
+        self.assertTrue(np.array_equal(safe, raw & foreground & ~protected))
+        self.assertFalse(safe[2, 3])
+        self.assertFalse(np.any(safe & ~foreground))
+
+    def test_original_clothing_mask_is_not_modified(self) -> None:
+        raw = np.zeros((HEIGHT, WIDTH), dtype=bool)
+        raw[1:5, 1:7] = True
+        foreground = np.ones_like(raw)
+        protected = np.zeros_like(raw)
+        protected[2, 3] = True
+        before = raw.copy()
+        safe = build_safe_clothing_mask(raw, foreground, protected)
+        self.assertTrue(np.array_equal(raw, before))
+        self.assertFalse(np.shares_memory(raw, safe))
+
     def test_protected_region_is_preserve_only(self) -> None:
         protected = self.sample["target_protected_mask"].bool()
         self.assertTrue(torch.all(self.sample["target_preserve_mask"].bool()[protected]))
@@ -275,6 +299,15 @@ class DualTargetSupervisionTests(unittest.TestCase):
         self.assertTrue(torch.allclose(first["transition"], second["transition"], atol=1e-7, rtol=0))
         self.assertTrue(torch.allclose(first["clothing"], second["clothing"], atol=1e-7, rtol=0))
 
+    def test_clothing_loss_never_reads_protected_pixels(self) -> None:
+        masks = self._loss_masks()
+        masks["clothing"] = masks["clothing"].clone()
+        protected = masks["protected"].bool()
+        masks["clothing"][protected] = 1.0
+        rgb = torch.zeros(1, 3, HEIGHT, WIDTH)
+        with self.assertRaisesRegex(ValueError, "exclude protected"):
+            _dual_loss(rgb, torch.full((1, 1, HEIGHT, WIDTH), 0.5), rgb, rgb, masks)
+
     def test_protected_pixels_never_enter_edit_alpha_loss(self) -> None:
         prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.6)
         edit_a = self._loss_masks()["foreground"].clone()
@@ -303,6 +336,8 @@ class DualTargetSupervisionTests(unittest.TestCase):
     def test_edit_alpha_uses_edit_target(self) -> None:
         prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.8)
         masks_a = self._loss_masks(); masks_b = self._loss_masks()
+        masks_a["clothing"] = torch.zeros_like(masks_a["clothing"])
+        masks_b["clothing"] = torch.zeros_like(masks_b["clothing"])
         masks_b["foreground"] = masks_a["foreground"].clone()
         core = masks_a["edit_core"].bool()
         masks_b["foreground"][core] = 1 - masks_b["foreground"][core]

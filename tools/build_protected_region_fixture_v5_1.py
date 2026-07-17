@@ -15,6 +15,21 @@ from PIL import Image
 TARGET_SAMPLE = "cond_000347_O05"
 
 
+def build_safe_clothing_mask(
+    clothing_raw: np.ndarray,
+    foreground: np.ndarray,
+    protected: np.ndarray,
+) -> np.ndarray:
+    """Return a new dual-target supervision mask without mutating its inputs."""
+    if clothing_raw.shape != foreground.shape or clothing_raw.shape != protected.shape:
+        raise ValueError("raw clothing, foreground, and protected masks must have identical shapes")
+    return (
+        clothing_raw.astype(bool, copy=False)
+        & foreground.astype(bool, copy=False)
+        & ~protected.astype(bool, copy=False)
+    ).copy()
+
+
 def _read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -71,14 +86,19 @@ def _relative(root: Path, path: Path) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build append-only protected-region V5.1 fixture")
+    parser = argparse.ArgumentParser(description="Build append-only protected-region fixture")
     parser.add_argument("--v5-manifest", type=Path, required=True)
     parser.add_argument("--mask-manifest", type=Path, required=True)
     parser.add_argument("--v3a-manifest", type=Path, required=True)
     parser.add_argument("--source-staging", type=Path, required=True)
     parser.add_argument("--output-staging", type=Path, required=True)
     parser.add_argument("--output-audit", type=Path, required=True)
+    parser.add_argument("--acceptance-version", choices=("v5.1", "v5.2"), default="v5.1")
     args = parser.parse_args()
+
+    acceptance_version = args.acceptance_version
+    version_suffix = acceptance_version.replace(".", "_")
+    version_label = acceptance_version.upper()
 
     source_manifest_path = args.v5_manifest.resolve()
     source_mask_manifest_path = args.mask_manifest.resolve()
@@ -133,7 +153,12 @@ def main() -> None:
 
             protected = values["target_protected_mask"]
             original_clothing = _mask(Path(record["paths"]["target_clothing_mask"]))
-            clothing = original_clothing & ~protected
+            foreground = values["target_foreground_mask"]
+            clothing = build_safe_clothing_mask(original_clothing, foreground, protected)
+            original_clothing_destination = (
+                output / "masks" / "target_clothing_mask_raw" / outfit_id / f"{condition_id}.png"
+            )
+            _copy_exact(Path(record["paths"]["target_clothing_mask"]), original_clothing_destination)
             clothing_destination = output / "masks" / "target_clothing_mask" / outfit_id / f"{condition_id}.png"
             if clothing_destination.is_file() and not np.array_equal(_mask(clothing_destination), clothing):
                 raise ValueError(f"existing clipped clothing mask differs: {clothing_destination}")
@@ -159,10 +184,16 @@ def main() -> None:
                 "transition_protected_overlap": int((transition & protected).sum()),
                 "clothing_protected_overlap_before_clip": int((original_clothing & protected).sum()),
                 "clothing_protected_overlap_after_clip": int((clothing & protected).sum()),
+                "clothing_outside_foreground_before_clip": int((original_clothing & ~foreground).sum()),
+                "clothing_outside_foreground_after_clip": int((clothing & ~foreground).sum()),
+                "clothing_raw_pixels": int(original_clothing.sum()),
+                "clothing_safe_pixels": int(clothing.sum()),
+                "clothing_pixels_clipped": int((original_clothing & ~clothing).sum()),
             }
             if any(checks[name] for name in (
                 "protected_outside_preserve", "edit_protected_overlap", "core_protected_overlap",
                 "transition_protected_overlap", "clothing_protected_overlap_after_clip",
+                "clothing_outside_foreground_after_clip",
             )):
                 raise AssertionError(f"protected contract failed for {sample_id}: {checks}")
             contract_records.append({"sample_id": sample_id, "checks": checks})
@@ -172,12 +203,14 @@ def main() -> None:
                 "rgb": _relative(output, edit_destination),
                 "foreground_mask": _relative(output, paths["target_foreground_mask"]),
                 "clothing_mask": _relative(output, clothing_destination),
+                "target_clothing_mask_raw": _relative(output, original_clothing_destination),
                 "target_edit_rgb": _relative(output, edit_destination),
                 "target_base_rgb": _relative(output, base_destination),
                 **{field: _relative(output, path) for field, path in paths.items()},
                 "checksums": {
                     "target_edit_rgb": _sha256(edit_destination),
                     "target_base_rgb": _sha256(base_destination),
+                    "target_clothing_mask_raw": _sha256(original_clothing_destination),
                     **{field: _sha256(path) for field, path in paths.items()},
                 },
                 "identity_audit_status": (
@@ -217,7 +250,12 @@ def main() -> None:
                 }
         built_outfits.append({
             "outfit_id": outfit_id,
-            "metadata": {"fixture": True, "supervision_mode": "dual_target_region_aware_v1", "acceptance": "v5.1"},
+            "metadata": {
+                "fixture": True,
+                "supervision_mode": "dual_target_region_aware_v1",
+                "acceptance": acceptance_version,
+                "clothing_supervision_mask": "raw_intersect_foreground_exclude_protected",
+            },
             "observations": observations,
         })
 
@@ -234,7 +272,7 @@ def main() -> None:
 
     historical_report = source_manifest_path.parent / "raw_edit_identity_visual_adjudication_v5.json"
     final_adjudication = {
-        "schema_version": "subject02.protected_region_final_adjudication.v5.1",
+        "schema_version": f"subject02.protected_region_final_adjudication.{acceptance_version}",
         "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "append_only": True,
         "historical_v5_report": {"path": str(historical_report), "sha256": _sha256(historical_report)},
@@ -250,26 +288,27 @@ def main() -> None:
         **{key: value for key, value in source_manifest.items() if key not in {"outfits", "identity_visual_adjudication"}},
         "expected_condition_count": 4,
         "identity_visual_adjudication": {
-            "status": "SUPERSEDED_BY_APPEND_ONLY_V5_1_ADJUDICATION",
+            "status": f"SUPERSEDED_BY_APPEND_ONLY_{version_label.replace('.', '_')}_ADJUDICATION",
             "historical_excluded_samples": source_manifest.get("identity_visual_adjudication", {}).get("excluded_samples", []),
             "excluded_samples": [],
         },
         "protected_region_final_adjudication": final_adjudication,
         "outfits": built_outfits,
     }
-    manifest_path = output / "pilot_manifest_full_v1_v5_1.json"
+    manifest_path = output / f"pilot_manifest_full_v1_{version_suffix}.json"
     _atomic_json(manifest_path, manifest)
-    _atomic_json(audit / "PROTECTED_REGION_FINAL_ADJUDICATION_V5_1.json", final_adjudication)
-    _atomic_json(audit / "protected_region_contract_v5_1.json", {
+    _atomic_json(audit / f"PROTECTED_REGION_FINAL_ADJUDICATION_{version_label.replace('.', '_')}.json", final_adjudication)
+    _atomic_json(audit / f"protected_region_contract_{version_suffix}.json", {
         "status": "PASS",
         "target": target_contract,
         "all_samples": contract_records,
         "manifest": str(manifest_path),
         "manifest_sha256": _sha256(manifest_path),
         "source_pixels_modified": False,
+        "safe_clothing_rule": "M_clothing_raw AND M_foreground AND NOT P_protected",
     })
-    (audit / "PROTECTED_REGION_FINAL_ADJUDICATION_V5_1.md").write_text(
-        "# Protected-Region Final Adjudication V5.1\n\n"
+    (audit / f"PROTECTED_REGION_FINAL_ADJUDICATION_{version_label.replace('.', '_')}.md").write_text(
+        f"# Protected-Region Final Adjudication {version_label}\n\n"
         "This is an append-only final adjudication. The original V5 failure report and raw image remain unchanged.\n\n"
         f"- sample: `{TARGET_SAMPLE}`\n"
         "- historical classification: **RAW_IDENTITY_FAIL**\n"
@@ -278,6 +317,7 @@ def main() -> None:
         f"- shoe in protected/preserve: {target_contract['shoe_in_protected']}/{target_contract['shoe_in_preserve']}\n"
         f"- shoe in edit/core/transition: {target_contract['shoe_in_edit']}/{target_contract['shoe_in_core']}/{target_contract['shoe_in_transition']}\n"
         f"- shoe in clothing before/after protected clipping: {target_contract['shoe_in_clothing_before_clip']}/{target_contract['shoe_in_clothing_after_clip']}\n"
+        "- safe clothing rule: `raw AND foreground AND NOT protected`.\n"
         "- raw shoe pixels are diagnostic-only and never enter model forward or edit/clothing supervision.\n",
         encoding="utf-8",
     )

@@ -406,14 +406,14 @@ def main() -> None:
             raw = _read_rgb(Path(raw_record["output_path"]))
             generated_files = generated_record["output_files"]
             raw_foreground = _read_mask(Path(generated_files["person_foreground.png"]["path"]))
-            new = _read_mask(Path(generated_files["base_selected_garment_mask.png"]["path"]))
+            clothing_raw = _read_mask(Path(generated_files["base_selected_garment_mask.png"]["path"]))
             raw_face = _read_mask(Path(generated_files["base_face_seed.png"]["path"]))
             raw_hair = _read_mask(Path(generated_files["base_hair_seed.png"]["path"]))
             raw_skin = _read_mask(Path(generated_files["base_arm_leg_skin_mask.png"]["path"]))
             raw_hands = _read_mask(Path(generated_files["projected_hand_protection.png"]["path"]))
             raw_shoes = _read_mask(Path(generated_files["base_shoe_seed.png"]["path"])) | _read_mask(Path(generated_files["projected_feet_protection.png"]["path"]))
             old, protected = base_data["old"], base_data["protected"]
-            new = new & ~protected
+            new = clothing_raw & raw_foreground & ~protected
             change = old | new
             support = _morph(change, radius, "dilate")
             core = _morph(change, radius, "erode")
@@ -470,6 +470,7 @@ def main() -> None:
                 "target_foreground_mask": staging / "dual_target_masks_v5" / outfit / "target_foreground_mask" / f"{condition}.png",
                 "target_base_foreground_mask": staging / "dual_target_masks_v5" / outfit / "target_base_foreground_mask" / f"{condition}.png",
                 "target_clothing_mask": staging / "dual_target_masks_v5" / outfit / "target_clothing_mask" / f"{condition}.png",
+                "target_clothing_mask_raw": staging / "dual_target_masks_v5" / outfit / "target_clothing_mask_raw" / f"{condition}.png",
                 "target_old_clothing_mask": staging / "dual_target_masks_v5" / outfit / "target_old_clothing_mask" / f"{condition}.png",
                 "target_revealed_skin_mask": staging / "revealed_skin_masks_v5" / outfit / f"{condition}.png",
             }
@@ -482,6 +483,7 @@ def main() -> None:
                 "target_foreground_mask": raw_foreground,
                 "target_base_foreground_mask": base_data["foreground"],
                 "target_clothing_mask": new,
+                "target_clothing_mask_raw": clothing_raw,
                 "target_old_clothing_mask": old,
                 "target_revealed_skin_mask": revealed,
             }
@@ -497,6 +499,9 @@ def main() -> None:
                 "transition_outside_edit": int((transition_target & ~edit).sum()),
                 "clothing_outside_foreground_ratio": float((new & ~raw_foreground).sum() / max(int(new.sum()), 1)),
                 "clothing_protected_overlap": int((new & protected).sum()),
+                "clothing_raw_pixels": int(clothing_raw.sum()),
+                "clothing_safe_pixels": int(new.sum()),
+                "clothing_pixels_clipped": int((clothing_raw & ~new).sum()),
             }
             if any(mask_checks[key] for key in ("edit_protected_overlap", "protected_outside_preserve", "edit_preserve_overlap", "edit_preserve_uncovered", "core_outside_edit", "transition_outside_edit", "clothing_protected_overlap")):
                 raise AssertionError(f"dual-target mask contract failed for {sample}: {mask_checks}")
@@ -530,6 +535,7 @@ def main() -> None:
                 "rgb": str(corrected_path.resolve()),
                 "foreground_mask": str(field_paths["target_foreground_mask"].resolve()),
                 "clothing_mask": str(field_paths["target_clothing_mask"].resolve()),
+                "target_clothing_mask_raw": str(field_paths["target_clothing_mask_raw"].resolve()),
                 "target_edit_rgb": str(corrected_path.resolve()),
                 "target_base_rgb": str(Path(base_data["record"]["image_path"]).resolve()),
                 **{name: str(path.resolve()) for name, path in field_paths.items()},
