@@ -1366,6 +1366,54 @@ def _parse_visual(value: str) -> dict[str, Any]:
     return parsed
 
 
+def _build_comparison_preview(root: Path) -> None:
+    """Build inspection-only sheets before any visual decision is accepted."""
+
+    comparison = root / "comparison"
+    comparison.mkdir(parents=True, exist_ok=True)
+    summaries = []
+    state_panels = []
+    protected_panels = []
+    o05_intermediate = []
+    for outfit in OUTFITS:
+        for kind in KINDS:
+            run_dir = root / outfit / f"{kind}_oracle"
+            status = json.loads((run_dir / "run_status.json").read_text(encoding="utf-8"))
+            if status.get("status") != "COMPLETE":
+                raise RuntimeError(f"comparison preview requires complete run: {outfit}/{kind}")
+            summaries.append((f"{outfit} {kind}", Image.open(run_dir / "visual_summary.png").convert("RGB")))
+            for step in (0, 480):
+                state_panels.append((
+                    f"{outfit} {kind} step {step}",
+                    Image.open(run_dir / "visuals" / f"step_{step:06d}_four_view_panel.png").convert("RGB"),
+                ))
+            for condition in CONDITIONS:
+                view = VIEWS[condition]
+                source = run_dir / "renders" / "step_000480" / view
+                protected_panels.extend([
+                    (f"{outfit} {kind} {view} pred", Image.open(source / "prediction.png").convert("RGB")),
+                    (f"{outfit} {kind} {view} protected error", Image.open(source / "protected_error.png").convert("RGB")),
+                ])
+            if outfit == "O05":
+                for step in (0, 80, 160, 320, 480):
+                    o05_intermediate.extend([
+                        (f"O05 {kind} step {step} views", Image.open(run_dir / "visuals" / f"step_{step:06d}_four_view_panel.png").convert("RGB")),
+                        (f"O05 {kind} step {step} fields", Image.open(run_dir / "visuals" / f"step_{step:06d}_canonical_fields.png").convert("RGB")),
+                    ])
+    _grid(comparison / "gaussian_vs_anchor_preview.png", summaries, columns=2, cell=(768, 720))
+    _grid(comparison / "all_runs_step0_final_preview.png", state_panels, columns=2, cell=(768, 720))
+    _grid(comparison / "all_runs_final_protected_preview.png", protected_panels, columns=4, cell=(256, 384))
+    _grid(comparison / "O05_stage_progression_preview.png", o05_intermediate, columns=2, cell=(768, 720))
+    _write_json(comparison / "preview_status.json", {
+        "status": "READY_FOR_ACTUAL_VISUAL_INSPECTION",
+        "visual_decision_written": False,
+        "sheets": [
+            "gaussian_vs_anchor_preview.png", "all_runs_step0_final_preview.png",
+            "all_runs_final_protected_preview.png", "O05_stage_progression_preview.png",
+        ],
+    })
+
+
 def _finalize(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     root = args.output.resolve()
     visual = _parse_visual(args.visual_decisions)
@@ -1478,7 +1526,7 @@ def _finalize(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Module 4B canonical representation oracle micro-pilot")
-    parser.add_argument("--phase", required=True, choices=("preflight", "smoke", "run", "finalize"))
+    parser.add_argument("--phase", required=True, choices=("preflight", "smoke", "run", "preview", "finalize"))
     parser.add_argument("--manifest", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--config", type=Path, default=PROJECT_ROOT / "configs/oracle/module4b_canonical_capacity_v1.yaml")
@@ -1506,6 +1554,8 @@ def main() -> None:
         _run_smoke(args, config, args.oracle_kind)
     elif args.phase == "run":
         _run_one(args, config)
+    elif args.phase == "preview":
+        _build_comparison_preview(args.output.resolve())
     else:
         _finalize(args, config)
 
