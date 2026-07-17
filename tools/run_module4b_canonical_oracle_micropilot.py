@@ -1416,7 +1416,13 @@ def _build_comparison_preview(root: Path) -> None:
 
 def _finalize(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     root = args.output.resolve()
-    visual = _parse_visual(args.visual_decisions)
+    if bool(args.visual_decisions) == bool(args.visual_decisions_file):
+        raise ValueError("finalize requires exactly one visual decision source")
+    visual_payload = (
+        args.visual_decisions_file.read_text(encoding="utf-8")
+        if args.visual_decisions_file else args.visual_decisions
+    )
+    visual = _parse_visual(visual_payload)
     all_metrics: dict[str, dict[str, Any]] = {}
     comparison_rows = []
     for outfit in OUTFITS:
@@ -1539,6 +1545,7 @@ def main() -> None:
     parser.add_argument("--oracle-kind", choices=KINDS)
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--visual-decisions", default="")
+    parser.add_argument("--visual-decisions-file", type=Path)
     parser.add_argument("--attempt-id", default="attempt_001")
     parser.add_argument("--device", default="cuda")
     args = parser.parse_args()
