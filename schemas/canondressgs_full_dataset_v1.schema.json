@@ -8,6 +8,11 @@
   "properties": {
     "schema_version": {"const": "canondressgs.full_dataset.v1"},
     "dataset_kind": {"enum": ["official_12x200", "regression"]},
+    "supervision_mode": {"enum": ["single_target", "dual_target_region_aware_v1"], "default": "single_target"},
+    "fixture_mode": {"type": "boolean"},
+    "expected_outfits": {"type": "array", "items": {"type": "string", "pattern": "^O[0-9]{2}$"}},
+    "expected_condition_count": {"type": "integer", "minimum": 1},
+    "identity_visual_adjudication": {"type": "object"},
     "conditions": {"type": "array", "items": {"$ref": "#/$defs/condition"}},
     "splits": {
       "type": "object", "additionalProperties": false, "required": ["train", "val", "test"],
@@ -34,7 +39,34 @@
     },
     "observation": {
       "type": "object", "additionalProperties": false, "required": ["condition_id", "rgb", "foreground_mask", "clothing_mask"],
-      "properties": {"condition_id": {"type": "string"}, "rgb": {"type": "string"}, "foreground_mask": {"type": "string"}, "clothing_mask": {"type": "string"}}
+      "properties": {
+        "condition_id": {"type": "string"},
+        "rgb": {"type": "string"},
+        "foreground_mask": {"type": "string"},
+        "clothing_mask": {"type": "string"},
+        "target_edit_rgb": {"type": "string"},
+        "target_base_rgb": {"type": "string"},
+        "target_edit_mask": {"type": "string"},
+        "target_edit_core_mask": {"type": "string"},
+        "target_preserve_mask": {"type": "string"},
+        "target_transition_mask": {"type": "string"},
+        "target_protected_mask": {"type": "string"},
+        "target_foreground_mask": {"type": "string"},
+        "target_clothing_mask": {"type": "string"},
+        "target_old_clothing_mask": {"type": "string"},
+        "target_revealed_skin_mask": {"type": "string"},
+        "checksums": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+        "identity_audit_status": {"enum": ["PASS", "WARN", "FAIL"]}
+      },
+      "allOf": [{
+        "if": {"required": ["target_edit_rgb"]},
+        "then": {"required": [
+          "target_edit_rgb", "target_base_rgb", "target_edit_mask", "target_edit_core_mask",
+          "target_preserve_mask", "target_transition_mask", "target_protected_mask",
+          "target_foreground_mask", "target_clothing_mask", "target_old_clothing_mask",
+          "target_revealed_skin_mask"
+        ]}
+      }]
     },
     "outfit": {
       "type": "object", "additionalProperties": false, "required": ["outfit_id", "metadata", "observations"],

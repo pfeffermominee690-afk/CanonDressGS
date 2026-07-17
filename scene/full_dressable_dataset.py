@@ -10,10 +10,34 @@ import torch
 from PIL import Image
 from torch.utils.data import Dataset
 
+DUAL_TARGET_FIELDS = frozenset({
+    "target_edit_rgb", "target_base_rgb", "target_edit_mask",
+    "target_edit_core_mask", "target_preserve_mask", "target_transition_mask",
+    "target_protected_mask", "target_old_clothing_mask",
+    "target_revealed_skin_mask",
+})
+
+FORWARD_CONDITIONING_FIELDS = frozenset({
+    "reference_images", "reference_foreground_masks", "reference_clothing_masks",
+    "reference_poses", "reference_R_global", "reference_Rh", "reference_Th",
+    "reference_K", "reference_w2c", "reference_cameras", "reference_condition_ids",
+    "reference_valid_mask", "target_pose", "target_R_global", "target_Rh",
+    "target_Th", "target_K", "target_w2c", "target_camera", "target_condition_id",
+})
+
 FORBIDDEN_INFERENCE_FIELDS = frozenset({
     "target_rgb", "target_foreground_mask", "target_clothing_mask",
     "teacher", "anchor_offset_target", "cloth_embedding", "clothing_embedding",
-})
+}) | DUAL_TARGET_FIELDS
+
+
+def select_forward_conditioning_fields(sample: dict[str, Any]) -> dict[str, Any]:
+    """Return the explicit reference/pose/camera-only model conditioning boundary."""
+    selected = {key: value for key, value in sample.items() if key in FORWARD_CONDITIONING_FIELDS}
+    leaked = DUAL_TARGET_FIELDS.intersection(selected)
+    if leaked:
+        raise RuntimeError(f"dual-target supervision leaked into forward: {sorted(leaked)}")
+    return selected
 
 
 def _tensor(value: Any, shape: tuple[int, ...], name: str) -> torch.Tensor:
@@ -36,6 +60,9 @@ class _FullDressableBase(Dataset):
         if reference_count < 1:
             raise ValueError("reference_count must be positive")
         self.split, self.reference_count, self.seed = split, reference_count, int(seed)
+        self.supervision_mode = self.manifest.get("supervision_mode", "single_target")
+        if self.supervision_mode not in {"single_target", "dual_target_region_aware_v1"}:
+            raise ValueError(f"unknown supervision_mode: {self.supervision_mode}")
         self.conditions = {x["condition_id"]: x for x in self.manifest["conditions"]}
         wanted = set(self.manifest["splits"][split])
         self.outfits = [x for x in self.manifest["outfits"] if x["outfit_id"] in wanted]
@@ -113,14 +140,31 @@ class FullDressableTrainingDataset(_FullDressableBase):
         references = [self._observation(outfit, x, True) for x in self._references(outfit, target["condition_id"], index)]
         result = self._stack_references(references)
         result.update({
-            "target_rgb": target["rgb"], "target_foreground_mask": target["foreground_mask"],
+            "target_foreground_mask": target["foreground_mask"],
             "target_clothing_mask": target["clothing_mask"], "target_pose": target["pose"],
             "target_R_global": target["R_global"], "target_Rh": target["R_global"], "target_Th": target["Th"],
             "target_K": target["K"], "target_w2c": target["w2c"],
             "target_camera": {"K": target["K"], "w2c": target["w2c"], "width": target["width"], "height": target["height"]},
             "target_condition_id": target["condition_id"], "outfit_id": outfit["outfit_id"],
             "outfit_metadata": outfit.get("metadata", {}),
+            "supervision_mode": self.supervision_mode,
         })
+        if self.supervision_mode == "single_target":
+            result["target_rgb"] = target["rgb"]
+        else:
+            required = sorted(DUAL_TARGET_FIELDS)
+            missing = [name for name in required if name not in target_obs]
+            if missing:
+                raise ValueError(f"dual-target observation is missing fields: {missing}")
+            result.update({
+                "target_edit_rgb": self._image(target_obs["target_edit_rgb"], 3),
+                "target_base_rgb": self._image(target_obs["target_base_rgb"], 3),
+                **{
+                    name: self._image(target_obs[name], 1)
+                    for name in required
+                    if name not in {"target_edit_rgb", "target_base_rgb"}
+                },
+            })
         teacher = outfit.get("teacher")
         if teacher is not None:
             result["teacher"] = teacher
