@@ -92,7 +92,7 @@ def test_rotation_probe_changes_anisotropic_covariance() -> None:
 
 
 def test_rotation_autograd_matches_finite_difference() -> None:
-    """Detect the current zero-initialization discontinuity without fixing it."""
+    """Keep the historical R2 detector as a regression for the repaired path."""
     base = Base(1, anisotropic=True)
     amplitude = torch.tensor(0.0, requires_grad=True)
     residuals = _zeros(base)
@@ -101,7 +101,9 @@ def test_rotation_autograd_matches_finite_difference() -> None:
         delta_rotvec=torch.stack((amplitude * 0, amplitude * 0, amplitude)).reshape(1, 3),
     )
     output = compose_canonical_gaussian_overrides(base, residuals)
-    assert not output.rotation.requires_grad  # expected bug evidence
+    assert output.rotation.requires_grad
+    covariance = _covariance(torch.exp(base._scaling), output.rotation)[0, 0, 1]
+    gradient = torch.autograd.grad(covariance, amplitude)[0]
     eps = 1e-3
     def value(v: float) -> torch.Tensor:
         r = _zeros(base)
@@ -110,6 +112,8 @@ def test_rotation_autograd_matches_finite_difference() -> None:
         return _covariance(torch.exp(base._scaling), q)[0, 0, 1]
     finite_difference = (value(eps) - value(-eps)) / (2 * eps)
     assert abs(float(finite_difference)) > 1e-5
+    assert float(gradient) * float(finite_difference) > 0
+    assert torch.allclose(gradient, finite_difference, atol=1e-4, rtol=1e-3)
 
 
 def test_isotropic_rotation_may_have_zero_render_gradient() -> None:
@@ -170,7 +174,7 @@ def main() -> None:
     for test in tests:
         test()
         print(f"{test.__name__}: PASS")
-    print(f"module4b root-cause checks: PASS ({len(tests)} tests; rotation discontinuity explicitly detected)")
+    print(f"module4b root-cause checks: PASS ({len(tests)} tests; R2 zero-point path repaired)")
 
 
 if __name__ == "__main__":
