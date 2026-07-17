@@ -19,7 +19,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from scene.gaussian_clothing_residuals import CHANNELS  # noqa: E402
 from tools.check_differentiable_render_path import (  # noqa: E402
     BASE_PARAMETER_NAMES,
     _gradient_snapshot,
@@ -381,8 +380,8 @@ def _audit_step0(
         "transition_cap": cap,
         "module_gradients": module_gradients,
         "six_heads_finite": all(
-            math.isfinite(module_gradients["six_channel_heads"][name]["norm"])
-            for name in CHANNELS
+            math.isfinite(metrics["norm"])
+            for metrics in module_gradients["six_channel_heads"].values()
         ),
         "frozen_base_gradient_zero": module_gradients["frozen_base_grad_count"] == 0,
         "frozen_backbone_gradient_zero": module_gradients["frozen_image_backbone"]["parameter_count_with_grad"] == 0,
@@ -504,8 +503,8 @@ def _run_training(
             "appearance_gate_mean": float(result["completion"].appearance_gate.detach().mean()),
             "gradient_norm": _total_gradient_norm(model),
             "parameter_norm": _total_parameter_norm(model),
-            "xyz_residual_abs_max": float(gated.xyz.detach().abs().max()),
-            "opacity_residual_abs_max": float(gated.opacity.detach().abs().max()),
+            "xyz_residual_abs_max": float(gated.delta_xyz.detach().abs().max()),
+            "opacity_residual_abs_max": float(gated.delta_opacity_logit.detach().abs().max()),
         }
         history.append(row)
         if step in LOG_STEPS:
