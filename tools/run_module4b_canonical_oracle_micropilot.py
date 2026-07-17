@@ -942,10 +942,13 @@ def module4b_capacity_decision(
 
 def _run_smoke(args: argparse.Namespace, config: Mapping[str, Any], kind: str) -> None:
     root = args.output.resolve()
-    destination = root / "preflight" / f"O00_{kind}_one_step_smoke"
+    destination = root / "preflight" / f"O00_{kind}_one_step_smoke_{args.attempt_id}"
     if destination.exists():
         raise FileExistsError(f"smoke output already exists: {destination}")
     destination.mkdir(parents=True)
+    _write_json(destination / "smoke_status.json", {
+        "status": "RUNNING", "optimizer_steps": 0, "candidate_result": False,
+    })
     device = torch.device(args.device)
     pipeline = training.load_config(args.pipeline_config)
     base = training.load_frozen_mmlphuman_base(
@@ -991,6 +994,10 @@ def _run_smoke(args: argparse.Namespace, config: Mapping[str, Any], kind: str) -
         "pass": bool(torch.isfinite(objective) and gradient_count > 0 and base_before == base_after),
     }
     _write_json(destination / "smoke_result.json", result)
+    _write_json(destination / "smoke_status.json", {
+        "status": "COMPLETE", "optimizer_steps": 1, "candidate_result": False,
+        "discarded_update": True, "pass": result["pass"],
+    })
     if not result["pass"]:
         raise RuntimeError(f"{kind} one-step smoke failed")
 
@@ -1451,6 +1458,7 @@ def main() -> None:
     parser.add_argument("--oracle-kind", choices=KINDS)
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--visual-decisions", default="")
+    parser.add_argument("--attempt-id", default="attempt_001")
     parser.add_argument("--device", default="cuda")
     args = parser.parse_args()
     config = load_contract(args.config)
