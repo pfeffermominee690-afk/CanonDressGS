@@ -26,7 +26,11 @@ from tools.infer_module3_online_completion import _InferenceModelContract, _num_
 from utils.dressable_camera_utils import build_mmlphuman_camera
 from utils.mmlphuman_anchor_deformation import MMLPHumanAnchorDeformationAdapter
 from utils.mmlphuman_state_utils import mmlphuman_state_transaction
-from utils.rendering_loss_utils import alpha_mask_loss, rgb_reconstruction_loss
+from utils.rendering_loss_utils import (
+    alpha_mask_loss,
+    region_aware_dual_target_loss,
+    rgb_reconstruction_loss,
+)
 
 
 BASE_PARAMETER_NAMES = ("_xyz", "_scaling", "_rotation", "_opacity", "_sh0", "_shN")
@@ -198,14 +202,17 @@ def _prepare_episode(
             _cpu_camera(value) for value in sample["reference_cameras"]
         ],
         "reference_valid_mask": sample["reference_valid_mask"],
-        "target_rgb": sample["target_rgb"],
         "target_foreground_mask": sample["target_foreground_mask"],
         "target_clothing_mask": sample["target_clothing_mask"],
         "target_pose": sample["target_pose"],
         "target_Rh": sample["target_R_global"],
         "target_Th": sample["target_Th"],
         "target_camera": _cpu_camera(sample["target_camera"]),
+        "target_height": int(sample.get("target_rgb", sample.get("target_edit_rgb")).shape[-2]),
+        "target_width": int(sample.get("target_rgb", sample.get("target_edit_rgb")).shape[-1]),
     }
+    if "target_rgb" in sample:
+        episode["target_rgb"] = sample["target_rgb"]
     return sample, episode, dataset
 
 
@@ -311,8 +318,8 @@ def _run_real_closure(
     )
     camera = build_mmlphuman_camera(
         episode["target_camera"],
-        int(episode["target_rgb"].shape[-2]),
-        int(episode["target_rgb"].shape[-1]),
+        episode["target_height"],
+        episode["target_width"],
         device,
     )
     original_degree = int(base.sh_degree)
@@ -349,30 +356,80 @@ def _run_real_closure(
 
     rgb = _as_chw_render(rendered_rgb, 3)
     alpha = _as_chw_render(rendered_alpha, 1)
-    target_rgb = episode["target_rgb"].to(device=rgb.device, dtype=rgb.dtype)
-    target_foreground = episode["target_foreground_mask"].to(
-        device=alpha.device,
-        dtype=alpha.dtype,
-    )
-    target_clothing = episode["target_clothing_mask"].to(
-        device=rgb.device,
-        dtype=rgb.dtype,
-    )
-    rgb_parts = rgb_reconstruction_loss(
-        rgb,
-        target_rgb,
-        ssim_weight=0.2,
-    )
-    clothing_parts = rgb_reconstruction_loss(
-        rgb,
-        target_rgb,
-        mask=target_clothing,
-        ssim_weight=0.0,
-    )
-    alpha_parts = alpha_mask_loss(alpha, target_foreground)
-    rgb_only = rgb_parts["total"] + clothing_parts["l1"]
-    alpha_only = alpha_parts["total"]
-    combined = rgb_only + 0.5 * alpha_only
+    dual_mode = sample.get("supervision_mode") == "dual_target_region_aware_v1"
+    protected_isolation: dict[str, Any] | None = None
+    if dual_mode:
+        loss_arguments = {
+            "pred_rgb": rgb,
+            "pred_alpha": alpha,
+            **{
+                name: sample[name].to(device=device, dtype=rgb.dtype)
+                for name in (
+                    "target_edit_rgb", "target_base_rgb", "target_edit_core_mask",
+                    "target_preserve_mask", "target_protected_mask", "target_transition_mask",
+                    "target_clothing_mask", "target_foreground_mask", "target_base_foreground_mask",
+                )
+            },
+            "alpha_weight": args.alpha_weight,
+            "alpha_edit_weight": args.alpha_edit_weight,
+            "alpha_transition_weight": args.alpha_transition_weight,
+            "alpha_base_weight": args.alpha_base_weight,
+        }
+        dual_parts = region_aware_dual_target_loss(**loss_arguments)
+        rgb_only = (
+            dual_parts["edit"] + dual_parts["preserve"] + dual_parts["protected"]
+            + 0.25 * dual_parts["transition"] + dual_parts["clothing"]
+        )
+        alpha_only = args.alpha_weight * dual_parts["alpha"]
+        combined = dual_parts["total"]
+        loss_values = {name: float(value.detach()) for name, value in dual_parts.items()}
+
+        manifest_payload = json.loads(args.manifest.read_text(encoding="utf-8"))
+        shoe_value = manifest_payload.get("protected_region_final_adjudication", {}).get("target_contract", {}).get("shoe_mask")
+        if shoe_value and sample["outfit_id"] == "O05" and sample["target_condition_id"] == "cond_000347":
+            from PIL import Image
+            import numpy as np
+            shoe_path = Path(shoe_value)
+            shoe_path = shoe_path if shoe_path.is_absolute() else args.manifest.resolve().parent / shoe_path
+            shoe = torch.from_numpy(np.array(Image.open(shoe_path).convert("L"), copy=True)).to(device=device) >= 128
+            changed_arguments = dict(loss_arguments)
+            changed_edit = loss_arguments["target_edit_rgb"].clone()
+            changed_alpha = loss_arguments["target_foreground_mask"].clone()
+            changed_edit[:, shoe] = 1 - changed_edit[:, shoe]
+            changed_alpha[:, shoe] = 1 - changed_alpha[:, shoe]
+            changed_arguments["target_edit_rgb"] = changed_edit
+            changed_arguments["target_foreground_mask"] = changed_alpha
+            changed_parts = region_aware_dual_target_loss(**changed_arguments)
+            differences = {
+                name: abs(float(changed_parts[name].detach()) - float(dual_parts[name].detach()))
+                for name in dual_parts
+            }
+            protected_isolation = {
+                "shoe_pixels": int(shoe.sum()),
+                "max_loss_absolute_difference": max(differences.values()),
+                "component_differences": differences,
+                "pass": max(differences.values()) <= 1e-7,
+            }
+    else:
+        target_rgb = episode["target_rgb"].to(device=rgb.device, dtype=rgb.dtype)
+        target_foreground = episode["target_foreground_mask"].to(device=alpha.device, dtype=alpha.dtype)
+        target_clothing = episode["target_clothing_mask"].to(device=rgb.device, dtype=rgb.dtype)
+        rgb_parts = rgb_reconstruction_loss(rgb, target_rgb, ssim_weight=0.2)
+        clothing_parts = rgb_reconstruction_loss(rgb, target_rgb, mask=target_clothing, ssim_weight=0.0)
+        alpha_parts = alpha_mask_loss(alpha, target_foreground)
+        rgb_only = rgb_parts["total"] + clothing_parts["l1"]
+        alpha_only = alpha_parts["total"]
+        combined = rgb_only + 0.5 * alpha_only
+        loss_values = {
+            "rgb_l1": float(rgb_parts["l1"].detach()),
+            "rgb_ssim": float(rgb_parts["ssim"].detach()),
+            "clothing_region_rgb_l1": float(clothing_parts["l1"].detach()),
+            "alpha_bce": float(alpha_parts["bce"].detach()),
+            "alpha_dice": float(alpha_parts["dice"].detach()),
+            "rgb_only": float(rgb_only.detach()),
+            "alpha_only": float(alpha_only.detach()),
+            "combined_image_only": float(combined.detach()),
+        }
 
     gradients: dict[str, Any] = {}
     for name, loss, retain_graph in (
@@ -458,6 +515,9 @@ def _run_real_closure(
         "combined_image_loss_reaches_encoder_trainable_head": (
             combined_metrics["encoder_projection_head"]["norm"] > 0
         ),
+        "protected_shoe_target_isolation": (
+            protected_isolation is None or protected_isolation["pass"]
+        ),
     }
     diagnostics = {
         "status": (
@@ -504,16 +564,14 @@ def _run_real_closure(
             "target_rgb_or_mask_used_for_gate": False,
             "direct_residual_teacher_losses_enabled": False,
         },
-        "losses": {
-            "rgb_l1": float(rgb_parts["l1"].detach()),
-            "rgb_ssim": float(rgb_parts["ssim"].detach()),
-            "clothing_region_rgb_l1": float(clothing_parts["l1"].detach()),
-            "alpha_bce": float(alpha_parts["bce"].detach()),
-            "alpha_dice": float(alpha_parts["dice"].detach()),
-            "rgb_only": float(rgb_only.detach()),
-            "alpha_only": float(alpha_only.detach()),
-            "combined_image_only": float(combined.detach()),
+        "losses": loss_values,
+        "alpha_weights": {
+            "global": args.alpha_weight,
+            "edit": args.alpha_edit_weight,
+            "transition": args.alpha_transition_weight,
+            "base": args.alpha_base_weight,
         },
+        "protected_shoe_target_isolation": protected_isolation,
         "gradients": gradients,
         "base_max_parameter_change": base_max_change,
         "tests": tests,
@@ -624,6 +682,10 @@ def main() -> None:
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--sample-index", type=int, default=0)
     parser.add_argument("--seed", type=int, default=20260717)
+    parser.add_argument("--alpha-weight", type=float, default=0.5)
+    parser.add_argument("--alpha-edit-weight", type=float, default=1.0)
+    parser.add_argument("--alpha-transition-weight", type=float, default=0.25)
+    parser.add_argument("--alpha-base-weight", type=float, default=1.0)
     args = parser.parse_args()
     unit_results = _run_unit_tests()
     if args.unit_only:

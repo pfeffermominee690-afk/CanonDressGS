@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -80,6 +81,7 @@ def _build_fixture(root: Path, dual: bool = True, identity_fail: bool = False) -
         "target_transition_mask": transition,
         "target_protected_mask": protected,
         "target_foreground_mask": foreground,
+        "target_base_foreground_mask": foreground,
         "target_clothing_mask": clothing,
         "target_old_clothing_mask": old,
         "target_revealed_skin_mask": revealed,
@@ -145,6 +147,7 @@ def _dual_loss(
         masks["transition"],
         masks["clothing"],
         masks["foreground"],
+        masks["base_foreground"],
     )
 
 
@@ -246,6 +249,114 @@ class DualTargetSupervisionTests(unittest.TestCase):
         self.assertEqual(payload["status"], "PASS")
         self.assertEqual(payload["checks"]["dual_target_fields_in_forward"], 0)
 
+    def test_protected_raw_rgb_difference_is_nonblocking(self) -> None:
+        payload = json.loads(self.manifest.read_text(encoding="utf-8"))
+        payload["outfits"][0]["observations"][0]["identity_audit_status"] = "PROTECTED_ONLY_DIAGNOSTIC_WARN"
+        self.manifest.write_text(json.dumps(payload), encoding="utf-8")
+        report = self.root / "protected_checker.json"
+        checker = Path(__file__).resolve().parent / "check_full_dressable_dataset.py"
+        result = subprocess.run(
+            [sys.executable, str(checker), "--manifest", str(self.manifest), "--regression", "--report", str(report)],
+            check=False, capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
+
+    def test_protected_pixels_never_enter_edit_rgb_loss(self) -> None:
+        prediction = torch.full((1, 3, HEIGHT, WIDTH), 0.4)
+        edit_a = torch.zeros_like(prediction)
+        edit_b = edit_a.clone()
+        protected = self.sample["target_protected_mask"].bool().expand_as(edit_b)
+        edit_b[protected] = 1.0
+        base = torch.full_like(prediction, 0.25)
+        masks = self._loss_masks()
+        first = _dual_loss(prediction, torch.full((1, 1, HEIGHT, WIDTH), 0.7), edit_a, base, masks)
+        second = _dual_loss(prediction, torch.full((1, 1, HEIGHT, WIDTH), 0.7), edit_b, base, masks)
+        self.assertTrue(torch.allclose(first["edit"], second["edit"], atol=1e-7, rtol=0))
+        self.assertTrue(torch.allclose(first["transition"], second["transition"], atol=1e-7, rtol=0))
+        self.assertTrue(torch.allclose(first["clothing"], second["clothing"], atol=1e-7, rtol=0))
+
+    def test_protected_pixels_never_enter_edit_alpha_loss(self) -> None:
+        prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.6)
+        edit_a = self._loss_masks()["foreground"].clone()
+        edit_b = edit_a.clone()
+        protected = self._loss_masks()["protected"].bool()
+        edit_b[protected] = 1 - edit_b[protected]
+        masks_a = self._loss_masks(); masks_b = self._loss_masks()
+        masks_a["foreground"] = edit_a; masks_b["foreground"] = edit_b
+        rgb = torch.zeros(1, 3, HEIGHT, WIDTH)
+        first = _dual_loss(rgb, prediction, rgb, rgb, masks_a)
+        second = _dual_loss(rgb, prediction, rgb, rgb, masks_b)
+        self.assertTrue(torch.allclose(first["alpha_edit"], second["alpha_edit"], atol=1e-7, rtol=0))
+        self.assertTrue(torch.allclose(first["alpha_transition"], second["alpha_transition"], atol=1e-7, rtol=0))
+
+    def test_protected_alpha_uses_base_target(self) -> None:
+        prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.8)
+        masks_a = self._loss_masks(); masks_b = self._loss_masks()
+        masks_b["base_foreground"] = masks_a["base_foreground"].clone()
+        protected = masks_a["protected"].bool()
+        masks_b["base_foreground"][protected] = 1 - masks_b["base_foreground"][protected]
+        rgb = torch.zeros(1, 3, HEIGHT, WIDTH)
+        first = _dual_loss(rgb, prediction, rgb, rgb, masks_a)
+        second = _dual_loss(rgb, prediction, rgb, rgb, masks_b)
+        self.assertFalse(torch.allclose(first["alpha_base"], second["alpha_base"], atol=1e-7, rtol=0))
+
+    def test_edit_alpha_uses_edit_target(self) -> None:
+        prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.8)
+        masks_a = self._loss_masks(); masks_b = self._loss_masks()
+        masks_b["foreground"] = masks_a["foreground"].clone()
+        core = masks_a["edit_core"].bool()
+        masks_b["foreground"][core] = 1 - masks_b["foreground"][core]
+        rgb = torch.zeros(1, 3, HEIGHT, WIDTH)
+        first = _dual_loss(rgb, prediction, rgb, rgb, masks_a)
+        second = _dual_loss(rgb, prediction, rgb, rgb, masks_b)
+        self.assertFalse(torch.allclose(first["alpha_edit"], second["alpha_edit"], atol=1e-7, rtol=0))
+
+    def test_region_aware_alpha_backward(self) -> None:
+        geometry = [torch.tensor(0.1 * (index + 1), requires_grad=True) for index in range(4)]
+        sh0 = torch.tensor(0.1, requires_grad=True)
+        shn = torch.tensor(0.1, requires_grad=True)
+        combined = sum((index + 1) * value for index, value in enumerate(geometry))
+        alpha = torch.sigmoid(combined).expand(1, 1, HEIGHT, WIDTH)
+        rgb = (sh0 * 0 + shn * 0).expand(1, 3, HEIGHT, WIDTH)
+        losses = _dual_loss(rgb, alpha, rgb.detach(), rgb.detach(), self._loss_masks())
+        losses["alpha"].backward()
+        for value in geometry:
+            self.assertIsNotNone(value.grad)
+            self.assertTrue(torch.isfinite(value.grad))
+            self.assertNotEqual(value.grad.item(), 0.0)
+        self.assertTrue(sh0.grad is None or sh0.grad.item() == 0.0)
+        self.assertTrue(shn.grad is None or shn.grad.item() == 0.0)
+
+    def test_cond_000347_O05_contract(self) -> None:
+        real_manifest = os.environ.get("CANONDRESSGS_V5_1_MANIFEST")
+        if not real_manifest:
+            shoe = self.sample["target_protected_mask"].bool()
+            edit = self.sample["target_edit_mask"].bool()
+            preserve = self.sample["target_preserve_mask"].bool()
+            clothing = self.sample["target_clothing_mask"].bool()
+        else:
+            manifest_path = Path(real_manifest).resolve()
+            payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+            outfit = next(item for item in payload["outfits"] if item["outfit_id"] == "O05")
+            observation = next(item for item in outfit["observations"] if item["condition_id"] == "cond_000347")
+            def load(field: str) -> torch.Tensor:
+                path = Path(observation[field])
+                path = path if path.is_absolute() else manifest_path.parent / path
+                return torch.from_numpy(np.array(Image.open(path).convert("L"), copy=True) >= 128)
+            shoe_path = Path(payload["protected_region_final_adjudication"]["target_contract"]["shoe_mask"])
+            shoe_path = shoe_path if shoe_path.is_absolute() else manifest_path.parent / shoe_path
+            shoe = torch.from_numpy(np.array(Image.open(shoe_path).convert("L"), copy=True) >= 128)
+            edit, preserve, clothing = load("target_edit_mask"), load("target_preserve_mask"), load("target_clothing_mask")
+        protected = shoe if not real_manifest else load("target_protected_mask")
+        core = self.sample["target_edit_core_mask"].bool() if not real_manifest else load("target_edit_core_mask")
+        transition = self.sample["target_transition_mask"].bool() if not real_manifest else load("target_transition_mask")
+        self.assertTrue(torch.all(protected[shoe]))
+        self.assertTrue(torch.all(preserve[shoe]))
+        self.assertFalse(torch.any(edit[shoe]))
+        self.assertFalse(torch.any(core[shoe]))
+        self.assertFalse(torch.any(transition[shoe]))
+        self.assertFalse(torch.any(clothing[shoe]))
+
     def _loss_masks(self) -> dict[str, torch.Tensor]:
         return {
             "edit_core": self.sample["target_edit_core_mask"].unsqueeze(0),
@@ -254,6 +365,7 @@ class DualTargetSupervisionTests(unittest.TestCase):
             "transition": self.sample["target_transition_mask"].unsqueeze(0),
             "clothing": self.sample["target_clothing_mask"].unsqueeze(0),
             "foreground": self.sample["target_foreground_mask"].unsqueeze(0),
+            "base_foreground": self.sample["target_base_foreground_mask"].unsqueeze(0),
         }
 
 
