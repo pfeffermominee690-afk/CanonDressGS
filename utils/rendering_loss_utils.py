@@ -130,6 +130,79 @@ def combined_rendering_loss(
     }
 
 
+def region_aware_dual_target_loss(
+    pred_rgb: torch.Tensor,
+    pred_alpha: torch.Tensor,
+    target_edit_rgb: torch.Tensor,
+    target_base_rgb: torch.Tensor,
+    target_edit_core_mask: torch.Tensor,
+    target_preserve_mask: torch.Tensor,
+    target_protected_mask: torch.Tensor,
+    target_transition_mask: torch.Tensor,
+    target_clothing_mask: torch.Tensor,
+    target_foreground_mask: torch.Tensor,
+    *,
+    edit_weight: float = 1.0,
+    preserve_weight: float = 1.0,
+    protected_weight: float = 1.0,
+    transition_weight: float = 0.25,
+    clothing_weight: float = 1.0,
+    alpha_weight: float = 0.5,
+) -> dict[str, torch.Tensor]:
+    """Supervise clothing edits while preserving frozen subject identity pixels.
+
+    Target tensors are consumed only here. The model forward remains conditioned on
+    references plus target pose/camera. Empty masks return differentiable zeros.
+    """
+
+    prediction = _as_nchw(pred_rgb, channels=3, name="pred_rgb")
+    edit_target = _as_nchw(target_edit_rgb, channels=3, name="target_edit_rgb").to(
+        device=prediction.device, dtype=prediction.dtype,
+    )
+    base_target = _as_nchw(target_base_rgb, channels=3, name="target_base_rgb").to(
+        device=prediction.device, dtype=prediction.dtype,
+    )
+    if prediction.shape != edit_target.shape or prediction.shape != base_target.shape:
+        raise ValueError("prediction and dual RGB targets must have identical shapes")
+    masks = {
+        "edit_core": _prepare_mask(target_edit_core_mask, prediction),
+        "preserve": _prepare_mask(target_preserve_mask, prediction),
+        "protected": _prepare_mask(target_protected_mask, prediction),
+        "transition": _prepare_mask(target_transition_mask, prediction),
+        "clothing": _prepare_mask(target_clothing_mask, prediction),
+    }
+    if torch.any(masks["protected"] > masks["preserve"]):
+        raise ValueError("protected mask must be a subset of preserve mask")
+    if torch.any((masks["edit_core"] > 0) & (masks["protected"] > 0)):
+        raise ValueError("edit core and protected masks must not overlap")
+
+    edit = _normalized_masked_l1(prediction, edit_target, masks["edit_core"])
+    preserve = _normalized_masked_l1(prediction, base_target, masks["preserve"])
+    protected = _normalized_masked_l1(prediction, base_target, masks["protected"])
+    transition = _normalized_masked_l1(prediction, edit_target, masks["transition"])
+    clothing = _normalized_masked_l1(prediction, edit_target, masks["clothing"])
+    alpha = alpha_mask_loss(pred_alpha, target_foreground_mask)
+    total = (
+        edit_weight * edit
+        + preserve_weight * preserve
+        + protected_weight * protected
+        + transition_weight * transition
+        + clothing_weight * clothing
+        + alpha_weight * alpha["total"]
+    )
+    return {
+        "edit": edit,
+        "preserve": preserve,
+        "protected": protected,
+        "transition": transition,
+        "clothing": clothing,
+        "alpha_bce": alpha["bce"],
+        "alpha_dice": alpha["dice"],
+        "alpha": alpha["total"],
+        "total": total,
+    }
+
+
 def _as_nchw(tensor: torch.Tensor, channels: int, name: str) -> torch.Tensor:
     if not isinstance(tensor, torch.Tensor) or not torch.is_floating_point(tensor):
         raise TypeError(f"{name} must be a floating-point torch.Tensor")
@@ -166,6 +239,17 @@ def _prepare_mask(mask: torch.Tensor | None, reference: torch.Tensor) -> torch.T
     if torch.any(prepared < 0) or torch.any(prepared > 1):
         raise ValueError("mask values must be in [0,1]")
     return prepared
+
+
+def _normalized_masked_l1(
+    prediction: torch.Tensor,
+    target: torch.Tensor,
+    mask: torch.Tensor,
+) -> torch.Tensor:
+    if mask.sum().item() == 0:
+        return prediction.sum() * 0
+    expanded = mask.expand_as(prediction)
+    return (torch.abs(prediction - target) * expanded).sum() / expanded.sum()
 
 
 def _repository_or_fallback_ssim(prediction: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
