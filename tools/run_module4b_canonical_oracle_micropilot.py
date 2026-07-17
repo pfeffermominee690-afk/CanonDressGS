@@ -99,6 +99,37 @@ def _tensor_state_fingerprint(named: Iterable[tuple[str, torch.Tensor]]) -> str:
     return digest.hexdigest()
 
 
+def _base_named_tensors(base: Any) -> list[tuple[str, torch.Tensor]]:
+    """Enumerate immutable legacy GaussianModel state without assuming nn.Module."""
+
+    output: list[tuple[str, torch.Tensor]] = []
+    seen: set[int] = set()
+
+    def append(name: str, value: torch.Tensor) -> None:
+        if id(value) not in seen:
+            seen.add(id(value))
+            output.append((name, value))
+
+    for name in (
+        "_xyz", "_scaling", "_rotation", "_opacity", "_sh0", "_shN",
+        "_weights", "xyz_vt", "xyz_ft", "nbr_gs", "nbr_gs_invdist", "dxyz_bs",
+    ):
+        value = getattr(base, name, None)
+        if isinstance(value, torch.Tensor):
+            append(name, value)
+    for attribute_name, value in vars(base).items():
+        if isinstance(value, torch.nn.Module):
+            for name, parameter in value.named_parameters():
+                append(f"{attribute_name}.parameter.{name}", parameter)
+            for name, buffer in value.named_buffers():
+                append(f"{attribute_name}.buffer.{name}", buffer)
+    return output
+
+
+def _base_gradient_count(base: Any) -> int:
+    return sum(value.grad is not None for _, value in _base_named_tensors(base) if value.is_floating_point())
+
+
 def _object_fingerprint(value: Any) -> str:
     buffer = io.BytesIO()
     torch.save(value, buffer)
@@ -960,7 +991,7 @@ def _run_smoke(args: argparse.Namespace, config: Mapping[str, Any], kind: str) -
     oracle.configure_stage(1)
     optimizer, group_names = _optimizer(oracle, config)
     background = torch.tensor(pipeline["render"]["background"], device=device, dtype=base._xyz.dtype)
-    base_before = _tensor_state_fingerprint(base.named_parameters())
+    base_before = _tensor_state_fingerprint(_base_named_tensors(base))
     initial = {name: value.detach().clone() for name, value in oracle.named_parameters()}
     cap = _compute_transition_cap(base, oracle, samples[CONDITIONS[0]], transitions[CONDITIONS[0]], background, device, config)
     coefficient = float(cap["final_frozen_coefficient"])
@@ -975,7 +1006,7 @@ def _run_smoke(args: argparse.Namespace, config: Mapping[str, Any], kind: str) -
     optimizer.step()
     checkpoint = destination / "discarded_smoke_checkpoint.pth"
     _save_checkpoint(checkpoint, oracle, optimizer, group_names, 1, config, args.manifest, "O00", kind, coefficient)
-    base_after = _tensor_state_fingerprint(base.named_parameters())
+    base_after = _tensor_state_fingerprint(_base_named_tensors(base))
     updates = {name: float((value.detach() - initial[name]).abs().max()) for name, value in oracle.named_parameters()}
     result = {
         "candidate_result": False,
@@ -1020,7 +1051,7 @@ def _run_one(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
         base = training.load_frozen_mmlphuman_base(
             pipeline["base"]["model_dir"], pipeline["base"]["checkpoint_path"], device,
         )
-        base_before = _tensor_state_fingerprint(base.named_parameters())
+        base_before = _tensor_state_fingerprint(_base_named_tensors(base))
         samples = _load_samples(args.manifest, args.outfit)
         transitions = _transition_targets(samples, device)
         oracle = build_oracle(args.oracle_kind, base, config, device).to(device)
@@ -1138,7 +1169,7 @@ def _run_one(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
         _write_json(run_dir / "gate_statistics.json", residual_stats["gates"])
         _write_json(run_dir / "per_view_metrics.json", per_view)
         _write_csv(run_dir / "metrics_history.csv", history)
-        base_after = _tensor_state_fingerprint(base.named_parameters())
+        base_after = _tensor_state_fingerprint(_base_named_tensors(base))
         parameter_diagnostics = _parameter_group_diagnostics(oracle, initial_parameters, gradient_seen)
         expected_trainable = {
             "raw_xyz", "raw_log_scaling", "raw_rotvec", "raw_opacity", "raw_sh0",
@@ -1159,7 +1190,7 @@ def _run_one(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
             "base_parameter_fingerprint_before": base_before,
             "base_parameter_fingerprint_after": base_after,
             "base_bitwise_exact": base_before == base_after,
-            "base_parameter_with_gradient_count": sum(parameter.grad is not None for parameter in base.parameters()),
+            "base_parameter_with_gradient_count": _base_gradient_count(base),
             "image_backbone_instantiated": False,
             "image_backbone_parameter_count": 0,
             "image_backbone_gradient_count": 0,
