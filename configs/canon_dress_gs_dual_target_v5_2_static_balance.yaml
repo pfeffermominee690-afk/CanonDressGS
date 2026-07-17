@@ -1,0 +1,35 @@
+schema_version: canondressgs.dual_target_loss_balance.v5.2
+status: REJECTED_FIXED_EPISODE_CANDIDATE
+adopt_for_training: false
+base_config: configs/canon_dress_gs_module3_online_completion.yaml
+evidence:
+  run_commit: 98d8b8cdc917db0020c7dedc3627874b158c1bf5
+  output_dir: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-DUAL-TARGET-V5-2-001/attempt_001
+  reason: edit and clothing last-10 means increased and last-20 slopes remained positive
+fixed_episode:
+  outfit_id: O05
+  references: [cond_000318, cond_000000]
+  target: cond_000347
+  seed: 20260717
+  learning_rate: 0.00001
+shared_decoder_trunk_group_gradient_norms:
+  edit_rgb: 0.007604742410602531
+  identity: 0.0005849229726890402
+  alpha: 0.06219192896834074
+  regularization: 0.00000026383449981373562
+frozen_group_scales:
+  edit_rgb: 0.5384577767418278
+  identity: 4.0
+  alpha: 1.0
+  regularization: 4.0
+effective_loss_weights:
+  edit: 0.5384577767418278
+  clothing: 0.5384577767418278
+  preserve: 4.0
+  protected: 4.0
+  transition: 0.25
+  alpha_edit: 0.5
+  alpha_transition: 0.125
+  alpha_base: 0.5
+  residual_magnitude: 0.0004
+  active_gate_regularization: 0.0

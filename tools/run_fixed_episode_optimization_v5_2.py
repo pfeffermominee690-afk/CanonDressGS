@@ -848,47 +848,53 @@ def main() -> None:
                 balance["final_frozen_scales"], shoe, device,
             )
 
-        adopted = phase_a if phase_a["summary"]["pass"] else phase_b
-        if adopted is None:
+        evaluated = phase_a if phase_a["summary"]["pass"] else phase_b
+        if evaluated is None:
             raise RuntimeError("Phase A failed but Phase B did not run")
-        adopted_name = adopted["phase"]
-        protected_flip = _protected_flip_check(adopted["runtime"], args, device)
-        final_gradient = adopted["final_gradient_snapshot"]
+        adopted = phase_a if phase_a["summary"]["pass"] else (
+            phase_b if phase_b is not None and phase_b["summary"]["pass"] else None
+        )
+        adopted_name = adopted["phase"] if adopted is not None else None
+        protected_flip = _protected_flip_check(evaluated["runtime"], args, device)
+        final_gradient = evaluated["final_gradient_snapshot"]
         safety = {
             "protected_raw_rgb_alpha_flip": protected_flip,
             "inference_forbidden_fields": 0,
-            "frozen_base_bitwise_unchanged": adopted["summary"]["criteria"]["frozen_base_bitwise_unchanged"],
-            "frozen_backbone_bitwise_unchanged": adopted["summary"]["criteria"]["frozen_backbone_bitwise_unchanged"],
+            "frozen_base_bitwise_unchanged": evaluated["summary"]["criteria"]["frozen_base_bitwise_unchanged"],
+            "frozen_backbone_bitwise_unchanged": evaluated["summary"]["criteria"]["frozen_backbone_bitwise_unchanged"],
             "frozen_base_grad_count": final_gradient["frozen_base_grad_count"],
             "frozen_backbone_grad_count": final_gradient["frozen_image_backbone"]["parameter_count_with_grad"],
         }
-        pass_status = bool(adopted["summary"]["pass"] and protected_flip["strict_zero"])
+        pass_status = bool(adopted is not None and protected_flip["strict_zero"])
         negative_trends = (
-            adopted["summary"]["slopes"]["edit_last20"] < 0
-            and adopted["summary"]["slopes"]["clothing_last20"] < 0
+            evaluated["summary"]["slopes"]["edit_last20"] < 0
+            and evaluated["summary"]["slopes"]["clothing_last20"] < 0
         )
         safety_pass = all((
-            adopted["summary"]["criteria"]["protected_within_110pct_and_0_005"],
-            adopted["summary"]["criteria"]["preserve_within_110pct"],
-            adopted["summary"]["criteria"]["alpha_base_within_110pct"],
-            adopted["summary"]["criteria"]["shoe_closer_to_base_than_raw"],
-            adopted["summary"]["criteria"]["frozen_base_bitwise_unchanged"],
-            adopted["summary"]["criteria"]["frozen_backbone_bitwise_unchanged"],
+            evaluated["summary"]["criteria"]["protected_within_110pct_and_0_005"],
+            evaluated["summary"]["criteria"]["preserve_within_110pct"],
+            evaluated["summary"]["criteria"]["alpha_base_within_110pct"],
+            evaluated["summary"]["criteria"]["shoe_closer_to_base_than_raw"],
+            evaluated["summary"]["criteria"]["frozen_base_bitwise_unchanged"],
+            evaluated["summary"]["criteria"]["frozen_backbone_bitwise_unchanged"],
             protected_flip["strict_zero"],
         ))
         status = "PASS" if pass_status else ("PARTIAL" if negative_trends and safety_pass else "FAIL")
         report = {
             "status": status,
             "adopted_phase": adopted_name,
+            "last_evaluated_phase": evaluated["phase"],
             "phase_b_executed": phase_b is not None,
             "fixed_episode": contract,
             "step0_diagnostics": diagnostics,
             "phase_a": {key: value for key, value in phase_a.items() if key != "runtime"},
             "phase_b": ({key: value for key, value in phase_b.items() if key != "runtime"} if phase_b else None),
             "static_balance": balance,
-            "adopted_effective_weights": _effective_weights(
-                args,
-                baseline_scales if adopted_name == "phase_a" else balance["final_frozen_scales"],
+            "adopted_effective_weights": (
+                _effective_weights(
+                    args,
+                    baseline_scales if adopted_name == "phase_a" else balance["final_frozen_scales"],
+                ) if adopted is not None else None
             ),
             "safety": safety,
             "single_target_regression": "RUN_SEPARATELY_BY_ACCEPTANCE_DRIVER",
@@ -898,15 +904,20 @@ def main() -> None:
         (output / "V5_2_FINAL_STATUS.md").write_text(
             "# V5.2 Fixed-Episode Optimization Closure\n\n"
             f"- status: **{status}**\n"
-            f"- adopted phase: `{adopted_name}`\n"
+            f"- adopted phase: `{adopted_name or 'none'}`\n"
+            f"- last evaluated phase: `{evaluated['phase']}`\n"
             f"- Phase B executed: `{phase_b is not None}`\n"
-            f"- edit last-10 reduction: `{adopted['summary']['means']['edit_reduction_fraction']:.6%}`\n"
-            f"- clothing last-10 reduction: `{adopted['summary']['means']['clothing_reduction_fraction']:.6%}`\n"
-            f"- edit/clothing last-20 slopes: `{adopted['summary']['slopes']['edit_last20']:.9g}` / `{adopted['summary']['slopes']['clothing_last20']:.9g}`\n"
+            f"- edit last-10 reduction: `{evaluated['summary']['means']['edit_reduction_fraction']:.6%}`\n"
+            f"- clothing last-10 reduction: `{evaluated['summary']['means']['clothing_reduction_fraction']:.6%}`\n"
+            f"- edit/clothing last-20 slopes: `{evaluated['summary']['slopes']['edit_last20']:.9g}` / `{evaluated['summary']['slopes']['clothing_last20']:.9g}`\n"
             f"- protected raw RGB/alpha flip delta strictly zero: `{protected_flip['strict_zero']}`\n",
             encoding="utf-8",
         )
-        _write_json(output / "run_partial.json", {"status": "COMPLETE", "stage": "final_adjudication"})
+        _write_json(output / "run_partial.json", {
+            "status": "COMPLETE",
+            "stage": "final_adjudication",
+            "outcome_status": status,
+        })
         print(json.dumps({
             "status": status,
             "adopted_phase": adopted_name,
@@ -916,7 +927,7 @@ def main() -> None:
         }, indent=2))
         if status == "FAIL":
             raise SystemExit(1)
-    except BaseException as error:
+    except Exception as error:
         _write_json(output / "run_partial.json", {
             "status": "FAIL",
             "stage": "exception",
