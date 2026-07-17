@@ -1,0 +1,35 @@
+schema_version: canondressgs.r3_body_support_design.v1
+status: PREREGISTERED_DIAGNOSTIC_ONLY
+seed: 20260718
+conditions:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+support:
+  densities:
+    low: 4000
+    medium: 12000
+  maximum_count: 20000
+  canonical_inward_offset_m: 0.003
+  diagnostic_opacity: 0.65
+  tangent_scale_multiplier: 1.15
+  normal_scale_m: 0.0025
+  arm_part_indices: [16, 17, 18, 19]
+  hand_part_indices: [20, 21, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+  old_sleeve_opacity_multiplier: 0.0001
+  sh_degree: 0
+acceptance:
+  hole_repair_recall_min: 0.90
+  support_outside_anatomical_envelope_max: 0.02
+  covered_support_visibility_fraction_max: 0.01
+  finite_four_views_required: true
+  base_bitwise_exact_required: true
+  optimizer_steps_required: 0
+  optimizer_creation_allowed: false
+scope:
+  body_parts: [left_upper_arm, right_upper_arm, left_forearm, right_forearm]
+  excluded: [torso, legs, face, hair, hands, shoes, garment_layer]
+  appearance_source: subject02_only
+  formal_model_mutation: false
+  formal_checkpoint_write: false
