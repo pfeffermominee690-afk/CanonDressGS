@@ -198,14 +198,11 @@ def compose_canonical_gaussian_overrides(
         "delta_rotvec",
         torch.zeros(base_model._rotation.shape[0], 3, device=base_model._rotation.device, dtype=base_model._rotation.dtype),
     )
-    if torch.count_nonzero(delta_rotvec).item() == 0:
-        rotation = base_model._rotation
-    else:
-        delta_quaternion = axis_angle_to_quaternion_wxyz(delta_rotvec)
-        rotation = F.normalize(
-            quaternion_multiply_wxyz(F.normalize(base_model._rotation, dim=-1), delta_quaternion),
-            dim=-1,
-        )
+    delta_quaternion = axis_angle_to_quaternion_wxyz(delta_rotvec)
+    rotation = F.normalize(
+        quaternion_multiply_wxyz(F.normalize(base_model._rotation, dim=-1), delta_quaternion),
+        dim=-1,
+    )
     overrides = CanonicalGaussianOverrides(
         xyz=base_model._xyz + residual("delta_xyz", base_model._xyz),
         scaling=base_model._scaling + residual("delta_log_scaling", base_model._scaling),
