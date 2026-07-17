@@ -23,7 +23,13 @@ from scene.full_dressable_dataset import (  # noqa: E402
     select_forward_conditioning_fields,
 )
 from tools.build_protected_region_fixture_v5_1 import build_safe_clothing_mask  # noqa: E402
-from utils.rendering_loss_utils import region_aware_dual_target_loss  # noqa: E402
+from tools.run_boundary_aware_alpha_closure_v5_3 import evaluate_history_v5_3  # noqa: E402
+from utils.rendering_loss_utils import (  # noqa: E402
+    alpha_mask_loss,
+    boundary_aware_transition_alpha_target,
+    compute_static_transition_gradient_cap,
+    region_aware_dual_target_loss,
+)
 
 
 HEIGHT, WIDTH = 6, 8
@@ -361,6 +367,114 @@ class DualTargetSupervisionTests(unittest.TestCase):
             self.assertNotEqual(value.grad.item(), 0.0)
         self.assertTrue(sh0.grad is None or sh0.grad.item() == 0.0)
         self.assertTrue(shn.grad is None or shn.grad.item() == 0.0)
+
+    def test_transition_alpha_target_weights_sum_to_one(self) -> None:
+        masks = self._loss_masks()
+        value = boundary_aware_transition_alpha_target(
+            masks["foreground"],
+            masks["base_foreground"],
+            masks["edit_core"],
+            masks["preserve"],
+            masks["protected"],
+        )
+        self.assertTrue(torch.all(value["w_edit"] >= 0))
+        self.assertTrue(torch.all(value["w_edit"] <= 1))
+        self.assertTrue(torch.allclose(value["w_edit"] + value["w_base"], torch.ones_like(value["w_edit"]), atol=1e-6, rtol=0))
+
+    def test_transition_alpha_protected_uses_base_only(self) -> None:
+        masks = self._loss_masks()
+        edit = torch.zeros_like(masks["foreground"])
+        base = torch.ones_like(masks["base_foreground"])
+        value = boundary_aware_transition_alpha_target(
+            edit, base, masks["edit_core"], masks["preserve"], masks["protected"],
+        )
+        protected = masks["protected"].bool()
+        self.assertTrue(torch.all(value["w_edit"][protected] == 0))
+        self.assertTrue(torch.all(value["w_base"][protected] == 1))
+        self.assertTrue(torch.all(value["target"][protected] == base[protected]))
+
+    def test_transition_alpha_loss_has_no_dice_component(self) -> None:
+        prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.5)
+        rgb = torch.zeros(1, 3, HEIGHT, WIDTH)
+        losses = _dual_loss(rgb, prediction, rgb, rgb, self._loss_masks())
+        self.assertEqual(losses["alpha_transition_bce"].item(), 0.0)
+        self.assertEqual(losses["alpha_transition_dice"].item(), 0.0)
+        self.assertGreater(losses["alpha_transition_smooth_l1"].item(), 0.0)
+        self.assertTrue(torch.equal(losses["alpha_transition"], losses["alpha_transition_smooth_l1"]))
+
+    def test_single_target_alpha_regression(self) -> None:
+        prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.6)
+        target = torch.ones_like(prediction)
+        first = alpha_mask_loss(prediction, target)
+        second = alpha_mask_loss(prediction, target)
+        for name in ("bce", "dice", "total"):
+            self.assertTrue(torch.equal(first[name], second[name]))
+
+    def test_dual_target_edit_and_base_alpha_unchanged(self) -> None:
+        prediction = torch.full((1, 1, HEIGHT, WIDTH), 0.6)
+        rgb = torch.zeros(1, 3, HEIGHT, WIDTH)
+        masks = self._loss_masks()
+        first = _dual_loss(rgb, prediction, rgb, rgb, masks)
+        custom = boundary_aware_transition_alpha_target(
+            masks["foreground"], masks["base_foreground"], masks["edit_core"],
+            masks["preserve"], masks["protected"],
+        )["target"]
+        second = region_aware_dual_target_loss(
+            rgb, prediction, rgb, rgb,
+            masks["edit_core"], masks["preserve"], masks["protected"], masks["transition"],
+            masks["clothing"], masks["foreground"], masks["base_foreground"],
+            transition_alpha_target=custom,
+        )
+        self.assertTrue(torch.equal(first["alpha_edit"], second["alpha_edit"]))
+        self.assertTrue(torch.equal(first["alpha_base"], second["alpha_base"]))
+
+    def test_transition_gradient_cap_is_frozen(self) -> None:
+        contract = compute_static_transition_gradient_cap(0.08, 0.4, 0.125)
+        coefficient = contract["final_frozen_coefficient"]
+        self.assertAlmostEqual(coefficient, 0.1, places=12)
+        self.assertFalse(contract["dynamic_updates"])
+        # Later norms consume the stored coefficient and do not recompute it.
+        self.assertAlmostEqual(coefficient * 0.7, 0.07, places=12)
+
+    def test_transition_gradient_is_below_rgb_cap(self) -> None:
+        contract = compute_static_transition_gradient_cap(0.08, 0.4, 0.125)
+        self.assertLessEqual(
+            contract["applied_transition_gradient_norm"],
+            contract["cap_fraction"] * contract["rgb_gradient_norm"] + 1e-12,
+        )
+
+    def test_v5_3_history_uses_preregistered_windows(self) -> None:
+        history = []
+        for step in range(121):
+            history.append({
+                "step": step,
+                "objective": 1.0 - step * 0.001,
+                "edit": 1.0 - step * 0.001,
+                "clothing": 1.0 - step * 0.001,
+                "preserve": 0.001,
+                "protected": 0.001,
+                "transition": 0.1,
+                "alpha_edit": 0.1,
+                "alpha_transition": 0.1,
+                "alpha_base": 0.1,
+                "residual_magnitude": 0.01,
+                "gate_regularization": 0.0,
+                "geometry_gate_mean": 0.5,
+                "appearance_gate_mean": 0.5,
+                "gradient_norm": 1.0,
+                "parameter_norm": 1.0,
+                "xyz_residual_abs_max": 0.01,
+                "opacity_residual_abs_max": 0.01,
+            })
+        result = evaluate_history_v5_3(
+            history,
+            base_unchanged=True,
+            backbone_unchanged=True,
+            shoe_closer_to_base=True,
+        )
+        self.assertEqual(result["status"], "PASS")
+        self.assertLess(result["slopes"]["edit_last40"], 0)
+        self.assertLess(result["slopes"]["clothing_last40"], 0)
 
     def test_cond_000347_O05_contract(self) -> None:
         real_manifest = os.environ.get("CANONDRESSGS_V5_1_MANIFEST")
