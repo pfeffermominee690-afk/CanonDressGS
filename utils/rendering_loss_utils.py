@@ -1,8 +1,16 @@
 from __future__ import annotations
 
+import numpy as np
 import torch
 import torch.nn.functional as F
 from torch import nn
+
+
+TRANSITION_DISTANCE_SAMPLING = (1.0, 1.0)
+TRANSITION_DISTANCE_EPSILON = 1e-6
+TRANSITION_SMOOTH_L1_BETA = 1.0
+TRANSITION_GRADIENT_CAP_EPSILON = 1e-12
+TRANSITION_GRADIENT_CAP_FRACTION = 0.5
 
 
 def rgb_reconstruction_loss(
@@ -152,6 +160,7 @@ def region_aware_dual_target_loss(
     alpha_edit_weight: float = 1.0,
     alpha_transition_weight: float = 0.25,
     alpha_base_weight: float = 1.0,
+    transition_alpha_target: torch.Tensor | None = None,
 ) -> dict[str, torch.Tensor]:
     """Supervise clothing edits while preserving frozen subject identity pixels.
 
@@ -210,9 +219,34 @@ def region_aware_dual_target_loss(
         masks["preserve"].to(device=alpha_reference.device, dtype=alpha_reference.dtype),
         alpha_protected_mask,
     )
+    if transition_alpha_target is None:
+        transition_target = boundary_aware_transition_alpha_target(
+            alpha_edit_target,
+            alpha_base_target,
+            masks["edit_core"],
+            masks["preserve"],
+            masks["protected"],
+        )["target"]
+    else:
+        transition_target = _as_nchw(
+            transition_alpha_target,
+            channels=1,
+            name="transition_alpha_target",
+        ).to(device=alpha_reference.device, dtype=alpha_reference.dtype)
+        if transition_target.shape != alpha_reference.shape:
+            raise ValueError("transition_alpha_target must match predicted alpha shape")
+        if torch.any(transition_target < 0) or torch.any(transition_target > 1):
+            raise ValueError("transition_alpha_target values must be in [0,1]")
+        if torch.any(
+            torch.abs(transition_target - alpha_base_target) * alpha_protected_mask > 1e-6
+        ):
+            raise ValueError("protected transition alpha target must equal base alpha")
     alpha_edit = _normalized_masked_alpha_loss(alpha_reference, alpha_edit_target, alpha_edit_mask)
-    alpha_transition = _normalized_masked_alpha_loss(
-        alpha_reference, alpha_edit_target, alpha_transition_mask,
+    alpha_transition = _normalized_masked_smooth_l1(
+        alpha_reference,
+        transition_target,
+        alpha_transition_mask,
+        beta=TRANSITION_SMOOTH_L1_BETA,
     )
     alpha_base = _normalized_masked_alpha_loss(alpha_reference, alpha_base_target, alpha_base_mask)
     alpha_total = (
@@ -237,8 +271,9 @@ def region_aware_dual_target_loss(
         "alpha_edit_bce": alpha_edit["bce"],
         "alpha_edit_dice": alpha_edit["dice"],
         "alpha_edit": alpha_edit["total"],
-        "alpha_transition_bce": alpha_transition["bce"],
-        "alpha_transition_dice": alpha_transition["dice"],
+        "alpha_transition_bce": alpha_transition["zero"],
+        "alpha_transition_dice": alpha_transition["zero"],
+        "alpha_transition_smooth_l1": alpha_transition["smooth_l1"],
         "alpha_transition": alpha_transition["total"],
         "alpha_base_bce": alpha_base["bce"],
         "alpha_base_dice": alpha_base["dice"],
@@ -246,6 +281,164 @@ def region_aware_dual_target_loss(
         "alpha": alpha_total,
         "total": total,
     }
+
+
+def boundary_aware_transition_alpha_target(
+    target_edit_alpha: torch.Tensor,
+    target_base_alpha: torch.Tensor,
+    edit_core_mask: torch.Tensor,
+    preserve_core_mask: torch.Tensor,
+    protected_mask: torch.Tensor,
+    *,
+    epsilon: float = TRANSITION_DISTANCE_EPSILON,
+) -> dict[str, torch.Tensor]:
+    """Build one globally defined distance-weighted transition alpha target.
+
+    The distance transform is supervision-only and never enters model forward.
+    Distances use fixed unit pixel sampling for every sample.
+    """
+
+    if epsilon <= 0:
+        raise ValueError("epsilon must be positive")
+    edit = _as_nchw(target_edit_alpha, channels=1, name="target_edit_alpha")
+    base = _as_nchw(target_base_alpha, channels=1, name="target_base_alpha").to(
+        device=edit.device, dtype=edit.dtype,
+    )
+    if edit.shape != base.shape:
+        raise ValueError("edit and base alpha targets must have identical shapes")
+    if torch.any(edit < 0) or torch.any(edit > 1) or torch.any(base < 0) or torch.any(base > 1):
+        raise ValueError("alpha targets must be in [0,1]")
+    edit_core = _prepare_mask(edit_core_mask, edit)
+    preserve_core = _prepare_mask(preserve_core_mask, edit)
+    protected = _prepare_mask(protected_mask, edit)
+    weights = []
+    edit_distances = []
+    base_distances = []
+    for batch_index in range(edit.shape[0]):
+        edit_binary = edit_core[batch_index, 0].detach().cpu().numpy() >= 0.5
+        preserve_binary = preserve_core[batch_index, 0].detach().cpu().numpy() >= 0.5
+        d_edit = _euclidean_distance_to_true(edit_binary)
+        d_base = _euclidean_distance_to_true(preserve_binary)
+        weight = d_base / (d_edit + d_base + epsilon)
+        weights.append(torch.from_numpy(weight.astype(np.float32, copy=False)))
+        edit_distances.append(torch.from_numpy(d_edit.astype(np.float32, copy=False)))
+        base_distances.append(torch.from_numpy(d_base.astype(np.float32, copy=False)))
+    w_edit = torch.stack(weights).unsqueeze(1).to(device=edit.device, dtype=edit.dtype).clamp(0, 1)
+    d_edit_tensor = torch.stack(edit_distances).unsqueeze(1).to(device=edit.device, dtype=edit.dtype)
+    d_base_tensor = torch.stack(base_distances).unsqueeze(1).to(device=edit.device, dtype=edit.dtype)
+    w_edit = torch.where(protected > 0, torch.zeros_like(w_edit), w_edit)
+    w_base = 1 - w_edit
+    target = w_edit * edit + w_base * base
+    target = torch.where(protected > 0, base, target).clamp(0, 1)
+    if not torch.isfinite(target).all() or not torch.isfinite(w_edit).all():
+        raise ValueError("transition alpha target contains NaN or Inf")
+    if not torch.allclose(w_edit + w_base, torch.ones_like(w_edit), atol=1e-6, rtol=0):
+        raise AssertionError("transition alpha weights do not sum to one")
+    return {
+        "target": target,
+        "w_edit": w_edit,
+        "w_base": w_base,
+        "d_edit": d_edit_tensor,
+        "d_base": d_base_tensor,
+    }
+
+
+def _euclidean_distance_to_true(mask: np.ndarray) -> np.ndarray:
+    """Return an exact, dependency-free Euclidean distance transform.
+
+    This is the separable squared-distance transform from Felzenszwalb and
+    Huttenlocher. Unit pixel spacing is fixed globally for the V5.3 objective.
+    """
+
+    if TRANSITION_DISTANCE_SAMPLING != (1.0, 1.0):
+        raise AssertionError("only fixed unit transition distance sampling is supported")
+    binary = np.asarray(mask, dtype=np.bool_)
+    if binary.ndim != 2:
+        raise ValueError("distance transform mask must be two-dimensional")
+    if not binary.any():
+        raise ValueError("distance transform mask must contain at least one true pixel")
+    height, width = binary.shape
+    upper_bound = float(height * height + width * width + 1)
+    squared = np.where(binary, 0.0, upper_bound)
+    vertical = np.empty_like(squared)
+    for column in range(width):
+        vertical[:, column] = _squared_distance_transform_1d(squared[:, column])
+    distance_squared = np.empty_like(squared)
+    for row in range(height):
+        distance_squared[row, :] = _squared_distance_transform_1d(vertical[row, :])
+    return np.sqrt(distance_squared, out=distance_squared)
+
+
+def compute_static_transition_gradient_cap(
+    rgb_gradient_norm: float,
+    raw_transition_gradient_norm: float,
+    original_coefficient: float,
+    *,
+    cap_fraction: float = TRANSITION_GRADIENT_CAP_FRACTION,
+    epsilon: float = TRANSITION_GRADIENT_CAP_EPSILON,
+) -> dict[str, float | bool | str]:
+    """Compute the V5.3 coefficient once for the shared decoder trunk.
+
+    The returned coefficient is a static run contract. Callers persist it at
+    step 0 and reuse it without recomputation for every optimizer step.
+    """
+
+    values = (rgb_gradient_norm, raw_transition_gradient_norm, original_coefficient)
+    if any(not np.isfinite(value) or value < 0 for value in values):
+        raise ValueError("gradient norms and original coefficient must be finite and non-negative")
+    if not np.isfinite(cap_fraction) or cap_fraction <= 0:
+        raise ValueError("cap_fraction must be finite and positive")
+    if not np.isfinite(epsilon) or epsilon <= 0:
+        raise ValueError("epsilon must be finite and positive")
+    calculated = cap_fraction * rgb_gradient_norm / (raw_transition_gradient_norm + epsilon)
+    frozen = min(original_coefficient, calculated)
+    return {
+        "formula": "min(original, cap_fraction * rgb_norm / (raw_transition_norm + epsilon))",
+        "rgb_gradient_norm": float(rgb_gradient_norm),
+        "raw_transition_gradient_norm": float(raw_transition_gradient_norm),
+        "original_coefficient": float(original_coefficient),
+        "calculated_coefficient": float(calculated),
+        "final_frozen_coefficient": float(frozen),
+        "cap_fraction": float(cap_fraction),
+        "epsilon": float(epsilon),
+        "applied_transition_gradient_norm": float(frozen * raw_transition_gradient_norm),
+        "dynamic_updates": False,
+    }
+
+
+def _squared_distance_transform_1d(values: np.ndarray) -> np.ndarray:
+    length = int(values.shape[0])
+    sites = np.empty(length, dtype=np.int64)
+    boundaries = np.empty(length + 1, dtype=np.float64)
+    distances = np.empty(length, dtype=np.float64)
+    envelope_index = 0
+    sites[0] = 0
+    boundaries[0] = -np.inf
+    boundaries[1] = np.inf
+    for query in range(1, length):
+        site = int(sites[envelope_index])
+        intersection = (
+            (float(values[query]) + query * query)
+            - (float(values[site]) + site * site)
+        ) / (2.0 * (query - site))
+        while intersection <= boundaries[envelope_index]:
+            envelope_index -= 1
+            site = int(sites[envelope_index])
+            intersection = (
+                (float(values[query]) + query * query)
+                - (float(values[site]) + site * site)
+            ) / (2.0 * (query - site))
+        envelope_index += 1
+        sites[envelope_index] = query
+        boundaries[envelope_index] = intersection
+        boundaries[envelope_index + 1] = np.inf
+    envelope_index = 0
+    for query in range(length):
+        while boundaries[envelope_index + 1] < query:
+            envelope_index += 1
+        delta = query - int(sites[envelope_index])
+        distances[query] = delta * delta + float(values[sites[envelope_index]])
+    return distances
 
 
 def _as_nchw(tensor: torch.Tensor, channels: int, name: str) -> torch.Tensor:
@@ -314,6 +507,24 @@ def _normalized_masked_alpha_loss(
         (prediction * mask).sum() + (target * mask).sum() + eps
     )
     return {"bce": bce, "dice": dice, "total": bce + dice}
+
+
+def _normalized_masked_smooth_l1(
+    prediction: torch.Tensor,
+    target: torch.Tensor,
+    mask: torch.Tensor,
+    *,
+    beta: float,
+) -> dict[str, torch.Tensor]:
+    if beta <= 0:
+        raise ValueError("SmoothL1 beta must be positive")
+    if mask.sum().item() == 0:
+        zero = prediction.sum() * 0
+        return {"smooth_l1": zero, "zero": zero, "total": zero}
+    values = F.smooth_l1_loss(prediction, target, reduction="none", beta=beta)
+    smooth_l1 = (values * mask).sum() / mask.sum()
+    zero = smooth_l1 * 0
+    return {"smooth_l1": smooth_l1, "zero": zero, "total": smooth_l1}
 
 
 def _repository_or_fallback_ssim(prediction: torch.Tensor, target: torch.Tensor) -> torch.Tensor:

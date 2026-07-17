@@ -16,6 +16,7 @@
 | target_preserve/protected masks | CHW float | forbidden | forbidden | region-aware loss/checker only | **no** |
 | target_foreground_mask (`A_edit`) | CHW float | forbidden | forbidden | edit/transition alpha loss only | **no** |
 | target_base_foreground_mask (`A_base`) | CHW float | forbidden | forbidden | preserve/protected alpha loss only | **no** |
+| boundary-aware transition alpha target | derived in loss only from `A_edit`, `A_base`, edit/preserve/protected masks | forbidden | forbidden | SmoothL1 on the transition ring; no Dice | **no** |
 | target_clothing_mask_raw | not loaded; path/checksum retained | forbidden | forbidden | builder/checker traceability only | **no** |
 | target_clothing_mask (safe) | CHW float | forbidden | forbidden | clothing RGB loss; exactly `raw ∩ foreground ∩ ¬protected` | **no** |
 | target_old_clothing/revealed_skin masks | CHW float | forbidden | forbidden | audit/checker only | **no** |
