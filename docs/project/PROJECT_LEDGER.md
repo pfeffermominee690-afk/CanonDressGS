@@ -192,3 +192,18 @@
 - Root-cause cases: `R2`, `R3`
 - Tests: root-cause 10/10, existing Module 4B 12/12, full-attribute Oracle, full-training checkpoint, py_compile, and `git diff --check` all PASS
 - Status: **FAIL**; Module 4B rerun and formal image-conditioned training remain prohibited
+
+## LEDGER-20260718-009 — R2 zero-initialized rotation autograd closure
+
+- Time: 2026-07-18 Asia/Shanghai
+- Type: FORMAL BUG FIX / REGRESSION / REAL NO-STEP SMOKE / SEAL
+- Run ID: `SUBJECT02-ROTATION-AUTOGRAD-R2-001/attempt_001`
+- Formal repair commit: `1386a42`
+- Test/smoke commit: `f88dca830b5201999caff3e17c6f3aa12c758663`
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-ROTATION-AUTOGRAD-R2-001/attempt_001`
+- Change: removed the exact-zero `torch.count_nonzero(...).item()` rotation composition shortcut; kept stable sinc conversion, wxyz, `q_base ⊗ q_delta`, final normalize, gate/bounds/interpolation semantics
+- Real condition: `O00/cond_000000`; formal V5.3 objective `1.00821352005`
+- Rotation gradients: renderer probe `2.4760604e-06`; formal objective `6.8469955e-05`; `499131` nonzero rotvec gradient elements
+- Freeze: optimizer absent, optimizer steps 0, base gradients none, base fingerprint bitwise exact
+- Regression: rotation 12/12 CUDA, Module 4B-R 10/10, Module 4B contract 12/12, full attribute, dressable model, dataset, region-aware loss 28/28, checkpoint, py_compile, and diff check all PASS
+- Status: **PASS**; R2 closed, R3 base-support design remains the next separately authorized scope

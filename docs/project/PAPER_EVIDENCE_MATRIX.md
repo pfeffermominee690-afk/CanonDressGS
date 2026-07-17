@@ -54,3 +54,11 @@
 | The current base human representation contains usable continuous body support under O00 long sleeves | REFUTED | same run | Opacity-down visual probe creates holes/background; skin recoloring produces tubular recolored sleeve shells; skin-like DC fraction is 4.26% | This supports `BASE_SUPPORT_MISSING` for the audited O00 region, not a universal proof that a garment Gaussian layer is required |
 | Module 4B failure is caused by duplicate gate application | NOT SUPPORTED | same run | Static/numeric path trace finds exactly one render-effective gate multiplication | Gate values remain suppressive, but R1 was not adjudicated because D1 was stopped by R2 |
 | V5.3 objective masks accidentally preserve the old sleeve | NOT SUPPORTED | same run | Front/back old-sleeve edit-core overlap is 98.10%/90.59%; preserve, protected, and alpha-base pixel overlap are zero; edit and alpha-edit gradients are nonzero | Tiny Gaussian-center gradients from other masks reflect splat footprint, not pixel-mask overlap |
+
+## 2026-07-18 R2 closure evidence
+
+| Paper claim | Status | Code / Run | Current evidence | Limitation / permitted wording |
+|---|---|---|---|---|
+| Zero-initialized rotvec remains differentiable through formal canonical composition | SUPPORTED | `SUBJECT02-ROTATION-AUTOGRAD-R2-001/attempt_001` / `1386a42`, `f88dca8` | Stable sinc conversion; CUDA zero/small forward-backward; covariance FD agreement; real V5.3 rotation gradient `6.847e-05` | This closes the composition implementation defect only; it does not establish garment representation capacity |
+| Gaussian, Anchor, and image-conditioned rotation paths share the repaired composition | SUPPORTED | same run plus `ROTATION_COMPOSITION_PATH_AUDIT_R2.md` | All three zero-output paths retain grad_fn and nonzero gradients on rotation-sensitive objectives | Image-conditioned training was not run; path connectivity is not a training-result claim |
+| The R2 repair changes zero-residual rendered semantics | NOT SUPPORTED | same run | Quaternion difference from normalized base `1.788e-7`; RGB/alpha mean differences remain within the previously measured independent CUDA forward noise floor | Sparse max differences are attributed only to documented gsplat forward nondeterminism, not hidden by broad parameter tolerances |

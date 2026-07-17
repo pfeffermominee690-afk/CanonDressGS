@@ -1,5 +1,14 @@
 # Project Status
 
+## 2026-07-18 R2 zero-initialized rotation autograd closure
+
+- Run ID: `SUBJECT02-ROTATION-AUTOGRAD-R2-001/attempt_001`.
+- Status: **PASS**; formal repair commit `1386a42`, regression/smoke commit `f88dca8`.
+- The zero-value composition shortcut was removed. Zero rotvec now follows stable sinc conversion, `wxyz` `q_base ⊗ q_delta`, and final normalization while retaining autograd.
+- CUDA unit closure, covariance finite difference, renderer gradient, Gaussian Oracle, Anchor Oracle, and image-conditioned six-head paths all pass.
+- Real O00 V5.3 smoke rotation gradient norm is `6.8469955e-05`; optimizer was not created, optimizer steps are `0`, and frozen base is bitwise exact.
+- R2 is closed. The next permitted task is separately authorized R3 base-support representation design; Module 4B rerun and formal image-conditioned training were not started.
+
 ## 2026-07-18 Module 4B-R Oracle root-cause audit
 
 - Run ID: `SUBJECT02-MODULE4B-ROOT-CAUSE-001/attempt_001`.

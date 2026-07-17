@@ -49,7 +49,7 @@ q_delta   = axis_angle_to_quaternion_wxyz(delta_rotvec)
 q_dressed = normalize(q_base * q_delta)
 ```
 
-An exactly zero rotation residual returns the original raw base quaternion so zero overrides remain bitwise equivalent to the original renderer path. Non-zero rotations are normalized after composition. Quaternion addition is forbidden.
+Exactly zero and non-zero rotation residuals use the same differentiable path. At zero, `q_delta` is the identity quaternion and `q_dressed` numerically equals the normalized base quaternion while retaining a real autograd dependency on `delta_rotvec`. The composed rotation is always normalized. Quaternion addition is forbidden.
 
 ## Override insertion point and state
 

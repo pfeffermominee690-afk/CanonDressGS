@@ -109,3 +109,7 @@ Old-sleeve effective-xyz gradient norms are nonzero: edit RGB front/back `0.0110
 - Python compilation: PASS.
 - `git diff --check`: PASS.
 - Frozen base fingerprints remain bitwise exact.
+
+## Subsequent R2 closure
+
+This report remains the historical evidence that discovered R2. Commit `1386a42` subsequently removed the zero-value Python shortcut without changing quaternion convention, multiplication direction, gates, bounds, interpolation, MMLP-Human, or renderer. The CUDA/real-O00 closure at `SUBJECT02-ROTATION-AUTOGRAD-R2-001/attempt_001` passed with a nonzero formal V5.3 rotation gradient and zero optimizer steps. R2 is therefore closed; R3 base support remains unresolved. See `ROTATION_AUTOGRAD_CLOSURE_R2.md`.
