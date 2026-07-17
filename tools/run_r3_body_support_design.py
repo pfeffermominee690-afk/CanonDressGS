@@ -995,7 +995,10 @@ def main() -> None:
     parser.add_argument("--config", type=Path, default=PROJECT_ROOT / "configs/audit/r3_body_support_design_v1.yaml")
     parser.add_argument("--pipeline-config", type=Path, default=PROJECT_ROOT / "configs/canon_dress_gs_mvp_real.yaml")
     parser.add_argument("--subject02-data", type=Path, default=Path("/root/autodl-tmp/canondressgs_work/data/subject02"))
-    parser.add_argument("--smplx-model", type=Path, default=PROJECT_ROOT / "smpl_model/smplx/SMPLX_NEUTRAL.npz")
+    parser.add_argument(
+        "--smplx-model", type=Path,
+        default=Path("/root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz"),
+    )
     parser.add_argument("--expected-head", default="9ce539629f58de52bff4fb39e34ac2318f387f9d")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--visual-decisions", type=Path)
