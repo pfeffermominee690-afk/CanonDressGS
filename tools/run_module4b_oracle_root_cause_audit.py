@@ -105,10 +105,11 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def _quantiles(value: torch.Tensor) -> dict[str, float]:
     flat = value.detach().float().reshape(-1).cpu()
-    q = torch.quantile(flat, torch.tensor([0.01, 0.5, 0.95, 0.99]))
+    q = torch.quantile(flat, torch.tensor([0.01, 0.5, 0.9, 0.95, 0.99]))
     return {
         "mean": float(flat.mean()), "std": float(flat.std(unbiased=False)),
-        "p01": float(q[0]), "p50": float(q[1]), "p95": float(q[2]), "p99": float(q[3]),
+        "p01": float(q[0]), "p50": float(q[1]), "p90": float(q[2]),
+        "p95": float(q[3]), "p99": float(q[4]),
         "min": float(flat.min()), "max": float(flat.max()),
     }
 
@@ -886,6 +887,38 @@ def _gate_open(args: argparse.Namespace) -> None:
     raise RuntimeError("fixed-open 160-step implementation intentionally unavailable unless every technical audit passes")
 
 
+def _supplement(args: argparse.Namespace) -> None:
+    """Complete scalar evidence fields without rerunning render or optimization probes."""
+    output = args.output.resolve()
+    rotation_path = output / "rotation_sensitivity_v4br.json"
+    if not rotation_path.is_file():
+        raise FileNotFoundError(rotation_path)
+    device = torch.device(args.device)
+    pipeline = training.load_config(args.pipeline_config)
+    base = training.load_frozen_mmlphuman_base(
+        pipeline["base"]["model_dir"], pipeline["base"]["checkpoint_path"], device,
+    )
+    before = _tensor_state_fingerprint(_base_named_tensors(base))
+    with torch.no_grad():
+        scales = base.compute_cano_scaling().detach()
+        ratio = scales.max(dim=1).values / scales.min(dim=1).values.clamp_min(1e-12)
+    distribution = _quantiles(ratio)
+    for threshold in (1.05, 1.10, 1.25, 1.50):
+        distribution[f"fraction_ge_{threshold:.2f}"] = float((ratio >= threshold).float().mean())
+    after = _tensor_state_fingerprint(_base_named_tensors(base))
+    if before != after:
+        raise RuntimeError("base changed while supplementing anisotropy evidence")
+    rotation = json.loads(rotation_path.read_text(encoding="utf-8"))
+    rotation["activated_scale_anisotropy"] = distribution
+    rotation["anisotropy_supplement"] = {
+        "method": "read-only recomputation from frozen base compute_cano_scaling",
+        "render_probes_repeated": False,
+        "optimizer_steps": 0,
+        "base_bitwise_exact": True,
+    }
+    _write_json(rotation_path, rotation)
+
+
 def _finalize(args: argparse.Namespace) -> None:
     output = args.output.resolve()
     audit = json.loads((output / "audit_summary.json").read_text())
@@ -920,6 +953,42 @@ def _finalize(args: argparse.Namespace) -> None:
         "unique_blocker": "zero-initialized rotation residual is disconnected by the formal composition zero shortcut" if "R2" in cases else "root cause remains unresolved",
     }
     _write_json(output / "MODULE4B_ROOT_CAUSE_FINAL_STATUS.json", adjudication)
+    opened_images = [
+        "base_support_probe_contact_sheet_v4br.png",
+        "attribute_probe_contact_sheet_v4br.png",
+        "oracle_gradient_visualization_v4br.png",
+        "gate_open_o00_contact_sheet_v4br.png",
+        "rotation_probe_images_v4br/high_anisotropy_axis_0.png",
+        "rotation_probe_images_v4br/high_anisotropy_axis_1.png",
+        "rotation_probe_images_v4br/high_anisotropy_axis_2.png",
+        "rotation_probe_images_v4br/near_isotropic_axis_2.png",
+    ]
+    for relative in opened_images:
+        if not (output / relative).is_file():
+            raise FileNotFoundError(output / relative)
+    _write_json(output / "MODULE4B_ROOT_CAUSE_VISUAL_INSPECTION.json", {
+        "images_actually_opened": True,
+        "inspection_method": "manual visual inspection of locally fetched lossless evidence images",
+        "opened_images": opened_images,
+        "observations": {
+            "base_support": args.base_support_observation,
+            "learned_gate_d0": "Step 0 and step 160 remain visually close to the base long-sleeve hoodie.",
+            "fixed_open_d1": "Not rendered: the preregistered ROTATION_PATH_BROKEN technical stop fired before optimization.",
+            "attribute_probes": "XYZ and rotation perturbations visibly affect the diagnostic render; the remaining channels have weaker expected responses at bounded probe amplitude.",
+            "objective_masks": "Old-sleeve pixels align with edit/alpha supervision and do not overlap preserve, protected, or alpha-base masks.",
+            "rotation_probes": "Dedicated covariance numerics are authoritative because faint image-wide differences include independent CUDA raster forward noise.",
+        },
+        "visual_acceptance_status": "FAIL_ROOT_CAUSE_R2_R3",
+    })
+    _write_text(output / "BASE_SUPPORT_AUDIT_V4BR.md", "\n".join([
+        "# Base Support Audit V4BR", "",
+        f"- Projected old-sleeve Gaussian union: `{base['old_sleeve_union_gaussian_count']}`.",
+        f"- LBS arm-support candidates: `{base['arm_support_gaussian_count']}` (`{base['arm_support_fraction']:.6f}`).",
+        f"- Base tensors unmodified: `{base['base_unmodified']}`.",
+        "- No explicit body-part labels exist; arm candidates use formal Gaussian LBS weights and SMPL-X shoulder/elbow/wrist joints.",
+        f"- Actual A/B/C contact sheet inspection: `{args.base_support_observation}`",
+        f"- Final support classification: **{args.base_support_status}**.",
+    ]))
     _write_text(output / "MODULE4B_ROOT_CAUSE_FINAL_ADJUDICATION.md", "\n".join([
         "# Module 4B-R Final Adjudication", "",
         f"- Final status: **{status}**.",
@@ -937,7 +1006,7 @@ def _finalize(args: argparse.Namespace) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Module 4B-R Oracle root-cause audit")
-    parser.add_argument("--phase", choices=("preflight", "audit", "gate-open", "finalize"), required=True)
+    parser.add_argument("--phase", choices=("preflight", "audit", "gate-open", "supplement", "finalize"), required=True)
     parser.add_argument("--module4b-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, default=Path("/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/pilot_manifest_full_v1_v5_2.json"))
@@ -950,6 +1019,7 @@ def main() -> None:
     if args.phase == "preflight": _preflight(args)
     elif args.phase == "audit": _audit(args)
     elif args.phase == "gate-open": _gate_open(args)
+    elif args.phase == "supplement": _supplement(args)
     else: _finalize(args)
 
 
