@@ -71,3 +71,14 @@
 Gate 3-C2 current-backbone fixed-offset threshold ablation：PARTIAL。0.40 相对 0.50 的 float RGB-all MAE 改善约 0.537%，但覆盖问题仍存在，不足以关闭 Gate 3-C。
 
 Gate 4-A `GATE4-REAL-ONEBATCH-001`：PARTIAL。commit `a6639d375355a09d0d451630e46cb37e813e363f` 已证明 same-state checkpoint roundtrip 六类输出全部零差异，真实 forward/backward、梯度和 reference sensitivity 已落盘；但实际采样为 reference `f2000_c009 + f1000_c000`、target `f000_c018`，与预注册 reference `f000_c018 + f1000_c000`、target `f2000_c009` 不一致，且 HWC renderer tensor 导致最终 PNG/acceptance 写入停止。不得写 Gate 4-A PASS。
+
+## 2026-07-18 Module 4B 状态更新
+
+- Run ID：`SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001`。
+- 正式候选运行 commit：`dce29e089cc422abd661c622800e2d4c435bce26`。
+- 状态：**COMPLETE / FAIL**；决策矩阵 case D；不允许进入正式 image-conditioned training pilot。
+- Gaussian Oracle：O00/O01/O05 均为 `PARTIAL_FIT + VISUAL_FAIL`；Anchor Oracle：O00 `NO_FIT + VISUAL_FAIL`，O01/O05 `PARTIAL_FIT + VISUAL_FAIL`。
+- 三套 Anchor edit/clothing capacity retention 均低于 0.75，但 Gaussian O00 本身未通过，故不能裁决为 anchor bottleneck 或 base topology limit。
+- frozen base bitwise exact、base gradient count 0；image backbone 未实例化；checkpoint/resume exact；所有输入 post-run fingerprint 未变。
+- 当前唯一阻塞：Gaussian-level shared canonical oracle 未形成 O00 目标服装；必须先审计 optimization/objective/composition/data chain。
+- 下一步不得自动启动正式训练、garment Gaussian layer 或更大数据规模；等待新的明确授权。

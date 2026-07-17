@@ -27,3 +27,9 @@
 - 历史 Gate 验收指纹：`64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4`
 - 当前路径文件指纹：`abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`
 - 状态：历史验收指纹与当前文件不一致，需进一步追溯。不得写成同一 checkpoint，也不因此否定已保存的历史 Gate 验收结果。
+
+## Full Pipeline Module 4B
+
+| Run ID | Module | 状态 | 正式运行 commit | Config | Base checkpoint | 输出目录 | 关键证据 |
+|---|---|---|---|---|---|---|---|
+| SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001 | Module 4B canonical representation oracle | FAIL / case D | `dce29e089cc422abd661c622800e2d4c435bce26` | `configs/oracle/module4b_canonical_capacity_v1.yaml` (`82229cbc...`) | `abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001` | six runs × 480 steps；Gaussian O00/O01/O05 numerical PARTIAL but visual FAIL；Anchor retention <0.75；base exact；resume PASS；formal training denied |

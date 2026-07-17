@@ -154,3 +154,24 @@
 - 协议偏差：实际 reference 为 `f2000_c009 + f1000_c000`、target 为 `f000_c018`，不匹配 gate 的预注册 reference views
 - 持久化阻塞：renderer 输出是 HWC，直接传给 `torchvision.save_image` 导致 predicted PNG 与 `GATE_ACCEPTANCE.md` 未生成
 - 结论：PARTIAL；未启动 100/300-step 训练
+
+## LEDGER-20260718-007 — Module 4B Canonical Representation Oracle Micro-pilot
+
+- 时间：2026-07-18 Asia/Shanghai
+- 类型：EXPERIMENT / VISUAL ACCEPTANCE / SEAL
+- Run ID：`SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001`
+- 正式候选运行 commit：`dce29e089cc422abd661c622800e2d4c435bce26`
+- 封存工具 commit：`a5c5c02055dd5df7e91acd44e604e2c4a3b84b8b`
+- 配置：`configs/oracle/module4b_canonical_capacity_v1.yaml`，SHA256 `82229cbc62c083b1373b6f6bed35be54a468036b49c06d50c3640a0a357a135f`
+- 数据：V5.3 12-sample fixture，`dual_target_region_aware_v1`；post-run aggregate SHA256 `457b4f93c9c04c337e7222750ca0ad8f9b6cf4f388775de1f10a18c640dba6fc`，全部输入未变
+- 基线 checkpoint：`chkpnt100000.pth`，SHA256 `abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70`
+- 协议：O00/O01/O05 × Gaussian/Anchor；每个 480 steps；front/back/left/right round-robin
+- 结果：Gaussian 三套 `PARTIAL_FIT + VISUAL_FAIL`；Anchor O00 `NO_FIT + VISUAL_FAIL`，O01/O05 `PARTIAL_FIT + VISUAL_FAIL`
+- Anchor retention：O00 edit/clothing `0.5686/0.6057`；O01 `0.5919/0.6121`；O05 `0.6450/0.6604`，全部低于 0.75
+- 冻结：base fingerprint exact、base grad 0、image backbone 未实例化、SHN strict zero
+- Resume：O00 Gaussian step-40 model/optimizer/global-step/sampler exact，PASS
+- 视觉：实际打开六组四视角、O05 中间阶段、residual/gate/protected panels；六组均 FAIL，未形成目标服装结构
+- 测试：Module 4B 12/12、full-attribute Oracle、full-training checkpoint、py_compile、`git diff --check` 全部 PASS
+- 状态：**FAIL / decision case D**
+- 输出：`/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001`
+- 停止：未启动正式 image-conditioned training，未实现 garment Gaussian layer，未扩展数据规模

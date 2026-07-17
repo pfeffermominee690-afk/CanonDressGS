@@ -35,3 +35,13 @@
 ## 证据入表要求
 
 每项新结果至少记录：Git commit、dirty state、config SHA256、checkpoint SHA256、输入 manifest、环境、命令、输出路径、指标定义和 PASS/PARTIAL/FAIL。
+
+## 2026-07-18 Module 4B evidence
+
+| 论文主张 | 状态 | 代码/Run | 当前证据 | 缺口与允许表述 |
+|---|---|---|---|---|
+| 当前 body-Gaussian 六通道 canonical residual 可稳定优化且不改变 frozen base | SUPPORTED-WITH-LIMIT | `SUBJECT02-MODULE4B-MICROPILOT-001/attempt_001` / `dce29e0` | 六个 480-step runs finite；base bitwise exact、grad 0；无 extreme Gaussian；checkpoint resume exact | 仅证明工程稳定性，不证明服装表达容量或推理能力 |
+| Gaussian-level shared canonical oracle 足以形成 O00/O01/O05 目标服装 | NOT SUPPORTED | 同上 | 数值仅 2.88–7.34% 改善；三套 Gaussian 均 `VISUAL_FAIL` | 不得声称当前表示已通过容量验收；必须报告 case D |
+| 10k-anchor 表示保留 Gaussian Oracle 的足够容量 | NOT SUPPORTED | 同上 | edit/clothing retention 为 0.569–0.660，全部低于 0.75；Anchor 六组视觉均 FAIL | Gaussian upper bound 本身失败，因此也不得单独归因为 anchor bottleneck |
+| O05 失败证明 body Gaussian topology 不足并需要 garment Gaussian layer | UNSUPPORTED | 同上 | O05 未形成长下摆，但 Gaussian O00 也未通过 | 决策矩阵 case D；先审计 optimization/objective/composition/data chain，不得提出已证实 topology 结论 |
+| Module 4B Oracle 证明正式 image-conditioned 或 unseen-outfit inference 能力 | UNSUPPORTED | 同上 | Oracle 不读取 reference、不经过 image backbone，直接使用 target supervision 优化 | 必须明确这是 representation oracle，不是 CanonDressGS 推理路径 |
