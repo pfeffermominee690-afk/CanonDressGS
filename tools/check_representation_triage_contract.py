@@ -113,10 +113,15 @@ def run() -> dict:
     checks["test_aaai_no_go_outputs_are_unchanged"] = not writes_to_source and "Rung 0 evidence incomplete" in runner_source
 
     config = yaml.safe_load((PROJECT_ROOT / "configs/research/subject02_representation_triage_v1.yaml").read_text(encoding="utf-8"))
-    long_head = subprocess.run(
-        ["git", "rev-parse", f"cloud/{config['long_term_branch']}"], cwd=PROJECT_ROOT,
-        check=True, capture_output=True, text=True,
-    ).stdout.strip()
+    long_head = None
+    for remote in ("cloud", "origin"):
+        result = subprocess.run(
+            ["git", "rev-parse", "--verify", f"{remote}/{config['long_term_branch']}"],
+            cwd=PROJECT_ROOT, capture_output=True, text=True,
+        )
+        if result.returncode == 0:
+            long_head = result.stdout.strip()
+            break
     checks["test_long_term_branch_is_unchanged"] = long_head == config["long_term_head"]
 
     failed = [name for name, passed in checks.items() if not passed]
