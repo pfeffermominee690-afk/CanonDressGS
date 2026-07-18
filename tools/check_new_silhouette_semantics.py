@@ -175,6 +175,12 @@ class NewSilhouetteContractTests(unittest.TestCase):
         self.assertIn('next_task = "AUDIT_ALPHA_COVERAGE_AND_GAUSSIAN_RASTERIZATION"', source)
         self.assertIn('"rerun_seven_outfit_gate_allowed": False', source)
 
+    def test_seal_requires_final_adjudication_and_complete_evidence(self):
+        source = inspect.getsource(runner.seal)
+        self.assertIn("final adjudication must exist before sealing", source)
+        self.assertIn("silhouette_error_classification.csv", source)
+        self.assertIn("V6_1_MASK_SEMANTICS.json", source)
+
     def test_frozen_branches_unchanged(self):
         expected = "cee8fc51b5039a102ef7e2c31632e348ae3b99a1"
         local = subprocess_output("git", "rev-parse", "research/objective-residual-redesign-20260718", allow_failure=True)

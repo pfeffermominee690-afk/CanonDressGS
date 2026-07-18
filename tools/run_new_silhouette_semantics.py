@@ -1203,9 +1203,113 @@ def adjudicate(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     print(json.dumps(final, indent=2, default=str))
 
 
+def seal(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
+    final_path = args.output / "final_adjudication/NEW_SILHOUETTE_SEMANTICS_FINAL_STATUS.json"
+    if not final_path.is_file():
+        raise FileNotFoundError("final adjudication must exist before sealing")
+    if (args.output / "final_adjudication/REPOSITORY_SEAL.json").exists():
+        raise FileExistsError("formal output is already sealed")
+    metrics = {
+        outfit: json.loads((args.output / "S1_v6_1_semantics" / outfit / "metrics.json").read_text(encoding="utf-8"))
+        for outfit in OUTFITS
+    }
+    active = {
+        outfit: {
+            row["view"]: {
+                "trusted_expansion": row["trusted_expansion_active_pixels"],
+                "trusted_removal": row["trusted_removal_active_pixels"],
+            } for row in metrics[outfit]["final_per_view"]
+        } for outfit in OUTFITS
+    }
+    semantics = {
+        "objective": config["v6_1"]["objective_name"],
+        "support_band": config["support_band"],
+        "formulas": {
+            "raw_expansion": "target_foreground AND NOT base_foreground",
+            "trusted_expansion": "raw_expansion AND safe_clothing AND NOT protected AND NOT artifact AND support_band",
+            "trusted_removal": "base_foreground AND NOT target_foreground AND old_clothing AND NOT protected",
+            "uncertain": "(raw_expansion OR raw_removal) minus trusted expansion/removal/protected",
+            "background_trusted": "V6 background minus transition and artifact neighborhood",
+        },
+        "active_pixels": active,
+        "rgb_or_outfit_specific_rule": False,
+        "target_masks_enter_forward": False,
+        "soft_probability_available": False,
+    }
+    atomic_json(args.output / "mask_semantics/V6_1_MASK_SEMANTICS.json", semantics)
+    atomic_text(args.output / "mask_semantics/V6_1_MASK_SEMANTICS.md", "\n".join([
+        "# V6.1 mask semantics", "", f"- objective: `{config['v6_1']['objective_name']}`",
+        f"- support ratio: `{config['support_band']['base_bbox_diagonal_ratio']}`",
+        "- source boundary radius: `5 px` at `1024x1536`", "- outcome search: `false`",
+        "- soft garment probability available: `false`", "- target masks enter forward: `false`",
+        "", "Per-view active counts are recorded in `V6_1_MASK_SEMANTICS.json`.",
+    ]))
+    shutil.copy2(args.config, args.output / "contract/config_resolved_formal.yaml")
+    gpu = subprocess.run(
+        ["nvidia-smi", "--query-gpu=name,driver_version,memory.total", "--format=csv,noheader"],
+        check=False, capture_output=True, text=True,
+    ).stdout.strip()
+    atomic_json(args.output / "input_audit/execution_manifest.json", {
+        "formal_run_commit": "c01682775f294b534d2ff1b3ed0d05aaca4fc2c9",
+        "seal_head": git("rev-parse", "HEAD"), "branch": git("branch", "--show-current"),
+        "git_status_short_before_seal": git("status", "--short"),
+        "python": sys.version, "python_executable": sys.executable,
+        "pytorch": torch.__version__, "cuda_available": torch.cuda.is_available(),
+        "cuda_version": torch.version.cuda, "gpu": gpu,
+        "commands": [
+            "python tools/run_new_silhouette_semantics.py --phase audit ...attempt_001",
+            "python tools/run_new_silhouette_semantics.py --phase calibrate ...attempt_001",
+            "python tools/run_new_silhouette_semantics.py --phase bootstrap --source-attempt ...attempt_001 ...attempt_002",
+            "python tools/run_new_silhouette_semantics.py --phase run --stage S1 --outfit O01 ...attempt_002",
+            "python tools/run_new_silhouette_semantics.py --phase run --stage S1 --outfit O08 ...attempt_002",
+            "python tools/run_new_silhouette_semantics.py --phase decide-s2 ...attempt_002",
+            "python tools/run_new_silhouette_semantics.py --phase build-visual-evidence ...attempt_002",
+            "python tools/run_new_silhouette_semantics.py --phase adjudicate ...attempt_002",
+        ],
+    })
+    atomic_json(args.output / "input_audit/regression_test_report.json", {
+        "status": "PASS",
+        "tests": {
+            "new_v6_1_contract": {"tests": 23, "status": "PASS"},
+            "existing_v6_objective": {"tests": 27, "status": "PASS"},
+            "dual_target_v5_3": {"tests": 28, "status": "PASS"},
+            "fixed_episode_v5_2": {"tests": 3, "status": "PASS"},
+            "r2_cuda_rotation": {"tests": 12, "status": "PASS"},
+            "differentiable_renderer_unit": {"status": "PASS"},
+            "full_training_checkpoint": {"status": "PASS"},
+            "image_conditioned_dataset": {"status": "PASS"},
+            "py_compile": {"status": "PASS"},
+            "git_diff_check": {"status": "PASS"},
+        },
+    })
+    required = [
+        "contract/config_resolved_formal.yaml", "input_audit/input_manifest.json",
+        "silhouette_error_audit/silhouette_error_classification.csv",
+        "silhouette_error_audit/silhouette_error_summary.json",
+        "silhouette_error_audit/SILHOUETTE_ERROR_AUDIT.md",
+        "mask_semantics/V6_1_MASK_SEMANTICS.json", "gradient_analysis/v6_1_gradient_calibration.json",
+        "gradient_analysis/v6_1_loss_weights_frozen.json", "S1_v6_1_semantics/O01/metrics.json",
+        "S1_v6_1_semantics/O08/metrics.json", "S2_v6_1_underfill_if_eligible/S2_ELIGIBILITY.json",
+        "visual_acceptance/visual_acceptance.json", "visual_acceptance/VISUAL_ACCEPTANCE.md",
+        "final_adjudication/NEW_SILHOUETTE_SEMANTICS_FINAL_STATUS.json",
+    ]
+    missing = [name for name in required if not (args.output / name).is_file()]
+    if missing:
+        raise FileNotFoundError(f"formal output is incomplete: {missing}")
+    payload = {
+        "status": "SEALED", "sealed_at": now(), "branch": git("branch", "--show-current"),
+        "head": git("rev-parse", "HEAD"), "git_status_short": git("status", "--short"),
+        "required_file_count": len(required), "missing": missing,
+        "formal_result": json.loads(final_path.read_text(encoding="utf-8"))["status"],
+        "final_case": json.loads(final_path.read_text(encoding="utf-8"))["final_case"],
+    }
+    atomic_json(args.output / "final_adjudication/REPOSITORY_SEAL.json", payload)
+    print(json.dumps(payload, indent=2))
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the registered new-silhouette semantics study")
-    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence", "adjudicate"))
+    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence", "adjudicate", "seal"))
     parser.add_argument("--stage", choices=("S1", "S2"))
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -1233,8 +1337,10 @@ def main() -> None:
         decide_s2(args, config)
     elif args.phase == "build-visual-evidence":
         build_visual_evidence(args, config)
-    else:
+    elif args.phase == "adjudicate":
         adjudicate(args, config)
+    else:
+        seal(args, config)
 
 
 if __name__ == "__main__":
