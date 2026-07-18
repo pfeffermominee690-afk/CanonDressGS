@@ -237,3 +237,32 @@ The immediate task after this preflight is `RUN_AAAI_28_IMAGE_DATA_AND_CAPACITY_
 Completed evidence is limited to input and contract closure: seven Jay reference sets with four fixed views each, O01 reuse audit, 38/38 local input rehashes, 37/37 cloud handoff rehashes, and the frozen selection/test rules. API calls, generated images, and optimizer steps are all zero. Generation visual gate, masks, `AAAI_GATE_28`, support compatibility, Oracle, and final outfit capacity decisions were not run. The seven candidates remain `BLOCKED_NOT_ADJUDICATED`, not PASS/RESERVE/FAIL.
 
 No 192/160 benchmark is selected; target production and image-conditioned training remain unauthorized. The sole recovery task is `RESTORE_VERIFIED_GPT_IMAGE_2_IMAGES_EDIT_ROUTE`. This stop does not change the frozen candidate list, four conditions, thresholds, long-term branch, or scientific Go/No-Go criteria.
+
+## 14. Codex-native continuation and final data/capacity adjudication (2026-07-18)
+
+This section is an append-only continuation. It does not alter the historical `attempt_001` stop above. The generation contract was subsequently changed by explicit user authorization to the platform-managed Codex image-generation skill: `generation_provider=CODEX_IMAGE_GENERATION_SKILL`, `generation_mode=CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT`, `external_api_used=false`, and `api_key_used=false`. The platform did not expose an exact backend model identifier, so the immutable provenance records use `NOT_EXPOSED_BY_PLATFORM` rather than guessing a model name.
+
+The Codex-native generation attempt produced 28/28 unique raw targets with zero technical retries. The actual generation visual gate was 21 PASS / 7 WARN / 0 FAIL; all input and prompt SHA256 checks passed, raw outputs remained immutable, and the cloud handoff reverified 28/28 files. The handoff bundle SHA256 is `30e7521780bec35b325a42875bd76a29713d88e64df98d9e6c6e1c96b1a78491`.
+
+The effective downstream run is:
+
+- output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003`
+- run commit: `c19e0f6795d6942433f31860ae219a603c03a3c8`
+- `attempt_002`: preserved `FAILED_TOOL_NO_OPTIMIZER`; segmentation completed but a visual-record field-name compatibility error stopped mask construction before any optimizer step
+- fixture/checker: 28 samples, seven outfits, four fixed conditions, `AAAI_GATE_28` PASS
+- technical smoke: PASS; one discarded optimizer step, all five enabled residual groups received finite nonzero gradients, SHN stayed disabled, the 200,000-Gaussian base was bitwise exact, and checkpoint state/global-step roundtrip was exact
+- formal Oracle budget: seven independent fixed-open runs, 480 steps per outfit, 3,360 optimizer steps total; no formal image-conditioned training was started
+
+Actual original-resolution milestone sheets (steps 0/40/80/160/240/320/400/480), final four-view sheets, and the combined protected-error sheet were opened. All seven predictions retained the source lavender hoodie structure and acquired mottled residual artifacts instead of forming the requested garment. O02 additionally requires missing under-clothes arm support; O07 has the largest unsupported new-silhouette demand. Protected residuals were localized and every run kept the frozen base bitwise exact, but these infrastructure properties do not convert garment-formation failures into visual PASS.
+
+| Outfit | Support | Edit reduction | Clothing reduction | Numeric | Visual | Final |
+|---|---:|---:|---:|---|---|---|
+| O01 | MEDIUM | 56.9059% | 61.7803% | PASS | FAIL | OUTFIT_GATE_FAIL |
+| O02 | HIGH | 38.5937% | 41.9969% | FAIL | FAIL | OUTFIT_GATE_FAIL |
+| O03 | MEDIUM | 42.2217% | 44.4429% | FAIL | FAIL | OUTFIT_GATE_FAIL |
+| O04 | MEDIUM | 40.3956% | 41.0885% | FAIL | FAIL | OUTFIT_GATE_FAIL |
+| O06 | MEDIUM | 41.3815% | 45.4301% | FAIL | FAIL | OUTFIT_GATE_FAIL |
+| O07 | MEDIUM | 49.6467% | 50.1036% | FAIL | FAIL | OUTFIT_GATE_FAIL |
+| O08 | LOW | 43.7019% | 47.2275% | FAIL | FAIL | OUTFIT_GATE_FAIL |
+
+The frozen selector therefore returns **NO_GO** with no train outfits, no unseen outfits, no reserve, and target count zero. Neither a 192-target nor a 160-target benchmark is selected. The remaining target images must not be generated, and formal image-conditioned training remains unauthorized. This is a representation-capacity/visual-formation failure under the preregistered fixed-open Oracle, not a generation, V5.3 checker, checkpoint, frozen-base, or CUDA infrastructure failure.

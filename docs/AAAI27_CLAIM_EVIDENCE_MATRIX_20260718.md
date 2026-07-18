@@ -185,3 +185,19 @@ The following priority claims are blocked from achieved-result wording until the
 - Unsupported evidence: Generation Data Gate results, support-risk metrics, per-outfit numeric/visual Oracle capacity, final train/unseen outfits, and a 192/160 target count.
 
 Consequently C2, C3, C5, C8, C9, and the seven-outfit portion of C12 receive no positive benchmark evidence from this attempt. No abstract, conclusion, table, or figure may describe the capacity gate as completed or call any candidate PASS/FAIL. The existing O00/O05 limitation evidence remains unchanged. Recovery requires an explicitly verifiable `gpt-image-2` `images.edit` route; silently substituting an unexposed image model is forbidden.
+
+## Codex-native generation and final capacity-gate evidence update (2026-07-18)
+
+This append-only entry supersedes only the pending state of the historical update above; it does not rewrite `attempt_001`. Explicit authorization replaced the external-provider requirement with the platform-managed Codex image-generation skill. The backend model was not exposed and is not inferred. The generation evidence is 28/28 immutable raw targets, 21 PASS / 7 WARN / 0 FAIL at the actual visual hard gate, zero technical retries, complete input/prompt hashes, no external API, no API key, and a verified cloud handoff.
+
+The final capacity artifact is `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003` at commit `c19e0f6795d6942433f31860ae219a603c03a3c8`. `attempt_002` is preserved separately as a zero-optimizer-step tool-interface failure. `attempt_003` passed the 28-sample V5.3 dataset checker and fixed-open infrastructure smoke; all seven 480-step runs were finite, the base remained bitwise exact, and protected MAE stayed below the absolute 0.005 ceiling.
+
+The scientific result is nevertheless **NO_GO**. O01 alone met the numeric acceptance rule (edit/clothing reductions 56.9059%/61.7803%), while O02/O03/O04/O06/O07/O08 failed the full numeric rule because preserve-relative acceptance did not hold. Actual inspection of every milestone and final four-view sheet assigned all seven `CAPACITY_VISUAL_FAIL`: no target garment was formed, the original lavender hoodie remained visible, and mottled residual artifacts appeared. O02 also has a formal missing-body-support failure.
+
+Claim consequences:
+
+- C2 and C3 remain unsupported: there is no selected unseen outfit and no full-model amortized-inference result.
+- C5 remains limited to the earlier registered Module 3 fixture; no compact-benchmark graph-completion claim is released.
+- C8 and C9 retain subsystem evidence only. The V5.3 checker, frozen-base proof, and localized protected errors are valid, but benchmark-wide garment learning and identity-preserving transfer are not demonstrated.
+- C12 is strengthened as a limitation: even candidates provisionally judged support-compatible do not visually close under the current fixed-open 200,000-Gaussian representation; the short-sleeve O02 additionally confirms the hidden-arm support boundary.
+- No main table or abstract may claim a successful 160/192 benchmark, unseen-outfit transfer, or formal image-conditioned training. No complete benchmark has been selected, remaining target generation is denied, and formal training is denied.
