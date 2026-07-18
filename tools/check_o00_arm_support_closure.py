@@ -23,6 +23,7 @@ from scene.o00_arm_support import (  # noqa: E402
     adjudicate_o00_support,
     build_o00_arm_support,
     classify_arm_skin_regions,
+    classify_sampled_arm_skin_regions,
     deform_o00_arm_support,
     support_tensor_fingerprint,
 )
@@ -99,6 +100,8 @@ def test_o00_support_uses_subject02_skin_only() -> None:
     assert support.metadata["external_identity_or_generated_texture_used"] is False
     assert set(support.skin_region.tolist()) == set(range(6))
     assert torch.unique(support.rgb, dim=0).shape[0] > 1
+    relabeled = classify_sampled_arm_skin_regions(support.canonical_xyz, support.body_part)
+    assert torch.equal(relabeled, support.skin_region)
 
 
 def test_o00_support_uses_formal_lbs() -> None:

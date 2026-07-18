@@ -89,6 +89,41 @@ def classify_arm_skin_regions(vertices: torch.Tensor, vertex_lbs: torch.Tensor) 
     return region
 
 
+def classify_sampled_arm_skin_regions(canonical_xyz: torch.Tensor, body_part: torch.Tensor) -> torch.Tensor:
+    """Transfer the same six-region contract directly to sampled arm points.
+
+    Labeling the transition by a single barycentric owner can omit a narrow
+    transition when no sampled point chooses that owner.  Applying the frozen
+    proximal/distal 18% rule within each already-sampled formal arm part keeps
+    the geometry and sampling unchanged while guaranteeing explicit shoulder
+    and wrist transition populations.
+    """
+
+    xyz = _finite(canonical_xyz.detach().float().cpu(), "canonical_xyz")
+    part = torch.as_tensor(body_part, dtype=torch.long).detach().cpu()
+    if xyz.ndim != 2 or xyz.shape[1] != 3 or part.shape != (len(xyz),):
+        raise ValueError("sampled arm region inputs must have shapes [N,3]/[N]")
+    if not set(part.tolist()).issubset(set(ARM_PARTS)):
+        raise ValueError("sampled arm regions include a non-arm part")
+    region = torch.empty_like(part)
+    region[part == 16] = ARM_SKIN_REGION_INDEX["left_upper_arm"]
+    region[part == 18] = ARM_SKIN_REGION_INDEX["left_lower_arm"]
+    region[part == 17] = ARM_SKIN_REGION_INDEX["right_upper_arm"]
+    region[part == 19] = ARM_SKIN_REGION_INDEX["right_lower_arm"]
+    radial = xyz[:, 0].abs()
+    for anatomical_part in (16, 17):
+        selected = part == anatomical_part
+        cutoff = torch.quantile(radial[selected], 0.18)
+        region[selected & (radial <= cutoff)] = ARM_SKIN_REGION_INDEX["shoulder_transition"]
+    for anatomical_part in (18, 19):
+        selected = part == anatomical_part
+        cutoff = torch.quantile(radial[selected], 0.82)
+        region[selected & (radial >= cutoff)] = ARM_SKIN_REGION_INDEX["wrist_transition"]
+    if set(region.tolist()) != set(range(len(ARM_SKIN_REGION_NAMES))):
+        raise RuntimeError("sampled support does not realize all six frozen skin regions")
+    return region
+
+
 @dataclass(frozen=True)
 class Subject02ArmSkinField:
     rgb: torch.Tensor
@@ -310,11 +345,7 @@ def build_o00_arm_support(
     confidence = (field.confidence[selected_vertices] * probe.barycentric).sum(1).clamp(0, 1)
     provenance_candidates = field.provenance[selected_vertices]
     provenance = provenance_candidates.gather(1, probe.barycentric.argmax(1, keepdim=True)).squeeze(1)
-    region_candidates = field.region[selected_vertices]
-    region = region_candidates.gather(1, probe.barycentric.argmax(1, keepdim=True)).squeeze(1)
-    # Ensure transition labels follow the sampled point when a face straddles a frozen boundary.
-    fallback = classify_arm_skin_regions(vertices, vertex_lbs)
-    region = torch.where(region >= 0, region, fallback[selected_vertices[:, 0]])
+    region = classify_sampled_arm_skin_regions(probe.canonical_xyz, probe.body_part)
 
     normal = probe.canonical_normals
     reference_axis = torch.zeros_like(normal); reference_axis[:, 2] = 1
