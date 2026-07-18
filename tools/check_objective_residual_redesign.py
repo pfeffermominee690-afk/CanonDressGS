@@ -200,6 +200,13 @@ class ObjectiveResidualContractTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             runner._slope([{"step": 1}, {"step": 2}], "garment_rgb")
 
+    def test_visual_evidence_builder_is_inspection_only(self):
+        source = inspect.getsource(runner.build_visual_evidence)
+        self.assertIn('"renderer_invoked": False', source)
+        self.assertIn('"optimizer_steps": 0', source)
+        self.assertNotIn("_render_model", source)
+        self.assertNotIn("optimizer", source.lower().replace('"optimizer_steps"', ""))
+
     def test_aaai_no_go_remains_unchanged(self):
         cfg = config(); self.assertIn("attempt_003", cfg["source_aaai_output"])
         self.assertFalse(cfg["permissions"]["generate_targets"])

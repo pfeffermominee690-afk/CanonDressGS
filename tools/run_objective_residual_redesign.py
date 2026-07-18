@@ -16,6 +16,7 @@ from typing import Any, Mapping
 import numpy as np
 import torch
 import yaml
+from PIL import Image, ImageDraw, ImageFilter
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
@@ -483,6 +484,106 @@ def repair_derived_slopes(args: argparse.Namespace) -> None:
     print(json.dumps(repaired, indent=2))
 
 
+def _mask_overlay(image: Image.Image, mask: Image.Image, color: tuple[int, int, int]) -> Image.Image:
+    base = image.convert("RGB")
+    alpha = mask.convert("L").resize(base.size, Image.Resampling.NEAREST).point(lambda value: 128 if value > 0 else 0)
+    layer = Image.new("RGB", base.size, color)
+    return Image.composite(layer, base, alpha)
+
+
+def _labeled_tile(image: Image.Image, label: str, size: tuple[int, int]) -> Image.Image:
+    tile = Image.new("RGB", (size[0], size[1] + 24), "white")
+    tile.paste(image.convert("RGB").resize(size, Image.Resampling.LANCZOS), (0, 0))
+    ImageDraw.Draw(tile).text((4, size[1] + 4), label, fill="black")
+    return tile
+
+
+def build_visual_evidence(args: argparse.Namespace) -> None:
+    """Build inspection-only bundles from persisted PNGs; never render or optimize."""
+    output = args.output / "visual_acceptance"
+    manifest_path = output / "VISUAL_BUNDLE_MANIFEST.json"
+    if manifest_path.exists():
+        raise FileExistsError(f"visual evidence already exists: {manifest_path}")
+    output.mkdir(parents=True, exist_ok=True)
+    manifest: dict[str, Any] = {
+        "status": "COMPLETE_PENDING_ACTUAL_IMAGE_INSPECTION",
+        "source": "persisted causal-matrix PNG files only",
+        "renderer_invoked": False,
+        "optimizer_steps": 0,
+        "bundles": {},
+    }
+    for test in TESTS:
+        for outfit in OUTFITS:
+            run_dir = args.output / "causal_matrix" / test / outfit
+            key = f"{test}/{outfit}"
+            milestone_paths = [
+                run_dir / "diagnostics/step_000000_four_view.png",
+                run_dir / "diagnostics/step_000200_four_view.png",
+                run_dir / "diagnostics/step_000480_four_view.png",
+                run_dir / "diagnostics/final_four_view.png",
+            ]
+            if not all(path.is_file() for path in milestone_paths):
+                raise FileNotFoundError(f"missing milestone visual for {key}")
+            width, milestone_height, detail_height = 2048, 840, 408
+            canvas = Image.new("RGB", (width, 48 + milestone_height + 32 + 4 * detail_height), "white")
+            draw = ImageDraw.Draw(canvas)
+            draw.text((8, 12), f"{key} persisted visual acceptance bundle", fill="black")
+            sources = []
+            for index, (label, path) in enumerate(zip(("step 0", "step 200", "step 480", "final"), milestone_paths)):
+                image = Image.open(path).convert("RGB")
+                tile = _labeled_tile(image, label, (512, 816))
+                canvas.paste(tile, (index * 512, 48))
+                sources.append({"path": str(path), "sha256": sha256(path)})
+            draw.text((8, 48 + milestone_height + 8), "Final-view protected/body-part/boundary/artifact inspection", fill="black")
+            for row, condition in enumerate(CONDITIONS):
+                view = VIEWS[condition]
+                view_dir = run_dir / "renders/final" / view
+                prediction_path = view_dir / "prediction.png"
+                protected_path = view_dir / "protected_mask.png"
+                clothing_path = view_dir / "clothing_mask_safe.png"
+                old_path = view_dir / "old_clothing_mask.png"
+                error_path = view_dir / "absolute_error.png"
+                required = (prediction_path, protected_path, clothing_path, old_path, error_path)
+                if not all(path.is_file() for path in required):
+                    raise FileNotFoundError(f"missing final inspection PNG for {key}/{view}")
+                prediction = Image.open(prediction_path).convert("RGB")
+                protected = Image.open(protected_path).convert("L")
+                garment = Image.fromarray(np.maximum(
+                    np.asarray(Image.open(clothing_path).convert("L")),
+                    np.asarray(Image.open(old_path).convert("L")),
+                ).astype(np.uint8), "L")
+                boundary = garment.filter(ImageFilter.FIND_EDGES).point(lambda value: 255 if value > 32 else 0)
+                protected_overlay = _mask_overlay(prediction, protected, (255, 0, 255))
+                boundary_overlay = _mask_overlay(prediction, boundary, (0, 255, 0))
+                error = Image.open(error_path).convert("RGB")
+                error_strength = error.convert("L").point(lambda value: min(220, value * 3))
+                artifact_overlay = Image.composite(Image.new("RGB", prediction.size, (255, 0, 0)), prediction, error_strength)
+                w, h = prediction.size
+                crops = {
+                    "prediction": prediction,
+                    "protected overlay": protected_overlay,
+                    "head/face/hair crop": prediction.crop((w // 4, 0, 3 * w // 4, h // 3)),
+                    "hands/arms crop": prediction.crop((0, h // 4, w, 3 * h // 4)),
+                    "shoes crop": prediction.crop((w // 8, 2 * h // 3, 7 * w // 8, h)),
+                    "garment boundary": boundary_overlay,
+                    "error/splat overlay": artifact_overlay,
+                }
+                y = 48 + milestone_height + 32 + row * detail_height
+                draw.text((4, y + 184), view, fill="black")
+                for column, (label, image) in enumerate(crops.items()):
+                    canvas.paste(_labeled_tile(image, f"{view} {label}", (256, 384)), (32 + column * 288, y))
+                sources.extend({"path": str(path), "sha256": sha256(path)} for path in required)
+            bundle_path = output / f"{test}_{outfit}_visual_bundle.png"
+            canvas.save(bundle_path)
+            manifest["bundles"][key] = {
+                "path": str(bundle_path), "sha256": sha256(bundle_path), "sources": sources,
+                "contains": ["step0", "step200", "step480", "final", "protected", "head_face_hair",
+                             "hands_arms", "shoes", "garment_boundary", "absolute_error_splat_overlay"],
+            }
+    atomic_json(manifest_path, manifest)
+    print(json.dumps(manifest, indent=2))
+
+
 def _parameter_gradient_norm(loss: torch.Tensor, parameters: list[torch.Tensor]) -> float:
     gradients = torch.autograd.grad(loss, parameters, retain_graph=True, allow_unused=True)
     terms = [gradient.double().square().sum() for gradient in gradients if gradient is not None]
@@ -869,7 +970,7 @@ def finalize(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the frozen objective/residual redesign causal matrix")
-    parser.add_argument("--phase", required=True, choices=("audit", "analyze", "calibrate", "run", "repair-slopes", "adjudicate", "finalize"))
+    parser.add_argument("--phase", required=True, choices=("audit", "analyze", "calibrate", "run", "repair-slopes", "build-visual-evidence", "adjudicate", "finalize"))
     parser.add_argument("--test", choices=TESTS); parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--source-triage", type=Path, default=Path("/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002"))
@@ -888,6 +989,7 @@ def main() -> None:
     elif args.phase == "calibrate": run_calibrate(args, config)
     elif args.phase == "run": run_test(args, config)
     elif args.phase == "repair-slopes": repair_derived_slopes(args)
+    elif args.phase == "build-visual-evidence": build_visual_evidence(args)
     elif args.phase == "adjudicate": adjudicate(args, config)
     else: finalize(args, config)
 
