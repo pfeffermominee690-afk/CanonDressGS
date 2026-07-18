@@ -468,7 +468,7 @@ def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
 
         for outfit in config["outfits"]:
             base, samples, background, device = load_runtime(config, outfit, args.device)
-            base_fingerprints_before[outfit] = _tensor_state_fingerprint({name: value for name, value in {"xyz": base._xyz, "scaling": base._scaling, "rotation": base._rotation, "opacity": base._opacity, "sh0": base._sh0, "shN": base._shN}.items()})
+            base_fingerprints_before[outfit] = _tensor_state_fingerprint({"xyz": base._xyz, "scaling": base._scaling, "rotation": base._rotation, "opacity": base._opacity, "sh0": base._sh0, "shN": base._shN}.items())
             required_conditions = [condition for item_outfit, condition in SAMPLES if item_outfit == outfit]
             states = {condition: target_free_state(samples[condition], device) for condition in required_conditions}
             regions_by_condition = {condition: trusted_regions(samples[condition], config) for condition in required_conditions}
@@ -544,7 +544,7 @@ def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
                         if state_name == "P3" and condition == "cond_000318":
                             real_synthetic_context = {"means": inputs["posed_xyz"], "covars": inputs["posed_covariance"], "opacity": inputs["opacity"], "camera": camera}
 
-            base_fingerprints_after[outfit] = _tensor_state_fingerprint({name: value for name, value in {"xyz": base._xyz, "scaling": base._scaling, "rotation": base._rotation, "opacity": base._opacity, "sh0": base._sh0, "shN": base._shN}.items()})
+            base_fingerprints_after[outfit] = _tensor_state_fingerprint({"xyz": base._xyz, "scaling": base._scaling, "rotation": base._rotation, "opacity": base._opacity, "sh0": base._sh0, "shN": base._shN}.items())
             if base_fingerprints_after[outfit] != base_fingerprints_before[outfit]:
                 raise RuntimeError(f"frozen base changed: {outfit}")
 
