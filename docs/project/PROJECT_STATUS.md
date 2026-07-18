@@ -1,5 +1,15 @@
 # Project Status
 
+## 2026-07-18 R3-CLEAN subject02 clean-body asset reconstruction pilot
+
+- Run ID: `SUBJECT02-CLEAN-BODY-ASSET-PILOT-001/attempt_001`; formal run commit `9afac2548f15dd9bb0692415384a6b2f6510cfe5`.
+- Status: **FAIL / `FAIL_GEOMETRY_ALIGNMENT`**. The subject02-beta SMPL-X mesh is finite and uses formal 55-joint LBS, but the frozen 12-condition silhouette gate did not close.
+- Silhouette IoU minimum/mean: `0.766824 / 0.823378`; failures below `0.80`: `cond_000714`, `cond_000113`, and `cond_000439`.
+- Actual image inspection found pose-dependent contour mismatch at the head, torso, buttocks, feet, and arms; no global flip or scale explosion was observed.
+- Preflight passed, then the run stopped before shell decomposition, skin field, support sampling, or clean-foundation rendering. Optimizer steps are `0`.
+- All sealed input hashes and the reloaded 200k base fingerprint remain exact. O00 Oracle, Module 4B, and formal image-conditioned training remain prohibited.
+- Only blocker: a subject02 clean-body geometry/camera alignment contract that passes the frozen 12-condition gate with independent joint/camera evidence.
+
 ## 2026-07-18 R3 under-clothes body support design and arm probe
 
 - Run ID: `SUBJECT02-R3-BASE-SUPPORT-DESIGN-001/attempt_001`; formal execution commit `3a54340642ab1dacc5b00615f80ec4098b73c83f`.

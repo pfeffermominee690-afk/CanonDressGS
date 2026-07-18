@@ -227,3 +227,22 @@
 - Tests: R3 8/8 plus R2, Module 4B-R, Module 4B, full attribute/checkpoint/dataset/V5.3 regressions, py_compile, and diff check PASS
 - Status: **PARTIAL / `R3_UNRESOLVED`**; shell handling `not_applicable`; next stage `ACQUIRE_OR_RECONSTRUCT_CLEAN_BODY_ASSET`
 - Stop: Module 4B was not rerun, formal image-conditioned training was not started, and no garment Gaussian layer was implemented
+
+## LEDGER-20260718-011 — R3-CLEAN subject02 clean-body asset reconstruction pilot
+
+- Time: 2026-07-18 Asia/Shanghai
+- Type: DIAGNOSTIC ASSET RECONSTRUCTION / GEOMETRY GATE / SAFE STOP / SEAL
+- Run ID: `SUBJECT02-CLEAN-BODY-ASSET-PILOT-001/attempt_001`
+- Frozen starting HEAD: `3e519a047dfb8272f652499dc4a003fd5bf6e55d`
+- Formal run commit: `9afac2548f15dd9bb0692415384a6b2f6510cfe5`
+- Config: `configs/audit/r3_clean_body_asset_pilot_v1.yaml`, SHA256 `7531889b68678942c223dfa46f3dd8327cb3168ad99e4cacb09584bce857c7df`
+- Base checkpoint/fingerprint: `abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70` / `de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9`
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-CLEAN-BODY-ASSET-PILOT-001/attempt_001`
+- Geometry: subject02 beta, `10475` vertices, `20908` faces, formal 55-joint LBS, finite/no flip/no degenerate faces
+- 12-condition silhouette IoU min/mean: `0.766824/0.823378`; below 0.80: `cond_000714`, `cond_000113`, `cond_000439`
+- Visual inspection: actual contact sheet and two detailed overlays opened; contour mismatch is pose-dependent and not a global flip
+- Stop: geometry gate failed before shell/skin/support/render stages; optimizer absent, optimizer steps `0`
+- Integrity: all sealed input SHA256 exact; reloaded formal 200k base fingerprint bitwise exact
+- Regression: R3-CLEAN 12/12, R2 12/12, R3 8/8, Module 4B 12/12, Module 4B-R 10/10, V5.2 3/3, V5.3 28/28, dataset/loss/full-attribute/checkpoint checks PASS
+- Status: **`CLEAN_BODY_ASSET_PILOT_FAIL / FAIL_GEOMETRY_ALIGNMENT`**
+- Downstream: formal clean-body base, O00 Oracle, Module 4B rerun, and image-conditioned training not authorized

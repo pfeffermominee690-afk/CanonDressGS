@@ -72,3 +72,12 @@
 | Candidate B is ready to become the formal fixed-identity support representation | NOT SUPPORTED | same run | Covered-support visibility `0.065114` exceeds the preregistered `0.01` limit; visual shoulder/wrist seams and uniform tubular color remain | Candidate B may be called technically promising only; final R3 decision is `R3_UNRESOLVED` |
 | A complete subject02 clean body asset is available in the audited workspace | NOT SUPPORTED | same run | Parametric subject02-beta SMPL-X geometry and partial subject02 skin pixels exist, but no verified clean scan or complete hidden-body texture was found | Do not call reconstructed SMPL-X a ground-truth clean scan or claim full under-clothes texture coverage |
 | R3 evidence proves a garment Gaussian layer is required | UNSUPPORTED | same run | Only fixed-identity anatomical support options were audited; no garment layer was built or tested | The permitted next step is clean-body asset acquisition/reconstruction, not automatic garment-layer implementation |
+
+## 2026-07-18 R3-CLEAN evidence
+
+| Paper claim | Status | Code / Run | Current evidence | Limitation / permitted wording |
+|---|---|---|---|---|
+| Subject02-beta SMPL-X provides a finite full canonical topology compatible with the formal 55-joint LBS convention | SUPPORTED-WITH-LIMIT | `SUBJECT02-CLEAN-BODY-ASSET-PILOT-001/attempt_001` / `9afac25` | 10475 vertices, 20908 faces, zero degenerate faces, formal big pose/meters/axes, all 12 posed meshes finite | This establishes parametric geometry compatibility, not a verified clean subject02 scan or hidden-surface ground truth |
+| The reconstructed clean-body geometry passes the frozen 12-condition alignment gate | REFUTED | same run | silhouette IoU min/mean `0.766824/0.823378`; three conditions below 0.80; actual overlays show pose-dependent contour mismatch | Do not describe the diagnostic asset as ready for a formal clean-body base or Oracle |
+| A provenance-aware subject02 full-body skin field and clean Gaussian support were validated by R3-CLEAN-001 | NOT TESTED | same run | The safe stop occurred before shell decomposition, skin-field construction, 60k/120k sampling, and R0/R1/S1/S2 renders | No claim about inferred hidden skin, covered-support leakage, or S1/S2 cleanliness is permitted |
+| The R3-CLEAN failure indicates optimizer or formal checkpoint corruption | REFUTED | same run | optimizer absent, zero steps; every sealed file SHA exact; reloaded formal base fingerprint bitwise exact | Report specifically as geometry alignment failure, not training/checkpoint failure |
