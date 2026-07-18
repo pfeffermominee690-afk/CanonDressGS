@@ -487,3 +487,7 @@ See `docs/CANONDRESSGS_REPRESENTATION_TRIAGE_20260718.md`. The fixed-open ladder
 ## 12. Objective/residual redesign final link — 2026-07-19
 
 See `docs/CANONDRESSGS_OBJECTIVE_RESIDUAL_REDESIGN_20260718.md`. The formal T1–T5 matrix concluded **Case I** and final **Case F**: V6 plus calibrated bounds passes O01, while O08 fails only the preregistered per-view silhouette requirement on back/right views. Seven-outfit re-adjudication, more target generation, and image-conditioned training remain unauthorized. The only next task is `REFINE_NEW_SILHOUETTE_MASK_SEMANTICS`.
+
+## 13. New-silhouette semantics final link — 2026-07-19
+
+See `docs/CANONDRESSGS_NEW_SILHOUETTE_SEMANTICS_20260719.md`. The pixel audit classified O08 back/right as **S-DRIFT**, but the V6.1 zero-init S1 candidate still failed trusted garment recall/IoU and showed visible opacity-cloud/floating-splat artifacts. Final status is **FAIL — Case SC**. Seven-outfit re-adjudication, target generation, and image-conditioned training remain unauthorized. The only next task is `AUDIT_ALPHA_COVERAGE_AND_GAUSSIAN_RASTERIZATION`.
