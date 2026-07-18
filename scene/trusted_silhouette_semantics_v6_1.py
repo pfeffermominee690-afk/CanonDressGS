@@ -21,6 +21,7 @@ V6_1_REGION_NAMES = (
     "transition",
     "neutral_preserve",
 )
+V6_1_HARD_REGION_NAMES = tuple(name for name in V6_1_REGION_NAMES if name != "silhouette_uncertain")
 
 
 def _disk_dilate(mask: torch.Tensor, radius: int) -> torch.Tensor:
@@ -89,9 +90,9 @@ def build_trusted_silhouette_regions(
     trusted_removal = remove_raw * old_clothing * (1 - protected)
     uncertain = torch.maximum(expand_raw, remove_raw) * (1 - torch.maximum(trusted_expansion, trusted_removal)) * (1 - protected)
 
-    target_garment = safe_clothing * (1 - protected) * (1 - trusted_expansion) * (1 - trusted_removal)
+    target_garment = safe_clothing * (1 - protected) * (1 - trusted_expansion) * (1 - trusted_removal) * (1 - uncertain)
     old_removal = old_clothing * edit * (1 - safe_clothing) * (1 - protected)
-    old_removal = old_removal * (1 - trusted_expansion) * (1 - trusted_removal) * (1 - target_garment)
+    old_removal = old_removal * (1 - expand_raw) * (1 - remove_raw) * (1 - target_garment)
     occupied = torch.maximum(protected, torch.maximum(trusted_expansion, torch.maximum(trusted_removal, torch.maximum(target_garment, old_removal))))
     transition = torch.maximum(transition_source, uncertain * raw_clothing) * (1 - occupied)
     occupied = torch.maximum(occupied, transition)
@@ -115,7 +116,7 @@ def build_trusted_silhouette_regions(
         "raw_expansion": expand_raw,
         "raw_removal": remove_raw,
     }
-    hard_names = V6_1_REGION_NAMES
+    hard_names = V6_1_HARD_REGION_NAMES
     overlap = torch.zeros_like(protected)
     for name in hard_names:
         overlap = overlap + _binary(regions[name])
