@@ -38,6 +38,7 @@ tensorboard/
 *.pdf
 *.zip
 *.tar.gz
+*.tar
 *.rar
 *.7z
 
@@ -56,6 +57,11 @@ changed_files.txt
 # Keep source-side examples if explicitly added under docs or paper draft.
 !paper_draft/figures/.gitkeep
 !paper_draft/tables/.gitkeep
+
+# Append-only local image-generation evidence; manifests in the sibling
+# contract directories are committed explicitly, but generated targets are not.
+/artifacts/aaai27_sprint/gpt_image2_route_restore/attempt_*/
+/artifacts/aaai27_sprint/codex_direct_generation_gate_28/attempt_*/
 
 # Accidentally nested local GitHub Desktop repository
 CanonDressGS/

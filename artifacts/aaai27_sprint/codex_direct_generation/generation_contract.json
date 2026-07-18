@@ -1,0 +1,34 @@
+{
+  "schema_version": "canondressgs.aaai27.codex_direct_generation.contract.v1",
+  "task_id": "SUBJECT02-AAAI27-CODEX-DIRECT-GENERATION-GATE-002",
+  "generation_provider": "CODEX_IMAGE_GENERATION_SKILL",
+  "generation_mode": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+  "client": "Codex",
+  "client_surface": "VS_CODE_IDE_EXTENSION",
+  "skill_name": "imagegen",
+  "tool_name": "image_gen.imagegen",
+  "platform_managed": true,
+  "external_api_used": false,
+  "api_key_used": false,
+  "backend_model": null,
+  "backend_model_status": "NOT_EXPOSED_BY_PLATFORM",
+  "candidate_sampling": false,
+  "primary_invocation_max": 28,
+  "technical_retry_max": 4,
+  "total_invocation_max": 32,
+  "raw_output_immutable": true,
+  "expected_width": 1024,
+  "expected_height": 1536,
+  "input_roles": [
+    "subject02_base_render",
+    "subject02_clay_condition",
+    "Jay_outfit_reference"
+  ],
+  "forbidden_inputs": [
+    "existing_subject02_generated_target",
+    "teacher_target",
+    "target_mask",
+    "target_rgb",
+    "Rose_reference"
+  ]
+}

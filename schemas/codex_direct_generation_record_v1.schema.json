@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canondressgs.codex_direct_generation_record.v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "sample_id",
+    "outfit_id",
+    "condition_id",
+    "view",
+    "generation_provider",
+    "client",
+    "client_surface",
+    "skill_name",
+    "tool_name",
+    "platform_managed",
+    "external_api_used",
+    "api_key_used",
+    "backend_model_status",
+    "inputs",
+    "prompt_sha256",
+    "output",
+    "retry_count",
+    "raw_output_immutable"
+  ],
+  "properties": {
+    "schema_version": {"const": "canondressgs.aaai27.codex_generation_record.v1"},
+    "sample_id": {"type": "string"},
+    "outfit_id": {"enum": ["O01", "O02", "O03", "O04", "O06", "O07", "O08"]},
+    "condition_id": {"enum": ["cond_000000", "cond_000318", "cond_000017", "cond_000347"]},
+    "view": {"enum": ["front", "back", "left", "right"]},
+    "generation_provider": {"const": "CODEX_IMAGE_GENERATION_SKILL"},
+    "external_api_used": {"const": false},
+    "api_key_used": {"const": false},
+    "backend_model": {"type": ["string", "null"]},
+    "backend_model_status": {"type": "string"},
+    "inputs": {"type": "array", "minItems": 3, "maxItems": 3},
+    "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "output": {"type": "object"},
+    "retry_count": {"type": "integer", "minimum": 0},
+    "raw_output_immutable": {"const": true}
+  }
+}
