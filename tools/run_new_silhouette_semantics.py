@@ -1005,9 +1005,108 @@ def decide_s2(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     print(json.dumps(payload, indent=2))
 
 
+def crop_around(mask: np.ndarray, padding: int = 48) -> tuple[int, int, int, int]:
+    y, x = np.nonzero(mask)
+    height, width = mask.shape
+    if not len(x):
+        return 0, 0, width, height
+    return (
+        max(0, int(x.min()) - padding), max(0, int(y.min()) - padding),
+        min(width, int(x.max()) + padding + 1), min(height, int(y.max()) + padding + 1),
+    )
+
+
+def build_visual_evidence(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
+    output = args.output / "visual_acceptance"
+    target = output / "visual_acceptance_contact_sheet.png"
+    if target.exists():
+        raise FileExistsError(target)
+    records = manifest_records(Path(config["source_manifest"]))
+    ratio = float(config["support_band"]["base_bbox_diagonal_ratio"])
+    minimum = int(config["support_band"]["minimum_radius_pixels"])
+    milestone_panels: list[tuple[str, np.ndarray]] = []
+    detail_panels: list[tuple[str, np.ndarray]] = []
+    overlay_paths = []
+    for outfit in OUTFITS:
+        run_dir = args.output / "S1_v6_1_semantics" / outfit
+        for step in (0, 200, 480, 1000):
+            path = run_dir / f"diagnostics/step_{step:06d}_four_view.png"
+            if not path.is_file():
+                raise FileNotFoundError(path)
+            milestone_panels.append((f"{outfit} step {step}", read_rgb(path)))
+        for condition in CONDITIONS:
+            view = VIEWS[condition]
+            render = run_dir / "renders/final" / view
+            record = records[(outfit, condition)]
+            paths = {
+                "target_rgb": render / "edit_target.png", "prediction": render / "prediction.png",
+                "alpha": render / "alpha.png", "target_fg": render / "edit_foreground_mask.png",
+                "base_fg": render / "base_foreground_mask.png", "safe_clothing": render / "clothing_mask_safe.png",
+                "old_clothing": render / "old_clothing_mask.png", "protected": render / "protected_mask.png",
+                "core": render / "edit_core_mask.png", "transition": render / "transition_mask.png",
+                "raw_clothing": Path(record["target_clothing_mask_raw"]),
+            }
+            target_rgb = read_rgb(paths["target_rgb"])
+            prediction = read_rgb(paths["prediction"])
+            alpha_u8 = np.asarray(Image.open(paths["alpha"]).convert("L"))
+            masks = {name: read_mask(path) for name, path in paths.items() if name not in {"target_rgb", "prediction", "alpha"}}
+            masks["pred_fg"] = alpha_u8 >= 128
+            derived = trusted_masks(masks, ratio, minimum)
+            fn = masks["target_fg"] & ~masks["pred_fg"]
+            fp = masks["pred_fg"] & ~masks["target_fg"]
+            classified_fn = classify_errors(fn, "FN", masks, derived)
+            classified_fp = classify_errors(fp, "FP", masks, derived)
+            combined = {name: classified_fn[name] | classified_fp[name] for name in CATEGORIES}
+            raw = binary_overlay(prediction, [(fn, (255, 0, 0)), (fp, (0, 110, 255))])
+            trusted = binary_overlay(prediction, [
+                (fn & derived["trusted_expansion"], (0, 220, 80)),
+                (fp & derived["trusted_removal"], (0, 130, 255)),
+            ])
+            category = overlay(prediction, combined)
+            artifact = binary_overlay(prediction, [(derived["artifact"], (255, 40, 40))])
+            destination = output / "overlays" / outfit / view
+            save_rgb(destination / "raw_fn_fp_overlay.png", raw)
+            save_rgb(destination / "trusted_fn_fp_overlay.png", trusted)
+            save_rgb(destination / "mask_category_overlay.png", category)
+            save_rgb(destination / "artifact_overlay.png", artifact)
+            overlay_paths.extend(str(destination / name) for name in (
+                "raw_fn_fp_overlay.png", "trusted_fn_fp_overlay.png", "mask_category_overlay.png", "artifact_overlay.png",
+            ))
+            detail_panels.extend([
+                (f"{outfit} {view} target", target_rgb), (f"{outfit} {view} prediction", prediction),
+                (f"{outfit} {view} raw", raw), (f"{outfit} {view} trusted", trusted),
+            ])
+            if outfit == "O08" and view in {"back", "right"}:
+                crop = crop_around(fn | fp | derived["trusted_expansion"] | derived["trusted_removal"])
+                crop_panels = [
+                    (f"{view} target", target_rgb[crop[1]:crop[3], crop[0]:crop[2]]),
+                    (f"{view} prediction", prediction[crop[1]:crop[3], crop[0]:crop[2]]),
+                    (f"{view} raw error", raw[crop[1]:crop[3], crop[0]:crop[2]]),
+                    (f"{view} categories", category[crop[1]:crop[3], crop[0]:crop[2]]),
+                    (f"{view} protected", binary_overlay(prediction, [(masks["protected"], (255, 40, 180))])[crop[1]:crop[3], crop[0]:crop[2]]),
+                    (f"{view} artifact", artifact[crop[1]:crop[3], crop[0]:crop[2]]),
+                ]
+                contact_sheet(output / f"O08_{view}_boundary_and_protected_crops.png", crop_panels, 3)
+    contact_sheet(target, milestone_panels, 2)
+    contact_sheet(output / "final_view_error_contact_sheet.png", detail_panels, 4)
+    shutil.copy2(
+        args.output / "silhouette_error_audit/silhouette_error_audit_contact_sheet.png",
+        output / "S0_silhouette_error_audit_contact_sheet.png",
+    )
+    atomic_json(output / "visual_evidence_manifest.json", {
+        "status": "READY_FOR_ACTUAL_INSPECTION", "images_actually_opened": False,
+        "milestone_contact_sheet": str(target),
+        "final_view_error_contact_sheet": str(output / "final_view_error_contact_sheet.png"),
+        "S0_error_contact_sheet": str(output / "S0_silhouette_error_audit_contact_sheet.png"),
+        "O08_crops": [str(output / f"O08_{view}_boundary_and_protected_crops.png") for view in ("back", "right")],
+        "overlay_paths": overlay_paths, "renderer_invoked": False, "optimizer_steps": 0,
+    })
+    print(json.dumps({"status": "READY_FOR_ACTUAL_INSPECTION", "contact_sheet": str(target)}, indent=2))
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the registered new-silhouette semantics study")
-    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2"))
+    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence"))
     parser.add_argument("--stage", choices=("S1", "S2"))
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -1030,8 +1129,10 @@ def main() -> None:
         run_calibrate(args, config)
     elif args.phase == "run":
         run_candidate(args, config)
-    else:
+    elif args.phase == "decide-s2":
         decide_s2(args, config)
+    else:
+        build_visual_evidence(args, config)
 
 
 if __name__ == "__main__":

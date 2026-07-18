@@ -163,6 +163,12 @@ class NewSilhouetteContractTests(unittest.TestCase):
         self.assertIn('"calibration_reused_without_repetition": True', source)
         self.assertNotIn("run_calibrate(", source)
 
+    def test_visual_evidence_is_inspection_only(self):
+        source = inspect.getsource(runner.build_visual_evidence)
+        self.assertIn('"renderer_invoked": False', source)
+        self.assertIn('"optimizer_steps": 0', source)
+        self.assertNotIn("optimizer", source.lower().replace('"optimizer_steps"', ""))
+
     def test_frozen_branches_unchanged(self):
         expected = "cee8fc51b5039a102ef7e2c31632e348ae3b99a1"
         local = subprocess_output("git", "rev-parse", "research/objective-residual-redesign-20260718", allow_failure=True)
