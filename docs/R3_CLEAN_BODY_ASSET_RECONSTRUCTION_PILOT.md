@@ -74,4 +74,3 @@ The parameterized `check_real_six_channel_decoder.py` acceptance entrypoint was 
 - Formal image-conditioned training: **NO**
 
 Only remaining blocker: obtain or define a subject02 clean-body geometry/camera alignment contract that passes the frozen 12-condition gate and includes independent joint/camera evidence, rather than relying on silhouette bbox fitting alone.
-
