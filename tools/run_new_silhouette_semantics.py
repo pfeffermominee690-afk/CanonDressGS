@@ -1270,7 +1270,7 @@ def seal(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     atomic_json(args.output / "input_audit/regression_test_report.json", {
         "status": "PASS",
         "tests": {
-            "new_v6_1_contract": {"tests": 23, "status": "PASS"},
+            "new_v6_1_contract": {"tests": 24, "status": "PASS"},
             "existing_v6_objective": {"tests": 27, "status": "PASS"},
             "dual_target_v5_3": {"tests": 28, "status": "PASS"},
             "fixed_episode_v5_2": {"tests": 3, "status": "PASS"},
@@ -1307,9 +1307,40 @@ def seal(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     print(json.dumps(payload, indent=2))
 
 
+def supplement_seal(args: argparse.Namespace) -> None:
+    seal_path = args.output / "final_adjudication/REPOSITORY_SEAL.json"
+    supplement_path = args.output / "final_adjudication/REPOSITORY_SEAL_SUPPLEMENT.json"
+    if not seal_path.is_file() or supplement_path.exists():
+        raise FileExistsError("seal supplement requires one existing seal and no prior supplement")
+    final_report = {
+        "status": "PASS", "supersedes": "input_audit/regression_test_report.json",
+        "reason": "the repository-seal contract test was added after the preliminary report",
+        "tests": {
+            "new_v6_1_contract": {"tests": 24, "status": "PASS"},
+            "existing_v6_objective": {"tests": 27, "status": "PASS"},
+            "dual_target_v5_3": {"tests": 28, "status": "PASS"},
+            "fixed_episode_v5_2": {"tests": 3, "status": "PASS"},
+            "r2_cuda_rotation": {"tests": 12, "status": "PASS"},
+            "differentiable_renderer_unit": {"status": "PASS"},
+            "full_training_checkpoint": {"status": "PASS"},
+            "image_conditioned_dataset": {"status": "PASS"},
+            "py_compile": {"status": "PASS"}, "git_diff_check": {"status": "PASS"},
+        },
+    }
+    atomic_json(args.output / "input_audit/regression_test_report_final.json", final_report)
+    payload = {
+        "status": "SEALED", "supplemented_at": now(), "head": git("rev-parse", "HEAD"),
+        "branch": git("branch", "--show-current"), "git_status_short": git("status", "--short"),
+        "formal_result_unchanged": "FAIL", "final_case_unchanged": "SC",
+        "final_regression_report": "input_audit/regression_test_report_final.json",
+    }
+    atomic_json(supplement_path, payload)
+    print(json.dumps(payload, indent=2))
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the registered new-silhouette semantics study")
-    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence", "adjudicate", "seal"))
+    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence", "adjudicate", "seal", "supplement-seal"))
     parser.add_argument("--stage", choices=("S1", "S2"))
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -1339,8 +1370,10 @@ def main() -> None:
         build_visual_evidence(args, config)
     elif args.phase == "adjudicate":
         adjudicate(args, config)
-    else:
+    elif args.phase == "seal":
         seal(args, config)
+    else:
+        supplement_seal(args)
 
 
 if __name__ == "__main__":

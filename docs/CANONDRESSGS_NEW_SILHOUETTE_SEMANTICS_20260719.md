@@ -95,7 +95,7 @@ The milestone/final/error sheets, O08 crops, and original-resolution O08 back/ri
 
 ## Tests and final adjudication
 
-New V6.1 tests `23/23`, existing V6 `27/27`, dual-target/V5.3 `28/28`, fixed-episode `3/3`, R2 CUDA/autograd `12/12`, renderer unit, checkpoint, dataset, py_compile, and `git diff --check` all pass.
+New V6.1 tests `24/24`, existing V6 `27/27`, dual-target/V5.3 `28/28`, fixed-episode `3/3`, R2 CUDA/autograd `12/12`, renderer unit, checkpoint, dataset, py_compile, and `git diff --check` all pass.
 
 Final status: **FAIL — Case SC**. Mask semantics is not the sole issue; true garment underfill, trusted removal, and raster/alpha coverage remain unresolved.
 
@@ -104,4 +104,3 @@ Final status: **FAIL — Case SC**. Mask semantics is not the sole issue; true g
 - Image-conditioned training: not allowed.
 - Benchmark: garment-trusted silhouette becomes the primary clothing-region metric; raw full-foreground IoU remains diagnostic with an explicit synthetic-target drift limitation. Do not claim complete human-silhouette matching.
 - Next and only task: `AUDIT_ALPHA_COVERAGE_AND_GAUSSIAN_RASTERIZATION`.
-
