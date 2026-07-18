@@ -1,9 +1,13 @@
 # CanonDressGS Post-AAAI Continuation Handoff — 2026-07-18
 
-Status: **FROZEN HANDOFF**  
-Long-term branch: `pipeline/full-dressable-20260715`  
-Frozen long-term HEAD: `9fc88033b407136073f7bddc6ffca6dd4dd1e0f5`  
-Scope-pivot tag: `pre-aaai27-scope-pivot-20260718`  
+Status: **FROZEN HANDOFF**
+
+Long-term branch: `pipeline/full-dressable-20260715`
+
+Frozen long-term HEAD: `9fc88033b407136073f7bddc6ffca6dd4dd1e0f5`
+
+Scope-pivot tag: `pre-aaai27-scope-pivot-20260718`
+
 AAAI sprint branch: `sprint/aaai27-20260718`
 
 This document preserves the complete long-term research state while the active sprint narrows to an AAAI-27 submission. It is a recovery contract, not a declaration that unresolved Full Dressable Pipeline work has passed.
@@ -291,124 +295,126 @@ Mapping v2 has visual consensus 1.0 across its reviewed crops and is shared by J
 
 ## 5. Mandatory conclusions preserved by this handoff
 
-1. CanonDressGS has a verified reference-only image-conditioned canonical feature path; it is not merely a cloth-ID lookup.
-2. The six-channel residual interface, interpolation, composition, render, gradient, and checkpoint mechanisms are real code paths with formal tests.
-3. Learned graph completion materially improves unobserved clothing-active recovery on the validated Module 3 experiment.
-4. Independent inference parity passed and prediction forbids target RGB/masks, teacher gates, and cloth/outfit IDs.
-5. Module 4A checkpoint restoration is correct; cross-process CUDA trajectory differences originate in known nondeterministic raster backward reductions.
-6. V5.3 validates the boundary-aware/protected dual-target objective on a fixed O05 episode; it does not establish multi-outfit generalization.
-7. The formal Oracle representation study failed visually and therefore does not prove full garment representation capacity.
-8. R2 fixed the rotation-autograd defect, but R3 body support remains unresolved.
-9. No clean under-clothes body asset or exact historical source-generation contract has been recovered.
-10. The AAAI sprint must make only support-compatible claims, preserve all negative evidence, and keep the long-term recovery path intact.
+1. V5.3 boundary-aware alpha objective is formally **PASS** on its registered fixed episode.
+2. Dual-target region supervision can isolate donor/generative-target identity contamination by trusting the raw edit only in garment/edit regions and the base in protected regions.
+3. Protected white shoes did not drift toward the raw black-shoe target because they were excluded from edit/core/transition supervision and preserved with the base target.
+4. The six-channel real gradient path, frozen-state evidence, checkpoint behavior, and strict inference boundary have been verified.
+5. The zero-initialized rotation-autograd defect was fixed by a unified differentiable quaternion-composition path.
+6. The old Module 4B Oracle gate initialization and failed visual outcome must not be treated as a clean representation upper bound.
+7. The current subject02 base is an identity-plus-old-garment mixed shell, not a clean under-clothes body.
+8. Continuous under-clothes arm support is absent below the old long sleeves; R3 remains unresolved.
+9. The AAAI scope deliberately does not solve exposed-skin garments or large-topology garments such as long coats.
+10. Existing conditions retain a valid semantic mapping to subject02 poses/frames. Failure to reproduce every historical clay pixel exactly does not invalidate the registered pose/camera/state data.
 
 ## 6. Paused or deprecated routes
 
-- Pause full Module 4B long-form training and all automatic progression to later modules.
-- Pause clean-body fitting, generator archaeology, and arm-support Oracle work during the AAAI sprint.
-- Do not resume geometry-only 300-step experiments or Gate 3 threshold/coverage research.
-- Do not use third-party or built-in image generation during the preflight; existing image assets are frozen.
-- Do not restore historical `cloth_id` conditioning, teacher/full-view inference gates, target-view conditioning, or temporary precomputed gates.
-- Do not treat direct-edit target images as inference inputs.
-- Deprecate any route that composes rotation through a zero-special-cased nondifferentiable branch.
-- Deprecate claims that the current raw MMLP-Human base is a clean body beneath clothing.
+- Donor-pixel compositing, TPS/similarity/optical-flow composition, and V4 identity-safe pixel finalization are not formal 3D supervision routes; they produced alignment/identity artifacts and are paused.
+- V5.2 static/baseline loss balancing and the old transition BCE+Dice objective are superseded by the frozen V5.3 boundary-aware soft-alpha/SmoothL1 formulation.
+- Recoloring the old garment Gaussians as skin is not a valid clean-body reconstruction strategy.
+- Local arm patches may remain diagnostic probes but are not a formal final body representation.
+- Bounding-box fitting may not be used to claim exact reproduction of a historical condition generator.
+- Jay RGB is donor/reference evidence and must never be relabeled as a subject02 target.
+- Garment Gaussian layers are a post-AAAI representation decision and will not be introduced during this sprint.
+- Full Module 4B training, clean-body fitting, generator archaeology, arm-support Oracle work, geometry-only 300-step experiments, and Gate 3 research are paused.
+- Third-party and built-in image generation are disabled for this preflight; existing image assets are frozen.
+- Historical `cloth_id` conditioning, teacher/full-view inference gates, target-view conditioning, and temporary precomputed prediction gates remain forbidden.
 - Preserve all historical outputs and PARTIAL/FAIL reports; do not rewrite them into later adjudications.
 
 ## 7. Unresolved items
 
-- Clean under-clothes body support and arm visibility under sleeve removal.
+- Clean under-clothes body and continuous full-body support.
+- Exposed-skin garments whose revealed surface is absent from the current base.
+- Decomposition of the old garment shell from subject identity.
+- Long-coat/exterior silhouette and garment-support topology outside current Gaussian support.
+- A directly usable second target identity and multi-identity generalization.
+- Large-scale subject02 target generation and a complete 12-outfit benchmark.
+- Real-image supervision beyond the current synthetic/direct-edit fixtures.
+- Original clean-body generator/binary and exact historical condition-generator provenance.
 - Visually adequate full six-channel garment representation capacity.
-- A complete real 12-outfit × 200-condition dataset with shared conditions and verified masks/cameras.
-- Balanced cross-view Rose assets and a directly usable second target avatar.
-- Original clean-body generator/binary and exact geometry-camera source contract.
-- Multi-outfit image-conditioned training and unseen-outfit generalization.
-- Formal quantitative identity preservation beyond one subject02 fixture.
-- Robust appearance/alpha transfer without protected-region leakage.
 - A Module 3 checkpoint produced under the later exact full-state resume contract.
-- Cross-subject generalization and real replaceable-clothing digital-human closure.
 
 ## 8. Post-AAAI recovery roadmap
 
-### P1 — Re-establish exact source provenance
+### P1 — Clean-body geometry/camera contract
 
-- Input: GEOMCAM forensic evidence, historical archives, hashes, cameras, and source replays.
-- Goal: identify or reconstruct an exact clean-body generation contract.
-- Acceptance: executable provenance, versioned binary/code, camera/state contract, and exact-or-explained replay across all registered poses.
-- Prerequisite: archived assets remain immutable.
-- Forbidden: hand-tuning cameras per frame or relabeling an approximate replay as exact.
-- Failure decision: keep R3-CLEAN blocked and use only documented approximate assets for diagnostics.
+- Input: GEOMCAM evidence, registered subject02 poses/cameras, historical source assets and hashes.
+- Goal: recover or replace the exact geometry/camera contract required for a clothing-independent body.
+- Acceptance: versioned executable provenance and exact-or-explained multi-view replay with preregistered silhouette/bbox criteria.
+- Prerequisite: immutable historical evidence.
+- Forbidden: per-frame camera fitting or calling an approximate replay exact.
+- Failure decision: keep clean-body work blocked and retain only explicitly approximate diagnostic assets.
 
-### P2 — Build a clean target body asset
+### P2 — Provenance-aware subject02 skin field
 
-- Input: P1 source contract, subject02 identity observations, registered poses/cameras.
-- Goal: reconstruct a clothing-independent frozen body/Gaussian base.
-- Acceptance: silhouette/identity thresholds preregistered across all views, no baked garment support, stable deformation/render, and reproducible checkpoint.
+- Input: P1 contract, identity observations, protected skin/hair/face/hand regions.
+- Goal: reconstruct a subject02 skin/identity field whose provenance excludes old-clothing pixels.
+- Acceptance: identity/protected-region fidelity, multi-view consistency, traceable source masks, and reproducible checkpoint.
 - Prerequisite: P1 PASS.
-- Forbidden: extracting a target garment surface into the body or evaluating only a favorable pose.
-- Failure decision: test a separately registered parametric-body support layer; do not proceed to Oracle clothing capacity.
+- Forbidden: recoloring old garment Gaussians as skin or filling with target-garment evidence.
+- Failure decision: stop before body-support fitting and redesign the source decomposition.
 
-### P3 — Close under-clothes arm/skin support
+### P3 — Formal frozen full-body support
 
-- Input: P2 body, O00/O01/O05 sleeve-removal probes, protected masks.
-- Goal: ensure exposed-arm regions exist without leaking through covered garments.
-- Acceptance: support coverage and covered-view leakage meet the frozen R3 thresholds on train and held-out views.
+- Input: P2 skin field, registered sleeve-removal probes, body topology and deformation.
+- Goal: provide continuous frozen support for surfaces that garments may reveal.
+- Acceptance: R3 support coverage and covered-view leakage thresholds on training and held-out views; bitwise-frozen support during garment optimization.
 - Prerequisite: P2 PASS.
-- Forbidden: target-view masks at inference or an outfit-specific hidden support artifact.
-- Failure decision: redesign support representation before any clothing optimizer run.
+- Forbidden: outfit-specific hidden patches or target-view support at inference.
+- Failure decision: revise body representation before any garment-capacity claim.
 
-### P4 — Re-run fixed-open Gaussian Oracle capacity
+### P4 — Old garment shell decomposition
 
-- Input: P3 base/support, R2 rotation path, frozen V5.3 objective, registered garment fixtures.
-- Goal: isolate representational capacity independent of the image conditioner.
-- Acceptance: preregistered numerical and visual success across multiple outfits, protected-region stability, all six-channel evidence, and no gate optimization loophole.
+- Input: P3 body/support and the current identity-plus-old-garment Gaussian shell.
+- Goal: separate removable old-garment support from persistent identity/body support.
+- Acceptance: stable base-only renders, no holes in preserved identity regions, and no old-garment leakage into new-outfit supervision.
 - Prerequisite: P3 PASS.
-- Forbidden: moving thresholds, editing target fixtures, or using a learned gate to hide capacity failure.
-- Failure decision: revise Gaussian/mesh/layered representation; do not blame conditioning.
+- Forbidden: destructive editing of the frozen original base or untracked manual deletion.
+- Failure decision: preserve the mixed shell and test an explicit layered alternative.
 
-### P5 — Formalize the garment representation
+### P5 — O00 fixed-open Gaussian Oracle
 
-- Input: P4 diagnostics and candidate residual/layer formulations.
-- Goal: select a canonical garment representation capable of topology and silhouette change.
-- Acceptance: Oracle success, render stability, differentiability, bounded residuals, checkpoint parity, and protected-region safety.
-- Prerequisite: P4 evidence.
-- Forbidden: architecture selection from a single teacher/pose or unreported per-outfit optimization.
-- Failure decision: branch into explicit garment layers or hybrid surfaces with a new registered contract.
+- Input: P4 decomposed base, R2 rotation path, V5.3 objective, O00 fixture.
+- Goal: isolate short-sleeve representational capacity without gate hiding.
+- Acceptance: frozen fixed-open gate, clear edit/clothing improvement, protected identity stability, arm support pass, and visual acceptance across views.
+- Prerequisite: P3/P4 PASS.
+- Forbidden: learned-gate collapse, threshold relaxation, or fixture editing.
+- Failure decision: reject current Gaussian residual support for exposed-skin garments.
 
-### P6 — Complete the multi-outfit shared-condition dataset
+### P6 — O05 exterior-topology capacity test
 
-- Input: mapping v2, 261-condition Jay union, registered cameras/states, real segmentation backend.
-- Goal: deliver the Full Dressable Dataset Contract v1 at its declared scale or publish a formally reduced successor contract.
-- Acceptance: shared condition IDs, complete masks/RGB/state/camera, split integrity, projection-hit thresholds, and inference-boundary checks.
-- Prerequisite: no model training required; data provenance tools must pass.
-- Forbidden: guessing cameras, silently resizing intrinsics, or using generated targets as model conditioning.
-- Failure decision: reduce scope transparently and freeze a new versioned contract.
+- Input: P4 base, V5.3 objective, O05 long-coat fixture and registered exterior-silhouette masks.
+- Goal: test capacity for silhouettes extending beyond base support.
+- Acceptance: new-silhouette recall, no opacity cloud/extreme Gaussians, protected-region safety, and four-view visual acceptance.
+- Prerequisite: stable P5 infrastructure; O05 does not require pretending P5 exposed-skin capacity passed.
+- Forbidden: cropping away the lower coat or evaluating only source-like views.
+- Failure decision: mark topology-changing garments unsupported and advance to P7 representation decision.
 
-### P7 — Multi-outfit image-conditioned training
+### P7 — Garment Gaussian layer decision
 
-- Input: P5 representation, P6 dataset, online completer, six-channel decoder, frozen body/backbone policy.
-- Goal: train one model across garments without outfit-ID conditioning.
-- Acceptance: optimization stability, unseen-condition and unseen-outfit improvement over zero/observed-only baselines, frozen-state evidence, independent inference, and visual acceptance.
-- Prerequisite: P5 and P6 PASS.
-- Forbidden: per-outfit fine-tuning in the main claim or teacher/target inputs at inference.
-- Failure decision: separate representation, observation, and completion ablations before increasing training length.
+- Input: P5/P6 failure modes and candidate explicit-layer/hybrid representations.
+- Goal: decide whether a separate garment Gaussian layer is necessary.
+- Acceptance: preregistered Oracle capacity, differentiability, deformation stability, bounded attributes, checkpoint parity, and identity protection.
+- Prerequisite: P5/P6 evidence.
+- Forbidden: architecture selection from a single favorable outfit or unreported per-outfit tricks.
+- Failure decision: retain the strongest support-compatible representation and narrow claims explicitly.
 
-### P8 — Cross-subject transfer
+### P8 — Full 12 × 200 dataset
 
-- Input: a second verified target avatar, P7 garment encoder/representation, subject-specific frozen bases.
-- Goal: demonstrate garment conditioning transfers without identity leakage.
-- Acceptance: same garment/reference protocol, held-out identities, quantitative identity/protected-region metrics, and actual visual review.
-- Prerequisite: directly usable second-target checkpoint and dataset contract.
-- Forbidden: treating config names as assets or tuning on test subject/outfit pairs.
-- Failure decision: state single-subject limitation and investigate subject-normalized canonical features.
+- Input: mapping v2, 261-condition Jay union, registered cameras/states, target-data production pipeline.
+- Goal: deliver the versioned 12-outfit × 200-shared-condition benchmark.
+- Acceptance: 2400 logical targets and masks, shared condition IDs, exact split integrity, camera/projection checks, and inference-boundary tests.
+- Prerequisite: a frozen representation and target-generation protocol.
+- Forbidden: guessed cameras, silent intrinsic resizing, or generated targets as inference conditions.
+- Failure decision: publish a formally reduced successor contract without overwriting v1.
 
-### P9 — Full replaceable-clothing digital-human closure
+### P9 — Multi-identity validation
 
-- Input: P1-P8 evidence.
-- Goal: deliver the original end-to-end system with independent inference and repeatable deployment.
-- Acceptance: complete dataset/model/checkpoint/renderer contracts, third-view rendering, unseen garments/poses/subjects, identity preservation, resume correctness, and paper evidence traceability.
-- Prerequisite: all earlier mandatory gates.
-- Forbidden: collapsing PARTIAL/FAIL evidence into an overall PASS or hiding manual intervention.
-- Failure decision: publish the strongest validated subsystem with explicit limitations and preserve this roadmap.
+- Input: P7 model/representation, P8 data contract, and at least one second verified target avatar.
+- Goal: evaluate transfer across personalized avatars without claiming a universal single model unless demonstrated.
+- Acceptance: held-out identities/outfits/poses, identity-region metrics, donor-consistency analysis, independent inference, and visual review.
+- Prerequisite: directly usable second-target checkpoint and aligned dataset contract.
+- Forbidden: treating actor config names as assets or tuning on test identities.
+- Failure decision: retain the personalized single-target setting and state the limitation prominently.
 
 ## 9. Exact recovery instructions
 
