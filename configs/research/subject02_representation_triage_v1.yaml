@@ -1,0 +1,97 @@
+schema_version: canondressgs.representation_triage.v1
+task_id: SUBJECT02-REPRESENTATION-TRIAGE-001
+source_no_go_commit: 54c1ba73d325a58256f32b4fecdf8c321aef8e21
+source_run_commit: c19e0f6795d6942433f31860ae219a603c03a3c8
+sealed_tag: aaai27-no-go-sealed-20260718
+sprint_branch: sprint/aaai27-20260718
+long_term_branch: pipeline/full-dressable-20260715
+long_term_head: 9fc88033b407136073f7bddc6ffca6dd4dd1e0f5
+outfits: [O01, O08]
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views: [front, back, left, right]
+seed: 20260718
+base_gaussian_count: 200000
+enabled_attributes: [xyz, log_scaling, rotation, opacity_logit, sh0]
+shn_enabled: false
+
+capacity_loss:
+  name: CAPACITY_ORACLE_LOSS_V1
+  garment_rgb: 1.0
+  alpha_foreground: 0.5
+  new_silhouette_alpha: 1.0
+  boundary_rgb: 0.25
+  protected_rgb: 10.0
+  protected_alpha: 5.0
+  stability: 0.0001
+  preserve_old_garment: false
+
+optimizer:
+  class: Adam
+  geometry_lr: 0.001
+  appearance_lr: 0.002
+  gradient_clip_norm: 1.0
+
+rung_1:
+  steps: 600
+  record_steps: [0, 1, 10, 20, 40, 80, 160, 240, 320, 480, 600]
+  render_steps: [0, 40, 80, 160, 320, 480, 600]
+  pass:
+    garment_error_reduction_min: 0.50
+    target_closer_fraction_min: 0.75
+    silhouette_iou_min: 0.90
+    protected_mae_max: 0.01
+    abnormal_gaussian_fraction_max: 0.01
+    background_leakage_max: 0.02
+  warn:
+    garment_error_reduction_min: 0.30
+    target_closer_fraction_min: 0.55
+    protected_mae_max: 0.01
+    abnormal_gaussian_fraction_max: 0.02
+  rung_2_min_pass_or_warn_views: 3
+
+rung_2:
+  steps: 1200
+  record_steps: [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200]
+  render_steps: [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200]
+  pass:
+    per_view_reduction_min: 0.40
+    mean_reduction_min: 0.50
+    per_view_target_closer_min: 0.65
+    protected_mae_max: 0.01
+    abnormal_gaussian_fraction_max: 0.01
+  warn:
+    mean_reduction_min: 0.30
+    direction_correct_min_views: 3
+    direction_reduction_min: 0.30
+    protected_mae_max: 0.01
+
+rung_3:
+  steps: 1200
+  garment_gaussian_count: 30000
+  initialization: fixed_seed_base_canonical_garment_envelope_outward_12mm
+  formal_lbs_joint_count: 55
+  record_steps: [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200]
+  render_steps: [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200]
+  pass:
+    per_view_reduction_min: 0.50
+    mean_reduction_min: 0.60
+    per_view_silhouette_iou_min: 0.90
+    per_view_target_closer_min: 0.75
+    protected_mae_max: 0.01
+    abnormal_gaussian_fraction_max: 0.01
+  warn:
+    mean_reduction_min: 0.40
+    protected_mae_max: 0.01
+
+abnormal_gaussian:
+  xyz_displacement_m: 0.25
+  scale_ratio_max: 8.0
+  opacity_saturation_low: 0.005
+  opacity_saturation_high: 0.995
+  outside_base_radius_multiplier: 1.5
+
+decision:
+  primary_outfit: O08
+  cases: [A, B, C, D, E]
+  formal_training_allowed: false
+  further_target_generation_allowed: false
