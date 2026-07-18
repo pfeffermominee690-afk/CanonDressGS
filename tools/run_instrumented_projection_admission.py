@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import csv
 import hashlib
 import json
@@ -697,7 +698,10 @@ def finalize_visual(args: argparse.Namespace, config: Mapping[str, Any]) -> None
         raise RuntimeError("audit is not awaiting visual inspection")
     if args.final_case != preliminary["preliminary_case"]:
         raise ValueError("visual finalization cannot override the preregistered numerical case")
-    observations = json.loads(args.visual_observations)
+    payload = args.visual_observations
+    if args.visual_observations_base64 is not None:
+        payload = base64.b64decode(args.visual_observations_base64).decode("utf-8")
+    observations = json.loads(payload)
     if not observations.get("images_actually_opened") or observations.get("inspection_method") != "view_image_original_resolution_and_contact_sheets":
         raise ValueError("actual image-open evidence is required")
     final = {**preliminary, "status": "PASS", "audit_status": "COMPLETE", "final_case": args.final_case, "visual_acceptance": observations, "renderer_change_authorized": args.final_case == "IA", "coverage_placement_objective_change_authorized": args.final_case == "IP", "seven_outfit_rerun_authorized": False, "target_generation_authorized": False, "formal_training_authorized": False, "optimizer_steps": 0, "completed_at": now()}
@@ -718,9 +722,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--final-case", choices=("IP", "IA", "IC", "IM", "IU"))
     parser.add_argument("--visual-observations")
+    parser.add_argument("--visual-observations-base64")
     args = parser.parse_args()
-    if args.command == "finalize-visual" and (args.final_case is None or args.visual_observations is None):
-        parser.error("finalize-visual requires --final-case and --visual-observations")
+    if args.command == "finalize-visual" and (args.final_case is None or (args.visual_observations is None and args.visual_observations_base64 is None)):
+        parser.error("finalize-visual requires --final-case and visual observations")
+    if args.visual_observations is not None and args.visual_observations_base64 is not None:
+        parser.error("choose one visual-observations transport")
     return args
 
 
