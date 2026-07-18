@@ -48,7 +48,9 @@ def tests(root: Path) -> dict[str, Any]:
         "builder_phases_present": {"prepare_segmentation", "build_fixture", "finalize_support"}.issubset(function_names(builder_tree)),
         "safe_clothing_formula_present": "clothing_raw & raw_fg & ~protected" in builder_source,
         "raw_hash_rechecked": "raw target changed after generation" in builder_source,
-        "visual_gate_status_schema_compatible": 'get("visual_status", visual_by_sample[sample_id].get("status"))' in builder_source,
+        "visual_gate_status_schema_compatible": (
+            '"visual_status", visual_by_sample[sample_id].get("status")' in builder_source
+        ),
         "no_raw_postprocess": "shutil.copyfile(raw_path, edit_rgb)" in builder_source,
         "fixed_open_oracle_used": "FixedOpenGaussianOracle" in runner_source,
         "no_anchor_oracle": "AnchorResidualOracle" not in runner_source,
