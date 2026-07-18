@@ -229,3 +229,11 @@ Any failed item is a registered No-Go risk. It may not be hidden by changing eva
 - Module 4B/R3 continuation.
 
 The immediate task after this preflight is `RUN_AAAI_28_IMAGE_DATA_AND_CAPACITY_GATE`. This document authorizes no image generation, Oracle run, or training by itself.
+
+## 13. 28-image data/capacity gate execution status (2026-07-18)
+
+`SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_001` stopped at the preregistered image-model route check with status **BLOCKED_GENERATION_MODEL_CONTRACT**. The required route is an explicitly verifiable `gpt-image-2` `images.edit` call. The four existing O01 raw direct edits were actually opened and are visually usable, but their frozen provenance is `codex_builtin_imagegen` with model ID `UNEXPOSED_PLATFORM_IMAGE_MODEL`; therefore 0/4 may be relabeled or reused as verified `gpt-image-2` targets.
+
+Completed evidence is limited to input and contract closure: seven Jay reference sets with four fixed views each, O01 reuse audit, 38/38 local input rehashes, 37/37 cloud handoff rehashes, and the frozen selection/test rules. API calls, generated images, and optimizer steps are all zero. Generation visual gate, masks, `AAAI_GATE_28`, support compatibility, Oracle, and final outfit capacity decisions were not run. The seven candidates remain `BLOCKED_NOT_ADJUDICATED`, not PASS/RESERVE/FAIL.
+
+No 192/160 benchmark is selected; target production and image-conditioned training remain unauthorized. The sole recovery task is `RESTORE_VERIFIED_GPT_IMAGE_2_IMAGES_EDIT_ROUTE`. This stop does not change the frozen candidate list, four conditions, thresholds, long-term branch, or scientific Go/No-Go criteria.

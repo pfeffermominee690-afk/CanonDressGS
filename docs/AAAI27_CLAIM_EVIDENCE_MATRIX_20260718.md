@@ -175,3 +175,13 @@ Rule: no claim with status other than `SUPPORTED` may enter the abstract or conc
 ## Abstract and conclusion release gate
 
 The following priority claims are blocked from achieved-result wording until their rows become `SUPPORTED`: unseen outfit (C2), no per-outfit optimization (C3), graph completion on the compact benchmark (C5), region-trusted supervision across outfits (C8), and identity preservation across the benchmark (C9). The paper may describe the method design, the registered evaluation plan, and already-supported subsystem contracts, but may not predeclare the final result.
+
+## 28-image gate evidence update (2026-07-18)
+
+- Artifact: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_001`
+- Formal run commit: `054ceb18ec2c57398d2b2ea1fb6eca359b28e01c`
+- Status: **BLOCKED_GENERATION_MODEL_CONTRACT** before any API call, generated image, mask build, or optimizer step.
+- Supported evidence from this attempt: exact seven-outfit/four-condition contract, frozen Jay four-view reference sets, O01 provenance audit, local/cloud input integrity, and deterministic benchmark-selection tests.
+- Unsupported evidence: Generation Data Gate results, support-risk metrics, per-outfit numeric/visual Oracle capacity, final train/unseen outfits, and a 192/160 target count.
+
+Consequently C2, C3, C5, C8, C9, and the seven-outfit portion of C12 receive no positive benchmark evidence from this attempt. No abstract, conclusion, table, or figure may describe the capacity gate as completed or call any candidate PASS/FAIL. The existing O00/O05 limitation evidence remains unchanged. Recovery requires an explicitly verifiable `gpt-image-2` `images.edit` route; silently substituting an unexposed image model is forbidden.
