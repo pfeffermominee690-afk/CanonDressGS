@@ -842,7 +842,7 @@ def run_candidate(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
                 if parameter.requires_grad and parameter.grad is not None:
                     if not torch.isfinite(parameter.grad).all():
                         raise FloatingPointError(f"non-finite gradient: {name}")
-                    gradient_seen[name] += int(torch.count_nonzero(parameter.grad) > 0)
+                    gradient_seen[name] = gradient_seen.get(name, 0) + int(torch.count_nonzero(parameter.grad) > 0)
             norm = torch.nn.utils.clip_grad_norm_(model.parameters(), float(config["optimizer"]["gradient_clip_norm"]))
             if not torch.isfinite(norm):
                 raise FloatingPointError("non-finite clipped gradient")
@@ -909,6 +909,43 @@ def run_candidate(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
         raise
 
 
+def bootstrap_after_zero_step_failure(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
+    if args.source_attempt is None:
+        raise ValueError("bootstrap requires --source-attempt")
+    source = args.source_attempt.resolve()
+    if args.output.exists():
+        raise FileExistsError(args.output)
+    failed = source / "S1_v6_1_semantics/O01/RUN_STATUS.json"
+    evidence = json.loads(failed.read_text(encoding="utf-8"))
+    if evidence.get("status") != "FAILED" or int(evidence.get("optimizer_steps", -1)) != 0:
+        raise ValueError("bootstrap source is not a preserved zero-optimizer-step tool failure")
+    reusable = (
+        "contract", "input_audit", "silhouette_error_audit", "mask_semantics",
+        "gradient_analysis", "S0_historical_t5",
+    )
+    args.output.mkdir(parents=True, exist_ok=False)
+    for name in reusable:
+        shutil.copytree(source / name, args.output / name, copy_function=shutil.copy2)
+    for name in ("S1_v6_1_semantics", "S2_v6_1_underfill_if_eligible", "visual_acceptance", "final_adjudication"):
+        (args.output / name).mkdir()
+    payload = {
+        "status": "BOOTSTRAPPED_FROM_ZERO_STEP_TOOL_FAILURE",
+        "created_at": now(),
+        "source_attempt": str(source),
+        "source_failure_status": str(failed),
+        "source_failure_sha256": sha256(failed),
+        "source_optimizer_steps": 0,
+        "audit_reused_without_recomputation": True,
+        "calibration_reused_without_repetition": True,
+        "frozen_weights_sha256": sha256(args.output / "gradient_analysis/v6_1_loss_weights_frozen.json"),
+        "tool_fix": "gradient counter accepts parameter names that become trainable at later registered stages",
+        "git_head": git("rev-parse", "HEAD"),
+    }
+    atomic_json(args.output / "input_audit/ZERO_STEP_FAILURE_HANDOFF.json", payload)
+    atomic_json(args.output / "RUN_STATUS.json", payload)
+    print(json.dumps(payload, indent=2))
+
+
 def decide_s2(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     target = args.output / "S2_v6_1_underfill_if_eligible/S2_ELIGIBILITY.json"
     if target.exists():
@@ -970,7 +1007,7 @@ def decide_s2(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the registered new-silhouette semantics study")
-    parser.add_argument("--phase", required=True, choices=("audit", "calibrate", "run", "decide-s2"))
+    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2"))
     parser.add_argument("--stage", choices=("S1", "S2"))
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -978,6 +1015,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--manifest", type=Path, default=Path("/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json"))
     parser.add_argument("--pipeline-config", type=Path, default=PROJECT_ROOT / "configs/canon_dress_gs_mvp_real.yaml")
     parser.add_argument("--device", default="cuda")
+    parser.add_argument("--source-attempt", type=Path)
     return parser.parse_args()
 
 
@@ -986,6 +1024,8 @@ def main() -> None:
     config = load_config(args.config)
     if args.phase == "audit":
         run_audit(args, config)
+    elif args.phase == "bootstrap":
+        bootstrap_after_zero_step_failure(args, config)
     elif args.phase == "calibrate":
         run_calibrate(args, config)
     elif args.phase == "run":

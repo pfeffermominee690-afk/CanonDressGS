@@ -157,6 +157,12 @@ class NewSilhouetteContractTests(unittest.TestCase):
         self.assertIn("base_fingerprint_before", source)
         self.assertIn("base_bitwise_exact", source)
 
+    def test_zero_step_failure_bootstrap_reuses_calibration(self):
+        source = inspect.getsource(runner.bootstrap_after_zero_step_failure)
+        self.assertIn('int(evidence.get("optimizer_steps", -1)) != 0', source)
+        self.assertIn('"calibration_reused_without_repetition": True', source)
+        self.assertNotIn("run_calibrate(", source)
+
     def test_frozen_branches_unchanged(self):
         expected = "cee8fc51b5039a102ef7e2c31632e348ae3b99a1"
         local = subprocess_output("git", "rev-parse", "research/objective-residual-redesign-20260718", allow_failure=True)
