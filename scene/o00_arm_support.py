@@ -286,9 +286,19 @@ class O00ArmSupport:
             raise ValueError("support opacity must be in (0,1)")
         if torch.any((self.rgb < 0) | (self.rgb > 1)):
             raise ValueError("support RGB must be in [0,1]")
-        if not torch.allclose(self.lbs_weights.sum(1), torch.ones(count), atol=1e-5, rtol=0):
+        if not torch.allclose(
+            self.lbs_weights.sum(1),
+            torch.ones(count, device=self.lbs_weights.device, dtype=self.lbs_weights.dtype),
+            atol=1e-5,
+            rtol=0,
+        ):
             raise ValueError("support formal LBS rows must sum to one")
-        if not torch.allclose(torch.linalg.vector_norm(self.quaternion_wxyz, dim=1), torch.ones(count), atol=1e-5, rtol=0):
+        if not torch.allclose(
+            torch.linalg.vector_norm(self.quaternion_wxyz, dim=1),
+            torch.ones(count, device=self.quaternion_wxyz.device, dtype=self.quaternion_wxyz.dtype),
+            atol=1e-5,
+            rtol=0,
+        ):
             raise ValueError("support wxyz rotations must be normalized")
         if self.shN.numel() != 0:
             raise ValueError("O00 arm support SHN must be disabled")

@@ -127,6 +127,10 @@ def test_o00_support_is_frozen() -> None:
     assert support.count == 12_000
     for value in support.tensor_dict().values():
         assert not value.requires_grad and not isinstance(value, torch.nn.Parameter)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    moved = support.to(device)
+    assert moved.lbs_weights.device.type == device
+    assert moved.quaternion_wxyz.device.type == device
 
 
 def test_o00_support_does_not_modify_base() -> None:
