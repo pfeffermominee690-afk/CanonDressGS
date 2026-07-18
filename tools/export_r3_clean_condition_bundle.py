@@ -60,7 +60,13 @@ def _condition_records(value: object) -> list[dict]:
     raise ValueError("V3 contract has no condition record list")
 
 
-def export_bundle(selection_path: Path, contract_path: Path, output: Path) -> Path:
+def export_bundle(
+    selection_path: Path,
+    contract_path: Path,
+    output: Path,
+    source_replay_script: Path | None = None,
+    source_replay_metrics: Path | None = None,
+) -> Path:
     if output.exists():
         raise FileExistsError(f"refusing to overwrite condition bundle: {output}")
     selection = json.loads(selection_path.read_text(encoding="utf-8"))
@@ -74,7 +80,10 @@ def export_bundle(selection_path: Path, contract_path: Path, output: Path) -> Pa
         raise ValueError("V3 selection and condition contract do not resolve the exact 12 conditions")
     (output / "images").mkdir(parents=True)
     (output / "masks").mkdir()
+    (output / "poses").mkdir()
+    (output / "cameras").mkdir()
     records = []
+    source_datasets: dict[str, dict] = {}
     for condition_id in EXPECTED_IDS:
         selected = selected_by_id[condition_id]
         source = contract_by_id[condition_id]
@@ -97,7 +106,36 @@ def export_bundle(selection_path: Path, contract_path: Path, output: Path) -> Pa
             raise ValueError(f"camera identity mismatch for {condition_id}")
         image_target = output / "images" / f"{condition_id}.png"
         mask_target = output / "masks" / f"{condition_id}.png"
+        pose_target = output / "poses" / f"pose_{condition_id.removeprefix('cond_')}.npz"
+        camera_target = output / "cameras" / f"camera_{condition_id.removeprefix('cond_')}.json"
         shutil.copyfile(image_path, image_target); shutil.copyfile(mask_path, mask_target)
+        shutil.copyfile(pose_path, pose_target); shutil.copyfile(camera_path, camera_target)
+        source_root = image_path.parents[1]
+        root_key = str(source_root.resolve())
+        if root_key not in source_datasets:
+            metadata = {}
+            for name in ("meta.json", "conditions.csv"):
+                path = source_root / name
+                metadata[name] = {
+                    "path": str(path),
+                    "present": path.is_file(),
+                    "sha256": _sha256(path) if path.is_file() else None,
+                }
+            if (source_root / "meta.json").is_file():
+                source_meta = json.loads((source_root / "meta.json").read_text(encoding="utf-8"))
+            else:
+                source_meta = {}
+            source_datasets[root_key] = {
+                "root": root_key,
+                "metadata": metadata,
+                "declared_smpl_param_path": source_meta.get("smpl_param_path"),
+                "declared_smplx_model_dir": source_meta.get("smplx_model_dir"),
+                "original_generation_script_present": False,
+                "original_generation_script_note": (
+                    "No generator script was present in the audited condition dataset or its archive; "
+                    "the declared historical Linux paths are provenance strings, not recovered assets."
+                ),
+            }
         record = {
             "condition_id": condition_id,
             "view": selected["view"],
@@ -118,24 +156,48 @@ def export_bundle(selection_path: Path, contract_path: Path, output: Path) -> Pa
             },
             "image": f"images/{condition_id}.png",
             "foreground_mask": f"masks/{condition_id}.png",
+            "pose_archive": f"poses/{pose_target.name}",
+            "camera_metadata": f"cameras/{camera_target.name}",
             "source_sha256": {
                 "image": _sha256(image_path), "foreground_mask": _sha256(mask_path),
                 "pose_archive": _sha256(pose_path), "camera_metadata": _sha256(camera_path),
             },
-            "bundle_sha256": {"image": _sha256(image_target), "foreground_mask": _sha256(mask_target)},
+            "bundle_sha256": {
+                "image": _sha256(image_target), "foreground_mask": _sha256(mask_target),
+                "pose_archive": _sha256(pose_target), "camera_metadata": _sha256(camera_target),
+            },
             "conventions": {
                 "pose": "global(3)+body(63)+jaw_zero(3)+eyes_zero(6)+left_hand(45)+right_hand(45)",
                 "global_transform": "R_global from source global_orient; Th_rendered used for rendered condition",
-                "camera": "unaltered PyTorch3D FoVPerspectiveCameras R/T/FOV; OpenCV conversion and deterministic mask-bbox fit occur in the audited cloud runner",
+                "camera": (
+                    "unaltered PyTorch3D FoVPerspectiveCameras R/T/FOV; no target-dependent "
+                    "bbox fitting is part of the GEOMCAM source replay"
+                ),
             },
         }
         records.append(record)
+    audit_evidence = {}
+    if source_replay_script is not None or source_replay_metrics is not None:
+        (output / "audit_evidence").mkdir()
+        for name, path in (("source_replay_script", source_replay_script), ("source_replay_metrics", source_replay_metrics)):
+            if path is None:
+                continue
+            if not path.is_file():
+                raise FileNotFoundError(path)
+            target = output / "audit_evidence" / path.name
+            shutil.copyfile(path, target)
+            audit_evidence[name] = {
+                "source_path": str(path), "bundle_path": str(target.relative_to(output)),
+                "sha256": _sha256(target),
+            }
     manifest = {
         "schema_version": SCHEMA,
         "source_selection": {"path": str(selection_path), "sha256": _sha256(selection_path)},
         "source_condition_contract": {"path": str(contract_path), "sha256": _sha256(contract_path)},
         "condition_count": len(records),
         "view_distribution": selection["view_distribution"],
+        "source_datasets": list(source_datasets.values()),
+        "audit_evidence": audit_evidence,
         "conditions": records,
     }
     manifest_path = output / "condition_protocol.json"
@@ -148,8 +210,14 @@ def main() -> None:
     parser.add_argument("--selection", type=Path, required=True)
     parser.add_argument("--condition-contract", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--source-replay-script", type=Path)
+    parser.add_argument("--source-replay-metrics", type=Path)
     args = parser.parse_args()
-    result = export_bundle(args.selection.resolve(), args.condition_contract.resolve(), args.output.resolve())
+    result = export_bundle(
+        args.selection.resolve(), args.condition_contract.resolve(), args.output.resolve(),
+        args.source_replay_script.resolve() if args.source_replay_script else None,
+        args.source_replay_metrics.resolve() if args.source_replay_metrics else None,
+    )
     print(result)
 
 

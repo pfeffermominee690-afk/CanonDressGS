@@ -1,0 +1,60 @@
+schema_version: canondressgs.r3_clean_geomcam_contract.v1
+status: PREREGISTERED_READ_ONLY_DIAGNOSTIC
+seed: 20260718
+condition_ids:
+  - cond_000000
+  - cond_000104
+  - cond_000318
+  - cond_000714
+  - cond_000017
+  - cond_000101
+  - cond_000347
+  - cond_000379
+  - cond_000108
+  - cond_000113
+  - cond_000598
+  - cond_000439
+source_contract:
+  geometry_type: CLEAN_SMPLX
+  model_type: smplx
+  gender: neutral
+  num_betas: 10
+  use_pca: false
+  flat_hand_mean: false
+  global_orient_field: global_orient
+  translation_field: transl_rendered
+  jaw_mode: zero
+  eye_mode: zero
+  expression_field: expression
+  center_rule: bbox_xy
+  mesh_scale: 1.0
+  camera_renderer: pytorch3d_FoVPerspectiveCameras
+  fov_degrees: 28.0
+  final_width: 1024
+  final_height: 1536
+  render_scale: 3
+  postprocess: fixed_safe_box_from_render_only
+  safe_box_fraction: 0.8333333333333334
+source_replay_acceptance:
+  per_condition_iou_min: 0.98
+  median_iou_min: 0.99
+  bbox_center_residual_diag_max: 0.005
+  no_flip: true
+nested_body_gate_v2_candidate:
+  source_replay_iou_min: 0.98
+  source_replay_median_min: 0.99
+  body_core_outside_fraction_max: 0.03
+  require_pose_joint_contract: true
+scope:
+  optimizer_created: false
+  optimizer_steps: 0
+  target_mask_used_for_transform: false
+  formal_camera_adapter_modified: false
+  formal_pose_adapter_modified: false
+  formal_base_modified: false
+  skin_field: false
+  shell_decomposition: false
+  support_gaussians: false
+  module4b: false
+  training: false
+
