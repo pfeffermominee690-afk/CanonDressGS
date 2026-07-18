@@ -266,3 +266,19 @@
 - Regression: GEOMCAM 11/11, R3-CLEAN 12/12, R3 8/8, R2 12/12 CUDA, Module 4B 12/12, Module 4B-R 10/10, V5.2 3/3, V5.3 28/28, full attribute/checkpoint/Gaussian residual/clothing loss, py_compile and diff check PASS
 - Status: **PARTIAL / GC5 (`BLOCKED_INSUFFICIENT_EVIDENCE`)**
 - Downstream: no formal adapter fix, geometry refit, skin/shell/support, Module 4B rerun or training authorized
+
+## LEDGER-20260718-013 — R3 O00 arm-support closure and fixed-open Oracle gate
+
+- Time: 2026-07-18 Asia/Shanghai
+- Type: FROZEN SUPPORT CONSTRUCTION / TWO-PARAMETER CALIBRATION / VISUAL ACCEPTANCE / SAFE STOP
+- Run family: `SUBJECT02-O00-ARM-SUPPORT-CLOSURE-001`; formal candidate `attempt_003`
+- Zero-step tool evidence: `attempt_001` transition-label transfer failure; `attempt_002` cross-device validator failure
+- Implementation commits: `443248c91bef3b4f994cbd557d21b34e188a845e`, `79c8aa382ea85559a27f610222d202d508017f86`; tool fixes `bb31dbe12a702e9247cd6f787e550d6f85433143`, `5bc0726cc0f5c4d34e8d9f846c582e29d1235cfa`
+- Config: `configs/audit/o00_arm_support_closure_v1.yaml`, SHA256 `9dca0e5d8317fef473ee1d40966e88582e9cf940edaa2861ab1bdb2bef8cdf53`
+- Asset: 12,000 frozen Gaussians; subject02-only 63,445-pixel six-region skin field; formal SMPL-X face/barycentric/55-joint LBS; support SHA256 `4119d447a072936d240d7f68e1f70a9e993f8e9abf4501fc1e818fc4cb314541`
+- Selected calibration: inward `0.010 m`, opacity scale `0.25`, final opacity `0.1625`; all nine preregistered combinations evaluated without target-RGB tuning
+- Metrics: repair min/mean `0.782226/0.873649`; leakage max/mean `0.217774/0.126351`; covered visibility max `0.035961`; outside `0.0`; four views finite; base/support exact
+- Visual: formal contact sheet actually opened; overall/shoulder/wrist `WARN`; abrupt joins, locally bulky side views, and P3 covered-state changes remain
+- Tests: O00 12/12, R2 12/12, R3 8/8, R3-CLEAN 12/12, GEOMCAM 11/11, Module 4B 12/12, Module 4B-R 10/10, V5.3 28/28, py_compile and diff check PASS
+- Status: **FAIL / `ARM_SUPPORT_FAIL` / Case C**
+- Stop: Oracle optimizer steps `0`; no Oracle output/checkpoint/history; no full-body support, Anchor Oracle, Module 4B rerun, condition generation, outfit generation, or formal training

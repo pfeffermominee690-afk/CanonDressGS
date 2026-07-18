@@ -1,5 +1,14 @@
 # Project Status
 
+## 2026-07-18 R3 O00 arm-support closure
+
+- Formal result: `SUBJECT02-O00-ARM-SUPPORT-CLOSURE-001/attempt_003` at `5bc0726cc0f5c4d34e8d9f846c582e29d1235cfa`; `attempt_001/002` are preserved zero-step tool failures, not candidate results.
+- Status: **FAIL / `ARM_SUPPORT_FAIL` / Case C**. The fixed-open Gaussian Oracle was not run because its mandatory support gate failed.
+- Frozen 12k support: subject02 SMPL-X parts 16–19, formal 55-joint LBS, six subject02-only skin regions, SH0 degree 0, zero trainable parameters; base/support fingerprints exact.
+- Selected calibration: inward offset `0.010 m`, opacity scale `0.25`. Repair min/mean `0.782226/0.873649`; leakage max/mean `0.217774/0.126351`; covered visibility max `0.035961`; anatomical outside `0.0`; four views finite.
+- Actual contact-sheet inspection: visual `WARN`, shoulder/wrist `WARN`; large holes are partly repaired, but joins remain abrupt, side views locally bulky, and intact sleeves visibly change.
+- Formal full-body support and image-conditioned training remain prohibited. Only blocker: the current 12k arm support cannot jointly satisfy covered occlusion and revealed-arm repair under the frozen two-parameter contract.
+
 ## 2026-07-18 R3-CLEAN geometry-camera contract decomposition
 
 - Run ID: `SUBJECT02-R3-CLEAN-GEOMCAM-002/attempt_002`; formal run commit `93e79d6ddfd9204413f97d28504d23e53231f0bd`.
