@@ -483,3 +483,7 @@ The scoped sprint proceeds with `RUN_AAAI_28_IMAGE_DATA_AND_CAPACITY_GATE`; it i
 ## 11. Representation triage final link — 2026-07-18
 
 See `docs/CANONDRESSGS_REPRESENTATION_TRIAGE_20260718.md`. The fixed-open ladder concluded **Case A** for O01 and the primary O08 diagnostic: the original 200,000-Gaussian support passed independent single-view and shared four-view unbounded capacity tests. The next justified task is `REDESIGN_OBJECTIVE_AND_RESIDUAL_PARAMETERIZATION`; this result does not authorize image-conditioned training, new target generation, a formal garment Gaussian layer, or a clean-body rebuild.
+
+## 12. Objective/residual redesign final link — 2026-07-19
+
+See `docs/CANONDRESSGS_OBJECTIVE_RESIDUAL_REDESIGN_20260718.md`. The formal T1–T5 matrix concluded **Case I** and final **Case F**: V6 plus calibrated bounds passes O01, while O08 fails only the preregistered per-view silhouette requirement on back/right views. Seven-outfit re-adjudication, more target generation, and image-conditioned training remain unauthorized. The only next task is `REFINE_NEW_SILHOUETTE_MASK_SEMANTICS`.
