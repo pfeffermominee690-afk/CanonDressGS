@@ -59,7 +59,7 @@ VIEWS = dict(zip(CONDITIONS, ("front", "back", "left", "right")))
 TESTS = ("T1", "T2", "T3", "T4", "T5")
 DEFAULT_OUTPUT = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/"
-    "SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_001"
+    "SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_002"
 )
 
 
@@ -466,7 +466,10 @@ def run_analyze(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
         for name, key in key_map.items():
             value = state[key].float()
             magnitude = value.abs().reshape(value.shape[0], -1).amax(1)
-            pooled[name].append(value.reshape(-1))
+            # Bounds cover the canonical garment support that the successful
+            # Rung-2 field was allowed to change. Frozen zero protected rows
+            # are not evidence about required garment residual capacity.
+            pooled[name].append(value[garment].reshape(-1))
             scalar_columns.append(magnitude)
             for region, mask in (("all", torch.ones_like(garment)), ("garment_support", garment), ("protected_support", ~garment)):
                 row = {"outfit": outfit, "attribute": name, "region": region, "count": int(mask.sum())}
