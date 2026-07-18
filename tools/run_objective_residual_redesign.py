@@ -59,7 +59,7 @@ VIEWS = dict(zip(CONDITIONS, ("front", "back", "left", "right")))
 TESTS = ("T1", "T2", "T3", "T4", "T5")
 DEFAULT_OUTPUT = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/"
-    "SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_002"
+    "SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_003"
 )
 
 
@@ -612,6 +612,7 @@ def _numeric_status(per_view: list[dict[str, Any]], diagnostics: Mapping[str, An
         "abnormal": diagnostics["abnormal_gaussian_fraction"] <= acceptance["abnormal_gaussian_fraction_max"],
         "bound_truncation": diagnostics["max_bound_hit_fraction"] <= acceptance["systematic_bound_hit_fraction_max"],
     }
+    checks = {name: bool(value) for name, value in checks.items()}
     return ("NUMERIC_PASS" if all(checks.values()) else "NUMERIC_FAIL"), checks
 
 
@@ -713,7 +714,7 @@ def run_test(args: argparse.Namespace, config: dict[str, Any]) -> None:
             "checkpoint": {"path": str(checkpoint), "sha256": sha256(checkpoint)},
         }
         atomic_json(run_dir / "metrics.json", result); atomic_json(status_path, result)
-        print(json.dumps(result, indent=2))
+        print(json.dumps(result, indent=2, default=str))
     except Exception as error:
         atomic_json(status_path, {"status": "FAILED", "exception_type": type(error).__name__, "exception": str(error), "traceback": traceback.format_exc()})
         raise

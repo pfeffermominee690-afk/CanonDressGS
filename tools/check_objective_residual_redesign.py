@@ -176,6 +176,10 @@ class ObjectiveResidualContractTests(unittest.TestCase):
         self.assertIn("base_bitwise_exact", source)
         self.assertIn("_tensor_state_fingerprint", source)
 
+    def test_numeric_checks_are_builtin_booleans(self):
+        source = inspect.getsource(runner._numeric_status)
+        self.assertIn("bool(value)", source)
+
     def test_aaai_no_go_remains_unchanged(self):
         cfg = config(); self.assertIn("attempt_003", cfg["source_aaai_output"])
         self.assertFalse(cfg["permissions"]["generate_targets"])
