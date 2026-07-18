@@ -128,6 +128,28 @@ def load_config(path: Path) -> dict[str, Any]:
     return value
 
 
+def select_manifest_records(manifest: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Flatten the frozen full-dataset-v1 outfit/observation contract."""
+
+    outfits = manifest.get("outfits")
+    if not isinstance(outfits, list):
+        raise ValueError("triage manifest must contain the full-dataset-v1 outfits list")
+    selected: list[dict[str, Any]] = []
+    for outfit in outfits:
+        if not isinstance(outfit, Mapping) or outfit.get("outfit_id") not in OUTFITS:
+            continue
+        observations = outfit.get("observations")
+        if not isinstance(observations, list):
+            raise ValueError(f"{outfit.get('outfit_id')} observations must be a list")
+        for observation in observations:
+            if not isinstance(observation, Mapping) or observation.get("condition_id") not in CONDITIONS:
+                continue
+            selected.append({"outfit_id": outfit["outfit_id"], **dict(observation)})
+    if len(selected) != 8 or len({(row["outfit_id"], row["condition_id"]) for row in selected}) != 8:
+        raise ValueError("triage manifest does not contain exactly eight unique samples")
+    return selected
+
+
 def git_output(*arguments: str) -> str:
     return subprocess.run(
         ["git", *arguments], cwd=PROJECT_ROOT, check=True, capture_output=True, text=True,
@@ -393,12 +415,6 @@ def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     tagged = git_output("rev-list", "-n", "1", config["sealed_tag"])
     if not ancestor or tagged != config["source_no_go_commit"]:
         raise RuntimeError("research branch is not descended from the exact sealed AAAI NO_GO tag")
-    for name in (
-        "contract", "input_audit", "existing_evidence", "rung_1_single_view",
-        "rung_2_shared_same_support", "rung_3_augmented_garment_layer",
-        "comparisons", "visual_acceptance", "final_adjudication",
-    ):
-        (root / name).mkdir(parents=True, exist_ok=False)
     if not args.source.is_dir() or not args.manifest.is_file():
         raise FileNotFoundError("source attempt or fixture manifest is missing")
     source_status = json.loads((args.source / "final_adjudication/AAAI27_28_IMAGE_GATE_FINAL_STATUS.json").read_text(encoding="utf-8"))
@@ -423,9 +439,13 @@ def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
             "files": {name: {"path": str(path), "sha256": sha256(path)} for name, path in files.items()},
         }
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
-    selected = [record for record in manifest["records"] if record["outfit_id"] in OUTFITS and record["condition_id"] in CONDITIONS]
-    if len(selected) != 8 or len({(row["outfit_id"], row["condition_id"]) for row in selected}) != 8:
-        raise ValueError("triage manifest does not contain exactly eight unique samples")
+    selected = select_manifest_records(manifest)
+    for name in (
+        "contract", "input_audit", "existing_evidence", "rung_1_single_view",
+        "rung_2_shared_same_support", "rung_3_augmented_garment_layer",
+        "comparisons", "visual_acceptance", "final_adjudication",
+    ):
+        (root / name).mkdir(parents=True, exist_ok=False)
     atomic_json(root / "contract/config_resolved.json", config)
     atomic_json(root / "contract/run_manifest.json", {
         "schema_version": SCHEMA, "task_id": config["task_id"], "git": _git_state(), "environment": _environment(),

@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import ast
 import inspect
 import json
 import subprocess
 import sys
 from pathlib import Path
 from types import SimpleNamespace
+from typing import Any, Mapping
 
 import torch
 import yaml
@@ -23,6 +25,20 @@ from scene.representation_capacity_oracle import (  # noqa: E402
     capacity_oracle_loss_v1,
     decide_representation_case,
 )
+
+
+def manifest_selector():
+    source = (PROJECT_ROOT / "tools/run_representation_triage_ladder.py").read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "select_manifest_records")
+    namespace: dict[str, Any] = {
+        "Any": Any,
+        "Mapping": Mapping,
+        "OUTFITS": ("O01", "O08"),
+        "CONDITIONS": ("cond_000000", "cond_000318", "cond_000017", "cond_000347"),
+    }
+    exec(compile(ast.Module(body=[function], type_ignores=[]), "manifest_selector", "exec"), namespace)
+    return namespace["select_manifest_records"]
 
 
 def fake_base(count: int) -> SimpleNamespace:
@@ -111,6 +127,24 @@ def run() -> dict:
 
     writes_to_source = any(token in runner_source for token in ("atomic_json(args.source", "atomic_text(args.source", "write_csv(args.source", "torch.save(args.source"))
     checks["test_aaai_no_go_outputs_are_unchanged"] = not writes_to_source and "Rung 0 evidence incomplete" in runner_source
+
+    nested_manifest = {
+        "outfits": [
+            {
+                "outfit_id": outfit,
+                "observations": [{"condition_id": condition, "rgb": f"{outfit}/{condition}.png"} for condition in ("cond_000000", "cond_000318", "cond_000017", "cond_000347")],
+            }
+            for outfit in ("O01", "O08")
+        ]
+    }
+    flattened = manifest_selector()(nested_manifest)
+    checks["test_audit_reads_full_dataset_v1_nested_manifest"] = len(flattened) == 8 and {
+        (row["outfit_id"], row["condition_id"]) for row in flattened
+    } == {
+        (outfit, condition)
+        for outfit in ("O01", "O08")
+        for condition in ("cond_000000", "cond_000318", "cond_000017", "cond_000347")
+    }
 
     config = yaml.safe_load((PROJECT_ROOT / "configs/research/subject02_representation_triage_v1.yaml").read_text(encoding="utf-8"))
     long_head = None
