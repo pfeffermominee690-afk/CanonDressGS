@@ -20,6 +20,7 @@ from scene.trusted_silhouette_semantics_v6_1 import (  # noqa: E402
     active_normalized_asymmetric_underfill,
     build_trusted_silhouette_regions,
 )
+from scene.support_aware_region_trusted_objective_v6_1 import support_aware_region_trusted_objective_v6_1  # noqa: E402
 from tools import run_new_silhouette_semantics as runner  # noqa: E402
 
 
@@ -120,6 +121,15 @@ class NewSilhouetteContractTests(unittest.TestCase):
         previous = yaml.safe_load((PROJECT_ROOT / "configs/research/subject02_objective_residual_redesign_v1.yaml").read_text())
         self.assertEqual(current["candidate_bounds"], previous["candidate_bounds"])
 
+    def test_v6_non_silhouette_losses_are_unchanged(self):
+        source = inspect.getsource(support_aware_region_trusted_objective_v6_1)
+        self.assertIn("multiscale_masked_charbonnier", source)
+        self.assertIn("target_progress_margin_loss", source)
+        self.assertIn("F.smooth_l1_loss", source)
+        self.assertIn('"identity"', source)
+        self.assertIn('"background"', source)
+        self.assertIn('"neutral_preserve"', source)
+
     def test_raw_silhouette_metrics_are_always_reported(self):
         source = inspect.getsource(runner.run_audit)
         self.assertIn('"raw_silhouette_iou"', source)
@@ -130,6 +140,22 @@ class NewSilhouetteContractTests(unittest.TestCase):
         config = yaml.safe_load((PROJECT_ROOT / "configs/research/subject02_new_silhouette_semantics_v1.yaml").read_text())
         self.assertIn("attempt_004", config["source_objective_output"])
         self.assertFalse(config["permissions"]["modify_non_silhouette_v6_losses"])
+
+    def test_s2_has_single_pre_registered_coefficient_update(self):
+        source = inspect.getsource(runner.decide_s2)
+        self.assertIn('"coefficient_update_count": 1 if eligible else 0', source)
+        self.assertIn('float(config["S2"]["multiplier_cap"])', source)
+        self.assertNotIn("while ", source)
+
+    def test_o01_regression_gate_is_enforced(self):
+        source = inspect.getsource(runner.candidate_checks)
+        self.assertIn('if outfit == "O01"', source)
+        self.assertIn('"raw_silhouette_per_view"', source)
+
+    def test_base_remains_bitwise_exact(self):
+        source = inspect.getsource(runner.run_candidate)
+        self.assertIn("base_fingerprint_before", source)
+        self.assertIn("base_bitwise_exact", source)
 
     def test_frozen_branches_unchanged(self):
         expected = "cee8fc51b5039a102ef7e2c31632e348ae3b99a1"
