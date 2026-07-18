@@ -479,3 +479,7 @@ The scoped sprint proceeds with `RUN_AAAI_28_IMAGE_DATA_AND_CAPACITY_GATE`; it i
 - The AAAI provisional outfit set and 32-condition split are subject to the frozen 28-image data/capacity gate.
 - No directly usable second target avatar is currently available.
 - The post-AAAI recovery branch must preserve all negative evidence and resume from the exact tagged state.
+
+## 11. Representation triage final link — 2026-07-18
+
+See `docs/CANONDRESSGS_REPRESENTATION_TRIAGE_20260718.md`. The fixed-open ladder concluded **Case A** for O01 and the primary O08 diagnostic: the original 200,000-Gaussian support passed independent single-view and shared four-view unbounded capacity tests. The next justified task is `REDESIGN_OBJECTIVE_AND_RESIDUAL_PARAMETERIZATION`; this result does not authorize image-conditioned training, new target generation, a formal garment Gaussian layer, or a clean-body rebuild.
