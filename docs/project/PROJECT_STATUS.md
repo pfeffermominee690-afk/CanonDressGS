@@ -1,5 +1,16 @@
 # Project Status
 
+## 2026-07-18 R3-CLEAN geometry-camera contract decomposition
+
+- Run ID: `SUBJECT02-R3-CLEAN-GEOMCAM-002/attempt_002`; formal run commit `93e79d6ddfd9204413f97d28504d23e53231f0bd`.
+- Status: **PARTIAL / GC5 (`BLOCKED_INSUFFICIENT_EVIDENCE`)**. `attempt_001` is preserved as a zero-step raster-bin tool failure and is not a candidate result.
+- The condition source is metadata-supported clean subject02 SMPL-X, but the original generator and exact historical SMPL-X model binary were not recovered.
+- No-fit source replay IoU min/mean/median: `0.928023 / 0.975762 / 0.989554`; identity orientation 12/12; maximum bbox-center residual `0.000541699`; exact crop/pad bbox 2/12.
+- The frozen Gate A did not close, so pose/joint external acceptance and clean-body nested Gate B were not adjudicated. R3-CLEAN-001 remains sealed as historical evidence, not reinterpreted as a proven clean-body shape failure.
+- Optimizer absent/zero steps; all sealed inputs unchanged; no camera/pose adapter, base, renderer, condition asset, V5.3 result or Module 4B result was modified.
+- Skin/shell/support, clean-geometry re-adjudication and Module 4B remain prohibited.
+- Only blocker: recover the exact original condition generator/model/render binary contract and pass Gate A without target-dependent bbox fitting.
+
 ## 2026-07-18 R3-CLEAN subject02 clean-body asset reconstruction pilot
 
 - Run ID: `SUBJECT02-CLEAN-BODY-ASSET-PILOT-001/attempt_001`; formal run commit `9afac2548f15dd9bb0692415384a6b2f6510cfe5`.

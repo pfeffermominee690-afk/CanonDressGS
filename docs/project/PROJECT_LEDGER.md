@@ -246,3 +246,23 @@
 - Regression: R3-CLEAN 12/12, R2 12/12, R3 8/8, Module 4B 12/12, Module 4B-R 10/10, V5.2 3/3, V5.3 28/28, dataset/loss/full-attribute/checkpoint checks PASS
 - Status: **`CLEAN_BODY_ASSET_PILOT_FAIL / FAIL_GEOMETRY_ALIGNMENT`**
 - Downstream: formal clean-body base, O00 Oracle, Module 4B rerun, and image-conditioned training not authorized
+
+## LEDGER-20260718-012 — R3-CLEAN geometry-camera contract decomposition
+
+- Time: 2026-07-18 Asia/Shanghai
+- Type: SOURCE PROVENANCE AUDIT / NO-FIT CAMERA REPLAY / VISUAL ACCEPTANCE / SAFE STOP
+- Run ID: `SUBJECT02-R3-CLEAN-GEOMCAM-002/attempt_002`
+- Frozen starting HEAD: `47ea33ba7f80fe88abd401dd9753dfb175251d50`
+- Implementation / raster fix and formal run commits: `2f968eb9b1e363910ece4c16f3c984f5b3ee0aea` / `93e79d6ddfd9204413f97d28504d23e53231f0bd`
+- Config: `configs/audit/r3_clean_geomcam_contract_v1.yaml`, SHA256 `8eefbfecfc994211f59dd5f8c4d683e9c787dea4fbb499d3b17f8a52500acbe0`
+- Bundle manifest SHA256: `fba0e40e58ecda8cb22941480208f7108dbe913dfb13914d5b07841c2247cb6e`; exact 12 condition/frame/pose/camera mappings
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-R3-CLEAN-GEOMCAM-002/attempt_002`
+- Non-candidate attempt: `attempt_001`, zero optimizer steps, stopped for PyTorch3D raster-bin overflow before valid evidence
+- Source geometry: metadata-supported clean subject02 SMPL-X; original generator and exact historical model binary not recovered
+- Source replay: IoU min/mean/median `0.928023/0.975762/0.989554`; orientation identity 12/12; bbox-center residual max `0.000541699`; exact crop/pad bbox 2/12
+- Visual: three required condition panels opened; cond_000714 replay nearly exact, cond_000113/000439 show systematic side-profile contour differences without flip or clothed-shell contamination
+- Stop: frozen source Gate A failed; clean no-fit/nested/body-part Gate B not evaluated; optimizer absent and steps `0`
+- Integrity: all preflight bundle, model and prior-evidence SHA snapshots exact after run; formal inputs unchanged
+- Regression: GEOMCAM 11/11, R3-CLEAN 12/12, R3 8/8, R2 12/12 CUDA, Module 4B 12/12, Module 4B-R 10/10, V5.2 3/3, V5.3 28/28, full attribute/checkpoint/Gaussian residual/clothing loss, py_compile and diff check PASS
+- Status: **PARTIAL / GC5 (`BLOCKED_INSUFFICIENT_EVIDENCE`)**
+- Downstream: no formal adapter fix, geometry refit, skin/shell/support, Module 4B rerun or training authorized
