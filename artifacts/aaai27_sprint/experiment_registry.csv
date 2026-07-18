@@ -1,0 +1,13 @@
+experiment_id,name,category,definition,status,output_dir,checkpoint
+M0,Base Avatar,main_baseline,Zero canonical residual.,PLANNED_NOT_RUN,,
+M1,Per-Outfit Gaussian Optimization,main_baseline,Independent canonical residual optimization per outfit; no amortized inference.,PLANNED_NOT_RUN,,
+M2,Outfit-ID Conditioning,main_baseline,Learned outfit embedding replaces image references.,PLANNED_NOT_RUN,,
+M3,Global Reference,main_baseline_or_ablation,Globally pooled image feature broadcast to anchors.,PLANNED_NOT_RUN,,
+M4,Projection Only,main_baseline,Camera-aware projection/aggregation without graph completion.,PLANNED_NOT_RUN,,
+M5,Full CanonDressGS,main_method,"Projection, aggregation, graph completion, dual gates, six residual heads.",PLANNED_NOT_RUN,,
+A1,No Graph Completion,core_ablation,Observed/projected anchor evidence only.,PLANNED_NOT_RUN,,
+A2,Single Gate,core_ablation,One gate controls geometry and appearance.,PLANNED_NOT_RUN,,
+A3,Appearance Only,core_ablation,Disable xyz/scaling/rotation residuals.,PLANNED_NOT_RUN,,
+A4,Single-Target Supervision,core_ablation,Raw edit target without protected base target.,PLANNED_NOT_RUN,,
+A5,V5.2 Alpha Objective,core_ablation,Replace frozen V5.3 boundary-aware alpha objective.,PLANNED_NOT_RUN,,
+A6,1/2/4 References,core_ablation,Matched reference-count study.,PLANNED_NOT_RUN,,

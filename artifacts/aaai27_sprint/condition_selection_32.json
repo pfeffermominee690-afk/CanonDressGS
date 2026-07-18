@@ -1,0 +1,1625 @@
+{
+  "schema_version": "aaai27_sprint_preflight_v1",
+  "artifact_type": "condition_selection_32",
+  "created_at": "2026-07-18T00:00:00+08:00",
+  "status": "PASS_PREFLIGHT_SELECTION",
+  "selection_policy": {
+    "source": "E:\\data_pre\\audit_jay_coverage_supplement_v1\\jay_production_union_manifest_v2.json",
+    "accepted_union_only": true,
+    "source_hash_verified": true,
+    "full_body_uncropped_required": true,
+    "hand_screening_required": true,
+    "views": {
+      "front": 8,
+      "back": 8,
+      "left": 8,
+      "right": 8
+    },
+    "difficulty_per_view": {
+      "easy": 3,
+      "medium": 3,
+      "hard": 2
+    },
+    "condition_split_per_view": {
+      "train": 6,
+      "validation": 1,
+      "novel_pose_test": 1
+    },
+    "canonical_conditions_forced": {
+      "front": "cond_000000",
+      "back": "cond_000318",
+      "left": "cond_000017",
+      "right": "cond_000347"
+    },
+    "difficulty_proxy": "within-view terciles of RMS body+left-hand+right-hand axis-angle pose energy"
+  },
+  "counts": {
+    "total": 32,
+    "views": {
+      "front": 8,
+      "back": 8,
+      "left": 8,
+      "right": 8
+    },
+    "difficulty": {
+      "easy": 12,
+      "medium": 12,
+      "hard": 8
+    },
+    "condition_split": {
+      "train": 24,
+      "validation": 4,
+      "novel_pose_test": 4
+    }
+  },
+  "records": [
+    {
+      "condition_id": "cond_000512",
+      "pose_id": "pose_000512",
+      "view": "front",
+      "source_frame": 797,
+      "source_camera": "camera_000512",
+      "pose_index": 128,
+      "pose_fingerprint": "c09e115cf0b05fca34b383aa748ed483fa8800fdb9bdf4b90c15faae4669154a",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000512.png",
+      "source_condition_sha256": "34a36ae63821be6f1b65b2aefac5061f8a48c6e95bd97311a6eb88ddad7823ba",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000512_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000512_sheet02.png",
+      "output_hash": {
+        "sheet_01": "a003d5731b743d1637c36655e6f2f5f38a7804cdc84f8fde6f901d603ec620b7",
+        "sheet_02": "34d9cd8d4baaf54a8005966bfafeb058e3db8327ed0576278ef93be056c2f7c2"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000512.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000512.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000512.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000512.json"
+      },
+      "asset_sha256": {
+        "image": "34a36ae63821be6f1b65b2aefac5061f8a48c6e95bd97311a6eb88ddad7823ba",
+        "mask": "043517d83edfeff0fff3ab9052fbe7f0c206facb6c02afb38de0a6a4ea833add",
+        "pose": "d32bd3b3570399ec6ffb9986e0eb468ec955abde309ce9bde8afdfacc7a7b48c",
+        "camera": "74c9ecbed44a877a5141e99d6c8ceffcd615765603eaa571bac052983f6de8f0"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        195,
+        128,
+        830,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.4445918342407007,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000660",
+      "pose_id": "pose_000660",
+      "view": "front",
+      "source_frame": 1028,
+      "source_camera": "camera_000660",
+      "pose_index": 165,
+      "pose_fingerprint": "3d972e794b1c9fcb8aa919039943026b08bf09ccbbf4f7bb543be5ec41a6bcfd",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000660.png",
+      "source_condition_sha256": "84615dfd4daac5c45cfd49924b751ea820877a91c9df1381e1996ee79618b786",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000660_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000660_sheet02.png",
+      "output_hash": {
+        "sheet_01": "8fe1a3758bc36e6b6bced7b7b2a947e9ec0d4a4ee07ef3371c2c26dc20208169",
+        "sheet_02": "bb9bbf4685b3e08182cd1cabaa711faeb41743827db14f867a558a8b6123d60a"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000660.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000660.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000660.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000660.json"
+      },
+      "asset_sha256": {
+        "image": "84615dfd4daac5c45cfd49924b751ea820877a91c9df1381e1996ee79618b786",
+        "mask": "0883e8f3c149c5c695164ab6a4d5cea3f01867f6927dcfb82fd23c9041987a40",
+        "pose": "cbbf72aba167a2ed266e1db3c7e8df95d33956e1ef0d914516b7385865076293",
+        "camera": "f9c88ca23957300f41f8241d027e84a0c2cbf0718ebcd6431fa3e27c974f5dd2"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        152,
+        128,
+        871,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.46150281375403407,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000712",
+      "pose_id": "pose_000712",
+      "view": "front",
+      "source_frame": 1109,
+      "source_camera": "camera_000712",
+      "pose_index": 178,
+      "pose_fingerprint": "b36030cf57ae7a9cb0ac5e6d4f4a3066a3871bc43dcb1f874fb012846b004fd2",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000712.png",
+      "source_condition_sha256": "0a9ed42065d8e5bfe4efbd44fe51c675a6ed6c4fd042660c292e61a911420ccc",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000712_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000712_sheet02.png",
+      "output_hash": {
+        "sheet_01": "32de6f6776cdcfe2644bba59b06b1e4cd55cc3023d4a083b67a51a962023d6ca",
+        "sheet_02": "2342780dc40900d2ca3ef5c44eaae97f7edda60ed7ef1f19094155a1fa3f4a14"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000712.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000712.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000712.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000712.json"
+      },
+      "asset_sha256": {
+        "image": "0a9ed42065d8e5bfe4efbd44fe51c675a6ed6c4fd042660c292e61a911420ccc",
+        "mask": "d7722542f0e86400d671d9c566474dbd720d4c9c9ed5f8a9d07b17e2b32b9bf9",
+        "pose": "b48441d1aa9d8bffa4d016f0d651126afc0170be8e05b548cb54276c6ea7b2aa",
+        "camera": "88f17c20e974041237767a0c1ce5a98f55ca289c6fba4668dabb1b175d3c458f"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        134,
+        128,
+        889,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.4747556812306651,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000432",
+      "pose_id": "pose_000432",
+      "view": "front",
+      "source_frame": 673,
+      "source_camera": "camera_000432",
+      "pose_index": 108,
+      "pose_fingerprint": "60be0a5785dbd65563df7e478a4cd0e66f1b627a60e1625195a60837e921cbff",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000432.png",
+      "source_condition_sha256": "6de8948cd265168e3538fad8b20f3a8f3605917c317a59ed0f504001f62b8deb",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000432_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000432_sheet02.png",
+      "output_hash": {
+        "sheet_01": "7239ed3a3a93ccdbf3e808efc12a3a11d29730fce25b468d4aa3bd2fff83c36f",
+        "sheet_02": "e874b4f3a14af09ec4d73d8d8806ae5a797113a7703da5050a6d8a7a44e5965d"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000432.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000432.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000432.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000432.json"
+      },
+      "asset_sha256": {
+        "image": "6de8948cd265168e3538fad8b20f3a8f3605917c317a59ed0f504001f62b8deb",
+        "mask": "cf0a080ba14b0709a3e1bcc99b9cec40162f22f7a2cf44864c490fb4b282631d",
+        "pose": "cc478ce86206b7dc42daf0dd1bbd1f6eb6708d2f5f5010b27827b9f325aced72",
+        "camera": "3a8331ce8d0a4a1a55063df0afe043575b6235e832adad477fa83f88d7a5910f"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        152,
+        938,
+        1384
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.4857076066944446,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000332",
+      "pose_id": "pose_000332",
+      "view": "front",
+      "source_frame": 517,
+      "source_camera": "camera_000332",
+      "pose_index": 83,
+      "pose_fingerprint": "a4a62529d10933fa37b30fa99f01f36213c7479eb497761a6195841fd27df46c",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000332.png",
+      "source_condition_sha256": "2c6ca8c195e9971d40e5fef63be5e07c035849cda711e98c52b2ae41c8e6e82b",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000332_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000332_sheet02.png",
+      "output_hash": {
+        "sheet_01": "77403937b169fb509551ff2fe415da1b60277dd80b5765e5a66da170910960b7",
+        "sheet_02": "abd38c0e043cc0542d8f929d6b464693fa602bf446115b0ecc6dc51cd1cb1040"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000332.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000332.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000332.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000332.json"
+      },
+      "asset_sha256": {
+        "image": "2c6ca8c195e9971d40e5fef63be5e07c035849cda711e98c52b2ae41c8e6e82b",
+        "mask": "8172ffde0ec39304db10ce6e964ee44e6541405736cd94f72acc3bab50d3ddc4",
+        "pose": "df486159683e96c713fecf383f9b115cab4f178219d96dc425d8679d94e5d293",
+        "camera": "2b7c5cbcb63201d0ad8deb57c379348b5c531b48acbe05b57d8d236d279e97fe"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        99,
+        128,
+        925,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.500586348363732,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000748",
+      "pose_id": "pose_000748",
+      "view": "front",
+      "source_frame": 1165,
+      "source_camera": "camera_000748",
+      "pose_index": 187,
+      "pose_fingerprint": "099848b55a670acef5547cecb8c5d9f1eb710618d121ea59a882189813520344",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000748.png",
+      "source_condition_sha256": "0fd34cb654c4f260e4274f8ae5637a314cf7525f2bca522bfffd600e4858d6fc",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000748_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000748_sheet02.png",
+      "output_hash": {
+        "sheet_01": "2669cc7eedf24f7da37c8a990580f2a978a912e2b48ce2e7b449f99305ee5931",
+        "sheet_02": "29e0329ad72fe146506e338cd5177df388f3dd48b1497affe9e442f1d83e4e46"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000748.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000748.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000748.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000748.json"
+      },
+      "asset_sha256": {
+        "image": "0fd34cb654c4f260e4274f8ae5637a314cf7525f2bca522bfffd600e4858d6fc",
+        "mask": "87cff7d7ae3fad5c175037a5e4a8c325fa4d6dc253f3a5b0c8b42201d644a5c9",
+        "pose": "ef8e95ba80e7a4a90fd4ed5bd9fe5b3e90b049d7dc3a0e94810e6c605e021929",
+        "camera": "d83a63f2b80e3c40c0d70b403e3b62fe0518076934d01987e0d2fd4d4b7362f0"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        175,
+        937,
+        1362
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5162282412731756,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "validation"
+    },
+    {
+      "condition_id": "cond_000000",
+      "pose_id": "pose_000000",
+      "view": "front",
+      "source_frame": 0,
+      "source_camera": "camera_000000",
+      "pose_index": 0,
+      "pose_fingerprint": "4dccc4d1224e8bd7ce07e311925583212367a4282fb40ea0744e54207b1c7569",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+      "source_condition_sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000000_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000000_sheet02.png",
+      "output_hash": {
+        "sheet_01": "fff577c8a7f508261290ad0aaaa4d557e2d7eeb1d13b03cd85a1f2ce0f287567",
+        "sheet_02": "5e6ece299ba9a9eacf2dfba60976532ba3d1a0375cefb9d236a8b690ce1ec9a7"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000000.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000000.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000000.json"
+      },
+      "asset_sha256": {
+        "image": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "mask": "d60df0a873f620a2fd7c8669a570367e34ecfb72f9e9bba7ae08dd6c7d76e41e",
+        "pose": "36489b2e1ff768d9c0f7ebab540e811c80f3b6b49f2c5e2a8404c0afdb8a4222",
+        "camera": "21607b527da70cd1fe1ce5ff8448806188745c916f59d4ff9e5e0e74ff0e84c0"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        178,
+        128,
+        845,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5522830030688758,
+      "difficulty": "hard",
+      "canonical_gate_view": true,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000012",
+      "pose_id": "pose_000012",
+      "view": "front",
+      "source_frame": 19,
+      "source_camera": "camera_000012",
+      "pose_index": 3,
+      "pose_fingerprint": "331f1c28215e9ec2133a6338b16c899c705dab61305ab1dc87e73a22de0eb8f9",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000012.png",
+      "source_condition_sha256": "83d4414e9281786b2810f623beee20b268a3da021da128acf402eea29de63703",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000012_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000012_sheet02.png",
+      "output_hash": {
+        "sheet_01": "cfb9b1a5c59dfc8352769869814322d49dc9c4a662bd0c8323bb041ce6d32d9a",
+        "sheet_02": "67feb2b528bd34d9ee669f3d75589e981aa67d2fbc5eba36c7cf267cef4bba4b"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000012.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000012.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000012.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000012.json"
+      },
+      "asset_sha256": {
+        "image": "83d4414e9281786b2810f623beee20b268a3da021da128acf402eea29de63703",
+        "mask": "e9b48aaa19324605672857b07bb1389c7b4b4edca7c5c7c288c992cf3586f829",
+        "pose": "df709e813c0c294e5909edbbc5bfceeac1f0346c78b5b7f38cd729f52eae287f",
+        "camera": "e6cf251fbd4883ebcf6d3559bad594b90ded514159ad1cf32da367f021ce1611"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        232,
+        128,
+        791,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.6168120893369157,
+      "difficulty": "hard",
+      "canonical_gate_view": false,
+      "condition_split": "novel_pose_test"
+    },
+    {
+      "condition_id": "cond_001710",
+      "pose_id": "pose_001710",
+      "view": "back",
+      "source_frame": 2660,
+      "source_camera": "camera_001710",
+      "pose_index": 427,
+      "pose_fingerprint": "3038a9847a914840374c87308f62071166b9ddafbdb1f906f121d10b54047493",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_001710.png",
+      "source_condition_sha256": "e594d65c41a87c2c80cd5021b9194cd5cfe598446cff63e456ae5e4aa3cf7708",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_001710_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_001710_sheet02.png",
+      "output_hash": {
+        "sheet_01": "29ab1ab6f147c7e94809d3471323f7b26bdff2e8349089244ca1a113802aac2a",
+        "sheet_02": "d0c990c7443d5dde448929f17e7476ee347cde969cce1fb915fe47451c953ea0"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_001710.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_001710.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_001710.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_001710.json"
+      },
+      "asset_sha256": {
+        "image": "e594d65c41a87c2c80cd5021b9194cd5cfe598446cff63e456ae5e4aa3cf7708",
+        "mask": "457af3c99e8452122134ac29b392776d4b71ed3fa88367dfca1a9cde87c305d0",
+        "pose": "3efdfe0be0a7693b1f3fa34b469a76772a5005c16104c9df5e6894dfff6ec2ce",
+        "camera": "56be1d9e9f7945852689fb6a3e75458cf735d2afd50948ad21a91361d01ce35b"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        203,
+        128,
+        820,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.4529900357999012,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000714",
+      "pose_id": "pose_000714",
+      "view": "back",
+      "source_frame": 1109,
+      "source_camera": "camera_000714",
+      "pose_index": 178,
+      "pose_fingerprint": "b36030cf57ae7a9cb0ac5e6d4f4a3066a3871bc43dcb1f874fb012846b004fd2",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000714.png",
+      "source_condition_sha256": "41913dfc054ab317642ad83d697264e313a0bd15e3b42c69215b726c76a5cf82",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000714_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000714_sheet02.png",
+      "output_hash": {
+        "sheet_01": "197f2e805b801a28a3d21cbc70d9dc3ef8496032630fb10a347f7b39646e99a8",
+        "sheet_02": "495577fdc0509d969e290187a1539b5a55d9e3125c87523ddf1f67aac9288b84"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000714.png",
+        "mask": "E:\\data_pre\\conditions_2000_candidates_hq\\masks\\cond_000714.png",
+        "pose": "E:\\data_pre\\conditions_2000_candidates_hq\\poses\\pose_000714.npz",
+        "camera": "E:\\data_pre\\conditions_2000_candidates_hq\\cameras\\camera_000714.json"
+      },
+      "asset_sha256": {
+        "image": "41913dfc054ab317642ad83d697264e313a0bd15e3b42c69215b726c76a5cf82",
+        "mask": "0d7b0907ba879fd969d01b90257288c3a93bc7de539260390ad51409f9f86ab0",
+        "pose": "b48441d1aa9d8bffa4d016f0d651126afc0170be8e05b548cb54276c6ea7b2aa",
+        "camera": "0929a872b7f4ce1a2d42c8b53b8bf3a00dcf169089963c1f0b36be823326b782"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        142,
+        128,
+        881,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_ACCEPTED_UNION_VISUAL_REVIEW",
+      "hand_screening_source": "jay_production_union_manifest_v2.json",
+      "pose_energy": 0.4747556812306651,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000634",
+      "pose_id": "pose_000634",
+      "view": "back",
+      "source_frame": 984,
+      "source_camera": "camera_000634",
+      "pose_index": 158,
+      "pose_fingerprint": "d07f44e188b5460e1e26b3c578777776f8c6091285461d2b0aea7be28584c762",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000634.png",
+      "source_condition_sha256": "3baa09a0a11dfd695eeaf0d8f15d0656101e24437c33363ffd8d7b93bd98836e",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000634_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000634_sheet02.png",
+      "output_hash": {
+        "sheet_01": "60deb4634b955f43b8e007bbf54ae30f8f1d8ff5ec82ecbc7240bebb7e901e7c",
+        "sheet_02": "284ea16a520f1d6707ce8a4f3257122a55cf0f0e414dd3f97939f329487fcc65"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000634.png",
+        "mask": "E:\\data_pre\\conditions_2000_candidates_hq\\masks\\cond_000634.png",
+        "pose": "E:\\data_pre\\conditions_2000_candidates_hq\\poses\\pose_000634.npz",
+        "camera": "E:\\data_pre\\conditions_2000_candidates_hq\\cameras\\camera_000634.json"
+      },
+      "asset_sha256": {
+        "image": "3baa09a0a11dfd695eeaf0d8f15d0656101e24437c33363ffd8d7b93bd98836e",
+        "mask": "060f3da63b6110b5e82be07957828f20c4100e0cc6a8047ae7de3690f8b4d3ab",
+        "pose": "1920fbb5b2ff7a432e2b82d1e71994fc1564fc5180670473bfd932ec0dd57497",
+        "camera": "06b96ec6619dfd84431c90d3f55dbd9e6073572667d8c01f507827945575ff84"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        281,
+        938,
+        1254
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_ACCEPTED_UNION_VISUAL_REVIEW",
+      "hand_screening_source": "jay_production_union_manifest_v2.json",
+      "pose_energy": 0.49958784754173624,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000382",
+      "pose_id": "pose_000382",
+      "view": "back",
+      "source_frame": 592,
+      "source_camera": "camera_000382",
+      "pose_index": 95,
+      "pose_fingerprint": "5554bff48d86a9b31fc747fe333d74709fb309505abaaebf0ed5d60111c4800e",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000382.png",
+      "source_condition_sha256": "fcafef8472b8a1051df783d4f6fe6f21f8ff81076896714e978f159c2c6ab35d",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000382_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000382_sheet02.png",
+      "output_hash": {
+        "sheet_01": "417f06b9b11f023d0365d280de64207b4f4c4ef1d4134ad928992b2470904f8d",
+        "sheet_02": "b0e54ffee0011298756e35b17ec38ea175b3c7d7b0801c847e1f45591d61765e"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000382.png",
+        "mask": "E:\\data_pre\\conditions_2000_candidates_hq\\masks\\cond_000382.png",
+        "pose": "E:\\data_pre\\conditions_2000_candidates_hq\\poses\\pose_000382.npz",
+        "camera": "E:\\data_pre\\conditions_2000_candidates_hq\\cameras\\camera_000382.json"
+      },
+      "asset_sha256": {
+        "image": "fcafef8472b8a1051df783d4f6fe6f21f8ff81076896714e978f159c2c6ab35d",
+        "mask": "c0347ff80176a92919cc5303516d0c9520c739c4715a5770a485be3d10311c00",
+        "pose": "f3ccde83d940653f773ada4c75a66db3276d9972cca1034802891e2bf230ebd0",
+        "camera": "5f44e1bd6671349ae8f574a7487e476c72b76307af1ecc51c4da6087966ac7b7"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        163,
+        938,
+        1372
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_ACCEPTED_UNION_VISUAL_REVIEW",
+      "hand_screening_source": "jay_production_union_manifest_v2.json",
+      "pose_energy": 0.5128224883735916,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000390",
+      "pose_id": "pose_000390",
+      "view": "back",
+      "source_frame": 604,
+      "source_camera": "camera_000390",
+      "pose_index": 97,
+      "pose_fingerprint": "0b21e21b857d570171b4d3b2f5592c48572064a8b1207dcfbcb62763a5da9b02",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000390.png",
+      "source_condition_sha256": "9e700ed47ec521f06afe3dcbc1d9ed303205a405b5306c21afec7ba6f5375881",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000390_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000390_sheet02.png",
+      "output_hash": {
+        "sheet_01": "1d0ea91d98067f082e62f0cd32515f1e0e3d37f9b2face684d56a6e455268dce",
+        "sheet_02": "7381141f0e70516077b9c94380f4a66be29228fbedd3fea394260b6b87c87033"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000390.png",
+        "mask": "E:\\data_pre\\conditions_2000_candidates_hq\\masks\\cond_000390.png",
+        "pose": "E:\\data_pre\\conditions_2000_candidates_hq\\poses\\pose_000390.npz",
+        "camera": "E:\\data_pre\\conditions_2000_candidates_hq\\cameras\\camera_000390.json"
+      },
+      "asset_sha256": {
+        "image": "9e700ed47ec521f06afe3dcbc1d9ed303205a405b5306c21afec7ba6f5375881",
+        "mask": "19596088627ccf593a6f555f422c2ac9123eaaff0bb52efeb382addd5c114587",
+        "pose": "6fe9a8da2aa45cff6dcd09d331d3a634692468dbd7252e7dd6d5a4414cbe59c1",
+        "camera": "980ee751083c97e92f005df7969399a90a74e5f523098d3c8a3eda458b6a2779"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        236,
+        938,
+        1300
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_ACCEPTED_UNION_VISUAL_REVIEW",
+      "hand_screening_source": "jay_production_union_manifest_v2.json",
+      "pose_energy": 0.5260362906175046,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000626",
+      "pose_id": "pose_000626",
+      "view": "back",
+      "source_frame": 972,
+      "source_camera": "camera_000626",
+      "pose_index": 156,
+      "pose_fingerprint": "d345f203867491f4ff00b6f66587bfb5a0a5cd73adb52e049bbf8e7304e3a1b7",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000626.png",
+      "source_condition_sha256": "8667612cfec2a35c7096a87db6d1ce5411c706478d42ab384ea4219be7c8ac3d",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000626_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000626_sheet02.png",
+      "output_hash": {
+        "sheet_01": "f051ff5f2f87115004ecf07a0df07a7431cc7202e0b2eb811e20dd3778eff4a7",
+        "sheet_02": "b3db4a0ff79e38e6ae1bf1d6cb44ce8e8ae6f7f727b022e2dedda97f3c493a65"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_2000_candidates_hq\\images\\cond_000626.png",
+        "mask": "E:\\data_pre\\conditions_2000_candidates_hq\\masks\\cond_000626.png",
+        "pose": "E:\\data_pre\\conditions_2000_candidates_hq\\poses\\pose_000626.npz",
+        "camera": "E:\\data_pre\\conditions_2000_candidates_hq\\cameras\\camera_000626.json"
+      },
+      "asset_sha256": {
+        "image": "8667612cfec2a35c7096a87db6d1ce5411c706478d42ab384ea4219be7c8ac3d",
+        "mask": "e3a30d8738f1116e3444339c59a5692e67b0c807df4522220ce66a28993dd6c5",
+        "pose": "e28681cb24d6b4514153600d9aa453a4d7633ffca4e24fd94264759872809fc4",
+        "camera": "bd9f42c65ca017e2fcb665cc3ad8622f6c839998e90d8d46ae6b0941dfa6faeb"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        98,
+        128,
+        925,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_ACCEPTED_UNION_VISUAL_REVIEW",
+      "hand_screening_source": "jay_production_union_manifest_v2.json",
+      "pose_energy": 0.534553066781329,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "validation"
+    },
+    {
+      "condition_id": "cond_000318",
+      "pose_id": "pose_000318",
+      "view": "back",
+      "source_frame": 492,
+      "source_camera": "camera_000318",
+      "pose_index": 79,
+      "pose_fingerprint": "a69361798cad870354f2f07d7cbd404ecbbef77cfafab5f01293a68723d27bc5",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+      "source_condition_sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000318_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000318_sheet02.png",
+      "output_hash": {
+        "sheet_01": "68a1ba89e2b2f91a87d2c1341661ebaf04632e8a8d7316a670c4ac0d4126dce6",
+        "sheet_02": "cfe7dc04f48cbc8477965b12ec5222db278aa613e40d2be3ba4f003810d97e98"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000318.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000318.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000318.json"
+      },
+      "asset_sha256": {
+        "image": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "mask": "cf738f5688a22e1005bfedf8375069085edfe9d9ec35939d495bf27c0aba273f",
+        "pose": "538812c7b333cc0134a81ba95abdd6f81eb234a4fcabc0489f831b188a063447",
+        "camera": "6a7af5a1502b7bcb34f52dd190cd42a21833bdc8274a84c8dbf8e84275616278"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        244,
+        937,
+        1292
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5420789919630501,
+      "difficulty": "hard",
+      "canonical_gate_view": true,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000322",
+      "pose_id": "pose_000322",
+      "view": "back",
+      "source_frame": 498,
+      "source_camera": "camera_000322",
+      "pose_index": 80,
+      "pose_fingerprint": "62e69c67d1c291fb96c9b17aa08cbc60ff05d8297990cc3756169b3648fdec21",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000322.png",
+      "source_condition_sha256": "1695a156d4dac19321cf0e22ff2d7b7eabeed259815f13890debbd8054532df0",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000322_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000322_sheet02.png",
+      "output_hash": {
+        "sheet_01": "d626a13875e9e87c6fe272694ba549626d2cf2d5489a6efeb4e57dcccc913015",
+        "sheet_02": "7762f47c22423e759036f77706becf20855739043fb138fc4ef2f5739dad6c17"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000322.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000322.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000322.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000322.json"
+      },
+      "asset_sha256": {
+        "image": "1695a156d4dac19321cf0e22ff2d7b7eabeed259815f13890debbd8054532df0",
+        "mask": "a91763e297ef3cae15cbb67aafe242358da505cdfe4754faf516e093dcec611b",
+        "pose": "c692583cd6d3366a82cc7189825b43dfe48c4050e6c93387ac7cef6f1080fcd6",
+        "camera": "94146635dae1fa45697f558dad138dcdb788f739324e52a723c384f5198346d3"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        85,
+        240,
+        938,
+        1296
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.576392878870189,
+      "difficulty": "hard",
+      "canonical_gate_view": false,
+      "condition_split": "novel_pose_test"
+    },
+    {
+      "condition_id": "cond_000225",
+      "pose_id": "pose_000225",
+      "view": "left",
+      "source_frame": 349,
+      "source_camera": "camera_000225",
+      "pose_index": 56,
+      "pose_fingerprint": "1c60e1ac223c283bcb34dc0964c5790d88cfc3353f193e7875f114430fd7251e",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000225.png",
+      "source_condition_sha256": "69b852ae11ca2146d0d9583a48759ab0b84d7a7af59c1518fc1f85a9ae680df0",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000225_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000225_sheet02.png",
+      "output_hash": {
+        "sheet_01": "08feae124227ccd70df5590a739fbbdd78c00a8c2d0c443d4fc0b7941a786be3",
+        "sheet_02": "6cb902665dfba9d0d66310a844882dba36072be889037b2fc2840cf0a9ddd640"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000225.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000225.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000225.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000225.json"
+      },
+      "asset_sha256": {
+        "image": "69b852ae11ca2146d0d9583a48759ab0b84d7a7af59c1518fc1f85a9ae680df0",
+        "mask": "1f22b06b0ebed60458cd7444f29bc281d088bef1c963f199b2eb70cec346fd0e",
+        "pose": "348f5f810ac4b5b6961cb45156fbc09d5aa147ae48ad16db027e8743e2744fce",
+        "camera": "a731caf68b78e8be44af0018730a3bea30802ffed3faacb2738019ca47d47981"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        281,
+        128,
+        743,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.45590964833488584,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000077",
+      "pose_id": "pose_000077",
+      "view": "left",
+      "source_frame": 118,
+      "source_camera": "camera_000077",
+      "pose_index": 19,
+      "pose_fingerprint": "dade0b2d4994bc9ed36d8fc42c2502e025ec6340ad2267eff3d54213d8c661ca",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000077.png",
+      "source_condition_sha256": "4c65ca6bb5efee7b28d3f0ffc831e57aafd12d9e1f648870fe2657bcc5db8287",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000077_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000077_sheet02.png",
+      "output_hash": {
+        "sheet_01": "19e734d8674a8b2f25801bcc90987d7b37633051cbc8a9afe7aac0242f3e7071",
+        "sheet_02": "5df4aaffb49855109f36aebe9b0c5b77fec76194a09d1135c4791d26a206d8ab"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000077.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000077.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000077.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000077.json"
+      },
+      "asset_sha256": {
+        "image": "4c65ca6bb5efee7b28d3f0ffc831e57aafd12d9e1f648870fe2657bcc5db8287",
+        "mask": "2323a55ddb1798af84aaa3d45fe651772fc7ee5bb9ad6cf84db3cb092694b305",
+        "pose": "9691078f87683a6ea9c4011c30fc5fef35f856d16df77c75d84365eb3713fb07",
+        "camera": "adf5a8557741173b061d6686b26bcd32c69f82fbb7d462212ba1d2a192d5c675"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        373,
+        128,
+        651,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.4780998433795469,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000101",
+      "pose_id": "pose_000101",
+      "view": "left",
+      "source_frame": 156,
+      "source_camera": "camera_000101",
+      "pose_index": 25,
+      "pose_fingerprint": "9ff41a7f445ed08c01768f3bf9e9cd86f0061478a5c7638daafc34a5a6714aaa",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000101.png",
+      "source_condition_sha256": "57a9faf6c73b41d5e09b34230ae9eea637ff3165e7a5e2e21ac12b245ec29855",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000101_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000101_sheet02.png",
+      "output_hash": {
+        "sheet_01": "d10a3d583824a67b33e0dc18450282a8c0f7a3c2d56fb6558a43e48005fe8fc3",
+        "sheet_02": "86a274b9a9574fd6b8ffe42f2ff8174c86a2350d3a1b72e9513140637097097d"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000101.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000101.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000101.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000101.json"
+      },
+      "asset_sha256": {
+        "image": "57a9faf6c73b41d5e09b34230ae9eea637ff3165e7a5e2e21ac12b245ec29855",
+        "mask": "4a532911b1fd7d6982d1da8cf56388318c0c28ac3077e1dd826624dea1964a12",
+        "pose": "92583d6a051779d7ee2e01d93396dc849b20f394a203460f74cdc153a296ce5f",
+        "camera": "606191ee996d90f7c3351f5084ddd0712a3cb48b12af5f2ed5c9318a5379d9d3"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        234,
+        128,
+        789,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.48785351074443195,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000133",
+      "pose_id": "pose_000133",
+      "view": "left",
+      "source_frame": 206,
+      "source_camera": "camera_000133",
+      "pose_index": 33,
+      "pose_fingerprint": "224adcc4793637b0752b6cbcda6bc2d6bf7a478135225dfd040fc2ecff8fa735",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000133.png",
+      "source_condition_sha256": "2adb90e414353b358745ef30ce58fbff85ad9e5d7c1e67ff42c50a9d5431e466",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000133_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000133_sheet02.png",
+      "output_hash": {
+        "sheet_01": "5c9db02d8e8d3d36b431229b6cb0e8d114652543563a2eb9f3826cf7b5999804",
+        "sheet_02": "14db5d7c81d5c714fc3b8baa21c11c9eac499504ce87fce4ec440dff8c875105"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000133.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000133.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000133.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000133.json"
+      },
+      "asset_sha256": {
+        "image": "2adb90e414353b358745ef30ce58fbff85ad9e5d7c1e67ff42c50a9d5431e466",
+        "mask": "3bb8f5736674dccdfea7cfd11006be96fb54f891021a2a952c8751b6dc024593",
+        "pose": "ca987aac74d7112ad8913745aad88ef3ccb0409a32292bd0a024438114addcfa",
+        "camera": "5f34a13d7470898ab317f481b0d98828f8b27c0bd2ab510100be284a5f9521b1"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        313,
+        128,
+        711,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.48800254838835244,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000085",
+      "pose_id": "pose_000085",
+      "view": "left",
+      "source_frame": 131,
+      "source_camera": "camera_000085",
+      "pose_index": 21,
+      "pose_fingerprint": "91462e01ac06a165573ac4fd3470d7789dfc514d108da6954587163c015d1762",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000085.png",
+      "source_condition_sha256": "5dbe5ccb1873e79b7876853adfe9ce38e7156495ebdc0ce817e5522a566060a0",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000085_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000085_sheet02.png",
+      "output_hash": {
+        "sheet_01": "60c89814b17b2ddc5e3e210009696592ae8918d186c7f6ed87b510c10a9b98f9",
+        "sheet_02": "2c4bdf6b319e640efdd812df88c90ef7ae9dbc3a36c15ac7247303e34a644b39"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000085.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000085.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000085.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000085.json"
+      },
+      "asset_sha256": {
+        "image": "5dbe5ccb1873e79b7876853adfe9ce38e7156495ebdc0ce817e5522a566060a0",
+        "mask": "ab0808d2ee08d8b7ed1bf09511612e0d20b31a7d20af8cb30f37a0fe79ce4a7c",
+        "pose": "e0e230a29a0489c93253252aff24dfa84afa2c8ba1b75b943757ac3743c052db",
+        "camera": "8ade24b9093e7e87cd229f046e97ef9e2be78153b101183fa705b04a4ea4dd0d"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        264,
+        128,
+        760,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.49402759828942266,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000209",
+      "pose_id": "pose_000209",
+      "view": "left",
+      "source_frame": 324,
+      "source_camera": "camera_000209",
+      "pose_index": 52,
+      "pose_fingerprint": "a28d0959b7c56a77ee9d75d0eae9dacafa51d5647edd5a3ee04dec3a0816c59e",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000209.png",
+      "source_condition_sha256": "6a042ccf0af57465cbfa003329a1a7a75d893e8d5d482436a12ac3563ed290bc",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000209_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000209_sheet02.png",
+      "output_hash": {
+        "sheet_01": "02ca6ec1b5a3bbb96f351e5127bdc39af3f7a64cd84b84d0ca82d65eb4ceae81",
+        "sheet_02": "67603650721735bc4b8922c76e7917725463b6e709714272d0cbda0755838947"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000209.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000209.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000209.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000209.json"
+      },
+      "asset_sha256": {
+        "image": "6a042ccf0af57465cbfa003329a1a7a75d893e8d5d482436a12ac3563ed290bc",
+        "mask": "7ee02e70f31b24e0c8a91f41a5cfb12008503d0e2fae5eaf10210d0eea5ffad7",
+        "pose": "8628a1beca888afafa1180fecaeffc6088c8f7ec0f77dc36b359988b634f3f9d",
+        "camera": "e0386e53946f7f38fa2815bffb12f81771075dc5f697cc1efeb0dc307d035ed0"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        132,
+        128,
+        891,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5036005089358631,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "validation"
+    },
+    {
+      "condition_id": "cond_000065",
+      "pose_id": "pose_000065",
+      "view": "left",
+      "source_frame": 100,
+      "source_camera": "camera_000065",
+      "pose_index": 16,
+      "pose_fingerprint": "5c901b4582abfb371f8b5bd7949fce8d469cc30a397e0c4055d7800c3ed28ad0",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000065.png",
+      "source_condition_sha256": "ce46639865cbd6d7f707ac8070875a2d111146a07094616cc58115b758d68b35",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000065_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000065_sheet02.png",
+      "output_hash": {
+        "sheet_01": "121455197f2581d40295f8e85aa9251ca9620193747481e291e1ab60a5747169",
+        "sheet_02": "5e6a41710455c5f00bc1f52320f5120882a217c47708cbd531aa1306d160fb3f"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000065.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000065.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000065.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000065.json"
+      },
+      "asset_sha256": {
+        "image": "ce46639865cbd6d7f707ac8070875a2d111146a07094616cc58115b758d68b35",
+        "mask": "366a42fd8cc95648dfefba30988569f3ec8e75f19d4ec13398c1b9ea7a0faacf",
+        "pose": "845df94d6e9c4d906fc8a9413b2d3ab28dbb6de0b4c0dce25c2f725115df6c79",
+        "camera": "5362651f73d9fa282585273d1942a461330f16cb39f4a12d9d6d170ebb1804cb"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        183,
+        128,
+        840,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5038702149464046,
+      "difficulty": "hard",
+      "canonical_gate_view": false,
+      "condition_split": "novel_pose_test"
+    },
+    {
+      "condition_id": "cond_000017",
+      "pose_id": "pose_000017",
+      "view": "left",
+      "source_frame": 25,
+      "source_camera": "camera_000017",
+      "pose_index": 4,
+      "pose_fingerprint": "c006c65222e1875f691318565c7290af7f6cf52fb0b5693d8f02547a5cc752d0",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+      "source_condition_sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000017_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000017_sheet02.png",
+      "output_hash": {
+        "sheet_01": "889a07746d8f7ab32060ff47716e783fbb0bdc20a46b3e460cc2505005f3f30a",
+        "sheet_02": "e137ac36fff3422be2c659cf2dedfb0c2550314ac235d00c899ce166cc17b739"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000017.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000017.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000017.json"
+      },
+      "asset_sha256": {
+        "image": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "mask": "d72a22af271ced677dbaa798effea56f7c2c6d55035cf5f11c3d215ce14a6cf9",
+        "pose": "55566abdf8025c657e6d10ef338e81f809d892ba8fa963d5689525647e1eabd5",
+        "camera": "8f11a271d6bd72edd813579516d07b86c4f9d2e60e25502877e537c80e91bfed"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        372,
+        128,
+        652,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5999612210475861,
+      "difficulty": "hard",
+      "canonical_gate_view": true,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000099",
+      "pose_id": "pose_000099",
+      "view": "right",
+      "source_frame": 150,
+      "source_camera": "camera_000099",
+      "pose_index": 24,
+      "pose_fingerprint": "a05024979449cf18872fa8a85f241fe821f8b8fc3b5029b03f6f503ac8b0355a",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000099.png",
+      "source_condition_sha256": "9ee69a4f4c68a2d853fa5b3bc161aa61947f0a7888ce9bf3f30fda338e29d637",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000099_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000099_sheet02.png",
+      "output_hash": {
+        "sheet_01": "005be34ba1934777abb149e7839de463016509b596c2861fc2eb30e80ae071b1",
+        "sheet_02": "f418fe41c1fcaf4fd856d7d563e9ce67c351b7af202cdb538b66adf9aca7b36d"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000099.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000099.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000099.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000099.json"
+      },
+      "asset_sha256": {
+        "image": "9ee69a4f4c68a2d853fa5b3bc161aa61947f0a7888ce9bf3f30fda338e29d637",
+        "mask": "f1b436f9a0b0845d1da61f2f59056d2d4fc2c4967e87afa59f27100f79024d3f",
+        "pose": "3c9e01f72d2170da9c2627d909f13732d381976ce4977f0c797d5d59cedf0145",
+        "camera": "2b4a127c899219e6043f1c87acb878f23f0ae81672e8f2f28732c89d857e072e"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        232,
+        128,
+        791,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.47045742337961466,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000347",
+      "pose_id": "pose_000347",
+      "view": "right",
+      "source_frame": 536,
+      "source_camera": "camera_000347",
+      "pose_index": 86,
+      "pose_fingerprint": "c5d07e42559da9e4ba0197d32a90337e61bc0cd3f46b0d4c4614534a4c1d1838",
+      "source_run": "Jay_coverage_supplement_codex_imagegen_v1",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+      "source_condition_sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000347_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000347_sheet02.png",
+      "output_hash": {
+        "sheet_01": "bae5c132c59c5bd87e64116b30a9d153f9287f379b45f2beb5649bfb39e6c01e",
+        "sheet_02": "9df2f7d08a2bd8b6c7c7d0afc6c2edbc089cbd4df0612419081c31e74235991f"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000347.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000347.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000347.json"
+      },
+      "asset_sha256": {
+        "image": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "mask": "a733bb9e6241a9a5cba43f4d71fa7b69efc6478b72ffb0d8588ab2da0d5f2f66",
+        "pose": "7c5d8844474c8902b7b87f55ea5125710f9b593dcc2d100d80db1bf46d4b054f",
+        "camera": "f3cbe09fe8650081aa1e4c6ab2bb02d955dd5901457625cf0cc5958806705305"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        280,
+        128,
+        743,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.4903257666390778,
+      "difficulty": "easy",
+      "canonical_gate_view": true,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000147",
+      "pose_id": "pose_000147",
+      "view": "right",
+      "source_frame": 224,
+      "source_camera": "camera_000147",
+      "pose_index": 36,
+      "pose_fingerprint": "141152be795962244c5383e492b767319f4bfc835a7665a8620316194bb9cebd",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000147.png",
+      "source_condition_sha256": "28e662219ea4826644a0cd2c75a36393b8a42cc92d9abe209e2808393d1ac59b",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000147_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000147_sheet02.png",
+      "output_hash": {
+        "sheet_01": "499f6d180ffdca40d826855cb863d37241ff9960af2b538f61ee7d6a71c93403",
+        "sheet_02": "8fa863c9002604ab660c0a789d9936431ed3981d46f4b92941a831986659dc46"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000147.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000147.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000147.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000147.json"
+      },
+      "asset_sha256": {
+        "image": "28e662219ea4826644a0cd2c75a36393b8a42cc92d9abe209e2808393d1ac59b",
+        "mask": "1da8e6b665c2cdc11ee6d2f5bb643c1b812ebb9b73e1d13765aa8eec79321ced",
+        "pose": "5bdf841a6d5612e526a7910b4f5c6bed649f955661295b12c05d1456a4061658",
+        "camera": "97dde3a1ab2fe2232dc484f1fd1322c0c1065a73c922e1da33b0abd37e47fb57"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        156,
+        128,
+        867,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5003070129213666,
+      "difficulty": "easy",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000279",
+      "pose_id": "pose_000279",
+      "view": "right",
+      "source_frame": 430,
+      "source_camera": "camera_000279",
+      "pose_index": 69,
+      "pose_fingerprint": "99cd560f6b28861198158f5a95415136809542c8aca79b79500d4f1d012befde",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000279.png",
+      "source_condition_sha256": "b14a50ad8ca651fb2ad6503c17326c52ae2ad44f3c3ac639fd5b3bfd4f987a89",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000279_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000279_sheet02.png",
+      "output_hash": {
+        "sheet_01": "72cbba819e4d344a162ebee5fc4bc34314f54baf3d6d581e57c34fe5b1e439da",
+        "sheet_02": "b4a46654730841413eb08412d64f3264e10b9a0e22f070defdc339450a8376b4"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000279.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000279.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000279.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000279.json"
+      },
+      "asset_sha256": {
+        "image": "b14a50ad8ca651fb2ad6503c17326c52ae2ad44f3c3ac639fd5b3bfd4f987a89",
+        "mask": "e416dfd99353a2a282653f8c220320d5e755585727ff58be5d6b050cfedd49d0",
+        "pose": "502ca40048a150236ccf069007ceaab488393745caf85218bfad3e2da1dcfbe3",
+        "camera": "1a2c5d4c8cb5d870c3e611acc61293eb0819b16981cbf4e5991b6986e6e27b1c"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        279,
+        128,
+        746,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5233340230253926,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000255",
+      "pose_id": "pose_000255",
+      "view": "right",
+      "source_frame": 393,
+      "source_camera": "camera_000255",
+      "pose_index": 63,
+      "pose_fingerprint": "0d7c1ed948606b5f0571b57639a1d61245918b77c11eeba01b2a2d48708da4fc",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000255.png",
+      "source_condition_sha256": "5862cdc2654691bed5fea32853598d7c17ef335670761fc6ccd6ce1686305b74",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000255_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000255_sheet02.png",
+      "output_hash": {
+        "sheet_01": "028958d196bfcca416a8506d3a032fb5431086792e0307e4411e1792f5d67c2e",
+        "sheet_02": "359cd24e72934de81ca7bac2d3070c7a372bf4941b47664d23c42af329a98de5"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000255.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000255.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000255.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000255.json"
+      },
+      "asset_sha256": {
+        "image": "5862cdc2654691bed5fea32853598d7c17ef335670761fc6ccd6ce1686305b74",
+        "mask": "66df816797ffb10cc506b187ef8ba80c085a692dcc030d6485c2b98265d07463",
+        "pose": "aab4361f58c863a04231a5336e62d7ace3e4bc800e03e39525af5443982a2caf",
+        "camera": "cc813fc7b6a2c3769008d31440a54d048e537b43257c8ebd5e2cc8f91c046df4"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        316,
+        128,
+        708,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5390591541489035,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000003",
+      "pose_id": "pose_000003",
+      "view": "right",
+      "source_frame": 0,
+      "source_camera": "camera_000003",
+      "pose_index": 0,
+      "pose_fingerprint": "4dccc4d1224e8bd7ce07e311925583212367a4282fb40ea0744e54207b1c7569",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000003.png",
+      "source_condition_sha256": "5466b621b1e5f5d437723701ad9a543040fac0bd29ea7a4212ca337ca4849506",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000003_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000003_sheet02.png",
+      "output_hash": {
+        "sheet_01": "e261824fc1231ec74f70cc8d1449577bc78aa6f5d80bc75bd28c867640218359",
+        "sheet_02": "3d38e28900404e188ec1e728161c00d59a1e61774fb79c788f015d855859014d"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000003.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000003.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000003.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000003.json"
+      },
+      "asset_sha256": {
+        "image": "5466b621b1e5f5d437723701ad9a543040fac0bd29ea7a4212ca337ca4849506",
+        "mask": "af1ef4d7305d7cd277985ef82981aaf0e8dbbcec541c7559bdb0892164de7a5d",
+        "pose": "36489b2e1ff768d9c0f7ebab540e811c80f3b6b49f2c5e2a8404c0afdb8a4222",
+        "camera": "ac7badd8af0c0ca4a427a8048c3b946adf2338355a2186d438bbc1be1328639b"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        335,
+        128,
+        688,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5522830030688758,
+      "difficulty": "medium",
+      "canonical_gate_view": false,
+      "condition_split": "validation"
+    },
+    {
+      "condition_id": "cond_000007",
+      "pose_id": "pose_000007",
+      "view": "right",
+      "source_frame": 6,
+      "source_camera": "camera_000007",
+      "pose_index": 1,
+      "pose_fingerprint": "a35724b89b2d569044d6d3c8fa5f94a43f9d993655304217a7a35d752cf5f824",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000007.png",
+      "source_condition_sha256": "e748fe66a9fb98b8f27de1b80b827c8c1e02cbdf0ab356be494429efd347d470",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000007_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000007_sheet02.png",
+      "output_hash": {
+        "sheet_01": "74db4d4be4074fb7640cafb3b956e74504d2051beb2f1c581058df8a8131f8ef",
+        "sheet_02": "f4429b96a3dcc11f2dc7e8c087bf3463f564c5402f307d7f93d6d5689fbd111e"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000007.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000007.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000007.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000007.json"
+      },
+      "asset_sha256": {
+        "image": "e748fe66a9fb98b8f27de1b80b827c8c1e02cbdf0ab356be494429efd347d470",
+        "mask": "fcb077ff5c683d461af7ed338a59c702a1fca0ce03954b704ca23849d842b103",
+        "pose": "15ad0be21ac2d335208f84f304b4769750e7142cef0a91e20a2ee763ac778695",
+        "camera": "95bd2ffbd57cb2966c85fff7bb7586ed8c6d84bc5c214cfe1e2687d892a18a7a"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        351,
+        128,
+        672,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.5839406741309767,
+      "difficulty": "hard",
+      "canonical_gate_view": false,
+      "condition_split": "train"
+    },
+    {
+      "condition_id": "cond_000095",
+      "pose_id": "pose_000095",
+      "view": "right",
+      "source_frame": 143,
+      "source_camera": "camera_000095",
+      "pose_index": 23,
+      "pose_fingerprint": "33aa54bbe7c25221413f432681b03e14ae9cb0d00dd7cd3263bd00dac072858e",
+      "source_run": "Jay_original_historical",
+      "source_condition": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000095.png",
+      "source_condition_sha256": "63a84814bab361ff3518851c8d6e49ca84ad4b0b7a5013189e326746d6a1263a",
+      "sheet_01_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000095_sheet01.png",
+      "sheet_02_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000095_sheet02.png",
+      "output_hash": {
+        "sheet_01": "79e4164ff82b5da8dca095718c9b07ef13c41ee8de39139afeb14b54f59de208",
+        "sheet_02": "c82406dc907fdf1755aba2166dfc3eeb88ec3b8c20161a7e3f7543c9d04b7967"
+      },
+      "pose_camera_traceable": true,
+      "assets": {
+        "image": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000095.png",
+        "mask": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000095.png",
+        "pose": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000095.npz",
+        "camera": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000095.json"
+      },
+      "asset_sha256": {
+        "image": "63a84814bab361ff3518851c8d6e49ca84ad4b0b7a5013189e326746d6a1263a",
+        "mask": "530675641ded31e1d4b4a6264a2791842efb7efc2cd9b32dacde221c5c7e92a7",
+        "pose": "405b9471ec14034931e43e8d77313165aa3badf773fb40f63e31c022e6229432",
+        "camera": "13c4367c6d17d77347131965d4f8b419afcc245f99d5b2d07ed94bf70fe82f8b"
+      },
+      "image_size": [
+        1024,
+        1536
+      ],
+      "image_mode": "RGB",
+      "foreground_bbox_xyxy": [
+        224,
+        128,
+        800,
+        1407
+      ],
+      "full_body_uncropped": true,
+      "hand_screening_status": "PASS_SCREENED",
+      "hand_screening_source": "selected_conditions_300_hand_strict.csv",
+      "pose_energy": 0.6375392714745496,
+      "difficulty": "hard",
+      "canonical_gate_view": false,
+      "condition_split": "novel_pose_test"
+    }
+  ]
+}

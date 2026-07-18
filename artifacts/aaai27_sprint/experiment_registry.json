@@ -1,0 +1,148 @@
+{
+  "schema_version": "aaai27_sprint_preflight_v1",
+  "artifact_type": "experiment_registry",
+  "created_at": "2026-07-18T00:00:00+08:00",
+  "status": "PREFLIGHT_ONLY",
+  "frozen_long_term_head": "9fc88033b407136073f7bddc6ffca6dd4dd1e0f5",
+  "method_ids": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6"
+  ],
+  "entries": [
+    {
+      "experiment_id": "M0",
+      "name": "Base Avatar",
+      "category": "main_baseline",
+      "definition": "Zero canonical residual.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "M1",
+      "name": "Per-Outfit Gaussian Optimization",
+      "category": "main_baseline",
+      "definition": "Independent canonical residual optimization per outfit; no amortized inference.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "M2",
+      "name": "Outfit-ID Conditioning",
+      "category": "main_baseline",
+      "definition": "Learned outfit embedding replaces image references.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "M3",
+      "name": "Global Reference",
+      "category": "main_baseline_or_ablation",
+      "definition": "Globally pooled image feature broadcast to anchors.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "M4",
+      "name": "Projection Only",
+      "category": "main_baseline",
+      "definition": "Camera-aware projection/aggregation without graph completion.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "M5",
+      "name": "Full CanonDressGS",
+      "category": "main_method",
+      "definition": "Projection, aggregation, graph completion, dual gates, six residual heads.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "A1",
+      "name": "No Graph Completion",
+      "category": "core_ablation",
+      "definition": "Observed/projected anchor evidence only.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "A2",
+      "name": "Single Gate",
+      "category": "core_ablation",
+      "definition": "One gate controls geometry and appearance.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "A3",
+      "name": "Appearance Only",
+      "category": "core_ablation",
+      "definition": "Disable xyz/scaling/rotation residuals.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "A4",
+      "name": "Single-Target Supervision",
+      "category": "core_ablation",
+      "definition": "Raw edit target without protected base target.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "A5",
+      "name": "V5.2 Alpha Objective",
+      "category": "core_ablation",
+      "definition": "Replace frozen V5.3 boundary-aware alpha objective.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    },
+    {
+      "experiment_id": "A6",
+      "name": "1/2/4 References",
+      "category": "core_ablation",
+      "definition": "Matched reference-count study.",
+      "status": "PLANNED_NOT_RUN",
+      "output_dir": null,
+      "checkpoint": null,
+      "optimizer_created_by_preflight": false
+    }
+  ],
+  "second_target_asset_audit": {
+    "directly_usable_target_avatar_found": false,
+    "status": "NO_VERIFIED_SECOND_TARGET_CHECKPOINT_PLUS_DATA_CONTRACT",
+    "note": "Local/cloud config names and historical actor directories are not directly usable assets. Optional replication is deferred to post-AAAI P9."
+  }
+}
