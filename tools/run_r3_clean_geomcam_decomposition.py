@@ -258,6 +258,7 @@ def _render_source(
     final_height: int,
     final_width: int,
     render_scale: int,
+    max_faces_per_bin: int,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, dict[str, Any], dict[str, Any]]:
     from pytorch3d.renderer import FoVPerspectiveCameras, MeshRasterizer, RasterizationSettings
     from pytorch3d.structures import Meshes
@@ -295,6 +296,7 @@ def _render_source(
         cameras=cameras,
         raster_settings=RasterizationSettings(
             image_size=(render_height, render_width), blur_radius=0.0, faces_per_pixel=1,
+            max_faces_per_bin=max_faces_per_bin,
         ),
     )
     with torch.no_grad():
@@ -445,7 +447,9 @@ def _run(args: argparse.Namespace) -> None:
         if (final_width, final_height) != (int(camera["width"]), int(camera["height"])):
             raise ValueError(f"camera/image size mismatch: {condition_id}")
         replay, vertices, joints_3d, joints_2d, geometry, render_contract = _render_source(
-            model, faces, pose, camera, final_height, final_width, int(config["source_contract"]["render_scale"])
+            model, faces, pose, camera, final_height, final_width,
+            int(config["source_contract"]["render_scale"]),
+            int(config["source_contract"]["max_faces_per_bin"]),
         )
         metric = binary_mask_metrics(replay, truth)
         replay_bbox = mask_bbox(replay)
