@@ -102,7 +102,7 @@ def atomic_text(path: Path, value: str) -> None:
 def atomic_text_exact(path: Path, value: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(value, encoding="utf-8")
+    temporary.write_bytes(value.encode("utf-8"))
     temporary.replace(path)
 
 

@@ -94,6 +94,15 @@ def test_generation_records_prompt_hash(ctx: dict[str, Any]) -> None:
     assert manager.sha256_text(prompt) == manager.hashlib.sha256(prompt.encode("utf-8")).hexdigest()
 
 
+def test_prompt_file_preserves_exact_lf_hash(ctx: dict[str, Any]) -> None:
+    prompt = "line one\nline two with Jay's outfit"
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "prompt.txt"
+        manager.atomic_text_exact(path, prompt)
+        assert path.read_bytes() == prompt.encode("utf-8")
+        assert manager.sha256(path) == manager.sha256_text(prompt)
+
+
 def test_generation_is_append_only(ctx: dict[str, Any]) -> None:
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
