@@ -1,0 +1,114 @@
+schema_version: canondressgs.instrumented_projection_admission.v1
+task_id: SUBJECT02-INSTRUMENTED-PROJECTION-ADMISSION-001
+research_branch: research/instrumented-raster-debug-20260719
+source_head: 159d23cb82a4af8b94462ae580198c7612c77739
+source_tag: alpha-raster-audit-case-rf-20260719
+source_alpha_audit_run_commit: 51ff263c87a8a9963313f4b44750f0b77b13384d
+source_alpha_audit_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-ALPHA-RASTER-AUDIT-001/attempt_004
+source_v6_1_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-NEW-SILHOUETTE-SEMANTICS-001/attempt_002
+source_v6_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_004
+source_representation_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002
+source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+pipeline_config: configs/canon_dress_gs_mvp_real.yaml
+
+frozen_branches:
+  research/alpha-raster-audit-20260719: 159d23cb82a4af8b94462ae580198c7612c77739
+  research/new-silhouette-semantics-20260719: 74f65ef15d1ca7e81d6d8ac9d58c469285f70323
+  research/objective-residual-redesign-20260718: cee8fc51b5039a102ef7e2c31632e348ae3b99a1
+  research/representation-triage-20260718: 45539af725dcff6188a326ef732614acfc09cab5
+  sprint/aaai27-20260718: 54c1ba73d325a58256f32b4fecdf8c321aef8e21
+  pipeline/full-dressable-20260715: 9fc88033b407136073f7bddc6ffca6dd4dd1e0f5
+
+outfits: [O01, O08]
+conditions:
+  cond_000000: front
+  cond_000318: back
+  cond_000347: right
+focus_samples:
+  - [O08, cond_000318]
+  - [O08, cond_000347]
+control_samples:
+  - [O08, cond_000000]
+  - [O01, cond_000318]
+  - [O01, cond_000347]
+
+states:
+  P1:
+    description: Representation Triage Rung 2 shared canonical state
+    kind: unbounded
+    relative_checkpoint: rung_2_shared_same_support/{outfit}/checkpoints/step_001200.pth
+    sha256:
+      O01: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+      O08: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  P2:
+    description: V6 T5 fixed-open bounded state
+    kind: fixed_open
+    relative_checkpoint: causal_matrix/T5/{outfit}/checkpoints/step_001000.pth
+    sha256:
+      O01: 0b9227df2fce94ea530be88fd2ac46438562e3e6338c2f4b9c3bd222ab225fcf
+      O08: 9d74a163a973c92f81cc4c827dc7508b9945632f87e70fe43e9ae1319a8ae6e1
+  P3:
+    description: V6.1 S1 fixed-open bounded state
+    kind: fixed_open
+    relative_checkpoint: S1_v6_1_semantics/{outfit}/checkpoints/step_001000.pth
+    sha256:
+      O01: 46bf0dffbd6fc512e753cce7be7f895f7ca448568a100238fc1e02753b1ba111
+      O08: 7c0e5baf7b876b9ba40884f0db0ac8a70aeabdb24cff332fcad9b620ce8a5852
+
+candidate_bounds:
+  xyz: 0.09406771513
+  log_scaling: 0.67803978920
+  rotation: 0.62413822860
+  opacity_logit: 2.0
+  sh0: 1.49314403538
+  shN: 0.10
+
+renderer_contract:
+  backend: gsplat
+  expected_version: 1.5.3+pt24cu121
+  packed: false
+  near_plane: 0.1
+  far_plane: 10000000000.0
+  radius_clip: 0.0
+  eps2d: 0.3
+  tile_size: 16
+  sparse_grad: false
+  rasterize_mode: classic
+  alpha_cutoff: 0.00392156862745098
+  early_termination_transmittance: 0.0001
+  alpha_clamp_max: 0.999
+
+projection_agreement:
+  projected_mean_abs_median_max_px: 0.01
+  projected_mean_abs_p99_max_px: 0.10
+  depth_relative_p99_max: 0.00001
+  radius_abs_p99_max_px: 1.0
+  radius_relative_p99_max: 0.02
+
+case_thresholds:
+  placement_n_pre_ratio_max: 0.35
+  placement_admission_retention_min: 0.90
+  admission_n_pre_ratio_min: 0.70
+  admission_retention_max: 0.50
+  admission_named_rejection_fraction_min: 0.70
+  mixed_placement_ratio_max: 0.70
+  mixed_admission_retention_max: 0.80
+  counterfactual_fn_recovery_min_for_primary_cause: 0.20
+
+diagnostic_sampling:
+  foreground_threshold: 0.5
+  trusted_fn_state: P3
+  normal_background_pixels_per_view: 512
+  same_index_max_rows: 200000
+
+permissions:
+  optimizer_steps: 0
+  training: false
+  generate_targets: false
+  rerun_seven_outfits: false
+  image_conditioned_training: false
+  modify_renderer_defaults: false
+  modify_v6_v6_1_loss: false
+  modify_bounds: false
+  modify_alpha_threshold: false
+  modify_historical_outputs: false
