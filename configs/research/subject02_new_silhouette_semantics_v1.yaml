@@ -1,0 +1,127 @@
+schema_version: canondressgs.new_silhouette_semantics.v1
+task_id: SUBJECT02-NEW-SILHOUETTE-SEMANTICS-001
+research_branch: research/new-silhouette-semantics-20260719
+source_objective_commit: 7cfaacd7dc15f063fc67b4aaa466440f27299479
+source_objective_final_head: cee8fc51b5039a102ef7e2c31632e348ae3b99a1
+source_objective_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_004
+source_aaai_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003
+source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+source_boundary_contract: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/masks/dual_target_mask_manifest.json
+
+outfits: [O01, O08]
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+seed: 20260718
+silhouette_threshold: 0.5
+
+support_band:
+  source_resolution_width: 1024
+  source_resolution_height: 1536
+  source_boundary_radius_pixels: 5
+  # 5 / hypot(1024,1536). This is frozen from the pre-existing V5/AAAI
+  # resolution and boundary-width contract, before inspecting V6.1 results.
+  base_bbox_diagonal_ratio: 0.002708497051881002
+  minimum_radius_pixels: 1
+  outcome_search_allowed: false
+
+causal_adjudication:
+  trusted_true_min: 0.70
+  trusted_mixed_min: 0.40
+  drift_dominant_min_exclusive: 0.50
+
+v6_1:
+  objective_name: SUPPORT_AWARE_REGION_TRUSTED_OBJECTIVE_V6_1
+  progress_margin: 0.02
+  change_epsilon: 0.01
+  initial_weights:
+    edit_rgb: 1.0
+    target_progress: 1.0
+    trusted_underfill: 0.5
+    trusted_removal: 0.5
+    transition_alpha: 0.25
+    identity: 2.0
+    background: 1.0
+    neutral_preserve: 0.5
+    residual: 0.0001
+    stability: 0.0001
+  gradient_calibration:
+    steps: 20
+    steps_per_outfit: 10
+    silhouette_to_edit_cap: 0.5
+    transition_to_edit_cap: 0.5
+    regularization_to_edit_cap: 0.25
+    visual_tuning_allowed: false
+    repeat_allowed: false
+  regional_regularization:
+    garment_weight: 0.25
+    protected_weight: 1.0
+
+candidate_bounds:
+  xyz: 0.09406771513
+  log_scaling: 0.67803978920
+  rotation: 0.62413822860
+  opacity_logit: 2.0
+  sh0: 1.49314403538
+  shN: 0.10
+
+optimizer:
+  class: Adam
+  geometry_lr: 0.001
+  appearance_lr: 0.002
+  gradient_clip_norm: 1.0
+  stages:
+    geometry_end: 80
+    appearance_end: 160
+
+S1:
+  steps: 1000
+  initialization: zero_residual
+S2:
+  steps: 1000
+  initialization: zero_residual
+  maximum_updates: 1
+  multiplier_cap: 2.0
+  eligibility:
+    trusted_recall_must_increase: true
+    at_least_one_formal_failure_remains: true
+    remaining_fn_trusted_fraction_min: 0.70
+    safety_checks_must_pass: true
+
+record_steps: [0, 1, 10, 20, 40, 80, 120, 200, 320, 480, 640, 800, 1000]
+render_steps: [0, 40, 80, 160, 200, 320, 480, 640, 800, 1000]
+
+abnormal_gaussian:
+  xyz_displacement_m: 0.25
+  scale_ratio_max: 8.0
+  opacity_saturation_low: 0.005
+  opacity_saturation_high: 0.995
+  outside_base_radius_multiplier: 1.5
+
+acceptance:
+  O01:
+    raw_silhouette_iou_min: 0.90
+    trusted_silhouette_iou_min: 0.92
+    per_view_target_closer_min: 0.80
+    mean_target_closer_min: 0.88
+  O08:
+    trusted_expansion_recall_min: 0.92
+    trusted_silhouette_iou_min: 0.90
+    per_view_target_closer_min: 0.80
+    mean_target_closer_min: 0.88
+  protected_mae_max: 0.01
+  background_leakage_max: 0.03
+  abnormal_gaussian_fraction_max: 0.001
+  systematic_bound_hit_fraction_max: 0.01
+  visual_allowed: [PASS, WARN]
+
+permissions:
+  generate_targets: false
+  image_conditioned_training: false
+  rerun_seven_outfit_gate: false
+  modify_bounds: false
+  modify_residual_composition: false
+  modify_non_silhouette_v6_losses: false
