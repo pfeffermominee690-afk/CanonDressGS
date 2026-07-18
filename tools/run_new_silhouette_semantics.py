@@ -1104,9 +1104,108 @@ def build_visual_evidence(args: argparse.Namespace, config: Mapping[str, Any]) -
     print(json.dumps({"status": "READY_FOR_ACTUAL_INSPECTION", "contact_sheet": str(target)}, indent=2))
 
 
+def adjudicate(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
+    if args.visual_decisions is None:
+        raise ValueError("adjudication requires --visual-decisions")
+    decisions = json.loads(args.visual_decisions.read_text(encoding="utf-8"))
+    if not decisions.get("images_actually_opened") or decisions.get("inspection_method") != "Codex view_image original-resolution and contact-sheet inspection":
+        raise ValueError("actual visual inspection evidence is missing")
+    outfit_visual = decisions.get("outfits", {})
+    if set(outfit_visual) != set(OUTFITS) or any(outfit_visual[name].get("status") not in {"PASS", "WARN", "FAIL"} for name in OUTFITS):
+        raise ValueError("visual decisions do not cover the exact O01/O08 protocol")
+    metrics = {
+        outfit: json.loads((args.output / "S1_v6_1_semantics" / outfit / "metrics.json").read_text(encoding="utf-8"))
+        for outfit in OUTFITS
+    }
+    s2 = json.loads((args.output / "S2_v6_1_underfill_if_eligible/S2_ELIGIBILITY.json").read_text(encoding="utf-8"))
+    o01_not_regressed = bool(
+        metrics["O01"]["numeric_checks"]["raw_silhouette_per_view"]
+        and metrics["O01"]["numeric_checks"]["target_closer_per_view"]
+        and metrics["O01"]["numeric_checks"]["protected"]
+        and metrics["O01"]["numeric_checks"]["background"]
+        and metrics["O01"]["base_bitwise_exact"]
+        and outfit_visual["O01"]["status"] in {"PASS", "WARN"}
+    )
+    o08_views = {row["view"]: row for row in metrics["O08"]["final_per_view"]}
+    true_underfill_remains = any(
+        o08_views[view]["trusted_expansion_recall"] < float(config["acceptance"]["O08"]["trusted_expansion_recall_min"])
+        for view in ("back", "right")
+    )
+    safety = all(
+        metrics[outfit]["numeric_checks"][name]
+        for outfit in OUTFITS for name in ("protected", "background", "abnormal", "bound_truncation")
+    )
+    if not o01_not_regressed or not safety:
+        final_case = "SD"
+        next_task = "REVERT_AND_REDESIGN_SILHOUETTE_GRADIENT_CONTRACT"
+    elif true_underfill_remains:
+        final_case = "SC"
+        next_task = "AUDIT_ALPHA_COVERAGE_AND_GAUSSIAN_RASTERIZATION"
+    elif all(metrics[outfit]["numeric_status"] == "NUMERIC_PASS" for outfit in OUTFITS):
+        final_case = "SA"
+        next_task = "RE_ADJUDICATE_7_OUTFIT_GATE_WITH_V6_1"
+    else:
+        final_case = "SB"
+        next_task = "RE_ADJUDICATE_7_OUTFIT_GATE_WITH_V6_1_AND_TRUSTED_METRICS"
+    final_status = "PASS" if final_case in {"SA", "SB"} else "FAIL"
+    audit = json.loads((args.output / "silhouette_error_audit/silhouette_error_summary.json").read_text(encoding="utf-8"))
+    calibration = json.loads((args.output / "gradient_analysis/v6_1_gradient_calibration.json").read_text(encoding="utf-8"))
+    final = {
+        "status": final_status,
+        "final_case": final_case,
+        "formal_run_commit": metrics["O01"].get("run_commit", "c01682775f294b534d2ff1b3ed0d05aaca4fc2c9"),
+        "finalization_head": git("rev-parse", "HEAD"),
+        "formal_attempt": str(args.output),
+        "zero_step_failed_attempt": str(args.output.parent / "attempt_001"),
+        "pixel_audit_case": audit["O08_back_right_causal_adjudication"],
+        "S1": {
+            outfit: {
+                "numeric_status": metrics[outfit]["numeric_status"], "numeric_checks": metrics[outfit]["numeric_checks"],
+                "visual_status": outfit_visual[outfit]["status"], "mean_edit_reduction": metrics[outfit]["mean_edit_reduction"],
+                "mean_target_closer_fraction": metrics[outfit]["mean_target_closer_fraction"],
+                "base_bitwise_exact": metrics[outfit]["base_bitwise_exact"],
+                "base_gradient_count": metrics[outfit]["base_gradient_count"],
+                "per_view": metrics[outfit]["final_per_view"],
+            } for outfit in OUTFITS
+        },
+        "gradient_calibration": {
+            "steps": calibration["steps"], "median_gradient_norms": calibration["median_gradient_norms"],
+            "frozen_weights": calibration["frozen_weights"], "visual_tuning_used": calibration["visual_tuning_used"],
+        },
+        "S2": {"run": False, **s2},
+        "visual_acceptance": decisions,
+        "o01_regression": not o01_not_regressed,
+        "o08_true_garment_underfill_remains": true_underfill_remains,
+        "safety_pass": safety,
+        "rerun_seven_outfit_gate_allowed": False,
+        "generate_more_targets_allowed": False,
+        "image_conditioned_training_allowed": False,
+        "benchmark_change": "Use garment-trusted silhouette as the primary clothing-region metric; retain raw full-foreground IoU as a diagnostic and disclose synthetic-target body/pose drift.",
+        "next_unique_task": next_task,
+    }
+    atomic_json(args.output / "visual_acceptance/visual_acceptance.json", decisions)
+    lines = [
+        "# V6.1 visual acceptance", "", f"- images actually opened: `{decisions['images_actually_opened']}`",
+        f"- inspection method: `{decisions['inspection_method']}`", "",
+    ]
+    for outfit in OUTFITS:
+        lines += [f"## {outfit}: {outfit_visual[outfit]['status']}", "", *[f"- {item}" for item in outfit_visual[outfit]["observations"]], ""]
+    atomic_text(args.output / "visual_acceptance/VISUAL_ACCEPTANCE.md", "\n".join(lines))
+    atomic_json(args.output / "final_adjudication/NEW_SILHOUETTE_SEMANTICS_FINAL_STATUS.json", final)
+    atomic_json(args.output / "final_adjudication/RUN_STATUS.json", final)
+    atomic_text(args.output / "final_adjudication/FINAL_ADJUDICATION.md", "\n".join([
+        "# New silhouette semantics final adjudication", "", f"- status: **{final_status}**",
+        f"- final case: **Case {final_case}**", f"- O01 regression: `{not o01_not_regressed}`",
+        f"- O08 true garment underfill remains: `{true_underfill_remains}`", f"- S2 run: `{False}`",
+        "- seven-outfit re-adjudication allowed: `false`", "- target generation allowed: `false`",
+        "- image-conditioned training allowed: `false`", f"- next unique task: `{next_task}`",
+    ]))
+    print(json.dumps(final, indent=2, default=str))
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the registered new-silhouette semantics study")
-    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence"))
+    parser.add_argument("--phase", required=True, choices=("audit", "bootstrap", "calibrate", "run", "decide-s2", "build-visual-evidence", "adjudicate"))
     parser.add_argument("--stage", choices=("S1", "S2"))
     parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -1115,6 +1214,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pipeline-config", type=Path, default=PROJECT_ROOT / "configs/canon_dress_gs_mvp_real.yaml")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--source-attempt", type=Path)
+    parser.add_argument("--visual-decisions", type=Path)
     return parser.parse_args()
 
 
@@ -1131,8 +1231,10 @@ def main() -> None:
         run_candidate(args, config)
     elif args.phase == "decide-s2":
         decide_s2(args, config)
-    else:
+    elif args.phase == "build-visual-evidence":
         build_visual_evidence(args, config)
+    else:
+        adjudicate(args, config)
 
 
 if __name__ == "__main__":
