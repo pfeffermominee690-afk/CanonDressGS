@@ -180,6 +180,12 @@ class ObjectiveResidualContractTests(unittest.TestCase):
         source = inspect.getsource(runner._numeric_status)
         self.assertIn("bool(value)", source)
 
+    def test_transition_target_is_cached_outside_optimizer_loop(self):
+        run_source = inspect.getsource(runner.run_test)
+        loss_source = inspect.getsource(runner._v5_loss)
+        self.assertIn("transition_targets =", run_source)
+        self.assertNotIn("boundary_aware_transition_alpha_target", loss_source)
+
     def test_aaai_no_go_remains_unchanged(self):
         cfg = config(); self.assertIn("attempt_003", cfg["source_aaai_output"])
         self.assertFalse(cfg["permissions"]["generate_targets"])

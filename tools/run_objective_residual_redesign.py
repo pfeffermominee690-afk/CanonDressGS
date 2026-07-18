@@ -59,7 +59,7 @@ VIEWS = dict(zip(CONDITIONS, ("front", "back", "left", "right")))
 TESTS = ("T1", "T2", "T3", "T4", "T5")
 DEFAULT_OUTPUT = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/"
-    "SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_003"
+    "SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_004"
 )
 
 
@@ -275,19 +275,17 @@ def _current_raw_regularization(output: Any, config: Mapping[str, Any]) -> torch
     return sum(float(weights[name]) * output.regularization.residual_magnitude[field] for name, field in names.items())
 
 
-def _v5_loss(rgb: torch.Tensor, alpha: torch.Tensor, sample: Mapping[str, Any], config: Mapping[str, Any]):
+def _v5_loss(
+    rgb: torch.Tensor, alpha: torch.Tensor, sample: Mapping[str, Any], config: Mapping[str, Any],
+    transition_target: torch.Tensor,
+):
     device = rgb.device
-    target = boundary_aware_transition_alpha_target(
-        sample["target_foreground_mask"].to(device), sample["target_base_foreground_mask"].to(device),
-        sample["target_edit_core_mask"].to(device), sample["target_preserve_mask"].to(device),
-        sample["target_protected_mask"].to(device),
-    )["target"]
     return region_aware_dual_target_loss(
         rgb, alpha, sample["target_edit_rgb"].to(device), sample["target_base_rgb"].to(device),
         sample["target_edit_core_mask"].to(device), sample["target_preserve_mask"].to(device),
         sample["target_protected_mask"].to(device), sample["target_transition_mask"].to(device),
         sample["target_clothing_mask"].to(device), sample["target_foreground_mask"].to(device),
-        sample["target_base_foreground_mask"].to(device), transition_alpha_target=target,
+        sample["target_base_foreground_mask"].to(device), transition_alpha_target=transition_target,
         **{name: float(value) for name, value in config["v5_3_loss"].items()},
     )
 
@@ -309,9 +307,12 @@ def _capacity_loss(
     )
 
 
-def _objective(test: str, model: Any, base: Any, rgb: torch.Tensor, alpha: torch.Tensor, sample: Mapping[str, Any], config: Mapping[str, Any]):
+def _objective(
+    test: str, model: Any, base: Any, rgb: torch.Tensor, alpha: torch.Tensor, sample: Mapping[str, Any],
+    config: Mapping[str, Any], transition_target: torch.Tensor,
+):
     if test == "T2":
-        parts = _v5_loss(rgb, alpha, sample, config)
+        parts = _v5_loss(rgb, alpha, sample, config, transition_target)
         minimal = 1e-8 * direct_stability(model)
         return parts["total"] + minimal, {**parts, "stability": minimal}
     output = _formal_output(model, base)
@@ -331,7 +332,7 @@ def _objective(test: str, model: Any, base: Any, rgb: torch.Tensor, alpha: torch
     result = support_aware_region_trusted_objective_v6(
         rgb, alpha, sample, weights=config["v6"]["frozen_weights"], residual_loss=normalized,
         stability_loss=stability, progress_margin=float(config["v6"]["progress_margin"]),
-        change_epsilon=float(config["v6"]["change_epsilon"]),
+        change_epsilon=float(config["v6"]["change_epsilon"]), transition_alpha_target=transition_target,
     )
     parts = {**result.parts, **{f"stability_{name}": value for name, value in stability_parts.items()}}
     return result.total, parts
@@ -633,6 +634,14 @@ def run_test(args: argparse.Namespace, config: dict[str, Any]) -> None:
         if torch.cuda.is_available():
             torch.cuda.reset_peak_memory_stats()
         base, samples, background, device = _load_runtime(args, args.outfit)
+        transition_targets = {
+            condition: boundary_aware_transition_alpha_target(
+                sample["target_foreground_mask"].to(device), sample["target_base_foreground_mask"].to(device),
+                sample["target_edit_core_mask"].to(device), sample["target_preserve_mask"].to(device),
+                sample["target_protected_mask"].to(device),
+            )["target"]
+            for condition, sample in samples.items()
+        }
         bounds = config["candidate_bounds"] if args.test in {"T3", "T5"} else config["current_bounds"]
         model = UnboundedGaussianDeltaField(base).to(device) if args.test == "T2" else FixedOpenGaussianOracle(base, bounds=bounds).to(device)
         optimizer, optimizer_groups = _optimizer(model, config)
@@ -658,7 +667,9 @@ def run_test(args: argparse.Namespace, config: dict[str, Any]) -> None:
             condition = CONDITIONS[(step - 1) % 4]; sample = samples[condition]
             optimizer.zero_grad(set_to_none=True)
             rgb, alpha = _render_model(model, base, states[condition], background)
-            total, parts = _objective(args.test, model, base, rgb, alpha, sample, config)
+            total, parts = _objective(
+                args.test, model, base, rgb, alpha, sample, config, transition_targets[condition],
+            )
             if not torch.isfinite(total): raise FloatingPointError(f"non-finite objective at step {step}")
             total.backward()
             for name, parameter in model.named_parameters():

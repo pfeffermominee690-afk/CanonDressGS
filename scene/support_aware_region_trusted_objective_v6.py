@@ -171,6 +171,7 @@ def support_aware_region_trusted_objective_v6(
     stability_loss: torch.Tensor,
     progress_margin: float,
     change_epsilon: float,
+    transition_alpha_target: torch.Tensor | None = None,
 ) -> V6LossOutput:
     prediction = _nchw(pred_rgb, 3, "pred_rgb")
     alpha = _nchw(pred_alpha, 1, "pred_alpha")
@@ -182,13 +183,22 @@ def support_aware_region_trusted_objective_v6(
         raise ValueError("V6 prediction/target shapes differ")
     regions = build_support_aware_regions(sample, prediction)
     trusted_edit = torch.maximum(regions["target_garment"], torch.maximum(regions["old_garment_removal"], regions["new_silhouette"]))
-    transition_target = boundary_aware_transition_alpha_target(
-        target_alpha,
-        base_alpha,
-        trusted_edit,
-        torch.maximum(regions["neutral_preserve"], regions["background"]),
-        regions["protected_identity"],
-    )["target"]
+    if transition_alpha_target is None:
+        transition_target = boundary_aware_transition_alpha_target(
+            target_alpha,
+            base_alpha,
+            trusted_edit,
+            torch.maximum(regions["neutral_preserve"], regions["background"]),
+            regions["protected_identity"],
+        )["target"]
+    else:
+        transition_target = _nchw(transition_alpha_target, 1, "transition_alpha_target").to(alpha)
+        if transition_target.shape != alpha.shape:
+            raise ValueError("cached transition alpha target shape differs from prediction")
+        if torch.any(transition_target < 0) or torch.any(transition_target > 1):
+            raise ValueError("cached transition alpha target values must be in [0,1]")
+        if torch.any((transition_target - base_alpha).abs() * regions["protected_identity"] > 1e-6):
+            raise ValueError("cached protected transition target must equal base alpha")
     parts = {
         "edit_rgb": multiscale_masked_charbonnier(prediction, target, trusted_edit),
         "target_progress": target_progress_margin_loss(
