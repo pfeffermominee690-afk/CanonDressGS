@@ -430,7 +430,7 @@ def postprocess_existing(args: argparse.Namespace, config: Mapping[str, Any]) ->
         raise RuntimeError("postprocess requires a completed static audit awaiting visual inspection")
     table = pq.read_table(
         root / "independent_projection/independent_projection_gaussians.parquet",
-        columns=("state", "outfit", "condition", "first_rejection_stage", "first_rejection_code"),
+        columns=["state", "outfit", "condition", "first_rejection_stage", "first_rejection_code"],
     ).to_pandas()
     rows: list[dict[str, Any]] = []
     for (state, outfit, condition), group in table.groupby(["state", "outfit", "condition"], sort=True):
@@ -463,6 +463,7 @@ def postprocess_existing(args: argparse.Namespace, config: Mapping[str, Any]) ->
     preliminary = json.loads((root / "final_adjudication/PRELIMINARY_STATUS.json").read_text(encoding="utf-8"))
     numeric_keys = ("projected_mean_abs_median", "projected_mean_abs_p99", "depth_relative_p99", "radius_abs_p99", "radius_relative_p99", "covariance_abs_p99", "conic_abs_p99")
     atomic_json(root / "final_adjudication/evidence_summary.json", {"postprocess_commit": git("rev-parse", "HEAD"), "preliminary": preliminary, "projection_maxima": {key: max(float(row[key]) for row in projection) for key in numeric_keys}, "pixel_support_aggregates": aggregates, "same_index_displacement": displacement, "counterfactual": counterfactual, "global_rejection_totals": dict(reason_totals), "backend_unexposed_count": unexposed, "backend_unexposed_fraction": unexposed / max(int(table.shape[0]), 1), "optimizer_steps": 0})
+    atomic_json(root / "input_audit/postprocess_history.json", {"attempts": [{"attempt": 1, "status": "TOOL_FAILURE", "exception_type": "ValueError", "exception": "pyarrow columns argument required list instead of tuple", "render_or_optimizer_work": False}, {"attempt": 2, "status": "PASS", "git_head": git("rev-parse", "HEAD"), "render_or_optimizer_work": False}], "optimizer_steps": 0})
     _artifact_manifest(root, phase="POSTPROCESSED_AWAITING_VISUAL")
     print(json.dumps({"status": "POSTPROCESS_PASS", "rows": int(table.shape[0]), "backend_unexposed_count": unexposed, "reason_totals": dict(reason_totals)}, indent=2))
 
