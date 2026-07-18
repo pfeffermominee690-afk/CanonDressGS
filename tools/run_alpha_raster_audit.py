@@ -761,7 +761,7 @@ def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
                     "xyz": base._xyz, "scaling": base._scaling, "rotation": base._rotation,
                     "opacity": base._opacity, "sh0": base._sh0, "shN": base._shN,
                 }.items()
-            })
+            }.items())
             states = {condition: target_free_state(sample, device) for condition, sample in samples.items()}
             for condition, sample in samples.items():
                 region_cache[(outfit, condition)] = trusted_regions(sample, config)
