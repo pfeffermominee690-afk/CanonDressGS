@@ -316,7 +316,9 @@ def build_fixture(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
                     "target_base_rgb": sha256(base_rgb_path),
                     **{name: sha256(path) for name, path in paths.items()},
                 },
-                "identity_audit_status": visual_by_sample[sample_id]["visual_status"],
+                "identity_audit_status": visual_by_sample[sample_id].get(
+                    "visual_status", visual_by_sample[sample_id].get("status")
+                ),
                 "raw_generation_provider": "CODEX_IMAGE_GENERATION_SKILL",
             }
             observations.append(observation)
