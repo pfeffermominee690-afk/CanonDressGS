@@ -491,3 +491,7 @@ See `docs/CANONDRESSGS_OBJECTIVE_RESIDUAL_REDESIGN_20260718.md`. The formal T1�
 ## 13. New-silhouette semantics final link — 2026-07-19
 
 See `docs/CANONDRESSGS_NEW_SILHOUETTE_SEMANTICS_20260719.md`. The pixel audit classified O08 back/right as **S-DRIFT**, but the V6.1 zero-init S1 candidate still failed trusted garment recall/IoU and showed visible opacity-cloud/floating-splat artifacts. Final status is **FAIL — Case SC**. Seven-outfit re-adjudication, target generation, and image-conditioned training remain unauthorized. The only next task is `AUDIT_ALPHA_COVERAGE_AND_GAUSSIAN_RASTERIZATION`.
+
+## 14. Alpha/rasterization audit final link — 2026-07-19
+
+See `docs/CANONDRESSGS_ALPHA_RASTERIZATION_AUDIT_20260719.md`. The zero-step static audit completed as **PASS (audit complete) — Case RF**: production and the crop-level float64 reference agree, supported dtype/antialiasing/supersampling variants do not recover O08 coverage, and the evidence localizes the failure to insufficient projected Gaussian support without uniquely separating support placement from pre-tile backend filtering. Renderer and alpha-parameterization changes, seven-outfit reruns, target generation, and image-conditioned training remain unauthorized. The only next task is `BUILD_INSTRUMENTED_RASTERIZER_DEBUG_PATH`.
