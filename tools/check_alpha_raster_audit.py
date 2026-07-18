@@ -101,6 +101,24 @@ def run(config_path: Path, require_cloud_sources: bool) -> dict[str, object]:
     finite = (single_gaussian_alpha(pixel, plus, conic, opacity)[0] - single_gaussian_alpha(pixel, minus, conic, opacity)[0]) / (2 * eps)
     results.append(check("test_finite_difference_alpha_gradient", torch.allclose(mean.grad[0], finite, atol=1e-7, rtol=1e-5)))
 
+    # The real projected tensors live on CUDA; the synthetic pixel must follow
+    # their device instead of silently remaining on CPU.
+    runner_source = (PROJECT_ROOT / "tools/run_alpha_raster_audit.py").read_text(encoding="utf-8")
+    module = ast.parse(runner_source)
+    finite_node = next(node for node in module.body if isinstance(node, ast.FunctionDef) and node.name == "finite_difference_screen_space")
+    pixel_assignment = next(
+        node for node in ast.walk(finite_node)
+        if isinstance(node, ast.Assign)
+        and any(isinstance(target, ast.Name) and target.id == "pixel_xy" for target in node.targets)
+    )
+    pixel_call = pixel_assignment.value
+    device_keywords = {
+        keyword.arg: ast.unparse(keyword.value)
+        for keyword in pixel_call.keywords
+        if keyword.arg is not None
+    }
+    results.append(check("test_finite_difference_pixel_follows_projected_device", device_keywords.get("device") == "mean.device"))
+
     # 12. Below-cutoff Gaussians are rejected by the production contract.
     tiny = torch.tensor([ALPHA_THRESHOLD / 2], dtype=torch.float64, requires_grad=True)
     composite = production_alpha_composite(tiny)[0] + tiny.sum() * 0
@@ -111,8 +129,6 @@ def run(config_path: Path, require_cloud_sources: bool) -> dict[str, object]:
     proof = config["proof_probe"]
     results.append(check("test_proof_probe_uses_frozen_v6_1_weights", "v6_1_loss_weights_frozen.json" in proof["frozen_weight_source"] and not proof["run_automatically"]))
     results.append(check("test_proof_probe_uses_frozen_bounds", proof["frozen_bounds_source"] == "candidate_bounds" and int(proof["steps"]) == 400))
-    runner_source = (PROJECT_ROOT / "tools/run_alpha_raster_audit.py").read_text(encoding="utf-8")
-    module = ast.parse(runner_source)
     render_node = next(node for node in module.body if isinstance(node, ast.FunctionDef) and node.name == "render_explicit")
     render_parameters = {argument.arg for argument in (*render_node.args.args, *render_node.args.kwonlyargs)}
     results.append(check("test_proof_probe_does_not_use_target_mask_in_forward", "sample" not in render_parameters and "target" not in render_parameters))

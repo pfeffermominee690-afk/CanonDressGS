@@ -648,7 +648,7 @@ def finite_difference_screen_space(
         mean = info["means2d"][0, gid].detach().double().requires_grad_(True)
         conic = info["conics"][0, gid].detach().double().requires_grad_(True)
         opacity = info["opacities"][0, gid].detach().double().reshape(1).requires_grad_(True)
-        pixel_xy = torch.tensor([x + .5, y + .5], dtype=torch.float64)
+        pixel_xy = torch.tensor([x + .5, y + .5], dtype=torch.float64, device=mean.device)
         alpha, sigma = single_gaussian_alpha(pixel_xy, mean, conic, opacity)
         alpha.backward()
         groups = {"xyz_projected": mean, "logscale_conic": conic, "rotation_conic": conic, "opacity_logit_consumer": opacity}
