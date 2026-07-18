@@ -150,6 +150,17 @@ def git(*arguments: str) -> str:
     ).stdout.strip()
 
 
+def resolve_branch_commit(branch: str) -> str:
+    for candidate in (branch, f"cloud/{branch}", f"origin/{branch}"):
+        result = subprocess.run(
+            ["git", "rev-parse", "--verify", candidate], cwd=PROJECT_ROOT,
+            capture_output=True, text=True,
+        )
+        if result.returncode == 0:
+            return result.stdout.strip()
+    raise RuntimeError(f"cannot resolve frozen branch: {branch}")
+
+
 def save_rgb(path: Path, tensor: torch.Tensor) -> None:
     value = tensor.detach().float().cpu()
     if value.ndim == 3 and value.shape[0] == 3:
@@ -701,15 +712,9 @@ def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
                 state_manifest.append({"state": state, "outfit": outfit, "path": str(path), "sha256": actual})
         manifest_path = Path(config["source_manifest"])
         pipeline_path = PROJECT_ROOT / config["pipeline_config"]
-        frozen_refs = {
-            branch: git("rev-parse", branch) for branch in (
-                "research/new-silhouette-semantics-20260719",
-                "research/objective-residual-redesign-20260718",
-                "research/representation-triage-20260718",
-                "sprint/aaai27-20260718",
-                "pipeline/full-dressable-20260715",
-            )
-        }
+        frozen_refs = {branch: resolve_branch_commit(branch) for branch in config["frozen_branches"]}
+        if frozen_refs != config["frozen_branches"]:
+            raise RuntimeError(f"frozen branch drift: expected={config['frozen_branches']} actual={frozen_refs}")
         atomic_json(root / "contract/config_resolved.json", config)
         atomic_json(root / "contract/run_manifest.json", {
             "schema_version": SCHEMA, "task_id": config["task_id"], "git": _git_state(),
