@@ -186,6 +186,20 @@ class ObjectiveResidualContractTests(unittest.TestCase):
         self.assertIn("transition_targets =", run_source)
         self.assertNotIn("boundary_aware_transition_alpha_target", loss_source)
 
+    def test_slope_uses_registered_loss_aliases(self):
+        history = [
+            {"step": 1, "edit_rgb": 2.0, "clothing": 4.0},
+            {"step": 2, "edit_rgb": 1.0, "clothing": 2.0},
+        ]
+        self.assertAlmostEqual(runner._slope(history, "edit_rgb"), -1.0)
+        self.assertAlmostEqual(runner._slope(history, "garment_rgb"), -2.0)
+        v6_history = [{"step": 1, "edit_rgb": 2.0}, {"step": 2, "edit_rgb": 1.0}]
+        self.assertAlmostEqual(runner._slope(v6_history, "garment_rgb"), -1.0)
+
+    def test_slope_rejects_unregistered_missing_metric(self):
+        with self.assertRaises(KeyError):
+            runner._slope([{"step": 1}, {"step": 2}], "garment_rgb")
+
     def test_aaai_no_go_remains_unchanged(self):
         cfg = config(); self.assertIn("attempt_003", cfg["source_aaai_output"])
         self.assertFalse(cfg["permissions"]["generate_targets"])

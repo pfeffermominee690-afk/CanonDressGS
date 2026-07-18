@@ -390,8 +390,97 @@ def _slope(history: list[dict[str, Any]], name: str) -> float:
     if len(rows) < 2:
         return float("nan")
     x = np.asarray([row["step"] for row in rows], dtype=np.float64)
-    y = np.asarray([row.get(name, row.get("garment_rgb", row.get("edit", 0.0))) for row in rows], dtype=np.float64)
+    aliases = {
+        "edit_rgb": ("edit_rgb", "garment_rgb", "edit"),
+        "garment_rgb": ("garment_rgb", "clothing", "edit_rgb", "edit"),
+    }
+    candidates = aliases.get(name, (name,))
+    selected = next((candidate for candidate in candidates if candidate in rows[0]), None)
+    if selected is None:
+        raise KeyError(f"none of the registered slope fields are present: {candidates}")
+    y = np.asarray([row[selected] for row in rows], dtype=np.float64)
     return float(np.polyfit(x, y, 1)[0])
+
+
+def repair_derived_slopes(args: argparse.Namespace) -> None:
+    """Repair slope-only acceptance metadata without rerunning optimization."""
+    summary_path = args.output / "comparisons/DERIVED_SLOPE_REPAIR_SUMMARY.json"
+    if summary_path.exists():
+        raise FileExistsError(f"derived slope repair already exists: {summary_path}")
+    repaired: dict[str, Any] = {
+        "status": "COMPLETE",
+        "repair_scope": "derived acceptance metadata only; checkpoints, renders, and loss curves unchanged",
+        "repair_time_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "repair_code_commit": git_output("rev-parse", "HEAD"),
+        "runs": {},
+    }
+    for test in TESTS:
+        repaired["runs"][test] = {}
+        for outfit in OUTFITS:
+            run_dir = args.output / "causal_matrix" / test / outfit
+            metrics_path = run_dir / "metrics.json"
+            status_path = run_dir / "RUN_STATUS.json"
+            curve_path = run_dir / "loss_curve.csv"
+            provenance_path = run_dir / "diagnostics/DERIVED_SLOPE_REPAIR.json"
+            if provenance_path.exists():
+                raise FileExistsError(f"run slope repair already exists: {provenance_path}")
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            with curve_path.open("r", encoding="utf-8", newline="") as handle:
+                history = list(csv.DictReader(handle))
+            original = {
+                "metrics_sha256": sha256(metrics_path),
+                "last_100_edit_slope": metrics["last_100_edit_slope"],
+                "last_100_clothing_slope": metrics["last_100_clothing_slope"],
+                "numeric_status": metrics["numeric_status"],
+                "numeric_checks": metrics["numeric_checks"],
+            }
+            edit_slope = _slope(history, "edit_rgb")
+            clothing_slope = _slope(history, "garment_rgb")
+            checks = dict(metrics["numeric_checks"])
+            checks["edit_slope"] = bool(edit_slope < 0)
+            checks["clothing_slope"] = bool(clothing_slope < 0)
+            corrected_status = "NUMERIC_PASS" if all(checks.values()) else "NUMERIC_FAIL"
+            relative_provenance = provenance_path.relative_to(args.output).as_posix()
+            repair_record = {
+                "test": test,
+                "outfit": outfit,
+                "reason": "registered V6 edit_rgb was missing from the clothing-slope fallback",
+                "loss_curve_path": str(curve_path),
+                "loss_curve_sha256": sha256(curve_path),
+                "semantic_aliases": {
+                    "edit_slope": ["edit_rgb", "garment_rgb", "edit"],
+                    "clothing_slope": ["garment_rgb", "clothing", "edit_rgb", "edit"],
+                },
+                "original": original,
+                "corrected": {
+                    "last_100_edit_slope": edit_slope,
+                    "last_100_clothing_slope": clothing_slope,
+                    "numeric_status": corrected_status,
+                    "numeric_checks": checks,
+                },
+                "optimizer_rerun": False,
+                "checkpoint_modified": False,
+                "renders_modified": False,
+                "loss_curve_modified": False,
+            }
+            metrics.update({
+                "last_100_edit_slope": edit_slope,
+                "last_100_clothing_slope": clothing_slope,
+                "numeric_status": corrected_status,
+                "numeric_checks": checks,
+                "derived_metric_repair": {
+                    "applied": True,
+                    "provenance": relative_provenance,
+                    "original_metrics_sha256": original["metrics_sha256"],
+                },
+            })
+            atomic_json(metrics_path, metrics)
+            atomic_json(status_path, metrics)
+            repair_record["corrected"]["metrics_sha256"] = sha256(metrics_path)
+            atomic_json(provenance_path, repair_record)
+            repaired["runs"][test][outfit] = repair_record
+    atomic_json(summary_path, repaired)
+    print(json.dumps(repaired, indent=2))
 
 
 def _parameter_gradient_norm(loss: torch.Tensor, parameters: list[torch.Tensor]) -> float:
@@ -780,7 +869,7 @@ def finalize(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the frozen objective/residual redesign causal matrix")
-    parser.add_argument("--phase", required=True, choices=("audit", "analyze", "calibrate", "run", "adjudicate", "finalize"))
+    parser.add_argument("--phase", required=True, choices=("audit", "analyze", "calibrate", "run", "repair-slopes", "adjudicate", "finalize"))
     parser.add_argument("--test", choices=TESTS); parser.add_argument("--outfit", choices=OUTFITS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--source-triage", type=Path, default=Path("/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002"))
@@ -798,6 +887,7 @@ def main() -> None:
     elif args.phase == "analyze": run_analyze(args, config)
     elif args.phase == "calibrate": run_calibrate(args, config)
     elif args.phase == "run": run_test(args, config)
+    elif args.phase == "repair-slopes": repair_derived_slopes(args)
     elif args.phase == "adjudicate": adjudicate(args, config)
     else: finalize(args, config)
 
