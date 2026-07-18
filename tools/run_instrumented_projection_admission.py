@@ -412,6 +412,61 @@ def _case_adjudication(config: Mapping[str, Any], projection_rows: Sequence[Mapp
     return {"preliminary_case": case, "root_cause": causes[case], "next_unique_task": tasks[case], "projection_contract_pass": projection_pass, "mean_n_pre": mean_pre, "placement_ratio": placement, "admission_retention": admission, "pixel_retention": pixel, "dominant_rejection_reason": dominant_reason, "dominant_rejection_fraction": dominant_fraction}
 
 
+def _artifact_manifest(root: Path, *, phase: str) -> None:
+    rows = []
+    for path in sorted(item for item in root.rglob("*") if item.is_file() and item.name != "artifact_manifest.json"):
+        rows.append({"relative_path": path.relative_to(root).as_posix(), "bytes": path.stat().st_size, "sha256": sha256(path)})
+    atomic_json(root / "contract/artifact_manifest.json", {"phase": phase, "generated_at": now(), "git_head": git("rev-parse", "HEAD"), "file_count": len(rows), "files": rows})
+
+
+def postprocess_existing(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
+    """Derive compact summaries from the immutable per-Gaussian Parquet output."""
+
+    import pyarrow.parquet as pq
+
+    root = args.output.resolve()
+    status = json.loads((root / "RUN_STATUS.json").read_text(encoding="utf-8"))
+    if status.get("status") != "STATIC_AUDIT_COMPLETE_AWAITING_VISUAL":
+        raise RuntimeError("postprocess requires a completed static audit awaiting visual inspection")
+    table = pq.read_table(
+        root / "independent_projection/independent_projection_gaussians.parquet",
+        columns=("state", "outfit", "condition", "first_rejection_stage", "first_rejection_code"),
+    ).to_pandas()
+    rows: list[dict[str, Any]] = []
+    for (state, outfit, condition), group in table.groupby(["state", "outfit", "condition"], sort=True):
+        counts: Counter[tuple[int, str]] = Counter()
+        for stage_value, code_value in zip(group["first_rejection_stage"], group["first_rejection_code"]):
+            code = int(code_value); stage = int(stage_value)
+            reason = "EMITTED_NORMALLY" if code < 0 else REJECTION_REASONS[code]
+            counts[(stage, reason)] += 1
+        total = len(group)
+        for (first_stage, reason), count in sorted(counts.items()):
+            rows.append({"state": state, "outfit": outfit, "condition": condition, "view": VIEWS[condition], "first_rejection_stage": f"S{first_stage}", "reason": reason, "count": count, "fraction": count / max(total, 1), "total_gaussians": total})
+    write_csv(root / "pre_tile_admission/stage_rejection_summary.csv", rows)
+    atomic_json(root / "pre_tile_admission/stage_rejection_summary.json", rows)
+    unexposed = sum(row["count"] for row in rows if row["reason"] == "BACKEND_UNEXPOSED_REJECTION")
+    reason_totals = Counter()
+    for row in rows:
+        reason_totals[row["reason"]] += row["count"]
+    atomic_text(root / "pre_tile_admission/REJECTION_REASON_REPORT.md", "\n".join([
+        "# Projection / admission rejection reasons", "",
+        f"- backend unexposed rejection count: `{unexposed}`",
+        f"- backend unexposed fraction over registered Gaussian-state-view rows: `{unexposed / max(int(table.shape[0]), 1):.12f}`",
+        "- `EMITTED_NORMALLY` means the Gaussian reached at least one tile intersection.",
+        "- Target masks are not used in these per-Gaussian stage decisions.", "",
+        "## Totals", "", *[f"- {reason}: {count}" for reason, count in reason_totals.most_common()],
+    ]))
+    projection = json.loads((root / "backend_projection/projection_agreement.json").read_text(encoding="utf-8"))
+    aggregates = list(csv.DictReader((root / "stage_comparison/pixel_support_aggregates.csv").open(encoding="utf-8")))
+    displacement = json.loads((root / "stage_comparison/same_index_displacement_summary.json").read_text(encoding="utf-8"))
+    counterfactual = json.loads((root / "pre_tile_admission/pre_tile_rejection_counterfactual.json").read_text(encoding="utf-8"))
+    preliminary = json.loads((root / "final_adjudication/PRELIMINARY_STATUS.json").read_text(encoding="utf-8"))
+    numeric_keys = ("projected_mean_abs_median", "projected_mean_abs_p99", "depth_relative_p99", "radius_abs_p99", "radius_relative_p99", "covariance_abs_p99", "conic_abs_p99")
+    atomic_json(root / "final_adjudication/evidence_summary.json", {"postprocess_commit": git("rev-parse", "HEAD"), "preliminary": preliminary, "projection_maxima": {key: max(float(row[key]) for row in projection) for key in numeric_keys}, "pixel_support_aggregates": aggregates, "same_index_displacement": displacement, "counterfactual": counterfactual, "global_rejection_totals": dict(reason_totals), "backend_unexposed_count": unexposed, "backend_unexposed_fraction": unexposed / max(int(table.shape[0]), 1), "optimizer_steps": 0})
+    _artifact_manifest(root, phase="POSTPROCESSED_AWAITING_VISUAL")
+    print(json.dumps({"status": "POSTPROCESS_PASS", "rows": int(table.shape[0]), "backend_unexposed_count": unexposed, "reason_totals": dict(reason_totals)}, indent=2))
+
+
 def run_audit(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     root = args.output.resolve()
     if root.exists():
@@ -650,12 +705,13 @@ def finalize_visual(args: argparse.Namespace, config: Mapping[str, Any]) -> None
     atomic_json(root / "final_adjudication/INSTRUMENTED_PROJECTION_ADMISSION_FINAL_STATUS.json", final)
     atomic_text(root / "final_adjudication/GATE_ACCEPTANCE.md", "\n".join(["# Instrumented projection/admission final adjudication", "", "- status: **PASS (diagnostic audit complete)**", f"- final case: **{args.final_case}**", f"- root cause: `{final['root_cause']}`", f"- next unique task: `{final['next_unique_task']}`", "- optimizer steps: `0`", "- installed gsplat, production renderer, losses, bounds, checkpoints and historical outputs were not modified."]))
     atomic_json(root / "RUN_STATUS.json", {"status": "PASS", "final_case": args.final_case, "optimizer_steps": 0, "completed_at": now()})
+    _artifact_manifest(root, phase="FINAL")
     print(json.dumps(final, indent=2))
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Zero-step staged Gaussian projection/admission audit")
-    parser.add_argument("command", choices=("audit", "finalize-visual"))
+    parser.add_argument("command", choices=("audit", "postprocess", "finalize-visual"))
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--device", default="cuda")
@@ -671,6 +727,8 @@ def main() -> None:
     args = parse_args(); config = load_config(args.config)
     if args.command == "audit":
         run_audit(args, config)
+    elif args.command == "postprocess":
+        postprocess_existing(args, config)
     else:
         finalize_visual(args, config)
 
