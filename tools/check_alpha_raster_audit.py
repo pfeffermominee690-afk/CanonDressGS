@@ -138,7 +138,7 @@ def run(config_path: Path, require_cloud_sources: bool) -> dict[str, object]:
     # 19. Frozen branch refs must match exactly on cloud; locally remote refs are accepted.
     refs_ok = True
     for branch, expected in config["frozen_branches"].items():
-        candidates = [branch, f"cloud/{branch}"]
+        candidates = [branch, f"cloud/{branch}", f"origin/{branch}"]
         actual = None
         for candidate in candidates:
             try:
