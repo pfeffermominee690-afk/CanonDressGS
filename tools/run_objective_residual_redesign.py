@@ -949,19 +949,34 @@ def finalize(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
     elif not t1 and t2: causal = "B"
     else: causal = "I"
     final_case = "P" if t5 else "F"
-    next_task = "RE-ADJUDICATE_7_OUTFIT_GATE_WITH_V6" if t5 else "REFINE_ONLY_PROVEN_FAILURE_COMPONENT"
+    t5_failure_checks: dict[str, list[str]] = {}
+    for outfit in OUTFITS:
+        metrics = json.loads((args.output / "causal_matrix" / "T5" / outfit / "metrics.json").read_text(encoding="utf-8"))
+        t5_failure_checks[outfit] = [name for name, passed in metrics["numeric_checks"].items() if not passed]
+    unique_numeric_failures = sorted({name for failures in t5_failure_checks.values() for name in failures})
+    if t5:
+        next_task = "RE-ADJUDICATE_7_OUTFIT_GATE_WITH_V6"
+        proven_failure_component = None
+    elif unique_numeric_failures == ["all_view_silhouette"]:
+        next_task = "REFINE_NEW_SILHOUETTE_MASK_SEMANTICS"
+        proven_failure_component = "new_silhouette_mask_semantics"
+    else:
+        raise RuntimeError(f"T5 has no unique proven failure component: {unique_numeric_failures}")
     final = {
         "status": "COMPLETE", "causal_primary_case": causal, "final_case": final_case,
         "t1_both_pass": t1, "t2_both_pass": t2, "t5_both_pass": t5,
         "v6_formal_oracle_pass": {outfit: summary["tests"]["T5"][outfit]["final_status"] == "PASS" for outfit in OUTFITS},
         "rerun_seven_outfit_gate_allowed": t5, "generate_more_targets_allowed": False,
         "image_conditioned_training_allowed": False, "next_unique_task": next_task,
+        "proven_failure_component": proven_failure_component,
+        "t5_failure_checks": t5_failure_checks,
     }
     atomic_json(args.output / "final_adjudication/OBJECTIVE_RESIDUAL_REDESIGN_FINAL_STATUS.json", final)
     atomic_json(args.output / "final_adjudication/RUN_STATUS.json", final)
     atomic_text(args.output / "final_adjudication/FINAL_ADJUDICATION.md", "\n".join([
         "# Objective and residual redesign final adjudication", "", f"- causal primary case: **Case {causal}**",
         f"- final case: **Case {final_case}**", f"- T5 O01/O08 both pass: `{t5}`",
+        f"- proven failure component: `{proven_failure_component}`",
         f"- seven-outfit re-adjudication allowed: `{t5}`", "- more target generation allowed: `false`",
         "- image-conditioned training allowed: `false`", f"- next unique task: `{next_task}`",
     ]))

@@ -207,6 +207,11 @@ class ObjectiveResidualContractTests(unittest.TestCase):
         self.assertNotIn("_render_model", source)
         self.assertNotIn("optimizer", source.lower().replace('"optimizer_steps"', ""))
 
+    def test_finalization_names_the_unique_silhouette_failure(self):
+        source = inspect.getsource(runner.finalize)
+        self.assertIn("REFINE_NEW_SILHOUETTE_MASK_SEMANTICS", source)
+        self.assertIn('unique_numeric_failures == ["all_view_silhouette"]', source)
+
     def test_aaai_no_go_remains_unchanged(self):
         cfg = config(); self.assertIn("attempt_003", cfg["source_aaai_output"])
         self.assertFalse(cfg["permissions"]["generate_targets"])
