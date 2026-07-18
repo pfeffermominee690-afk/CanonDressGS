@@ -1,0 +1,132 @@
+schema_version: canondressgs.alpha_raster_audit.v1
+task_id: SUBJECT02-ALPHA-RASTER-AUDIT-001
+research_branch: research/alpha-raster-audit-20260719
+source_head: 74f65ef15d1ca7e81d6d8ac9d58c469285f70323
+source_tag: v6-1-silhouette-case-sc-20260719
+source_v6_1_run_commit: c01682775f294b534d2ff1b3ed0d05aaca4fc2c9
+source_v6_1_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-NEW-SILHOUETTE-SEMANTICS-001/attempt_002
+source_v6_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_004
+source_representation_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002
+source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+pipeline_config: configs/canon_dress_gs_mvp_real.yaml
+frozen_branches:
+  research/new-silhouette-semantics-20260719: 74f65ef15d1ca7e81d6d8ac9d58c469285f70323
+  research/objective-residual-redesign-20260718: cee8fc51b5039a102ef7e2c31632e348ae3b99a1
+  research/representation-triage-20260718: 45539af725dcff6188a326ef732614acfc09cab5
+  sprint/aaai27-20260718: 54c1ba73d325a58256f32b4fecdf8c321aef8e21
+  pipeline/full-dressable-20260715: 9fc88033b407136073f7bddc6ffca6dd4dd1e0f5
+
+outfits: [O01, O08]
+conditions:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+focus_samples:
+  - [O08, cond_000318]
+  - [O08, cond_000347]
+control_samples:
+  - [O08, cond_000000]
+  - [O01, cond_000318]
+  - [O01, cond_000347]
+
+states:
+  P0:
+    description: frozen base 200k Gaussians
+  P1:
+    description: Representation Triage Rung 2 shared canonical state
+    kind: unbounded
+    relative_checkpoint: rung_2_shared_same_support/{outfit}/checkpoints/step_001200.pth
+    sha256:
+      O01: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+      O08: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  P2:
+    description: V6 T5 fixed-open bounded state
+    kind: fixed_open
+    relative_checkpoint: causal_matrix/T5/{outfit}/checkpoints/step_001000.pth
+    sha256:
+      O01: 0b9227df2fce94ea530be88fd2ac46438562e3e6338c2f4b9c3bd222ab225fcf
+      O08: 9d74a163a973c92f81cc4c827dc7508b9945632f87e70fe43e9ae1319a8ae6e1
+  P3:
+    description: V6.1 S1 fixed-open bounded state
+    kind: fixed_open
+    relative_checkpoint: S1_v6_1_semantics/{outfit}/checkpoints/step_001000.pth
+    sha256:
+      O01: 46bf0dffbd6fc512e753cce7be7f895f7ca448568a100238fc1e02753b1ba111
+      O08: 7c0e5baf7b876b9ba40884f0db0ac8a70aeabdb24cff332fcad9b620ce8a5852
+
+candidate_bounds:
+  xyz: 0.09406771513
+  log_scaling: 0.67803978920
+  rotation: 0.62413822860
+  opacity_logit: 2.0
+  sh0: 1.49314403538
+  shN: 0.10
+
+renderer_contract:
+  backend: gsplat
+  expected_version: 1.5.3+pt24cu121
+  packed: false
+  near_plane: 0.1
+  far_plane: 10000000000.0
+  radius_clip: 0.0
+  eps2d: 0.3
+  tile_size: 16
+  sparse_grad: false
+  rasterize_mode: classic
+  alpha_cutoff: 0.00392156862745098
+  early_termination_transmittance: 0.0001
+  alpha_clamp_max: 0.999
+
+silhouette_thresholds: [0.01, 0.025, 0.05, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.75, 0.90]
+silhouette_metric_threshold: 0.5
+trace_pixels_per_category: 25
+reference_crop_maximum: 128
+gradient_pixel_counts:
+  underfill: 8
+  correct_coverage: 4
+  cloud_fp: 4
+gradient_epsilons: [0.001, 0.0005]
+
+render_variants:
+  R0: {setting: production, value: unchanged, supported: true}
+  R1: {setting: early_termination_transmittance, value: relaxed, supported: false}
+  R2: {setting: alpha_cutoff, value: lower, supported: false}
+  R3: {setting: radius_clip, value: lower_than_zero, supported: false}
+  R4: {setting: dtype, value: float32, supported: true}
+  R5: {setting: rasterize_mode, value: antialiased, supported: true}
+  R6: {setting: supersampling, value: 2, supported: true}
+  R7: {setting: tile_culling, value: disabled, supported: false}
+
+variant_acceptance:
+  trusted_expansion_recall_gain_min: 0.03
+  internal_hole_ratio_reduction_min: 0.30
+  background_leakage_max: 0.03
+  trailing_cloud_area_growth_max: 0.10
+  require_o01_no_regression: true
+  target_fields_in_forward: false
+
+reference_disagreement:
+  mean_alpha_difference_min_exclusive: 0.01
+  p95_alpha_difference_min_exclusive: 0.05
+  trusted_fn_recovered_fraction_min_exclusive: 0.20
+
+proof_probe:
+  eligible_only_after_unique_static_cause: true
+  maximum_candidates: 1
+  outfits: [O01, O08]
+  steps: 400
+  initialization: zero_residual
+  run_automatically: false
+  frozen_weight_source: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-NEW-SILHOUETTE-SEMANTICS-001/attempt_002/gradient_analysis/v6_1_loss_weights_frozen.json
+  frozen_bounds_source: candidate_bounds
+
+permissions:
+  generate_targets: false
+  rerun_seven_outfits: false
+  image_conditioned_training: false
+  modify_renderer_defaults: false
+  modify_v6_v6_1_loss: false
+  modify_bounds: false
+  modify_target_progress: false
+  modify_residual_composition: false
