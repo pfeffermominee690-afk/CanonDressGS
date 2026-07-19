@@ -145,3 +145,10 @@ def test_previous_outputs_are_unchanged():
 
 def test_frozen_branches_are_unchanged():
     assert "source_tag" in CONFIG.read_text(encoding="utf-8")
+
+
+if __name__ == "__main__":
+    checks = [value for name, value in sorted(globals().items()) if name.startswith("test_") and callable(value)]
+    for check in checks:
+        check()
+    print(f"{len(checks)} protected-cloud attribution tests: PASS")
