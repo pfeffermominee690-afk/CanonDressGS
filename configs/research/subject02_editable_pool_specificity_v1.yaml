@@ -1,0 +1,139 @@
+schema_version: canondressgs.editable_pool_specificity.v1
+task_id: SUBJECT02-EDITABLE-POOL-SPECIFICITY-001
+research_branch: research/editable-pool-specificity-20260719
+source_head: dfdb669c4f1b0c71f9543f944be1e3e7d88d38f0
+source_tag: differentiable-support-proxy-case-pf-20260719
+source_proxy_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-DIFFERENTIABLE-SUPPORT-PROXY-002/attempt_002
+source_placement_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001
+source_instrumented_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-INSTRUMENTED-PROJECTION-ADMISSION-001/attempt_002
+source_v6_1_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-NEW-SILHOUETTE-SEMANTICS-001/attempt_002
+source_v6_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_004
+source_representation_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002
+source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+pipeline_config: configs/canon_dress_gs_mvp_real.yaml
+
+frozen_branches:
+  research/differentiable-support-proxy-20260719: dfdb669c4f1b0c71f9543f944be1e3e7d88d38f0
+  research/screen-space-placement-objective-20260719: 6bfd311a1f558db96c505e03bea24f6877c6ea43
+  research/instrumented-raster-debug-20260719: aec512a6133f2c51c921e03676441257966d9add
+  research/alpha-raster-audit-20260719: 159d23cb82a4af8b94462ae580198c7612c77739
+  research/new-silhouette-semantics-20260719: 74f65ef15d1ca7e81d6d8ac9d58c469285f70323
+  research/objective-residual-redesign-20260718: cee8fc51b5039a102ef7e2c31632e348ae3b99a1
+  research/representation-triage-20260718: 45539af725dcff6188a326ef732614acfc09cab5
+  sprint/aaai27-20260718: 54c1ba73d325a58256f32b4fecdf8c321aef8e21
+  pipeline/full-dressable-20260715: 9fc88033b407136073f7bddc6ffca6dd4dd1e0f5
+
+outfits: [O01, O08]
+conditions:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+states:
+  P1:
+    relative_checkpoint: rung_2_shared_same_support/{outfit}/checkpoints/step_001200.pth
+    sha256:
+      O01: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+      O08: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  P2:
+    relative_checkpoint: causal_matrix/T5/{outfit}/checkpoints/step_001000.pth
+    sha256:
+      O01: 0b9227df2fce94ea530be88fd2ac46438562e3e6338c2f4b9c3bd222ab225fcf
+      O08: 9d74a163a973c92f81cc4c827dc7508b9945632f87e70fe43e9ae1319a8ae6e1
+  P3:
+    relative_checkpoint: S1_v6_1_semantics/{outfit}/checkpoints/step_001000.pth
+    sha256:
+      O01: 46bf0dffbd6fc512e753cce7be7f895f7ca448568a100238fc1e02753b1ba111
+      O08: 7c0e5baf7b876b9ba40884f0db0ac8a70aeabdb24cff332fcad9b620ce8a5852
+
+candidate_bounds:
+  xyz: 0.09406771513
+  log_scaling: 0.67803978920
+  rotation: 0.62413822860
+  opacity_logit: 2.0
+  sh0: 1.49314403538
+  shN: 0.10
+
+support_band:
+  base_bbox_diagonal_ratio: 0.002708497051881002
+  minimum_radius_pixels: 1
+
+current_editable:
+  source_file: editable_gaussian_pool/editable_gaussian_pool_indices.npy
+  count: 169106
+  file_sha256: 232124458848a684cd98bef1b162ec889f1e3e4c80c0ef1a5caebcceb4edb011
+  protected_min_views: 2
+
+formal_trainability:
+  definition: union_of_registered_P1_P2_P3_xyz_residual_domains
+  fixed_open_P2_P3_train_all_200k: true
+
+body_parts:
+  garment_joint_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 16, 17, 18, 19]
+  protected_joint_ids: [10, 11, 15, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+
+regions:
+  source_state: P3
+  source_step: step_001000
+  names: [trusted_expansion, correctly_covered_garment, trailing_cloud, trusted_removal, normal_background]
+  count_crosscheck_source: input_audit/{outfit}_{view}_fixed_region_counts.json
+  materialization: deterministic_replay_from_frozen_manifest_masks_and_P3_alpha
+
+trace_sampling:
+  pixels_per_region: 64
+  deterministic: true
+  theoretical_alpha_cutoff: 0.00392156862745098
+  actual_early_termination: 0.0001
+
+proxy:
+  name: SOFT_PRE_CONTRIBUTOR_COUNT_V1
+  temperature: 0.10
+  candidate_tail_log_margin: 8.0
+  candidate_cell_size_pixels: 16
+  support_grid_stride: 4
+
+pools:
+  P0:
+    coverage: current_G_editable
+    spill: current_G_editable
+  P1:
+    coverage: current_G_editable
+    spill: all_formal_trainable_minus_stable_protected
+  P2:
+    coverage: current_G_editable
+    spill: current_plus_shared_or_one_hop_anchor_formal_trainable_minus_stable_protected
+
+qualification:
+  coverage_npre_recall_min: 0.95
+  cloud_npre_recall_min: 0.90
+  cloud_active_recall_min: 0.90
+  cloud_alpha_recall_min: 0.90
+  cloud_proxy_spearman_positive: true
+  cloud_to_background_ratio_min: 1.0
+  o01_background_risk_fraction_max: 0.05
+
+gradient_direction:
+  underfill_pixels_per_view: 64
+  cloud_pixels_per_view: 64
+  nearest_gaussians: 128
+  cloud_gaussians: 64
+  coverage_positive_fraction_min: 0.75
+  coverage_median_cosine_min: 0.40
+  spill_positive_fraction_min: 0.75
+  spill_median_cosine_min: 0.30
+
+performance:
+  target_seconds_per_view_forward_backward: 1.5
+  peak_extra_vram_gib: 3.0
+
+permissions:
+  optimizer_created: false
+  optimizer_steps: 0
+  training: false
+  generate_targets: false
+  rerun_seven_outfits: false
+  image_conditioned_training: false
+  modify_renderer: false
+  modify_editable_pool: false
+  modify_v6_v6_1: false
+  modify_bounds: false
