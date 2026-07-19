@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import platform
+import shlex
 import subprocess
 import sys
 import time
@@ -326,11 +327,14 @@ def run_static_proxy(args: argparse.Namespace, config: Mapping[str, Any]) -> Non
                     raise RuntimeError(f"checkpoint drift: {state}/{outfit}")
                 checkpoints.append({"state": state, "outfit": outfit, "path": str(path), "sha256": actual})
         atomic_json(root / "contract/config_resolved.json", config)
+        execution_command = " ".join(shlex.quote(value) for value in (sys.executable, *sys.argv))
+        atomic_text(root / "contract/execution_command.txt", execution_command)
         atomic_json(root / "contract/run_manifest.json", {
             "schema_version": SCHEMA, "task_id": config["task_id"], "run_commit": head,
             "git": _git_state(), "environment": _environment(), "checkpoints": checkpoints,
             "optimizer_steps": 0, "optimizer_created": False, "permissions": config["permissions"],
             "source_evidence_hash_before": source_hash_before,
+            "execution_command": execution_command,
         })
 
         stage = "input_audit"
