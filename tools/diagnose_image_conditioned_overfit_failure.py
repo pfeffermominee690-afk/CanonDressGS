@@ -161,6 +161,10 @@ def _load_oracle(base: Any, path: Path, device: torch.device) -> tuple[Unbounded
         raise ValueError(f"unexpected Rung-2 checkpoint contract: {path}")
     oracle = UnboundedGaussianDeltaField(base).to(device)
     oracle.load_state_dict(checkpoint["model"], strict=True)
+    # Oracle checkpoints are immutable regression targets.  Leaving their
+    # parameters trainable retains one target graph and fails when an outfit is
+    # revisited; freezing here makes repeated balanced steps independent.
+    _set_requires_grad(oracle, False)
     oracle.eval()
     return oracle, {
         "path": str(path), "global_step": int(checkpoint["global_step"]),
@@ -579,7 +583,8 @@ def _probe_d(
         {"name": "decoder", "params": decoder_parameters, "lr": float(contract["decoder_learning_rate"])},
     ])
     groups = {name: list(module.parameters()) for name, module in trainable_modules.items()}
-    initial_predictions = {outfit: _predict_from_latent(model, latent(outfit), protected_mask)[0] for outfit in OUTFITS}
+    with torch.no_grad():
+        initial_predictions = {outfit: _predict_from_latent(model, latent(outfit), protected_mask)[0] for outfit in OUTFITS}
     initial_losses = {}
     for outfit in OUTFITS:
         loss, _ = normalized_residual_regression_loss(initial_predictions[outfit], targets[outfit], bounds)
@@ -893,6 +898,8 @@ def run(args: argparse.Namespace) -> None:
         for outfit in OUTFITS:
             oracle_modules[outfit], oracle_meta[outfit] = _load_oracle(base, paths[f"oracle_{outfit.lower()}_checkpoint"], device)
             oracle_targets[outfit] = apply_protected_full_residual_guard(oracle_modules[outfit].residuals(base), protected_mask)
+            if any(value.requires_grad or value.grad_fn is not None for value in oracle_targets[outfit].as_dict().values()):
+                raise AssertionError("immutable Oracle regression target retained an autograd graph")
         _atomic_json(output_dir / "input_audit" / "resolved_protocol.json", {"protocol": protocol, "graph": graph, "oracles": oracle_meta, "target_images_in_prediction_forward": False})
 
         status["failure_stage"] = "S0_static_reference_oracle_head_audits"; _atomic_json(output_dir / "RUN_STATUS.json", status)

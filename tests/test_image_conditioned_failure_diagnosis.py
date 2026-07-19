@@ -115,6 +115,12 @@ def test_oracle_residual_never_enters_forward():
     )
 
 
+def test_oracle_regression_targets_are_frozen_and_detached():
+    source = (ROOT / "tools/diagnose_image_conditioned_overfit_failure.py").read_text(encoding="utf-8")
+    assert "_set_requires_grad(oracle, False)" in source
+    assert "retained an autograd graph" in source
+
+
 def test_head_counterfactual_changes_one_group_only():
     original = _residual()
     xyz = select_residual_channels(original, COUNTERFACTUAL_CHANNELS["H1_xyz"])
