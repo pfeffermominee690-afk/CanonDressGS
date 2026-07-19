@@ -2,9 +2,15 @@ from __future__ import annotations
 
 import hashlib
 import inspect
+import sys
 from pathlib import Path
 
 import torch
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scene.gaussian_clothing_residuals import CHANNELS, GaussianClothingResiduals
 from scene.protected_cloud_attribution import (
@@ -17,7 +23,6 @@ from scene.protected_cloud_attribution import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "tools/run_protected_cloud_attribution.py"
 CONFIG = ROOT / "configs/research/subject02_protected_cloud_attribution_v1.yaml"
 
