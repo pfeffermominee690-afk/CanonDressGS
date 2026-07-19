@@ -605,7 +605,10 @@ def _roundtrip_check(
         before = _loss_and_output(model, base, sample, episode, geometry, protected_mask, background, config)
     before_state = _state_fingerprint(model.state_dict())
     before_optimizer = object_fingerprint(optimizer.state_dict())
-    checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+    # RNG states are serialized CPU ByteTensors even for CUDA training. Load the
+    # container on CPU; model/optimizer load_state_dict performs the required
+    # parameter-device copies without corrupting the RNG representation.
+    checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     restored_model, restored_optimizer, _, _, graph = _construct_model(base, config, device)
     restored_model.load_state_dict(checkpoint["model"], strict=True)
     restored_optimizer.load_state_dict(checkpoint["optimizer"])

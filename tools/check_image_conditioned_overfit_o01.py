@@ -109,6 +109,14 @@ def test_masked_mae_accepts_v6_nchw_regions_for_chw_render() -> None:
     assert runner._masked_mae(first, second, mask) == 1.0
 
 
+def test_cpu_rng_checkpoint_roundtrip() -> None:
+    state = runner._rng_state()
+    torch.manual_seed(123456)
+    runner._restore_rng(state)
+    restored = runner._rng_state()
+    assert runner.object_fingerprint(restored) == runner.object_fingerprint(state)
+
+
 def test_guard_is_after_interpolation_before_composition() -> None:
     source = inspect.getsource(ImageConditionedDressableModel.compute_online_six_channel_residuals)
     interpolation = source.index("interpolate_anchor_clothing_residuals")
