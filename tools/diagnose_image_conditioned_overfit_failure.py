@@ -371,10 +371,19 @@ def _static_and_sensitivity(
             result = o01._loss_and_output(model, base, samples[key], episodes[key], geometries[condition], protected_mask, background, config)
             objective, output, rgb, alpha, extras = result
             metrics = o01._evaluation_metrics(samples[key], objective, output, rgb, alpha, bounds, protected_mask)
+            trusted_edit = torch.maximum(
+                extras["regions"]["target_garment"],
+                torch.maximum(
+                    extras["regions"]["old_garment_removal"],
+                    torch.maximum(extras["regions"]["trusted_expansion"], extras["regions"]["trusted_removal"]),
+                ),
+            )
+            denominators = _region_denominators(extras["regions"])
+            denominators.update(_region_denominators({"evaluation_garment_union": trusted_edit}))
             static_results[condition] = {
                 "view": VIEWS[condition], "loss": float(objective.total), "metrics": metrics,
                 "loss_parts": {name: float(value) for name, value in objective.parts.items()},
-                "metric_denominators": _region_denominators(extras["regions"]),
+                "metric_denominators": denominators,
                 "visibility": {
                     "per_view_visible_anchor_counts": [int(value) for value in (output["projection"]["per_view_visibility"] > 0).sum(dim=1).reshape(-1).cpu()],
                     "observed_anchor_count": int((output["completion"].observation_coverage > 0).sum()),
@@ -661,6 +670,10 @@ def _probe_d(
     }
     torch.save({"model": model.state_dict(), "diagnostic_latents": latent.state_dict(), "optimizer": optimizer.state_dict(), "step": int(contract["max_steps"]), "formal_inference_candidate": False}, directory / "checkpoint_step_000300.pth")
     _atomic_json(directory / "probe_d_metrics.json", report)
+    _atomic_json(directory / "partial_status.json", {
+        "status": "FINAL", "completed_step": int(contract["max_steps"]),
+        "probe_status": report["status"], "loss_drop_fraction": loss_drop,
+    })
     return report
 
 

@@ -84,6 +84,7 @@ def test_current_o01_checkpoint_is_immutable():
 def test_left_view_metric_denominator_is_reported():
     source = (ROOT / "tools/diagnose_image_conditioned_overfit_failure.py").read_text(encoding="utf-8")
     assert "metric_denominators" in source and "cond_000017" in source
+    assert "evaluation_garment_union" in source
 
 
 def test_reference_zeroing_changes_only_reference_input():
