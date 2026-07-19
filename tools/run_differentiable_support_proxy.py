@@ -516,6 +516,7 @@ def run(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
         stage = "static_qualification"
         atomic_json(status_path, {"status": "RUNNING", "stage": stage, "optimizer_created": False, "optimizer_steps": 0})
         state_rows: list[dict[str, Any]] = []
+        region_rows: list[dict[str, Any]] = []
         pixel_group_rows: list[dict[str, Any]] = []
         per_pixel_rows: list[dict[str, Any]] = []
         sparse_regression_rows: list[dict[str, Any]] = []
@@ -596,8 +597,13 @@ def run(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
                         cloud = array[region_lookup["trailing_cloud"]] if region_lookup["trailing_cloud"] else np.empty(0)
                         normal = array[region_lookup["normal_background"]] if region_lookup["normal_background"] else np.empty(0)
                         cloud_anomaly = True if not cloud.size else float(cloud.mean()) > 0 and (not normal.size or float(cloud.mean()) > float(normal.mean()) * 1.05)
-                        row = {"candidate": candidate, "outfit": outfit, "condition": condition, "view": view, "state": state_name, "proxy_mean": float(focus_array.mean()) if focus_array.size else 0.0, "npre_mean": float(npre_focus.mean()) if npre_focus.size else 0.0, "evaluation_pixel_count": int(focus_array.size), "cloud_mean": float(cloud.mean()) if cloud.size else 0.0, "background_mean": float(normal.mean()) if normal.size else 0.0, "cloud_anomaly": cloud_anomaly, "low_support_fraction": 0.0, "candidate_count_max": int(candidates_a.shape[1] if candidate.startswith("A_") else candidates_b.shape[1])}
+                        row = {"candidate": candidate, "outfit": outfit, "condition": condition, "view": view, "state": state_name, "proxy_mean": float(focus_array.mean()) if focus_array.size else 0.0, "npre_mean": float(npre_focus.mean()) if npre_focus.size else 0.0, "evaluation_pixel_count": int(focus_array.size), "cloud_mean": float(cloud.mean()) if cloud.size else 0.0, "background_mean": float(normal.mean()) if normal.size else 0.0, "cloud_pixel_count": int(cloud.size), "cloud_required": outfit == "O08" and state_name == "P3" and bool(cloud.size), "cloud_anomaly": cloud_anomaly, "low_support_fraction": 0.0, "candidate_count_max": int(candidates_a.shape[1] if candidate.startswith("A_") else candidates_b.shape[1])}
                         state_rows.append(row)
+                        exact_array = exact.detach().cpu().numpy()
+                        for region_name, indices in region_lookup.items():
+                            region_proxy = array[indices] if indices else np.empty(0)
+                            region_npre = exact_array[indices] if indices else np.empty(0)
+                            region_rows.append({"candidate": candidate, "outfit": outfit, "condition": condition, "view": view, "state": state_name, "region": region_name, "pixel_count": int(region_proxy.size), "proxy_mean": float(region_proxy.mean()) if region_proxy.size else 0.0, "proxy_median": float(np.median(region_proxy)) if region_proxy.size else 0.0, "npre_mean": float(region_npre.mean()) if region_npre.size else 0.0, "npre_median": float(np.median(region_npre)) if region_npre.size else 0.0, "pixel_spearman": spearman_correlation(region_proxy.tolist(), region_npre.tolist()) if region_proxy.size >= 2 else 0.0})
                         focus_values[(candidate, outfit, view, state_name)] = focus_array
                         primary_proxy = array[primary_indices] if primary_indices else np.empty(0)
                         primary_npre = exact.detach().cpu().numpy()[primary_indices] if primary_indices else np.empty(0)
@@ -616,6 +622,7 @@ def run(args: argparse.Namespace, config: Mapping[str, Any]) -> None:
         selected = _select_candidate(config, qualifications)
         selected_candidate = str(selected["candidate"]) if selected else None
         write_csv(root / "static_qualification/state_level_metrics.csv", state_rows)
+        write_csv(root / "static_qualification/region_level_metrics.csv", region_rows)
         write_csv(root / "pixel_level_correlation/per_view_pixel_spearman.csv", pixel_group_rows)
         write_csv(root / "pixel_level_correlation/sample_pixel_values.csv", per_pixel_rows)
         write_csv(root / "static_qualification/sparse_dense_regression.csv", sparse_regression_rows)

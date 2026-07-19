@@ -28,7 +28,7 @@ def qualification_fixture() -> tuple[list[dict[str, object]], list[dict[str, obj
         for view in ("front", "back", "left", "right"):
             for state in ("P1", "P2", "P3"):
                 value = values[state] + (0.2 if outfit == "O01" else 0.0) + {"front": .3, "back": .2, "left": .1, "right": 0.0}[view]
-                state_rows.append({"outfit": outfit, "view": view, "state": state, "proxy_mean": value, "npre_mean": value, "low_support_fraction": {"P1": .1, "P2": .6, "P3": .7}[state], "cloud_anomaly": True})
+                state_rows.append({"outfit": outfit, "view": view, "state": state, "proxy_mean": value, "npre_mean": value, "low_support_fraction": {"P1": .1, "P2": .6, "P3": .7}[state], "cloud_required": outfit == "O08" and state == "P3", "cloud_anomaly": True})
                 pixels.append({"outfit": outfit, "view": view, "state": state, "pixel_count": 5, "spearman": 1.0})
     return state_rows, pixels
 

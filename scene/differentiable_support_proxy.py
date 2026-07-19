@@ -445,8 +445,8 @@ def qualify_proxy_candidate(
         underfill[view] = float(p2["low_support_fraction"]) > float(p1["low_support_fraction"]) and float(p3["low_support_fraction"]) > float(p1["low_support_fraction"])
     per_view_pixel = [float(row["spearman"]) for row in pixel_groups if int(row.get("pixel_count", 0)) >= 2]
     median_pixel = float(torch.tensor(per_view_pixel, dtype=torch.float64).median()) if per_view_pixel else 0.0
-    cloud = [row for row in state_rows if bool(row.get("cloud_anomaly", False))]
-    cloud_pass = len(cloud) == len(state_rows)
+    cloud = [row for row in state_rows if bool(row.get("cloud_required", False))]
+    cloud_pass = bool(cloud) and all(bool(row.get("cloud_anomaly", False)) for row in cloud)
     o01_p1 = [float(row["low_support_fraction"]) for row in state_rows if row["outfit"] == "O01" and row["state"] == "P1"]
     o01_stability = bool(o01_p1) and not all(value >= 0.5 for value in o01_p1)
     gates = {
