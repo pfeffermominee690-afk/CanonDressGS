@@ -273,7 +273,7 @@ def _source_hashes(config: Mapping[str, Any]) -> dict[str, str]:
 
 def _source_coverage_qualification(config: Mapping[str, Any]) -> dict[str, Any]:
     source = json.loads((Path(config["source_proxy_output"]) / "static_qualification/candidate_qualification.json").read_text())
-    candidates = source.get("candidates", source)
+    candidates = source.get("candidates", source) if isinstance(source, dict) else source
     if isinstance(candidates, list):
         row = next(item for item in candidates if item.get("candidate") == "A_0.1")
     else:
