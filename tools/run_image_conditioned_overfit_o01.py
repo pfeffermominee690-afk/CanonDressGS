@@ -349,8 +349,11 @@ def _base_only_protected_support(
     background: torch.Tensor,
     threshold: float,
 ) -> tuple[torch.Tensor, dict[str, Any]]:
+    opacity_mask = stable_mask.reshape(
+        stable_mask.shape[0], *([1] * (base._opacity.ndim - 1))
+    )
     opacity = torch.where(
-        stable_mask.reshape(-1, 1), base._opacity.detach(), torch.full_like(base._opacity, -100.0),
+        opacity_mask, base._opacity.detach(), torch.full_like(base._opacity, -100.0),
     )
     overrides = CanonicalGaussianOverrides(
         xyz=base._xyz.detach(), scaling=base._scaling.detach(), rotation=base._rotation.detach(),

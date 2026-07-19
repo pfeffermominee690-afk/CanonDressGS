@@ -24,6 +24,7 @@ from tools.run_image_conditioned_overfit_o01 import (  # noqa: E402
     leave_one_out_reference_ids,
     load_contract,
 )
+import tools.run_image_conditioned_overfit_o01 as runner  # noqa: E402
 
 
 def _residuals(requires_grad: bool = False) -> GaussianClothingResiduals:
@@ -70,6 +71,34 @@ def test_guard_rejects_ambiguous_membership() -> None:
             pass
         else:
             raise AssertionError(f"invalid protected membership was accepted: {invalid.shape}")
+
+
+def test_protected_support_preserves_one_dimensional_opacity_shape() -> None:
+    class Base:
+        _xyz = torch.zeros(5, 3)
+        _scaling = torch.zeros(5, 3)
+        _rotation = torch.tensor([[1.0, 0.0, 0.0, 0.0]]).expand(5, -1).clone()
+        _opacity = torch.zeros(5)
+        _sh0 = torch.zeros(5, 1, 3)
+        _shN = torch.zeros(5, 3, 3)
+
+    captured = {}
+    original = runner._render_sh1
+
+    def fake_render(base, sample, overrides, background):
+        captured["opacity_shape"] = tuple(overrides.opacity.shape)
+        return torch.zeros(3, 2, 2), torch.ones(1, 2, 2)
+
+    runner._render_sh1 = fake_render
+    try:
+        support, _ = runner._base_only_protected_support(
+            Base(), {}, torch.tensor([True, False, False, True, False]),
+            torch.ones(3), 1e-4,
+        )
+    finally:
+        runner._render_sh1 = original
+    assert captured["opacity_shape"] == (5,)
+    assert tuple(support.shape) == (1, 2, 2)
 
 
 def test_guard_is_after_interpolation_before_composition() -> None:
