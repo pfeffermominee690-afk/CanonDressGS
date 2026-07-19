@@ -116,6 +116,17 @@ def git(*args: str) -> str:
     return subprocess.run(["git", *args], cwd=PROJECT_ROOT, check=True, capture_output=True, text=True).stdout.strip()
 
 
+def resolve_ref(name: str) -> str:
+    for candidate in (name, f"origin/{name}", f"cloud/{name}"):
+        process = subprocess.run(
+            ["git", "rev-parse", candidate], cwd=PROJECT_ROOT,
+            capture_output=True, text=True,
+        )
+        if process.returncode == 0:
+            return process.stdout.strip()
+    raise RuntimeError(f"cannot resolve frozen ref: {name}")
+
+
 def load_config(path: Path) -> dict[str, Any]:
     value = yaml.safe_load(path.read_text(encoding="utf-8"))
     if value.get("schema_version") != SCHEMA:
@@ -306,7 +317,7 @@ def main() -> int:
             raise RuntimeError(f"formal runner requires clean {config['research_branch']}; dirty={dirty!r}")
         if git("rev-parse", config["source_tag"] + "^{}") != config["source_head"]:
             raise RuntimeError("frozen source tag moved")
-        frozen_refs = {name: git("rev-parse", name) for name in config["frozen_branches"]}
+        frozen_refs = {name: resolve_ref(name) for name in config["frozen_branches"]}
         if frozen_refs != config["frozen_branches"]:
             raise RuntimeError("one or more frozen branches changed")
         source_hashes = _source_hashes(config)
