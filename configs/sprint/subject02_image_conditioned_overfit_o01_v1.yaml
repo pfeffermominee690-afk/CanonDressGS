@@ -1,0 +1,130 @@
+schema_version: canondressgs.image_conditioned_overfit_o01.v1
+task_id: SUBJECT02-IMAGE-CONDITIONED-OVERFIT-O01-001
+branch: sprint/aaai27-minimal-image-overfit-20260719
+source_head: 91dacb55bf9575564b903a18ee7b7d689df9f479
+source_tag: protected-cloud-attribution-case-pu-20260719
+outfit_id: O01
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+
+inputs:
+  manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  manifest_sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  stable_protected_attribution: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+  stable_protected_attribution_sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+  stable_protected_count: 30894
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  historical_checkpoint_sha256_warning: 64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  gaussian_count: 200000
+  anchor_count: 10000
+  frozen: true
+
+model:
+  offset_mode: anchor_film
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+  image_feature_dim: 128
+  embedding_dim: 64
+  local_feature_dim: 64
+  freeze_image_backbone: true
+  online_completion:
+    graph_k: 8
+    hidden_dim: 128
+    blocks: 4
+  dressable_channels:
+    xyz: {enabled: true, max_abs: 0.05}
+    log_scaling: {enabled: true, max_abs: 0.35}
+    rotation: {enabled: true, max_angle_rad: 0.2617993878}
+    opacity_logit: {enabled: true, max_abs: 2.0}
+    sh0: {enabled: true, max_abs: 0.25}
+    shN: {enabled: true, max_abs: 0.10, sh_degree: 1}
+
+guard:
+  name: PROTECTED_FULL_RESIDUAL_GUARD_V1
+  version: 1
+  membership_source: base_derived_stable_protected
+  application_point: after_anchor_to_gaussian_interpolation_before_canonical_composition
+  target_independent: true
+  outfit_independent: true
+  cloud_region_independent: true
+  channels: [delta_xyz, delta_log_scaling, delta_rotvec, delta_opacity_logit, delta_sh0, delta_shN]
+
+training:
+  seed: 20260718
+  batch_size: 1
+  smoke_steps: 20
+  total_steps: 2000
+  round_robin: [cond_000000, cond_000318, cond_000017, cond_000347]
+  reference_count: 3
+  mixed_precision: false
+  gradient_clip_norm: 1.0
+  record_steps: [0, 1, 10, 20, 50, 100, 200, 400, 800, 1200, 1600, 2000]
+  checkpoint_steps: [20, 50, 100, 200, 400, 800, 1200, 1600, 2000]
+  output_dir: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-IMAGE-CONDITIONED-OVERFIT-O01-001/attempt_001
+
+optimizer:
+  class: Adam
+  weight_decay: 0.0
+  encoder_lr: 0.0001
+  aggregator_lr: 0.0001
+  completer_lr: 0.001
+  hypernetwork_lr: 0.0001
+  anchor_mlp_lr: 0.0001
+  local_adapter_lr: 0.0001
+
+v6_1:
+  objective_name: SUPPORT_AWARE_REGION_TRUSTED_OBJECTIVE_V6_1
+  progress_margin: 0.02
+  change_epsilon: 0.01
+  support_diagonal_ratio: 0.002708497051881002
+  minimum_radius_pixels: 1
+  weights:
+    edit_rgb: 1.0
+    target_progress: 1.0
+    trusted_underfill: 0.5
+    trusted_removal: 0.5
+    transition_alpha: 0.25
+    identity: 2.0
+    background: 1.0
+    neutral_preserve: 0.5
+    residual: 0.0001
+    stability: 0.0001
+  regional_regularization:
+    garment_weight: 0.25
+    protected_weight: 1.0
+
+render:
+  background: [1.0, 1.0, 1.0]
+  sh_degree: 1
+  protected_support_alpha_threshold: 0.0001
+
+acceptance:
+  loss_drop_fraction_min: 0.50
+  mean_edit_reduction_min: 0.50
+  mean_target_closer_min: 0.80
+  protected_mae_max: 0.01
+  background_leakage_max: 0.03
+  abnormal_gaussian_fraction_max: 0.001
+  required_visual_target_views: 3
+  visual_allowed: [PASS, WARN]
+
+permissions:
+  generate_targets: false
+  train_o08: false
+  seven_outfit_training: false
+  baseline_or_ablation: false
+  modify_renderer: false
+  modify_bounds: false
+  screen_space_proxy: false

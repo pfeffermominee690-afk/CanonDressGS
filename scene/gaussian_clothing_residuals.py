@@ -18,6 +18,7 @@ CHANNELS = (
 )
 QUATERNION_CONVENTION = "wxyz"
 ROTATION_COMPOSITION = "local: q_dressed = normalize(q_base * q_delta)"
+PROTECTED_FULL_RESIDUAL_GUARD_VERSION = 1
 
 
 def _validate_tensor(value: torch.Tensor | None, name: str, shape: tuple[int, ...]) -> None:
@@ -127,6 +128,53 @@ class GaussianClothingResiduals:
         if unknown:
             raise ValueError(f"unknown residual fields: {sorted(unknown)}")
         return cls(**{name: values.get(name) for name in CHANNELS})
+
+
+def apply_protected_full_residual_guard(
+    gaussian_residuals: GaussianClothingResiduals,
+    stable_protected_mask: torch.Tensor,
+) -> GaussianClothingResiduals:
+    """Zero all residual channels on a frozen base-derived protected set.
+
+    This functional guard is applied in Gaussian space, after anchor
+    interpolation and before canonical composition. It never mutates its
+    inputs, preserves non-protected values exactly, and keeps their gradient
+    path intact.
+    """
+
+    present = [
+        getattr(gaussian_residuals, name)
+        for name in CHANNELS
+        if getattr(gaussian_residuals, name) is not None
+    ]
+    if not present:
+        raise ValueError("protected residual guard requires at least one enabled channel")
+    gaussian_count = present[0].shape[0]
+    if not isinstance(stable_protected_mask, torch.Tensor):
+        raise TypeError("stable_protected_mask must be a torch.Tensor")
+    if stable_protected_mask.dtype != torch.bool:
+        raise TypeError("stable_protected_mask must use torch.bool")
+    if stable_protected_mask.ndim == 2 and stable_protected_mask.shape[1] == 1:
+        stable_protected_mask = stable_protected_mask[:, 0]
+    if stable_protected_mask.shape != (gaussian_count,):
+        raise ValueError(
+            "stable_protected_mask must have one entry per Gaussian: "
+            f"got {tuple(stable_protected_mask.shape)}, expected {(gaussian_count,)}"
+        )
+    if stable_protected_mask.device != present[0].device:
+        raise ValueError("stable_protected_mask and Gaussian residuals must share one device")
+    values: dict[str, torch.Tensor | None] = {}
+    for name in CHANNELS:
+        value = getattr(gaussian_residuals, name)
+        if value is None:
+            values[name] = None
+            continue
+        if value.shape[0] != gaussian_count:
+            raise ValueError(f"{name} has an inconsistent Gaussian count")
+        keep = (~stable_protected_mask).to(dtype=value.dtype)
+        keep = keep.reshape(gaussian_count, *([1] * (value.ndim - 1)))
+        values[name] = value * keep
+    return GaussianClothingResiduals(**values)
 
 
 @dataclass(frozen=True)

@@ -9,6 +9,7 @@ from torch import nn
 from scene.anchor_image_projector import AnchorImageProjector
 from scene.clothing_observation_encoder import ClothingObservationEncoder
 from scene.dressable_gaussian_model import DressableGaussianModel
+from scene.gaussian_clothing_residuals import apply_protected_full_residual_guard
 from scene.multiview_clothing_aggregator import MultiViewClothingAggregator
 from scene.canonical_clothing_completion import CanonicalClothingCompleter
 from utils.anchor_graph_utils import validate_anchor_graph
@@ -163,7 +164,12 @@ class ImageConditionedDressableModel(nn.Module):
         return {"global_clothing_embedding":encoded["global_clothing_embedding"],
                 "completion":completion,"projection":projection,"observed":observed}
 
-    def compute_online_six_channel_residuals(self, **online_inputs) -> dict[str, Any]:
+    def compute_online_six_channel_residuals(
+        self,
+        *,
+        protected_gaussian_mask: torch.Tensor | None = None,
+        **online_inputs,
+    ) -> dict[str, Any]:
         """Formal Module-3 path; no teacher, target image, cloth ID, or temporary gate."""
 
         forbidden={"teacher","target_rgb","target_foreground_mask","target_clothing_mask","cloth_id","reference_only_gate"}.intersection(online_inputs)
@@ -174,8 +180,11 @@ class ImageConditionedDressableModel(nn.Module):
             anchor_clothing_features=completion.completed_anchor_features,
         )
         gaussian=self.dressable_model.interpolate_anchor_clothing_residuals(gated)
+        if protected_gaussian_mask is not None:
+            gaussian=apply_protected_full_residual_guard(gaussian, protected_gaussian_mask)
         return {**online,"raw_anchor_residuals":raw,"bounded_anchor_residuals":bounded,
-                "gated_anchor_residuals":gated,"gaussian_residuals":gaussian}
+                "gated_anchor_residuals":gated,"gaussian_residuals":gaussian,
+                "protected_full_residual_guard_applied":protected_gaussian_mask is not None}
 
     def encode_global_clothing(
         self,
