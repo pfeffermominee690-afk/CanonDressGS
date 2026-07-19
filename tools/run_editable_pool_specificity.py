@@ -545,6 +545,7 @@ def main() -> int:
         event_groups: dict[int, list[dict[str, Any]]] = defaultdict(list)
         for event in cloud_events:
             event_groups[event["gaussian_index"]].append(event)
+        coverage_active_indices = {index for row in coverage_all for index in row["active"]}
         cloud_detail_rows: list[dict[str, Any]] = []
         migration_rows: list[dict[str, Any]] = []
         for gaussian, events in sorted(event_groups.items()):
@@ -560,7 +561,7 @@ def main() -> int:
                 "body_part": body_part(int(joint_cpu[gaussian])), "dominant_anchor": int(dominant_cpu[gaussian]),
                 "dominant_lbs_joint": int(joint_cpu[gaussian]), "base_projection_region": str(projection_region[gaussian]),
                 "P3_displacement": float(residuals["P3"][gaussian].max()),
-                "contributes_to_normal_coverage": gaussian in {idx for row in coverage_all for idx in row["active"]},
+                "contributes_to_normal_coverage": gaussian in coverage_active_indices,
                 "stable_protected": bool(protected_cpu[gaussian]), "residual_trainable": True,
                 "source_category": category,
             })
