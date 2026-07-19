@@ -1,5 +1,15 @@
 # Artifact Index
 
+## SUBJECT02-SCREEN-SPACE-PLACEMENT-001
+
+- Attempt: `attempt_001`
+- Commit: `431b6349e1a526c90798d98cf57e88b33faea83d`
+- Config: `configs/research/subject02_screen_space_placement_objective_v1.yaml`
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001`
+- Primary artifacts: pool indices/audit, static P1/P2/P3 support metrics, actual contact-sheet inspection, final adjudication
+- Checkpoint: none; optimizer steps `0`
+- Status: `SUPPORT_PROXY_INVALID`
+
 | Run ID | Module | 状态 | Git commit | Base | 输出目录 | 关键证据 |
 |---|---|---|---|---|---|---|
 | GATE5-FULL-ATTRIBUTE-CONTRACT-001 | Full Pipeline Module 1 | PASS | `1cd44ba61ad4ee0be08eb762bb24987918a6d616` | `abbf67b5...` | `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/GATE5-FULL-ATTRIBUTE-CONTRACT-001` | six-channel real render/gradient PASS; zero/state exact; old xyz checkpoint PASS |

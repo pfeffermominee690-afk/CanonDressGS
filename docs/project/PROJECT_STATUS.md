@@ -1,5 +1,14 @@
 # Project Status
 
+## 2026-07-19 Screen-space placement support-proxy gate
+
+- Formal output: `SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001`; run commit `431b6349e1a526c90798d98cf57e88b33faea83d`.
+- Status: **`SUPPORT_PROXY_INVALID`**. The shared target-independent pool contains `169106` Gaussians (SHA256 `232124458848...`).
+- P1−P3 support margins are back `-0.015610`, right `-0.031378`; Spearman with frozen instrumented N_pre is `-0.314286` versus required `>=0.80`.
+- Actual support contact-sheet inspection confirms P2/P3 appear broader/more filled than P1, so the proxy does not encode the known placement ordering.
+- Optimizer absent, steps `0`; base bitwise exact and frozen branches/evidence unchanged. G1/G2 were not run.
+- V6.2, seven-outfit re-adjudication, target generation, and image-conditioned training remain unauthorized. Next: `REDESIGN_DIFFERENTIABLE_SUPPORT_PROXY`.
+
 ## 2026-07-18 R3 O00 arm-support closure
 
 - Formal result: `SUBJECT02-O00-ARM-SUPPORT-CLOSURE-001/attempt_003` at `5bc0726cc0f5c4d34e8d9f846c582e29d1235cfa`; `attempt_001/002` are preserved zero-step tool failures, not candidate results.

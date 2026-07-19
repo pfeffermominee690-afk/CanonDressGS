@@ -282,3 +282,16 @@
 - Tests: O00 12/12, R2 12/12, R3 8/8, R3-CLEAN 12/12, GEOMCAM 11/11, Module 4B 12/12, Module 4B-R 10/10, V5.3 28/28, py_compile and diff check PASS
 - Status: **FAIL / `ARM_SUPPORT_FAIL` / Case C**
 - Stop: Oracle optimizer steps `0`; no Oracle output/checkpoint/history; no full-body support, Anchor Oracle, Module 4B rerun, condition generation, outfit generation, or formal training
+
+## LEDGER-20260719-PLACEMENT-001 — Screen-space support-proxy qualification
+
+- Time: 2026-07-19 Asia/Shanghai
+- Run: `SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001`
+- Run commit: `431b6349e1a526c90798d98cf57e88b33faea83d`
+- Target-independent shared pool: `169106 / 200000`; indices SHA256 `232124458848a684cd98bef1b162ec889f1e3e4c80c0ef1a5caebcceb4edb011`
+- Qualification: P1−P3 margins `-0.015610/-0.031378`; Spearman vs instrumented N_pre `-0.314286`
+- Actual visual inspection: proxy ranking failure confirmed on back/right contact sheet
+- Status: **`SUPPORT_PROXY_INVALID`**; optimizer absent, steps `0`; G1/G2 not run
+- Integrity: base bitwise exact, base gradients `0`, source evidence and frozen branches unchanged
+- Stop: no V6.2, seven-outfit rerun, target generation, or image-conditioned training
+- Next: `REDESIGN_DIFFERENTIABLE_SUPPORT_PROXY`

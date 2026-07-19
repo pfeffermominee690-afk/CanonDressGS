@@ -1,5 +1,13 @@
 # Paper Evidence Matrix
 
+## Screen-space placement proxy evidence — 2026-07-19
+
+- Supported claim: a target-independent shared editable pool and xyz-only fixed-attribute auxiliary render can be constructed without changing production inference.
+- Negative evidence: the tested opacity-0.05 accumulated-alpha proxy does **not** reproduce the frozen instrumented P1>P2/P3 placement ordering (`Spearman=-0.314286`).
+- Prohibited claim: do not claim a V6.2 placement objective, improved O08 coverage, or image-conditioned garment training from this run.
+- Evidence: `SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001` at run commit `431b6349e1a526c90798d98cf57e88b33faea83d`.
+- Status: `NEGATIVE / SUPPORT_PROXY_INVALID`; next evidence task `REDESIGN_DIFFERENTIABLE_SUPPORT_PROXY`.
+
 | 论文主张 | 状态 | 代码/Run | 当前证据 | 限制 |
 |---|---|---|---|---|
 | MMLP-Human canonical override 可安全承载六类 Gaussian raw residual | SUPPORTED | GATE5-FULL-ATTRIBUTE-CONTRACT-001 / `1cd44ba` | 六通道分别产生非零真实 render 变化和 finite 非零梯度；base grad 0；zero/state exact | 这是属性合同验收，不是 image-conditioned full decoder 或训练结果 |

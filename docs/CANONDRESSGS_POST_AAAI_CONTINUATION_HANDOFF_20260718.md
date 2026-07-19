@@ -495,3 +495,7 @@ See `docs/CANONDRESSGS_NEW_SILHOUETTE_SEMANTICS_20260719.md`. The pixel audit cl
 ## 14. Alpha/rasterization audit final link — 2026-07-19
 
 See `docs/CANONDRESSGS_ALPHA_RASTERIZATION_AUDIT_20260719.md`. The zero-step static audit completed as **PASS (audit complete) — Case RF**: production and the crop-level float64 reference agree, supported dtype/antialiasing/supersampling variants do not recover O08 coverage, and the evidence localizes the failure to insufficient projected Gaussian support without uniquely separating support placement from pre-tile backend filtering. Renderer and alpha-parameterization changes, seven-outfit reruns, target generation, and image-conditioned training remain unauthorized. The only next task is `BUILD_INSTRUMENTED_RASTERIZER_DEBUG_PATH`.
+
+## 15. Screen-space placement objective final link — 2026-07-19
+
+See `docs/CANONDRESSGS_SCREEN_SPACE_PLACEMENT_OBJECTIVE_20260719.md`. The target-independent pool and fixed-attribute render contract were implemented, but the mandatory zero-step proxy gate ended as **`SUPPORT_PROXY_INVALID`**: P1−P3 support margins were negative and Spearman correlation with instrumented N_pre was `-0.314286`. No optimizer was created; G1/G2, seven-outfit re-adjudication, target generation, and image-conditioned training remain unauthorized. The only next task is `REDESIGN_DIFFERENTIABLE_SUPPORT_PROXY`.
