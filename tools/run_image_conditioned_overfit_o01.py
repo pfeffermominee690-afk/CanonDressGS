@@ -627,15 +627,18 @@ def _roundtrip_check(
         }
     restored_state = _state_fingerprint(restored_model.state_dict())
     restored_optimizer_fingerprint = object_fingerprint(restored_optimizer.state_dict())
+    _restore_rng(checkpoint["rng"])
+    rng_restored_exact = object_fingerprint(_rng_state()) == object_fingerprint(checkpoint["rng"])
     result = {
         "checkpoint_step": int(checkpoint["step"]),
         "model_state_bitwise": before_state == restored_state,
         "optimizer_state_exact": before_optimizer == restored_optimizer_fingerprint,
+        "rng_state_exact": rng_restored_exact,
         "graph_fingerprint": graph["fingerprint"],
         "comparisons": comparisons,
     }
     result["pass"] = bool(
-        result["model_state_bitwise"] and result["optimizer_state_exact"]
+        result["model_state_bitwise"] and result["optimizer_state_exact"] and result["rng_state_exact"]
         and all(value["allclose"] for value in comparisons.values())
     )
     del restored_model, restored_optimizer, before, after
@@ -697,6 +700,9 @@ def _evaluate_all(
             save_render_tensor(milestone / f"{condition}_predicted_rgb.png", rgb, 3)
             save_render_tensor(milestone / f"{condition}_predicted_alpha.png", alpha, 1)
             rows.append((condition, [
+                (f"ref {episodes[condition]['reference_condition_ids'][0]}", episodes[condition]["reference_images"][0], 3),
+                (f"ref {episodes[condition]['reference_condition_ids'][1]}", episodes[condition]["reference_images"][1], 3),
+                (f"ref {episodes[condition]['reference_condition_ids'][2]}", episodes[condition]["reference_images"][2], 3),
                 ("base", samples[condition]["target_base_rgb"], 3),
                 ("target", samples[condition]["target_edit_rgb"], 3),
                 ("prediction", rgb, 3),
@@ -838,6 +844,9 @@ def run(args: argparse.Namespace) -> None:
         protected_mask = protected_cpu.to(device)
         base_fingerprint_before = _tensor_state_fingerprint(_base_named_tensors(base))
         model, optimizer, _, _, graph = _construct_model(base, config, device)
+        backbone_fingerprint_before = _state_fingerprint(
+            model.clothing_observation_encoder.backbone.state_dict()
+        )
         adapter = MMLPHumanAnchorDeformationAdapter.from_mmlphuman_base(
             base, lbs_grid_path=Path(config["base"]["lbs_grid_path"]),
         )
@@ -927,7 +936,12 @@ def run(args: argparse.Namespace) -> None:
 
             if step in checkpoint_steps:
                 checkpoint_path = output_dir / "checkpoints" / f"checkpoint_step_{step:06d}.pth"
-                _save_checkpoint(checkpoint_path, model, optimizer, step, _checkpoint_metadata(config, graph, step))
+                checkpoint_metadata = _checkpoint_metadata(config, graph, step)
+                checkpoint_metadata.update({
+                    "trainable_parameter_fingerprint": _state_fingerprint(model.state_dict()),
+                    "optimizer_fingerprint": object_fingerprint(optimizer.state_dict()),
+                })
+                _save_checkpoint(checkpoint_path, model, optimizer, step, checkpoint_metadata)
             if step == int(config["training"]["smoke_steps"]):
                 missing_gradients = sorted(name for name, passed in cumulative_gradient_nonzero.items() if not passed)
                 roundtrip = _roundtrip_check(
@@ -959,6 +973,9 @@ def run(args: argparse.Namespace) -> None:
         final = milestones[str(total_steps)]
         learning = _final_learning_decision(history, final, config)
         base_fingerprint_after = _tensor_state_fingerprint(_base_named_tensors(base))
+        backbone_fingerprint_after = _state_fingerprint(
+            model.clothing_observation_encoder.backbone.state_dict()
+        )
         base_check = {
             "before": base_fingerprint_before, "after": base_fingerprint_after,
             "bitwise_unchanged": base_fingerprint_before == base_fingerprint_after,
@@ -970,6 +987,7 @@ def run(args: argparse.Namespace) -> None:
             "frozen_base_bitwise": base_check["bitwise_unchanged"],
             "frozen_base_gradients_zero": base_check["gradient_tensor_count"] == 0,
             "frozen_backbone_gradients_zero": gradient["frozen_image_backbone"]["gradient_tensor_count"] == 0,
+            "frozen_backbone_bitwise": backbone_fingerprint_before == backbone_fingerprint_after,
             "checkpoint_roundtrip": json.loads((output_dir / "SMOKE_ACCEPTANCE.json").read_text())["checkpoint_roundtrip"]["pass"],
             "target_not_in_forward": True,
             "all_four_episodes": set(row["condition"] for row in history) == set(CONDITIONS),
@@ -983,6 +1001,11 @@ def run(args: argparse.Namespace) -> None:
             "engineering": {"checks": engineering_checks, "pass": engineering_pass},
             "learning": learning, "final_evaluation": final,
             "base_freeze": base_check, "gradient_final": gradient,
+            "backbone_freeze": {
+                "before": backbone_fingerprint_before, "after": backbone_fingerprint_after,
+                "bitwise_unchanged": backbone_fingerprint_before == backbone_fingerprint_after,
+                "gradient_tensor_count": gradient["frozen_image_backbone"]["gradient_tensor_count"],
+            },
             "visual_status": "PENDING_ACTUAL_INSPECTION",
             "preliminary_status": "AWAITING_VISUAL_ACCEPTANCE" if engineering_pass and learning["pass"] else "FAIL",
         }
