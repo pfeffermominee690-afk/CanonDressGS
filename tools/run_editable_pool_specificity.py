@@ -278,7 +278,15 @@ def _source_coverage_qualification(config: Mapping[str, Any]) -> dict[str, Any]:
         row = next(item for item in candidates if item.get("candidate") == "A_0.1")
     else:
         row = candidates["A_0.1"]
-    return {"status": row.get("status", "FAIL"), "source": row}
+    coverage_gates = {
+        key: bool(value) for key, value in row["gates"].items()
+        if key != "F_cloud_detection"
+    }
+    return {
+        "status": "PASS" if all(coverage_gates.values()) else "FAIL",
+        "coverage_gates": coverage_gates,
+        "source": row,
+    }
 
 
 def _cloud_category_summary(events: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
@@ -344,6 +352,7 @@ def main() -> int:
             anchor_neighbors=base.nbr_vt, protected_min_views=config["current_editable"]["protected_min_views"],
         )
         current = torch.from_numpy(current_np.astype(np.int64, copy=False)).to(device)
+        current_set = set(int(value) for value in current_np.tolist())
         if not torch.equal(frozen_pool.indices, current):
             raise RuntimeError("reconstructed coverage pool differs from frozen G_editable")
         protected = stable_protected_mask(hits["protected"], hits["garment_envelope"], hits["old_clothing"], minimum_views=2)
@@ -459,17 +468,23 @@ def main() -> int:
                         for gaussian in row["pre"]:
                             index = int(gaussian)
                             joint = int(dominant_joint[index])
-                            category = cloud_source_category(
-                                stable_protected=bool(protected[index]), base_visible=bool(hits["visible"][index]),
-                                garment_body_part=joint in set(config["body_parts"]["garment_joint_ids"]),
-                                envelope_evidence=bool(hits["garment_envelope"][index]),
-                                anchor_group_member=bool(frozen_pool.expanded_anchor_mask[dominant[index]]),
-                                formal_trainable=True,
-                            )
+                            if index in current_set:
+                                category = "OTHER_EXPLICIT"
+                                explanation = "ALREADY_IN_CURRENT_POOL_NOT_AN_EXCLUDED_CONTRIBUTOR"
+                            else:
+                                category = cloud_source_category(
+                                    stable_protected=bool(protected[index]), base_visible=bool(hits["visible"][index]),
+                                    garment_body_part=joint in set(config["body_parts"]["garment_joint_ids"]),
+                                    envelope_evidence=bool(hits["garment_envelope"][index]),
+                                    anchor_group_member=bool(frozen_pool.expanded_anchor_mask[dominant[index]]),
+                                    formal_trainable=True,
+                                )
+                                explanation = exclusion[index]
                             cloud_events.append({
                                 "gaussian_index": index, "outfit": outfit, "view": view, "state": state,
                                 "x": row["x"], "y": row["y"], "active": index in active_mass,
                                 "alpha_mass": float(active_mass.get(index, 0.0)), "source_category": category,
+                                "source_explanation": explanation,
                             })
                     del backend, projection, tensors
             del state_models, overrides_by_state
@@ -581,7 +596,14 @@ def main() -> int:
                 "stable_protected": bool(protected_cpu[gaussian]),
             })
         _save_parquet(output / "cloud_contributors/cloud_contributors.parquet", {key: [row[key] for row in cloud_detail_rows] for key in cloud_detail_rows[0]})
+        _save_parquet(output / "cloud_contributors/cloud_contributor_events.parquet", {key: [row[key] for row in cloud_events] for key in cloud_events[0]})
         write_csv(output / "cloud_contributors/cloud_source_categories.csv", _cloud_category_summary(cloud_events))
+        source_by_split = []
+        for split in sorted({(row["outfit"], row["view"], row["state"]) for row in cloud_events}):
+            subset = [row for row in cloud_events if (row["outfit"], row["view"], row["state"]) == split]
+            for row in _cloud_category_summary(subset):
+                source_by_split.append({"outfit": split[0], "view": split[1], "state": split[2], **row})
+        write_csv(output / "cloud_contributors/cloud_source_categories_by_split.csv", source_by_split)
         write_csv(output / "cloud_contributors/cloud_same_index_migration.csv", migration_rows)
         _draw_flow(output / "visualizations/cloud_flow_visualization.png", migration_rows)
 
@@ -614,12 +636,14 @@ def main() -> int:
 
         status["failure_stage"] = "final_adjudication"
         category_rows = _cloud_category_summary(cloud_events)
-        protected_alpha = sum(row["alpha_mass"] for row in category_rows if row["source_category"] == "EXCLUDED_PROTECTED")
-        total_alpha = sum(row["alpha_mass"] for row in category_rows)
+        focus_events = [row for row in cloud_events if row["outfit"] == "O08" and row["view"] == "back" and row["state"] == "P3"]
+        protected_alpha = sum(row["alpha_mass"] for row in focus_events if row["source_category"] == "EXCLUDED_PROTECTED")
+        total_alpha = sum(row["alpha_mass"] for row in focus_events)
+        focus_protected_alpha_fraction = protected_alpha / max(total_alpha, 1e-12)
         coverage_pass = expansion_global["npre_weighted_recall"] >= float(config["qualification"]["coverage_npre_recall_min"])
         if not coverage_pass:
             case, next_task = "PC", "REDESIGN_COVERAGE_GAUSSIAN_POOL"
-        elif total_alpha > 0 and protected_alpha / total_alpha >= .5:
+        elif total_alpha > 0 and focus_protected_alpha_fraction >= .5:
             case, next_task = "PP", "DESIGN_PROTECTED_AWARE_CLOUD_ATTRIBUTION"
         elif qualifications["P1"]["status"] == "PASS":
             case, next_task = "PS", "RESUME_SCREEN_SPACE_PLACEMENT_WITH_DUAL_POOL_PROXY"
@@ -662,6 +686,8 @@ def main() -> int:
             "cloud_global": cloud_global, "pool_contracts": pool_contracts,
             "qualifications": qualifications, "anti_saturation": anti, "gradient_direction": gradient,
             "performance": performance, "source_category_summary": category_rows,
+            "focus_P3_O08_back_source_category_summary": _cloud_category_summary(focus_events),
+            "focus_P3_O08_back_protected_alpha_fraction": focus_protected_alpha_fraction,
             "base_fingerprint": hashlib.sha256(base_xyz.tobytes()).hexdigest(),
         }
         atomic_json(output / "final_adjudication/EDITABLE_POOL_SPECIFICITY_FINAL_STATUS.json", adjudication)
