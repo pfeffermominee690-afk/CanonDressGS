@@ -1,0 +1,87 @@
+schema_version: canondressgs.protected_cloud_attribution.v1
+task_id: SUBJECT02-PROTECTED-CLOUD-ATTRIBUTION-001
+research_branch: research/protected-cloud-attribution-20260719
+source_head: 79c2cccb3d2f71373678d21383a7c08125994e33
+source_tag: editable-pool-specificity-case-pp-20260719
+source_pool_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007
+source_proxy_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-DIFFERENTIABLE-SUPPORT-PROXY-002/attempt_002
+source_placement_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001
+source_v6_1_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-NEW-SILHOUETTE-SEMANTICS-001/attempt_002
+source_v6_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-OBJECTIVE-RESIDUAL-REDESIGN-001/attempt_004
+source_representation_output: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002
+source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+pipeline_config: configs/canon_dress_gs_mvp_real.yaml
+
+frozen_branches:
+  research/editable-pool-specificity-20260719: 79c2cccb3d2f71373678d21383a7c08125994e33
+  research/differentiable-support-proxy-20260719: dfdb669c4f1b0c71f9543f944be1e3e7d88d38f0
+  research/screen-space-placement-objective-20260719: 6bfd311a1f558db96c505e03bea24f6877c6ea43
+  research/instrumented-raster-debug-20260719: aec512a6133f2c51c921e03676441257966d9add
+  research/alpha-raster-audit-20260719: 159d23cb82a4af8b94462ae580198c7612c77739
+  research/new-silhouette-semantics-20260719: 74f65ef15d1ca7e81d6d8ac9d58c469285f70323
+  research/objective-residual-redesign-20260718: cee8fc51b5039a102ef7e2c31632e348ae3b99a1
+  research/representation-triage-20260718: 45539af725dcff6188a326ef732614acfc09cab5
+  sprint/aaai27-20260718: 54c1ba73d325a58256f32b4fecdf8c321aef8e21
+  pipeline/full-dressable-20260715: 9fc88033b407136073f7bddc6ffca6dd4dd1e0f5
+
+outfits: [O01, O08]
+conditions:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+primary_views: [O08/back, O08/right]
+control_views: [O08/front, O01/back, O01/right]
+states:
+  P1:
+    relative_checkpoint: rung_2_shared_same_support/{outfit}/checkpoints/step_001200.pth
+    sha256: {O01: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56, O08: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e}
+  P2:
+    relative_checkpoint: causal_matrix/T5/{outfit}/checkpoints/step_001000.pth
+    sha256: {O01: 0b9227df2fce94ea530be88fd2ac46438562e3e6338c2f4b9c3bd222ab225fcf, O08: 9d74a163a973c92f81cc4c827dc7508b9945632f87e70fe43e9ae1319a8ae6e1}
+  P3:
+    relative_checkpoint: S1_v6_1_semantics/{outfit}/checkpoints/step_001000.pth
+    sha256: {O01: 46bf0dffbd6fc512e753cce7be7f895f7ca448568a100238fc1e02753b1ba111, O08: 7c0e5baf7b876b9ba40884f0db0ac8a70aeabdb24cff332fcad9b620ce8a5852}
+
+candidate_bounds: {xyz: 0.09406771513, log_scaling: 0.67803978920, rotation: 0.62413822860, opacity_logit: 2.0, sh0: 1.49314403538, shN: 0.10}
+support_band: {base_bbox_diagonal_ratio: 0.002708497051881002, minimum_radius_pixels: 1}
+silhouette_threshold: 0.5
+key_cloud:
+  outfit: O08
+  view: back
+  state: P3
+  expected_unique_indices: 2646
+  expected_npre_occurrences: 3752
+  expected_center_entered: 2522
+  expected_tail_only: 124
+trace_sampling: {pixels_per_region: 48, theoretical_alpha_cutoff: 0.00392156862745098, actual_early_termination: 0.0001}
+proxy: {name: SOFT_PRE_CONTRIBUTOR_COUNT_V1, temperature: 0.10}
+formal_counterfactuals:
+  F1: [delta_xyz]
+  F2: [delta_xyz, delta_log_scaling, delta_rotvec]
+  F3: [delta_xyz, delta_log_scaling, delta_rotvec, delta_opacity_logit]
+  F4: [delta_xyz, delta_log_scaling, delta_rotvec, delta_opacity_logit, delta_sh0, delta_shN]
+optional_boundary_taper: {enabled_only_if_hard_guard_passes_cloud_and_fails_seam: true, graph_width_hops: 1}
+qualification:
+  cloud_alpha_mass_decrease_min: 0.80
+  cloud_active_decrease_min: 0.80
+  center_entered_decrease_min: 0.80
+  trusted_expansion_npre_drop_max: 0.02
+  trusted_expansion_recall_drop_max: 0.02
+  trusted_removal_recall_drop_max: 0.03
+  target_closer_drop_max: 0.01
+  edit_reduction_drop_max: 0.02
+  protected_mae_max: 0.01
+  background_leakage_max: 0.03
+permissions:
+  optimizer_created: false
+  optimizer_steps: 0
+  training: false
+  placement_training: false
+  generate_targets: false
+  rerun_seven_outfits: false
+  image_conditioned_training: false
+  modify_renderer: false
+  modify_residual_composition: false
+  modify_anchor_structure: false
+  modify_bounds: false
