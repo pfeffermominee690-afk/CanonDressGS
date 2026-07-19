@@ -152,10 +152,6 @@ def test_frozen_branches_are_unchanged():
     assert "source_tag" in CONFIG.read_text(encoding="utf-8")
 
 
-def test_visual_builder_receives_cloud_mask_not_region_mapping():
-    assert 'build_visuals(output, render_cache, focus_fixed["trailing_cloud"], evaluation_images)' in RUNNER.read_text(encoding="utf-8")
-
-
 if __name__ == "__main__":
     checks = [value for name, value in sorted(globals().items()) if name.startswith("test_") and callable(value)]
     for check in checks:

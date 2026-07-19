@@ -665,7 +665,7 @@ def counterfactuals(
     atomic_json(output / "formal_counterfactuals/metrics.json", {key: value for key, value in all_metrics.items() if "/F" in key})
     atomic_json(output / "input_audit/base_fingerprints.json", base_hashes)
     atomic_json(output / "input_audit/renderer_bitwise_regression.json", renderer_equal)
-    build_visuals(output, render_cache, focus_fixed["trailing_cloud"], evaluation_images)
+    build_visuals(output, render_cache, focus_fixed, evaluation_images)
     return all_metrics, base_hashes, renderer_equal
 
 
