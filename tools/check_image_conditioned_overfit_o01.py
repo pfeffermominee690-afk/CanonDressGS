@@ -101,6 +101,14 @@ def test_protected_support_preserves_one_dimensional_opacity_shape() -> None:
     assert tuple(support.shape) == (1, 2, 2)
 
 
+def test_masked_mae_accepts_v6_nchw_regions_for_chw_render() -> None:
+    first = torch.ones(3, 4, 5)
+    second = torch.zeros_like(first)
+    mask = torch.zeros(1, 1, 4, 5)
+    mask[..., 1, 2] = 1
+    assert runner._masked_mae(first, second, mask) == 1.0
+
+
 def test_guard_is_after_interpolation_before_composition() -> None:
     source = inspect.getsource(ImageConditionedDressableModel.compute_online_six_channel_residuals)
     interpolation = source.index("interpolate_anchor_clothing_residuals")

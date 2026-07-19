@@ -447,6 +447,8 @@ def _loss_and_output(
 
 def _masked_mae(first: torch.Tensor, second: torch.Tensor, mask: torch.Tensor) -> float:
     active = (mask >= 0.5).to(first)
+    while active.ndim > first.ndim and active.shape[0] == 1:
+        active = active[0]
     while active.ndim < first.ndim:
         active = active.unsqueeze(0)
     if active.shape != first.shape:
