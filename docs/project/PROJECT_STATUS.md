@@ -1,5 +1,13 @@
 # Project Status
 
+## 2026-07-19 Editable Gaussian pool specificity audit
+
+- Formal result: `SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007` at run commit `9dcb1472dc25ed3bfa6d37c12b53f3f6b32b491a`.
+- Status: **PASS / Case PP**. Current `G_editable` passes trusted-expansion coverage (`N_pre recall 0.990725`) but has zero recall on the decisive P3/O08/back cloud contributors.
+- All decisive cloud contributors are stable protected right-leg/foot Gaussians; protected alpha fraction `1.0`. P1 and P2 reduce exactly to P0 (`169106`, identical SHA) and cannot recover them legally.
+- No dual-pool proxy is frozen; placement, seven-outfit rerun, target generation, and training remain unauthorized.
+- Optimizer absent, steps `0`; base/source/frozen refs unchanged. Next: `DESIGN_PROTECTED_AWARE_CLOUD_ATTRIBUTION`.
+
 ## 2026-07-19 Screen-space placement support-proxy gate
 
 - Formal output: `SUBJECT02-SCREEN-SPACE-PLACEMENT-001/attempt_001`; run commit `431b6349e1a526c90798d98cf57e88b33faea83d`.

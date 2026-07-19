@@ -1,5 +1,15 @@
 # Artifact Index
 
+## SUBJECT02-EDITABLE-POOL-SPECIFICITY-001
+
+- Formal attempt: `attempt_007`
+- Commit: `9dcb1472dc25ed3bfa6d37c12b53f3f6b32b491a`
+- Config: `configs/research/subject02_editable_pool_specificity_v1.yaml` (`4f04aa9d...`)
+- Output: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007`
+- Primary artifacts: 200k attribution Parquet, production contributor events, weighted coverage/cloud recall, source/body/anchor distributions, same-index migration, P0/P1/P2 contracts, protected risk, final adjudication
+- Checkpoint: frozen P1/P2/P3 inputs only; no checkpoint written; optimizer steps `0`
+- Status: `PASS / Case PP`; next `DESIGN_PROTECTED_AWARE_CLOUD_ATTRIBUTION`
+
 ## SUBJECT02-SCREEN-SPACE-PLACEMENT-001
 
 - Attempt: `attempt_001`

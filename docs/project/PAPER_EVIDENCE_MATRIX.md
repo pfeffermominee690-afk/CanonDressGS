@@ -1,5 +1,13 @@
 # Paper Evidence Matrix
 
+## Editable-pool specificity evidence — 2026-07-19
+
+- Supported diagnostic claim: the target-independent current pool is a high-recall coverage pool (trusted-expansion N_pre recall `0.990725`).
+- Supported diagnostic claim: the decisive P3/O08/back cloud contributors are entirely stable protected right-leg/foot Gaussians; current/P1/P2 recall is zero and protected alpha fraction is `1.0`.
+- Negative evidence: simple all-nonprotected or anchor-expanded spill pools do not enlarge the current pool and cannot close cloud recall.
+- Prohibited claim: do not claim a frozen dual-pool proxy, resumed placement, improved rendering, seven-outfit generalization, or training result.
+- Evidence: `SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007` at run commit `9dcb1472`; status `PASS / Case PP`.
+
 ## Screen-space placement proxy evidence — 2026-07-19
 
 - Supported claim: a target-independent shared editable pool and xyz-only fixed-attribute auxiliary render can be constructed without changing production inference.

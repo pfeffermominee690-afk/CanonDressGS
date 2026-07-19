@@ -295,3 +295,19 @@
 - Integrity: base bitwise exact, base gradients `0`, source evidence and frozen branches unchanged
 - Stop: no V6.2, seven-outfit rerun, target generation, or image-conditioned training
 - Next: `REDESIGN_DIFFERENTIABLE_SUPPORT_PROXY`
+
+## LEDGER-20260719-EDITABLE-POOL-001 — Editable Gaussian pool specificity
+
+- Time: 2026-07-19 Asia/Shanghai
+- Type: READ-ONLY CONTRIBUTOR ATTRIBUTION / DUAL-POOL STATIC QUALIFICATION / SAFE STOP
+- Formal candidate: `SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007`
+- Run commit: `9dcb1472dc25ed3bfa6d37c12b53f3f6b32b491a`
+- Config: `configs/research/subject02_editable_pool_specificity_v1.yaml`, SHA256 `4f04aa9d0cab91f41e99dfd1dc146561f18659b3f1d5c893385af3c1670f8aee`
+- Current pool: `169106 / 200000`; official file SHA256 `232124458848a684cd98bef1b162ec889f1e3e4c80c0ef1a5caebcceb4edb011`
+- Coverage: trusted-expansion index/N_pre/active/alpha recall `0.987596/0.990725/0.989760/0.991668`
+- Decisive cloud: P3/O08/back N_pre `78.166667`; current-pool recall all zero; `2646` unique contributors, protected alpha fraction `1.0`
+- P0/P1/P2: all `169106`, identical raw-index SHA256 `80c1d495...`, protected overlap `0`; no candidate passes cloud recall
+- Same-index focus: 2522 center-entering cloud, 124 wide-tail-only; right-leg joint 8 and foot/shoe joint 11
+- Status: **PASS / Case PP**; no anti-saturation/gradient/performance stage because static qualification failed
+- Optimizer absent, steps `0`; no official pool/renderer/V6/V6.1/bounds/history modification
+- Next: `DESIGN_PROTECTED_AWARE_CLOUD_ATTRIBUTION`
