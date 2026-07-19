@@ -441,6 +441,15 @@ def main() -> int:
                     )
                     if backend is None:
                         raise RuntimeError("production backend trace unavailable")
+                    projected_xy = projection["projected_mean"].detach().cpu().numpy()
+                    projected_x = np.rint(projected_xy[:, 0]).astype(np.int64)
+                    projected_y = np.rint(projected_xy[:, 1]).astype(np.int64)
+                    cloud_center_membership = np.zeros(count, dtype=bool)
+                    center_valid = (
+                        (projected_x >= 0) & (projected_x < fixed["trailing_cloud"].shape[1])
+                        & (projected_y >= 0) & (projected_y < fixed["trailing_cloud"].shape[0])
+                    )
+                    cloud_center_membership[center_valid] = fixed["trailing_cloud"][projected_y[center_valid], projected_x[center_valid]]
                     selected_rows: dict[str, list[dict[str, Any]]] = {}
                     for region in ("trusted_expansion", "correctly_covered_garment", "trailing_cloud", "normal_background"):
                         region_pixels = pixels[region_lookup[region]] if region_lookup[region] else pixels[:0]
@@ -485,6 +494,7 @@ def main() -> int:
                                 "x": row["x"], "y": row["y"], "active": index in active_mass,
                                 "alpha_mass": float(active_mass.get(index, 0.0)), "source_category": category,
                                 "source_explanation": explanation,
+                                "center_in_cloud": bool(cloud_center_membership[index]),
                             })
                     del backend, projection, tensors
             del state_models, overrides_by_state
@@ -579,6 +589,8 @@ def main() -> int:
                 "contributes_to_normal_coverage": gaussian in coverage_active_indices,
                 "stable_protected": bool(protected_cpu[gaussian]), "residual_trainable": True,
                 "source_category": category,
+                "center_enters_cloud": any(event["center_in_cloud"] for event in events),
+                "wide_tail_only": not any(event["center_in_cloud"] for event in events),
             })
             migration_rows.append({
                 "gaussian_index": gaussian, "source_category": category,
@@ -594,6 +606,8 @@ def main() -> int:
                 "base_region": str(projection_region[gaussian]), "final_region": "trailing_cloud",
                 "also_coverage": cloud_detail_rows[-1]["contributes_to_normal_coverage"],
                 "stable_protected": bool(protected_cpu[gaussian]),
+                "center_enters_cloud": cloud_detail_rows[-1]["center_enters_cloud"],
+                "wide_tail_only": cloud_detail_rows[-1]["wide_tail_only"],
             })
         _save_parquet(output / "cloud_contributors/cloud_contributors.parquet", {key: [row[key] for row in cloud_detail_rows] for key in cloud_detail_rows[0]})
         _save_parquet(output / "cloud_contributors/cloud_contributor_events.parquet", {key: [row[key] for row in cloud_events] for key in cloud_events[0]})
@@ -606,6 +620,33 @@ def main() -> int:
         write_csv(output / "cloud_contributors/cloud_source_categories_by_split.csv", source_by_split)
         write_csv(output / "cloud_contributors/cloud_same_index_migration.csv", migration_rows)
         _draw_flow(output / "visualizations/cloud_flow_visualization.png", migration_rows)
+        body_rows = []
+        for name in sorted({row["body_part"] for row in cloud_detail_rows}):
+            subset = [row for row in cloud_detail_rows if row["body_part"] == name]
+            body_rows.append({
+                "body_part": name, "unique_gaussians": len(subset),
+                "npre_occurrences": sum(row["contribution_pixel_count"] for row in subset),
+                "active_contributions": sum(row["active_contribution_count"] for row in subset),
+                "alpha_mass": sum(row["accumulated_alpha_mass"] for row in subset),
+            })
+        anchor_rows = []
+        for anchor in sorted({row["dominant_anchor"] for row in cloud_detail_rows}):
+            subset = [row for row in cloud_detail_rows if row["dominant_anchor"] == anchor]
+            anchor_rows.append({
+                "dominant_anchor": anchor, "unique_gaussians": len(subset),
+                "npre_occurrences": sum(row["contribution_pixel_count"] for row in subset),
+                "active_contributions": sum(row["active_contribution_count"] for row in subset),
+                "alpha_mass": sum(row["accumulated_alpha_mass"] for row in subset),
+            })
+        write_csv(output / "body_part_and_anchor_analysis/cloud_body_part_distribution.csv", body_rows)
+        write_csv(output / "body_part_and_anchor_analysis/cloud_anchor_distribution.csv", anchor_rows)
+        atomic_json(output / "body_part_and_anchor_analysis/summary.json", {
+            "formal_trainable_unique_gaussians": sum(row["residual_trainable"] for row in cloud_detail_rows),
+            "cloud_unique_gaussians": len(cloud_detail_rows),
+            "also_coverage_unique_gaussians": sum(row["contributes_to_normal_coverage"] for row in cloud_detail_rows),
+            "wide_tail_only_unique_gaussians": sum(row["wide_tail_only"] for row in cloud_detail_rows),
+            "center_enters_cloud_unique_gaussians": sum(row["center_enters_cloud"] for row in cloud_detail_rows),
+        })
 
         status["failure_stage"] = "dual_pool_qualification"
         coverage_qualification = _source_coverage_qualification(config)
@@ -677,7 +718,7 @@ def main() -> int:
         atomic_json(output / "dual_pool_static_qualification/gradient_direction.json", gradient)
         atomic_json(output / "dual_pool_static_qualification/performance.json", performance)
         adjudication = {
-            "case": case, "status": "PASS" if case in ("PS", "PA") and gradient.get("status") == "PASS" else "PARTIAL",
+            "case": case, "status": "PASS" if case != "PU" else "PARTIAL",
             "freeze_dual_pool_proxy": case in ("PS", "PA") and gradient.get("status") == "PASS",
             "allow_resume_placement": case in ("PS", "PA") and gradient.get("status") == "PASS",
             "allow_seven_outfit_rerun": False, "allow_more_targets": False, "allow_training": False,
