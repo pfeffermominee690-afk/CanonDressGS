@@ -466,6 +466,24 @@ def _teacher_residual_stats(
     return result
 
 
+def _teacher_evaluate_one(
+    base: Any, sample: Mapping[str, Any], background: torch.Tensor,
+    render: Callable[[], tuple[torch.Tensor, torch.Tensor]], output_dir: Path | None = None,
+) -> tuple[dict[str, float], list[tuple[str, Image.Image]]]:
+    """Adapt the immutable triage evaluator to this runner's all-CUDA sample contract."""
+    with torch.no_grad():
+        rgb, alpha = render()
+    metrics = triage.capacity_metrics(rgb, alpha, sample)
+    panels: list[tuple[str, Image.Image]] = []
+    if output_dir is not None:
+        cpu_sample = diagnosis._to_device_nested(sample, torch.device("cpu"))
+        panels = triage._save_render_set(
+            output_dir, sample["target_condition_id"], rgb.detach().cpu(),
+            alpha.detach().cpu(), cpu_sample,
+        )
+    return metrics, panels
+
+
 def run_teacher(context: Mapping[str, Any], outfit: str) -> dict[str, Any]:
     if outfit not in {"O02", "O03", "O04", "O07"}:
         raise ValueError("only missing preregistered teachers may be generated")
@@ -495,7 +513,7 @@ def run_teacher(context: Mapping[str, Any], outfit: str) -> dict[str, Any]:
     initial_per_view: dict[str, dict[str, float]] = {}
     initial_panels: list[tuple[str, Image.Image]] = []
     for condition in CONDITIONS:
-        metrics, panels = triage._evaluate_one(
+        metrics, panels = _teacher_evaluate_one(
             base, samples[condition], context["background"],
             lambda condition=condition: render_for(condition), run_dir / "renders/step_000000",
         )
@@ -538,7 +556,7 @@ def run_teacher(context: Mapping[str, Any], outfit: str) -> dict[str, Any]:
         if step in render_steps:
             panels: list[tuple[str, Image.Image]] = []; metric_rows = []
             for current in CONDITIONS:
-                metrics, current_panels = triage._evaluate_one(
+                metrics, current_panels = _teacher_evaluate_one(
                     base, samples[current], context["background"],
                     lambda current=current: render_for(current), run_dir / f"renders/step_{step:06d}",
                 )
@@ -552,7 +570,7 @@ def run_teacher(context: Mapping[str, Any], outfit: str) -> dict[str, Any]:
         })
     final_per_view = []; final_panels: list[tuple[str, Image.Image]] = []
     for condition in CONDITIONS:
-        metrics, panels = triage._evaluate_one(
+        metrics, panels = _teacher_evaluate_one(
             base, samples[condition], context["background"],
             lambda condition=condition: render_for(condition), run_dir / "renders/final",
         )

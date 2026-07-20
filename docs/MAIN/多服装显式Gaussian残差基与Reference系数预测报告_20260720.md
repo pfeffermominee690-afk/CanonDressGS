@@ -2,7 +2,7 @@
 
 任务：`SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001`
 
-状态：正式运行前冻结（实验结果将在 append-only 正式输出完成后补充）。
+状态：正式运行中。`attempt_001` 在 O02 初始证据持久化时因验收 helper 的 CPU/CUDA device 边界错误停止，optimizer step 为 0，不是模型结果；修复后的唯一正式候选为 append-only `attempt_002`。
 
 ## 1. CS-PASS 继承结论
 
