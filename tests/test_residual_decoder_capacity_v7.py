@@ -247,6 +247,12 @@ def test_v7_visual_acceptance_requires_opened_images_and_matching_status() -> No
         _assert_raises(ValueError, lambda: _load_visual_observations(path, "PASS"))
 
 
+def test_v7_finalization_distinguishes_run_and_adjudication_commits() -> None:
+    source = (ROOT / "tools/run_residual_decoder_capacity_v7.py").read_text(encoding="utf-8")
+    assert '"run_commit": immutable_inputs["git"]["commit"]' in source
+    assert '"finalization_commit": git_output("rev-parse", "HEAD")' in source
+
+
 if __name__ == "__main__":
     tests = [(name, value) for name, value in sorted(globals().items()) if name.startswith("test_") and callable(value)]
     for name, callback in tests:

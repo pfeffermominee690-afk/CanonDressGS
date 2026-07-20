@@ -1209,7 +1209,9 @@ def finalize(
     if not freeze["base_bitwise_unchanged"] or not freeze["image_backbone_bitwise_unchanged"] or freeze["base_gradient_count"] != 0 or not freeze["old_o01_and_diagnosis_outputs_immutable"]:
         raise AssertionError("V7 frozen base/backbone contract failed")
     result = {
-        "task_id": TASK_ID, "run_commit": git_output("rev-parse", "HEAD"),
+        "task_id": TASK_ID,
+        "run_commit": immutable_inputs["git"]["commit"],
+        "finalization_commit": git_output("rev-parse", "HEAD"),
         "stage_a": stage_a, "stage_b": stage_b,
         "stage_a_visual_status": stage_a_visual_status,
         "stage_b_visual_status": stage_b_visual_status,
@@ -1226,6 +1228,7 @@ def finalize(
     atomic_json(output_dir / "final_adjudication" / "final_adjudication.json", result)
     atomic_text(output_dir / "final_adjudication" / "FINAL_ADJUDICATION.md", "\n".join([
         f"# {TASK_ID}", "", f"- Run commit: `{result['run_commit']}`",
+        f"- Finalization commit: `{result['finalization_commit']}`",
         f"- Stage A: **{stage_a['status']} / visual {stage_a_visual_status}**",
         f"- Stage B: **{stage_b['status']} / visual {stage_b_visual_status or 'NOT_RUN'}**",
         f"- Final case: **{case}**", f"- Final status: **{final_status}**",
