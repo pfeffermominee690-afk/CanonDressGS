@@ -25,6 +25,7 @@ if __package__ in (None, ""):
 
 from scene.frozen_f2_linear_coefficient_control import FrozenF2ReferenceFeatureExtractor
 from scene.gaussian_clothing_residuals import GaussianClothingResiduals
+from scene.gaussian_clothing_residuals import apply_protected_full_residual_guard
 from scene.multi_outfit_linear_coefficient_control import (
     MultiOutfitLinearCoefficientControl,
     pairwise_geometry_loss,
@@ -571,6 +572,87 @@ def train_model(
     return model, report
 
 
+def recover_completed_model(
+    attempt: Path, experiment: Mapping[str, Any], cache: Mapping[str, Any],
+    coefficients: Mapping[str, torch.Tensor], payload: Mapping[str, Any],
+    device: torch.device, checkpoint: Path,
+) -> tuple[nn.Module, dict[str, Any]]:
+    """Recover a complete trajectory without repeating an optimizer step."""
+    method = experiment["method"]
+    rank = _rank_for(method)
+    sample = feature_value(
+        cache, f"O01/{CONDITIONS[0]}", _feature_kind(method), device,
+        indices=tuple(range(_reference_count(method))),
+    )
+    input_dim = int(sample.numel())
+    seed = int(experiment["seed"])
+    factory = lambda: _model_factory(method, input_dim, rank, seed, device)
+    model, _, _, checkpoint_payload = _load_checkpoint(checkpoint, factory, device)
+    if checkpoint_payload.get("experiment_id") != experiment["experiment_id"]:
+        raise ValueError("resume checkpoint experiment mismatch")
+    if checkpoint_payload.get("global_step") != 300 or checkpoint_payload.get("condition_position") != 0:
+        raise ValueError("resume checkpoint global state mismatch")
+    rows = [
+        json.loads(line) for line in (attempt / "logs/train.jsonl")
+        .read_text(encoding="utf-8").splitlines() if line.strip()
+    ]
+    if len(rows) != 300 or [row["step"] for row in rows] != list(range(1, 301)):
+        raise ValueError("completed trajectory log is not exact")
+    training = json.loads(
+        (attempt / "raw_metrics/training_summary.json").read_text(encoding="utf-8")
+    )
+    if training.get("checkpoint_resume", {}).get("status") != "PASS":
+        raise ValueError("completed trajectory lacks exact checkpoint acceptance")
+    training = dict(training)
+    training.update({
+        "resumed_after_runtime_interruption": True,
+        "resume_source_checkpoint": str(checkpoint),
+        "resume_source_sha256": core._sha256(checkpoint),
+        "optimizer_steps_repeated": 0,
+    })
+    core._atomic_json(attempt / "raw_metrics/training_summary.json", training)
+    core._atomic_json(attempt / "provenance/interrupted_runtime_recovery.json", {
+        "status": "RECOVERED", "optimizer_steps_repeated": 0,
+        "global_step": 300, "checkpoint": str(checkpoint),
+        "checkpoint_sha256": training["resume_source_sha256"],
+        "recovery_scope": "evaluation_only",
+    })
+    return model, training
+
+
+def load_frozen_teacher_residuals(
+    context: Mapping[str, Any], outfits: Sequence[str] = OUTFITS,
+) -> dict[str, Any]:
+    root = Path(os.environ["CANONDRESSGS_ASSET_ROOT"])
+    multi_root = (
+        root / "pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003"
+        / "stage_a_teacher_bank"
+    )
+    representation_root = (
+        root / "pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002"
+        / "rung_2_shared_same_support"
+    )
+    paths = {
+        "O01": representation_root / "O01/checkpoints/step_001200.pth",
+        "O02": multi_root / "O02/checkpoints/step_001200.pth",
+        "O03": multi_root / "O03/checkpoints/step_001200.pth",
+        "O04": multi_root / "O04/checkpoints/step_001200.pth",
+        "O08": representation_root / "O08/checkpoints/step_001200.pth",
+    }
+    result = {}
+    for outfit in outfits:
+        checkpoint = paths[outfit]
+        if not checkpoint.is_file():
+            raise RuntimeError(f"PAPER_ASSET_MISMATCH: teacher {outfit}")
+        oracle, _ = diagnosis._load_oracle(
+            context["base"], checkpoint, context["base"]._xyz.device
+        )
+        result[outfit] = apply_protected_full_residual_guard(
+            oracle.residuals(context["base"]), context["protected_mask"]
+        )
+    return result
+
+
 def _predict_coefficients(
     method: str, model: nn.Module | None, cache: Mapping[str, Any], key: str,
     payload: Mapping[str, Any], device: torch.device, *, variant: str = "normal",
@@ -861,6 +943,7 @@ def run_experiment(
     cache_sha256: str, cache_seconds: float, attempt: Path,
     experiment: Mapping[str, Any], adapter_contract: Mapping[str, Any],
     training_plan: Mapping[str, Any],
+    resume_checkpoint: Path | None = None,
 ) -> dict[str, Any]:
     environment = core._environment()
     if not environment["cuda_available"]:
@@ -887,10 +970,16 @@ def run_experiment(
     basis_before = basis.fingerprint()
     trainable = bool(adapter_contract["trainable"])
     if trainable:
-        model, training = train_model(
-            attempt, experiment, cache, coefficients, payload,
-            context["base"]._xyz.device,
-        )
+        if resume_checkpoint is None:
+            model, training = train_model(
+                attempt, experiment, cache, coefficients, payload,
+                context["base"]._xyz.device,
+            )
+        else:
+            model, training = recover_completed_model(
+                attempt, experiment, cache, coefficients, payload,
+                context["base"]._xyz.device, resume_checkpoint,
+            )
         teacher_residuals = None
     else:
         model = None
@@ -905,7 +994,7 @@ def run_experiment(
         core._atomic_json(attempt / "raw_metrics/training_summary.json", training)
         teacher_residuals = None
         if method.startswith("B1_"):
-            teacher_residuals = multi.load_teacher_residuals(context, OUTFITS)[0]
+            teacher_residuals = load_frozen_teacher_residuals(context, OUTFITS)
     raw, evaluation = evaluate_model(
         context, attempt, experiment, model, cache, basis, coefficients, payload,
         training, cache_seconds, basis_path, teacher_residuals,

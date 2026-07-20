@@ -155,22 +155,42 @@ def main() -> None:
         adapter = adapter_for(experiment, config)
         contract = adapter.validate_contract()
         training_plan = adapter.build_training_plan()
-        attempt = create_attempt(
-            paths.experiment_root(experiment_id, experiment.get("seed"))
-        )
-        snapshot_attempt(
-            attempt,
-            experiment=experiment,
-            config_path=config_path,
-            registry_path=registry_path,
-            manifest_path=manifest_path,
-            preflight=preflight,
-            command=[sys.executable, *sys.argv, "--experiment-id", experiment_id],
-            repo_root=paths.repo_root,
-            adapter_contract=contract,
-            training_plan=training_plan,
-            model_build_spec=asdict(adapter.build_model()),
-        )
+        experiment_root = paths.experiment_root(experiment_id, experiment.get("seed"))
+        existing_attempts = sorted(experiment_root.glob("attempt_*"))
+        resume_checkpoint = None
+        if existing_attempts:
+            candidate = existing_attempts[-1]
+            checkpoint_300 = candidate / "checkpoints/checkpoint_step_000300.pth"
+            if checkpoint_300.is_file() and training_plan["optimizer_required"]:
+                attempt = candidate
+                resume_checkpoint = checkpoint_300
+            else:
+                positive = sorted(candidate.glob("checkpoints/checkpoint_step_*.pth"))
+                positive_steps = [
+                    int(path.stem.rsplit("_", 1)[1]) for path in positive
+                    if int(path.stem.rsplit("_", 1)[1]) > 0
+                ]
+                if positive_steps:
+                    raise RuntimeError(
+                        f"partial positive-step attempt requires explicit resume support: {candidate}"
+                    )
+                attempt = create_attempt(experiment_root)
+        else:
+            attempt = create_attempt(experiment_root)
+        if resume_checkpoint is None:
+            snapshot_attempt(
+                attempt,
+                experiment=experiment,
+                config_path=config_path,
+                registry_path=registry_path,
+                manifest_path=manifest_path,
+                preflight=preflight,
+                command=[sys.executable, *sys.argv, "--experiment-id", experiment_id],
+                repo_root=paths.repo_root,
+                adapter_contract=contract,
+                training_plan=training_plan,
+                model_build_spec=asdict(adapter.build_model()),
+            )
         state.update({
             "current_experiment": experiment_id,
             "current_attempt": str(attempt),
@@ -182,6 +202,7 @@ def main() -> None:
             result = run_experiment(
                 context, cache, cache_path, cache_sha256, cache_seconds,
                 attempt, experiment, contract, training_plan,
+                resume_checkpoint=resume_checkpoint,
             )
             validate_executor_result(attempt, training_plan)
             evaluated = evaluate_records(
