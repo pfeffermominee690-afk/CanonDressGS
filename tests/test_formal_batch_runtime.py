@@ -63,4 +63,3 @@ def test_frozen_loss_variants_are_finite() -> None:
         loss, parts = _training_loss(method, prediction, target)
         assert torch.isfinite(loss)
         assert parts and all(torch.isfinite(value) for value in parts.values())
-
