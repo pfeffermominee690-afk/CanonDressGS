@@ -68,7 +68,7 @@ def write_run_plan(plan: Mapping[str, Any], generated_dir: Path) -> list[Path]:
     json_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     rows = list(plan["runs"])
     with csv_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n"); writer.writeheader(); writer.writerows(rows)
     _write_lf(linux_path, "#!/usr/bin/env bash\nset -euo pipefail\n: \"${CANONDRESSGS_REPO_ROOT:?required}\"\n: \"${CANONDRESSGS_ASSET_ROOT:?required}\"\n: \"${CANONDRESSGS_OUTPUT_ROOT:?required}\"\n: \"${CANONDRESSGS_PAPER_EXECUTOR:?required}\"\ncd \"$CANONDRESSGS_REPO_ROOT\"\n\n" + "\n".join(row["linux_command"] for row in rows) + "\n")
     _write_lf(windows_path, "$ErrorActionPreference = 'Stop'\n$RepoRoot = $env:CANONDRESSGS_REPO_ROOT\n$AssetRoot = $env:CANONDRESSGS_ASSET_ROOT\n$OutputRoot = $env:CANONDRESSGS_OUTPUT_ROOT\n$Executor = $env:CANONDRESSGS_PAPER_EXECUTOR\n$Python = 'python'\nif (-not $RepoRoot -or -not $AssetRoot -or -not $OutputRoot -or -not $Executor) { throw 'CANONDRESSGS roots and paper executor are required' }\nSet-Location -LiteralPath $RepoRoot\n\n" + "\n".join(row["windows_command"] for row in rows) + "\n")
     return [json_path, csv_path, linux_path, windows_path]

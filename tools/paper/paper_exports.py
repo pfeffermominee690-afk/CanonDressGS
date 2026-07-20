@@ -57,7 +57,7 @@ def _write_table(name: str, title: str, rows: list[dict[str, Any]], output_dir: 
     )
     formatted = [{key: _format(value) for key, value in row.items()} for row in rows]
     with csv_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields); writer.writeheader(); writer.writerows(formatted)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n"); writer.writeheader(); writer.writerows(formatted)
     md_lines = [f"# {title}", "", "| " + " | ".join(fields) + " |", "|" + "|".join("---" for _ in fields) + "|"]
     md_lines.extend("| " + " | ".join(row[field] for field in fields) + " |" for row in formatted)
     md_path.write_text("\n".join(md_lines) + "\n", encoding="utf-8")

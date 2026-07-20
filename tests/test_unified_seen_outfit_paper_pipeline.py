@@ -119,6 +119,11 @@ def test_dry_run_does_not_change_registry():
     assert _sha(REGISTRY_PATH) == before
 
 
+def test_generated_csv_uses_cross_platform_lf():
+    payload = (ROOT / "paper_protocol/generated/paper_run_plan.csv").read_bytes()
+    assert b"\r\n" not in payload and payload.count(b"\n") == 52
+
+
 def test_run_plan_uses_seeds_0_1_2():
     plan = build_run_plan(REGISTRY, CONFIG, resolve_paths(repo_root=ROOT))
     assert sorted({row["seed"] for row in plan["runs"] if row["seed"] is not None}) == [0, 1, 2]
