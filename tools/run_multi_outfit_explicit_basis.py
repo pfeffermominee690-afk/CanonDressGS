@@ -76,7 +76,8 @@ CONDITIONS = ("cond_000000", "cond_000318", "cond_000017", "cond_000347")
 VIEWS = dict(zip(CONDITIONS, ("front", "back", "left", "right")))
 DUAL_TARGET_FIELDS = {
     "target_edit_rgb", "target_base_rgb", "target_edit_mask", "target_old_clothing_mask",
-    "target_protected_mask", "target_transition_mask", "target_base_foreground_mask",
+    "target_edit_core_mask", "target_preserve_mask", "target_protected_mask",
+    "target_transition_mask", "target_base_foreground_mask", "target_revealed_skin_mask",
 }
 FORBIDDEN_FORWARD_FIELDS = {
     "target_rgb", "target_mask", "target_edit_rgb", "target_clothing_mask", "outfit_id",

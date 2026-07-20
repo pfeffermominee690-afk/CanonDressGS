@@ -135,9 +135,11 @@ render:
 
 output:
   task_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001
-  attempt: attempt_002
-  supersedes_zero_optimizer_step_attempt: attempt_001
-  superseded_attempt_failure: initial teacher evidence helper mixed CUDA render with CUDA sample under a CPU-only persistence boundary
+  attempt: attempt_003
+  supersedes_zero_optimizer_step_attempts: [attempt_001, attempt_002]
+  superseded_attempt_failures:
+    attempt_001: initial teacher evidence helper mixed CUDA render with CUDA sample under a CPU-only persistence boundary
+    attempt_002: multi-outfit loader omitted immutable Rung-2 edit-core/preserve field aliases required before the first optimizer step
 
 permissions:
   modify_cs_pass_attempt: false
