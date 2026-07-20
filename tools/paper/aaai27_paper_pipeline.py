@@ -151,11 +151,21 @@ def command_run(args: argparse.Namespace, paths: PaperPaths) -> dict[str, Any]:
             item["status"] for item in current["experiments"]
             if item["experiment_id"] == experiment["experiment_id"]
         )
-        if current_status != "FAILED":
-            if current_status == "NOT_RUN":
-                transition_registry(registry_path, experiment["experiment_id"], "FAILED")
-            elif current_status in {"PREFLIGHT_PASS", "RUNNING", "TRAINED", "EVALUATED", "MANUAL_REVIEW_REQUIRED"}:
-                transition_registry(registry_path, experiment["experiment_id"], "FAILED")
+        checkpoints = sorted((attempt / "checkpoints").glob("checkpoint_step_*.pth"))
+        completed_steps = []
+        for checkpoint in checkpoints:
+            sidecar = checkpoint.with_suffix(checkpoint.suffix + ".resume.json")
+            if sidecar.is_file():
+                completed_steps.append(int(json.loads(sidecar.read_text(encoding="utf-8"))["global_step"]))
+        recoverable = current_status == "NOT_RUN" and max(completed_steps, default=0) > 0
+        if recoverable:
+            (attempt / "RUN_STATUS.json").write_text(json.dumps({
+                "status": "INTERRUPTED_RUNTIME",
+                "optimizer_steps": max(completed_steps),
+                "latest_checkpoint": str(checkpoints[-1]),
+            }, indent=2) + "\n", encoding="utf-8")
+        elif current_status != "FAILED":
+            transition_registry(registry_path, experiment["experiment_id"], "FAILED")
         raise
     result = {"status": "TRAINED", "attempt": str(attempt), "contract": contract, "training_plan": training}
     _print(result); return result
@@ -183,6 +193,22 @@ def command_resume(args: argparse.Namespace, paths: PaperPaths) -> dict[str, Any
         raise ValueError("real resume requires an explicitly authorized --executor-command")
     strict_preflight(paths=paths, config_path=config_path, registry_path=registry_path, manifest_path=manifest_path)
     _execute(args.executor_command, attempt, resume_checkpoint=checkpoint)
+    adapter = adapter_for(experiment, yaml.safe_load(config_path.read_text(encoding="utf-8")))
+    training = adapter.build_training_plan()
+    validate_executor_result(attempt, training)
+    current = yaml.safe_load(registry_path.read_text(encoding="utf-8"))
+    current_status = next(
+        item["status"] for item in current["experiments"]
+        if item["experiment_id"] == experiment["experiment_id"]
+    )
+    if current_status == "NOT_RUN":
+        transition_registry(registry_path, experiment["experiment_id"], "PREFLIGHT_PASS")
+        transition_registry(registry_path, experiment["experiment_id"], "RUNNING")
+        transition_registry(registry_path, experiment["experiment_id"], "TRAINED")
+    (attempt / "RUN_STATUS.json").write_text(json.dumps({
+        "status": "TRAINED", "optimizer_steps": training["steps"],
+        "resumed_from": str(checkpoint),
+    }, indent=2) + "\n", encoding="utf-8")
     result = {"status": "RESUMED", "attempt": str(attempt), "checkpoint": str(checkpoint)}
     _print(result); return result
 

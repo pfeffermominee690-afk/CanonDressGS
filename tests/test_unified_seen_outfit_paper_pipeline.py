@@ -21,7 +21,11 @@ from tools.paper.paper_exports import FIGURE_LAYOUTS, export_figure_layouts, exp
 from tools.paper.path_resolver import contains_user_specific_path, resolve_paths
 from tools.paper.planning import build_run_plan
 from tools.paper.protocol_audit import audit_protocol, load_documents
-from tools.paper.registry_state import transition_is_valid, validate_paper_final_evidence
+from tools.paper.registry_state import (
+    recover_interrupted_runtime,
+    transition_is_valid,
+    validate_paper_final_evidence,
+)
 from tools.paper.run_contract import ATTEMPT_DIRECTORIES, assert_asset_report_pass, create_attempt
 from tools.paper.synthetic_fixture import MARKER, build_synthetic_records, synthetic_table_source
 
@@ -80,6 +84,29 @@ def test_registry_status_transition_is_valid():
 
 def test_not_run_cannot_become_paper_final_directly():
     assert not transition_is_valid("NOT_RUN", "PAPER_FINAL")
+
+
+def test_recover_interrupted_runtime_requires_positive_step_checkpoint():
+    with tempfile.TemporaryDirectory() as directory:
+        registry_path = Path(directory) / "registry.yaml"
+        runtime_registry = copy.deepcopy(REGISTRY)
+        runtime_registry["experiments"][0]["status"] = "FAILED"
+        registry_path.write_text(
+            yaml.safe_dump(runtime_registry, sort_keys=False, allow_unicode=True),
+            encoding="utf-8",
+        )
+        recovered = recover_interrupted_runtime(
+            registry_path,
+            runtime_registry["experiments"][0]["experiment_id"],
+            evidence={
+                "model_failure": False,
+                "failure_stage": "checkpoint_rng_map_location",
+                "optimizer_steps": 300,
+                "checkpoint_sha256": "a" * 64,
+            },
+        )
+        assert recovered["status"] == "NOT_RUN"
+        assert recovered["status_history"][-1]["recovery_transition"] is True
 
 
 def test_paper_final_requires_manual_adjudication():

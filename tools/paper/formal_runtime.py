@@ -324,7 +324,12 @@ def _load_checkpoint(
     dict[str, Any],
 ]:
     model, optimizer, scheduler = _model_optimizer(input_dim, rank, seed, device)
-    payload = torch.load(path, map_location=device, weights_only=False)
+    # RNG tensors are CPU ByteTensors by contract.  Loading the whole payload
+    # onto CUDA converts them and makes torch.set_rng_state reject an otherwise
+    # valid checkpoint.  Module/optimizer state is copied to the parameter
+    # device by load_state_dict, so the checkpoint must first be deserialized on
+    # CPU.
+    payload = torch.load(path, map_location="cpu", weights_only=False)
     model.load_state_dict(payload["model"])
     optimizer.load_state_dict(payload["optimizer"])
     scheduler.load_state_dict(payload["scheduler"])
@@ -366,7 +371,7 @@ def _checkpoint_resume_acceptance(
         checkpoint_200, input_dim, rank, seed, device
     )
     probe_rng = copy.deepcopy(probe_payload["rng"])
-    first_log, _ = _train_step(
+    first_log, first_gradients = _train_step(
         first_model, first_optimizer, first_scheduler, features, targets, 201, 0.10
     )
     second_model, second_optimizer, second_scheduler, _ = _load_checkpoint(
@@ -388,7 +393,86 @@ def _checkpoint_resume_acceptance(
         and all(value for key, value in final.items() if key.endswith("exact"))
         and max(value for key, value in one_step.items() if key.endswith("diff")) == 0.0
     )
-    return {"status": "PASS" if passed else "FAIL", "final_reload": final, "one_step_resume": one_step}
+    return {
+        "status": "PASS" if passed else "FAIL",
+        "final_reload": final,
+        "one_step_resume": one_step,
+        "one_step_gradients": first_gradients,
+    }
+
+
+def _resume_completed_ours(
+    context: Mapping[str, Any],
+    attempt: Path,
+    experiment: Mapping[str, Any],
+    features: Mapping[str, torch.Tensor],
+    coefficients: Mapping[str, torch.Tensor],
+    basis_payload: Mapping[str, Any],
+    checkpoint_path: Path,
+) -> tuple[MultiOutfitLinearCoefficientControl, dict[str, Any], float]:
+    if checkpoint_path.parent != attempt / "checkpoints":
+        raise ValueError("resume checkpoint must belong to the selected formal attempt")
+    if checkpoint_path.name != "checkpoint_step_000300.pth":
+        raise ValueError("completed canary recovery requires the exact step-300 checkpoint")
+    log_path = attempt / "logs/train.jsonl"
+    rows = [json.loads(line) for line in log_path.read_text(encoding="utf-8").splitlines()]
+    if len(rows) != 300 or [row["step"] for row in rows] != list(range(1, 301)):
+        raise ValueError("completed canary recovery requires the exact 300-step trajectory")
+    targets = multi._standardized_targets(coefficients, basis_payload)
+    device = context["base"]._xyz.device
+    input_dim = int(features["O01/cond_000000"].shape[-1])
+    model, optimizer, scheduler, payload = _load_checkpoint(
+        checkpoint_path, input_dim, 4, int(experiment["seed"]), device
+    )
+    if payload["global_step"] != 300 or payload["condition_position"] != 0:
+        raise ValueError("completed canary checkpoint global state is invalid")
+    resume = _checkpoint_resume_acceptance(
+        attempt / "checkpoints/checkpoint_step_000200.pth",
+        checkpoint_path,
+        model,
+        optimizer,
+        scheduler,
+        features,
+        targets,
+        int(experiment["seed"]),
+        4,
+    )
+    if resume["status"] != "PASS":
+        raise RuntimeError("formal checkpoint exact resume acceptance failed")
+    stat_start = (attempt / "checkpoints/checkpoint_step_000000.pth").stat().st_mtime
+    stat_end = checkpoint_path.stat().st_mtime
+    report = {
+        "status": "PASS",
+        "optimizer_steps": 300,
+        "resumed_after_tool_interruption": True,
+        "resume_source_checkpoint": str(checkpoint_path),
+        "resume_source_sha256": _sha256(checkpoint_path),
+        "loss_first": float(rows[0]["loss"]),
+        "loss_last": float(rows[-1]["loss"]),
+        "gradients": resume["one_step_gradients"],
+        "checkpoints": [
+            {
+                "path": str(attempt / "checkpoints" / f"checkpoint_step_{step:06d}.pth"),
+                "sha256": _sha256(attempt / "checkpoints" / f"checkpoint_step_{step:06d}.pth"),
+                "global_step": step,
+            }
+            for step in MILESTONES
+        ],
+        "checkpoint_resume": resume,
+        "training_time_seconds": max(0.0, stat_end - stat_start),
+        "peak_vram_bytes": int(torch.cuda.max_memory_allocated()),
+        "trainable_parameter_count": sum(parameter.numel() for parameter in model.parameters()),
+    }
+    _atomic_json(attempt / "raw_metrics/training_summary.json", report)
+    _atomic_json(attempt / "provenance/interrupted_runtime_recovery.json", {
+        "status": "RECOVERED",
+        "failure_stage": "checkpoint_rng_map_location",
+        "model_failure": False,
+        "optimizer_steps_repeated": 0,
+        "resume_source_checkpoint": str(checkpoint_path),
+        "resume_source_sha256": report["resume_source_sha256"],
+    })
+    return model, report, report["training_time_seconds"]
 
 
 def _train_ours(
@@ -793,9 +877,16 @@ def run() -> dict[str, Any]:
         basis_path, context["base"]._xyz.device
     )
     basis_before = basis.fingerprint()
-    model, training, _ = _train_ours(
-        context, attempt, experiment, features, basis, coefficients, basis_payload
-    )
+    resume_value = os.environ.get("CANONDRESSGS_PAPER_RESUME_CHECKPOINT")
+    if resume_value:
+        model, training, _ = _resume_completed_ours(
+            context, attempt, experiment, features, coefficients, basis_payload,
+            Path(resume_value).resolve(),
+        )
+    else:
+        model, training, _ = _train_ours(
+            context, attempt, experiment, features, basis, coefficients, basis_payload
+        )
     raw_path, evaluation = _evaluate_ours(
         context, attempt, experiment, model, extractor, features, basis,
         coefficients, basis_payload, training, feature_seconds,

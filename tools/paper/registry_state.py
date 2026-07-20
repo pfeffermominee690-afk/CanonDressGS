@@ -83,3 +83,38 @@ def transition_registry(
     experiment["status"] = new_status
     atomic_write_yaml(registry_path, registry)
     return experiment
+
+
+def recover_interrupted_runtime(
+    registry_path: Path,
+    experiment_id: str,
+    *,
+    evidence: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Repair a registry entry that an older runner misclassified as FAILED.
+
+    This is deliberately narrower than a normal transition: it is accepted only
+    for a non-model tool interruption with a positive-step checkpoint.  The
+    original FAILED history remains append-only and the recovery is explicit.
+    """
+    required = {
+        "model_failure": False,
+        "failure_stage": "checkpoint_rng_map_location",
+    }
+    if any(evidence.get(key) != value for key, value in required.items()):
+        raise ValueError("interrupted runtime recovery evidence is invalid")
+    if int(evidence.get("optimizer_steps", 0)) <= 0 or not evidence.get("checkpoint_sha256"):
+        raise ValueError("interrupted runtime recovery requires a positive-step checkpoint")
+    registry = yaml.safe_load(registry_path.read_text(encoding="utf-8"))
+    matches = [item for item in registry["experiments"] if item["experiment_id"] == experiment_id]
+    if len(matches) != 1 or matches[0].get("status") != "FAILED":
+        raise ValueError("only a uniquely matched FAILED runtime can be recovered")
+    experiment = matches[0]
+    timestamp = datetime.now(timezone.utc).isoformat()
+    experiment.setdefault("status_history", []).append({
+        "from": "FAILED", "to": "NOT_RUN", "timestamp": timestamp,
+        "evidence": dict(evidence), "recovery_transition": True,
+    })
+    experiment["status"] = "NOT_RUN"
+    atomic_write_yaml(registry_path, registry)
+    return experiment
