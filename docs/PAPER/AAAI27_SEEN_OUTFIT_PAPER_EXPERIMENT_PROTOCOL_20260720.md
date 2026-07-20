@@ -108,4 +108,4 @@ Prediction forward 禁止读取 outfit ID、target RGB/mask、target pose/camera
 
 出现资产 mismatch、split/reference overlap 漂移、O07 进入训练、outfit/target 输入 forward、冻结模块梯度或参数变化、NaN/Inf、checkpoint state 不完整、指标聚合不符合 macro 协议时立即停止并保留失败证据。不得通过改 seed、改阈值、替换 outfit 或隐藏失败图继续。
 
-本协议冻结后不自动运行任何 registry entry。下一唯一任务固定为 `BUILD_UNIFIED_SEEN_OUTFIT_PAPER_RUNNER_AND_EVALUATOR`：先实现/核验统一 paper runner 与 evaluator，再由用户明确授权正式三-seed paper runs。
+统一 runner/evaluator 建设后仍不自动运行任何 registry entry。下一唯一任务固定为 `RUN_UNIFIED_PAPER_SMOKE_AND_EVALUATOR_ACCEPTANCE`；通过 smoke acceptance 后，正式三-seed paper runs 仍需用户再次明确授权。

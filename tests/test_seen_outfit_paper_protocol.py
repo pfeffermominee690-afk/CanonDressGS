@@ -77,7 +77,11 @@ def test_paper_seeds_are_exactly_0_1_2():
 
 def test_paper_registry_starts_not_run():
     assert len(REGISTRY["experiments"]) == 55
-    assert all(item["status"] == "NOT_RUN" for item in REGISTRY["experiments"])
+    executable = [item for item in REGISTRY["experiments"] if item["executable"]]
+    historical = [item for item in REGISTRY["experiments"] if not item["executable"]]
+    assert len(executable) == 51
+    assert all(item["status"] == "NOT_RUN" for item in executable)
+    assert all(item["status"] == "HISTORICAL_EVIDENCE" for item in historical)
 
 
 def test_historical_results_are_not_paper_final():
