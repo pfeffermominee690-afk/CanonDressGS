@@ -1,0 +1,158 @@
+schema_version: canondressgs.paper.seen_outfit_explicit_basis.v1
+task_id: AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001
+next_unique_task: BUILD_UNIFIED_SEEN_OUTFIT_PAPER_RUNNER_AND_EVALUATOR
+config_name: seen_outfit_explicit_basis_v1
+method_name: Reference-Conditioned Explicit Gaussian Residual Basis
+identity: subject02
+source_commit: 4baf319843f2e8f4faf08043dcd40a590a61d992
+formal_run_commit: 6b962772ffcdcd35c66bf68d0fb0ac13ab58ebf5
+final_adjudication_commit: 4baf319843f2e8f4faf08043dcd40a590a61d992
+evaluator_commit: 4baf319843f2e8f4faf08043dcd40a590a61d992
+
+paths:
+  frozen_asset_manifest: ${CANONDRESSGS_REPO_ROOT}/paper_protocol/frozen_asset_manifest.json
+  frozen_asset_manifest_sha256: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  source_manifest: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  selected_basis: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/selected_basis.pt
+  coefficient_normalization: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/coefficient_normalization.json
+  historical_predictor: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_c_training/checkpoints/checkpoint_step_000300.pth
+  base_checkpoint: ${CANONDRESSGS_OUTPUT_ROOT}/subject02_formal_800k/chkpnt100000.pth
+  backbone_checkpoint: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth
+  paper_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001
+  figures: ${CANONDRESSGS_REPO_ROOT}/artifacts/paper_ready/figures
+  source_data: ${CANONDRESSGS_REPO_ROOT}/artifacts/paper_ready/source_data
+  debug_images: ${CANONDRESSGS_REPO_ROOT}/artifacts/debug
+
+frozen_assets:
+  teacher_O01: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth", sha256: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56}
+  teacher_O02: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth", sha256: 8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820}
+  teacher_O03: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth", sha256: 16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93}
+  teacher_O04: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth", sha256: b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3}
+  teacher_O08: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth", sha256: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e}
+  teacher_O07: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O07/checkpoints/step_001200.pth", sha256: 77d7e013e6fd949799ec9b144022d2c3c9db0d595d8eeab8cfc07e2f25d4136a}
+  basis: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/selected_basis.pt", sha256: a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430}
+  coefficient_normalization: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/coefficient_normalization.json", sha256: c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2}
+  predictor: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_c_training/checkpoints/checkpoint_step_000300.pth", sha256: 82fb1d913632ad39ad421756a17193b541aad6a9aa7533222daee4a42d38b9fa}
+  base_gaussian_state: {fingerprint: de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9}
+  mmlphuman: {path: "${CANONDRESSGS_OUTPUT_ROOT}/subject02_formal_800k/chkpnt100000.pth", sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70}
+  backbone_checkpoint: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth", sha256: 3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371}
+  backbone_state: {fingerprint: 3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7}
+  source_manifest: {path: "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json", sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf}
+  renderer_source_bundle: {fingerprint: 0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6}
+
+data:
+  seen_outfits: [O01, O02, O03, O04, O08]
+  held_out_diagnostic: O07
+  unused_reserve: O06
+  target_views: [cond_000000, cond_000318, cond_000017, cond_000347]
+  view_names: {cond_000000: front, cond_000318: back, cond_000017: left, cond_000347: right}
+  references_per_episode: 3
+  episode_count: 20
+  reference_target_overlap: 0
+
+pipeline:
+  - multi_reference_rgb
+  - reference_clothing_mask
+  - frozen_image_backbone_spatial_feature
+  - clothing_mask_weighted_mean
+  - clothing_mask_masked_max
+  - deterministic_reference_set_mean_max
+  - layer_norm
+  - linear_rank4_coefficient_predictor
+  - coefficient_denormalization
+  - frozen_explicit_canonical_gaussian_residual_basis
+  - canonical_residual_composition
+  - frozen_mmlp_human_deformation
+  - gaussian_renderer
+
+basis:
+  rank: 4
+  method: deterministic_centered_svd
+  frozen: true
+  channel_bounds: {xyz: 0.05, log_scaling: 0.35, rotation: 0.2617993878, opacity_logit: 2.0, sh0: 0.25, shN: 0.10}
+
+predictor:
+  input: frozen_f2_clothing_mean_masked_max_reference_set_mean_max
+  architecture: LayerNorm+Linear(4)
+  trainable_parameters: 3076
+  output: standardized_raw_coefficients
+  activation: none
+  denormalization: coefficient_std_times_train_std_plus_train_mean
+
+training:
+  seeds: [0, 1, 2]
+  optimizer: Adam
+  steps: 300
+  learning_rate: 0.02
+  weight_decay: 0.0
+  gradient_clip_norm: 5.0
+  balanced_batch_order: [O01, O02, O03, O04, O08]
+  target_view_schedule: round_robin
+  early_stop: false
+  exact_resume_required: true
+  data_order_identical_across_seeds: true
+  loss:
+    coefficient: SmoothL1
+    pairwise_geometry_weight: 0.10
+
+metrics:
+  coefficient: [standardized_coefficient_rmse, restored_coefficient_rmse, nearest_teacher_accuracy, correct_outfit_rank, pairwise_coefficient_margin]
+  residual: [normalized_residual_rmse, cosine_similarity, top_10_support_overlap, top_20_support_overlap]
+  render: [garment_rgb_mae, garment_alpha_mae, edit_reduction, target_closer_fraction, protected_rgb_mae, background_rgb_mae]
+  reference: [correct_vs_swapped_wins, permutation_max_difference, single_reference_accuracy, two_reference_dropout_accuracy, zero_replacement_sensitivity, base_replacement_sensitivity]
+  efficiency: [trainable_parameter_count, basis_storage_bytes, peak_vram_bytes, training_time_seconds, inference_time_seconds, render_time_seconds]
+  aggregation: [episode, outfit_macro, seed_mean_std]
+  pixel_weighted_outfit_micro_average: false
+
+baselines:
+  B0: {name: Base Avatar, residual_prediction: none}
+  B1: {name: Direct-Optimization Teacher, role: optimization_upper_bound, inference_method: false}
+  B2: {name: Outfit-ID Coefficient Lookup, role: seen_memorization_upper_bound, seen_only: true, allowed_in_held_out: false}
+  B3: {name: Global Reference Feature, clothing_mask_pooling: false}
+  B4: {name: Clothing Mean Only, masked_max: false}
+  B5: {name: Legacy Complex Fusion, contract: RF-F, unified_paper_rerun_required: true}
+  Ours: {name: Seen-Outfit Explicit Basis V1, config_name: seen_outfit_explicit_basis_v1}
+
+ablations:
+  A1: {name: Basis rank, values: [1, 2, 3, 4], predictor_retrained_per_rank: true}
+  A2: {name: No clothing mask, feature: global_average}
+  A3: {name: Mean only, masked_max: false}
+  A4: {name: No coefficient standardization, target: raw_svd_coefficient, tanh: false}
+  A5: {name: Legacy endpoint supervision, losses: [tanh_coefficient, SmoothL1, sign_loss, absolute_pair_loss]}
+  A6: {name: No pairwise coefficient geometry, pairwise_geometry_weight: 0.0}
+  A7: {name: Reference count, Kref: [1, 2, 3]}
+  A8: {name: Explicit basis vs historical residual decoder, historical_diagnostic_only: true, methods: [legacy_decoder, V7, Gaussian_token_P1, explicit_basis]}
+
+tables:
+  table_1: {name: Seen-outfit main comparison}
+  table_2: {name: Method ablation}
+  table_3: {name: Efficiency}
+  table_4: {name: Held-out diagnostic, status_label: "Held-out diagnostic — FAIL"}
+
+figures:
+  figure_1: {name: Method overview, fixed_views: true}
+  figure_2: {name: Five-outfit qualitative comparison, fixed_views: true}
+  figure_3: {name: Reference swap control, fixed_views: true}
+  figure_4: {name: Basis rank ladder, fixed_views: true}
+  figure_5: {name: Supervision collapse analysis, fixed_views: true}
+  figure_6: {name: Held-out limitation, fixed_views: true}
+
+visual_export:
+  allowed_operations: [concatenate, aspect_preserving_crop, label, uniform_crop]
+  forbidden_operations: [retouch, artifact_removal, color_change, successful_region_selection]
+  cherry_pick_views: false
+
+permissions:
+  create_optimizer_in_protocol_freeze: false
+  use_gpu_in_protocol_freeze: false
+  start_training_in_protocol_freeze: false
+  modify_historical_outputs: false
+  modify_teacher_bank: false
+  modify_basis: false
+  modify_model: false
+  modify_renderer: false
+  modify_data_split: false
+  train_on_o07: false
+  substitute_o06_for_o07: false
+  outfit_id_in_model: false
+  target_forward_input: false

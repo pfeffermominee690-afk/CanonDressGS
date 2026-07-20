@@ -1,0 +1,383 @@
+schema_version: canondressgs.paper_experiment_registry.v1
+task_id: AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001
+next_unique_task: BUILD_UNIFIED_SEEN_OUTFIT_PAPER_RUNNER_AND_EVALUATOR
+method_config_name: seen_outfit_explicit_basis_v1
+frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+frozen_asset_manifest_sha256: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+evaluator_version: 4baf319843f2e8f4faf08043dcd40a590a61d992
+paper_status_values: [NOT_RUN, RUNNING, PASS, FAIL, BLOCKED]
+historical_evidence_label: HISTORICAL_EVIDENCE
+paper_final_label: PAPER_FINAL
+
+defaults: &paper_defaults
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 4baf319843f2e8f4faf08043dcd40a590a61d992
+  required_metrics:
+    - standardized_coefficient_rmse
+    - restored_coefficient_rmse
+    - nearest_teacher_accuracy
+    - correct_outfit_rank
+    - pairwise_coefficient_margin
+    - normalized_residual_rmse
+    - cosine_similarity
+    - top_10_support_overlap
+    - top_20_support_overlap
+    - garment_rgb_mae
+    - garment_alpha_mae
+    - edit_reduction
+    - target_closer_fraction
+    - protected_rgb_mae
+    - background_rgb_mae
+    - correct_vs_swapped_wins
+    - permutation_max_difference
+    - single_reference_accuracy
+    - two_reference_dropout_accuracy
+    - trainable_parameter_count
+    - peak_vram_bytes
+    - training_time_seconds
+    - inference_time_seconds
+    - render_time_seconds
+  required_figures: [figure_2, figure_3]
+  status: NOT_RUN
+  final_adjudication: null
+
+experiments:
+  - <<: *paper_defaults
+    experiment_id: PAPER-B0-FIXED
+    method: B0_Base_Avatar
+    baseline_or_ablation: baseline
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B0/fixed
+  - <<: *paper_defaults
+    experiment_id: PAPER-B1-FIXED
+    method: B1_Direct_Optimization_Teacher
+    baseline_or_ablation: baseline
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B1/fixed
+  - <<: *paper_defaults
+    experiment_id: PAPER-B2-FIXED
+    method: B2_Outfit_ID_Coefficient_Lookup
+    baseline_or_ablation: baseline_seen_only
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B2/fixed
+  - <<: *paper_defaults
+    experiment_id: PAPER-B3-S0
+    method: B3_Global_Reference_Feature
+    baseline_or_ablation: baseline
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B3/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-B3-S1
+    method: B3_Global_Reference_Feature
+    baseline_or_ablation: baseline
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B3/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-B3-S2
+    method: B3_Global_Reference_Feature
+    baseline_or_ablation: baseline
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B3/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-B4-S0
+    method: B4_Clothing_Mean_Only
+    baseline_or_ablation: baseline
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B4/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-B4-S1
+    method: B4_Clothing_Mean_Only
+    baseline_or_ablation: baseline
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B4/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-B4-S2
+    method: B4_Clothing_Mean_Only
+    baseline_or_ablation: baseline
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B4/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-B5-S0
+    method: B5_Legacy_Complex_Fusion_RF_F
+    baseline_or_ablation: baseline
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B5/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-B5-S1
+    method: B5_Legacy_Complex_Fusion_RF_F
+    baseline_or_ablation: baseline
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B5/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-B5-S2
+    method: B5_Legacy_Complex_Fusion_RF_F
+    baseline_or_ablation: baseline
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B5/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-OURS-S0
+    method: Ours_Seen_Outfit_Explicit_Basis_V1
+    baseline_or_ablation: ours
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/Ours/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-OURS-S1
+    method: Ours_Seen_Outfit_Explicit_Basis_V1
+    baseline_or_ablation: ours
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/Ours/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-OURS-S2
+    method: Ours_Seen_Outfit_Explicit_Basis_V1
+    baseline_or_ablation: ours
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/Ours/seed_2
+
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K1-S0
+    method: A1_Basis_Rank_1
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K1/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K1-S1
+    method: A1_Basis_Rank_1
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K1/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K1-S2
+    method: A1_Basis_Rank_1
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K1/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K2-S0
+    method: A1_Basis_Rank_2
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K2/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K2-S1
+    method: A1_Basis_Rank_2
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K2/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K2-S2
+    method: A1_Basis_Rank_2
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K2/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K3-S0
+    method: A1_Basis_Rank_3
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K3/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K3-S1
+    method: A1_Basis_Rank_3
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K3/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K3-S2
+    method: A1_Basis_Rank_3
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K3/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K4-S0
+    method: A1_Basis_Rank_4
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K4/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K4-S1
+    method: A1_Basis_Rank_4
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K4/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A1-K4-S2
+    method: A1_Basis_Rank_4
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K4/seed_2
+
+  - <<: *paper_defaults
+    experiment_id: PAPER-A2-S0
+    method: A2_No_Clothing_Mask
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A2/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A2-S1
+    method: A2_No_Clothing_Mask
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A2/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A2-S2
+    method: A2_No_Clothing_Mask
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A2/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A3-S0
+    method: A3_Mean_Only
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A3/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A3-S1
+    method: A3_Mean_Only
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A3/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A3-S2
+    method: A3_Mean_Only
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A3/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A4-S0
+    method: A4_No_Coefficient_Standardization
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A4/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A4-S1
+    method: A4_No_Coefficient_Standardization
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A4/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A4-S2
+    method: A4_No_Coefficient_Standardization
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A4/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A5-S0
+    method: A5_Legacy_Endpoint_Supervision
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A5/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A5-S1
+    method: A5_Legacy_Endpoint_Supervision
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A5/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A5-S2
+    method: A5_Legacy_Endpoint_Supervision
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A5/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A6-S0
+    method: A6_No_Pairwise_Coefficient_Geometry
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A6/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A6-S1
+    method: A6_No_Pairwise_Coefficient_Geometry
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A6/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A6-S2
+    method: A6_No_Pairwise_Coefficient_Geometry
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A6/seed_2
+
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF1-S0
+    method: A7_Reference_Count_1
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref1/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF1-S1
+    method: A7_Reference_Count_1
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref1/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF1-S2
+    method: A7_Reference_Count_1
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref1/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF2-S0
+    method: A7_Reference_Count_2
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref2/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF2-S1
+    method: A7_Reference_Count_2
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref2/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF2-S2
+    method: A7_Reference_Count_2
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref2/seed_2
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF3-S0
+    method: A7_Reference_Count_3
+    baseline_or_ablation: ablation
+    seed: 0
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref3/seed_0
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF3-S1
+    method: A7_Reference_Count_3
+    baseline_or_ablation: ablation
+    seed: 1
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref3/seed_1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A7-KREF3-S2
+    method: A7_Reference_Count_3
+    baseline_or_ablation: ablation
+    seed: 2
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref3/seed_2
+
+  - <<: *paper_defaults
+    experiment_id: PAPER-A8-LEGACY-DECODER
+    method: A8_Legacy_Decoder
+    baseline_or_ablation: historical_diagnostic
+    evidence_class: HISTORICAL_EVIDENCE
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/legacy_decoder
+  - <<: *paper_defaults
+    experiment_id: PAPER-A8-V7
+    method: A8_Residual_Decoder_V7
+    baseline_or_ablation: historical_diagnostic
+    evidence_class: HISTORICAL_EVIDENCE
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/V7
+  - <<: *paper_defaults
+    experiment_id: PAPER-A8-P1
+    method: A8_Gaussian_Token_P1
+    baseline_or_ablation: historical_diagnostic
+    evidence_class: HISTORICAL_EVIDENCE
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/P1
+  - <<: *paper_defaults
+    experiment_id: PAPER-A8-EXPLICIT
+    method: A8_Explicit_Basis_Historical
+    baseline_or_ablation: historical_diagnostic
+    evidence_class: HISTORICAL_EVIDENCE
+    seed: null
+    expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/explicit_basis
