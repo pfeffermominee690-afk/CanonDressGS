@@ -10,6 +10,7 @@ import random
 import subprocess
 import sys
 import time
+import traceback
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -169,6 +170,25 @@ def _extract_features(
 ) -> tuple[Any, dict[str, torch.Tensor], float]:
     started = time.perf_counter()
     extractor = multi._feature_extractor(context)
+    path = attempt / "preflight/frozen_f2_features.pt"
+    expected_keys = {
+        f"{outfit}/{condition}"
+        for outfit in (*OUTFITS, "O07")
+        for condition in CONDITIONS
+    }
+    if path.is_file():
+        cached = torch.load(path, map_location="cpu", weights_only=False)
+        if set(cached) != expected_keys:
+            raise ValueError("frozen feature cache key contract changed")
+        device = context["base"]._xyz.device
+        features = {key: value.to(device) for key, value in cached.items()}
+        if any(value.shape != (1, 512) or not torch.isfinite(value).all() for value in features.values()):
+            raise ValueError("frozen feature cache tensor contract changed")
+        _atomic_json(attempt / "preflight/frozen_feature_cache_reuse.json", {
+            "status": "PASS", "reused": True, "sha256": _sha256(path),
+            "feature_count": len(features),
+        })
+        return extractor, features, time.perf_counter() - started
     features: dict[str, torch.Tensor] = {}
     for outfit in (*OUTFITS, "O07"):
         for condition in CONDITIONS:
@@ -177,7 +197,6 @@ def _extract_features(
                 extractor, context["episodes"][key]
             )
     payload = {key: value.detach().cpu() for key, value in features.items()}
-    path = attempt / "preflight/frozen_f2_features.pt"
     temporary = path.with_suffix(".pt.tmp")
     torch.save(payload, temporary)
     os.replace(temporary, path)
@@ -702,12 +721,14 @@ def _evaluate_ours(
             residual_cache[key] = predicted_residual
             rgb_cache[key] = predicted_rgb.detach()
             teacher_rgb_cache[key] = teacher_rgb.detach()
+            episode_visual_root = attempt / "visuals/episodes"
+            episode_visual_root.mkdir(parents=True, exist_ok=True)
             save_render_tensor(
-                attempt / "visuals/episodes" / f"{key.replace('/', '_')}_prediction.png",
+                episode_visual_root / f"{key.replace('/', '_')}_prediction.png",
                 predicted_rgb, 3,
             )
             save_render_tensor(
-                attempt / "visuals/episodes" / f"{key.replace('/', '_')}_alpha.png",
+                episode_visual_root / f"{key.replace('/', '_')}_alpha.png",
                 predicted_alpha, 1,
             )
             panels.extend([
@@ -949,4 +970,30 @@ def run() -> dict[str, Any]:
 
 
 if __name__ == "__main__":
-    run()
+    try:
+        run()
+    except Exception as error:
+        attempt_value = os.environ.get("CANONDRESSGS_PAPER_ATTEMPT")
+        if attempt_value:
+            failed_attempt = Path(attempt_value)
+            stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+            _atomic_json(failed_attempt / "provenance" / f"runtime_failure_{stamp}.json", {
+                "status": "INTERRUPTED_RUNTIME",
+                "exception_type": type(error).__name__,
+                "exception_message": str(error),
+                "traceback": traceback.format_exc(),
+                "model_failure": False,
+                "latest_checkpoint": str(
+                    failed_attempt / "checkpoints/checkpoint_step_000300.pth"
+                ),
+            })
+            _atomic_json(failed_attempt / "RUN_STATUS.json", {
+                "status": "INTERRUPTED_RUNTIME",
+                "optimizer_steps": 300 if (
+                    failed_attempt / "checkpoints/checkpoint_step_000300.pth"
+                ).is_file() else 0,
+                "failure_stage": "formal_runtime_tooling",
+                "exception_type": type(error).__name__,
+                "exception_message": str(error),
+            })
+        raise
