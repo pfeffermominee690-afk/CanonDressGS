@@ -233,7 +233,7 @@ experiments:
   evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
   required_metrics: *id001
   required_figures: *id002
-  status: NOT_RUN
+  status: MANUAL_REVIEW_REQUIRED
   final_adjudication: null
   experiment_id: PAPER-OURS-S0
   method: Ours_Seen_Outfit_Explicit_Basis_V1
@@ -255,6 +255,33 @@ experiments:
       checkpoint_sha256: a54c1b4431d2bf74b965ecb22a5e6a4ed68910cea6b587be2c0e7e632974f78b
       attempt: attempt_001
     recovery_transition: true
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T15:42:05.607293+00:00'
+    evidence: {}
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T15:42:05.857209+00:00'
+    evidence: {}
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T15:42:06.105172+00:00'
+    evidence: {}
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T15:42:32.442992+00:00'
+    evidence: {}
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T16:04:50.956103+00:00'
+    evidence:
+      evaluator_pass: true
+      artifacts_complete: true
+      manual_adjudication_present: true
+      visual_canary_status: PASS_WITH_MINOR_EDGE_ARTIFACTS
+      paper_final: false
+      attempt: seed_0/attempt_001
+      manual_review: final_adjudication/manual_visual_review.json
 - executable: true
   expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
   config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
