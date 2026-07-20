@@ -1127,7 +1127,7 @@ def finalize(context: Mapping[str, Any], visual_path: Path | None) -> dict[str, 
         next_task = "FIX_COEFFICIENT_TO_BASIS_INTEGRATION"
     else:
         status, classification = "PASS", "CS-PASS"
-        next_task = "EXPAND_REFERENCE_COEFFICIENT_CONTROL_TO_MULTI_OUTFIT"
+        next_task = "EXPAND_EXPLICIT_RESIDUAL_BASIS_TO_MULTI_OUTFIT"
     freeze = {
         "base_bitwise_frozen": context["base_before"]
         == _tensor_state_fingerprint(_base_named_tensors(context["base"])),
