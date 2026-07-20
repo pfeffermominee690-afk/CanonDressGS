@@ -388,8 +388,9 @@ def _common_input_context(config: dict[str, Any], output_dir: Path, *, create: b
                 base, samples[key], protected_mask, background, float(config["render"]["protected_support_alpha_threshold"]),
             )
             samples[key]["target_protected_mask"] = torch.maximum(samples[key]["target_protected_mask"], support)
-    model = graph = backbone_before = None
+    model = graph = backbone_before = reference_model_initialization_rng = None
     if load_reference_model:
+        reference_model_initialization_rng = rng_state()
         model, graph = construct_reference_model(base, config, device)
         backbone_before = o01._state_fingerprint(model.clothing_observation_encoder.backbone.state_dict())
     if create:
@@ -405,6 +406,7 @@ def _common_input_context(config: dict[str, Any], output_dir: Path, *, create: b
         "samples": samples, "episodes": episodes, "geometries": geometries,
         "protected_mask": protected_mask, "background": background, "model": model,
         "base_before": base_before, "backbone_before": backbone_before,
+        "reference_model_initialization_rng": reference_model_initialization_rng,
         "parameterization_fingerprint": parameterization_fingerprint,
         "renderer_sources": renderer_sources, "renderer_fingerprints": renderer_fingerprints,
     }
@@ -1135,7 +1137,10 @@ def run_stage_c(
     final = milestones[str(config["stage_c"]["max_steps"])]
     _stage_c_visuals(context, basis, teacher_coefficients, cache, final)
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+    construction_rng = rng_state()
+    restore_rng(context["reference_model_initialization_rng"])
     restored_model, _ = construct_reference_model(base, config, base._xyz.device)
+    restore_rng(construction_rng)
     restored_predictor = ReferenceBasisCoefficientPredictor(
         int(config["model"]["embedding_dim"]), int(config["model"]["local_feature_dim"]),
         basis.rank, int(config["stage_c"]["predictor_hidden_dim"]),

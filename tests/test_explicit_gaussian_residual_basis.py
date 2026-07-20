@@ -236,3 +236,11 @@ def test_stage_c_acceptance_resume_does_not_repeat_optimizer_steps() -> None:
     assert "optimizer.step()" not in acceptance_branch
     assert "append_jsonl" not in acceptance_branch
     assert "persist=False" in acceptance_branch
+
+
+def test_checkpoint_parity_replays_reference_model_initialization_rng() -> None:
+    source = inspect.getsource(runner.run_stage_c)
+    construction = source.split("construction_rng = rng_state()", 1)[1].split("restored_predictor =", 1)[0]
+    assert 'restore_rng(context["reference_model_initialization_rng"])' in construction
+    assert "construct_reference_model" in construction
+    assert "restore_rng(construction_rng)" in construction
