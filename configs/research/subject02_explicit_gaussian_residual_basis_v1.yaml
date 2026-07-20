@@ -1,0 +1,146 @@
+schema_version: canondressgs.explicit_gaussian_residual_basis.v1
+task_id: SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001
+branch: research/explicit-gaussian-residual-basis-20260720
+source_head: 79c36ecba73ddf6525d38a0fb70d8d2816af1dd8
+outfits: [O01, O08]
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+
+inputs:
+  source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  source_manifest_sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  stable_protected_attribution: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+  stable_protected_attribution_sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+  stable_protected_count: 30894
+  parameterization_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-RESIDUAL-FIELD-PARAMETERIZATION-001/attempt_002
+  parameterization_final_adjudication_sha256: 48b3c100afdc7c27a4109f97b66d42a2484e2778de796f462dedba90fb2034eb
+  p1_predictions: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-RESIDUAL-FIELD-PARAMETERIZATION-001/attempt_002/p1/milestones/step_001000/predicted_residuals.pt
+  p1_predictions_sha256: e4a5efaee9c8af9d2e245512112db7ab3d0acf8f11bd1592b827e8b28fc99cb4
+  oracle_o01_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth
+  oracle_o01_checkpoint_sha256: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+  oracle_o08_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth
+  oracle_o08_checkpoint_sha256: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  historical_checkpoint_sha256_warning: 64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  gaussian_count: 200000
+  anchor_count: 10000
+  frozen: true
+
+model:
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+  image_feature_dim: 128
+  embedding_dim: 64
+  local_feature_dim: 64
+  freeze_image_backbone: true
+  online_completion: {graph_k: 8, hidden_dim: 128, blocks: 4}
+  decoder: {type: legacy}
+  dressable_channels:
+    xyz: {enabled: true, max_abs: 0.05}
+    log_scaling: {enabled: true, max_abs: 0.35}
+    rotation: {enabled: true, max_angle_rad: 0.2617993878}
+    opacity_logit: {enabled: true, max_abs: 2.0}
+    sh0: {enabled: true, max_abs: 0.25}
+    shN: {enabled: true, max_abs: 0.10, sh_degree: 1}
+
+basis:
+  rank: 1
+  method: ordered_two_outfit_centered_half_difference
+  space: bound_normalized_six_channel_gaussian_residual
+  chunk_size: 16384
+
+stage_a:
+  optimizer_created: false
+  teacher_usage: offline_basis_construction_only
+  acceptance:
+    mean_bound_normalized_rmse_max: 0.002
+    mean_direction_cosine_min: 0.995
+    mean_top_10pct_overlap_min: 0.98
+    per_outfit_render_garment_mae_max: 0.005
+    require_oracle_visual_match: true
+    require_no_cloud_or_mottle: true
+
+stage_b:
+  run_only_if_stage_a_pass: true
+  max_steps: 200
+  milestones: [0, 20, 100, 200]
+  diagnostic_latent_dim: 24
+  predictor_hidden_dim: 32
+  learning_rate: 0.02
+  gradient_clip_norm: 5.0
+  seed: 20260723
+  acceptance:
+    coefficient_mae_max: 0.01
+    reconstructed_residual_rmse_max: 0.01
+    direction_cosine_min: 0.98
+    require_oracle_visual_match: true
+    require_no_cloud_or_mottle: true
+
+stage_c:
+  run_only_if_stage_a_b_pass: true
+  max_steps: 496
+  milestones: [0, 20, 100, 300, 496]
+  predictor_hidden_dim: 128
+  gradient_clip_norm: 5.0
+  seed: 20260724
+  episode_count: 8
+  outfit_balance: strict_alternating_1_to_1
+  view_balance: exact_62_updates_each_episode
+  optimizer:
+    encoder_lr: 0.0001
+    aggregator_lr: 0.0001
+    completer_lr: 0.001
+    coefficient_predictor_lr: 0.002
+    weight_decay: 0.0
+  acceptance:
+    coefficient_mae_max: 0.10
+    reconstructed_residual_rmse_max: 0.08
+    direction_cosine_min: 0.80
+    correct_vs_swapped_coefficient_margin_min: 0.0
+    correct_vs_swapped_residual_margin_min: 0.0
+    correct_vs_swapped_render_margin_min: 0.0
+    correct_episode_wins_min: 7
+    reference_variant_coefficient_change_min: 0.05
+    require_distinct_outfit_visuals: true
+    forbid_mean_outfit_collapse: true
+
+metrics:
+  zero_target_zero_prediction_cosine: 1.0
+  active_epsilon: 1.0e-8
+
+render:
+  background: [1.0, 1.0, 1.0]
+  sh_degree: 1
+  protected_support_alpha_threshold: 0.0001
+
+output:
+  task_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001
+  attempt: attempt_001
+
+permissions:
+  modify_parameterization_attempt: false
+  modify_oracle_outputs: false
+  modify_two_outfit_prep: false
+  modify_base: false
+  modify_mmlp: false
+  modify_renderer: false
+  modify_residual_bounds: false
+  use_per_gaussian_residual_decoder: false
+  use_anchor_interpolated_residual_decoder: false
+  outfit_id_in_model: false
+  target_image_in_prediction_forward: false
+  diagnostic_latent_in_stage_c: false
+  image_space_training: false
+  expand_to_multi_outfit: false
