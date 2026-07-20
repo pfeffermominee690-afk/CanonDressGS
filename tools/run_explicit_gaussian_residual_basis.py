@@ -612,6 +612,30 @@ def _stage_b_evaluate(
     return report
 
 
+def _restore_stage_b_coefficient_metrics(
+    report: dict[str, Any], predictor: DiagnosticCoefficientPredictor,
+    latents: Mapping[str, torch.Tensor], teacher_coefficients: Mapping[str, torch.Tensor],
+) -> None:
+    """Recreate coefficient-only fields that are appended after milestone persistence."""
+    with torch.no_grad():
+        coefficients = {outfit: predictor(latents[outfit]) for outfit in OUTFITS}
+    report["coefficients"] = {
+        name: value.detach().cpu().tolist() for name, value in coefficients.items()
+    }
+    report["teacher_coefficients"] = {
+        name: value.detach().cpu().tolist() for name, value in teacher_coefficients.items()
+    }
+    report["coefficient_mae"] = float(np.mean([
+        _coefficient_error(coefficients[name], teacher_coefficients[name]) for name in OUTFITS
+    ]))
+    report["coefficient_separation_ratio"] = float(
+        torch.linalg.vector_norm(coefficients["O08"] - coefficients["O01"])
+        / torch.linalg.vector_norm(
+            teacher_coefficients["O08"] - teacher_coefficients["O01"]
+        ).clamp_min(1e-12)
+    )
+
+
 def run_stage_b(
     context: dict[str, Any], visual: Mapping[str, Any], *, resume_acceptance_only: bool = False,
 ) -> dict[str, Any]:
@@ -663,6 +687,8 @@ def run_stage_b(
                     step == int(config["stage_b"]["max_steps"]),
                 )
     final = milestones[str(config["stage_b"]["max_steps"])]
+    if resume_acceptance_only:
+        _restore_stage_b_coefficient_metrics(final, predictor, latents, teacher_coefficients)
     if not resume_acceptance_only:
         save_checkpoint(
             checkpoint_path, stage="B", step=200, model={"coefficient_predictor": predictor.state_dict()},

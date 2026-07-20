@@ -214,3 +214,17 @@ def test_stage_b_acceptance_resume_does_not_repeat_optimizer_steps() -> None:
     assert "optimizer.step()" not in acceptance_branch
     assert "append_jsonl" not in acceptance_branch
     assert "checkpoint_step_000200.pth" in source
+    assert "_restore_stage_b_coefficient_metrics" in source
+
+
+def test_stage_b_persisted_metrics_can_restore_coefficient_fields() -> None:
+    predictor = DiagnosticCoefficientPredictor(4, 1, 8)
+    latents = {"O01": torch.tensor([-1.0, 0.0, 0.0, 0.0]), "O08": torch.tensor([1.0, 0.0, 0.0, 0.0])}
+    teachers = {"O01": torch.tensor([-1.0]), "O08": torch.tensor([1.0])}
+    report = {}
+    runner._restore_stage_b_coefficient_metrics(report, predictor, latents, teachers)
+    assert set(report) == {
+        "coefficients", "teacher_coefficients", "coefficient_mae", "coefficient_separation_ratio",
+    }
+    assert np.isfinite(report["coefficient_mae"])
+    assert np.isfinite(report["coefficient_separation_ratio"])
