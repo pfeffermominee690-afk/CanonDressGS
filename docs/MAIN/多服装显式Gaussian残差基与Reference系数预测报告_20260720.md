@@ -2,7 +2,7 @@
 
 任务：`SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001`
 
-状态：正式运行中。`attempt_001` 因验收 helper 的 CPU/CUDA device 边界错误停止；`attempt_002` 因 loader 未带入旧 Rung-2 helper 要求的既有 edit-core/preserve 字段停止；两者均发生在 O02 初始证据持久化、optimizer step 为 0，均不是模型结果。修复后的唯一正式候选为 append-only `attempt_003`。
+状态：正式运行中。`attempt_001` 因验收 helper 的 CPU/CUDA device 边界错误停止；`attempt_002` 因 loader 未带入旧 Rung-2 helper 要求的既有 edit-core/preserve 字段停止；两者均发生在 O02 初始证据持久化、optimizer step 为 0，均不是模型结果。唯一正式候选 `attempt_003` 已完成 300-step coefficient training；其后 RNG acceptance 遇到历史 helper schema 不一致，采用原 step-300 checkpoint 的 acceptance-only 恢复，不重复 optimizer step。
 
 ## 1. CS-PASS 继承结论
 

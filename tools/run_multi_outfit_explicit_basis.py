@@ -1255,6 +1255,15 @@ def _save_coefficient_checkpoint(
     torch.save(payload, temporary); os.replace(temporary, path)
 
 
+def _restore_parameterization_rng(state: Mapping[str, Any]) -> None:
+    """Restore the RNG schema emitted by parameterization.rng_state()."""
+    random.setstate(state["python"])
+    np.random.set_state(state["numpy"])
+    torch.set_rng_state(state["torch_cpu"])
+    if torch.cuda.is_available():
+        torch.cuda.set_rng_state_all(state["torch_cuda"])
+
+
 def _evaluate_coefficient_model(
     model: MultiOutfitLinearCoefficientControl, features: Mapping[str, torch.Tensor],
     targets: Mapping[str, torch.Tensor],
@@ -1283,7 +1292,9 @@ def _evaluate_coefficient_model(
     }
 
 
-def run_coefficient_training(context: Mapping[str, Any]) -> dict[str, Any]:
+def run_coefficient_training(
+    context: Mapping[str, Any], *, resume_acceptance_only: bool = False,
+) -> dict[str, Any]:
     config, output_dir = context["config"], context["output_dir"]
     if not (output_dir / "stage_c0_ridge/ridge_metrics.json").is_file():
         raise FileNotFoundError("C0 ridge control must run before the sole Stage C training")
@@ -1301,46 +1312,85 @@ def run_coefficient_training(context: Mapping[str, Any]) -> dict[str, Any]:
         model.parameters(), lr=float(config["coefficient_training"]["learning_rate"]),
         weight_decay=float(config["coefficient_training"]["weight_decay"]),
     )
+    checkpoint_path = output_dir / "stage_c_training/checkpoints/checkpoint_step_000300.pth"
     milestones = {}; final_gradients = {}; started = time.time(); torch.cuda.reset_peak_memory_stats()
-    milestones["0"] = _evaluate_coefficient_model(model, features, targets)
-    for step in range(1, int(config["coefficient_training"]["max_steps"]) + 1):
-        condition = CONDITIONS[(step - 1) % len(CONDITIONS)]
+    if resume_acceptance_only:
+        records = [
+            json.loads(line) for line in (output_dir / "stage_c_training/training.jsonl")
+            .read_text(encoding="utf-8").splitlines()
+        ]
+        if len(records) != 300 or [row["step"] for row in records] != list(range(1, 301)):
+            raise ValueError("acceptance-only recovery requires the exact completed 300-step log")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        if checkpoint["global_step"] != 300 or checkpoint["condition_position"] != 0:
+            raise ValueError("acceptance-only checkpoint is not the completed round-robin state")
+        initial = MultiOutfitLinearCoefficientControl(extractor.set_feature_dim, basis.rank).to(
+            context["base"]._xyz
+        )
+        milestones["0"] = _evaluate_coefficient_model(initial, features, targets)
+        for milestone in config["coefficient_training"]["milestones"]:
+            if int(milestone) == 0:
+                continue
+            current = torch.load(
+                output_dir / f"stage_c_training/checkpoints/checkpoint_step_{int(milestone):06d}.pth",
+                map_location="cpu", weights_only=False,
+            )
+            model.load_state_dict(current["model"])
+            milestones[str(milestone)] = _evaluate_coefficient_model(model, features, targets)
+        model.load_state_dict(checkpoint["model"]); optimizer.load_state_dict(checkpoint["optimizer"])
+        condition = CONDITIONS[-1]
         batch = [f"{outfit}/{condition}" for outfit in TRAIN_OUTFITS]
-        if [key.split("/")[0] for key in batch] != list(TRAIN_OUTFITS):
-            raise AssertionError("balanced batch lost a preregistered outfit")
-        prediction = torch.stack([
-            model(features[key]).standardized_coefficients for key in batch
-        ])
+        prediction = torch.stack([model(features[key]).standardized_coefficients for key in batch])
         target = torch.stack([targets[outfit] for outfit in TRAIN_OUTFITS])
-        coefficient_loss = F.smooth_l1_loss(prediction, target)
-        geometry_loss = pairwise_geometry_loss(prediction, target)
-        loss = coefficient_loss + float(config["coefficient_training"]["pairwise_geometry_weight"]) * geometry_loss
-        if not torch.isfinite(loss):
-            raise FloatingPointError("multi-outfit coefficient loss is NaN or Inf")
-        optimizer.zero_grad(set_to_none=True); loss.backward()
+        acceptance_loss = F.smooth_l1_loss(prediction, target) + float(
+            config["coefficient_training"]["pairwise_geometry_weight"]
+        ) * pairwise_geometry_loss(prediction, target)
+        optimizer.zero_grad(set_to_none=True); acceptance_loss.backward()
         final_gradients = {
             name: {
                 "finite": parameter.grad is not None and bool(torch.isfinite(parameter.grad).all()),
                 "l2": float(torch.linalg.vector_norm(parameter.grad)) if parameter.grad is not None else 0.0,
             } for name, parameter in model.named_parameters()
         }
-        torch.nn.utils.clip_grad_norm_(
-            model.parameters(), float(config["coefficient_training"]["gradient_clip_norm"]),
-            error_if_nonfinite=True,
-        )
-        optimizer.step()
-        append_jsonl(output_dir / "stage_c_training/training.jsonl", {
-            "step": step, "condition": condition, "balanced_outfits": list(TRAIN_OUTFITS),
-            "loss": float(loss.detach()), "coefficient_loss": float(coefficient_loss.detach()),
-            "pairwise_geometry_loss": float(geometry_loss.detach()),
-        })
-        if step in config["coefficient_training"]["milestones"]:
-            milestones[str(step)] = _evaluate_coefficient_model(model, features, targets)
-            checkpoint_path = output_dir / f"stage_c_training/checkpoints/checkpoint_step_{step:06d}.pth"
-            _save_coefficient_checkpoint(
-                checkpoint_path, model, optimizer, step, step % len(CONDITIONS), context, basis_path
+    else:
+        milestones["0"] = _evaluate_coefficient_model(model, features, targets)
+        for step in range(1, int(config["coefficient_training"]["max_steps"]) + 1):
+            condition = CONDITIONS[(step - 1) % len(CONDITIONS)]
+            batch = [f"{outfit}/{condition}" for outfit in TRAIN_OUTFITS]
+            if [key.split("/")[0] for key in batch] != list(TRAIN_OUTFITS):
+                raise AssertionError("balanced batch lost a preregistered outfit")
+            prediction = torch.stack([
+                model(features[key]).standardized_coefficients for key in batch
+            ])
+            target = torch.stack([targets[outfit] for outfit in TRAIN_OUTFITS])
+            coefficient_loss = F.smooth_l1_loss(prediction, target)
+            geometry_loss = pairwise_geometry_loss(prediction, target)
+            loss = coefficient_loss + float(config["coefficient_training"]["pairwise_geometry_weight"]) * geometry_loss
+            if not torch.isfinite(loss):
+                raise FloatingPointError("multi-outfit coefficient loss is NaN or Inf")
+            optimizer.zero_grad(set_to_none=True); loss.backward()
+            final_gradients = {
+                name: {
+                    "finite": parameter.grad is not None and bool(torch.isfinite(parameter.grad).all()),
+                    "l2": float(torch.linalg.vector_norm(parameter.grad)) if parameter.grad is not None else 0.0,
+                } for name, parameter in model.named_parameters()
+            }
+            torch.nn.utils.clip_grad_norm_(
+                model.parameters(), float(config["coefficient_training"]["gradient_clip_norm"]),
+                error_if_nonfinite=True,
             )
-    checkpoint_path = output_dir / "stage_c_training/checkpoints/checkpoint_step_000300.pth"
+            optimizer.step()
+            append_jsonl(output_dir / "stage_c_training/training.jsonl", {
+                "step": step, "condition": condition, "balanced_outfits": list(TRAIN_OUTFITS),
+                "loss": float(loss.detach()), "coefficient_loss": float(coefficient_loss.detach()),
+                "pairwise_geometry_loss": float(geometry_loss.detach()),
+            })
+            if step in config["coefficient_training"]["milestones"]:
+                milestones[str(step)] = _evaluate_coefficient_model(model, features, targets)
+                current_path = output_dir / f"stage_c_training/checkpoints/checkpoint_step_{step:06d}.pth"
+                _save_coefficient_checkpoint(
+                    current_path, model, optimizer, step, step % len(CONDITIONS), context, basis_path
+                )
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     restored = MultiOutfitLinearCoefficientControl(extractor.set_feature_dim, basis.rank).to(
         context["base"]._xyz
@@ -1354,9 +1404,9 @@ def run_coefficient_training(context: Mapping[str, Any]) -> dict[str, Any]:
     with torch.no_grad():
         before = model(fixed).standardized_coefficients
         after = restored(fixed).standardized_coefficients
-    current_rng = parameterization.rng_state(); explicit.restore_rng(checkpoint["rng"])
+    current_rng = parameterization.rng_state(); _restore_parameterization_rng(checkpoint["rng"])
     rng_exact = o01.object_fingerprint(parameterization.rng_state()) == o01.object_fingerprint(checkpoint["rng"])
-    explicit.restore_rng(current_rng)
+    _restore_parameterization_rng(current_rng)
     resume = {
         "model_state_exact": o01.object_fingerprint(_coefficient_state(model)) == o01.object_fingerprint(_coefficient_state(restored)),
         "optimizer_state_exact": o01.object_fingerprint(optimizer.state_dict()) == o01.object_fingerprint(restored_optimizer.state_dict()),
@@ -1382,6 +1432,7 @@ def run_coefficient_training(context: Mapping[str, Any]) -> dict[str, Any]:
     }
     report = {
         "status": "PASS" if all(checks.values()) else "FAIL", "optimizer_steps": 300,
+        "acceptance_only_recovery": resume_acceptance_only,
         "parameter_count": sum(parameter.numel() for parameter in model.parameters()),
         "milestones": milestones, "gradients": final_gradients, "checks": checks,
         "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path),
@@ -1854,7 +1905,7 @@ def run(args: argparse.Namespace) -> None:
         elif args.phase == "ridge":
             run_ridge_control(context)
         elif args.phase == "train":
-            run_coefficient_training(context)
+            run_coefficient_training(context, resume_acceptance_only=args.resume_acceptance_only)
         elif args.phase == "seen":
             run_seen_evaluation(context)
         elif args.phase == "seen-adjudicate":
@@ -1891,6 +1942,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument("--outfit", default=None)
     parser.add_argument("--visual-observations", type=Path, default=None)
+    parser.add_argument("--resume-acceptance-only", action="store_true")
     run(parser.parse_args())
 
 
