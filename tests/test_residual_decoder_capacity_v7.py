@@ -219,6 +219,14 @@ def test_old_o01_and_diagnosis_outputs_immutable() -> None:
     assert before == hashlib.sha256(script.read_bytes()).hexdigest()
 
 
+def test_v7_render_directory_is_created_before_png_persistence() -> None:
+    source = (ROOT / "tools/run_residual_decoder_capacity_v7.py").read_text(encoding="utf-8")
+    directory_creation = 'directory.mkdir(parents=True, exist_ok=True)'
+    first_save = 'save_render_tensor(directory / f"{outfit}_{condition}_predicted_rgb.png"'
+    assert directory_creation in source and first_save in source
+    assert source.index(directory_creation, source.index("def render_metrics")) < source.index(first_save)
+
+
 if __name__ == "__main__":
     tests = [(name, value) for name, value in sorted(globals().items()) if name.startswith("test_") and callable(value)]
     for name, callback in tests:

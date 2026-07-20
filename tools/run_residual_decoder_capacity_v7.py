@@ -356,6 +356,7 @@ def render_metrics(
     step: int,
 ) -> tuple[list[dict[str, Any]], dict[str, float], dict[str, dict[str, tuple[torch.Tensor, torch.Tensor]]]]:
     directory = output_dir / "stage_a" / "milestones" / f"step_{step:06d}" / "renders"
+    directory.mkdir(parents=True, exist_ok=True)
     rows, cached = [], {}
     with torch.no_grad():
         for outfit in OUTFITS:
