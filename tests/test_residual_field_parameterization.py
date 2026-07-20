@@ -213,6 +213,12 @@ def test_zero_target_zero_prediction_cosine_is_exact_match() -> None:
     assert metrics["direction_cosine"] == 1.0
 
 
+def test_acceptance_uses_positive_no_target_leakage_boolean() -> None:
+    source = (ROOT / "tools/run_residual_field_parameterization.py").read_text(encoding="utf-8")
+    assert source.count('"no_target_images_entered_forward": True') == 2
+    assert '"target_images_entered_forward": False,' not in source[source.index("def run_p0"):source.index("def make_token_field")]
+
+
 def test_token_dimension_is_frozen_at_24() -> None:
     assert CONFIG["p1"]["token_dim"] == CONFIG["p2"]["token_dim"] == 24
 

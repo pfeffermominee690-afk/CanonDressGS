@@ -559,7 +559,7 @@ def run_p0(context: dict[str, Any]) -> dict[str, Any]:
         "base_bitwise_frozen": context["base_before"] == v7._tensor_state_fingerprint(v7._base_named_tensors(base)),
         "base_gradient_zero": v7._base_gradient_count(base) == 0,
         "checkpoint_resume": resume["pass"],
-        "target_images_entered_forward": False,
+        "no_target_images_entered_forward": True,
     }
     numeric_pass = all(checks.values())
     v7_predictions = load_v7_predictions(context)
@@ -755,7 +755,7 @@ def run_token_phase(context: dict[str, Any], phase: str) -> dict[str, Any]:
         "base_bitwise_frozen": context["base_before"] == v7._tensor_state_fingerprint(v7._base_named_tensors(base)),
         "base_gradient_zero": v7._base_gradient_count(base) == 0,
         "checkpoint_resume": resume["pass"],
-        "target_images_entered_forward": False,
+        "no_target_images_entered_forward": True,
     }
     numeric_pass = all(checks.values())
     result = {
