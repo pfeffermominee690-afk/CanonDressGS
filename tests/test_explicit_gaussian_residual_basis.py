@@ -228,3 +228,11 @@ def test_stage_b_persisted_metrics_can_restore_coefficient_fields() -> None:
     }
     assert np.isfinite(report["coefficient_mae"])
     assert np.isfinite(report["coefficient_separation_ratio"])
+
+
+def test_stage_c_acceptance_resume_does_not_repeat_optimizer_steps() -> None:
+    source = inspect.getsource(runner.run_stage_c)
+    acceptance_branch = source.split("if resume_acceptance_only:", 1)[1].split("else:", 1)[0]
+    assert "optimizer.step()" not in acceptance_branch
+    assert "append_jsonl" not in acceptance_branch
+    assert "persist=False" in acceptance_branch

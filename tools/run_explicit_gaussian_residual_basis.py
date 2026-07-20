@@ -845,7 +845,7 @@ def _serializable_variant(value: Mapping[str, Any]) -> dict[str, Any]:
 def evaluate_stage_c(
     context: Mapping[str, Any], model: Any, predictor: ReferenceBasisCoefficientPredictor,
     basis: ExplicitGaussianResidualBasis, teacher_coefficients: Mapping[str, torch.Tensor],
-    *, step: int, full_variants: bool,
+    *, step: int, full_variants: bool, persist: bool = True,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     model.eval(); predictor.eval(); rows, runtime_cache = {}, {}
     with torch.no_grad():
@@ -946,8 +946,9 @@ def evaluate_stage_c(
                 "target_forward_leakage": False,
                 "mean_outfit_collapse": separation_ratio <= 0.5,
             })
-    milestone = context["output_dir"] / "stage_c/milestones" / f"step_{step:06d}"
-    atomic_json(milestone / "metrics.json", report)
+    if persist:
+        milestone = context["output_dir"] / "stage_c/milestones" / f"step_{step:06d}"
+        atomic_json(milestone / "metrics.json", report)
     model.train(); predictor.train()
     return report, runtime_cache
 
@@ -1004,18 +1005,22 @@ def _stage_c_visuals(
         for condition in CONDITIONS:
             key = f"{outfit}/{condition}"; sample = context["samples"][key]
             correct, swapped = runtime_cache[key]["correct"], runtime_cache[key]["swapped"]
-            oracle_rgb = teacher_cache[outfit][condition][0]
-            garment = diagnosis._garment_mask(sample); protected = sample["target_protected_mask"]
+            oracle_rgb = teacher_cache[outfit][condition][0].detach().cpu()
+            correct_rgb = correct["rendered"][0].detach().cpu()
+            swapped_rgb = swapped["rendered"][0].detach().cpu()
+            garment = diagnosis._garment_mask(sample).detach().cpu()
+            protected = sample["target_protected_mask"].detach().cpu()
             rows.append((f"{outfit}/{VIEWS[condition]}", [
-                ("base", sample["target_base_rgb"], 3), ("target", sample["target_edit_rgb"], 3),
-                ("Oracle", oracle_rgb, 3), ("P1", p1_cache[outfit][condition][0], 3),
-                ("explicit basis teacher", teacher_cache[outfit][condition][0], 3),
-                ("diagnostic coefficient", diagnostic_cache[outfit][condition][0], 3),
-                ("correct reference", correct["rendered"][0], 3), ("swapped reference", swapped["rendered"][0], 3),
-                ("Oracle-reference abs", (oracle_rgb - correct["rendered"][0]).abs(), 3),
-                ("torso/sleeve", v7.crop_tensor(correct["rendered"][0], garment, vertical="upper"), 3),
-                ("trousers", v7.crop_tensor(correct["rendered"][0], garment, vertical="lower"), 3),
-                ("shoes/protected", v7.crop_tensor(correct["rendered"][0], protected, vertical="lower"), 3),
+                ("base", sample["target_base_rgb"].detach().cpu(), 3),
+                ("target", sample["target_edit_rgb"].detach().cpu(), 3),
+                ("Oracle", oracle_rgb, 3), ("P1", p1_cache[outfit][condition][0].detach().cpu(), 3),
+                ("explicit basis teacher", oracle_rgb, 3),
+                ("diagnostic coefficient", diagnostic_cache[outfit][condition][0].detach().cpu(), 3),
+                ("correct reference", correct_rgb, 3), ("swapped reference", swapped_rgb, 3),
+                ("Oracle-reference abs", (oracle_rgb - correct_rgb).abs(), 3),
+                ("torso/sleeve", v7.crop_tensor(correct_rgb, garment, vertical="upper"), 3),
+                ("trousers", v7.crop_tensor(correct_rgb, garment, vertical="lower"), 3),
+                ("shoes/protected", v7.crop_tensor(correct_rgb, protected, vertical="lower"), 3),
             ]))
         o01._save_contact_sheet(context["output_dir"] / "visual_acceptance" / f"stage_c_{outfit}_contact_sheet.png", rows)
     xyz = context["base"]._xyz.detach().float().cpu(); sampled = torch.arange(0, xyz.shape[0], max(1, xyz.shape[0] // 80000))
@@ -1057,7 +1062,9 @@ def _load_stage_c_state(model: Any, predictor: ReferenceBasisCoefficientPredicto
     predictor.load_state_dict(state["coefficient_predictor"], strict=True)
 
 
-def run_stage_c(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str, Any]:
+def run_stage_c(
+    context: dict[str, Any], visual: Mapping[str, Any], *, resume_acceptance_only: bool = False,
+) -> dict[str, Any]:
     _require_stage(context["output_dir"], "stage_a", visual); _require_stage(context["output_dir"], "stage_b", visual)
     config, output_dir, base, model = context["config"], context["output_dir"], context["base"], context["model"]
     if model is None: raise RuntimeError("Stage C requires the reference model")
@@ -1067,38 +1074,66 @@ def run_stage_c(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str,
         basis.rank, int(config["stage_c"]["predictor_hidden_dim"]),
     ).to(base._xyz)
     optimizer, scheduler, groups = stage_c_optimizer(model, predictor, config)
-    milestones = {}; initial, _ = evaluate_stage_c(context, model, predictor, basis, teacher_coefficients, step=0, full_variants=False); milestones["0"] = initial
     schedule = balanced_episode_schedule(); counts = {f"{outfit}/{condition}": 0 for condition in CONDITIONS for outfit in OUTFITS}
     outfit_counts = {outfit: 0 for outfit in OUTFITS}; view_counts = {condition: 0 for condition in CONDITIONS}
     started = time.time(); torch.cuda.reset_peak_memory_stats(); final_gradients = {}
-    for step in range(1, int(config["stage_c"]["max_steps"]) + 1):
-        outfit, condition = schedule[(step - 1) % len(schedule)]; key = f"{outfit}/{condition}"
-        optimizer.zero_grad(set_to_none=True)
-        coefficients, _, _ = stage_c_coefficients(model, predictor, context["episodes"][key], context["geometries"][condition])
-        loss = F.smooth_l1_loss(coefficients, teacher_coefficients[outfit])
-        if not torch.isfinite(loss): raise FloatingPointError("Stage C coefficient loss is NaN or Inf")
-        loss.backward(); final_gradients = parameterization.trainable_snapshot(groups)
-        parameters = [parameter for values in groups.values() for parameter in values]
-        torch.nn.utils.clip_grad_norm_(parameters, float(config["stage_c"]["gradient_clip_norm"]), error_if_nonfinite=True)
-        optimizer.step(); scheduler.step(); counts[key] += 1; outfit_counts[outfit] += 1; view_counts[condition] += 1
-        append_jsonl(output_dir / "stage_c/training.jsonl", {"step": step, "outfit": outfit, "condition": condition, "coefficient_loss": float(loss.detach())})
-        if step in config["stage_c"]["milestones"]:
-            report, cache = evaluate_stage_c(
-                context, model, predictor, basis, teacher_coefficients, step=step,
-                full_variants=step == int(config["stage_c"]["max_steps"]),
-            ); milestones[str(step)] = report
-            checkpoint_path = output_dir / "stage_c/checkpoints" / f"checkpoint_step_{step:06d}.pth"
-            save_checkpoint(
-                checkpoint_path, stage="C", step=step, model=_stage_c_state(model, predictor),
-                optimizer=optimizer, scheduler=scheduler,
-                extra={"schedule_position": step % len(schedule), "episode_counts": dict(counts),
-                       "outfit_counts": dict(outfit_counts), "view_counts": dict(view_counts),
-                       "basis_sha256": sha256(_basis_artifact_path(output_dir)), "target_view_used_in_forward": False},
+    checkpoint_path = output_dir / "stage_c/checkpoints" / f"checkpoint_step_{int(config['stage_c']['max_steps']):06d}.pth"
+    if resume_acceptance_only:
+        if not checkpoint_path.is_file():
+            raise FileNotFoundError(f"Stage-C acceptance-only resume requires {checkpoint_path}")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        if checkpoint.get("stage") != "C" or int(checkpoint.get("global_step", -1)) != int(config["stage_c"]["max_steps"]):
+            raise RuntimeError("Stage-C checkpoint is not the completed preregistered checkpoint")
+        _load_stage_c_state(model, predictor, checkpoint["model"])
+        optimizer.load_state_dict(checkpoint["optimizer"]); scheduler.load_state_dict(checkpoint["scheduler"])
+        counts = {name: int(value) for name, value in checkpoint["extra"]["episode_counts"].items()}
+        outfit_counts = {name: int(value) for name, value in checkpoint["extra"]["outfit_counts"].items()}
+        view_counts = {name: int(value) for name, value in checkpoint["extra"]["view_counts"].items()}
+        milestones = {
+            str(step): json.loads(
+                (output_dir / f"stage_c/milestones/step_{step:06d}/metrics.json").read_text(encoding="utf-8")
             )
-            atomic_json(output_dir / "stage_c/partial_status.json", {"status": "RUNNING", "completed_step": step, "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path)})
+            for step in (0, 20, 100, 300)
+        }
+        optimizer.zero_grad(set_to_none=True)
+        outfit, condition = schedule[-1]; key = f"{outfit}/{condition}"
+        coefficients, _, _ = stage_c_coefficients(model, predictor, context["episodes"][key], context["geometries"][condition])
+        loss = F.smooth_l1_loss(coefficients, teacher_coefficients[outfit]); loss.backward()
+        final_gradients = parameterization.trainable_snapshot(groups)
+        final, cache = evaluate_stage_c(
+            context, model, predictor, basis, teacher_coefficients,
+            step=int(config["stage_c"]["max_steps"]), full_variants=True, persist=False,
+        )
+        milestones[str(config["stage_c"]["max_steps"])] = final
+    else:
+        milestones = {}; initial, _ = evaluate_stage_c(context, model, predictor, basis, teacher_coefficients, step=0, full_variants=False); milestones["0"] = initial
+        for step in range(1, int(config["stage_c"]["max_steps"]) + 1):
+            outfit, condition = schedule[(step - 1) % len(schedule)]; key = f"{outfit}/{condition}"
+            optimizer.zero_grad(set_to_none=True)
+            coefficients, _, _ = stage_c_coefficients(model, predictor, context["episodes"][key], context["geometries"][condition])
+            loss = F.smooth_l1_loss(coefficients, teacher_coefficients[outfit])
+            if not torch.isfinite(loss): raise FloatingPointError("Stage C coefficient loss is NaN or Inf")
+            loss.backward(); final_gradients = parameterization.trainable_snapshot(groups)
+            parameters = [parameter for values in groups.values() for parameter in values]
+            torch.nn.utils.clip_grad_norm_(parameters, float(config["stage_c"]["gradient_clip_norm"]), error_if_nonfinite=True)
+            optimizer.step(); scheduler.step(); counts[key] += 1; outfit_counts[outfit] += 1; view_counts[condition] += 1
+            append_jsonl(output_dir / "stage_c/training.jsonl", {"step": step, "outfit": outfit, "condition": condition, "coefficient_loss": float(loss.detach())})
+            if step in config["stage_c"]["milestones"]:
+                report, cache = evaluate_stage_c(
+                    context, model, predictor, basis, teacher_coefficients, step=step,
+                    full_variants=step == int(config["stage_c"]["max_steps"]),
+                ); milestones[str(step)] = report
+                checkpoint_path = output_dir / "stage_c/checkpoints" / f"checkpoint_step_{step:06d}.pth"
+                save_checkpoint(
+                    checkpoint_path, stage="C", step=step, model=_stage_c_state(model, predictor),
+                    optimizer=optimizer, scheduler=scheduler,
+                    extra={"schedule_position": step % len(schedule), "episode_counts": dict(counts),
+                           "outfit_counts": dict(outfit_counts), "view_counts": dict(view_counts),
+                           "basis_sha256": sha256(_basis_artifact_path(output_dir)), "target_view_used_in_forward": False},
+                )
+                atomic_json(output_dir / "stage_c/partial_status.json", {"status": "RUNNING", "completed_step": step, "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path)})
     final = milestones[str(config["stage_c"]["max_steps"])]
     _stage_c_visuals(context, basis, teacher_coefficients, cache, final)
-    checkpoint_path = output_dir / "stage_c/checkpoints" / f"checkpoint_step_{int(config['stage_c']['max_steps']):06d}.pth"
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     restored_model, _ = construct_reference_model(base, config, base._xyz.device)
     restored_predictor = ReferenceBasisCoefficientPredictor(
@@ -1151,6 +1186,7 @@ def run_stage_c(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str,
     status = "NUMERIC_PASS_VISUAL_PENDING" if all(checks.values()) else "FAIL"
     result = {
         "status": status, "optimizer_steps": int(config["stage_c"]["max_steps"]),
+        "acceptance_only_resume": resume_acceptance_only,
         "milestones": milestones, "final": final, "checks": checks, "gradients": final_gradients,
         "updates": {"episodes": counts, "outfits": outfit_counts, "views": view_counts},
         "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path), "checkpoint_resume": resume,
@@ -1268,7 +1304,7 @@ def run(args: argparse.Namespace) -> None:
             visual = _load_visual_observations(args.visual_observations, ("stage_a_status", "stage_b_status"))
             atomic_json(output_dir / "visual_acceptance/stage_b_visual_acceptance.json", visual)
             atomic_json(output_dir / "RUN_STATUS.json", {"task_id": TASK_ID, "status": "RUNNING", "phase": "STAGE_C", "optimizer_steps": 200})
-            result = run_stage_c(context, visual)
+            result = run_stage_c(context, visual, resume_acceptance_only=args.resume_acceptance_only)
             atomic_json(output_dir / "RUN_STATUS.json", {"task_id": TASK_ID, "status": "AWAITING_FINAL_VISUAL_INSPECTION" if result["status"].startswith("NUMERIC_PASS") else "AWAITING_FINAL_ADJUDICATION", "phase": "STAGE_C_COMPLETE", "optimizer_steps": 200 + int(config["stage_c"]["max_steps"])})
         elif args.phase == "finalize":
             if args.visual_observations is None: raise ValueError("finalize requires actual visual observations")
