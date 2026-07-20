@@ -142,9 +142,13 @@ def command_run(args: argparse.Namespace, paths: PaperPaths) -> dict[str, Any]:
         _execute(args.executor_command, attempt)
         validate_executor_result(attempt, training)
         transition_registry(registry_path, experiment["experiment_id"], "PREFLIGHT_PASS")
-        transition_registry(registry_path, experiment["experiment_id"], "RUNNING")
-        transition_registry(registry_path, experiment["experiment_id"], "TRAINED")
-        (attempt / "RUN_STATUS.json").write_text(json.dumps({"status": "TRAINED"}, indent=2) + "\n", encoding="utf-8")
+        if training["optimizer_required"]:
+            transition_registry(registry_path, experiment["experiment_id"], "RUNNING")
+            transition_registry(registry_path, experiment["experiment_id"], "TRAINED")
+            run_status = "TRAINED"
+        else:
+            run_status = "PREFLIGHT_PASS"
+        (attempt / "RUN_STATUS.json").write_text(json.dumps({"status": run_status}, indent=2) + "\n", encoding="utf-8")
     except Exception:
         current = yaml.safe_load(registry_path.read_text(encoding="utf-8"))
         current_status = next(
@@ -167,7 +171,7 @@ def command_run(args: argparse.Namespace, paths: PaperPaths) -> dict[str, Any]:
         elif current_status != "FAILED":
             transition_registry(registry_path, experiment["experiment_id"], "FAILED")
         raise
-    result = {"status": "TRAINED", "attempt": str(attempt), "contract": contract, "training_plan": training}
+    result = {"status": run_status, "attempt": str(attempt), "contract": contract, "training_plan": training}
     _print(result); return result
 
 

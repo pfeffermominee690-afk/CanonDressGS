@@ -54,7 +54,13 @@ def test_registry_counts_are_internally_consistent():
     )
     assert audit["status"] == "PASS"
     assert audit["claim_matrix_parsed"] and audit["table_figure_plan_parsed"]
-    assert (audit["total_count"], audit["executable_count"], audit["not_run_count"], audit["historical_evidence_count"]) == (55, 51, 51, 4)
+    expected_not_run = sum(
+        item["status"] == "NOT_RUN" for item in REGISTRY["experiments"]
+    )
+    assert (
+        audit["total_count"], audit["executable_count"],
+        audit["not_run_count"], audit["historical_evidence_count"],
+    ) == (55, 51, expected_not_run, 4)
 
 
 def test_protocol_audit_accepts_append_only_runtime_statuses():
@@ -63,7 +69,10 @@ def test_protocol_audit_accepts_append_only_runtime_statuses():
     audit = audit_protocol(CONFIG, MANIFEST, runtime_registry)
     assert audit["status"] == "PASS"
     assert audit["executable_count"] == 51
-    assert audit["not_run_count"] == 50
+    expected_not_run = sum(
+        item["status"] == "NOT_RUN" for item in runtime_registry["experiments"]
+    )
+    assert audit["not_run_count"] == expected_not_run
 
 
 def test_historical_a8_is_not_executable():
@@ -78,6 +87,7 @@ def test_historical_a8_has_no_run_command():
 
 def test_registry_status_transition_is_valid():
     assert transition_is_valid("NOT_RUN", "PREFLIGHT_PASS")
+    assert transition_is_valid("PREFLIGHT_PASS", "EVALUATED")
     assert transition_is_valid("RUNNING", "TRAINED")
     assert transition_is_valid("EVALUATED", "MANUAL_REVIEW_REQUIRED")
 

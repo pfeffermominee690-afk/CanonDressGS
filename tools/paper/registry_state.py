@@ -15,7 +15,8 @@ STATUSES = (
 )
 TRANSITIONS = {
     "NOT_RUN": {"PREFLIGHT_PASS", "FAILED"},
-    "PREFLIGHT_PASS": {"RUNNING", "FAILED"},
+    # Fixed no-optimizer baselines are evaluated directly after preflight.
+    "PREFLIGHT_PASS": {"RUNNING", "EVALUATED", "FAILED"},
     "RUNNING": {"TRAINED", "FAILED"},
     "TRAINED": {"EVALUATED", "FAILED"},
     "EVALUATED": {"MANUAL_REVIEW_REQUIRED", "FAILED"},
