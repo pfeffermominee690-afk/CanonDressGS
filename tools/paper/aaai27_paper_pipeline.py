@@ -16,7 +16,12 @@ if __package__ in (None, ""):
     if str(PROJECT_ROOT) not in sys.path:
         sys.path.insert(0, str(PROJECT_ROOT))
 
-from tools.paper.aggregation import aggregate_evaluations, write_aggregation
+from tools.paper.aggregation import (
+    aggregate_evaluations,
+    aggregate_smoke_evaluation,
+    write_aggregation,
+    write_smoke_aggregation,
+)
 from tools.paper.evaluate_seen_outfit import evaluate_records, load_raw_records
 from tools.paper.method_adapters import ADAPTER_TYPES, adapter_for
 from tools.paper.paper_exports import export_figure_layouts, export_tables
@@ -189,8 +194,22 @@ def command_evaluate(args: argparse.Namespace, paths: PaperPaths) -> dict[str, A
 
 
 def command_aggregate(args: argparse.Namespace, paths: PaperPaths) -> dict[str, Any]:
+    if args.smoke_only:
+        if len(args.evaluations or []) != 1:
+            raise ValueError("--smoke-only aggregate requires exactly one seed-0 evaluation")
+        evaluation = json.loads(Path(args.evaluations[0]).read_text(encoding="utf-8"))
+        result = aggregate_smoke_evaluation(evaluation)
+        if args.aggregate_output is not None:
+            write_smoke_aggregation(result, Path(args.aggregate_output))
+        _print({
+            "status": "SMOKE_ONLY",
+            "seeds": [0],
+            "best_seed_selected": False,
+            "three_seed_statistics_generated": False,
+        })
+        return result
     if len(args.evaluations or []) != 3:
-        raise ValueError("aggregate requires exactly three --evaluations")
+        raise ValueError("MISSING_REQUIRED_PAPER_SEEDS: formal aggregate requires seeds 0, 1, 2")
     evaluations = [json.loads(Path(path).read_text(encoding="utf-8")) for path in args.evaluations]
     result = aggregate_evaluations(evaluations)
     if args.aggregate_output is not None:
@@ -276,6 +295,7 @@ def parser() -> argparse.ArgumentParser:
         child.add_argument("--export-output", type=Path)
         child.add_argument("--archive-output", type=Path)
         child.add_argument("--synthetic-fixture", action="store_true")
+        child.add_argument("--smoke-only", action="store_true")
         child.add_argument("--figure-source-manifest", type=Path)
     return root
 

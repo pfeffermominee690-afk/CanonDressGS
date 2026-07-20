@@ -61,7 +61,14 @@ def _top_overlap(left: Sequence[float], right: Sequence[float], percent: int) ->
     return len(lset & rset) / count
 
 
-def _episode_metrics(record: Mapping[str, Any]) -> dict[str, float]:
+def _optional_mean(values: Iterable[float | None]) -> float | None:
+    applicable = [float(value) for value in values if value is not None]
+    return fmean(applicable) if applicable else None
+
+
+def _episode_metrics(
+    record: Mapping[str, Any], *, not_applicable: set[str] | None = None,
+) -> dict[str, float | None]:
     predicted = _finite_vector(record["predicted_standardized_coefficients"], "predicted coefficients")
     target = _finite_vector(record["target_standardized_coefficients"], "target coefficients")
     if len(predicted) != len(target):
@@ -103,6 +110,9 @@ def _episode_metrics(record: Mapping[str, Any]) -> dict[str, float]:
         if not math.isfinite(value):
             raise ValueError(f"non-finite render metric: {metric}")
         result[metric] = value
+    for metric in not_applicable or set():
+        if metric in result:
+            result[metric] = None
     return result
 
 
@@ -133,6 +143,9 @@ def evaluate_records(
         raise ValueError("PAPER_ASSET_MISMATCH")
     if meta.get("target_forward_input_used") is not False:
         raise ValueError("target-forward boundary violation")
+    not_applicable = set(meta.get("not_applicable_metrics", []))
+    if not not_applicable.issubset(ALL_METRICS):
+        raise ValueError("unknown not-applicable metric")
 
     episodes = grouped.get("episode", [])
     expected_keys = {(outfit, view) for outfit in SEEN_OUTFITS for view in FIXED_VIEWS}
@@ -158,7 +171,8 @@ def evaluate_records(
     for record in episodes:
         per_episode.append({
             "seed": int(meta["seed"]), "outfit_id": record["outfit_id"],
-            "view_id": record["view_id"], **_episode_metrics(record),
+            "view_id": record["view_id"],
+            **_episode_metrics(record, not_applicable=not_applicable),
         })
     reference_metrics = {
         "correct_vs_swapped_wins": float(sum(bool(item["correct_wins"]) for item in swaps)),
@@ -168,16 +182,29 @@ def evaluate_records(
         "zero_replacement_sensitivity": fmean(float(item["zero_difference"]) for item in replacement),
         "base_replacement_sensitivity": fmean(float(item["base_difference"]) for item in replacement),
     }
+    reference_metrics = {
+        key: None if key in not_applicable else value
+        for key, value in reference_metrics.items()
+    }
     efficiency = {key: float(meta["efficiency"][key]) for key in EFFICIENCY_METRICS}
+    efficiency = {
+        key: None if key in not_applicable else value
+        for key, value in efficiency.items()
+    }
     metrics = {
-        metric: fmean(item[metric] for item in per_episode) for metric in EPISODE_METRICS
+        metric: _optional_mean(item[metric] for item in per_episode)
+        for metric in EPISODE_METRICS
     }
     metrics.update(reference_metrics)
     metrics.update(efficiency)
     held_out = grouped.get("held_out", [])
     if any(item.get("outfit_id") != "O07" for item in held_out):
         raise ValueError("held-out records may contain only O07")
-    correct_count = sum(item["nearest_teacher_accuracy"] == 1.0 and item["correct_outfit_rank"] == 1.0 for item in per_episode)
+    correct_count = sum(
+        item["nearest_teacher_accuracy"] == 1.0
+        and item["correct_outfit_rank"] == 1.0
+        for item in per_episode
+    )
     return {
         "status": "PASS",
         "seed": int(meta["seed"]),
@@ -190,6 +217,7 @@ def evaluate_records(
             "swap_count": len(swaps), "fixed_outfit_order": list(SEEN_OUTFITS),
             "fixed_view_order": list(FIXED_VIEWS), "target_forward_boundary": True,
             "outfit_macro_required": True, "best_seed_selection": False,
+            "not_applicable_metrics": sorted(not_applicable),
         },
         "held_out_diagnostic": {
             "status": "Held-out Diagnostic — FAIL", "records": [dict(item) for item in held_out],

@@ -10,6 +10,9 @@ from PIL import Image, ImageDraw, ImageOps
 from .evaluate_seen_outfit import FIXED_VIEWS, SEEN_OUTFITS
 
 
+SMOKE_MARKER = "SMOKE ONLY — NOT PAPER RESULTS"
+
+
 METHOD_ROWS = ("B0", "B1", "B2", "B3", "B4", "B5", "Ours")
 METHOD_LABELS = {
     "B0": "Base Avatar", "B1": "B1 — Optimization Upper Bound",
@@ -42,13 +45,24 @@ def _format(value: Any) -> str:
     if value is None:
         return "N/A"
     if isinstance(value, Mapping) and "mean" in value:
+        if value["mean"] is None:
+            return "N/A"
+        if value.get("std") is None:
+            return f"{float(value['mean']):.6g}"
         return f"{float(value['mean']):.6g} ± {float(value.get('std', 0.0)):.3g}"
     if isinstance(value, float):
         return f"{value:.6g}"
     return str(value)
 
 
-def _write_table(name: str, title: str, rows: list[dict[str, Any]], output_dir: Path) -> list[Path]:
+def _write_table(
+    name: str,
+    title: str,
+    rows: list[dict[str, Any]],
+    output_dir: Path,
+    *,
+    marker: str | None = None,
+) -> list[Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     fields = list(rows[0])
     csv_path, md_path, tex_path, json_path = (
@@ -58,32 +72,41 @@ def _write_table(name: str, title: str, rows: list[dict[str, Any]], output_dir: 
     formatted = [{key: _format(value) for key, value in row.items()} for row in rows]
     with csv_path.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n"); writer.writeheader(); writer.writerows(formatted)
-    md_lines = [f"# {title}", "", "| " + " | ".join(fields) + " |", "|" + "|".join("---" for _ in fields) + "|"]
+    md_lines = [f"# {title}", ""]
+    if marker:
+        md_lines.extend([f"> {marker}", ""])
+    md_lines.extend(["| " + " | ".join(fields) + " |", "|" + "|".join("---" for _ in fields) + "|"])
     md_lines.extend("| " + " | ".join(row[field] for field in fields) + " |" for row in formatted)
     md_path.write_text("\n".join(md_lines) + "\n", encoding="utf-8")
     tex_lines = ["\\begin{tabular}{" + "l" * len(fields) + "}", " & ".join(fields) + " \\\\", "\\hline"]
     tex_lines.extend(" & ".join(row[field].replace("±", "$\\pm$") for field in fields) + " \\\\" for row in formatted)
     tex_lines.append("\\end{tabular}")
+    if marker:
+        tex_lines.insert(0, f"% {marker}")
     tex_path.write_text("\n".join(tex_lines) + "\n", encoding="utf-8")
-    json_path.write_text(json.dumps({"title": title, "units": UNITS, "rows": rows}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    json_path.write_text(json.dumps({"title": title, "marker": marker, "units": UNITS, "rows": rows}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return [csv_path, md_path, tex_path, json_path]
 
 
 def export_tables(source: Mapping[str, Any], output_dir: Path) -> dict[str, list[str]]:
-    if source.get("marker") == "SYNTHETIC_TEST_ONLY" and "paper_ready" in output_dir.parts:
-        raise ValueError("synthetic fixture cannot enter formal paper table directory")
+    source_marker = source.get("marker")
+    if source_marker in {"SYNTHETIC_TEST_ONLY", "SMOKE_ONLY"} and "paper_ready" in output_dir.parts:
+        raise ValueError("non-formal source cannot enter formal paper table directory")
+    marker = SMOKE_MARKER if source_marker == "SMOKE_ONLY" else None
     outputs: dict[str, list[str]] = {}
     table1 = []
     for method in METHOD_ROWS:
         metrics = source["methods"][method]
         table1.append({"method": METHOD_LABELS[method], **{key: metrics.get(key) for key in TABLE_COLUMNS["table_1"]}})
-    outputs["table_1"] = [str(path) for path in _write_table("table_1", "Seen-outfit main comparison", table1, output_dir)]
+    outputs["table_1"] = [str(path) for path in _write_table("table_1", "Seen-outfit main comparison", table1, output_dir, marker=marker)]
     table2 = [{"ablation": name, **{key: values.get(key) for key in TABLE_COLUMNS["table_2"]}} for name, values in source["ablations"].items()]
-    outputs["table_2"] = [str(path) for path in _write_table("table_2", "Method ablation", table2, output_dir)]
+    outputs["table_2"] = [str(path) for path in _write_table("table_2", "Method ablation", table2, output_dir, marker=marker)]
     table3 = [{"method": METHOD_LABELS[name], **{key: values.get(key) for key in TABLE_COLUMNS["table_3"]}} for name, values in source["methods"].items()]
-    outputs["table_3"] = [str(path) for path in _write_table("table_3", "Efficiency", table3, output_dir)]
+    outputs["table_3"] = [str(path) for path in _write_table("table_3", "Efficiency", table3, output_dir, marker=marker)]
     table4 = [{"entry": name, "status": value.get("status", "N/A")} for name, value in source["held_out"].items()]
-    outputs["table_4"] = [str(path) for path in _write_table("table_4", "Held-out Diagnostic — FAIL", table4, output_dir)]
+    outputs["table_4"] = [str(path) for path in _write_table("table_4", "Held-out Diagnostic — FAIL", table4, output_dir, marker=marker)]
+    if marker:
+        (output_dir / "SMOKE_ONLY.txt").write_text(marker + "\nNOT_FOR_PAPER_NUMBERS\n", encoding="utf-8")
     return outputs
 
 
@@ -112,15 +135,19 @@ def export_figure_layouts(
     *,
     synthetic: bool,
     source_manifest: Mapping[str, Any] | None = None,
+    smoke_only: bool = False,
 ) -> dict[str, Any]:
     validate_figure_layouts(FIGURE_LAYOUTS)
     if synthetic and "paper_ready" in output_dir.parts:
         raise ValueError("synthetic figure cannot enter formal paper figure directory")
+    if smoke_only and "paper_ready" in output_dir.parts:
+        raise ValueError("smoke figure cannot enter formal paper figure directory")
     if not synthetic and source_manifest is None:
         raise ValueError("formal figure export requires an explicit source path manifest")
     output_dir.mkdir(parents=True, exist_ok=True)
     manifest = {
-        "marker": "SYNTHETIC_TEST_ONLY" if synthetic else "FORMAL_SOURCE_PATHS",
+        "marker": "SYNTHETIC_TEST_ONLY" if synthetic else "SMOKE_ONLY" if smoke_only else "FORMAL_SOURCE_PATHS",
+        "paper_numbers_status": "NOT_FOR_PAPER_NUMBERS" if smoke_only else None,
         "fixed_outfit_order": list(SEEN_OUTFITS), "fixed_view_order": list(FIXED_VIEWS),
         "strongest_baseline": "B5", "selection_rule": "fixed_not_metric_selected",
         "allowed_operations": ["concatenate", "aspect_preserving_crop", "label", "uniform_crop"],
@@ -153,6 +180,14 @@ def export_figure_layouts(
                         panel = ImageOps.contain(opened.convert("RGB"), (92, 68))
                     canvas.paste(panel, (x0 + (96 - panel.width) // 2, y0 + (72 - panel.height) // 2))
         path = output_dir / f"{name}.png"
+        if smoke_only:
+            banner_height = 20
+            marked = Image.new("RGB", (canvas.width, canvas.height + banner_height), "white")
+            marked.paste(canvas, (0, banner_height))
+            banner = ImageDraw.Draw(marked)
+            banner.rectangle((0, 0, marked.width, banner_height), fill=(125, 0, 0))
+            banner.text((5, 4), "SMOKE ONLY - NOT PAPER RESULTS", fill="white")
+            canvas = marked
         canvas.save(path)
         source_entries = [f"SYNTHETIC_TEST_ONLY/{name}/row_{row}/column_{column}" for row in range(max(1, rows)) for column in range(columns)] if synthetic else formal_sources
         manifest["figures"][name] = {"path": str(path), "layout": layout, "source_paths": source_entries}

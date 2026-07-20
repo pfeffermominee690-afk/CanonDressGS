@@ -1,0 +1,92 @@
+schema_version: canondressgs.paper_smoke_registry.v1
+task_id: AAAI27-UNIFIED-PAPER-SMOKE-ACCEPTANCE-001
+formal_registry: paper_protocol/experiment_registry.yaml
+formal_registry_git_blob: 62071643367f46da1f01bf0de4e9a599552e7e4d
+frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+output_root_name: AAAI27-SEEN-OUTFIT-PAPER-SMOKE
+artifact_marker: "SMOKE ONLY — NOT PAPER RESULTS"
+states:
+  - NOT_RUN
+  - PREFLIGHT_PASS
+  - RUNNING
+  - TRAINED
+  - EVALUATED
+  - MANUAL_REVIEW_REQUIRED
+  - SMOKE_ACCEPTED
+  - FAILED
+forbidden_state: PAPER_FINAL
+fixed_seen_outfits: [O01, O02, O03, O04, O08]
+held_out_diagnostic: O07
+unused_outfit: O06
+fixed_views: [cond_000000, cond_000318, cond_000017, cond_000347]
+
+defaults: &smoke_defaults
+  seed: 0
+  executable: true
+  smoke_only: true
+  paper_final_eligible: false
+  status: NOT_RUN
+  target_forward_input: false
+  outfit_id_in_model: false
+  expected_output_root: "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/{smoke_experiment_id}/seed_0/attempt_{NNN}"
+
+experiments:
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-B0
+    method: B0_Base_Avatar
+    optimizer_steps: 0
+    role: frozen_base
+    not_applicable_metrics:
+      - standardized_coefficient_rmse
+      - restored_coefficient_rmse
+      - nearest_teacher_accuracy
+      - correct_outfit_rank
+      - pairwise_coefficient_margin
+      - normalized_residual_rmse
+      - cosine_similarity
+      - top_10_support_overlap
+      - top_20_support_overlap
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-B1
+    method: B1_Direct_Optimization_Teacher
+    optimizer_steps: 0
+    role: optimization_upper_bound
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-B2
+    method: B2_Outfit_ID_Coefficient_Lookup
+    optimizer_steps: 0
+    role: seen_only_lookup
+    seen_only: true
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-B3
+    method: B3_Global_Reference_Feature
+    optimizer_steps: 5
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-B4
+    method: B4_Clothing_Mean_Only
+    optimizer_steps: 5
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-B5
+    method: B5_Legacy_Complex_Fusion_RF_F
+    optimizer_steps: 5
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-OURS
+    method: Ours_Explicit_Basis_V1
+    optimizer_steps: 20
+    stop_resume_at: 10
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-A1
+    method: A1_Basis_Rank_3
+    optimizer_steps: 5
+    basis_rank: 3
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-A5
+    method: A5_Legacy_Endpoint_Supervision
+    optimizer_steps: 5
+    supervision: legacy_endpoint
+  - <<: *smoke_defaults
+    smoke_experiment_id: S-A7
+    method: A7_Reference_Count_1
+    optimizer_steps: 5
+    reference_count: 1
