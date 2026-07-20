@@ -53,6 +53,15 @@ def test_registry_counts_are_internally_consistent():
     assert (audit["total_count"], audit["executable_count"], audit["not_run_count"], audit["historical_evidence_count"]) == (55, 51, 51, 4)
 
 
+def test_protocol_audit_accepts_append_only_runtime_statuses():
+    runtime_registry = copy.deepcopy(REGISTRY)
+    runtime_registry["experiments"][0]["status"] = "EVALUATED"
+    audit = audit_protocol(CONFIG, MANIFEST, runtime_registry)
+    assert audit["status"] == "PASS"
+    assert audit["executable_count"] == 51
+    assert audit["not_run_count"] == 50
+
+
 def test_historical_a8_is_not_executable():
     historical = [item for item in REGISTRY["experiments"] if item["status"] == "HISTORICAL_EVIDENCE"]
     assert len(historical) == 4 and all(item["executable"] is False for item in historical)
@@ -176,6 +185,43 @@ def test_evaluator_requires_80_swaps():
         assert "80" in str(error)
     else:
         raise AssertionError("missing swap accepted")
+
+
+def test_evaluator_accepts_production_precomputed_residual_metrics():
+    records = build_synthetic_records(0, FINGERPRINT)
+    for record in records:
+        if record["record_type"] != "episode":
+            continue
+        record.pop("predicted_normalized_residual")
+        record.pop("target_normalized_residual")
+        record["precomputed_residual_metrics"] = {
+            "normalized_residual_rmse": 0.1,
+            "cosine_similarity": 0.9,
+            "top_10_support_overlap": 0.8,
+            "top_20_support_overlap": 0.85,
+        }
+        record["residual_metric_source"] = "production_full_gaussian_field_v1"
+    result = evaluate_records(records, expected_asset_fingerprint=FINGERPRINT)
+    assert result["metrics"]["normalized_residual_rmse"] == 0.1
+    assert result["metrics"]["cosine_similarity"] == 0.9
+
+
+def test_evaluator_rejects_unregistered_precomputed_residual_source():
+    records = build_synthetic_records(0, FINGERPRINT)
+    episode = next(record for record in records if record["record_type"] == "episode")
+    episode["precomputed_residual_metrics"] = {
+        "normalized_residual_rmse": 0.1,
+        "cosine_similarity": 0.9,
+        "top_10_support_overlap": 0.8,
+        "top_20_support_overlap": 0.85,
+    }
+    episode["residual_metric_source"] = "unknown"
+    try:
+        evaluate_records(records, expected_asset_fingerprint=FINGERPRINT)
+    except ValueError as error:
+        assert "source" in str(error)
+    else:
+        raise AssertionError("unregistered formal residual metric source accepted")
 
 
 def test_evaluator_uses_outfit_macro_average():

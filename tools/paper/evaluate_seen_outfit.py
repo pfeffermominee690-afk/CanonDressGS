@@ -88,8 +88,30 @@ def _episode_metrics(
     outfit = record["outfit_id"]
     correct_distance = distances[outfit]
     nearest_other = min(value for key, value in distances.items() if key != outfit)
-    pred_residual = _finite_vector(record["predicted_normalized_residual"], "predicted residual")
-    target_residual = _finite_vector(record["target_normalized_residual"], "target residual")
+    precomputed_residual = record.get("precomputed_residual_metrics")
+    if precomputed_residual is None:
+        pred_residual = _finite_vector(record["predicted_normalized_residual"], "predicted residual")
+        target_residual = _finite_vector(record["target_normalized_residual"], "target residual")
+        residual_metrics = {
+            "normalized_residual_rmse": _rmse(pred_residual, target_residual),
+            "cosine_similarity": _cosine(pred_residual, target_residual),
+            "top_10_support_overlap": _top_overlap(pred_residual, target_residual, 10),
+            "top_20_support_overlap": _top_overlap(pred_residual, target_residual, 20),
+        }
+    else:
+        required_residual = {
+            "normalized_residual_rmse", "cosine_similarity",
+            "top_10_support_overlap", "top_20_support_overlap",
+        }
+        if set(precomputed_residual) != required_residual:
+            raise ValueError("formal precomputed residual metrics are incomplete")
+        residual_metrics = {
+            key: float(precomputed_residual[key]) for key in required_residual
+        }
+        if not all(math.isfinite(value) for value in residual_metrics.values()):
+            raise ValueError("formal precomputed residual metrics must be finite")
+        if record.get("residual_metric_source") != "production_full_gaussian_field_v1":
+            raise ValueError("formal precomputed residual metric source is not frozen")
     render = record["render_metrics"]
     result = {
         "standardized_coefficient_rmse": _rmse(predicted, target),
@@ -97,10 +119,7 @@ def _episode_metrics(
         "nearest_teacher_accuracy": float(ordered[0] == outfit),
         "correct_outfit_rank": float(ordered.index(outfit) + 1),
         "pairwise_coefficient_margin": nearest_other - correct_distance,
-        "normalized_residual_rmse": _rmse(pred_residual, target_residual),
-        "cosine_similarity": _cosine(pred_residual, target_residual),
-        "top_10_support_overlap": _top_overlap(pred_residual, target_residual, 10),
-        "top_20_support_overlap": _top_overlap(pred_residual, target_residual, 20),
+        **residual_metrics,
     }
     for metric in (
         "garment_rgb_mae", "garment_alpha_mae", "edit_reduction",

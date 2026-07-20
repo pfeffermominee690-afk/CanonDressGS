@@ -40,8 +40,13 @@ def audit_protocol(
 
     if len(experiments) != 55:
         errors.append("REGISTRY_PROTOCOL_COUNT_MISMATCH")
-    if len(executable) != 51 or len(not_run) != 51 or len(historical) != 4:
+    if len(executable) != 51 or len(historical) != 4:
         errors.append("REGISTRY_PROTOCOL_COUNT_MISMATCH")
+    allowed_runtime_statuses = set(registry["paper_status_values"]).difference(
+        {"HISTORICAL_EVIDENCE"}
+    )
+    if any(item.get("status") not in allowed_runtime_statuses for item in executable):
+        errors.append("REGISTRY_RUNTIME_STATUS_INVALID")
     if any(item.get("status") != "HISTORICAL_EVIDENCE" for item in historical):
         errors.append("HISTORICAL_STATUS_INVALID")
     if any(item.get("baseline_or_ablation") != "historical_diagnostic" for item in historical):

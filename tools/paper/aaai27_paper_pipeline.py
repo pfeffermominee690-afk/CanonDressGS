@@ -133,15 +133,29 @@ def command_run(args: argparse.Namespace, paths: PaperPaths) -> dict[str, Any]:
         paths=paths, config_path=config_path, registry_path=registry_path,
         manifest_path=manifest_path, experiment=experiment, command=sys.argv,
     )
-    transition_registry(registry_path, experiment["experiment_id"], "PREFLIGHT_PASS")
-    transition_registry(registry_path, experiment["experiment_id"], "RUNNING")
     try:
+        # Keep the checkout bitwise clean while the production executor loads the
+        # legacy frozen stack.  Those audited loaders intentionally reject dirty
+        # source trees.  The attempt itself is the durable RUNNING state; the
+        # canonical registry transitions are appended atomically after the
+        # executor has returned.
         _execute(args.executor_command, attempt)
         validate_executor_result(attempt, training)
+        transition_registry(registry_path, experiment["experiment_id"], "PREFLIGHT_PASS")
+        transition_registry(registry_path, experiment["experiment_id"], "RUNNING")
         transition_registry(registry_path, experiment["experiment_id"], "TRAINED")
         (attempt / "RUN_STATUS.json").write_text(json.dumps({"status": "TRAINED"}, indent=2) + "\n", encoding="utf-8")
     except Exception:
-        transition_registry(registry_path, experiment["experiment_id"], "FAILED")
+        current = yaml.safe_load(registry_path.read_text(encoding="utf-8"))
+        current_status = next(
+            item["status"] for item in current["experiments"]
+            if item["experiment_id"] == experiment["experiment_id"]
+        )
+        if current_status != "FAILED":
+            if current_status == "NOT_RUN":
+                transition_registry(registry_path, experiment["experiment_id"], "FAILED")
+            elif current_status in {"PREFLIGHT_PASS", "RUNNING", "TRAINED", "EVALUATED", "MANUAL_REVIEW_REQUIRED"}:
+                transition_registry(registry_path, experiment["experiment_id"], "FAILED")
         raise
     result = {"status": "TRAINED", "attempt": str(attempt), "contract": contract, "training_plan": training}
     _print(result); return result
