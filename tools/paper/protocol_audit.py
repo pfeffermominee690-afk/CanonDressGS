@@ -86,6 +86,11 @@ def audit_protocol(
         errors.append("OUTPUT_CONTRACT_MISMATCH")
     if any(item.get("evaluator_version") != registry["evaluator_version"] for item in experiments):
         errors.append("EVALUATOR_VERSION_MISMATCH")
+    evaluator_asset = next(item for item in manifest["assets"] if item["asset_id"] == "evaluator_commit")
+    if config.get("source_evaluator_commit") != evaluator_asset["fingerprint"]:
+        errors.append("SOURCE_EVALUATOR_PROVENANCE_MISMATCH")
+    if config.get("unified_evaluator_commit") != registry["evaluator_version"]:
+        errors.append("UNIFIED_EVALUATOR_PROVENANCE_MISMATCH")
     if len(manifest["assets"]) != 19:
         errors.append("FROZEN_ASSET_COUNT_MISMATCH")
     configured_metrics = {

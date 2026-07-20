@@ -269,6 +269,12 @@ def test_evaluator_metric_count_matches_frozen_contract():
     assert _evaluations()[0]["metric_count"] == 27
 
 
+def test_unified_evaluator_version_is_implementation_commit():
+    assert REGISTRY["evaluator_version"] == "1d4cfbbb566828a0b2ea202105f2a327a35fdbab"
+    assert CONFIG["unified_evaluator_commit"] == REGISTRY["evaluator_version"]
+    assert CONFIG["source_evaluator_commit"] == "4baf319843f2e8f4faf08043dcd40a590a61d992"
+
+
 def test_table_one_to_four_export_all_formats():
     aggregate = aggregate_evaluations(_evaluations())
     with tempfile.TemporaryDirectory() as directory:

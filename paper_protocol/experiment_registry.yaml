@@ -5,7 +5,7 @@ next_unique_task: RUN_UNIFIED_PAPER_SMOKE_AND_EVALUATOR_ACCEPTANCE
 method_config_name: seen_outfit_explicit_basis_v1
 frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
 frozen_asset_manifest_sha256: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
-evaluator_version: 4baf319843f2e8f4faf08043dcd40a590a61d992
+evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
 paper_status_values: [NOT_RUN, PREFLIGHT_PASS, RUNNING, TRAINED, EVALUATED, MANUAL_REVIEW_REQUIRED, PAPER_FINAL, FAILED, HISTORICAL_EVIDENCE]
 historical_evidence_label: HISTORICAL_EVIDENCE
 paper_final_label: PAPER_FINAL
@@ -15,7 +15,7 @@ defaults: &paper_defaults
   expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
   config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
   frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
-  evaluator_version: 4baf319843f2e8f4faf08043dcd40a590a61d992
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
   required_metrics:
     - standardized_coefficient_rmse
     - restored_coefficient_rmse

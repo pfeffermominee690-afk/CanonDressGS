@@ -2,6 +2,8 @@
 
 任务：`AAAI27-UNIFIED-PAPER-RUNNER-EVALUATOR-001`。
 
+统一 runner/evaluator implementation commit：`1d4cfbbb566828a0b2ea202105f2a327a35fdbab`。冻结资产中的 source evaluator commit 仍为 `4baf319843f2e8f4faf08043dcd40a590a61d992`；两者职责分开记录，不改写历史资产。
+
 本实现把已冻结的 **Reference-Conditioned Explicit Gaussian Residual Basis** 协议转换为一个统一、append-only、可审计的 paper experiment 基础设施。本任务只建设与 CPU synthetic 验收，不运行任何正式实验。
 
 ## 1. 冻结边界
