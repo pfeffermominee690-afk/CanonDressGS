@@ -1080,6 +1080,7 @@ def run_stage_c(
     outfit_counts = {outfit: 0 for outfit in OUTFITS}; view_counts = {condition: 0 for condition in CONDITIONS}
     started = time.time(); torch.cuda.reset_peak_memory_stats(); final_gradients = {}
     checkpoint_path = output_dir / "stage_c/checkpoints" / f"checkpoint_step_{int(config['stage_c']['max_steps']):06d}.pth"
+    reused_completed_evaluation = False
     if resume_acceptance_only:
         if not checkpoint_path.is_file():
             raise FileNotFoundError(f"Stage-C acceptance-only resume requires {checkpoint_path}")
@@ -1102,10 +1103,24 @@ def run_stage_c(
         coefficients, _, _ = stage_c_coefficients(model, predictor, context["episodes"][key], context["geometries"][condition])
         loss = F.smooth_l1_loss(coefficients, teacher_coefficients[outfit]); loss.backward()
         final_gradients = parameterization.trainable_snapshot(groups)
-        final, cache = evaluate_stage_c(
-            context, model, predictor, basis, teacher_coefficients,
-            step=int(config["stage_c"]["max_steps"]), full_variants=True, persist=False,
-        )
+        prior_metrics_path = output_dir / "stage_c/stage_c_metrics.json"
+        required_visuals = [
+            output_dir / "visual_acceptance" / name
+            for name in (
+                "stage_c_O01_contact_sheet.png", "stage_c_O08_contact_sheet.png",
+                "coefficient_distribution.png", "correct_swapped_coefficient_comparison.png",
+                "residual_magnitude_difference.png",
+            )
+        ]
+        if prior_metrics_path.is_file() and all(path.is_file() for path in required_visuals):
+            final = json.loads(prior_metrics_path.read_text(encoding="utf-8"))["final"]
+            cache = None
+            reused_completed_evaluation = True
+        else:
+            final, cache = evaluate_stage_c(
+                context, model, predictor, basis, teacher_coefficients,
+                step=int(config["stage_c"]["max_steps"]), full_variants=True, persist=False,
+            )
         milestones[str(config["stage_c"]["max_steps"])] = final
     else:
         milestones = {}; initial, _ = evaluate_stage_c(context, model, predictor, basis, teacher_coefficients, step=0, full_variants=False); milestones["0"] = initial
@@ -1135,7 +1150,8 @@ def run_stage_c(
                 )
                 atomic_json(output_dir / "stage_c/partial_status.json", {"status": "RUNNING", "completed_step": step, "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path)})
     final = milestones[str(config["stage_c"]["max_steps"])]
-    _stage_c_visuals(context, basis, teacher_coefficients, cache, final)
+    if cache is not None:
+        _stage_c_visuals(context, basis, teacher_coefficients, cache, final)
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     construction_rng = rng_state()
     restore_rng(context["reference_model_initialization_rng"])
@@ -1192,6 +1208,7 @@ def run_stage_c(
     result = {
         "status": status, "optimizer_steps": int(config["stage_c"]["max_steps"]),
         "acceptance_only_resume": resume_acceptance_only,
+        "reused_completed_evaluation": reused_completed_evaluation,
         "milestones": milestones, "final": final, "checks": checks, "gradients": final_gradients,
         "updates": {"episodes": counts, "outfits": outfit_counts, "views": view_counts},
         "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path), "checkpoint_resume": resume,

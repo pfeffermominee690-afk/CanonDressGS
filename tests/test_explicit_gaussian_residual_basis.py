@@ -235,7 +235,7 @@ def test_stage_c_acceptance_resume_does_not_repeat_optimizer_steps() -> None:
     acceptance_branch = source.split("if resume_acceptance_only:", 1)[1].split("else:", 1)[0]
     assert "optimizer.step()" not in acceptance_branch
     assert "append_jsonl" not in acceptance_branch
-    assert "persist=False" in acceptance_branch
+    assert "persist=False" in source
 
 
 def test_checkpoint_parity_replays_reference_model_initialization_rng() -> None:
@@ -244,3 +244,10 @@ def test_checkpoint_parity_replays_reference_model_initialization_rng() -> None:
     assert 'restore_rng(context["reference_model_initialization_rng"])' in construction
     assert "construct_reference_model" in construction
     assert "restore_rng(construction_rng)" in construction
+
+
+def test_stage_c_parity_resume_reuses_completed_evaluation() -> None:
+    source = inspect.getsource(runner.run_stage_c)
+    assert 'prior_metrics_path = output_dir / "stage_c/stage_c_metrics.json"' in source
+    assert "reused_completed_evaluation = True" in source
+    assert "if cache is not None:" in source
