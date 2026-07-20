@@ -152,3 +152,10 @@ def test_historical_outputs_are_immutable(tmp_path: Path):
     after = legacy.immutable_tree_metadata_fingerprint(historical)
     assert loaded["permissions"]["modify_existing_teachers"] is False
     assert before == after
+
+
+def test_held_out_reads_frozen_teacher_adjudication_schema():
+    current = {"teachers": {"O07": {"status": "PASS"}}}
+    legacy_schema = {"outfits": {"O07": {"status": "PASS"}}}
+    assert runner._teacher_adjudication_entries(current)["O07"]["status"] == "PASS"
+    assert runner._teacher_adjudication_entries(legacy_schema)["O07"]["status"] == "PASS"

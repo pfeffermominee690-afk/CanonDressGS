@@ -1771,12 +1771,21 @@ def adjudicate_seen(context: Mapping[str, Any], visual_path: Path) -> dict[str, 
     return report
 
 
+def _teacher_adjudication_entries(decision: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Return the per-outfit decisions from the frozen adjudication schema."""
+    entries = decision.get("teachers", decision.get("outfits"))
+    if not isinstance(entries, Mapping):
+        raise ValueError("teacher bank adjudication has no per-outfit decisions")
+    return entries
+
+
 def run_held_out(context: Mapping[str, Any]) -> dict[str, Any]:
     seen_path = context["output_dir"] / "stage_c_seen/seen_adjudication.json"
     if not seen_path.is_file() or json.loads(seen_path.read_text(encoding="utf-8"))["status"] != "PASS":
         raise RuntimeError("Stage D is forbidden until seen Stage C fully passes")
     teacher_decision = json.loads((context["output_dir"] / "stage_a_teacher_bank/teacher_bank_adjudication.json").read_text(encoding="utf-8"))
-    o07_teacher_pass = teacher_decision["outfits"][HELD_OUT_OUTFIT]["status"] == "PASS"
+    teacher_entries = _teacher_adjudication_entries(teacher_decision)
+    o07_teacher_pass = teacher_entries[HELD_OUT_OUTFIT]["status"] == "PASS"
     basis, coefficients, payload, basis_path = _selected_basis(context)
     teacher = load_teacher_residuals(context, (HELD_OUT_OUTFIT,))[0][HELD_OUT_OUTFIT]
     projection = project_residual_onto_basis(basis, teacher)
@@ -1844,7 +1853,7 @@ def run_held_out(context: Mapping[str, Any]) -> dict[str, Any]:
     }
     report = {
         "status": "NUMERIC_PASS_VISUAL_PENDING" if all(basis_checks.values()) and all(reference_checks.values()) else "FAIL",
-        "o07_teacher_status": teacher_decision["outfits"][HELD_OUT_OUTFIT]["status"],
+        "o07_teacher_status": teacher_entries[HELD_OUT_OUTFIT]["status"],
         "projection_coefficient": projection.detach().cpu().tolist(),
         "projection_standardized": projection_standardized.detach().cpu().tolist(),
         "basis_metrics": basis_metrics,
