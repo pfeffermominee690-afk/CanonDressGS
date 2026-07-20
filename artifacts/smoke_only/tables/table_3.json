@@ -1,0 +1,210 @@
+{
+  "title": "Efficiency",
+  "marker": "SMOKE ONLY — NOT PAPER RESULTS",
+  "units": {
+    "peak_vram_bytes": "bytes",
+    "basis_storage_bytes": "bytes",
+    "training_time_seconds": "s",
+    "inference_time_seconds": "s",
+    "render_time_seconds": "s",
+    "trainable_parameter_count": "parameters"
+  },
+  "rows": [
+    {
+      "method": "Base Avatar",
+      "trainable_parameter_count": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 1.0505318641662598e-06,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.00013709217309951783,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "B1 — Optimization Upper Bound",
+      "trainable_parameter_count": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 3.762543201446533e-07,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.0001108899712562561,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "B2 — Seen-only Lookup",
+      "trainable_parameter_count": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 4.917383193969727e-07,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.00011269934475421906,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Global Reference Feature",
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 0.7452239915728569,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.00014555584639310836,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Clothing Mean Only",
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 0.008646409958600998,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.0001460941508412361,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Legacy Complex Fusion",
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 0.010380782186985016,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.00013913307338953018,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Ours",
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "basis_storage_bytes": {
+        "mean": 1280.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "peak_vram_bytes": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "training_time_seconds": {
+        "mean": 0.05317368730902672,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "inference_time_seconds": {
+        "mean": 0.00014337431639432907,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    }
+  ]
+}

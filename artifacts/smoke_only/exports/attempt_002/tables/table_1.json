@@ -1,0 +1,311 @@
+{
+  "title": "Seen-outfit main comparison",
+  "marker": "SMOKE ONLY — NOT PAPER RESULTS",
+  "units": {
+    "peak_vram_bytes": "bytes",
+    "basis_storage_bytes": "bytes",
+    "training_time_seconds": "s",
+    "inference_time_seconds": "s",
+    "render_time_seconds": "s",
+    "trainable_parameter_count": "parameters"
+  },
+  "rows": [
+    {
+      "method": "Base Avatar",
+      "garment_rgb_mae": {
+        "mean": 0.1448188739183734,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": null,
+      "correct_vs_swapped_wins": {
+        "mean": 80.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "B1 — Optimization Upper Bound",
+      "garment_rgb_mae": {
+        "mean": 1.8749777144600385e-17,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": 0.9999999999999998,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.8444148936170214,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.00043207877416407813,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 1.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 80.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "B2 — Seen-only Lookup",
+      "garment_rgb_mae": {
+        "mean": 1.8749777144600385e-17,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": 0.9999999999999998,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.8444148936170214,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.00043207877416407813,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 1.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 80.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Global Reference Feature",
+      "garment_rgb_mae": {
+        "mean": 0.1829986550144992,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": -0.2161841367040896,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.3805851063829787,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.0003659809617824575,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.2,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 39.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Clothing Mean Only",
+      "garment_rgb_mae": {
+        "mean": 0.1829986550144992,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": -0.2161841367040896,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.3805851063829787,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.0003659809617824575,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.2,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 39.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Legacy Complex Fusion",
+      "garment_rgb_mae": {
+        "mean": 0.1829986550144992,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": -0.2161841367040896,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.3805851063829787,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.0003659809617824575,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.2,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 39.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "method": "Ours",
+      "garment_rgb_mae": {
+        "mean": 0.0926533743622754,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "edit_reduction": {
+        "mean": 0.36823414717805514,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "target_closer_fraction": {
+        "mean": 0.8444148936170214,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "background_rgb_mae": {
+        "mean": 0.00028940407397139444,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.7,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 75.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "trainable_parameter_count": {
+        "mean": 52.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    }
+  ]
+}
