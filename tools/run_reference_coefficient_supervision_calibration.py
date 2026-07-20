@@ -134,6 +134,10 @@ def _build_previous_context(config: dict[str, Any], output_dir: Path) -> dict[st
 
 def build_context(config: dict[str, Any], output_dir: Path, *, create: bool) -> dict[str, Any]:
     governance = _verify_governance()
+    if output_dir.name != config["output"]["attempt"]:
+        raise ValueError(
+            f"output attempt must be {config['output']['attempt']}, got {output_dir.name}"
+        )
     previous_final = Path(config["inputs"]["previous_fusion_final_adjudication"])
     previous_attempt = Path(config["inputs"]["previous_fusion_attempt"])
     if not previous_final.is_file() or sha256(previous_final) != config["inputs"]["previous_fusion_final_adjudication_sha256"]:
@@ -179,6 +183,10 @@ def build_context(config: dict[str, Any], output_dir: Path, *, create: bool) -> 
             "forbidden_prediction_fields": sorted(FORBIDDEN_FORWARD_FIELDS),
             "target_view_used_in_prediction_forward": False,
             "teacher_usage": "loss and evaluation target only",
+            "superseded_zero_optimizer_step_attempt": config["output"].get(
+                "supersedes_zero_optimizer_step_attempt"
+            ),
+            "superseded_attempt_failure": config["output"].get("superseded_attempt_failure"),
         })
         atomic_json(output_dir / "input_audit/reference_input_audit.json", context["input_audit"])
     return context

@@ -46,6 +46,7 @@ def test_online_f2_matches_offline_probe():
         offline = torch.cat((mean.mean(0), maximum.mean(0)))
         online = extractor(images, masks).set_mean.reshape(-1)
     assert torch.equal(offline, online)
+    assert extractor._weighted_mean is not None and extractor._masked_max is not None
 
 
 def test_o01_label_maps_to_negative_coefficient():

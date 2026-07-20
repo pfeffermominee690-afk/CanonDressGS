@@ -142,7 +142,9 @@ training:
 
 output:
   task_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REFERENCE-COEFFICIENT-SUPERVISION-CALIBRATION-001
-  attempt: attempt_001
+  attempt: attempt_002
+  supersedes_zero_optimizer_step_attempt: attempt_001
+  superseded_attempt_failure: missing legacy offline-probe static pooling compatibility methods
 
 permissions:
   modify_previous_fusion_attempt: false

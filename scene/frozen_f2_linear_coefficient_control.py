@@ -47,6 +47,9 @@ class FrozenF2ReferenceFeatureExtractor(nn.Module):
         for parameter in self.spatial_backbone.parameters():
             parameter.requires_grad_(False)
 
+    _weighted_mean = staticmethod(MaskAwareReferenceTokenEncoderV1._weighted_mean)
+    _masked_max = staticmethod(MaskAwareReferenceTokenEncoderV1._masked_max)
+
     def forward(
         self,
         reference_images: torch.Tensor,
@@ -79,8 +82,8 @@ class FrozenF2ReferenceFeatureExtractor(nn.Module):
         _require_finite("spatial feature maps", feature_maps)
         resized = F.interpolate(masks, feature_maps.shape[-2:], mode="area").clamp(0, 1)
         denominator = resized.sum(dim=(2, 3))
-        clothing_mean = MaskAwareReferenceTokenEncoderV1._weighted_mean(feature_maps, resized)
-        clothing_max = MaskAwareReferenceTokenEncoderV1._masked_max(feature_maps, resized)
+        clothing_mean = self._weighted_mean(feature_maps, resized)
+        clothing_max = self._masked_max(feature_maps, resized)
         per_reference = torch.cat((clothing_mean, clothing_max), dim=-1) * valid
         valid_count = valid.sum(dim=0, keepdim=True).clamp_min(1e-8)
         set_mean = (per_reference * valid).sum(dim=0, keepdim=True) / valid_count
