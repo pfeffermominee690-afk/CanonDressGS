@@ -1619,6 +1619,10 @@ def run_seen_evaluation(context: Mapping[str, Any]) -> dict[str, Any]:
     mean_rmse = float(np.mean([row["standardized_coefficient_rmse"] for row in rows.values()]))
     nearest_correct = sum(row["nearest_teacher"] == row["outfit"] for row in rows.values())
     rank_one = sum(row["correct_rank"] == 1 for row in rows.values())
+    training_checkpoint = torch.load(
+        context["output_dir"] / "stage_c_training/checkpoints/checkpoint_step_000300.pth",
+        map_location="cpu", weights_only=False,
+    )
     checks = {
         "mean_standardized_rmse": mean_rmse <= float(acceptance["standardized_rmse_max"]),
         "nearest_teacher_20_of_20": nearest_correct == int(acceptance["nearest_teacher_correct_count"]),
