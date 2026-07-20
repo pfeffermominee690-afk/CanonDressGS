@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import inspect
+import json
 import sys
+import tempfile
 from pathlib import Path
 
 import torch
@@ -225,6 +227,24 @@ def test_v7_render_directory_is_created_before_png_persistence() -> None:
     first_save = 'save_render_tensor(directory / f"{outfit}_{condition}_predicted_rgb.png"'
     assert directory_creation in source and first_save in source
     assert source.index(directory_creation, source.index("def render_metrics")) < source.index(first_save)
+
+
+def test_v7_visual_acceptance_requires_opened_images_and_matching_status() -> None:
+    from tools.run_residual_decoder_capacity_v7 import _load_visual_observations
+
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "observations.json"
+        path.write_text(json.dumps({
+            "images_actually_opened": True,
+            "inspection_method": "test viewer",
+            "stage_a_status": "FAIL",
+            "images": ["contact.png"],
+            "observations": ["visible cloud artifact"],
+        }), encoding="utf-8")
+        loaded = _load_visual_observations(path, "FAIL")
+        assert loaded["images_actually_opened"] is True
+        _assert_raises(ValueError, lambda: _load_visual_observations(None, "FAIL"))
+        _assert_raises(ValueError, lambda: _load_visual_observations(path, "PASS"))
 
 
 if __name__ == "__main__":

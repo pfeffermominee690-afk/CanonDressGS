@@ -1135,7 +1135,46 @@ def input_context(config: dict[str, Any], output_dir: Path, *, create: bool) -> 
     }
 
 
-def finalize(context: Mapping[str, Any], stage_a_visual_status: str, stage_b_visual_status: str | None) -> dict[str, Any]:
+def _load_visual_observations(path: Path | None, expected_status: str) -> dict[str, Any]:
+    if path is None:
+        raise ValueError("finalize requires --visual-observations from an actual image inspection")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("images_actually_opened") is not True:
+        raise ValueError("visual observations must confirm images_actually_opened=true")
+    if payload.get("stage_a_status") != expected_status:
+        raise ValueError(
+            f"visual observation status {payload.get('stage_a_status')!r} does not match "
+            f"--stage-a-visual-status {expected_status!r}"
+        )
+    if not payload.get("inspection_method") or not payload.get("images") or not payload.get("observations"):
+        raise ValueError("visual observations require inspection_method, images, and observations")
+    return payload
+
+
+def _visual_acceptance_markdown(payload: Mapping[str, Any], stage_b_visual_status: str | None) -> str:
+    lines = [
+        f"# {TASK_ID} visual acceptance",
+        "",
+        f"- Images actually opened: `{payload['images_actually_opened']}`",
+        f"- Inspection method: {payload['inspection_method']}",
+        f"- Stage A visual status: **{payload['stage_a_status']}**",
+        f"- Stage B visual status: **{stage_b_visual_status or 'NOT_RUN'}**",
+        "",
+        "## Images inspected",
+        "",
+    ]
+    lines.extend(f"- `{item}`" for item in payload["images"])
+    lines.extend(["", "## Observations", ""])
+    lines.extend(f"- {item}" for item in payload["observations"])
+    return "\n".join(lines)
+
+
+def finalize(
+    context: Mapping[str, Any],
+    stage_a_visual_status: str,
+    stage_b_visual_status: str | None,
+    visual_observations_path: Path | None = None,
+) -> dict[str, Any]:
     output_dir, model, base = context["output_dir"], context["model"], context["base"]
     stage_a = json.loads((output_dir / "stage_a" / "stage_a_metrics.json").read_text(encoding="utf-8"))
     stage_b_path = output_dir / "stage_b" / "stage_b_metrics.json"
@@ -1177,12 +1216,13 @@ def finalize(context: Mapping[str, Any], stage_a_visual_status: str, stage_b_vis
         "freeze": freeze, "final_case": case, "status": final_status,
         "image_space_objective_allowed": case == "V7-P", "next_task": next_task,
     }
-    atomic_json(output_dir / "visual_acceptance" / "visual_acceptance.json", {
-        "images_actually_opened": True,
-        "inspection_method": "Codex local image viewer",
-        "stage_a_status": stage_a_visual_status,
-        "stage_b_status": stage_b_visual_status,
-    })
+    visual_observations = _load_visual_observations(visual_observations_path, stage_a_visual_status)
+    visual_observations["stage_b_status"] = stage_b_visual_status or "NOT_RUN"
+    atomic_json(output_dir / "visual_acceptance" / "visual_acceptance.json", visual_observations)
+    atomic_text(
+        output_dir / "visual_acceptance" / "VISUAL_ACCEPTANCE.md",
+        _visual_acceptance_markdown(visual_observations, stage_b_visual_status),
+    )
     atomic_json(output_dir / "final_adjudication" / "final_adjudication.json", result)
     atomic_text(output_dir / "final_adjudication" / "FINAL_ADJUDICATION.md", "\n".join([
         f"# {TASK_ID}", "", f"- Run commit: `{result['run_commit']}`",
@@ -1223,7 +1263,12 @@ def run(args: argparse.Namespace) -> None:
             report = run_stage_b(context)
             atomic_json(output_dir / "RUN_STATUS.json", {"task_id": TASK_ID, "status": "AWAITING_STAGE_B_VISUAL_INSPECTION" if report["status"].startswith("NUMERIC_PASS") else "AWAITING_FINAL_ADJUDICATION", "phase": "stage_b_complete", "optimizer_steps": 2000})
         elif args.phase == "finalize":
-            finalize(context, args.stage_a_visual_status, args.stage_b_visual_status)
+            finalize(
+                context,
+                args.stage_a_visual_status,
+                args.stage_b_visual_status,
+                args.visual_observations,
+            )
         else:
             raise ValueError(f"unknown phase: {args.phase}")
     except Exception as error:
@@ -1241,6 +1286,7 @@ def main() -> None:
     parser.add_argument("--phase", choices=("stage-a", "stage-b", "finalize"), required=True)
     parser.add_argument("--stage-a-visual-status", choices=("PASS", "WARN", "FAIL"), default=None)
     parser.add_argument("--stage-b-visual-status", choices=("PASS", "WARN", "FAIL"), default=None)
+    parser.add_argument("--visual-observations", type=Path, default=None)
     args = parser.parse_args()
     if args.phase in {"stage-b", "finalize"} and args.stage_a_visual_status is None:
         parser.error("stage-b/finalize require --stage-a-visual-status")
