@@ -9,9 +9,17 @@ from torch import nn
 from scene.anchor_image_projector import AnchorImageProjector
 from scene.clothing_observation_encoder import ClothingObservationEncoder
 from scene.dressable_gaussian_model import DressableGaussianModel
-from scene.gaussian_clothing_residuals import apply_protected_full_residual_guard
+from scene.gaussian_clothing_residuals import (
+    apply_protected_full_residual_guard,
+    interpolate_anchor_field,
+)
 from scene.multiview_clothing_aggregator import MultiViewClothingAggregator
 from scene.canonical_clothing_completion import CanonicalClothingCompleter
+from scene.support_conditioned_dual_branch_residual_decoder_v7 import (
+    SupportConditionedDualBranchResidualDecoderV7,
+    V7_DECODER_TYPE,
+    V7_EXTERNAL_GATE_MODE,
+)
 from utils.anchor_graph_utils import validate_anchor_graph
 from utils.dressable_camera_utils import build_mmlphuman_camera
 from utils.mmlphuman_state_utils import mmlphuman_state_transaction
@@ -97,6 +105,10 @@ class ImageConditionedDressableModel(nn.Module):
             anchors = canonical_anchors.detach().clone().to(device=device, dtype=dtype)
         self.register_buffer("canonical_anchors", anchors)
         self.canonical_clothing_completer: CanonicalClothingCompleter | None = None
+        self.support_conditioned_residual_decoder_v7: (
+            SupportConditionedDualBranchResidualDecoderV7 | None
+        ) = None
+        self.residual_decoder_type = "legacy"
         self.register_buffer("anchor_graph_indices", torch.empty(0, dtype=torch.long), persistent=False)
         self.register_buffer("anchor_graph_weights", torch.empty(0, device=device, dtype=dtype), persistent=False)
 
@@ -113,6 +125,51 @@ class ImageConditionedDressableModel(nn.Module):
         ).to(device=self.canonical_anchors.device,dtype=self.canonical_anchors.dtype)
         self.anchor_graph_indices=anchor_graph_indices.to(self.canonical_anchors.device)
         self.anchor_graph_weights=anchor_graph_weights.to(self.canonical_anchors)
+
+    def configure_residual_decoder(
+        self,
+        decoder_config: dict[str, Any] | None,
+        channel_config: dict[str, Any],
+    ) -> None:
+        """Select legacy or V7 without changing legacy checkpoint topology."""
+
+        decoder_config = dict(decoder_config or {"type": "legacy"})
+        decoder_type = str(decoder_config.get("type", "legacy"))
+        if decoder_type == "legacy":
+            self.dressable_model.configure_six_channel_decoder(channel_config)
+            self.support_conditioned_residual_decoder_v7 = None
+            self.residual_decoder_type = "legacy"
+            return
+        if decoder_type != V7_DECODER_TYPE:
+            raise ValueError(f"unsupported residual decoder type: {decoder_type}")
+        # Keep the complete legacy six-head topology available for strict old
+        # checkpoint loading and an apples-to-apples parameter baseline.  The
+        # legacy decoder remains inactive when V7 is selected.
+        self.dressable_model.configure_six_channel_decoder(channel_config)
+        bounds = {
+            "xyz": float(channel_config["xyz"]["max_abs"]),
+            "log_scaling": float(channel_config["log_scaling"]["max_abs"]),
+            "rotation": float(channel_config["rotation"]["max_angle_rad"]),
+            "opacity_logit": float(channel_config["opacity_logit"]["max_abs"]),
+            "sh0": float(channel_config["sh0"]["max_abs"]),
+            "shN": float(channel_config["shN"]["max_abs"]),
+        }
+        resolved = {
+            **decoder_config,
+            "global_feature_dim": self.dressable_model.clothing_film_generator.clothing_dim,
+            "local_feature_dim": self.multiview_aggregator.output_dim,
+        }
+        self.support_conditioned_residual_decoder_v7 = (
+            SupportConditionedDualBranchResidualDecoderV7.from_frozen_support(
+                self.dressable_model.base_model,
+                self.canonical_anchors,
+                self.dressable_model.gaussian_anchor_indices,
+                self.dressable_model.gaussian_anchor_weights,
+                resolved,
+                bounds,
+            )
+        )
+        self.residual_decoder_type = V7_DECODER_TYPE
 
     def encode_clothing_online(
         self, reference_images: torch.Tensor, reference_cloth_masks: torch.Tensor,
@@ -175,15 +232,55 @@ class ImageConditionedDressableModel(nn.Module):
         forbidden={"teacher","target_rgb","target_foreground_mask","target_clothing_mask","cloth_id","reference_only_gate"}.intersection(online_inputs)
         if forbidden: raise ValueError(f"forbidden online conditioning fields: {sorted(forbidden)}")
         online=self.encode_clothing_online(**online_inputs); completion=online["completion"]
-        raw,bounded,gated=self.dressable_model.compute_film_anchor_residuals(
-            completion.gate_bundle(),clothing_embedding=online["global_clothing_embedding"],
-            anchor_clothing_features=completion.completed_anchor_features,
-        )
-        gaussian=self.dressable_model.interpolate_anchor_clothing_residuals(gated)
+        if self.residual_decoder_type == "legacy":
+            raw,bounded,gated=self.dressable_model.compute_film_anchor_residuals(
+                completion.gate_bundle(),clothing_embedding=online["global_clothing_embedding"],
+                anchor_clothing_features=completion.completed_anchor_features,
+            )
+            gaussian=self.dressable_model.interpolate_anchor_clothing_residuals(gated)
+            decoder_outputs = {
+                "raw_anchor_residuals": raw,
+                "bounded_anchor_residuals": bounded,
+                "gated_anchor_residuals": gated,
+                "decoder_space": "anchor",
+                "decoder_type": "legacy",
+            }
+        else:
+            decoder = self.support_conditioned_residual_decoder_v7
+            if decoder is None:
+                raise RuntimeError("V7 residual decoder was selected but not initialized")
+            geometry_gate = appearance_gate = None
+            if decoder.gate_mode == V7_EXTERNAL_GATE_MODE:
+                geometry_gate = interpolate_anchor_field(
+                    completion.geometry_gate,
+                    self.dressable_model.gaussian_anchor_indices,
+                    self.dressable_model.gaussian_anchor_weights,
+                )
+                appearance_gate = interpolate_anchor_field(
+                    completion.appearance_gate,
+                    self.dressable_model.gaussian_anchor_indices,
+                    self.dressable_model.gaussian_anchor_weights,
+                )
+            decoded = decoder(
+                online["global_clothing_embedding"],
+                completion.completed_anchor_features,
+                geometry_gate=geometry_gate,
+                appearance_gate=appearance_gate,
+            )
+            gaussian = decoded.gated_gaussian_residuals
+            decoder_outputs = {
+                "raw_gaussian_residuals": decoded.raw_gaussian_residuals,
+                "bounded_gaussian_residuals": decoded.bounded_gaussian_residuals,
+                "gated_gaussian_residuals": decoded.gated_gaussian_residuals,
+                "decoder_geometry_gate": decoded.geometry_gate,
+                "decoder_appearance_gate": decoded.appearance_gate,
+                "decoder_gate_mode": decoded.gate_mode,
+                "decoder_space": "gaussian",
+                "decoder_type": V7_DECODER_TYPE,
+            }
         if protected_gaussian_mask is not None:
             gaussian=apply_protected_full_residual_guard(gaussian, protected_gaussian_mask)
-        return {**online,"raw_anchor_residuals":raw,"bounded_anchor_residuals":bounded,
-                "gated_anchor_residuals":gated,"gaussian_residuals":gaussian,
+        return {**online,**decoder_outputs,"gaussian_residuals":gaussian,
                 "protected_full_residual_guard_applied":protected_gaussian_mask is not None}
 
     def encode_global_clothing(

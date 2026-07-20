@@ -1058,6 +1058,9 @@ def create_image_conditioned_components(
         aggregator,
         canonical_anchors=anchor_xyz,
     )
+    decoder_config = model_config.get("decoder", {"type": "legacy"})
+    if "dressable_channels" in model_config:
+        model.configure_residual_decoder(decoder_config, model_config["dressable_channels"])
     optimizer = build_image_conditioned_optimizer(model, config["optimizer"])
     return model, optimizer, anchor_features, anchor_edges
 
@@ -1248,7 +1251,7 @@ def build_image_conditioned_optimizer(
     dressable = model.dressable_model
     local_parameters = list(dressable.anchor_clothing_mlp.local_feature_adapter.parameters())
     local_ids = {id(parameter) for parameter in local_parameters}
-    groups = (
+    common_groups = (
         (
             "encoder",
             list(model.clothing_observation_encoder.parameters()),
@@ -1259,26 +1262,39 @@ def build_image_conditioned_optimizer(
             list(model.multiview_aggregator.parameters()),
             float(optimizer_config.get("aggregator_lr", optimizer_config.get("lr", 1e-4))),
         ),
-        (
-            "hypernetwork",
-            list(dressable.clothing_film_generator.parameters()),
-            float(optimizer_config.get("hypernetwork_lr", optimizer_config.get("lr", 1e-4))),
-        ),
-        (
-            "anchor_mlp",
-            [
-                parameter
-                for parameter in dressable.anchor_clothing_mlp.parameters()
-                if id(parameter) not in local_ids
-            ],
-            float(optimizer_config.get("anchor_mlp_lr", optimizer_config.get("lr", 1e-4))),
-        ),
-        (
-            "local_adapter",
-            local_parameters,
-            float(optimizer_config.get("local_adapter_lr", optimizer_config.get("lr", 1e-4))),
-        ),
     )
+    if model.residual_decoder_type == "legacy":
+        decoder_groups = (
+            (
+                "hypernetwork",
+                list(dressable.clothing_film_generator.parameters()),
+                float(optimizer_config.get("hypernetwork_lr", optimizer_config.get("lr", 1e-4))),
+            ),
+            (
+                "anchor_mlp",
+                [
+                    parameter
+                    for parameter in dressable.anchor_clothing_mlp.parameters()
+                    if id(parameter) not in local_ids
+                ],
+                float(optimizer_config.get("anchor_mlp_lr", optimizer_config.get("lr", 1e-4))),
+            ),
+            (
+                "local_adapter",
+                local_parameters,
+                float(optimizer_config.get("local_adapter_lr", optimizer_config.get("lr", 1e-4))),
+            ),
+        )
+    else:
+        decoder = model.support_conditioned_residual_decoder_v7
+        if decoder is None:
+            raise RuntimeError("V7 decoder type is active without a decoder module")
+        decoder_groups = ((
+            "residual_decoder_v7",
+            list(decoder.parameters()),
+            float(optimizer_config.get("residual_decoder_v7_lr", optimizer_config.get("lr", 1e-4))),
+        ),)
+    groups = common_groups + decoder_groups
     seen: set[int] = set()
     parameter_groups = []
     for name, parameters, learning_rate in groups:
