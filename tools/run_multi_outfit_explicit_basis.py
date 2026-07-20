@@ -1688,6 +1688,68 @@ def _seen_visuals(
     )
 
 
+def build_seen_counterfactual_visuals(context: Mapping[str, Any]) -> dict[str, Any]:
+    """Persist the preregistered swapped and reference-robustness render evidence."""
+    metrics_path = context["output_dir"] / "stage_c_seen/seen_metrics.json"
+    if not metrics_path.is_file():
+        raise FileNotFoundError("seen metrics must exist before supplementary visual persistence")
+    basis, coefficients, payload, _ = _selected_basis(context)
+    extractor = _feature_extractor(context)
+    model = _load_trained_control(context, basis.rank, extractor.set_feature_dim)
+    mean = payload["coefficient_train_mean"].to(context["base"]._xyz)
+    std = payload["coefficient_train_std"].to(mean)
+    condition = "cond_000318"; swapped_rows = []; robustness_rows = []
+    for outfit in TRAIN_OUTFITS:
+        key = f"{outfit}/{condition}"; sample = context["samples"][key]
+        episode = context["episodes"][key]
+        teacher = basis(coefficients[outfit], chunk_size=int(context["config"]["basis"]["chunk_size"]))
+        teacher_rgb, _ = _render_residual(context, outfit, condition, teacher)
+        panels = [
+            ("target", sample["target_edit_rgb"].detach().cpu(), 3),
+            ("teacher", teacher_rgb.detach().cpu(), 3),
+        ]
+        variants: dict[str, Mapping[str, Any]] = {"correct": episode}
+        variants.update({
+            f"swapped {other}": context["episodes"][f"{other}/{condition}"]
+            for other in TRAIN_OUTFITS if other != outfit
+        })
+        render_cache = {}
+        for name, value in variants.items():
+            _, restored = _variant_prediction(extractor, model, value, mean, std)
+            residual = basis(restored, chunk_size=int(context["config"]["basis"]["chunk_size"]))
+            rgb, _ = _render_residual(context, outfit, condition, residual)
+            render_cache[name] = rgb.detach().cpu(); panels.append((name, render_cache[name], 3))
+        swapped_rows.append((f"{outfit}/back", panels))
+        robust_panels = [
+            ("target", sample["target_edit_rgb"].detach().cpu(), 3),
+            ("correct", render_cache["correct"], 3),
+        ]
+        robust_variants = {
+            "permuted": subset_reference_episode(episode, (2, 0, 1)),
+            "single": subset_reference_episode(episode, (0,)),
+            "dropout": subset_reference_episode(episode, (0, 1)),
+        }
+        for name, value in robust_variants.items():
+            _, restored = _variant_prediction(extractor, model, value, mean, std)
+            residual = basis(restored, chunk_size=int(context["config"]["basis"]["chunk_size"]))
+            rgb, _ = _render_residual(context, outfit, condition, residual)
+            robust_panels.append((name, rgb.detach().cpu(), 3))
+        robustness_rows.append((f"{outfit}/back", robust_panels))
+    swapped_path = context["output_dir"] / "visual_acceptance/five_outfit_correct_swapped_unified_contact.png"
+    robustness_path = context["output_dir"] / "visual_acceptance/permutation_dropout_comparison.png"
+    o01._save_contact_sheet(swapped_path, swapped_rows)
+    o01._save_contact_sheet(robustness_path, robustness_rows)
+    report = {
+        "status": "COMPLETE", "optimizer_steps": 0,
+        "correct_swapped_contact": str(swapped_path), "correct_swapped_sha256": sha256(swapped_path),
+        "permutation_dropout_contact": str(robustness_path),
+        "permutation_dropout_sha256": sha256(robustness_path),
+        "target_pose_camera_fixed": True, "target_forward_leakage": False,
+    }
+    atomic_json(context["output_dir"] / "stage_c_seen/counterfactual_visual_manifest.json", report)
+    return report
+
+
 def adjudicate_seen(context: Mapping[str, Any], visual_path: Path) -> dict[str, Any]:
     metrics = json.loads((context["output_dir"] / "stage_c_seen/seen_metrics.json").read_text(encoding="utf-8"))
     visual = json.loads(visual_path.read_text(encoding="utf-8"))
@@ -1887,7 +1949,7 @@ def run(args: argparse.Namespace) -> None:
         output_dir.mkdir(parents=True)
     elif not output_dir.is_dir():
         raise FileNotFoundError(output_dir)
-    needs_backbone = args.phase in {"ridge", "train", "seen", "seen-adjudicate", "held-out", "held-out-adjudicate", "finalize"}
+    needs_backbone = args.phase in {"ridge", "train", "seen", "seen-visuals", "seen-adjudicate", "held-out", "held-out-adjudicate", "finalize"}
     context = build_context(config, output_dir, create=create, reference_backbone=needs_backbone)
     try:
         if args.phase == "audit":
@@ -1912,6 +1974,8 @@ def run(args: argparse.Namespace) -> None:
             run_coefficient_training(context, resume_acceptance_only=args.resume_acceptance_only)
         elif args.phase == "seen":
             run_seen_evaluation(context)
+        elif args.phase == "seen-visuals":
+            build_seen_counterfactual_visuals(context)
         elif args.phase == "seen-adjudicate":
             if args.visual_observations is None:
                 raise ValueError("seen adjudication requires actual visual observations")
@@ -1940,7 +2004,7 @@ def main() -> None:
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--phase", required=True, choices=(
         "audit", "teacher", "teacher-adjudicate", "basis", "basis-adjudicate",
-        "ridge", "train", "seen", "seen-adjudicate", "held-out",
+        "ridge", "train", "seen", "seen-visuals", "seen-adjudicate", "held-out",
         "held-out-adjudicate", "finalize",
     ))
     parser.add_argument("--output-dir", type=Path, default=None)
