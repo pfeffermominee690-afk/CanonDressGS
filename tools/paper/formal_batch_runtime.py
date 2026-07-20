@@ -265,6 +265,35 @@ def _feature_kind(method: str) -> str:
     return "f2"
 
 
+def _with_coefficient_normalization(
+    coefficients: Mapping[str, torch.Tensor], payload: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Attach the frozen train-outfit coefficient statistics when absent.
+
+    The rank-sweep artifacts predate the selected-basis wrapper that persisted
+    these two tensors.  Their teacher coefficients are the authoritative
+    source, so reconstruct the same train-only statistics without changing the
+    artifact or the frozen experiment contract.
+    """
+    result = dict(payload)
+    if "coefficient_train_mean" not in result or "coefficient_train_std" not in result:
+        matrix = torch.stack([coefficients[outfit] for outfit in OUTFITS])
+        result["coefficient_train_mean"] = matrix.mean(0).detach().cpu()
+        result["coefficient_train_std"] = matrix.std(0, unbiased=False).detach().cpu()
+        result["standardization_uses_train_outfits_only"] = True
+        result["held_out_outfit_used"] = False
+    mean = torch.as_tensor(result["coefficient_train_mean"])
+    std = torch.as_tensor(result["coefficient_train_std"])
+    rank = int(result["rank"])
+    if mean.shape != (rank,) or std.shape != (rank,):
+        raise ValueError("basis coefficient normalization shape mismatch")
+    if not torch.isfinite(mean).all() or not torch.isfinite(std).all():
+        raise FloatingPointError("basis coefficient normalization contains NaN or Inf")
+    if torch.any(std <= 1e-12):
+        raise ValueError("basis coefficient normalization contains a degenerate dimension")
+    return result
+
+
 def _basis_artifact(
     context: Mapping[str, Any], method: str,
 ) -> tuple[Any, dict[str, torch.Tensor], dict[str, Any], Path]:
@@ -282,6 +311,7 @@ def _basis_artifact(
     basis, coefficients, payload = multi.load_basis_artifact(
         path, context["base"]._xyz.device
     )
+    payload = _with_coefficient_normalization(coefficients, payload)
     if int(payload["rank"]) != rank:
         raise ValueError("basis rank artifact contract mismatch")
     return basis, coefficients, payload, path

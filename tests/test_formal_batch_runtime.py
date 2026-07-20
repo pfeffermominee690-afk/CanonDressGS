@@ -12,6 +12,7 @@ from tools.paper.formal_batch_runtime import (
     _rank_for,
     _reference_count,
     _training_loss,
+    _with_coefficient_normalization,
     feature_value,
 )
 
@@ -63,3 +64,16 @@ def test_frozen_loss_variants_are_finite() -> None:
         loss, parts = _training_loss(method, prediction, target)
         assert torch.isfinite(loss)
         assert parts and all(torch.isfinite(value) for value in parts.values())
+
+
+def test_rank_sweep_payload_recovers_train_only_normalization() -> None:
+    coefficients = {
+        outfit: torch.tensor([float(index), float(index + 1)])
+        for index, outfit in enumerate(("O01", "O02", "O03", "O04", "O08"))
+    }
+    payload = _with_coefficient_normalization(coefficients, {"rank": 2})
+    matrix = torch.stack(list(coefficients.values()))
+    assert torch.equal(payload["coefficient_train_mean"], matrix.mean(0))
+    assert torch.equal(payload["coefficient_train_std"], matrix.std(0, unbiased=False))
+    assert payload["standardization_uses_train_outfits_only"] is True
+    assert payload["held_out_outfit_used"] is False
