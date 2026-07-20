@@ -21,6 +21,7 @@ from tools.paper.smoke_contract import (
     smoke_output_root,
 )
 from tools.paper.smoke_runtime import run_smoke_experiment
+from tools.paper.run_unified_paper_smoke_acceptance import _write_not_run_panel
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -238,3 +239,10 @@ def test_fixed_adapter_na_is_preserved():
 def test_smoke_state_machine_has_no_paper_final():
     assert SMOKE_STATES[-1] == "FAILED"
     assert "SMOKE_ACCEPTED" in SMOKE_STATES and "PAPER_FINAL" not in SMOKE_STATES
+
+
+def test_unrun_smoke_figure_columns_use_explicit_placeholders():
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "not_run.png"
+        assert Path(_write_not_run_panel(path, "A1 K=1")).is_file()
+        assert Image.open(path).getbbox() is not None

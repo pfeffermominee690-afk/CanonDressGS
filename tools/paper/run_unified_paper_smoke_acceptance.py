@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 import yaml
+from PIL import Image, ImageDraw
 
 if __package__ in (None, ""):
     PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -142,7 +143,19 @@ def _table_source(results: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
     }
 
 
-def _figure_sources(attempts: Mapping[str, Path]) -> dict[str, Any]:
+def _write_not_run_panel(path: Path, label: str) -> str:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    image = Image.new("RGB", (256, 128), "white")
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0, 0, image.width, 28), fill=(110, 0, 0))
+    draw.text((6, 7), "SMOKE ONLY - NOT PAPER RESULTS", fill="white")
+    draw.text((12, 55), label, fill=(40, 40, 40))
+    draw.text((12, 78), "NOT_RUN IN THIS SMOKE MATRIX", fill=(110, 0, 0))
+    image.save(path)
+    return str(path)
+
+
+def _figure_sources(attempts: Mapping[str, Path], placeholder_root: Path) -> dict[str, Any]:
     ours = attempts["S-OURS"]
     b5 = attempts["S-B5"]
     figure2 = []
@@ -161,14 +174,26 @@ def _figure_sources(attempts: Mapping[str, Path]) -> dict[str, Any]:
     a1 = str(attempts["S-A1"] / "visuals/S-A1_five_outfit_four_view_contact_sheet.png")
     a5 = str(attempts["S-A5"] / "visuals/S-A5_five_outfit_four_view_contact_sheet.png")
     o07 = [str(ours / "visuals/O07" / f"{name}.png") for name in ("teacher", "projection", "prediction", "O03_endpoint")]
+    rank_sources = [
+        _write_not_run_panel(placeholder_root / "A1_K1_NOT_RUN.png", "A1 K=1"),
+        _write_not_run_panel(placeholder_root / "A1_K2_NOT_RUN.png", "A1 K=2"),
+        a1,
+        _write_not_run_panel(placeholder_root / "A1_K4_NOT_RUN.png", "A1 K=4"),
+    ]
+    supervision_sources = [
+        a5,
+        _write_not_run_panel(placeholder_root / "A5_old_gradient_NOT_RUN.png", "old gradient"),
+        _write_not_run_panel(placeholder_root / "A5_signed_raw_logit_NOT_RUN.png", "signed raw-logit"),
+        _write_not_run_panel(placeholder_root / "A5_CS_PASS_NOT_RUN.png", "CS-PASS"),
+    ]
     return {
         "marker": "SMOKE_ONLY",
         "figures": {
             "figure_1": {"source_paths": [ours_contact, swap]},
             "figure_2": {"source_paths": figure2},
             "figure_3": {"source_paths": [str(ours / "visuals/source_panels" / f"{outfit}_cond_000000_ours.png") for outfit in ("O01", "O02", "O03", "O04", "O08")]},
-            "figure_4": {"source_paths": [a1] * 4},
-            "figure_5": {"source_paths": [a5] * 4},
+            "figure_4": {"source_paths": rank_sources},
+            "figure_5": {"source_paths": supervision_sources},
             "figure_6": {"source_paths": o07},
         },
     }
@@ -266,7 +291,7 @@ def run_all(args: argparse.Namespace) -> dict[str, Any]:
     table_source_path.parent.mkdir(parents=True, exist_ok=True)
     table_source_path.write_text(json.dumps(table_source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     tables = export_tables(table_source, artifact_root / "tables")
-    figure_source = _figure_sources(attempts)
+    figure_source = _figure_sources(attempts, artifact_root / "figures/source_placeholders")
     figure_source_path = artifact_root / "figures/smoke_figure_source_manifest.json"
     figure_source_path.parent.mkdir(parents=True, exist_ok=True)
     figure_source_path.write_text(json.dumps(figure_source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -320,6 +345,40 @@ def run_all(args: argparse.Namespace) -> dict[str, Any]:
     return summary
 
 
+def export_only(args: argparse.Namespace) -> dict[str, Any]:
+    summary = json.loads(args.summary.resolve().read_text(encoding="utf-8"))
+    artifact_root = args.artifact_root.resolve()
+    assert_no_formal_destination(artifact_root)
+    attempts = {key: Path(value) for key, value in summary["attempts"].items()}
+    results = summary["results"]
+    table_source = _table_source(results)
+    table_source_path = artifact_root / "tables/smoke_table_source.json"
+    table_source_path.parent.mkdir(parents=True, exist_ok=True)
+    table_source_path.write_text(json.dumps(table_source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    tables = export_tables(table_source, artifact_root / "tables")
+    figure_source = _figure_sources(attempts, artifact_root / "figures/source_placeholders")
+    figure_source_path = artifact_root / "figures/smoke_figure_source_manifest.json"
+    figure_source_path.parent.mkdir(parents=True, exist_ok=True)
+    figure_source_path.write_text(json.dumps(figure_source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    figures = export_figure_layouts(
+        artifact_root / "figures", synthetic=False, source_manifest=figure_source, smoke_only=True,
+    )
+    result = {
+        "status": "MANUAL_REVIEW_REQUIRED",
+        "marker": SMOKE_MARKER,
+        "source_run_commit": summary["run_commit"],
+        "source_attempts": summary["attempts"],
+        "optimizer_steps_executed": 0,
+        "tables": tables,
+        "figures": figures,
+    }
+    (artifact_root / "artifact_export_summary.json").write_text(
+        json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    print(json.dumps({"status": result["status"], "artifact_root": str(artifact_root)}))
+    return result
+
+
 def finalize(args: argparse.Namespace) -> dict[str, Any]:
     summary_path = args.summary.resolve()
     review = json.loads(args.review_json.resolve().read_text(encoding="utf-8"))
@@ -361,6 +420,9 @@ def parser() -> argparse.ArgumentParser:
     finish = sub.add_parser("finalize")
     finish.add_argument("--summary", type=Path, required=True)
     finish.add_argument("--review-json", type=Path, required=True)
+    export = sub.add_parser("export-only")
+    export.add_argument("--summary", type=Path, required=True)
+    export.add_argument("--artifact-root", type=Path, required=True)
     return root
 
 
@@ -368,8 +430,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser().parse_args(argv)
     if args.command == "run-all":
         run_all(args)
-    else:
+    elif args.command == "finalize":
         finalize(args)
+    else:
+        export_only(args)
     return 0
 
 
