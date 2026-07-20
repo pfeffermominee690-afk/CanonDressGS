@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import inspect
+import random
 from pathlib import Path
 
+import numpy as np
 import torch
 import yaml
 
@@ -188,3 +190,27 @@ def test_future_learned_basis_mode_is_available_but_not_used_here() -> None:
     learnable = ExplicitGaussianResidualBasis(mean, components, BOUNDS, trainable=True)
     assert sum(parameter.numel() for parameter in learnable.parameters()) == learnable.explicit_scalar_count
     assert list(_decomposition().basis.parameters()) == []
+
+
+def test_runner_rng_schema_roundtrip() -> None:
+    random.seed(17)
+    np.random.seed(17)
+    torch.manual_seed(17)
+    saved = runner.rng_state()
+    expected = (random.random(), float(np.random.rand()), torch.rand(3))
+    random.seed(99)
+    np.random.seed(99)
+    torch.manual_seed(99)
+    runner.restore_rng(saved)
+    actual = (random.random(), float(np.random.rand()), torch.rand(3))
+    assert expected[0] == actual[0]
+    assert expected[1] == actual[1]
+    assert torch.equal(expected[2], actual[2])
+
+
+def test_stage_b_acceptance_resume_does_not_repeat_optimizer_steps() -> None:
+    source = inspect.getsource(runner.run_stage_b)
+    acceptance_branch = source.split("if resume_acceptance_only:", 1)[1].split("else:", 1)[0]
+    assert "optimizer.step()" not in acceptance_branch
+    assert "append_jsonl" not in acceptance_branch
+    assert "checkpoint_step_000200.pth" in source

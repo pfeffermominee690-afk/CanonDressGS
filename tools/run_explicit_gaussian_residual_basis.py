@@ -187,6 +187,15 @@ def rng_state() -> dict[str, Any]:
     }
 
 
+def restore_rng(state: Mapping[str, Any]) -> None:
+    """Restore the RNG schema emitted by :func:`rng_state`."""
+    random.setstate(state["python"])
+    np.random.set_state(state["numpy"])
+    torch.set_rng_state(state["torch"])
+    if torch.cuda.is_available():
+        torch.cuda.set_rng_state_all(state["cuda"])
+
+
 def save_checkpoint(
     path: Path, *, stage: str, step: int, model: Mapping[str, Any], optimizer: Any,
     scheduler: Any | None, extra: Mapping[str, Any],
@@ -603,7 +612,9 @@ def _stage_b_evaluate(
     return report
 
 
-def run_stage_b(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str, Any]:
+def run_stage_b(
+    context: dict[str, Any], visual: Mapping[str, Any], *, resume_acceptance_only: bool = False,
+) -> dict[str, Any]:
     _require_stage(context["output_dir"], "stage_a", visual)
     config, output_dir, base = context["config"], context["output_dir"], context["base"]
     basis, teacher_coefficients, _ = load_basis_artifact(output_dir, base._xyz.device)
@@ -614,28 +625,49 @@ def run_stage_b(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str,
         int(config["stage_b"]["predictor_hidden_dim"]),
     ).to(base._xyz)
     optimizer = torch.optim.Adam(predictor.parameters(), lr=float(config["stage_b"]["learning_rate"]))
-    milestones = {"0": _stage_b_evaluate(context, predictor, latents, basis, teacher_coefficients, 0, False)}
     started = time.time(); torch.cuda.reset_peak_memory_stats(); final_gradient = {}
-    for step in range(1, int(config["stage_b"]["max_steps"]) + 1):
-        outfit = OUTFITS[(step - 1) % 2]
-        optimizer.zero_grad(set_to_none=True)
-        predicted = predictor(latents[outfit]); target = teacher_coefficients[outfit]
-        loss = F.smooth_l1_loss(predicted, target)
-        if not torch.isfinite(loss): raise FloatingPointError("Stage B coefficient loss is NaN or Inf")
-        loss.backward(); final_gradient = parameterization.trainable_snapshot({"coefficient_predictor": list(predictor.parameters())})
-        torch.nn.utils.clip_grad_norm_(predictor.parameters(), float(config["stage_b"]["gradient_clip_norm"]), error_if_nonfinite=True)
-        optimizer.step(); append_jsonl(output_dir / "stage_b/training.jsonl", {"step": step, "outfit": outfit, "coefficient_loss": float(loss.detach())})
-        if step in config["stage_b"]["milestones"]:
-            milestones[str(step)] = _stage_b_evaluate(
-                context, predictor, latents, basis, teacher_coefficients, step,
-                step == int(config["stage_b"]["max_steps"]),
-            )
-    final = milestones[str(config["stage_b"]["max_steps"])]
     checkpoint_path = output_dir / "stage_b/checkpoints/checkpoint_step_000200.pth"
-    save_checkpoint(
-        checkpoint_path, stage="B", step=200, model={"coefficient_predictor": predictor.state_dict()},
-        optimizer=optimizer, scheduler=None, extra={"diagnostic_latents": {name: value.cpu() for name, value in latents.items()}},
-    )
+    if resume_acceptance_only:
+        if not checkpoint_path.is_file():
+            raise FileNotFoundError(f"Stage-B acceptance-only resume requires {checkpoint_path}")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        if checkpoint.get("stage") != "B" or int(checkpoint.get("global_step", -1)) != 200:
+            raise RuntimeError("Stage-B checkpoint is not the completed 200-step checkpoint")
+        predictor.load_state_dict(checkpoint["model"]["coefficient_predictor"], strict=True)
+        optimizer.load_state_dict(checkpoint["optimizer"])
+        milestones = {
+            str(step): json.loads(
+                (output_dir / f"stage_b/milestones/step_{step:06d}/metrics.json").read_text(encoding="utf-8")
+            )
+            for step in (0, 20, 100, 200)
+        }
+        optimizer.zero_grad(set_to_none=True)
+        predicted = predictor(latents["O08"]); target = teacher_coefficients["O08"]
+        loss = F.smooth_l1_loss(predicted, target)
+        loss.backward()
+        final_gradient = parameterization.trainable_snapshot({"coefficient_predictor": list(predictor.parameters())})
+    else:
+        milestones = {"0": _stage_b_evaluate(context, predictor, latents, basis, teacher_coefficients, 0, False)}
+        for step in range(1, int(config["stage_b"]["max_steps"]) + 1):
+            outfit = OUTFITS[(step - 1) % 2]
+            optimizer.zero_grad(set_to_none=True)
+            predicted = predictor(latents[outfit]); target = teacher_coefficients[outfit]
+            loss = F.smooth_l1_loss(predicted, target)
+            if not torch.isfinite(loss): raise FloatingPointError("Stage B coefficient loss is NaN or Inf")
+            loss.backward(); final_gradient = parameterization.trainable_snapshot({"coefficient_predictor": list(predictor.parameters())})
+            torch.nn.utils.clip_grad_norm_(predictor.parameters(), float(config["stage_b"]["gradient_clip_norm"]), error_if_nonfinite=True)
+            optimizer.step(); append_jsonl(output_dir / "stage_b/training.jsonl", {"step": step, "outfit": outfit, "coefficient_loss": float(loss.detach())})
+            if step in config["stage_b"]["milestones"]:
+                milestones[str(step)] = _stage_b_evaluate(
+                    context, predictor, latents, basis, teacher_coefficients, step,
+                    step == int(config["stage_b"]["max_steps"]),
+                )
+    final = milestones[str(config["stage_b"]["max_steps"])]
+    if not resume_acceptance_only:
+        save_checkpoint(
+            checkpoint_path, stage="B", step=200, model={"coefficient_predictor": predictor.state_dict()},
+            optimizer=optimizer, scheduler=None, extra={"diagnostic_latents": {name: value.cpu() for name, value in latents.items()}},
+        )
     restored = DiagnosticCoefficientPredictor(
         int(config["stage_b"]["diagnostic_latent_dim"]), basis.rank,
         int(config["stage_b"]["predictor_hidden_dim"]),
@@ -645,8 +677,8 @@ def run_stage_b(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str,
     restored.load_state_dict(checkpoint["model"]["coefficient_predictor"], strict=True); restored_optimizer.load_state_dict(checkpoint["optimizer"])
     with torch.no_grad():
         output_exact = all(torch.equal(predictor(latents[name]), restored(latents[name])) for name in OUTFITS)
-    current_rng = rng_state(); o01._restore_rng(checkpoint["rng"])
-    rng_exact = o01.object_fingerprint(rng_state()) == o01.object_fingerprint(checkpoint["rng"]); o01._restore_rng(current_rng)
+    current_rng = rng_state(); restore_rng(checkpoint["rng"])
+    rng_exact = o01.object_fingerprint(rng_state()) == o01.object_fingerprint(checkpoint["rng"]); restore_rng(current_rng)
     resume = {
         "global_step_exact": int(checkpoint["global_step"]) == 200,
         "model_state_exact": _tensor_state_fingerprint(predictor.state_dict().items()) == _tensor_state_fingerprint(restored.state_dict().items()),
@@ -667,7 +699,8 @@ def run_stage_b(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str,
     }
     status = "NUMERIC_PASS_VISUAL_PENDING" if all(checks.values()) else "FAIL"
     result = {
-        "status": status, "optimizer_steps": 200, "milestones": milestones, "final": final,
+        "status": status, "optimizer_steps": 200, "acceptance_only_resume": resume_acceptance_only,
+        "milestones": milestones, "final": final,
         "checks": checks, "gradients": final_gradient, "checkpoint_resume": resume,
         "checkpoint": str(checkpoint_path), "checkpoint_sha256": sha256(checkpoint_path),
         "predictor_parameter_count": sum(parameter.numel() for parameter in predictor.parameters()),
@@ -1054,8 +1087,8 @@ def run_stage_c(context: dict[str, Any], visual: Mapping[str, Any]) -> dict[str,
     with torch.no_grad():
         before, _, _ = stage_c_coefficients(model, predictor, context["episodes"][fixed_key], context["geometries"]["cond_000017"])
         after, _, _ = stage_c_coefficients(restored_model, restored_predictor, context["episodes"][fixed_key], context["geometries"]["cond_000017"])
-    current_rng = rng_state(); o01._restore_rng(checkpoint["rng"])
-    rng_exact = o01.object_fingerprint(rng_state()) == o01.object_fingerprint(checkpoint["rng"]); o01._restore_rng(current_rng)
+    current_rng = rng_state(); restore_rng(checkpoint["rng"])
+    rng_exact = o01.object_fingerprint(rng_state()) == o01.object_fingerprint(checkpoint["rng"]); restore_rng(current_rng)
     resume = {
         "global_step_exact": int(checkpoint["global_step"]) == int(config["stage_c"]["max_steps"]),
         "model_state_exact": o01.object_fingerprint(_stage_c_state(model, predictor)) == o01.object_fingerprint(_stage_c_state(restored_model, restored_predictor)),
@@ -1202,7 +1235,7 @@ def run(args: argparse.Namespace) -> None:
             visual = _load_visual_observations(args.visual_observations, ("stage_a_status",))
             atomic_json(output_dir / "visual_acceptance/stage_a_visual_acceptance.json", visual)
             atomic_json(output_dir / "RUN_STATUS.json", {"task_id": TASK_ID, "status": "RUNNING", "phase": "STAGE_B", "optimizer_steps": 0})
-            result = run_stage_b(context, visual)
+            result = run_stage_b(context, visual, resume_acceptance_only=args.resume_acceptance_only)
             atomic_json(output_dir / "RUN_STATUS.json", {"task_id": TASK_ID, "status": "AWAITING_STAGE_B_VISUAL_INSPECTION" if result["status"].startswith("NUMERIC_PASS") else "AWAITING_FINAL_ADJUDICATION", "phase": "STAGE_B_COMPLETE", "optimizer_steps": 200})
         elif args.phase == "stage_c":
             if args.visual_observations is None: raise ValueError("Stage C requires actual Stage-A/B visual observations")
@@ -1230,6 +1263,7 @@ def main() -> None:
     parser.add_argument("--phase", choices=("stage_a", "stage_b", "stage_c", "finalize"), required=True)
     parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument("--visual-observations", type=Path, default=None)
+    parser.add_argument("--resume-acceptance-only", action="store_true")
     run(parser.parse_args())
 
 
