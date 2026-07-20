@@ -1467,8 +1467,12 @@ def _evaluation_visuals(
     mean, components = context["basis"].normalized_fields()
     figure, axes = plt.subplots(1, 3, figsize=(15, 5), constrained_layout=True)
     fields = {
-        "basis mean": torch.stack([value.reshape(value.shape[0], -1).square().mean(1) for value in mean.values()]).mean(0).sqrt(),
-        "difference basis": torch.stack([value[0].reshape(value.shape[1], -1).square().mean(1) for value in components.values()]).mean(0).sqrt(),
+        "basis mean": torch.stack([
+            value.reshape(value.shape[0], -1).square().mean(1) for value in mean.values()
+        ]).mean(0).sqrt().detach().cpu(),
+        "difference basis": torch.stack([
+            value[0].reshape(value.shape[1], -1).square().mean(1) for value in components.values()
+        ]).mean(0).sqrt().detach().cpu(),
     }
     coefficient = report["aggregate"]["outfit_mean"]["O08"]
     residual = context["basis"](torch.tensor([coefficient], device=context["base"]._xyz.device))
