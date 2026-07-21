@@ -1,0 +1,58 @@
+{
+  "candidate_optimizer": {
+    "created": false,
+    "parameter_count": 0,
+    "state_saved": false,
+    "step_count": 0,
+    "zero_grad_count": 0
+  },
+  "interpretation": "Optimizer object construction is not training. Candidate and legacy/context namespaces are disjoint; neither optimizer.step nor zero_grad was called.",
+  "legacy_context_optimizer": {
+    "candidate_parameter_overlap_count": 0,
+    "class": "torch.optim.adam.Adam",
+    "contains_candidate_parameters": false,
+    "created": true,
+    "discarded_by_caller": true,
+    "holds_frozen_or_legacy_context_parameters_only": true,
+    "initial_state_entry_count": 0,
+    "lifecycle": "constructed by create_image_conditioned_components while loading the frozen legacy context, returned, ignored by construct_reference_model, then discarded",
+    "parameter_count": 128629,
+    "parameter_groups": [
+      {
+        "learning_rate": 0.0001,
+        "name": "encoder",
+        "parameter_count": 8384,
+        "tensor_count": 4
+      },
+      {
+        "learning_rate": 0.0001,
+        "name": "aggregator",
+        "parameter_count": 12480,
+        "tensor_count": 5
+      },
+      {
+        "learning_rate": 0.0001,
+        "name": "hypernetwork",
+        "parameter_count": 74368,
+        "tensor_count": 10
+      },
+      {
+        "learning_rate": 0.0001,
+        "name": "anchor_mlp",
+        "parameter_count": 31642,
+        "tensor_count": 16
+      },
+      {
+        "learning_rate": 0.0001,
+        "name": "local_adapter",
+        "parameter_count": 1755,
+        "tensor_count": 2
+      }
+    ],
+    "state_saved": false,
+    "step_count": 0,
+    "zero_grad_count": 0
+  },
+  "schema_version": "canondressgs.paper.optimizer_provenance.v1",
+  "status": "PASS"
+}

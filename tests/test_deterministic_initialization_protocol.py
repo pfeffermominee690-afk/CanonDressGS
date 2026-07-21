@@ -9,6 +9,7 @@ import tempfile
 from pathlib import Path
 
 import torch
+import yaml
 
 from scene.p0_candidate_initialization_protocol import (
     DETERMINISTIC_ZERO_INITIALIZATION,
@@ -28,6 +29,14 @@ FRESH_PROCESS = ROOT / "tools/paper/p0_initialization_fresh_process.py"
 HISTORICAL_LINEAR = ROOT / "scene/multi_outfit_linear_coefficient_control.py"
 FORMAL_RUNTIME = ROOT / "tools/paper/formal_batch_runtime.py"
 AUDIT_RUNTIME = ROOT / "tools/paper/run_deterministic_initialization_protocol_audit.py"
+REVIEWER_RISK = ROOT / "paper_protocol/reviewer_risk"
+INITIALIZATION_AUDIT = REVIEWER_RISK / "initialization_policy_aware_audit.json"
+SEMANTICS_AUDIT = REVIEWER_RISK / "mean_garment_zero_residual_semantics_audit.json"
+HISTORICAL_AUDIT = REVIEWER_RISK / "historical_three_seed_interpretation_audit.json"
+OPTIMIZER_AUDIT = REVIEWER_RISK / "optimizer_provenance_audit.json"
+NO_TRAINING_AUDIT = REVIEWER_RISK / "no_training_gate.json"
+OLD_SEED_AUDIT = REVIEWER_RISK / "seed_propagation_audit.json"
+REVIEWER_REGISTRY = REVIEWER_RISK / "reviewer_risk_experiment_registry.yaml"
 
 
 def _state_sha(module: torch.nn.Module) -> str:
@@ -169,6 +178,108 @@ def test_no_optimizer_step_occurs_in_protocol_implementation() -> None:
     assert ".backward(" not in joined
     assert ".step(" not in joined
     assert "torch.save(" not in joined
+
+
+def test_standardized_zero_semantics_are_explicit() -> None:
+    audit = json.loads(SEMANTICS_AUDIT.read_text(encoding="utf-8"))
+    assert audit["classifications"]["STANDARDIZED_ZERO_SEMANTICS"] == "MEAN_COEFFICIENT"
+    assert audit["coefficient_normalization"]["standardized_zero_de_standardized"] == audit["coefficient_normalization"]["train_mean"]
+
+
+def test_raw_coefficient_zero_semantics_are_explicit() -> None:
+    audit = json.loads(SEMANTICS_AUDIT.read_text(encoding="utf-8"))
+    assert audit["classifications"]["RAW_COEFFICIENT_ZERO_SEMANTICS"] == "MEAN_GARMENT_RESIDUAL"
+    difference = audit["objects"]["raw_coefficient_zero"]["difference_to_basis_mean_residual"]
+    assert difference["bitwise_equal"] is True
+    assert difference["l1_norm"] == difference["l2_norm"] == difference["linf_norm"] == 0.0
+
+
+def test_physical_zero_residual_means_base_avatar() -> None:
+    audit = json.loads(SEMANTICS_AUDIT.read_text(encoding="utf-8"))
+    assert audit["classifications"]["PHYSICAL_ZERO_RESIDUAL_SEMANTICS"] == "BASE_AVATAR"
+    physical = audit["objects"]["physical_gaussian_residual_zero"]
+    assert physical["l1_norm"] == physical["l2_norm"] == physical["linf_norm"] == 0.0
+
+
+def test_zero_and_base_replacement_are_not_conflated() -> None:
+    audit = json.loads(SEMANTICS_AUDIT.read_text(encoding="utf-8"))
+    replacements = audit["evaluator_replacements"]
+    assert audit["classifications"]["ZERO_REPLACEMENT_EQUALS_BASE_REPLACEMENT"] is False
+    assert replacements["episode_count"] == 20
+    assert replacements["bitwise_equal_feature_episode_count"] == 0
+
+
+def test_historical_three_seed_language_is_corrected() -> None:
+    audit = json.loads(HISTORICAL_AUDIT.read_text(encoding="utf-8"))
+    assert audit["status"] == "CORRECTED"
+    assert audit["recommended_language"]["deterministic"] == "three runs under a deterministic zero-initialization contract"
+    assert "Ours_Seen_Outfit_Explicit_Basis_V1" in audit["methods_that_must_not_be_called_independent_random_seeds"]
+    b5 = next(row for row in audit["method_groups"] if row["method"].startswith("B5_"))
+    assert b5["classification"] == "INDEPENDENT_RANDOM_INITIALIZATIONS"
+
+
+def test_legacy_context_optimizer_is_recorded_separately() -> None:
+    audit = json.loads(OPTIMIZER_AUDIT.read_text(encoding="utf-8"))
+    candidate, legacy = audit["candidate_optimizer"], audit["legacy_context_optimizer"]
+    assert candidate["created"] is False and candidate["parameter_count"] == 0
+    assert legacy["created"] is True and legacy["class"] == "torch.optim.adam.Adam"
+    assert legacy["parameter_count"] == 128629 and len(legacy["parameter_groups"]) == 5
+    assert legacy["discarded_by_caller"] is True
+
+
+def test_no_optimizer_step_occurs() -> None:
+    audit = json.loads(OPTIMIZER_AUDIT.read_text(encoding="utf-8"))
+    assert audit["candidate_optimizer"]["step_count"] == 0
+    assert audit["legacy_context_optimizer"]["step_count"] == 0
+    assert audit["candidate_optimizer"]["zero_grad_count"] == 0
+    assert audit["legacy_context_optimizer"]["zero_grad_count"] == 0
+
+
+def test_no_candidate_or_legacy_optimizer_step_occurs() -> None:
+    test_no_optimizer_step_occurs()
+
+
+def test_candidate_parameters_are_not_in_legacy_optimizer() -> None:
+    legacy = json.loads(OPTIMIZER_AUDIT.read_text(encoding="utf-8"))["legacy_context_optimizer"]
+    assert legacy["contains_candidate_parameters"] is False
+    assert legacy["candidate_parameter_overlap_count"] == 0
+
+
+def test_optimizer_report_uses_separate_namespaces() -> None:
+    audit = json.loads(OPTIMIZER_AUDIT.read_text(encoding="utf-8"))
+    assert "candidate_optimizer" in audit and "legacy_context_optimizer" in audit
+    assert "optimizer" not in audit
+
+
+def test_formal_registry_is_unchanged() -> None:
+    audit = json.loads(NO_TRAINING_AUDIT.read_text(encoding="utf-8"))
+    assert audit["formal_registry_unchanged"] is True
+    assert audit["before"]["formal_registry_sha256"] == audit["after"]["formal_registry_sha256"] == "1834597b787d98acf475b352b791f0f16714fd870d51be36259ac7383a406c5e"
+
+
+def test_formal_outputs_are_immutable() -> None:
+    audit = json.loads(NO_TRAINING_AUDIT.read_text(encoding="utf-8"))
+    assert audit["formal_outputs_unchanged"] is True
+    assert audit["before"]["formal_output_metadata_sha256"] == audit["after"]["formal_output_metadata_sha256"] == "7b9449e03d53e29cff11ded1fdc95e633640d38754cf152f2ab07a935d89d6bc"
+    assert audit["after"]["formal_output_file_count"] == 4127
+    assert audit["after"]["formal_output_total_bytes"] == 964043888
+
+
+def test_old_seed_failure_audit_is_unchanged() -> None:
+    audit = json.loads(OLD_SEED_AUDIT.read_text(encoding="utf-8"))
+    canonical = OLD_SEED_AUDIT.read_bytes().replace(b"\r\n", b"\n")
+    assert hashlib.sha256(canonical).hexdigest() == "0b2e068203031b34e0004725923d452e185f319f3e9088843ecbc42ba5307f14"
+    assert audit["status"] == "SEED-PROPAGATION-FAIL"
+    assert audit["failed_families"] == ["ours_v2"]
+
+
+def test_no_paper_final_is_created() -> None:
+    no_training = json.loads(NO_TRAINING_AUDIT.read_text(encoding="utf-8"))
+    registry = yaml.safe_load(REVIEWER_REGISTRY.read_text(encoding="utf-8"))
+    rows = {row["experiment_id"]: row for row in registry["experiments"]}
+    assert no_training["paper_final_count"] == 0
+    assert all(rows[f"RR-OURS-V2-S{seed}"]["status"] == "FAILED" for seed in (0, 1, 2))
+    assert registry["paper_final_transition_allowed"] is False
 
 
 def test_historical_audit_selects_the_complete_sealed_attempt() -> None:

@@ -142,13 +142,17 @@ def test_reviewer_registry_starts_not_run():
     assert RISK_REGISTRY["auto_execute"] is False and RISK_REGISTRY["paper_final_transition_allowed"] is False
 
 
-def test_no_optimizer_is_created():
+def test_candidate_and_legacy_optimizer_namespaces_are_separate():
     source = (ROOT / "tools/paper/build_reviewer_risk_evidence.py").read_text(encoding="utf-8")
     tree = ast.parse(source)
     imported = {alias.name for node in ast.walk(tree) if isinstance(node, ast.Import) for alias in node.names}
     imported.update(node.module for node in ast.walk(tree) if isinstance(node, ast.ImportFrom) and node.module)
     assert "torch" not in imported and "torch.optim" not in source
     assert REVISION["execution_guards"]["optimizer_created_in_this_task"] is False
+    audit = json.loads((ROOT / "paper_protocol/reviewer_risk/optimizer_provenance_audit.json").read_text(encoding="utf-8"))
+    assert audit["candidate_optimizer"]["created"] is False
+    assert audit["legacy_context_optimizer"]["created"] is True
+    assert audit["legacy_context_optimizer"]["step_count"] == 0
 
 
 def test_cuda_is_not_initialized():

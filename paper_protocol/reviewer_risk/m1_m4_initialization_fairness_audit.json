@@ -1,0 +1,54 @@
+{
+  "classifications": {
+    "M1_M2_INITIALIZATION_FAIRNESS": "PASS",
+    "M1_M3_INITIAL_OUTPUT_SEMANTICS_FAIRNESS": "PASS",
+    "M2_M4_INITIAL_OUTPUT_SEMANTICS_FAIRNESS": "PASS",
+    "M3_M4_PAIRED_INITIALIZATION_FAIRNESS": "PASS"
+  },
+  "cross_architecture": {
+    "basis_endpoint_sha256": "a4a413d2be70aa355a5a588ce4f948f522daf98547e9f61eee926317683e20b4",
+    "data_batch_and_normalization_equal": true,
+    "fairness_definition": "INITIAL_OUTPUT_SEMANTICS_MATCHED",
+    "identical_parameter_initialization_required": false,
+    "loss_target_equal": true,
+    "m1_m3_initial_forward_hash_equal": true,
+    "standardized_zero_semantics": "MEAN_COEFFICIENT"
+  },
+  "m1_m2": {
+    "a5_initial_state_sha256": "823cb6b16ac06481866b50eda7d8917301a7e55f7f126d8b6e45ed54a84a105e",
+    "approved_differences": [
+      "output_transform",
+      "loss_contract"
+    ],
+    "historical_a5_attempt": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001",
+    "initial_endpoint_equal": true,
+    "layernorm_initialization_equal": true,
+    "linear_head_initialization_equal": true,
+    "m1_state_sha256": "823cb6b16ac06481866b50eda7d8917301a7e55f7f126d8b6e45ed54a84a105e",
+    "m2_tanh_zero_is_zero": true,
+    "pre_transform_outputs_zero": true,
+    "state_hash_equal": true
+  },
+  "m3_m4": {
+    "approved_differences": [
+      "output_transform",
+      "supervision"
+    ],
+    "cross_seed_trunk_unique_count": 3,
+    "initial_pre_transform_outputs_equal": true,
+    "m4_tanh_zero_is_zero": true,
+    "output_heads_zero": true,
+    "parameter_count_equal": true,
+    "same_seed_shared_trunk_hash_equal": true
+  },
+  "matrix": {
+    "B5": "OFF_MATRIX_HISTORICAL_EVIDENCE",
+    "M1": "Linear + SmoothL1-only = Ours-v2 candidate",
+    "M2": "Linear + legacy endpoint = historical A5 semantic cell",
+    "M3": "Complex + SmoothL1-only = future P0 candidate",
+    "M4": "Complex + legacy endpoint = future P0 candidate"
+  },
+  "optimizer_steps": 0,
+  "schema_version": "canondressgs.paper.m1_m4_initialization_fairness.v1",
+  "status": "PASS"
+}

@@ -18,6 +18,7 @@ REVIEWER_REGISTRY = (
     ROOT / "paper_protocol/reviewer_risk/reviewer_risk_experiment_registry.yaml"
 )
 SEED_AUDIT = ROOT / "paper_protocol/reviewer_risk/seed_propagation_audit.json"
+POLICY_AUDIT = ROOT / "paper_protocol/reviewer_risk/initialization_policy_aware_audit.json"
 
 
 def _state_sha(model: torch.nn.Module) -> str:
@@ -34,9 +35,16 @@ def _ours_v2_at_seed(seed: int) -> MultiOutfitLinearCoefficientControl:
 
 
 def test_seed_changes_trainable_initialization() -> None:
-    """The hard gate must expose, rather than hide, the current seed defect."""
+    """The historical result and policy-aware interpretation must coexist."""
     fingerprints = {_state_sha(_ours_v2_at_seed(seed)) for seed in (0, 1, 2)}
     assert len(fingerprints) == 1
+    historical = json.loads(SEED_AUDIT.read_text(encoding="utf-8"))
+    policy = json.loads(POLICY_AUDIT.read_text(encoding="utf-8"))
+    assert historical["status"] == "SEED-PROPAGATION-FAIL"
+    assert policy["ours_v2"]["cross_seed_identity_interpretation"] == "EXPECTED_DETERMINISTIC_IDENTITY"
+    assert policy["ours_v2"]["cross_seed_state_unique_count"] == 1
+    assert policy["b6"]["cross_seed_state_unique_count"] == 3
+    assert policy["m3_m4"]["cross_seed_trunk_unique_count"] == 3
     source = AUDIT_TOOL.read_text(encoding="utf-8")
     assert 'len(initialization_shas) == len(SEEDS)' in source
     assert '"SEED-PROPAGATION-FAIL"' in source
