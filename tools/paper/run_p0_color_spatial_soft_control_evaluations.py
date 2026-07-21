@@ -112,14 +112,13 @@ def numpy_hash(value: np.ndarray) -> str:
 def tree_manifest(path: Path) -> dict[str, Any]:
     rows: list[str] = []
     count = 0
-    total = 0
     for item in sorted((entry for entry in path.rglob("*") if entry.is_file()), key=lambda p: p.as_posix()):
         stat = item.stat()
         relative = item.relative_to(path).as_posix()
         rows.append(f"{relative} {stat.st_size} {stat.st_mtime_ns}\n")
         count += 1
-        total += stat.st_size
     digest = hashlib.sha256("".join(rows).encode("utf-8")).hexdigest()
+    total = int(subprocess.check_output(["du", "-sb", str(path)], text=True).split()[0])
     return {"file_count": count, "bytes": total, "metadata_sha256_ns": digest}
 
 
