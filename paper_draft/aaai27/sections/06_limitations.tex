@@ -1,0 +1,11 @@
+\section{Limitations}
+
+This study evaluates one fixed identity and five preregistered seen garments. It does not establish performance for additional identities, garments outside the registered wardrobe, arbitrary clothing, or semantic understanding of garment geometry. The $K=4$ basis is the complete centered rank of five endpoints, not evidence of strong compression.
+
+The evaluation is view-transductive. Although a prediction forward uses target-disjoint references and no target RGB or mask, the teachers, basis, and predictor are constructed using all four preregistered views. Consequently, the manuscript makes no held-out-camera claim and does not describe the protocol as strict leave-one-view-out.
+
+O07 is a held-out garment failure that exposes finite support and subspace limits, particularly for loose shapes not covered by the seen endpoints. A possible spatial trust-region teacher pilot can test whether displacement regularization reduces boundary or cloud artifacts on selected seen garments, but it cannot repair the evidentiary gap outside the registered wardrobe.
+
+Every garment requires a teacher during onboarding. This cost can make direct teacher storage and lookup competitive; B2, B6, and B7 are therefore mandatory comparisons. The final paper must narrow its contribution if hard lookup matches continuous coefficient prediction.
+
+The current evidence may depend strongly on appearance or color cues, and synthetic targets do not establish robustness in unconstrained real imagery. Final claims depend on the preregistered color counterfactual and extended-metric outcomes. Results remain a paper candidate until all P0 experiments, aggregation, artifact checks, and manual adjudication are frozen; \texttt{PAPER\_FINAL=0} at the time of this draft.

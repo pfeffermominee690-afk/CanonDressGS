@@ -1,0 +1,37 @@
+\section{Method}
+
+\subsection{Garment teachers and canonical residual endpoints}
+
+For each seen garment $g$, a garment-specific teacher defines a canonical residual endpoint $\Delta_g$ on the fixed Gaussian support. The endpoint may include the residual channels already frozen by the engineering protocol; this manuscript does not redefine the base avatar, Gaussian set, renderer, deformation model, or target data. Teachers are an onboarding cost and an upper-bound/reference asset, not evidence that the coefficient branch can infer a new garment.
+
+\subsection{Centered explicit residual basis}
+
+We compute the mean endpoint and centered residuals
+\begin{equation}
+\bar{\Delta}=\frac{1}{5}\sum_{g\in\mathcal{G}_{\mathrm{seen}}}\Delta_g,
+\qquad
+\widetilde{\Delta}_g=\Delta_g-\bar{\Delta}.
+\end{equation}
+The five centered endpoints have rank at most four. The selected basis $B=[b_1,\ldots,b_4]$ retains the complete centered rank, so any compression interpretation must be avoided. A coefficient vector reconstructs
+\begin{equation}
+\widehat{\Delta}(\mathbf z)=\bar{\Delta}+B\mathbf z.
+\end{equation}
+Rank-ladder experiments at $K\in\{1,2,3,4\}$ test representation adequacy; only $K=4$ represents the complete centered endpoint subspace.
+
+\subsection{Reference-only coefficient branch}
+
+Frozen reference features are aggregated across the three references and mapped to four standardized coefficients. The paper candidate uses an economical linear control branch; a contract-matched complex branch is reserved for the M3 comparison. Neither branch reads the target image, target mask, target pose, or target camera. Pose and camera enter only when the selected canonical residual is deformed and rendered with the fixed avatar pipeline.
+
+The predictor is supervised by frozen teacher coefficients using an unsaturated SmoothL1 objective. The earlier pairwise coefficient-geometry term is rejected by historical paired evidence and is retained only as a reverse ablation. The M1--M4 matrix is required before attributing differences to linear versus complex fusion because historical B5 combines a complex branch with the rejected pairwise term and is off-matrix.
+
+\subsection{Deterministic mean-garment initialization}
+
+The standardized coefficient zero is the mean coefficient, and raw coefficient zero reconstructs the mean garment residual $\bar{\Delta}$ rather than the base avatar. Ours-v2 initializes its output map to zero (with LayerNorm scale one and bias zero), yielding the same mean-garment initial prediction for every replicate. This is a deliberate deterministic contract. Replicates differ through subsequent data/optimization stochasticity where present, but must not be described as independently randomized initializations.
+
+Matched M3/M4 comparisons share a seeded random trunk and use zero output heads so that initial output semantics agree. Cross-architecture fairness means matched initial outputs, not identical parameter tensors.
+
+\subsection{Conditional interpretation}
+
+\resultplaceholder{If hard lookup matches Ours-v2, narrow the description to reference-controlled garment wardrobe retrieval/control.}
+\resultplaceholder{If M3 approaches Ours-v2, state that corrected unsaturated supervision is critical and that linear fusion is sufficient and economical; do not claim linear causal superiority.}
+\resultplaceholder{If color counterfactuals dominate, state that reference control is primarily driven by garment appearance/color cues.}

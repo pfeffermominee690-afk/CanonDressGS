@@ -1,0 +1,39 @@
+\section{Experiments}
+
+\subsection{Protocol and questions}
+
+All main experiments use one fixed avatar, five preregistered seen garments, four preregistered views, and target-disjoint three-reference episodes. The protocol remains view-transductive. O07 is a held-out failure probe and is never used for training, threshold selection, hyperparameter selection, or pilot tuning. Candidate values are not paper results until the unified evaluator, replicate aggregation, manual visual review, and final artifact freeze are complete.
+
+We organize the evaluation around four questions:
+\begin{enumerate}
+  \item Does Ours-v2 improve on the base, mean-only, true outfit-ID lookup, reference-classifier lookup, nearest-centroid lookup, and a matched complex corrected branch?
+  \item Which representation, reference, standardization, initialization, and supervision choices matter under the revised Ours-v2 contract?
+  \item What are the teacher/onboarding, predictor, inference, rendering, storage, and peak-memory costs?
+  \item Where does the closed-wardrobe representation fail, including O07 and spatial artifacts?
+\end{enumerate}
+
+\subsection{Main comparison}
+
+Table~1 will contain B0 Base, B1 Teacher Upper Bound, B2 Outfit-ID Lookup, B4 Mean Only, B6 Reference Classifier Lookup, B7 Nearest-Centroid Lookup, M3 Complex Corrected, and Ours-v2. Metrics will include the frozen core metrics plus preregistered LPIPS, silhouette IoU, boundary F-score, and protected-region checks when their resource gates pass.
+
+\resultplaceholder{Insert aggregate main results only after all required methods and replicates pass the final evidence gate.}
+\resultplaceholder{Adjudicate whether hard lookup matches Ours-v2; select the broad or narrowed paper wording accordingly.}
+
+\subsection{Ablations and causal controls}
+
+Table~2 will report the $K=1$--$4$ rank ladder, no-mask, mean-only, no-standardization, legacy-supervision, rejected pairwise-geometry, reference-count, and complete M1--M4 comparisons. Historical B5 is labeled off-matrix and cannot fill M3 or M4.
+
+\resultplaceholder{Insert M1--M4 results and limit causal language to the contract-clean comparisons.}
+\resultplaceholder{Insert color counterfactual results and choose the predeclared appearance/color wording if the result is color-dominated.}
+
+\subsection{Efficiency, onboarding, and spatial diagnostics}
+
+Table~3 will measure trainable parameters, teacher optimization and storage, basis construction and storage, predictor fitting, coefficient inference, deformation/rendering, and peak VRAM. The comparison must explain why Ours-v2 is preferable, equivalent, or inferior to storing and selecting complete teachers.
+
+Spatial diagnostics report displacement percentiles, normal/tangential decomposition, trust-radius violations, protected-region changes, outside-garment opacity, boundary components, silhouette IoU, boundary F-score, protected LPIPS, and blinded cloud/mottle grades. Thresholds and aggregation are fixed before outcomes are inspected.
+
+\subsection{Held-out failure}
+
+Table~4 and Figure~6 decompose O07 into the teacher, seen-basis projection, predictor, and nearest-seen-endpoint stages. The row and figure carry a fixed FAIL label regardless of whether one intermediate is visually plausible.
+
+\resultplaceholder{Insert the frozen O07 failure decomposition without converting it into a success claim.}

@@ -1,0 +1,22 @@
+\section{Problem Setup}
+
+Let $\mathcal{A}_0$ be one fixed animatable Gaussian avatar in canonical space. The preregistered seen wardrobe is
+\begin{equation}
+\mathcal{G}_{\mathrm{seen}}=\{\mathrm{O01},\mathrm{O02},\mathrm{O03},\mathrm{O04},\mathrm{O08}\},
+\end{equation}
+and each garment is observed in four fixed views. O07 is excluded from all fitting and model-selection decisions and is retained only as a held-out failure probe.
+
+An episode provides three reference observations $R=\{r_j\}_{j=1}^{3}$ for one garment and a target pose-camera pair $(p_t,c_t)$. The target observation is not included in $R$. The predictor produces a coefficient vector using only $R$,
+\begin{equation}
+\hat{\mathbf z}=f_{\theta}(R), \qquad \hat{\mathbf z}\in\mathbb{R}^{4},
+\end{equation}
+which selects a canonical residual through a fixed basis. The target pose and camera are consumed only after coefficient prediction, by deformation and rendering.
+
+\paragraph{Transductive boundary.}
+Target/reference overlap is zero within each episode, and the coefficient forward pass reads no target RGB or mask. However, garment teachers, the centered basis, and predictor training use the complete set of four preregistered views; an image used as a target in one episode can be a reference in another. We therefore classify the protocol as \textsc{View-Transductive}, not strict end-to-end leave-one-view-out evaluation.
+
+\paragraph{Evaluation unit.}
+The frozen contract uses correct-garment episodes and reports episode metrics before outfit-level macro aggregation and, where meaningful, replicate aggregation. A deterministic zero-initialized method can have multiple training replicates without having independently randomized initial states. No best-replicate selection is permitted.
+
+\paragraph{Claim domain.}
+The estimand is reference-controlled editing within the fixed five-garment wardrobe for this one avatar. O07, other garments, other identities, and held-out-view systems are outside the positive claim domain.

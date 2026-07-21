@@ -1,0 +1,166 @@
+schema_version: canondressgs.paper.efficiency_onboarding_protocol.v1
+task_id: AAAI27-REVIEWER-RISK-PAPER-MATERIALS-001
+date: '2026-07-21'
+status: DESIGN_ONLY_NOT_EXECUTED
+paper_final: false
+execution_authorized: false
+
+scope:
+  identity_count: 1
+  registered_seen_garments: [O01, O02, O03, O04, O08]
+  view_classification: VIEW-TRANSDUCTIVE
+  purpose: 'Measure the complete marginal cost of adding and controlling a registered seen garment.'
+  prohibited_interpretation: 'This protocol does not measure onboarding of an unregistered garment without a teacher.'
+
+comparison_methods:
+  - id: B2
+    label: True outfit-ID lookup
+    selection_input: ground_truth_outfit_id
+    stored_object: full_teacher_or_registered_endpoint
+  - id: B6
+    label: Reference classifier lookup
+    selection_input: frozen_reference_features
+    stored_object: full_teacher_or_registered_endpoint_plus_classifier
+  - id: B7
+    label: Nearest-centroid lookup
+    selection_input: frozen_reference_features
+    stored_object: registered_endpoint_plus_feature_centroid
+  - id: Ours-v2
+    label: Reference coefficient predictor
+    selection_input: frozen_reference_features
+    stored_object: mean_plus_basis_plus_predictor
+
+measurement_environment:
+  hardware_fields_required:
+    - gpu_model
+    - gpu_count
+    - cpu_model
+    - ram_bytes
+    - storage_type
+    - software_commit
+    - cuda_version
+    - framework_version
+  timing_clock: monotonic_wall_clock
+  gpu_timing_rules:
+    synchronize_before_start: true
+    synchronize_after_stop: true
+    discard_warmup_calls: 10
+    timed_repetitions: 100
+    report: [median, p05, p95]
+  peak_vram_rules:
+    reset_peak_stats_before_stage: true
+    synchronize_before_readout: true
+    report_allocated_and_reserved: true
+  storage_rules:
+    unit: bytes_and_MiB
+    count_unique_files_only: true
+    deduplicate_shared_assets: true
+    report_optimizer_state_separately: true
+    include_file_manifest_and_sha256: true
+  parameter_rules:
+    count_trainable_only_for_primary_column: true
+    also_report_total_parameters: true
+    shared_frozen_backbone_reported_separately: true
+
+required_measurements:
+  teacher_optimization_steps:
+    unit: optimizer_steps_per_new_outfit
+    source: frozen_run_metadata
+    measured_value: null
+  teacher_gpu_time:
+    unit: seconds_per_new_outfit
+    source: synchronized_stage_timer
+    measured_value: null
+  teacher_peak_vram:
+    unit: bytes
+    source: framework_peak_memory_readout
+    measured_value: null
+  teacher_checkpoint_storage:
+    unit: bytes_per_new_outfit
+    source: unique_file_size_manifest
+    measured_value: null
+  basis_construction_time:
+    unit: seconds_per_rebuild
+    source: synchronized_stage_timer
+    measured_value: null
+  basis_storage:
+    unit: bytes
+    source: unique_file_size_manifest
+    measured_value: null
+  coefficient_predictor_trainable_parameters:
+    unit: parameters
+    source: runtime_parameter_counter
+    measured_value: null
+  predictor_training_time:
+    unit: seconds
+    source: synchronized_stage_timer
+    measured_value: null
+  coefficient_inference_time:
+    unit: milliseconds_per_episode
+    source: warmed_synchronized_repetitions
+    measured_value: null
+  deformation_render_time:
+    unit: milliseconds_per_frame
+    source: warmed_synchronized_repetitions
+    measured_value: null
+  end_to_end_peak_vram:
+    unit: bytes
+    source: framework_peak_memory_readout
+    measured_value: null
+
+new_outfit_onboarding_workflow:
+  ordered_steps:
+    - 'Freeze the new outfit identifier, permitted views, masks, and target assets.'
+    - 'Optimize one garment-specific teacher under the existing formal teacher contract.'
+    - 'Verify and seal the teacher checkpoint, residual endpoint, logs, and visual sheet.'
+    - 'Measure teacher steps, synchronized GPU time, peak VRAM, and unique storage.'
+    - 'Append the endpoint only in a separately authorized engineering task.'
+    - 'Determine whether the centered basis must be rebuilt and record construction time/storage.'
+    - 'Determine whether the selection/classification/coefficient model must be retrained.'
+    - 'Evaluate the enlarged registered wardrobe without using the new target as a predictor input.'
+  per_method_update_contract:
+    B2:
+      rebuild_basis: false
+      retrain_predictor: false
+      required_update: 'Store/register the full teacher or endpoint and its outfit-ID mapping.'
+    B6:
+      rebuild_basis: false
+      retrain_predictor: true
+      required_update: 'Add the class and retrain the reference classifier under a frozen protocol.'
+    B7:
+      rebuild_basis: false
+      retrain_predictor: false
+      required_update: 'Compute and store the frozen-feature centroid for the registered outfit.'
+    Ours-v2:
+      rebuild_basis: true
+      retrain_predictor: true
+      required_update: 'Recenter/recompute the complete endpoint basis and retrain the coefficient predictor for the expanded wardrobe.'
+
+reviewer_question:
+  question: 'If each garment needs a teacher, why not store teachers and use lookup?'
+  required_evidence:
+    - 'Table 1 quality comparison among B2, B6, B7, and Ours-v2.'
+    - 'Table 3 marginal onboarding, storage, fitting, inference, rendering, and VRAM costs.'
+    - 'Failure and misclassification behavior under reference swaps.'
+  decision_rules:
+    - condition: 'B6 or B7 matches Ours-v2 quality and has lower total registered-wardrobe cost.'
+      paper_response: 'Present lookup as the preferable economical deployment and narrow the contribution to wardrobe retrieval/control.'
+    - condition: 'Ours-v2 improves quality or control behavior at an explicitly measured additional cost.'
+      paper_response: 'Report the tradeoff; do not call onboarding lightweight unless the measured comparison supports it.'
+    - condition: 'B2 upper-bounds Ours-v2 while requiring privileged outfit IDs.'
+      paper_response: 'Distinguish privileged-ID lookup from reference-driven control without claiming Ours-v2 is cheaper.'
+
+aggregation_and_reporting:
+  times: 'Report per stage and end-to-end; never sum medians from separately timed stages as if jointly measured.'
+  storage: 'Report shared, per-outfit, and total-five-outfit storage separately.'
+  training: 'Report configured optimizer steps and completed optimizer steps.'
+  missing_values: 'Use null/NOT_MEASURED, never zero.'
+  uncertainty: 'Use repetition quantiles for timings; do not use training-replicate standard deviation as timing uncertainty.'
+
+guards:
+  no_training_in_this_task: true
+  no_measured_values_in_this_file: true
+  no_registry_mutation: true
+  no_formal_output_mutation: true
+  freeze_protocol_before_measurement: true
+  prohibit_post_hoc_method_specific_timing_rules: true

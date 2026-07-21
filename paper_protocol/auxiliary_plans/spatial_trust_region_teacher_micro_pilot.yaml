@@ -1,0 +1,145 @@
+schema_version: canondressgs.paper.spatial_trust_region_teacher_micro_pilot.v1
+task_id: AAAI27-REVIEWER-RISK-PAPER-MATERIALS-001
+date: '2026-07-21'
+status: DESIGN_ONLY_BLOCKED_PENDING_AUTHORIZATION
+paper_final: false
+execution_authorized: false
+
+scientific_question: 'Can fixed spatial regularization reduce boundary/cloud artifacts for selected seen-garment teachers without materially degrading garment fit, silhouette, or protected regions?'
+
+fixed_outfits:
+  smooth_seen_garment: O03
+  loose_seen_garment: O08
+  held_out_O07_role: 'Evaluation-only failure probe; prohibited for tuning, threshold selection, or pilot acceptance.'
+
+arms:
+  - id: original_teacher_control
+    source: 'Immutable existing formal teacher and render assets.'
+    new_optimization: false
+  - id: fixed_spatial_trust_teacher
+    source: 'New independent output root; initialized and optimized under the same teacher contract except for the registered delta_xyz penalties below.'
+    new_optimization: true
+
+change_control:
+  only_allowed_change: 'Add the fixed delta_xyz spatial regularization terms to teacher residual optimization.'
+  held_constant:
+    - gaussian_count_and_indices
+    - base_avatar
+    - renderer
+    - deformation_MMLP
+    - targets_and_masks
+    - optimizer_family_and_base_schedule
+    - optimization_steps
+    - all_non_spatial_loss_terms_and_weights
+    - initialization_except_the_added_regularization
+    - evaluation_episodes_and_metrics
+  forbidden:
+    - add_or_remove_gaussians
+    - modify_base_avatar
+    - modify_renderer
+    - modify_deformation_MMLP
+    - modify_targets_or_masks
+    - overwrite_formal_teachers
+    - overwrite_or_rebuild_formal_basis
+    - overwrite_historical_attempts
+    - use_O07_for_any_decision
+    - hyperparameter_search
+
+frozen_scale_and_thresholds:
+  reference_scale: 's = median nearest-neighbor distance among frozen base-avatar Gaussians in the garment support.'
+  trust_radius: 'r = 0.5 * s.'
+  protected_epsilon: 'max(1e-6 scene units, 0.01 * s).'
+  resolve_before_run: true
+  hash_resolved_values: true
+
+fixed_regularization:
+  formula: 'L_spatial = 1.0*L_total + 4.0*L_tangent + 10.0*L_protected + 10.0*L_outlier_hinge'
+  total_displacement_term:
+    weight: 1.0
+    definition: 'mean((L2(delta_xyz) / r)^2) on garment-support Gaussians'
+  normal_tangential_decomposition:
+    normal_source: frozen_base_avatar_normals
+    invalid_normal_handling: 'Flag and omit only from decomposed terms; retain in total/outlier terms.'
+  stronger_tangential_penalty:
+    weight: 4.0
+    definition: 'mean((L2(tangential_delta_xyz) / r)^2) on valid garment-support Gaussians'
+  protected_region_penalty:
+    weight: 10.0
+    definition: 'mean((L2(delta_xyz) / r)^2) on frozen protected-support Gaussians'
+  outlier_hinge_penalty:
+    weight: 10.0
+    definition: 'mean(relu(L2(delta_xyz) / r - 1)^2) on garment-support Gaussians'
+  search_or_adaptation: 'None. These values are one preregistered candidate, not a sweep.'
+
+output_isolation:
+  required_new_root_pattern: 'outputs/AAAI27-SPATIAL-TRUST-MICRO-PILOT/<outfit>/fixed_v1/'
+  prohibit_existing_path: true
+  required_manifest_fields:
+    - source_commit
+    - source_teacher_hash
+    - base_asset_hashes
+    - resolved_s_and_r
+    - full_config_hash
+    - command
+    - start_and_end_time
+    - completed_optimizer_steps
+    - output_file_hashes
+    - failure_status
+
+evaluation:
+  numeric_protocol: paper_protocol/auxiliary_plans/spatial_artifact_metric_protocol.yaml
+  comparison_unit: 'Paired frozen views/episodes within each selected outfit.'
+  required_metrics:
+    - garment_mae
+    - rendered_silhouette_iou
+    - boundary_f_score
+    - boundary_outlier_component_count
+    - protected_mae
+    - protected_lpips
+    - protected_region_displaced_gaussian_count
+    - delta_xyz_l2_p95
+    - delta_xyz_l2_p99
+    - delta_xyz_l2_max
+    - trust_radius_exceedance_fraction
+    - tangential_displacement_l2_mean
+    - cloud_mottle_grade
+  visual_gate:
+    blinded_method_labels: true
+    fixed_full_frames_and_crops: true
+    reviewers_required: 2
+    require_no_new_severe_artifact: true
+
+success_gate:
+  rule: 'PASS only if every condition below passes for both O03 and O08; otherwise seal as FAIL or INCONCLUSIVE.'
+  conditions:
+    boundary_and_cloud_improvement:
+      required: true
+      criterion: 'Boundary F-score increases or boundary outlier components decrease, and the blinded mean cloud/mottle grade decreases, with no new grade-3 view.'
+    garment_mae_noninferiority:
+      required: true
+      criterion: 'Paired-bootstrap 95% upper confidence bound on relative garment-MAE increase is <= 2%.'
+    silhouette_iou_noninferiority:
+      required: true
+      criterion: 'Paired-bootstrap 95% lower confidence bound on IoU difference is >= -0.005.'
+    protected_region_noninferiority:
+      required: true
+      criterion: 'Protected MAE and protected LPIPS do not exceed their controls by more than 2% relative, and displaced protected-Gaussian count does not increase.'
+    large_displacement_anomaly_reduction:
+      required: true
+      criterion: 'P99 displacement and trust-radius exceedance fraction both decrease; maximum displacement does not increase.'
+  multiplicity_and_interpretation: 'This is a two-outfit micro-pilot. PASS supports only a fixed-regulation artifact-mitigation observation on these seen garments.'
+
+failure_handling:
+  expected_and_acceptable: true
+  preserve_all_failed_outputs: true
+  prohibit_retry_with_new_weights: true
+  prohibit_silent_exclusion_of_view_or_outfit: true
+  required_label: SEALED_MICRO_PILOT_FAIL_OR_INCONCLUSIVE
+  consequence: 'Do not modify formal teachers or basis; retain original paper candidate and document the failure.'
+
+guards:
+  no_execution_in_this_task: true
+  no_formal_asset_mutation: true
+  no_registry_mutation: true
+  no_claim_outside_selected_seen_garments: true
+  no_claim_that_pilot_repairs_O07: true

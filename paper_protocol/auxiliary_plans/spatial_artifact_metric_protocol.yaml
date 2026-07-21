@@ -1,0 +1,154 @@
+schema_version: canondressgs.paper.spatial_artifact_metric_protocol.v1
+task_id: AAAI27-REVIEWER-RISK-PAPER-MATERIALS-001
+date: '2026-07-21'
+status: DESIGN_ONLY_NOT_EXECUTED
+paper_final: false
+execution_authorized: false
+
+scope:
+  identity_count: 1
+  seen_garments: [O01, O02, O03, O04, O08]
+  held_out_failure_probe: O07
+  methods_required:
+    - original_teacher
+    - old_Ours
+    - historical_A6
+    - Ours-v2
+  method_optional:
+    - spatial_trust_region_teacher_micro_pilot
+
+frozen_sources:
+  gaussian_centers: 'Base-avatar canonical Gaussian centers from the frozen asset manifest.'
+  normals: 'Normalized base-avatar canonical Gaussian normals; invalid/zero normals are flagged and excluded only from normal/tangential decomposition.'
+  garment_support: 'Frozen per-Gaussian garment-support assignment used by the formal teacher/basis pipeline.'
+  protected_support: 'Frozen protected-region Gaussian assignment and protected render mask; no identity recognition is introduced.'
+  image_masks: 'Frozen teacher/target garment masks and predicted alpha at the evaluator resolution.'
+  residuals: 'Canonical delta_xyz aligned by frozen Gaussian index; no nearest-neighbor rematching.'
+  opacity: 'Canonical or rendered opacity aligned with the frozen support/mask contract.'
+  renders: 'Frozen method renders selected by the preregistered episode manifest.'
+
+threshold_preregistration:
+  freeze_time: 'Before any method outcome is inspected or compared.'
+  reference_scale: 's = median nearest-neighbor distance among base-avatar Gaussians in the frozen garment support.'
+  total_displacement_trust_radius: 'r = 0.5 * s.'
+  large_displacement_threshold: 'r.'
+  protected_displacement_epsilon: 'max(1e-6 scene units, 0.01 * s).'
+  outside_garment_opacity_threshold: 0.01
+  silhouette_alpha_threshold: 0.5
+  boundary_pixel_tolerance: 2
+  boundary_connectivity: 8
+  boundary_outlier_definition: 'A connected component of predicted silhouette outside the target garment mask dilated by two pixels, with area at least 4 pixels.'
+  manual_grade_scale: [0, 1, 2, 3]
+  rule: 'Resolve and hash s, r, masks, resolution, and all numeric thresholds before unblinding method labels. Never change a threshold after seeing results.'
+
+per_gaussian_decomposition:
+  displacement: 'd_i = delta_xyz_i.'
+  magnitude: 'm_i = L2(d_i).'
+  signed_normal: 'n_i_dot_d_i using the frozen unit normal n_i.'
+  normal_magnitude: 'abs(n_i_dot_d_i).'
+  tangential_vector: 'd_i - (n_i_dot_d_i) * n_i.'
+  tangential_magnitude: 'L2(tangential_vector).'
+  tangential_fraction: 'tangential_magnitude / max(magnitude, 1e-12).'
+
+metrics:
+  - id: delta_xyz_l2_mean
+    population: garment_support_gaussians
+    direction: diagnostic_lower_is_safer
+    statistic: mean
+  - id: delta_xyz_l2_p50
+    population: garment_support_gaussians
+    direction: diagnostic_lower_is_safer
+    statistic: p50
+  - id: delta_xyz_l2_p95
+    population: garment_support_gaussians
+    direction: lower_is_better_for_outliers
+    statistic: p95
+  - id: delta_xyz_l2_p99
+    population: garment_support_gaussians
+    direction: lower_is_better_for_outliers
+    statistic: p99
+  - id: delta_xyz_l2_max
+    population: garment_support_gaussians
+    direction: lower_is_better_for_outliers
+    statistic: max
+  - id: signed_normal_displacement_mean
+    population: garment_support_gaussians_with_valid_normals
+    direction: diagnostic_two_sided
+    statistic: mean
+  - id: normal_displacement_l2_mean
+    population: garment_support_gaussians_with_valid_normals
+    direction: diagnostic_lower_is_safer
+    statistic: mean_absolute
+  - id: tangential_displacement_l2_mean
+    population: garment_support_gaussians_with_valid_normals
+    direction: lower_is_better
+    statistic: mean
+  - id: tangential_fraction_mean
+    population: garment_support_gaussians_with_valid_normals_and_nonzero_displacement
+    direction: lower_is_better_for_sliding_artifacts
+    statistic: mean
+  - id: trust_radius_exceedance_fraction
+    population: garment_support_gaussians
+    direction: lower_is_better
+    statistic: 'fraction(m_i > r)'
+  - id: protected_region_displaced_gaussian_count
+    population: protected_support_gaussians
+    direction: lower_is_better
+    statistic: 'count(m_i > protected_displacement_epsilon)'
+  - id: opacity_activation_outside_garment
+    population: non_garment_support_gaussians
+    direction: lower_is_better
+    statistic: 'count and summed opacity above outside_garment_opacity_threshold'
+  - id: boundary_outlier_component_count
+    population: rendered_episode
+    direction: lower_is_better
+    statistic: 'count of frozen-definition connected components'
+  - id: rendered_silhouette_iou
+    population: rendered_episode
+    direction: higher_is_better
+    statistic: IoU
+  - id: boundary_f_score
+    population: rendered_episode
+    direction: higher_is_better
+    statistic: 'F-score at two-pixel tolerance'
+  - id: protected_lpips
+    population: protected_mask_crop
+    direction: lower_is_better
+    statistic: LPIPS
+    resource_gate: 'Use only the previously approved frozen LPIPS implementation/weights; otherwise report BLOCKED_RESOURCE_MISSING.'
+
+manual_visual_grade:
+  name: cloud_mottle_grade
+  direction: lower_is_better
+  scale:
+    0: 'none visible'
+    1: 'minor, visible only on close inspection'
+    2: 'clear local cloud/mottle artifact'
+    3: 'severe or spatially extensive artifact'
+  review_rules:
+    blinded_method_labels: true
+    fixed_crops_and_exposure: true
+    reviewers_required: 2
+    disagreements: 'Retain both grades and adjudicate before labels are unblinded.'
+    report: 'per-view grades, outfit macro mean, and disagreement count'
+
+aggregation:
+  canonical_metrics: 'Compute per outfit and residual asset, then report outfit macro summaries; never weight by Gaussian count across outfits.'
+  rendered_metrics: 'Compute per episode, then outfit macro, then replicate aggregate.'
+  replicates: 'Report each replicate and mean/std only when the replicate contract permits; identify deterministic initialization explicitly.'
+  held_out_O07: 'Report separately with fixed FAIL status; never mix with the five seen-garment aggregate.'
+  missing_or_invalid: 'Report counts and reasons; do not silently drop complete outfits or methods.'
+
+quality_control:
+  - 'Verify identical Gaussian indexing and canonical units before displacement comparison.'
+  - 'Render mask overlays and random index spot checks before metric computation.'
+  - 'Hash source manifests, resolved thresholds, and evaluator version.'
+  - 'Use the same masks, resolution, connected-component rule, and LPIPS resource for every method.'
+  - 'Do not select examples using these metric outcomes.'
+
+guards:
+  no_execution_in_this_task: true
+  no_threshold_tuning_after_results: true
+  no_formal_teacher_or_basis_mutation: true
+  no_registry_or_formal_output_mutation: true
+  no_out_of_wardrobe_positive_claim: true

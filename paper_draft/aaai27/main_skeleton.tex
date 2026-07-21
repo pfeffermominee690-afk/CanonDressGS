@@ -1,0 +1,30 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\resultplaceholder}[1]{\textbf{[RESULT PLACEHOLDER: #1]}}
+\newcommand{\citationtodo}[1]{\textbf{[CITATION TODO: #1]}}
+
+\title{Reference-Controlled Seen-Garment Wardrobe Editing with Explicit Canonical Residual Bases}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study reference-controlled wardrobe editing for one fixed animatable Gaussian avatar and five preregistered seen garments. The method separates a frozen explicit canonical residual basis from a reference-only coefficient predictor, while pose and camera enter only the downstream deformation and rendering stages. This design targets a failure mode in which shared neural decoding smooths or collapses localized high-frequency garment residuals. The basis has $K=4$, the complete centered rank available from five garment endpoints, and is not presented as strong low-rank compression. Evaluation is view-transductive because teacher construction, basis construction, and predictor fitting use the four preregistered views even though each prediction forward reads only target-disjoint references. \resultplaceholder{Insert the final main comparison, hard-lookup adjudication, M1--M4 conclusion, and color-dependence finding after the P0 paper-candidate evidence is frozen.} \resultplaceholder{Write the final two abstract sentences and order the contributions only after those outcomes are known.}
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_problem_setup}
+\input{sections/04_method}
+\input{sections/05_experiments}
+\input{sections/06_limitations}
+\input{sections/07_conclusion}
+
+% No bibliography is included yet: the repository audit found no bibliography file.
+% Add citations only after an existing, reviewed bibliography is supplied.
+
+\end{document}
