@@ -517,6 +517,12 @@ def train_candidate(
         if int(pending["step"]) > start_step:
             raise RuntimeError("RESUME-CONTRACT-VIOLATION: optimizer step may be uncheckpointed")
         intent.unlink()
+    summary_path = attempt / "metrics/training_summary.json"
+    completed_summary: dict[str, Any] | None = None
+    if start_step == OPTIMIZER_STEPS and summary_path.is_file():
+        previous_summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        if previous_summary.get("status") == "TRAINED":
+            completed_summary = previous_summary
     fixed_condition = CONDITIONS[0]
     with torch.no_grad():
         fixed_output, fixed_losses, fixed_metrics = forward_training_batch(
@@ -642,6 +648,19 @@ def train_candidate(
     rows = read_jsonl(log_path)
     if len(rows) != OPTIMIZER_STEPS or [row["step"] for row in rows] != list(range(1, 301)):
         raise RuntimeError("STEP-COUNT-MISMATCH")
+    if completed_summary is not None:
+        report = dict(completed_summary)
+        report["optimizer_steps_repeated"] = 0
+        report["post_training_resume_count"] = int(
+            completed_summary.get("post_training_resume_count", 0)
+        ) + 1
+        report["checkpoint_resume"] = {
+            **resume_acceptance,
+            "resumed_after_completed_training": True,
+            "resume_start_step": OPTIMIZER_STEPS,
+        }
+        atomic_json(summary_path, report)
+        return model, report
     report = {
         "schema_version": "canondressgs.paper.p0_formal_training_summary.v1",
         "status": "TRAINED", "formal_run_id": run["formal_run_id"],
@@ -664,7 +683,7 @@ def train_candidate(
             int(torch.cuda.max_memory_allocated(device)) if device.type == "cuda" else 0
         ),
     }
-    atomic_json(attempt / "metrics/training_summary.json", report)
+    atomic_json(summary_path, report)
     return model, report
 
 
@@ -779,6 +798,10 @@ def evaluate_candidate(
     basis_path: Path,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     started = time.perf_counter()
+    episode_root = attempt / "renders/episodes"
+    episode_root.mkdir(parents=True, exist_ok=True)
+    visuals = attempt / "visuals"
+    visuals.mkdir(parents=True, exist_ok=True)
     method = str(run["method"])
     device = context["base"]._xyz.device
     mean = torch.as_tensor(basis_payload["coefficient_train_mean"], device=device)
@@ -878,7 +901,6 @@ def evaluate_candidate(
                 predicted_index = OUTFITS.index(prediction["predicted_outfit"])
                 confusion[outfit_index][predicted_index] += 1
                 hard_lookup_correct[outfit] += int(prediction["predicted_outfit"] == outfit)
-            episode_root = attempt / "renders/episodes"
             save_render_tensor(
                 episode_root / f"{outfit}_{condition}_prediction.png", predicted_rgb, 3
             )
@@ -906,7 +928,6 @@ def evaluate_candidate(
                     (f"selected endpoint {selected_label}", predicted_rgb.detach().cpu(), 3),
                 ]))
         visual_rows.append((outfit, panels))
-    visuals = attempt / "visuals"
     o01._save_contact_sheet(visuals / "five_outfit_four_view_contact_sheet.png", visual_rows)
     o01._save_contact_sheet(visuals / "manual_review_contact_sheet.png", manual_review_rows)
 

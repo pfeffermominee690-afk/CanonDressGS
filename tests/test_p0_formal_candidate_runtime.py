@@ -215,6 +215,21 @@ def test_exact_resume_does_not_repeat_optimizer_steps(tmp_path: Path) -> None:
     assert resumed["optimizer_steps_repeated"] == 0
     assert [row["step"] for row in __import__("tools.paper.p0_formal_candidate_runtime", fromlist=["read_jsonl"]).read_jsonl(resumed_attempt / "logs/train.jsonl")] == list(range(1, 301))
     assert all(torch.equal(resumed_model.state_dict()[name], value) for name, value in control_model.state_dict().items())
+    preserved_time = resumed["training_time_seconds"]
+    _, post_training_resume = train_candidate(
+        attempt=resumed_attempt, run=run, cache=cache, targets=_targets(device),
+        device=device,
+    )
+    assert post_training_resume["training_time_seconds"] == preserved_time
+    assert post_training_resume["post_training_resume_count"] == 1
+    assert post_training_resume["checkpoint_resume"]["resume_start_step"] == 300
+    assert post_training_resume["optimizer_steps_repeated"] == 0
+
+
+def test_evaluator_creates_render_subdirectories() -> None:
+    source = (ROOT / "tools/paper/p0_formal_candidate_runtime.py").read_text(encoding="utf-8")
+    assert 'episode_root.mkdir(parents=True, exist_ok=True)' in source
+    assert 'visuals.mkdir(parents=True, exist_ok=True)' in source
 
 
 def test_training_milestones_are_exact(tmp_path: Path) -> None:
