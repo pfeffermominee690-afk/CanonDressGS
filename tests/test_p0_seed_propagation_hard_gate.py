@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 import subprocess
 
@@ -16,6 +17,7 @@ FORMAL_REGISTRY = ROOT / "paper_protocol/experiment_registry.yaml"
 REVIEWER_REGISTRY = (
     ROOT / "paper_protocol/reviewer_risk/reviewer_risk_experiment_registry.yaml"
 )
+SEED_AUDIT = ROOT / "paper_protocol/reviewer_risk/seed_propagation_audit.json"
 
 
 def _state_sha(model: torch.nn.Module) -> str:
@@ -44,11 +46,25 @@ def test_same_seed_reproduces_initialization() -> None:
     assert _state_sha(_ours_v2_at_seed(2)) == _state_sha(_ours_v2_at_seed(2))
 
 
+def test_seed_audit_records_failure_before_p0_optimizer() -> None:
+    audit = json.loads(SEED_AUDIT.read_text(encoding="utf-8"))
+    assert audit["status"] == "SEED-PROPAGATION-FAIL"
+    assert audit["failed_families"] == ["ours_v2"]
+    assert audit["families"]["ours_v2"]["initialization_unique_count"] == 1
+    assert audit["families"]["b6_reference_classifier"]["initialization_unique_count"] == 3
+    assert audit["families"]["complex_fusion_corrected"]["initialization_unique_count"] == 3
+    assert audit["p0_trainable_adapter_optimizer_created_before_gate"] is False
+    assert audit["failure_action"]["stop_all_p0_training"] is True
+    assert audit["failure_action"]["next_task"] == (
+        "REPAIR_PAPER_SEED_PROTOCOL_AND_RERUN_TRAINABLE_GROUPS"
+    )
+
+
 def test_seed_gate_runs_before_any_optimizer() -> None:
     source = AUDIT_TOOL.read_text(encoding="utf-8")
     assert "torch.optim" not in source
     assert '"optimizer_created": False' in source
-    assert '"optimizer_created_anywhere_in_audit": False' in source
+    assert '"p0_trainable_adapter_optimizer_created_before_gate": False' in source
 
 
 def test_formal_registry_is_unchanged() -> None:
@@ -67,6 +83,23 @@ def test_strict_view_remains_blocked() -> None:
         if item["experiment_id"] == "RR-STRICT-VIEW-ONE-FOLD-CANARY"
     )
     assert row["status"] == "BLOCKED_PENDING_AUTHORIZATION"
+
+
+def test_registry_encodes_seed_gate_failure_without_fake_runs() -> None:
+    registry = yaml.safe_load(REVIEWER_REGISTRY.read_text(encoding="utf-8"))
+    rows = {item["experiment_id"]: item for item in registry["experiments"]}
+    assert registry["p0_hard_gate"]["status"] == "SEED-PROPAGATION-FAIL"
+    assert registry["p0_hard_gate"]["p0_optimizer_steps"] == 0
+    assert all(rows[f"RR-OURS-V2-S{seed}"]["status"] == "FAILED" for seed in range(3))
+    assert all(
+        rows[f"RR-B6-REFERENCE-CLASSIFIER-S{seed}"]["status"] == "PREFLIGHT_PASS"
+        for seed in range(3)
+    )
+    assert all(
+        rows[f"RR-M3-COMPLEX-CORRECTED-S{seed}"]["status"] == "PREFLIGHT_PASS"
+        for seed in range(3)
+    )
+    assert rows["RR-B7-F2-NEAREST-CENTROID-FIXED"]["status"] == "NOT_RUN"
 
 
 def test_no_paper_final_is_created() -> None:

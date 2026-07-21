@@ -124,7 +124,21 @@ def test_strict_view_experiment_is_blocked_by_default():
 def test_reviewer_registry_starts_not_run():
     rows = RISK_REGISTRY["experiments"]
     assert len(rows) == 16
-    assert all(item["status"] == "NOT_RUN" for item in rows if not item["experiment_id"].startswith("RR-STRICT-"))
+    if "p0_hard_gate" in RISK_REGISTRY:
+        audit = json.loads(
+            (ROOT / "paper_protocol/reviewer_risk/seed_propagation_audit.json")
+            .read_text(encoding="utf-8")
+        )
+        assert audit["preflight"]["registry"]["status_counts"] == {
+            "BLOCKED_PENDING_AUTHORIZATION": 1,
+            "NOT_RUN": 15,
+        }
+        assert RISK_REGISTRY["p0_hard_gate"]["status"] == "SEED-PROPAGATION-FAIL"
+    else:
+        assert all(
+            item["status"] == "NOT_RUN"
+            for item in rows if not item["experiment_id"].startswith("RR-STRICT-")
+        )
     assert RISK_REGISTRY["auto_execute"] is False and RISK_REGISTRY["paper_final_transition_allowed"] is False
 
 

@@ -430,7 +430,7 @@ def main() -> None:
         "failure_action": (
             None if not failed_families else {
                 "stop_all_p0_training": True,
-                "optimizer_created": False,
+                "p0_trainable_adapter_optimizer_created": False,
                 "next_task": "REPAIR_PAPER_SEED_PROTOCOL_AND_RERUN_TRAINABLE_GROUPS",
                 "silent_repair_forbidden": True,
             }
@@ -466,12 +466,12 @@ def main() -> None:
             "feature_cache_sha256": cache_sha,
             "feature_cache_load_seconds": cache_seconds,
         },
-        "optimizer_created_anywhere_in_audit": False,
+        "p0_trainable_adapter_optimizer_created_before_gate": False,
         "families": family_reports,
         "conclusion": (
             "All audited trainable adapters vary initialization by seed."
             if not failed_families
-            else "At least one audited trainable adapter has identical initialization for seeds 0/1/2; the P0 hard gate failed before optimizer creation."
+            else "At least one audited trainable adapter has identical initialization for seeds 0/1/2; the P0 hard gate failed before any P0 adapter optimizer was created."
         ),
         "created_at_unix": time.time(),
     }
@@ -481,7 +481,7 @@ def main() -> None:
         "status": status,
         "failed_families": failed_families,
         "audit": str(audit_path),
-        "optimizer_created": False,
+        "p0_trainable_adapter_optimizer_created": False,
     }, sort_keys=True))
     if status != "SEED-PROPAGATION-PASS":
         raise SystemExit(3)

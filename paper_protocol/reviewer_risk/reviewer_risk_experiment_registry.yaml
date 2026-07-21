@@ -2,10 +2,17 @@ schema_version: canondressgs.paper.reviewer_risk_experiment_registry.v1
 task_id: AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001
 created: '2026-07-21'
 source_head: c60d61a67a87eb35d5debca7eb111778b637c252
-next_task: RUN_P0_REVIEWER_RISK_CLOSURE_EXPERIMENTS
+next_task: REPAIR_PAPER_SEED_PROTOCOL_AND_RERUN_TRAINABLE_GROUPS
 auto_execute: false
 formal_output_mutation_allowed: false
 paper_final_transition_allowed: false
+
+p0_hard_gate:
+  status: SEED-PROPAGATION-FAIL
+  failed_family: ours_v2
+  audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+  p0_optimizer_steps: 0
+  silent_repair_permitted: false
 
 method_revision:
   old_ours:
@@ -14,7 +21,7 @@ method_revision:
     pairwise_geometry_weight: 0.10
   ours_v2:
     method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
-    evidence_status: PROPOSED_NOT_RUN
+    evidence_status: SEED_PROPAGATION_FAILED_NOT_RUN
     pairwise_geometry_weight: 0.0
     formal_rerun_required: true
   old_a6:
@@ -47,7 +54,12 @@ experiments:
     method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
     target_method_generation: ours_v2
     seed: 0
-    status: NOT_RUN
+    status: FAILED
+    failure_reason: SEED-PROPAGATION-FAIL_IDENTICAL_INITIALIZATION
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 1
+      p0_optimizer_steps: 0
     optimizer_steps: 300
     estimated_gpu_time_minutes: 3
     estimated_evaluation_time_minutes: 2
@@ -60,7 +72,12 @@ experiments:
     method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
     target_method_generation: ours_v2
     seed: 1
-    status: NOT_RUN
+    status: FAILED
+    failure_reason: SEED-PROPAGATION-FAIL_IDENTICAL_INITIALIZATION
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 1
+      p0_optimizer_steps: 0
     optimizer_steps: 300
     estimated_gpu_time_minutes: 3
     estimated_evaluation_time_minutes: 2
@@ -73,7 +90,12 @@ experiments:
     method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
     target_method_generation: ours_v2
     seed: 2
-    status: NOT_RUN
+    status: FAILED
+    failure_reason: SEED-PROPAGATION-FAIL_IDENTICAL_INITIALIZATION
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 1
+      p0_optimizer_steps: 0
     optimizer_steps: 300
     estimated_gpu_time_minutes: 3
     estimated_evaluation_time_minutes: 2
@@ -87,7 +109,11 @@ experiments:
     method: B6_Reference_Classifier_Hard_Lookup
     target_method_generation: ours_v2_comparison
     seed: 0
-    status: NOT_RUN
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
     optimizer_steps: 300
     model_input: frozen_F2_reference_mean_max_only
     outfit_id_input: false
@@ -106,7 +132,11 @@ experiments:
     method: B6_Reference_Classifier_Hard_Lookup
     target_method_generation: ours_v2_comparison
     seed: 1
-    status: NOT_RUN
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
     optimizer_steps: 300
     model_input: frozen_F2_reference_mean_max_only
     outfit_id_input: false
@@ -125,7 +155,11 @@ experiments:
     method: B6_Reference_Classifier_Hard_Lookup
     target_method_generation: ours_v2_comparison
     seed: 2
-    status: NOT_RUN
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
     optimizer_steps: 300
     model_input: frozen_F2_reference_mean_max_only
     outfit_id_input: false
@@ -165,7 +199,11 @@ experiments:
     method: Complex_Fusion_Corrected_Supervision
     target_method_generation: ours_v2_comparison
     seed: 0
-    status: NOT_RUN
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
     historical_evidence: PAPER-B5-S0 is off-matrix because it includes pairwise geometry
     optimizer_steps: 300
     supervision: coefficient_SmoothL1_only
@@ -180,7 +218,11 @@ experiments:
     method: Complex_Fusion_Corrected_Supervision
     target_method_generation: ours_v2_comparison
     seed: 1
-    status: NOT_RUN
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
     historical_evidence: PAPER-B5-S1 is off-matrix because it includes pairwise geometry
     optimizer_steps: 300
     supervision: coefficient_SmoothL1_only
@@ -195,7 +237,11 @@ experiments:
     method: Complex_Fusion_Corrected_Supervision
     target_method_generation: ours_v2_comparison
     seed: 2
-    status: NOT_RUN
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
     historical_evidence: PAPER-B5-S2 is off-matrix because it includes pairwise geometry
     optimizer_steps: 300
     supervision: coefficient_SmoothL1_only
