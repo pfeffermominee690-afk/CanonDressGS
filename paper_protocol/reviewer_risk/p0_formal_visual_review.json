@@ -1,0 +1,357 @@
+{
+  "actual_open_required": true,
+  "all_sheets_actual_opened": true,
+  "engineering_classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+  "expected_count": 13,
+  "formal_attempts_modified_by_review": false,
+  "global_observations": {
+    "b6_seen_garment_mapping": "3/3 seeds correct for all O01/O02/O03/O04/O08 rows",
+    "b7_seen_garment_mapping": "fixed run correct for all O01/O02/O03/O04/O08 rows",
+    "identity_contamination_count": 0,
+    "image_corruption_count": 0,
+    "m3_m4_artifacts": "Severe full-body cloud/mottle and edge scatter accompany endpoint collapse in all six M3/M4 seeds.",
+    "m3_seed_collapses": {
+      "0": "O08",
+      "1": "O08",
+      "2": "O03"
+    },
+    "m4_seed_collapses": {
+      "0": "O08",
+      "1": "O04",
+      "2": "O03"
+    },
+    "ours_v2_seen_garment_mapping": "3/3 replicates correct for all O01/O02/O03/O04/O08 rows",
+    "shared_teacher_artifacts": "Ours-v2/B6/B7 predictions match the selected teacher endpoint; teacher and prediction share visible edge speckles, strongest for O03/O04."
+  },
+  "hyperparameter_changes_after_review": false,
+  "paper_final": false,
+  "review_scope": [
+    "base",
+    "target",
+    "teacher",
+    "prediction",
+    "correct_reference",
+    "swapped_reference",
+    "predicted_class_or_centroid",
+    "selected_teacher_endpoint"
+  ],
+  "reviewed_count": 13,
+  "runs": [
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-OURS-V2-R0",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "Ours-v2",
+      "reference_mapping_correct": true,
+      "replicate_index": 0,
+      "review_copy_sha256": "163acf0086fe34fd9a7001fe2cbb45d9f33839e540f56734a23006fc9cfe3694",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_0/attempt_002/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": 0,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-OURS-V2-R1",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "Ours-v2",
+      "reference_mapping_correct": true,
+      "replicate_index": 1,
+      "review_copy_sha256": "163acf0086fe34fd9a7001fe2cbb45d9f33839e540f56734a23006fc9cfe3694",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_1/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": 1,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-OURS-V2-R2",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "Ours-v2",
+      "reference_mapping_correct": true,
+      "replicate_index": 2,
+      "review_copy_sha256": "163acf0086fe34fd9a7001fe2cbb45d9f33839e540f56734a23006fc9cfe3694",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_2/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": 2,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-B6-S0",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "B6",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "02d33cbfd7d52b3da7c90676e1862fd6dddcab90dcc3f5aa24063cc88d6c3cca",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_0/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": 0,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-B6-S1",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "B6",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "02d33cbfd7d52b3da7c90676e1862fd6dddcab90dcc3f5aa24063cc88d6c3cca",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_1/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": 1,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-B6-S2",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "B6",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "02d33cbfd7d52b3da7c90676e1862fd6dddcab90dcc3f5aa24063cc88d6c3cca",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_2/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": 2,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-B7-FIXED",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "B7",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "02d33cbfd7d52b3da7c90676e1862fd6dddcab90dcc3f5aa24063cc88d6c3cca",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b7/fixed/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS",
+        "cloud_mottle": "NONE_BEYOND_FROZEN_TEACHER_RENDER_ARTIFACTS",
+        "collapsed_outfit": null,
+        "edge_scatter": "VISIBLE_IN_FROZEN_TEACHER_AND_PREDICTION; MOST_NOTICEABLE_O03_O04",
+        "endpoint_collapse": false,
+        "saturation_abs_ge_0_99": null,
+        "seen_garment_mapping": "O01/O02/O03/O04/O08 all correct across four views"
+      },
+      "seed": null,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-M3-S0",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "M3",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "406d354310f3f7fe01efe09a4e9b07e2f074d0a47eb6d34c55528c21f9d2a57c",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_0/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+        "cloud_mottle": "SEVERE_FULL_BODY",
+        "collapsed_outfit": "O08",
+        "edge_scatter": "SEVERE",
+        "endpoint_collapse": true,
+        "saturation_abs_ge_0_99": 0.0,
+        "selected_endpoint_histogram": {
+          "O08": 20
+        }
+      },
+      "seed": 0,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-M3-S1",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "M3",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "e363d89f8870e455fc81d71d23437b9db96e0f0684a09b589a91cd3c0211a735",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_1/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+        "cloud_mottle": "SEVERE_FULL_BODY",
+        "collapsed_outfit": "O08",
+        "edge_scatter": "SEVERE",
+        "endpoint_collapse": true,
+        "saturation_abs_ge_0_99": 0.0,
+        "selected_endpoint_histogram": {
+          "O08": 20
+        }
+      },
+      "seed": 1,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-M3-S2",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "M3",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "1d23942a4d63b39e5960dbae6983ef4c2f5f9c84b037943b15798e373d12f82e",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_2/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+        "cloud_mottle": "SEVERE_FULL_BODY",
+        "collapsed_outfit": "O03",
+        "edge_scatter": "SEVERE",
+        "endpoint_collapse": true,
+        "saturation_abs_ge_0_99": 0.0,
+        "selected_endpoint_histogram": {
+          "O03": 20
+        }
+      },
+      "seed": 2,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-M4-S0",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "M4",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "96e426686b06d0ed6294b74caacf3d24ee82ebee0af96c53c9be379842d325f5",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_0/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+        "cloud_mottle": "SEVERE_FULL_BODY",
+        "collapsed_outfit": "O08",
+        "edge_scatter": "SEVERE",
+        "endpoint_collapse": true,
+        "saturation_abs_ge_0_99": 1.0,
+        "selected_endpoint_histogram": {
+          "O08": 20
+        }
+      },
+      "seed": 0,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-M4-S1",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "M4",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "f030ff31c3dc1cd2c1cbce32150e5fa8f40bf28f0164fbc50358549171c299d5",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_1/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+        "cloud_mottle": "SEVERE_FULL_BODY",
+        "collapsed_outfit": "O04",
+        "edge_scatter": "SEVERE",
+        "endpoint_collapse": true,
+        "saturation_abs_ge_0_99": 1.0,
+        "selected_endpoint_histogram": {
+          "O04": 20
+        }
+      },
+      "seed": 1,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    },
+    {
+      "actual_opened": true,
+      "formal_run_id": "P0-FORMAL-M4-S2",
+      "identity_contamination_observed": false,
+      "image_corruption": false,
+      "method": "M4",
+      "reference_mapping_correct": true,
+      "replicate_index": null,
+      "review_copy_sha256": "c3bb071de2ad9fcd0eb6c0fecd4a58d503ca735f45a80b16e4230f3f4a6e0a5f",
+      "reviewed_sheet": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_2/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "scientific_observation": {
+        "classification": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+        "cloud_mottle": "SEVERE_FULL_BODY",
+        "collapsed_outfit": "O03",
+        "edge_scatter": "SEVERE",
+        "endpoint_collapse": true,
+        "saturation_abs_ge_0_99": 1.0,
+        "selected_endpoint_histogram": {
+          "O03": 20
+        }
+      },
+      "seed": 2,
+      "selected_endpoint_matches_render_label": true,
+      "target_varies_by_outfit": true
+    }
+  ],
+  "schema_version": "canondressgs.paper.p0_formal_visual_review.v1",
+  "scientific_failure_reruns": false,
+  "scientific_freeze": false,
+  "status": "MANUAL_REVIEW_REQUIRED",
+  "task_id": "AAAI27-P0-FORMAL-CANDIDATE-RUNS-001"
+}

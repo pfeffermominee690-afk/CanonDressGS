@@ -73,7 +73,9 @@ def test_formal_registry_has_13_authorized_runs() -> None:
     payload = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
     validate_registry(payload)
     assert len(payload["runs"]) == 13
-    assert all(row["status"] == "AUTHORIZED_NOT_RUN" for row in payload["runs"])
+    assert all(row["formal_run_authorized"] for row in payload["runs"])
+    assert all(row["status"] == "MANUAL_REVIEW_REQUIRED" for row in payload["runs"])
+    assert all(row["attempt"] and row["evaluation"] and row["provenance"] for row in payload["runs"])
 
 
 def test_formal_registry_has_3600_planned_steps() -> None:
