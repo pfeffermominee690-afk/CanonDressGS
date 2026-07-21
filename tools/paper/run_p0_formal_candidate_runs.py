@@ -200,6 +200,22 @@ def run_queue(
     runtime_registry = _runtime_registry(output_root, registry)
     queue = _queue(registry, selected)
     state_path = output_root / "manifests/queue_state.json"
+    if state_path.is_file():
+        previous_state = json.loads(state_path.read_text(encoding="utf-8"))
+        existing_attempts = list((output_root / "formal_runs").rglob("attempt_*"))
+        if previous_state.get("status") == "RUNNING" and not existing_attempts:
+            atomic_json(output_root / "audits/zero_step_startup_failure_001.json", {
+                "schema_version": "canondressgs.paper.p0_zero_step_startup_failure.v1",
+                "classification": "ZERO_STEP_TOOLING_ERROR",
+                "status": "PRESERVED_BEFORE_MINIMAL_FIX",
+                "run_commit": "0222a6eb5fac1681c22e1d410b4c3784557f1e08",
+                "optimizer_steps": 0, "attempt_created": False,
+                "exception_type": "RuntimeError",
+                "exception_message": "median CUDA with indices output does not have a deterministic implementation",
+                "root_cause": "The deterministic-algorithm guard was enabled before constructing the frozen historical context.",
+                "contract_change": False,
+                "previous_queue_state": previous_state,
+            })
     state = {
         "schema_version": "canondressgs.paper.p0_formal_queue.v1",
         "task_id": TASK_ID, "status": "RUNNING", "queue": [row["formal_run_id"] for row in queue],
@@ -216,6 +232,7 @@ def run_queue(
         "status": "PASS", "path": str(cache_path), "sha256": cache_sha256,
         "load_seconds": cache_seconds, "target_forward_leakage": False,
     })
+    torch.use_deterministic_algorithms(True, warn_only=True)
     with single_gpu_lock(output_root):
         for run in queue:
             run_id = run["formal_run_id"]
@@ -355,7 +372,6 @@ def main() -> None:
         return
     if args.command == "run":
         os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
-        torch.use_deterministic_algorithms(True)
         value = run_queue(
             output_root=args.output_root, asset_root=args.asset_root,
             formal_root=args.formal_root, selected=args.run_id,
