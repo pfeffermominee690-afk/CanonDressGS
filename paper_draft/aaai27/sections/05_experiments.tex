@@ -1,8 +1,14 @@
 \section{Experiments}
 
-\subsection{Protocol and questions}
+\subsection{Evaluation Protocol}
 
-All main experiments use one fixed avatar, five preregistered seen garments, four preregistered views, and target-disjoint three-reference episodes. The protocol remains view-transductive. O07 is a held-out failure probe and is never used for training, threshold selection, hyperparameter selection, or pilot tuning. Candidate values are not paper results until the unified evaluator, replicate aggregation, manual visual review, and final artifact freeze are complete.
+All main experiments use the same fixed avatar and the seen wardrobe $\{\mathrm{O01},\mathrm{O02},\mathrm{O03},\mathrm{O04},\mathrm{O08}\}$. The four fixed conditions are front (\texttt{cond\_000000}), back (\texttt{cond\_000318}), left (\texttt{cond\_000017}), and right (\texttt{cond\_000347}). For each outfit/condition pair, the target condition is excluded and the other three conditions form the normal reference set. This Cartesian product yields exactly 20 unique correct episodes. The protocol is view-transductive because the teacher/basis/predictor evidence chain has indirect access to all four conditions.
+
+The evaluator requires 80 unique cross-outfit swaps: for each target outfit and view, references are drawn from each of the other four seen outfits. It additionally requires permutation, single-reference, two-reference-dropout, zero-reference replacement, and base-reference replacement records for the correct episodes. Permutation changes reference order without changing the set. Single-reference retains one legal reference; two-reference dropout removes one of the three. Zero replacement sets reference RGB to zero while retaining masks and the target; base replacement substitutes target-base RGB expanded to the reference count. These two replacement interventions are not equivalent.
+
+Every raw record carries the frozen asset fingerprint and target-forward boundary. A run is rejected for duplicate or missing correct episodes, fewer or duplicate swap tuples, non-finite values, reference--target overlap, asset mismatch, or target-forward leakage. O07 is kept outside the seen macro and is used only for the fixed held-out failure decomposition; it is never used for fitting, thresholds, hyperparameters, or pilot selection.
+
+\subsection{Questions and Comparisons}
 
 We organize the evaluation around four questions:
 \begin{enumerate}
@@ -11,6 +17,20 @@ We organize the evaluation around four questions:
   \item What are the teacher/onboarding, predictor, inference, rendering, storage, and peak-memory costs?
   \item Where does the closed-wardrobe representation fail, including O07 and spatial artifacts?
 \end{enumerate}
+
+B6, B7, M3, and M4 are comparisons rather than parts of Ours-v2. B6 uses reference-only classification followed by predicted-class teacher lookup. B7 is a fixed, non-trainable nearest-centroid lookup whose centroid for each target-view fold is built only from the other three views. M3 and M4 share a randomly seeded complex-trunk initialization within each seed; M3 uses the corrected unsaturated coefficient objective, whereas M4 uses the legacy bounded endpoint and supervision contract. Historical B5 remains off-matrix.
+
+\subsection{Replicate and Seed Semantics}
+
+Ours-v2 uses three \emph{deterministic protocol replicates}. Replicate indices 0, 1, and 2 have the same bitwise zero-initialized trainable state and the same mean-garment step-zero output; they are not independent random initializations. Their final records must be reported by replicate and may be summarized only with language that preserves this initialization fact.
+
+B6, M3, and M4 use random seeds 0, 1, and 2. M3 and M4 are paired by seed through identical initial trunks and zero output heads. B7 has no trainable parameters, seed, or optimizer and produces one fixed non-trainable result. No best replicate or best seed may be selected.
+
+\subsection{Aggregation and Metrics}
+
+Metrics are computed per correct episode. The four views of each outfit are averaged with equal weight; the five outfit means are then macro-averaged; only then is the replicate/seed summary formed. Pixel-weighted outfit micro-averaging, selective episode exclusion, and mixing O07 into the seen aggregate are prohibited.
+
+The frozen evaluator contains 27 metric slots spanning standardized/restored coefficients, residual agreement/support, rendered garment/protected/background quality, reference swap/perturbation behavior, and efficiency. The preregistered LPIPS, silhouette IoU, boundary F-score, protected LPIPS, and spatial-artifact metrics remain auxiliary until their resource and protocol gates pass. Missing or inapplicable values are reported explicitly rather than filled with zero.
 
 \subsection{Main comparison}
 

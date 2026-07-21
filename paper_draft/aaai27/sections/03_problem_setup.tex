@@ -1,22 +1,67 @@
 \section{Problem Setup}
 
-Let $\mathcal{A}_0$ be one fixed animatable Gaussian avatar in canonical space. The preregistered seen wardrobe is
+\paragraph{Fixed avatar and canonical support.}
+Let $\mathcal{A}_0$ denote one fixed-identity animatable avatar with $N=200{,}000$ canonical Gaussians. Its canonical state is
+\begin{equation}
+\mathcal{G}_0=(X_0,S_0,Q_0,O_0,H_0,H_{>0}),
+\end{equation}
+where position, log scaling, rotation, opacity logit, degree-zero spherical harmonics, and remaining spherical-harmonic coefficients share a fixed Gaussian index. The base state, Gaussian count, deformation model, and renderer are frozen in the paper protocol.
+
+Clothing is represented by a six-channel canonical residual field
+\begin{equation}
+\mathcal{R}=(\Delta X,\Delta S,\Delta\Omega,\Delta O,\Delta H_0,\Delta H_{>0}),
+\end{equation}
+with shapes $[N,3]$, $[N,3]$, $[N,3]$, $[N]$, $[N,1,3]$, and $[N,3,3]$ in the frozen artifact. Rotation residuals use an axis-angle vector and are composed as a local quaternion update. A physical zero residual leaves the base avatar unchanged; it is distinct from the nonzero mean residual of the garment basis.
+
+\paragraph{Closed seen wardrobe and teachers.}
+The preregistered seen wardrobe is
 \begin{equation}
 \mathcal{G}_{\mathrm{seen}}=\{\mathrm{O01},\mathrm{O02},\mathrm{O03},\mathrm{O04},\mathrm{O08}\},
 \end{equation}
-and each garment is observed in four fixed views. O07 is excluded from all fitting and model-selection decisions and is retained only as a held-out failure probe.
+and each garment is observed in four fixed conditions corresponding to front, back, left, and right views. For garment $g$, multi-view residual optimization produces a teacher field $\mathcal{R}_g^{\star}$ on the same canonical Gaussian support. O07 is excluded from the seen wardrobe, coefficient normalization, basis construction, predictor fitting, threshold selection, and model selection. It is retained as a held-out failure probe and is never included in the seen-garment aggregate.
 
-An episode provides three reference observations $R=\{r_j\}_{j=1}^{3}$ for one garment and a target pose-camera pair $(p_t,c_t)$. The target observation is not included in $R$. The predictor produces a coefficient vector using only $R$,
+\paragraph{Reference-conditioned episode.}
+For a target condition $t$, an episode supplies the other three observations of the same registered garment as a reference set
 \begin{equation}
-\hat{\mathbf z}=f_{\theta}(R), \qquad \hat{\mathbf z}\in\mathbb{R}^{4},
+\mathcal{S}_t=\{(I_j,M_j^{\mathrm{cloth}},M_j^{\mathrm{fg}},v_j)\}_{j\neq t},
+\qquad |\mathcal{S}_t|=3,
 \end{equation}
-which selects a canonical residual through a fixed basis. The target pose and camera are consumed only after coefficient prediction, by deformation and rendering.
+where $v_j$ is a validity flag. The target provides pose and camera $(p_t,c_t)$ for downstream animation and rendering. Target RGB $I_t$ and target masks $M_t$ are used only to optimize garment-specific teachers, to supervise/evaluate rendered outputs, and to construct frozen evaluation records. They are forbidden inputs to the reference coefficient predictor.
 
-\paragraph{Transductive boundary.}
-Target/reference overlap is zero within each episode, and the coefficient forward pass reads no target RGB or mask. However, garment teachers, the centered basis, and predictor training use the complete set of four preregistered views; an image used as a target in one episode can be a reference in another. We therefore classify the protocol as \textsc{View-Transductive}, not strict end-to-end leave-one-view-out evaluation.
+The predictor produces a standardized coefficient vector using only the reference set,
+\begin{equation}
+\hat{\mathbf z}=f_{\theta}(\mathcal{S}_t), \qquad \hat{\mathbf z}\in\mathbb{R}^{4}.
+\end{equation}
+After de-standardization, the raw coefficient selects a canonical residual from a frozen explicit basis. Only then may $(p_t,c_t)$ be consumed by the frozen deformation and rendering path.
+
+\paragraph{Direct and indirect target-view use.}
+Reference--target image overlap is exactly zero within every prediction episode: the target condition is absent from $\mathcal{S}_t$, and the coefficient forward pass reads no target RGB, target mask, target pose, or target camera. This direct-input exclusion is not an end-to-end view-isolation result. Each teacher is optimized from all four target views, the explicit basis is constructed from those full-view teachers, and predictor fitting cycles over episodes spanning the same four conditions. Thus target-view information enters indirectly through teacher endpoints, the basis, and training supervision. We classify the evaluation as \textsc{View-Transductive}, not strict leave-one-view-out.
 
 \paragraph{Evaluation unit.}
-The frozen contract uses correct-garment episodes and reports episode metrics before outfit-level macro aggregation and, where meaningful, replicate aggregation. A deterministic zero-initialized method can have multiple training replicates without having independently randomized initial states. No best-replicate selection is permitted.
+The frozen contract contains one correct episode for every seen-garment/target-condition pair. Metrics are computed per episode, averaged equally across the four conditions of each outfit, and then macro-averaged across the five outfits. Replicate or seed aggregation is applied only after this hierarchy. A deterministic zero-initialized method can have multiple protocol replicates without independently randomized initial states. No best-replicate selection is permitted.
 
 \paragraph{Claim domain.}
-The estimand is reference-controlled editing within the fixed five-garment wardrobe for this one avatar. O07, other garments, other identities, and held-out-view systems are outside the positive claim domain.
+The estimand is reference-controlled editing within the fixed five-garment wardrobe for this one avatar. O07, other garments, other identities, and strictly held-out-view systems are outside the positive claim domain.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}p{0.20\linewidth}p{0.50\linewidth}p{0.22\linewidth}@{}}
+\toprule
+Symbol & Meaning & Shape or cardinality \\
+\midrule
+$\mathcal{G}_0$ & frozen canonical Gaussian state & $N=200{,}000$ Gaussians \\
+$\mathcal{R}_g^{\star}$ & teacher six-channel residual for garment $g$ & six tensors indexed by $N$ \\
+$\mu_{\mathcal{R}}$ & mean residual field of the seen teachers & six tensors indexed by $N$ \\
+$B$ & explicit centered residual basis & $K=4$ fields per channel \\
+$\mathbf{c}_g$ & raw basis coefficient & $\mathbb{R}^{4}$ \\
+$\bar{\mathbf c},\boldsymbol{\sigma}_{c}$ & frozen train-wardrobe coefficient statistics & $\mathbb{R}^{4}$ each \\
+$\mathbf{z}_g$ & standardized coefficient & $\mathbb{R}^{4}$ \\
+$\mathcal{S}_t$ & target-disjoint reference set & three references \\
+$\phi_j$ & frozen F2 feature for one reference & $\mathbb{R}^{256}$ \\
+$\Phi(\mathcal{S}_t)$ & valid-reference mean/max pooled feature & $\mathbb{R}^{512}$ \\
+$(p_t,c_t)$ & target pose and camera & downstream inputs only \\
+\bottomrule
+\end{tabular}
+\caption{Method notation and the code-aligned tensor/cardinality contract.}
+\end{table}

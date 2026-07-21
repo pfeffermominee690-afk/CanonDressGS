@@ -1,11 +1,22 @@
 \section{Limitations}
 
-This study evaluates one fixed identity and five preregistered seen garments. It does not establish performance for additional identities, garments outside the registered wardrobe, arbitrary clothing, or semantic understanding of garment geometry. The $K=4$ basis is the complete centered rank of five endpoints, not evidence of strong compression.
+\paragraph{Identity and wardrobe scope.}
+This study evaluates one fixed identity and five preregistered seen garments. It provides no cross-identity evidence and no real-world validation. The method does not infer arbitrary garments, and it cannot introduce an unseen residual innovation outside the span of the frozen teacher basis. O07 is a fixed held-out failure, not a successful out-of-wardrobe example.
 
-The evaluation is view-transductive. Although a prediction forward uses target-disjoint references and no target RGB or mask, the teachers, basis, and predictor are constructed using all four preregistered views. Consequently, the manuscript makes no held-out-camera claim and does not describe the protocol as strict leave-one-view-out.
+\paragraph{View-transductive evidence.}
+Although each prediction forward uses target-disjoint references and reads no target RGB/mask/pose/camera, teachers are optimized from all four views, and both the basis and predictor inherit that supervision. The evaluation is therefore view-transductive. It is not strict leave-one-view-out and provides no strict novel-view result.
 
-O07 is a held-out garment failure that exposes finite support and subspace limits, particularly for loose shapes not covered by the seen endpoints. A possible spatial trust-region teacher pilot can test whether displacement regularization reduces boundary or cloud artifacts on selected seen garments, but it cannot repair the evidentiary gap outside the registered wardrobe.
+\paragraph{Basis rank and spatial support.}
+Five centered teacher endpoints have maximum rank four, so $K=4$ is the complete centered rank rather than strong low-rank compression. The basis can mix only residual directions already represented by those endpoints. The original fixed Gaussian support is especially limiting for wide or loose garments that require geometry outside the supported region. O07 and visible boundary/cloud failure modes expose this support and subspace limitation.
 
-Every garment requires a teacher during onboarding. This cost can make direct teacher storage and lookup competitive; B2, B6, and B7 are therefore mandatory comparisons. The final paper must narrow its contribution if hard lookup matches continuous coefficient prediction.
+\paragraph{Teacher onboarding and lookup risk.}
+Every registered garment requires a 1,200-step multi-view teacher before it can contribute an endpoint. Basis reconstruction and predictor refitting are also required when expanding the closed wardrobe. Direct teacher storage, outfit-ID lookup, reference classification, or nearest-centroid lookup may therefore be equally or more practical. The hard-lookup comparison is pending adjudication, and the paper must narrow to wardrobe retrieval/control if lookup matches the coefficient predictor.
 
-The current evidence may depend strongly on appearance or color cues, and synthetic targets do not establish robustness in unconstrained real imagery. Final claims depend on the preregistered color counterfactual and extended-metric outcomes. Results remain a paper candidate until all P0 experiments, aggregation, artifact checks, and manual adjudication are frozen; \texttt{PAPER\_FINAL=0} at the time of this draft.
+\paragraph{Appearance cues and target domain.}
+The references and targets are synthetic protocol assets. Their controlled masks and viewpoints do not establish robustness to real capture, background clutter, mask errors, lighting change, or unconstrained cameras. Dependence on appearance/color cues remains pending the preregistered counterfactual suite; no shape- or semantic-understanding interpretation is warranted before that adjudication.
+
+\paragraph{Spatial artifacts.}
+Explicit Gaussian residuals can create large displacements, tangential sliding, outside-garment opacity, boundary components, or cloud/mottle artifacts. Existing pixel metrics do not fully characterize these failures. The preregistered spatial-artifact protocol and any separately authorized trust-region pilot can quantify or mitigate them only for the selected seen garments; such a pilot cannot establish behavior outside the closed wardrobe.
+
+\paragraph{Evidence status.}
+Main Ours-v2, hard-lookup, M1--M4, color, extended-metric, and spatial conclusions remain unresolved. Historical A6 is not a substitute for Ours-v2, and no pending candidate value is treated as a final paper result.

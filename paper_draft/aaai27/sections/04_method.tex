@@ -1,37 +1,84 @@
 \section{Method}
 
-\subsection{Garment teachers and canonical residual endpoints}
+\subsection{Overview}
 
-For each seen garment $g$, a garment-specific teacher defines a canonical residual endpoint $\Delta_g$ on the fixed Gaussian support. The endpoint may include the residual channels already frozen by the engineering protocol; this manuscript does not redefine the base avatar, Gaussian set, renderer, deformation model, or target data. Teachers are an onboarding cost and an upper-bound/reference asset, not evidence that the coefficient branch can infer a new garment.
+The method separates spatial garment representation from reference conditioning. Multi-view teachers first instantiate garment-specific residual endpoints on the fixed canonical Gaussian support. A deterministic centered SVD converts the five seen endpoints into a frozen mean field and a $K=4$ explicit basis. At prediction time, a frozen feature extractor and deterministic set pooling summarize target-disjoint references; a small coefficient head predicts four standardized coordinates. The corresponding raw coefficient composes a canonical residual, after which the existing avatar deformation and renderer consume the target pose and camera.
 
-\subsection{Centered explicit residual basis}
+Only the Ours-v2 coefficient branch is the proposed candidate in this section. B6 and B7 are hard-lookup baselines, while M3 and M4 are contract-matched causal controls. None is a component of the proposed inference path. Historical A6 is evidence about the rejected pairwise term and is not an Ours-v2 result.
 
-We compute the mean endpoint and centered residuals
+\subsection{Multi-view Teacher Residual Optimization}
+
+For each seen garment $g$, an independent \emph{UnboundedGaussianDeltaField} is initialized at physical zero on the original canonical support. It directly parameterizes position, log-scaling, axis-angle rotation, opacity-logit, and degree-zero spherical-harmonic residuals on the frozen garment-trainable support; the remaining spherical-harmonic residual channel is present in the six-channel contract and fixed to zero in this teacher implementation. The base Gaussian state is not optimized.
+
+The four views are visited in a fixed round-robin order for 1,200 teacher optimizer steps. Each step composes the current canonical residual with the base, deforms/renders it at the selected target pose and camera, and applies the frozen capacity-oracle objective: garment RGB, foreground alpha, new-silhouette alpha, boundary RGB, protected RGB/alpha, and a small stability term. Target RGB and masks therefore supervise teacher optimization, but they never enter the later coefficient-prediction forward. After optimization, a frozen protected-region guard zeros every residual channel on the protected Gaussian set. The resulting $\mathcal{R}_g^{\star}$ is stored in bound-normalized six-channel form. Teacher construction is an onboarding prerequisite and an optimization upper bound, not proof of reference inference.
+
+\subsection{Explicit Canonical Residual Basis}
+
+Let $D$ divide each residual channel by its preregistered positive channel bound, and let $\mathbf r_g$ be the flattened concatenation of $D(\mathcal{R}_g^{\star})$. From the five seen teachers, we form
 \begin{equation}
-\bar{\Delta}=\frac{1}{5}\sum_{g\in\mathcal{G}_{\mathrm{seen}}}\Delta_g,
+\bar{\mathbf r}=\frac{1}{5}\sum_{g\in\mathcal{G}_{\mathrm{seen}}}\mathbf r_g,
 \qquad
-\widetilde{\Delta}_g=\Delta_g-\bar{\Delta}.
+\widetilde{\mathbf r}_g=\mathbf r_g-\bar{\mathbf r}.
 \end{equation}
-The five centered endpoints have rank at most four. The selected basis $B=[b_1,\ldots,b_4]$ retains the complete centered rank, so any compression interpretation must be avoided. A coefficient vector reconstructs
+A deterministic SVD of the centered matrix fixes component signs by the largest-magnitude pivot. Unflattening the first $K$ right-singular vectors produces one explicit per-Gaussian field per component and channel. Five centered endpoints have rank at most four; the selected $K=4$ is the complete centered rank, not a strong compression setting.
+
+Writing $\mu_{\mathcal R}$ for the unnormalized mean field and $B$ for the corresponding physical residual components, canonical reconstruction is
 \begin{equation}
-\widehat{\Delta}(\mathbf z)=\bar{\Delta}+B\mathbf z.
+\boxed{\mathcal{R}(\mathbf c)=\mu_{\mathcal R}+B\mathbf c.}
 \end{equation}
-Rank-ladder experiments at $K\in\{1,2,3,4\}$ test representation adequacy; only $K=4$ represents the complete centered endpoint subspace.
+The basis, mean, channel bounds, teacher coordinates, and coefficient normalization are frozen before coefficient-predictor fitting. O07 is excluded from every one of these operations.
 
-\subsection{Reference-only coefficient branch}
+\subsection{Reference Feature Aggregation}
 
-Frozen reference features are aggregated across the three references and mapped to four standardized coefficients. The paper candidate uses an economical linear control branch; a contract-matched complex branch is reserved for the M3 comparison. Neither branch reads the target image, target mask, target pose, or target camera. Pose and camera enter only when the selected canonical residual is deformed and rendered with the fixed avatar pipeline.
+The frozen image backbone produces a 128-channel spatial feature map for each reference. Clothing-mask weighted mean and masked maximum pooling are concatenated to form $\phi_j\in\mathbb{R}^{256}$. Given validity values $v_j$, the adapter computes
+\begin{equation}
+\phi_{\mathrm{mean}}=\frac{\sum_j v_j\phi_j}{\sum_j v_j},
+\qquad
+\phi_{\mathrm{max}}=\max_{j:v_j>0}\phi_j,
+\end{equation}
+and concatenates them as $\Phi(\mathcal{S}_t)=[\phi_{\mathrm{mean}},\phi_{\mathrm{max}}]\in\mathbb{R}^{512}$. This operation is deterministic, permutation invariant, and validity aware. Its only image-derived inputs are reference RGB and frozen reference masks/features.
 
-The predictor is supervised by frozen teacher coefficients using an unsaturated SmoothL1 objective. The earlier pairwise coefficient-geometry term is rejected by historical paired evidence and is retained only as a reverse ablation. The M1--M4 matrix is required before attributing differences to linear versus complex fusion because historical B5 combines a complex branch with the rejected pairwise term and is off-matrix.
+\subsection{Coefficient Prediction}
 
-\subsection{Deterministic mean-garment initialization}
+Teacher raw coefficients $\mathbf c_g\in\mathbb{R}^{4}$ define frozen train-wardrobe statistics
+\begin{equation}
+\bar{\mathbf c}=\frac{1}{5}\sum_g\mathbf c_g,
+\qquad
+\boldsymbol{\sigma}_{c}=\sqrt{\frac{1}{5}\sum_g(\mathbf c_g-\bar{\mathbf c})^{\odot 2}},
+\end{equation}
+with every scale component required to be positive. The standardized target and inverse map are
+\begin{equation}
+\mathbf z_g=(\mathbf c_g-\bar{\mathbf c})\oslash\boldsymbol{\sigma}_{c},
+\qquad
+\mathbf c=\mathbf z\odot\boldsymbol{\sigma}_{c}+\bar{\mathbf c}.
+\end{equation}
+Ours-v2 applies LayerNorm and a single Linear(4) map to $\Phi(\mathcal S_t)$, producing an unconstrained standardized coefficient. There is no tanh, attention, outfit-ID input, target input, or residual decoder in this branch.
 
-The standardized coefficient zero is the mean coefficient, and raw coefficient zero reconstructs the mean garment residual $\bar{\Delta}$ rather than the base avatar. Ours-v2 initializes its output map to zero (with LayerNorm scale one and bias zero), yielding the same mean-garment initial prediction for every replicate. This is a deliberate deterministic contract. Replicates differ through subsequent data/optimization stochasticity where present, but must not be described as independently randomized initializations.
+\subsection{Deterministic Mean-Garment Initialization}
 
-Matched M3/M4 comparisons share a seeded random trunk and use zero output heads so that initial output semantics agree. Cross-architecture fairness means matched initial outputs, not identical parameter tensors.
+LayerNorm is initialized with unit scale and zero bias, and the coefficient map has exactly zero weight and bias. Every fresh Ours-v2 replicate therefore emits $\mathbf z=\mathbf 0$ at step zero, independent of the configured replicate seed. De-standardization maps standardized zero to the stored coefficient mean. In centered-coordinate semantics that mean is the raw coefficient origin (the frozen artifact preserves its finite-precision value), so the semantic chain is
+\begin{equation}
+\mathbf z=\mathbf 0
+\quad\longrightarrow\quad
+\mathbf c=\bar{\mathbf c}\equiv\mathbf 0_{\mathrm{raw}}
+\quad\longrightarrow\quad
+\mathcal R(\mathbf c)=\mu_{\mathcal R}.
+\end{equation}
+Thus the initial output is a \emph{mean-garment prediction}. It is not the physical zero residual and does not reproduce the base avatar. Zero-reference replacement and base-reference replacement are also distinct evaluator interventions and must not be conflated with initialization semantics.
 
-\subsection{Conditional interpretation}
+\subsection{Canonical Composition and Animation}
 
-\resultplaceholder{If hard lookup matches Ours-v2, narrow the description to reference-controlled garment wardrobe retrieval/control.}
-\resultplaceholder{If M3 approaches Ours-v2, state that corrected unsaturated supervision is critical and that linear fusion is sufficient and economical; do not claim linear causal superiority.}
-\resultplaceholder{If color counterfactuals dominate, state that reference control is primarily driven by garment appearance/color cues.}
+The reconstructed six-channel residual is applied to the frozen canonical Gaussian state: position, log scaling, opacity logit, and spherical-harmonic channels are additive, while the axis-angle residual is converted to a quaternion and locally composed with the normalized base rotation. The selected canonical overrides are then passed to the frozen MMLP-Human state transaction and renderer. Only this downstream stage reads $(p_t,c_t)$. Target pose/camera are therefore necessary rendering conditions but are not garment-prediction inputs.
+
+\subsection{Training Objective}
+
+For a balanced batch of teacher targets, the current Ours-v2 contract is
+\begin{equation}
+\mathcal L_{\mathrm{coef}}=
+\operatorname{SmoothL1}(\hat{\mathbf z},\mathbf z^{\star}).
+\end{equation}
+No pairwise-geometry, sign-margin, absolute-pair, classification, image reconstruction, or render loss is included in the Ours-v2 coefficient optimizer. The teacher/basis/backbone/base/deformation/renderer remain frozen. \contractstatus{FINAL METHOD PENDING P0 ADJUDICATION.} Historical A6 differs only by the rejected pairwise-geometry supervision and cannot be relabeled as a completed Ours-v2 run.
+
+\subsection{Inference}
+
+For one registered seen garment, inference extracts frozen F2 features from one to three valid references, pools them into $\Phi$, predicts $\hat{\mathbf z}$, restores $\hat{\mathbf c}$, and evaluates $\mathcal R(\hat{\mathbf c})=\mu_{\mathcal R}+B\hat{\mathbf c}$. The fixed avatar is then animated and rendered at the requested target pose/camera. The forward does not receive a garment ID, target RGB/mask, teacher coefficient, or teacher residual. This procedure selects within the frozen seen-garment residual span; it does not create residual components outside that span.
