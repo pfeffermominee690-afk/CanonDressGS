@@ -15,6 +15,7 @@ import json
 import math
 import os
 import platform
+import shutil
 import statistics
 import subprocess
 import sys
@@ -1031,17 +1032,21 @@ def load_episode_coefficients(path: Path) -> dict[tuple[str, str], list[float]]:
 
 
 def intrinsic_normals(base: Any) -> tuple[torch.Tensor, int]:
-    scales = base._scaling.detach()
+    device = base._xyz.device
+    scales = base._scaling.detach().cpu()
     sorted_scales, _ = torch.sort(scales, dim=-1)
     ties = int((sorted_scales[:, 0] == sorted_scales[:, 1]).sum())
     axis_index = scales.argmin(dim=-1)
     axis = F.one_hot(axis_index, num_classes=3).to(scales)
-    quaternion = F.normalize(base._rotation.detach(), dim=-1)
-    scalar = quaternion[:, :1]
-    vector = quaternion[:, 1:]
-    cross = torch.cross(vector, axis, dim=-1)
-    normals = axis + 2.0 * (scalar * cross + torch.cross(vector, cross, dim=-1))
-    return normals.contiguous(), ties
+    quaternion = F.normalize(base._rotation.detach().cpu(), dim=-1)
+    w, x, y, z = quaternion.unbind(-1)
+    rotation = torch.stack((
+        1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w),
+        2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w),
+        2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y),
+    ), dim=-1).reshape(-1, 3, 3)
+    normals = torch.bmm(rotation, axis.unsqueeze(-1)).squeeze(-1).contiguous()
+    return normals.to(device), ties
 
 
 def residual_spatial_metrics(
@@ -2097,16 +2102,47 @@ def execute_all(attempt: Path, asset_root: Path, protocol: Mapping[str, Any]) ->
     return {"attempt": str(attempt), "visual_manifest": visual, "execution": execution}
 
 
+def reuse_valid_prefix(attempt: Path, source: Path) -> None:
+    if source.resolve() == attempt.resolve() or source.parent.resolve() != attempt.parent.resolve():
+        raise RuntimeError("reuse source must be a different attempt in the same output root")
+    failure = read_json(source / "audits/failure.json")
+    if failure.get("stage") != "SPATIAL_PRE_METRIC" or failure.get("scientific_result") is not False:
+        raise RuntimeError("reuse source is not an eligible pre-spatial implementation failure")
+    reused = {}
+    for name in ("color", "extended"):
+        source_path = phase_result(source, name)
+        destination = phase_result(attempt, name)
+        if not source_path.is_file() or destination.exists():
+            raise RuntimeError(f"invalid reusable phase artifact: {name}")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source_path, destination)
+        if sha256(source_path) != sha256(destination):
+            raise RuntimeError(f"reused phase hash mismatch: {name}")
+        reused[name] = {
+            "source": str(source_path), "destination": str(destination),
+            "sha256": sha256(destination), "render_repeated": False,
+        }
+        append_phase_status(attempt, name, "REUSED_VALID_PREFIX")
+    atomic_json(attempt / "audits/reused_valid_prefix.json", {
+        "status": "PASS", "source_attempt": str(source), "reused": reused,
+        "reason": "source stopped before the first spatial metric; completed color and extended results remain valid",
+        "evaluation_or_render_repeated": False, "paper_final": False,
+    })
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--attempt")
+    parser.add_argument("--reuse-prefix-from", type=Path)
     parser.add_argument("--phase", choices=("all", "preflight", "finalize"), default="all")
     parser.add_argument("--visual-review", type=Path)
     arguments = parser.parse_args()
     protocol = validate_source()
     attempt = resolve_attempt(arguments.output_root, arguments.attempt)
+    if arguments.reuse_prefix_from is not None:
+        reuse_valid_prefix(attempt, arguments.reuse_prefix_from)
     if arguments.phase == "preflight":
         result = run_preflight(attempt, arguments.asset_root, protocol)
     elif arguments.phase == "finalize":
