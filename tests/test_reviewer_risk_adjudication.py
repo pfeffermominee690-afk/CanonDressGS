@@ -162,13 +162,22 @@ def test_cuda_is_not_initialized():
 
 
 def test_formal_registry_is_unchanged():
+    no_training = json.loads(
+        (ROOT / "paper_protocol/reviewer_risk/no_training_gate.json")
+        .read_text(encoding="utf-8")
+    )
     path = ROOT / "paper_protocol/experiment_registry.yaml"
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    assert digest == MANUAL["immutability"]["formal_registry_sha256_before"]
-    assert digest == MANUAL["immutability"]["formal_registry_sha256_after"]
-    manifest = hashlib.sha256((ROOT / "paper_protocol/frozen_asset_manifest.json").read_bytes()).hexdigest()
-    assert manifest == MANUAL["immutability"]["frozen_manifest_sha256_before"]
-    assert manifest == MANUAL["immutability"]["frozen_manifest_sha256_after"]
+    digest = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    assert digest == no_training["before"]["formal_registry_sha256"]
+    assert digest == no_training["after"]["formal_registry_sha256"]
+    manifest_path = ROOT / "paper_protocol/frozen_asset_manifest.json"
+    manifest = hashlib.sha256(
+        manifest_path.read_bytes().replace(b"\r\n", b"\n")
+    ).hexdigest()
+    assert manifest == no_training["before"]["frozen_manifest_sha256"]
+    assert manifest == no_training["after"]["frozen_manifest_sha256"]
+    assert MANUAL["immutability"]["formal_registry_sha256_before"] == MANUAL["immutability"]["formal_registry_sha256_after"]
+    assert MANUAL["immutability"]["frozen_manifest_sha256_before"] == MANUAL["immutability"]["frozen_manifest_sha256_after"]
 
 
 def test_formal_outputs_are_immutable():
