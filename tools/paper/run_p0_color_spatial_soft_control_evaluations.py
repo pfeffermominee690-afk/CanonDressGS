@@ -1376,7 +1376,7 @@ def run_mixed(runtime: EvaluationRuntime) -> dict[str, Any]:
         return read_json(result_path)
     append_phase_status(runtime.attempt, "mixed", "RUNNING")
     records: list[dict[str, Any]] = []
-    rendered: dict[tuple[str, str, str, str], torch.Tensor] = {}
+    rendered_paths: dict[tuple[str, str, str, str], Path] = {}
     sheets: list[str] = []
     assignment_rows = frozen.mixed_reference_assignments()
     for left, right in PAIRS:
@@ -1435,7 +1435,7 @@ def run_mixed(runtime: EvaluationRuntime) -> dict[str, Any]:
                         "boundary_tolerance": tolerance,
                         "rgb_path": str(rgb_path), "alpha_path": str(alpha_path),
                     })
-                    rendered[(pair_id, condition, method, assignment_id)] = rgb
+                    rendered_paths[(pair_id, condition, method, assignment_id)] = rgb_path
                     panels.append((assignment_id, rgb_path))
                 sheet_rows.append((f"{method}/{condition}", panels))
         sheet_path = runtime.attempt / "visuals/mixed_reference" / f"{pair_id}.png"
@@ -1450,10 +1450,16 @@ def run_mixed(runtime: EvaluationRuntime) -> dict[str, Any]:
             for method in METHODS:
                 values = []
                 for first, second in zip(assignment_ids, assignment_ids[1:]):
+                    first_rgb = image_tensor(
+                        rendered_paths[(pair_id, condition, method, first)], 3
+                    ).to(runtime.device)
+                    second_rgb = image_tensor(
+                        rendered_paths[(pair_id, condition, method, second)], 3
+                    ).to(runtime.device)
                     values.append(lpips_distance(
                         runtime,
-                        rendered[(pair_id, condition, method, first)],
-                        rendered[(pair_id, condition, method, second)],
+                        first_rgb,
+                        second_rgb,
                         garment,
                     ))
                 adjacency.append({
@@ -1574,7 +1580,6 @@ def run_perturbation(runtime: EvaluationRuntime) -> dict[str, Any]:
         "mask_morphology": frozen.MASK_MORPHOLOGY_RADIUS,
     }
     records: list[dict[str, Any]] = []
-    rendered: dict[tuple[str, str, str, str, int], torch.Tensor] = {}
     image_paths: dict[tuple[str, str, str, str, int], Path] = {}
     for outfit in OUTFITS:
         for condition in CONDITIONS:
@@ -1610,7 +1615,6 @@ def run_perturbation(runtime: EvaluationRuntime) -> dict[str, Any]:
                             "rgb_path": str(rgb_path), "alpha_path": str(alpha_path),
                         })
                         key = (outfit, condition, ladder, method, value_index)
-                        rendered[key] = rgb
                         image_paths[key] = rgb_path
     sheets: list[str] = []
     for ladder, values in ladders.items():
@@ -1648,8 +1652,12 @@ def run_perturbation(runtime: EvaluationRuntime) -> dict[str, Any]:
                     adjacent_lpips = [
                         lpips_distance(
                             runtime,
-                            rendered[(outfit, condition, ladder, method, index)],
-                            rendered[(outfit, condition, ladder, method, index + 1)],
+                            image_tensor(
+                                image_paths[(outfit, condition, ladder, method, index)], 3
+                            ).to(runtime.device),
+                            image_tensor(
+                                image_paths[(outfit, condition, ladder, method, index + 1)], 3
+                            ).to(runtime.device),
                             garment,
                         )
                         for index in range(4)
