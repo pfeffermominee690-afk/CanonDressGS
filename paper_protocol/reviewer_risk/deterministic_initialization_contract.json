@@ -1,0 +1,102 @@
+{
+  "schema_version": "canondressgs.paper.deterministic_initialization_contract.v1",
+  "task_id": "AAAI27-DETERMINISTIC-INITIALIZATION-PROTOCOL-001",
+  "status": "FROZEN_FOR_STEP0_VALIDATION",
+  "source_head": "71dd86c1c01e00e44e8135a45ce29db788141fe0",
+  "historical_seed_failure": {
+    "status": "SEED-PROPAGATION-FAIL",
+    "audit": "paper_protocol/reviewer_risk/seed_propagation_audit.json",
+    "preserve_bitwise": true,
+    "new_root_cause_classification": "DETERMINISTIC_INITIALIZATION_CONTRACT_MISMATCH",
+    "interpretation": "The old hard gate correctly observed cross-seed identity under its preregistered uniqueness rule. The observation is retained; the scientific contract now recognizes that identity as expected for Ours-v2."
+  },
+  "ours_v2": {
+    "candidate_identity": "OursV2DeterministicZeroCandidate",
+    "initialization_policy": "DETERMINISTIC_ZERO_INITIALIZATION",
+    "structure": [
+      "frozen_F2_feature",
+      "deterministic_reference_set_mean_max",
+      "LayerNorm",
+      "Linear(4)"
+    ],
+    "layernorm_weight": 1.0,
+    "layernorm_bias": 0.0,
+    "linear_weight": 0.0,
+    "linear_bias": 0.0,
+    "expected_input_dim": 512,
+    "expected_trainable_parameter_count": 3076,
+    "same_seed_fresh_process_state": "BITWISE_IDENTICAL",
+    "cross_seed_fresh_process_state": "BITWISE_IDENTICAL_EXPECTED",
+    "cross_seed_fresh_process_forward": "BITWISE_IDENTICAL_EXPECTED",
+    "independent_random_initializations": false,
+    "loads_a6_checkpoint": false,
+    "copies_a6_state_dict": false,
+    "optimizer_attached": false,
+    "training_loop_attached": false,
+    "reviewer_registry_executable": false
+  },
+  "b6": {
+    "candidate_identity": "B6ReferenceClassifierCandidate",
+    "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+    "same_seed_fresh_process_state": "BITWISE_IDENTICAL",
+    "cross_seed_unique_state_count": 3,
+    "model_inputs": ["frozen_F2_reference_mean_max_only"],
+    "outfit_id_input": false,
+    "optimizer_attached": false
+  },
+  "m3_m4": {
+    "candidate_identity": "ProtocolComplexCandidate",
+    "initialization_policy": "PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD",
+    "same_seed_shared_trunk": true,
+    "cross_seed_unique_trunk_count": 3,
+    "m3_output_transform": "IDENTITY",
+    "m4_output_transform": "TANH",
+    "m3_supervision": "SMOOTHL1_ONLY",
+    "m4_supervision": "A5_LEGACY_ENDPOINT_CONTRACT",
+    "output_head_weight": 0.0,
+    "output_head_bias": 0.0,
+    "initial_pre_transform_output": 0.0,
+    "initial_standardized_output": 0.0,
+    "paired_factory_required": true,
+    "historical_b5_identity": "OFF_MATRIX_HISTORICAL_EVIDENCE",
+    "historical_b5_modified": false
+  },
+  "cross_architecture_fairness": {
+    "definition": "INITIAL_OUTPUT_SEMANTICS_MATCHED",
+    "not_required": "IDENTICAL_PARAMETER_INITIALIZATION",
+    "required_shared_inputs": [
+      "fixed_episode_set",
+      "fixed_outfit_balanced_batch",
+      "coefficient_normalization",
+      "loss_targets"
+    ],
+    "required_initial_endpoint": "MEAN_GARMENT_INITIAL_PREDICTION"
+  },
+  "optimizer_namespaces": {
+    "candidate": {
+      "created": false,
+      "step_count": 0,
+      "parameter_count": 0
+    },
+    "legacy_context": {
+      "may_be_constructed": true,
+      "required_step_count": 0,
+      "must_not_contain_candidate_parameters": true
+    }
+  },
+  "no_training_gate": {
+    "backward_allowed": false,
+    "optimizer_step_allowed": false,
+    "scheduler_step_allowed": false,
+    "candidate_checkpoint_allowed": false,
+    "formal_render_allowed": false,
+    "formal_metrics_allowed": false,
+    "formal_registry_mutation_allowed": false,
+    "paper_final_allowed": false
+  },
+  "historical_source_fingerprints": {
+    "scene/multi_outfit_linear_coefficient_control.py": "87347845019426bb44dd0044b9b52c1a264c6edbafcdeaea8d864de79ca488d2",
+    "tools/paper/formal_batch_runtime.py": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "scene/reference_basis_coefficient_fusion.py": "54ce50139003ec82f5afa09f96dd87d495da8031edb05283c82e115c69411e26"
+  }
+}
