@@ -482,9 +482,18 @@ def _mean_zero_semantics(
 def _find_attempt(formal_root: Path, experiment_id: str, seed: int) -> Path:
     root = formal_root / experiment_id / f"seed_{seed}"
     attempts = sorted(root.glob("attempt_*"))
-    if len(attempts) != 1:
-        raise ValueError(f"expected one sealed attempt for {experiment_id}, got {attempts}")
-    return attempts[0]
+    sealed = [
+        attempt for attempt in attempts
+        if (attempt / "checkpoints/checkpoint_step_000000.pth").is_file()
+        and (attempt / "checkpoints/checkpoint_step_000300.pth").is_file()
+        and (attempt / "evaluated_metrics/evaluated_metrics.json").is_file()
+    ]
+    if len(sealed) != 1:
+        raise ValueError(
+            f"expected one complete sealed attempt for {experiment_id}, got {sealed}; "
+            f"all attempts were {attempts}"
+        )
+    return sealed[0]
 
 
 def _checkpoint_state(path: Path) -> tuple[str, str, Mapping[str, torch.Tensor]]:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 import subprocess
@@ -26,6 +27,7 @@ SOURCE_HEAD = "71dd86c1c01e00e44e8135a45ce29db788141fe0"
 FRESH_PROCESS = ROOT / "tools/paper/p0_initialization_fresh_process.py"
 HISTORICAL_LINEAR = ROOT / "scene/multi_outfit_linear_coefficient_control.py"
 FORMAL_RUNTIME = ROOT / "tools/paper/formal_batch_runtime.py"
+AUDIT_RUNTIME = ROOT / "tools/paper/run_deterministic_initialization_protocol_audit.py"
 
 
 def _state_sha(module: torch.nn.Module) -> str:
@@ -167,3 +169,31 @@ def test_no_optimizer_step_occurs_in_protocol_implementation() -> None:
     assert ".backward(" not in joined
     assert ".step(" not in joined
     assert "torch.save(" not in joined
+
+
+def test_historical_audit_selects_the_complete_sealed_attempt() -> None:
+    source = AUDIT_RUNTIME.read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    function = next(
+        node
+        for node in tree.body
+        if isinstance(node, ast.FunctionDef) and node.name == "_find_attempt"
+    )
+    module = ast.Module(body=[function], type_ignores=[])
+    namespace = {"Path": Path}
+    exec(compile(module, str(AUDIT_RUNTIME), "exec"), namespace)
+
+    with tempfile.TemporaryDirectory() as value:
+        formal_root = Path(value)
+        seed_root = formal_root / "PAPER-A1-K1-S0" / "seed_0"
+        (seed_root / "attempt_001").mkdir(parents=True)
+        sealed = seed_root / "attempt_002"
+        for relative in (
+            "checkpoints/checkpoint_step_000000.pth",
+            "checkpoints/checkpoint_step_000300.pth",
+            "evaluated_metrics/evaluated_metrics.json",
+        ):
+            path = sealed / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.touch()
+        assert namespace["_find_attempt"](formal_root, "PAPER-A1-K1-S0", 0) == sealed
