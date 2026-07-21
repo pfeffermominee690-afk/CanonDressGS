@@ -182,6 +182,128 @@ def c5_gaussian_blur(source_rgb: np.ndarray, clothing_mask: np.ndarray) -> np.nd
     return output
 
 
+def fixed_grayscale(source_rgb: np.ndarray) -> np.ndarray:
+    """Apply the frozen sRGB-numeric luminance conversion to every pixel."""
+
+    source = np.asarray(source_rgb)
+    if source.dtype != np.float32 or source.ndim != 3 or source.shape[-1] != 3:
+        raise TypeError("RGB must be float32 HxWx3")
+    if not np.isfinite(source).all() or np.any(source < 0.0) or np.any(source > 1.0):
+        raise ValueError("RGB must be finite and in [0,1]")
+    luminance = (
+        source[..., 0].astype(np.float64) * 0.299
+        + source[..., 1].astype(np.float64) * 0.587
+        + source[..., 2].astype(np.float64) * 0.114
+    )
+    return np.repeat(np.clip(luminance, 0.0, 1.0)[..., None], 3, axis=-1).astype(
+        np.float32
+    )
+
+
+def hue_shift(source_rgb: np.ndarray, degrees: float) -> np.ndarray:
+    """Shift standard HSV hue over the whole sRGB-numeric image."""
+
+    source = np.asarray(source_rgb)
+    if source.dtype != np.float32 or source.ndim != 3 or source.shape[-1] != 3:
+        raise TypeError("RGB must be float32 HxWx3")
+    if not np.isfinite(source).all() or np.any(source < 0.0) or np.any(source > 1.0):
+        raise ValueError("RGB must be finite and in [0,1]")
+    rgb = source.astype(np.float64)
+    maximum = rgb.max(axis=-1)
+    minimum = rgb.min(axis=-1)
+    delta = maximum - minimum
+    hue = np.zeros(maximum.shape, dtype=np.float64)
+    nonzero = delta > 0.0
+    red = nonzero & (maximum == rgb[..., 0])
+    green = nonzero & (maximum == rgb[..., 1])
+    blue = nonzero & (maximum == rgb[..., 2])
+    hue[red] = ((rgb[..., 1][red] - rgb[..., 2][red]) / delta[red]) % 6.0
+    hue[green] = (rgb[..., 2][green] - rgb[..., 0][green]) / delta[green] + 2.0
+    hue[blue] = (rgb[..., 0][blue] - rgb[..., 1][blue]) / delta[blue] + 4.0
+    hue = ((hue / 6.0) + float(degrees) / 360.0) % 1.0
+    saturation = np.divide(
+        delta, maximum, out=np.zeros_like(delta), where=maximum > 0.0
+    )
+    sector = hue * 6.0
+    index = np.floor(sector).astype(np.int64) % 6
+    fraction = sector - np.floor(sector)
+    p = maximum * (1.0 - saturation)
+    q = maximum * (1.0 - saturation * fraction)
+    t = maximum * (1.0 - saturation * (1.0 - fraction))
+    values = (
+        (maximum, t, p), (q, maximum, p), (p, maximum, t),
+        (p, q, maximum), (t, p, maximum), (maximum, p, q),
+    )
+    output = np.empty_like(rgb)
+    for sector_index, channels in enumerate(values):
+        membership = index == sector_index
+        for channel, value in enumerate(channels):
+            output[..., channel][membership] = value[membership]
+    return np.clip(output, 0.0, 1.0).astype(np.float32)
+
+
+def c6_average_garment_color(
+    source_rgb: np.ndarray, clothing_mask: np.ndarray
+) -> np.ndarray:
+    """Fill the exact frozen mask interior with its float64 channel mean."""
+
+    source, mask = _require_rgb_mask(source_rgb, clothing_mask)
+    mean = source[mask].astype(np.float64).mean(axis=0, dtype=np.float64)
+    output = source.copy()
+    output[mask] = np.clip(mean, 0.0, 1.0).astype(np.float32)
+    return output
+
+
+def grayscale_ladder(source_rgb: np.ndarray, value: float) -> np.ndarray:
+    if value < 0.0 or value > 1.0:
+        raise ValueError("grayscale ladder value must be in [0,1]")
+    source = np.asarray(source_rgb, dtype=np.float32)
+    result = (1.0 - np.float32(value)) * source + np.float32(value) * fixed_grayscale(source)
+    return np.clip(result, 0.0, 1.0).astype(np.float32)
+
+
+def blur_ladder(source_rgb: np.ndarray, sigma: float) -> np.ndarray:
+    source = np.asarray(source_rgb)
+    if source.dtype != np.float32 or source.ndim != 3 or source.shape[-1] != 3:
+        raise TypeError("RGB must be float32 HxWx3")
+    if sigma == 0.0:
+        return source.copy()
+    kernel = gaussian_kernel_1d(blur_ladder_kernel_size(float(sigma)), float(sigma))
+    return np.clip(_separable_reflect_blur(source, kernel), 0.0, 1.0).astype(np.float32)
+
+
+def disk_morphology(mask: np.ndarray, radius: int) -> np.ndarray:
+    """Apply the frozen integer-disk binary erosion/dilation rule."""
+
+    value = np.asarray(mask)
+    if value.dtype != np.bool_ or value.ndim != 2:
+        raise TypeError("mask must be bool HxW")
+    if not isinstance(radius, int) or isinstance(radius, bool):
+        raise TypeError("radius must be an integer")
+    if radius == 0:
+        return value.copy()
+    magnitude = abs(radius)
+    padded = np.pad(
+        value,
+        ((magnitude, magnitude), (magnitude, magnitude)),
+        mode="constant",
+        constant_values=False,
+    )
+    shifted = []
+    height, width = value.shape
+    for dy in range(-magnitude, magnitude + 1):
+        for dx in range(-magnitude, magnitude + 1):
+            if dx * dx + dy * dy <= magnitude * magnitude:
+                shifted.append(
+                    padded[
+                        magnitude + dy : magnitude + dy + height,
+                        magnitude + dx : magnitude + dx + width,
+                    ]
+                )
+    stack = np.stack(shifted, axis=0)
+    return stack.all(axis=0) if radius < 0 else stack.any(axis=0)
+
+
 def mixed_reference_assignments() -> tuple[tuple[str, tuple[str, str, str]], ...]:
     return (
         ("AAA", ("A", "A", "A")),
