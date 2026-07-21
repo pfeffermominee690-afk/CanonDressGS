@@ -1,0 +1,97 @@
+{
+  "schema_version": "canondressgs.paper.candidate_method_revision.v1",
+  "task_id": "AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001",
+  "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252",
+  "adjudication_date": "2026-07-21",
+  "pairwise_geometry_decision": "PAIRWISE_GEOMETRY_REJECTED",
+  "paired_statistics": "paper_protocol/reviewer_risk/ours_vs_a6_paired_statistics.json",
+  "old_ours": {
+    "method": "Ours_Seen_Outfit_Explicit_Basis_V1",
+    "supervision": [
+      "coefficient SmoothL1",
+      "0.10 x pairwise coefficient geometry"
+    ],
+    "evidence_status": "HISTORICAL_EVIDENCE",
+    "paper_final": false,
+    "mutation_of_formal_results": false
+  },
+  "ours_v2": {
+    "status": "PROPOSED_NOT_RUN",
+    "method_name": "Ours-v2 Frozen-F2 Linear Explicit Basis",
+    "prediction_pipeline": [
+      "frozen F2 reference features",
+      "deterministic per-reference clothing mean and masked max",
+      "deterministic reference-set mean and max",
+      "LayerNorm",
+      "Linear(4)",
+      "coefficient de-normalization",
+      "frozen explicit Gaussian residual basis"
+    ],
+    "supervision": [
+      "coefficient SmoothL1 only"
+    ],
+    "pairwise_geometry_weight": 0.0,
+    "outfit_id_in_model": false,
+    "target_image_in_prediction_forward": false,
+    "basis_frozen": true,
+    "backbone_frozen": true,
+    "equivalent_existing_execution_contract": "A6_No_Pairwise_Coefficient_Geometry",
+    "reuse_rule": "A6 is decisive adjudication evidence but remains an ablation-labelled historical run. Ours-v2 must be rerun under its own preregistered method identifier before replacing any paper-candidate number or figure."
+  },
+  "formal_rerun_requirement": {
+    "mandatory_main_runs": [
+      "OURS-V2-S0",
+      "OURS-V2-S1",
+      "OURS-V2-S2"
+    ],
+    "candidate_centered_ablations_to_rerun": [
+      "A1 basis rank 1/2/3/4, seeds 0/1/2, SmoothL1-only default",
+      "A2 no clothing mask, seeds 0/1/2, SmoothL1-only default",
+      "A3 mean only, seeds 0/1/2, SmoothL1-only default",
+      "A4 no coefficient standardization, seeds 0/1/2, SmoothL1-only default",
+      "A6 recast as add-pairwise-geometry, seeds 0/1/2",
+      "A7 reference count 1/2/3, seeds 0/1/2, SmoothL1-only default"
+    ],
+    "unchanged_baselines": [
+      "B0",
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "separate_supervision_control": "A5 remains historical linear + legacy endpoint evidence; do not relabel it as an Ours-v2 result.",
+    "paper_artifacts_to_regenerate_after_runs": [
+      "Table 1 main comparison",
+      "Table 2 method ablation",
+      "Table 3 efficiency",
+      "Figures 1-5 candidate panels and source-data manifest"
+    ]
+  },
+  "b1_b2_identity_result": {
+    "source": "paper_protocol/reviewer_risk/ours_vs_a6_paired_statistics.json#b1_b2_audit",
+    "aggregate_table_values_equal_at_reported_precision": true,
+    "bitwise_identical": false,
+    "numerically_completely_identical": false,
+    "classification": "NOT_BITWISE_IDENTICAL_NUMERICALLY_NEAR_IDENTICAL"
+  },
+  "claim_effect": {
+    "method_claim_changes": true,
+    "registered_abstract_may_change": true,
+    "allowed_now": "The frozen formal batch supports a paper-candidate adjudication only; A6 evidence motivates removing pairwise geometry.",
+    "forbidden_now": [
+      "claim Ours-v2 has been formally run",
+      "replace old Ours numbers with A6 numbers without a named rerun",
+      "set any result to PAPER_FINAL",
+      "claim 60 independent seed outcomes when all seed outputs are numerically identical"
+    ]
+  },
+  "execution_guards": {
+    "optimizer_created_in_this_task": false,
+    "cuda_initialized_in_this_task": false,
+    "new_training_started_in_this_task": false,
+    "evaluator_rerun_in_this_task": false,
+    "formal_outputs_modified": false,
+    "formal_registry_modified": false
+  },
+  "next_task": "RUN_P0_REVIEWER_RISK_CLOSURE_EXPERIMENTS"
+}

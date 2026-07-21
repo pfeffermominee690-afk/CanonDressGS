@@ -1,0 +1,897 @@
+{
+  "schema_version": "canondressgs.paper.manual_visual_adjudication.v1",
+  "task_id": "AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001",
+  "review_date": "2026-07-21",
+  "final_paper_state": "PAPER_CANDIDATE_MANUAL_REVIEW_REQUIRED",
+  "paper_final": false,
+  "review_protocol": {
+    "main_sheets": "All lossless PNGs decoded; six indexed overview pages opened at original detail; ambiguous families checked against source sheets.",
+    "swap_sheets": "All six Ours/A6 lossless PNGs decoded and opened individually at original detail.",
+    "cherry_pick": false,
+    "reviewed_by": "Codex visual adjudication"
+  },
+  "immutability": {
+    "formal_registry_sha256_before": "dda4678657493d2a559dc3b6f3ca48371c24962ec426076e8343f98a5ad8c4c2",
+    "formal_registry_sha256_after": "dda4678657493d2a559dc3b6f3ca48371c24962ec426076e8343f98a5ad8c4c2",
+    "frozen_manifest_sha256_before": "70c1e59978c3afed4cee3fd6f5271138c8094a5c9156ff335eacee880f1750ca",
+    "frozen_manifest_sha256_after": "70c1e59978c3afed4cee3fd6f5271138c8094a5c9156ff335eacee880f1750ca",
+    "formal_output_metadata_tree_algorithm": "find . -type f -printf '%P %s %T@\\n' | LC_ALL=C sort | sha256sum",
+    "formal_output_metadata_tree_before": "7b9449e03d53e29cff11ded1fdc95e633640d38754cf152f2ab07a935d89d6bc",
+    "formal_output_metadata_tree_after": "7b9449e03d53e29cff11ded1fdc95e633640d38754cf152f2ab07a935d89d6bc"
+  },
+  "summary": {
+    "formal_contact_sheets_expected": 51,
+    "formal_contact_sheets_reviewed": 51,
+    "ours_a6_swap_sheets_expected": 6,
+    "ours_a6_swap_sheets_reviewed": 6,
+    "status_counts": {
+      "FAIL_CLOUD_MOTTLE": 18,
+      "FAIL_LOW_RANK_CLOUD_MOTTLE": 6,
+      "PASS": 2,
+      "PASS_WITH_MINOR_EDGE_ARTIFACTS": 18,
+      "WARN_EXPECTED_NO_EDIT_BASELINE": 1,
+      "WARN_RESIDUAL_CLOUD": 3,
+      "WARN_VISIBLE_RESIDUAL_MISMATCH": 3
+    },
+    "ours_vs_a6_visual_conclusion": "NEAR_INDISTINGUISHABLE_AT_CONTACT_SHEET_SCALE"
+  },
+  "contact_index": [
+    {
+      "experiment_id": "PAPER-A1-K1-S0",
+      "seed": 0,
+      "attempt": "attempt_002",
+      "reviewed": true,
+      "visual_status": "FAIL_LOW_RANK_CLOUD_MOTTLE",
+      "observation": "Low-rank reconstruction retains obvious cloud/mottle artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S0/seed_0/attempt_002/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "cdd3e4aabb3acdca0f584a16a4b824af088ed97e441302be9add325b59703992",
+      "size_bytes": 3648009,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K1-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_LOW_RANK_CLOUD_MOTTLE",
+      "observation": "Low-rank reconstruction retains obvious cloud/mottle artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "cdd3e4aabb3acdca0f584a16a4b824af088ed97e441302be9add325b59703992",
+      "size_bytes": 3648009,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K1-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_LOW_RANK_CLOUD_MOTTLE",
+      "observation": "Low-rank reconstruction retains obvious cloud/mottle artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "cdd3e4aabb3acdca0f584a16a4b824af088ed97e441302be9add325b59703992",
+      "size_bytes": 3648009,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K2-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_LOW_RANK_CLOUD_MOTTLE",
+      "observation": "Low-rank reconstruction retains obvious cloud/mottle artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "f9eb088f23e3b9692468dce6e79af9501ed362f2e6cc19b7bf0b98f0b30b1e76",
+      "size_bytes": 3701314,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K2-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_LOW_RANK_CLOUD_MOTTLE",
+      "observation": "Low-rank reconstruction retains obvious cloud/mottle artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "f9eb088f23e3b9692468dce6e79af9501ed362f2e6cc19b7bf0b98f0b30b1e76",
+      "size_bytes": 3701314,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K2-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_LOW_RANK_CLOUD_MOTTLE",
+      "observation": "Low-rank reconstruction retains obvious cloud/mottle artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "f9eb088f23e3b9692468dce6e79af9501ed362f2e6cc19b7bf0b98f0b30b1e76",
+      "size_bytes": 3701314,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K3-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_RESIDUAL_CLOUD",
+      "observation": "Rank-3 is improved but residual cloud/edge contamination remains visible.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "c9313b6eb06c1a8a5b29b5080ad143ac74a19ef91d2088d15324430d01d6bf79",
+      "size_bytes": 3737878,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K3-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_RESIDUAL_CLOUD",
+      "observation": "Rank-3 is improved but residual cloud/edge contamination remains visible.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "c9313b6eb06c1a8a5b29b5080ad143ac74a19ef91d2088d15324430d01d6bf79",
+      "size_bytes": 3737878,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K3-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_RESIDUAL_CLOUD",
+      "observation": "Rank-3 is improved but residual cloud/edge contamination remains visible.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "c9313b6eb06c1a8a5b29b5080ad143ac74a19ef91d2088d15324430d01d6bf79",
+      "size_bytes": 3737878,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K4-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Rank-4 reconstruction is stable with minor shared edge artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K4-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Rank-4 reconstruction is stable with minor shared edge artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A1-K4-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Rank-4 reconstruction is stable with minor shared edge artifacts.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A2-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "4885a1e7bd6a527776e8a893ab42a029de9b5d205686b5e57174f054e51b4fe5",
+      "size_bytes": 3657090,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A2-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "4885a1e7bd6a527776e8a893ab42a029de9b5d205686b5e57174f054e51b4fe5",
+      "size_bytes": 3657090,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A2-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "4885a1e7bd6a527776e8a893ab42a029de9b5d205686b5e57174f054e51b4fe5",
+      "size_bytes": 3657090,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A3-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "6259022cf393a8472c92aa964969bb2b0459df7abf9e2b4c08a53c20929674d1",
+      "size_bytes": 3643976,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A3-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "6259022cf393a8472c92aa964969bb2b0459df7abf9e2b4c08a53c20929674d1",
+      "size_bytes": 3643976,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A3-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "6259022cf393a8472c92aa964969bb2b0459df7abf9e2b4c08a53c20929674d1",
+      "size_bytes": 3643976,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A4-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_VISIBLE_RESIDUAL_MISMATCH",
+      "observation": "No-standardization output is complete but shows visible garment/residual mismatch.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "e06aba6fb4520ea93d63649f983ba45b8f02b73b3bbb03cc564871d1137f3ffd",
+      "size_bytes": 3641397,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A4-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_VISIBLE_RESIDUAL_MISMATCH",
+      "observation": "No-standardization output is complete but shows visible garment/residual mismatch.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "e06aba6fb4520ea93d63649f983ba45b8f02b73b3bbb03cc564871d1137f3ffd",
+      "size_bytes": 3641397,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A4-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_VISIBLE_RESIDUAL_MISMATCH",
+      "observation": "No-standardization output is complete but shows visible garment/residual mismatch.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "e06aba6fb4520ea93d63649f983ba45b8f02b73b3bbb03cc564871d1137f3ffd",
+      "size_bytes": 3641397,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A5-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "9b8ab779bdc2d5cbc7a522f3f30ff0c0075ae7e6e3dfbdbc940601df24455c34",
+      "size_bytes": 3718108,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A5-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "9b8ab779bdc2d5cbc7a522f3f30ff0c0075ae7e6e3dfbdbc940601df24455c34",
+      "size_bytes": 3718108,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A5-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Ablation retains conspicuous cloudy/mottled residuals in multiple outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "9b8ab779bdc2d5cbc7a522f3f30ff0c0075ae7e6e3dfbdbc940601df24455c34",
+      "size_bytes": 3718108,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A6-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Garment identity is stable; sparse shared edge/splat artifacts remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "fe3db68b5a220100059aefaa60dc2cbb2ea524a835fc3c3b802a8a38abfc43ca",
+      "size_bytes": 3527486,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A6-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Garment identity is stable; sparse shared edge/splat artifacts remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "fe3db68b5a220100059aefaa60dc2cbb2ea524a835fc3c3b802a8a38abfc43ca",
+      "size_bytes": 3527486,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A6-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Garment identity is stable; sparse shared edge/splat artifacts remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "fe3db68b5a220100059aefaa60dc2cbb2ea524a835fc3c3b802a8a38abfc43ca",
+      "size_bytes": 3527486,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF1-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "17ccad0ddaf4a9df5c90d9fbf2af96b203df6b37cf0e0f61c3a91dccbf5da915",
+      "size_bytes": 3588378,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF1-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "17ccad0ddaf4a9df5c90d9fbf2af96b203df6b37cf0e0f61c3a91dccbf5da915",
+      "size_bytes": 3588378,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF1-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "17ccad0ddaf4a9df5c90d9fbf2af96b203df6b37cf0e0f61c3a91dccbf5da915",
+      "size_bytes": 3588378,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF2-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "dbcf5e374819913587448a5377fe33c377f71d6ec37e28bba712a1ac7b412e0a",
+      "size_bytes": 3545563,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF2-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "dbcf5e374819913587448a5377fe33c377f71d6ec37e28bba712a1ac7b412e0a",
+      "size_bytes": 3545563,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF2-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "dbcf5e374819913587448a5377fe33c377f71d6ec37e28bba712a1ac7b412e0a",
+      "size_bytes": 3545563,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF3-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF3-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A7-KREF3-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Reference-count ablation remains visually stable; shared minor edge splats remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B0-FIXED",
+      "seed": null,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "WARN_EXPECTED_NO_EDIT_BASELINE",
+      "observation": "Complete grid; expected no-garment-edit mismatch is visible.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B0-FIXED/seed_fixed/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "7850fcc42573021741b51f91b8ef1165d383db4bbb7b99cc704da2ef1bfa5b61",
+      "size_bytes": 3385634,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B1-FIXED",
+      "seed": null,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS",
+      "observation": "Complete grid with stable teacher/lookup reconstruction and only minor shared edge splats.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B1-FIXED/seed_fixed/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "ba2e7b63167fb12cbcdcc0c4b3b3370b233ece6320760649059d49a5d5f7ec28",
+      "size_bytes": 2907970,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B2-FIXED",
+      "seed": null,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS",
+      "observation": "Complete grid with stable teacher/lookup reconstruction and only minor shared edge splats.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B2-FIXED/seed_fixed/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "802536017e2a516e2966e4679bbf769993510a75b32a74c76c96320d32f4c21e",
+      "size_bytes": 2907978,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B3-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "4885a1e7bd6a527776e8a893ab42a029de9b5d205686b5e57174f054e51b4fe5",
+      "size_bytes": 3657090,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B3-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "4885a1e7bd6a527776e8a893ab42a029de9b5d205686b5e57174f054e51b4fe5",
+      "size_bytes": 3657090,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B3-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "4885a1e7bd6a527776e8a893ab42a029de9b5d205686b5e57174f054e51b4fe5",
+      "size_bytes": 3657090,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B4-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "6259022cf393a8472c92aa964969bb2b0459df7abf9e2b4c08a53c20929674d1",
+      "size_bytes": 3643976,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B4-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "6259022cf393a8472c92aa964969bb2b0459df7abf9e2b4c08a53c20929674d1",
+      "size_bytes": 3643976,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B4-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "6259022cf393a8472c92aa964969bb2b0459df7abf9e2b4c08a53c20929674d1",
+      "size_bytes": 3643976,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B5-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "9b8ab779bdc2d5cbc7a522f3f30ff0c0075ae7e6e3dfbdbc940601df24455c34",
+      "size_bytes": 3718108,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B5-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "e37a809b8742e567fe16b54a0ef84bf1efe8fc8d127c1069375fdc137d4b3d9a",
+      "size_bytes": 3708987,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-B5-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "FAIL_CLOUD_MOTTLE",
+      "observation": "Persistent cloudy/mottled garment and boundary residuals are visible across outfits/views.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "e37a809b8742e567fe16b54a0ef84bf1efe8fc8d127c1069375fdc137d4b3d9a",
+      "size_bytes": 3708987,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-OURS-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Garment identity is stable; sparse shared edge/splat artifacts remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S0/seed_0/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-OURS-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Garment identity is stable; sparse shared edge/splat artifacts remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    },
+    {
+      "experiment_id": "PAPER-OURS-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_WITH_MINOR_EDGE_ARTIFACTS",
+      "observation": "Garment identity is stable; sparse shared edge/splat artifacts remain.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001/visuals/five_outfit_four_view_contact_sheet.png",
+      "sha256": "0a02752a8d3e0b01dab565f303a1a45e1894dd1de39e8370b85a5850a5cd8ec5",
+      "size_bytes": 3540389,
+      "dimensions_px": [
+        4096,
+        2096
+      ]
+    }
+  ],
+  "ours_a6_swap_index": [
+    {
+      "experiment_id": "PAPER-A6-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_REFERENCE_DISCRIMINATION",
+      "observation": "Correct-reference render follows the teacher; swapped reference changes garment identity. Ours and A6 are visually near-indistinguishable.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "sha256": "d0c06f44a202deaa64fa22c8fe6d8e3bab4f527806cf4a9557f9441dc9fd8d30",
+      "size_bytes": 2236554,
+      "dimensions_px": [
+        768,
+        8276
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A6-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_REFERENCE_DISCRIMINATION",
+      "observation": "Correct-reference render follows the teacher; swapped reference changes garment identity. Ours and A6 are visually near-indistinguishable.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "sha256": "d0c06f44a202deaa64fa22c8fe6d8e3bab4f527806cf4a9557f9441dc9fd8d30",
+      "size_bytes": 2236554,
+      "dimensions_px": [
+        768,
+        8276
+      ]
+    },
+    {
+      "experiment_id": "PAPER-A6-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_REFERENCE_DISCRIMINATION",
+      "observation": "Correct-reference render follows the teacher; swapped reference changes garment identity. Ours and A6 are visually near-indistinguishable.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "sha256": "d0c06f44a202deaa64fa22c8fe6d8e3bab4f527806cf4a9557f9441dc9fd8d30",
+      "size_bytes": 2236554,
+      "dimensions_px": [
+        768,
+        8276
+      ]
+    },
+    {
+      "experiment_id": "PAPER-OURS-S0",
+      "seed": 0,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_REFERENCE_DISCRIMINATION",
+      "observation": "Correct-reference render follows the teacher; swapped reference changes garment identity. Ours and A6 are visually near-indistinguishable.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S0/seed_0/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "sha256": "2f8afb0fc8bc4b0e6698cd666a4ee938311bf916a9f8697807ba53d83c3b93d9",
+      "size_bytes": 2262168,
+      "dimensions_px": [
+        768,
+        8276
+      ]
+    },
+    {
+      "experiment_id": "PAPER-OURS-S1",
+      "seed": 1,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_REFERENCE_DISCRIMINATION",
+      "observation": "Correct-reference render follows the teacher; swapped reference changes garment identity. Ours and A6 are visually near-indistinguishable.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "sha256": "2f8afb0fc8bc4b0e6698cd666a4ee938311bf916a9f8697807ba53d83c3b93d9",
+      "size_bytes": 2262168,
+      "dimensions_px": [
+        768,
+        8276
+      ]
+    },
+    {
+      "experiment_id": "PAPER-OURS-S2",
+      "seed": 2,
+      "attempt": "attempt_001",
+      "reviewed": true,
+      "visual_status": "PASS_REFERENCE_DISCRIMINATION",
+      "observation": "Correct-reference render follows the teacher; swapped reference changes garment identity. Ours and A6 are visually near-indistinguishable.",
+      "source_path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001/visuals/reference_swap_contact_sheet.png",
+      "sha256": "2f8afb0fc8bc4b0e6698cd666a4ee938311bf916a9f8697807ba53d83c3b93d9",
+      "size_bytes": 2262168,
+      "dimensions_px": [
+        768,
+        8276
+      ]
+    }
+  ]
+}
