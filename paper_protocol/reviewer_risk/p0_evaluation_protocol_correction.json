@@ -1,0 +1,142 @@
+{
+  "schema_version": "canondressgs.paper.p0_evaluation_protocol_correction.v1",
+  "task_id": "AAAI27-P0-EVALUATION-PROTOCOL-REPAIR-001",
+  "status": "PROTOCOL_REPAIRED_BEFORE_EVALUATION",
+  "source_branch": "paper/aaai27-p0-formal-candidate-runs-20260721",
+  "source_head": "32e6058ea64078f5ccded6f86e8bffe3cb81b30e",
+  "protocol_branch": "paper/aaai27-p0-evaluation-protocol-repair-20260721",
+  "ambiguity_discovered_at": "2026-07-22 Asia/Shanghai; exact wall-clock time was not persisted because no evaluation attempt was created",
+  "correction_recorded_at": "2026-07-22T05:24:24+08:00",
+  "original_ambiguity": {
+    "classification": "COLOR-PROTOCOL-AMBIGUOUS",
+    "missing": [
+      "C3 histogram-matching quantile count and rounding rule",
+      "C4 brightness/contrast epsilon",
+      "C5 Gaussian kernel size and sigma"
+    ],
+    "triggered_before_any_result": true,
+    "evaluation_started": false,
+    "render_count": 0,
+    "metric_count": 0,
+    "commit_count_on_aborted_evaluation_branch": 0
+  },
+  "parameter_decisions": {
+    "C3": {
+      "quantile_count": 256,
+      "quantiles": "q_i=i/255, i=0,...,255",
+      "method": "float64 linear quantile and piecewise-linear interpolation per RGB channel inside frozen clothing masks",
+      "duplicate_source_quantile_knots": "collapse exact-equal source knots and average their destination ordinates",
+      "rounding": "round_half_up_8bit=floor(255*x+0.5)/255",
+      "output_dtype": "float32"
+    },
+    "C4": {
+      "epsilon": 1e-06,
+      "statistics": "float64 population mean/variance over frozen mask pixels",
+      "degenerate_channel": "if std_source<epsilon, centered term is zero and output is target mean",
+      "quantization": "none"
+    },
+    "C5": {
+      "kernel_size": 11,
+      "sigma_pixels": 3.0,
+      "padding": "reflect",
+      "position": "after resize to frozen F2 input resolution and before normalization",
+      "channels": "independent RGB",
+      "mask_mutation": false
+    },
+    "mixed_reference": {
+      "assignments_per_pair_view": 8,
+      "query_sets_per_method": 320,
+      "method_query_count": 960,
+      "minority_positions_exhaustive": true,
+      "assignment_cherry_pick": false
+    },
+    "ladders": {
+      "grayscale_lambda": [0.0, 0.25, 0.5, 0.75, 1.0],
+      "hue_degrees": [0, 15, 30, 45, 60],
+      "blur_sigma_pixels": [0, 1, 2, 3, 4],
+      "mask_morphology_radius_pixels": [-8, -4, 0, 4, 8]
+    },
+    "spatial": {
+      "normal": "exact intrinsic shortest covariance principal axis R(normalize(q_wxyz))*e_argmin(log_scale); minimum scale is unique for all 200000 frozen Gaussians",
+      "support": "frozen base Gaussian row order, N=200000",
+      "garment_mapping": "bitwise-identical persisted trainable_support from all five seen teacher checkpoints",
+      "protected_mapping": "stable-protected rows in the fixed attribution parquet",
+      "trust_radii": {"b_xyz": 0.05, "tau_half": 0.025, "tau_1": 0.05},
+      "boundary_tolerance": "max(1,floor(0.005*min(H,W)+0.5))"
+    },
+    "direct_interpolation": {
+      "space": "raw frozen teacher coefficient space",
+      "pair_count": 10,
+      "alpha_count": 11,
+      "view_count": 4,
+      "grid_size": 440,
+      "reference_predictor_used": false
+    },
+    "visual_review": {
+      "grades": {"0": "NONE", "1": "MINOR", "2": "MODERATE", "3": "SEVERE"},
+      "categories": [
+        "cloud",
+        "mottle",
+        "edge_scatter",
+        "full_body_contamination",
+        "identity_contamination",
+        "silhouette_discontinuity"
+      ],
+      "source_image_paths_required": true
+    }
+  },
+  "rationale": {
+    "timing": "All choices were fixed after ambiguity detection and before any evaluator, inference, render, or metric run.",
+    "color": "The supplied repair authority fixes the missing C3/C4/C5 constants while preserving the preregistered transform identities and immutable fields.",
+    "mixed_reference": "Enumerating all minority positions removes assignment-position bias and prevents cherry-picking.",
+    "spatial": "The frozen base checkpoint uniquely supplies covariance axes; all minimum scale axes were audited tie-free. Persisted teacher support and the hash-pinned attribution parquet uniquely resolve garment/protected membership.",
+    "soft_control": "Raw teacher coefficient interpolation tests the explicit basis independently of the reference predictor and preserves exact frozen endpoints."
+  },
+  "source_files": [
+    "docs/PAPER/AAAI27_FAIR_BASELINE_AND_COUNTERFACTUAL_PROTOCOL_20260721.md",
+    "configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml",
+    "configs/research/subject02_multi_outfit_explicit_basis_v1.yaml",
+    "paper_protocol/frozen_asset_manifest.json",
+    "paper_protocol/reviewer_risk/p0_formal_candidate_final_summary.json",
+    "paper_protocol/reviewer_risk/p0_formal_candidate_run_registry.yaml",
+    "scene/representation_capacity_oracle.py",
+    "tools/run_image_conditioned_overfit_o01.py",
+    "tools/run_multi_outfit_explicit_basis.py",
+    "tools/paper/p0_evaluation_protocol.py"
+  ],
+  "spatial_asset_audit": {
+    "base_gaussian_count": 200000,
+    "shortest_scale_exact_tie_count": 0,
+    "intrinsic_normal_sha256_float32_c": "0719ced1c3bc8cd97a957152d099fcc98f692b8f8697b3761e3b86fcb0fc06df",
+    "garment_count": 170547,
+    "garment_membership_sha256_uint8_c": "4fa5bd87cc234a90578ea06c7d1cac18e13e482e548e6af8492964ea8fcfc043",
+    "all_five_seen_teacher_garment_masks_equal": true,
+    "protected_count": 30894,
+    "protected_membership_sha256_uint8_c": "57683c55a1934b0610ffbc6254da98424863b77316dd80fc2ef9f1d5b6cb5761"
+  },
+  "final_protocol": "paper_protocol/reviewer_risk/p0_color_spatial_soft_control_protocol.yaml",
+  "final_protocol_fingerprint": {
+    "algorithm": "sha256_lf_normalized_bytes",
+    "sha256": "44320d575a7012a00396e6093dd5a0ee06cdd5679c878b3c7b254ceb215a0bba"
+  },
+  "protocol_status": {
+    "COLOR_PROTOCOL": "RESOLVED",
+    "SOFT_CONTROL_PROTOCOL": "RESOLVED",
+    "SPATIAL_PROTOCOL": "RESOLVED",
+    "NO_EVALUATION_GATE": "PASS"
+  },
+  "execution_guards": {
+    "training": 0,
+    "backward": 0,
+    "optimizer": 0,
+    "checkpoint_write": 0,
+    "evaluation": 0,
+    "render_write": 0,
+    "metric_write": 0,
+    "formal_asset_change": 0,
+    "paper_final_count": 0
+  },
+  "final_paper_method_adjudication_written": false,
+  "next_task": "RUN_P0_COLOR_EXTENDED_SPATIAL_AND_SOFT_CONTROL_EVALUATIONS",
+  "next_task_started": false
+}
