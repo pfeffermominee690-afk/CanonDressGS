@@ -372,6 +372,10 @@ def main() -> None:
         return
     if args.command == "run":
         os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+        # The frozen historical basis/teacher loaders still consume this
+        # compatibility environment variable.  Keep the CLI argument as the
+        # single source of truth and bridge it before any formal attempt runs.
+        os.environ["CANONDRESSGS_ASSET_ROOT"] = str(args.asset_root.resolve())
         value = run_queue(
             output_root=args.output_root, asset_root=args.asset_root,
             formal_root=args.formal_root, selected=args.run_id,

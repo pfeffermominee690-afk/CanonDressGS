@@ -259,3 +259,10 @@ def test_frozen_context_precedes_candidate_determinism_guard() -> None:
     context_position = source.index("context = prepare_context(canary)")
     guard_position = source.index("torch.use_deterministic_algorithms(True, warn_only=True)")
     assert context_position < guard_position
+
+
+def test_asset_root_cli_argument_bridges_frozen_legacy_loader() -> None:
+    source = (ROOT / "tools/paper/run_p0_formal_candidate_runs.py").read_text(encoding="utf-8")
+    bridge_position = source.index('os.environ["CANONDRESSGS_ASSET_ROOT"] = str(args.asset_root.resolve())')
+    queue_position = source.index("value = run_queue(")
+    assert bridge_position < queue_position
