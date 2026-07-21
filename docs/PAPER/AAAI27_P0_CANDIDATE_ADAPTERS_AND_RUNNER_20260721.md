@@ -1,6 +1,6 @@
 # P0 Candidate Adapters and No-Training Runner
 
-Date: 2026-07-21  
+Date: 2026-07-21
 Task: `AAAI27-P0-CANDIDATE-ADAPTERS-RUNNER-001`
 
 ## Scope
