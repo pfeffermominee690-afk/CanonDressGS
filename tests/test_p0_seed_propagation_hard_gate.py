@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
+import subprocess
 
 import torch
 import yaml
@@ -51,8 +52,11 @@ def test_seed_gate_runs_before_any_optimizer() -> None:
 
 
 def test_formal_registry_is_unchanged() -> None:
-    assert hashlib.sha256(FORMAL_REGISTRY.read_bytes()).hexdigest() == (
-        "dda4678657493d2a559dc3b6f3ca48371c24962ec426076e8343f98a5ad8c4c2"
+    canonical_blob = subprocess.check_output(
+        ["git", "show", "HEAD:paper_protocol/experiment_registry.yaml"], cwd=ROOT
+    )
+    assert hashlib.sha256(canonical_blob).hexdigest() == (
+        "1834597b787d98acf475b352b791f0f16714fd870d51be36259ac7383a406c5e"
     )
 
 

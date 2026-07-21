@@ -35,8 +35,11 @@ from tools.paper.verify_seen_outfit_paper_assets import verify_manifest
 TASK_ID = "AAAI27-P0-REVIEWER-RISK-CLOSURE-001"
 BRANCH = "paper/aaai27-p0-reviewer-risk-closure-20260721"
 SOURCE_HEAD = "4bd47b7b667d1ade230b6b0ae3d611f550548c84"
-FORMAL_REGISTRY_SHA256 = "dda4678657493d2a559dc3b6f3ca48371c24962ec426076e8343f98a5ad8c4c2"
-FROZEN_MANIFEST_SHA256 = "70c1e59978c3afed4cee3fd6f5271138c8094a5c9156ff335eacee880f1750ca"
+# The formal executor is Linux.  These are the LF checkout byte fingerprints;
+# the corresponding Windows CRLF checkout fingerprints are recorded separately
+# by the adjudication task and are not used as Linux execution gates.
+FORMAL_REGISTRY_SHA256 = "1834597b787d98acf475b352b791f0f16714fd870d51be36259ac7383a406c5e"
+FROZEN_MANIFEST_SHA256 = "ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb"
 REVIEWER_REGISTRY_BEFORE_SHA256 = "139e763a04cbbdf626af194c92c388b7505a6ce1f9454d49afca743e09a0990c"
 FORMAL_OUTPUT_BEFORE_SHA256 = "7b9449e03d53e29cff11ded1fdc95e633640d38754cf152f2ab07a935d89d6bc"
 TRAIN_OUTFITS = ("O01", "O02", "O03", "O04", "O08")
