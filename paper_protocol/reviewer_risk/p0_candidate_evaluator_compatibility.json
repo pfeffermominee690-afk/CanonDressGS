@@ -1,0 +1,50 @@
+{
+  "schema_version": "canondressgs.paper.p0_candidate_evaluator_compatibility.v1",
+  "task_id": "AAAI27-P0-CANDIDATE-ADAPTERS-RUNNER-001",
+  "status": "PASS",
+  "evaluator_executed": false,
+  "formal_metrics_created": false,
+  "seen_outfits": ["O01", "O02", "O03", "O04", "O08"],
+  "fixed_views": ["cond_000000", "cond_000318", "cond_000017", "cond_000347"],
+  "correct_episode_contract": {
+    "generation": "cartesian_product(seen_outfits, fixed_views)",
+    "expected_count": 20,
+    "unique_required": true,
+    "target_reference_overlap": 0
+  },
+  "swap_tuple_contract": {
+    "generation": "(target_outfit, source_outfit, view) for all seen outfits where source_outfit != target_outfit and for every fixed view",
+    "expected_count": 80,
+    "unique_required": true,
+    "source_must_differ_from_target": true
+  },
+  "robustness_contract": {
+    "permutation": {"required": true, "minimum_record_count": 20},
+    "single_reference": {"required": true, "minimum_record_count": 20},
+    "two_reference_dropout": {"required": true, "minimum_record_count": 20},
+    "zero_replacement": {"required": true, "minimum_record_count": 20},
+    "base_replacement": {"required": true, "minimum_record_count": 20}
+  },
+  "metric_schema": {
+    "existing_metric_count": 27,
+    "new_metrics_added": false,
+    "output_compatibility_only": true
+  },
+  "aggregation": {
+    "Ours-v2": {
+      "axis": "replicate",
+      "description": "three deterministic protocol replicate reports",
+      "independent_random_initialization_sample_std_allowed": false
+    },
+    "B6": {"axis": "seed", "summary": "mean_plus_sample_std"},
+    "M3": {"axis": "seed", "summary": "mean_plus_sample_std"},
+    "M4": {"axis": "seed", "summary": "mean_plus_sample_std"},
+    "B7": {"axis": "fixed", "summary": "single_non_trainable_result"}
+  },
+  "held_out": {
+    "O07_in_seen_macro": false,
+    "allowed_role": "held_out_diagnostic_only"
+  },
+  "best_seed_selection": false,
+  "formal_evaluation_authorized": false
+}

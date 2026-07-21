@@ -7,6 +7,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
+from scene.multi_outfit_linear_coefficient_control import pairwise_geometry_loss
 from scene.p0_candidate_initialization_protocol import (
     DETERMINISTIC_ZERO_INITIALIZATION,
     PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD,
@@ -373,6 +374,7 @@ def a5_legacy_endpoint_supervision_loss(
     if prediction.shape[0] < 2:
         raise ValueError("A5 absolute-pair supervision requires at least two outfits")
     coefficient = F.smooth_l1_loss(prediction, target)
+    geometry = pairwise_geometry_loss(prediction, target)
     sign = F.relu(0.8 - torch.sign(target) * prediction).mean()
     pair_values = []
     for left in range(prediction.shape[0]):
@@ -387,6 +389,7 @@ def a5_legacy_endpoint_supervision_loss(
         "coefficient_loss": coefficient,
         "sign_loss": sign,
         "absolute_pair_loss": absolute_pair,
+        "pairwise_geometry_loss": geometry,
     }
 
 

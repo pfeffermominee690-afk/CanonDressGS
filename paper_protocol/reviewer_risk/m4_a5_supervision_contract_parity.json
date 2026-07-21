@@ -1,0 +1,46 @@
+{
+  "schema_version": "canondressgs.paper.m4_a5_supervision_contract_parity.v1",
+  "task_id": "AAAI27-P0-CANDIDATE-ADAPTERS-RUNNER-001",
+  "status": "PASS",
+  "historical_source": {
+    "path": "tools/paper/formal_batch_runtime.py",
+    "sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "model_factory_branch": "method.startswith('A5_') -> BoundedVectorControl",
+    "loss_branch": "formal_batch_runtime._training_loss(method.startswith('A5_'))"
+  },
+  "a5": {
+    "coefficient_head": "LayerNorm -> Linear(4)",
+    "linear_weight_initialization": 0.0,
+    "linear_bias_initialization": 0.0,
+    "output_transform": "tanh",
+    "endpoint_semantics": "bounded standardized coefficient",
+    "loss_terms": {
+      "coefficient_loss": {"formula": "SmoothL1(prediction, target)", "weight": 1.0},
+      "sign_loss": {"formula": "mean(relu(0.8 - sign(target) * prediction))", "weight": 0.25, "margin": 0.8},
+      "absolute_pair_loss": {"formula": "mean_pairs(mean(relu(1.5 - abs(prediction_i - prediction_j))))", "weight": 0.1, "margin": 1.5},
+      "pairwise_geometry_loss": {"computed_for_diagnostics": true, "weight_in_total": 0.0}
+    },
+    "total_formula": "coefficient_loss + 0.25 * sign_loss + 0.10 * absolute_pair_loss"
+  },
+  "m4": {
+    "implementation": "scene.p0_candidate_adapters.P0ComplexCandidateAdapter",
+    "coefficient_head": "shared P0 complex trunk -> zero-initialized Linear(4)",
+    "output_transform": "tanh",
+    "endpoint_semantics": "bounded standardized coefficient",
+    "loss_function": "scene.p0_candidate_adapters.a5_legacy_endpoint_supervision_loss",
+    "loss_terms_and_weights_equal_to_a5": true,
+    "only_primary_change": "Linear fusion -> Complex fusion"
+  },
+  "field_parity": {
+    "output_transform": true,
+    "smooth_l1": true,
+    "sign_margin": true,
+    "sign_weight": true,
+    "absolute_pair_margin": true,
+    "absolute_pair_weight": true,
+    "diagnostic_pairwise_geometry": true,
+    "endpoint_semantics": true
+  },
+  "historical_a5_modified": false,
+  "historical_b5_role": "OFF_MATRIX_HISTORICAL_EVIDENCE"
+}

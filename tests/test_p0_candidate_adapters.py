@@ -14,7 +14,6 @@ from scene.p0_candidate_adapters import (
     B6ReferenceClassifierHardLookupAdapter,
     B7F2NearestCentroidHardLookupAdapter,
     OursV2CandidateAdapter,
-    a5_legacy_endpoint_supervision_loss,
     build_b7_fold_adapter,
     build_candidate_optimizer,
     build_m3_m4_candidate_adapters,
@@ -188,12 +187,23 @@ def test_m3_uses_smoothl1_only() -> None:
 
 
 def test_m4_matches_a5_supervision_contract() -> None:
+    from tools.paper import formal_batch_runtime as historical
+
     _, m4 = build_m3_m4_candidate_adapters(raw_dim=16, seed=0)
     prediction = torch.linspace(-0.5, 0.5, 20).reshape(5, 4)
     target = torch.linspace(0.75, -0.75, 20).reshape(5, 4)
-    expected = a5_legacy_endpoint_supervision_loss(prediction, target)
+    historical_total, historical_parts = historical._training_loss(
+        "A5_Legacy_Endpoint_Supervision", prediction, target
+    )
+    expected = {
+        "total": historical_total,
+        **historical_parts,
+    }
     actual = m4.training_loss(prediction, target)
-    assert set(actual) == {"total", "coefficient_loss", "sign_loss", "absolute_pair_loss"}
+    assert set(actual) == {
+        "total", "coefficient_loss", "sign_loss", "absolute_pair_loss",
+        "pairwise_geometry_loss",
+    }
     assert all(torch.equal(actual[name], expected[name]) for name in actual)
 
 

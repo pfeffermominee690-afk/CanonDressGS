@@ -1,0 +1,50 @@
+{
+  "schema_version": "canondressgs.paper.p0_candidate_optimizer_provenance.v1",
+  "task_id": "AAAI27-P0-CANDIDATE-ADAPTERS-RUNNER-001",
+  "status": "PASS",
+  "scope": "READINESS_CONSTRUCTION_AND_STEP0_ONLY",
+  "candidate_optimizer": {
+    "trainable_runtime_entry_count": 12,
+    "created_for_trainable_entries": true,
+    "class": "torch.optim.adam.Adam",
+    "learning_rate": 0.02,
+    "weight_decay": 0.0,
+    "zero_grad_count": 0,
+    "step_count": 0,
+    "state_saved": false,
+    "parameter_counts": {
+      "Ours-v2": 3076,
+      "B6": 3589,
+      "M3": 234771,
+      "M4": 234771
+    },
+    "membership_rule": "all and only requires_grad parameters owned by the candidate adapter"
+  },
+  "b7_candidate_optimizer": {
+    "created": false,
+    "parameter_count": 0,
+    "zero_grad_count": 0,
+    "step_count": 0,
+    "state_saved": false
+  },
+  "legacy_context_optimizer": {
+    "created_by_candidate_runner": false,
+    "class": null,
+    "groups": [],
+    "parameter_count": 0,
+    "parameter_names": [],
+    "candidate_overlap_count": 0,
+    "frozen_overlap_count": 0,
+    "zero_grad_count": 0,
+    "step_count": 0,
+    "lifecycle": "not constructed because dry-run consumes the sealed frozen feature cache and basis directly",
+    "discarded": false,
+    "state_saved": false
+  },
+  "overlap": {
+    "candidate_frozen_parameter_overlap_count": 0,
+    "candidate_legacy_parameter_overlap_count": 0,
+    "candidate_optimizer_frozen_parameter_overlap_count": 0
+  },
+  "interpretation": "Candidate optimizer construction establishes future runner membership only. No zero_grad, backward, optimizer step, scheduler step, or state save occurs."
+}
