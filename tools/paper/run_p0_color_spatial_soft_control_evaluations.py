@@ -1060,8 +1060,8 @@ def residual_spatial_metrics(
     tangential = torch.linalg.vector_norm(displacement - signed_normal[:, None] * normals, dim=-1)
     fraction = torch.where(magnitude > 0, tangential / magnitude, torch.zeros_like(magnitude))
     selected = magnitude[garment]
-    tau_half = float(runtime.protocol["spatial_metrics"]["trust_radius"]["scalar_formula"]["tau_half"])
-    tau_one = float(runtime.protocol["spatial_metrics"]["trust_radius"]["scalar_formula"]["tau_1"])
+    b_xyz = float(runtime.protocol["spatial_metrics"]["trust_radius"]["b_xyz"])
+    tau_half, tau_one = frozen.trust_radii(b_xyz)
     base_opacity = runtime.context["base"]._opacity.detach().reshape(-1)
     delta_opacity = residual.delta_opacity_logit.detach().reshape(-1)
     opacity_activation = torch.sigmoid(base_opacity + delta_opacity) - torch.sigmoid(base_opacity)
