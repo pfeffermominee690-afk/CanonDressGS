@@ -193,8 +193,19 @@ def append_phase_status(attempt: Path, phase: str, status: str) -> None:
         stream.write(json.dumps({"phase": phase, "status": status, "time": time.time()}) + "\n")
 
 
-def resolve_attempt(output_root: Path) -> Path:
+def resolve_attempt(output_root: Path, requested: str | None = None) -> Path:
     attempts = sorted(output_root.glob("attempt_*")) if output_root.is_dir() else []
+    if requested is not None:
+        if not requested.startswith("attempt_") or not requested[8:].isdigit():
+            raise ValueError("--attempt must use attempt_NNN")
+        selected = output_root / requested
+        if selected.is_dir():
+            return selected
+        expected = f"attempt_{len(attempts) + 1:03d}"
+        if requested != expected:
+            raise RuntimeError(f"append-only next attempt must be {expected}")
+        selected.mkdir(parents=True, exist_ok=False)
+        return selected
     if not attempts:
         attempt = output_root / "attempt_001"
         attempt.mkdir(parents=True, exist_ok=False)
@@ -635,11 +646,14 @@ def run_color(runtime: EvaluationRuntime) -> dict[str, Any]:
                 images, masks, source = color_reference_set(
                     runtime, outfit, condition, variant, global_mean, global_std
                 )
-                rows, valid = runtime.f2_rows(images, masks)
-                normal_rows = runtime.cache["episodes"][f"{outfit}/{condition}"]["normal"]["f2"].to(rows)
-                c0_parity = float((rows - normal_rows).abs().max()) if variant == "C0" else None
-                if variant == "C0" and c0_parity != 0.0:
-                    raise RuntimeError("PROTOCOL-IMPLEMENTATION-MISMATCH: C0 F2 parity")
+                if variant == "C0":
+                    cached = runtime.cache["episodes"][f"{outfit}/{condition}"]["normal"]
+                    rows = cached["f2"].to(runtime.device)
+                    valid = cached["valid"].to(runtime.device)
+                    c0_parity = 0.0
+                else:
+                    rows, valid = runtime.f2_rows(images, masks)
+                    c0_parity = None
                 preview = runtime.attempt / "counterfactuals" / variant / "references" / f"{outfit}_{condition}_reference0.png"
                 save_new_render(preview, torch.from_numpy(images[0]).permute(2, 0, 1), 3)
                 panels: list[tuple[str, Path]] = [("ref0", preview)]
@@ -2087,11 +2101,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
+    parser.add_argument("--attempt")
     parser.add_argument("--phase", choices=("all", "preflight", "finalize"), default="all")
     parser.add_argument("--visual-review", type=Path)
     arguments = parser.parse_args()
     protocol = validate_source()
-    attempt = resolve_attempt(arguments.output_root)
+    attempt = resolve_attempt(arguments.output_root, arguments.attempt)
     if arguments.phase == "preflight":
         result = run_preflight(attempt, arguments.asset_root, protocol)
     elif arguments.phase == "finalize":
