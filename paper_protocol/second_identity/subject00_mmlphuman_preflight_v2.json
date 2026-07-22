@@ -1,0 +1,81 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT00-PREFLIGHT-V2-001",
+  "task": "RESUME_SUBJECT00_MMLPHUMAN_PREFLIGHT_FROM_LIMITED_PROVENANCE_SNAPSHOT",
+  "status": "COMPLETE_NO_TRAINING",
+  "readiness": "SUBJECT00_READY_FOR_DETERMINISTIC_PREPROCESSING",
+  "next_task": "PREPARE_SUBJECT00_MMLPHUMAN_DERIVED_ASSETS_WITHOUT_TRAINING",
+  "baseline": {
+    "branch": "research/mmlphuman-subject02-runtime-snapshot-v2-20260723",
+    "head": "b1d304614b5a9322035b45ebeb7fa0166adaa362",
+    "classification": "SUBJECT02_SOURCE_SNAPSHOT_CREATED_WITH_LIMITATIONS",
+    "accepted_future_baseline": true,
+    "meaning": "CLEAN_FROZEN_PROSPECTIVE_RUNTIME_BASELINE",
+    "not_claimed": "HISTORICALLY_EXACT_SUBJECT02_TRAINING_SOURCE",
+    "raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+    "lf_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89"
+  },
+  "historical_reference": {
+    "name": "subject02 formal MMLP-Human run",
+    "output": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k",
+    "archived_checkpoint_iteration": 100000,
+    "gaussian_count": 200000,
+    "checkpoint_sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+    "view_protocol": "view-transductive because camera 18 participated in training",
+    "not_claimed": ["800k-step training", "exact historical source recovered", "exact historical training reproduction"]
+  },
+  "subject00": {
+    "raw_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "raw_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "raw_files": 119412,
+    "raw_bytes": 26459647641,
+    "cameras": 24,
+    "frames": 2500,
+    "valid_images": 59704,
+    "valid_masks": 59704,
+    "resolution": [1330, 1150]
+  },
+  "gates": {
+    "schema": "PASS",
+    "official_missing_lists": "PASS_296_IMAGE_296_MASK_IDENTICAL_TO_SCAN",
+    "availability_manifest": "PASS_60000_TOTAL_59704_VALID_296_INVALID",
+    "loader": "PASS",
+    "dataset_smoke": "PASS_17_SAMPLES_BATCH4",
+    "cuda_loader_transfer": "DEFERRED_ACTIVE_GPU_TASK",
+    "template": "SUBJECT00_TEMPLATE_DETERMINISTICALLY_GENERATABLE",
+    "lbs": "SUBJECT00_LBS_DETERMINISTICALLY_GENERATABLE",
+    "config_guard": "PASS_BLOCK_FORMAL_TRAINING",
+    "model_forward_render": "MODEL_FORWARD_NOT_RUN_DERIVED_ASSETS_PENDING",
+    "strict_novel_view_protocol": "FROZEN_PROPOSED_NOT_EXECUTED",
+    "strict_novel_pose_protocol": "FROZEN_PROPOSED_NOT_EXECUTED"
+  },
+  "strict_splits": {
+    "train_camera_ids": [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 21, 22, 23],
+    "heldout_camera_ids": [0, 4, 8, 12, 16, 20],
+    "camera_split_sha256": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+    "train_pose_count": 1130,
+    "heldout_pose_count": 125,
+    "buffer_excluded_count": 1245,
+    "pose_split_sha256": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06",
+    "camera_overlap": 0,
+    "temporal_leakage": 0
+  },
+  "external_reports": {
+    "availability": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+    "runtime": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_MMLPHUMAN_PREFLIGHT_V2_RUNTIME.json",
+    "attempt": "/root/autodl-tmp/canondressgs_work/provenance_reports/mmlphuman_subject00/preflight_v2_attempt_001"
+  },
+  "counters": {
+    "training_steps": 0,
+    "forward_training_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "checkpoint_writes": 0,
+    "subject00_raw_mutations": 0,
+    "subject02_mutations": 0,
+    "subject02_formal_output_mutations": 0,
+    "runtime_closure_mutations": 0,
+    "PAPER_FINAL": 0
+  }
+}

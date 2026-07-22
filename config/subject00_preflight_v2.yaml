@@ -1,0 +1,68 @@
+# This file is a preflight contract, not a runnable training configuration.
+preflight_only: true
+training_enabled: false
+subject_id: subject00
+derived_asset_state: PENDING_DETERMINISTIC_PREPROCESSING
+
+provenance:
+  source_branch: research/mmlphuman-subject02-runtime-snapshot-v2-20260723
+  source_head: b1d304614b5a9322035b45ebeb7fa0166adaa362
+  source_classification: SUBJECT02_SOURCE_SNAPSHOT_CREATED_WITH_LIMITATIONS
+  accepted_future_baseline: true
+  runtime_raw_closure_sha256: dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415
+  runtime_lf_closure_sha256: 6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89
+  raw_data_fingerprint: 2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b
+  limitation: CLEAN_FROZEN_PROSPECTIVE_RUNTIME_BASELINE_NOT_HISTORICALLY_EXACT_SUBJECT02_TRAINING_SOURCE
+
+data_dir: /root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00
+image_path_pattern: images/cam{camera_id:02d}/{frame_id:08d}.jpg
+mask_path_pattern: masks/cam{camera_id:02d}/{frame_id:08d}.jpg
+calibration_path: /root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json
+smpl_params_path: /root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz
+availability_manifest: /root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json
+template_path: PENDING_DETERMINISTIC_PREPROCESSING/gaussian/template.ply
+lbs_grid_path: PENDING_DETERMINISTIC_PREPROCESSING/gaussian/lbs_weights_grid.npz
+init_body_points_path: PENDING_DETERMINISTIC_PREPROCESSING/gaussian/init_body_points.ply
+smpl_pkl_path: /root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz
+out_dir: /root/autodl-tmp/canondressgs_work/outputs/subject00_mmlphuman_PENDING
+
+camera_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+train_cam_ids: [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 21, 22, 23]
+heldout_cam_ids: [0, 4, 8, 12, 16, 20]
+train_frame_ids_manifest: ../paper_protocol/second_identity/subject00_novel_pose_split_v2.json
+heldout_frame_ids_manifest: ../paper_protocol/second_identity/subject00_novel_pose_split_v2.json
+train_frame_count: 1130
+heldout_frame_count: 125
+buffer_excluded_frame_count: 1245
+
+# Deliberately non-runnable legacy fields.  The frozen train.py does not honor
+# the preflight sentinels, so the dedicated validator must run before launch.
+num_train_frame: 0
+begin_ith_frame: 0
+frame_interval: 1
+image_scaling: 1
+data_in_memory: false
+iterations: 0
+init_num_gs: 200000
+background: [1.0, 1.0, 1.0]
+random_background: true
+seed: 20260723
+
+test:
+  cam_ids: [0, 4, 8, 12, 16, 20]
+  num_frame: 0
+  begin_ith_frame: 0
+  frame_interval: 1
+  image_scaling: 1
+
+strict_split:
+  novel_view_manifest: ../paper_protocol/second_identity/subject00_novel_view_split_v2.json
+  novel_pose_manifest: ../paper_protocol/second_identity/subject00_novel_pose_split_v2.json
+  camera_overlap: 0
+  temporal_leakage: 0
+  status: FROZEN_PROPOSED_NOT_EXECUTED
+
+manual_confirmation:
+  derived_asset_repeatability: PENDING_MANUAL_CONFIRMATION
+  atomic_publish_validation: PENDING_MANUAL_CONFIRMATION
+  formal_training_authorization: PENDING_MANUAL_CONFIRMATION
