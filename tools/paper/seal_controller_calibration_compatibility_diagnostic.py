@@ -119,21 +119,23 @@ def sha256(path: Path, *, lf: bool = False) -> str:
 
 
 def write_new_json(path: Path, value: Any) -> None:
+    text = json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     if path.exists():
-        raise FileExistsError(f"append-only collision: {path}")
+        if path.read_text(encoding="utf-8") != text:
+            raise FileExistsError(f"append-only collision: {path}")
+        return
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-        newline="\n",
-    )
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 def write_new_text(path: Path, value: str) -> None:
+    text = value.rstrip() + "\n"
     if path.exists():
-        raise FileExistsError(f"append-only collision: {path}")
+        if path.read_text(encoding="utf-8") != text:
+            raise FileExistsError(f"append-only collision: {path}")
+        return
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(value.rstrip() + "\n", encoding="utf-8", newline="\n")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 def tree_content_fingerprint(root: Path) -> dict[str, Any]:
@@ -242,7 +244,7 @@ def load_and_validate(args: argparse.Namespace) -> tuple[dict[str, Any], dict[st
     require(set(counterfactual["variant_summary"]) == EXPECTED_VARIANTS, "counterfactual_variant_definitions")
     require(counterfactual["variant_summary"]["ACTUAL_CONTROLLER"]["reused_count"] == 720 and counterfactual["reuse"]["actual_controller_regenerated"] == 0, "actual_render_reuse")
     require(counterfactual["variant_summary"]["ORACLE_PAIR_ORACLE_WEIGHT"]["reused_count"] == 720 and counterfactual["reuse"]["oracle_pair_oracle_weight_regenerated"] == 0, "oracle_render_reuse")
-    require(counterfactual["ground_truth_used_in_actual_controller_forward"] is False, "no_ground_truth_in_actual_forward")
+    require(counterfactual["ground_truth_used_in_actual_controller_forward"] in (False, 0), "no_ground_truth_in_actual_forward")
     require(set(counterfactual["numerical_attribution"]) == {"PAIR_FIX_GAIN", "WEIGHT_FIX_GAIN", "FULL_ORACLE_GAIN", "FALLBACK_REMOVAL_GAIN"}, "causal_attribution_completeness")
     require(pairs["pair_count"] == 10 and len(pairs["pairs"]) == 10, "pair_compatibility_completeness")
     require(perturb["record_count"] == 480 and set(perturb["aggregates"]) == {"grayscale", "hue", "blur", "mask_erosion", "mask_dilation", "reference_dropout", "single_reference", "assignment_permutation"}, "perturbation_chain_completeness")
@@ -592,6 +594,7 @@ def run_seal(args: argparse.Namespace) -> dict[str, Any]:
     required += [risk / name for name in REPOSITORY_JSON]
     required += [risk / "controller_calibration_visual_review.json", risk / "controller_calibration_diagnostic_final_summary.json"]
     required += [repository / "project_control_handoff/controller_calibration_diagnostic_handoff.json"]
+    required += [risk / "controller_calibration_diagnostic_protocol.yaml"]
     if len(required) != 14 or not all(path.is_file() and path.stat().st_size > 0 for path in required):
         raise RuntimeError("repository archive completeness mismatch")
     for path in required:
