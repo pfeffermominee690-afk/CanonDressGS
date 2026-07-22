@@ -732,10 +732,14 @@ def run_render_seed(
                 right = str(record["pair_id"]).split("_")[1]
                 replay_target, _, _ = geometry.render_branches(runtime, left, condition, ((right, endpoints[right], 1.0),))
             parity_components = {
-                "candidate": float((replay_candidate - formal_candidate_rgb).abs().max()),
-                "oracle": float((replay_oracle - oracle_rgb).abs().max()),
-                "source": float((replay_source - source_rgb).abs().max()),
-                "target": float((replay_target - target_rgb).abs().max()),
+                # Formal PNG persistence clamps renderer output to [0, 1]
+                # before uint8 quantization.  Compare in that persisted domain;
+                # raw HDR overshoot is recorded in render diagnostics and is
+                # not a cross-process parity difference.
+                "candidate": float((replay_candidate.clamp(0, 1) - formal_candidate_rgb).abs().max()),
+                "oracle": float((replay_oracle.clamp(0, 1) - oracle_rgb).abs().max()),
+                "source": float((replay_source.clamp(0, 1) - source_rgb).abs().max()),
+                "target": float((replay_target.clamp(0, 1) - target_rgb).abs().max()),
             }
             current_parity = max(parity_components.values())
             parity_max_abs = max(parity_max_abs, current_parity)
