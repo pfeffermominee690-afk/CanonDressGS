@@ -1,0 +1,2049 @@
+{
+  "alpha_pass_rule": "at least 2 of 3 alpha levels, each with at least 3 of 4 views",
+  "direction_consistency_required": true,
+  "global_main_effect_magnitudes": {
+    "A": 0.032429038245185914,
+    "G": 0.9959405426885113,
+    "V": 0.012870075845089885
+  },
+  "label": "RESEARCH DIAGNOSTIC — NOT PAPER FINAL",
+  "largest_main_effect": "G",
+  "next_task": "RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT",
+  "next_task_started": false,
+  "pair_pass_counts": {
+    "interactions": {
+      "GxA": 0,
+      "GxV": 0,
+      "GxVxA": 0,
+      "VxA": 0
+    },
+    "necessity": {
+      "A": 0,
+      "G": 10,
+      "V": 0
+    },
+    "sufficiency": {
+      "A": 0,
+      "G": 10,
+      "V": 0
+    }
+  },
+  "paper_final": false,
+  "primary_failure_source": "GEOMETRY_MAIN_EFFECT",
+  "records": [
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O01_O02",
+      "stable_label": true
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O01_O03",
+      "stable_label": false
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O01_O04",
+      "stable_label": true
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O01_O08",
+      "stable_label": false
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O02_O03",
+      "stable_label": false
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O02_O04",
+      "stable_label": false
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O02_O08",
+      "stable_label": false
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O03_O04",
+      "stable_label": true
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O03_O08",
+      "stable_label": false
+    },
+    {
+      "direction_consistent_pair_evidence": {
+        "interactions": {
+          "GxA": false,
+          "GxV": false,
+          "GxVxA": false,
+          "VxA": false
+        },
+        "necessity": {
+          "A": false,
+          "G": true,
+          "V": false
+        },
+        "sufficiency": {
+          "A": false,
+          "G": true,
+          "V": false
+        }
+      },
+      "directions": {
+        "A_TO_B": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        },
+        "B_TO_A": {
+          "interactions": {
+            "GxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxV": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "GxVxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "VxA": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "necessity": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          },
+          "sufficiency": {
+            "A": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            },
+            "G": {
+              "consistent_views_by_alpha": {
+                "0.20": 4,
+                "0.50": 4,
+                "0.80": 4
+              },
+              "pass": true
+            },
+            "V": {
+              "consistent_views_by_alpha": {
+                "0.20": 0,
+                "0.50": 0,
+                "0.80": 0
+              },
+              "pass": false
+            }
+          }
+        }
+      },
+      "factor_causal_profile": "PREREGISTERED_VISUAL_NECESSITY_SUFFICIENCY_COMPLETE",
+      "pair_id": "O04_O08",
+      "stable_label": false
+    }
+  ],
+  "schema_version": "canondressgs.research.factor_causal_profiles.v1",
+  "secondary_failure_sources": [],
+  "status": "COMPLETE",
+  "task_id": "AAAI27-CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001"
+}
