@@ -684,12 +684,17 @@ def run_render_seed(
     formal.configure_determinism(strict=False)
     sealed.RUN_BRANCH = formal.RUN_BRANCH
     sealed.SOURCE_HEAD = formal.SOURCE_HEAD
-    seed_all(0)
     gate = NoTrainingGate()
     records = []
     created = Counter()
     reused = Counter({"ACTUAL_CONTROLLER": 0, "ORACLE_PAIR_ORACLE_WEIGHT": 0})
     with gate:
+        # Enter the guard before freezing the render RNG.  Its legacy training
+        # module import is intentionally outside the formal renderer, but that
+        # import may initialize process-global state.  Reset all RNGs only
+        # after the guard is installed so the formal seed_all(0) boundary is
+        # reproduced exactly.
+        seed_all(0)
         runtime = sealed.EvaluationRuntime(attempt / f"audits/runtime_seed_{seed}_no_write", asset_root, {})
         endpoints = geometry.endpoint_residuals(runtime)
         device = runtime.device
