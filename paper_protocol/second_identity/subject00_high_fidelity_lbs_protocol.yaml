@@ -1,0 +1,165 @@
+schema_version: subject00.mmlphuman.high_fidelity_lbs_protocol.v1
+task_id: MMLPHUMAN-SUBJECT00-HIGH-FIDELITY-LBS-DESIGN-001
+attempt: attempt_003
+status: FROZEN_BEFORE_PROTOTYPE_RUNS
+
+source:
+  branch: research/mmlphuman-subject00-lbs-repair-20260723
+  head: f88cc6a798747ad93ab9e6fe26f92c3e23229c9c
+  design_branch: research/mmlphuman-subject00-high-fidelity-lbs-design-20260723
+  prior_classification: SUBJECT00_BLOCKED_LBS_GEOMETRIC_FIDELITY
+
+paths:
+  subject00_raw: /root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00
+  smplx_model: /root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz
+  attempt_001: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_001
+  attempt_002: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_002
+  attempt_003: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_lbs_design_subject00_attempt_003
+  formal_target: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00
+
+frozen_reference:
+  template_mode: SUBJECT_SPECIFIC_SMPLX_BODY_SURFACE_FALLBACK
+  vertex_count: 10475
+  face_count: 20908
+  joint_count: 55
+  vertex_identity_required: 10475
+  lbs_source: neutral SMPL-X model.lbs_weights
+  lbs_shape: [10475, 55]
+  lbs_sha256: 645bde9f2a656a888b31173b06231da1ebb78d1363d33ba8f44eeb60e6bb4e29
+  legacy_grid: attempt_002/runs/T1_A/output/lbs_weights_grid.npz
+  legacy_grid_resolution: [128, 128, 128]
+  legacy_grid_threads: 1
+
+candidates:
+  - LEGACY_POINTINTERPOLANT_GRID
+  - SURFACE_FACE_ATTACHMENT
+  - DETERMINISTIC_CLOSEST_TRIANGLE
+  - HYBRID_SURFACE_ATTACHED_LBS
+
+candidate_contracts:
+  LEGACY_POINTINTERPOLANT_GRID:
+    role: frozen_failure_baseline
+    redefinition_forbidden: true
+  SURFACE_FACE_ATTACHMENT:
+    vertex_rule: copy official vertex weight bitwise exactly
+    face_rule: barycentric interpolation of the three official vertex weights
+    volume_smoothing: forbidden
+  DETERMINISTIC_CLOSEST_TRIANGLE:
+    role: off_surface_fallback_only
+    triangle_order: ascending_face_id
+    tie_break: minimum_face_id_within_absolute_squared_distance_tolerance
+    tie_absolute_squared_distance_tolerance: 1.0e-20
+    calculation_dtype: float64
+    random_sampling: forbidden
+  HYBRID_SURFACE_ATTACHED_LBS:
+    priority:
+      - existing_vertex_or_face_attachment
+      - clone_or_split_inheritance
+      - deterministic_closest_triangle_inside_frozen_narrow_band
+      - explicit_failure_outside_narrow_band
+    legacy_grid_outside_narrow_band: disabled_for_design_evaluation
+
+semantic_contract:
+  component_source: deterministic_connected_components_of_SMPLX_faces
+  region_source: official_weight_dominant_joint_plus_SMPLX_joint_hierarchy
+  error_result_based_drawing: forbidden
+  channel_masking: forbidden
+  uses:
+    - error_analysis
+    - tie_reporting
+    - cross_component_leakage_detection
+
+surface_sampling:
+  triangle_set: all_20908_faces
+  barycentric_samples:
+    centroid: [0.3333333333333333, 0.3333333333333333, 0.3333333333333334]
+    edge_01_midpoint: [0.5, 0.5, 0.0]
+    edge_12_midpoint: [0.0, 0.5, 0.5]
+    edge_20_midpoint: [0.5, 0.0, 0.5]
+    fixed_interior: [0.6, 0.2, 0.2]
+  sample_count: 104540
+
+narrow_band:
+  anchor: every_triangle_centroid
+  distances_meters: [-0.02, -0.01, -0.005, 0.0, 0.005, 0.01, 0.02]
+  maximum_absolute_distance_meters: 0.02
+  expansion_after_results: forbidden
+
+deterministic_200k_sampling:
+  count: 200000
+  face_selection: area_CDF_with_midpoint_stratification
+  barycentric_sequence: radical_inverse_base_2_and_base_3_square_root_map
+  fixed_precision: float64_attachment_float32_weights
+  filesystem_order_dependency: forbidden
+
+densification_simulation:
+  parent_count: 10000
+  parent_selection: evenly_spaced_indices_from_deterministic_200k
+  clone: inherit_attachment_and_weights_bitwise
+  split_small: deterministic_in_face_barycentric_perturbation_then_parent_face_projection
+  split_large: deterministic_xyz_perturbation_then_global_closest_triangle
+  small_barycentric_delta: 0.02
+  large_xyz_delta_meters: 0.03
+  prune: keep_even_parent_indices
+  checkpoint_format: deterministic_npz_non_training_prototype
+
+fidelity_thresholds:
+  vertices:
+    weight_mae_max: 1.0e-8
+    weight_max_abs_max: 1.0e-7
+    dominant_agreement_min: 1.0
+    weight_sum_max_abs_max: 1.0e-7
+  surface_samples:
+    weight_mae_max: 1.0e-8
+    weight_max_abs_max: 1.0e-7
+    dominant_agreement_min: 1.0
+    weight_sum_max_abs_max: 1.0e-7
+  determinism:
+    face_ids_exact: true
+    barycentric_max_abs: 1.0e-8
+    semantic_labels_exact: true
+    lbs_max_abs: 1.0e-8
+    closest_triangle_ids_exact: true
+    tie_decisions_exact: true
+  surface_leakage:
+    head_eye_cross_component_count: 0
+    hand_finger_surface_cross_region_count: 0
+  posed_runtime_lbs_parity:
+    vertex_mae_max_meters: 1.0e-8
+    vertex_max_abs_max_meters: 1.0e-6
+    finite_required: true
+    flipped_face_count: 0
+
+pose_evaluation:
+  canonical: bigpose
+  required_frames: [0, 1250, 2499]
+  heldout_count: 5
+  heldout_selection: first_five_sorted_frozen_heldout_pose_ids
+  runtime_lbs_ground_truth: official_weights_with_frozen_MMLPHuman_relative_joint_transforms
+  full_SMPLX_vertices: record_only_due_to_pose_corrective_blend_shapes_not_used_by_MMLPHuman_Gaussian_runtime
+
+runtime_prototype_gate:
+  execute_renderer_only_if:
+    - create_from_pcd_accepts_fixed_weights_or_surface_attachment_without_legacy_grid
+    - checkpoint_roundtrip_preserves_attachment
+    - no_formal_asset_publication_required
+  renderer_quality_claim_forbidden: true
+
+immutability:
+  subject00_raw_mutation: 0
+  subject02_mutation: 0
+  v2_runtime_closure_mutation: 0
+  strict_split_mutation: 0
+  attempt_001_mutation: 0
+  attempt_002_mutation: 0
+  formal_asset_publication: forbidden
+
+no_training_counters:
+  training_steps: 0
+  training_forward_batches: 0
+  backward_calls: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  training_checkpoint_writes: 0
+  PAPER_FINAL: 0

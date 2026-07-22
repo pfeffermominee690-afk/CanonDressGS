@@ -1,0 +1,1054 @@
+{
+  "all_term_matches": [
+    {
+      "line": 225,
+      "path": "scene/dataset.py",
+      "terms": [
+        "split"
+      ],
+      "text": "split = 'train', image_scaling=1, is_in_memory=False):"
+    },
+    {
+      "line": 239,
+      "path": "scene/dataset.py",
+      "terms": [
+        "split"
+      ],
+      "text": "self.split = split"
+    },
+    {
+      "line": 323,
+      "path": "scene/dataset.py",
+      "terms": [
+        "split"
+      ],
+      "text": "split = 'train', image_scaling=1, is_in_memory=False):"
+    },
+    {
+      "line": 358,
+      "path": "scene/dataset.py",
+      "terms": [
+        "split"
+      ],
+      "text": "self.split = split"
+    },
+    {
+      "line": 16,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "interpolate_skinningfield"
+      ],
+      "text": "from utils.smpl_utils import smpl, interpolate_skinningfield, rigid_transform_tensor, rigid_transform_numba"
+    },
+    {
+      "line": 103,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "capture"
+      ],
+      "text": "def capture(self):"
+    },
+    {
+      "line": 115,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "'_weights': self.get_weights,"
+    },
+    {
+      "line": 150,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "def restore(self, data):"
+    },
+    {
+      "line": 226,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "def get_weights(self):"
+    },
+    {
+      "line": 229,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "interpolate_skinningfield"
+      ],
+      "text": "weights = interpolate_skinningfield(self.weights_grid_info, xyz)"
+    },
+    {
+      "line": 252,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "def get_Gweights(self):"
+    },
+    {
+      "line": 253,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "if 'get_Gweights' in self.cache_dict: return self.cache_dict['get_Gweights']"
+    },
+    {
+      "line": 260,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "G_weight = torch.einsum('vp,pij->vij', self.get_weights, G)"
+    },
+    {
+      "line": 262,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "self.cache_dict['get_Gweights'] = G_weight"
+    },
+    {
+      "line": 283,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "rots = self.get_Gweights[:,:3,:3].contiguous()"
+    },
+    {
+      "line": 386,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "compute_xyz"
+      ],
+      "text": "return self.compute_xyz()"
+    },
+    {
+      "line": 388,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "compute_xyz"
+      ],
+      "text": "def compute_xyz(self, canonical_overrides=None):"
+    },
+    {
+      "line": 391,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "xyz = torch.einsum('vij,vj->vi', self.get_Gweights, F.pad(xyz,(0,1),value=1))[:,:3]"
+    },
+    {
+      "line": 449,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "rots = self.get_Gweights[:,:3,:3]"
+    },
+    {
+      "line": 453,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "compute_xyz"
+      ],
+      "text": "dirs = F.normalize(cam_pos - self.compute_xyz(canonical_overrides), dim=-1)"
+    },
+    {
+      "line": 468,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "create_from_pcd"
+      ],
+      "text": "def create_from_pcd(self, xyz=None, t_joints=None, joint_parents=None, all_poses=None, lbs_weights_grid_info=None, xyz_vt=None, xyz_ft=None):"
+    },
+    {
+      "line": 597,
+      "path": "scene/gaussian_model.py",
+      "terms": [
+        "compute_xyz"
+      ],
+      "text": "means=self.compute_xyz(canonical_overrides),"
+    },
+    {
+      "line": 46,
+      "path": "scene/net_vis.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "gaussians.restore(load_data)"
+    },
+    {
+      "line": 93,
+      "path": "scene/scene.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "weights_grid_path = path.join(args.data_dir, 'gaussian/lbs_weights_grid.npz')"
+    },
+    {
+      "line": 130,
+      "path": "scene/scene.py",
+      "terms": [
+        "create_from_pcd"
+      ],
+      "text": "gaussians.create_from_pcd("
+    },
+    {
+      "line": 178,
+      "path": "script/gen_weight_volume.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "np.savez(path.join(data_dir, 'gaussian/lbs_weights_grid.npz'), **data)"
+    },
+    {
+      "line": 56,
+      "path": "test.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "poses_clone = np.copy(poses)"
+    },
+    {
+      "line": 57,
+      "path": "test.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "trans_clone = np.copy(trans)"
+    },
+    {
+      "line": 58,
+      "path": "test.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "frame_num = poses_clone.shape[0]"
+    },
+    {
+      "line": 62,
+      "path": "test.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "poses[win_size: frame_num-win_size] += poses_clone[win_size+i: frame_num-win_size+i]"
+    },
+    {
+      "line": 63,
+      "path": "test.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "trans[win_size: frame_num-win_size] += trans_clone[win_size+i: frame_num-win_size+i]"
+    },
+    {
+      "line": 132,
+      "path": "test.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "gaussians.Th = torch.clone(torch.as_tensor(pose['Th']).cpu())"
+    },
+    {
+      "line": 93,
+      "path": "tools/second_identity/audit_subject00_lbs_contracts.py",
+      "terms": [
+        "grid_sample"
+      ],
+      "text": "output = torch_f.grid_sample("
+    },
+    {
+      "line": 308,
+      "path": "tools/second_identity/audit_subject00_lbs_contracts.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "with np.load(args.attempt_002 / \"runs\" / \"T1_A\" / \"output\" / \"lbs_weights_grid.npz\", allow_pickle=False) as loaded:"
+    },
+    {
+      "line": 391,
+      "path": "tools/second_identity/audit_subject00_lbs_contracts.py",
+      "terms": [
+        "grid_sample"
+      ],
+      "text": "\"runtime_point_order\": \"world xyz normalized then reordered to z,y,x for grid_sample x,y,z arguments\","
+    },
+    {
+      "line": 412,
+      "path": "tools/second_identity/audit_subject00_lbs_contracts.py",
+      "terms": [
+        "interpolate_skinningfield"
+      ],
+      "text": "\"runtime_source\": \"utils/smpl_utils.py::interpolate_skinningfield\","
+    },
+    {
+      "line": 15,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "\"lbs_weights_grid.npz\","
+    },
+    {
+      "line": 16,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "interpolate_skinningfield"
+      ],
+      "text": "\"interpolate_skinningfield\","
+    },
+    {
+      "line": 17,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "grid_sample"
+      ],
+      "text": "\"grid_sample\","
+    },
+    {
+      "line": 18,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "\"get_weights\","
+    },
+    {
+      "line": 19,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "\"get_Gweights\","
+    },
+    {
+      "line": 20,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "compute_xyz"
+      ],
+      "text": "\"compute_xyz\","
+    },
+    {
+      "line": 21,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "create_from_pcd"
+      ],
+      "text": "\"create_from_pcd\","
+    },
+    {
+      "line": 22,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "capture"
+      ],
+      "text": "\"capture\","
+    },
+    {
+      "line": 23,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "\"restore\","
+    },
+    {
+      "line": 24,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif"
+      ],
+      "text": "\"densif\","
+    },
+    {
+      "line": 25,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "\"clone\","
+    },
+    {
+      "line": 26,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"split\","
+    },
+    {
+      "line": 27,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "prun"
+      ],
+      "text": "\"prun\","
+    },
+    {
+      "line": 45,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "split"
+      ],
+      "text": "for line_number, line in enumerate(path.read_text(encoding=\"utf-8\").splitlines(), 1):"
+    },
+    {
+      "line": 85,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "interpolate_skinningfield"
+      ],
+      "text": "\"weights_query_base_xyz\": \"weights = interpolate_skinningfield(self.weights_grid_info, xyz)\","
+    },
+    {
+      "line": 87,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "\"checkpoint_saves_weights\": \"'_weights': self.get_weights\","
+    },
+    {
+      "line": 88,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "\"checkpoint_restores_weights\": \"self._weights = data['_weights']\","
+    },
+    {
+      "line": 90,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "\"runtime_blend\": \"G_weight = torch.einsum('vp,pij->vij', self.get_weights, G)\","
+    },
+    {
+      "line": 92,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "\"inference_checkpoint_restore\": \"gaussians.restore(load_data)\","
+    },
+    {
+      "line": 95,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "grid_sample",
+        "restore"
+      ],
+      "text": "haystack = scene if label.startswith(\"scene_\") else smpl if label == \"grid_sample\" else net if label == \"inference_checkpoint_restore\" else gaussian"
+    },
+    {
+      "line": 97,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "grid_sample"
+      ],
+      "text": "require(smpl, \"F.grid_sample(\", \"grid_sample\")"
+    },
+    {
+      "line": 100,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif"
+      ],
+      "text": "densification_methods = sorted("
+    },
+    {
+      "line": 101,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif",
+        "clone",
+        "split",
+        "prun"
+      ],
+      "text": "name for name in method_names if any(token in name.lower() for token in (\"densif\", \"clone\", \"split\", \"prun\"))"
+    },
+    {
+      "line": 120,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "clone",
+        "split"
+      ],
+      "text": "\"clone_split_current_behavior\": \"NOT_IMPLEMENTED_IN_THIS_RUNTIME\","
+    },
+    {
+      "line": 122,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "create_from_pcd",
+        "restore"
+      ],
+      "text": "\"fixed_per_gaussian_weights_runtime_capability\": \"SUPPORTED_BY_INTERNAL_STATE_AND_CHECKPOINT_RESTORE_BUT_NOT_CREATE_FROM_PCD_API\","
+    },
+    {
+      "line": 127,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "\"arbitrary_point_without_attachment_current_path\": \"legacy grid lookup at first get_weights access\","
+    },
+    {
+      "line": 133,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "\"Scene requires and loads gaussian/lbs_weights_grid.npz\","
+    },
+    {
+      "line": 134,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "create_from_pcd"
+      ],
+      "text": "\"create_from_pcd detaches grid metadata onto CUDA but does not immediately query weights\","
+    },
+    {
+      "line": 135,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_weights"
+      ],
+      "text": "\"first get_weights access queries legacy grid at immutable base _xyz and caches _weights\","
+    },
+    {
+      "line": 136,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "get_Gweights"
+      ],
+      "text": "\"get_Gweights blends cached per-Gaussian weights with pose transforms each forward\","
+    },
+    {
+      "line": 138,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "capture",
+        "restore"
+      ],
+      "text": "\"capture serializes cached _weights; restore loads them directly\","
+    },
+    {
+      "line": 139,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "\"test/net_vis inference restores checkpoint weights without loading the grid\","
+    },
+    {
+      "line": 141,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif"
+      ],
+      "text": "\"densification\": {"
+    },
+    {
+      "line": 142,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif"
+      ],
+      "text": "\"methods_found\": densification_methods,"
+    },
+    {
+      "line": 143,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif"
+      ],
+      "text": "\"implemented\": bool(densification_methods),"
+    },
+    {
+      "line": 144,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif"
+      ],
+      "text": "\"required_future_contract\": \"attachment metadata must be inherited or deterministically recomputed if densification is added\","
+    },
+    {
+      "line": 148,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "create_from_pcd"
+      ],
+      "text": "\"optional fixed_weights argument to create_from_pcd\","
+    },
+    {
+      "line": 150,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "capture",
+        "restore"
+      ],
+      "text": "\"capture/restore support for attachment metadata\","
+    },
+    {
+      "line": 151,
+      "path": "tools/second_identity/audit_subject00_lbs_runtime_consumers.py",
+      "terms": [
+        "densif",
+        "clone",
+        "split"
+      ],
+      "text": "\"explicit clone/split metadata rules before any future densification\","
+    },
+    {
+      "line": 182,
+      "path": "tools/second_identity/compare_subject00_lbs_stages.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "final_npz = run_root / \"lbs\" / \"lbs_weights_grid.npz\""
+    },
+    {
+      "line": 165,
+      "path": "tools/second_identity/generate_subject00_template.py",
+      "terms": [
+        "split"
+      ],
+      "text": "beta, shape_audit = audit_shape(payload, float(protocol[\"shape\"][\"frame_policy\"].rsplit(\"_\", 1)[-1]))"
+    },
+    {
+      "line": 311,
+      "path": "tools/second_identity/run_subject00_lbs_diagnostic.py",
+      "terms": [
+        "capture"
+      ],
+      "text": "captured = {key: os.environ.get(key) for key in THREAD_VARIABLES}"
+    },
+    {
+      "line": 312,
+      "path": "tools/second_identity/run_subject00_lbs_diagnostic.py",
+      "terms": [
+        "capture"
+      ],
+      "text": "if any(value != expected_threads for value in captured.values()):"
+    },
+    {
+      "line": 313,
+      "path": "tools/second_identity/run_subject00_lbs_diagnostic.py",
+      "terms": [
+        "capture"
+      ],
+      "text": "raise RuntimeError(f\"Thread environment must all equal {expected_threads}: {captured}\")"
+    },
+    {
+      "line": 392,
+      "path": "tools/second_identity/run_subject00_lbs_diagnostic.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "npz_path = output_dir / \"lbs_weights_grid.npz\""
+    },
+    {
+      "line": 189,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "grid_sample"
+      ],
+      "text": "weights = torch_f.grid_sample("
+    },
+    {
+      "line": 427,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "\"path\": \"lbs/lbs_weights_grid.npz\","
+    },
+    {
+      "line": 469,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"strict_view_split_sha256\": protocol[\"strict_splits\"][\"novel_view_sha256\"],"
+    },
+    {
+      "line": 470,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"strict_pose_split_sha256\": protocol[\"strict_splits\"][\"novel_pose_sha256\"],"
+    },
+    {
+      "line": 566,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "split"
+      ],
+      "text": "view = json.loads((args.repo_root / protocol[\"strict_splits\"][\"novel_view_manifest\"]).read_text(encoding=\"utf-8\"))"
+    },
+    {
+      "line": 567,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "split"
+      ],
+      "text": "pose = json.loads((args.repo_root / protocol[\"strict_splits\"][\"novel_pose_manifest\"]).read_text(encoding=\"utf-8\"))"
+    },
+    {
+      "line": 613,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "grid_info = load_npz(formal / \"lbs/lbs_weights_grid.npz\")"
+    },
+    {
+      "line": 629,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "create_from_pcd"
+      ],
+      "text": "model.create_from_pcd("
+    },
+    {
+      "line": 692,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "compute_xyz"
+      ],
+      "text": "means=model.compute_xyz(), quats=None, scales=None,"
+    },
+    {
+      "line": 728,
+      "path": "tools/second_identity/validate_subject00_derived_assets.py",
+      "terms": [
+        "split"
+      ],
+      "text": "next_task = \"RUN_SUBJECT00_MMLPHUMAN_SHORT_CANARY_TRAINING_WITH_STRICT_SPLITS\" if readiness == \"SUBJECT00_DERIVED_ASSETS_READY_FOR_CANARY\" else \"REPAIR_SUBJECT00_LBS_DETERMINISM_OR_BOUNDS_CONTRACT\""
+    },
+    {
+      "line": 87,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "for original in path.read_text(encoding=\"utf-8-sig\").splitlines():"
+    },
+    {
+      "line": 281,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "def camera_centers_and_split(subject00: Path) -> dict[str, Any]:"
+    },
+    {
+      "line": 302,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "split_payload = {"
+    },
+    {
+      "line": 315,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "**split_payload,"
+    },
+    {
+      "line": 319,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"split_sha256\": canonical_sha256(split_payload),"
+    },
+    {
+      "line": 330,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "def pose_split(subject00: Path) -> dict[str, Any]:"
+    },
+    {
+      "line": 378,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "split_payload = {"
+    },
+    {
+      "line": 395,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "**split_payload,"
+    },
+    {
+      "line": 411,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"split_sha256\": canonical_sha256(split_payload),"
+    },
+    {
+      "line": 420,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "for name in (\"template.ply\", \"lbs_weights_grid.npz\", \"init_body_points.ply\")"
+    },
+    {
+      "line": 445,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "subject02_lbs = subject02 / \"gaussian\" / \"lbs_weights_grid.npz\""
+    },
+    {
+      "line": 461,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "\"SUBJECT00_LBS_READY\" if existing00[\"lbs_weights_grid.npz\"]"
+    },
+    {
+      "line": 488,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "lbs_weights_grid.npz"
+      ],
+      "text": "\"ready\": existing00[\"lbs_weights_grid.npz\"],"
+    },
+    {
+      "line": 723,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "view = camera_centers_and_split(args.subject00_root)"
+    },
+    {
+      "line": 724,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "pose = pose_split(args.subject00_root)"
+    },
+    {
+      "line": 732,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"subject00_novel_view_split_v2.json\": view,"
+    },
+    {
+      "line": 733,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"subject00_novel_pose_split_v2.json\": pose,"
+    },
+    {
+      "line": 791,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"view_split_sha256\": view[\"split_sha256\"],"
+    },
+    {
+      "line": 792,
+      "path": "tools/second_identity/validate_subject00_mmlphuman_inputs_v2.py",
+      "terms": [
+        "split"
+      ],
+      "text": "\"pose_split_sha256\": pose[\"split_sha256\"],"
+    },
+    {
+      "line": 65,
+      "path": "train.py",
+      "terms": [
+        "restore"
+      ],
+      "text": "gaussians.restore(resume_data)"
+    },
+    {
+      "line": 203,
+      "path": "train.py",
+      "terms": [
+        "capture"
+      ],
+      "text": "save_data = gaussians.capture()"
+    },
+    {
+      "line": 23,
+      "path": "utils/graphics_utils.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "Q = A.clone()"
+    },
+    {
+      "line": 30,
+      "path": "utils/smpl_utils.py",
+      "terms": [
+        "interpolate_skinningfield"
+      ],
+      "text": "def interpolate_skinningfield(grid_info, points):"
+    },
+    {
+      "line": 39,
+      "path": "utils/smpl_utils.py",
+      "terms": [
+        "grid_sample"
+      ],
+      "text": "intp_weights = F.grid_sample("
+    },
+    {
+      "line": 146,
+      "path": "viewer/net_viewer.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "poses_clone = np.copy(poses)"
+    },
+    {
+      "line": 147,
+      "path": "viewer/net_viewer.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "trans_clone = np.copy(trans)"
+    },
+    {
+      "line": 148,
+      "path": "viewer/net_viewer.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "frame_num = poses_clone.shape[0]"
+    },
+    {
+      "line": 152,
+      "path": "viewer/net_viewer.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "poses[win_size: frame_num-win_size] += poses_clone[win_size+i: frame_num-win_size+i]"
+    },
+    {
+      "line": 153,
+      "path": "viewer/net_viewer.py",
+      "terms": [
+        "clone"
+      ],
+      "text": "trans[win_size: frame_num-win_size] += trans_clone[win_size+i: frame_num-win_size+i]"
+    }
+  ],
+  "answers": {
+    "arbitrary_point_requires_volume_lookup": false,
+    "arbitrary_point_without_attachment_current_path": "legacy grid lookup at first get_weights access",
+    "barycentric_runtime_capability": false,
+    "checkpoint_saves_per_gaussian_weights": true,
+    "clone_split_current_behavior": "NOT_IMPLEMENTED_IN_THIS_RUNTIME",
+    "face_id_runtime_capability": false,
+    "fixed_per_gaussian_weights_runtime_capability": "SUPPORTED_BY_INTERNAL_STATE_AND_CHECKPOINT_RESTORE_BUT_NOT_CREATE_FROM_PCD_API",
+    "grid_algorithmically_necessary": false,
+    "grid_role": "initialization-time convenience interface for deriving fixed per-Gaussian weights",
+    "inference_after_checkpoint_requires_grid": false,
+    "lookup_autograd_reason": "grid is detached; base _xyz is a non-Parameter tensor; the result is cached before trainable canonical offsets are applied",
+    "lookup_in_autograd": false,
+    "semantic_region_runtime_capability": false,
+    "weights_query_frequency": "LAZY_ONCE_FROM_BASE_XYZ_THEN_CACHED",
+    "weights_recomputed_when_xyz_offset_or_dxyz_changes": false
+  },
+  "audited_files": {
+    "scene/gaussian_model.py": {
+      "bytes": 28337,
+      "sha256": "0e55c9bc16b11ce1f825862de6e980e0b217f1ef5b91dabf553fcf595a553181"
+    },
+    "scene/net_vis.py": {
+      "bytes": 4302,
+      "sha256": "c04f60abf5efb8d5891ad3d0915ebac708ed38d4c8cfb5c70e11c32d94dd73da"
+    },
+    "scene/scene.py": {
+      "bytes": 6141,
+      "sha256": "3aa0a3102289f172d7cde4d318e7f6a2e815d1bf61a365ba7fe3fafa06ad038b"
+    },
+    "test.py": {
+      "bytes": 8756,
+      "sha256": "357c21430e836a2fc2965dfc438a580ede9c6db7396a91037464522c3a69fe66"
+    },
+    "train.py": {
+      "bytes": 11694,
+      "sha256": "d45dc76e2cee93b696f772202c7291e7892fc1f87724d974d47a37c0174fc5c7"
+    },
+    "utils/smpl_utils.py": {
+      "bytes": 2222,
+      "sha256": "370dde75af1a031121d68988c2a6efd8c4cfd18ac4fc028ad58a2d96fb0347d4"
+    }
+  },
+  "counters": {
+    "PAPER_FINAL": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "training_checkpoint_writes": 0,
+    "training_forward_batches": 0,
+    "training_steps": 0
+  },
+  "densification": {
+    "implemented": false,
+    "methods_found": [],
+    "required_future_contract": "attachment metadata must be inherited or deterministically recomputed if densification is added"
+  },
+  "runtime_repair_surface": {
+    "deformation_kernel_change_required": false,
+    "minimum_required": [
+      "optional fixed_weights argument to create_from_pcd",
+      "persistent face_id/barycentric/component/region tensors",
+      "capture/restore support for attachment metadata",
+      "explicit clone/split metadata rules before any future densification"
+    ],
+    "training_objective_change_required": false
+  },
+  "schema_version": "subject00.mmlphuman.lbs_runtime_consumer_audit.v1",
+  "source_head": "f88cc6a798747ad93ab9e6fe26f92c3e23229c9c",
+  "state_flow": [
+    "Scene requires and loads gaussian/lbs_weights_grid.npz",
+    "create_from_pcd detaches grid metadata onto CUDA but does not immediately query weights",
+    "first get_weights access queries legacy grid at immutable base _xyz and caches _weights",
+    "get_Gweights blends cached per-Gaussian weights with pose transforms each forward",
+    "trainable dxyz/xyz_offset affect canonical positions but do not update cached weights",
+    "capture serializes cached _weights; restore loads them directly",
+    "test/net_vis inference restores checkpoint weights without loading the grid"
+  ],
+  "status": "PASS_STATIC_CONSUMER_CLOSURE_IDENTIFIED"
+}
