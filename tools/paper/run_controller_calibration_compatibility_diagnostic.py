@@ -674,9 +674,8 @@ def run_render_seed(
         return result
     manifest, _, _ = formal.contract()
     query_index = {row["record_id"]: row for row in manifest["query_sets"]}
-    predictions = {
-        row["record_id"]: row for row in data["mixed"][seed]["records"] if row["pair_correct"] is not None
-    }
+    all_predictions = {row["record_id"]: row for row in data["mixed"][seed]["records"]}
+    predictions = {record_id: row for record_id, row in all_predictions.items() if row["pair_correct"] is not None}
     formal_render = {
         row["record_id"]: row for row in data["render"][seed]["records"] if row["role"] == "mixed"
     }
@@ -699,18 +698,10 @@ def run_render_seed(
         # the process RNG used by the legacy renderer.  Reproduce that read-only
         # ordering exactly; the model is not trained and receives no GT fields.
         _controller_rng_parity_model = evaluator.load_model(formal_root, seed, device)
-        first_prediction = next(iter(predictions.values()))
-        first_record = query_index[first_prediction["record_id"]]
-        first_formal = formal_render[first_prediction["record_id"]]
-        left = str(first_record["pair_id"]).split("_")[0]
-        with torch.inference_mode():
-            probe_rgb, _, _ = geometry.render_branches(runtime, left, first_record["target_view_fold"], evaluator.oracle_branches(first_record, endpoints))
-        stored_probe = load_rgb(Path(first_formal["oracle_rgb_path"]), device)
-        parity_max_abs = float((probe_rgb - stored_probe).abs().max())
-        if parity_max_abs > 1.0 / 255.0 + 1e-6:
-            raise RuntimeError(f"counterfactual runtime parity failed: {parity_max_abs}")
-        for record_id, prediction in predictions.items():
-            record = query_index[record_id]
+        parity_max_abs = 0.0
+        replay_count = 0
+        for record_id, record in query_index.items():
+            prediction = all_predictions[record_id]
             formal_row = formal_render[record_id]
             baseline_paths = existing_baseline_paths(formal_row, record)
             if not all(path.is_file() for path in baseline_paths.values()):
@@ -720,6 +711,32 @@ def run_render_seed(
             oracle_rgb = load_rgb(baseline_paths["oracle_rgb"], device)
             source_rgb = load_rgb(baseline_paths["source_rgb"], device)
             target_rgb = load_rgb(baseline_paths["target_rgb"], device)
+            formal_candidate_rgb = load_rgb(Path(formal_row["rgb_path"]), device)
+            # Reproduce the exact append-only FORMAL-002 per-record order in
+            # memory.  This both advances any legacy runtime state identically
+            # and proves that new variants share the same paired context.
+            with torch.inference_mode():
+                replay_candidate, _, _ = geometry.render_branches(
+                    runtime, left, condition, evaluator.controller_branches(prediction, endpoints)
+                )
+                replay_oracle, _, _ = geometry.render_branches(
+                    runtime, left, condition, evaluator.oracle_branches(record, endpoints)
+                )
+                replay_source, _, _ = geometry.render_branches(runtime, left, condition, ((left, endpoints[left], 1.0),))
+                right = str(record["pair_id"]).split("_")[1]
+                replay_target, _, _ = geometry.render_branches(runtime, left, condition, ((right, endpoints[right], 1.0),))
+            current_parity = max(
+                float((replay_candidate - formal_candidate_rgb).abs().max()),
+                float((replay_oracle - oracle_rgb).abs().max()),
+                float((replay_source - source_rgb).abs().max()),
+                float((replay_target - target_rgb).abs().max()),
+            )
+            parity_max_abs = max(parity_max_abs, current_parity)
+            replay_count += 4
+            if current_parity > 1.0 / 255.0 + 1e-6:
+                raise RuntimeError(f"counterfactual runtime parity failed record={record_id}: {current_parity}")
+            if record_id not in predictions:
+                continue
             actual = {
                 "variant": "ACTUAL_CONTROLLER", "defined": True, "reused": True,
                 "rgb_path": formal_row["rgb_path"], "alpha_path": formal_row["alpha_path"],
@@ -738,6 +755,8 @@ def run_render_seed(
             variants: dict[str, Any] = {"ACTUAL_CONTROLLER": actual, "ORACLE_PAIR_ORACLE_WEIGHT": oracle}
             reused["ACTUAL_CONTROLLER"] += 1
             reused["ORACLE_PAIR_ORACLE_WEIGHT"] += 1
+            cpu_rng = torch.get_rng_state()
+            cuda_rng = torch.cuda.get_rng_state_all()
             for variant in ("FORCE_DUAL_PRED_PAIR_PRED_WEIGHT", "ORACLE_PAIR_PREDICTED_PROBABILITY_WEIGHT", "CORRECT_PAIR_SUBSET_PRED_PAIR_ORACLE_WEIGHT", "TOP1_SINGLE"):
                 branches = variant_branches(variant, record, prediction, endpoints)
                 if branches is None:
@@ -756,6 +775,8 @@ def run_render_seed(
                     "metrics": metrics, "render_diagnostics": diagnostics,
                     "selected_endpoints": [branch[0] for branch in branches], "weights": [float(branch[2]) for branch in branches],
                 }
+            torch.set_rng_state(cpu_rng)
+            torch.cuda.set_rng_state_all(cuda_rng)
             records.append({
                 "seed": seed, "record_id": record_id, "pair_id": record["pair_id"],
                 "composition": composition(record), "assignment_position": record["assignment_position"],
@@ -774,7 +795,7 @@ def run_render_seed(
         "status": "COMPLETE", "task_id": TASK_ID, "seed": seed, "record_count": len(records),
         "variant_definitions": list(VARIANTS), "records": records,
         "reused_count": dict(reused), "newly_rendered_count": dict(created),
-        "runtime_parity_max_abs_vs_formal_png": parity_max_abs,
+        "runtime_parity_max_abs_vs_formal_png": parity_max_abs, "formal_sequence_replay_render_count": replay_count,
         "no_training_gate": gate_result, "formal_output_write_count": 0,
         "threshold_change": 0, "controller_change": 0, "paper_final": False,
     }
