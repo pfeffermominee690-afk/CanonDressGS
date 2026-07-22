@@ -39,27 +39,27 @@ SEEDS = (0, 1, 2)
 ARCHIVE_FILES = {
     "dual_support_all_pair_protocol": (
         "paper_protocol/reviewer_risk/dual_support_all_pair_protocol.yaml",
-        "d7be2c0bac94e7d048e125d6bdf8b5beee772aab25fdce0d848540aff3105bcd",
+        "34f7e7cd45f3a9d5cb49323f9981936104e11e2b23b1a9f88461524d9b0a8d2e",
     ),
     "dual_support_all_pair_results": (
         "paper_protocol/reviewer_risk/dual_support_all_pair_results.json",
-        "4875c0bbdde0bb8e44c8e6ff9ef1f1fe56a58b816368c5ae4c72d11188d0c226",
+        "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
     ),
     "dual_support_all_pair_visual_review": (
         "paper_protocol/reviewer_risk/dual_support_all_pair_visual_review.json",
-        "354480bea8320569b0da0bf7a0b7f1a5b4f59866e132fa308cb30b6667b06c11",
+        "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa",
     ),
     "dual_support_all_pair_final_summary": (
         "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json",
-        "0bf795eedba9e0555374a9080e6db7b9f6a69b917eba512d9b0453ff2929064b",
+        "3c6aa16a1f4d5324aeaaf426ffef83ba3a008d95308e21f09963a3c50525c5b2",
     ),
     "dual_support_all_pair_report": (
         "docs/PAPER/AAAI27_DUAL_SUPPORT_ALL_PAIR_EVALUATION_20260722.md",
-        "71d0121e261f045aab5fc0511783e9114e06ce7893f2c1518463afa772e5be3c",
+        "984906f93299f980996255510f107a654584437f7add42babab4944835f775a2",
     ),
     "dual_support_interface_report": (
         "docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_INTERFACE_20260722.md",
-        "019e61e9200f609efd94b9ec02693ce7e16e1ba53a449a18bfe0673c691b38b9",
+        "51e77c53b6f2af6b0aad5201bdc31efbff18e22c927dfc2cda606a50d6490a3a",
     ),
 }
 
@@ -78,11 +78,7 @@ def atomic_json(path: Path, value: Any) -> None:
 
 
 def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def tree_manifest(path: Path) -> dict[str, Any]:

@@ -28,15 +28,15 @@ from tools.paper.build_dual_support_controller_dataset import (
 
 
 ARCHIVE_HASHES = {
-    "paper_protocol/reviewer_risk/dual_support_all_pair_protocol.yaml": "d7be2c0bac94e7d048e125d6bdf8b5beee772aab25fdce0d848540aff3105bcd",
-    "paper_protocol/reviewer_risk/dual_support_all_pair_results.json": "4875c0bbdde0bb8e44c8e6ff9ef1f1fe56a58b816368c5ae4c72d11188d0c226",
-    "paper_protocol/reviewer_risk/dual_support_all_pair_visual_review.json": "354480bea8320569b0da0bf7a0b7f1a5b4f59866e132fa308cb30b6667b06c11",
-    "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json": "0bf795eedba9e0555374a9080e6db7b9f6a69b917eba512d9b0453ff2929064b",
+    "paper_protocol/reviewer_risk/dual_support_all_pair_protocol.yaml": "34f7e7cd45f3a9d5cb49323f9981936104e11e2b23b1a9f88461524d9b0a8d2e",
+    "paper_protocol/reviewer_risk/dual_support_all_pair_results.json": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+    "paper_protocol/reviewer_risk/dual_support_all_pair_visual_review.json": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa",
+    "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json": "3c6aa16a1f4d5324aeaaf426ffef83ba3a008d95308e21f09963a3c50525c5b2",
 }
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 @pytest.fixture()
