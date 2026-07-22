@@ -1,0 +1,73 @@
+{
+  "schema_version": "canondressgs.project_control.dataset_registry.v1",
+  "task_id": "CANONDRESSGS-PROJECT-CONTROL-001",
+  "generated_date": "2026-07-22",
+  "datasets": [
+    {
+      "id": "DATASET-THUMAN4-SUBJECT02",
+      "name": "THUman4.0 subject02",
+      "role": "Current target identity and formal avatar/evaluation source",
+      "local_path": null,
+      "cloud_path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k",
+      "status": "FORMAL_REPORT_AND_MANIFEST_VERIFIED_LIVE_CLOUD_UNREACHABLE",
+      "verified": false,
+      "notes": "Formal checkpoint paths and subject02 contracts are present in frozen manifests; the underlying cloud tree was not live-inspected in this task."
+    },
+    {
+      "id": "DATASET-THUMAN4-SUBJECT00-ARCHIVE",
+      "name": "THUman4.0 subject00 archive",
+      "role": "Second-identity archive candidate",
+      "local_path": "E:\\data_pre\\thuman4_second_identity_staging\\downloads\\subject00.7z",
+      "cloud_path": null,
+      "status": "DOWNLOADED_LOCAL_PENDING_VERIFICATION",
+      "verified": false,
+      "archive_bytes": 25113129825,
+      "uploaded": false,
+      "extracted": false,
+      "notes": "Existence and byte size were read locally. Integrity, cloud upload, and extraction are not claimed."
+    },
+    {
+      "id": "DATASET-SECOND-IDENTITY-STAGING",
+      "name": "Second identity staging",
+      "role": "Local preparation area for subject00",
+      "local_path": "E:\\data_pre\\thuman4_second_identity_staging",
+      "cloud_path": null,
+      "status": "STAGING_PRESENT_ARCHIVE_NOT_VERIFIED",
+      "verified": false,
+      "notes": "No evaluation-ready identity contract is registered."
+    },
+    {
+      "id": "DATASET-MULTI-OUTFIT-REFERENCE-TARGET",
+      "name": "Multi-outfit reference / target data",
+      "role": "Seven-outfit 28-sample gate plus five-seen-outfit reference/target evaluation",
+      "local_path": "E:\\model_train\\canondressgs_aaai27_real_teaser_figure\\paper_draft\\aaai27\\figure_sources\\figure1",
+      "cloud_path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset",
+      "status": "LOCAL_CACHED_SUBSET_AND_REPORT_VERIFIED_CLOUD_LIVE_UNREACHABLE",
+      "verified": false,
+      "manifest_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+      "notes": "The teaser audit verified selected formal assets before/after; this is not a live verification of the full cloud dataset root."
+    },
+    {
+      "id": "DATASET-TEACHER-BANKS",
+      "name": "Teacher banks",
+      "role": "O01/O02/O03/O04/O08 seen teachers plus preserved O07 teacher asset",
+      "local_path": null,
+      "cloud_path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank",
+      "status": "FROZEN_MANIFEST_VERIFIED_CLOUD_LIVE_UNREACHABLE",
+      "verified": false,
+      "notes": "Individual teacher checkpoint hashes are recorded in paper_protocol/frozen_asset_manifest.json."
+    },
+    {
+      "id": "DATASET-BASIS-ASSETS",
+      "name": "Basis assets",
+      "role": "Frozen rank-4 Gaussian residual basis and coefficient normalization",
+      "local_path": null,
+      "cloud_path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected",
+      "status": "FROZEN_MANIFEST_VERIFIED_CLOUD_LIVE_UNREACHABLE",
+      "verified": false,
+      "basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430",
+      "coefficient_normalization_sha256": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+      "notes": "Paths and hashes were read from the frozen manifest; cloud files were not rehashed."
+    }
+  ]
+}
