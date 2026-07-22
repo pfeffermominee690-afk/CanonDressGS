@@ -74,6 +74,12 @@ metrics:
   - outside_garment_opacity
   - displacement_rms
   - displacement_p95
+metric_definitions:
+  active_gaussian_opacity_threshold: 0.00392156862745098
+  stable_inverse_sigmoid_epsilon: 1.0e-6
+  opacity_mass: sum of final activated Gaussian opacity
+  outside_garment_opacity: mean rendered alpha outside the frozen target garment mask
+  identity_metric: RGB MAE to the source endpoint under the frozen protected-identity mask
 visual_review:
   grade_scale: {NONE: 0, MINOR: 1, MODERATE: 2, SEVERE: 3}
   categories:
@@ -102,6 +108,19 @@ success_thresholds:
   severe_double_outline_ghosting_allowed: false
   frozen_mutation_allowed: false
   best_direction_or_view_selection_allowed: false
+  aggregation_rules:
+    core_artifact_categories:
+      - patch
+      - cloud
+      - mottle
+      - edge_scatter
+      - silhouette_discontinuity
+      - full_body_contamination
+    pair_alpha_0_5_core_grade: maximum over both directions, all four views, and all core categories
+    pair_severe_count: count of grade-3 core-category observations over all alphas, both directions, and all four views
+    silhouette_iou_comparison: per-pair mean over all alphas, both directions, and all four views
+    garment_lpips_comparison: per-pair mean over all alphas, both directions, and all four views
+    direction_or_view_filtering: forbidden
 classification_values:
   - DUAL_SUPPORT_MICRO_PILOT_PASS
   - DUAL_SUPPORT_MICRO_PILOT_PARTIAL
