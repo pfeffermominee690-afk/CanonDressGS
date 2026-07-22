@@ -1,0 +1,18 @@
+{
+  "status": "FAILED_PROVENANCE_SNAPSHOT_CANDIDATE",
+  "branch": "research/mmlphuman-subject02-runtime-provenance-20260723",
+  "head": "dce43c0e4b9f4f3e129b797589ce901824045382",
+  "tree": "c6baa60e5720fff909f60c3fc8c1770737ca3b1e",
+  "candidate_raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+  "failed_snapshot_raw_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89",
+  "candidate_and_snapshot_lf_normalized_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89",
+  "raw_byte_match": false,
+  "normalized_match": true,
+  "single_regression": "PASS",
+  "accepted_baseline": false,
+  "reason_not_accepted": "Git checkout newline normalization changed the authoritative cloud raw tree; V1 cannot satisfy raw-tree provenance even though semantic parsing and the single canary passed.",
+  "preservation_required": true,
+  "delete_rewrite_force_push_allowed": false,
+  "training_steps": 0,
+  "mutations_to_original_dirty_repositories": 0
+}
