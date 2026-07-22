@@ -1346,6 +1346,32 @@ def grade_max(item: Mapping[str, Any], *, midpoint: bool = False) -> int:
     return max(int(grades[name]) for name in CORE_GRADES)
 
 
+def validate_manual_review(review: Mapping[str, Any], manifest: Mapping[str, Any]) -> None:
+    if review["expected_count"] != 82 or review["actual_opened_count"] != 82:
+        raise RuntimeError("manual review must persist 82/82 actual opens")
+    if len(review["items"]) != 82 or any(not item["actual_opened"] for item in review["items"]):
+        raise RuntimeError("manual review item contract")
+    expected_paths = set(
+        manifest["full_sheets"]
+        + manifest["channel_sheets"]
+        + manifest["support_conflict_overlays"]
+        + manifest["stable_unstable_comparison_sheets"]
+    )
+    if {item["source_path"] for item in review["items"]} != expected_paths:
+        raise RuntimeError("manual review paths do not match visual manifest")
+    graded = review_index(review, "FULL") + review_index(review, "CHANNEL")
+    if len(graded) != 70 or any(
+        "artifact_spatial_location" not in item
+        or "support_exclusive_alignment" not in item
+        or set(item["grades"]) != set(ALL_GRADES)
+        or set(item["alpha_0_50_grades"]) != set(ALL_GRADES)
+        for item in graded
+    ):
+        raise RuntimeError("manual review spatial/grade schema is incomplete")
+    if len(review_index(review, "SUPPORT_OVERLAY")) != 10:
+        raise RuntimeError("manual review support overlay count")
+
+
 def channel_attribution(channel: Mapping[str, Any], review: Mapping[str, Any]) -> dict[str, Any]:
     full_items = {item["pair_id"]: item for item in review_index(review, "FULL")}
     channel_items = {(item["variant"], item["pair_id"]): item for item in review_index(review, "CHANNEL")}
@@ -1449,6 +1475,8 @@ def write_reports(
     secondary: Sequence[str],
     next_task: str,
     optimizer_provenance: Mapping[str, Any],
+    *,
+    replace: bool = False,
 ) -> dict[str, str]:
     attribution_rows = [
         [name, value["reproduction_count"], value["none_minor_count"]]
@@ -1476,6 +1504,17 @@ def write_reports(
             row["strong"],
         ]
         for row in correlations["records"]
+    ]
+    role_rows = [
+        [
+            row["pair_id"],
+            f"{row['residual_magnitude_ratio']['median']:.4f}",
+            f"{row['residual_magnitude_ratio']['p95']:.4f}",
+            f"{row['displacement_direction_conflict_fraction']:.4f}",
+            f"{row['opacity_activation_deactivation_conflict_fraction']:.4f}",
+            f"{row['SH_color_direction_conflict_fraction']:.4f}",
+        ]
+        for row in role["records"]
     ]
     root_report = (
         "# AAAI27 Continuous-Control Artifact Root Cause\n\n"
@@ -1512,11 +1551,25 @@ def write_reports(
         + "\n\n"
         f"Strong preregistered metrics: {correlations['strong_metric_count']}/10; "
         f"exclusive-support visual alignments: {correlations['exclusive_support_alignment_count']}/10.\n\n"
+        "## Per-Gaussian role conflict\n\n"
+        + markdown_table(
+            ["pair", "magnitude median", "magnitude p95", "xyz conflict", "opacity conflict", "SH0 conflict"],
+            role_rows,
+        )
+        + "\n\nEvery pair was quantified in the frozen Gaussian index order. The only frozen regional "
+        "partition available was protected versus non-protected membership; sleeves/trousers labels "
+        "were not invented (`REGION_MAPPING_UNAVAILABLE`).\n\n"
         "## Scientific boundary\n\n"
+        "The sealed source findings remain part of the evidence: Ours-v2 continuous outputs retain "
+        "patch, mottle, cloud, edge scatter, and silhouette discontinuity; B6/B7 switch only among "
+        "discrete endpoints; M3/M4/B4 retain their severe full-body contamination records; the sealed "
+        "identity-contamination maximum remains 0. The prior 57/57 review is unchanged.\n\n"
         "All observed patch, mottle, cloud, edge-scatter, full-body contamination, identity-contamination, "
         "and silhouette-discontinuity grades are retained item by item. No pair, channel, or failure was "
         "removed; no parameter, threshold, stable label, teacher, basis, or protocol was changed.\n\n"
-        "Training steps, backward calls, optimizer creations/steps, scheduler steps, and checkpoint writes were all zero. PAPER_FINAL=0.\n"
+        "Training steps, backward calls, diagnostic optimizer creations/steps, legacy optimizer calls, "
+        "scheduler steps, and checkpoint writes were all zero. Three legacy context Adam objects were "
+        "constructed and discarded without zero_grad, step, scheduler, or state-save calls. PAPER_FINAL=0.\n"
     )
     channel_report = (
         "# AAAI27 Channel Interpolation Attribution\n\n"
@@ -1536,6 +1589,11 @@ def write_reports(
         )
         + "\n\n## Preregistered stable/unstable analysis\n\n"
         + markdown_table(["feature", "stable median", "unstable median", "rho", "exact p", "strong"], correlation_rows)
+        + "\n\n## Per-Gaussian role conflict\n\n"
+        + markdown_table(
+            ["pair", "magnitude median", "magnitude p95", "xyz conflict", "opacity conflict", "SH0 conflict"],
+            role_rows,
+        )
         + "\n\nNo sleeves/trousers Gaussian mapping was invented. The per-Gaussian report uses only the frozen index order and protected membership.\n"
     )
     outputs = {
@@ -1545,15 +1603,15 @@ def write_reports(
     }
     for relative, content in outputs.items():
         path = PROJECT_ROOT / relative
-        if path.exists():
+        if path.exists() and not replace:
             raise FileExistsError(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8", newline="\n")
     return outputs
 
 
-def copy_json_to_repo(relative: str, value: Mapping[str, Any]) -> None:
-    atomic_json(PROJECT_ROOT / relative, value)
+def copy_json_to_repo(relative: str, value: Mapping[str, Any], *, replace: bool = False) -> None:
+    atomic_json(PROJECT_ROOT / relative, value, replace=replace)
 
 
 def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str, Any]:
@@ -1565,12 +1623,7 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
     role = read_json(attempt / "aggregates/per_gaussian_role_conflict_results.json")
     manifest = read_json(attempt / "audits/visual_manifest.json")
     review = read_json(review_path)
-    if review["expected_count"] != 82 or review["actual_opened_count"] != 82:
-        raise RuntimeError("manual review must persist 82/82 actual opens")
-    if len(review["items"]) != 82 or any(not item["actual_opened"] for item in review["items"]):
-        raise RuntimeError("manual review item contract")
-    if {item["source_path"] for item in review["items"]} != set(manifest["full_sheets"] + manifest["channel_sheets"] + manifest["support_conflict_overlays"] + manifest["stable_unstable_comparison_sheets"]):
-        raise RuntimeError("manual review paths do not match visual manifest")
+    validate_manual_review(review, manifest)
     full_scores = {item["pair_id"]: grade_max(item, midpoint=True) for item in review_index(review, "FULL")}
     alignment_count = sum(bool(item["support_exclusive_alignment"]) for item in review_index(review, "SUPPORT_OVERLAY"))
     attribution = channel_attribution(channel, review)
@@ -1690,6 +1743,111 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
     return summary
 
 
+def run_archive_refresh(attempt: Path, review_path: Path) -> dict[str, Any]:
+    """Amend report wording and manual-review schema without recomputing science."""
+    expected_dirty = {
+        "?? docs/PAPER/AAAI27_CHANNEL_INTERPOLATION_ATTRIBUTION_20260722.md",
+        "?? docs/PAPER/AAAI27_CONTINUOUS_CONTROL_ARTIFACT_ROOT_CAUSE_20260722.md",
+        "?? docs/PAPER/AAAI27_SUPPORT_COMPATIBILITY_ANALYSIS_20260722.md",
+        "?? paper_protocol/reviewer_risk/channel_interpolation_results.json",
+        "?? paper_protocol/reviewer_risk/continuous_control_root_cause_final_summary.json",
+        "?? paper_protocol/reviewer_risk/continuous_control_root_cause_optimizer_provenance.json",
+        "?? paper_protocol/reviewer_risk/continuous_control_root_cause_visual_review.json",
+        "?? paper_protocol/reviewer_risk/per_gaussian_role_conflict_results.json",
+        "?? paper_protocol/reviewer_risk/stable_pair_correlation_results.json",
+        "?? paper_protocol/reviewer_risk/support_conflict_results.json",
+    }
+    dirty = set(filter(None, git("status", "--short").splitlines()))
+    if git("branch", "--show-current") != RUN_BRANCH or dirty != expected_dirty:
+        raise RuntimeError(f"archive refresh worktree scope mismatch: {sorted(dirty)}")
+    if subprocess.call(["git", "merge-base", "--is-ancestor", SOURCE_HEAD, "HEAD"], cwd=PROJECT_ROOT):
+        raise RuntimeError("ROOT-CAUSE-ASSET-MISMATCH: source ancestry")
+    summary_path = attempt / "aggregates/continuous_control_root_cause_final_summary.json"
+    amendment_path = attempt / "audits/manual_review_schema_amendment_v2.json"
+    if amendment_path.is_file():
+        return read_json(summary_path)
+    summary = read_json(summary_path)
+    manifest = read_json(attempt / "audits/visual_manifest.json")
+    review = read_json(review_path)
+    validate_manual_review(review, manifest)
+    channel = read_json(attempt / "aggregates/channel_interpolation_results.json")
+    support = read_json(attempt / "aggregates/support_conflict_results.json")
+    role = read_json(attempt / "aggregates/per_gaussian_role_conflict_results.json")
+    full_scores = {
+        item["pair_id"]: grade_max(item, midpoint=True)
+        for item in review_index(review, "FULL")
+    }
+    alignment_count = sum(
+        bool(item["support_exclusive_alignment"])
+        for item in review_index(review, "SUPPORT_OVERLAY")
+    )
+    attribution = channel_attribution(channel, review)
+    correlations = correlation_results(support, full_scores, alignment_count)
+    primary, secondary, next_task = choose_root_cause(attribution, correlations)
+    if (
+        attribution["channel_attribution"] != summary["channel_attribution"]
+        or primary != summary["primary_failure_source"]
+        or secondary != summary["secondary_failure_sources"]
+        or next_task != summary["next_task"]
+    ):
+        raise RuntimeError("archive refresh would change the frozen scientific classification")
+    optimizer_provenance = aggregate_optimizer_provenance(attempt)
+    old_review_path = summary["visual_review_path"]
+    summary.update({
+        "visual_review_path": str(review_path),
+        "visual_review_schema_complete": True,
+        "artifact_max_grades": review["artifact_max_grades"],
+        "archive_refresh_head": git("rev-parse", "HEAD"),
+        "archive_refresh_science_changed": False,
+    })
+    atomic_json(
+        amendment_path,
+        {
+            "schema_version": "canondressgs.research.manual_review_schema_amendment.v1",
+            "status": "PASS",
+            "task_id": TASK_ID,
+            "old_review_path": old_review_path,
+            "revised_review_path": str(review_path),
+            "actual_opened_count": review["actual_opened_count"],
+            "added_fields": ["artifact_spatial_location", "support_exclusive_alignment"],
+            "scientific_classification_before": summary["primary_failure_source"],
+            "scientific_classification_after": primary,
+            "science_changed": False,
+            "render_or_metric_recomputed": False,
+            "paper_final": False,
+        },
+    )
+    atomic_json(
+        attempt / "aggregates/continuous_control_root_cause_visual_review.json",
+        review,
+        replace=True,
+    )
+    atomic_json(summary_path, summary, replace=True)
+    copy_json_to_repo(
+        "paper_protocol/reviewer_risk/continuous_control_root_cause_visual_review.json",
+        review,
+        replace=True,
+    )
+    copy_json_to_repo(
+        "paper_protocol/reviewer_risk/continuous_control_root_cause_final_summary.json",
+        summary,
+        replace=True,
+    )
+    write_reports(
+        attribution,
+        support,
+        role,
+        correlations,
+        review,
+        primary,
+        secondary,
+        next_task,
+        optimizer_provenance,
+        replace=True,
+    )
+    return summary
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--asset-root", type=Path, required=True)
@@ -1699,7 +1857,7 @@ def main() -> None:
         "--phase",
         choices=(
             "classify-previous", "classify-baseline-false-positive", "preflight", "render",
-            "analyze", "visuals", "finalize", "all",
+            "analyze", "visuals", "finalize", "archive-refresh", "all",
         ),
         default="all",
     )
@@ -1715,6 +1873,16 @@ def main() -> None:
         print(json.dumps({"phase": args.phase, "status": result["status"]}, sort_keys=True))
         return
     attempt = attempt_path(args.output_root.resolve(), args.attempt)
+    if args.phase == "archive-refresh":
+        if args.visual_review is None:
+            raise ValueError("--visual-review is required for archive-refresh")
+        result = run_archive_refresh(attempt, args.visual_review.resolve())
+        print(json.dumps({
+            "phase": args.phase,
+            "status": result["status"],
+            "science_changed": result["archive_refresh_science_changed"],
+        }, sort_keys=True))
+        return
     if args.phase in {"preflight", "all"}:
         result = run_preflight(attempt, args.asset_root.resolve())
         print(json.dumps({"phase": "preflight", "status": result["status"]}, sort_keys=True))

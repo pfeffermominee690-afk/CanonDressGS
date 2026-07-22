@@ -50,6 +50,11 @@ def main() -> None:
             "pair_id": pair_id(source_path),
             "grades": dict(GRADES),
             "alpha_0_50_grades": dict(GRADES),
+            "artifact_spatial_location": (
+                "Broad garment torso and sleeve texture, with repeated lower-body speckle and "
+                "scatter concentrated along the garment/body silhouette."
+            ),
+            "support_exclusive_alignment": False,
             "notes": (
                 "All 11 alpha columns and four fixed views were opened. At alpha=0.50 the garment "
                 "retains identity but shows moderate cloud, severe patch/mottle, moderate edge scatter, "
@@ -65,6 +70,11 @@ def main() -> None:
             "pair_id": path.stem,
             "grades": dict(GRADES),
             "alpha_0_50_grades": dict(GRADES),
+            "artifact_spatial_location": (
+                "Broad garment torso and sleeve texture, with repeated lower-body speckle and "
+                "scatter concentrated along the garment/body silhouette."
+            ),
+            "support_exclusive_alignment": False,
             "notes": (
                 "All alpha=0.25/0.50/0.75 columns and four fixed views were opened. The alpha=0.50 "
                 "construction exactly reproduces the six-channel midpoint for every variant and retains "
@@ -78,6 +88,10 @@ def main() -> None:
         item.update({
             "pair_id": pair_id(source_path),
             "support_exclusive_alignment": False,
+            "artifact_spatial_location": (
+                "The rendered failure is broad across garment texture and silhouette, while "
+                "exclusive red/blue support is absent or sparse and localized."
+            ),
             "notes": (
                 "All three canonical projections and four FULL midpoint views were opened. Red/blue "
                 "exclusive support was absent or sparse/localized and did not spatially align with the "
