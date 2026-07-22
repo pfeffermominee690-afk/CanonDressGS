@@ -67,7 +67,7 @@ def solve(num_joints, point_interpolant_exe):
             f'--inGradients {os.path.join(tmp_dir, f"cano_data_lbs_grad_{jid:02d}.xyz")} ' + \
             f'--gradientWeight 0.05 --dim 3 --verbose ' + \
             f'--grid {os.path.join(tmp_dir, f"grid_{jid:02d}.grd")} ' + \
-            f'--depth {depth} '
+            f'--depth {depth} --threads 12 '
 
         os.system(cmd)
 

@@ -1,0 +1,83 @@
+seed: 0
+detect_anomaly: false
+test_iterations:
+- 6000
+- 50000
+- 100000
+- 200000
+- 250000
+- 400000
+- 600000
+- 800000
+checkpoint_iterations:
+- 2000
+- 6000
+- 50000
+- 100000
+- 200000
+- 250000
+- 400000
+- 600000
+smpl_pkl_path: ./smpl_model/smplx/SMPLX_NEUTRAL.npz
+background:
+- 1.0
+- 1.0
+- 1.0
+random_background: true
+train_cam_ids:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
+- 21
+- 22
+- 23
+num_train_frame: 2115
+begin_ith_frame: 385
+frame_interval: 1
+image_scaling: 1
+data_in_memory: false
+test:
+  cam_ids:
+  - 18
+  num_frame: 50
+  begin_ith_frame: 0
+  frame_interval: 1
+  image_scaling: 1
+iterations: 800000
+position_lr: 0.00016
+opacity_lr: 0.0005
+scaling_lr: 0.0005
+rotation_lr: 0.0005
+color_lr: 0.0005
+xyz_offset_lr: 0.001
+encoder_lr: 0.0005
+iteration_sh_degree: 250000
+lambda_lpips: 0.1
+iteration_lpips: 6000
+iteration_lpips_random_patch: 300000
+lambda_scaling: 1
+scaling_threshold: 0.01
+lambda_dxyz_smooth: 0.1
+init_num_gs: 200000
+num_verts: 10000
+num_features: 300
+iteration_dxyz_basis: 2000
+iteration_gsparam_basis: 2000
