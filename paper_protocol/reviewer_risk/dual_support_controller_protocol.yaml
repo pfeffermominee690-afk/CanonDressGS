@@ -1,0 +1,209 @@
+schema_version: canondressgs.research.reference_conditioned_dual_support_controller_protocol.v1
+label: "RESEARCH METHOD CANDIDATE — NOT PAPER FINAL"
+task_id: AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-001
+frozen_at: 2026-07-23T00:00:00+08:00
+source:
+  branch: research/dual-support-all-pair-evaluation-20260722
+  head: d802f427f1e9c23595e1bdb4f10135f7de2c3f08
+  required_classification: DUAL_SUPPORT_ALL_PAIR_PASS
+run:
+  branch: research/reference-conditioned-dual-support-controller-20260722
+  windows_worktree: 'E:\model_train\canondressgs_reference_conditioned_dual_support_controller'
+  cloud_worktree: /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_reference_conditioned_dual_support_controller
+  smoke_output_root: /root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-SMOKE
+  output_policy: APPEND_ONLY_NEW_ROOT
+scope:
+  formal_training_authorized: false
+  formal_evaluation_authorized: false
+  formal_render_authorized: false
+  backward_authorized: false
+  optimizer_zero_grad_authorized: false
+  optimizer_step_authorized: false
+  scheduler_step_authorized: false
+  checkpoint_write_authorized: false
+  paper_final: false
+frozen_outfit_order: [O01, O02, O03, O04, O08]
+frozen_target_view_order: [cond_000000, cond_000318, cond_000017, cond_000347]
+controller:
+  input: legal_reference_rgb_and_clothing_mask_only
+  feature_contract:
+    - frozen_F2_spatial_backbone
+    - per_reference_mask_weighted_mean
+    - per_reference_masked_max
+    - deterministic_reference_set_mean
+    - deterministic_reference_set_max
+    - LayerNorm
+    - Linear_5
+    - softmax_temperature_1
+  parameter_input_dim: 512
+  output_classes: 5
+  initialization: RANDOM_SEEDED_INITIALIZATION
+  seeds: [0, 1, 2]
+  forbidden_initialization_sources:
+    - B6_checkpoint
+    - Ours_v2_checkpoint
+    - teacher_derived_classifier_weights
+dataset:
+  pair_count: 10
+  target_view_fold_count: 4
+  sets_per_pair_fold: 8
+  pair_fold_query_sets: 320
+  pair_fold_pure_query_sets: 80
+  pair_fold_mixed_query_sets: 240
+  retained_formal_pure_endpoint_episodes: 20
+  assignment_order: [AAA, AAB_minority_0, AAB_minority_1, AAB_minority_2, ABB_minority_0, ABB_minority_1, ABB_minority_2, BBB]
+  target_view_excluded_from_references: true
+  all_assignment_positions_retained: true
+  best_position_selection: false
+  inconsistent_duplicate_labels_allowed: false
+soft_target_loss:
+  formula: '-sum_g y_g log(p_g)'
+  temperature: 1.0
+  targets:
+    AAA: [1.0, 0.0]
+    AAB: [0.6666666666666666, 0.3333333333333333]
+    ABB: [0.3333333333333333, 0.6666666666666666]
+    BBB: [0.0, 1.0]
+  forbidden:
+    - mixed_hard_argmax_cross_entropy
+    - coefficient_SmoothL1
+    - teacher_residual_loss
+    - render_loss
+    - entropy_regularization
+    - pair_specific_loss
+    - label_smoothing
+    - temperature_tuning
+    - auxiliary_classification_loss
+    - result_conditioned_loss_weight
+training_plan:
+  derivation: exact_B6_formal_runtime_contract
+  source_file: tools/paper/p0_formal_candidate_runtime.py
+  batch_size_episode_count: 5
+  batch_outfit_order: [O01, O02, O03, O04, O08]
+  data_order: target_view_round_robin
+  step_1_target_view: cond_000000
+  target_view_cycle: [cond_000000, cond_000318, cond_000017, cond_000347]
+  optimizer: Adam
+  learning_rate: 0.02
+  weight_decay: 0.0
+  betas: [0.9, 0.999]
+  eps: 1.0e-8
+  amsgrad: false
+  scheduler: constant
+  steps: 300
+  gradient_clip_l2: 5.0
+  seeds: [0, 1, 2]
+  status: FROZEN_NOT_EXECUTED
+selection:
+  sorting: stable_descending_probability_then_frozen_outfit_order
+  top2_mass: p1_plus_p2
+  normalized_weights:
+    weight_2: p2_divided_by_top2_mass
+    weight_1: one_minus_weight_2
+  single_endpoint_fallback:
+    low_secondary_weight:
+      predicate: weight_2_less_than_0.10
+      reason: LOW_SECONDARY_WEIGHT
+    low_top2_mass:
+      predicate: top2_mass_less_than_0.90
+      reason: LOW_TOP2_MASS
+    precedence: LOW_TOP2_MASS_then_LOW_SECONDARY_WEIGHT
+    selected_endpoint: top1
+    selected_weight: 1.0
+    construct_second_branch: false
+  dual_support:
+    predicate: weight_2_at_least_0.10_and_top2_mass_at_least_0.90
+    branch_1: immutable_top1_endpoint_with_weight_1
+    branch_2: immutable_top2_endpoint_with_weight_2
+    renderer_contract: SEALED_DUAL_SUPPORT_OPACITY_GATE
+  tie_handling: frozen_outfit_order
+forward_boundary:
+  allowed:
+    - reference_rgb
+    - reference_clothing_masks
+    - frozen_F2_features
+    - reference_validity
+    - fixed_normalization
+  forbidden:
+    - target_rgb
+    - target_mask
+    - target_pose
+    - target_camera
+    - garment_id
+    - teacher_endpoint_id
+    - teacher_residual
+    - ground_truth_mixture_weight
+    - target_render
+    - loss_target
+  loss_only:
+    - garment_labels
+    - soft_distribution
+  downstream_render_only:
+    - target_pose
+    - target_camera
+runtime_guards:
+  geometry_interpolation: false
+  geometry_averaging: false
+  basis_coefficient_interpolation: false
+  pair_specific_threshold: false
+  pair_specific_ghosting_fix: false
+  ground_truth_pair: false
+  manual_alpha: false
+  top3_support: false
+optimizer_provenance:
+  candidate_optimizer_creation_for_readiness_allowed: true
+  candidate_optimizer_zero_grad: 0
+  candidate_optimizer_steps: 0
+  legacy_optimizer_created: 0
+  legacy_optimizer_steps: 0
+  backward_calls: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  candidate_frozen_parameter_overlap: 0
+  candidate_legacy_parameter_overlap: 0
+evaluator:
+  execute_in_this_task: false
+  pure_endpoint:
+    correct: 20
+    swaps: 80
+    checks: [endpoint_accuracy, single_reference, dropout, color_counterfactual, endpoint_parity, single_fallback_rate]
+  mixed_reference:
+    query_sets_per_seed: 320
+    total_seed_queries: 960
+    checks: [top2_pair_accuracy, ordering, mixture_calibration, dual_support_activation_rate, fallback_rate, LPIPS, silhouette_IoU, boundary_F_score, ghosting, identity_contamination]
+  perturbation: [grayscale, hue, blur, mask_morphology, mode_switching_stability]
+preregistered_success:
+  pure_top1_accuracy: 20/20
+  pure_single_endpoint_rate_min: 0.95
+  mixed_top2_pair_accuracy_min: 0.90
+  aab_abb_ordering_accuracy_min: 0.85
+  mixed_dual_support_activation_rate_min: 0.80
+  macro_LPIPS: better_than_FULL_LINEAR
+  silhouette_IoU: not_lower_than_FULL_LINEAR
+  severe_artifact_reduction_vs_FULL_LINEAR_min: 0.50
+  identity_contamination_max: 0
+  grade3_ghosting_pairs_max: 1
+  ground_truth_id_or_manual_alpha: 0
+  frozen_mutation: 0
+immutability:
+  repository_source_head: d802f427f1e9c23595e1bdb4f10135f7de2c3f08
+  dual_support_all_pair_output: /root/autodl-tmp/canondressgs_work/outputs/DUAL-SUPPORT-ALL-PAIR-EVALUATION-001
+  formal_output_tree_expected: {file_count: 4127, bytes: 964043888, metadata_sha256_ns: 2205acdcf3a7a6f8019a584f4e4b9ac0f50a8cdd3f2b342642a949b9791b22cc}
+  repository_archive_sha256:
+    dual_support_all_pair_protocol: d7be2c0bac94e7d048e125d6bdf8b5beee772aab25fdce0d848540aff3105bcd
+    dual_support_all_pair_results: 4875c0bbdde0bb8e44c8e6ff9ef1f1fe56a58b816368c5ae4c72d11188d0c226
+    dual_support_all_pair_visual_review: 354480bea8320569b0da0bf7a0b7f1a5b4f59866e132fa308cb30b6667b06c11
+    dual_support_all_pair_final_summary: 0bf795eedba9e0555374a9080e6db7b9f6a69b917eba512d9b0453ff2929064b
+    dual_support_all_pair_report: 71d0121e261f045aab5fc0511783e9114e06ce7893f2c1518463afa772e5be3c
+    dual_support_interface_report: 019e61e9200f609efd94b9ec02693ce7e16e1ba53a449a18bfe0673c691b38b9
+outputs:
+  design_report: docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN_20260722.md
+  training_manifest: paper_protocol/reviewer_risk/dual_support_controller_training_manifest.json
+  forward_boundary: paper_protocol/reviewer_risk/dual_support_controller_forward_boundary.json
+  optimizer_provenance: paper_protocol/reviewer_risk/dual_support_controller_optimizer_provenance.json
+  evaluator_contract: paper_protocol/reviewer_risk/dual_support_controller_evaluator_contract.json
+  dry_run_summary: paper_protocol/reviewer_risk/dual_support_controller_dry_run_summary.json
+next_task_if_all_pass: TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER
+next_task_if_ambiguous: REPAIR_DUAL_SUPPORT_CONTROLLER_TRAINING_CONTRACT
+next_task_if_adapter_failure: REPAIR_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER
+next_task_started: false
