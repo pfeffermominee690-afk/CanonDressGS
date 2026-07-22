@@ -29,6 +29,7 @@ from scene.reference_conditioned_dual_support_controller import (  # noqa: E402
     stable_top2_selection,
 )
 from scene.p0_candidate_initialization_protocol import seed_all  # noqa: E402
+from tools import diagnose_image_conditioned_overfit_failure as diagnosis  # noqa: E402
 from tools.paper import run_reference_conditioned_dual_support_controller_formal as formal  # noqa: E402
 from tools.paper import run_geometry_dual_support_micro_pilot as geometry  # noqa: E402
 from tools.paper import run_p0_color_spatial_soft_control_evaluations as sealed  # noqa: E402
@@ -744,12 +745,146 @@ def run_render_seed(
     return {key: value for key, value in result.items() if key != "records"}
 
 
+def run_perturbation_seed(
+    seed: int, output_root: Path, asset_root: Path, feature_cache: Path,
+    *, attempt_name: str = "attempt_004",
+) -> dict[str, Any]:
+    seed_root = output_root / attempt_name / f"seed_{seed}"
+    result_path = seed_root / "perturbations/perturbation_evaluation.json"
+    if result_path.exists():
+        raise FileExistsError(f"perturbation evaluation exists for seed {seed}")
+    source_seed = output_root / "attempt_001" / f"seed_{seed}"
+    mixed = read_json(source_seed / "mixed/mixed_classification.json")
+    render_result = read_json(seed_root / "metrics/render_evaluation.json")
+    prediction_index = {row["record_id"]: row for row in mixed["records"]}
+    render_index = {row["record_id"]: row for row in render_result["records"] if row["role"] == "mixed"}
+    manifest, _, _ = formal.contract()
+    representatives = [
+        row for row in manifest["query_sets"]
+        if row["target_view_fold"] == "cond_000000"
+        and row["assignment_type"] in {"AAB_minority_0", "ABB_minority_0"}
+    ]
+    if len(representatives) != 20:
+        raise RuntimeError("perturbation representative count mismatch")
+    cache = torch.load(feature_cache, map_location="cpu", weights_only=False)
+    device = torch.device("cuda")
+    os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
+    formal.configure_determinism(strict=False)
+    sealed.RUN_BRANCH = formal.RUN_BRANCH
+    sealed.SOURCE_HEAD = formal.SOURCE_HEAD
+    seed_all(0)
+    runtime_value = sealed.EvaluationRuntime(seed_root / "audits/perturbation_context_no_write", asset_root, {})
+    endpoints = geometry.endpoint_residuals(runtime_value)
+    model = load_model(output_root, seed, device)
+    variants = (
+        "grayscale", "hue", "blur", "mask_erosion", "mask_dilation",
+        "reference_dropout", "single_reference", "assignment_permutation",
+    )
+    records = []
+    for record in representatives:
+        baseline = prediction_index[record["record_id"]]
+        baseline_render = render_index[record["record_id"]]
+        baseline_rgb = sealed.image_tensor(Path(baseline_render["rgb_path"]), 3).to(device)
+        baseline_alpha = sealed.image_tensor(Path(baseline_render["alpha_path"]), 1).to(device)
+        normal_rows, normal_valid = formal.case_rows(cache, record)
+        observations = [runtime_value.observation(outfit, condition) for outfit, condition in zip(record["garment_labels"], record["reference_condition_ids"])]
+        base_images = [item[0] for item in observations]
+        base_masks = [item[1] for item in observations]
+        left = record["pair_id"].split("_")[0]
+        condition = record["target_view_fold"]
+        sample = runtime_value.context["samples"][f"{left}/{condition}"]
+        garment = diagnosis._garment_mask(sample)
+        protected = sample["target_protected_mask"]
+        for variant in variants:
+            if variant == "reference_dropout":
+                rows, valid = normal_rows[:2], normal_valid[:2]
+            elif variant == "single_reference":
+                rows, valid = normal_rows[:1], normal_valid[:1]
+            elif variant == "assignment_permutation":
+                rows, valid = normal_rows[[2, 0, 1]], normal_valid[[2, 0, 1]]
+            else:
+                images = [image.copy() for image in base_images]
+                masks = [mask.copy() for mask in base_masks]
+                if variant == "grayscale":
+                    images = [sealed.frozen.fixed_grayscale(image) for image in images]
+                elif variant == "hue":
+                    images = [sealed.frozen.hue_shift(image, 120.0) for image in images]
+                elif variant == "blur":
+                    images = [sealed.frozen.c5_gaussian_blur(image, mask) for image, mask in zip(images, masks)]
+                elif variant == "mask_erosion":
+                    masks = [sealed.ndimage.binary_erosion(mask, iterations=3).astype(bool) for mask in masks]
+                elif variant == "mask_dilation":
+                    masks = [sealed.ndimage.binary_dilation(mask, iterations=3).astype(bool) for mask in masks]
+                rows, valid = runtime_value.f2_rows(images, masks)
+                rows, valid = rows.detach().cpu(), valid.detach().cpu()
+            perturbed = prediction_row(record, infer(model, rows, valid, device))
+            safe_id = record["record_id"].replace("/", "__")
+            path = seed_root / "perturbations/renders" / variant / safe_id
+            rgb, alpha, diagnostics, _ = render_or_load(
+                path, runtime_value, left, condition, controller_branches(perturbed, endpoints)
+            )
+            silhouette_iou, boundary_fscore, tolerance = sealed.silhouette_metrics(alpha, garment)
+            baseline_iou, baseline_boundary, _ = sealed.silhouette_metrics(baseline_alpha, garment)
+            records.append({
+                "record_id": record["record_id"], "pair_id": record["pair_id"],
+                "assignment_type": record["assignment_type"], "variant": variant,
+                "baseline_top1": baseline["top1_outfit"], "perturbed_top1": perturbed["top1_outfit"],
+                "baseline_pair": sorted((baseline["top1_outfit"], baseline["top2_outfit"])),
+                "perturbed_pair": sorted((perturbed["top1_outfit"], perturbed["top2_outfit"])),
+                "top1_stable": baseline["top1_outfit"] == perturbed["top1_outfit"],
+                "top2_pair_stable": set((baseline["top1_outfit"], baseline["top2_outfit"])) == set((perturbed["top1_outfit"], perturbed["top2_outfit"])),
+                "weight_drift": abs(float(baseline["normalized_secondary_weight"]) - float(perturbed["normalized_secondary_weight"])),
+                "baseline_mode": baseline["mode"], "perturbed_mode": perturbed["mode"],
+                "mode_switch": baseline["mode"] != perturbed["mode"],
+                "baseline_fallback_reason": baseline["fallback_reason"],
+                "perturbed_fallback_reason": perturbed["fallback_reason"],
+                "fallback_reason_changed": baseline["fallback_reason"] != perturbed["fallback_reason"],
+                "lpips_change": sealed.lpips_distance(runtime_value, rgb, baseline_rgb, garment),
+                "silhouette_iou": silhouette_iou, "baseline_silhouette_iou": baseline_iou,
+                "silhouette_iou_change": silhouette_iou - baseline_iou,
+                "boundary_fscore": boundary_fscore, "baseline_boundary_fscore": baseline_boundary,
+                "boundary_fscore_change": boundary_fscore - baseline_boundary,
+                "ghosting_proxy_change": float(perturbed["mode"] == "DUAL_SUPPORT") - float(baseline["mode"] == "DUAL_SUPPORT"),
+                "identity_contamination": geometry.masked_mean((rgb - baseline_rgb).abs().mean(dim=0, keepdim=True), protected),
+                "rgb_path": str(path.with_name(path.name + "_rgb.png")),
+                "alpha_path": str(path.with_name(path.name + "_alpha.png")),
+                "render_diagnostics": diagnostics, "boundary_tolerance": tolerance,
+            })
+    aggregates = {}
+    for variant in variants:
+        selected = [row for row in records if row["variant"] == variant]
+        aggregates[variant] = {
+            "record_count": len(selected),
+            "top1_stability": statistics.fmean(row["top1_stable"] for row in selected),
+            "top2_pair_stability": statistics.fmean(row["top2_pair_stable"] for row in selected),
+            "weight_drift_mean": statistics.fmean(row["weight_drift"] for row in selected),
+            "weight_drift_max": max(row["weight_drift"] for row in selected),
+            "mode_switch_rate": statistics.fmean(row["mode_switch"] for row in selected),
+            "fallback_reason_change_rate": statistics.fmean(row["fallback_reason_changed"] for row in selected),
+            "lpips_change_mean": statistics.fmean(row["lpips_change"] for row in selected),
+            "silhouette_iou_change_mean": statistics.fmean(row["silhouette_iou_change"] for row in selected),
+            "ghosting_proxy_change_mean": statistics.fmean(row["ghosting_proxy_change"] for row in selected),
+            "identity_contamination_max": max(row["identity_contamination"] for row in selected),
+        }
+    result = {
+        "schema_version": "canondressgs.research.dual_support_controller_perturbation_evaluation.v1",
+        "status": "COMPLETE", "seed": seed, "attempt": attempt_name,
+        "representative_policy": "all_10_pairs_x_AAB_ABB_assignment0_x_cond_000000",
+        "representative_count": 20, "variant_count": len(variants), "record_count": len(records),
+        "records": records, "aggregates": aggregates,
+        "training_rerun": 0, "threshold_change": 0, "paper_final": False,
+    }
+    atomic_json(result_path, result)
+    return {key: value for key, value in result.items() if key != "records"}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--phase", choices=(
             "audit-training", "classify-seed", "prepare-attempt-002", "prepare-attempt-003",
             "prepare-attempt-004", "context-probe", "paired-render-probe", "render-seed",
+            "perturb-seed",
         ),
         required=True,
     )
@@ -787,10 +922,17 @@ def main() -> None:
         result = paired_render_probe(
             output_root, args.asset_root.resolve(), feature_cache.resolve(), args.probe_index
         )
-    else:
+    elif args.phase == "render-seed":
         if args.seed not in formal.SEEDS:
             parser.error("render-seed requires --seed 0, 1, or 2")
         result = run_render_seed(
+            args.seed, output_root, args.asset_root.resolve(), feature_cache.resolve(),
+            attempt_name=args.attempt,
+        )
+    else:
+        if args.seed not in formal.SEEDS:
+            parser.error("perturb-seed requires --seed 0, 1, or 2")
+        result = run_perturbation_seed(
             args.seed, output_root, args.asset_root.resolve(), feature_cache.resolve(),
             attempt_name=args.attempt,
         )
