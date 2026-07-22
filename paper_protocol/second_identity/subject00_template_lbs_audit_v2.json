@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "subject00_existing_assets": {
+    "template.ply": false,
+    "lbs_weights_grid.npz": false,
+    "init_body_points.ply": false
+  },
+  "subject00_gaussian_directory_exists": false,
+  "template": {
+    "classification": "SUBJECT00_TEMPLATE_DETERMINISTICALLY_GENERATABLE",
+    "ready": false,
+    "runtime_supported_fallback": "subject-specific SMPL-X neutral big-pose mesh generated in memory from subject00 beta",
+    "prospective_topology": {
+      "vertices": 10475,
+      "faces": 20908
+    },
+    "prospective_vertices_sha256_float32": "1f924c7e46a97b37272ea833ea09f54e8b10f79836824f43140bf8452e69ad97",
+    "prospective_faces_sha256_int64": "2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b",
+    "subject02_loose_clothing_template": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/mmlphuman_subject00_preflight_v2/template/subject02/template.ply",
+      "sha256": "d8050cacca15a118fb1eee753fce1f6933fb1889cac758aa37d0962867dd735f",
+      "vertices": 96380,
+      "faces": 192744,
+      "copy_to_subject00_forbidden": true,
+      "same_96380_192744_reconstruction_available": false,
+      "provenance_note": "present since upstream repository import; external AnimatableGaussians-style reconstruction is referenced but not sealed in this snapshot"
+    },
+    "limitation": "the repository cannot reproduce subject02's 96,380/192,744 loose-clothing topology for subject00; deterministic readiness refers only to the runtime-supported SMPL-X fallback"
+  },
+  "lbs": {
+    "classification": "SUBJECT00_LBS_DETERMINISTICALLY_GENERATABLE",
+    "ready": false,
+    "generator": "script/gen_weight_volume.py",
+    "generator_sha256": "c29be14a1a046f83c51fd3eabbe2947e293776f8599a150af72ba2e3fee038e7",
+    "point_interpolant": "/root/autodl-tmp/canondressgs_work/mmlphuman_code/script/PointInterpolant",
+    "point_interpolant_sha256": "ff516f19b4a6735ec95b8d5734c61dfb4908052d7495dc812f9d29159219ca2b",
+    "point_interpolant_expected_sha256": "ff516f19b4a6735ec95b8d5734c61dfb4908052d7495dc812f9d29159219ca2b",
+    "point_interpolant_hash_match": true,
+    "joint_count": 55,
+    "grid_shape": [
+      128,
+      128,
+      128,
+      55
+    ],
+    "depth": 7,
+    "threads": 12,
+    "gradient_weight": 0.05,
+    "coordinate_order": "solver grids stacked joint-first then transpose (z,y,x,joint) to xyz storage",
+    "prospective_bbox_min": [
+      -0.9234119653701782,
+      -1.3099950551986694,
+      -0.9287247657775879
+    ],
+    "prospective_bbox_max": [
+      0.9231994152069092,
+      0.536616325378418,
+      0.9178866147994995
+    ],
+    "subject02_contract": {
+      "exists": true,
+      "sha256": "61af875b0c9c9f8c8c5bab678e14bc262105435270be4384cd6fc465633cc5a7",
+      "keys": [
+        "bbox_max",
+        "bbox_min",
+        "grid",
+        "grid_dims",
+        "grid_resolution"
+      ],
+      "grid_shape": [
+        128,
+        128,
+        128,
+        55
+      ],
+      "grid_dtype": "float32",
+      "grid_dims": [
+        128,
+        128,
+        128
+      ]
+    },
+    "determinism_limitation": "input contract is frozen, but 12-thread external solver byte determinism must be empirically checked by repeat generation before atomic publish"
+  },
+  "inputs": {
+    "baseline_head": "b1d304614b5a9322035b45ebeb7fa0166adaa362",
+    "subject00_raw_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "smplx_model_path": "/root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz",
+    "smplx_model_sha256": "376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992",
+    "subject00_beta_sha256_float32": "1624c77963cb379496b04631a8c7a11ab618d5978466b04ceea157d382b2f140"
+  }
+}

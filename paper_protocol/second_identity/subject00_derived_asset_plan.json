@@ -1,0 +1,108 @@
+{
+  "status": "PLANNED_NOT_EXECUTED",
+  "next_task": "PREPARE_SUBJECT00_MMLPHUMAN_DERIVED_ASSETS_WITHOUT_TRAINING",
+  "source_snapshot": {
+    "branch": "research/mmlphuman-subject02-runtime-snapshot-v2-20260723",
+    "head": "b1d304614b5a9322035b45ebeb7fa0166adaa362",
+    "classification": "SUBJECT02_SOURCE_SNAPSHOT_CREATED_WITH_LIMITATIONS",
+    "raw_runtime_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415"
+  },
+  "subject00_raw_data": {
+    "root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "tree_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "must_remain_unchanged_during_staging": true
+  },
+  "smplx_model": {
+    "path": "/root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz",
+    "sha256": "376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992"
+  },
+  "template": {
+    "classification": "SUBJECT00_TEMPLATE_DETERMINISTICALLY_GENERATABLE",
+    "generator": "runtime-supported SMPL-X neutral big-pose fallback reproduced in a dedicated preprocessing tool",
+    "inputs": [
+      "subject00 smpl_params.npz betas[0]",
+      "SMPLX_NEUTRAL.npz",
+      "body_pose[2]=+25 degrees",
+      "body_pose[5]=-25 degrees"
+    ],
+    "staging_output": "/root/autodl-tmp/canondressgs_work/derived_staging/subject00/${RUN_ID}/data/gaussian/template.ply",
+    "atomic_publish_output": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/gaussian/template.ply",
+    "expected_topology": {
+      "vertices": 10475,
+      "faces": 20908
+    },
+    "reference_array_hashes": {
+      "vertices_float32_sha256": "1f924c7e46a97b37272ea833ea09f54e8b10f79836824f43140bf8452e69ad97",
+      "faces_int64_sha256": "2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b"
+    },
+    "limitation": "This is the runtime-supported 10,475/20,908 SMPL-X fallback, not the unrecoverable subject02 96,380/192,744 loose-clothing topology."
+  },
+  "lbs_grid": {
+    "classification": "SUBJECT00_LBS_DETERMINISTICALLY_GENERATABLE",
+    "generator": "script/gen_weight_volume.py",
+    "generator_sha256": "c29be14a1a046f83c51fd3eabbe2947e293776f8599a150af72ba2e3fee038e7",
+    "inputs": [
+      "subject00 smpl_params.npz betas[0]",
+      "SMPLX_NEUTRAL.npz",
+      "PointInterpolant"
+    ],
+    "point_interpolant": {
+      "path": "/root/autodl-tmp/canondressgs_work/mmlphuman_code/script/PointInterpolant",
+      "sha256": "ff516f19b4a6735ec95b8d5734c61dfb4908052d7495dc812f9d29159219ca2b"
+    },
+    "contract": {
+      "shape": [128, 128, 128, 55],
+      "depth": 7,
+      "joint_count": 55,
+      "gradient_weight": 0.05,
+      "threads": 12,
+      "bbox_min_reference": [-0.9234119653701782, -1.3099950551986694, -0.9287247657775879],
+      "bbox_max_reference": [0.9231994152069092, 0.536616325378418, 0.9178866147994995]
+    },
+    "staging_output": "/root/autodl-tmp/canondressgs_work/derived_staging/subject00/${RUN_ID}/data/gaussian/lbs_weights_grid.npz",
+    "atomic_publish_output": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/gaussian/lbs_weights_grid.npz",
+    "command_template": [
+      "Create an isolated ${RUN_ID}/data staging root outside both raw datasets.",
+      "Copy only subject00/smpl_params.npz into ${RUN_ID}/data and verify its hash.",
+      "Copy the sealed PointInterpolant binary to ${RUN_ID}/PointInterpolant and verify ff516f19...ca2b.",
+      "cd ${RUN_ID} && /root/autodl-tmp/conda_envs/mmlphuman/bin/python ${WORKTREE}/script/gen_weight_volume.py --data_dir ${RUN_ID}/data --smpl_path /root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz"
+    ],
+    "determinism_limitation": "The frozen inputs and command are reconstructable; byte determinism of the 12-thread external solver remains PENDING_MANUAL_CONFIRMATION and requires two isolated runs."
+  },
+  "initial_gaussians": {
+    "status": "PENDING_DETERMINISTIC_PREPROCESSING",
+    "count": 200000,
+    "seed": 20260723,
+    "staging_output": "/root/autodl-tmp/canondressgs_work/derived_staging/subject00/${RUN_ID}/data/gaussian/init_body_points.ply",
+    "atomic_publish_output": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/gaussian/init_body_points.ply",
+    "requirement": "sample the sealed subject00 template with an explicit seed; do not let Scene create it implicitly"
+  },
+  "validation_gates": [
+    "exact source HEAD and raw runtime closure",
+    "subject00 raw fingerprint unchanged before staging",
+    "SMPL-X model and PointInterpolant hashes exact",
+    "two isolated template generations have identical array hashes",
+    "two isolated LBS generations have identical NPZ payload array hashes",
+    "grid shape [128,128,128,55], float32, finite, nonnegative, per-voxel joint sum within tolerance",
+    "template topology 10475 vertices and 20908 faces",
+    "no symlinks or unexpected files in the publish set",
+    "atomic publish only after all gates pass",
+    "post-publish loader and model-forward smoke remains a later authorized task"
+  ],
+  "estimated_disk": {
+    "minimum_free_bytes_gate": 10737418240,
+    "reason": "two independent solver staging roots, temporary text gradients/grids, and 10 GiB safety reserve",
+    "exact_peak": "UNKNOWN_COMPONENT_PENDING_MEASURED_LBS_RUN"
+  },
+  "estimated_time": {
+    "template": "LOWER_BOUND=<1 minute in-memory generation; serialization verification not yet measured",
+    "lbs": "UNKNOWN_COMPONENT_NO_SEALED_SUBJECT02_GENERATION_LOG",
+    "repeatability_gate": "requires two complete isolated LBS runs"
+  },
+  "prohibited": [
+    "copy subject02 template",
+    "copy subject02 LBS grid",
+    "write under subject00 before all staging gates pass",
+    "training, optimizer, backward, scheduler, checkpoint"
+  ]
+}

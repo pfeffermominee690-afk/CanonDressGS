@@ -1,0 +1,355 @@
+{
+  "status": "PASS",
+  "subject00": {
+    "camera_names": [
+      "cam00",
+      "cam01",
+      "cam02",
+      "cam03",
+      "cam04",
+      "cam05",
+      "cam06",
+      "cam07",
+      "cam08",
+      "cam09",
+      "cam10",
+      "cam11",
+      "cam12",
+      "cam13",
+      "cam14",
+      "cam15",
+      "cam16",
+      "cam17",
+      "cam18",
+      "cam19",
+      "cam20",
+      "cam21",
+      "cam22",
+      "cam23"
+    ],
+    "calibration": {
+      "keys": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "shapes": {
+        "K": [
+          9
+        ],
+        "R": [
+          9
+        ],
+        "T": [
+          3
+        ],
+        "distCoeff": [
+          5
+        ],
+        "imgSize": [
+          2
+        ],
+        "rectifyAlpha": []
+      },
+      "camera_count": 24
+    },
+    "smpl": {
+      "keys": [
+        "betas",
+        "body_pose",
+        "expression",
+        "global_orient",
+        "jaw_pose",
+        "left_hand_pose",
+        "right_hand_pose",
+        "transl"
+      ],
+      "arrays": {
+        "betas": {
+          "shape": [
+            1,
+            10
+          ],
+          "dtype": "float32"
+        },
+        "body_pose": {
+          "shape": [
+            2500,
+            63
+          ],
+          "dtype": "float32"
+        },
+        "expression": {
+          "shape": [
+            2500,
+            10
+          ],
+          "dtype": "float32"
+        },
+        "global_orient": {
+          "shape": [
+            2500,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "jaw_pose": {
+          "shape": [
+            2500,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "left_hand_pose": {
+          "shape": [
+            2500,
+            45
+          ],
+          "dtype": "float32"
+        },
+        "right_hand_pose": {
+          "shape": [
+            2500,
+            45
+          ],
+          "dtype": "float32"
+        },
+        "transl": {
+          "shape": [
+            2500,
+            3
+          ],
+          "dtype": "float32"
+        }
+      },
+      "frame_count": 2500,
+      "beta_first_sha256_float32": "1624c77963cb379496b04631a8c7a11ab618d5978466b04ceea157d382b2f140"
+    }
+  },
+  "subject02": {
+    "camera_names": [
+      "cam00",
+      "cam01",
+      "cam02",
+      "cam03",
+      "cam04",
+      "cam05",
+      "cam06",
+      "cam07",
+      "cam08",
+      "cam09",
+      "cam10",
+      "cam11",
+      "cam12",
+      "cam13",
+      "cam14",
+      "cam15",
+      "cam16",
+      "cam17",
+      "cam18",
+      "cam19",
+      "cam20",
+      "cam21",
+      "cam22",
+      "cam23"
+    ],
+    "calibration": {
+      "keys": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "shapes": {
+        "K": [
+          9
+        ],
+        "R": [
+          9
+        ],
+        "T": [
+          3
+        ],
+        "distCoeff": [
+          5
+        ],
+        "imgSize": [
+          2
+        ],
+        "rectifyAlpha": []
+      },
+      "camera_count": 24
+    },
+    "smpl": {
+      "keys": [
+        "betas",
+        "body_pose",
+        "expression",
+        "global_orient",
+        "jaw_pose",
+        "left_hand_pose",
+        "right_hand_pose",
+        "transl"
+      ],
+      "arrays": {
+        "betas": {
+          "shape": [
+            1,
+            10
+          ],
+          "dtype": "float32"
+        },
+        "body_pose": {
+          "shape": [
+            3110,
+            63
+          ],
+          "dtype": "float32"
+        },
+        "expression": {
+          "shape": [
+            3110,
+            10
+          ],
+          "dtype": "float32"
+        },
+        "global_orient": {
+          "shape": [
+            3110,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "jaw_pose": {
+          "shape": [
+            3110,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "left_hand_pose": {
+          "shape": [
+            3110,
+            45
+          ],
+          "dtype": "float32"
+        },
+        "right_hand_pose": {
+          "shape": [
+            3110,
+            45
+          ],
+          "dtype": "float32"
+        },
+        "transl": {
+          "shape": [
+            3110,
+            3
+          ],
+          "dtype": "float32"
+        }
+      },
+      "frame_count": 3110,
+      "beta_first_sha256_float32": "b3b10174c463193a162f1ee3141c27a9e22be2b572778d5b306dd77b150528f3"
+    }
+  },
+  "calibration_schema_equal": true,
+  "smpl_keys_equal": true,
+  "smpl_per_frame_dimensions_equal": {
+    "betas": true,
+    "body_pose": true,
+    "expression": true,
+    "global_orient": true,
+    "jaw_pose": true,
+    "left_hand_pose": true,
+    "right_hand_pose": true,
+    "transl": true
+  },
+  "comparisons": [
+    {
+      "item": "images_directory_layout",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "images/camXX/########.jpg"
+    },
+    {
+      "item": "masks_directory_layout",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "masks/camXX/########.jpg"
+    },
+    {
+      "item": "camera_id_schema",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "24 zero-based cam00..cam23 entries"
+    },
+    {
+      "item": "frame_id_schema",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "zero-based eight-digit filenames"
+    },
+    {
+      "item": "image_resolution",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "calibration imgSize is [1330,1150]"
+    },
+    {
+      "item": "calibration_keys_shapes",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "K/R length 9, T length 3, distCoeff length 5"
+    },
+    {
+      "item": "intrinsic_extrinsic_convention",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "loader builds w2c=[R|T]"
+    },
+    {
+      "item": "camera_ordering",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "JSON insertion order cam00..cam23"
+    },
+    {
+      "item": "smpl_keys",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "same sorted NPZ key set"
+    },
+    {
+      "item": "smpl_array_shapes",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "same per-frame parameter dimensions; 2500 frames"
+    },
+    {
+      "item": "body_model_type",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "SMPL-X neutral model contract"
+    },
+    {
+      "item": "frame_mapping",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "loader indexes SMPL arrays by original frame_id"
+    },
+    {
+      "item": "missing_file_behavior",
+      "classification": "COMPATIBLE_WITH_AVAILABILITY_MANIFEST",
+      "evidence": "subject00 has 296 paired gaps; loader skips absent pairs"
+    },
+    {
+      "item": "coordinate_convention",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "world-to-camera R/T contract"
+    },
+    {
+      "item": "canonical_pose_assumptions",
+      "classification": "REQUIRES_DETERMINISTIC_PREPROCESSING",
+      "evidence": "subject-specific beta-dependent big-pose assets"
+    },
+    {
+      "item": "loader_path_assumptions",
+      "classification": "EXACT_COMPATIBLE",
+      "evidence": "ThumanDataset paths match both subjects"
+    }
+  ]
+}
