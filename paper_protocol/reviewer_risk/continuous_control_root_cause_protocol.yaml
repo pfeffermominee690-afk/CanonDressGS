@@ -1,0 +1,352 @@
+schema_version: canondressgs.research.continuous_control_root_cause_protocol.v1
+task_id: AAAI27-CONTINUOUS-CONTROL-ROOT-CAUSE-001
+status: FROZEN_BEFORE_DIAGNOSTIC_RENDER
+label: RESEARCH DIAGNOSTIC — NOT PAPER FINAL
+paper_final: false
+
+governance:
+  source_branch: paper/aaai27-p0-color-spatial-soft-control-evaluations-20260722
+  source_head: 371d812864614cd561e33edfe3f6c043b38415d2
+  run_branch: research/continuous-control-artifact-root-cause-20260722
+  source_archive_sealed: true
+  source_archive_reexecution_forbidden: true
+  historical_outputs_read_only: true
+  new_outputs_append_only: true
+  training_forbidden: true
+  backward_forbidden: true
+  optimizer_creation_forbidden: true
+  optimizer_step_forbidden: true
+  scheduler_step_forbidden: true
+  checkpoint_write_forbidden: true
+  teacher_mutation_forbidden: true
+  basis_mutation_forbidden: true
+  formal_output_mutation_forbidden: true
+  result_conditioned_protocol_change_forbidden: true
+
+archive_gate:
+  final_summary:
+    path: paper_protocol/reviewer_risk/p0_color_spatial_soft_control_final_summary.json
+    sha256: d24abc3ce9767772948ed31c63e0213b7e1740a69eacbf6c1b5bcbb66703ffb9
+  visual_review:
+    path: paper_protocol/reviewer_risk/p0_color_spatial_soft_control_visual_review.json
+    sha256: 503be255504d460cf6cba76d96c76038aefa725c71ccaa5e9766d7dc9a8b6ceb
+  interpolation_results:
+    path: paper_protocol/reviewer_risk/p0_basis_interpolation_results.json
+    sha256: 5b43060fa5b0bda4befa4b9e940bdaef88ebb859b33dacd0da9644a22a51f6cd
+    required_render_count: 440
+    endpoint_parity_required: true
+  required_visual_review_count: 57
+  required_paper_final_count: 0
+
+frozen_assets:
+  manifest:
+    path: paper_protocol/frozen_asset_manifest.json
+    sha256: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+    required_verified_count: 19
+  teacher_checkpoints:
+    O01: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+    O02: 8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820
+    O03: 16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93
+    O04: b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3
+    O08: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  rank4_basis_sha256: a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430
+  coefficient_normalization_sha256: c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2
+  base_gaussian_state_fingerprint: de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9
+  mmlphuman_checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  backbone_state_fingerprint: 3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7
+  renderer_source_bundle_sha256: 0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6
+  formal_output_tree_fingerprint: 108c8f2a7e327cd76a508c16e1797cd220d169cbff44091fc9cfefbd2911c74c
+  protected_membership_sha256_uint8_c: 57683c55a1934b0610ffbc6254da98424863b77316dd80fc2ef9f1d5b6cb5761
+
+design:
+  garment_order: [O01, O02, O03, O04, O08]
+  unordered_pair_order:
+    - [O01, O02]
+    - [O01, O03]
+    - [O01, O04]
+    - [O01, O08]
+    - [O02, O03]
+    - [O02, O04]
+    - [O02, O08]
+    - [O03, O04]
+    - [O03, O08]
+    - [O04, O08]
+  target_view_order: [cond_000000, cond_000318, cond_000017, cond_000347]
+  alpha: [0.25, 0.50, 0.75]
+  stable_pair_labels:
+    O01_O02: stable
+    O01_O03: unstable
+    O01_O04: stable
+    O01_O08: unstable
+    O02_O03: unstable
+    O02_O04: unstable
+    O02_O08: unstable
+    O03_O04: stable
+    O03_O08: unstable
+    O04_O08: unstable
+  required_stable_count: 3
+  required_unstable_count: 7
+  full_interpolation:
+    source: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-COLOR-SPATIAL-SOFT-CONTROL/attempt_004/basis_interpolation
+    reuse_only: true
+    alpha_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    required_render_count: 440
+    regeneration_forbidden: true
+
+residual_contract:
+  channel_order:
+    - delta_xyz
+    - delta_log_scaling
+    - delta_rotvec
+    - delta_opacity_logit
+    - delta_sh0
+    - delta_shN
+  channel_bounds:
+    delta_xyz: 0.05
+    delta_log_scaling: 0.35
+    delta_rotvec: 0.2617993878
+    delta_opacity_logit: 2.0
+    delta_sh0: 0.25
+    delta_shN: 0.10
+  variants:
+    XYZ_ONLY: [delta_xyz]
+    SCALE_ROT_ONLY: [delta_log_scaling, delta_rotvec]
+    OPACITY_ONLY: [delta_opacity_logit]
+    SH_ONLY: [delta_sh0, delta_shN]
+    GEOMETRY_ALL: [delta_xyz, delta_log_scaling, delta_rotvec]
+    APPEARANCE_ALL: [delta_opacity_logit, delta_sh0, delta_shN]
+  variant_order: [XYZ_ONLY, SCALE_ROT_ONLY, OPACITY_ONLY, SH_ONLY, GEOMETRY_ALL, APPEARANCE_ALL]
+  selected_channel_rule: r_channel(alpha) = (1-alpha) * r_A_channel + alpha * r_B_channel
+  non_interpolated_channel_rule: r_channel = 0.5 * r_A_channel + 0.5 * r_B_channel
+  interpolation_space: frozen post-protected-guard GaussianClothingResiduals
+  gaussian_index_order: frozen base checkpoint _xyz row order
+  new_render_count: 720
+  missing_only_resume: true
+  completed_render_repetition_forbidden: true
+
+automatic_artifact_metrics:
+  garment_rgb_mae:
+    domain: frozen target garment mask
+    reference: alpha-matched linear RGB blend of existing FULL endpoints a00 and a10
+  lpips:
+    crop: frozen target garment mask bounding box expanded by 5 percent
+    input_outside_mask: zero
+    range: [-1, 1]
+    reference: alpha-matched linear RGB blend of existing FULL endpoints a00 and a10
+  silhouette_iou:
+    prediction_threshold: 0.5
+    target: frozen target garment mask
+  boundary_fscore:
+    prediction_threshold: 0.5
+    target: frozen target garment mask
+    tolerance_formula: max(1,floor(0.005*min(H,W)+0.5))
+  protected_lpips:
+    crop: frozen protected mask bounding box expanded by 5 percent
+    input_outside_mask: zero
+    reference: existing clean FULL left endpoint a00
+  aggregation: report per render, per pair median across 3 alpha x 4 views, and variant median across pairs
+  no_result_driven_thresholding: true
+
+visual_artifact_grading:
+  scale: {0: NONE, 1: MINOR, 2: MODERATE, 3: SEVERE}
+  categories:
+    - cloud
+    - mottle
+    - edge_scatter
+    - full_body_contamination
+    - identity_contamination
+    - silhouette_discontinuity
+  core_categories: [cloud, mottle, edge_scatter, silhouette_discontinuity]
+  fixed_rubric:
+    NONE: no visible instance at native sheet scale
+    MINOR: localized and faint; garment identity and silhouette remain readily readable
+    MODERATE: conspicuous localized or repeated artifact that impairs garment texture or boundary
+    SEVERE: broad, dense, full-body, identity-affecting, or silhouette-breaking artifact
+  full_artifact_reproduction:
+    alpha: 0.50
+    requirement_1: at least one core category grade >= 2
+    requirement_2: absolute difference from corresponding FULL maximum core grade <= 1
+  required_actual_open:
+    full_pair_sheets: 10
+    channel_pair_sheets_per_variant: 10
+    support_conflict_overlays: 10
+    stable_unstable_comparison_sheets: 2
+
+support_conflict:
+  residual_energy:
+    definition: per-Gaussian RMS over all scalar components after division by frozen channel bounds
+    epsilon: 1.0e-8
+  active_support:
+    definition: residual_energy > 1.0e-8
+    threshold_frozen_before_analysis: true
+  top_support:
+    fractions: [0.10, 0.20]
+    population: all 200000 frozen Gaussian indices
+    ordering: descending residual_energy then ascending Gaussian index
+    overlap: intersection_count / fixed_top_count
+  weighted_jaccard: sum(min(energy_A,energy_B)) / sum(max(energy_A,energy_B))
+  support_union: active_A OR active_B
+  exclusive_fractions:
+    denominator: active support union count
+    A_only: active_A AND NOT active_B
+    B_only: active_B AND NOT active_A
+  overlap_residual_cosine:
+    population: active_A AND active_B
+    vector: bound-normalized six-channel flattened vector per Gaussian
+    aggregation: cosine of concatenated population vectors
+  xyz_direction_cosine:
+    population: overlap indices where both xyz norms exceed 1.0e-8
+    aggregation: median per-Gaussian cosine
+  sign_conflict:
+    epsilon: 1.0e-8 after channel-bound normalization
+    definition: fraction of jointly nonzero scalar components with opposite signs
+  opacity_activation_conflict:
+    activation: sigmoid(base_opacity_logit + delta_opacity_logit) - sigmoid(base_opacity_logit)
+    epsilon: 1.0e-8
+    definition: fraction of jointly active Gaussian indices with opposite activation signs
+  sh_disagreement:
+    SH0: RMS of bound-normalized teacher difference on active union
+    SHN: RMS of bound-normalized teacher difference on active union
+  teacher_silhouette_iou:
+    source: existing FULL a00 and a10 alpha maps
+    threshold: 0.5
+    aggregation: median across four fixed views
+  boundary_distance:
+    source: existing FULL a00 and a10 alpha maps
+    definition: symmetric mean nearest-boundary distance in pixels
+    aggregation: median across four fixed views
+  protected_support_conflict:
+    definition: active union intersection frozen protected membership / active union count
+  support_centroid_distance:
+    definition: Euclidean distance between residual-energy-weighted frozen base-xyz centroids
+    normalization: frozen base-xyz bounding-box diagonal
+  connected_component_difference:
+    support: top-20 percent support
+    voxel_size: frozen base-xyz bounding-box diagonal / 128
+    connectivity: 26-neighbor occupied voxels
+    value: absolute component-count difference
+  artifact_contributor_sets: [overlap_support, A_only_support, B_only_support, protected_support]
+
+per_gaussian_role_conflict:
+  residual_magnitude_ratio: max(energy_A,energy_B) / max(min(energy_A,energy_B),1.0e-8)
+  displacement_direction_conflict: xyz cosine < 0 on jointly xyz-active indices
+  opacity_activation_deactivation_conflict: opposite activation signs on jointly opacity-active indices
+  sh_color_direction_conflict: SH0 cosine < 0 on jointly SH0-active indices
+  geometry_active: RMS of bound-normalized xyz, log-scaling, and rotation components > 1.0e-8
+  appearance_active: RMS of bound-normalized opacity, SH0, and SHN components > 1.0e-8
+  transition_states: [BOTH_INACTIVE, GEOMETRY_ONLY, APPEARANCE_ONLY, BOTH_ACTIVE]
+  regional_mapping: use only an existing frozen legal mapping; if unavailable report REGION_MAPPING_UNAVAILABLE
+
+stable_unstable_analysis:
+  labels_frozen_from: p0_mixed_reference_results.json stable_pairs
+  artifact_score: maximum manual core-artifact grade for FULL alpha=0.5 across four views
+  preregistered_features:
+    - {name: top_10_support_overlap, hypothesized_stable_direction: higher}
+    - {name: top_20_support_overlap, hypothesized_stable_direction: higher}
+    - {name: weighted_jaccard, hypothesized_stable_direction: higher}
+    - {name: exclusive_fraction_sum, hypothesized_stable_direction: lower}
+    - {name: overlap_residual_cosine, hypothesized_stable_direction: higher}
+    - {name: xyz_direction_conflict, hypothesized_stable_direction: lower}
+    - {name: opacity_conflict, hypothesized_stable_direction: lower}
+    - {name: sh_disagreement, hypothesized_stable_direction: lower}
+    - {name: teacher_silhouette_iou, hypothesized_stable_direction: higher}
+    - {name: boundary_distance, hypothesized_stable_direction: lower}
+  report: [stable_median, unstable_median, median_gap, spearman_rho_with_stable_label, exact_permutation_p_value, rank_order]
+  exact_permutation:
+    assignments: all choose(10,3)=120 stable-label allocations
+    statistic: absolute difference in group medians
+    p_value: count(permuted_statistic >= observed_statistic) / 120
+  strong_metric:
+    absolute_spearman_rho_min: 0.60
+    hypothesis_direction_required: true
+    median_gap_direction_required: true
+  strong_support_conflict_evidence:
+    minimum_strong_metrics: 3
+    exclusive_support_spatial_alignment_required: true
+  classifier_training_forbidden: true
+  posthoc_feature_addition_forbidden: true
+
+channel_attribution_classification:
+  reproduction_pair_threshold: 6
+  mostly_none_minor_threshold: 6
+  candidates:
+    - GEOMETRY_INTERPOLATION_DOMINANT
+    - APPEARANCE_INTERPOLATION_DOMINANT
+    - OPACITY_INTERPOLATION_DOMINANT
+    - SH_INTERPOLATION_DOMINANT
+    - CROSS_CHANNEL_COUPLING_DOMINANT
+    - NO_SINGLE_CHANNEL_DOMINANT
+  tie_rule: if multiple major groups satisfy dominance or alpha=0.5 construction is non-identifying, choose NO_SINGLE_CHANNEL_DOMINANT
+
+root_cause_classification:
+  primary_candidates:
+    - SUPPORT_MISMATCH
+    - GEOMETRY_INTERPOLATION
+    - APPEARANCE_INTERPOLATION
+    - OPACITY_INTERPOLATION
+    - CROSS_CHANNEL_COUPLING
+    - MULTIPLE_FACTORS
+  SUPPORT_MISMATCH:
+    - support compatibility strongly correlates with frozen stable labels
+    - artifacts concentrate on A-only or B-only support
+    - no single channel explains all artifacts
+  GEOMETRY_INTERPOLATION:
+    - GEOMETRY_ALL reproduces FULL artifact in at least 6 of 10 pairs
+    - APPEARANCE_ALL is NONE or MINOR in at least 6 of 10 pairs
+  APPEARANCE_INTERPOLATION:
+    - APPEARANCE_ALL reproduces FULL artifact in at least 6 of 10 pairs
+    - GEOMETRY_ALL is NONE or MINOR in at least 6 of 10 pairs
+  OPACITY_INTERPOLATION:
+    - OPACITY_ONLY reproduces FULL artifact in at least 6 of 10 pairs
+    - other single groups are clearly weaker
+  CROSS_CHANNEL_COUPLING:
+    - individual major groups are NONE or MINOR in at least 6 of 10 pairs
+    - FULL is MODERATE or SEVERE in at least 6 of 10 pairs
+  MULTIPLE_FACTORS:
+    - at least two factors meet strong evidence
+    - or no single factor explains at least 6 of 10 pairs
+  secondary_sources_allowed: [SUPPORT_MISMATCH, GEOMETRY_INTERPOLATION, APPEARANCE_INTERPOLATION, OPACITY_INTERPOLATION, CROSS_CHANNEL_COUPLING]
+
+next_task_rule:
+  SUPPORT_MISMATCH: RUN_SUPPORT_AWARE_HYBRID_CONTROL_MICRO_PILOT
+  GEOMETRY_INTERPOLATION: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  APPEARANCE_INTERPOLATION: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  OPACITY_INTERPOLATION: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  CROSS_CHANNEL_COUPLING: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  MULTIPLE_FACTORS_with_strong_support_mismatch: RUN_SUPPORT_AWARE_HYBRID_CONTROL_MICRO_PILOT
+  MULTIPLE_FACTORS_without_strong_support_mismatch: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  exactly_one_next_task: true
+  auto_start: false
+
+outputs:
+  root: /root/autodl-tmp/canondressgs_work/outputs/CONTINUOUS-CONTROL-ROOT-CAUSE-001
+  attempt_policy: append-only attempt_NNN
+  directories: [channel_interpolation, support_conflict, role_conflict, correlations, visuals, audits, aggregates]
+  repository_files:
+    - docs/PAPER/AAAI27_CONTINUOUS_CONTROL_ARTIFACT_ROOT_CAUSE_20260722.md
+    - docs/PAPER/AAAI27_CHANNEL_INTERPOLATION_ATTRIBUTION_20260722.md
+    - docs/PAPER/AAAI27_SUPPORT_COMPATIBILITY_ANALYSIS_20260722.md
+    - paper_protocol/reviewer_risk/continuous_control_root_cause_protocol.yaml
+    - paper_protocol/reviewer_risk/channel_interpolation_results.json
+    - paper_protocol/reviewer_risk/support_conflict_results.json
+    - paper_protocol/reviewer_risk/per_gaussian_role_conflict_results.json
+    - paper_protocol/reviewer_risk/stable_pair_correlation_results.json
+    - paper_protocol/reviewer_risk/continuous_control_root_cause_visual_review.json
+    - paper_protocol/reviewer_risk/continuous_control_root_cause_final_summary.json
+
+no_training_gate:
+  training_steps: 0
+  backward_calls: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  teacher_mutation: 0
+  basis_mutation: 0
+  formal_output_mutation: 0
+  paper_final_count: 0
+
+failure_recovery:
+  zero_result_tool_error: preserve attempt, minimally fix implementation, create new attempt, do not alter protocol
+  interruption_after_render: resume only missing manifest items and repeat zero completed renders
+  complex_scientific_result: allow MULTIPLE_FACTORS without parameter tuning or posthoc variants
