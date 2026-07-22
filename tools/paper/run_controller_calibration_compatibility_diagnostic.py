@@ -693,6 +693,12 @@ def run_render_seed(
         runtime = sealed.EvaluationRuntime(attempt / f"audits/runtime_seed_{seed}_no_write", asset_root, {})
         endpoints = geometry.endpoint_residuals(runtime)
         device = runtime.device
+        # The formal paired-render process instantiates the seeded Controller
+        # after the immutable runtime and before the first render.  Although
+        # checkpoint loading replaces its initialization, construction advances
+        # the process RNG used by the legacy renderer.  Reproduce that read-only
+        # ordering exactly; the model is not trained and receives no GT fields.
+        _controller_rng_parity_model = evaluator.load_model(formal_root, seed, device)
         first_prediction = next(iter(predictions.values()))
         first_record = query_index[first_prediction["record_id"]]
         first_formal = formal_render[first_prediction["record_id"]]
