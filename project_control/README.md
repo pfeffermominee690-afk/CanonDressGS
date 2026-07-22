@@ -50,7 +50,7 @@ The current registry has zero cleanup candidates. No worktree was deleted, moved
 
 ## Cloud semantics
 
-An origin/cloud HEAD field is not a generic synchronization claim. `origin` was verified live during the initial scan. The `cloud` host did not resolve, so cloud values are cached refs or report-derived paths and are labeled accordingly. `clean_cloud`, live artifact presence, and upload status remain unknown until a successful read-only verification.
+An origin/cloud HEAD field is not a generic synchronization claim. `origin` is verified live during each remote refresh. The `cloud` host did not resolve during refresh `CANONDRESSGS-PROJECT-CONTROL-REFRESH-002`, so cloud values are cached refs or report-derived paths and are labeled accordingly. `CLOUD_MIRROR_NOT_VERIFIED_DNS_UNREACHABLE` is not a sync PASS; `clean_cloud`, live artifact presence, and controller-branch parity remain unknown until successful read-only verification.
 
 ## Handoff ingestion
 

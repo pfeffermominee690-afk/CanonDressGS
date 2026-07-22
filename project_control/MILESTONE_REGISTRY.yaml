@@ -1,7 +1,15 @@
 {
   "schema_version": "canondressgs.project_control.milestone_registry.v1",
-  "task_id": "CANONDRESSGS-PROJECT-CONTROL-001",
-  "generated_date": "2026-07-22",
+  "task_id": "CANONDRESSGS-PROJECT-CONTROL-REFRESH-002",
+  "generated_date": "2026-07-23",
+  "task_dependencies": {
+    "COMPLETE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN": [],
+    "TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER": ["COMPLETE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN"],
+    "RUN_SECOND_IDENTITY_MMLPHUMAN_PREFLIGHT_WITHOUT_TRAINING": [],
+    "SECOND_IDENTITY_AVATAR_TRAINING": ["RUN_SECOND_IDENTITY_MMLPHUMAN_PREFLIGHT_WITHOUT_TRAINING"],
+    "STRICT_NOVEL_VIEW_POSE_CANARY": ["TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER", "SECOND_IDENTITY_AVATAR_TRAINING"],
+    "PAPER_RESULT_FREEZE": ["TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER", "STRICT_NOVEL_VIEW_POSE_CANARY"]
+  },
   "milestones": [
     {
       "id": "MILESTONE-P0-FORMAL-CANDIDATE-ARCHIVE",
@@ -150,14 +158,76 @@
       "notes": "Channel attribution has midpoint degeneracy. Preserve the engineering record, but do not use it as the final causal conclusion."
     },
     {
-      "id": "MILESTONE-CURRENT-CAUSAL-ATTRIBUTION",
+      "id": "CONTINUOUS_CONTROL_CAUSAL_ATTRIBUTION",
       "branch": "research/continuous-control-causal-attribution-20260722",
-      "observed_head": "67a8b08be7c4a07b55a07c8169a093b6c4cfe1d3",
+      "expected_head": "8c43524b7ca0ee8b3c795dbe349466f30b29354f",
+      "observed_head": "8c43524b7ca0ee8b3c795dbe349466f30b29354f",
+      "execution_head": "67a8b08be7c4a07b55a07c8169a093b6c4cfe1d3",
+      "head_match": true,
+      "status_class": "SEALED_CANONICAL",
+      "classification": "GEOMETRY_MAIN_EFFECT",
+      "report": "E:\\model_train\\canondressgs_continuous_control_causal_attribution\\docs\\PAPER\\AAAI27_CONTINUOUS_CONTROL_CAUSAL_ATTRIBUTION_20260722.md",
+      "summary_json": "E:\\model_train\\canondressgs_continuous_control_causal_attribution\\paper_protocol\\reviewer_risk\\continuous_control_causal_attribution_final_summary.json",
+      "clean_local": true,
+      "paper_final_count": 0,
+      "notes": "The summary execution HEAD is an ancestor of the final archival HEAD; this is expected archival progression, not HEAD_OR_REPORT_MISMATCH."
+    },
+    {
+      "id": "GEOMETRY_DUAL_SUPPORT_MICRO_PILOT",
+      "branch": "research/geometry-dual-support-micro-pilot-20260722",
+      "expected_head": "b216acd02323c822a7aca12f424efed6ba2e0a81",
+      "observed_head": "b216acd02323c822a7aca12f424efed6ba2e0a81",
+      "execution_head": "7c1455552dbe140d1ad3ac661efed57c57499985",
+      "head_match": true,
+      "status_class": "SEALED_CANONICAL",
+      "classification": "DUAL_SUPPORT_MICRO_PILOT_PASS",
+      "report": "E:\\model_train\\canondressgs_geometry_dual_support_micro_pilot\\docs\\PAPER\\AAAI27_GEOMETRY_DUAL_SUPPORT_MICRO_PILOT_20260722.md",
+      "summary_json": "E:\\model_train\\canondressgs_geometry_dual_support_micro_pilot\\paper_protocol\\reviewer_risk\\geometry_dual_support_micro_pilot_final_summary.json",
+      "clean_local": true,
+      "paper_final_count": 0,
+      "notes": "Endpoint parity PASS; all 3/3 pairs reduce severe artifacts; LPIPS and silhouette IoU improve; identity contamination maximum is zero."
+    },
+    {
+      "id": "DUAL_SUPPORT_ALL_PAIR_EVALUATION",
+      "branch": "research/dual-support-all-pair-evaluation-20260722",
+      "expected_head": "d802f427f1e9c23595e1bdb4f10135f7de2c3f08",
+      "observed_head": "d802f427f1e9c23595e1bdb4f10135f7de2c3f08",
+      "execution_head": "fc3c52f9ae5f5bdfe2b9ffc2b4a630f1e8971efa",
+      "head_match": true,
+      "status_class": "SEALED_CANONICAL",
+      "classification": "DUAL_SUPPORT_ALL_PAIR_PASS",
+      "report": "E:\\model_train\\canondressgs_dual_support_all_pair_evaluation\\docs\\PAPER\\AAAI27_DUAL_SUPPORT_ALL_PAIR_EVALUATION_20260722.md",
+      "summary_json": "E:\\model_train\\canondressgs_dual_support_all_pair_evaluation\\paper_protocol\\reviewer_risk\\dual_support_all_pair_final_summary.json",
+      "clean_local": true,
+      "paper_final_count": 0,
+      "notes": "10/10 pairs and 20/20 directions; scientific boundary is the closed seen-garment wardrobe."
+    },
+    {
+      "id": "REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN",
+      "branch": "research/reference-conditioned-dual-support-controller-20260722",
+      "observed_head": "174655ce6aabcae5d60ce45f3b4be319eb71e914",
+      "execution_head": "ba809a942af41d89c45c317c68ea1cbe8da7bf08",
       "head_match": null,
       "status_class": "ACTIVE",
-      "attempt": "attempt_001 preserved failed; next append-only attempt_002",
+      "evidence_status": "DESIGN_AND_DRY_RUN_PASS_SEAL_BLOCKED_CLOUD_DNS",
+      "classifications": {
+        "CONTROLLER_ADAPTER": "PASS",
+        "SOFT_TARGET_DATASET": "PASS",
+        "TOP2_SELECTION": "PASS",
+        "SINGLE_ENDPOINT_FALLBACK": "PASS",
+        "DUAL_SUPPORT_RUNTIME_INTERFACE": "PASS",
+        "FORWARD_BOUNDARY": "PASS",
+        "NO_FORMAL_TRAINING_GATE": "PASS"
+      },
+      "report": "E:\\model_train\\canondressgs_reference_conditioned_dual_support_controller\\docs\\PAPER\\AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN_20260722.md",
+      "summary_json": "E:\\model_train\\canondressgs_reference_conditioned_dual_support_controller\\paper_protocol\\reviewer_risk\\dual_support_controller_dry_run_summary.json",
       "clean_local": true,
-      "notes": "Protocol frozen before diagnostic render; no local final summary."
+      "origin_head_match": true,
+      "cloud_head_match": null,
+      "next_task": "COMPLETE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN",
+      "conditional_next_after_seal": "TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER",
+      "paper_final_count": 0,
+      "notes": "All seven design classifications pass, but the required local/origin/cloud equality gate is incomplete; do not seal until live cloud verification succeeds."
     },
     {
       "id": "MILESTONE-REAL-TEASER-FIGURE",

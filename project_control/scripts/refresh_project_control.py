@@ -37,6 +37,9 @@ EXPECTED_HEADS = {
     "paper/aaai27-p0-evaluation-protocol-repair-20260721": "8578fb3143dd916ff7e42240e7508a29c784d995",
     "paper/aaai27-manuscript-stable-sections-20260721": "1a5a55fee0f6a3344debdc63f93bad60944f9e96",
     "research/continuous-control-artifact-root-cause-20260722": "68623c36eee70c0b41aefb480f8f85e668eae201",
+    "research/continuous-control-causal-attribution-20260722": "8c43524b7ca0ee8b3c795dbe349466f30b29354f",
+    "research/geometry-dual-support-micro-pilot-20260722": "b216acd02323c822a7aca12f424efed6ba2e0a81",
+    "research/dual-support-all-pair-evaluation-20260722": "d802f427f1e9c23595e1bdb4f10135f7de2c3f08",
 }
 
 
@@ -169,17 +172,17 @@ OVERRIDES: dict[str, dict[str, Any]] = {
         paper_final_count=0,
     ),
     "research/continuous-control-causal-attribution-20260722": override(
-        "ACTIVE",
+        "SEALED_CANONICAL",
         "Endpoint-anchored continuous-control causal attribution",
         task_id="AAAI27-CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001",
         source_branch="research/continuous-control-artifact-root-cause-20260722",
         source_head="68623c36eee70c0b41aefb480f8f85e668eae201",
-        latest_report="docs/PAPER/AAAI27_CAUSAL_ATTRIBUTION_ALPHA_GRID_CORRECTION_20260722.md",
-        latest_summary_json="paper_protocol/reviewer_risk/continuous_control_causal_attribution_protocol_correction.json",
+        latest_report="docs/PAPER/AAAI27_CONTINUOUS_CONTROL_CAUSAL_ATTRIBUTION_20260722.md",
+        latest_summary_json="paper_protocol/reviewer_risk/continuous_control_causal_attribution_final_summary.json",
         formal_output_root="/root/autodl-tmp/canondressgs_work/outputs/CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001",
-        artifact_fingerprint="aa5cc2bc0f5deb1f9a4dacde26178fb1c322ed2fd314dfca308b00f6b98d21c4",
+        artifact_fingerprint="f919364c5dbbd9990fdd97ae3b0e806e5faa75d6ddf6196f3227adbf81c5de98",
         paper_final_count=0,
-        notes="attempt_001 is preserved as FAILED_PRE_RESULT_ALPHA_GRID_ASSET_MISMATCH; next append-only attempt is attempt_002; no final summary exists locally.",
+        notes="Formal conclusion GEOMETRY_MAIN_EFFECT; attempt_001 remains preserved failed and attempt_002 is the completed causal archive.",
     ),
     "research/continuous-control-artifact-root-cause-20260722": override(
         "SEALED_HISTORICAL",
@@ -208,6 +211,44 @@ OVERRIDES: dict[str, dict[str, Any]] = {
         "FAILED_PRESERVED",
         "O01 image-conditioned decoder capacity failure diagnosis",
         task_id="SUBJECT02-IMAGE-CONDITIONED-FAILURE-DIAGNOSIS",
+    ),
+    "research/geometry-dual-support-micro-pilot-20260722": override(
+        "SEALED_CANONICAL",
+        "Geometry dual-support micro-pilot",
+        task_id="AAAI27-GEOMETRY-DUAL-SUPPORT-MICRO-PILOT-001",
+        source_branch="research/continuous-control-causal-attribution-20260722",
+        source_head="8c43524b7ca0ee8b3c795dbe349466f30b29354f",
+        latest_report="docs/PAPER/AAAI27_GEOMETRY_DUAL_SUPPORT_MICRO_PILOT_20260722.md",
+        latest_summary_json="paper_protocol/reviewer_risk/geometry_dual_support_micro_pilot_final_summary.json",
+        formal_output_root="/root/autodl-tmp/canondressgs_work/outputs/GEOMETRY-DUAL-SUPPORT-MICRO-PILOT-001",
+        artifact_fingerprint="fc0d9a74fd4d9031796d9e813b79f7ed6a72e04f45aeefbd1e467795e05c3ba0",
+        paper_final_count=0,
+        notes="DUAL_SUPPORT_MICRO_PILOT_PASS; endpoint parity passed and all three pairs reduced severe artifacts.",
+    ),
+    "research/dual-support-all-pair-evaluation-20260722": override(
+        "SEALED_CANONICAL",
+        "Dual-support all-10-pair evaluation",
+        task_id="AAAI27-DUAL-SUPPORT-ALL-PAIR-EVALUATION-001",
+        source_branch="research/geometry-dual-support-micro-pilot-20260722",
+        source_head="b216acd02323c822a7aca12f424efed6ba2e0a81",
+        latest_report="docs/PAPER/AAAI27_DUAL_SUPPORT_ALL_PAIR_EVALUATION_20260722.md",
+        latest_summary_json="paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json",
+        formal_output_root="/root/autodl-tmp/canondressgs_work/outputs/DUAL-SUPPORT-ALL-PAIR-EVALUATION-001",
+        artifact_fingerprint="50f03111afefd9a18ce4e1145e0c9c5bd0151f575f5a392ce31f323263d2cff9",
+        paper_final_count=0,
+        notes="DUAL_SUPPORT_ALL_PAIR_PASS within the closed seen-garment wardrobe; no unseen-garment, cross-identity, novel-view, or novel-pose claim.",
+    ),
+    "research/reference-conditioned-dual-support-controller-20260722": override(
+        "ACTIVE",
+        "Reference-conditioned dual-support controller design and smoke evidence",
+        task_id="AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-001",
+        source_branch="research/dual-support-all-pair-evaluation-20260722",
+        source_head="d802f427f1e9c23595e1bdb4f10135f7de2c3f08",
+        latest_report="docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN_20260722.md",
+        latest_summary_json="paper_protocol/reviewer_risk/dual_support_controller_dry_run_summary.json",
+        formal_output_root="/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-SMOKE",
+        paper_final_count=0,
+        notes="Seven design classifications and dry-run tests pass, but the strict seal gate remains open because the cloud branch HEAD cannot be verified while canondress-cloud DNS is unreachable.",
     ),
     "sprint/aaai27-minimal-image-overfit-20260719": override(
         "UNKNOWN_REQUIRES_REVIEW",
@@ -266,7 +307,7 @@ def run_git(repo: Path, *args: str, check: bool = True, timeout: int = 30) -> st
 
 
 def parse_worktrees(repo: Path) -> list[dict[str, Any]]:
-    raw = run_git(repo, "worktree", "list", "--porcelain")
+    raw = run_git(repo, "-c", "core.quotePath=false", "worktree", "list", "--porcelain")
     records: list[dict[str, Any]] = []
     for block in re.split(r"\r?\n\r?\n", raw):
         if not block.strip():
@@ -444,12 +485,22 @@ def main() -> int:
             row["additional_metadata"] = metadata
         rows.append(row)
 
+    head_groups: dict[str, list[dict[str, Any]]] = {}
+    for row in rows:
+        head_groups.setdefault(row["head"], []).append(row)
+    for shared_head, group in head_groups.items():
+        if len(group) > 1:
+            branches = ", ".join(sorted(str(item["branch"]) for item in group))
+            explanation = f"Shared commit {shared_head} is checked out by distinct registered branches: {branches}."
+            for row in group:
+                row["duplicate_head_explanation"] = explanation
+
     worktree_paths = {os.path.normcase(os.path.abspath(row["local_path"])) for row in rows}
     non_git = scan_non_git(args.scan_root.resolve(), worktree_paths, repo)
     counts = {name: sum(row["status_class"] == name for row in rows) for name in sorted(STATUS_CLASSES)}
     registry = {
         "schema_version": "canondressgs.project_control.worktree_registry.v1",
-        "task_id": "CANONDRESSGS-PROJECT-CONTROL-001",
+        "task_id": "CANONDRESSGS-PROJECT-CONTROL-REFRESH-002",
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
         "scan": {
             "scan_root": str(args.scan_root.resolve()),

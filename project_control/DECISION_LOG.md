@@ -53,3 +53,38 @@
 - Decision: the control-center row records the HEAD visible when the registry is generated.
 - Rationale: a tracked registry cannot contain the hash of the commit that contains itself; committing the refreshed registry necessarily advances the branch.
 - Validation: an ancestor-only self-row lag is a documented warning. Every non-control worktree remains an exact branch/HEAD check.
+
+## 2026-07-23 — Refresh after dual-support controller design
+
+The following decision chain is append-only and supersedes earlier current-state descriptions without deleting their historical record:
+
+1. The former midpoint channel attribution was found degenerate at alpha=`0.5`; it remains a `SEALED_HISTORICAL` engineering record.
+2. The mainline adopted endpoint-anchored `2^3` factorial causal attribution.
+3. The sealed causal conclusion is `GEOMETRY_MAIN_EFFECT` at `8c43524b7ca0ee8b3c795dbe349466f30b29354f`.
+4. Appearance-only and visibility-only remedies are excluded as the mainline response by the formal causal evidence.
+5. `Dual-Support Geometry Blend` was proposed to avoid direct geometry interpolation while preserving endpoint behavior.
+6. The geometry dual-support micro-pilot passed at `b216acd02323c822a7aca12f424efed6ba2e0a81`.
+7. The all-10-pair dual-support evaluation passed at `d802f427f1e9c23595e1bdb4f10135f7de2c3f08`, within the closed seen-garment wardrobe boundary.
+8. The mainline decision advanced to a reference-conditioned controller.
+9. The controller predicts a five-class garment endpoint distribution, stable top-2 endpoints, mixture weights, and a single-endpoint fallback; it does not predict the former four-dimensional basis coefficients.
+10. subject00 raw data is ready in the cloud, but second-identity training remains prohibited until an MMLP-Human preflight establishes template/LBS/loader readiness.
+
+## 2026-07-23 — Controller design evidence passes, archive seal remains open
+
+- Evidence: `dual_support_controller_dry_run_summary.json` reports PASS for `CONTROLLER_ADAPTER`, `SOFT_TARGET_DATASET`, `TOP2_SELECTION`, `SINGLE_ENDPOINT_FALLBACK`, `DUAL_SUPPORT_RUNTIME_INTERFACE`, `FORWARD_BOUNDARY`, and `NO_FORMAL_TRAINING_GATE`.
+- Git state: local and live origin equal `174655ce6aabcae5d60ce45f3b4be319eb71e914`; the worktree is clean.
+- Conservative classification: keep the controller worktree `ACTIVE`, because live cloud HEAD equality is a required seal gate and `canondress-cloud` DNS is unreachable. Do not infer cloud PASS from an absent cached ref.
+- Next task while this gate is open: `COMPLETE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_DESIGN`.
+- Conditional successor after sealing and explicit authorization: `TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER`.
+
+## 2026-07-23 — subject00 raw data ready is not model readiness
+
+- Decision: replace `DOWNLOADED_LOCAL_PENDING_VERIFICATION` with `SUBJECT00_CLOUD_DATA_READY` for the raw dataset.
+- Evidence: 119,412 files, 26,459,647,641 bytes, 24 cameras, 2,500 frames, matching image/mask missing-entry sets of 296, complete decode/calibration/SMPL audits, and tree fingerprint `2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b`.
+- Boundary: no `research/mmlphuman-subject00-preflight-20260722` branch, report, summary, or handoff was found. MMLP-Human status is therefore `QUEUED_NOT_STARTED`, not ready.
+
+## 2026-07-23 — Cloud and cleanup remain conservative
+
+- Cloud: record `CLOUD_MIRROR_NOT_VERIFIED_DNS_UNREACHABLE`; cached refs are evidence only, not a live sync claim.
+- Unknown worktrees: retain three `UNKNOWN_REQUIRES_REVIEW` rows after rechecking Git common-dir, branch, HEAD, reports, remotes, and artifact registration; no unsupported PASS was assigned.
+- Cleanup: zero candidates satisfy every gate. No worktree, branch, directory, or large artifact was removed or moved.
