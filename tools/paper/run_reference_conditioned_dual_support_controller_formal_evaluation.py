@@ -505,6 +505,102 @@ def context_probe(output_root: Path, asset_root: Path, probe_index: int) -> dict
     return result
 
 
+def prepare_attempt_004(output_root: Path) -> dict[str, Any]:
+    attempt_003 = output_root / "attempt_003"
+    attempt_004 = output_root / "attempt_004"
+    if attempt_004.exists():
+        raise FileExistsError(f"append-only evaluation repair attempt exists: {attempt_004}")
+    failure = {
+        "schema_version": "canondressgs.research.controller_evaluation_runtime_failure.v1",
+        "status": "FAILED_CROSS_PROCESS_BASELINE_REUSE",
+        "task_id": formal.TASK_ID,
+        "cause": "seed-0 Oracle images were reused as numeric baselines in other renderer processes",
+        "evidence": {
+            "fixed_context_two_process_hashes_exact": True,
+            "seed_1_pure_classifier_correct": "20/20",
+            "seed_1_pure_single_endpoint_rate": 1.0,
+            "seed_1_cross_process_render_parity_max_abs": 0.5823779106140137,
+            "seed_2_cross_process_render_parity_max_abs": 0.5823779106140137,
+        },
+        "attempt_003_disposition": "PRESERVED_INVALID_FOR_FINAL_NUMERIC_COMPARISON",
+        "training_rerun": 0, "backward_rerun": 0, "optimizer_step_rerun": 0,
+        "threshold_change": 0, "checkpoint_selection": 0, "paper_final": False,
+    }
+    atomic_json(attempt_003 / "audits/FAILED_CROSS_PROCESS_BASELINE_REUSE.json", failure)
+    for seed in formal.SEEDS:
+        for name in ("pure", "mixed", "perturbations", "renders", "metrics", "visuals", "audits"):
+            (attempt_004 / f"seed_{seed}" / name).mkdir(parents=True, exist_ok=False)
+    for name in ("aggregates", "baselines", "reports", "fingerprints", "audits"):
+        (attempt_004 / name).mkdir(parents=True, exist_ok=False)
+    resume = {
+        "schema_version": "canondressgs.research.controller_evaluation_only_resume.v3",
+        "status": "PENDING_PAIRED_RENDER_PROBES", "source_training_attempt": "attempt_001",
+        "source_classification_attempt": "attempt_001", "target_attempt": "attempt_004",
+        "repair": "render each candidate and its Oracle/endpoints consecutively in the same process and state",
+        "cross_seed_numeric_baseline_reuse": False,
+        "training_steps_added": 0, "backward_calls_added": 0, "optimizer_steps_added": 0,
+        "scheduler_steps_added": 0, "checkpoint_writes_added": 0,
+        "threshold_changes": 0, "paper_final": False,
+    }
+    atomic_json(attempt_004 / "audits/resume_from_failed_evaluation_attempts.json", resume)
+    return {"failure": failure, "resume": resume}
+
+
+def paired_render_probe(output_root: Path, asset_root: Path, feature_cache: Path, probe_index: int) -> dict[str, Any]:
+    attempt = output_root / "attempt_004"
+    if not attempt.is_dir() or probe_index not in (1, 2):
+        raise RuntimeError("attempt_004 paired probe contract mismatch")
+    manifest, _, _ = formal.contract()
+    mixed = read_json(output_root / "attempt_001/seed_1/mixed/mixed_classification.json")
+    pure = read_json(output_root / "attempt_001/seed_1/pure/pure_classification.json")
+    prediction_index = {row["record_id"]: row for row in mixed["records"]}
+    pure_prediction_index = {row["record_id"]: row for row in pure["records"]}
+    os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
+    formal.configure_determinism(strict=False)
+    sealed.RUN_BRANCH = formal.RUN_BRANCH
+    sealed.SOURCE_HEAD = formal.SOURCE_HEAD
+    seed_all(0)
+    runtime_value = sealed.EvaluationRuntime(attempt / "audits/paired_probe_no_write", asset_root, {})
+    endpoints = geometry.endpoint_residuals(runtime_value)
+    model = load_model(output_root, 1, torch.device("cuda"))
+    cache = torch.load(feature_cache, map_location="cpu", weights_only=False)
+    # Exercise the complete mixed sequence before the parity checks, matching
+    # the formal render order and exposing any mutable-state accumulation.
+    for record in manifest["query_sets"]:
+        rows, valid = formal.case_rows(cache, record)
+        live = infer(model, rows, valid, torch.device("cuda"))
+        persisted = prediction_index[record["record_id"]]
+        if max(abs(a - b) for a, b in zip(live["probabilities"], persisted["probabilities"])) > 1e-7:
+            raise RuntimeError("paired probe prediction mismatch")
+        left = record["pair_id"].split("_")[0]
+        with torch.inference_mode():
+            geometry.render_branches(runtime_value, left, record["target_view_fold"], controller_branches(persisted, endpoints))
+    maxima = []
+    rgb_hashes = []
+    for record in manifest["formal_pure_endpoint_episodes"]:
+        prediction = pure_prediction_index[record["record_id"]]
+        left = record["garment_labels"][0]
+        with torch.inference_mode():
+            candidate, candidate_alpha, _ = geometry.render_branches(
+                runtime_value, left, record["target_view_fold"], controller_branches(prediction, endpoints)
+            )
+            oracle, oracle_alpha, _ = geometry.render_branches(
+                runtime_value, left, record["target_view_fold"], oracle_branches(record, endpoints)
+            )
+        maxima.append(max(float((candidate - oracle).abs().max()), float((candidate_alpha - oracle_alpha).abs().max())))
+        rgb_hashes.append(hashlib.sha256(candidate.detach().cpu().contiguous().numpy().tobytes()).hexdigest())
+    result = {
+        "schema_version": "canondressgs.research.controller_paired_render_probe.v1",
+        "status": "PASS" if max(maxima) <= 1e-6 else "FAIL",
+        "probe_index": probe_index, "seed": 1, "mixed_sequence_exercised": 320,
+        "pure_paired_checks": 20, "maximum_paired_render_abs": max(maxima),
+        "candidate_rgb_sequence_sha256": canonical_hash(rgb_hashes),
+        "paper_final": False,
+    }
+    atomic_json(attempt / "audits" / f"paired_render_fresh_process_probe_{probe_index}.json", result)
+    return result
+
+
 def run_render_seed(
     seed: int, output_root: Path, asset_root: Path, feature_cache: Path,
     *, attempt_name: str = "attempt_002",
@@ -518,6 +614,13 @@ def run_render_seed(
         comparable = (first["base_xyz_sha256"], first["endpoint_rgb_sha256"], first["endpoint_alpha_sha256"])
         if comparable != (second["base_xyz_sha256"], second["endpoint_rgb_sha256"], second["endpoint_alpha_sha256"]):
             raise RuntimeError("fixed context fresh-process hashes do not match")
+    if attempt_name == "attempt_004":
+        first = read_json(output_root / attempt_name / "audits/paired_render_fresh_process_probe_1.json")
+        second = read_json(output_root / attempt_name / "audits/paired_render_fresh_process_probe_2.json")
+        if first["status"] != "PASS" or second["status"] != "PASS":
+            raise RuntimeError("paired render fresh-process probe failed")
+        if first["candidate_rgb_sequence_sha256"] != second["candidate_rgb_sequence_sha256"]:
+            raise RuntimeError("paired render fresh-process hashes do not match")
     result_path = seed_root / "metrics/render_evaluation.json"
     if result_path.exists():
         raise FileExistsError(f"render evaluation exists for seed {seed}")
@@ -543,19 +646,6 @@ def run_render_seed(
     controller_created = 0
     forward_seconds = 0.0
     feature_seconds = 0.0
-    endpoint_cache: dict[tuple[str, str, str], torch.Tensor] = {}
-    oracle_cache: dict[tuple[str, str, str], tuple[torch.Tensor, torch.Tensor, dict[str, Any], str]] = {}
-
-    def endpoint(outfit: str, left: str, condition: str) -> torch.Tensor:
-        nonlocal oracle_created
-        cache_key = (outfit, left, condition)
-        if cache_key in endpoint_cache:
-            return endpoint_cache[cache_key]
-        path = output_root / attempt_name / "baselines/teacher_endpoints" / left / condition / outfit
-        rgb, _, _, created = render_or_load(path, runtime_value, left, condition, ((outfit, endpoints[outfit], 1.0),))
-        oracle_created += int(created)
-        endpoint_cache[cache_key] = rgb
-        return rgb
 
     def evaluate_one(record: Mapping[str, Any], prediction: Mapping[str, Any], role: str) -> dict[str, Any]:
         nonlocal oracle_created, controller_created, forward_seconds, feature_seconds
@@ -582,22 +672,23 @@ def run_render_seed(
             candidate_path, runtime_value, left, condition, controller_branches(prediction, endpoints)
         )
         controller_created += int(created)
-        oracle_key = hashlib.sha256(json.dumps({
-            "left": left, "condition": condition, "target": record["target_distribution"]
-        }, sort_keys=True).encode()).hexdigest()[:20]
-        oracle_path = output_root / attempt_name / "baselines/oracle_dual_support" / left / condition / oracle_key
-        oracle_cache_key = (left, condition, oracle_key)
-        if oracle_cache_key in oracle_cache:
-            oracle_rgb, oracle_alpha, oracle_diagnostics, oracle_rgb_path = oracle_cache[oracle_cache_key]
-        else:
-            oracle_rgb, oracle_alpha, oracle_diagnostics, created = render_or_load(
-                oracle_path, runtime_value, left, condition, oracle_branches(record, endpoints)
-            )
-            oracle_created += int(created)
-            oracle_rgb_path = str(oracle_path.with_name(oracle_path.name + "_rgb.png"))
-            oracle_cache[oracle_cache_key] = (oracle_rgb, oracle_alpha, oracle_diagnostics, oracle_rgb_path)
-        source_rgb = endpoint(left, left, condition)
-        target_rgb = endpoint(right, left, condition)
+        local_baseline_root = seed_root / role / "paired_baselines"
+        oracle_path = local_baseline_root / f"{safe_id}__oracle"
+        oracle_rgb, oracle_alpha, oracle_diagnostics, created = render_or_load(
+            oracle_path, runtime_value, left, condition, oracle_branches(record, endpoints)
+        )
+        oracle_created += int(created)
+        oracle_rgb_path = str(oracle_path.with_name(oracle_path.name + "_rgb.png"))
+        source_path = local_baseline_root / f"{safe_id}__source_{left}"
+        source_rgb, _, _, created = render_or_load(
+            source_path, runtime_value, left, condition, ((left, endpoints[left], 1.0),)
+        )
+        oracle_created += int(created)
+        target_path = local_baseline_root / f"{safe_id}__target_{right}"
+        target_rgb, _, _, created = render_or_load(
+            target_path, runtime_value, left, condition, ((right, endpoints[right], 1.0),)
+        )
+        oracle_created += int(created)
         metrics = render_metrics(runtime_value, left, condition, rgb, alpha, oracle_rgb, source_rgb, target_rgb)
         return {
             "record_id": record["record_id"], "role": role, "pair_id": record["pair_id"],
@@ -658,7 +749,7 @@ def main() -> None:
     parser.add_argument(
         "--phase", choices=(
             "audit-training", "classify-seed", "prepare-attempt-002", "prepare-attempt-003",
-            "context-probe", "render-seed",
+            "prepare-attempt-004", "context-probe", "paired-render-probe", "render-seed",
         ),
         required=True,
     )
@@ -666,7 +757,10 @@ def main() -> None:
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--feature-cache", type=Path)
     parser.add_argument("--seed", type=int)
-    parser.add_argument("--attempt", choices=("attempt_001", "attempt_002", "attempt_003"), default="attempt_003")
+    parser.add_argument(
+        "--attempt", choices=("attempt_001", "attempt_002", "attempt_003", "attempt_004"),
+        default="attempt_004",
+    )
     parser.add_argument("--probe-index", type=int, choices=(1, 2))
     args = parser.parse_args()
     output_root = args.output_root.resolve()
@@ -681,10 +775,18 @@ def main() -> None:
         result = prepare_attempt_002(output_root)
     elif args.phase == "prepare-attempt-003":
         result = prepare_attempt_003(output_root)
+    elif args.phase == "prepare-attempt-004":
+        result = prepare_attempt_004(output_root)
     elif args.phase == "context-probe":
         if args.probe_index not in (1, 2):
             parser.error("context-probe requires --probe-index 1 or 2")
         result = context_probe(output_root, args.asset_root.resolve(), args.probe_index)
+    elif args.phase == "paired-render-probe":
+        if args.probe_index not in (1, 2):
+            parser.error("paired-render-probe requires --probe-index 1 or 2")
+        result = paired_render_probe(
+            output_root, args.asset_root.resolve(), feature_cache.resolve(), args.probe_index
+        )
     else:
         if args.seed not in formal.SEEDS:
             parser.error("render-seed requires --seed 0, 1, or 2")
