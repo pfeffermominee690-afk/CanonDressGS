@@ -9,6 +9,7 @@ import math
 import os
 import statistics
 import sys
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
@@ -28,6 +29,8 @@ from scene.reference_conditioned_dual_support_controller import (  # noqa: E402
     stable_top2_selection,
 )
 from tools.paper import run_reference_conditioned_dual_support_controller_formal as formal  # noqa: E402
+from tools.paper import run_geometry_dual_support_micro_pilot as geometry  # noqa: E402
+from tools.paper import run_p0_color_spatial_soft_control_evaluations as sealed  # noqa: E402
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -339,9 +342,200 @@ def run_classification(seed: int, output_root: Path, feature_cache: Path) -> dic
     return {"seed": seed, "pure": pure_summary, "mixed": {key: value for key, value in mixed_summary.items() if key != "records"}}
 
 
+def render_or_load(
+    path: Path, runtime_value: sealed.EvaluationRuntime, left: str, condition: str,
+    branches: Sequence[tuple[str, Any, float]],
+) -> tuple[torch.Tensor, torch.Tensor, dict[str, Any], bool]:
+    rgb_path = path.with_name(path.name + "_rgb.png")
+    alpha_path = path.with_name(path.name + "_alpha.png")
+    diagnostics_path = path.with_name(path.name + "_diagnostics.json")
+    existing = (rgb_path.is_file(), alpha_path.is_file(), diagnostics_path.is_file())
+    if any(existing) and not all(existing):
+        raise RuntimeError(f"partial append-only render: {path}")
+    if all(existing):
+        return (
+            sealed.image_tensor(rgb_path, 3).to(runtime_value.device),
+            sealed.image_tensor(alpha_path, 1).to(runtime_value.device),
+            read_json(diagnostics_path), False,
+        )
+    with torch.inference_mode():
+        rgb, alpha, diagnostics = geometry.render_branches(runtime_value, left, condition, branches)
+    sealed.save_new_render(rgb_path, rgb, 3)
+    sealed.save_new_render(alpha_path, alpha, 1)
+    atomic_json(diagnostics_path, diagnostics)
+    return rgb.detach(), alpha.detach(), diagnostics, True
+
+
+def controller_branches(row: Mapping[str, Any], endpoints: Mapping[str, Any]) -> tuple[tuple[str, Any, float], ...]:
+    outfits = (row["top1_outfit"], row["top2_outfit"])
+    weights = row["runtime_weights"]
+    result = tuple((outfit, endpoints[outfit], float(weight)) for outfit, weight in zip(outfits, weights))
+    if len(result) not in (1, 2) or abs(sum(item[2] for item in result) - 1.0) > 1e-6:
+        raise RuntimeError("controller render branch contract mismatch")
+    return result
+
+
+def oracle_branches(record: Mapping[str, Any], endpoints: Mapping[str, Any]) -> tuple[tuple[str, Any, float], ...]:
+    result = tuple(
+        (OUTFIT_ORDER[index], endpoints[OUTFIT_ORDER[index]], float(weight))
+        for index, weight in enumerate(record["target_distribution"]) if float(weight) > 0.0
+    )
+    if len(result) not in (1, 2) or abs(sum(item[2] for item in result) - 1.0) > 1e-6:
+        raise RuntimeError("oracle branch contract mismatch")
+    return result
+
+
+def render_metrics(
+    runtime_value: sealed.EvaluationRuntime, left: str, condition: str,
+    rgb: torch.Tensor, alpha: torch.Tensor, oracle_rgb: torch.Tensor,
+    source_rgb: torch.Tensor, target_rgb: torch.Tensor,
+) -> dict[str, float]:
+    result = geometry.image_metrics(
+        runtime_value, left, condition, rgb, alpha, oracle_rgb, source_rgb, target_rgb
+    )
+    result["oracle_rgb_max_abs"] = float((rgb - oracle_rgb).abs().max())
+    return result
+
+
+def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cache: Path) -> dict[str, Any]:
+    formal.load_preflight(output_root)
+    seed_root = output_root / "attempt_001" / f"seed_{seed}"
+    result_path = seed_root / "metrics/render_evaluation.json"
+    if result_path.exists():
+        raise FileExistsError(f"render evaluation exists for seed {seed}")
+    mixed = read_json(seed_root / "mixed/mixed_classification.json")
+    pure = read_json(seed_root / "pure/pure_classification.json")
+    manifest, _, _ = formal.contract()
+    query_index = {row["record_id"]: row for row in manifest["query_sets"]}
+    pure_index = {row["record_id"]: row for row in manifest["formal_pure_endpoint_episodes"]}
+    prediction_index = {row["record_id"]: row for row in mixed["records"]}
+    pure_prediction_index = {row["record_id"]: row for row in pure["records"]}
+    cache = torch.load(feature_cache, map_location="cpu", weights_only=False)
+    device = torch.device("cuda")
+    model = load_model(output_root, seed, device)
+    os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
+    formal.configure_determinism(strict=False)
+    sealed.RUN_BRANCH = formal.RUN_BRANCH
+    sealed.SOURCE_HEAD = formal.SOURCE_HEAD
+    runtime_value = sealed.EvaluationRuntime(seed_root / "audits/runtime_context_no_write", asset_root, {})
+    endpoints = geometry.endpoint_residuals(runtime_value)
+    records = []
+    oracle_created = 0
+    controller_created = 0
+    forward_seconds = 0.0
+    feature_seconds = 0.0
+    endpoint_cache: dict[tuple[str, str, str], torch.Tensor] = {}
+    oracle_cache: dict[tuple[str, str, str], tuple[torch.Tensor, torch.Tensor, dict[str, Any], str]] = {}
+
+    def endpoint(outfit: str, left: str, condition: str) -> torch.Tensor:
+        nonlocal oracle_created
+        cache_key = (outfit, left, condition)
+        if cache_key in endpoint_cache:
+            return endpoint_cache[cache_key]
+        path = output_root / "attempt_001/baselines/teacher_endpoints" / left / condition / outfit
+        rgb, _, _, created = render_or_load(path, runtime_value, left, condition, ((outfit, endpoints[outfit], 1.0),))
+        oracle_created += int(created)
+        endpoint_cache[cache_key] = rgb
+        return rgb
+
+    def evaluate_one(record: Mapping[str, Any], prediction: Mapping[str, Any], role: str) -> dict[str, Any]:
+        nonlocal oracle_created, controller_created, forward_seconds, feature_seconds
+        if record["pair_id"]:
+            left, right = record["pair_id"].split("_")
+        else:
+            left = right = record["garment_labels"][0]
+        condition = record["target_view_fold"]
+        started = time.perf_counter()
+        rows, valid = formal.case_rows(cache, record)
+        feature_seconds += time.perf_counter() - started
+        torch.cuda.synchronize()
+        started = time.perf_counter()
+        live = infer(model, rows, valid, device)
+        torch.cuda.synchronize()
+        forward_seconds += time.perf_counter() - started
+        if live["probabilities"] != prediction["probabilities"]:
+            maximum = max(abs(a - b) for a, b in zip(live["probabilities"], prediction["probabilities"]))
+            if maximum > 1e-7:
+                raise RuntimeError("persisted/live controller prediction mismatch")
+        safe_id = record["record_id"].replace("/", "__")
+        candidate_path = seed_root / role / "renders" / safe_id
+        rgb, alpha, diagnostics, created = render_or_load(
+            candidate_path, runtime_value, left, condition, controller_branches(prediction, endpoints)
+        )
+        controller_created += int(created)
+        oracle_key = hashlib.sha256(json.dumps({
+            "left": left, "condition": condition, "target": record["target_distribution"]
+        }, sort_keys=True).encode()).hexdigest()[:20]
+        oracle_path = output_root / "attempt_001/baselines/oracle_dual_support" / left / condition / oracle_key
+        oracle_cache_key = (left, condition, oracle_key)
+        if oracle_cache_key in oracle_cache:
+            oracle_rgb, oracle_alpha, oracle_diagnostics, oracle_rgb_path = oracle_cache[oracle_cache_key]
+        else:
+            oracle_rgb, oracle_alpha, oracle_diagnostics, created = render_or_load(
+                oracle_path, runtime_value, left, condition, oracle_branches(record, endpoints)
+            )
+            oracle_created += int(created)
+            oracle_rgb_path = str(oracle_path.with_name(oracle_path.name + "_rgb.png"))
+            oracle_cache[oracle_cache_key] = (oracle_rgb, oracle_alpha, oracle_diagnostics, oracle_rgb_path)
+        source_rgb = endpoint(left, left, condition)
+        target_rgb = endpoint(right, left, condition)
+        metrics = render_metrics(runtime_value, left, condition, rgb, alpha, oracle_rgb, source_rgb, target_rgb)
+        return {
+            "record_id": record["record_id"], "role": role, "pair_id": record["pair_id"],
+            "assignment_type": record["assignment_type"], "assignment_position": record["assignment_position"],
+            "target_view_fold": condition, "mode": prediction["mode"],
+            "selected_endpoints": [prediction["top1_outfit"], prediction["top2_outfit"]][:len(prediction["runtime_weights"])],
+            "predicted_weights": prediction["runtime_weights"],
+            "rgb_path": str(candidate_path.with_name(candidate_path.name + "_rgb.png")),
+            "alpha_path": str(candidate_path.with_name(candidate_path.name + "_alpha.png")),
+            "oracle_rgb_path": oracle_rgb_path,
+            "metrics": metrics, "render_diagnostics": diagnostics,
+            "oracle_render_diagnostics": oracle_diagnostics,
+            "target_forward_leakage": 0, "ground_truth_id_pair_alpha_inference_use": 0,
+        }
+
+    for record_id, record in query_index.items():
+        records.append(evaluate_one(record, prediction_index[record_id], "mixed"))
+    for record_id, record in pure_index.items():
+        records.append(evaluate_one(record, pure_prediction_index[record_id], "pure"))
+    fields = (
+        "garment_rgb_mae", "garment_lpips", "silhouette_iou", "boundary_fscore",
+        "protected_lpips", "identity_metric", "outside_garment_opacity",
+    )
+    by_role = {}
+    for role in ("mixed", "pure"):
+        selected = [row for row in records if row["role"] == role]
+        by_role[role] = {
+            "record_count": len(selected),
+            "means": {field: statistics.fmean(row["metrics"][field] for row in selected) for field in fields},
+            "maxima": {field: max(row["metrics"][field] for row in selected) for field in fields},
+            "single_endpoint_count": sum(row["mode"] == "SINGLE_ENDPOINT" for row in selected),
+            "dual_support_count": sum(row["mode"] == "DUAL_SUPPORT" for row in selected),
+        }
+    pure_parity = [row for row in records if row["role"] == "pure"]
+    result = {
+        "schema_version": "canondressgs.research.dual_support_controller_render_evaluation.v1",
+        "status": "COMPLETE", "seed": seed, "records": records, "aggregates": by_role,
+        "controller_render_count": len(records), "mixed_render_count": 320, "pure_render_count": 20,
+        "controller_renders_created": controller_created, "oracle_or_endpoint_renders_created": oracle_created,
+        "controller_forward_time_seconds_total": forward_seconds,
+        "controller_forward_time_seconds_mean": forward_seconds / len(records),
+        "f2_cached_feature_assembly_seconds_total": feature_seconds,
+        "endpoint_selection_time_included_in_controller_forward": True,
+        "endpoint_parity": {
+            "status": "PASS" if all(row["metrics"]["oracle_rgb_max_abs"] <= 1e-6 for row in pure_parity) else "FAIL",
+            "maximum_render_max_abs": max(row["metrics"]["oracle_rgb_max_abs"] for row in pure_parity),
+        },
+        "target_forward_leakage": 0, "ground_truth_id_pair_alpha_inference_use": 0,
+        "geometry_interpolation": False, "paper_final": False,
+    }
+    atomic_json(result_path, result)
+    return {key: value for key, value in result.items() if key != "records"}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--phase", choices=("audit-training", "classify-seed"), required=True)
+    parser.add_argument("--phase", choices=("audit-training", "classify-seed", "render-seed"), required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--feature-cache", type=Path)
@@ -351,10 +545,14 @@ def main() -> None:
     feature_cache = args.feature_cache or args.asset_root.resolve() / formal.FORMAL_NAME / "shared_preflight/frozen_reference_feature_rows_v1.pt"
     if args.phase == "audit-training":
         result = training_audit(output_root)
-    else:
+    elif args.phase == "classify-seed":
         if args.seed not in formal.SEEDS:
             parser.error("classify-seed requires --seed 0, 1, or 2")
         result = run_classification(args.seed, output_root, feature_cache.resolve())
+    else:
+        if args.seed not in formal.SEEDS:
+            parser.error("render-seed requires --seed 0, 1, or 2")
+        result = run_render_seed(args.seed, output_root, args.asset_root.resolve(), feature_cache.resolve())
     print(json.dumps(result, sort_keys=True, default=str))
 
 
