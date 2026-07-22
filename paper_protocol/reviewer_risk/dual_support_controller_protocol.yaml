@@ -2,6 +2,22 @@ schema_version: canondressgs.research.reference_conditioned_dual_support_control
 label: "RESEARCH METHOD CANDIDATE — NOT PAPER FINAL"
 task_id: AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-001
 frozen_at: 2026-07-23T00:00:00+08:00
+contract_repair:
+  task_id: AAAI27-DUAL-SUPPORT-CONTROLLER-TRAINING-CONTRACT-REPAIR-001
+  source_head: 174655ce6aabcae5d60ce45f3b4be319eb71e914
+  repaired_before_formal_results: true
+  previous_stop_condition: CONTROLLER_TRAINING_CONTRACT_INCOMPLETE
+  previous_execution_counts:
+    training: 0
+    backward: 0
+    optimizer_created: 0
+    optimizer_step: 0
+    scheduler_step: 0
+    checkpoint_write: 0
+    render: 0
+    evaluation: 0
+    formal_output_mutation: 0
+    paper_final: 0
 source:
   branch: research/dual-support-all-pair-evaluation-20260722
   head: d802f427f1e9c23595e1bdb4f10135f7de2c3f08
@@ -56,6 +72,14 @@ dataset:
   all_assignment_positions_retained: true
   best_position_selection: false
   inconsistent_duplicate_labels_allowed: false
+  training_record_scope: ALL_320_PROTOCOL_QUERY_RECORDS
+  evaluation_only_record_scope: ALL_20_FORMAL_PURE_ENDPOINT_RECORDS
+  formal_pure_role: FORMAL_PURE_EVAL_ONLY
+  formal_pure_training_exposure: 0
+  preserve_consistent_duplicates: true
+  duplicate_deduplication: false
+  protocol_multiplicity_is_training_weight: true
+  scientific_boundary: CLOSED_WARDROBE_PROTOCOL_FIT_EVALUATION
 soft_target_loss:
   formula: '-sum_g y_g log(p_g)'
   temperature: 1.0
@@ -93,7 +117,65 @@ training_plan:
   steps: 300
   gradient_clip_l2: 5.0
   seeds: [0, 1, 2]
-  status: FROZEN_NOT_EXECUTED
+  status: REPAIRED_FROZEN_NOT_EXECUTED
+training_schedule:
+  outfit_order: [O01, O02, O03, O04, O08]
+  pair_order: [O01_O02, O01_O03, O01_O04, O01_O08, O02_O03, O02_O04, O02_O08, O03_O04, O03_O08, O04_O08]
+  fold_order: [cond_000000, cond_000318, cond_000017, cond_000347]
+  counterpart_order_rule: FROZEN_OUTFIT_ORDER_EXCLUDING_DOMINANT
+  composition_order:
+    dominant_is_pair_A: [AAA, AAB_position_0, AAB_position_1, AAB_position_2]
+    dominant_is_pair_B: [BBB, ABB_position_0, ABB_position_1, ABB_position_2]
+  assignment_position_order: [0, 1, 2]
+  dominant_outfit_rule: UNIQUE_ARGMAX_OF_SOFT_TARGET
+  dominant_queue_contract:
+    queue_count: 5
+    records_per_queue: 64
+    records_per_dominant_fold: 16
+    counterpart_count_per_dominant: 4
+    records_per_counterpart_fold: 4
+  batch_size: 5
+  batch_member_order: [O01, O02, O03, O04, O08]
+  batch_count_per_cycle: 64
+  batch_construction_rule: batch_4xslot_plus_fold_uses_each_dominant_fold_queue_at_slot
+  batch_index_formula: 4_times_slot_plus_fold
+  slot_range: [0, 15]
+  fold_index_range: [0, 3]
+  records_per_cycle: 320
+  cycle_length: 64
+  total_steps: 300
+  wrap_rule:
+    cycle_index: floor_of_step_minus_1_divided_by_64
+    batch_index: step_minus_1_modulo_64
+    complete_cycles: 4
+    partial_cycle_batch_count: 44
+  exposure_contract:
+    total_sample_exposures: 1500
+    batch_indices_0_through_43_record_exposure: 5
+    batch_indices_44_through_63_record_exposure: 4
+  seed_data_order_policy:
+    seeds: [0, 1, 2]
+    identical_schedule: true
+    dataloader_shuffle: false
+    per_seed_sampler: false
+    per_seed_augmentation: false
+    only_model_initialization_varies: true
+  scientific_hash_schema:
+    canonical_json: true
+    encoding: UTF-8
+    line_endings: LF
+    sort_keys: true
+    allow_nan: false
+    include_absolute_paths: false
+    cycle_schema: canondressgs.research.dual_support_controller_training_cycle_scientific.v1
+    schedule_schema: canondressgs.research.dual_support_controller_training_schedule_scientific.v1
+  runtime_manifest_schema:
+    schema: canondressgs.research.dual_support_controller_training_schedule_runtime.v1
+    absolute_paths_allowed: true
+    participates_in_scientific_hash: false
+  frozen_schedule_hashes:
+    training_cycle_sha256: f60b0ee64ff5ce2b6693f53dd7eb665cc6aee5aa310f314175d2932307d57c77
+    training_300_step_data_order_sha256: 63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf
 selection:
   sorting: stable_descending_probability_then_frozen_outfit_order
   top2_mass: p1_plus_p2
@@ -204,7 +286,12 @@ outputs:
   optimizer_provenance: paper_protocol/reviewer_risk/dual_support_controller_optimizer_provenance.json
   evaluator_contract: paper_protocol/reviewer_risk/dual_support_controller_evaluator_contract.json
   dry_run_summary: paper_protocol/reviewer_risk/dual_support_controller_dry_run_summary.json
+  training_cycle: paper_protocol/reviewer_risk/dual_support_controller_training_cycle.json
+  training_schedule_300_steps: paper_protocol/reviewer_risk/dual_support_controller_training_schedule_300_steps.json
+  training_schedule_runtime: paper_protocol/reviewer_risk/dual_support_controller_training_schedule_runtime.json
+  training_schedule_summary: paper_protocol/reviewer_risk/dual_support_controller_training_schedule_summary.json
 next_task_if_all_pass: TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER
 next_task_if_ambiguous: REPAIR_DUAL_SUPPORT_CONTROLLER_TRAINING_CONTRACT
 next_task_if_adapter_failure: REPAIR_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER
+next_task_after_repaired_contract: TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_FROM_REPAIRED_CONTRACT
 next_task_started: false
