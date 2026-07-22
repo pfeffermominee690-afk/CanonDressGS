@@ -518,6 +518,7 @@ def main() -> None:
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--feature-cache", type=Path)
     parser.add_argument("--seed", type=int)
+    parser.add_argument("--probe-index", type=int, choices=(1, 2))
     args = parser.parse_args()
     asset_root = args.asset_root.resolve()
     feature_cache = args.feature_cache or asset_root / FORMAL_NAME / "shared_preflight/frozen_reference_feature_rows_v1.pt"
@@ -529,6 +530,15 @@ def main() -> None:
         if args.seed not in SEEDS:
             parser.error("init-probe requires --seed 0, 1, or 2")
         result = init_probe(args.seed, feature_cache.resolve())
+        if args.output_root is not None:
+            load_preflight(args.output_root.resolve())
+            if args.probe_index not in (1, 2):
+                parser.error("persisted init-probe requires --probe-index 1 or 2")
+            atomic_json(
+                args.output_root.resolve() / "attempt_001" / f"seed_{args.seed}"
+                / "audits" / f"fresh_process_init_probe_{args.probe_index}.json",
+                result,
+            )
     else:
         if args.seed not in SEEDS or args.output_root is None:
             parser.error("train requires --seed and --output-root")
