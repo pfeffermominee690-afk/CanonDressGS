@@ -9,6 +9,7 @@ import os
 import platform
 import statistics
 import subprocess
+import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -16,12 +17,15 @@ from typing import Any, Mapping, Sequence
 import torch
 import yaml
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from tools.paper import run_continuous_control_artifact_root_cause as provenance_tools
 from tools.paper import run_geometry_dual_support_micro_pilot as micro
 from tools.paper.verify_seen_outfit_paper_assets import verify_manifest
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TASK_ID = "AAAI27-DUAL-SUPPORT-ALL-PAIR-EVALUATION-001"
 SOURCE_HEAD = "b216acd02323c822a7aca12f424efed6ba2e0a81"
 RUN_BRANCH = "research/dual-support-all-pair-evaluation-20260722"
