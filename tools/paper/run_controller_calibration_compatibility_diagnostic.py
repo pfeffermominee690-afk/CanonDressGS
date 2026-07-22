@@ -15,6 +15,7 @@ import json
 import math
 import os
 import statistics
+import subprocess
 import sys
 import time
 from collections import Counter, defaultdict
@@ -199,6 +200,50 @@ def load_formal(formal_root: Path) -> dict[str, Any]:
         for key in ("mixed", "pure", "render", "perturb"):
             data[key][seed] = read_json(paths[key])
     return data
+
+
+def tree_content_fingerprint(root: Path) -> dict[str, Any]:
+    files = sorted(path for path in root.rglob("*") if path.is_file())
+    digest = hashlib.sha256()
+    total_bytes = 0
+    for path in files:
+        relative = str(path.relative_to(root)).replace("\\", "/")
+        size = path.stat().st_size
+        total_bytes += size
+        digest.update(relative.encode("utf-8") + b"\0")
+        digest.update(str(size).encode("ascii") + b"\0")
+        digest.update(sha256(path).encode("ascii") + b"\n")
+    return {"file_count": len(files), "total_bytes": total_bytes, "sha256": digest.hexdigest()}
+
+
+def run_preflight(formal_root: Path, diagnostic_root: Path, asset_root: Path, repository: Path) -> dict[str, Any]:
+    branch = subprocess.check_output(["git", "branch", "--show-current"], cwd=repository, text=True).strip()
+    head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repository, text=True).strip()
+    dirty = subprocess.check_output(["git", "status", "--porcelain"], cwd=repository, text=True).strip()
+    ancestor = subprocess.call(["git", "merge-base", "--is-ancestor", SOURCE_HEAD, "HEAD"], cwd=repository) == 0
+    if branch != RUN_BRANCH or dirty or not ancestor:
+        raise RuntimeError(f"diagnostic governance mismatch branch={branch} head={head} dirty={bool(dirty)} ancestor={ancestor}")
+    if diagnostic_root.exists():
+        raise FileExistsError(f"append-only diagnostic output root exists before preflight: {diagnostic_root}")
+    data = load_formal(formal_root)
+    protocol = repository / "paper_protocol/reviewer_risk/controller_calibration_diagnostic_protocol.yaml"
+    result = {
+        "schema_version": "canondressgs.research.controller_calibration_diagnostic_preflight.v1",
+        "status": "PASS", "task_id": TASK_ID, "source_head": SOURCE_HEAD,
+        "execution_head": head, "run_branch": branch,
+        "formal_output_before": tree_content_fingerprint(formal_root),
+        "frozen_asset_snapshots_before": formal.tree_snapshots(asset_root),
+        "checkpoint_sha256": {str(seed): sha256(data["paths"][seed]["checkpoint"]) for seed in SEEDS},
+        "protocol_sha256_lf": hashlib.sha256(protocol.read_text(encoding="utf-8").replace("\r\n", "\n").encode("utf-8")).hexdigest(),
+        "counts": {
+            "training_steps": 0, "training_forward_batches": 0, "backward_calls": 0,
+            "optimizer_created": 0, "optimizer_steps": 0, "scheduler_steps": 0, "checkpoint_writes": 0,
+        },
+        "formal_output_write_count": 0, "paper_final": False, "paper_final_count": 0,
+    }
+    write_once(diagnostic_root / "attempt_001/audits/preflight.json", result)
+    print(json.dumps({key: value for key, value in result.items() if key != "frozen_asset_snapshots_before"}, indent=2, sort_keys=True))
+    return result
 
 
 def reaggregate(data: Mapping[str, Any], repository: Path) -> dict[str, Any]:
@@ -1289,7 +1334,7 @@ def run_finalize(formal_root: Path, diagnostic_root: Path, repository: Path) -> 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("phase", choices=("offline", "render-seed", "perturbation-seed", "finalize"))
+    parser.add_argument("phase", choices=("preflight", "offline", "render-seed", "perturbation-seed", "finalize"))
     parser.add_argument("--formal-output", type=Path, required=True)
     parser.add_argument("--diagnostic-output", type=Path, required=True)
     parser.add_argument("--asset-root", type=Path)
@@ -1297,7 +1342,11 @@ def main() -> None:
     parser.add_argument("--seed", type=int, choices=SEEDS)
     parser.add_argument("--repository", type=Path, default=PROJECT_ROOT)
     args = parser.parse_args()
-    if args.phase == "offline":
+    if args.phase == "preflight":
+        if args.asset_root is None:
+            parser.error("preflight requires --asset-root")
+        run_preflight(args.formal_output.resolve(), args.diagnostic_output.resolve(), args.asset_root.resolve(), args.repository.resolve())
+    elif args.phase == "offline":
         run_offline(args.formal_output.resolve(), args.diagnostic_output.resolve(), args.repository.resolve())
     elif args.phase == "render-seed":
         if args.seed is None or args.asset_root is None:
