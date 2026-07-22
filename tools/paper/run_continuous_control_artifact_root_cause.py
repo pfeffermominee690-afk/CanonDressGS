@@ -660,6 +660,81 @@ def classify_previous_attempt(output_root: Path) -> dict[str, Any]:
     return result
 
 
+def classify_prefreeze_baseline_attempt(output_root: Path) -> dict[str, Any]:
+    attempt = output_root / "attempt_002"
+    result_path = attempt / "audits/FAILED_GATE_FALSE_POSITIVE_PRE_FREEZE_PARAMETER_BASELINE.json"
+    if result_path.is_file():
+        return read_json(result_path)
+    failed_path = attempt / "audits/optimizer_provenance_render.json"
+    gate_path = (
+        output_root.parent
+        / "CONTINUOUS-CONTROL-ROOT-CAUSE-GATE-REPAIR-001/attempt_003/audits"
+        / "optimizer_provenance_gate_repair_test.json"
+    )
+    channel_path = attempt / "aggregates/channel_interpolation_results.json"
+    if not failed_path.is_file() or not gate_path.is_file() or not channel_path.is_file():
+        raise RuntimeError("pre-freeze baseline false-positive evidence is incomplete")
+    failed = read_json(failed_path)
+    gate = read_json(gate_path)
+    channel = read_json(channel_path)
+    failed_instance = failed["legacy_context_optimizer"]["instances"][0]
+    gate_instance = gate["legacy_context_optimizer"]["instances"][0]
+    fingerprint_evidence = {
+        "legacy_creation": failed_instance["parameter_fingerprint_before"],
+        "attempt_002_end": failed_instance["parameter_fingerprint_after"],
+        "corrected_legacy_creation": gate_instance["parameter_fingerprint_at_legacy_creation"],
+        "corrected_frozen_before": gate_instance["parameter_fingerprint_before"],
+        "corrected_after": gate_instance["parameter_fingerprint_after"],
+    }
+    if not (
+        failed["frozen_parameter_change"] == 1
+        and failed_instance["parameter_change"] == 1
+        and fingerprint_evidence["legacy_creation"] == fingerprint_evidence["corrected_legacy_creation"]
+        and fingerprint_evidence["attempt_002_end"] == fingerprint_evidence["corrected_frozen_before"]
+        and fingerprint_evidence["corrected_frozen_before"] == fingerprint_evidence["corrected_after"]
+        and gate["root_cause_no_training_gate"] == "PASS"
+    ):
+        raise RuntimeError("pre-freeze baseline false-positive fingerprint proof failed")
+    result = {
+        "schema_version": "canondressgs.research.root_cause_gate_false_positive.v1",
+        "status": "FAILED_GATE_FALSE_POSITIVE_PRE_FREEZE_PARAMETER_BASELINE",
+        "classification": "ROOT_CAUSE_GATE_FALSE_POSITIVE",
+        "task_id": TASK_ID,
+        "attempt": "attempt_002",
+        "preserved": True,
+        "overwritten": False,
+        "eligible_for_scientific_reuse": False,
+        "trigger": (
+            "The legacy optimizer fingerprint was captured before the immutable Stage-C checkpoint "
+            "was restored, then compared with the post-restore runtime state."
+        ),
+        "fingerprint_evidence": fingerprint_evidence,
+        "counts": {
+            "channel_rgb_renders": len(list((attempt / "channel_interpolation").rglob("*_rgb.png"))),
+            "channel_alpha_renders": len(list((attempt / "channel_interpolation").rglob("*_alpha.png"))),
+            "channel_metric_records": len(channel["records"]),
+            "channel_metric_values": len(channel["records"]) * 5,
+            "full_renders_reused": int(channel["reused_full_render_count"]),
+            "full_renders_regenerated": int(channel["full_render_regeneration_count"]),
+            "backward_calls": failed["backward_count"],
+            "optimizer_zero_grad_calls": failed["legacy_context_optimizer"]["zero_grad_count"],
+            "optimizer_steps": failed["legacy_context_optimizer"]["step_count"],
+            "scheduler_steps": failed["legacy_context_optimizer"]["scheduler_step_count"],
+            "checkpoint_writes": failed["checkpoint_write_count"],
+            "paper_final": 0,
+        },
+        "scientific_result_status": "INVALID_FOR_REUSE_DUE_TO_FAILED_ATTEMPT",
+        "note": (
+            "The corrected live-runtime audit proves that attempt_002 ended at the immutable frozen "
+            "checkpoint fingerprint and did not mutate it. The attempt is nevertheless retained as "
+            "failed and none of its renders or metrics may be reused by attempt_003."
+        ),
+        "paper_final": False,
+    }
+    atomic_json(result_path, result)
+    return result
+
+
 def runtime(attempt: Path, asset_root: Path, frozen_protocol: Mapping[str, Any]) -> sealed.EvaluationRuntime:
     os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
     sealed.RUN_BRANCH = RUN_BRANCH
@@ -1416,6 +1491,9 @@ def write_reports(
         "## Repaired no-training gate\n\n"
         "- Previous attempt: `attempt_001`, permanently classified "
         "`FAILED_GATE_FALSE_POSITIVE_LEGACY_OPTIMIZER_OBJECT`; none of its renders or metrics were reused.\n"
+        "- Additional failed attempt: `attempt_002`, permanently classified "
+        "`FAILED_GATE_FALSE_POSITIVE_PRE_FREEZE_PARAMETER_BASELINE`; its 720 renders and metrics were "
+        "also retained but not reused. The completed diagnosis is `attempt_003`.\n"
         f"- Diagnostic optimizer created: `{optimizer_provenance['diagnostic_optimizer']['created']}`; "
         f"step count: `{optimizer_provenance['diagnostic_optimizer']['step_count']}`.\n"
         f"- Legacy context optimizer created: `{optimizer_provenance['legacy_context_optimizer']['created']}` "
@@ -1505,6 +1583,13 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
     if not previous_failure_path.is_file():
         raise RuntimeError("previous false-positive attempt was not permanently classified")
     previous_failure = read_json(previous_failure_path)
+    baseline_failure_path = (
+        attempt.parent
+        / "attempt_002/audits/FAILED_GATE_FALSE_POSITIVE_PRE_FREEZE_PARAMETER_BASELINE.json"
+    )
+    if not baseline_failure_path.is_file():
+        raise RuntimeError("pre-freeze baseline false-positive attempt was not permanently classified")
+    baseline_failure = read_json(baseline_failure_path)
     preflight = read_json(attempt / "audits/preflight.json")
     frozen_after = {
         "formal": tree_manifest(asset_root / sealed.FORMAL_NAME),
@@ -1566,6 +1651,7 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
         "frozen_trees_after": frozen_after,
         "frozen_assets_unchanged": frozen_unchanged,
         "previous_failed_attempt": previous_failure,
+        "previous_failed_attempts": [previous_failure, baseline_failure],
         "false_positive_classification": "ROOT_CAUSE_GATE_FALSE_POSITIVE",
         "optimizer_provenance": optimizer_provenance,
         "optimizer_provenance_path": "paper_protocol/reviewer_risk/continuous_control_root_cause_optimizer_provenance.json",
@@ -1611,7 +1697,10 @@ def main() -> None:
     parser.add_argument("--attempt", default="attempt_001")
     parser.add_argument(
         "--phase",
-        choices=("classify-previous", "preflight", "render", "analyze", "visuals", "finalize", "all"),
+        choices=(
+            "classify-previous", "classify-baseline-false-positive", "preflight", "render",
+            "analyze", "visuals", "finalize", "all",
+        ),
         default="all",
     )
     parser.add_argument("--visual-review", type=Path)
@@ -1619,6 +1708,10 @@ def main() -> None:
     frozen_protocol = protocol()
     if args.phase == "classify-previous":
         result = classify_previous_attempt(args.output_root.resolve())
+        print(json.dumps({"phase": args.phase, "status": result["status"]}, sort_keys=True))
+        return
+    if args.phase == "classify-baseline-false-positive":
+        result = classify_prefreeze_baseline_attempt(args.output_root.resolve())
         print(json.dumps({"phase": args.phase, "status": result["status"]}, sort_keys=True))
         return
     attempt = attempt_path(args.output_root.resolve(), args.attempt)
