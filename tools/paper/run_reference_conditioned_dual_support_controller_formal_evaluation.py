@@ -762,7 +762,8 @@ def run_perturbation_seed(
     representatives = [
         row for row in manifest["query_sets"]
         if row["target_view_fold"] == "cond_000000"
-        and row["assignment_type"] in {"AAB_minority_0", "ABB_minority_0"}
+        and row["assignment_type"] in {"AAB", "ABB"}
+        and row["assignment_position"] == 0
     ]
     if len(representatives) != 20:
         raise RuntimeError("perturbation representative count mismatch")
