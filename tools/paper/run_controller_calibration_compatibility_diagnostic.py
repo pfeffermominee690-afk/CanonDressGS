@@ -731,16 +731,20 @@ def run_render_seed(
                 replay_source, _, _ = geometry.render_branches(runtime, left, condition, ((left, endpoints[left], 1.0),))
                 right = str(record["pair_id"]).split("_")[1]
                 replay_target, _, _ = geometry.render_branches(runtime, left, condition, ((right, endpoints[right], 1.0),))
-            current_parity = max(
-                float((replay_candidate - formal_candidate_rgb).abs().max()),
-                float((replay_oracle - oracle_rgb).abs().max()),
-                float((replay_source - source_rgb).abs().max()),
-                float((replay_target - target_rgb).abs().max()),
-            )
+            parity_components = {
+                "candidate": float((replay_candidate - formal_candidate_rgb).abs().max()),
+                "oracle": float((replay_oracle - oracle_rgb).abs().max()),
+                "source": float((replay_source - source_rgb).abs().max()),
+                "target": float((replay_target - target_rgb).abs().max()),
+            }
+            current_parity = max(parity_components.values())
             parity_max_abs = max(parity_max_abs, current_parity)
             replay_count += 4
             if current_parity > 1.0 / 255.0 + 1e-6:
-                raise RuntimeError(f"counterfactual runtime parity failed record={record_id}: {current_parity}")
+                raise RuntimeError(
+                    f"counterfactual runtime parity failed record={record_id}: "
+                    f"{parity_components}"
+                )
             if record_id not in predictions:
                 continue
             actual = {
