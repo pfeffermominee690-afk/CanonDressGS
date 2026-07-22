@@ -8,6 +8,7 @@ never writes a checkpoint, and never regenerates the existing FULL grid.
 from __future__ import annotations
 
 import argparse
+import gc
 import hashlib
 import itertools
 import json
@@ -17,7 +18,10 @@ import platform
 import statistics
 import subprocess
 import sys
-from collections import Counter, deque
+import traceback
+import types
+import weakref
+from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -71,6 +75,319 @@ BOUNDS = {
 }
 CORE_GRADES = ("cloud", "mottle", "edge_scatter", "silhouette_discontinuity")
 ALL_GRADES = CORE_GRADES + ("full_body_contamination", "identity_contamination")
+
+
+def parameter_fingerprint(named_parameters: Sequence[tuple[str, torch.Tensor]]) -> str:
+    digest = hashlib.sha256()
+    for name, parameter in named_parameters:
+        value = parameter.detach().cpu().contiguous()
+        digest.update(name.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(str(value.dtype).encode("ascii"))
+        digest.update(b"\0")
+        digest.update(json.dumps(list(value.shape)).encode("ascii"))
+        digest.update(b"\0")
+        digest.update(value.numpy().tobytes(order="C"))
+        digest.update(b"\n")
+    return digest.hexdigest()
+
+
+class NoTrainingProvenance:
+    """Observe the real runtime while separating legacy and diagnostic optimizers."""
+
+    def __init__(self, attempt: Path, phase: str) -> None:
+        self.attempt = attempt
+        self.phase = phase
+        self.diagnostic = {
+            "created": False,
+            "parameter_count": 0,
+            "zero_grad_count": 0,
+            "step_count": 0,
+            "state_saved": False,
+        }
+        self.legacy_instances: list[dict[str, Any]] = []
+        self.backward_count = 0
+        self.scheduler_step_count = 0
+        self.checkpoint_write_count = 0
+        self._inside_legacy_builder = False
+        self._originals: dict[str, Any] = {}
+
+    def __enter__(self) -> "NoTrainingProvenance":
+        import train_dressable as legacy_training
+
+        self._legacy_training = legacy_training
+        self._originals = {
+            "builder": legacy_training.build_image_conditioned_optimizer,
+            "optimizer_init": torch.optim.Optimizer.__init__,
+            "tensor_backward": torch.Tensor.backward,
+            "autograd_backward": torch.autograd.backward,
+            "scheduler_step": torch.optim.lr_scheduler.LRScheduler.step,
+            "torch_save": torch.save,
+        }
+        recorder = self
+
+        def tracked_optimizer_init(instance: torch.optim.Optimizer, *args: Any, **kwargs: Any) -> None:
+            recorder._originals["optimizer_init"](instance, *args, **kwargs)
+            if not recorder._inside_legacy_builder:
+                recorder.diagnostic["created"] = True
+                recorder.diagnostic["parameter_count"] = sum(
+                    int(parameter.numel())
+                    for group in instance.param_groups
+                    for parameter in group["params"]
+                )
+                raise RuntimeError(
+                    "ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: diagnostic optimizer created"
+                )
+
+        def tracked_builder(model: torch.nn.Module, optimizer_config: Mapping[str, Any]) -> torch.optim.Optimizer:
+            recorder._inside_legacy_builder = True
+            try:
+                optimizer = recorder._originals["builder"](model, optimizer_config)
+            finally:
+                recorder._inside_legacy_builder = False
+            names_by_id = {id(parameter): name for name, parameter in model.named_parameters()}
+            unique: dict[int, torch.Tensor] = {}
+            group_rows = []
+            for index, group in enumerate(optimizer.param_groups):
+                parameters = list(group["params"])
+                for parameter in parameters:
+                    unique[id(parameter)] = parameter
+                parameter_names = [names_by_id.get(id(parameter), f"<unnamed:{id(parameter)}>") for parameter in parameters]
+                group_rows.append({
+                    "index": index,
+                    "name": group.get("name", f"group_{index}"),
+                    "parameter_tensor_count": len(parameters),
+                    "parameter_count": sum(int(parameter.numel()) for parameter in parameters),
+                    "parameter_name_fingerprint": hashlib.sha256(
+                        "\n".join(parameter_names).encode("utf-8")
+                    ).hexdigest(),
+                    "learning_rate": float(group["lr"]),
+                })
+            named = sorted(
+                ((names_by_id.get(identity, f"<unnamed:{identity}>"), parameter) for identity, parameter in unique.items()),
+                key=lambda item: item[0],
+            )
+            counters = {"zero_grad": 0, "step": 0, "state_dict": 0}
+            original_zero_grad = optimizer.zero_grad
+            original_step = optimizer.step
+            original_state_dict = optimizer.state_dict
+
+            def tracked_zero_grad(this: torch.optim.Optimizer, *args: Any, **kwargs: Any) -> Any:
+                counters["zero_grad"] += 1
+                raise RuntimeError(
+                    "ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: legacy optimizer zero_grad"
+                )
+
+            def tracked_step(this: torch.optim.Optimizer, *args: Any, **kwargs: Any) -> Any:
+                counters["step"] += 1
+                raise RuntimeError(
+                    "ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: legacy optimizer step"
+                )
+
+            def tracked_state_dict(this: torch.optim.Optimizer, *args: Any, **kwargs: Any) -> Any:
+                counters["state_dict"] += 1
+                return original_state_dict(*args, **kwargs)
+
+            optimizer.zero_grad = types.MethodType(tracked_zero_grad, optimizer)
+            optimizer.step = types.MethodType(tracked_step, optimizer)
+            optimizer.state_dict = types.MethodType(tracked_state_dict, optimizer)
+            recorder.legacy_instances.append({
+                "class": f"{type(optimizer).__module__}.{type(optimizer).__qualname__}",
+                "group_count": len(group_rows),
+                "groups": group_rows,
+                "parameter_tensor_count": len(unique),
+                "parameter_count": sum(int(parameter.numel()) for parameter in unique.values()),
+                "parameter_name_fingerprint": hashlib.sha256(
+                    "\n".join(name for name, _ in named).encode("utf-8")
+                ).hexdigest(),
+                "parameter_fingerprint_before": parameter_fingerprint(named),
+                "creation_stack": traceback.format_stack(limit=16),
+                "lifecycle": "CREATED_BY_LEGACY_CONTEXT_HELPER_AND_DISCARDED_BY_CALLER",
+                "counters": counters,
+                "optimizer_ref": weakref.ref(optimizer),
+                "parameter_refs": [(name, weakref.ref(parameter)) for name, parameter in named],
+                "diagnostic_overlap_count": 0,
+                "frozen_context_parameter_overlap_count": len(unique),
+            })
+            return optimizer
+
+        def tracked_tensor_backward(tensor: torch.Tensor, *args: Any, **kwargs: Any) -> Any:
+            recorder.backward_count += 1
+            raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: Tensor.backward")
+
+        def tracked_autograd_backward(*args: Any, **kwargs: Any) -> Any:
+            recorder.backward_count += 1
+            raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: autograd.backward")
+
+        def tracked_scheduler_step(scheduler: Any, *args: Any, **kwargs: Any) -> Any:
+            recorder.scheduler_step_count += 1
+            raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: scheduler.step")
+
+        def tracked_torch_save(*args: Any, **kwargs: Any) -> Any:
+            recorder.checkpoint_write_count += 1
+            raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: torch.save")
+
+        legacy_training.build_image_conditioned_optimizer = tracked_builder
+        torch.optim.Optimizer.__init__ = tracked_optimizer_init
+        torch.Tensor.backward = tracked_tensor_backward
+        torch.autograd.backward = tracked_autograd_backward
+        torch.optim.lr_scheduler.LRScheduler.step = tracked_scheduler_step
+        torch.save = tracked_torch_save
+        return self
+
+    def _restore(self) -> None:
+        self._legacy_training.build_image_conditioned_optimizer = self._originals["builder"]
+        torch.optim.Optimizer.__init__ = self._originals["optimizer_init"]
+        torch.Tensor.backward = self._originals["tensor_backward"]
+        torch.autograd.backward = self._originals["autograd_backward"]
+        torch.optim.lr_scheduler.LRScheduler.step = self._originals["scheduler_step"]
+        torch.save = self._originals["torch_save"]
+
+    def result(self, exception: BaseException | None = None) -> dict[str, Any]:
+        gc.collect()
+        legacy_rows = []
+        frozen_change = 0
+        for item in self.legacy_instances:
+            live_parameters = []
+            for name, reference in item["parameter_refs"]:
+                parameter = reference()
+                if parameter is not None:
+                    live_parameters.append((name, parameter))
+            after = parameter_fingerprint(live_parameters) if live_parameters else item["parameter_fingerprint_before"]
+            changed = int(after != item["parameter_fingerprint_before"])
+            frozen_change += changed
+            counters = item["counters"]
+            legacy_rows.append({
+                "class": item["class"],
+                "group_count": item["group_count"],
+                "groups": item["groups"],
+                "parameter_tensor_count": item["parameter_tensor_count"],
+                "parameter_count": item["parameter_count"],
+                "parameter_name_fingerprint": item["parameter_name_fingerprint"],
+                "creation_stack": item["creation_stack"],
+                "lifecycle": item["lifecycle"],
+                "discarded": item["optimizer_ref"]() is None,
+                "zero_grad_count": counters["zero_grad"],
+                "step_count": counters["step"],
+                "scheduler_step_count": 0,
+                "state_dict_call_count": counters["state_dict"],
+                "state_saved": False,
+                "diagnostic_overlap_count": item["diagnostic_overlap_count"],
+                "frozen_context_parameter_overlap_count": item["frozen_context_parameter_overlap_count"],
+                "parameter_fingerprint_before": item["parameter_fingerprint_before"],
+                "parameter_fingerprint_after": after,
+                "parameter_change": changed,
+            })
+        gate_pass = (
+            not self.diagnostic["created"]
+            and all(row["zero_grad_count"] == 0 and row["step_count"] == 0 for row in legacy_rows)
+            and all(row["discarded"] for row in legacy_rows)
+            and self.backward_count == 0
+            and self.scheduler_step_count == 0
+            and self.checkpoint_write_count == 0
+            and frozen_change == 0
+            and exception is None
+        )
+        return {
+            "schema_version": "canondressgs.research.continuous_control_optimizer_provenance.v1",
+            "status": "PASS" if gate_pass else "ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION",
+            "task_id": TASK_ID,
+            "phase": self.phase,
+            "diagnostic_optimizer": dict(self.diagnostic),
+            "legacy_context_optimizer": {
+                "created": bool(legacy_rows),
+                "creation_count": len(legacy_rows),
+                "instances": legacy_rows,
+                "zero_grad_count": sum(row["zero_grad_count"] for row in legacy_rows),
+                "step_count": sum(row["step_count"] for row in legacy_rows),
+                "scheduler_step_count": self.scheduler_step_count,
+                "state_saved": any(row["state_saved"] for row in legacy_rows),
+                "discarded": bool(legacy_rows) and all(row["discarded"] for row in legacy_rows),
+                "diagnostic_overlap_count": sum(row["diagnostic_overlap_count"] for row in legacy_rows),
+                "frozen_context_parameter_overlap_count": sum(
+                    row["frozen_context_parameter_overlap_count"] for row in legacy_rows
+                ),
+            },
+            "backward_count": self.backward_count,
+            "checkpoint_write_count": self.checkpoint_write_count,
+            "frozen_parameter_change": frozen_change,
+            "exception": None if exception is None else f"{type(exception).__name__}: {exception}",
+            "root_cause_no_training_gate": "PASS" if gate_pass else "FAIL",
+            "paper_final": False,
+        }
+
+    def __exit__(self, exc_type: Any, exc_value: BaseException | None, exc_tb: Any) -> bool:
+        self._restore()
+        result = self.result(exc_value)
+        atomic_json(
+            self.attempt / "audits" / f"optimizer_provenance_{self.phase}.json",
+            result,
+            replace=True,
+        )
+        if result["root_cause_no_training_gate"] != "PASS" and exc_value is None:
+            raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION")
+        return False
+
+
+def aggregate_optimizer_provenance(attempt: Path) -> dict[str, Any]:
+    paths = sorted((attempt / "audits").glob("optimizer_provenance_*.json"))
+    rows = [read_json(path) for path in paths]
+    if not rows or any(row["root_cause_no_training_gate"] != "PASS" for row in rows):
+        raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: provenance aggregate")
+    instances = [
+        instance
+        for row in rows
+        for instance in row["legacy_context_optimizer"]["instances"]
+    ]
+    parameter_counts = {int(instance["parameter_count"]) for instance in instances}
+    group_counts = {int(instance["group_count"]) for instance in instances}
+    result = {
+        "schema_version": "canondressgs.research.continuous_control_optimizer_provenance_aggregate.v1",
+        "status": "PASS",
+        "task_id": TASK_ID,
+        "diagnostic_optimizer": {
+            "created": any(row["diagnostic_optimizer"]["created"] for row in rows),
+            "parameter_count": sum(int(row["diagnostic_optimizer"]["parameter_count"]) for row in rows),
+            "zero_grad_count": sum(int(row["diagnostic_optimizer"]["zero_grad_count"]) for row in rows),
+            "step_count": sum(int(row["diagnostic_optimizer"]["step_count"]) for row in rows),
+            "state_saved": any(row["diagnostic_optimizer"]["state_saved"] for row in rows),
+        },
+        "legacy_context_optimizer": {
+            "created": bool(instances),
+            "creation_count": len(instances),
+            "class": sorted({instance["class"] for instance in instances}),
+            "group_count": next(iter(group_counts)) if len(group_counts) == 1 else sorted(group_counts),
+            "parameter_count": next(iter(parameter_counts)) if len(parameter_counts) == 1 else sorted(parameter_counts),
+            "instances": instances,
+            "zero_grad_count": sum(int(instance["zero_grad_count"]) for instance in instances),
+            "step_count": sum(int(instance["step_count"]) for instance in instances),
+            "scheduler_step_count": sum(int(instance["scheduler_step_count"]) for instance in instances),
+            "state_saved": any(instance["state_saved"] for instance in instances),
+            "discarded": all(instance["discarded"] for instance in instances),
+            "diagnostic_overlap_count": sum(int(instance["diagnostic_overlap_count"]) for instance in instances),
+            "frozen_context_parameter_overlap_count": sum(
+                int(instance["frozen_context_parameter_overlap_count"]) for instance in instances
+            ),
+        },
+        "backward_count": sum(int(row["backward_count"]) for row in rows),
+        "checkpoint_write_count": sum(int(row["checkpoint_write_count"]) for row in rows),
+        "frozen_parameter_change": sum(int(row["frozen_parameter_change"]) for row in rows),
+        "phase_audits": [str(path) for path in paths],
+        "root_cause_no_training_gate": "PASS",
+        "paper_final": False,
+    }
+    if (
+        result["diagnostic_optimizer"]["created"]
+        or result["legacy_context_optimizer"]["zero_grad_count"]
+        or result["legacy_context_optimizer"]["step_count"]
+        or result["legacy_context_optimizer"]["scheduler_step_count"]
+        or result["backward_count"]
+        or result["checkpoint_write_count"]
+        or result["frozen_parameter_change"]
+        or not result["legacy_context_optimizer"]["discarded"]
+    ):
+        raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: aggregate values")
+    return result
 
 
 def sha256(path: Path, *, lf: bool = False) -> str:
@@ -245,6 +562,65 @@ def run_preflight(attempt: Path, asset_root: Path) -> dict[str, Any]:
             "checkpoint_writes": 0,
             "paper_final": 0,
         },
+        "paper_final": False,
+    }
+    atomic_json(result_path, result)
+    return result
+
+
+def classify_previous_attempt(output_root: Path) -> dict[str, Any]:
+    attempt = output_root / "attempt_001"
+    result_path = attempt / "audits/FAILED_GATE_FALSE_POSITIVE_LEGACY_OPTIMIZER_OBJECT.json"
+    if result_path.is_file():
+        return read_json(result_path)
+    preflight_path = attempt / "audits/preflight.json"
+    channel_path = attempt / "aggregates/channel_interpolation_results.json"
+    if not preflight_path.is_file() or not channel_path.is_file():
+        raise RuntimeError("previous failed attempt evidence is incomplete")
+    preflight = read_json(preflight_path)
+    channel = read_json(channel_path)
+    rgb_count = len(list((attempt / "channel_interpolation").rglob("*_rgb.png")))
+    alpha_count = len(list((attempt / "channel_interpolation").rglob("*_alpha.png")))
+    support_exists = (attempt / "aggregates/support_conflict_results.json").is_file()
+    role_exists = (attempt / "aggregates/per_gaussian_role_conflict_results.json").is_file()
+    correlation_exists = (attempt / "aggregates/stable_pair_correlation_results.json").is_file()
+    visual_review_exists = (attempt / "aggregates/continuous_control_root_cause_visual_review.json").is_file()
+    result = {
+        "schema_version": "canondressgs.research.root_cause_gate_false_positive.v1",
+        "status": "FAILED_GATE_FALSE_POSITIVE_LEGACY_OPTIMIZER_OBJECT",
+        "classification": "ROOT_CAUSE_GATE_FALSE_POSITIVE",
+        "task_id": TASK_ID,
+        "attempt": "attempt_001",
+        "preserved": True,
+        "overwritten": False,
+        "eligible_for_scientific_reuse": False,
+        "trigger": "build_image_conditioned_optimizer created one discarded legacy/context Adam object",
+        "counts": {
+            "evaluation_records": 0,
+            "channel_rgb_renders": rgb_count,
+            "channel_alpha_renders": alpha_count,
+            "channel_metric_records": len(channel["records"]),
+            "channel_metric_values": len(channel["records"]) * 5,
+            "full_renders_reused": int(channel["reused_full_render_count"]),
+            "full_renders_regenerated": int(channel["full_render_regeneration_count"]),
+            "support_result_files": int(support_exists),
+            "role_result_files": int(role_exists),
+            "correlation_result_files": int(correlation_exists),
+            "manual_visual_review_files": int(visual_review_exists),
+            "backward_calls": 0,
+            "optimizer_zero_grad_calls": 0,
+            "optimizer_steps": 0,
+            "scheduler_steps": 0,
+            "checkpoint_writes": 0,
+            "paper_final": 0,
+        },
+        "frozen_asset_verification": preflight["frozen_asset_verification"],
+        "frozen_trees_before": preflight["frozen_trees_before"],
+        "scientific_result_status": "INVALID_FOR_REUSE_DUE_TO_FAILED_ATTEMPT",
+        "note": (
+            "The attempt advanced through channel rendering before the over-broad gate was adjudicated. "
+            "All files are retained, but none are reused by attempt_002."
+        ),
         "paper_final": False,
     }
     atomic_json(result_path, result)
@@ -964,6 +1340,7 @@ def write_reports(
     primary: str,
     secondary: Sequence[str],
     next_task: str,
+    optimizer_provenance: Mapping[str, Any],
 ) -> dict[str, str]:
     attribution_rows = [
         [name, value["reproduction_count"], value["none_minor_count"]]
@@ -1003,6 +1380,18 @@ def write_reports(
         f"- PRIMARY_FAILURE_SOURCE: **{primary}**.\n"
         f"- SECONDARY_FAILURE_SOURCES: `{json.dumps(list(secondary))}`.\n"
         f"- NEXT_TASK: **{next_task}** (not started).\n\n"
+        "## Repaired no-training gate\n\n"
+        "- Previous attempt: `attempt_001`, permanently classified "
+        "`FAILED_GATE_FALSE_POSITIVE_LEGACY_OPTIMIZER_OBJECT`; none of its renders or metrics were reused.\n"
+        f"- Diagnostic optimizer created: `{optimizer_provenance['diagnostic_optimizer']['created']}`; "
+        f"step count: `{optimizer_provenance['diagnostic_optimizer']['step_count']}`.\n"
+        f"- Legacy context optimizer created: `{optimizer_provenance['legacy_context_optimizer']['created']}` "
+        f"({optimizer_provenance['legacy_context_optimizer']['creation_count']} runtime contexts); "
+        f"step count: `{optimizer_provenance['legacy_context_optimizer']['step_count']}`; "
+        f"discarded: `{optimizer_provenance['legacy_context_optimizer']['discarded']}`.\n"
+        f"- Backward: `{optimizer_provenance['backward_count']}`; checkpoint writes: "
+        f"`{optimizer_provenance['checkpoint_write_count']}`; frozen parameter changes: "
+        f"`{optimizer_provenance['frozen_parameter_change']}`.\n\n"
         "## Channel attribution\n\n"
         + markdown_table(["variant", "FULL reproduction pairs", "NONE/MINOR pairs"], attribution_rows)
         + "\n\n"
@@ -1076,6 +1465,13 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
     attribution = channel_attribution(channel, review)
     correlations = correlation_results(support, full_scores, alignment_count)
     primary, secondary, next_task = choose_root_cause(attribution, correlations)
+    optimizer_provenance = aggregate_optimizer_provenance(attempt)
+    previous_failure_path = (
+        attempt.parent / "attempt_001/audits/FAILED_GATE_FALSE_POSITIVE_LEGACY_OPTIMIZER_OBJECT.json"
+    )
+    if not previous_failure_path.is_file():
+        raise RuntimeError("previous false-positive attempt was not permanently classified")
+    previous_failure = read_json(previous_failure_path)
     preflight = read_json(attempt / "audits/preflight.json")
     frozen_after = {
         "formal": tree_manifest(asset_root / sealed.FORMAL_NAME),
@@ -1107,11 +1503,15 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
             "stable_pairs": 3,
             "unstable_pairs": 7,
             "training_steps": 0,
-            "backward_calls": 0,
-            "optimizer_created": 0,
-            "optimizer_steps": 0,
-            "scheduler_steps": 0,
-            "checkpoint_writes": 0,
+            "backward_calls": optimizer_provenance["backward_count"],
+            "diagnostic_optimizer_created": int(optimizer_provenance["diagnostic_optimizer"]["created"]),
+            "diagnostic_optimizer_steps": optimizer_provenance["diagnostic_optimizer"]["step_count"],
+            "legacy_context_optimizer_created": int(optimizer_provenance["legacy_context_optimizer"]["created"]),
+            "legacy_context_optimizer_creation_count": optimizer_provenance["legacy_context_optimizer"]["creation_count"],
+            "legacy_context_optimizer_zero_grad": optimizer_provenance["legacy_context_optimizer"]["zero_grad_count"],
+            "legacy_context_optimizer_steps": optimizer_provenance["legacy_context_optimizer"]["step_count"],
+            "scheduler_steps": optimizer_provenance["legacy_context_optimizer"]["scheduler_step_count"],
+            "checkpoint_writes": optimizer_provenance["checkpoint_write_count"],
             "teacher_mutation": 0,
             "basis_mutation": 0,
             "formal_output_mutation": 0,
@@ -1132,6 +1532,11 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
         "frozen_trees_before": preflight["frozen_trees_before"],
         "frozen_trees_after": frozen_after,
         "frozen_assets_unchanged": frozen_unchanged,
+        "previous_failed_attempt": previous_failure,
+        "false_positive_classification": "ROOT_CAUSE_GATE_FALSE_POSITIVE",
+        "optimizer_provenance": optimizer_provenance,
+        "optimizer_provenance_path": "paper_protocol/reviewer_risk/continuous_control_root_cause_optimizer_provenance.json",
+        "root_cause_no_training_gate": "PASS",
         "visual_review_path": str(review_path),
         "next_task": next_task,
         "next_task_started": False,
@@ -1147,8 +1552,22 @@ def run_finalize(attempt: Path, asset_root: Path, review_path: Path) -> dict[str
     copy_json_to_repo("paper_protocol/reviewer_risk/per_gaussian_role_conflict_results.json", role)
     copy_json_to_repo("paper_protocol/reviewer_risk/stable_pair_correlation_results.json", correlations)
     copy_json_to_repo("paper_protocol/reviewer_risk/continuous_control_root_cause_visual_review.json", review)
+    copy_json_to_repo(
+        "paper_protocol/reviewer_risk/continuous_control_root_cause_optimizer_provenance.json",
+        optimizer_provenance,
+    )
     copy_json_to_repo("paper_protocol/reviewer_risk/continuous_control_root_cause_final_summary.json", summary)
-    write_reports(attribution, support, role, correlations, review, primary, secondary, next_task)
+    write_reports(
+        attribution,
+        support,
+        role,
+        correlations,
+        review,
+        primary,
+        secondary,
+        next_task,
+        optimizer_provenance,
+    )
     return summary
 
 
@@ -1157,10 +1576,18 @@ def main() -> None:
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--attempt", default="attempt_001")
-    parser.add_argument("--phase", choices=("preflight", "render", "analyze", "visuals", "finalize", "all"), default="all")
+    parser.add_argument(
+        "--phase",
+        choices=("classify-previous", "preflight", "render", "analyze", "visuals", "finalize", "all"),
+        default="all",
+    )
     parser.add_argument("--visual-review", type=Path)
     args = parser.parse_args()
     frozen_protocol = protocol()
+    if args.phase == "classify-previous":
+        result = classify_previous_attempt(args.output_root.resolve())
+        print(json.dumps({"phase": args.phase, "status": result["status"]}, sort_keys=True))
+        return
     attempt = attempt_path(args.output_root.resolve(), args.attempt)
     if args.phase in {"preflight", "all"}:
         result = run_preflight(attempt, args.asset_root.resolve())
@@ -1172,22 +1599,23 @@ def main() -> None:
     validate_source_and_archive()
     full, _ = full_index()
     if args.phase in {"render", "analyze", "visuals", "all"}:
-        runtime_value = runtime(attempt, args.asset_root.resolve(), frozen_protocol)
-    if args.phase in {"render", "all"}:
-        result = run_channel_render(runtime_value, full)
-        print(json.dumps({"phase": "render", "render_count": result["render_count"]}, sort_keys=True))
-        if args.phase == "render":
-            return
-    if args.phase in {"analyze", "all"}:
-        support, role = run_support_and_role(runtime_value, full)
-        print(json.dumps({"phase": "analyze", "support_pairs": support["pair_count"], "role_pairs": role["pair_count"]}, sort_keys=True))
-        if args.phase == "analyze":
-            return
-    if args.phase in {"visuals", "all"}:
-        result = run_visuals(runtime_value, full)
-        print(json.dumps({"phase": "visuals", "visual_count": result["counts"]["total"]}, sort_keys=True))
-        if args.phase == "visuals":
-            return
+        with NoTrainingProvenance(attempt, args.phase):
+            runtime_value = runtime(attempt, args.asset_root.resolve(), frozen_protocol)
+            if args.phase in {"render", "all"}:
+                result = run_channel_render(runtime_value, full)
+                print(json.dumps({"phase": "render", "render_count": result["render_count"]}, sort_keys=True))
+                if args.phase == "render":
+                    return
+            if args.phase in {"analyze", "all"}:
+                support, role = run_support_and_role(runtime_value, full)
+                print(json.dumps({"phase": "analyze", "support_pairs": support["pair_count"], "role_pairs": role["pair_count"]}, sort_keys=True))
+                if args.phase == "analyze":
+                    return
+            if args.phase in {"visuals", "all"}:
+                result = run_visuals(runtime_value, full)
+                print(json.dumps({"phase": "visuals", "visual_count": result["counts"]["total"]}, sort_keys=True))
+                if args.phase == "visuals":
+                    return
     if args.phase in {"finalize", "all"}:
         if args.visual_review is None:
             if args.phase == "all":
