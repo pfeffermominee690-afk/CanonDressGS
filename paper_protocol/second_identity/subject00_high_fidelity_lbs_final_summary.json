@@ -1,0 +1,82 @@
+{
+  "candidate_results": {
+    "DETERMINISTIC_CLOSEST_TRIANGLE": "FAIL",
+    "HYBRID_SURFACE_ATTACHED_LBS": "CLOSEST_TRIANGLE_FALLBACK_INSUFFICIENT",
+    "LEGACY_POINTINTERPOLANT_GRID": "FAILURE_BASELINE_RETAINED",
+    "SURFACE_FACE_ATTACHMENT": "PASS"
+  },
+  "classification": "CLOSEST_TRIANGLE_FALLBACK_INSUFFICIENT",
+  "counters": {
+    "PAPER_FINAL": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "training_checkpoint_writes": 0,
+    "training_forward_batches": 0,
+    "training_steps": 0
+  },
+  "formal_target_exists": false,
+  "gates": {
+    "closest_triangle_tie": true,
+    "densification": true,
+    "determinism": true,
+    "gaussian_200k_attachment": true,
+    "narrow_band": false,
+    "pose_parity": true,
+    "renderer_smoke": false,
+    "runtime_consumer_compatible_without_repair": false,
+    "surface_leakage": true,
+    "surface_sample_fidelity": true,
+    "vertex_fidelity": true
+  },
+  "immutability": {
+    "attempt_001": {
+      "aggregate_sha256": "9ec619fd6923e507bfcc197bfa252ae6f4607a006ad03497baa215a5e3da75d2",
+      "file_count": 370,
+      "total_bytes": 4171424719,
+      "unchanged": true
+    },
+    "attempt_002": {
+      "aggregate_sha256": "75bf719d906d94de476fb51ad82b2999d74f77d9056f2507a25fdc666b372457",
+      "file_count": 1021,
+      "total_bytes": 24351029781,
+      "unchanged": true
+    },
+    "baseline_and_final_snapshot_sha256": "df5e6ef91b1233c85fe36a18e307d8a4b6c6eee204f36416a9c20621cc6493b5",
+    "runtime_closure_aggregate_sha256": "aa8b1dfd9756baccb91260fc13d56658ef140690244e3538e3797943428a7d17",
+    "strict_splits_unchanged": true,
+    "subject00_raw_unchanged": true,
+    "subject02_unchanged": true
+  },
+  "next_task": "DESIGN_REGION_GATED_OFF_SURFACE_LBS_FALLBACK",
+  "outputs": {
+    "densification_contract": "docs/SECOND_IDENTITY/SUBJECT00_DENSIFICATION_LBS_CONTRACT_20260723.md",
+    "densification_results": "paper_protocol/second_identity/subject00_densification_lbs_results.json",
+    "final_summary": "paper_protocol/second_identity/subject00_high_fidelity_lbs_final_summary.json",
+    "handoff": "project_control_handoff/subject00_high_fidelity_lbs_design_handoff.json",
+    "main_contract": "docs/SECOND_IDENTITY/SUBJECT00_HIGH_FIDELITY_LBS_CONTRACT_20260723.md",
+    "narrow_band_results": "paper_protocol/second_identity/subject00_narrow_band_lbs_results.json",
+    "off_surface_analysis": "docs/SECOND_IDENTITY/SUBJECT00_OFF_SURFACE_LBS_FALLBACK_ANALYSIS_20260723.md",
+    "runtime_audit": "docs/SECOND_IDENTITY/SUBJECT00_LBS_RUNTIME_CONSUMER_AUDIT_20260723.md",
+    "surface_attachment_results": "paper_protocol/second_identity/subject00_surface_attachment_results.json",
+    "surface_runtime_audit": "docs/SECOND_IDENTITY/SUBJECT00_SURFACE_ATTACHMENT_RUNTIME_AUDIT_20260723.md"
+  },
+  "publication": "NOT_RUN_DESIGN_TASK_ONLY",
+  "renderer_smoke": "NOT_RUN_RUNTIME_INTERFACE_PRECONDITION_FAILED",
+  "prototype": {
+    "attempt_history_preserved": [
+      "prototype_run_a_missing_rtree_failure_001",
+      "prototype_run_a_pre_priority_tie_oracle_fix_002",
+      "prototype_run_a_pre_complete_reporting_003"
+    ],
+    "checkpoint_npz_sha256_a_b": "559c57da8bdd3ebcccc61bb818503d3c43a931f2a8352976b5168dbf683a5154",
+    "deterministic_manifest_sha256_a_b": "b2960305bf4ef10d564a75488409604ace6772344ba290f751703d35b08b9f57",
+    "surface_attachment_npz_sha256_a_b": "2e506954de21dfd10d5efc3831cc0468f53d3b5d85bcf69dd6b9d639fc19f9dc",
+    "two_fresh_processes_exact": true
+  },
+  "source_head": "f88cc6a798747ad93ab9e6fe26f92c3e23229c9c",
+  "selected_primary_contract": "SURFACE_FACE_ATTACHMENT",
+  "status": "COMPLETE_NO_TRAINING_NO_PUBLICATION",
+  "task_id": "MMLPHUMAN-SUBJECT00-HIGH-FIDELITY-LBS-DESIGN-001"
+}

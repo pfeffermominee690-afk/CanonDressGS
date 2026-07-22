@@ -21,7 +21,7 @@ The runtime LBS consumer closure is identified. The legacy volume is **not an al
 
 The complete flow is:
 
-`Scene grid load → create_from_pcd grid state → lazy grid_sample at base _xyz → cached _weights → per-pose G-weight blend → canonical-to-live transform → renderer`.
+`Scene grid load -> create_from_pcd grid state -> lazy grid_sample at base _xyz -> cached _weights -> per-pose G-weight blend -> canonical-to-live transform -> renderer`.
 
 Checkpoint-driven test and network visualization instantiate `GaussianModel`, restore `_weights`, and render without loading the LBS grid.
 
