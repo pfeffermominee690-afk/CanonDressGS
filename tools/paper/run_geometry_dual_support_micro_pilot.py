@@ -78,6 +78,7 @@ CORE_CATEGORIES = VISUAL_CATEGORIES[:6]
 ACTIVE_OPACITY_THRESHOLD = 1.0 / 255.0
 LOGIT_EPSILON = 1.0e-6
 PARITY_TOLERANCE = 1.0e-6
+EVALUATION_LABEL = "RESEARCH MICRO-PILOT — NOT PAPER FINAL"
 
 
 previous.TASK_ID = TASK_ID
@@ -225,7 +226,7 @@ def run_preflight(output_root: Path, asset_root: Path) -> dict[str, Any]:
     result = {
         "schema_version": "canondressgs.research.geometry_dual_support_preflight.v1",
         "status": "PASS",
-        "label": "RESEARCH MICRO-PILOT — NOT PAPER FINAL",
+        "label": EVALUATION_LABEL,
         "task_id": TASK_ID,
         "source_head": SOURCE_HEAD,
         "execution_head": git("rev-parse", "HEAD"),
@@ -578,7 +579,10 @@ def run_endpoint_parity(
                             }
                             atomic_json(attempt / "audits/MICRO-PILOT-ENDPOINT-PARITY-FAIL.json", failure)
                             raise RuntimeError("MICRO-PILOT-ENDPOINT-PARITY-FAIL")
-    if len(records) != 96:
+    expected_records = (
+        len(SELECTED_PAIRS) * len(DIRECTIONS) * 2 * len(CONDITIONS) * len(NEW_VARIANTS)
+    )
+    if len(records) != expected_records:
         raise RuntimeError("endpoint parity accounting mismatch")
     result = {
         "schema_version": "canondressgs.research.geometry_dual_support_endpoint_parity.v1",
@@ -636,12 +640,15 @@ def image_metrics(
     alpha: torch.Tensor,
     reference: torch.Tensor,
     source_rgb: torch.Tensor,
+    target_rgb: torch.Tensor,
 ) -> dict[str, float]:
     sample = runtime_value.context["samples"][f"{left}/{condition}"]
     garment = diagnosis._garment_mask(sample)
     protected = sample["target_protected_mask"]
     silhouette_iou, boundary_fscore, tolerance = sealed.silhouette_metrics(alpha, garment)
     outside = 1.0 - garment
+    source_error = (rgb - source_rgb).abs().mean(dim=0, keepdim=True)
+    target_error = (rgb - target_rgb).abs().mean(dim=0, keepdim=True)
     return {
         "garment_rgb_mae": causal.masked_mae(rgb, reference, garment),
         "garment_lpips": sealed.lpips_distance(runtime_value, rgb, reference, garment),
@@ -650,6 +657,9 @@ def image_metrics(
         "boundary_tolerance": tolerance,
         "protected_lpips": sealed.lpips_distance(runtime_value, rgb, source_rgb, protected),
         "identity_metric": causal.masked_mae(rgb, source_rgb, protected),
+        "target_closer_fraction": masked_mean((target_error < source_error).float(), garment),
+        "source_endpoint_rgb_max_abs": tensor_max_abs(rgb, source_rgb),
+        "target_endpoint_rgb_max_abs": tensor_max_abs(rgb, target_rgb),
         "outside_garment_opacity": masked_mean(alpha, outside),
     }
 
@@ -798,7 +808,7 @@ def run_formal_renders(
                         "rgb_sha256": sha256(full_rgb_path),
                         "alpha_sha256": sha256(full_alpha_path),
                         "reused": True,
-                        **image_metrics(runtime_value, left, condition, full_rgb, full_alpha, reference, source_rgb),
+                        **image_metrics(runtime_value, left, condition, full_rgb, full_alpha, reference, source_rgb, target_rgb),
                         **full_diag,
                         **residual_displacement(source, (full_residual,)),
                     }
@@ -830,7 +840,7 @@ def run_formal_renders(
                         "rgb_path": str(render_paths(attempt, "HARD_GEOMETRY_SOFT_VA", pair_id, direction, condition, alpha)[0]),
                         "alpha_path": str(render_paths(attempt, "HARD_GEOMETRY_SOFT_VA", pair_id, direction, condition, alpha)[1]),
                         "reused": not hard_created,
-                        **image_metrics(runtime_value, left, condition, hard_rgb, hard_alpha, reference, source_rgb),
+                        **image_metrics(runtime_value, left, condition, hard_rgb, hard_alpha, reference, source_rgb, target_rgb),
                         **hard_diag,
                         **residual_displacement(source, (hard,)),
                     })
@@ -863,19 +873,20 @@ def run_formal_renders(
                         "alpha_path": str(render_paths(attempt, "DUAL_SUPPORT_GEOMETRY_BLEND", pair_id, direction, condition, alpha)[1]),
                         "reused": not dual_created,
                         "duplicate_support": duplicate,
-                        **image_metrics(runtime_value, left, condition, dual_rgb, dual_alpha, reference, source_rgb),
+                        **image_metrics(runtime_value, left, condition, dual_rgb, dual_alpha, reference, source_rgb, target_rgb),
                         **dual_diag,
                         **residual_displacement(source, (source, target)),
                     })
     expected = len(SELECTED_PAIRS) * len(DIRECTIONS) * len(CONDITIONS) * len(ALPHAS)
     if len(records) != expected * len(VARIANTS):
         raise RuntimeError("formal metric matrix is incomplete")
-    if len(full_hashes) != 36:
+    expected_unique_full = len(SELECTED_PAIRS) * len(CONDITIONS) * len(ALPHAS)
+    if len(full_hashes) != expected_unique_full:
         raise RuntimeError("FULL unique reuse accounting mismatch")
     result = {
         "schema_version": "canondressgs.research.geometry_dual_support_execution.v1",
         "status": "AUTOMATIC_METRICS_COMPLETE_MANUAL_REVIEW_REQUIRED",
-        "label": "RESEARCH MICRO-PILOT — NOT PAPER FINAL",
+        "label": EVALUATION_LABEL,
         "task_id": TASK_ID,
         "protocol_sha256_lf": PROTOCOL_SHA256,
         "selected_pairs": [f"{left}_{right}" for left, right in SELECTED_PAIRS],
@@ -1060,7 +1071,7 @@ def run_analyze(output_root: Path) -> dict[str, Any]:
     result = {
         "schema_version": "canondressgs.research.geometry_dual_support_analysis.v1",
         "status": "AUTOMATIC_ANALYSIS_COMPLETE_MANUAL_REVIEW_REQUIRED",
-        "label": "RESEARCH MICRO-PILOT — NOT PAPER FINAL",
+        "label": EVALUATION_LABEL,
         "task_id": TASK_ID,
         "record_count": len(records),
         "aggregates": aggregates,
@@ -1266,7 +1277,7 @@ def run_finalize(output_root: Path, asset_root: Path, review_path: Path) -> dict
     results = {
         "schema_version": "canondressgs.research.geometry_dual_support_micro_pilot_results.v1",
         "status": "COMPLETE",
-        "label": "RESEARCH MICRO-PILOT — NOT PAPER FINAL",
+        "label": EVALUATION_LABEL,
         "task_id": TASK_ID,
         "protocol_sha256_lf": PROTOCOL_SHA256,
         "execution": execution,
@@ -1279,7 +1290,7 @@ def run_finalize(output_root: Path, asset_root: Path, review_path: Path) -> dict
     summary = {
         "schema_version": "canondressgs.research.geometry_dual_support_micro_pilot_final_summary.v1",
         "status": "COMPLETE",
-        "label": "RESEARCH MICRO-PILOT — NOT PAPER FINAL",
+        "label": EVALUATION_LABEL,
         "task_id": TASK_ID,
         "source_head": SOURCE_HEAD,
         "execution_head": git("rev-parse", "HEAD"),
@@ -1318,7 +1329,7 @@ def run_finalize(output_root: Path, asset_root: Path, review_path: Path) -> dict
     report = [
         "# AAAI27 Geometry-Disentangled Dual-Support Micro-Pilot",
         "",
-        "**RESEARCH MICRO-PILOT — NOT PAPER FINAL**",
+        f"**{EVALUATION_LABEL}**",
         "",
         f"- Source HEAD: `{SOURCE_HEAD}`.",
         f"- Protocol SHA-256: `{PROTOCOL_SHA256}`.",
