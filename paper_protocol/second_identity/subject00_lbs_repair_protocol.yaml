@@ -3,6 +3,14 @@ task_id: MMLPHUMAN-SUBJECT00-LBS-REPAIR-001
 attempt: attempt_002
 status: FROZEN_BEFORE_DIAGNOSTIC_RUNS
 
+protocol_amendment_001:
+  status: FROZEN_BEFORE_VALID_T12_PAIR
+  reason: Setting all numeric-library thread variables to 12 changed independently regenerated SMPL-X/gradient text bytes and confounded the solver-thread comparison.
+  action: Use the attempt_001/T1-verified common solver-input pack and frozen template vertices for both valid T12 runs.
+  invalid_run: T12_A_INPUT_CONFOUND_PRESERVED
+  threshold_changes: 0
+  scientific_parameter_changes: 0
+
 source:
   branch: research/mmlphuman-subject00-derived-assets-20260723
   head: aac37279b235c0fbcbb04c572b5bba6071416da3
@@ -71,6 +79,13 @@ solver_contract:
   runtime_point_reorder: xyz_to_zyx_before_grid_sample
 
 thread_matrix:
+  frozen_solver_input_source: attempt_001/run_a/lbs/work/tmp/cano_data_lbs_{val,grad}_00..54.xyz
+  frozen_solver_input_aggregate_sha256: df0fabd1c34d2851ece81b400447a0e250f34c5694efc99806f3cdc0addd76e0
+  input_identity_evidence:
+    - attempt_001 run_a and run_b input aggregates exact
+    - T1_A and T1_B independently generated input aggregates exact to attempt_001
+  frozen_bbox_template_vertices: attempt_001/run_a/template/template_vertices.npy
+  invalid_matrix_run_policy: preserve any run with a discovered input confound under attempt_history and exclude it from causal comparison
   variables:
     - OMP_NUM_THREADS
     - MKL_NUM_THREADS

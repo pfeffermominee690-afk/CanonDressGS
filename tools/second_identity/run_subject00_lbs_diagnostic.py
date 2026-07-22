@@ -193,6 +193,7 @@ def build_model_and_inputs(
     smpl_model_path: Path,
     smpl_params_path: Path,
     input_dir: Path,
+    generate_inputs: bool,
 ) -> tuple[Any, trimesh.Trimesh, np.ndarray, dict[str, Any]]:
     params = np.load(smpl_params_path, allow_pickle=False)
     betas = np.asarray(params["betas"][0], dtype=np.float32)
@@ -213,8 +214,9 @@ def build_model_and_inputs(
     vertices = output.vertices[0].cpu().numpy().astype(np.float32)
     faces = np.asarray(model.faces, dtype=np.int64)
     mesh = trimesh.Trimesh(vertices, faces, process=False)
-    generator_module.tmp_dir = str(input_dir)
-    generator_module.compute_lbs_grad(mesh, model.lbs_weights.cpu().numpy())
+    if generate_inputs:
+        generator_module.tmp_dir = str(input_dir)
+        generator_module.compute_lbs_grad(mesh, model.lbs_weights.cpu().numpy())
     audit = {
         "vertices_shape": list(vertices.shape),
         "vertices_sha256": sha256_array(vertices),
@@ -287,6 +289,8 @@ def main() -> int:
     parser.add_argument("--smpl-model", type=Path, required=True)
     parser.add_argument("--point-interpolant", type=Path, required=True)
     parser.add_argument("--threads", type=int, choices=(1, 12), required=True)
+    parser.add_argument("--frozen-input-root", type=Path)
+    parser.add_argument("--frozen-bbox-template-vertices", type=Path)
     args = parser.parse_args()
 
     run_root = args.output_root.resolve()
@@ -321,8 +325,19 @@ def main() -> int:
     started = time.perf_counter()
     generator_module = load_module(frozen_generator)
     model, mesh, vertices, reference_audit = build_model_and_inputs(
-        generator_module, args.smpl_model.resolve(), local_smpl_params, input_dir
+        generator_module,
+        args.smpl_model.resolve(),
+        local_smpl_params,
+        input_dir,
+        generate_inputs=args.frozen_input_root is None,
     )
+    if args.frozen_input_root is not None:
+        frozen_input_root = args.frozen_input_root.resolve()
+        for channel in range(model.lbs_weights.shape[-1]):
+            for kind in ("val", "grad"):
+                source = frozen_input_root / f"cano_data_lbs_{kind}_{channel:02d}.xyz"
+                target = input_dir / source.name
+                shutil.copy2(source, target)
     inputs = input_manifest(input_dir, model.lbs_weights.shape[-1])
     solver_log = reports_dir / "point_interpolant.log"
     commands = run_solver(
@@ -354,8 +369,11 @@ def main() -> int:
     canonical_grid_path = stages_dir / "canonical_grid_xyz_joint_float32.npy"
     np.save(canonical_grid_path, canonical_grid, allow_pickle=False)
 
-    min_xyz = vertices.min(axis=0).astype(np.float32)
-    max_xyz = vertices.max(axis=0).astype(np.float32)
+    bbox_vertices = vertices
+    if args.frozen_bbox_template_vertices is not None:
+        bbox_vertices = np.load(args.frozen_bbox_template_vertices.resolve(), allow_pickle=False).astype(np.float32)
+    min_xyz = bbox_vertices.min(axis=0).astype(np.float32)
+    max_xyz = bbox_vertices.max(axis=0).astype(np.float32)
     # Preserve the frozen generator's scalar-expression semantics exactly.
     max_len = 1.1 * (max_xyz - min_xyz).max()
     center = 0.5 * (min_xyz + max_xyz)
@@ -406,6 +424,10 @@ def main() -> int:
             "point_interpolant_sha256": sha256_file(local_binary),
             "gradient_inputs": inputs,
             "reference": reference_audit,
+            "solver_input_policy": "independently_generated" if args.frozen_input_root is None else "copied_from_frozen_common_input_pack",
+            "frozen_input_root": None if args.frozen_input_root is None else str(args.frozen_input_root.resolve()),
+            "bbox_template_vertices": None if args.frozen_bbox_template_vertices is None else str(args.frozen_bbox_template_vertices.resolve()),
+            "bbox_template_vertices_sha256": None if args.frozen_bbox_template_vertices is None else sha256_file(args.frozen_bbox_template_vertices.resolve()),
         },
         "solver": {
             "joint_count": int(model.lbs_weights.shape[-1]),
