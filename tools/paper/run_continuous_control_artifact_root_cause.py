@@ -201,7 +201,9 @@ class NoTrainingProvenance:
                 "parameter_name_fingerprint": hashlib.sha256(
                     "\n".join(name for name, _ in named).encode("utf-8")
                 ).hexdigest(),
-                "parameter_fingerprint_before": parameter_fingerprint(named),
+                "parameter_fingerprint_at_legacy_creation": parameter_fingerprint(named),
+                "parameter_fingerprint_before": None,
+                "frozen_baseline_captured": False,
                 "creation_stack": traceback.format_stack(limit=16),
                 "lifecycle": "CREATED_BY_LEGACY_CONTEXT_HELPER_AND_DISCARDED_BY_CALLER",
                 "counters": counters,
@@ -242,6 +244,21 @@ class NoTrainingProvenance:
         torch.save = tracked_torch_save
         return self
 
+    def capture_frozen_runtime_baseline(self) -> None:
+        """Freeze the comparison baseline after immutable checkpoints are loaded."""
+        for item in self.legacy_instances:
+            if item["frozen_baseline_captured"]:
+                raise RuntimeError("frozen runtime baseline was already captured")
+            live_parameters = [
+                (name, parameter)
+                for name, reference in item["parameter_refs"]
+                if (parameter := reference()) is not None
+            ]
+            if len(live_parameters) != item["parameter_tensor_count"]:
+                raise RuntimeError("legacy context parameters disappeared before frozen baseline")
+            item["parameter_fingerprint_before"] = parameter_fingerprint(live_parameters)
+            item["frozen_baseline_captured"] = True
+
     def _restore(self) -> None:
         self._legacy_training.build_image_conditioned_optimizer = self._originals["builder"]
         torch.optim.Optimizer.__init__ = self._originals["optimizer_init"]
@@ -260,8 +277,13 @@ class NoTrainingProvenance:
                 parameter = reference()
                 if parameter is not None:
                     live_parameters.append((name, parameter))
-            after = parameter_fingerprint(live_parameters) if live_parameters else item["parameter_fingerprint_before"]
-            changed = int(after != item["parameter_fingerprint_before"])
+            baseline = item["parameter_fingerprint_before"]
+            after = parameter_fingerprint(live_parameters) if live_parameters else baseline
+            changed = int(
+                not item["frozen_baseline_captured"]
+                or baseline is None
+                or after != baseline
+            )
             frozen_change += changed
             counters = item["counters"]
             legacy_rows.append({
@@ -281,8 +303,10 @@ class NoTrainingProvenance:
                 "state_saved": False,
                 "diagnostic_overlap_count": item["diagnostic_overlap_count"],
                 "frozen_context_parameter_overlap_count": item["frozen_context_parameter_overlap_count"],
-                "parameter_fingerprint_before": item["parameter_fingerprint_before"],
+                "parameter_fingerprint_at_legacy_creation": item["parameter_fingerprint_at_legacy_creation"],
+                "parameter_fingerprint_before": baseline,
                 "parameter_fingerprint_after": after,
+                "frozen_baseline_captured": item["frozen_baseline_captured"],
                 "parameter_change": changed,
             })
         gate_pass = (
@@ -1608,8 +1632,9 @@ def main() -> None:
     validate_source_and_archive()
     full, _ = full_index()
     if args.phase in {"render", "analyze", "visuals", "all"}:
-        with NoTrainingProvenance(attempt, args.phase):
+        with NoTrainingProvenance(attempt, args.phase) as provenance:
             runtime_value = runtime(attempt, args.asset_root.resolve(), frozen_protocol)
+            provenance.capture_frozen_runtime_baseline()
             if args.phase in {"render", "all"}:
                 result = run_channel_render(runtime_value, full)
                 print(json.dumps({"phase": "render", "render_count": result["render_count"]}, sort_keys=True))

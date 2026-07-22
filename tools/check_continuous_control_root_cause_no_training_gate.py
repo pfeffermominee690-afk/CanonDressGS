@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import gc
 import json
 import sys
 from pathlib import Path
@@ -77,7 +76,8 @@ def test_teacher_basis_and_frozen_assets_are_unchanged(
     assert before_trees == after_trees
     assert record["frozen_parameter_change"] == 0
     assert all(
-        instance["parameter_fingerprint_before"] == instance["parameter_fingerprint_after"]
+        instance["frozen_baseline_captured"] is True
+        and instance["parameter_fingerprint_before"] == instance["parameter_fingerprint_after"]
         for instance in record["legacy_context_optimizer"]["instances"]
     )
 
@@ -100,11 +100,10 @@ def main() -> None:
         "sealed_evaluation": runner.tree_manifest(asset_root / runner.sealed.OUTPUT_NAME),
     }
     frozen_protocol = runner.protocol()
-    with runner.NoTrainingProvenance(attempt, "gate_repair_test"):
+    with runner.NoTrainingProvenance(attempt, "gate_repair_test") as provenance:
         runtime_value = runner.runtime(attempt, asset_root, frozen_protocol)
         assert runtime_value.device.type == "cuda"
-        del runtime_value
-        gc.collect()
+        provenance.capture_frozen_runtime_baseline()
     record = runner.read_json(attempt / "audits/optimizer_provenance_gate_repair_test.json")
     after_assets = verify_manifest(frozen_manifest, runner.PROJECT_ROOT, asset_root, verify_external=True)
     after_trees = {
