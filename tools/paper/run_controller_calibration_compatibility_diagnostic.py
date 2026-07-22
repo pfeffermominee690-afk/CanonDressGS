@@ -285,11 +285,11 @@ def reaggregate(data: Mapping[str, Any], repository: Path) -> dict[str, Any]:
     for category in categories:
         selected = [int(row["grades"][category]) for row in primary]
         visual_recomputed[category] = {
-            "maximum": max(selected), "mean": mean(selected), "severe_record_count": sum(value == 3 for value in selected),
-            "severe_pair_count": len({row.get("pair_id") for row in primary if row.get("pair_id") and int(row["grades"][category]) == 3}),
+            "maximum_grade": max(selected), "mean_grade": mean(selected), "severe_sheet_count": sum(value == 3 for value in selected),
+            "affected_pair_count": len({row.get("pair_id") for row in primary if row.get("pair_id") and int(row["grades"][category]) > 0}),
         }
         expected = visual["category_summary"][category]
-        for key in ("maximum", "mean", "severe_record_count", "severe_pair_count"):
+        for key in ("maximum_grade", "mean_grade", "severe_sheet_count", "affected_pair_count"):
             if not math.isclose(float(visual_recomputed[category][key]), float(expected[key]), rel_tol=0.0, abs_tol=1e-12):
                 raise RuntimeError(f"FORMAL_CONTROLLER_SUMMARY_REAGGREGATION_MISMATCH: visual {category}/{key}")
     return {
