@@ -1,0 +1,771 @@
+{
+  "additional_training_after_300": 0,
+  "attempt_history": [
+    "attempt_001/audits/FAILED_EVALUATION_RUNTIME_RNG_CONTAMINATION.json",
+    "attempt_002/audits/FAILED_EVALUATION_RUNTIME_INCOMPLETE_RNG_FIX.json",
+    "attempt_003/audits/FAILED_CROSS_PROCESS_BASELINE_REUSE.json",
+    "attempt_004 (valid paired same-process evaluation/render)"
+  ],
+  "contract_hashes": {
+    "cycle": "f60b0ee64ff5ce2b6693f53dd7eb665cc6aee5aa310f314175d2932307d57c77",
+    "manifest": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3",
+    "protocol": "44ef0c53f7a5ec4fe19733371ffefb1be14d5b6902e7f4060707edd4660d9f49",
+    "schedule": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "preflight": {
+    "contract_hashes": {
+      "cycle": "f60b0ee64ff5ce2b6693f53dd7eb665cc6aee5aa310f314175d2932307d57c77",
+      "manifest": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3",
+      "protocol": "44ef0c53f7a5ec4fe19733371ffefb1be14d5b6902e7f4060707edd4660d9f49",
+      "schedule": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf"
+    },
+    "counts": {
+      "backward": 0,
+      "checkpoint_write": 0,
+      "forward_training_batch": 0,
+      "metric_smoke": 1,
+      "optimizer_created": 0,
+      "optimizer_step": 0,
+      "render_smoke": 1,
+      "scheduler_step": 0,
+      "training": 0
+    },
+    "environment": {
+      "conda_prefix": null,
+      "cuda": "12.1",
+      "cuda_available": true,
+      "deterministic": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "torch_deterministic_algorithms": true
+      },
+      "driver": "580.76.05",
+      "executable": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python",
+      "free_disk_bytes": 24925945856,
+      "free_inodes": 724198698,
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "gpu_processes": [
+        "65060, /root/autodl-tmp/conda_envs/mmlphuman/bin/python, 964 MiB",
+        "65342, /root/autodl-tmp/conda_envs/mmlphuman/bin/python, 2258 MiB"
+      ],
+      "hostname": "autodl-container-ef19489c10-464381bb",
+      "pip_freeze": [
+        "absl-py==2.5.0",
+        "addict==2.4.0",
+        "annotated-types==0.7.0",
+        "antlr4-python3-runtime==4.9.3",
+        "asttokens==3.0.2",
+        "attrs==26.1.0",
+        "blinker==1.9.0",
+        "certifi==2026.6.17",
+        "charset-normalizer==3.4.9",
+        "click==8.4.2",
+        "comm==0.2.3",
+        "ConfigArgParse==1.7.5",
+        "contourpy==1.3.2",
+        "cycler==0.12.1",
+        "dash==4.4.0",
+        "dearpygui==2.3.1",
+        "decorator==5.3.1",
+        "exceptiongroup==1.3.1",
+        "executing==2.2.1",
+        "fastjsonschema==2.21.2",
+        "filelock==3.29.0",
+        "Flask==3.1.3",
+        "fonttools==4.63.0",
+        "fsspec==2026.4.0",
+        "grpcio==1.82.1",
+        "gsplat==1.5.3+pt24cu121",
+        "hf-xet==1.5.1",
+        "huggingface_hub==0.36.2",
+        "idna==3.18",
+        "ImageIO==2.37.3",
+        "importlib_metadata==9.0.0",
+        "iopath==0.1.10",
+        "ipython==8.39.0",
+        "ipywidgets==8.1.8",
+        "itsdangerous==2.2.0",
+        "janus==2.0.0",
+        "jaxtyping==0.3.7",
+        "jedi==0.20.0",
+        "Jinja2==3.1.6",
+        "joblib==1.5.3",
+        "jsonschema==4.26.0",
+        "jsonschema-specifications==2025.9.1",
+        "jupyter_core==5.9.1",
+        "jupyterlab_widgets==3.0.16",
+        "kiwisolver==1.5.0",
+        "lazy-loader==0.5",
+        "lightning-utilities==0.15.3",
+        "llvmlite==0.48.0",
+        "Markdown==3.10.2",
+        "markdown-it-py==4.2.0",
+        "MarkupSafe==3.0.3",
+        "matplotlib==3.10.9",
+        "matplotlib-inline==0.2.2",
+        "mdurl==0.1.2",
+        "mpmath==1.3.0",
+        "narwhals==2.23.0",
+        "nbformat==5.10.4",
+        "nest-asyncio==1.6.0",
+        "networkx==3.4.2",
+        "ninja==1.13.0",
+        "numba==0.66.0",
+        "numpy==2.2.6",
+        "nvidia-cublas-cu12==12.1.3.1",
+        "nvidia-cuda-cupti-cu12==12.1.105",
+        "nvidia-cuda-nvrtc-cu12==12.1.105",
+        "nvidia-cuda-runtime-cu12==12.1.105",
+        "nvidia-cudnn-cu12==9.1.0.70",
+        "nvidia-cufft-cu12==11.0.2.54",
+        "nvidia-curand-cu12==10.3.2.106",
+        "nvidia-cusolver-cu12==11.4.5.107",
+        "nvidia-cusparse-cu12==12.1.0.106",
+        "nvidia-nccl-cu12==2.20.5",
+        "nvidia-nvjitlink-cu12==12.9.86",
+        "nvidia-nvtx-cu12==12.1.105",
+        "omegaconf==2.3.1",
+        "open3d==0.19.0",
+        "opencv-python==5.0.0.93",
+        "packaging==26.0",
+        "pandas==2.3.3",
+        "parso==0.8.7",
+        "pexpect==4.9.0",
+        "pillow==12.2.0",
+        "platformdirs==4.10.0",
+        "plotly==6.9.0",
+        "plyfile==1.1.4",
+        "portalocker==3.2.0",
+        "prompt_toolkit==3.0.52",
+        "protobuf==7.35.1",
+        "ptyprocess==0.7.0",
+        "pure_eval==0.2.3",
+        "pyarrow==18.1.0",
+        "pydantic==2.13.4",
+        "pydantic_core==2.46.4",
+        "Pygments==2.20.0",
+        "pyparsing==3.3.2",
+        "pyquaternion==0.9.9",
+        "python-dateutil==2.9.0.post0",
+        "pytorch3d==0.7.8",
+        "pytz==2026.2",
+        "PyYAML==6.0.3",
+        "referencing==0.37.0",
+        "regex==2026.7.10",
+        "requests==2.34.2",
+        "retrying==1.4.2",
+        "rich==15.0.0",
+        "rpds-py==0.30.0",
+        "safetensors==0.8.0",
+        "scikit-image==0.25.2",
+        "scikit-learn==1.7.2",
+        "scipy==1.15.3",
+        "six==1.17.0",
+        "smplx==0.1.28",
+        "stack-data==0.6.3",
+        "sympy==1.14.0",
+        "tensorboard==2.21.0",
+        "tensorboard-data-server==0.7.2",
+        "tensorboardX==2.6.5",
+        "threadpoolctl==3.6.0",
+        "tifffile==2025.5.10",
+        "tokenizers==0.19.1",
+        "torch==2.4.1+cu121",
+        "torch_pca==1.1.0",
+        "torchmetrics==1.9.0",
+        "torchvision==0.19.1+cu121",
+        "tqdm==4.68.4",
+        "traitlets==5.15.1",
+        "transformers==4.44.2",
+        "trimesh==4.12.2",
+        "triton==3.0.0",
+        "typing-inspection==0.4.2",
+        "typing_extensions==4.15.0",
+        "tzdata==2026.3",
+        "urllib3==2.7.0",
+        "wadler_lindig==0.1.7",
+        "wcwidth==0.8.2",
+        "websocket-client==1.9.0",
+        "websockets==16.1",
+        "Werkzeug==3.1.8",
+        "widgetsnbextension==4.0.15",
+        "zipp==4.1.0"
+      ],
+      "python": "3.10.20",
+      "torch": "2.4.1+cu121"
+    },
+    "execution_head": "97e677476e019a08b05813d9bed165968ce92faa",
+    "feature_cache": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/shared_preflight/frozen_reference_feature_rows_v1.pt",
+      "sha256": "30cf19a99bbc620112928d678a0257bfabd3420be66fe1053ded3ce7e90875cb"
+    },
+    "frozen_assets": {
+      "asset_count": 19,
+      "failed_assets": [],
+      "results": [
+        {
+          "actual": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56",
+          "asset_id": "teacher_checkpoint_O01",
+          "error": null,
+          "expected": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820",
+          "asset_id": "teacher_checkpoint_O02",
+          "error": null,
+          "expected": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93",
+          "asset_id": "teacher_checkpoint_O03",
+          "error": null,
+          "expected": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3",
+          "asset_id": "teacher_checkpoint_O04",
+          "error": null,
+          "expected": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e",
+          "asset_id": "teacher_checkpoint_O08",
+          "error": null,
+          "expected": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "77d7e013e6fd949799ec9b144022d2c3c9db0d595d8eeab8cfc07e2f25d4136a",
+          "asset_id": "teacher_checkpoint_O07",
+          "error": null,
+          "expected": "77d7e013e6fd949799ec9b144022d2c3c9db0d595d8eeab8cfc07e2f25d4136a",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430",
+          "asset_id": "rank4_explicit_basis",
+          "error": null,
+          "expected": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+          "asset_id": "coefficient_normalization",
+          "error": null,
+          "expected": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "82fb1d913632ad39ad421756a17193b541aad6a9aa7533222daee4a42d38b9fa",
+          "asset_id": "predictor_checkpoint_step300",
+          "error": null,
+          "expected": "82fb1d913632ad39ad421756a17193b541aad6a9aa7533222daee4a42d38b9fa",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9",
+          "asset_id": "base_gaussian_state",
+          "error": null,
+          "expected": "de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "checkpoint_field"
+        },
+        {
+          "actual": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+          "asset_id": "mmlphuman_checkpoint",
+          "error": null,
+          "expected": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "asset_id": "backbone_checkpoint",
+          "error": null,
+          "expected": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "asset_id": "backbone_state",
+          "error": null,
+          "expected": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "checkpoint_field"
+        },
+        {
+          "actual": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+          "asset_id": "target_reference_manifest",
+          "error": null,
+          "expected": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "file_sha256"
+        },
+        {
+          "actual": "4baf319843f2e8f4faf08043dcd40a590a61d992",
+          "asset_id": "evaluator_commit",
+          "error": null,
+          "expected": "4baf319843f2e8f4faf08043dcd40a590a61d992",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "git_commit"
+        },
+        {
+          "actual": "0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6",
+          "asset_id": "renderer_source_bundle",
+          "error": null,
+          "expected": "0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "source_bundle_sha256"
+        },
+        {
+          "actual": "6b962772ffcdcd35c66bf68d0fb0ac13ab58ebf5",
+          "asset_id": "formal_run_commit",
+          "error": null,
+          "expected": "6b962772ffcdcd35c66bf68d0fb0ac13ab58ebf5",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "git_commit"
+        },
+        {
+          "actual": "4baf319843f2e8f4faf08043dcd40a590a61d992",
+          "asset_id": "final_adjudication_commit",
+          "error": null,
+          "expected": "4baf319843f2e8f4faf08043dcd40a590a61d992",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "git_commit"
+        },
+        {
+          "actual": "108c8f2a7e327cd76a508c16e1797cd220d169cbff44091fc9cfefbd2911c74c",
+          "asset_id": "historical_formal_output_tree",
+          "error": null,
+          "expected": "108c8f2a7e327cd76a508c16e1797cd220d169cbff44091fc9cfefbd2911c74c",
+          "pass": true,
+          "skipped_external": false,
+          "verification": "tree_metadata_sha256"
+        }
+      ],
+      "status": "PASS",
+      "verified_external": true
+    },
+    "frozen_before": {
+      "AAAI27-P0-COLOR-SPATIAL-SOFT-CONTROL": {
+        "bytes": 1734116325,
+        "file_count": 6263,
+        "metadata_sha256_ns": "0a21aa8d951fea15d82f63c3c8034d6b7281f5ef3ef34e0f023fb76a021668d9"
+      },
+      "AAAI27-P0-FORMAL-CANDIDATE-RUNS": {
+        "bytes": 339118385,
+        "file_count": 911,
+        "metadata_sha256_ns": "f90b9aeaa5ab93a951ae81f91e48dc77792d4b6bd513e6c8af9af8ba481228ab"
+      },
+      "AAAI27-SEEN-OUTFIT-PAPER": {
+        "bytes": 964043888,
+        "file_count": 4127,
+        "metadata_sha256_ns": "2205acdcf3a7a6f8019a584f4e4b9ac0f50a8cdd3f2b342642a949b9791b22cc"
+      },
+      "CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001": {
+        "bytes": 938837882,
+        "file_count": 3187,
+        "metadata_sha256_ns": "f919364c5dbbd9990fdd97ae3b0e806e5faa75d6ddf6196f3227adbf81c5de98"
+      },
+      "CONTINUOUS-CONTROL-ROOT-CAUSE-001": {
+        "bytes": 1220866629,
+        "file_count": 4537,
+        "metadata_sha256_ns": "2d2702c537c335b36ae14cf7910ba8fc5e197fadee59740c50e00366489f83ac"
+      },
+      "DUAL-SUPPORT-ALL-PAIR-EVALUATION-001": {
+        "bytes": 801624663,
+        "file_count": 3288,
+        "metadata_sha256_ns": "50f03111afefd9a18ce4e1145e0c9c5bd0151f575f5a392ce31f323263d2cff9"
+      },
+      "GEOMETRY-DUAL-SUPPORT-MICRO-PILOT-001": {
+        "bytes": 238533052,
+        "file_count": 1022,
+        "metadata_sha256_ns": "fc0d9a74fd4d9031796d9e813b79f7ed6a72e04f45aeefbd1e467795e05c3ba0"
+      },
+      "REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-SMOKE": {
+        "bytes": 83149,
+        "file_count": 19,
+        "metadata_sha256_ns": "340559b7675b4466df6187954824d424316f759178d322ea43b54348da1ff0fe"
+      },
+      "repository_contract_files": {
+        "paper_protocol/reviewer_risk/FAILED_PRE_RESULT_CONTROLLER_TRAINING_CONTRACT_INCOMPLETE.json": "a496baeaedfe92236d7e922528eaa69e045b98fc5b743909cf1ad054106828c1",
+        "paper_protocol/reviewer_risk/dual_support_controller_protocol.yaml": "44ef0c53f7a5ec4fe19733371ffefb1be14d5b6902e7f4060707edd4660d9f49",
+        "paper_protocol/reviewer_risk/dual_support_controller_training_cycle.json": "b6d73a4d5f07a34096a6e0ae1a1b513c73ca83809fe5609be6f4240e30e51e76",
+        "paper_protocol/reviewer_risk/dual_support_controller_training_manifest.json": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3",
+        "paper_protocol/reviewer_risk/dual_support_controller_training_schedule_300_steps.json": "3cd4f1c5febfa534d986df731f0aa53f06f2b286cb36af821756e2ce3c576fcf"
+      }
+    },
+    "paper_final": false,
+    "paper_final_count": 0,
+    "previous_stop_preserved": true,
+    "previous_stop_record": "paper_protocol/reviewer_risk/FAILED_PRE_RESULT_CONTROLLER_TRAINING_CONTRACT_INCOMPLETE.json",
+    "run_branch": "research/reference-conditioned-dual-support-controller-formal-20260723",
+    "schema_version": "canondressgs.research.dual_support_controller_formal_preflight.v1",
+    "smokes": {
+      "controller_forward": {
+        "parameter_count": 3589,
+        "probabilities": [
+          0.12701837718486786,
+          0.1544427126646042,
+          0.2947932481765747,
+          0.24718603491783142,
+          0.17655959725379944
+        ]
+      },
+      "cuda_tensor": 36.0,
+      "dual_support_renderer": {
+        "active_gaussian_count": 399982,
+        "base_gaussian_count": 200000,
+        "branch_primitive_tensor_bytes": 25600000,
+        "branches": [
+          {
+            "active_gaussian_count": 199991,
+            "effective_opacity_mass": 60367.59319992561,
+            "effective_opacity_max": 0.4998793303966522,
+            "effective_opacity_min": 0.0017707383958622813,
+            "endpoint_opacity_max": 0.9997586607933044,
+            "endpoint_opacity_min": 0.0035414767917245626,
+            "gaussian_count": 200000,
+            "outfit": "O01",
+            "primitive_tensor_bytes": 12800000,
+            "stable_inverse_sigmoid_finite": true,
+            "stable_inverse_sigmoid_max": -0.0004826160438824445,
+            "stable_inverse_sigmoid_min": -6.334586143493652,
+            "weight": 0.5,
+            "zero_weight_branch_pruned": false
+          },
+          {
+            "active_gaussian_count": 199991,
+            "effective_opacity_mass": 60212.8545218067,
+            "effective_opacity_max": 0.49985548853874207,
+            "effective_opacity_min": 0.0017707383958622813,
+            "endpoint_opacity_max": 0.9997109770774841,
+            "endpoint_opacity_min": 0.0035414767917245626,
+            "gaussian_count": 200000,
+            "outfit": "O02",
+            "primitive_tensor_bytes": 12800000,
+            "stable_inverse_sigmoid_finite": true,
+            "stable_inverse_sigmoid_max": -0.0005779744242317975,
+            "stable_inverse_sigmoid_min": -6.334586143493652,
+            "weight": 0.5,
+            "zero_weight_branch_pruned": false
+          }
+        ],
+        "numerical_stability": "PASS",
+        "opacity_mass": 120580.44772173231,
+        "peak_vram_bytes": 5836792320,
+        "rasterized_gaussian_count": 400000,
+        "render_time_seconds": 0.017937898635864258,
+        "total_gaussian_count": 400000
+      },
+      "endpoint_bank": {
+        "count": 5,
+        "outfits": [
+          "O01",
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ]
+      },
+      "frozen_f2_forward": {
+        "rows_shape": [
+          3,
+          256
+        ],
+        "valid_shape": [
+          3,
+          1
+        ]
+      },
+      "lpips_zero": 0.0,
+      "mask_silhouette": {
+        "boundary_fscore": 0.4427532151797855,
+        "iou": 0.767137364681703,
+        "tolerance": 5
+      },
+      "schedule_hash": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+      "scheduled_batch": {
+        "global_step": 1,
+        "outfit_order": [
+          "O01",
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "record_count": 5
+      }
+    },
+    "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a",
+    "status": "PASS",
+    "task_id": "AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002"
+  },
+  "previous_stop_preserved": true,
+  "result_driven_training_rerun": 0,
+  "run_branch": "research/reference-conditioned-dual-support-controller-formal-20260723",
+  "schema_version": "canondressgs.research.dual_support_controller_training_results.v1",
+  "source_branch": "research/dual-support-controller-training-contract-repair-20260723",
+  "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a",
+  "task_id": "AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002",
+  "training": {
+    "consistent_duplicates_retained": 80,
+    "cross_seed_initialization_unique": true,
+    "data_order_hashes": [
+      "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+      "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+      "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf"
+    ],
+    "expected_totals": {
+      "backward_calls": 900,
+      "checkpoint_writes": 18,
+      "forward_training_batches": 900,
+      "optimizer_steps": 900,
+      "scheduler_steps": 900,
+      "training_steps": 900
+    },
+    "formal_pure_training_exposure": 0,
+    "paper_final": false,
+    "paper_final_count": 0,
+    "same_seed_fresh_process_exact": true,
+    "schema_version": "canondressgs.research.dual_support_controller_training_summary.v1",
+    "seeds": [
+      {
+        "checkpoint_rows": [
+          {
+            "global_step": 50,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/resumable_step_050.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 100,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/resumable_step_100.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 150,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/resumable_step_150.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 200,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/resumable_step_200.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 250,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/resumable_step_250.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 300,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/final_step_300.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          }
+        ],
+        "counters": {
+          "backward_calls": 300,
+          "checkpoint_writes": 6,
+          "forward_training_batches": 300,
+          "optimizer_steps": 300,
+          "scheduler_steps": 300,
+          "training_steps": 300
+        },
+        "initialization_sha256": "01c17453f10b4f4bda23b764edb5d04ad5444188dd5307e6a66c660d4306a440",
+        "peak_vram_bytes": 68241920,
+        "resume_count": 0,
+        "same_seed_fresh_process_exact": true,
+        "seed": 0,
+        "status": "PASS",
+        "trace_sha256": "698094a43a6602685e14054e7f3d13b9f91c5872c135cc3c29b083d368c017bb",
+        "training_result": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/training/training_result.json",
+        "wall_clock_seconds": 4.696520701050758
+      },
+      {
+        "checkpoint_rows": [
+          {
+            "global_step": 50,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/checkpoints/resumable_step_050.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 100,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/checkpoints/resumable_step_100.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 150,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/checkpoints/resumable_step_150.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 200,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/checkpoints/resumable_step_200.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 250,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/checkpoints/resumable_step_250.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 300,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/checkpoints/final_step_300.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          }
+        ],
+        "counters": {
+          "backward_calls": 300,
+          "checkpoint_writes": 6,
+          "forward_training_batches": 300,
+          "optimizer_steps": 300,
+          "scheduler_steps": 300,
+          "training_steps": 300
+        },
+        "initialization_sha256": "685e9a2a448c103e2781092bba9e779e42a5366c33ba5e78886a2296847f6db8",
+        "peak_vram_bytes": 68241920,
+        "resume_count": 0,
+        "same_seed_fresh_process_exact": true,
+        "seed": 1,
+        "status": "PASS",
+        "trace_sha256": "19df6c11994f8d78c12c54107262173081385340cefec8dfa7237359d019df88",
+        "training_result": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_1/training/training_result.json",
+        "wall_clock_seconds": 4.628799509257078
+      },
+      {
+        "checkpoint_rows": [
+          {
+            "global_step": 50,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/checkpoints/resumable_step_050.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 100,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/checkpoints/resumable_step_100.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 150,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/checkpoints/resumable_step_150.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 200,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/checkpoints/resumable_step_200.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 250,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/checkpoints/resumable_step_250.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          },
+          {
+            "global_step": 300,
+            "missing_fields": [],
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/checkpoints/final_step_300.pt",
+            "schedule_sha": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+            "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+          }
+        ],
+        "counters": {
+          "backward_calls": 300,
+          "checkpoint_writes": 6,
+          "forward_training_batches": 300,
+          "optimizer_steps": 300,
+          "scheduler_steps": 300,
+          "training_steps": 300
+        },
+        "initialization_sha256": "5119973f683bb871d646a5f880b9d8f8c9a11fbc181296921f6cc3c0724140fc",
+        "peak_vram_bytes": 68241920,
+        "resume_count": 0,
+        "same_seed_fresh_process_exact": true,
+        "seed": 2,
+        "status": "PASS",
+        "trace_sha256": "4d4dc2ec0174f92dd3c2053886726b813f7b489ec99d2d380ac3d489ad10cd64",
+        "training_result": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_2/training/training_result.json",
+        "wall_clock_seconds": 4.722005121409893
+      }
+    ],
+    "status": "PASS",
+    "task_id": "AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002",
+    "totals": {
+      "backward_calls": 900,
+      "checkpoint_writes": 18,
+      "forward_training_batches": 900,
+      "optimizer_steps": 900,
+      "scheduler_steps": 900,
+      "training_steps": 900
+    },
+    "training_protocol_records": 320,
+    "unique_initialization_count": 3
+  }
+}
