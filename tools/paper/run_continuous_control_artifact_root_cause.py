@@ -109,6 +109,7 @@ class NoTrainingProvenance:
         self.backward_count = 0
         self.scheduler_step_count = 0
         self.checkpoint_write_count = 0
+        self.in_memory_torch_save_count = 0
         self._inside_legacy_builder = False
         self._originals: dict[str, Any] = {}
 
@@ -224,8 +225,14 @@ class NoTrainingProvenance:
             raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: scheduler.step")
 
         def tracked_torch_save(*args: Any, **kwargs: Any) -> Any:
-            recorder.checkpoint_write_count += 1
-            raise RuntimeError("ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: torch.save")
+            destination = args[1] if len(args) > 1 else kwargs.get("f")
+            if isinstance(destination, (str, bytes, os.PathLike, Path)):
+                recorder.checkpoint_write_count += 1
+                raise RuntimeError(
+                    "ROOT-CAUSE-TRUE-NO-TRAINING-GATE-VIOLATION: checkpoint file write"
+                )
+            recorder.in_memory_torch_save_count += 1
+            return recorder._originals["torch_save"](*args, **kwargs)
 
         legacy_training.build_image_conditioned_optimizer = tracked_builder
         torch.optim.Optimizer.__init__ = tracked_optimizer_init
@@ -310,6 +317,7 @@ class NoTrainingProvenance:
             },
             "backward_count": self.backward_count,
             "checkpoint_write_count": self.checkpoint_write_count,
+            "in_memory_torch_save_count": self.in_memory_torch_save_count,
             "frozen_parameter_change": frozen_change,
             "exception": None if exception is None else f"{type(exception).__name__}: {exception}",
             "root_cause_no_training_gate": "PASS" if gate_pass else "FAIL",
@@ -371,6 +379,7 @@ def aggregate_optimizer_provenance(attempt: Path) -> dict[str, Any]:
         },
         "backward_count": sum(int(row["backward_count"]) for row in rows),
         "checkpoint_write_count": sum(int(row["checkpoint_write_count"]) for row in rows),
+        "in_memory_torch_save_count": sum(int(row.get("in_memory_torch_save_count", 0)) for row in rows),
         "frozen_parameter_change": sum(int(row["frozen_parameter_change"]) for row in rows),
         "phase_audits": [str(path) for path in paths],
         "root_cause_no_training_gate": "PASS",
