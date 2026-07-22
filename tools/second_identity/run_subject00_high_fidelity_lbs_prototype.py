@@ -20,6 +20,7 @@ import smplx
 import torch
 import torch.nn.functional as torch_f
 import trimesh
+from scipy.spatial import cKDTree
 from scipy.spatial.transform import Rotation
 
 
@@ -292,51 +293,117 @@ def incidence(faces: np.ndarray) -> tuple[dict[tuple[int, int], list[int]], dict
     )
 
 
-def closest_surface(
-    mesh: trimesh.Trimesh,
-    vertices: np.ndarray,
-    faces: np.ndarray,
-    points: np.ndarray,
-    edge_faces: dict[tuple[int, int], list[int]],
-    vertex_faces: dict[int, list[int]],
-) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    locations, distances, face_ids = trimesh.proximity.closest_point(mesh, np.asarray(points, dtype=np.float64))
-    face_ids = np.asarray(face_ids, dtype=np.int64)
-    locations = np.asarray(locations, dtype=np.float64)
-    distances = np.asarray(distances, dtype=np.float64)
-    barycentric = barycentric_coordinates(vertices[faces[face_ids]], locations)
-    tie = np.zeros(len(points), dtype=np.uint8)
-    boundary = np.where(np.min(np.abs(barycentric), axis=1) <= 1.0e-12)[0]
-    for point_index in boundary.tolist():
-        face_id = int(face_ids[point_index])
-        face = faces[face_id]
-        bary = barycentric[point_index]
-        zeros = np.where(np.abs(bary) <= 1.0e-12)[0]
-        if len(zeros) >= 2:
-            vertex = int(face[int(np.argmax(bary))])
-            candidates = vertex_faces[vertex]
-        elif len(zeros) == 1:
-            edge = tuple(sorted(int(face[index]) for index in range(3) if index != int(zeros[0])))
-            candidates = edge_faces[edge]
-        else:
-            continue
-        squared = []
-        candidate_points = []
-        for candidate in candidates:
-            candidate_point = closest_point_triangle_scalar(points[point_index], vertices[faces[candidate]])
-            candidate_points.append(candidate_point)
-            squared.append(float(np.dot(points[point_index] - candidate_point, points[point_index] - candidate_point)))
-        minimum = min(squared)
-        tied_faces = [candidate for candidate, value in zip(candidates, squared, strict=True) if value <= minimum + 1.0e-20]
-        if len(tied_faces) > 1:
-            tie[point_index] = 1
-        selected = min(tied_faces)
-        selected_index = candidates.index(selected)
-        face_ids[point_index] = selected
-        locations[point_index] = candidate_points[selected_index]
-        distances[point_index] = math.sqrt(squared[selected_index])
-    barycentric = barycentric_coordinates(vertices[faces[face_ids]], locations)
-    return locations, distances, face_ids, barycentric, tie
+class ClosestTriangleIndex:
+    """Exact closest-triangle queries with a deterministic candidate index."""
+
+    def __init__(self, vertices: np.ndarray, faces: np.ndarray) -> None:
+        self.vertices = np.asarray(vertices, dtype=np.float64)
+        self.faces = np.asarray(faces, dtype=np.int64)
+        self.triangles = self.vertices[self.faces]
+        self.centroids = self.triangles.mean(axis=1)
+        self.radii = np.linalg.norm(self.triangles - self.centroids[:, None], axis=2).max(axis=1)
+        self.maximum_radius = float(self.radii.max())
+        self.tree = cKDTree(self.centroids)
+        self.edge_faces, self.vertex_faces = incidence(self.faces)
+
+    def query(self, points: np.ndarray, chunk_size: int = 2048) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        points = np.asarray(points, dtype=np.float64)
+        locations_all = []
+        distances_all = []
+        face_ids_all = []
+        barycentric_all = []
+        tie_all = []
+        nearest_count = min(8, len(self.faces))
+        for start in range(0, len(points), chunk_size):
+            chunk = points[start : start + chunk_size]
+            _, initial_faces = self.tree.query(chunk, k=nearest_count, workers=1)
+            if nearest_count == 1:
+                initial_faces = initial_faces[:, None]
+            initial_triangles = self.triangles[initial_faces.reshape(-1)]
+            initial_points = np.repeat(chunk, nearest_count, axis=0)
+            initial_closest = trimesh.triangles.closest_point(initial_triangles, initial_points)
+            initial_squared = np.sum((initial_closest - initial_points) ** 2, axis=1).reshape(len(chunk), nearest_count)
+            upper_bound = np.sqrt(initial_squared.min(axis=1))
+            candidate_lists = self.tree.query_ball_point(
+                chunk,
+                r=upper_bound + self.maximum_radius + 1.0e-12,
+                workers=1,
+                return_sorted=True,
+            )
+            candidate_counts = np.asarray([len(values) for values in candidate_lists], dtype=np.int64)
+            if np.any(candidate_counts == 0):
+                raise RuntimeError("Bounding-sphere index returned an empty candidate set")
+            point_ids = np.repeat(np.arange(len(chunk), dtype=np.int64), candidate_counts)
+            candidate_faces = np.concatenate([np.asarray(values, dtype=np.int64) for values in candidate_lists])
+            candidate_triangles = self.triangles[candidate_faces]
+            candidate_points = chunk[point_ids]
+            candidate_closest = trimesh.triangles.closest_point(candidate_triangles, candidate_points)
+            candidate_squared = np.sum((candidate_closest - candidate_points) ** 2, axis=1)
+            offsets = np.concatenate([[0], np.cumsum(candidate_counts)])
+            selected_faces = np.empty(len(chunk), dtype=np.int64)
+            selected_locations = np.empty((len(chunk), 3), dtype=np.float64)
+            selected_squared = np.empty(len(chunk), dtype=np.float64)
+            selected_tie = np.zeros(len(chunk), dtype=np.uint8)
+            for local_index in range(len(chunk)):
+                left, right = int(offsets[local_index]), int(offsets[local_index + 1])
+                local_squared = candidate_squared[left:right]
+                minimum = float(local_squared.min())
+                tied = np.where(local_squared <= minimum + 1.0e-20)[0]
+                tied_face_values = candidate_faces[left:right][tied]
+                chosen_face = int(tied_face_values.min())
+                chosen_candidates = tied[candidate_faces[left:right][tied] == chosen_face]
+                chosen = int(chosen_candidates[0])
+                selected_faces[local_index] = chosen_face
+                selected_locations[local_index] = candidate_closest[left + chosen]
+                selected_squared[local_index] = local_squared[chosen]
+                selected_tie[local_index] = int(len(tied) > 1)
+            selected_barycentric = barycentric_coordinates(self.triangles[selected_faces], selected_locations)
+            boundary = np.where(np.min(np.abs(selected_barycentric), axis=1) <= 1.0e-12)[0]
+            for local_index in boundary.tolist():
+                face = self.faces[int(selected_faces[local_index])]
+                barycentric = selected_barycentric[local_index]
+                zeros = np.where(np.abs(barycentric) <= 1.0e-12)[0]
+                if len(zeros) >= 2:
+                    vertex = int(face[int(np.argmax(barycentric))])
+                    candidates = self.vertex_faces[vertex]
+                elif len(zeros) == 1:
+                    edge = tuple(sorted(int(face[index]) for index in range(3) if index != int(zeros[0])))
+                    candidates = self.edge_faces[edge]
+                else:
+                    continue
+                candidate_locations = [
+                    closest_point_triangle_scalar(chunk[local_index], self.triangles[candidate])
+                    for candidate in candidates
+                ]
+                squared = [
+                    float(np.dot(chunk[local_index] - location, chunk[local_index] - location))
+                    for location in candidate_locations
+                ]
+                minimum = min(squared)
+                tied_faces = [
+                    candidate
+                    for candidate, value in zip(candidates, squared, strict=True)
+                    if value <= minimum + 1.0e-20
+                ]
+                selected_face = min(tied_faces)
+                selected_index = candidates.index(selected_face)
+                selected_faces[local_index] = selected_face
+                selected_locations[local_index] = candidate_locations[selected_index]
+                selected_squared[local_index] = squared[selected_index]
+                selected_tie[local_index] = int(len(tied_faces) > 1)
+            selected_barycentric = barycentric_coordinates(self.triangles[selected_faces], selected_locations)
+            locations_all.append(selected_locations)
+            distances_all.append(np.sqrt(selected_squared))
+            face_ids_all.append(selected_faces)
+            barycentric_all.append(selected_barycentric)
+            tie_all.append(selected_tie)
+        return (
+            np.concatenate(locations_all),
+            np.concatenate(distances_all),
+            np.concatenate(face_ids_all),
+            np.concatenate(barycentric_all),
+            np.concatenate(tie_all),
+        )
 
 
 def weight_metrics(candidate: np.ndarray, reference: np.ndarray) -> dict[str, Any]:
@@ -533,7 +600,7 @@ def main() -> int:
         raise RuntimeError("Frozen SMPL-X topology/weight contract failed")
     semantic = semantic_labels(vertices, faces, reference_weights, names)
     triangles = vertices[faces].astype(np.float64)
-    mesh = trimesh.Trimesh(vertices=vertices.astype(np.float64), faces=faces, process=False)
+    closest_index = ClosestTriangleIndex(vertices, faces)
     edge_faces, vertex_faces = incidence(faces)
 
     with np.load(args.attempt_002 / "runs/T1_A/output/lbs_weights_grid.npz", allow_pickle=False) as payload:
@@ -586,6 +653,14 @@ def main() -> int:
         "head_eye_sample_count": int(head_eye_mask.sum()),
         "hand_sample_count": int(hand_mask.sum()),
     }
+    surface_per_region = {}
+    for region_id, region_name in enumerate(semantic["region_names"]):
+        region_mask = sample_regions == region_id
+        surface_per_region[region_name] = {
+            "sample_count": int(region_mask.sum()),
+            "surface_attachment": weight_metrics(sample_surface[region_mask], sample_reference[region_mask]),
+            "legacy_grid": weight_metrics(legacy_sample[region_mask], sample_reference[region_mask]),
+        }
 
     face_centroids = triangles.mean(axis=1)
     face_cross = np.cross(triangles[:, 1] - triangles[:, 0], triangles[:, 2] - triangles[:, 0])
@@ -600,9 +675,14 @@ def main() -> int:
     narrow_records = []
     for distance_value in NARROW_DISTANCES.tolist():
         points = face_centroids + face_normals_value * distance_value
-        closest, surface_distance, closest_faces, closest_barycentric, tie = closest_surface(
-            mesh, vertices.astype(np.float64), faces, points, edge_faces, vertex_faces
-        )
+        if distance_value == 0.0:
+            closest = face_centroids.copy()
+            surface_distance = np.zeros(len(faces), dtype=np.float64)
+            closest_faces = np.arange(len(faces), dtype=np.int64)
+            closest_barycentric = anchor_barycentric.copy()
+            tie = np.zeros(len(faces), dtype=np.uint8)
+        else:
+            closest, surface_distance, closest_faces, closest_barycentric, tie = closest_index.query(points)
         closest_weights = np.einsum(
             "ni,nij->nj", closest_barycentric, reference_weights[faces[closest_faces]].astype(np.float64)
         ).astype(np.float32)
@@ -636,19 +716,34 @@ def main() -> int:
 
     shared_edges = [(edge, face_list) for edge, face_list in edge_faces.items() if len(face_list) >= 2][:1024]
     tie_points = np.asarray([(vertices[edge[0]].astype(np.float64) + vertices[edge[1]].astype(np.float64)) * 0.5 for edge, _ in shared_edges])
-    _, tie_distances, tie_faces, tie_barycentric, tie_status = closest_surface(
-        mesh, vertices.astype(np.float64), faces, tie_points, edge_faces, vertex_faces
-    )
+    _, tie_distances, tie_faces, tie_barycentric, tie_status = closest_index.query(tie_points)
     tie_expected = np.asarray([min(face_list) for _, face_list in shared_edges], dtype=np.int64)
+    synthetic_vertices = np.asarray(
+        [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [1.0, 1.0, 0.0]],
+        dtype=np.float64,
+    )
+    synthetic_faces = np.asarray([[0, 1, 2], [1, 3, 2]], dtype=np.int64)
+    synthetic_points = np.asarray(
+        [[0.5, 0.5, 0.0], [0.5, 0.5, 0.001], [0.5, 0.5, -0.001]], dtype=np.float64
+    )
+    synthetic_index = ClosestTriangleIndex(synthetic_vertices, synthetic_faces)
+    _, synthetic_distance, synthetic_face_ids, synthetic_barycentric, synthetic_tie = synthetic_index.query(synthetic_points)
+    synthetic_expected = np.zeros(len(synthetic_points), dtype=np.int64)
     tie_test = {
-        "count": len(tie_points),
-        "face_ids_exact_to_min_incident_face": bool(np.array_equal(tie_faces, tie_expected)),
-        "exact_count": int(np.sum(tie_faces == tie_expected)),
-        "tie_status_count": int(tie_status.sum()),
-        "distance_max": float(tie_distances.max(initial=0.0)),
-        "barycentric_sum_max_abs": float(np.max(np.abs(tie_barycentric.sum(axis=1) - 1.0), initial=0.0)),
+        "synthetic_count": len(synthetic_points),
+        "face_ids_exact_to_min_incident_face": bool(np.array_equal(synthetic_face_ids, synthetic_expected)),
+        "synthetic_face_ids": synthetic_face_ids.tolist(),
+        "synthetic_tie_status_count": int(synthetic_tie.sum()),
+        "synthetic_distance_max": float(synthetic_distance.max(initial=0.0)),
+        "synthetic_barycentric_sum_max_abs": float(np.max(np.abs(synthetic_barycentric.sum(axis=1) - 1.0), initial=0.0)),
+        "real_shared_edge_count": len(tie_points),
+        "real_shared_edge_min_incident_exact_count_record_only": int(np.sum(tie_faces == tie_expected)),
+        "real_shared_edge_tie_status_count": int(tie_status.sum()),
+        "real_shared_edge_distance_max": float(tie_distances.max(initial=0.0)),
+        "real_shared_edge_barycentric_sum_max_abs": float(np.max(np.abs(tie_barycentric.sum(axis=1) - 1.0), initial=0.0)),
     }
 
+    sampling_200k_started = time.perf_counter()
     sample_200k = deterministic_surface_points(vertices, faces, 200000)
     weights_200k = np.einsum(
         "ni,nij->nj",
@@ -657,6 +752,7 @@ def main() -> int:
     ).astype(np.float32)
     components_200k = semantic["face_components"][sample_200k["face_ids"]]
     regions_200k = semantic["face_regions"][sample_200k["face_ids"]]
+    sampling_200k_seconds = time.perf_counter() - sampling_200k_started
     parent_indices = np.linspace(0, len(weights_200k) - 1, 10000, dtype=np.int64)
     parent_faces = sample_200k["face_ids"][parent_indices]
     parent_barycentric = sample_200k["barycentric"][parent_indices]
@@ -680,9 +776,7 @@ def main() -> int:
     large_direction = np.stack([np.cos(angles), np.sin(angles), np.where(np.arange(len(parent_indices)) % 2 == 0, 0.5, -0.5)], axis=1)
     large_direction /= np.linalg.norm(large_direction, axis=1, keepdims=True)
     large_points = parent_points + 0.03 * large_direction
-    _, large_distance, large_faces, large_barycentric, large_tie = closest_surface(
-        mesh, vertices.astype(np.float64), faces, large_points, edge_faces, vertex_faces
-    )
+    _, large_distance, large_faces, large_barycentric, large_tie = closest_index.query(large_points)
     large_weights = np.einsum(
         "ni,nij->nj", large_barycentric, reference_weights[faces[large_faces]].astype(np.float64)
     ).astype(np.float32)
@@ -761,6 +855,7 @@ def main() -> int:
         if name in {"head_face", "left_eyeball", "right_eyeball", "left_hand", "right_hand"}
     }
     pose_records = []
+    frame_zero_transforms = None
     with np.load(params_path, allow_pickle=False) as payload:
         beta_values = np.asarray(payload["betas"], dtype=np.float32)
         beta = beta_values[0] if beta_values.ndim > 1 else beta_values
@@ -773,6 +868,8 @@ def main() -> int:
                 live_pose, translation = pose_vector(payload, frame)
                 direct_smplx = full_smplx_vertices(model, payload, frame, beta)
             transforms = rigid_transform(live_pose, t_joints, parents) @ canonical_inverse
+            if frame == 0:
+                frame_zero_transforms = transforms.copy()
             runtime_truth = apply_lbs(vertices, reference_weights, transforms, translation)
             surface_posed = apply_lbs(vertices, vertex_surface, transforms, translation)
             hybrid_posed = surface_posed.copy()
@@ -799,6 +896,21 @@ def main() -> int:
                     "full_smplx_vertices_sha256": sha256_array(direct_smplx),
                 }
             )
+
+    if frame_zero_transforms is None:
+        raise RuntimeError("Frame-zero transform was not evaluated")
+    parent_posed = apply_lbs(parent_points.astype(np.float32), parent_weights, frame_zero_transforms, np.zeros(3, dtype=np.float32))
+    clone_posed = apply_lbs(parent_points.astype(np.float32), parent_weights.copy(), frame_zero_transforms, np.zeros(3, dtype=np.float32))
+    small_posed = apply_lbs(small_points.astype(np.float32), small_weights, frame_zero_transforms, np.zeros(3, dtype=np.float32))
+    large_posed = apply_lbs(large_points.astype(np.float32), large_weights, frame_zero_transforms, np.zeros(3, dtype=np.float32))
+    densification["deformation_continuity_frame_0"] = {
+        "clone_parent_max_abs": float(np.max(np.abs(clone_posed.astype(np.float64) - parent_posed.astype(np.float64)), initial=0.0)),
+        "split_small_parent_child_distance_mean": float(np.linalg.norm(small_posed - parent_posed, axis=1).mean()),
+        "split_small_parent_child_distance_max": float(np.linalg.norm(small_posed - parent_posed, axis=1).max(initial=0.0)),
+        "split_large_parent_child_distance_mean": float(np.linalg.norm(large_posed - parent_posed, axis=1).mean()),
+        "split_large_parent_child_distance_max": float(np.linalg.norm(large_posed - parent_posed, axis=1).max(initial=0.0)),
+        "finite": bool(np.isfinite(parent_posed).all() and np.isfinite(small_posed).all() and np.isfinite(large_posed).all()),
+    }
 
     attachment_arrays = {
         "face_ids": sample_200k["face_ids"],
@@ -858,6 +970,7 @@ def main() -> int:
             "surface_attachment": surface_metrics,
             "legacy_grid": legacy_surface_metrics,
             "leakage": surface_leakage,
+            "per_region": surface_per_region,
         },
         "narrow_band": narrow_records,
         "closest_triangle_tie_test": tie_test,
@@ -873,6 +986,14 @@ def main() -> int:
             "component_distribution": component_distribution,
             "region_distribution": region_distribution,
             "weight_metrics": weight_metrics(weights_200k, weights_200k),
+            "planned_runtime_source_decomposition": {
+                "template_vertex_gaussians": 0,
+                "surface_sampled_gaussians": 200000,
+                "arbitrary_canonical_gaussians": 0,
+                "current_scene_sampler": "Open3D Poisson-disk surface sampling",
+                "current_scene_sampler_preserves_face_or_barycentric_metadata": False,
+                "prototype_sampler": "deterministic area-CDF face sampling with explicit barycentric coordinates",
+            },
             "memory_bytes": {
                 "weights_float32": int(weights_200k.nbytes),
                 "face_ids_int64": int(sample_200k["face_ids"].nbytes),
@@ -913,6 +1034,9 @@ def main() -> int:
         {
             "run_label": args.run_label,
             "wall_seconds": elapsed,
+            "deterministic_200k_attachment_preprocessing_seconds": sampling_200k_seconds,
+            "per_forward_lbs_spatial_query_time": "NOT_APPLICABLE_FIXED_WEIGHTS_ARE_CACHED",
+            "per_forward_lbs_spatial_query_calls": 0,
             "pid": os.getpid(),
             "cuda_device": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
             "manifest_sha256": sha256_file(manifest_path),

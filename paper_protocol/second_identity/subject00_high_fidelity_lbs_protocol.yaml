@@ -3,6 +3,42 @@ task_id: MMLPHUMAN-SUBJECT00-HIGH-FIDELITY-LBS-DESIGN-001
 attempt: attempt_003
 status: FROZEN_BEFORE_PROTOTYPE_RUNS
 
+prototype_amendment_001:
+  status: FROZEN_BEFORE_VALID_FRESH_PROCESS_PAIR
+  reason: The initial implementation called trimesh.proximity.closest_point, whose optional rtree dependency is absent in the frozen cloud environment.
+  failed_run: prototype_run_a_missing_rtree_failure_001_preserved
+  replacement: exact_scipy_cKDTree_bounding_sphere_candidate_search_then_exact_triangle_distance
+  exactness_argument: any triangle closer than the current upper bound must have its centroid within upper_bound_plus_global_max_triangle_radius
+  candidate_order: sorted_ascending_face_id
+  tie_break: minimum_face_id_within_frozen_squared_distance_tolerance
+  threshold_changes: 0
+  candidate_changes: 0
+  scientific_parameter_changes: 0
+
+prototype_amendment_002:
+  status: FROZEN_BEFORE_VALID_FRESH_PROCESS_PAIR
+  reasons:
+    - The first cKDTree run sent d=0 anchors through closest-triangle although the frozen HYBRID priority requires their existing face attachments to win.
+    - Minimum incident face of a real shared edge is not a valid global tie oracle when other coincident or intersecting triangles may also be at zero distance.
+  preserved_run: prototype_run_a_pre_priority_tie_oracle_fix_002
+  actions:
+    - route d=0 through the original face attachment
+    - gate tie behavior on a synthetic ordered two-triangle topology with a known minimum-face answer
+    - retain 1024 real shared-edge queries as record-only two-run determinism evidence
+  threshold_changes: 0
+  candidate_changes: 0
+  scientific_parameter_changes: 0
+
+prototype_amendment_003:
+  status: FROZEN_BEFORE_VALID_FRESH_PROCESS_PAIR
+  reason: The corrected run produced all gating arrays but omitted required per-region surface tables, 200k preprocessing timing, explicit initialization-source decomposition, and densification deformation-continuity fields from its manifest.
+  preserved_run: prototype_run_a_pre_complete_reporting_003
+  action: add reporting-only fields and rerun the complete valid A/B pair
+  result_selection: false
+  threshold_changes: 0
+  candidate_changes: 0
+  scientific_parameter_changes: 0
+
 source:
   branch: research/mmlphuman-subject00-lbs-repair-20260723
   head: f88cc6a798747ad93ab9e6fe26f92c3e23229c9c
@@ -50,6 +86,8 @@ candidate_contracts:
     tie_break: minimum_face_id_within_absolute_squared_distance_tolerance
     tie_absolute_squared_distance_tolerance: 1.0e-20
     calculation_dtype: float64
+    spatial_index: scipy_cKDTree_workers_1_for_candidates_only
+    final_distance: exact_point_to_triangle_distance_for_all_bounding_sphere_candidates
     random_sampling: forbidden
   HYBRID_SURFACE_ATTACHED_LBS:
     priority:

@@ -1,0 +1,2825 @@
+{
+  "determinism": {
+    "arrays": {
+      "barycentric": {
+        "dtype": "float64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          200000,
+          3
+        ]
+      },
+      "components": {
+        "dtype": "int16",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          200000
+        ]
+      },
+      "face_ids": {
+        "dtype": "int64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          200000
+        ]
+      },
+      "narrow_barycentric": {
+        "dtype": "float64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          146356,
+          3
+        ]
+      },
+      "narrow_face_ids": {
+        "dtype": "int64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          146356
+        ]
+      },
+      "narrow_tie": {
+        "dtype": "uint8",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          146356
+        ]
+      },
+      "narrow_weights": {
+        "dtype": "float32",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          146356,
+          55
+        ]
+      },
+      "points": {
+        "dtype": "float64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          200000,
+          3
+        ]
+      },
+      "regions": {
+        "dtype": "int16",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          200000
+        ]
+      },
+      "tie_test_barycentric": {
+        "dtype": "float64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          1024,
+          3
+        ]
+      },
+      "tie_test_face_ids": {
+        "dtype": "int64",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          1024
+        ]
+      },
+      "tie_test_status": {
+        "dtype": "uint8",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          1024
+        ]
+      },
+      "weights": {
+        "dtype": "float32",
+        "exact": true,
+        "max_abs": 0.0,
+        "shape": [
+          200000,
+          55
+        ]
+      }
+    },
+    "attachment_npz_bytes_exact": true,
+    "attachment_npz_sha256_a": "2e506954de21dfd10d5efc3831cc0468f53d3b5d85bcf69dd6b9d639fc19f9dc",
+    "attachment_npz_sha256_b": "2e506954de21dfd10d5efc3831cc0468f53d3b5d85bcf69dd6b9d639fc19f9dc",
+    "checkpoint_array_records": {
+      "large_barycentric": true,
+      "large_components": true,
+      "large_face_ids": true,
+      "large_regions": true,
+      "large_weights": true,
+      "parent_barycentric": true,
+      "parent_components": true,
+      "parent_face_ids": true,
+      "parent_indices": true,
+      "parent_regions": true,
+      "parent_weights": true,
+      "prune_keep_indices": true,
+      "small_barycentric": true,
+      "small_face_ids": true,
+      "small_weights": true
+    },
+    "checkpoint_arrays_exact": true,
+    "checkpoint_npz_bytes_exact": true,
+    "checkpoint_npz_sha256_a": "559c57da8bdd3ebcccc61bb818503d3c43a931f2a8352976b5168dbf683a5154",
+    "checkpoint_npz_sha256_b": "559c57da8bdd3ebcccc61bb818503d3c43a931f2a8352976b5168dbf683a5154",
+    "manifest_bytes_exact": true,
+    "manifest_sha256_a": "b2960305bf4ef10d564a75488409604ace6772344ba290f751703d35b08b9f57",
+    "manifest_sha256_b": "b2960305bf4ef10d564a75488409604ace6772344ba290f751703d35b08b9f57",
+    "pass": true
+  },
+  "gates": {
+    "gaussian_200k_attachment": true,
+    "pose_parity": true,
+    "surface_leakage": true,
+    "surface_sample_fidelity": true,
+    "vertex_fidelity": true
+  },
+  "gaussian_200k": {
+    "attachment_coverage": 1.0,
+    "component_distribution": {
+      "body_main": 199560,
+      "left_eyeball": 221,
+      "right_eyeball": 219
+    },
+    "count": 200000,
+    "exact_vertex_attachments": 0,
+    "face_attachments": 200000,
+    "memory_bytes": {
+      "barycentric_float64": 4800000,
+      "component_int16": 400000,
+      "face_ids_int64": 1600000,
+      "metadata_over_existing_checkpoint_weights": 7200000,
+      "region_int16": 400000,
+      "total_attachment_state": 51200000,
+      "weights_float32": 44000000
+    },
+    "off_surface_fallback": 0,
+    "planned_runtime_source_decomposition": {
+      "arbitrary_canonical_gaussians": 0,
+      "current_scene_sampler": "Open3D Poisson-disk surface sampling",
+      "current_scene_sampler_preserves_face_or_barycentric_metadata": false,
+      "prototype_sampler": "deterministic area-CDF face sampling with explicit barycentric coordinates",
+      "surface_sampled_gaussians": 200000,
+      "template_vertex_gaussians": 0
+    },
+    "region_distribution": {
+      "head_face": 17345,
+      "left_arm": 18957,
+      "left_eyeball": 221,
+      "left_foot": 6183,
+      "left_hand": 2355,
+      "left_leg": 33141,
+      "right_arm": 19456,
+      "right_eyeball": 219,
+      "right_foot": 6212,
+      "right_hand": 2341,
+      "right_leg": 32683,
+      "torso": 60887
+    },
+    "source_type": "deterministic_area_weighted_surface_face_sample",
+    "weight_metrics": {
+      "count": 200000,
+      "dominant_agreement": 1.0,
+      "finite": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 8.335337020604072e-08
+    }
+  },
+  "legacy_vs_surface": {
+    "legacy_hand_dominant_region_mismatch": 751,
+    "legacy_head_eye_dominant_region_mismatch": 6420,
+    "sample_legacy": {
+      "count": 104540,
+      "dominant_agreement": 0.8989382054715899,
+      "finite": true,
+      "mae": 0.0055457298140367765,
+      "max_abs": 0.6959095299243927,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 1.9805774598147252e-07
+    },
+    "sample_surface": {
+      "count": 104540,
+      "dominant_agreement": 1.0,
+      "finite": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 7.451305394923224e-08
+    },
+    "surface_hand_leakage": 0,
+    "surface_head_eye_leakage": 0,
+    "vertex_legacy": {
+      "count": 10475,
+      "dominant_agreement": 0.9010978520286396,
+      "finite": true,
+      "mae": 0.005666726228972536,
+      "max_abs": 0.7210047245025635,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 1.7326256429583964e-07
+    },
+    "vertex_surface": {
+      "count": 10475,
+      "dominant_agreement": 1.0,
+      "finite": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 4.470348358154297e-08
+    }
+  },
+  "pose_gate_records": [
+    {
+      "label": "canonical_bigpose",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "frame_0",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999994,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "frame_1250",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "frame_2499",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "heldout_44",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "heldout_56",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "heldout_114",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999994,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "heldout_134",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    },
+    {
+      "label": "heldout_178",
+      "metrics": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "pass": true
+    }
+  ],
+  "poses": [
+    {
+      "component_separation": {
+        "hybrid": 0.062391702085733414,
+        "legacy": 0.06239168718457222,
+        "official_runtime_lbs": 0.062391702085733414,
+        "surface": 0.062391702085733414
+      },
+      "frame_id": null,
+      "full_smplx_vertices_sha256": "cb7edff9ec0ef82d97fb1444a65e894e39a9bd4cafd7cde0e90b388547e6e447",
+      "hybrid_vertices_sha256": "d6d0167b5b089308da6e02bc81ad60115d3b5f62535e2feafee06d9e16d7d6f6",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "canonical_bigpose",
+      "legacy_vertices_sha256": "57aa03c51ff93a9f1a1cb78da67a2a79abdef6ff86b5c546ec5f5b5141c7dc4e",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.999999921444759,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0006107494700700045,
+        "edge_length_relative_mean": 4.8995839279086795e-06,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 0.999999999865645,
+        "normal_cosine_min": 0.9999994516863718,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 1.2456161865520604e-08,
+            "max_abs": 1.4901161193847656e-07
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 1.497166424589425e-08,
+            "max_abs": 1.1920928955078125e-07
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 2.095048434914614e-08,
+            "max_abs": 2.980232238769531e-07
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 1.6354433782808075e-08,
+            "max_abs": 1.1920928955078125e-07
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 1.63721089283454e-08,
+            "max_abs": 2.384185791015625e-07
+          }
+        },
+        "vertex_mae": 1.744830411710999e-08,
+        "vertex_max_abs": 4.76837158203125e-07
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 0.9999999830095742,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.00014074542559683323,
+        "edge_length_relative_mean": 6.206946636666544e-07,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 0.9999999999908041,
+        "normal_cosine_min": 0.9999999930316172,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 1.3068106655841975e-09,
+            "max_abs": 2.9802322387695312e-08
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 1.3089364116219268e-09,
+            "max_abs": 1.1920928955078125e-07
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 1.2297371948330567e-09,
+            "max_abs": 5.960464477539063e-08
+          }
+        },
+        "vertex_mae": 1.870307059640542e-09,
+        "vertex_max_abs": 1.1920928955078125e-07
+      },
+      "official_runtime_vertices_sha256": "d6d0167b5b089308da6e02bc81ad60115d3b5f62535e2feafee06d9e16d7d6f6",
+      "surface_vertices_sha256": "d6d0167b5b089308da6e02bc81ad60115d3b5f62535e2feafee06d9e16d7d6f6",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.06239164248108864,
+        "legacy": 0.06240202113986015,
+        "official_runtime_lbs": 0.06239164248108864,
+        "surface": 0.06239164248108864
+      },
+      "frame_id": 0,
+      "full_smplx_vertices_sha256": "9b92e316d5891ea347460f0459e52471a4718142704fd2de6bbade95f2369d61",
+      "hybrid_vertices_sha256": "4991d990f71aabbff413ba1f485340a7354634af353d5399ab094566d2a41a04",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999994,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "frame_0",
+      "legacy_vertices_sha256": "c05ae2649e6fe273a6821aa375213e895a3477b67a85723d2e96b7c9a2996f38",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.9970594129322049,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.105574131011963,
+        "edge_length_relative_mean": 0.02250089682638645,
+        "finite": true,
+        "flipped_faces": 6,
+        "normal_cosine_mean": 0.9955631586504687,
+        "normal_cosine_min": -0.4515313792958422,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 9.809113521922658e-05,
+            "max_abs": 0.0020544230937957764
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 8.925750069274717e-05,
+            "max_abs": 0.000145643949508667
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0018168402814317023,
+            "max_abs": 0.007433652877807617
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 7.885836419605074e-05,
+            "max_abs": 0.00014573335647583008
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0017325774006459905,
+            "max_abs": 0.008467555046081543
+          }
+        },
+        "vertex_mae": 0.0003542368129405505,
+        "vertex_max_abs": 0.008467555046081543
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 1.001516986628417,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.702493906021118,
+        "edge_length_relative_mean": 0.027648253366351128,
+        "finite": true,
+        "flipped_faces": 1,
+        "normal_cosine_mean": 0.9965324842457585,
+        "normal_cosine_min": -0.7232283867307693,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0006782518980741043,
+            "max_abs": 0.008839726448059082
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00016221631504822708,
+            "max_abs": 0.00047206878662109375
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0012609814775401149,
+            "max_abs": 0.006592869758605957
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.00020160929041758852,
+            "max_abs": 0.00040021538734436035
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0013797775767315393,
+            "max_abs": 0.006134033203125
+          }
+        },
+        "vertex_mae": 0.0007620763351922957,
+        "vertex_max_abs": 0.008839726448059082
+      },
+      "official_runtime_vertices_sha256": "4991d990f71aabbff413ba1f485340a7354634af353d5399ab094566d2a41a04",
+      "surface_vertices_sha256": "4991d990f71aabbff413ba1f485340a7354634af353d5399ab094566d2a41a04",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999994,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.06239118427038193,
+        "legacy": 0.06245929002761841,
+        "official_runtime_lbs": 0.06239118427038193,
+        "surface": 0.06239118427038193
+      },
+      "frame_id": 1250,
+      "full_smplx_vertices_sha256": "3d970a3e7b9b98c5013d92797f2d7a27ecfa21c3e03dd2ced30222c01cac2de0",
+      "hybrid_vertices_sha256": "51763ab2a6b2f87883e7f9cd0ec5c2070e78466df3531f4e3c148bad6c7fb563",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "frame_1250",
+      "legacy_vertices_sha256": "87ce1abb8d46bf7276d495e1e4bf6397262e9d010f2a61523f806f5f9be78c47",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.9953860886091451,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.4467344284057617,
+        "edge_length_relative_mean": 0.027433574199676514,
+        "finite": true,
+        "flipped_faces": 12,
+        "normal_cosine_mean": 0.9933562717927842,
+        "normal_cosine_min": -0.9057572818982358,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00013048785630065938,
+            "max_abs": 0.002218961715698242
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00010020417753738943,
+            "max_abs": 0.0003319382667541504
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0018367088046567193,
+            "max_abs": 0.007038235664367676
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 6.964173217978378e-05,
+            "max_abs": 0.00024312734603881836
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0019710245831259365,
+            "max_abs": 0.007565796375274658
+          }
+        },
+        "vertex_mae": 0.0004365329383950245,
+        "vertex_max_abs": 0.007605195045471191
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 0.9969305572053256,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 10.367165565490723,
+        "edge_length_relative_mean": 0.035744559019804,
+        "finite": true,
+        "flipped_faces": 4,
+        "normal_cosine_mean": 0.9939358038330497,
+        "normal_cosine_min": -0.9993253574894984,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0008171256126963244,
+            "max_abs": 0.009919881820678711
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00018775037356785366,
+            "max_abs": 0.0005339980125427246
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0015816421344362456,
+            "max_abs": 0.0075838565826416016
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.000446436132994618,
+            "max_abs": 0.0009819269180297852
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0015141347016411266,
+            "max_abs": 0.010417580604553223
+          }
+        },
+        "vertex_mae": 0.0011174048330448124,
+        "vertex_max_abs": 0.010607242584228516
+      },
+      "official_runtime_vertices_sha256": "51763ab2a6b2f87883e7f9cd0ec5c2070e78466df3531f4e3c148bad6c7fb563",
+      "surface_vertices_sha256": "51763ab2a6b2f87883e7f9cd0ec5c2070e78466df3531f4e3c148bad6c7fb563",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.062391601502895355,
+        "legacy": 0.06240314617753029,
+        "official_runtime_lbs": 0.062391601502895355,
+        "surface": 0.062391601502895355
+      },
+      "frame_id": 2499,
+      "full_smplx_vertices_sha256": "d35c5a4b7eac6324ff07425699ac9847feed1dcf17075bb688646812d492647c",
+      "hybrid_vertices_sha256": "398b919c1faf86feed5543ce2da3ce9404ebe565a967c37e47c1d9e0f9fb8c2e",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "frame_2499",
+      "legacy_vertices_sha256": "9b574e49a2b6ab3ae360b9c184a3a8e1ec5f6f26296d3c2ad7027827cf642c50",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.9952426638017287,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.0929033756256104,
+        "edge_length_relative_mean": 0.02926718443632126,
+        "finite": true,
+        "flipped_faces": 10,
+        "normal_cosine_mean": 0.9922849241541664,
+        "normal_cosine_min": -0.9708787842118927,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00012823709203238005,
+            "max_abs": 0.00195235013961792
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 8.682803374798161e-05,
+            "max_abs": 0.00016736984252929688
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0017711178067771867,
+            "max_abs": 0.006105303764343262
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 5.912504207811367e-05,
+            "max_abs": 0.0001188516616821289
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0019271749189530296,
+            "max_abs": 0.008008420467376709
+          }
+        },
+        "vertex_mae": 0.00045890281941554997,
+        "vertex_max_abs": 0.008008420467376709
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 0.9988758730141257,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 14.482243537902832,
+        "edge_length_relative_mean": 0.0383136011660099,
+        "finite": true,
+        "flipped_faces": 5,
+        "normal_cosine_mean": 0.9936028902244439,
+        "normal_cosine_min": -0.9434005391769543,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0009897515868608237,
+            "max_abs": 0.006568901240825653
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0005836403577318995,
+            "max_abs": 0.0013964176177978516
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0015324959724113858,
+            "max_abs": 0.008265137672424316
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0003649094557078039,
+            "max_abs": 0.0008730590343475342
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.002113938528573376,
+            "max_abs": 0.007031634449958801
+          }
+        },
+        "vertex_mae": 0.0014213661300633384,
+        "vertex_max_abs": 0.013693392276763916
+      },
+      "official_runtime_vertices_sha256": "398b919c1faf86feed5543ce2da3ce9404ebe565a967c37e47c1d9e0f9fb8c2e",
+      "surface_vertices_sha256": "398b919c1faf86feed5543ce2da3ce9404ebe565a967c37e47c1d9e0f9fb8c2e",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.06239188089966774,
+        "legacy": 0.06239479035139084,
+        "official_runtime_lbs": 0.06239188089966774,
+        "surface": 0.06239188089966774
+      },
+      "frame_id": 44,
+      "full_smplx_vertices_sha256": "6612b5cc476718ac7ad397edb1f67075d0e11d2097ecbda11e28c3771bf5b10f",
+      "hybrid_vertices_sha256": "216ba36cdc134a076b1eb542ce52d48d3136c136c50a6878032f17d099d6df16",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "heldout_44",
+      "legacy_vertices_sha256": "b50e6b4d5b558f3ab7b2d84a7b88139cf44ee7b5fe00c9a1264e6d860b14c32a",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.9964977094364867,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 1.536414623260498,
+        "edge_length_relative_mean": 0.024580948054790497,
+        "finite": true,
+        "flipped_faces": 10,
+        "normal_cosine_mean": 0.9940856656318017,
+        "normal_cosine_min": -0.573705125783845,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00010078248913482735,
+            "max_abs": 0.0015474557876586914
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 8.583829370901552e-05,
+            "max_abs": 0.00019857287406921387
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0018594735312735897,
+            "max_abs": 0.006722807884216309
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 8.045264288910433e-05,
+            "max_abs": 0.00018090009689331055
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.001861321206750541,
+            "max_abs": 0.007143199443817139
+          }
+        },
+        "vertex_mae": 0.00037850081209351167,
+        "vertex_max_abs": 0.007143199443817139
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 1.0026368228491223,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 3.4587595462799072,
+        "edge_length_relative_mean": 0.030732573941349983,
+        "finite": true,
+        "flipped_faces": 3,
+        "normal_cosine_mean": 0.9959419511759459,
+        "normal_cosine_min": -0.46926468848037,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0006180795583873336,
+            "max_abs": 0.006980597972869873
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00019146789488483845,
+            "max_abs": 0.00046944618225097656
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0014967117843956784,
+            "max_abs": 0.008326709270477295
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.00010099272006015055,
+            "max_abs": 0.0003377199172973633
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0014093038679539472,
+            "max_abs": 0.009374439716339111
+          }
+        },
+        "vertex_mae": 0.0007784570392010794,
+        "vertex_max_abs": 0.009374439716339111
+      },
+      "official_runtime_vertices_sha256": "216ba36cdc134a076b1eb542ce52d48d3136c136c50a6878032f17d099d6df16",
+      "surface_vertices_sha256": "216ba36cdc134a076b1eb542ce52d48d3136c136c50a6878032f17d099d6df16",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.062392011284828186,
+        "legacy": 0.06238824501633644,
+        "official_runtime_lbs": 0.062392011284828186,
+        "surface": 0.062392011284828186
+      },
+      "frame_id": 56,
+      "full_smplx_vertices_sha256": "fe5ee82d445fa6567d88f433fefcef551d28f3af98bebbc76dc804320d9be029",
+      "hybrid_vertices_sha256": "80cf938029cc78b63e9eb71c416099fff51be7b7f4fc9e6da342e4532d0fa30e",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "heldout_56",
+      "legacy_vertices_sha256": "af35db332dd802f06b8d0202349a7e6df587579fda6119408af53e4621d02545",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.9961796108993693,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 1.3714863061904907,
+        "edge_length_relative_mean": 0.026099873706698418,
+        "finite": true,
+        "flipped_faces": 12,
+        "normal_cosine_mean": 0.9938870172422822,
+        "normal_cosine_min": -0.9659927570052107,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00012215710701048114,
+            "max_abs": 0.002237081527709961
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00011254048318362206,
+            "max_abs": 0.00019657611846923828
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.001871651993400749,
+            "max_abs": 0.006964683532714844
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.00010032378710233248,
+            "max_abs": 0.00018298625946044922
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0018692904162680966,
+            "max_abs": 0.006548762321472168
+          }
+        },
+        "vertex_mae": 0.00042425269158757103,
+        "vertex_max_abs": 0.006964683532714844
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 1.0026110633567933,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.601199150085449,
+        "edge_length_relative_mean": 0.032347671687603,
+        "finite": true,
+        "flipped_faces": 1,
+        "normal_cosine_mean": 0.9956913031779958,
+        "normal_cosine_min": -0.28073223734914643,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0005624700318764732,
+            "max_abs": 0.006134510040283203
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00026340347797733815,
+            "max_abs": 0.0007368326187133789
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0015559964481441453,
+            "max_abs": 0.009375989437103271
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.00015847857982393296,
+            "max_abs": 0.00043773651123046875
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0013571772938487173,
+            "max_abs": 0.007399111986160278
+          }
+        },
+        "vertex_mae": 0.0008819423408477953,
+        "vertex_max_abs": 0.010114550590515137
+      },
+      "official_runtime_vertices_sha256": "80cf938029cc78b63e9eb71c416099fff51be7b7f4fc9e6da342e4532d0fa30e",
+      "surface_vertices_sha256": "80cf938029cc78b63e9eb71c416099fff51be7b7f4fc9e6da342e4532d0fa30e",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.062391139566898346,
+        "legacy": 0.06240548938512802,
+        "official_runtime_lbs": 0.062391139566898346,
+        "surface": 0.062391139566898346
+      },
+      "frame_id": 114,
+      "full_smplx_vertices_sha256": "81b12c67afaf7fb227ca6446f2fb367b7c0e76184330d9e57edce07de0402530",
+      "hybrid_vertices_sha256": "d679bb48e37a8bcae5dbaf8cbb6d8dd7877a6af880323fd60ec01d69a39eddef",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999994,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "heldout_114",
+      "legacy_vertices_sha256": "9b1569ec4051b66af1a06eff452916c019a5cc6181cdd11bb7f7de4513a027cb",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.99665840491521,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 1.6760305166244507,
+        "edge_length_relative_mean": 0.024638177827000618,
+        "finite": true,
+        "flipped_faces": 6,
+        "normal_cosine_mean": 0.9946409815321211,
+        "normal_cosine_min": -0.5749785036294996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00010091659437628648,
+            "max_abs": 0.0023897886276245117
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 6.346901257832845e-05,
+            "max_abs": 0.0002104043960571289
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0018547535627737814,
+            "max_abs": 0.007683157920837402
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 6.5946899199806e-05,
+            "max_abs": 0.00015783309936523438
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0017332945746937017,
+            "max_abs": 0.0076007843017578125
+          }
+        },
+        "vertex_mae": 0.0003829859369030621,
+        "vertex_max_abs": 0.007683157920837402
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 1.0028713087716112,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.1670010089874268,
+        "edge_length_relative_mean": 0.030265633016824722,
+        "finite": true,
+        "flipped_faces": 3,
+        "normal_cosine_mean": 0.9955341445372227,
+        "normal_cosine_min": -0.728337276523759,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0007668173077681164,
+            "max_abs": 0.008283615112304688
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00019088851444887153,
+            "max_abs": 0.0004870593547821045
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0014379468286174466,
+            "max_abs": 0.008659839630126953
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0002140235769879687,
+            "max_abs": 0.0004597306251525879
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0013660426112427108,
+            "max_abs": 0.007687926292419434
+          }
+        },
+        "vertex_mae": 0.0009258535132108459,
+        "vertex_max_abs": 0.008727192878723145
+      },
+      "official_runtime_vertices_sha256": "d679bb48e37a8bcae5dbaf8cbb6d8dd7877a6af880323fd60ec01d69a39eddef",
+      "surface_vertices_sha256": "d679bb48e37a8bcae5dbaf8cbb6d8dd7877a6af880323fd60ec01d69a39eddef",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999994,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.06239130347967148,
+        "legacy": 0.06241409108042717,
+        "official_runtime_lbs": 0.06239130347967148,
+        "surface": 0.06239130347967148
+      },
+      "frame_id": 134,
+      "full_smplx_vertices_sha256": "33cd90b2bfe3ef0e8240613ff0a09f9343a14dfb44cba1ae91e66335bc629567",
+      "hybrid_vertices_sha256": "5e58ee1f4a59a6b0433376d532210fc27d9c86523fdb2f80dcc12cb514fa8c92",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "heldout_134",
+      "legacy_vertices_sha256": "8a141bde3f3c7262a93b28663b00526f22c19da2539b5fd1cda4e12d4f4c9107",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.994613017447401,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 3.2714695930480957,
+        "edge_length_relative_mean": 0.029492156580090523,
+        "finite": true,
+        "flipped_faces": 24,
+        "normal_cosine_mean": 0.9908660055491701,
+        "normal_cosine_min": -0.8632743994158862,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00011412716530728353,
+            "max_abs": 0.0030657052993774414
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 7.028679416875409e-05,
+            "max_abs": 0.00011181831359863281
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0018935199784136368,
+            "max_abs": 0.006845653057098389
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 7.001049498207548e-05,
+            "max_abs": 0.00010788440704345703
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.002125169131262549,
+            "max_abs": 0.007666349411010742
+          }
+        },
+        "vertex_mae": 0.00044481721489602076,
+        "vertex_max_abs": 0.008587956428527832
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 1.0031006105699198,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 4.612829208374023,
+        "edge_length_relative_mean": 0.04670339077711105,
+        "finite": true,
+        "flipped_faces": 25,
+        "normal_cosine_mean": 0.98867884906805,
+        "normal_cosine_min": -0.9971062452931918,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0016766027321954682,
+            "max_abs": 0.02040386199951172
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0002561850025249197,
+            "max_abs": 0.0008577704429626465
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0018818833190819312,
+            "max_abs": 0.00824427604675293
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.00047109762754777993,
+            "max_abs": 0.0009914040565490723
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0018666758619505783,
+            "max_abs": 0.010907799005508423
+          }
+        },
+        "vertex_mae": 0.0016737029907147659,
+        "vertex_max_abs": 0.02040386199951172
+      },
+      "official_runtime_vertices_sha256": "5e58ee1f4a59a6b0433376d532210fc27d9c86523fdb2f80dcc12cb514fa8c92",
+      "surface_vertices_sha256": "5e58ee1f4a59a6b0433376d532210fc27d9c86523fdb2f80dcc12cb514fa8c92",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    },
+    {
+      "component_separation": {
+        "hybrid": 0.062391892075538635,
+        "legacy": 0.06239481642842293,
+        "official_runtime_lbs": 0.062391892075538635,
+        "surface": 0.062391892075538635
+      },
+      "frame_id": 178,
+      "full_smplx_vertices_sha256": "8fecfd6ad58d193e6474e92be7b47c964e129dde4cdbda48636866da6bd95c08",
+      "hybrid_vertices_sha256": "eb439082a821800bcbfcf271c69c061f4068ceda13474d804feb9f4c234687e4",
+      "hybrid_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      },
+      "label": "heldout_178",
+      "legacy_vertices_sha256": "b637e651700e7082089c5b2e5455b8cdcaceb7b4b18164cd153ba9d2bf2e9f28",
+      "legacy_vs_official_runtime_lbs": {
+        "area_ratio": 0.9963084196123412,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.4911043643951416,
+        "edge_length_relative_mean": 0.025385215878486633,
+        "finite": true,
+        "flipped_faces": 6,
+        "normal_cosine_mean": 0.994599291375839,
+        "normal_cosine_min": -0.6205918673662815,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.00010371431669266235,
+            "max_abs": 0.0020018815994262695
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 7.914070390228533e-05,
+            "max_abs": 0.00017309188842773438
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.001886355020534033,
+            "max_abs": 0.007754206657409668
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 7.343334083300952e-05,
+            "max_abs": 0.0001792311668395996
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.001806191740364864,
+            "max_abs": 0.008285164833068848
+          }
+        },
+        "vertex_mae": 0.00039447665119702225,
+        "vertex_max_abs": 0.008285164833068848
+      },
+      "official_runtime_lbs_vs_full_smplx_record_only": {
+        "area_ratio": 1.0021675844525006,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 2.2541096210479736,
+        "edge_length_relative_mean": 0.03562624752521515,
+        "finite": true,
+        "flipped_faces": 4,
+        "normal_cosine_mean": 0.9937609180369414,
+        "normal_cosine_min": -0.9196023122229882,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0009491798308236972,
+            "max_abs": 0.013998925685882568
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.00020522614247341878,
+            "max_abs": 0.0006128549575805664
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0014510296542069008,
+            "max_abs": 0.009155809879302979
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0002574469434763777,
+            "max_abs": 0.0006328821182250977
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0013262936438637218,
+            "max_abs": 0.007830381393432617
+          }
+        },
+        "vertex_mae": 0.0011449947239580663,
+        "vertex_max_abs": 0.013998925685882568
+      },
+      "official_runtime_vertices_sha256": "eb439082a821800bcbfcf271c69c061f4068ceda13474d804feb9f4c234687e4",
+      "surface_vertices_sha256": "eb439082a821800bcbfcf271c69c061f4068ceda13474d804feb9f4c234687e4",
+      "surface_vs_official_runtime_lbs": {
+        "area_ratio": 1.0,
+        "candidate_degenerate_faces": 0,
+        "edge_length_relative_max": 0.0,
+        "edge_length_relative_mean": 0.0,
+        "finite": true,
+        "flipped_faces": 0,
+        "normal_cosine_mean": 1.0,
+        "normal_cosine_min": 0.9999999999999996,
+        "reference_degenerate_faces": 0,
+        "regions": {
+          "head_face": {
+            "count": 3814,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "left_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_eyeball": {
+            "count": 546,
+            "mae": 0.0,
+            "max_abs": 0.0
+          },
+          "right_hand": {
+            "count": 580,
+            "mae": 0.0,
+            "max_abs": 0.0
+          }
+        },
+        "vertex_mae": 0.0,
+        "vertex_max_abs": 0.0
+      }
+    }
+  ],
+  "reference": {
+    "faces": 20908,
+    "faces_sha256": "2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b",
+    "joints": 55,
+    "vertices": 10475,
+    "vertices_sha256": "cb7edff9ec0ef82d97fb1444a65e894e39a9bd4cafd7cde0e90b388547e6e447",
+    "weights_sha256": "645bde9f2a656a888b31173b06231da1ebb78d1363d33ba8f44eeb60e6bb4e29"
+  },
+  "schema_version": "subject00.mmlphuman.surface_attachment_results.v1",
+  "semantic": {
+    "allowed_joints": {
+      "head_face": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        22
+      ],
+      "left_arm": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        22,
+        25,
+        26,
+        28,
+        31,
+        32,
+        34,
+        35,
+        37,
+        38,
+        39
+      ],
+      "left_eyeball": [
+        15,
+        22,
+        23
+      ],
+      "left_foot": [
+        0,
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        14,
+        17,
+        19
+      ],
+      "left_hand": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "left_leg": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        21
+      ],
+      "right_arm": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        40,
+        41,
+        43,
+        46,
+        47,
+        49,
+        50,
+        52,
+        53,
+        54
+      ],
+      "right_eyeball": [
+        15,
+        22,
+        24
+      ],
+      "right_foot": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18
+      ],
+      "right_hand": [
+        0,
+        2,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        14,
+        16,
+        17,
+        18,
+        19,
+        21,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "right_leg": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        20,
+        21
+      ],
+      "torso": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22
+      ]
+    },
+    "component_names": {
+      "0": "body_main",
+      "1": "left_eyeball",
+      "2": "right_eyeball"
+    },
+    "component_sizes": [
+      9383,
+      546,
+      546
+    ],
+    "face_component_sha256": "a37f3ea1c36396cd0a268b18d70be097e958abe2c54461e74ec1c8ac2278d6ae",
+    "face_region_sha256": "3ded990d0c1414573822373b8ab82b9653f1091cf48e392fba1493872f439deb",
+    "region_names": [
+      "head_face",
+      "left_arm",
+      "left_eyeball",
+      "left_foot",
+      "left_hand",
+      "left_leg",
+      "right_arm",
+      "right_eyeball",
+      "right_foot",
+      "right_hand",
+      "right_leg",
+      "torso"
+    ],
+    "vertex_component_sha256": "388733def82c7d536ca4821d792062e2332bbd34d7adc467377ed16f998c83b2",
+    "vertex_region_sha256": "ef9ddbaeac2a49dff117dc1dd75011feab3006c184fe6f141a94b152a39987a4"
+  },
+  "status": "PASS",
+  "surface_samples": {
+    "count": 104540,
+    "leakage": {
+      "hand_finger_cross_region": 0,
+      "hand_sample_count": 11540,
+      "head_eye_cross_component_or_region": 0,
+      "head_eye_sample_count": 48860,
+      "legacy_hand_dominant_region_mismatch": 751,
+      "legacy_head_eye_dominant_region_mismatch": 6420
+    },
+    "legacy_grid": {
+      "count": 104540,
+      "dominant_agreement": 0.8989382054715899,
+      "finite": true,
+      "mae": 0.0055457298140367765,
+      "max_abs": 0.6959095299243927,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 1.9805774598147252e-07
+    },
+    "per_region": {
+      "head_face": {
+        "legacy_grid": {
+          "count": 37980,
+          "dominant_agreement": 0.873407056345445,
+          "finite": true,
+          "mae": 0.006107536892222755,
+          "max_abs": 0.6959095299243927,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.9805774598147252e-07
+        },
+        "sample_count": 37980,
+        "surface_attachment": {
+          "count": 37980,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 7.451305394923224e-08
+        }
+      },
+      "left_arm": {
+        "legacy_grid": {
+          "count": 8170,
+          "dominant_agreement": 0.9646266829865361,
+          "finite": true,
+          "mae": 0.0017936702890324323,
+          "max_abs": 0.45351463556289673,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.837634342471972e-07
+        },
+        "sample_count": 8170,
+        "surface_attachment": {
+          "count": 8170,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.635673344135284e-08
+        }
+      },
+      "left_eyeball": {
+        "legacy_grid": {
+          "count": 5440,
+          "dominant_agreement": 0.7601102941176471,
+          "finite": true,
+          "mae": 0.01549481890809239,
+          "max_abs": 0.5765061974525452,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.9656001792878186e-07
+        },
+        "sample_count": 5440,
+        "surface_attachment": {
+          "count": 5440,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 4.956319799021003e-08
+        }
+      },
+      "left_foot": {
+        "legacy_grid": {
+          "count": 2530,
+          "dominant_agreement": 0.9885375494071146,
+          "finite": true,
+          "mae": 0.0010962849477339754,
+          "max_abs": 0.09448462724685669,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.478783996367028e-07
+        },
+        "sample_count": 2530,
+        "surface_attachment": {
+          "count": 2530,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.717164069414139e-08
+        }
+      },
+      "left_hand": {
+        "legacy_grid": {
+          "count": 5770,
+          "dominant_agreement": 0.8128249566724437,
+          "finite": true,
+          "mae": 0.011214137664245344,
+          "max_abs": 0.6314211189746857,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.6077598186114983e-07
+        },
+        "sample_count": 5770,
+        "surface_attachment": {
+          "count": 5770,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.909340299898759e-08
+        }
+      },
+      "left_leg": {
+        "legacy_grid": {
+          "count": 4410,
+          "dominant_agreement": 0.9900226757369615,
+          "finite": true,
+          "mae": 0.0006173699630743752,
+          "max_abs": 0.1253860592842102,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.6589015960910558e-07
+        },
+        "sample_count": 4410,
+        "surface_attachment": {
+          "count": 4410,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.487497650198293e-08
+        }
+      },
+      "right_arm": {
+        "legacy_grid": {
+          "count": 8310,
+          "dominant_agreement": 0.9655836341756919,
+          "finite": true,
+          "mae": 0.0018089661906653652,
+          "max_abs": 0.45175404846668243,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.7726055467903734e-07
+        },
+        "sample_count": 8310,
+        "surface_attachment": {
+          "count": 8310,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 7.264316015387351e-08
+        }
+      },
+      "right_eyeball": {
+        "legacy_grid": {
+          "count": 5440,
+          "dominant_agreement": 0.7634191176470588,
+          "finite": true,
+          "mae": 0.015224701455836306,
+          "max_abs": 0.5719114243984222,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.5998107660841754e-07
+        },
+        "sample_count": 5440,
+        "surface_attachment": {
+          "count": 5440,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 5.760060162174341e-08
+        }
+      },
+      "right_foot": {
+        "legacy_grid": {
+          "count": 2530,
+          "dominant_agreement": 0.9865612648221344,
+          "finite": true,
+          "mae": 0.0010243055104185246,
+          "max_abs": 0.09081965684890747,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.565631739808282e-07
+        },
+        "sample_count": 2530,
+        "surface_attachment": {
+          "count": 2530,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.472691893577576e-08
+        }
+      },
+      "right_hand": {
+        "legacy_grid": {
+          "count": 5770,
+          "dominant_agreement": 0.8103986135181975,
+          "finite": true,
+          "mae": 0.01112621715267471,
+          "max_abs": 0.6325759589672089,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.5110961604225537e-07
+        },
+        "sample_count": 5770,
+        "surface_attachment": {
+          "count": 5770,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.961636245250702e-08
+        }
+      },
+      "right_leg": {
+        "legacy_grid": {
+          "count": 4300,
+          "dominant_agreement": 0.9839534883720931,
+          "finite": true,
+          "mae": 0.0005982915864751272,
+          "max_abs": 0.1236329972743988,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.5639975869952139e-07
+        },
+        "sample_count": 4300,
+        "surface_attachment": {
+          "count": 4300,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 6.146728992462158e-08
+        }
+      },
+      "torso": {
+        "legacy_grid": {
+          "count": 13890,
+          "dominant_agreement": 0.9827213822894169,
+          "finite": true,
+          "mae": 0.0008222578110463007,
+          "max_abs": 0.09770235419273376,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 1.682269832326e-07
+        },
+        "sample_count": 13890,
+        "surface_attachment": {
+          "count": 13890,
+          "dominant_agreement": 1.0,
+          "finite": true,
+          "mae": 0.0,
+          "max_abs": 0.0,
+          "minimum": 0.0,
+          "weight_sum_max_abs_error": 7.45058068574167e-08
+        }
+      }
+    },
+    "surface_attachment": {
+      "count": 104540,
+      "dominant_agreement": 1.0,
+      "finite": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 7.451305394923224e-08
+    }
+  },
+  "vertices": {
+    "legacy_grid": {
+      "count": 10475,
+      "dominant_agreement": 0.9010978520286396,
+      "finite": true,
+      "mae": 0.005666726228972536,
+      "max_abs": 0.7210047245025635,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 1.7326256429583964e-07
+    },
+    "surface_attachment": {
+      "count": 10475,
+      "dominant_agreement": 1.0,
+      "finite": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "minimum": 0.0,
+      "weight_sum_max_abs_error": 4.470348358154297e-08
+    },
+    "vertex_weight_bitwise_exact": true
+  }
+}

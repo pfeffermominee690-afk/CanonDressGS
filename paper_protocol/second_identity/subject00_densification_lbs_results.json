@@ -1,0 +1,51 @@
+{
+  "gate": true,
+  "results": {
+    "checkpoint_roundtrip_arrays_exact": true,
+    "checkpoint_sha256": "559c57da8bdd3ebcccc61bb818503d3c43a931f2a8352976b5168dbf683a5154",
+    "clone": {
+      "barycentric_exact": true,
+      "components_exact": true,
+      "face_ids_exact": true,
+      "regions_exact": true,
+      "weights_exact": true
+    },
+    "deformation_continuity_frame_0": {
+      "clone_parent_max_abs": 0.0,
+      "finite": true,
+      "split_large_parent_child_distance_max": 0.04275168851017952,
+      "split_large_parent_child_distance_mean": 0.029989056289196014,
+      "split_small_parent_child_distance_max": 0.0010508766863495111,
+      "split_small_parent_child_distance_mean": 0.00028435501735657454
+    },
+    "parent_count": 10000,
+    "prune": {
+      "input_count": 10000,
+      "kept_count": 5000,
+      "metadata_index_parity": true
+    },
+    "split_large": {
+      "component_switch_count": 35,
+      "dominant_switch_count": 1106,
+      "fallback_count": 10000,
+      "region_switch_count": 459,
+      "surface_distance_max": 0.029993699804179787,
+      "surface_distance_mean": 0.014077906048488796,
+      "tie_count": 1554
+    },
+    "split_small": {
+      "component_switch_count": 0,
+      "dominant_switch_count": 6,
+      "formula_max_abs": 0.0,
+      "parent_child_weight_drift_max": 0.010769248008728027,
+      "parent_child_weight_drift_mean": 3.0059645047324828e-05,
+      "parent_face_exact": true,
+      "position_drift_max": 0.0009763457658498644,
+      "position_drift_mean": 0.0002841332541808389,
+      "region_switch_count": 0
+    }
+  },
+  "schema_version": "subject00.mmlphuman.densification_lbs_results.v1",
+  "status": "PASS",
+  "two_run_checkpoint_arrays_exact": true
+}
