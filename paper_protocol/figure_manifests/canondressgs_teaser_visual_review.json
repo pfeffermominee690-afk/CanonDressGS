@@ -1,0 +1,75 @@
+{
+  "schema_version": "canondressgs.paper.teaser_visual_review.v1",
+  "task_id": "AAAI27-CANONDRESSGS-TEASER-REAL-ASSETS-001",
+  "status": "MANUAL_REVIEW_REQUIRED",
+  "paper_final": false,
+  "review_execution": {
+    "whole_png_actual_opened": true,
+    "pdf_render_actual_opened": true,
+    "source_reference_images_actual_opened": 3,
+    "source_base_images_actual_opened": 1,
+    "source_result_images_actual_opened": 6,
+    "author_signoff_still_required": true
+  },
+  "opened_outputs": [
+    "paper_draft/aaai27/figures/figure1_canondressgs_teaser.png",
+    "paper_draft/aaai27/figures/figure1_canondressgs_teaser.pdf"
+  ],
+  "checklist": [
+    {
+      "check": "reference garment IDs match O01, O03, and O08",
+      "status": "PASS"
+    },
+    {
+      "check": "base avatar identity is subject02 and the full body is visible",
+      "status": "PASS"
+    },
+    {
+      "check": "all six edited panels are sealed Ours-v2 formal endpoint results",
+      "status": "PASS"
+    },
+    {
+      "check": "Pose A and Pose B map to cond_000318 and cond_000017",
+      "status": "PASS"
+    },
+    {
+      "check": "all bodies remain complete with no body crop",
+      "status": "PASS"
+    },
+    {
+      "check": "person scale is consistent within the two result columns",
+      "status": "PASS"
+    },
+    {
+      "check": "garment is consistent within each row",
+      "status": "PASS"
+    },
+    {
+      "check": "condition and pose semantics are consistent within each result column",
+      "status": "PASS"
+    },
+    {
+      "check": "labels, arrows, and borders do not cover people",
+      "status": "PASS"
+    },
+    {
+      "check": "PNG and rendered PDF contain no visible compression failure",
+      "status": "PASS"
+    },
+    {
+      "check": "source artifacts were not erased or retouched",
+      "status": "PASS"
+    },
+    {
+      "check": "no unverified novel-view, novel-pose, interpolation, or FPS claim appears",
+      "status": "PASS"
+    }
+  ],
+  "preserved_visual_evidence": {
+    "edge_scatter_visible": true,
+    "mottle_and_cloud_not_retouched": true,
+    "silhouette_discontinuities_not_retouched": true,
+    "source_pixels_modified_only_by_crop_resize_and_composition": true
+  },
+  "review_note": "The generated teaser and the one-page PDF render were opened after the final label-spacing correction. This record is not PAPER_FINAL and does not replace author signoff."
+}
