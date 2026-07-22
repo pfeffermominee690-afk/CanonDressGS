@@ -1,0 +1,155 @@
+{
+  "asset_fingerprints": {
+    "formal_after": {
+      "bytes": 964043888,
+      "file_count": 4127,
+      "metadata_sha256_ns": "2205acdcf3a7a6f8019a584f4e4b9ac0f50a8cdd3f2b342642a949b9791b22cc"
+    },
+    "formal_before": {
+      "bytes": 964043888,
+      "file_count": 4127,
+      "metadata_sha256_ns": "2205acdcf3a7a6f8019a584f4e4b9ac0f50a8cdd3f2b342642a949b9791b22cc"
+    },
+    "p0_after": {
+      "bytes": 339118385,
+      "file_count": 911,
+      "metadata_sha256_ns": "f90b9aeaa5ab93a951ae81f91e48dc77792d4b6bd513e6c8af9af8ba481228ab"
+    },
+    "p0_before": {
+      "bytes": 339118385,
+      "file_count": 911,
+      "metadata_sha256_ns": "f90b9aeaa5ab93a951ae81f91e48dc77792d4b6bd513e6c8af9af8ba481228ab"
+    }
+  },
+  "backward_count": 0,
+  "basis_continuity_conclusion": "BASIS_CONTINUITY_NUMERIC_ONLY",
+  "color_conclusion": "COLOR_DOMINATED",
+  "counts": {
+    "checkpoint_writes": 0,
+    "color_method_queries": 420,
+    "extended_episode_metrics": 360,
+    "interpolation_renders": 440,
+    "mixed_method_queries": 960,
+    "perturbation_method_queries": 1200,
+    "visual_unique_sheets_opened": 57
+  },
+  "environment": {
+    "cuda": "12.1",
+    "cuda_tensor_smoke": 13.0,
+    "driver": "580.76.05",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "python": "3.10.20",
+    "pytorch": "2.4.1+cu121"
+  },
+  "execution_head": "b1a2aa3fcf1512a25531194aab2c9e2d65b68f3a",
+  "extended_metric_conclusion": "EXTENDED_METRICS_COMPLETE",
+  "final_head": "commit containing this summary",
+  "frozen_asset_mutation_count": 0,
+  "hard_lookup_risk_refined": "HARD_LOOKUP_MATCHES_WITHOUT_CLEAR_SOFT_ADVANTAGE",
+  "next_task": "ADJUDICATE_P0_AND_FREEZE_FINAL_PAPER_METHOD",
+  "next_task_started": false,
+  "optimizer_update_count": 0,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "perturbation_continuity_conclusion": "CONTINUITY_INCONCLUSIVE",
+  "protocol_sha256_lf": "44320d575a7012a00396e6093dd5a0ee06cdd5679c878b3c7b254ceb215a0bba",
+  "reference_soft_control_conclusion": "REFERENCE_SOFT_CONTROL_PARTIAL",
+  "run_branch": "paper/aaai27-p0-color-spatial-soft-control-evaluations-20260722",
+  "scheduler_update_count": 0,
+  "schema_version": "canondressgs.paper.p0_color_spatial_soft_control_final_summary.v1",
+  "scientific_boundary": {
+    "final_hard_lookup_fusion_supervision_paper_adjudication_written": false,
+    "raw_results_and_stage_classifications_only": true
+  },
+  "attempt_history": [
+    {
+      "attempt": "attempt_001",
+      "stage": "COLOR_C0_PRE_RENDER",
+      "status": "FAILED_PROTOCOL_IMPLEMENTATION_MISMATCH",
+      "evaluation_count": 0,
+      "render_count": 0,
+      "scientific_result": false
+    },
+    {
+      "attempt": "attempt_002",
+      "stage": "SPATIAL_PRE_METRIC",
+      "status": "FAILED_PROTOCOL_IMPLEMENTATION_MISMATCH",
+      "completed_valid_phases": [
+        "color",
+        "extended"
+      ],
+      "spatial_metric_count": 0,
+      "scientific_result": false
+    },
+    {
+      "attempt": "attempt_003",
+      "stage": "SPATIAL_PRE_METRIC",
+      "status": "FAILED_PROTOCOL_IMPLEMENTATION_MISMATCH",
+      "completed_valid_phases_reused_without_evaluation_or_render": [
+        "color",
+        "extended"
+      ],
+      "spatial_metric_count": 0,
+      "scientific_result": false
+    },
+    {
+      "attempt": "attempt_004",
+      "stage": "COMPLETE_AND_ARCHIVED",
+      "status": "PAPER_CANDIDATE_MANUAL_REVIEW_REQUIRED",
+      "reused_valid_prefix_without_evaluation_or_render": [
+        "color",
+        "extended"
+      ],
+      "mixed_reference_completed_before_interruption": 209,
+      "mixed_reference_missing_resumed": 751,
+      "completed_existing_items_repeated": 0
+    }
+  ],
+  "visual_review": {
+    "status": "COMPLETE_MANUAL_VISUAL_REVIEW",
+    "unique_sheet_count": 57,
+    "actual_opened_count": 57,
+    "mapping_check_pass_count": 57,
+    "target_unchanged_check_pass_count": 57,
+    "artifact_max_grades": {
+      "cloud": 3,
+      "mottle": 3,
+      "edge_scatter": 3,
+      "full_body_contamination": 3,
+      "identity_contamination": 0,
+      "silhouette_discontinuity": 3
+    },
+    "preserved_failures": [
+      "Ours-v2 continuous color/interpolation, mixed-reference, and some perturbation outputs contain conspicuous patches, mottle, cloud-like texture, edge scatter, and local silhouette discontinuity.",
+      "M3, M4, and historical B4 contain severe whole-body contamination.",
+      "B6/B7 mixed-reference outputs repeatedly switch to discrete endpoints instead of providing soft intermediate control."
+    ]
+  },
+  "no_result_conditioned_action": {
+    "parameter_tuning": false,
+    "cherry_picking": false,
+    "scientific_failure_rerun": false,
+    "completed_evaluation_or_render_repeated": false,
+    "frozen_protocol_modified": false,
+    "color_c0_c6_modified": false,
+    "mixed_reference_modified": false,
+    "interpolation_modified": false,
+    "spatial_threshold_modified": false
+  },
+  "archive_artifact_count": 11,
+  "source_branch": "paper/aaai27-p0-evaluation-protocol-repair-20260721",
+  "source_head": "8578fb3143dd916ff7e42240e7508a29c784d995",
+  "spatial_artifact_conclusion": "SPATIAL_ARTIFACT_SEVERE",
+  "spatial_method_classifications": {
+    "B1": "SPATIAL_ARTIFACT_SEVERE",
+    "M3": "SPATIAL_ARTIFACT_SEVERE",
+    "M4": "SPATIAL_ARTIFACT_SEVERE",
+    "Ours-v2": "SPATIAL_ARTIFACT_SEVERE",
+    "historical_A6": "SPATIAL_ARTIFACT_SEVERE",
+    "historical_old_Ours": "SPATIAL_ARTIFACT_SEVERE"
+  },
+  "status": "PAPER_CANDIDATE_MANUAL_REVIEW_REQUIRED",
+  "target_forward_leakage_count": 0,
+  "task_id": "AAAI27-P0-COLOR-SPATIAL-SOFT-CONTROL-002",
+  "training_count": 0
+}
