@@ -827,11 +827,10 @@ def run_render_seed(
 
 
 def pooled_feature(rows: torch.Tensor, valid: torch.Tensor) -> torch.Tensor:
-    mask = valid.to(dtype=torch.bool)
-    if mask.ndim:
-        selected = rows[mask]
-    else:
-        selected = rows
+    mask = valid.to(dtype=torch.bool).reshape(-1)
+    if mask.numel() != rows.shape[0]:
+        raise RuntimeError("reference-valid mask does not match feature rows")
+    selected = rows[mask]
     if selected.numel() == 0:
         return torch.zeros(rows.shape[-1], dtype=rows.dtype)
     return selected.float().mean(dim=0)
@@ -897,11 +896,11 @@ def run_perturbation_chain_seed(
     formal.configure_determinism(strict=False)
     sealed.RUN_BRANCH = formal.RUN_BRANCH
     sealed.SOURCE_HEAD = formal.SOURCE_HEAD
-    seed_all(0)
     gate = NoTrainingGate()
     records = []
     inference_count = 0
     with gate:
+        seed_all(0)
         runtime = sealed.EvaluationRuntime(attempt / f"audits/perturb_runtime_seed_{seed}_no_write", asset_root, {})
         model = evaluator.load_model(formal_root, seed, torch.device("cuda"))
         device = torch.device("cuda")
