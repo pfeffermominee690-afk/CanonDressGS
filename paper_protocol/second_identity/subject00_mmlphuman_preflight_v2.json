@@ -35,12 +35,13 @@
     "resolution": [1330, 1150]
   },
   "gates": {
+    "v2_regression_canary": "PASS_STRICT_LOAD_FORWARD_RUNTIME_AND_EXACT_RGB_ALPHA_HASHES",
     "schema": "PASS",
     "official_missing_lists": "PASS_296_IMAGE_296_MASK_IDENTICAL_TO_SCAN",
     "availability_manifest": "PASS_60000_TOTAL_59704_VALID_296_INVALID",
     "loader": "PASS",
     "dataset_smoke": "PASS_17_SAMPLES_BATCH4",
-    "cuda_loader_transfer": "DEFERRED_ACTIVE_GPU_TASK",
+    "cuda_loader_transfer": "PASS",
     "template": "SUBJECT00_TEMPLATE_DETERMINISTICALLY_GENERATABLE",
     "lbs": "SUBJECT00_LBS_DETERMINISTICALLY_GENERATABLE",
     "config_guard": "PASS_BLOCK_FORMAL_TRAINING",

@@ -1,0 +1,91 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT00-PREFLIGHT-V2-001",
+  "status": "COMPLETE_NO_TRAINING",
+  "readiness_classification": "SUBJECT00_READY_FOR_DETERMINISTIC_PREPROCESSING",
+  "next_task": "PREPARE_SUBJECT00_MMLPHUMAN_DERIVED_ASSETS_WITHOUT_TRAINING",
+  "source": {
+    "branch": "research/mmlphuman-subject02-runtime-snapshot-v2-20260723",
+    "head": "b1d304614b5a9322035b45ebeb7fa0166adaa362",
+    "classification": "SUBJECT02_SOURCE_SNAPSHOT_CREATED_WITH_LIMITATIONS",
+    "accepted_future_baseline": true,
+    "raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+    "lf_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89",
+    "provenance_boundary": "CLEAN_FROZEN_PROSPECTIVE_RUNTIME_BASELINE_NOT_HISTORICALLY_EXACT_SUBJECT02_TRAINING_SOURCE"
+  },
+  "v2_regression": {
+    "status": "PASS",
+    "strict_checkpoint_load": "PASS",
+    "model_forward": "PASS",
+    "renderer_runtime_contract": "PASS",
+    "iteration": 100000,
+    "gaussian_count": 200000,
+    "resolution": [1150, 1330],
+    "rgb_float32_sha256": "185d3f458d388f2cc87cd439ffc9ca8d79f3a66c6f0b220054f0a6352b3a6437",
+    "alpha_float32_sha256": "298c2a77c73081c3a1860baddd64c631283b4647c637cdcfef4a4fc4430b8e35",
+    "warnings": 0,
+    "peak_cuda_bytes": 1843536896
+  },
+  "subject00": {
+    "raw_data_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "schema": "PASS",
+    "missing_list_audit": "PASS",
+    "availability": {
+      "total": 60000,
+      "valid": 59704,
+      "invalid": 296,
+      "duplicate": 0,
+      "unknown": 0,
+      "image_only": 0,
+      "mask_only": 0,
+      "manifest_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e"
+    },
+    "loader": "PASS",
+    "loader_sample_count": 17,
+    "batch4": "PASS",
+    "cuda_device_transfer": "PASS",
+    "template": "SUBJECT00_TEMPLATE_DETERMINISTICALLY_GENERATABLE",
+    "lbs": "SUBJECT00_LBS_DETERMINISTICALLY_GENERATABLE",
+    "model_forward_render": "MODEL_FORWARD_NOT_RUN_DERIVED_ASSETS_PENDING",
+    "config_training_gate": "PASS_BLOCK_FORMAL_TRAINING"
+  },
+  "splits": {
+    "train_camera_ids": [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 21, 22, 23],
+    "heldout_camera_ids": [0, 4, 8, 12, 16, 20],
+    "camera_split_sha256": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+    "train_pose_count": 1130,
+    "heldout_pose_count": 125,
+    "buffer_excluded_count": 1245,
+    "pose_split_sha256": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06",
+    "camera_overlap": 0,
+    "temporal_leakage": 0,
+    "four_quadrant_protocol": "FROZEN_PROPOSED_NOT_EXECUTED"
+  },
+  "immutability": {
+    "subject00_raw_mutations": 0,
+    "subject02_mutations": 0,
+    "subject02_formal_output_mutations": 0,
+    "v2_runtime_closure_mutations": 0
+  },
+  "counters": {
+    "training_steps": 0,
+    "forward_training_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "checkpoint_writes": 0,
+    "PAPER_FINAL": 0
+  },
+  "reports": {
+    "main": "docs/SECOND_IDENTITY/SUBJECT00_MMLPHUMAN_PREFLIGHT_V2_20260723.md",
+    "schema": "docs/SECOND_IDENTITY/SUBJECT00_SUBJECT02_SCHEMA_COMPARISON_V2_20260723.md",
+    "protocol": "docs/SECOND_IDENTITY/SUBJECT00_STRICT_NOVEL_VIEW_POSE_PROTOCOL_V2_20260723.md",
+    "assets": "docs/SECOND_IDENTITY/SUBJECT00_TEMPLATE_LBS_AUDIT_V2_20260723.md",
+    "cost": "docs/SECOND_IDENTITY/SUBJECT00_MMLPHUMAN_COST_ESTIMATE_V2_20260723.md",
+    "config": "docs/SECOND_IDENTITY/subject00_mmlphuman_config_v2_explanation.md",
+    "availability_external": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+    "runtime_external": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_MMLPHUMAN_PREFLIGHT_V2_RUNTIME.json"
+  },
+  "repository_sync": "VERIFIED_POST_COMMIT_IN_EXTERNAL_ATTEMPT_RECORD",
+  "PAPER_FINAL": 0
+}
