@@ -1,0 +1,305 @@
+schema_version: canondressgs.research.continuous_control_causal_attribution_protocol.v1
+task_id: AAAI27-CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001
+status: FROZEN_BEFORE_DIAGNOSTIC_RENDER
+label: RESEARCH DIAGNOSTIC — NOT PAPER FINAL
+paper_final: false
+
+governance:
+  source_branch: research/continuous-control-artifact-root-cause-20260722
+  source_head: 68623c36eee70c0b41aefb480f8f85e668eae201
+  run_branch: research/continuous-control-causal-attribution-20260722
+  previous_archive_read_only: true
+  historical_outputs_read_only: true
+  new_outputs_append_only: true
+  training_forbidden: true
+  backward_forbidden: true
+  diagnostic_optimizer_forbidden: true
+  optimizer_step_forbidden: true
+  scheduler_step_forbidden: true
+  checkpoint_write_forbidden: true
+  teacher_mutation_forbidden: true
+  basis_mutation_forbidden: true
+  formal_output_mutation_forbidden: true
+  result_conditioned_protocol_change_forbidden: true
+  automatic_micro_pilot_forbidden: true
+
+previous_archive_gate:
+  final_summary:
+    path: paper_protocol/reviewer_risk/continuous_control_root_cause_final_summary.json
+    sha256_lf: 5a91be529f63b30c5a58cc73e219389ddeb361cf7540d54e86f0f28575ea3216
+  visual_review:
+    path: paper_protocol/reviewer_risk/continuous_control_root_cause_visual_review.json
+    sha256_lf: b1df69c165bb1f0115dcd7ab16c5f48d9b87e35f9ceb2bf44ce62ee450120c81
+    required_actual_open_count: 82
+  previous_protocol:
+    path: paper_protocol/reviewer_risk/continuous_control_root_cause_protocol.yaml
+    sha256_lf: 4d5abd9c368b40e9e622573b43ceb9ba15cf2774a0907be5d798be2fc41db98a
+  previous_channel_renders: 720
+  previous_full_reused: 440
+  previous_paper_final_count: 0
+  adjudication:
+    previous_channel_attribution: SCIENTIFICALLY_INCONCLUSIVE_DUE_MIDPOINT_DEGENERACY
+    previous_engineering_execution: PASS
+    previous_support_mismatch_evidence: NOT_SUPPORTED
+    previous_multiple_factors_classification: PRESERVED_AS_HISTORICAL_BUT_NOT_FINAL
+
+sealed_p0_gate:
+  interpolation_results:
+    path: paper_protocol/reviewer_risk/p0_basis_interpolation_results.json
+    sha256_lf: 5b43060fa5b0bda4befa4b9e940bdaef88ebb859b33dacd0da9644a22a51f6cd
+    required_render_count: 440
+    endpoint_parity_required: true
+  mixed_reference_results:
+    path: paper_protocol/reviewer_risk/p0_mixed_reference_results.json
+    required_stable_count: 3
+    required_unstable_count: 7
+  paper_final_count: 0
+
+frozen_assets:
+  manifest:
+    path: paper_protocol/frozen_asset_manifest.json
+    sha256_lf: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+    required_verified_count: 19
+  teacher_checkpoints:
+    O01: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+    O02: 8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820
+    O03: 16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93
+    O04: b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3
+    O08: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  rank4_basis_sha256: a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430
+  coefficient_normalization_sha256: c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2
+  base_gaussian_state_fingerprint: de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9
+  mmlphuman_checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  backbone_state_fingerprint: 3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7
+  renderer_source_bundle_sha256: 0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6
+  formal_output_tree_fingerprint: 108c8f2a7e327cd76a508c16e1797cd220d169cbff44091fc9cfefbd2911c74c
+
+design:
+  garment_order: [O01, O02, O03, O04, O08]
+  unordered_pair_order:
+    - [O01, O02]
+    - [O01, O03]
+    - [O01, O04]
+    - [O01, O08]
+    - [O02, O03]
+    - [O02, O04]
+    - [O02, O08]
+    - [O03, O04]
+    - [O03, O08]
+    - [O04, O08]
+  direction_order: [A_TO_B, B_TO_A]
+  target_view_order: [cond_000000, cond_000318, cond_000017, cond_000347]
+  alpha: [0.25, 0.50, 0.75]
+  stable_pair_labels:
+    O01_O02: stable
+    O01_O03: unstable
+    O01_O04: stable
+    O01_O08: unstable
+    O02_O03: unstable
+    O02_O04: unstable
+    O02_O08: unstable
+    O03_O04: stable
+    O03_O08: unstable
+    O04_O08: unstable
+  required_stable_count: 3
+  required_unstable_count: 7
+
+factor_contract:
+  channel_order: [delta_xyz, delta_log_scaling, delta_rotvec, delta_opacity_logit, delta_sh0, delta_shN]
+  factors:
+    G: [delta_xyz, delta_log_scaling, delta_rotvec]
+    V: [delta_opacity_logit]
+    A: [delta_sh0, delta_shN]
+  factor_order: [G, V, A]
+  subset_order: ['000', '100', '010', '001', '110', '101', '011', '111']
+  subsets:
+    '000': []
+    '100': [G]
+    '010': [V]
+    '001': [A]
+    '110': [G, V]
+    '101': [G, A]
+    '011': [V, A]
+    '111': [G, V, A]
+  new_render_subsets: ['100', '010', '001', '110', '101', '011']
+  source_endpoint_subset: '000'
+  full_subset: '111'
+  forward_rule: R_source + alpha * P_subset(R_target - R_source)
+  unselected_channel_rule: bitwise_equal_to_source_endpoint
+  interpolation_space: frozen post-protected-guard GaussianClothingResiduals
+  gaussian_index_order: frozen base checkpoint _xyz row order
+  new_render_count: 1440
+  endpoint_reuse_count: 80
+  full_reuse_count: 240
+  full_reverse_mapping: B_TO_A(alpha) maps to stored A_TO_B(1-alpha)
+  full_regeneration_forbidden: true
+  endpoint_regeneration_forbidden: true
+  missing_only_resume: true
+  completed_render_repetition_forbidden: true
+
+implementation_parity:
+  unselected_channels_bitwise_equal_source: required
+  selected_channels_formula_allclose_rtol: 0.0
+  selected_channels_formula_allclose_atol: 0.0
+  empty_subset_bitwise_equal_source: required
+  full_subset_bitwise_equal_existing_full_residual: required
+  reverse_full_residual_bitwise_equal_forward_one_minus_alpha: required
+  target_pose_camera_unchanged: required
+  frozen_assets_unchanged: required
+
+automatic_metrics:
+  render_metrics: [garment_rgb_mae, lpips, silhouette_iou, boundary_fscore, protected_lpips]
+  residual_metrics: [displacement_rms, displacement_p95, opacity_activation_rms, opacity_activation_p95, sh0_difference_rms, shN_difference_rms]
+  garment_rgb_reference: alpha-matched linear RGB blend of existing FULL endpoints
+  protected_lpips_reference: source endpoint RGB
+  silhouette_threshold: 0.5
+  boundary_tolerance_formula: max(1,floor(0.005*min(H,W)+0.5))
+  aggregation: preserve every pair/direction/subset/alpha/view record and preregistered medians
+  result_driven_thresholding_forbidden: true
+
+visual_artifact_grading:
+  scale: {0: NONE, 1: MINOR, 2: MODERATE, 3: SEVERE}
+  categories: [cloud, mottle, edge_scatter, full_body_contamination, identity_contamination, silhouette_discontinuity, patch_artifact]
+  fixed_rubric:
+    NONE: no visible instance at native sheet scale
+    MINOR: localized and faint; garment identity and silhouette remain readily readable
+    MODERATE: conspicuous localized or repeated artifact that impairs garment texture or boundary
+    SEVERE: broad, dense, full-body, identity-affecting, or silhouette-breaking artifact
+  per_item_fields: [actual_opened, source_paths, grades_by_subset_alpha_view, artifact_spatial_location, notes]
+  single_total_score_forbidden: true
+  alpha_0_50_only_review_forbidden: true
+
+factorial_analysis:
+  coding: standard two-level 2^3 factorial contrast over subsets 000 through 111
+  effects: [G, V, A, GxV, GxA, VxA, GxVxA]
+  continuous_effect_definition: half difference of mean response at positive versus negative contrast level
+  continuous_standardization: effect divided by pooled standard deviation across eight subset responses with epsilon 1.0e-8
+  visual_reports: [presence_difference, severity_difference, interaction_necessity]
+  strong_continuous_evidence:
+    standardized_effect_magnitude_min: 0.8
+    pair_direction_consistency_min: 6
+    direction_consistency_required: true
+  strong_visual_evidence:
+    artifact_grade_increase_min: 1
+    pair_count_min: 6
+    consistent_views_min: 3
+  metric_selection_after_results_forbidden: true
+
+causal_profiles:
+  sufficiency:
+    G: '100'
+    V: '010'
+    A: '001'
+  necessity:
+    G: ['111', '011']
+    V: ['111', '101']
+    A: ['111', '110']
+  interactions:
+    GxV: ['110', '100', '010', '000']
+    GxA: ['101', '100', '001', '000']
+    VxA: ['011', '010', '001', '000']
+    GxVxA: ['111', '110', '101', '011', '100', '010', '001', '000']
+
+classification:
+  primary_candidates:
+    - GEOMETRY_MAIN_EFFECT
+    - VISIBILITY_MAIN_EFFECT
+    - APPEARANCE_MAIN_EFFECT
+    - GEOMETRY_VISIBILITY_INTERACTION
+    - GEOMETRY_APPEARANCE_INTERACTION
+    - VISIBILITY_APPEARANCE_INTERACTION
+    - THREE_WAY_INTERACTION
+    - MULTIPLE_INDEPENDENT_FACTORS
+    - CAUSAL_ATTRIBUTION_INCONCLUSIVE
+  pair_threshold: 6
+  main_effect_rule: sufficient and necessary in at least 6 pairs, direction-consistent, and other factors clearly weaker
+  pairwise_interaction_rule: singles insufficient, pair combination reproduces artifact, removal of either factor reduces artifact, in at least 6 pairs
+  three_way_interaction_rule: singles and pairs insufficient, FULL distinctly worse, in at least 6 pairs
+  multiple_independent_rule: at least two main effects independently sufficient without interaction
+  inconclusive_rule: high pair or direction inconsistency, or no preregistered rule satisfied
+  secondary_sources_allowed: [GEOMETRY_MAIN_EFFECT, VISIBILITY_MAIN_EFFECT, APPEARANCE_MAIN_EFFECT, GEOMETRY_VISIBILITY_INTERACTION, GEOMETRY_APPEARANCE_INTERACTION, VISIBILITY_APPEARANCE_INTERACTION, THREE_WAY_INTERACTION]
+
+stable_unstable_analysis:
+  stable_count: 3
+  unstable_count: 7
+  preregistered_features: [G_main_effect, V_main_effect, A_main_effect, strongest_interaction, FULL_severity, endpoint_silhouette_distance]
+  stable_labels_immutable: true
+  primary_decision_from_stable_label_forbidden: true
+
+next_task_rule:
+  GEOMETRY_MAIN_EFFECT: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  GEOMETRY_APPEARANCE_INTERACTION: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  THREE_WAY_INTERACTION_geometry_necessary: RUN_GEOMETRY_APPEARANCE_DISENTANGLED_BASIS_MICRO_PILOT
+  VISIBILITY_MAIN_EFFECT: RUN_VISIBILITY_GATED_GARMENT_SPACE_MICRO_PILOT
+  GEOMETRY_VISIBILITY_INTERACTION: RUN_VISIBILITY_GATED_GARMENT_SPACE_MICRO_PILOT
+  VISIBILITY_APPEARANCE_INTERACTION_visibility_necessary: RUN_VISIBILITY_GATED_GARMENT_SPACE_MICRO_PILOT
+  APPEARANCE_MAIN_EFFECT: RUN_APPEARANCE_DISENTANGLED_CONTROL_MICRO_PILOT
+  MULTIPLE_INDEPENDENT_FACTORS: choose largest preregistered effect magnitude and retain remaining factors as secondary
+  CAUSAL_ATTRIBUTION_INCONCLUSIVE: DESIGN_TEACHER_ALIGNMENT_AND_SEMANTIC_CORRESPONDENCE_DIAGNOSTIC
+  exactly_one_next_task: true
+  auto_start: false
+
+manual_visual_review:
+  pair_direction_sheets: 20
+  pair_summary_sheets: 10
+  stable_unstable_comparison_sheets: 2
+  strongest_factor_overlay_sheets: 20
+  required_actual_open_count: 52
+  pair_direction_layout: each sheet contains source, G, V, A, G+V, G+A, V+A, FULL for all 3 alpha and 4 views
+
+outputs:
+  root: /root/autodl-tmp/canondressgs_work/outputs/CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001
+  attempt_policy: append-only attempt_NNN
+  directories: [factor_injection, factorial_metrics, visuals, audits, aggregates]
+  repository_files:
+    - docs/PAPER/AAAI27_CONTINUOUS_CONTROL_ROOT_CAUSE_ADDENDUM_20260722.md
+    - docs/PAPER/AAAI27_CONTINUOUS_CONTROL_CAUSAL_ATTRIBUTION_20260722.md
+    - docs/PAPER/AAAI27_FACTORIAL_CHANNEL_ANALYSIS_20260722.md
+    - paper_protocol/reviewer_risk/continuous_control_causal_attribution_protocol.yaml
+    - paper_protocol/reviewer_risk/factor_injection_results.json
+    - paper_protocol/reviewer_risk/factorial_effect_results.json
+    - paper_protocol/reviewer_risk/factor_causal_profiles.json
+    - paper_protocol/reviewer_risk/stable_pair_factor_analysis.json
+    - paper_protocol/reviewer_risk/continuous_control_causal_attribution_visual_review.json
+    - paper_protocol/reviewer_risk/continuous_control_causal_attribution_optimizer_provenance.json
+    - paper_protocol/reviewer_risk/continuous_control_causal_attribution_final_summary.json
+
+no_training_gate:
+  training_steps: 0
+  backward_calls: 0
+  diagnostic_optimizer_created: false
+  diagnostic_optimizer_steps: 0
+  legacy_context_optimizer_zero_grad: 0
+  legacy_context_optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  teacher_mutation: 0
+  basis_mutation: 0
+  formal_output_mutation: 0
+  paper_final_count: 0
+
+tests:
+  required:
+    - test_factor_groups_are_disjoint_and_complete
+    - test_unselected_channels_equal_source_endpoint
+    - test_selected_channels_follow_endpoint_injection
+    - test_empty_subset_equals_source_teacher
+    - test_full_subset_equals_existing_full_interpolation
+    - test_reverse_direction_maps_to_one_minus_alpha
+    - test_new_render_count_is_1440
+    - test_endpoint_and_full_are_reused
+    - test_factorial_contrasts_are_deterministic
+    - test_previous_root_cause_archive_is_unchanged
+    - test_no_diagnostic_optimizer_or_training
+    - test_legacy_optimizer_has_zero_steps
+    - test_frozen_assets_are_immutable
+    - test_paper_final_remains_zero
+  training_tests_forbidden: true
+
+failure_recovery:
+  asset_mismatch: CAUSAL-ATTRIBUTION-ASSET-MISMATCH
+  implementation_mismatch: FACTOR-INJECTION-IMPLEMENTATION-MISMATCH
+  true_no_training_violation: CAUSAL-ATTRIBUTION-TRUE-NO-TRAINING-GATE-VIOLATION
+  zero_result_tool_error: preserve attempt, minimally repair implementation, create a new attempt, never change protocol
+  interrupted_render: resume only missing manifest items and repeat zero completed renders
+  inconclusive_science: report CAUSAL_ATTRIBUTION_INCONCLUSIVE without tuning or posthoc variants
