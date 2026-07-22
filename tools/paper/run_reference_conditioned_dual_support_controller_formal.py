@@ -209,9 +209,13 @@ def environment_record() -> dict[str, Any]:
     }
 
 
-def configure_determinism() -> None:
+def configure_determinism(*, strict: bool = True) -> None:
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
-    torch.use_deterministic_algorithms(True)
+    # The frozen legacy context builds an immutable anchor graph with CUDA
+    # median, for which PyTorch exposes no registered deterministic kernel.
+    # Formal controller optimization itself remains strict; only the
+    # read-only renderer preflight uses warn-only during context construction.
+    torch.use_deterministic_algorithms(True, warn_only=not strict)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     torch.set_num_threads(1)
@@ -227,7 +231,7 @@ def run_preflight(output_root: Path, asset_root: Path) -> dict[str, Any]:
     manifest, schedule_payload, schedule = contract()
     if not torch.cuda.is_available():
         raise RuntimeError("FORMAL_CLOUD_RENDER_ENVIRONMENT_NOT_READY: CUDA")
-    configure_determinism()
+    configure_determinism(strict=False)
     feature_cache = asset_root / FORMAL_NAME / "shared_preflight/frozen_reference_feature_rows_v1.pt"
     cache = torch.load(feature_cache, map_location="cpu", weights_only=False)
     if cache.get("schema_version") != "canondressgs.paper_frozen_reference_rows.v1":
