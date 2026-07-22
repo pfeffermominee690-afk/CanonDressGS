@@ -28,8 +28,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+RUNTIME_ROOT = Path(os.environ.get("CANONDRESSGS_FORMAL_RUNTIME_REPOSITORY", str(PROJECT_ROOT))).resolve()
+if str(RUNTIME_ROOT) not in sys.path:
+    sys.path.insert(0, str(RUNTIME_ROOT))
 
 from scene.reference_conditioned_dual_support_controller import OUTFIT_ORDER  # noqa: E402
 from scene.p0_candidate_initialization_protocol import seed_all  # noqa: E402
@@ -681,8 +682,8 @@ def run_render_seed(
     }
     os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
     formal.configure_determinism(strict=False)
-    sealed.RUN_BRANCH = RUN_BRANCH
-    sealed.SOURCE_HEAD = SOURCE_HEAD
+    sealed.RUN_BRANCH = formal.RUN_BRANCH
+    sealed.SOURCE_HEAD = formal.SOURCE_HEAD
     seed_all(0)
     gate = NoTrainingGate()
     records = []
@@ -874,8 +875,8 @@ def run_perturbation_chain_seed(
     cache = torch.load(feature_cache, map_location="cpu", weights_only=False)
     os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
     formal.configure_determinism(strict=False)
-    sealed.RUN_BRANCH = RUN_BRANCH
-    sealed.SOURCE_HEAD = SOURCE_HEAD
+    sealed.RUN_BRANCH = formal.RUN_BRANCH
+    sealed.SOURCE_HEAD = formal.SOURCE_HEAD
     seed_all(0)
     gate = NoTrainingGate()
     records = []
