@@ -248,6 +248,7 @@ def run_preflight(output_root: Path, asset_root: Path) -> dict[str, Any]:
 
     # Build the exact frozen render runtime in memory.  No formal path is made
     # until every smoke below has completed successfully.
+    os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
     sealed.RUN_BRANCH = RUN_BRANCH
     sealed.SOURCE_HEAD = SOURCE_HEAD
     temporary_attempt = Path("/tmp/canondressgs_formal_controller_preflight_no_output")
