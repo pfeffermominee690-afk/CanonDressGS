@@ -1,0 +1,169 @@
+schema_version: subject00.mmlphuman.derived_asset_protocol.v1
+task_id: MMLPHUMAN-SUBJECT00-DERIVED-ASSETS-001
+attempt: attempt_001
+status: FROZEN_BEFORE_GENERATION
+
+source:
+  branch: research/mmlphuman-subject00-preflight-v2-20260723
+  head: 37d1c621b84757b0dc993317e7504214b9ea5b9e
+  v2_baseline_branch: research/mmlphuman-subject02-runtime-snapshot-v2-20260723
+  v2_baseline_head: b1d304614b5a9322035b45ebeb7fa0166adaa362
+  v2_classification: SUBJECT02_SOURCE_SNAPSHOT_CREATED_WITH_LIMITATIONS
+  accepted_future_baseline: true
+  runtime_raw_closure_sha256: dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415
+  runtime_lf_closure_sha256: 6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89
+
+data:
+  subject_id: subject00
+  raw_root: /root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00
+  raw_fingerprint: 2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b
+  availability_manifest: /root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json
+  availability_manifest_sha256: cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e
+  smpl_params: smpl_params.npz
+
+body_model:
+  family: SMPL-X
+  gender: neutral
+  model_path: /root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz
+  model_sha256: 376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992
+  use_pca: false
+  num_pca_comps: 45
+  flat_hand_mean: true
+  batch_size: 1
+
+shape:
+  source_key: betas
+  selection: first_stored_shape_vector
+  frame_policy: require_single_vector_or_all_frames_constant_with_max_abs_at_most_1.0e-7
+  dtype: float32
+  expected_sha256: 1624c77963cb379496b04631a8c7a11ab618d5978466b04ceea157d382b2f140
+  result_driven_frame_selection_forbidden: true
+
+canonical_transform:
+  global_orientation_axis_angle: [0.0, 0.0, 0.0]
+  translation: [0.0, 0.0, 0.0]
+  body_pose_axis_angle_length: 63
+  body_pose_nonzero:
+    2: 0.4363323129985824
+    5: -0.4363323129985824
+  jaw_pose: [0.0, 0.0, 0.0]
+  left_eye_pose: [0.0, 0.0, 0.0]
+  right_eye_pose: [0.0, 0.0, 0.0]
+  expression: zeros_model_default
+  hand_pose: flat_hand_mean_model_default
+  coordinate_system: SMPL-X model-native axes with no axis swap
+  units: SMPL-X model-native meters with no scale conversion
+  root_policy: model-native pelvis; no recentering
+
+template:
+  mode: SUBJECT_SPECIFIC_SMPLX_BODY_SURFACE_FALLBACK
+  loose_clothing_template_available: false
+  generator: tools/second_identity/generate_subject00_template.py
+  generator_version: 1
+  expected_vertices: 10475
+  expected_faces: 20908
+  expected_vertices_float32_sha256: 1f924c7e46a97b37272ea833ea09f54e8b10f79836824f43140bf8452e69ad97
+  expected_faces_int64_sha256: 2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b
+  numeric_dtype: float32
+  face_dtype: int64
+  deterministic_ply:
+    encoding: ascii_utf8
+    line_endings: LF
+    timestamp_or_comment: forbidden
+    vertex_format: .9g
+  output_names:
+    ply: template_smplx_body_surface.ply
+    vertices: template_vertices.npy
+    faces: template_faces.npy
+  determinism_thresholds:
+    faces_exact: true
+    vertex_max_abs: 1.0e-7
+    prefer_array_sha_exact: true
+    bbox_max_abs: 1.0e-7
+  topology_thresholds:
+    degenerate_face_area: 1.0e-12
+    maximum_degenerate_faces: 0
+    maximum_duplicate_vertices: 0
+    maximum_duplicate_faces: 0
+    connected_components: 1
+    require_finite_normals: true
+
+lbs:
+  generator: script/gen_weight_volume.py
+  generator_sha256: c29be14a1a046f83c51fd3eabbe2947e293776f8599a150af72ba2e3fee038e7
+  wrapper: tools/second_identity/generate_subject00_lbs_grid.py
+  point_interpolant_path: /root/autodl-tmp/canondressgs_work/mmlphuman_code/script/PointInterpolant
+  point_interpolant_sha256: ff516f19b4a6735ec95b8d5734c61dfb4908052d7495dc812f9d29159219ca2b
+  gradient_weight: 0.05
+  dimension: 3
+  depth: 7
+  grid_resolution: 128
+  joint_count: 55
+  threads: 12
+  bbox_policy: cube_centered_on_canonical_SMPL-X_bounds
+  bbox_padding_policy: cube_side_equals_1.1_times_largest_canonical_extent
+  storage_axis_order: xyz_joint_after_generator_transpose_3_2_1_0
+  output_name: lbs_weights_grid.npz
+  value_thresholds:
+    finite_required: true
+    weight_sum_max_abs_error: 1.0e-5
+    weight_min: -1.0e-7
+    zero_sum_voxels: 0
+    unknown_joint_indices: 0
+  repeatability_thresholds:
+    prefer_all_arrays_bitwise_exact: true
+    grid_max_abs: 1.0e-6
+    grid_mean_abs: 1.0e-8
+    argmax_joint_agreement: 1.0
+    metadata_exact: true
+  geometry_thresholds:
+    extrapolated_vertices: 0
+    interpolated_sum_max_abs_error: 1.0e-5
+    interpolated_weight_mae: 0.02
+    interpolated_weight_max_abs: 0.5
+    dominant_joint_agreement_minimum: 0.95
+    posed_max_abs_coordinate_meters: 5.0
+    posed_surface_area_ratio_minimum: 0.05
+    posed_surface_area_ratio_maximum: 20.0
+
+runtime:
+  arbitrary_template_vertex_count_required: true
+  gaussian_initialization_count: 200000
+  gaussian_sampling_seed: 20260723
+  feature_point_count: 300
+  control_vertex_count: 10000
+  dataset_image_scaling: 1
+  smoke_pose_count_minimum: 3
+  smoke_camera_count_minimum: 4
+  heldout_pose_required: true
+  heldout_camera_required: true
+  optimizer_creation_forbidden: true
+  backward_forbidden: true
+
+strict_splits:
+  novel_view_manifest: paper_protocol/second_identity/subject00_novel_view_split_v2.json
+  novel_view_sha256: 8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44
+  novel_pose_manifest: paper_protocol/second_identity/subject00_novel_pose_split_v2.json
+  novel_pose_sha256: c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06
+  mutation_forbidden: true
+
+publication:
+  staging_root: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_001
+  run_a: run_a
+  run_b: run_b
+  candidate: published_candidate
+  formal_target: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00
+  target_must_not_exist: true
+  selection_rule: publish_run_a_only_when_arrays_and_files_are_exact_else_canonical_serialize_frozen_arrays_after_numeric_repeatability_pass
+  atomic_rename_required: true
+  git_large_assets_forbidden: true
+
+no_training_counters:
+  training_steps: 0
+  forward_training_batches: 0
+  backward_calls: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  PAPER_FINAL: 0
