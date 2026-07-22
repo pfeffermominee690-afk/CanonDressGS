@@ -139,7 +139,8 @@ def protocol() -> dict[str, Any]:
     value = yaml.safe_load(PROTOCOL_PATH.read_text(encoding="utf-8"))
     selection = value["selection"]
     expected = [f"{left}_{right}" for left, right in SELECTED_PAIRS]
-    if selection["selected_pairs"] != expected:
+    configured_pairs = selection.get("selected_pairs", selection.get("pairs"))
+    if configured_pairs != expected:
         raise RuntimeError("MICRO-PILOT-PROTOCOL-MISMATCH: pair selection")
     if tuple(value["design"]["directions"]) != DIRECTIONS:
         raise RuntimeError("MICRO-PILOT-PROTOCOL-MISMATCH: directions")
