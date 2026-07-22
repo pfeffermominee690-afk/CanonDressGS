@@ -1,0 +1,42 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT02-RUNTIME-PROVENANCE-REVIEW-002",
+  "classification": "SUBJECT02_SOURCE_SNAPSHOT_CREATED_WITH_LIMITATIONS",
+  "accepted_future_baseline": true,
+  "historically_exact_training_source": false,
+  "branch": "research/mmlphuman-subject02-runtime-snapshot-v2-20260723",
+  "base_head": "6668509284c85fcb0f93cd7365ec8f39390ff251",
+  "source_closure_commit": "3382078fbdd77bba8bb9df54452647456a4c9b00",
+  "final_head_resolution": "Resolve with git rev-parse HEAD in the verified clean consuming checkout; a commit cannot embed its own SHA without changing it.",
+  "raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+  "lf_normalized_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89",
+  "runtime_relevant_difference_count": 0,
+  "unknown_difference_count": 0,
+  "checkpoint_strict_load": "PASS",
+  "dirty_vs_clean_50frame_regression": "PASS",
+  "archived_scalar_regression": "PASS",
+  "fresh_process_determinism": "PASS",
+  "template_regression": "PASS",
+  "lbs_regression": "PASS",
+  "original_windows_before_after": {
+    "status": "PASS",
+    "head": "990f4f771457ebaf3e2a70420fab56f574eb6128",
+    "fingerprint_before": "1ae637f973960d6f5b86ece68fd50ccd7b725822f040181587ecd97236dd7478",
+    "fingerprint_after": "1ae637f973960d6f5b86ece68fd50ccd7b725822f040181587ecd97236dd7478"
+  },
+  "original_cloud_before_after": {
+    "status": "PASS",
+    "head": "6668509284c85fcb0f93cd7365ec8f39390ff251",
+    "fingerprint_before": "00a6226705972ac875fb819775c1e5bb566c7321882853fd8e8b472a6734867f",
+    "fingerprint_after": "00a6226705972ac875fb819775c1e5bb566c7321882853fd8e8b472a6734867f",
+    "capture_note": "After adding Git objects, default abbreviated index lines grew from 7 to 8 characters. The verified recheck used process-only core.abbrev=7, matching the before capture without changing repository configuration."
+  },
+  "training_steps": 0,
+  "backward_calls": 0,
+  "optimizer_created": 0,
+  "optimizer_steps": 0,
+  "scheduler_steps": 0,
+  "checkpoint_writes": 0,
+  "PAPER_FINAL": 0,
+  "next_task": "RESUME_SUBJECT00_MMLPHUMAN_PREFLIGHT_FROM_LIMITED_PROVENANCE_SNAPSHOT",
+  "next_task_started": false
+}
