@@ -103,6 +103,16 @@ densification_simulation:
   prune: keep_even_parent_indices
   checkpoint_format: deterministic_npz_non_training_prototype
 
+densification_thresholds:
+  clone_attachment_exact: true
+  clone_weights_exact: true
+  split_small_parent_face_exact: true
+  split_small_component_switch_count: 0
+  split_small_weight_formula_max_abs: 1.0e-8
+  split_large_closest_triangle_deterministic: true
+  prune_metadata_index_parity: true
+  checkpoint_array_parity_exact: true
+
 fidelity_thresholds:
   vertices:
     weight_mae_max: 1.0e-8
@@ -144,6 +154,13 @@ runtime_prototype_gate:
     - checkpoint_roundtrip_preserves_attachment
     - no_formal_asset_publication_required
   renderer_quality_claim_forbidden: true
+
+decision_precedence:
+  - BODY_SURFACE_FALLBACK_INSUFFICIENT_if_surface_attachment_fails
+  - CLOSEST_TRIANGLE_FALLBACK_INSUFFICIENT_if_narrow_band_or_densification_fails
+  - PER_GAUSSIAN_ATTACHMENT_RUNTIME_REPAIR_REQUIRED_if_numeric_contract_passes_but_runtime_interface_fails
+  - HIGH_FIDELITY_LBS_CONTRACT_READY_if_all_gates_pass
+  - HIGH_FIDELITY_LBS_CONTRACT_INCONCLUSIVE_if_consumers_or_sources_are_not_unique
 
 immutability:
   subject00_raw_mutation: 0
