@@ -125,6 +125,21 @@ classification_values:
   - DUAL_SUPPORT_MICRO_PILOT_PASS
   - DUAL_SUPPORT_MICRO_PILOT_PARTIAL
   - DUAL_SUPPORT_MICRO_PILOT_FAIL
+classification_rules:
+  safety_gates:
+    - endpoint parity
+    - identity contamination maximum grade
+    - no severe double-outline or ghosting
+    - no frozen mutation
+  efficacy_gates:
+    - required pair count for alpha-0.5 core-grade reduction
+    - required pair count for severe-count reduction
+  quality_gates:
+    - per-pair silhouette IoU degradation bound
+    - per-pair garment LPIPS degradation bound
+  pass: every safety, efficacy, and quality gate passes
+  partial: every safety gate passes and at least one efficacy gate passes, but the full PASS rule does not
+  fail: any safety gate fails, or neither efficacy gate passes
 next_task_rules:
   DUAL_SUPPORT_MICRO_PILOT_PASS: RUN_ALL_10_PAIR_DUAL_SUPPORT_EVALUATION
   DUAL_SUPPORT_MICRO_PILOT_PARTIAL: RUN_ALL_10_PAIR_DUAL_SUPPORT_EVALUATION
