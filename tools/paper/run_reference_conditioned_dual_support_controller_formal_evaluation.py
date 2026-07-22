@@ -28,6 +28,7 @@ from scene.reference_conditioned_dual_support_controller import (  # noqa: E402
     inference_result_schema,
     stable_top2_selection,
 )
+from scene.p0_candidate_initialization_protocol import seed_all  # noqa: E402
 from tools.paper import run_reference_conditioned_dual_support_controller_formal as formal  # noqa: E402
 from tools.paper import run_geometry_dual_support_micro_pilot as geometry  # noqa: E402
 from tools.paper import run_p0_color_spatial_soft_control_evaluations as sealed  # noqa: E402
@@ -439,6 +440,71 @@ def prepare_attempt_002(output_root: Path) -> dict[str, Any]:
     return {"failure": failure, "resume": resume}
 
 
+def prepare_attempt_003(output_root: Path) -> dict[str, Any]:
+    attempt_002 = output_root / "attempt_002"
+    attempt_003 = output_root / "attempt_003"
+    if attempt_003.exists():
+        raise FileExistsError(f"append-only evaluation repair attempt exists: {attempt_003}")
+    failure = {
+        "schema_version": "canondressgs.research.controller_evaluation_runtime_failure.v1",
+        "status": "FAILED_EVALUATION_RUNTIME_INCOMPLETE_RNG_FIX",
+        "task_id": formal.TASK_ID,
+        "cause": "attempt_002 fixed torch RNG but did not fix Python and NumPy RNG before legacy context construction",
+        "evidence": {
+            "seed_1_pure_classifier_correct": "20/20",
+            "seed_1_pure_single_endpoint_rate": 1.0,
+            "seed_1_cross_process_render_parity_max_abs": 0.5823779106140137,
+        },
+        "attempt_002_disposition": "PRESERVED_INVALID_FOR_FINAL_RENDER_COMPARISON",
+        "training_rerun": 0, "backward_rerun": 0, "optimizer_step_rerun": 0,
+        "threshold_change": 0, "checkpoint_selection": 0, "paper_final": False,
+    }
+    atomic_json(attempt_002 / "audits/FAILED_EVALUATION_RUNTIME_INCOMPLETE_RNG_FIX.json", failure)
+    for seed in formal.SEEDS:
+        for name in ("pure", "mixed", "perturbations", "renders", "metrics", "visuals", "audits"):
+            (attempt_003 / f"seed_{seed}" / name).mkdir(parents=True, exist_ok=False)
+    for name in ("aggregates", "baselines", "reports", "fingerprints", "audits"):
+        (attempt_003 / name).mkdir(parents=True, exist_ok=False)
+    resume = {
+        "schema_version": "canondressgs.research.controller_evaluation_only_resume.v2",
+        "status": "PENDING_CONTEXT_HASH_PROBES", "source_training_attempt": "attempt_001",
+        "source_classification_attempt": "attempt_001", "target_attempt": "attempt_003",
+        "repair": "call frozen seed_all(0) before legacy context construction and require two fresh-process render hashes",
+        "training_steps_added": 0, "backward_calls_added": 0, "optimizer_steps_added": 0,
+        "scheduler_steps_added": 0, "checkpoint_writes_added": 0,
+        "threshold_changes": 0, "paper_final": False,
+    }
+    atomic_json(attempt_003 / "audits/resume_from_failed_evaluation_attempts.json", resume)
+    return {"failure": failure, "resume": resume}
+
+
+def context_probe(output_root: Path, asset_root: Path, probe_index: int) -> dict[str, Any]:
+    attempt = output_root / "attempt_003"
+    if not attempt.is_dir() or probe_index not in (1, 2):
+        raise RuntimeError("attempt_003 context probe contract mismatch")
+    os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
+    formal.configure_determinism(strict=False)
+    sealed.RUN_BRANCH = formal.RUN_BRANCH
+    sealed.SOURCE_HEAD = formal.SOURCE_HEAD
+    seed_all(0)
+    runtime_value = sealed.EvaluationRuntime(attempt / "audits/context_probe_no_write", asset_root, {})
+    endpoints = geometry.endpoint_residuals(runtime_value)
+    with torch.inference_mode():
+        rgb, alpha, diagnostics = geometry.render_branches(
+            runtime_value, "O01", "cond_000000", (("O01", endpoints["O01"], 1.0),)
+        )
+    result = {
+        "schema_version": "canondressgs.research.controller_fixed_context_probe.v1",
+        "status": "PASS", "probe_index": probe_index, "fixed_seed": 0,
+        "base_xyz_sha256": hashlib.sha256(runtime_value.context["base"]._xyz.detach().cpu().contiguous().numpy().tobytes()).hexdigest(),
+        "endpoint_rgb_sha256": hashlib.sha256(rgb.detach().cpu().contiguous().numpy().tobytes()).hexdigest(),
+        "endpoint_alpha_sha256": hashlib.sha256(alpha.detach().cpu().contiguous().numpy().tobytes()).hexdigest(),
+        "renderer_diagnostics": diagnostics, "paper_final": False,
+    }
+    atomic_json(attempt / "audits" / f"fixed_context_fresh_process_probe_{probe_index}.json", result)
+    return result
+
+
 def run_render_seed(
     seed: int, output_root: Path, asset_root: Path, feature_cache: Path,
     *, attempt_name: str = "attempt_002",
@@ -446,6 +512,12 @@ def run_render_seed(
     formal.load_preflight(output_root)
     source_seed_root = output_root / "attempt_001" / f"seed_{seed}"
     seed_root = output_root / attempt_name / f"seed_{seed}"
+    if attempt_name == "attempt_003":
+        first = read_json(output_root / attempt_name / "audits/fixed_context_fresh_process_probe_1.json")
+        second = read_json(output_root / attempt_name / "audits/fixed_context_fresh_process_probe_2.json")
+        comparable = (first["base_xyz_sha256"], first["endpoint_rgb_sha256"], first["endpoint_alpha_sha256"])
+        if comparable != (second["base_xyz_sha256"], second["endpoint_rgb_sha256"], second["endpoint_alpha_sha256"]):
+            raise RuntimeError("fixed context fresh-process hashes do not match")
     result_path = seed_root / "metrics/render_evaluation.json"
     if result_path.exists():
         raise FileExistsError(f"render evaluation exists for seed {seed}")
@@ -462,8 +534,7 @@ def run_render_seed(
     formal.configure_determinism(strict=False)
     sealed.RUN_BRANCH = formal.RUN_BRANCH
     sealed.SOURCE_HEAD = formal.SOURCE_HEAD
-    torch.manual_seed(0)
-    torch.cuda.manual_seed_all(0)
+    seed_all(0)
     runtime_value = sealed.EvaluationRuntime(seed_root / "audits/runtime_context_no_write", asset_root, {})
     endpoints = geometry.endpoint_residuals(runtime_value)
     model = load_model(output_root, seed, device)
@@ -585,14 +656,18 @@ def run_render_seed(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--phase", choices=("audit-training", "classify-seed", "prepare-attempt-002", "render-seed"),
+        "--phase", choices=(
+            "audit-training", "classify-seed", "prepare-attempt-002", "prepare-attempt-003",
+            "context-probe", "render-seed",
+        ),
         required=True,
     )
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--feature-cache", type=Path)
     parser.add_argument("--seed", type=int)
-    parser.add_argument("--attempt", choices=("attempt_001", "attempt_002"), default="attempt_002")
+    parser.add_argument("--attempt", choices=("attempt_001", "attempt_002", "attempt_003"), default="attempt_003")
+    parser.add_argument("--probe-index", type=int, choices=(1, 2))
     args = parser.parse_args()
     output_root = args.output_root.resolve()
     feature_cache = args.feature_cache or args.asset_root.resolve() / formal.FORMAL_NAME / "shared_preflight/frozen_reference_feature_rows_v1.pt"
@@ -604,6 +679,12 @@ def main() -> None:
         result = run_classification(args.seed, output_root, feature_cache.resolve())
     elif args.phase == "prepare-attempt-002":
         result = prepare_attempt_002(output_root)
+    elif args.phase == "prepare-attempt-003":
+        result = prepare_attempt_003(output_root)
+    elif args.phase == "context-probe":
+        if args.probe_index not in (1, 2):
+            parser.error("context-probe requires --probe-index 1 or 2")
+        result = context_probe(output_root, args.asset_root.resolve(), args.probe_index)
     else:
         if args.seed not in formal.SEEDS:
             parser.error("render-seed requires --seed 0, 1, or 2")
