@@ -1,0 +1,83 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT00-DERIVED-ASSETS-001",
+  "status": "COMPLETE_BLOCKED_NO_PUBLISH_NO_TRAINING",
+  "source": {
+    "branch": "research/mmlphuman-subject00-preflight-v2-20260723",
+    "head": "37d1c621b84757b0dc993317e7504214b9ea5b9e",
+    "v2_baseline_head": "b1d304614b5a9322035b45ebeb7fa0166adaa362",
+    "runtime_raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+    "runtime_lf_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89"
+  },
+  "subject00": {
+    "raw_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "availability_manifest_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+    "shape_vector_sha256": "1624c77963cb379496b04631a8c7a11ab618d5978466b04ceea157d382b2f140",
+    "canonical_pose_sha256": "eaa1b9ce87f9db58a4f74dc56315d9d7c07b3c6bcac9afa6e131cd399343241f"
+  },
+  "template": {
+    "status": "PASS",
+    "mode": "SUBJECT_SPECIFIC_SMPLX_BODY_SURFACE_FALLBACK",
+    "loose_clothing_template_available": false,
+    "run_a_run_b_vertices_exact": true,
+    "run_a_run_b_faces_exact": true,
+    "run_a_run_b_ply_exact": true,
+    "vertex_max_abs": 0.0,
+    "vertices": 10475,
+    "faces": 20908,
+    "vertices_array_sha256": "1f924c7e46a97b37272ea833ea09f54e8b10f79836824f43140bf8452e69ad97",
+    "faces_array_sha256": "2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b",
+    "ply_sha256": "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031",
+    "runtime_compatibility": "BODY_SURFACE_FALLBACK_RUNTIME_COMPATIBLE"
+  },
+  "lbs": {
+    "status": "FAIL",
+    "classification": "SUBJECT00_BLOCKED_LBS_NONDETERMINISTIC",
+    "run_a_basic_contract": "PASS",
+    "run_b_basic_contract": "PASS",
+    "shape": [128, 128, 128, 55],
+    "metadata_exact": true,
+    "all_arrays_bitwise_exact": false,
+    "grid_max_abs": 0.00022351369261741638,
+    "grid_mean_abs": 1.13952033823952e-06,
+    "argmax_joint_agreement": 0.999997615814209,
+    "thresholds": {
+      "grid_max_abs": 1e-06,
+      "grid_mean_abs": 1e-08,
+      "argmax_joint_agreement": 1.0
+    },
+    "geometry": {
+      "status": "FAIL",
+      "extrapolated_vertices": 0,
+      "weight_sum_max_abs_error": 1.80215653955429e-07,
+      "weight_mae": 0.005666726099856466,
+      "weight_max_abs": 0.7210046648979187,
+      "dominant_joint_agreement": 0.9010978520286396,
+      "posed_frames": [0, 1250, 2499],
+      "posed_forwards_finite": true
+    }
+  },
+  "atomic_publish": "NOT_RUN",
+  "formal_target_exists": false,
+  "canary_ready_config": "NOT_CREATED",
+  "runtime_smoke": "NOT_RUN_LBS_GATES_FAILED",
+  "failure_manifest": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_001/reports/SUBJECT00_DERIVED_ASSET_FAILURE_MANIFEST.json",
+  "immutability": {
+    "subject00_raw_mutation": 0,
+    "subject02_mutation": 0,
+    "subject02_formal_output_mutation": 0,
+    "v2_runtime_closure_mutation": 0,
+    "strict_split_mutation": 0
+  },
+  "counters": {
+    "training_steps": 0,
+    "forward_training_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "checkpoint_writes": 0,
+    "PAPER_FINAL": 0
+  },
+  "readiness": "SUBJECT00_BLOCKED_LBS_NONDETERMINISTIC",
+  "next_task": "REPAIR_SUBJECT00_LBS_DETERMINISM_OR_BOUNDS_CONTRACT"
+}

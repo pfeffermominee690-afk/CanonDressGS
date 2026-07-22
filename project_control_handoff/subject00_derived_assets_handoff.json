@@ -1,0 +1,28 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT00-DERIVED-ASSETS-001",
+  "source_head": "37d1c621b84757b0dc993317e7504214b9ea5b9e",
+  "template_status": "PASS_BITWISE_DETERMINISTIC_RUNTIME_COMPATIBLE",
+  "template_mode": "SUBJECT_SPECIFIC_SMPLX_BODY_SURFACE_FALLBACK",
+  "loose_clothing_template_available": false,
+  "lbs_status": "FAIL_REPEATABILITY_AND_GEOMETRY_GATES",
+  "blocking_metrics": {
+    "repeatability_grid_max_abs": 0.00022351369261741638,
+    "repeatability_grid_mean_abs": 1.13952033823952e-06,
+    "repeatability_argmax_joint_agreement": 0.999997615814209,
+    "interpolated_weight_max_abs": 0.7210046648979187,
+    "interpolated_dominant_joint_agreement": 0.9010978520286396
+  },
+  "formal_assets_published": false,
+  "canary_ready_config_created": false,
+  "runtime_smoke_run": false,
+  "attempt_preserved": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_001",
+  "failure_manifest": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_001/reports/SUBJECT00_DERIVED_ASSET_FAILURE_MANIFEST.json",
+  "readiness": "SUBJECT00_BLOCKED_LBS_NONDETERMINISTIC",
+  "next_task": "REPAIR_SUBJECT00_LBS_DETERMINISM_OR_BOUNDS_CONTRACT",
+  "do_not_auto_start_next_task": true,
+  "training": 0,
+  "backward": 0,
+  "optimizer_created": 0,
+  "checkpoint_writes": 0,
+  "PAPER_FINAL": 0
+}

@@ -1,0 +1,24 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT00-DERIVED-ASSETS-001",
+  "status": "NOT_RUN_PRECONDITION_FAILED",
+  "reason": "LBS_REPEATABILITY_AND_GEOMETRY_GATES_FAILED_BEFORE_ATOMIC_PUBLISH",
+  "dataset_smoke": "NOT_RUN",
+  "model_construction": "NOT_RUN",
+  "gaussian_initialization": "NOT_RUN",
+  "model_forward": "NOT_RUN",
+  "renderer_smoke": "NOT_RUN",
+  "depth_output": "NOT_RUN",
+  "zero_step_loss": "NOT_RUN",
+  "gpu_rule": "GPU became available, but downstream smoke remained forbidden because validated formal assets were not published.",
+  "counters": {
+    "training_steps": 0,
+    "forward_training_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "checkpoint_writes": 0
+  },
+  "readiness": "SUBJECT00_BLOCKED_LBS_NONDETERMINISTIC",
+  "next_task": "REPAIR_SUBJECT00_LBS_DETERMINISM_OR_BOUNDS_CONTRACT"
+}
