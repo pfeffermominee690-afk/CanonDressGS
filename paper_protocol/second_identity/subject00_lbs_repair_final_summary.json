@@ -1,0 +1,125 @@
+{
+  "task_id": "MMLPHUMAN-SUBJECT00-LBS-REPAIR-001",
+  "status": "COMPLETE_BLOCKED_NO_PUBLISH_NO_TRAINING",
+  "source": {
+    "branch": "research/mmlphuman-subject00-derived-assets-20260723",
+    "head": "aac37279b235c0fbcbb04c572b5bba6071416da3",
+    "repair_branch": "research/mmlphuman-subject00-lbs-repair-20260723",
+    "runtime_raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+    "runtime_lf_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89"
+  },
+  "attempt_001": {
+    "preserved": true,
+    "baseline_file_count": 370,
+    "baseline_total_bytes": 4171424719,
+    "baseline_tree_sha256": "1ba3a129cb35572edb8922524d8740e16c1cf46e4ef3553221ae707e99c0c8f9",
+    "first_difference": "SOLVER_OUTPUT_DIFFERENCE",
+    "gradient_inputs_exact": true,
+    "raw_payload_exact_channels": 17,
+    "raw_max_abs": 0.0008329790134440351,
+    "raw_mean_abs": 0.000003591428979628443,
+    "reconstructed_arrays_match_archived_grids": true
+  },
+  "thread_determinism": {
+    "classification": "MULTITHREAD_ONLY_NONDETERMINISM",
+    "frozen_solver_input_aggregate_sha256": "df0fabd1c34d2851ece81b400447a0e250f34c5694efc99806f3cdc0addd76e0",
+    "single_thread": {
+      "status": "PASS_BITWISE_EXACT",
+      "raw_solver_sha256": "929f22282cf07052c51a42ea5753902c67b19f74698c4691b65dfdd15187d96d",
+      "parsed_sha256": "869aec70fe0279dc20c381a9dd9877caba7bbed87afeae8f3907dc9d9bf3967a",
+      "normalized_sha256": "9b5ff0fbf07099c4794a95d8522cadecc3aa0bc142689fa8c7e5c70800b86dba",
+      "canonical_grid_sha256": "749599cb9380b8a9f81bac97d838528e939b60fb343fa4c08b75c9fe28dbf3c0",
+      "canonical_npz_sha256": "8c2c06b4e1154e361432f5bc115ecb875502e5bcdd1f6e3a5e2f459ecb9a0971",
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "argmax_joint_agreement": 1.0,
+      "metadata_exact": true,
+      "run_a_seconds": 314.41895204409957,
+      "run_b_seconds": 312.35852364078164
+    },
+    "twelve_thread": {
+      "status": "FAIL",
+      "first_difference": "SOLVER_OUTPUT_DIFFERENCE",
+      "raw_payload_exact_channels": 18,
+      "raw_max_abs": 0.0009285165444432586,
+      "raw_mean_abs": 0.000003841092053566691,
+      "canonical_max_abs": 0.0006831721402704716,
+      "canonical_mean_abs": 0.0000012601305194512997,
+      "argmax_joint_agreement": 0.999992847442627,
+      "metadata_exact": true,
+      "run_a_seconds": 78.473527289927,
+      "run_b_seconds": 80.9771472029388
+    },
+    "invalid_input_confound_run_preserved": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_002/attempt_history/T12_A_INPUT_CONFOUND"
+  },
+  "contracts": {
+    "joint_mapping": "LBS_JOINT_CHANNEL_MAPPING_PASS",
+    "joint_count": 55,
+    "semantic_mapping": "identity_55_of_55",
+    "diagnostic_best_permutation": "identity_55_of_55",
+    "coordinate": "LBS_GRID_AXIS_OR_COORDINATE_CONTRACT_PASS",
+    "stored_axis_order": "x_y_z_channel",
+    "align_corners": true,
+    "bbox": "PASS_FROZEN_1P1_CENTERED_CUBE",
+    "reference": "PASS_SUBJECT00_SMPLX_INDEX_IDENTITY_10475_OF_10475"
+  },
+  "geometry": {
+    "status": "FAIL",
+    "extrapolated_vertices": 0,
+    "interpolated_weight_sum_max_abs_error": 1.6673676361822487e-7,
+    "interpolated_weight_mae": 0.005666726147949315,
+    "interpolated_weight_max_abs": 0.7210046648979187,
+    "dominant_joint_agreement": 0.9010978520286396,
+    "thresholds": {
+      "weight_sum_max_abs_error": 1.0e-5,
+      "weight_mae": 0.02,
+      "weight_max_abs": 0.5,
+      "dominant_joint_agreement_minimum": 0.95
+    },
+    "posed_body_forward": "PASS_3_OF_3",
+    "dominant_mismatch_vertices": 1036,
+    "root_regions": [
+      "head_eye_component_and_adjacent_head_surface",
+      "left_hand_adjacent_fingers",
+      "right_hand_adjacent_fingers"
+    ],
+    "mechanism": "Volumetric smooth interpolation blends weights across spatially close but topologically distinct or thin structures."
+  },
+  "repair_decision": {
+    "determinism_repair": "fix_solver_threads_to_1",
+    "determinism_repair_proven": true,
+    "complete_repair_selected": false,
+    "reason": "Single-thread generation repairs repeatability, but the unchanged geometry fidelity gate still fails. No permitted in-task geometry algorithm replacement exists.",
+    "final_run_a_b": "NOT_RUN_NO_COMPLETE_EVIDENCE_BASED_REPAIR",
+    "threshold_changes": 0,
+    "padding_changes": 0,
+    "grid_resolution_changes": 0,
+    "joint_count_changes": 0
+  },
+  "publication": {
+    "template": "NOT_PUBLISHED",
+    "lbs": "NOT_PUBLISHED",
+    "formal_target_exists": false,
+    "external_manifest": "FAILURE_MANIFEST_ONLY",
+    "runtime_smoke": "NOT_RUN_PRECONDITION_FAILED"
+  },
+  "immutability": {
+    "subject00_raw_mutation": 0,
+    "subject02_mutation": 0,
+    "v2_runtime_closure_mutation": 0,
+    "strict_split_mutation": 0,
+    "attempt_001_mutation": 0
+  },
+  "counters": {
+    "training_steps": 0,
+    "forward_training_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "checkpoint_writes": 0,
+    "PAPER_FINAL": 0
+  },
+  "classification": "SUBJECT00_BLOCKED_LBS_GEOMETRIC_FIDELITY",
+  "next_task": "DESIGN_HIGH_FIDELITY_SUBJECT00_LBS_INTERPOLATION_CONTRACT"
+}
