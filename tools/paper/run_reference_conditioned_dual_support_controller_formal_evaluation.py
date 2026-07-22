@@ -397,14 +397,60 @@ def render_metrics(
     return result
 
 
-def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cache: Path) -> dict[str, Any]:
+def prepare_attempt_002(output_root: Path) -> dict[str, Any]:
+    attempt_001 = output_root / "attempt_001"
+    attempt_002 = output_root / "attempt_002"
+    if attempt_002.exists():
+        raise FileExistsError(f"append-only evaluation repair attempt exists: {attempt_002}")
+    failure = {
+        "schema_version": "canondressgs.research.controller_evaluation_runtime_failure.v1",
+        "status": "FAILED_EVALUATION_RUNTIME_RNG_CONTAMINATION",
+        "task_id": formal.TASK_ID,
+        "cause": "legacy render context was constructed after the Controller seed and inherited seed-specific RNG state",
+        "evidence": {
+            "seed_1_pure_classifier_correct": "20/20",
+            "seed_1_pure_single_endpoint_rate": 1.0,
+            "seed_1_classification_endpoint_parity": "PASS",
+            "seed_1_cross_process_render_parity_max_abs": 0.5823779106140137,
+        },
+        "attempt_001_disposition": "PRESERVED_INVALID_FOR_FINAL_RENDER_COMPARISON",
+        "training_reuse_allowed": True,
+        "training_rerun": 0, "backward_rerun": 0, "optimizer_step_rerun": 0,
+        "threshold_change": 0, "checkpoint_selection": 0, "paper_final": False,
+    }
+    atomic_json(attempt_001 / "audits/FAILED_EVALUATION_RUNTIME_RNG_CONTAMINATION.json", failure)
+    for seed in formal.SEEDS:
+        for name in ("pure", "mixed", "perturbations", "renders", "metrics", "visuals", "audits"):
+            (attempt_002 / f"seed_{seed}" / name).mkdir(parents=True, exist_ok=False)
+    for name in ("aggregates", "baselines", "reports", "fingerprints", "audits"):
+        (attempt_002 / name).mkdir(parents=True, exist_ok=False)
+    resume = {
+        "schema_version": "canondressgs.research.controller_evaluation_only_resume.v1",
+        "status": "PASS", "source_attempt": "attempt_001", "target_attempt": "attempt_002",
+        "source_training_summary": str(attempt_001 / "aggregates/training_summary.json"),
+        "source_final_checkpoints": [str(checkpoint_path(output_root, seed)) for seed in formal.SEEDS],
+        "source_classification_results_reused": True,
+        "repair": "construct immutable legacy render context at fixed seed before loading the per-seed Controller",
+        "training_steps_added": 0, "backward_calls_added": 0, "optimizer_steps_added": 0,
+        "scheduler_steps_added": 0, "checkpoint_writes_added": 0,
+        "threshold_changes": 0, "paper_final": False,
+    }
+    atomic_json(attempt_002 / "audits/resume_from_attempt_001.json", resume)
+    return {"failure": failure, "resume": resume}
+
+
+def run_render_seed(
+    seed: int, output_root: Path, asset_root: Path, feature_cache: Path,
+    *, attempt_name: str = "attempt_002",
+) -> dict[str, Any]:
     formal.load_preflight(output_root)
-    seed_root = output_root / "attempt_001" / f"seed_{seed}"
+    source_seed_root = output_root / "attempt_001" / f"seed_{seed}"
+    seed_root = output_root / attempt_name / f"seed_{seed}"
     result_path = seed_root / "metrics/render_evaluation.json"
     if result_path.exists():
         raise FileExistsError(f"render evaluation exists for seed {seed}")
-    mixed = read_json(seed_root / "mixed/mixed_classification.json")
-    pure = read_json(seed_root / "pure/pure_classification.json")
+    mixed = read_json(source_seed_root / "mixed/mixed_classification.json")
+    pure = read_json(source_seed_root / "pure/pure_classification.json")
     manifest, _, _ = formal.contract()
     query_index = {row["record_id"]: row for row in manifest["query_sets"]}
     pure_index = {row["record_id"]: row for row in manifest["formal_pure_endpoint_episodes"]}
@@ -412,13 +458,15 @@ def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cach
     pure_prediction_index = {row["record_id"]: row for row in pure["records"]}
     cache = torch.load(feature_cache, map_location="cpu", weights_only=False)
     device = torch.device("cuda")
-    model = load_model(output_root, seed, device)
     os.environ["CANONDRESSGS_ASSET_ROOT"] = str(asset_root)
     formal.configure_determinism(strict=False)
     sealed.RUN_BRANCH = formal.RUN_BRANCH
     sealed.SOURCE_HEAD = formal.SOURCE_HEAD
+    torch.manual_seed(0)
+    torch.cuda.manual_seed_all(0)
     runtime_value = sealed.EvaluationRuntime(seed_root / "audits/runtime_context_no_write", asset_root, {})
     endpoints = geometry.endpoint_residuals(runtime_value)
+    model = load_model(output_root, seed, device)
     records = []
     oracle_created = 0
     controller_created = 0
@@ -432,7 +480,7 @@ def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cach
         cache_key = (outfit, left, condition)
         if cache_key in endpoint_cache:
             return endpoint_cache[cache_key]
-        path = output_root / "attempt_001/baselines/teacher_endpoints" / left / condition / outfit
+        path = output_root / attempt_name / "baselines/teacher_endpoints" / left / condition / outfit
         rgb, _, _, created = render_or_load(path, runtime_value, left, condition, ((outfit, endpoints[outfit], 1.0),))
         oracle_created += int(created)
         endpoint_cache[cache_key] = rgb
@@ -466,7 +514,7 @@ def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cach
         oracle_key = hashlib.sha256(json.dumps({
             "left": left, "condition": condition, "target": record["target_distribution"]
         }, sort_keys=True).encode()).hexdigest()[:20]
-        oracle_path = output_root / "attempt_001/baselines/oracle_dual_support" / left / condition / oracle_key
+        oracle_path = output_root / attempt_name / "baselines/oracle_dual_support" / left / condition / oracle_key
         oracle_cache_key = (left, condition, oracle_key)
         if oracle_cache_key in oracle_cache:
             oracle_rgb, oracle_alpha, oracle_diagnostics, oracle_rgb_path = oracle_cache[oracle_cache_key]
@@ -515,7 +563,8 @@ def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cach
     pure_parity = [row for row in records if row["role"] == "pure"]
     result = {
         "schema_version": "canondressgs.research.dual_support_controller_render_evaluation.v1",
-        "status": "COMPLETE", "seed": seed, "records": records, "aggregates": by_role,
+        "status": "COMPLETE", "seed": seed, "attempt": attempt_name,
+        "source_training_attempt": "attempt_001", "records": records, "aggregates": by_role,
         "controller_render_count": len(records), "mixed_render_count": 320, "pure_render_count": 20,
         "controller_renders_created": controller_created, "oracle_or_endpoint_renders_created": oracle_created,
         "controller_forward_time_seconds_total": forward_seconds,
@@ -535,11 +584,15 @@ def run_render_seed(seed: int, output_root: Path, asset_root: Path, feature_cach
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--phase", choices=("audit-training", "classify-seed", "render-seed"), required=True)
+    parser.add_argument(
+        "--phase", choices=("audit-training", "classify-seed", "prepare-attempt-002", "render-seed"),
+        required=True,
+    )
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--feature-cache", type=Path)
     parser.add_argument("--seed", type=int)
+    parser.add_argument("--attempt", choices=("attempt_001", "attempt_002"), default="attempt_002")
     args = parser.parse_args()
     output_root = args.output_root.resolve()
     feature_cache = args.feature_cache or args.asset_root.resolve() / formal.FORMAL_NAME / "shared_preflight/frozen_reference_feature_rows_v1.pt"
@@ -549,10 +602,15 @@ def main() -> None:
         if args.seed not in formal.SEEDS:
             parser.error("classify-seed requires --seed 0, 1, or 2")
         result = run_classification(args.seed, output_root, feature_cache.resolve())
+    elif args.phase == "prepare-attempt-002":
+        result = prepare_attempt_002(output_root)
     else:
         if args.seed not in formal.SEEDS:
             parser.error("render-seed requires --seed 0, 1, or 2")
-        result = run_render_seed(args.seed, output_root, args.asset_root.resolve(), feature_cache.resolve())
+        result = run_render_seed(
+            args.seed, output_root, args.asset_root.resolve(), feature_cache.resolve(),
+            attempt_name=args.attempt,
+        )
     print(json.dumps(result, sort_keys=True, default=str))
 
 
