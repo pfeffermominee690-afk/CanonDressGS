@@ -1,0 +1,189 @@
+schema_version: canondressgs.research.dual_support_all_pair_protocol.v1
+status: FROZEN_BEFORE_EXECUTION
+label: RESEARCH EVALUATION - NOT PAPER FINAL
+task_id: AAAI27-DUAL-SUPPORT-ALL-PAIR-EVALUATION-001
+source:
+  branch: research/geometry-dual-support-micro-pilot-20260722
+  head: b216acd02323c822a7aca12f424efed6ba2e0a81
+  required_micro_pilot_classification: DUAL_SUPPORT_MICRO_PILOT_PASS
+governance:
+  run_branch: research/dual-support-all-pair-evaluation-20260722
+  windows_worktree: E:/model_train/canondressgs_dual_support_all_pair_evaluation
+  cloud_worktree: /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_dual_support_all_pair_evaluation
+  output_root: /root/autodl-tmp/canondressgs_work/outputs/DUAL-SUPPORT-ALL-PAIR-EVALUATION-001
+  append_only_attempts: true
+  historical_outputs_read_only: true
+selection:
+  frozen_outfit_order: [O01, O02, O03, O04, O08]
+  pairs:
+    - O01_O02
+    - O01_O03
+    - O01_O04
+    - O01_O08
+    - O02_O03
+    - O02_O04
+    - O02_O08
+    - O03_O04
+    - O03_O08
+    - O04_O08
+  pair_selection_or_exclusion_after_results: forbidden
+design:
+  directions: [A_TO_B, B_TO_A]
+  alpha_values: [0.20, 0.50, 0.80]
+  target_conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+  variants: [FULL_LINEAR_BASELINE, HARD_GEOMETRY_SOFT_VA, DUAL_SUPPORT_GEOMETRY_BLEND]
+  logical_entries_per_variant: 240
+  full_unique_files: 120
+variants:
+  FULL_LINEAR_BASELINE:
+    implementation: reuse sealed direct interpolation only
+    reverse_direction_mapping: stored alpha equals 1-alpha
+    new_renders: 0
+  HARD_GEOMETRY_SOFT_VA:
+    geometry_rule:
+      alpha_below_0_5: source endpoint geometry
+      alpha_above_0_5: target endpoint geometry
+      alpha_equal_0_5: earlier garment in frozen outfit order
+    visibility_rule: linear endpoint interpolation
+    appearance_rule: linear endpoint interpolation
+    geometry_interpolation: false
+  DUAL_SUPPORT_GEOMETRY_BLEND:
+    geometry_rule: immutable union of the two endpoint Gaussian geometries
+    branch_A_appearance: endpoint A
+    branch_B_appearance: endpoint B
+    effective_opacity_A: (1-alpha) * sigmoid(endpoint_A_opacity_logit)
+    effective_opacity_B: alpha * sigmoid(endpoint_B_opacity_logit)
+    stable_inverse_sigmoid_required_for_logit_interfaces: true
+    geometry_interpolation: false
+    geometry_averaging: false
+endpoint_parity:
+  scope: all 10 pairs, both directions, four target conditions
+  alpha_values: [0.0, 1.0]
+  variants: [HARD_GEOMETRY_SOFT_VA, DUAL_SUPPORT_GEOMETRY_BLEND]
+  render_max_abs_tolerance: 1.0e-6
+  relative_tolerance: 0.0
+  checks: [RGB, alpha, geometry, appearance, opacity, active_gaussian_count]
+  failure_status: ALL-PAIR-ENDPOINT-PARITY-FAIL
+metrics:
+  - garment_rgb_mae
+  - garment_lpips
+  - silhouette_iou
+  - boundary_fscore
+  - protected_lpips
+  - identity_metric
+  - target_closer_fraction
+  - outside_garment_opacity
+  - opacity_mass
+  - active_gaussian_count
+  - render_time_seconds
+  - peak_vram_bytes
+metric_definitions:
+  active_gaussian_opacity_threshold: 0.00392156862745098
+  stable_inverse_sigmoid_epsilon: 1.0e-6
+  target_closer_fraction: fraction of target-garment RGB pixels closer in L1 to target endpoint than source endpoint
+  endpoint_collapse: non-endpoint DUAL RGB max_abs to either endpoint render is at most 1.0e-6
+aggregation:
+  order: [view, direction, pair, all_pair_macro]
+  all_pair_macro: unweighted mean of the 10 per-pair means
+  direction_or_view_filtering: forbidden
+  pair_alpha_0_5_core_grade: maximum over both directions, all four views, and all core categories
+  pair_severe_count: count of grade-3 core-category observations over all alphas, both directions, and all four views
+  grade_3_double_outline_or_ghosting_pair: pair maximum across both directions, all alphas, all views, and either category equals 3
+  best_worst_display_metric: DUAL minus FULL per-pair mean garment LPIPS
+  best_pair_rule: minimum best_worst_display_metric
+  worst_pair_rule: maximum best_worst_display_metric
+  best_worst_usage: display only; never exclude, filter, or reweight any result
+visual_review:
+  grade_scale: {NONE: 0, MINOR: 1, MODERATE: 2, SEVERE: 3}
+  categories:
+    - patch
+    - cloud
+    - mottle
+    - edge_scatter
+    - silhouette_discontinuity
+    - full_body_contamination
+    - identity_contamination
+    - double_outline
+    - ghosting
+  core_artifact_categories:
+    - patch
+    - cloud
+    - mottle
+    - edge_scatter
+    - silhouette_discontinuity
+    - full_body_contamination
+  main_sheet_count: 20
+  diagnostic_sheet_count: 62
+  actual_open_required: 82
+  required_diagnostics:
+    - 20 opacity overlays
+    - 20 silhouette overlays
+    - 20 support overlays
+    - 1 quantitatively ranked best-pair sheet
+    - 1 quantitatively ranked worst-pair sheet
+success_thresholds:
+  endpoint_parity_pair_count: 10
+  pair_count_required_for_core_grade_drop_at_alpha_0_5: 7
+  minimum_core_grade_drop: 1
+  pair_count_required_for_severe_count_drop: 7
+  minimum_severe_count_reduction_fraction: 0.50
+  all_pair_macro_garment_lpips_must_improve: true
+  all_pair_macro_silhouette_iou_must_not_decrease: true
+  identity_contamination_maximum_grade: 0
+  maximum_grade_3_double_outline_or_ghosting_pairs: 1
+  endpoint_collapse_allowed: false
+  direction_or_view_selection_allowed: false
+  frozen_mutation_allowed: false
+classification_values:
+  - DUAL_SUPPORT_ALL_PAIR_PASS
+  - DUAL_SUPPORT_ALL_PAIR_PARTIAL
+  - DUAL_SUPPORT_ALL_PAIR_FAIL
+classification_rules:
+  safety_gates:
+    - endpoint parity
+    - identity contamination maximum grade
+    - grade-3 double-outline or ghosting pair count
+    - no endpoint collapse
+    - no frozen mutation
+    - no direction or view selection
+  efficacy_gates:
+    - required pair count for alpha-0.5 core-grade reduction
+    - required pair count for severe-count reduction
+  quality_gates:
+    - all-pair macro garment LPIPS improvement
+    - all-pair macro silhouette IoU non-decrease
+  pass: every safety, efficacy, and quality gate passes
+  partial: every safety gate passes and at least one efficacy gate passes, but the full PASS rule does not
+  fail: any safety gate fails, or neither efficacy gate passes
+next_task_rules:
+  DUAL_SUPPORT_ALL_PAIR_PASS: DESIGN_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER
+  DUAL_SUPPORT_ALL_PAIR_PARTIAL: DIAGNOSE_DUAL_SUPPORT_GHOSTING_AND_OVERLAP
+  DUAL_SUPPORT_ALL_PAIR_FAIL: DESIGN_GEOMETRY_CORRESPONDENCE_WARP_DIAGNOSTIC
+  next_task_started: false
+efficiency_accounting:
+  report:
+    - original base and endpoint storage
+    - runtime active Gaussian count
+    - render-time ratio
+    - peak VRAM increase
+    - evaluation-output storage requirement
+    - onboarding requirement
+  checkpoint_copy_allowed: false
+no_training_gate:
+  training_steps: 0
+  backward_calls: 0
+  diagnostic_optimizer_created: false
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  teacher_mutation: 0
+  basis_mutation: 0
+  formal_output_mutation: 0
+  legacy_context_optimizer:
+    creation_allowed: true
+    zero_grad_calls: 0
+    steps: 0
+    scheduler_steps: 0
+    state_saved: false
+    discarded: true
+paper_final: false
