@@ -1,0 +1,157 @@
+schema_version: subject00.mmlphuman.lbs_repair_protocol.v1
+task_id: MMLPHUMAN-SUBJECT00-LBS-REPAIR-001
+attempt: attempt_002
+status: FROZEN_BEFORE_DIAGNOSTIC_RUNS
+
+source:
+  branch: research/mmlphuman-subject00-derived-assets-20260723
+  head: aac37279b235c0fbcbb04c572b5bba6071416da3
+  repair_branch: research/mmlphuman-subject00-lbs-repair-20260723
+  v2_runtime_raw_closure_sha256: dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415
+  v2_runtime_lf_closure_sha256: 6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89
+
+frozen_inputs:
+  subject00_raw_root: /root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00
+  subject00_raw_fingerprint: 2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b
+  availability_manifest_sha256: cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e
+  smpl_params_sha256: ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2
+  smplx_model_path: /root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz
+  smplx_model_sha256: 376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992
+  point_interpolant_path: /root/autodl-tmp/canondressgs_work/mmlphuman_code/script/PointInterpolant
+  point_interpolant_sha256: ff516f19b4a6735ec95b8d5734c61dfb4908052d7495dc812f9d29159219ca2b
+  generator_path: script/gen_weight_volume.py
+  generator_sha256: c29be14a1a046f83c51fd3eabbe2947e293776f8599a150af72ba2e3fee038e7
+  template_vertices_sha256: 1f924c7e46a97b37272ea833ea09f54e8b10f79836824f43140bf8452e69ad97
+  template_faces_sha256: 2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b
+  template_ply_sha256: f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031
+  template_vertices: 10475
+  template_faces: 20908
+  template_mode: SUBJECT_SPECIFIC_SMPLX_BODY_SURFACE_FALLBACK
+  loose_clothing_template_available: false
+
+prior_attempt:
+  root: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_001
+  mutation_forbidden: true
+  run_a_npz_sha256: 8f56d5b1f50295c0f7abbdcc51ded8c69fd9213e4104053a299a3d7be3a6441a
+  run_a_grid_sha256: d35fd769985f48ca668786ef1ca59680fa34d6a75b8644f01baea7911d09b0f6
+  run_b_npz_sha256: 332dce1846e8a29c0ea20a92e898972d4f47d2704eaa17d48e77e76829f9a4f7
+  run_b_grid_sha256: 56fadfe501d8c9f3fcb5ac4a17f8cf003742e7cd0eb04afe3dc14386a7579d82
+  actual_point_interpolant_threads: 12
+  evidence: script/gen_weight_volume.py hard-codes --threads 12 in each solver command
+  wrapper_environment_persisted:
+    OMP_NUM_THREADS: "1"
+    MKL_NUM_THREADS: "1"
+  unpersisted_historical_environment:
+    - OPENBLAS_NUM_THREADS
+    - NUMEXPR_NUM_THREADS
+    - VECLIB_MAXIMUM_THREADS
+    - BLIS_NUM_THREADS
+
+solver_contract:
+  gradient_weight: 0.05
+  dimension: 3
+  depth: 7
+  resolution: 128
+  joint_count: 55
+  input_value_format: whitespace_xyz_plus_scalar_float_text_8_decimal_places
+  input_gradient_format: whitespace_xyz_plus_gradient_xyz_float_text_8_decimal_places
+  raw_output_format: PointInterpolant_binary_grd_with_float64_payload
+  parsed_shape: [55, 128, 128, 128]
+  parsed_dtype: float64
+  normalization: clip_each_channel_to_0_1_then_divide_by_channel_sum_per_voxel
+  canonical_grid_shape: [128, 128, 128, 55]
+  canonical_grid_dtype: float32
+  canonical_axis_transform: transpose_3_2_1_0_from_channel_raw_z_y_x
+  bbox_policy: cube_centered_on_canonical_SMPLX_bounds
+  bbox_padding_policy: cube_side_equals_1.1_times_largest_canonical_extent
+  bbox_min: [-0.9234120845794678, -1.309995174407959, -0.9287248253822327]
+  bbox_max: [0.9231994152069092, 0.5366163849830627, 0.9178866744041443]
+  voxel_sampling: inclusive_corners
+  align_corners: true
+  runtime_point_reorder: xyz_to_zyx_before_grid_sample
+
+thread_matrix:
+  variables:
+    - OMP_NUM_THREADS
+    - MKL_NUM_THREADS
+    - OPENBLAS_NUM_THREADS
+    - NUMEXPR_NUM_THREADS
+    - VECLIB_MAXIMUM_THREADS
+    - BLIS_NUM_THREADS
+  runs:
+    T1_A: 1
+    T1_B: 1
+    T12_A: 12
+    T12_B: 12
+  fresh_process_required: true
+  output_sharing_forbidden: true
+  run_order_result_selection_forbidden: true
+
+stage_capture:
+  raw_solver_files: raw_solver/grid_00.grd_through_grid_54.grd
+  parsed_unnormalized: stages/parsed_unnormalized_float64.npy
+  normalized_channel_first: stages/normalized_channel_first_float64.npy
+  canonical_grid: stages/canonical_grid_xyz_joint_float32.npy
+  canonical_npz: output/lbs_weights_grid.npz
+  deterministic_npz:
+    fixed_key_order: [grid, bbox_min, bbox_max, grid_dims, grid_resolution]
+    fixed_zip_timestamp: [1980, 1, 1, 0, 0, 0]
+    compression: ZIP_STORED
+    path_metadata_forbidden: true
+    runtime_metadata_forbidden: true
+
+repeatability_thresholds:
+  prefer_all_arrays_bitwise_exact: true
+  grid_max_abs: 1.0e-6
+  grid_mean_abs: 1.0e-8
+  argmax_joint_agreement: 1.0
+  metadata_exact: true
+
+value_thresholds:
+  finite_required: true
+  weight_sum_max_abs_error: 1.0e-5
+  weight_min: -1.0e-7
+  zero_sum_voxels: 0
+  unknown_joint_indices: 0
+
+geometry_thresholds:
+  extrapolated_vertices: 0
+  interpolated_sum_max_abs_error: 1.0e-5
+  interpolated_weight_mae: 0.02
+  interpolated_weight_max_abs: 0.5
+  dominant_joint_agreement_minimum: 0.95
+  posed_max_abs_coordinate_meters: 5.0
+  posed_surface_area_ratio_minimum: 0.05
+  posed_surface_area_ratio_maximum: 20.0
+
+decision_order:
+  - serializer_only
+  - joint_mapping
+  - grid_coordinate
+  - multithread_only_nondeterminism
+  - pointinterpolant_nondeterministic_under_frozen_contract
+  - geometric_fidelity_insufficient
+
+publication:
+  staging_root: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_attempt_002
+  formal_target: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00
+  require_all_gates: true
+  atomic_rename_required: true
+  publish_on_any_failure: false
+
+immutability:
+  subject00_raw_mutation: 0
+  subject02_mutation: 0
+  v2_runtime_closure_mutation: 0
+  strict_split_mutation: 0
+  attempt_001_mutation: 0
+
+no_training_counters:
+  training_steps: 0
+  forward_training_batches: 0
+  backward_calls: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  PAPER_FINAL: 0
