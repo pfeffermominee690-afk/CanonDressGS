@@ -544,6 +544,7 @@ class NoTrainingGate(contextlib.AbstractContextManager["NoTrainingGate"]):
         self.backward_calls = 0
         self.scheduler_steps = 0
         self.checkpoint_writes = 0
+        self.in_memory_torch_save_count = 0
         self._originals: dict[str, Any] = {}
 
     def __enter__(self) -> "NoTrainingGate":
@@ -580,17 +581,20 @@ class NoTrainingGate(contextlib.AbstractContextManager["NoTrainingGate"]):
             gate.scheduler_steps += 1
             raise RuntimeError("DIAGNOSTIC_NO_TRAINING_GATE: scheduler step")
 
-        def forbidden_save(*args: Any, **kwargs: Any) -> None:
-            del args, kwargs
-            gate.checkpoint_writes += 1
-            raise RuntimeError("DIAGNOSTIC_NO_TRAINING_GATE: torch.save")
+        def guarded_save(*args: Any, **kwargs: Any) -> None:
+            destination = args[1] if len(args) > 1 else kwargs.get("f")
+            if isinstance(destination, (str, bytes, os.PathLike, Path)):
+                gate.checkpoint_writes += 1
+                raise RuntimeError("DIAGNOSTIC_NO_TRAINING_GATE: checkpoint/path torch.save")
+            gate.in_memory_torch_save_count += 1
+            return gate._originals["torch_save"](*args, **kwargs)
 
         train_dressable.build_image_conditioned_optimizer = bypass_builder
         torch.optim.Optimizer.__init__ = forbidden_optimizer_init
         torch.Tensor.backward = forbidden_backward
         torch.autograd.backward = forbidden_backward
         torch.optim.lr_scheduler.LRScheduler.step = forbidden_scheduler
-        torch.save = forbidden_save
+        torch.save = guarded_save
         return self
 
     def __exit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> bool:
@@ -609,6 +613,7 @@ class NoTrainingGate(contextlib.AbstractContextManager["NoTrainingGate"]):
             "optimizer_steps": 0, "scheduler_steps": self.scheduler_steps,
             "checkpoint_writes": self.checkpoint_writes,
             "legacy_discarded_optimizer_builder_bypassed": self.builder_bypass_count,
+            "in_memory_torch_save_count": self.in_memory_torch_save_count,
             "status": "PASS" if not any((self.backward_calls, self.optimizer_init_count, self.scheduler_steps, self.checkpoint_writes)) else "FAIL",
         }
 
