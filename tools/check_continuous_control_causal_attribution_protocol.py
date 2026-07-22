@@ -4,16 +4,19 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
 from typing import Callable
 
 import torch
 import yaml
 
-from scene.gaussian_clothing_residuals import CHANNELS, GaussianClothingResiduals
-from tools.paper import run_continuous_control_causal_attribution as runner
-
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scene.gaussian_clothing_residuals import CHANNELS, GaussianClothingResiduals
+from tools.paper import run_continuous_control_causal_attribution as runner
 
 
 def test_factor_groups_are_disjoint_and_complete() -> None:

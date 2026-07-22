@@ -3,8 +3,14 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 import torch
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from tools.paper import run_continuous_control_artifact_root_cause as previous
 from tools.paper import run_continuous_control_causal_attribution as runner
