@@ -34,8 +34,76 @@ from utils.image_utils import crop_image
 def training(args: Config):
 
     gaussians = GaussianModel()
-    scene = Scene(args, gaussians)    
+    scene = Scene(args, gaussians)
+
+    resume_data = None
+    resume_path = getattr(args, "resume_checkpoint", "")
+    if resume_path:
+        if not path.exists(resume_path):
+            raise FileNotFoundError(
+                f"Resume checkpoint does not exist: {resume_path}"
+            )
+
+        print(f"Loading training checkpoint: {resume_path}")
+        resume_data = torch.load(
+            resume_path,
+            weights_only=False,
+        )
+
+        required = {
+            "iteration",
+            "optimizer_states",
+            "scheduler_states",
+        }
+        missing = sorted(required.difference(resume_data))
+        if missing:
+            raise ValueError(
+                "Checkpoint cannot be used for strict training resume; "
+                f"missing keys: {missing}"
+            )
+
+        gaussians.restore(resume_data)
+
     gaussians.training_setup(args, scene.scene_scale)
+
+    if resume_data is not None:
+        optimizer_states = resume_data["optimizer_states"]
+        if set(optimizer_states) != set(gaussians.optimizers):
+            raise ValueError(
+                "Optimizer names do not match checkpoint: "
+                f"checkpoint={sorted(optimizer_states)}, "
+                f"current={sorted(gaussians.optimizers)}"
+            )
+
+        for name, optimizer in gaussians.optimizers.items():
+            optimizer.load_state_dict(optimizer_states[name])
+
+        scheduler_states = resume_data["scheduler_states"]
+        if len(scheduler_states) != len(gaussians.schedulers):
+            raise ValueError(
+                "Scheduler count does not match checkpoint: "
+                f"checkpoint={len(scheduler_states)}, "
+                f"current={len(gaussians.schedulers)}"
+            )
+
+        for scheduler, state in zip(
+            gaussians.schedulers, scheduler_states
+        ):
+            scheduler.load_state_dict(state)
+
+        if "python_rng_state" in resume_data:
+            random.setstate(resume_data["python_rng_state"])
+        if "numpy_rng_state" in resume_data:
+            np.random.set_state(resume_data["numpy_rng_state"])
+        if "torch_rng_state" in resume_data:
+            torch.set_rng_state(resume_data["torch_rng_state"].cpu())
+        if (
+            "cuda_rng_states" in resume_data
+            and torch.cuda.is_available()
+        ):
+            torch.cuda.set_rng_state_all(
+                [x.cpu() for x in resume_data["cuda_rng_states"]]
+            )
 
     visualizer = Visualizer(in_training=True)
     visualizer.net_init(args.ip, args.port)
@@ -45,8 +113,23 @@ def training(args: Config):
     background = torch.as_tensor(args.background).float().cuda()
 
     ema_vis_loss, ema_lpips_loss = 0.0, 0.0
-    first_iter = 0
-    progress_bar = tqdm(range(0, args.iterations), initial=first_iter, desc="TP")
+    first_iter = (
+        int(resume_data["iteration"])
+        if resume_data is not None
+        else 0
+    )
+
+    if first_iter >= args.iterations:
+        raise ValueError(
+            f"Resume iteration {first_iter} must be smaller than "
+            f"target iterations {args.iterations}"
+        )
+
+    progress_bar = tqdm(
+        range(0, args.iterations),
+        initial=first_iter,
+        desc="TP",
+    )
     first_iter += 1
     trainloader_iter = iter(scene.trainloader)
     
@@ -118,8 +201,32 @@ def training(args: Config):
         if iteration in args.checkpoint_iterations:
             print("\n[ITER {}] Saving Checkpoint".format(iteration))
             save_data = gaussians.capture()
-            save_data['iteration'] = iteration
-            torch.save(save_data, path.join(args.out_dir, 'chkpnt' + str(iteration) + '.pth'))
+            save_data["checkpoint_version"] = 2
+            save_data["iteration"] = iteration
+            save_data["optimizer_states"] = {
+                name: optimizer.state_dict()
+                for name, optimizer in gaussians.optimizers.items()
+            }
+            save_data["scheduler_states"] = [
+                scheduler.state_dict()
+                for scheduler in gaussians.schedulers
+            ]
+            save_data["python_rng_state"] = random.getstate()
+            save_data["numpy_rng_state"] = np.random.get_state()
+            save_data["torch_rng_state"] = torch.get_rng_state()
+            save_data["cuda_rng_states"] = (
+                torch.cuda.get_rng_state_all()
+                if torch.cuda.is_available()
+                else []
+            )
+
+            torch.save(
+                save_data,
+                path.join(
+                    args.out_dir,
+                    "chkpnt" + str(iteration) + ".pth",
+                ),
+            )
 
 report_cnt = 0
 report_data = {}
@@ -189,12 +296,18 @@ if __name__ == "__main__":
     parser.add_argument('--config', type=str, default='')
     parser.add_argument('--data_dir', type=str, default='')
     parser.add_argument('--out_dir', type=str, default='')
+    parser.add_argument(
+        '--resume_checkpoint',
+        type=str,
+        default='',
+    )
     parser.add_argument('--ip', type=str, default='127.0.0.1')
     parser.add_argument('--port', type=int, default=23456)
     pargs = parser.parse_args(sys.argv[1:])
 
     args = OmegaConf.load(pargs.config)
     args.data_dir, args.out_dir = pargs.data_dir, pargs.out_dir
+    args.resume_checkpoint = pargs.resume_checkpoint
     args.ip, args.port = pargs.ip, pargs.port
     os.makedirs(args.out_dir, exist_ok = True)
 
