@@ -741,9 +741,16 @@ def run_render_seed(
             parity_max_abs = max(parity_max_abs, current_parity)
             replay_count += 4
             if current_parity > 1.0 / 255.0 + 1e-6:
+                base_xyz_sha256 = hashlib.sha256(
+                    runtime.context["base"]._xyz.detach().cpu().contiguous().numpy().tobytes()
+                ).hexdigest()
+                replay_source_sha256 = hashlib.sha256(
+                    replay_source.detach().cpu().contiguous().numpy().tobytes()
+                ).hexdigest()
                 raise RuntimeError(
                     f"counterfactual runtime parity failed record={record_id}: "
-                    f"{parity_components}"
+                    f"{parity_components}; base_xyz_sha256={base_xyz_sha256}; "
+                    f"replay_source_sha256={replay_source_sha256}"
                 )
             if record_id not in predictions:
                 continue
