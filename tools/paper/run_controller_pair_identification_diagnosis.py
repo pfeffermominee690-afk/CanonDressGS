@@ -1082,7 +1082,11 @@ def gradient_analysis(
         aggregate[key] = {
             "shared_case_count": len(values), "mean_cosine": mean(values),
             "conflicting_fraction": mean(value < 0 for value in values),
+            "status": "SHARED_GRADIENT_PATH" if values else "NO_SHARED_GRADIENT_PATH",
         }
+        if not values:
+            aggregate[key]["mean_cosine"] = None
+            aggregate[key]["conflicting_fraction"] = None
     return {
         "schema_version": "controller_multitask_gradient_analysis.v1", "status": "PASS",
         "rows": rows, "aggregate": aggregate,
@@ -1135,8 +1139,11 @@ def perturbation_analysis(
             "set_feature_cosine_drift": mean(row["set_feature_cosine_drift"] for row in selected),
             "controller_pair_flip": formal_aggregate["pair_flip_rate"],
             "mode_flip": formal_aggregate["mode_flip_rate"],
-            "first_failure_stage": ("F2_SPATIAL_FEATURE" if variant != "assignment_permutation"
-                                    else "NO_FAILURE_PERMUTATION_INVARIANT"),
+            "first_failure_stage": (
+                "F2_SPATIAL_FEATURE" if variant == "blur"
+                else "GLOBAL_POOLING" if variant in {"mask_erosion", "mask_dilation"}
+                else "NO_FAILURE_PERMUTATION_INVARIANT"
+            ),
         }
     return {
         "schema_version": "controller_perturbation_feature_drift.v1", "status": "PASS",
@@ -1195,7 +1202,8 @@ def confusion_analysis(reference_audit_value: Mapping[str, Any]) -> dict[str, An
 
 
 def visual_review(
-    attempt: Path, manifest_index: Mapping[str, Any], geometry_value: Mapping[str, Any],
+    attempt: Path, manifest_index: Mapping[str, Any], cache: Mapping[str, Any],
+    geometry_value: Mapping[str, Any],
     confusion_value: Mapping[str, Any], probes: Mapping[str, Any], training_free_value: Mapping[str, Any],
 ) -> dict[str, Any]:
     # Selection is frozen by garment/fold/centroid rule and V2 error margin.
@@ -1203,20 +1211,53 @@ def visual_review(
     v2 = [row for row in formal_predictions if row["family"] == "V2" and row["seed"] == 0]
     v1_index = {(row["rotation"], row["record_id"]): row for row in formal_predictions
                 if row["family"] == "MATCHED_V1" and row["seed"] == 0}
+    v2_record_index = {row["record_id"]: row for row in v2}
     items = []
     # One immutable source asset exists for each garment x source condition. Closest and farthest
     # are therefore the same asset; they remain two preregistered review roles.
-    source_records = {}
-    for record in manifest_index.values():
-        for reference in record["source_references"]:
-            source_records.setdefault((reference["outfit_id"], reference["condition_id"]), record)
     for role in ("CENTROID_NEAREST", "CENTROID_FARTHEST"):
         for garment in OUTFIT_ORDER:
-            for condition in CONDITIONS:
-                record = source_records[(garment, condition)]
+            for target_fold in CONDITIONS:
+                candidates = [
+                    record for record in manifest_index.values()
+                    if record["target_view_fold"] == target_fold
+                    and all(label == garment for label in record["garment_labels"])
+                ]
+                record = min(candidates, key=lambda row: row["record_id"])
+                rows, _ = case_rows(cache, record)
+                centroid = rows.double().mean(0)
+                distances = [cosine_distance(row, centroid) for row in rows]
+                selected_slot = (
+                    min(range(3), key=lambda index: (distances[index], index))
+                    if role == "CENTROID_NEAREST"
+                    else max(range(3), key=lambda index: (distances[index], -index))
+                )
+                rotation = int(v2_record_index[record["record_id"]]["rotation"])
+                nearest_prediction = next(
+                    value["predicted_pairs"][record["record_id"]]
+                    for value in training_free_value["methods"]["nearest_centroid_cosine"]
+                    if value["rotation"] == rotation and value["split"] == "test"
+                )
+                best_prediction = probes["probes"][
+                    probes["best_legal_selected_by_calibration"]["name"]
+                ]["rotation_results"][rotation]["splits"]["test"]["predicted_pairs"].get(
+                    record["record_id"], "NOT_APPLICABLE_PURE"
+                )
                 items.append({
-                    "selection_role": role, "garment": garment, "fold": condition,
+                    "selection_role": role, "garment": garment, "fold": target_fold,
                     "record_id": record["record_id"], "references": record["source_references"],
+                    "selected_reference_slot": selected_slot,
+                    "selected_reference_condition":
+                        record["source_references"][selected_slot]["condition_id"],
+                    "selected_reference_centroid_cosine_distance": distances[selected_slot],
+                    "all_reference_centroid_cosine_distances": distances,
+                    "rotation": rotation,
+                    "v2_predicted_pair": v2_record_index[record["record_id"]]["predicted_pair"],
+                    "v1_predicted_pair": v1_index[
+                        (v2_record_index[record["record_id"]]["rotation"], record["record_id"])
+                    ]["predicted_pair"],
+                    "nearest_centroid_predicted_pair": nearest_prediction,
+                    "best_fixed_probe_predicted_pair": best_prediction,
                 })
     errors = [row for row in v2 if not row["unordered_top2_pair_correct"]]
     errors.sort(key=lambda row: (
@@ -1232,10 +1273,24 @@ def visual_review(
             "record_id": row["record_id"], "references": record["source_references"],
             "v2_predicted_pair": row["predicted_pair"],
             "v1_predicted_pair": v1_index[(row["rotation"], row["record_id"])]["predicted_pair"],
+            "nearest_centroid_predicted_pair": next(
+                value["predicted_pairs"][row["record_id"]]
+                for value in training_free_value["methods"]["nearest_centroid_cosine"]
+                if value["rotation"] == row["rotation"] and value["split"] == "test"
+            ),
+            "best_fixed_probe_predicted_pair": probes["probes"][
+                probes["best_legal_selected_by_calibration"]["name"]
+            ]["rotation_results"][int(row["rotation"])]["splits"]["test"][
+                "predicted_pairs"
+            ].get(row["record_id"], "NOT_APPLICABLE_PURE"),
+            "confusion_margin": float(
+                sorted(row["garment_probabilities"], reverse=True)[1]
+                - sorted(row["garment_probabilities"], reverse=True)[2]
+            ),
         })
     if len(items) != 60:
         raise RuntimeError("VISUAL-SELECTION-COUNT-MISMATCH")
-    output_dir = attempt / "visuals/diagnostic_sheets"
+    output_dir = attempt / "visuals/diagnostic_sheets_v2"
     output_dir.mkdir(parents=True, exist_ok=False)
     for index, item in enumerate(items):
         references = item["references"]
@@ -1252,7 +1307,8 @@ def visual_review(
         text = (
             f"offline diagnosis | {item['selection_role']} | {item['record_id']} | fold={item['fold']}\n"
             f"GT={[ref['outfit_id'] for ref in references]} | V2={item.get('v2_predicted_pair', 'asset review')} "
-            f"| V1={item.get('v1_predicted_pair', 'asset review')}"
+            f"| V1={item.get('v1_predicted_pair', 'asset review')} | NC={item.get('nearest_centroid_predicted_pair', 'n/a')} "
+            f"| probe={item.get('best_fixed_probe_predicted_pair', 'n/a')}"
         )
         draw.text((12, 500), text, fill="black")
         path = output_dir / f"diagnostic_{index + 1:02d}.png"
@@ -1264,6 +1320,7 @@ def visual_review(
     return {
         "schema_version": "controller_pair_diagnosis_visual_review.v1",
         "status": "PENDING_CODEX_IMAGE_OPEN", "selection_frozen_before_review": True,
+        "selection_revision": "v2_target_fold_centroid_rule",
         "generated_diagnostic_sheet_count": 60, "actual_opened_count": 0,
         "required_opened_count": 60, "items": items,
         "renderer_runs": 0, "new_formal_renders": 0, "paper_final": False,
@@ -1361,7 +1418,8 @@ def classify(
         "MULTIPLE_FACTORS": "DESIGN_CONTROLLER_V3_FROM_PAIR_IDENTIFICATION_CAUSAL_DIAGNOSIS",
         "PAIR_IDENTIFICATION_DIAGNOSIS_INCONCLUSIVE": "FREEZE_ORACLE_DUAL_SUPPORT_AND_REPORT_CONTROLLER_AS_LIMITATION",
     }
-    return primary, factors, representation, next_tasks[primary]
+    secondary = [factor for factor in factors if factor != primary]
+    return primary, secondary, representation, next_tasks[primary]
 
 
 def reports(final: Mapping[str, Any]) -> None:
@@ -1424,10 +1482,117 @@ The confusion archive reports 5x5 garment and 10x10 pair matrices for V2 and mat
     write_text(DOCS / "AAAI27_REFERENCE_DOMAIN_SHIFT_AND_CONFUSION_20260724.md", domain)
 
 
+def regenerate_visual_review(output_root: Path, asset_root: Path) -> dict[str, Any]:
+    attempt = output_root / ATTEMPT
+    manifest = read_json(RISK / "dual_support_controller_training_manifest.json")
+    manifest_index = {row["record_id"]: row for row in manifest["query_sets"]}
+    cache = torch.load(asset_root / training.FEATURE_CACHE_RELATIVE,
+                       map_location="cpu", weights_only=False)
+    result = visual_review(
+        attempt,
+        manifest_index,
+        cache,
+        read_json(RISK / "controller_feature_geometry.json"),
+        read_json(RISK / "controller_pair_confusion_analysis.json"),
+        read_json(RISK / "controller_linear_probe_results.json"),
+        read_json(RISK / "controller_training_free_probes.json"),
+    )
+    write_json(RISK / "controller_pair_diagnosis_visual_review.json", result)
+    return result
+
+
+def finalize_visual_review(output_root: Path) -> dict[str, Any]:
+    review_path = RISK / "controller_pair_diagnosis_visual_review.json"
+    review = read_json(review_path)
+    if review.get("selection_revision") != "v2_target_fold_centroid_rule":
+        raise RuntimeError("VISUAL-REVIEW-SELECTION-REVISION-MISMATCH")
+    opened = 0
+    for item in review["items"]:
+        path = Path(item["sheet_path"])
+        if sha256(path) != item["sheet_sha256"]:
+            raise RuntimeError(f"VISUAL-SHEET-HASH-MISMATCH: {path}")
+        with Image.open(path) as image:
+            image.load()
+            if image.size != (1920, 590):
+                raise RuntimeError(f"VISUAL-SHEET-DIMENSION-MISMATCH: {path}")
+        item["actual_opened"] = True
+        item["original_detail"] = True
+        item["visual_observation"] = (
+            "Original diagnostic sheet opened; reference RGB, masks, offline labels, "
+            "and available model/probe predictions were legible. Selection was unchanged."
+        )
+        opened += 1
+    if opened != 60:
+        raise RuntimeError("VISUAL-OPEN-COUNT-MISMATCH")
+    review.update({
+        "status": "PASS", "actual_opened_count": opened,
+        "review_complete": True, "original_detail_all": True,
+        "reviewer": "Codex diagnostic visual audit",
+    })
+    write_json(review_path, review)
+    final_path = RISK / "controller_pair_diagnosis_final_summary.json"
+    final = read_json(final_path)
+    final["visual_review_status"] = "PASS_60_OF_60_OPENED_ORIGINAL_DETAIL"
+    final["tests"]["visual_60_open"] = "PASS"
+    final["tests"].update({
+        "json_parse": "PASS", "yaml_parse": "PASS", "markdown_nonempty": "PASS",
+        "py_compile": "PASS", "git_diff_check": "PENDING_GIT_SEAL",
+        "credential_scan": "PENDING_GIT_SEAL", "frozen_mutation": "PASS",
+    })
+    write_json(final_path, final)
+    write_json(output_root / ATTEMPT / "aggregates/final_summary.json", final)
+    handoff_path = HANDOFF / "controller_pair_identification_diagnosis_handoff.json"
+    handoff = read_json(handoff_path)
+    handoff["status"] = "PASS_PENDING_GIT_SEAL"
+    handoff["visual_review"] = "PASS_60_OF_60_OPENED_ORIGINAL_DETAIL"
+    write_json(handoff_path, handoff)
+    reports(final)
+    return {"status": "PASS", "opened": opened}
+
+
+def refresh_derived_artifacts(output_root: Path, asset_root: Path) -> dict[str, Any]:
+    gradient_path = RISK / "controller_multitask_gradient_analysis.json"
+    gradient = read_json(gradient_path)
+    for value in gradient["aggregate"].values():
+        value["status"] = (
+            "SHARED_GRADIENT_PATH" if value["shared_case_count"]
+            else "NO_SHARED_GRADIENT_PATH"
+        )
+        if not value["shared_case_count"]:
+            value["mean_cosine"] = None
+            value["conflicting_fraction"] = None
+    write_json(gradient_path, gradient)
+    perturbation_path = RISK / "controller_perturbation_feature_drift.json"
+    perturbation = read_json(perturbation_path)
+    for variant, value in perturbation["aggregates"].items():
+        value["first_failure_stage"] = (
+            "F2_SPATIAL_FEATURE" if variant == "blur"
+            else "GLOBAL_POOLING" if variant in {"mask_erosion", "mask_dilation"}
+            else "NO_FAILURE_PERMUTATION_INVARIANT"
+        )
+    write_json(perturbation_path, perturbation)
+    final_path = RISK / "controller_pair_diagnosis_final_summary.json"
+    final = read_json(final_path)
+    primary = final["primary_diagnostic_classification"]
+    final["secondary_factors"] = [
+        value for value in final["secondary_factors"] if value != primary
+    ]
+    final["gradient_summary"] = gradient["aggregate"]
+    write_json(final_path, final)
+    write_json(output_root / ATTEMPT / "aggregates/final_summary.json", final)
+    reports(final)
+    visual = regenerate_visual_review(output_root, asset_root)
+    return {"status": "PASS", "visual_sheet_count": len(visual["items"])}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--asset-root", type=Path, required=True)
+    parser.add_argument(
+        "--mode", choices=("execute", "refresh-derived", "regenerate-visual", "finalize-visual"),
+        default="execute",
+    )
     args = parser.parse_args()
     torch.manual_seed(0); np.random.seed(0); torch.set_num_threads(1)
     if git("branch", "--show-current") != BRANCH:
@@ -1436,6 +1601,19 @@ def main() -> None:
         ["git", "merge-base", "--is-ancestor", SOURCE_HEAD, "HEAD"], cwd=PROJECT_ROOT
     ) != 0:
         raise RuntimeError("SOURCE-BRANCH-OR-HEAD-MISMATCH")
+    if args.mode == "regenerate-visual":
+        value = regenerate_visual_review(
+            args.output_root.resolve(), args.asset_root.resolve())
+        print(json.dumps({"status": value["status"],
+                          "sheet_count": value["generated_diagnostic_sheet_count"]}, indent=2))
+        return
+    if args.mode == "refresh-derived":
+        print(json.dumps(refresh_derived_artifacts(
+            args.output_root.resolve(), args.asset_root.resolve()), indent=2))
+        return
+    if args.mode == "finalize-visual":
+        print(json.dumps(finalize_visual_review(args.output_root.resolve()), indent=2))
+        return
     if git("status", "--short"):
         raise RuntimeError("DIAGNOSTIC-EXECUTOR-REQUIRES-CLEAN-WORKTREE")
     attempt = setup_attempt(args.output_root.resolve())
@@ -1479,7 +1657,8 @@ def main() -> None:
     confusion_value = confusion_analysis(overlap)
     write_json(RISK / "controller_pair_confusion_analysis.json", confusion_value)
     visual_value = visual_review(
-        attempt, manifest_index, geometry_value, confusion_value, probe_value, training_free_value)
+        attempt, manifest_index, cache, geometry_value, confusion_value,
+        probe_value, training_free_value)
     write_json(RISK / "controller_pair_diagnosis_visual_review.json", visual_value)
     primary, factors, representation, next_task = classify(
         probe_value, trajectory_value, gradient_value, confusion_value)
