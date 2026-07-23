@@ -1,0 +1,242 @@
+{
+  "historical_overall_classification": "CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL",
+  "information_ablation_definition_changed": false,
+  "next_task": "DIAGNOSE_CONTROLLER_GARMENT_HEAD_OPTIMIZATION_BUDGET",
+  "next_task_started": false,
+  "original_gate_table": [
+    {
+      "denominator": "HISTORICAL_ALL_RECORD_PAIR_METRIC",
+      "gate": "pair_macro_top2_ge_0_90",
+      "passed": false,
+      "threshold": ">=0.90",
+      "value": 0.6010416666666667
+    },
+    {
+      "denominator": "HISTORICAL_ALL_RECORD_PAIR_METRIC",
+      "gate": "every_rotation_top2_ge_0_80",
+      "passed": false,
+      "threshold": ">=0.80",
+      "value": 0.5791666666666666
+    },
+    {
+      "denominator": "GT_PURE",
+      "gate": "pure_single_ge_0_95",
+      "passed": true,
+      "threshold": ">=0.95",
+      "value": 1.0
+    },
+    {
+      "denominator": "GT_PURE",
+      "gate": "pure_false_mixed_le_0_05",
+      "passed": true,
+      "threshold": "<=0.05",
+      "value": 0.05
+    },
+    {
+      "denominator": "CORRECT_PAIR_COMPATIBLE_MIXED",
+      "gate": "compatible_dual_ge_0_80",
+      "passed": false,
+      "threshold": ">=0.80",
+      "value": 0.18937812421128092
+    },
+    {
+      "denominator": "CORRECT_PAIR_INCOMPATIBLE_MIXED",
+      "gate": "incompatible_hard_ge_0_80",
+      "passed": false,
+      "threshold": ">=0.80",
+      "value": 0.3138888888888889
+    },
+    {
+      "denominator": "CORRECT_PAIR_INCOMPATIBLE_MIXED",
+      "gate": "incompatible_dual_le_0_10",
+      "passed": true,
+      "threshold": "<=0.10",
+      "value": 0.0
+    },
+    {
+      "denominator": "WRONG_PAIR_MIXED",
+      "gate": "wrong_pair_dual_le_0_10",
+      "passed": true,
+      "threshold": "<=0.10",
+      "value": 0.07282421740626076
+    },
+    {
+      "denominator": "CORRECT_PAIR_MIXED",
+      "gate": "correct_pair_weight_mae_le_0_12",
+      "passed": false,
+      "threshold": "<=0.12",
+      "value": 0.15805836898719514
+    },
+    {
+      "denominator": "HISTORICAL_FIXED_240_SHEET_VISUAL_DENOMINATOR",
+      "gate": "severe_artifact_reduction_ge_0_50",
+      "passed": true,
+      "threshold": ">=0.50",
+      "value": 0.73
+    },
+    {
+      "denominator": "HISTORICAL_FIXED_240_SHEET_VISUAL_DENOMINATOR",
+      "gate": "identity_contamination_eq_0",
+      "passed": true,
+      "threshold": "==0",
+      "value": 0
+    },
+    {
+      "denominator": "HISTORICAL_FIXED_PAIR_VISUAL_DENOMINATOR",
+      "gate": "grade_3_ghosting_pairs_le_1_of_10",
+      "passed": true,
+      "threshold": "<=1/10",
+      "value": 0
+    },
+    {
+      "denominator": "HISTORICAL_INFORMATION_ABLATION_DENOMINATOR",
+      "gate": "dropout_and_single_reference_safe_single_ge_0_95",
+      "passed": true,
+      "threshold": ">=0.95",
+      "value": 1.0
+    }
+  ],
+  "paper_final": false,
+  "preserved_visual_gates": {
+    "denominator_changed": false,
+    "gate_rows": [
+      {
+        "denominator": "HISTORICAL_FIXED_240_SHEET_VISUAL_DENOMINATOR",
+        "gate": "severe_artifact_reduction_ge_0_50",
+        "passed": true,
+        "threshold": ">=0.50",
+        "value": 0.73
+      },
+      {
+        "denominator": "HISTORICAL_FIXED_240_SHEET_VISUAL_DENOMINATOR",
+        "gate": "identity_contamination_eq_0",
+        "passed": true,
+        "threshold": "==0",
+        "value": 0
+      },
+      {
+        "denominator": "HISTORICAL_FIXED_PAIR_VISUAL_DENOMINATOR",
+        "gate": "grade_3_ghosting_pairs_le_1_of_10",
+        "passed": true,
+        "threshold": "<=1/10",
+        "value": 0
+      },
+      {
+        "denominator": "HISTORICAL_INFORMATION_ABLATION_DENOMINATOR",
+        "gate": "dropout_and_single_reference_safe_single_ge_0_95",
+        "passed": true,
+        "threshold": ">=0.95",
+        "value": 1.0
+      }
+    ],
+    "renderer_runs": 0,
+    "values": {
+      "generated": 240,
+      "identity_contamination_maximum_grade": 0,
+      "matched_v1_severe_core_artifact_sheets": 100,
+      "opened_original_detail": 240,
+      "severe_artifact_reduction_fraction": 0.73,
+      "v2_severe_core_artifact_sheets": 27
+    },
+    "visual_reselection": 0
+  },
+  "primary_failure_interpretation": "MIXED_PAIR_IDENTIFICATION_PARTIAL",
+  "schema_version": "controller_original_vs_corrected_gates.v1",
+  "semantically_corrected_gate_table": [
+    {
+      "denominator": "GT_MIXED_ONLY",
+      "gate": "mixed_pair_macro_ge_0_90",
+      "passed": false,
+      "threshold": ">=0.90",
+      "value": 0.7180555555555556
+    },
+    {
+      "denominator": "GT_MIXED_ONLY",
+      "gate": "mixed_pair_every_rotation_ge_0_80",
+      "passed": false,
+      "threshold": ">=0.80",
+      "value": 0.6888888888888889
+    },
+    {
+      "denominator": "GT_PURE_ONLY",
+      "gate": "pure_single_ge_0_95",
+      "passed": true,
+      "threshold": ">=0.95",
+      "value": 1.0
+    },
+    {
+      "denominator": "GT_PURE_ONLY",
+      "gate": "pure_false_mixed_le_0_05",
+      "passed": true,
+      "threshold": "<=0.05",
+      "value": 0.05
+    },
+    {
+      "denominator": "CORRECT_PAIR_COMPATIBLE_MIXED",
+      "gate": "compatible_dual_ge_0_80",
+      "passed": false,
+      "threshold": ">=0.80",
+      "value": 0.18937812421128086
+    },
+    {
+      "denominator": "CORRECT_PAIR_INCOMPATIBLE_MIXED",
+      "gate": "incompatible_hard_ge_0_80",
+      "passed": false,
+      "threshold": ">=0.80",
+      "value": 0.3138888888888889
+    },
+    {
+      "denominator": "CORRECT_PAIR_INCOMPATIBLE_MIXED",
+      "gate": "incompatible_dual_le_0_10",
+      "passed": true,
+      "threshold": "<=0.10",
+      "value": 0.0
+    },
+    {
+      "denominator": "WRONG_PAIR_MIXED",
+      "gate": "wrong_pair_dual_le_0_10",
+      "passed": true,
+      "threshold": "<=0.10",
+      "value": 0.07282421740626076
+    },
+    {
+      "denominator": "CORRECT_PAIR_MIXED",
+      "gate": "correct_pair_weight_mae_le_0_12",
+      "passed": false,
+      "threshold": "<=0.12",
+      "value": 0.15805836898719514
+    },
+    {
+      "denominator": "HISTORICAL_FIXED_240_SHEET_VISUAL_DENOMINATOR",
+      "gate": "severe_artifact_reduction_ge_0_50",
+      "passed": true,
+      "threshold": ">=0.50",
+      "value": 0.73
+    },
+    {
+      "denominator": "HISTORICAL_FIXED_240_SHEET_VISUAL_DENOMINATOR",
+      "gate": "identity_contamination_eq_0",
+      "passed": true,
+      "threshold": "==0",
+      "value": 0
+    },
+    {
+      "denominator": "HISTORICAL_FIXED_PAIR_VISUAL_DENOMINATOR",
+      "gate": "grade_3_ghosting_pairs_le_1_of_10",
+      "passed": true,
+      "threshold": "<=1/10",
+      "value": 0
+    },
+    {
+      "denominator": "HISTORICAL_INFORMATION_ABLATION_DENOMINATOR",
+      "gate": "dropout_and_single_reference_safe_single_ge_0_95",
+      "passed": true,
+      "threshold": ">=0.95",
+      "value": 1.0
+    }
+  ],
+  "source_head": "56988a7e4b5cdd63be481005b070a44b20feab13",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-PAIR-METRIC-SEMANTICS-REPAIR-001",
+  "thresholds_changed": 0
+}
