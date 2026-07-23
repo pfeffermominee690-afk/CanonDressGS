@@ -1,0 +1,86 @@
+{
+  "efficiency": [
+    "trainable_parameters",
+    "effective_trainable_parameters",
+    "steps",
+    "wall_time_seconds",
+    "peak_vram_bytes",
+    "checkpoint_bytes"
+  ],
+  "generalization": [
+    "optimize_fold_metrics",
+    "calibration_fold_metrics",
+    "held_out_test_metrics",
+    "optimize_minus_test_gap"
+  ],
+  "headroom_definitions": {
+    "coefficient_headroom_gain": "raw metric delta: Render-Refined Coefficient - SVD Endpoint",
+    "direction_normalized_improvement": "reported separately: baseline-method for lower-is-better metrics and method-baseline for higher-is-better metrics",
+    "full_residual_gain": "raw metric delta: Full-Residual Render Optimization - Teacher Endpoint",
+    "span_recovery_denominator_rule": "undefined when Teacher_error-FullResidual_error<=0; emit null plus reason, never fabricate zero or a ratio",
+    "span_recovery_ratio_error_metric": "(Teacher_error-Refined_error)/(Teacher_error-FullResidual_error)",
+    "teacher_headroom_gain": "raw metric delta: Render-Refined Coefficient - Teacher Endpoint"
+  },
+  "methods": [
+    "Teacher Endpoint",
+    "SVD Endpoint",
+    "Render-Refined Coefficient",
+    "Full-Residual Render Optimization",
+    "UNREGULARIZED_DIAGNOSTIC"
+  ],
+  "paper_final": false,
+  "primary_denominator": {
+    "garment_macro_weighting": "equal weight for each of five garments",
+    "global": 20,
+    "per_rotation": 5,
+    "rotation_weighting": "equal weight for each of four rotations",
+    "unit": "one garment x one rotation held-out test observation"
+  },
+  "primary_endpoint_rule": "selected positive-anchor candidate at step 300; no checkpoint selection",
+  "render_quality": {
+    "boundary_f": "3x3 erosion XOR boundary with tolerance max(1,floor(0.005*min(H,W)+0.5)); higher is better",
+    "identity_metric": "protected-mask mean absolute RGB difference against Base Avatar render; lower is better",
+    "lpips": "VGG LPIPS v0.1 on garment bbox plus 5 percent, aspect-preserving resize and zero pad to 256x256; lower is better",
+    "protected_lpips": "LPIPS inside target_protected_mask against Base Avatar render; lower is better",
+    "psnr": "masked RGB PSNR; exact zero MSE is the string Infinity; higher is better",
+    "rgb_mae": "masked mean absolute RGB error inside target_clothing_mask; lower is better",
+    "silhouette_iou": "alpha>=0.5 versus target_foreground_mask>=0.5; higher is better",
+    "ssim": "masked 11x11 Gaussian SSIM on garment bbox; higher is better"
+  },
+  "reporting": {
+    "all_fixed_checkpoints": [
+      0,
+      20,
+      50,
+      100,
+      150,
+      200,
+      250,
+      300
+    ],
+    "every_garment": true,
+    "every_rotation": true,
+    "optimize_calibration_test_separate": true,
+    "test_used_for_selection": false,
+    "uncertainty": "paired bootstrap over the 20 garment-rotation cells with garment and rotation labels retained; 10000 deterministic resamples, seed 20260724"
+  },
+  "residual_metrics": [
+    "bound_normalized_residual_distance_to_teacher",
+    "bound_normalized_residual_norm",
+    "raw_coefficient_displacement_l2",
+    "standardized_coefficient_displacement_l2",
+    "basis_space_residual_distance",
+    "full_residual_bound_normalized_displacement"
+  ],
+  "safety": {
+    "component_contamination": "manual grade >0",
+    "identity_contamination": "manual grade >0 on any protected identity region",
+    "patch_cloud_mottle": "manual grade >0, with grade 3 severe",
+    "review_policy": "review every one of the 20 selected primary test cells for every primary method; no cherry-picking",
+    "silhouette_collapse": "empty foreground or manual grade >0",
+    "wrong_body_deformation": "manual grade >0"
+  },
+  "schema_version": "canondressgs.paper.coefficient_headroom_evaluator_contract.v1",
+  "status": "FROZEN_NOT_EXECUTED",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001"
+}

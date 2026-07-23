@@ -1,0 +1,169 @@
+{
+  "actual_execution": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "forward_calls": 0,
+    "new_renders": 0,
+    "optimization_runs": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "training_runs": 0
+  },
+  "calibration_selection": {
+    "checkpoint": 300,
+    "identity_safety_required": true,
+    "positive_anchor_candidates": 4,
+    "score": "five-garment macro calibration render objective",
+    "selection_scope": "one lambda per rotation shared by all five garments",
+    "test_used": false,
+    "tie_break": "largest lambda",
+    "tie_tolerance_absolute": 0.0001
+  },
+  "checkpoint_schema": {
+    "atomic_write_required": true,
+    "exact_resume_required": true,
+    "required_fields": [
+      "task_id",
+      "method",
+      "rotation",
+      "outfit_id",
+      "global_step",
+      "trainable_state",
+      "optimizer_state",
+      "rng_state",
+      "condition_position",
+      "lambda_anchor",
+      "frozen_asset_sha256",
+      "query_order_sha256",
+      "cumulative_optimizer_wall_time_seconds"
+    ],
+    "scheduler_state": "NOT_APPLICABLE_FIXED_LR",
+    "schema_version": "canondressgs.paper.coefficient_headroom_checkpoint.v1",
+    "target_tensors_stored": false
+  },
+  "coefficient_optimizer": {
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      150,
+      200,
+      250,
+      300
+    ],
+    "class": "torch.optim.Adam",
+    "epsilon": 1e-08,
+    "final_rule": "step_300_only",
+    "gradient_clip_norm": 5.0,
+    "learning_rate": 0.02,
+    "scheduler": "NONE_FIXED_LR",
+    "steps": 300,
+    "weight_decay": 0.0
+  },
+  "coefficient_parameterization": {
+    "coefficient_mean": [
+      -1.220703143189894e-05,
+      -3.051757857974735e-06,
+      2.441406286379788e-05,
+      -6.103515625e-05
+    ],
+    "coefficient_std": [
+      412.4079895019531,
+      364.3363037109375,
+      313.2566223144531,
+      297.9817810058594
+    ],
+    "degrees_of_freedom": 4,
+    "garment_order": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "initialization": "z_svd=(c_svd-mean)/std",
+    "mathematical_variable": "c in R^4",
+    "multiple_initializations": false,
+    "normalization_sha256": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+    "random_initialization": false,
+    "stored_trainable_tensor": "z=(c-mean)/std in R^4"
+  },
+  "data_schedule": {
+    "best_checkpoint_selection": false,
+    "early_stopping": false,
+    "garment_specific_budget": false,
+    "per_garment_independent": true,
+    "result_driven_extra_steps": false,
+    "seed": 20260724,
+    "seed_selection": false,
+    "steps_1_to_300": "alternate optimize_folds[0], optimize_folds[1], beginning with index 0",
+    "updates_per_optimize_condition": 150
+  },
+  "formal_platform": {
+    "cpu_feasibility": "Four-scalar Adam arithmetic is feasible; end-to-end formal CPU rendering is not the frozen execution path and is not authorized.",
+    "device": "CUDA",
+    "gpu_class": "NVIDIA GeForce RTX 4090",
+    "gpu_feasibility": "Supported by the frozen subject02 renderer and historical Teacher runs.",
+    "reason": "The four-scalar update is CPU-feasible, but the frozen differentiable renderer is the dominant operation and the historical formal runtime is CUDA."
+  },
+  "full_residual_optimizer": {
+    "appearance_learning_rate": 0.002,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      150,
+      200,
+      250,
+      300
+    ],
+    "class": "torch.optim.Adam",
+    "epsilon": 1e-08,
+    "final_rule": "step_300_only",
+    "geometry_learning_rate": 0.001,
+    "gradient_clip_norm": 1.0,
+    "scheduler": "NONE_FIXED_LR",
+    "steps": 300,
+    "weight_decay": 0.0
+  },
+  "paper_final": false,
+  "planned_execution": {
+    "checkpoint_writes": 960,
+    "coefficient_anchor_grid_runs": 80,
+    "full_residual_runs": 20,
+    "optimizer_steps": 36000,
+    "total_optimization_runs": 120,
+    "unregularized_diagnostic_runs": 20
+  },
+  "pre_optimizer_initialization_gates": {
+    "all_finite": true,
+    "basis_rank": 4,
+    "basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430",
+    "failure_rule": "abort before optimizer creation with COEFFICIENT_HEADROOM_PROTOCOL_INCOMPLETE",
+    "garment_order": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "normalization_sha256": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+    "per_garment_bound_normalized_residual_rmse_max": 1e-05,
+    "per_view_svd_teacher_alpha_mae_max": 1e-05,
+    "per_view_svd_teacher_rgb_mae_max": 1e-05
+  },
+  "schema_version": "canondressgs.paper.coefficient_headroom_optimizer_contract.v1",
+  "status": "FROZEN_NOT_EXECUTED",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001"
+}

@@ -1,0 +1,103 @@
+{
+  "actual_execution": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "forward_calls": 0,
+    "new_renders": 0,
+    "optimization_runs": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "training_runs": 0
+  },
+  "artifact_sha256_lf": {
+    "docs/PAPER/AAAI27_FULL_RESIDUAL_FAIR_COMPARISON_PROTOCOL_20260724.md": "ca8d4cbefc18be9394db2f6a783b78ee1e93f41a71f50f7867b21d2b56c1ae10",
+    "docs/PAPER/AAAI27_RENDER_REFINED_COEFFICIENT_HEADROOM_PROTOCOL_20260724.md": "ff0abe1c02a2cb33357f009e879c1531498a8a6f43e71310f36b9d10fc9c5979",
+    "docs/PAPER/AAAI27_TEACHER_ENDPOINT_HEADROOM_ANALYSIS_PLAN_20260724.md": "f6ff62994233213b70776077f6ff930518c2b0e471d13be4447b2a4c50aacc47",
+    "paper_protocol/reviewer_risk/coefficient_headroom_evaluator_contract.json": "44e717d595b980e5af1b5a6cb7fd97e7932f29670c30a4365eb51ecb9f5b1dfb",
+    "paper_protocol/reviewer_risk/coefficient_headroom_full_residual_contract.json": "7b44ada2a045481ac8b74841b4ed3c38c1425c00a14b836fed92acbbffa66b16",
+    "paper_protocol/reviewer_risk/coefficient_headroom_loss_contract.json": "768948eb835da32eb3c48f1fab8af76045b42be660d8605ad9340d32fbf9ca36",
+    "paper_protocol/reviewer_risk/coefficient_headroom_optimizer_contract.json": "d95407bd321c6973e3b2d10f607e8473792d83dffeced72bc396ac4daefcd086",
+    "paper_protocol/reviewer_risk/coefficient_headroom_protocol.yaml": "cab2f07203ba7b241eeec367b3db1c6720f113fd171cfad8c4126625100c10f6",
+    "paper_protocol/reviewer_risk/coefficient_headroom_rotation_manifests.json": "93a466c4349a8a14c2d7362ec540da4a71ab88f54e620a31c3fc46e5786b6e56",
+    "paper_protocol/reviewer_risk/coefficient_headroom_success_gates.json": "ab4421177f84be5826fe54a3e3526df8605f570b92c3b4b27b7c16f979bc8cc9"
+  },
+  "assets": {
+    "coefficient_normalization_sha256": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+    "rank4_basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430",
+    "renderer_source_bundle_sha256": "0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6",
+    "source_manifest_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+    "teacher_checkpoint_sha256": {
+      "O01": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56",
+      "O02": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820",
+      "O03": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93",
+      "O04": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3",
+      "O08": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e"
+    }
+  },
+  "branch": "research/render-refined-coefficient-headroom-protocol-20260724",
+  "classification": "COEFFICIENT_HEADROOM_PROTOCOL_READY",
+  "classification_reason": "The frozen rank-4 assets, exact condition observations, historical differentiable render loss, positive-anchor calibration rule, fixed optimizer budgets, full-residual schema, evaluator, and numerical success gates are all uniquely bound before results.",
+  "frozen_asset_mutations": {
+    "base_avatar": 0,
+    "camera_pose": 0,
+    "coefficient_normalization": 0,
+    "identity_regions": 0,
+    "mmlp_human": 0,
+    "rank4_basis": 0,
+    "reference_predictor": 0,
+    "renderer": 0,
+    "rgb_masks": 0,
+    "teacher_endpoints": 0
+  },
+  "frozen_contract": {
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      150,
+      200,
+      250,
+      300
+    ],
+    "coefficient_dof": 4,
+    "garments": 5,
+    "planned_optimization_runs": 120,
+    "positive_anchor_candidates": 4,
+    "primary_test_cells": 20,
+    "rotations": 4,
+    "steps": 300
+  },
+  "future_interfaces": {
+    "endpoint_refinement_gain_attributed_to_predictor": false,
+    "outfit_id_refined_lookup": "ground-truth garment ID -> c_i^R; non-deployable endpoint decomposition",
+    "reference_to_refined_coefficient_target": "c_i^R",
+    "refined_hard_lookup": "frozen reference garment classifier -> lookup c_i^R"
+  },
+  "next_task": "RUN_RENDER_REFINED_COEFFICIENT_HEADROOM_EXPERIMENT",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "schema_version": "canondressgs.paper.coefficient_headroom_protocol_final_summary.v1",
+  "scientific_scope": {
+    "identity": "subject02",
+    "reason": "Teacher initialization was historically optimized on all four conditions.",
+    "strict_novel_view": false,
+    "wardrobe": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ]
+  },
+  "source_branch": "research/pure-endpoint-execution-contract-repair-20260724",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "static_tests": {
+    "command": "python -m unittest tests.test_coefficient_headroom_protocol -v",
+    "status": "PASS",
+    "test_count": 10
+  },
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001"
+}

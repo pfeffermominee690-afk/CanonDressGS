@@ -1,0 +1,62 @@
+{
+  "comparison_for_scientific_classification": "selected Render-Refined Coefficient versus Teacher Endpoint on the 20 held-out test cells; equal-step Full-Residual supplies span capacity context",
+  "decision_order": [
+    {
+      "classification": "COEFFICIENT_HEADROOM_PROTOCOL_INCOMPLETE",
+      "when": "required assets, metric cells, safety reviews, parity, or denominator provenance are missing; this is evaluated before scientific classes"
+    },
+    {
+      "classification": "TEACHER_SPAN_HAS_USEFUL_RENDER_HEADROOM",
+      "when": "safe, >=4 garments improve LPIPS, macro LPIPS absolute and relative thresholds pass, companion gate passes, macro span recovery ratio>=0.25 with >=3 valid garment ratios"
+    },
+    {
+      "classification": "TEACHER_SPAN_HEADROOM_SMALL",
+      "when": "safe and >=4 garments improve LPIPS, but one or more useful-headroom magnitude/recovery gates fail while macro LPIPS improvement remains >0"
+    },
+    {
+      "classification": "TEACHER_SPAN_CAPACITY_LIMITED",
+      "when": "no safe coefficient positive class, while safe equal-step Full-Residual improves >=4 garments and passes both full-residual macro LPIPS thresholds"
+    },
+    {
+      "classification": "TEACHER_SPAN_AT_LOCAL_OPTIMUM",
+      "when": "none of the preceding rules pass; unsafe coefficient candidates count as no stable improvement"
+    }
+  ],
+  "definitions": {
+    "companion_gate": "RGB MAE improves by 0.002 OR boundary F improves by 0.02 OR silhouette IoU improves by 0.01",
+    "macro": "equal mean over five garments after equal mean over four rotations",
+    "not_optimize_only": "held-out test LPIPS gate itself passes; optimize-fold change alone never qualifies",
+    "per_garment_lpips_improved": "mean over four held-out rotations decreases by at least 0.001 versus Teacher Endpoint",
+    "relative_reduction": "(Teacher-Method)/Teacher for positive error-valued Teacher metrics",
+    "safe": "identity contamination=0 and component contamination=0; unsafe apparent gains are not positive headroom"
+  },
+  "paper_final": false,
+  "preconditions": {
+    "all_20_primary_cells_present": true,
+    "all_safety_reviews_present": true,
+    "coefficient_normalization_sha_matches": true,
+    "garment_order_matches": true,
+    "no_test_selection": true,
+    "svd_endpoint_teacher_residual_parity_audited": true
+  },
+  "schema_version": "canondressgs.paper.coefficient_headroom_success_gates.v1",
+  "status": "PREREGISTERED_NOT_EVALUATED",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001",
+  "thresholds": {
+    "companion_boundary_f_improvement_absolute_min": 0.02,
+    "companion_rgb_mae_improvement_absolute_min": 0.002,
+    "companion_silhouette_iou_improvement_absolute_min": 0.01,
+    "component_contamination_count_max": 0,
+    "full_residual_improved_garments_min": 4,
+    "full_residual_macro_lpips_improvement_absolute_min": 0.01,
+    "full_residual_macro_lpips_relative_reduction_min": 0.1,
+    "identity_contamination_count_max": 0,
+    "improved_garments_min": 4,
+    "macro_lpips_improvement_absolute_min": 0.005,
+    "macro_lpips_relative_reduction_min": 0.05,
+    "macro_span_recovery_ratio_min": 0.25,
+    "per_garment_lpips_improvement_absolute_min": 0.001,
+    "valid_per_garment_span_ratios_min": 3
+  },
+  "thresholds_may_change_after_results": false
+}

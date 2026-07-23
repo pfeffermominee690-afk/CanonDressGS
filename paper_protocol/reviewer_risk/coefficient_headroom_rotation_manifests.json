@@ -1,0 +1,2028 @@
+{
+  "condition_order": [
+    "cond_000000",
+    "cond_000318",
+    "cond_000017",
+    "cond_000347"
+  ],
+  "conditions": [
+    {
+      "background": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "camera_sha256": "21607b527da70cd1fe1ce5ff8448806188745c916f59d4ff9e5e0e74ff0e84c0",
+      "condition_id": "cond_000000",
+      "height": 1536,
+      "pose_length": 165,
+      "pose_sha256": "36489b2e1ff768d9c0f7ebab540e811c80f3b6b49f2c5e2a8404c0afdb8a4222",
+      "source_camera_id": "camera_000000",
+      "source_frame_id": "0",
+      "source_image_sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+      "source_mask_sha256": "d60df0a873f620a2fd7c8669a570367e34ecfb72f9e9bba7ae08dd6c7d76e41e",
+      "view_name": "front",
+      "width": 1024
+    },
+    {
+      "background": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "camera_sha256": "6a7af5a1502b7bcb34f52dd190cd42a21833bdc8274a84c8dbf8e84275616278",
+      "condition_id": "cond_000318",
+      "height": 1536,
+      "pose_length": 165,
+      "pose_sha256": "538812c7b333cc0134a81ba95abdd6f81eb234a4fcabc0489f831b188a063447",
+      "source_camera_id": "camera_000318",
+      "source_frame_id": "492",
+      "source_image_sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+      "source_mask_sha256": "cf738f5688a22e1005bfedf8375069085edfe9d9ec35939d495bf27c0aba273f",
+      "view_name": "back",
+      "width": 1024
+    },
+    {
+      "background": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "camera_sha256": "8f11a271d6bd72edd813579516d07b86c4f9d2e60e25502877e537c80e91bfed",
+      "condition_id": "cond_000017",
+      "height": 1536,
+      "pose_length": 165,
+      "pose_sha256": "55566abdf8025c657e6d10ef338e81f809d892ba8fa963d5689525647e1eabd5",
+      "source_camera_id": "camera_000017",
+      "source_frame_id": "25",
+      "source_image_sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+      "source_mask_sha256": "d72a22af271ced677dbaa798effea56f7c2c6d55035cf5f11c3d215ce14a6cf9",
+      "view_name": "left",
+      "width": 1024
+    },
+    {
+      "background": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "camera_sha256": "f3cbe09fe8650081aa1e4c6ab2bb02d955dd5901457625cf0cc5958806705305",
+      "condition_id": "cond_000347",
+      "height": 1536,
+      "pose_length": 165,
+      "pose_sha256": "7c5d8844474c8902b7b87f55ea5125710f9b593dcc2d100d80db1bf46d4b054f",
+      "source_camera_id": "camera_000347",
+      "source_frame_id": "536",
+      "source_image_sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+      "source_mask_sha256": "a733bb9e6241a9a5cba43f4d71fa7b69efc6478b72ffb0d8588ab2da0d5f2f66",
+      "view_name": "right",
+      "width": 1024
+    }
+  ],
+  "identity": "subject02",
+  "outfit_order": [
+    "O01",
+    "O02",
+    "O03",
+    "O04",
+    "O08"
+  ],
+  "paper_final": false,
+  "rotations": [
+    {
+      "calibration_fold": "cond_000017",
+      "optimize_folds": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "partitions": {
+        "calibration": {
+          "condition_ids": [
+            "cond_000017"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000017",
+            "subject02/O02/cond_000017",
+            "subject02/O03/cond_000017",
+            "subject02/O04/cond_000017",
+            "subject02/O08/cond_000017"
+          ],
+          "observation_order_sha256": "7a35468d744b66d7ca6a790b1ca8b0295778c812ddf22f6685130e2b0bd5c052",
+          "target_clothing_mask_sha256": [
+            "befc9e082e6baaa0cacbc688bc96549aca4f6dfa5292ea2862960b3e96b22240",
+            "57f1a27e7d2a6afb8e08e9b22d7fa048a5704c984feda026781084d27f90e4b8",
+            "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9",
+            "772badbcf8ae1156363fb689fd75ebc2a51eb74ffb16b935eef167c4856f3a87",
+            "3d4d6d94218e31bbc55c1fc4cec07531786723b272b8cfe85f2246de9c1fa7e0"
+          ],
+          "target_rgb_sha256": [
+            "71475fdd25f078df94efcd61a5b169648e60db4d351cc4ee0024d7d1da914cf8",
+            "5cc67b7fe46513d0242fee61bdb1d38b9633d27dc23af5faa8c85af1af1d6df6",
+            "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9",
+            "a82b35342e3c1177a58424a78d50e198aa5067994d0ace66c12ef36669b243ca",
+            "3ef3dcd7cf3821e29945a31d06862ea670f6468a82a90ab1e388ea66aa31eeb0"
+          ]
+        },
+        "optimize": {
+          "condition_ids": [
+            "cond_000000",
+            "cond_000318"
+          ],
+          "observation_count": 10,
+          "observation_ids": [
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000318",
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000318",
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000318",
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000318",
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000318"
+          ],
+          "observation_order_sha256": "e2718952b11c7d3b1baddeed30d9dadb08004fe7dc71b469724d9e599e1de0e8",
+          "target_clothing_mask_sha256": [
+            "a9071f551c67efc7d933c3a8cb749b5d55a6aa93bc80599800198fd27322a92b",
+            "8b151c35b63de6e4e9ee20523f9ea09c46a7aa41918623a6eeb183e31064b71a",
+            "8b385eab852fffeff45837b79239b68a9ee1850379039599e979172cbe213afe",
+            "c6b09f77a8826169b9a9b4d50644f760dd94fae23009dc6076a1f8139c2eb45d",
+            "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6",
+            "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897",
+            "90bbd696c5c4e82354d0726e33632fb9b03860f9882816169231e4b0ac688e82",
+            "49f228502dc5d5ebe885c80f9b504ee8238697b8f387c9eb43c88df3977e2f2a",
+            "438eff8699c1c6cadc1ec952ae88cdb7811c36ae46963e548140565dcd8f0c49",
+            "6ee81cba838757ee690bfad52d22bc119bc1e91ee66316d874de2fbf181c2976"
+          ],
+          "target_rgb_sha256": [
+            "9a089db7ffd92bc394faa91c32053289aca071aaf9592adf5a45a1c5d8b84501",
+            "36cff9706be25d29999e9db343e574890020cc48d5b894f0fde850e990bfb7d5",
+            "8c29c1f41acf05a8e28bb8865301f380ddca93daa3fc6d78c6234e5bc4508e75",
+            "d4b08fe518914bba29fcf3ba463c2912a59cd5e813363faf7c97aa645cc0f396",
+            "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117",
+            "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a",
+            "cc12405d2d6d0f8eeefa442cb7b958f16b7e2f0e121ff16e0d170ffa71064283",
+            "715f9299031458a8c60b00c60536f9a40ffbdd64b9ea2191c55fa4cf097b51ca",
+            "40accfe8a3513da1d424fea5437b1979f7ad85ef17854c7757ee6c22eb938f21",
+            "606afc59cbf70b94bfbf2113409c5214be0c37f009822c930722520897e8cecc"
+          ]
+        },
+        "test": {
+          "condition_ids": [
+            "cond_000347"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000347",
+            "subject02/O02/cond_000347",
+            "subject02/O03/cond_000347",
+            "subject02/O04/cond_000347",
+            "subject02/O08/cond_000347"
+          ],
+          "observation_order_sha256": "e80470c585bddb7c758535dcb0bfca3f4160aa87af7579bef53b2499b6765e8b",
+          "target_clothing_mask_sha256": [
+            "a511fee578a93fa152438f07c877cc53e120382dd553a5c76718245e510491d7",
+            "50fd9471bc3d16276162232d817626747ee62e09a0d9e7aff3274861384271e0",
+            "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd",
+            "1ba9104c4db802a028130a3ad86f5f779efa0d31d9c04cdd3271631281e21633",
+            "e0a792dc85a24271fb702322ae4cb60620cc2c84635653fdb469d4b44afd3884"
+          ],
+          "target_rgb_sha256": [
+            "be1a85f2c846464c1c8816ba1313129cd0fd011993aa16019496fe417a651df7",
+            "6e5d5ff5be6cf28bfa837f1888c021edf654c1742919da04a403df8d3f611e66",
+            "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6",
+            "ec06160205824233b2633024bfd046e25287d55a5c48d36432b5d3b434644c7d",
+            "63ef7fbb821a667a58b174481769146169384535aec7e409ebf4f8c9d9cf219a"
+          ]
+        }
+      },
+      "per_garment_query_order": {
+        "O01": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000318"
+          ],
+          "last_four": [
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000318"
+          ],
+          "sha256": "aaec63a7f19e86075f6d24351c6e5e208b5a689a6543ab328d9c990f7c928f61",
+          "step_count": 300
+        },
+        "O02": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000318"
+          ],
+          "last_four": [
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000318"
+          ],
+          "sha256": "f0eba7e97d647b8add388b29b20f578fd3398719c880e391a320251508c2014a",
+          "step_count": 300
+        },
+        "O03": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000318"
+          ],
+          "last_four": [
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000318"
+          ],
+          "sha256": "13753ce72514500daabeab99dbbd9df10a504bb2b5efc63ef22938fde1364be5",
+          "step_count": 300
+        },
+        "O04": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000318"
+          ],
+          "last_four": [
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000318"
+          ],
+          "sha256": "4888ba80def1579c07d201a0922f71aba421c1d85cf1c7b2eb2381f11ae94abe",
+          "step_count": 300
+        },
+        "O08": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000318"
+          ],
+          "last_four": [
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000318"
+          ],
+          "sha256": "fb6b6db65d22748033c1322ac193bc1355f851eb1537985fa7642c9de9b95a53",
+          "step_count": 300
+        }
+      },
+      "rotation": "R0",
+      "rotation_semantic_sha256": "896023bac088677601a648340de4ef1e0c1dae2d26d48036061e33782485779f",
+      "source_reference_asset_overlap": {
+        "calibration_test": {
+          "combined_sha256": 20,
+          "mask_sha256": 10,
+          "rgb_sha256": 10
+        },
+        "interpretation": "EXPECTED_CLOSED_WARDROBE_OVERLAP_NOT_CONSUMED_BY_ENDPOINT_OPTIMIZATION",
+        "optimize_calibration": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        },
+        "optimize_test": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        }
+      },
+      "target_observation_intersections": {
+        "calibration_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_calibration": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        }
+      },
+      "test_fold": "cond_000347"
+    },
+    {
+      "calibration_fold": "cond_000347",
+      "optimize_folds": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "partitions": {
+        "calibration": {
+          "condition_ids": [
+            "cond_000347"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000347",
+            "subject02/O02/cond_000347",
+            "subject02/O03/cond_000347",
+            "subject02/O04/cond_000347",
+            "subject02/O08/cond_000347"
+          ],
+          "observation_order_sha256": "e80470c585bddb7c758535dcb0bfca3f4160aa87af7579bef53b2499b6765e8b",
+          "target_clothing_mask_sha256": [
+            "a511fee578a93fa152438f07c877cc53e120382dd553a5c76718245e510491d7",
+            "50fd9471bc3d16276162232d817626747ee62e09a0d9e7aff3274861384271e0",
+            "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd",
+            "1ba9104c4db802a028130a3ad86f5f779efa0d31d9c04cdd3271631281e21633",
+            "e0a792dc85a24271fb702322ae4cb60620cc2c84635653fdb469d4b44afd3884"
+          ],
+          "target_rgb_sha256": [
+            "be1a85f2c846464c1c8816ba1313129cd0fd011993aa16019496fe417a651df7",
+            "6e5d5ff5be6cf28bfa837f1888c021edf654c1742919da04a403df8d3f611e66",
+            "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6",
+            "ec06160205824233b2633024bfd046e25287d55a5c48d36432b5d3b434644c7d",
+            "63ef7fbb821a667a58b174481769146169384535aec7e409ebf4f8c9d9cf219a"
+          ]
+        },
+        "optimize": {
+          "condition_ids": [
+            "cond_000318",
+            "cond_000017"
+          ],
+          "observation_count": 10,
+          "observation_ids": [
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000017",
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000017",
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000017",
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000017",
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000017"
+          ],
+          "observation_order_sha256": "1e9a1fef8dc6a120965bcee854e624f667d6b0ab81b6bcd017636fb9d25e9672",
+          "target_clothing_mask_sha256": [
+            "8b151c35b63de6e4e9ee20523f9ea09c46a7aa41918623a6eeb183e31064b71a",
+            "befc9e082e6baaa0cacbc688bc96549aca4f6dfa5292ea2862960b3e96b22240",
+            "c6b09f77a8826169b9a9b4d50644f760dd94fae23009dc6076a1f8139c2eb45d",
+            "57f1a27e7d2a6afb8e08e9b22d7fa048a5704c984feda026781084d27f90e4b8",
+            "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897",
+            "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9",
+            "49f228502dc5d5ebe885c80f9b504ee8238697b8f387c9eb43c88df3977e2f2a",
+            "772badbcf8ae1156363fb689fd75ebc2a51eb74ffb16b935eef167c4856f3a87",
+            "6ee81cba838757ee690bfad52d22bc119bc1e91ee66316d874de2fbf181c2976",
+            "3d4d6d94218e31bbc55c1fc4cec07531786723b272b8cfe85f2246de9c1fa7e0"
+          ],
+          "target_rgb_sha256": [
+            "36cff9706be25d29999e9db343e574890020cc48d5b894f0fde850e990bfb7d5",
+            "71475fdd25f078df94efcd61a5b169648e60db4d351cc4ee0024d7d1da914cf8",
+            "d4b08fe518914bba29fcf3ba463c2912a59cd5e813363faf7c97aa645cc0f396",
+            "5cc67b7fe46513d0242fee61bdb1d38b9633d27dc23af5faa8c85af1af1d6df6",
+            "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a",
+            "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9",
+            "715f9299031458a8c60b00c60536f9a40ffbdd64b9ea2191c55fa4cf097b51ca",
+            "a82b35342e3c1177a58424a78d50e198aa5067994d0ace66c12ef36669b243ca",
+            "606afc59cbf70b94bfbf2113409c5214be0c37f009822c930722520897e8cecc",
+            "3ef3dcd7cf3821e29945a31d06862ea670f6468a82a90ab1e388ea66aa31eeb0"
+          ]
+        },
+        "test": {
+          "condition_ids": [
+            "cond_000000"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000000",
+            "subject02/O02/cond_000000",
+            "subject02/O03/cond_000000",
+            "subject02/O04/cond_000000",
+            "subject02/O08/cond_000000"
+          ],
+          "observation_order_sha256": "a17ea7ff41f9f3fb25ca8a1715073d4ddb99960f40db677766c2cc0963ddd390",
+          "target_clothing_mask_sha256": [
+            "a9071f551c67efc7d933c3a8cb749b5d55a6aa93bc80599800198fd27322a92b",
+            "8b385eab852fffeff45837b79239b68a9ee1850379039599e979172cbe213afe",
+            "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6",
+            "90bbd696c5c4e82354d0726e33632fb9b03860f9882816169231e4b0ac688e82",
+            "438eff8699c1c6cadc1ec952ae88cdb7811c36ae46963e548140565dcd8f0c49"
+          ],
+          "target_rgb_sha256": [
+            "9a089db7ffd92bc394faa91c32053289aca071aaf9592adf5a45a1c5d8b84501",
+            "8c29c1f41acf05a8e28bb8865301f380ddca93daa3fc6d78c6234e5bc4508e75",
+            "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117",
+            "cc12405d2d6d0f8eeefa442cb7b958f16b7e2f0e121ff16e0d170ffa71064283",
+            "40accfe8a3513da1d424fea5437b1979f7ad85ef17854c7757ee6c22eb938f21"
+          ]
+        }
+      },
+      "per_garment_query_order": {
+        "O01": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000017"
+          ],
+          "last_four": [
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000318",
+            "subject02/O01/cond_000017"
+          ],
+          "sha256": "e35f20db122250549d9ebc2aab5ac9a413378cde2d1fafa4a9bea5ca6a67286f",
+          "step_count": 300
+        },
+        "O02": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000017"
+          ],
+          "last_four": [
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000318",
+            "subject02/O02/cond_000017"
+          ],
+          "sha256": "bbac6d2d70d973253a2c65ba252b110fef19fa951f3c7e91b310c8ec0f0e2bf2",
+          "step_count": 300
+        },
+        "O03": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000017"
+          ],
+          "last_four": [
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000318",
+            "subject02/O03/cond_000017"
+          ],
+          "sha256": "2b1b071b6e2d4a27ec8109df6d52c3f0f646f578541f2a15ffc22fd3196d0713",
+          "step_count": 300
+        },
+        "O04": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000017"
+          ],
+          "last_four": [
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000318",
+            "subject02/O04/cond_000017"
+          ],
+          "sha256": "219c258a25c86d8f8c02570c45ac16190649c64e4f298d6a6f79cd27e7327a00",
+          "step_count": 300
+        },
+        "O08": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000017"
+          ],
+          "last_four": [
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000318",
+            "subject02/O08/cond_000017"
+          ],
+          "sha256": "5d87a5936896be2cff26b77f602fd1435a7f576746ec74ff6c4d24087c205f69",
+          "step_count": 300
+        }
+      },
+      "rotation": "R1",
+      "rotation_semantic_sha256": "8d24bcdb9dce38e108cc8570d08226af7980358f3c6e51c5368c54aec6a3d871",
+      "source_reference_asset_overlap": {
+        "calibration_test": {
+          "combined_sha256": 20,
+          "mask_sha256": 10,
+          "rgb_sha256": 10
+        },
+        "interpretation": "EXPECTED_CLOSED_WARDROBE_OVERLAP_NOT_CONSUMED_BY_ENDPOINT_OPTIMIZATION",
+        "optimize_calibration": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        },
+        "optimize_test": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        }
+      },
+      "target_observation_intersections": {
+        "calibration_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_calibration": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        }
+      },
+      "test_fold": "cond_000000"
+    },
+    {
+      "calibration_fold": "cond_000000",
+      "optimize_folds": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "partitions": {
+        "calibration": {
+          "condition_ids": [
+            "cond_000000"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000000",
+            "subject02/O02/cond_000000",
+            "subject02/O03/cond_000000",
+            "subject02/O04/cond_000000",
+            "subject02/O08/cond_000000"
+          ],
+          "observation_order_sha256": "a17ea7ff41f9f3fb25ca8a1715073d4ddb99960f40db677766c2cc0963ddd390",
+          "target_clothing_mask_sha256": [
+            "a9071f551c67efc7d933c3a8cb749b5d55a6aa93bc80599800198fd27322a92b",
+            "8b385eab852fffeff45837b79239b68a9ee1850379039599e979172cbe213afe",
+            "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6",
+            "90bbd696c5c4e82354d0726e33632fb9b03860f9882816169231e4b0ac688e82",
+            "438eff8699c1c6cadc1ec952ae88cdb7811c36ae46963e548140565dcd8f0c49"
+          ],
+          "target_rgb_sha256": [
+            "9a089db7ffd92bc394faa91c32053289aca071aaf9592adf5a45a1c5d8b84501",
+            "8c29c1f41acf05a8e28bb8865301f380ddca93daa3fc6d78c6234e5bc4508e75",
+            "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117",
+            "cc12405d2d6d0f8eeefa442cb7b958f16b7e2f0e121ff16e0d170ffa71064283",
+            "40accfe8a3513da1d424fea5437b1979f7ad85ef17854c7757ee6c22eb938f21"
+          ]
+        },
+        "optimize": {
+          "condition_ids": [
+            "cond_000017",
+            "cond_000347"
+          ],
+          "observation_count": 10,
+          "observation_ids": [
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000347",
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000347",
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000347",
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000347",
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000347"
+          ],
+          "observation_order_sha256": "9c7ba5f90265fd14ef3bf8a2032498fcb40d2be1b04289996ed5d149727f243b",
+          "target_clothing_mask_sha256": [
+            "befc9e082e6baaa0cacbc688bc96549aca4f6dfa5292ea2862960b3e96b22240",
+            "a511fee578a93fa152438f07c877cc53e120382dd553a5c76718245e510491d7",
+            "57f1a27e7d2a6afb8e08e9b22d7fa048a5704c984feda026781084d27f90e4b8",
+            "50fd9471bc3d16276162232d817626747ee62e09a0d9e7aff3274861384271e0",
+            "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9",
+            "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd",
+            "772badbcf8ae1156363fb689fd75ebc2a51eb74ffb16b935eef167c4856f3a87",
+            "1ba9104c4db802a028130a3ad86f5f779efa0d31d9c04cdd3271631281e21633",
+            "3d4d6d94218e31bbc55c1fc4cec07531786723b272b8cfe85f2246de9c1fa7e0",
+            "e0a792dc85a24271fb702322ae4cb60620cc2c84635653fdb469d4b44afd3884"
+          ],
+          "target_rgb_sha256": [
+            "71475fdd25f078df94efcd61a5b169648e60db4d351cc4ee0024d7d1da914cf8",
+            "be1a85f2c846464c1c8816ba1313129cd0fd011993aa16019496fe417a651df7",
+            "5cc67b7fe46513d0242fee61bdb1d38b9633d27dc23af5faa8c85af1af1d6df6",
+            "6e5d5ff5be6cf28bfa837f1888c021edf654c1742919da04a403df8d3f611e66",
+            "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9",
+            "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6",
+            "a82b35342e3c1177a58424a78d50e198aa5067994d0ace66c12ef36669b243ca",
+            "ec06160205824233b2633024bfd046e25287d55a5c48d36432b5d3b434644c7d",
+            "3ef3dcd7cf3821e29945a31d06862ea670f6468a82a90ab1e388ea66aa31eeb0",
+            "63ef7fbb821a667a58b174481769146169384535aec7e409ebf4f8c9d9cf219a"
+          ]
+        },
+        "test": {
+          "condition_ids": [
+            "cond_000318"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000318",
+            "subject02/O02/cond_000318",
+            "subject02/O03/cond_000318",
+            "subject02/O04/cond_000318",
+            "subject02/O08/cond_000318"
+          ],
+          "observation_order_sha256": "7699f8e887a83913a38b05248d029ce7352bfad0b5bfe2ed77d5cd64dbecba77",
+          "target_clothing_mask_sha256": [
+            "8b151c35b63de6e4e9ee20523f9ea09c46a7aa41918623a6eeb183e31064b71a",
+            "c6b09f77a8826169b9a9b4d50644f760dd94fae23009dc6076a1f8139c2eb45d",
+            "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897",
+            "49f228502dc5d5ebe885c80f9b504ee8238697b8f387c9eb43c88df3977e2f2a",
+            "6ee81cba838757ee690bfad52d22bc119bc1e91ee66316d874de2fbf181c2976"
+          ],
+          "target_rgb_sha256": [
+            "36cff9706be25d29999e9db343e574890020cc48d5b894f0fde850e990bfb7d5",
+            "d4b08fe518914bba29fcf3ba463c2912a59cd5e813363faf7c97aa645cc0f396",
+            "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a",
+            "715f9299031458a8c60b00c60536f9a40ffbdd64b9ea2191c55fa4cf097b51ca",
+            "606afc59cbf70b94bfbf2113409c5214be0c37f009822c930722520897e8cecc"
+          ]
+        }
+      },
+      "per_garment_query_order": {
+        "O01": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000347"
+          ],
+          "last_four": [
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000017",
+            "subject02/O01/cond_000347"
+          ],
+          "sha256": "1ee37a65ac344ae2891a62b84508f375fca20305ef43731c6cd468dedcbf189c",
+          "step_count": 300
+        },
+        "O02": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000347"
+          ],
+          "last_four": [
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000017",
+            "subject02/O02/cond_000347"
+          ],
+          "sha256": "51fc6b0bfdb8aa176c41778f58a3c56a5f28b14bc1d4704b3ea456c4d4726c48",
+          "step_count": 300
+        },
+        "O03": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000347"
+          ],
+          "last_four": [
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000017",
+            "subject02/O03/cond_000347"
+          ],
+          "sha256": "8369f523a5ab484ea15cac81b3878f3ce100969be2c0c2674d452e655c81c62e",
+          "step_count": 300
+        },
+        "O04": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000347"
+          ],
+          "last_four": [
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000017",
+            "subject02/O04/cond_000347"
+          ],
+          "sha256": "75580f4b86677901fbe5548d87a704cfa6622c4620d66f611bbf3b2e75665ade",
+          "step_count": 300
+        },
+        "O08": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000347"
+          ],
+          "last_four": [
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000017",
+            "subject02/O08/cond_000347"
+          ],
+          "sha256": "7a42126b963b92d6dbe3c7a5e89131bf51807e60907e0125d38231e67afe077a",
+          "step_count": 300
+        }
+      },
+      "rotation": "R2",
+      "rotation_semantic_sha256": "529b41072090b433ce1cd83382da4b048fd689ad42482ffde52a4b9a9f5f9622",
+      "source_reference_asset_overlap": {
+        "calibration_test": {
+          "combined_sha256": 20,
+          "mask_sha256": 10,
+          "rgb_sha256": 10
+        },
+        "interpretation": "EXPECTED_CLOSED_WARDROBE_OVERLAP_NOT_CONSUMED_BY_ENDPOINT_OPTIMIZATION",
+        "optimize_calibration": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        },
+        "optimize_test": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        }
+      },
+      "target_observation_intersections": {
+        "calibration_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_calibration": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        }
+      },
+      "test_fold": "cond_000318"
+    },
+    {
+      "calibration_fold": "cond_000318",
+      "optimize_folds": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "partitions": {
+        "calibration": {
+          "condition_ids": [
+            "cond_000318"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000318",
+            "subject02/O02/cond_000318",
+            "subject02/O03/cond_000318",
+            "subject02/O04/cond_000318",
+            "subject02/O08/cond_000318"
+          ],
+          "observation_order_sha256": "7699f8e887a83913a38b05248d029ce7352bfad0b5bfe2ed77d5cd64dbecba77",
+          "target_clothing_mask_sha256": [
+            "8b151c35b63de6e4e9ee20523f9ea09c46a7aa41918623a6eeb183e31064b71a",
+            "c6b09f77a8826169b9a9b4d50644f760dd94fae23009dc6076a1f8139c2eb45d",
+            "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897",
+            "49f228502dc5d5ebe885c80f9b504ee8238697b8f387c9eb43c88df3977e2f2a",
+            "6ee81cba838757ee690bfad52d22bc119bc1e91ee66316d874de2fbf181c2976"
+          ],
+          "target_rgb_sha256": [
+            "36cff9706be25d29999e9db343e574890020cc48d5b894f0fde850e990bfb7d5",
+            "d4b08fe518914bba29fcf3ba463c2912a59cd5e813363faf7c97aa645cc0f396",
+            "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a",
+            "715f9299031458a8c60b00c60536f9a40ffbdd64b9ea2191c55fa4cf097b51ca",
+            "606afc59cbf70b94bfbf2113409c5214be0c37f009822c930722520897e8cecc"
+          ]
+        },
+        "optimize": {
+          "condition_ids": [
+            "cond_000347",
+            "cond_000000"
+          ],
+          "observation_count": 10,
+          "observation_ids": [
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000000",
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000000",
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000000",
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000000",
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000000"
+          ],
+          "observation_order_sha256": "4eb2077cb6ef5d1faee21cbf164fb4c7c901db360e3bc01a9404ccc204852236",
+          "target_clothing_mask_sha256": [
+            "a511fee578a93fa152438f07c877cc53e120382dd553a5c76718245e510491d7",
+            "a9071f551c67efc7d933c3a8cb749b5d55a6aa93bc80599800198fd27322a92b",
+            "50fd9471bc3d16276162232d817626747ee62e09a0d9e7aff3274861384271e0",
+            "8b385eab852fffeff45837b79239b68a9ee1850379039599e979172cbe213afe",
+            "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd",
+            "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6",
+            "1ba9104c4db802a028130a3ad86f5f779efa0d31d9c04cdd3271631281e21633",
+            "90bbd696c5c4e82354d0726e33632fb9b03860f9882816169231e4b0ac688e82",
+            "e0a792dc85a24271fb702322ae4cb60620cc2c84635653fdb469d4b44afd3884",
+            "438eff8699c1c6cadc1ec952ae88cdb7811c36ae46963e548140565dcd8f0c49"
+          ],
+          "target_rgb_sha256": [
+            "be1a85f2c846464c1c8816ba1313129cd0fd011993aa16019496fe417a651df7",
+            "9a089db7ffd92bc394faa91c32053289aca071aaf9592adf5a45a1c5d8b84501",
+            "6e5d5ff5be6cf28bfa837f1888c021edf654c1742919da04a403df8d3f611e66",
+            "8c29c1f41acf05a8e28bb8865301f380ddca93daa3fc6d78c6234e5bc4508e75",
+            "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6",
+            "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117",
+            "ec06160205824233b2633024bfd046e25287d55a5c48d36432b5d3b434644c7d",
+            "cc12405d2d6d0f8eeefa442cb7b958f16b7e2f0e121ff16e0d170ffa71064283",
+            "63ef7fbb821a667a58b174481769146169384535aec7e409ebf4f8c9d9cf219a",
+            "40accfe8a3513da1d424fea5437b1979f7ad85ef17854c7757ee6c22eb938f21"
+          ]
+        },
+        "test": {
+          "condition_ids": [
+            "cond_000017"
+          ],
+          "observation_count": 5,
+          "observation_ids": [
+            "subject02/O01/cond_000017",
+            "subject02/O02/cond_000017",
+            "subject02/O03/cond_000017",
+            "subject02/O04/cond_000017",
+            "subject02/O08/cond_000017"
+          ],
+          "observation_order_sha256": "7a35468d744b66d7ca6a790b1ca8b0295778c812ddf22f6685130e2b0bd5c052",
+          "target_clothing_mask_sha256": [
+            "befc9e082e6baaa0cacbc688bc96549aca4f6dfa5292ea2862960b3e96b22240",
+            "57f1a27e7d2a6afb8e08e9b22d7fa048a5704c984feda026781084d27f90e4b8",
+            "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9",
+            "772badbcf8ae1156363fb689fd75ebc2a51eb74ffb16b935eef167c4856f3a87",
+            "3d4d6d94218e31bbc55c1fc4cec07531786723b272b8cfe85f2246de9c1fa7e0"
+          ],
+          "target_rgb_sha256": [
+            "71475fdd25f078df94efcd61a5b169648e60db4d351cc4ee0024d7d1da914cf8",
+            "5cc67b7fe46513d0242fee61bdb1d38b9633d27dc23af5faa8c85af1af1d6df6",
+            "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9",
+            "a82b35342e3c1177a58424a78d50e198aa5067994d0ace66c12ef36669b243ca",
+            "3ef3dcd7cf3821e29945a31d06862ea670f6468a82a90ab1e388ea66aa31eeb0"
+          ]
+        }
+      },
+      "per_garment_query_order": {
+        "O01": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000000"
+          ],
+          "last_four": [
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000000",
+            "subject02/O01/cond_000347",
+            "subject02/O01/cond_000000"
+          ],
+          "sha256": "f861266f545295412c89e3c5e8d1c758aaa1a0aca3d44e480a504f0c408868c4",
+          "step_count": 300
+        },
+        "O02": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000000"
+          ],
+          "last_four": [
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000000",
+            "subject02/O02/cond_000347",
+            "subject02/O02/cond_000000"
+          ],
+          "sha256": "ba5547081a8718f6b3134650079524f647ebf56ce97bf741b8db73c4e696d32c",
+          "step_count": 300
+        },
+        "O03": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000000"
+          ],
+          "last_four": [
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000000",
+            "subject02/O03/cond_000347",
+            "subject02/O03/cond_000000"
+          ],
+          "sha256": "00f1c8a171f36262094a03dcc722608b27d3a438acdf91a6df6694b95b6ccbd3",
+          "step_count": 300
+        },
+        "O04": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000000"
+          ],
+          "last_four": [
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000000",
+            "subject02/O04/cond_000347",
+            "subject02/O04/cond_000000"
+          ],
+          "sha256": "f8fec52b745e42ee9452ebb354088fef50ce3defe6cc96a10c72845b357350a1",
+          "step_count": 300
+        },
+        "O08": {
+          "algorithm": "sha256(UTF8(newline_join(step_1_through_step_300_observation_ids)))",
+          "first_four": [
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000000"
+          ],
+          "last_four": [
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000000",
+            "subject02/O08/cond_000347",
+            "subject02/O08/cond_000000"
+          ],
+          "sha256": "08b4aafb34de9b7e03ef9d48959390f9af13ea1a4e2a40ab2200707246494ad4",
+          "step_count": 300
+        }
+      },
+      "rotation": "R3",
+      "rotation_semantic_sha256": "1ffe7ddaccf82e368c94cf6b84f7d7618434f81dfc8f93c8095e8f4f3fe198be",
+      "source_reference_asset_overlap": {
+        "calibration_test": {
+          "combined_sha256": 20,
+          "mask_sha256": 10,
+          "rgb_sha256": 10
+        },
+        "interpretation": "EXPECTED_CLOSED_WARDROBE_OVERLAP_NOT_CONSUMED_BY_ENDPOINT_OPTIMIZATION",
+        "optimize_calibration": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        },
+        "optimize_test": {
+          "combined_sha256": 30,
+          "mask_sha256": 15,
+          "rgb_sha256": 15
+        }
+      },
+      "target_observation_intersections": {
+        "calibration_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_calibration": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        },
+        "optimize_test": {
+          "mask_sha256": 0,
+          "observation_id": 0,
+          "rgb_sha256": 0
+        }
+      },
+      "test_fold": "cond_000017"
+    }
+  ],
+  "schema_version": "canondressgs.paper.coefficient_headroom_rotation_manifests.v1",
+  "selection_isolation": {
+    "best_checkpoint_selection": false,
+    "test_fold_optimizer_selection": false,
+    "test_fold_regularization_selection": false,
+    "test_fold_step_selection": false
+  },
+  "source_branch": "research/pure-endpoint-execution-contract-repair-20260724",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "source_manifest": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json",
+  "source_manifest_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+  "source_pure_endpoint_rotation_manifest": {
+    "git_blob": "31f8a4774e109b5fa8653c58a2fda5f7bb028651",
+    "path": "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json"
+  },
+  "target_observations": [
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O01/cond_000000.png",
+          "sha256": "09955b8ad995aaf824a478b62e6bc7e7d97e69b1689a9762ee799ea29274a5eb"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000000.png",
+          "sha256": "f05effa5ee2e79eef1f68b5fb6bb6b58869a36929c46aaa2126ab5d756a91d2b"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O01/cond_000000.png",
+          "sha256": "a9071f551c67efc7d933c3a8cb749b5d55a6aa93bc80599800198fd27322a92b"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O01/cond_000000.png",
+          "sha256": "53ce520864aaad35bb3b391e56b3317bd9089c6b5228303ec48db9c7c6677fa8"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O01/cond_000000.png",
+          "sha256": "0bfe76cbfc86e375cd8f05ced76264ecd4acdb18728825a9e124406ae5264398"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O01/cond_000000.png",
+          "sha256": "9a089db7ffd92bc394faa91c32053289aca071aaf9592adf5a45a1c5d8b84501"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O01/cond_000000.png",
+          "sha256": "1d1057e3aa7725d1efd064566366c10f22f9b45aa4f0ff1b13d0f45d26727e11"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O01/cond_000000.png",
+          "sha256": "54b60eda3ba9d3b66f8ec2a435ae464bae33a6257f4fd3fa21257befb2c11c0a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O01/cond_000000.png",
+          "sha256": "c78c4e5cb8b16800ea6bdf339d34e03311f5f3422323c7c1ca2d71c42e910a17"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O01/cond_000000.png",
+          "sha256": "973c063387fe7d3114315bca094723b0c2e6c0b28f578618411a219a54c55c8e"
+        }
+      },
+      "condition_id": "cond_000000",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O01/cond_000000",
+      "outfit_id": "O01",
+      "view_name": "front"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O01/cond_000318.png",
+          "sha256": "d3760119347e3cb7403c6d3a7b990b15dd602d0dde1d7b30f17bd55bead46649"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000318.png",
+          "sha256": "99e220dbe08d6ee9cdbad5f9645c110dba499acf17b1c37c3ed806319eb7eda3"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O01/cond_000318.png",
+          "sha256": "8b151c35b63de6e4e9ee20523f9ea09c46a7aa41918623a6eeb183e31064b71a"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O01/cond_000318.png",
+          "sha256": "a8a9840090f0257a5a63041f74c49edf35a76b0c6f4791c0f6a330e75acbf42e"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O01/cond_000318.png",
+          "sha256": "28f924273838e826d996550301a30aad9f029e711e440ecdd8a54461de8a0a89"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O01/cond_000318.png",
+          "sha256": "36cff9706be25d29999e9db343e574890020cc48d5b894f0fde850e990bfb7d5"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O01/cond_000318.png",
+          "sha256": "9b1aa80b189c0b23491e9cc1ecc765688761e2de3d024646d3c5d382ce9be6b2"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O01/cond_000318.png",
+          "sha256": "6c00d7377c9ae79ed204feff34f3cf1e4f1986896f98ec886ddb202183dea03a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O01/cond_000318.png",
+          "sha256": "df256a0d252cdb354491251fed6d0dcdc4faccdc0e27d71bb603f7108d4564be"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O01/cond_000318.png",
+          "sha256": "fcd04f3cd93ab1339700686ef2407c81f321dd2fff8b4371d0612fcd5928b5fd"
+        }
+      },
+      "condition_id": "cond_000318",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O01/cond_000318",
+      "outfit_id": "O01",
+      "view_name": "back"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O01/cond_000017.png",
+          "sha256": "0d69beb1d02ef653160613be8e8272575d535af82025db961a3f9805f62e1385"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000017.png",
+          "sha256": "8c5bae54c1cb34e2db0434b5e2e85b2861a2bbf69f92fd00c36b2e6c8e2ff312"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O01/cond_000017.png",
+          "sha256": "befc9e082e6baaa0cacbc688bc96549aca4f6dfa5292ea2862960b3e96b22240"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O01/cond_000017.png",
+          "sha256": "9ea1c658738fcb5d7a2a174b5b204c68babb51514e7c923a724c059d31eabb3f"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O01/cond_000017.png",
+          "sha256": "b31760414f89876362cc6ac9932d8f1b624a61314a17df56cdb7312654af4fc3"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O01/cond_000017.png",
+          "sha256": "71475fdd25f078df94efcd61a5b169648e60db4d351cc4ee0024d7d1da914cf8"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O01/cond_000017.png",
+          "sha256": "abc04b27f5f099e4637a95cc0cf3c011ca2bdabbf18127a06352a666ef80cb17"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O01/cond_000017.png",
+          "sha256": "18f70e61996955080f62b7daf0adf3c8bc89b16ba4a2b00becfb7901e3167cd2"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O01/cond_000017.png",
+          "sha256": "b0adbf657e4260bd4403ae0ca0fd4f334f311b29a04b54d2a2ac52719158a874"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O01/cond_000017.png",
+          "sha256": "7237eceba936caa06eca8f40c8a17f37133a2fd2d511f40af7a1a2a9b7ac3987"
+        }
+      },
+      "condition_id": "cond_000017",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O01/cond_000017",
+      "outfit_id": "O01",
+      "view_name": "left"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O01/cond_000347.png",
+          "sha256": "b94a239c7a7cfa1d48cb8c72e0044b493f91d82d68a9264ddd0c51b1af69f888"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000347.png",
+          "sha256": "43f28c9f03f19c4e93f3c489cf467bff8fea7d6f0c7cf57d2fb69d61e988a305"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O01/cond_000347.png",
+          "sha256": "a511fee578a93fa152438f07c877cc53e120382dd553a5c76718245e510491d7"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O01/cond_000347.png",
+          "sha256": "1238f399ae196b31def0385e1252afb368e03ab463f74bcf63e368130ae7cb57"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O01/cond_000347.png",
+          "sha256": "e9074424a0b06360fbe85abed2db7ed8fde95d27be0dc70c9d76586dc996bd5b"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O01/cond_000347.png",
+          "sha256": "be1a85f2c846464c1c8816ba1313129cd0fd011993aa16019496fe417a651df7"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O01/cond_000347.png",
+          "sha256": "9574433846a8d4950254c91c1cda2d07d0ef425e18028d2d1dfe7e57bec64c58"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O01/cond_000347.png",
+          "sha256": "c74a97ec0e0cfaca0d87b8f1e221d1de372e5035325f61f564b31c28cedd1e22"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O01/cond_000347.png",
+          "sha256": "5a6c2395ee490a1f0805bfc996622481e0a445c25f16a36009040a50090a87dc"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O01/cond_000347.png",
+          "sha256": "7284a0680fd0f13ee9b29379c9fa5ea0dae58cebeec38dd48b5b8b481a9a6215"
+        }
+      },
+      "condition_id": "cond_000347",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O01/cond_000347",
+      "outfit_id": "O01",
+      "view_name": "right"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O02/cond_000000.png",
+          "sha256": "09955b8ad995aaf824a478b62e6bc7e7d97e69b1689a9762ee799ea29274a5eb"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000000.png",
+          "sha256": "f05effa5ee2e79eef1f68b5fb6bb6b58869a36929c46aaa2126ab5d756a91d2b"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O02/cond_000000.png",
+          "sha256": "8b385eab852fffeff45837b79239b68a9ee1850379039599e979172cbe213afe"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O02/cond_000000.png",
+          "sha256": "2384db4eb02a221360c8e8ea47cb552c73354e4f33c5d7eb1a5d8448976266e6"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O02/cond_000000.png",
+          "sha256": "78b5bdceeaa994cdf8b2a58f9724ac3674a5f5ae7a9faab37f8b85ed1a60820e"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O02/cond_000000.png",
+          "sha256": "8c29c1f41acf05a8e28bb8865301f380ddca93daa3fc6d78c6234e5bc4508e75"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O02/cond_000000.png",
+          "sha256": "cf9ac6d6dbfe37c0797f60373e29af7628743183e06b5629569238a189b77139"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O02/cond_000000.png",
+          "sha256": "54b60eda3ba9d3b66f8ec2a435ae464bae33a6257f4fd3fa21257befb2c11c0a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O02/cond_000000.png",
+          "sha256": "c78c4e5cb8b16800ea6bdf339d34e03311f5f3422323c7c1ca2d71c42e910a17"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O02/cond_000000.png",
+          "sha256": "b881d0c68949aa4e7c50be66cad96be90ad1ae0a4fee00ec0c4aa6aa5fb5aa48"
+        }
+      },
+      "condition_id": "cond_000000",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O02/cond_000000",
+      "outfit_id": "O02",
+      "view_name": "front"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O02/cond_000318.png",
+          "sha256": "d3760119347e3cb7403c6d3a7b990b15dd602d0dde1d7b30f17bd55bead46649"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000318.png",
+          "sha256": "99e220dbe08d6ee9cdbad5f9645c110dba499acf17b1c37c3ed806319eb7eda3"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O02/cond_000318.png",
+          "sha256": "c6b09f77a8826169b9a9b4d50644f760dd94fae23009dc6076a1f8139c2eb45d"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O02/cond_000318.png",
+          "sha256": "fcd6e4294cc2a22d79f754da46cdb392a6a4675cffd8ebd046232f91cf80f3ae"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O02/cond_000318.png",
+          "sha256": "2ff98f23c2f556610b0b65b8c592d911aa61e3c9f83e11cb3ebcbdb2c5bef2aa"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O02/cond_000318.png",
+          "sha256": "d4b08fe518914bba29fcf3ba463c2912a59cd5e813363faf7c97aa645cc0f396"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O02/cond_000318.png",
+          "sha256": "363966a63b65032511ad7142ff544a8b51385adf189cbddb6256f68d76ab60cf"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O02/cond_000318.png",
+          "sha256": "6c00d7377c9ae79ed204feff34f3cf1e4f1986896f98ec886ddb202183dea03a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O02/cond_000318.png",
+          "sha256": "df256a0d252cdb354491251fed6d0dcdc4faccdc0e27d71bb603f7108d4564be"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O02/cond_000318.png",
+          "sha256": "592f48f8fac9a827671828c76a772291193e68bb6ae84125d68c705e3dbc8b89"
+        }
+      },
+      "condition_id": "cond_000318",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O02/cond_000318",
+      "outfit_id": "O02",
+      "view_name": "back"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O02/cond_000017.png",
+          "sha256": "0d69beb1d02ef653160613be8e8272575d535af82025db961a3f9805f62e1385"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000017.png",
+          "sha256": "8c5bae54c1cb34e2db0434b5e2e85b2861a2bbf69f92fd00c36b2e6c8e2ff312"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O02/cond_000017.png",
+          "sha256": "57f1a27e7d2a6afb8e08e9b22d7fa048a5704c984feda026781084d27f90e4b8"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O02/cond_000017.png",
+          "sha256": "be27504bcba48204aff052ec0ae57fa955b6d3e1d7aef88e73d7f100454e9ab4"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O02/cond_000017.png",
+          "sha256": "0ab6425d131981560fc46d7da50eaadbbc726e09cefa04309fed12d03a276b35"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O02/cond_000017.png",
+          "sha256": "5cc67b7fe46513d0242fee61bdb1d38b9633d27dc23af5faa8c85af1af1d6df6"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O02/cond_000017.png",
+          "sha256": "2057925eae88f89c439d51a9d627df09a63d97a5443df219a6dff5dd145e4c06"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O02/cond_000017.png",
+          "sha256": "18f70e61996955080f62b7daf0adf3c8bc89b16ba4a2b00becfb7901e3167cd2"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O02/cond_000017.png",
+          "sha256": "b0adbf657e4260bd4403ae0ca0fd4f334f311b29a04b54d2a2ac52719158a874"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O02/cond_000017.png",
+          "sha256": "177a4da209ab44e8a73d808aaf3cee8b290d0b0c71d1c86bef39571aeba84553"
+        }
+      },
+      "condition_id": "cond_000017",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O02/cond_000017",
+      "outfit_id": "O02",
+      "view_name": "left"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O02/cond_000347.png",
+          "sha256": "b94a239c7a7cfa1d48cb8c72e0044b493f91d82d68a9264ddd0c51b1af69f888"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000347.png",
+          "sha256": "43f28c9f03f19c4e93f3c489cf467bff8fea7d6f0c7cf57d2fb69d61e988a305"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O02/cond_000347.png",
+          "sha256": "50fd9471bc3d16276162232d817626747ee62e09a0d9e7aff3274861384271e0"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O02/cond_000347.png",
+          "sha256": "dcccd1ccb9190392d0f827596b433737b0ecf2379eb642f617c88e335feb61a0"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O02/cond_000347.png",
+          "sha256": "fdba91bbd7bdfcc91e9ad8cf8aaafec390f0c7d8839057a908b7bd0d677284d3"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O02/cond_000347.png",
+          "sha256": "6e5d5ff5be6cf28bfa837f1888c021edf654c1742919da04a403df8d3f611e66"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O02/cond_000347.png",
+          "sha256": "9ae31eeeed27814da8534b1800b3316b1efadbff8eb8ba212d3b0227cc55707c"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O02/cond_000347.png",
+          "sha256": "c74a97ec0e0cfaca0d87b8f1e221d1de372e5035325f61f564b31c28cedd1e22"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O02/cond_000347.png",
+          "sha256": "5a6c2395ee490a1f0805bfc996622481e0a445c25f16a36009040a50090a87dc"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O02/cond_000347.png",
+          "sha256": "0a3b55f2ea935537cc8f602ddbcc12280c5c4dc95944a9489d9e08044ea28e7f"
+        }
+      },
+      "condition_id": "cond_000347",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O02/cond_000347",
+      "outfit_id": "O02",
+      "view_name": "right"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000000.png",
+          "sha256": "09955b8ad995aaf824a478b62e6bc7e7d97e69b1689a9762ee799ea29274a5eb"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000000.png",
+          "sha256": "f05effa5ee2e79eef1f68b5fb6bb6b58869a36929c46aaa2126ab5d756a91d2b"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000000.png",
+          "sha256": "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000000.png",
+          "sha256": "4bcfe33212e7a9ba763450f52e4ea3c9f337d527dad9a6ed7e84d16b5b31a664"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000000.png",
+          "sha256": "a41ca7325085a28885df039b1431b8af9025aab2eb6103024978890f9b4b07f9"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000000.png",
+          "sha256": "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000000.png",
+          "sha256": "82f7dd71f6ba9fb37e07c02649f3900a3f6f6e08ee08d3d94925548de4458f10"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000000.png",
+          "sha256": "54b60eda3ba9d3b66f8ec2a435ae464bae33a6257f4fd3fa21257befb2c11c0a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000000.png",
+          "sha256": "c78c4e5cb8b16800ea6bdf339d34e03311f5f3422323c7c1ca2d71c42e910a17"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000000.png",
+          "sha256": "0830ef251e895102e6348c5d15f254ed3e2bef725722bc5fbb9ac5ad609eae37"
+        }
+      },
+      "condition_id": "cond_000000",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O03/cond_000000",
+      "outfit_id": "O03",
+      "view_name": "front"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000318.png",
+          "sha256": "d3760119347e3cb7403c6d3a7b990b15dd602d0dde1d7b30f17bd55bead46649"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000318.png",
+          "sha256": "99e220dbe08d6ee9cdbad5f9645c110dba499acf17b1c37c3ed806319eb7eda3"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000318.png",
+          "sha256": "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000318.png",
+          "sha256": "d6f4a847f4b318c26834ef123fadc6ea4fcd64e6549233c3ffbaf7380fa4e803"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000318.png",
+          "sha256": "6b1d2eb972e5cc70329fc13443095b95879d3e33cd45342d28eac7dd0ba5cf34"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000318.png",
+          "sha256": "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000318.png",
+          "sha256": "8b21f3060feb2ff306b04bb048fed323b8c23fcf577976e7c3cef024b6065340"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000318.png",
+          "sha256": "6c00d7377c9ae79ed204feff34f3cf1e4f1986896f98ec886ddb202183dea03a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000318.png",
+          "sha256": "df256a0d252cdb354491251fed6d0dcdc4faccdc0e27d71bb603f7108d4564be"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000318.png",
+          "sha256": "88a188d337f6caa94f121b1d9c4f6a076e6c5a8c686cbd8c480a3599fe79bedc"
+        }
+      },
+      "condition_id": "cond_000318",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O03/cond_000318",
+      "outfit_id": "O03",
+      "view_name": "back"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000017.png",
+          "sha256": "0d69beb1d02ef653160613be8e8272575d535af82025db961a3f9805f62e1385"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000017.png",
+          "sha256": "8c5bae54c1cb34e2db0434b5e2e85b2861a2bbf69f92fd00c36b2e6c8e2ff312"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000017.png",
+          "sha256": "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000017.png",
+          "sha256": "8976f9d4e4720bf336ee2d8cd20f5bc1c15200f6308ce2efe7b38e302534cc04"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000017.png",
+          "sha256": "c426b1414e977b46d9ebe7fcec2147928ca6158b8746b9a3fb46826a51cc89df"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000017.png",
+          "sha256": "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000017.png",
+          "sha256": "56b2f4ef9178d0ac1e9e9d65da862f44253a81cce924f7b764f2fc38d4fbe185"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000017.png",
+          "sha256": "18f70e61996955080f62b7daf0adf3c8bc89b16ba4a2b00becfb7901e3167cd2"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000017.png",
+          "sha256": "b0adbf657e4260bd4403ae0ca0fd4f334f311b29a04b54d2a2ac52719158a874"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000017.png",
+          "sha256": "c503e4c3c0941aa28d2462fee4d85c9b369d06911ce27aa5fe5fe9ed288729a0"
+        }
+      },
+      "condition_id": "cond_000017",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O03/cond_000017",
+      "outfit_id": "O03",
+      "view_name": "left"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000347.png",
+          "sha256": "b94a239c7a7cfa1d48cb8c72e0044b493f91d82d68a9264ddd0c51b1af69f888"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000347.png",
+          "sha256": "43f28c9f03f19c4e93f3c489cf467bff8fea7d6f0c7cf57d2fb69d61e988a305"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000347.png",
+          "sha256": "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000347.png",
+          "sha256": "41cb52e9ae07dc57d9f0a3e21e6de989a06da4bc2fe6c5abc7d47cdda98f6cc2"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000347.png",
+          "sha256": "3a65eb73065af04c878158427282e2b323ac57c54dfe0315b96a99b25c4dcdc7"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000347.png",
+          "sha256": "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000347.png",
+          "sha256": "7957e74d8e494ac3819d7f35c07fb27dc85f6c05fbe89765f6a2e6edda561a6b"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000347.png",
+          "sha256": "c74a97ec0e0cfaca0d87b8f1e221d1de372e5035325f61f564b31c28cedd1e22"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000347.png",
+          "sha256": "5a6c2395ee490a1f0805bfc996622481e0a445c25f16a36009040a50090a87dc"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000347.png",
+          "sha256": "74da18e4837267e2e67ba2e501cb54d357d4785b3891e18ca80c27ddca229106"
+        }
+      },
+      "condition_id": "cond_000347",
+      "identity_audit_status": "WARN",
+      "observation_id": "subject02/O03/cond_000347",
+      "outfit_id": "O03",
+      "view_name": "right"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O04/cond_000000.png",
+          "sha256": "09955b8ad995aaf824a478b62e6bc7e7d97e69b1689a9762ee799ea29274a5eb"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000000.png",
+          "sha256": "f05effa5ee2e79eef1f68b5fb6bb6b58869a36929c46aaa2126ab5d756a91d2b"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O04/cond_000000.png",
+          "sha256": "90bbd696c5c4e82354d0726e33632fb9b03860f9882816169231e4b0ac688e82"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O04/cond_000000.png",
+          "sha256": "13ccc0ac9b0174ecf10bf67f71a5a27645eb8be759634196139ba328bec5247b"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O04/cond_000000.png",
+          "sha256": "d8ce0fcf7682f1532f4d948ab2e0505ccd1b65716ef330547270e23d13b61576"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O04/cond_000000.png",
+          "sha256": "cc12405d2d6d0f8eeefa442cb7b958f16b7e2f0e121ff16e0d170ffa71064283"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O04/cond_000000.png",
+          "sha256": "356fec1070b43f810f67087f16904347c13c68471c899c5deefd8a8921fb37d2"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O04/cond_000000.png",
+          "sha256": "54b60eda3ba9d3b66f8ec2a435ae464bae33a6257f4fd3fa21257befb2c11c0a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O04/cond_000000.png",
+          "sha256": "c78c4e5cb8b16800ea6bdf339d34e03311f5f3422323c7c1ca2d71c42e910a17"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O04/cond_000000.png",
+          "sha256": "8c051ab72e72e5ef7c30dd24df83f2aa527d3b68e098f74a94a0d309da2fbfba"
+        }
+      },
+      "condition_id": "cond_000000",
+      "identity_audit_status": "WARN",
+      "observation_id": "subject02/O04/cond_000000",
+      "outfit_id": "O04",
+      "view_name": "front"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O04/cond_000318.png",
+          "sha256": "d3760119347e3cb7403c6d3a7b990b15dd602d0dde1d7b30f17bd55bead46649"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000318.png",
+          "sha256": "99e220dbe08d6ee9cdbad5f9645c110dba499acf17b1c37c3ed806319eb7eda3"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O04/cond_000318.png",
+          "sha256": "49f228502dc5d5ebe885c80f9b504ee8238697b8f387c9eb43c88df3977e2f2a"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O04/cond_000318.png",
+          "sha256": "e01d2e73151c590c8c4b0f49f586758fbbd80bd82b6fe4688a58795aea76df1d"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O04/cond_000318.png",
+          "sha256": "0c227ef5b6fd7fc0ab601989739f838ed8f5219acc2b0954d355e1be2419c108"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O04/cond_000318.png",
+          "sha256": "715f9299031458a8c60b00c60536f9a40ffbdd64b9ea2191c55fa4cf097b51ca"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O04/cond_000318.png",
+          "sha256": "1be35086c4403bb1c46599521a053fda470ed948fbc320bc5308047ce235d2f0"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O04/cond_000318.png",
+          "sha256": "6c00d7377c9ae79ed204feff34f3cf1e4f1986896f98ec886ddb202183dea03a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O04/cond_000318.png",
+          "sha256": "df256a0d252cdb354491251fed6d0dcdc4faccdc0e27d71bb603f7108d4564be"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O04/cond_000318.png",
+          "sha256": "27950eb182f590408787858728616c84138f5df1a918cd277f8d17207a0bf577"
+        }
+      },
+      "condition_id": "cond_000318",
+      "identity_audit_status": "WARN",
+      "observation_id": "subject02/O04/cond_000318",
+      "outfit_id": "O04",
+      "view_name": "back"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O04/cond_000017.png",
+          "sha256": "0d69beb1d02ef653160613be8e8272575d535af82025db961a3f9805f62e1385"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000017.png",
+          "sha256": "8c5bae54c1cb34e2db0434b5e2e85b2861a2bbf69f92fd00c36b2e6c8e2ff312"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O04/cond_000017.png",
+          "sha256": "772badbcf8ae1156363fb689fd75ebc2a51eb74ffb16b935eef167c4856f3a87"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O04/cond_000017.png",
+          "sha256": "64f95f074d84c6b1e9db747f5dc2f203b1858e848959fdb5335b497db72aaf3d"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O04/cond_000017.png",
+          "sha256": "939823c90d289a4c9ea5ae43b388fde6a782e88e375895f2278e94f31c0e685f"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O04/cond_000017.png",
+          "sha256": "a82b35342e3c1177a58424a78d50e198aa5067994d0ace66c12ef36669b243ca"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O04/cond_000017.png",
+          "sha256": "8e8f3950b09d2755362573bbccf01d021f2c4c4ac070c9bdc52408793b54c8f4"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O04/cond_000017.png",
+          "sha256": "18f70e61996955080f62b7daf0adf3c8bc89b16ba4a2b00becfb7901e3167cd2"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O04/cond_000017.png",
+          "sha256": "b0adbf657e4260bd4403ae0ca0fd4f334f311b29a04b54d2a2ac52719158a874"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O04/cond_000017.png",
+          "sha256": "1aa949c32a56283583d0d52d23089924a0a5b52d57edc55399202cba253bebba"
+        }
+      },
+      "condition_id": "cond_000017",
+      "identity_audit_status": "WARN",
+      "observation_id": "subject02/O04/cond_000017",
+      "outfit_id": "O04",
+      "view_name": "left"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O04/cond_000347.png",
+          "sha256": "b94a239c7a7cfa1d48cb8c72e0044b493f91d82d68a9264ddd0c51b1af69f888"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000347.png",
+          "sha256": "43f28c9f03f19c4e93f3c489cf467bff8fea7d6f0c7cf57d2fb69d61e988a305"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O04/cond_000347.png",
+          "sha256": "1ba9104c4db802a028130a3ad86f5f779efa0d31d9c04cdd3271631281e21633"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O04/cond_000347.png",
+          "sha256": "7812bd7f26a49993d624ed28aed283113eb17f136639bdfcedb767a184441d1a"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O04/cond_000347.png",
+          "sha256": "a969790ebf4b0b7e33e2f526994f6be8addffabea50e8585a2ff7eaf89f320e3"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O04/cond_000347.png",
+          "sha256": "ec06160205824233b2633024bfd046e25287d55a5c48d36432b5d3b434644c7d"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O04/cond_000347.png",
+          "sha256": "14a0bc4e40cad604bf93ccbb07c29cd4b3cfd293134821e3ed717a191b8b1626"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O04/cond_000347.png",
+          "sha256": "c74a97ec0e0cfaca0d87b8f1e221d1de372e5035325f61f564b31c28cedd1e22"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O04/cond_000347.png",
+          "sha256": "5a6c2395ee490a1f0805bfc996622481e0a445c25f16a36009040a50090a87dc"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O04/cond_000347.png",
+          "sha256": "50fee8acbcaa5f6543b4fd78cee8f13f4854489a201ed6d069f375d127c9f7c0"
+        }
+      },
+      "condition_id": "cond_000347",
+      "identity_audit_status": "WARN",
+      "observation_id": "subject02/O04/cond_000347",
+      "outfit_id": "O04",
+      "view_name": "right"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O08/cond_000000.png",
+          "sha256": "09955b8ad995aaf824a478b62e6bc7e7d97e69b1689a9762ee799ea29274a5eb"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000000.png",
+          "sha256": "f05effa5ee2e79eef1f68b5fb6bb6b58869a36929c46aaa2126ab5d756a91d2b"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O08/cond_000000.png",
+          "sha256": "438eff8699c1c6cadc1ec952ae88cdb7811c36ae46963e548140565dcd8f0c49"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O08/cond_000000.png",
+          "sha256": "a7db3c7041ea83e4f0e565d15fb0362d7c7e51a22b094c7c2bdbb025edf83614"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O08/cond_000000.png",
+          "sha256": "1feffba356d3e1ceb6e62c549203f21007a2124fd57802d837c47674bda49e9d"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O08/cond_000000.png",
+          "sha256": "40accfe8a3513da1d424fea5437b1979f7ad85ef17854c7757ee6c22eb938f21"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O08/cond_000000.png",
+          "sha256": "366dd61fb4d931d230198b48cc3c0b6870e120efbd2fdd8949dd62c36b1e2819"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O08/cond_000000.png",
+          "sha256": "54b60eda3ba9d3b66f8ec2a435ae464bae33a6257f4fd3fa21257befb2c11c0a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O08/cond_000000.png",
+          "sha256": "c78c4e5cb8b16800ea6bdf339d34e03311f5f3422323c7c1ca2d71c42e910a17"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O08/cond_000000.png",
+          "sha256": "7378b84854ded3efe20c0ee530419d23b51b24709fbb5a60d5b8570a59dd837e"
+        }
+      },
+      "condition_id": "cond_000000",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O08/cond_000000",
+      "outfit_id": "O08",
+      "view_name": "front"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O08/cond_000318.png",
+          "sha256": "d3760119347e3cb7403c6d3a7b990b15dd602d0dde1d7b30f17bd55bead46649"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000318.png",
+          "sha256": "99e220dbe08d6ee9cdbad5f9645c110dba499acf17b1c37c3ed806319eb7eda3"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O08/cond_000318.png",
+          "sha256": "6ee81cba838757ee690bfad52d22bc119bc1e91ee66316d874de2fbf181c2976"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O08/cond_000318.png",
+          "sha256": "08dbffc5caa799d374291ac64c96cdf831e4539909089bf359397a51f2502b49"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O08/cond_000318.png",
+          "sha256": "00defb2721c42e69bcb6774350822278d04d1a20f08ed8999d65c5aed9629029"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O08/cond_000318.png",
+          "sha256": "606afc59cbf70b94bfbf2113409c5214be0c37f009822c930722520897e8cecc"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O08/cond_000318.png",
+          "sha256": "4b7a441b319ae8c088e593261f8245b4b52875bddbab00df788f7e06e80f6668"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O08/cond_000318.png",
+          "sha256": "6c00d7377c9ae79ed204feff34f3cf1e4f1986896f98ec886ddb202183dea03a"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O08/cond_000318.png",
+          "sha256": "df256a0d252cdb354491251fed6d0dcdc4faccdc0e27d71bb603f7108d4564be"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O08/cond_000318.png",
+          "sha256": "50db4e0e4d3987b522173f7e1db37a997e96ae3fa03e896078c979350099bf88"
+        }
+      },
+      "condition_id": "cond_000318",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O08/cond_000318",
+      "outfit_id": "O08",
+      "view_name": "back"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O08/cond_000017.png",
+          "sha256": "0d69beb1d02ef653160613be8e8272575d535af82025db961a3f9805f62e1385"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000017.png",
+          "sha256": "8c5bae54c1cb34e2db0434b5e2e85b2861a2bbf69f92fd00c36b2e6c8e2ff312"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O08/cond_000017.png",
+          "sha256": "3d4d6d94218e31bbc55c1fc4cec07531786723b272b8cfe85f2246de9c1fa7e0"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O08/cond_000017.png",
+          "sha256": "df3b14ff55b60d66552f81e577f8a064570a16342e6e11d7b274a6df8ca3eed4"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O08/cond_000017.png",
+          "sha256": "129797d03cda23a0f23246ea514d432b37e4ecb63f15ac7c023b5a47ef134084"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O08/cond_000017.png",
+          "sha256": "3ef3dcd7cf3821e29945a31d06862ea670f6468a82a90ab1e388ea66aa31eeb0"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O08/cond_000017.png",
+          "sha256": "1e3a80c53ccd740ef2f45e40dd55229c9103a8d0edc6c27b43ce02f209c44017"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O08/cond_000017.png",
+          "sha256": "18f70e61996955080f62b7daf0adf3c8bc89b16ba4a2b00becfb7901e3167cd2"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O08/cond_000017.png",
+          "sha256": "b0adbf657e4260bd4403ae0ca0fd4f334f311b29a04b54d2a2ac52719158a874"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O08/cond_000017.png",
+          "sha256": "eeaf4e8eb0502b0c4fc13cf1818587251e3ebffac694eacb3904999504327fc4"
+        }
+      },
+      "condition_id": "cond_000017",
+      "identity_audit_status": "PASS",
+      "observation_id": "subject02/O08/cond_000017",
+      "outfit_id": "O08",
+      "view_name": "left"
+    },
+    {
+      "assets": {
+        "target_base_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O08/cond_000347.png",
+          "sha256": "b94a239c7a7cfa1d48cb8c72e0044b493f91d82d68a9264ddd0c51b1af69f888"
+        },
+        "target_base_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000347.png",
+          "sha256": "43f28c9f03f19c4e93f3c489cf467bff8fea7d6f0c7cf57d2fb69d61e988a305"
+        },
+        "target_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O08/cond_000347.png",
+          "sha256": "e0a792dc85a24271fb702322ae4cb60620cc2c84635653fdb469d4b44afd3884"
+        },
+        "target_edit_core_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O08/cond_000347.png",
+          "sha256": "87f83c047e5e00fb79d9086b7bec18b41648c4495403d7f429083a00f1b0e100"
+        },
+        "target_edit_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O08/cond_000347.png",
+          "sha256": "3fad5ddf56901f79071dae769e613122e029b64d4cc0f6378ac4f000b8bfa091"
+        },
+        "target_edit_rgb": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O08/cond_000347.png",
+          "sha256": "63ef7fbb821a667a58b174481769146169384535aec7e409ebf4f8c9d9cf219a"
+        },
+        "target_foreground_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O08/cond_000347.png",
+          "sha256": "3eebf4525d0c2c623a8c9ee6dd7ed1da9e6dad5362887093cedd942e85845cd4"
+        },
+        "target_old_clothing_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O08/cond_000347.png",
+          "sha256": "c74a97ec0e0cfaca0d87b8f1e221d1de372e5035325f61f564b31c28cedd1e22"
+        },
+        "target_protected_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O08/cond_000347.png",
+          "sha256": "5a6c2395ee490a1f0805bfc996622481e0a445c25f16a36009040a50090a87dc"
+        },
+        "target_transition_mask": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O08/cond_000347.png",
+          "sha256": "0717a7da1184166d5dc0ff5ffeccf72594eb9e2eb0661e7277a1ca943009622a"
+        }
+      },
+      "condition_id": "cond_000347",
+      "identity_audit_status": "WARN",
+      "observation_id": "subject02/O08/cond_000347",
+      "outfit_id": "O08",
+      "view_name": "right"
+    }
+  ],
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001",
+  "teacher_initialization_provenance_warning": "Each Teacher Endpoint was historically optimized on all four conditions. The folds isolate refinement updates and calibration, not Teacher creation; this is not strict novel-view generalization."
+}

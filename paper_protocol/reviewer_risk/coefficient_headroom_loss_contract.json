@@ -1,0 +1,97 @@
+{
+  "audited_but_disabled_terms": {
+    "dice": {
+      "reason": "Absent from CAPACITY_ORACLE_LOSS_V1.",
+      "weight": 0.0
+    },
+    "lpips": {
+      "implementation_differentiable_if_enabled": true,
+      "reason": "Absent from the formal subject02 Teacher objective; it is evaluation-only.",
+      "weight": 0.0
+    },
+    "ssim": {
+      "reason": "Absent from the formal Teacher objective.",
+      "weight": 0.0
+    }
+  },
+  "calibration_score": "mean of the six weighted render terms; method regularizers excluded from the score",
+  "full_residual_regularization": {
+    "definition": "historical direct_stability over masked raw_xyz/raw_log_scaling/raw_rotvec/raw_opacity/raw_sh0",
+    "selection": "fixed before result",
+    "weight": 0.0001
+  },
+  "historical_provenance": {
+    "config": "configs/research/subject02_multi_outfit_explicit_basis_v1.yaml",
+    "config_git_blob": "fcb3e2fcfe3b4a61cd1edf63f7e5139b92e24567",
+    "historical_direct_stability_weight": 0.0001,
+    "historical_teacher_steps": 1200,
+    "implementation": "scene/representation_capacity_oracle.py::capacity_oracle_loss_v1",
+    "implementation_git_blob": "378d87fee29533260188184b2406e32ad92fe310"
+  },
+  "objective_name": "CAPACITY_ORACLE_LOSS_V1_RENDER_TERMS",
+  "paper_final": false,
+  "primary_coefficient_regularization": {
+    "definition": "mean((z-z_svd)^2)",
+    "lambda_grid": [
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "parameterization": "z=(c-mean)/std; z_svd=(c_svd-mean)/std",
+    "provenance": "PROSPECTIVE_PRE_RESULT_FREEZE_NO_HISTORICAL_COEFFICIENT_ANCHOR",
+    "selection": "one lambda per rotation from five-garment macro calibration render objective at step 300",
+    "strategy": "L2_ANCHOR_ONLY",
+    "test_used": false,
+    "tie_break": "stronger regularization",
+    "tie_tolerance_absolute": 0.0001
+  },
+  "render_terms": {
+    "alpha_foreground": {
+      "definition": "full-image alpha L1 against target_foreground_mask",
+      "differentiable": true,
+      "region": "all pixels",
+      "weight": 0.5
+    },
+    "boundary_rgb": {
+      "definition": "masked RGB L1 against target_edit_rgb",
+      "differentiable": true,
+      "region": "target_transition_mask excluding target_protected_mask",
+      "weight": 0.25
+    },
+    "garment_rgb": {
+      "definition": "masked RGB L1 against target_edit_rgb",
+      "differentiable": true,
+      "region": "max(target_edit_mask,target_clothing_mask,target_old_clothing_mask) excluding target_protected_mask",
+      "weight": 1.0
+    },
+    "new_silhouette_alpha": {
+      "definition": "alpha L1 against target_foreground_mask",
+      "differentiable": true,
+      "region": "target_foreground_mask * (1-target_base_foreground_mask)",
+      "weight": 1.0
+    },
+    "protected_alpha": {
+      "definition": "masked alpha L1 against target_base_foreground_mask",
+      "differentiable": true,
+      "region": "target_protected_mask",
+      "weight": 5.0
+    },
+    "protected_rgb": {
+      "definition": "masked RGB L1 against target_base_rgb",
+      "differentiable": true,
+      "region": "target_protected_mask",
+      "weight": 10.0
+    }
+  },
+  "schema_version": "canondressgs.paper.coefficient_headroom_loss_contract.v1",
+  "status": "COMPLETE",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001",
+  "test_selection_allowed": false,
+  "unregularized_diagnostic": {
+    "lambda_anchor": 0.0,
+    "may_replace_primary": false,
+    "name": "UNREGULARIZED_DIAGNOSTIC",
+    "primary": false
+  }
+}
