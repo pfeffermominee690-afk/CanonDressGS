@@ -765,7 +765,7 @@ def evaluate_queries(
     expected = {
         (int(item["pose_id"]), int(item["camera_id"])) for item in queries
     }
-    if set(mapping) != expected:
+    if not expected.issubset(mapping):
         raise RuntimeError(
             f"evaluation dataset differs: missing={sorted(expected - set(mapping))}"
         )
@@ -1625,7 +1625,124 @@ def training_phase(args) -> int:
     ]
     if current_cuda_rng != snapshot["rng_state"]["cuda_rng_sha256"]:
         raise RuntimeError("initial CUDA RNG differs from preflight")
-    model.training_setup(runtime_args, scene.scene_scale)
+    resume_step = int(args.resume_step)
+    training_log_path = (
+        args.attempt_root / "training_logs/step_records.jsonl"
+    )
+    checkpoints = []
+    training_records: list[dict[str, Any]] = []
+    execution_source_heads = [execution_head]
+    if resume_step:
+        resume_checkpoint = (
+            args.attempt_root
+            / f"checkpoints/step_{resume_step:06d}.pth"
+        )
+        if not resume_checkpoint.exists():
+            raise RuntimeError(
+                f"resume checkpoint is absent: {resume_checkpoint}"
+            )
+        payload = torch.load(resume_checkpoint, weights_only=False)
+        if (
+            int(payload["training_step"]) != resume_step
+            or int(payload["data_order_position"]) != resume_step
+        ):
+            raise RuntimeError(
+                "resume checkpoint step/data-order position mismatch"
+            )
+        if payload["training_data_order_sha256"] != TRAIN_ORDER_SHA:
+            raise RuntimeError("resume checkpoint data-order SHA changed")
+        if not math.isclose(
+            float(payload["scene_scale"]),
+            float(scene.scene_scale),
+            rel_tol=0.0,
+            abs_tol=1.0e-12,
+        ):
+            raise RuntimeError("resume checkpoint scene scale changed")
+        model.restore(payload)
+        model.training_setup(runtime_args, scene.scene_scale)
+        if set(payload["optimizer_states"]) != set(model.optimizers):
+            raise RuntimeError("resume optimizer group names changed")
+        for name, optimizer in model.optimizers.items():
+            optimizer.load_state_dict(payload["optimizer_states"][name])
+        if len(payload["scheduler_states"]) != len(model.schedulers):
+            raise RuntimeError("resume scheduler count changed")
+        for scheduler, state in zip(
+            model.schedulers,
+            payload["scheduler_states"],
+        ):
+            scheduler.load_state_dict(state)
+        random.setstate(payload["python_rng_state"])
+        np.random.set_state(payload["numpy_rng_state"])
+        torch.set_rng_state(payload["torch_rng_state"].cpu())
+        torch.cuda.set_rng_state_all(
+            [value.cpu() for value in payload["cuda_rng_states"]]
+        )
+        if not training_log_path.exists():
+            raise RuntimeError("resume training log is absent")
+        training_records = [
+            json.loads(line)
+            for line in training_log_path.read_text(
+                encoding="utf-8"
+            ).splitlines()
+            if line.strip()
+        ]
+        if len(training_records) != resume_step:
+            raise RuntimeError(
+                f"resume log has {len(training_records)} records, "
+                f"expected {resume_step}"
+            )
+        for index, record in enumerate(training_records):
+            expected_record = bundle["records"]["records"][index]
+            if (
+                int(record["step"]) != index + 1
+                or int(record["pose_id"]) != int(expected_record["pose_id"])
+                or int(record["camera_id"])
+                != int(expected_record["camera_id"])
+            ):
+                raise RuntimeError(
+                    f"resume log data order mismatch at index {index}"
+                )
+        execution_source_heads = [
+            str(payload["source_head"]),
+            execution_head,
+        ]
+        for step in CHECKPOINT_STEPS:
+            if step > resume_step:
+                continue
+            path = (
+                args.attempt_root
+                / f"checkpoints/step_{step:06d}.pth"
+            )
+            if not path.exists():
+                raise RuntimeError(
+                    f"historical checkpoint missing during resume: {path}"
+                )
+            checkpoints.append(
+                {
+                    "path": str(path),
+                    "step": step,
+                    "bytes": path.stat().st_size,
+                    "sha256": sha256_file(path),
+                    "data_order_position": step,
+                }
+            )
+    else:
+        if training_log_path.exists():
+            raise RuntimeError(
+                "training log already exists; refusing a result-driven rerun"
+            )
+        model.training_setup(runtime_args, scene.scene_scale)
+        checkpoints.append(
+            save_checkpoint(
+                args.attempt_root / "checkpoints/step_000000.pth",
+                model,
+                step=0,
+                data_order_position=0,
+                scene_scale=scene.scene_scale,
+                execution_source_head=execution_head,
+                contract_hashes=bundle["hashes"],
+            )
+        )
     optimizer_audit_result = optimizer_audit(
         model,
         bundle["contract"],
@@ -1635,30 +1752,54 @@ def training_phase(args) -> int:
         args.attempt_root / "audits/optimizer_membership.json",
         optimizer_audit_result,
     )
-    checkpoints = []
-    checkpoints.append(
-        save_checkpoint(
-            args.attempt_root / "checkpoints/step_000000.pth",
-            model,
-            step=0,
-            data_order_position=0,
-            scene_scale=scene.scene_scale,
-            execution_source_head=execution_head,
-            contract_hashes=bundle["hashes"],
-        )
-    )
-    training_log_path = (
-        args.attempt_root / "training_logs/step_records.jsonl"
-    )
     lpips_metric, lpips_error = make_lpips_preserving_rng()
     diagnostic = diagnostic_queries(bundle["evaluation"])
     diagnostic_reports = {}
-    training_records = []
-    warning_set: set[str] = set()
+    for step in DIAGNOSTIC_STEPS:
+        if step > resume_step:
+            continue
+        diagnostic_path = (
+            args.attempt_root
+            / f"evaluations/diagnostic_step_{step:06d}.json"
+        )
+        if diagnostic_path.exists():
+            report = json.loads(diagnostic_path.read_text(encoding="utf-8"))
+        elif step == resume_step:
+            report, _ = evaluate_queries(
+                model,
+                bundle,
+                args.data_root,
+                args.attempt_root,
+                step=step,
+                queries=diagnostic,
+                lpips_metric=lpips_metric,
+                lpips_error=lpips_error,
+                visual_subdir=f"diagnostic_step_{step:06d}",
+            )
+            write_json(diagnostic_path, report)
+        else:
+            raise RuntimeError(
+                f"completed diagnostic report is missing: {diagnostic_path}"
+            )
+        diagnostic_reports[str(step)] = {
+            "path": str(diagnostic_path),
+            "sha256": sha256_file(diagnostic_path),
+            "query_count": report["query_count"],
+            "successful_render_count": report[
+                "successful_render_count"
+            ],
+        }
+    warning_set: set[str] = {
+        message
+        for record in training_records
+        for message in record["warning_messages"]
+    }
     for step, manifest_record in enumerate(
         bundle["records"]["records"],
         start=1,
     ):
+        if step <= resume_step:
+            continue
         item = scene.trainset[step - 1]
         if (
             int(item["frame_id"]) != int(manifest_record["pose_id"])
@@ -1764,7 +1905,13 @@ def training_phase(args) -> int:
         "task_id": TASK_ID,
         "status": "TRAINING_COMPLETE_PENDING_ROUNDTRIP_AND_VISUAL_REVIEW",
         "execution_source_head": execution_head,
+        "execution_source_heads": execution_source_heads,
         "training_runs": 1,
+        "process_segments": 2 if resume_step else 1,
+        "infrastructure_resume_from_step": (
+            resume_step if resume_step else None
+        ),
+        "repeated_training_record_count": 0,
         "optimizer_created": 1,
         "training_forward_batches": 384,
         "backward_calls": 384,
@@ -2088,6 +2235,16 @@ def parse_args() -> argparse.Namespace:
             REPO_ROOT
             / "paper_protocol/second_identity/"
             "subject00_canary_execution_contract.json"
+        ),
+    )
+    parser.add_argument(
+        "--resume-step",
+        type=int,
+        default=0,
+        choices=(0, 96, 192, 288),
+        help=(
+            "Infrastructure-only exact resume point. The checkpoint step, "
+            "data-order position, RNG, optimizer, and scheduler must agree."
         ),
     )
     return parser.parse_args()

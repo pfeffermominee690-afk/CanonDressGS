@@ -30,8 +30,29 @@
     "hash_policy": "normalize CRLF and CR to LF before SHA256",
     "files": {
       "scene/scene.py": "64cf96fa31eafe51d39b98d3110be0802c9b18d2893cec115137cd1d0c3c0993",
-      "tools/second_identity/run_subject00_short_canary.py": "2520fb2ebc88eb621b1dafc7cc57987ab858fbd7e342465dc5df176eb333076c"
+      "tools/second_identity/run_subject00_short_canary.py": "603f77aa47c1300b5f4b9b456bfdb18241db31c670785dd2be69d2528d568cbb"
     }
+  },
+  "infrastructure_continuation": {
+    "attempt": "attempt_001",
+    "completed_training_records_before_interruption": 96,
+    "diagnostic_renders_before_interruption": 0,
+    "failure": "diagnostic dataset contained a valid superset of the fixed eight queries; the harness incorrectly required exact set equality",
+    "repair_scope": "replace exact-set equality with expected-query subset containment",
+    "resume_checkpoint": "checkpoints/step_000096.pth",
+    "resume_data_order_position": 96,
+    "restore_requirements": [
+      "model state",
+      "optimizer state",
+      "scheduler state",
+      "Python RNG",
+      "NumPy RNG",
+      "Torch RNG",
+      "CUDA RNG"
+    ],
+    "records_repeated": 0,
+    "new_attempt_created": false,
+    "scientific_result_used_for_repair": false
   },
   "diagnostic_query_ordinals": [
     1,
