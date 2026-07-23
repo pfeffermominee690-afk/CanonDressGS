@@ -1,0 +1,1026 @@
+{
+  "denominator_contract": "GT_MIXED_ONLY_WITH_PREDICTION_CONDITIONED_SUBSETS",
+  "families": {
+    "MATCHED_V1": {
+      "aggregation_contract": "ROTATION_SEED_CELL_MACRO_MATCHING_FROZEN_FORMAL_EVALUATOR",
+      "correct_compatible_dual_rate": 0.5230071141201844,
+      "correct_incompatible_hard_rate": 0.0,
+      "correct_order_weight": {
+        "count": 447,
+        "mae": 0.16936916277953926,
+        "rmse": 0.19391791304788644
+      },
+      "correct_pair_weight": {
+        "count": 546,
+        "mae": 0.20302331071443125,
+        "rmse": 0.2360695990074957
+      },
+      "denominator_classification": "ROUTING_DENOMINATOR_ALREADY_VALID",
+      "denominators": {
+        "correct_compatible": 453,
+        "correct_incompatible": 93,
+        "correct_pair": 546,
+        "correct_pair_and_order": 447,
+        "mixed": 720,
+        "wrong_pair": 174
+      },
+      "incompatible_dual_rate": 0.501533189033189,
+      "mixed_false_single_rate": 0.5694444444444445,
+      "per_pair_mode_distribution": {
+        "O01_O02": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 35,
+            "SINGLE_ENDPOINT": 37
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.4861111111111111,
+            "SINGLE_ENDPOINT": 0.5138888888888888
+          },
+          "record_count": 72
+        },
+        "O01_O03": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 10,
+            "SINGLE_ENDPOINT": 62
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.1388888888888889,
+            "SINGLE_ENDPOINT": 0.8611111111111112
+          },
+          "record_count": 72
+        },
+        "O01_O04": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 7,
+            "SINGLE_ENDPOINT": 65
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.09722222222222222,
+            "SINGLE_ENDPOINT": 0.9027777777777778
+          },
+          "record_count": 72
+        },
+        "O01_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 16,
+            "SINGLE_ENDPOINT": 56
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.2222222222222222,
+            "SINGLE_ENDPOINT": 0.7777777777777778
+          },
+          "record_count": 72
+        },
+        "O02_O03": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 44,
+            "SINGLE_ENDPOINT": 28
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.6111111111111112,
+            "SINGLE_ENDPOINT": 0.3888888888888889
+          },
+          "record_count": 72
+        },
+        "O02_O04": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 47,
+            "SINGLE_ENDPOINT": 25
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.6527777777777778,
+            "SINGLE_ENDPOINT": 0.3472222222222222
+          },
+          "record_count": 72
+        },
+        "O02_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 39,
+            "SINGLE_ENDPOINT": 33
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.5416666666666666,
+            "SINGLE_ENDPOINT": 0.4583333333333333
+          },
+          "record_count": 72
+        },
+        "O03_O04": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 54,
+            "SINGLE_ENDPOINT": 18
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.75,
+            "SINGLE_ENDPOINT": 0.25
+          },
+          "record_count": 72
+        },
+        "O03_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 27,
+            "SINGLE_ENDPOINT": 45
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.375,
+            "SINGLE_ENDPOINT": 0.625
+          },
+          "record_count": 72
+        },
+        "O04_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 31,
+            "SINGLE_ENDPOINT": 41
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.4305555555555556,
+            "SINGLE_ENDPOINT": 0.5694444444444444
+          },
+          "record_count": 72
+        }
+      },
+      "pure_records_in_denominators": 0,
+      "record_count": 720,
+      "record_micro": {
+        "correct_compatible_dual_rate": 0.5253863134657837,
+        "correct_incompatible_hard_rate": 0.0,
+        "correct_order_weight": {
+          "count": 447,
+          "mae": 0.16818402990656456,
+          "rmse": 0.19312538102293875
+        },
+        "correct_pair_weight": {
+          "count": 546,
+          "mae": 0.20165816038317103,
+          "rmse": 0.23550029026910096
+        },
+        "denominators": {
+          "correct_compatible": 453,
+          "correct_incompatible": 93,
+          "correct_pair": 546,
+          "correct_pair_and_order": 447,
+          "mixed": 720,
+          "wrong_pair": 174
+        },
+        "incompatible_dual_rate": 0.5053763440860215,
+        "mixed_false_single_rate": 0.5694444444444444,
+        "record_count": 720,
+        "wrong_pair_dual_rate": 0.14367816091954022
+      },
+      "rotation_seed_cell_count": 12,
+      "rotation_seed_cells": [
+        {
+          "correct_compatible_dual_rate": 0.45,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 38,
+            "mae": 0.16640133622889186,
+            "rmse": 0.1920619930055287
+          },
+          "correct_pair_weight": {
+            "count": 47,
+            "mae": 0.19440890698399083,
+            "rmse": 0.22409218705951997
+          },
+          "denominators": {
+            "correct_compatible": 40,
+            "correct_incompatible": 7,
+            "correct_pair": 47,
+            "correct_pair_and_order": 38,
+            "mixed": 60,
+            "wrong_pair": 13
+          },
+          "incompatible_dual_rate": 0.8571428571428571,
+          "mixed_false_single_rate": 0.55,
+          "record_count": 60,
+          "rotation": 0,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.23076923076923078
+        },
+        {
+          "correct_compatible_dual_rate": 0.6,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 37,
+            "mae": 0.15419072485256563,
+            "rmse": 0.1798145848591114
+          },
+          "correct_pair_weight": {
+            "count": 42,
+            "mae": 0.1860027569874115,
+            "rmse": 0.22461084690067348
+          },
+          "denominators": {
+            "correct_compatible": 35,
+            "correct_incompatible": 7,
+            "correct_pair": 42,
+            "correct_pair_and_order": 37,
+            "mixed": 60,
+            "wrong_pair": 18
+          },
+          "incompatible_dual_rate": 0.8571428571428571,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "record_count": 60,
+          "rotation": 0,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.05555555555555555
+        },
+        {
+          "correct_compatible_dual_rate": 0.5277777777777778,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 35,
+            "mae": 0.1684272959559683,
+            "rmse": 0.19547705963579232
+          },
+          "correct_pair_weight": {
+            "count": 43,
+            "mae": 0.20430745643742815,
+            "rmse": 0.23985676229941838
+          },
+          "denominators": {
+            "correct_compatible": 36,
+            "correct_incompatible": 7,
+            "correct_pair": 43,
+            "correct_pair_and_order": 35,
+            "mixed": 60,
+            "wrong_pair": 17
+          },
+          "incompatible_dual_rate": 0.8571428571428571,
+          "mixed_false_single_rate": 0.5666666666666667,
+          "record_count": 60,
+          "rotation": 0,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.058823529411764705
+        },
+        {
+          "correct_compatible_dual_rate": 0.5405405405405406,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 38,
+            "mae": 0.16479032485256875,
+            "rmse": 0.19341583950523547
+          },
+          "correct_pair_weight": {
+            "count": 46,
+            "mae": 0.19732170270194,
+            "rmse": 0.2369839239242591
+          },
+          "denominators": {
+            "correct_compatible": 37,
+            "correct_incompatible": 9,
+            "correct_pair": 46,
+            "correct_pair_and_order": 38,
+            "mixed": 60,
+            "wrong_pair": 14
+          },
+          "incompatible_dual_rate": 0.6666666666666666,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "record_count": 60,
+          "rotation": 1,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.14285714285714285
+        },
+        {
+          "correct_compatible_dual_rate": 0.5161290322580645,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 34,
+            "mae": 0.17596362392119694,
+            "rmse": 0.19929991790244356
+          },
+          "correct_pair_weight": {
+            "count": 42,
+            "mae": 0.2142658995786093,
+            "rmse": 0.2477261291669633
+          },
+          "denominators": {
+            "correct_compatible": 31,
+            "correct_incompatible": 11,
+            "correct_pair": 42,
+            "correct_pair_and_order": 34,
+            "mixed": 60,
+            "wrong_pair": 18
+          },
+          "incompatible_dual_rate": 0.36363636363636365,
+          "mixed_false_single_rate": 0.6,
+          "record_count": 60,
+          "rotation": 1,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.2222222222222222
+        },
+        {
+          "correct_compatible_dual_rate": 0.4,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 27,
+            "mae": 0.2109041737061349,
+            "rmse": 0.23157473492841787
+          },
+          "correct_pair_weight": {
+            "count": 36,
+            "mae": 0.26827098687990486,
+            "rmse": 0.30224763201757454
+          },
+          "denominators": {
+            "correct_compatible": 30,
+            "correct_incompatible": 6,
+            "correct_pair": 36,
+            "correct_pair_and_order": 27,
+            "mixed": 60,
+            "wrong_pair": 24
+          },
+          "incompatible_dual_rate": 0.3333333333333333,
+          "mixed_false_single_rate": 0.6666666666666666,
+          "record_count": 60,
+          "rotation": 1,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.25
+        },
+        {
+          "correct_compatible_dual_rate": 0.4883720930232558,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 43,
+            "mae": 0.1634997059294888,
+            "rmse": 0.1871253419789335
+          },
+          "correct_pair_weight": {
+            "count": 51,
+            "mae": 0.19568925580403743,
+            "rmse": 0.22933926996062032
+          },
+          "denominators": {
+            "correct_compatible": 43,
+            "correct_incompatible": 8,
+            "correct_pair": 51,
+            "correct_pair_and_order": 43,
+            "mixed": 60,
+            "wrong_pair": 9
+          },
+          "incompatible_dual_rate": 0.75,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "record_count": 60,
+          "rotation": 2,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.1111111111111111
+        },
+        {
+          "correct_compatible_dual_rate": 0.6,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 43,
+            "mae": 0.1674937464484508,
+            "rmse": 0.18487265052375834
+          },
+          "correct_pair_weight": {
+            "count": 50,
+            "mae": 0.18807158330267115,
+            "rmse": 0.2126142808420294
+          },
+          "denominators": {
+            "correct_compatible": 40,
+            "correct_incompatible": 10,
+            "correct_pair": 50,
+            "correct_pair_and_order": 43,
+            "mixed": 60,
+            "wrong_pair": 10
+          },
+          "incompatible_dual_rate": 0.5,
+          "mixed_false_single_rate": 0.5166666666666667,
+          "record_count": 60,
+          "rotation": 2,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.5813953488372093,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 42,
+            "mae": 0.1618135699731258,
+            "rmse": 0.1838206642579742
+          },
+          "correct_pair_weight": {
+            "count": 51,
+            "mae": 0.18414063732239236,
+            "rmse": 0.2109554306102278
+          },
+          "denominators": {
+            "correct_compatible": 43,
+            "correct_incompatible": 8,
+            "correct_pair": 51,
+            "correct_pair_and_order": 42,
+            "mixed": 60,
+            "wrong_pair": 9
+          },
+          "incompatible_dual_rate": 0.5,
+          "mixed_false_single_rate": 0.5166666666666667,
+          "record_count": 60,
+          "rotation": 2,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.47368421052631576,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 37,
+            "mae": 0.14496531328416315,
+            "rmse": 0.1739722143127685
+          },
+          "correct_pair_weight": {
+            "count": 44,
+            "mae": 0.17520422833624075,
+            "rmse": 0.21360328828883415
+          },
+          "denominators": {
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "correct_pair": 44,
+            "correct_pair_and_order": 37,
+            "mixed": 60,
+            "wrong_pair": 16
+          },
+          "incompatible_dual_rate": 0.3333333333333333,
+          "mixed_false_single_rate": 0.6333333333333333,
+          "record_count": 60,
+          "rotation": 3,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.125
+        },
+        {
+          "correct_compatible_dual_rate": 0.5128205128205128,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 36,
+            "mae": 0.17407993035895453,
+            "rmse": 0.20258268156812265
+          },
+          "correct_pair_weight": {
+            "count": 45,
+            "mae": 0.21200756816230357,
+            "rmse": 0.2464527443233042
+          },
+          "denominators": {
+            "correct_compatible": 39,
+            "correct_incompatible": 6,
+            "correct_pair": 45,
+            "correct_pair_and_order": 36,
+            "mixed": 60,
+            "wrong_pair": 15
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.6166666666666667,
+          "record_count": 60,
+          "rotation": 3,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.2
+        },
+        {
+          "correct_compatible_dual_rate": 0.5853658536585366,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 37,
+            "mae": 0.17990020784296196,
+            "rmse": 0.20299727409655074
+          },
+          "correct_pair_weight": {
+            "count": 49,
+            "mae": 0.21658874607624437,
+            "rmse": 0.2443526926965239
+          },
+          "denominators": {
+            "correct_compatible": 41,
+            "correct_incompatible": 8,
+            "correct_pair": 49,
+            "correct_pair_and_order": 37,
+            "mixed": 60,
+            "wrong_pair": 11
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.5666666666666667,
+          "record_count": 60,
+          "rotation": 3,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.18181818181818182
+        }
+      ],
+      "wrong_pair_dual_rate": 0.13151308114543409
+    },
+    "V2": {
+      "aggregation_contract": "ROTATION_SEED_CELL_MACRO_MATCHING_FROZEN_FORMAL_EVALUATOR",
+      "correct_compatible_dual_rate": 0.18937812421128086,
+      "correct_incompatible_hard_rate": 0.3138888888888889,
+      "correct_order_weight": {
+        "count": 405,
+        "mae": 0.13592755682213276,
+        "rmse": 0.1710645646813318
+      },
+      "correct_pair_weight": {
+        "count": 517,
+        "mae": 0.15805836898719514,
+        "rmse": 0.19814304128728874
+      },
+      "denominator_classification": "ROUTING_DENOMINATOR_ALREADY_VALID",
+      "denominators": {
+        "correct_compatible": 465,
+        "correct_incompatible": 52,
+        "correct_pair": 517,
+        "correct_pair_and_order": 405,
+        "mixed": 720,
+        "wrong_pair": 203
+      },
+      "incompatible_dual_rate": 0.0,
+      "mixed_false_single_rate": 0.8305555555555554,
+      "per_pair_mode_distribution": {
+        "O01_O02": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 5,
+            "SINGLE_ENDPOINT": 67
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.06944444444444445,
+            "SINGLE_ENDPOINT": 0.9305555555555556
+          },
+          "record_count": 72
+        },
+        "O01_O03": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 3,
+            "HARD_GEOMETRY_SOFT_VA": 5,
+            "SINGLE_ENDPOINT": 64
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.041666666666666664,
+            "HARD_GEOMETRY_SOFT_VA": 0.06944444444444445,
+            "SINGLE_ENDPOINT": 0.8888888888888888
+          },
+          "record_count": 72
+        },
+        "O01_O04": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 4,
+            "SINGLE_ENDPOINT": 68
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.05555555555555555,
+            "SINGLE_ENDPOINT": 0.9444444444444444
+          },
+          "record_count": 72
+        },
+        "O01_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 7,
+            "SINGLE_ENDPOINT": 65
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.09722222222222222,
+            "SINGLE_ENDPOINT": 0.9027777777777778
+          },
+          "record_count": 72
+        },
+        "O02_O03": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 5,
+            "HARD_GEOMETRY_SOFT_VA": 13,
+            "SINGLE_ENDPOINT": 54
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.06944444444444445,
+            "HARD_GEOMETRY_SOFT_VA": 0.18055555555555555,
+            "SINGLE_ENDPOINT": 0.75
+          },
+          "record_count": 72
+        },
+        "O02_O04": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 21,
+            "SINGLE_ENDPOINT": 51
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.2916666666666667,
+            "SINGLE_ENDPOINT": 0.7083333333333334
+          },
+          "record_count": 72
+        },
+        "O02_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 8,
+            "SINGLE_ENDPOINT": 64
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.1111111111111111,
+            "SINGLE_ENDPOINT": 0.8888888888888888
+          },
+          "record_count": 72
+        },
+        "O03_O04": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 7,
+            "SINGLE_ENDPOINT": 65
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.09722222222222222,
+            "SINGLE_ENDPOINT": 0.9027777777777778
+          },
+          "record_count": 72
+        },
+        "O03_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 23,
+            "SINGLE_ENDPOINT": 49
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.3194444444444444,
+            "SINGLE_ENDPOINT": 0.6805555555555556
+          },
+          "record_count": 72
+        },
+        "O04_O08": {
+          "mode_counts": {
+            "DUAL_SUPPORT": 21,
+            "SINGLE_ENDPOINT": 51
+          },
+          "mode_rates": {
+            "DUAL_SUPPORT": 0.2916666666666667,
+            "SINGLE_ENDPOINT": 0.7083333333333334
+          },
+          "record_count": 72
+        }
+      },
+      "pure_records_in_denominators": 0,
+      "record_count": 720,
+      "record_micro": {
+        "correct_compatible_dual_rate": 0.1913978494623656,
+        "correct_incompatible_hard_rate": 0.3076923076923077,
+        "correct_order_weight": {
+          "count": 405,
+          "mae": 0.13384435011280887,
+          "rmse": 0.17221885108224758
+        },
+        "correct_pair_weight": {
+          "count": 517,
+          "mae": 0.15755428462202214,
+          "rmse": 0.20021854664648667
+        },
+        "denominators": {
+          "correct_compatible": 465,
+          "correct_incompatible": 52,
+          "correct_pair": 517,
+          "correct_pair_and_order": 405,
+          "mixed": 720,
+          "wrong_pair": 203
+        },
+        "incompatible_dual_rate": 0.0,
+        "mixed_false_single_rate": 0.8305555555555556,
+        "record_count": 720,
+        "wrong_pair_dual_rate": 0.07389162561576355
+      },
+      "rotation_seed_cell_count": 12,
+      "rotation_seed_cells": [
+        {
+          "correct_compatible_dual_rate": 0.18421052631578946,
+          "correct_incompatible_hard_rate": 0.16666666666666666,
+          "correct_order_weight": {
+            "count": 37,
+            "mae": 0.11574696178908815,
+            "rmse": 0.15314325959035766
+          },
+          "correct_pair_weight": {
+            "count": 44,
+            "mae": 0.1307634230364452,
+            "rmse": 0.16989676576378102
+          },
+          "denominators": {
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "correct_pair": 44,
+            "correct_pair_and_order": 37,
+            "mixed": 60,
+            "wrong_pair": 16
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.8666666666666667,
+          "record_count": 60,
+          "rotation": 0,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.07894736842105263,
+          "correct_incompatible_hard_rate": 0.16666666666666666,
+          "correct_order_weight": {
+            "count": 37,
+            "mae": 0.07881923261526466,
+            "rmse": 0.11368515887667219
+          },
+          "correct_pair_weight": {
+            "count": 44,
+            "mae": 0.11123950384331475,
+            "rmse": 0.1599252671362019
+          },
+          "denominators": {
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "correct_pair": 44,
+            "correct_pair_and_order": 37,
+            "mixed": 60,
+            "wrong_pair": 16
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.9166666666666666,
+          "record_count": 60,
+          "rotation": 0,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.1891891891891892,
+          "correct_incompatible_hard_rate": 0.16666666666666666,
+          "correct_order_weight": {
+            "count": 35,
+            "mae": 0.11270488777330939,
+            "rmse": 0.16580162199988221
+          },
+          "correct_pair_weight": {
+            "count": 43,
+            "mae": 0.14121372229600138,
+            "rmse": 0.20415766028074106
+          },
+          "denominators": {
+            "correct_compatible": 37,
+            "correct_incompatible": 6,
+            "correct_pair": 43,
+            "correct_pair_and_order": 35,
+            "mixed": 60,
+            "wrong_pair": 17
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.85,
+          "record_count": 60,
+          "rotation": 0,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.2571428571428571,
+          "correct_incompatible_hard_rate": 0.6,
+          "correct_order_weight": {
+            "count": 33,
+            "mae": 0.12794061825431954,
+            "rmse": 0.16567498520566806
+          },
+          "correct_pair_weight": {
+            "count": 40,
+            "mae": 0.153385459817946,
+            "rmse": 0.20227317723538882
+          },
+          "denominators": {
+            "correct_compatible": 35,
+            "correct_incompatible": 5,
+            "correct_pair": 40,
+            "correct_pair_and_order": 33,
+            "mixed": 60,
+            "wrong_pair": 20
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.7333333333333333,
+          "record_count": 60,
+          "rotation": 1,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.2
+        },
+        {
+          "correct_compatible_dual_rate": 0.13513513513513514,
+          "correct_incompatible_hard_rate": 0.3333333333333333,
+          "correct_order_weight": {
+            "count": 36,
+            "mae": 0.12497457585952894,
+            "rmse": 0.14523433852694498
+          },
+          "correct_pair_weight": {
+            "count": 43,
+            "mae": 0.1446366298568341,
+            "rmse": 0.17555757281411827
+          },
+          "denominators": {
+            "correct_compatible": 37,
+            "correct_incompatible": 6,
+            "correct_pair": 43,
+            "correct_pair_and_order": 36,
+            "mixed": 60,
+            "wrong_pair": 17
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.8666666666666667,
+          "record_count": 60,
+          "rotation": 1,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.058823529411764705
+        },
+        {
+          "correct_compatible_dual_rate": 0.14285714285714285,
+          "correct_incompatible_hard_rate": 0.3333333333333333,
+          "correct_order_weight": {
+            "count": 34,
+            "mae": 0.13975221108572156,
+            "rmse": 0.19026864825441106
+          },
+          "correct_pair_weight": {
+            "count": 41,
+            "mae": 0.1667534257096004,
+            "rmse": 0.22546299004990336
+          },
+          "denominators": {
+            "correct_compatible": 35,
+            "correct_incompatible": 6,
+            "correct_pair": 41,
+            "correct_pair_and_order": 34,
+            "mixed": 60,
+            "wrong_pair": 19
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.85,
+          "record_count": 60,
+          "rotation": 1,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.10526315789473684
+        },
+        {
+          "correct_compatible_dual_rate": 0.17073170731707318,
+          "correct_incompatible_hard_rate": 0.5,
+          "correct_order_weight": {
+            "count": 31,
+            "mae": 0.1561390640594626,
+            "rmse": 0.18322615849594487
+          },
+          "correct_pair_weight": {
+            "count": 45,
+            "mae": 0.18519554027804627,
+            "rmse": 0.21671245030698325
+          },
+          "denominators": {
+            "correct_compatible": 41,
+            "correct_incompatible": 4,
+            "correct_pair": 45,
+            "correct_pair_and_order": 31,
+            "mixed": 60,
+            "wrong_pair": 15
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.85,
+          "record_count": 60,
+          "rotation": 2,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.025,
+          "correct_incompatible_hard_rate": 0.5,
+          "correct_order_weight": {
+            "count": 29,
+            "mae": 0.19127259000964553,
+            "rmse": 0.23422995619799478
+          },
+          "correct_pair_weight": {
+            "count": 42,
+            "mae": 0.2135715229170663,
+            "rmse": 0.25278919843798253
+          },
+          "denominators": {
+            "correct_compatible": 40,
+            "correct_incompatible": 2,
+            "correct_pair": 42,
+            "correct_pair_and_order": 29,
+            "mixed": 60,
+            "wrong_pair": 18
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.9666666666666667,
+          "record_count": 60,
+          "rotation": 2,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.18421052631578946,
+          "correct_incompatible_hard_rate": 0.5,
+          "correct_order_weight": {
+            "count": 29,
+            "mae": 0.1825118297818063,
+            "rmse": 0.20299868446188124
+          },
+          "correct_pair_weight": {
+            "count": 42,
+            "mae": 0.2134614561994871,
+            "rmse": 0.2399864613546357
+          },
+          "denominators": {
+            "correct_compatible": 38,
+            "correct_incompatible": 4,
+            "correct_pair": 42,
+            "correct_pair_and_order": 29,
+            "mixed": 60,
+            "wrong_pair": 18
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.85,
+          "record_count": 60,
+          "rotation": 2,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.0
+        },
+        {
+          "correct_compatible_dual_rate": 0.2857142857142857,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 33,
+            "mae": 0.10763277113437647,
+            "rmse": 0.1332446966714712
+          },
+          "correct_pair_weight": {
+            "count": 45,
+            "mae": 0.12515609650700182,
+            "rmse": 0.15078825683790142
+          },
+          "denominators": {
+            "correct_compatible": 42,
+            "correct_incompatible": 3,
+            "correct_pair": 45,
+            "correct_pair_and_order": 33,
+            "mixed": 60,
+            "wrong_pair": 15
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.7666666666666667,
+          "record_count": 60,
+          "rotation": 3,
+          "seed": 0,
+          "wrong_pair_dual_rate": 0.13333333333333333
+        },
+        {
+          "correct_compatible_dual_rate": 0.3023255813953488,
+          "correct_incompatible_hard_rate": 0.0,
+          "correct_order_weight": {
+            "count": 37,
+            "mae": 0.12502622335880723,
+            "rmse": 0.15394723888533482
+          },
+          "correct_pair_weight": {
+            "count": 45,
+            "mae": 0.1277183808662274,
+            "rmse": 0.15672705319176558
+          },
+          "denominators": {
+            "correct_compatible": 43,
+            "correct_incompatible": 2,
+            "correct_pair": 45,
+            "correct_pair_and_order": 37,
+            "mixed": 60,
+            "wrong_pair": 15
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.7333333333333333,
+          "record_count": 60,
+          "rotation": 3,
+          "seed": 1,
+          "wrong_pair_dual_rate": 0.2
+        },
+        {
+          "correct_compatible_dual_rate": 0.3170731707317073,
+          "correct_incompatible_hard_rate": 0.5,
+          "correct_order_weight": {
+            "count": 34,
+            "mae": 0.16860971614426262,
+            "rmse": 0.21132002900941815
+          },
+          "correct_pair_weight": {
+            "count": 43,
+            "mae": 0.18360526651837106,
+            "rmse": 0.2234396420380616
+          },
+          "denominators": {
+            "correct_compatible": 41,
+            "correct_incompatible": 2,
+            "correct_pair": 43,
+            "correct_pair_and_order": 34,
+            "mixed": 60,
+            "wrong_pair": 17
+          },
+          "incompatible_dual_rate": 0.0,
+          "mixed_false_single_rate": 0.7166666666666667,
+          "record_count": 60,
+          "rotation": 3,
+          "seed": 2,
+          "wrong_pair_dual_rate": 0.17647058823529413
+        }
+      ],
+      "wrong_pair_dual_rate": 0.07282421740626076
+    }
+  },
+  "paper_final": false,
+  "schema_version": "controller_corrected_routing_weight_metrics.v1",
+  "source_head": "56988a7e4b5cdd63be481005b070a44b20feab13",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-PAIR-METRIC-SEMANTICS-REPAIR-001"
+}
