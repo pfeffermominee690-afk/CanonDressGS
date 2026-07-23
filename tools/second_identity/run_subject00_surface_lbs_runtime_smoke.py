@@ -27,6 +27,7 @@ if str(REPO_ROOT) not in sys.path:
 from scene.dataset import ThumanDataset  # noqa: E402
 from scene.gaussian_model import GaussianModel  # noqa: E402
 from scene.scene import Scene  # noqa: E402
+from utils.smpl_utils import init_smpl_pose  # noqa: E402
 from utils.surface_lbs_utils import (  # noqa: E402
     SURFACE_LBS_FILES,
     SurfaceLBSContractError,
@@ -659,6 +660,11 @@ def reload_phase(args) -> int:
         raise RuntimeError("Not a smoke checkpoint")
     if checkpoint.get("training_checkpoint") is not False:
         raise RuntimeError("Smoke checkpoint marked as training checkpoint")
+    # Standalone inference entrypoints (visualize.py and test.py) establish
+    # the frozen T-pose/big-pose constants before restore. Mirror that
+    # production contract in this fresh process; joints and parents remain
+    # strict checkpoint state.
+    init_smpl_pose()
     model = GaussianModel()
     model.restore(checkpoint)
     load_seconds = time.perf_counter() - started
