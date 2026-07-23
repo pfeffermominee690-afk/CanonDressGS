@@ -1,0 +1,129 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "controller_inferences": 0,
+    "feature_inferences": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selections": 0,
+    "training_forward_batches": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "audit": {
+    "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_residual_decoder_audit.json",
+    "sha256": "fc7ed9c720defdd0b0883bb5692b28c43a550cd904fc36b05d7dbc309049619f"
+  },
+  "class_symbol": "SupportConditionedDualBranchResidualDecoderV7",
+  "execution_authorized": false,
+  "formal_name": "Direct Residual Decoder",
+  "frozen_before_result": true,
+  "future_matched_result_status": "BLOCKED_PENDING_MANUAL_BASELINE_DECISION",
+  "historical_contract": {
+    "activation": "SiLU trunks and bounded tanh outputs",
+    "aggregation": "online feature-map anchor projection, visibility/clothing aggregation, and four-block graph completion",
+    "batch_size_semantics": "one episode and 8192 sampled Gaussian rows per step",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_cadence": [
+      100,
+      300,
+      600,
+      1000
+    ],
+    "data_order": "condition-major, outfit-minor O01/O08 cycle",
+    "decoder_architecture": "68-D static support encoder plus independent 128-D geometry/appearance four-block residual trunks and six direct residual heads",
+    "decoder_parameter_count": 410774,
+    "epsilon": 1e-08,
+    "evaluator_denominator": "historical O01/O08 four-condition diagnostic only",
+    "final_checkpoint_rule": "step 1000 only",
+    "flatten_unflatten_order": "channel-local contiguous row-major suffix reshape",
+    "gradient_clip_norm": 5.0,
+    "hidden_dimensions": [
+      128
+    ],
+    "inference_boundary": "reference RGB/masks only before frozen renderer",
+    "initialization": "load O01/O08 teacher-trained Stage A step-1000 decoder checkpoint",
+    "input_feature_dimensions": {
+      "global": 64,
+      "local": 64
+    },
+    "learning_rates": {
+      "aggregator": 0.0001,
+      "completion": 0.001,
+      "encoder_projection_and_norm": 0.0001,
+      "v7_decoder": 0.001
+    },
+    "loss_beta": 0.1,
+    "loss_reduction": "mean within channel then arithmetic mean over six channels",
+    "loss_type": "six-channel bound-normalized SmoothL1",
+    "normalization": "LayerNorm per row",
+    "optimizer": "torch.optim.Adam multi-rate",
+    "output_dimension_per_gaussian": 22,
+    "renderer_contract": "frozen MMLP-Human and frozen renderer",
+    "residual_tensor_schema": "xyz[3], log_scaling[3], rotvec[3], opacity_logit[1], sh0[1,3], shN[3,3]",
+    "scheduler": "LambdaLR multiplier 1.0",
+    "seed": 20260720,
+    "stage_b_trainable_parameter_count": 862425,
+    "steps": 1000,
+    "target_leakage_count_expected": 0,
+    "target_normalization": "divide each channel by its frozen residual bound",
+    "target_source": "detached full teacher endpoint canonical residual",
+    "weight_decay": 0.0
+  },
+  "historical_result_status": "PROVENANCE_ONLY_NOT_MATCHED_RESULT",
+  "implementation_path": "scene/support_conditioned_dual_branch_residual_decoder_v7.py",
+  "paper_final": false,
+  "provenance_class": "DIRECT_DECODER_CONTRACT_NOT_RECOVERABLE",
+  "requested_matched_contract": {
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "crossfit_rotations": 4,
+    "duplicate_training_weight": 0,
+    "final_checkpoint_rule": "step 300 only",
+    "renderer_contract": "same frozen MMLP-Human and renderer",
+    "required_feature_cache": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/shared_preflight/frozen_reference_feature_rows_v1.pt",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "steps": 300,
+    "test_protocol_records_per_rotation": 20,
+    "test_unique_queries_per_rotation": 5,
+    "unique_train_queries_per_rotation": 10
+  },
+  "runner_symbols": [
+    "stage_b_trainable_groups",
+    "stage_b_optimizer",
+    "stage_b_prediction",
+    "run_stage_b"
+  ],
+  "schema_version": "canondressgs.paper.pure_endpoint_direct_residual_decoder_contract.v1",
+  "source_commits": [
+    "ca176dcd1a356d1dfc87968571a0374c89539dc8",
+    "fa9d97bef5ebba2d50fb1de4758395132dc10e28",
+    "e61d4aa6eccb78dd4b282ba98fc88adb1be4188f",
+    "b1ddd084b51c2eba83b3c26ec6b479d1d162b3c3"
+  ],
+  "status": "BLOCKED_BEFORE_MATCHED_EXECUTION",
+  "task_id": "AAAI27-PURE-ENDPOINT-EXECUTION-CONTRACT-REPAIR-001",
+  "unresolved_required_fields": [
+    "a legal frozen-F2-cache to [10000,64] local-anchor feature mapping",
+    "matched-safe decoder initialization without O01/O08 teacher-target pretraining"
+  ],
+  "why_no_contract_is_frozen": "Both unresolved fields require scientific choices outside the permitted manifest, seed, 300-step, checkpoint, output-path, and naming adaptations."
+}
