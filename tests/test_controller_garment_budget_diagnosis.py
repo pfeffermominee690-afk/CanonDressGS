@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import torch
+
 from tools.paper import run_controller_garment_budget_diagnosis as diagnosis
 
 
@@ -46,3 +48,37 @@ def test_primary_classifications_and_next_tasks_are_total() -> None:
     assert all(diagnosis.next_task(value) for value in diagnosis.PRIMARY_CLASSIFICATIONS)
     assert diagnosis.HISTORICAL_CLASSIFICATION == "CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL"
     assert diagnosis.SEMANTIC_CLASSIFICATION == "LATENT_SECONDARY_NOT_INPUT_IDENTIFIABLE"
+
+
+def test_disabled_ablation_losses_are_not_computed() -> None:
+    model = diagnosis.CompatibilityGatedReferenceControllerV2(seed=0)
+    rows = torch.randn(3, 256)
+    valid = torch.ones(3, 1)
+    outputs = [model(rows, valid)]
+    augmented = [model(rows + 0.01, valid)]
+    records = [
+        {
+            "assignment_type": "AAB",
+            "pair_id": "O01_O02",
+            "target_distribution": [2 / 3, 1 / 3, 0.0, 0.0, 0.0],
+        }
+    ]
+    _, garment_consistency = diagnosis.total_loss_for_family(
+        "GARMENT_PLUS_GARMENT_CONSISTENCY",
+        outputs,
+        augmented,
+        records,
+        torch.device("cpu"),
+    )
+    assert garment_consistency["mixedness"] == 0.0
+    assert garment_consistency["pair_weight"] == 0.0
+    assert garment_consistency["mixedness_consistency"] == 0.0
+    assert garment_consistency["pair_weight_consistency"] == 0.0
+    _, no_garment_consistency = diagnosis.total_loss_for_family(
+        "FULL_NO_GARMENT_CONSISTENCY",
+        outputs,
+        augmented,
+        records,
+        torch.device("cpu"),
+    )
+    assert no_garment_consistency["garment_consistency"] == 0.0

@@ -885,8 +885,12 @@ def preflight(
     output_parent: Path,
     api_provider: str,
 ) -> dict[str, Any]:
-    if git("rev-parse", "HEAD") != SOURCE_HEAD:
-        raise RuntimeError("preflight must run from the exact source HEAD")
+    ancestry = subprocess.run(
+        ["git", "-C", str(PROJECT_ROOT), "merge-base", "--is-ancestor", SOURCE_HEAD, "HEAD"],
+        check=False,
+    )
+    if ancestry.returncode != 0:
+        raise RuntimeError("preflight branch is not derived from the exact source HEAD")
     contract = contract_inputs()
     schedules = build_schedules(contract)
     registry = checkpoint_registry(historical_root)
@@ -935,9 +939,7 @@ def preflight(
         raise RuntimeError("frozen feature cache changed")
     if nuisance_hash != "f6c8f561b7e42b8291cf67e74dcc9d9cd0dcca332b8794efa35bf2b429c708c4":
         raise RuntimeError("frozen nuisance cache changed")
-    source_script = PROJECT_ROOT / "tools/paper/run_controller_garment_budget_diagnosis.py"
-    if not source_script.is_file():
-        source_script = Path(__file__).resolve()
+    source_script = Path(__file__).resolve()
     asset = {
         "schema_version": "controller_garment_budget_asset_snapshot.v1",
         "status": "PASS",
@@ -1100,22 +1102,31 @@ def diagnosis_rules() -> dict[str, Any]:
     }
 
 
-def materialize_contract(output_root: Path) -> dict[str, Any]:
+def materialize_contract(output_root: Path, *, refresh: bool = False) -> dict[str, Any]:
     attempt = output_root / "attempt_001"
     contract_dir = attempt / "contract"
-    if attempt.exists() and any(attempt.iterdir()):
+    if not refresh and attempt.exists() and any(attempt.iterdir()):
         raise FileExistsError(f"append-only attempt is not empty: {attempt}")
+    if refresh and not (attempt / "audits/materialized_contract.json").is_file():
+        raise RuntimeError("cannot refresh a contract that was never materialized")
     if git("branch", "--show-current") != BRANCH:
         raise RuntimeError("training branch mismatch")
     for name in PRE_RESULT_NAMES:
         path = RISK / name
         if not path.is_file() or not git("ls-files", "--error-unmatch", str(path.relative_to(PROJECT_ROOT)), check=False):
             raise RuntimeError(f"pre-result artifact is not tracked: {name}")
-    for name in (
-        "contract", "schedules", "continuations", "ablations", "checkpoints",
-        "predictions", "trajectories", "difficult_pairs", "audits", "aggregates",
-    ):
-        (attempt / name).mkdir(parents=True, exist_ok=True)
+    if not refresh:
+        for name in (
+            "contract", "schedules", "continuations", "ablations", "checkpoints",
+            "predictions", "trajectories", "difficult_pairs", "audits", "aggregates",
+        ):
+            (attempt / name).mkdir(parents=True, exist_ok=True)
+    else:
+        original = read_json(attempt / "audits/materialized_contract.json")
+        archive = contract_dir / f"superseded_{original['git_head'][:12]}"
+        archive.mkdir(parents=True, exist_ok=False)
+        for name in PRE_RESULT_NAMES:
+            shutil.copy2(contract_dir / name, archive / name)
     hashes = {}
     for name in PRE_RESULT_NAMES:
         target = contract_dir / name
@@ -1133,13 +1144,20 @@ def materialize_contract(output_root: Path) -> dict[str, Any]:
         "optimizer_created": 0,
         "optimizer_steps": 0,
     }
-    atomic_json(attempt / "audits/materialized_contract.json", result)
+    audit_name = (
+        "materialized_contract_correction_001.json"
+        if refresh else "materialized_contract.json"
+    )
+    atomic_json(attempt / "audits" / audit_name, result)
     return result
 
 
 def verify_training_admission(output_root: Path) -> tuple[Path, dict[str, Any]]:
     attempt = output_root / "attempt_001"
-    materialized = read_json(attempt / "audits/materialized_contract.json")
+    correction = attempt / "audits/materialized_contract_correction_001.json"
+    materialized = read_json(
+        correction if correction.is_file() else attempt / "audits/materialized_contract.json"
+    )
     if materialized["status"] != "PASS":
         raise RuntimeError("materialized contract did not pass")
     for name in PRE_RESULT_NAMES:
@@ -1254,24 +1272,64 @@ def total_loss_for_family(
             "mixedness_consistency": 0.0,
             "pair_weight_consistency": 0.0,
         }
-    components = loss_components(outputs, augmented, records, device) if augmented else None
-    if components is None:
-        targets, mixedness_target = repaired_train.training_targets(records, device)
-        logits = torch.stack([output.garment_logits for output in outputs])
-        garment = soft_target_cross_entropy(logits, targets)
-        mixedness = F.binary_cross_entropy_with_logits(
+    targets, mixedness_target = repaired_train.training_targets(records, device)
+    logits = torch.stack([output.garment_logits for output in outputs])
+    garment = soft_target_cross_entropy(logits, targets)
+    zero = garment * 0.0
+    components = {
+        "garment": garment,
+        "mixedness": zero,
+        "pair_weight": zero,
+        "garment_consistency": zero,
+        "mixedness_consistency": zero,
+        "pair_weight_consistency": zero,
+    }
+    if family in {
+        "GARMENT_PLUS_MIXEDNESS", "FULL_NO_GARMENT_CONSISTENCY",
+        "FULL_V2_CONTINUED",
+    }:
+        components["mixedness"] = F.binary_cross_entropy_with_logits(
             torch.stack([output.mixedness_logit for output in outputs]),
             mixedness_target,
             reduction="mean",
         )
-        components = {
-            "garment": garment,
-            "mixedness": mixedness,
-            "pair_weight": garment * 0.0,
-            "garment_consistency": garment * 0.0,
-            "mixedness_consistency": garment * 0.0,
-            "pair_weight_consistency": garment * 0.0,
-        }
+    if family in {"FULL_NO_GARMENT_CONSISTENCY", "FULL_V2_CONTINUED"}:
+        predicted_weights = []
+        target_weights = []
+        for output, record in zip(outputs, records):
+            if record["assignment_type"] in PURE_TYPES:
+                continue
+            pair_index = PAIR_TO_INDEX[record["pair_id"]]
+            earlier_index = OUTFIT_ORDER.index(record["pair_id"].split("_")[0])
+            predicted_weights.append(output.all_pair_weights[pair_index])
+            target_weights.append(
+                output.all_pair_weights.new_tensor(
+                    record["target_distribution"][earlier_index]
+                )
+            )
+        components["pair_weight"] = (
+            F.smooth_l1_loss(
+                torch.stack(predicted_weights), torch.stack(target_weights),
+                beta=0.1, reduction="mean",
+            )
+            if predicted_weights else zero
+        )
+    if family in {"GARMENT_PLUS_GARMENT_CONSISTENCY", "FULL_V2_CONTINUED"}:
+        components["garment_consistency"] = repaired_train.js_divergence(
+            torch.stack([output.garment_probabilities for output in outputs]),
+            torch.stack([output.garment_probabilities for output in augmented]),
+        )
+    if family in {"FULL_NO_GARMENT_CONSISTENCY", "FULL_V2_CONTINUED"}:
+        components["mixedness_consistency"] = F.smooth_l1_loss(
+            torch.stack([output.mixedness_probability for output in outputs]),
+            torch.stack([output.mixedness_probability for output in augmented]),
+            beta=0.1, reduction="mean",
+        )
+        components["pair_weight_consistency"] = F.smooth_l1_loss(
+            torch.stack([output.all_pair_weights for output in outputs]),
+            torch.stack([output.all_pair_weights for output in augmented]),
+            beta=0.1, reduction="mean",
+        )
     if family == "GARMENT_ONLY":
         total = components["garment"]
     elif family == "GARMENT_PLUS_MIXEDNESS":
@@ -2702,7 +2760,7 @@ def parser() -> argparse.ArgumentParser:
     value.add_argument(
         "command",
         choices=(
-            "preflight", "materialize", "audit-historical", "train", "train-all",
+            "preflight", "materialize", "refresh-materialize", "audit-historical", "train", "train-all",
             "evaluate", "finalize", "verify",
         ),
     )
@@ -2737,9 +2795,12 @@ def main() -> None:
             arguments.output_parent,
             arguments.api_provider,
         )
-    elif arguments.command == "materialize":
+    elif arguments.command in {"materialize", "refresh-materialize"}:
         require(arguments, "output_root")
-        result = materialize_contract(arguments.output_root)
+        result = materialize_contract(
+            arguments.output_root,
+            refresh=arguments.command == "refresh-materialize",
+        )
     elif arguments.command == "audit-historical":
         require(arguments, "output_root", "historical_root", "clean_cache")
         result = evaluate(
