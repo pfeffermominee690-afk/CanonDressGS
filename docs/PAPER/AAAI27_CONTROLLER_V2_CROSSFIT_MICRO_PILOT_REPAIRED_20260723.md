@@ -131,7 +131,7 @@ No output, attempt, or failure was deleted.
 All required JSON files parsed, all frozen YAML files parsed, all five
 Markdown reports were non-empty, every one of the 240 local review paths
 existed, and `git diff --check` passed. The current repaired
-training/evaluation/rendering and V2 design tests passed 56/56 under the
+training/evaluation/rendering and V2 design tests passed 57/57 under the
 frozen cloud environment. The optional legacy contract-repair test module
 passed 19/20; its sole failure asserts that the checked-out branch must still
 be the preceding repair branch, so it is inapplicable after the mandated
