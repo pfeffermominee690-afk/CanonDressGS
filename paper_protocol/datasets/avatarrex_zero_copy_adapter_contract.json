@@ -1,0 +1,541 @@
+{
+  "calibration_adapter": {
+    "canonical_mapping": {
+      "camera_center": "-transpose(R) @ T",
+      "distortion_coefficients": "distCoeff",
+      "image_size": "imgSize",
+      "intrinsics": "K",
+      "rectification_alpha": "rectifyAlpha",
+      "world_to_camera_rotation": "R",
+      "world_to_camera_translation": "T"
+    },
+    "conversion_mode": "IN_MEMORY_ONLY",
+    "source": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/calibration_full.json",
+    "source_fields_by_camera": {
+      "22010708": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22010710": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22010714": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22010716": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053903": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053907": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053908": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053912": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053917": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053923": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053925": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22053926": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22070928": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22070932": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22070935": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ],
+      "22139907": [
+        "K",
+        "R",
+        "T",
+        "distCoeff",
+        "imgSize",
+        "rectifyAlpha"
+      ]
+    },
+    "source_sha256": "793281a00b808976122c0d33b4dd22d0ed0a48518577345c709db6cbb3d7f315"
+  },
+  "camera_mapping": [
+    {
+      "camera_index": 0,
+      "canonical_camera_id": "camera_00",
+      "raw_camera_name": "22010708"
+    },
+    {
+      "camera_index": 1,
+      "canonical_camera_id": "camera_01",
+      "raw_camera_name": "22010710"
+    },
+    {
+      "camera_index": 2,
+      "canonical_camera_id": "camera_02",
+      "raw_camera_name": "22010714"
+    },
+    {
+      "camera_index": 3,
+      "canonical_camera_id": "camera_03",
+      "raw_camera_name": "22010716"
+    },
+    {
+      "camera_index": 4,
+      "canonical_camera_id": "camera_04",
+      "raw_camera_name": "22053903"
+    },
+    {
+      "camera_index": 5,
+      "canonical_camera_id": "camera_05",
+      "raw_camera_name": "22053907"
+    },
+    {
+      "camera_index": 6,
+      "canonical_camera_id": "camera_06",
+      "raw_camera_name": "22053908"
+    },
+    {
+      "camera_index": 7,
+      "canonical_camera_id": "camera_07",
+      "raw_camera_name": "22053912"
+    },
+    {
+      "camera_index": 8,
+      "canonical_camera_id": "camera_08",
+      "raw_camera_name": "22053917"
+    },
+    {
+      "camera_index": 9,
+      "canonical_camera_id": "camera_09",
+      "raw_camera_name": "22053923"
+    },
+    {
+      "camera_index": 10,
+      "canonical_camera_id": "camera_10",
+      "raw_camera_name": "22053925"
+    },
+    {
+      "camera_index": 11,
+      "canonical_camera_id": "camera_11",
+      "raw_camera_name": "22053926"
+    },
+    {
+      "camera_index": 12,
+      "canonical_camera_id": "camera_12",
+      "raw_camera_name": "22070928"
+    },
+    {
+      "camera_index": 13,
+      "canonical_camera_id": "camera_13",
+      "raw_camera_name": "22070932"
+    },
+    {
+      "camera_index": 14,
+      "canonical_camera_id": "camera_14",
+      "raw_camera_name": "22070935"
+    },
+    {
+      "camera_index": 15,
+      "canonical_camera_id": "camera_15",
+      "raw_camera_name": "22139907"
+    }
+  ],
+  "canonical_schema_view": {
+    "camera": "canonical in-memory view over calibration_full.json",
+    "record_key": [
+      "identity_id",
+      "canonical_camera_id",
+      "frame_id"
+    ],
+    "rgb_and_mask": "absolute source pointers only",
+    "smpl_x": "per-frame canonical view over smpl_params.npz"
+  },
+  "counts": {
+    "calibration_rewrites": 0,
+    "full_mask_copy_count": 0,
+    "full_rgb_copy_count": 0,
+    "raw_data_mutation": 0,
+    "smpl_npz_rewrites": 0
+  },
+  "frozen_provenance": {
+    "archive_rehash_status": "ARCHIVE_NOT_PRESENT_AT_EXTRACTED_RAW_ROOT",
+    "archive_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "raw_fingerprint_status": "FROZEN_SOURCE_CONTRACT_VALUE_NOT_RECOMPUTED_BY_LOADER_SMOKE",
+    "raw_full_content_fingerprint": "00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15"
+  },
+  "identity_id": "avatarrex_lbn1",
+  "license_and_provenance_guard": {
+    "derived_generation_authorized_by_this_contract": false,
+    "license_file_at_raw_root": false,
+    "raw_redistribution_authorized": false,
+    "status": "UPSTREAM_LICENSE_CONFIRMATION_REQUIRED_BEFORE_REDISTRIBUTION_OR_GENERATION"
+  },
+  "loader_smoke": {
+    "decoded_record_count": 9,
+    "mask_copies": 0,
+    "raw_writes": 0,
+    "rgb_copies": 0,
+    "rows": [
+      {
+        "camera": "22010708",
+        "frame_id": 0,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22010708/mask/pha/00000000.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22010708/00000000.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22010708",
+        "frame_id": 950,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22010708/mask/pha/00000950.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22010708/00000950.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22010708",
+        "frame_id": 1900,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22010708/mask/pha/00001900.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22010708/00001900.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22053917",
+        "frame_id": 0,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22053917/mask/pha/00000000.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22053917/00000000.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22053917",
+        "frame_id": 950,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22053917/mask/pha/00000950.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22053917/00000950.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22053917",
+        "frame_id": 1900,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22053917/mask/pha/00001900.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22053917/00001900.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22139907",
+        "frame_id": 0,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22139907/mask/pha/00000000.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22139907/00000000.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22139907",
+        "frame_id": 950,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22139907/mask/pha/00000950.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22139907/00000950.jpg",
+        "same_dimensions": true
+      },
+      {
+        "camera": "22139907",
+        "frame_id": 1900,
+        "mask": {
+          "mode": "L",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "mask_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22139907/mask/pha/00001900.jpg",
+        "rgb": {
+          "mode": "RGB",
+          "size": [
+            1500,
+            2048
+          ]
+        },
+        "rgb_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/22139907/00001900.jpg",
+        "same_dimensions": true
+      }
+    ],
+    "status": "PASS"
+  },
+  "mask_resolver": "{raw_root}/{raw_camera_name}/mask/pha/{frame_id:08d}{source_mask_suffix}",
+  "paper_final": 0,
+  "readiness": [
+    "AVATARREX_ZERO_COPY_STANDARDIZATION_READY",
+    "AVATARREX_BASE_AVATAR_PREPARATION_REQUIRED"
+  ],
+  "rgb_resolver": "{raw_root}/{raw_camera_name}/{frame_id:08d}.jpg",
+  "schema_version": "avatarrex.zero_copy_adapter_contract.v1",
+  "smpl_x_adapter": {
+    "canonical_mapping": {
+      "body_pose": "body_pose[frame_id]",
+      "expression": "expression[frame_id]",
+      "identity_shape": "betas[0]",
+      "jaw_pose": "jaw_pose[frame_id]",
+      "left_hand_pose": "left_hand_pose[frame_id]",
+      "right_hand_pose": "right_hand_pose[frame_id]",
+      "root_orientation": "global_orient[frame_id]",
+      "translation": "transl[frame_id]"
+    },
+    "fields": {
+      "betas": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          10
+        ]
+      },
+      "body_pose": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          63
+        ]
+      },
+      "expression": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          10
+        ]
+      },
+      "global_orient": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          3
+        ]
+      },
+      "jaw_pose": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          3
+        ]
+      },
+      "left_hand_pose": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          45
+        ]
+      },
+      "right_hand_pose": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          45
+        ]
+      },
+      "transl": {
+        "dtype": "float32",
+        "shape": [
+          1901,
+          3
+        ]
+      }
+    },
+    "load_mode": "READ_ONLY_IN_MEMORY_NPZ",
+    "source": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/smpl_params.npz",
+    "source_sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b"
+  },
+  "source_root": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1",
+  "standardization_mode": "READ_ONLY_ZERO_COPY_LOADER_ADAPTER",
+  "status": "PASS",
+  "task_id": "AAAI27-MULTI-IDENTITY-GARMENT-DATA-PREPARATION-001"
+}
