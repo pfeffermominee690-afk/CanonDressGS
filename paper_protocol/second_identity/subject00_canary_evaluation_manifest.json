@@ -1,0 +1,846 @@
+{
+  "schema_version": "subject00.canary.evaluation_manifest.v1",
+  "task_id": "MMLPHUMAN-SUBJECT00-CANARY-CONTRACT-REPAIR-001",
+  "selection_policy": "AVAILABILITY_FILTER_THEN_EQUAL_SPACING",
+  "availability_manifest_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+  "availability_sha256_policy": "canonical_entries_compact_sorted_json",
+  "camera_split_sha256": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+  "pose_split_sha256": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06",
+  "train_eval_pose_ids": [
+    0,
+    673,
+    1555,
+    2493
+  ],
+  "heldout_eval_pose_ids": [
+    56,
+    931,
+    1763,
+    2499
+  ],
+  "train_eval_camera_ids": [
+    1,
+    5,
+    10,
+    14,
+    19,
+    23
+  ],
+  "heldout_eval_camera_ids": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20
+  ],
+  "evaluation_camera_union": [
+    0,
+    1,
+    4,
+    5,
+    8,
+    10,
+    12,
+    14,
+    16,
+    19,
+    20,
+    23
+  ],
+  "sort_order": [
+    "quadrant_contract_order",
+    "pose_id",
+    "camera_id"
+  ],
+  "quadrant_contract_order": [
+    "Q_TRAIN_POSE_TRAIN_CAMERA",
+    "Q_TRAIN_POSE_HELDOUT_CAMERA",
+    "Q_HELDOUT_POSE_TRAIN_CAMERA",
+    "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+  ],
+  "quadrant_counts": {
+    "Q_TRAIN_POSE_TRAIN_CAMERA": 24,
+    "Q_TRAIN_POSE_HELDOUT_CAMERA": 24,
+    "Q_HELDOUT_POSE_TRAIN_CAMERA": 24,
+    "Q_HELDOUT_POSE_HELDOUT_CAMERA": 24
+  },
+  "query_count": 96,
+  "valid_query_count": 96,
+  "missing_query_count": 0,
+  "duplicate_query_count": 0,
+  "buffer_pose_count": 0,
+  "semantic_error_count": 0,
+  "query_order_sha256": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+  "query_order_sha256_policy": "SHA256(canonical JSON of queries array; UTF-8, sort_keys=true, separators=(',',':'), ensure_ascii=false)",
+  "queries": [
+    {
+      "ordinal": 1,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 0,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 2,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 0,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 3,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 0,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 4,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 0,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 5,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 0,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 6,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 0,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 7,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 673,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 8,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 673,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 9,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 673,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 10,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 673,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 11,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 673,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 12,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 673,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 13,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 1555,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 14,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 1555,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 15,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 1555,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 16,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 1555,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 17,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 1555,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 18,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 1555,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 19,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 2493,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 20,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 2493,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 21,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 2493,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 22,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 2493,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 23,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 2493,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 24,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "train",
+      "pose_id": 2493,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 25,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 0,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 26,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 0,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 27,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 0,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 28,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 0,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 29,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 0,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 30,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 0,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 31,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 673,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 32,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 673,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 33,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 673,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 34,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 673,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 35,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 673,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 36,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 673,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 37,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 1555,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 38,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 1555,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 39,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 1555,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 40,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 1555,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 41,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 1555,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 42,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 1555,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 43,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 2493,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 44,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 2493,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 45,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 2493,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 46,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 2493,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 47,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 2493,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 48,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "train",
+      "camera_semantics": "heldout",
+      "pose_id": 2493,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 49,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 56,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 50,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 56,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 51,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 56,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 52,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 56,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 53,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 56,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 54,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 56,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 55,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 931,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 931,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 57,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 931,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 58,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 931,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 59,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 931,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 60,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 931,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 61,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 1763,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 62,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 1763,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 63,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 1763,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 64,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 1763,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 65,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 1763,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 66,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 1763,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 67,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 2499,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 68,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 2499,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 69,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 2499,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 70,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 2499,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 71,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 2499,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 72,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "train",
+      "pose_id": 2499,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 73,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 56,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 74,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 56,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 75,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 56,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 76,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 56,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 77,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 56,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 78,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 56,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 79,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 931,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 80,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 931,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 81,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 931,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 82,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 931,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 83,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 931,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 84,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 931,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 85,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 1763,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 86,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 1763,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 87,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 1763,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 88,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 1763,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 89,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 1763,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 90,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 1763,
+      "camera_id": 20
+    },
+    {
+      "ordinal": 91,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 2499,
+      "camera_id": 0
+    },
+    {
+      "ordinal": 92,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 2499,
+      "camera_id": 4
+    },
+    {
+      "ordinal": 93,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 2499,
+      "camera_id": 8
+    },
+    {
+      "ordinal": 94,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 2499,
+      "camera_id": 12
+    },
+    {
+      "ordinal": 95,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 2499,
+      "camera_id": 16
+    },
+    {
+      "ordinal": 96,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA",
+      "pose_semantics": "heldout",
+      "camera_semantics": "heldout",
+      "pose_id": 2499,
+      "camera_id": 20
+    }
+  ]
+}
