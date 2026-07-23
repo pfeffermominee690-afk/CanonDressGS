@@ -1,0 +1,184 @@
+{
+  "branch": "research/controller-garment-head-optimization-budget-diagnosis-20260724",
+  "checkpoint_steps": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    300,
+    450,
+    600
+  ],
+  "credential_scan": {
+    "baseline_scanner_literal_exclusion_count": 1,
+    "matched_values_persisted": false,
+    "real_credential_match_count": 0,
+    "status": "PASS",
+    "token_boundary_enforced": true,
+    "tracked_text_files_scanned": 685
+  },
+  "diagnosis_rules": {
+    "FULL_V2_BUDGET_LIMITED_BUT_RECOVERABLE": {
+      "every_rotation_min": 0.8,
+      "full_v2_step600_macro_min": 0.85,
+      "pure_top1_min": 0.95,
+      "safety_or_numeric_failure": false,
+      "step150_to_600_gain_min": 0.1
+    },
+    "GARMENT_CONSISTENCY_INTERFERENCE_DOMINANT": {
+      "consistency_interference_min": 0.08,
+      "consistency_removal_gain_min": 0.08,
+      "same_direction_rotations_min": 3
+    },
+    "MIXEDNESS_SHARED_PATH_INTERFERENCE_DOMINANT": {
+      "mixedness_interference_min": 0.08,
+      "same_direction_rotations_min": 3,
+      "shared_parameter_path_required": true
+    },
+    "MULTITASK_OPTIMIZATION_INTERFERENCE_DOMINANT": {
+      "full_v2_step600_max_exclusive": 0.85,
+      "garment_only_every_rotation_min": 0.85,
+      "garment_only_gap_min": 0.1,
+      "garment_only_step600_macro_min": 0.9,
+      "same_direction_rotations_min": 3
+    },
+    "OPTIMIZER_OR_NORMALIZATION_LIMIT": {
+      "garment_only_step600_max_exclusive": 0.8,
+      "legal_ridge_probe_mixed_only_min": 0.95,
+      "stable_numerics_required": true
+    },
+    "allowed_primary_classifications": [
+      "FULL_V2_BUDGET_LIMITED_BUT_RECOVERABLE",
+      "MULTITASK_OPTIMIZATION_INTERFERENCE_DOMINANT",
+      "GARMENT_CONSISTENCY_INTERFERENCE_DOMINANT",
+      "MIXEDNESS_SHARED_PATH_INTERFERENCE_DOMINANT",
+      "OPTIMIZER_OR_NORMALIZATION_LIMIT",
+      "MULTIPLE_OPTIMIZATION_FACTORS",
+      "GARMENT_HEAD_BUDGET_DIAGNOSIS_INCONCLUSIVE"
+    ],
+    "repair_value": {
+      "HIGH": "any preregistered variant macro>=0.85, every rotation>=0.80, pure>=0.95",
+      "LOW": "all variants macro<0.75 despite legal probe near 1.0",
+      "MODERATE": "best macro in [0.75,0.85) or any rotation<0.80"
+    }
+  },
+  "evaluation_denominators": {
+    "mandatory_views": [
+      "protocol_weighted",
+      "unique_query",
+      "per_rotation",
+      "rotation_macro",
+      "per_seed",
+      "seed_macro",
+      "global_macro"
+    ],
+    "mixed_pair": "GT_MIXED_ONLY_UNORDERED_TOP2",
+    "pure": "GT_PURE_ONLY_VISIBLE_GARMENT_TOP1",
+    "pure_hidden_secondary_pair": "FORBIDDEN",
+    "routing": "PREDICTION_CONDITIONED_MIXED_SUBSETS"
+  },
+  "expected_counts": {
+    "augmented_forward_batches": 19800,
+    "augmented_record_forwards": 99000,
+    "backward_calls": 39600,
+    "checkpoint_inference_count": 207360,
+    "clean_forward_batches": 39600,
+    "clean_record_forwards": 198000,
+    "continuation_runs": 24,
+    "evaluated_checkpoint_instances": 648,
+    "fresh_diagnostic_runs": 48,
+    "historical_checkpoints_reused": 144,
+    "metric_records": 207360,
+    "new_checkpoint_writes": 504,
+    "new_formal_renders": 0,
+    "optimizer_creations": 72,
+    "optimizer_steps": 39600,
+    "paper_final": 0,
+    "renderer_runs": 0,
+    "run_trajectories": 72,
+    "scheduler_steps": 39600
+  },
+  "families": [
+    "FULL_V2_CONTINUED",
+    "MATCHED_V1_CONTINUED",
+    "GARMENT_ONLY",
+    "GARMENT_PLUS_MIXEDNESS",
+    "GARMENT_PLUS_GARMENT_CONSISTENCY",
+    "FULL_NO_GARMENT_CONSISTENCY"
+  ],
+  "historical_classification": "CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL",
+  "initialization": {
+    "fresh_v2_variants": "corresponding historical V2 step_000 model/RNG",
+    "full_v2_continued": "corresponding historical V2 final_step_150 full state",
+    "matched_v1_continued": "corresponding historical matched V1 final_step_150 full state"
+  },
+  "loss_definitions": {
+    "FULL_NO_GARMENT_CONSISTENCY": "L_garment + L_mixedness + L_weight + 0.1 * (L_mixedness_consistency + L_pair_weight_consistency)",
+    "FULL_V2_CONTINUED": "L_garment + L_mixedness + L_weight + 0.1 * (L_garment_consistency + L_mixedness_consistency + L_pair_weight_consistency)",
+    "GARMENT_ONLY": "L_garment",
+    "GARMENT_PLUS_GARMENT_CONSISTENCY": "L_garment + 0.1 * L_garment_consistency",
+    "GARMENT_PLUS_MIXEDNESS": "L_garment + L_mixedness",
+    "MATCHED_V1_CONTINUED": "soft_target_garment_CE"
+  },
+  "new_formal_renders": 0,
+  "next_task_auto_execution": false,
+  "optimizer": {
+    "amp": false,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "class": "torch.optim.Adam",
+    "epsilon": 1e-08,
+    "gradient_accumulation": 1,
+    "gradient_clip_max_norm": 5.0,
+    "learning_rate": 0.02,
+    "scheduler": "constant LambdaLR",
+    "warmup_steps": 0,
+    "weight_decay": 0.0
+  },
+  "pair_interpretation": "MIXED_PAIR_IDENTIFICATION_PARTIAL",
+  "paper_final": 0,
+  "post_failure_label": "POST-FAILURE OPTIMIZATION DIAGNOSTIC",
+  "pre_result_optimizer_created": 0,
+  "pre_result_optimizer_steps": 0,
+  "renderer_runs": 0,
+  "resource_gate": {
+    "api_provider": "sjwen_proxy",
+    "branch": "research/controller-garment-head-optimization-budget-diagnosis-20260724",
+    "credential_value_persisted": false,
+    "credential_value_read": false,
+    "cuda_available": true,
+    "free_bytes": 39563653120,
+    "free_inodes": 672598138,
+    "git_root": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_controller_garment_head_optimization_budget_diagnosis",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_process_count": 0,
+    "gpu_processes": [],
+    "gpu_total_bytes": 25250627584,
+    "head": "89980f1d9d8946d203c3ff1b398929f09965f098",
+    "heavy_io_task": 0,
+    "other_formal_training": 0,
+    "pure_endpoint_active_training": 0,
+    "status": "PASS",
+    "subject00_active_training": 0
+  },
+  "rotations": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "schema_version": "controller_garment_budget_execution_contract.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "semantic_classification": "LATENT_SECONDARY_NOT_INPUT_IDENTIFIABLE",
+  "source_head": "89980f1d9d8946d203c3ff1b398929f09965f098",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-GARMENT-HEAD-OPTIMIZATION-BUDGET-001"
+}

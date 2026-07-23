@@ -1,0 +1,555 @@
+{
+  "audit_batch": {
+    "global_step": 3,
+    "nuisance_type": "mask_dilation",
+    "record_ids": [
+      "query/O01_O02/cond_000000/01_AAB_minority_0",
+      "query/O01_O02/cond_000000/04_ABB_minority_0",
+      "query/O01_O03/cond_000000/04_ABB_minority_0",
+      "query/O01_O04/cond_000000/04_ABB_minority_0",
+      "query/O01_O08/cond_000000/04_ABB_minority_0"
+    ],
+    "rotation": 0
+  },
+  "autograd_loss_paths": {
+    "garment": {
+      "finite": true,
+      "gradient_norms": {
+        "garment_head.bias": 0.24107718320573782,
+        "garment_head.weight": 0.241539273665206,
+        "reference_normalization.bias": 0.0061887063237471,
+        "reference_normalization.weight": 0.0060086885633677005
+      },
+      "loss": 1.6213252544403076,
+      "nonzero_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ]
+    },
+    "garment_consistency": {
+      "finite": true,
+      "gradient_norms": {
+        "garment_head.bias": 2.2883513277711132e-08,
+        "garment_head.weight": 2.7634188430159724e-06,
+        "reference_normalization.bias": 6.26722915284146e-09,
+        "reference_normalization.weight": 8.215908289499445e-08
+      },
+      "loss": 7.056733153376626e-08,
+      "nonzero_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ]
+    },
+    "mixedness": {
+      "finite": true,
+      "gradient_norms": {
+        "mixedness_head.bias": 0.5061969757080078,
+        "mixedness_head.weight": 0.5047201248380142,
+        "reference_normalization.bias": 0.012510599679288434,
+        "reference_normalization.weight": 0.012080458041985712
+      },
+      "loss": 0.7056187987327576,
+      "nonzero_parameter_names": [
+        "mixedness_head.bias",
+        "mixedness_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ]
+    },
+    "mixedness_consistency": {
+      "finite": true,
+      "gradient_norms": {
+        "mixedness_head.bias": 1.2561940820887685e-08,
+        "mixedness_head.weight": 3.052551254029196e-05,
+        "reference_normalization.bias": 4.437965006002453e-08,
+        "reference_normalization.weight": 7.707375315681089e-07
+      },
+      "loss": 4.967403128830483e-07,
+      "nonzero_parameter_names": [
+        "mixedness_head.bias",
+        "mixedness_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ]
+    },
+    "pair_weight": {
+      "finite": true,
+      "gradient_norms": {
+        "pair_weight_head.bias": 0.08656874113779076,
+        "pair_weight_head.weight": 0.086647132417237,
+        "reference_normalization.bias": 0.0022993809592373963,
+        "reference_normalization.weight": 0.002262240029122298
+      },
+      "loss": 0.11555004119873047,
+      "nonzero_parameter_names": [
+        "pair_weight_head.bias",
+        "pair_weight_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ]
+    },
+    "pair_weight_consistency": {
+      "finite": true,
+      "gradient_norms": {
+        "pair_weight_head.bias": 6.928712463261329e-09,
+        "pair_weight_head.weight": 9.176901287857916e-06,
+        "reference_normalization.bias": 4.293022691750925e-08,
+        "reference_normalization.weight": 3.026217341045479e-07
+      },
+      "loss": 4.746499087104894e-07,
+      "nonzero_parameter_names": [
+        "pair_weight_head.bias",
+        "pair_weight_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ]
+    }
+  },
+  "diagnostic_autograd_calls": 6,
+  "families": {
+    "FULL_NO_GARMENT_CONSISTENCY": {
+      "optimizer_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "mixedness_head.bias",
+        "mixedness_head.weight",
+        "pair_weight_head.bias",
+        "pair_weight_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "optimizer_parameter_shapes": {
+        "garment_head.bias": [
+          5
+        ],
+        "garment_head.weight": [
+          5,
+          512
+        ],
+        "mixedness_head.bias": [
+          1
+        ],
+        "mixedness_head.weight": [
+          1,
+          512
+        ],
+        "pair_weight_head.bias": [
+          10
+        ],
+        "pair_weight_head.weight": [
+          10,
+          512
+        ],
+        "reference_normalization.bias": [
+          512
+        ],
+        "reference_normalization.weight": [
+          512
+        ]
+      },
+      "optimizer_scalar_count": 9232
+    },
+    "FULL_V2_CONTINUED": {
+      "optimizer_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "mixedness_head.bias",
+        "mixedness_head.weight",
+        "pair_weight_head.bias",
+        "pair_weight_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "optimizer_parameter_shapes": {
+        "garment_head.bias": [
+          5
+        ],
+        "garment_head.weight": [
+          5,
+          512
+        ],
+        "mixedness_head.bias": [
+          1
+        ],
+        "mixedness_head.weight": [
+          1,
+          512
+        ],
+        "pair_weight_head.bias": [
+          10
+        ],
+        "pair_weight_head.weight": [
+          10,
+          512
+        ],
+        "reference_normalization.bias": [
+          512
+        ],
+        "reference_normalization.weight": [
+          512
+        ]
+      },
+      "optimizer_scalar_count": 9232
+    },
+    "GARMENT_ONLY": {
+      "optimizer_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "optimizer_parameter_shapes": {
+        "garment_head.bias": [
+          5
+        ],
+        "garment_head.weight": [
+          5,
+          512
+        ],
+        "reference_normalization.bias": [
+          512
+        ],
+        "reference_normalization.weight": [
+          512
+        ]
+      },
+      "optimizer_scalar_count": 3589
+    },
+    "GARMENT_PLUS_GARMENT_CONSISTENCY": {
+      "optimizer_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "optimizer_parameter_shapes": {
+        "garment_head.bias": [
+          5
+        ],
+        "garment_head.weight": [
+          5,
+          512
+        ],
+        "reference_normalization.bias": [
+          512
+        ],
+        "reference_normalization.weight": [
+          512
+        ]
+      },
+      "optimizer_scalar_count": 3589
+    },
+    "GARMENT_PLUS_MIXEDNESS": {
+      "optimizer_parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "mixedness_head.bias",
+        "mixedness_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "optimizer_parameter_shapes": {
+        "garment_head.bias": [
+          5
+        ],
+        "garment_head.weight": [
+          5,
+          512
+        ],
+        "mixedness_head.bias": [
+          1
+        ],
+        "mixedness_head.weight": [
+          1,
+          512
+        ],
+        "reference_normalization.bias": [
+          512
+        ],
+        "reference_normalization.weight": [
+          512
+        ]
+      },
+      "optimizer_scalar_count": 4102
+    },
+    "MATCHED_V1_CONTINUED": {
+      "optimizer_parameter_names": [
+        "linear.bias",
+        "linear.weight",
+        "normalization.bias",
+        "normalization.weight"
+      ],
+      "optimizer_parameter_shapes": {
+        "linear.bias": [
+          5
+        ],
+        "linear.weight": [
+          5,
+          512
+        ],
+        "normalization.bias": [
+          512
+        ],
+        "normalization.weight": [
+          512
+        ]
+      },
+      "optimizer_scalar_count": 3589
+    }
+  },
+  "matched_v1_parameter_inventory": [
+    {
+      "name": "normalization.weight",
+      "scalar_count": 512,
+      "shape": [
+        512
+      ]
+    },
+    {
+      "name": "normalization.bias",
+      "scalar_count": 512,
+      "shape": [
+        512
+      ]
+    },
+    {
+      "name": "linear.weight",
+      "scalar_count": 2560,
+      "shape": [
+        5,
+        512
+      ]
+    },
+    {
+      "name": "linear.bias",
+      "scalar_count": 5,
+      "shape": [
+        5
+      ]
+    }
+  ],
+  "matched_v1_total_scalar_count": 3589,
+  "optimizer_created": 0,
+  "optimizer_steps": 0,
+  "schema_version": "controller_garment_budget_parameter_paths.v1",
+  "shared_intersections": {
+    "garment__garment_consistency": {
+      "parameter_names": [
+        "garment_head.bias",
+        "garment_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment__mixedness": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment__mixedness_consistency": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment__pair_weight": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment__pair_weight_consistency": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_consistency__mixedness": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_consistency__mixedness_consistency": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_consistency__pair_weight": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_consistency__pair_weight_consistency": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "mixedness__mixedness_consistency": {
+      "parameter_names": [
+        "mixedness_head.bias",
+        "mixedness_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "mixedness__pair_weight": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "mixedness__pair_weight_consistency": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "mixedness_consistency__pair_weight": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "mixedness_consistency__pair_weight_consistency": {
+      "parameter_names": [
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "pair_weight__pair_weight_consistency": {
+      "parameter_names": [
+        "pair_weight_head.bias",
+        "pair_weight_head.weight",
+        "reference_normalization.bias",
+        "reference_normalization.weight"
+      ],
+      "status": "SHARED_GRADIENT_PATH"
+    }
+  },
+  "source_head": "89980f1d9d8946d203c3ff1b398929f09965f098",
+  "static_loss_paths": {
+    "garment": [
+      "garment_head.bias",
+      "garment_head.weight",
+      "reference_normalization.bias",
+      "reference_normalization.weight"
+    ],
+    "garment_consistency": [
+      "garment_head.bias",
+      "garment_head.weight",
+      "reference_normalization.bias",
+      "reference_normalization.weight"
+    ],
+    "mixedness": [
+      "mixedness_head.bias",
+      "mixedness_head.weight",
+      "reference_normalization.bias",
+      "reference_normalization.weight"
+    ],
+    "mixedness_consistency": [
+      "mixedness_head.bias",
+      "mixedness_head.weight",
+      "reference_normalization.bias",
+      "reference_normalization.weight"
+    ],
+    "pair_weight": [
+      "pair_weight_head.bias",
+      "pair_weight_head.weight",
+      "reference_normalization.bias",
+      "reference_normalization.weight"
+    ],
+    "pair_weight_consistency": [
+      "pair_weight_head.bias",
+      "pair_weight_head.weight",
+      "reference_normalization.bias",
+      "reference_normalization.weight"
+    ]
+  },
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-GARMENT-HEAD-OPTIMIZATION-BUDGET-001",
+  "v2_parameter_inventory": [
+    {
+      "name": "reference_normalization.weight",
+      "scalar_count": 512,
+      "shape": [
+        512
+      ]
+    },
+    {
+      "name": "reference_normalization.bias",
+      "scalar_count": 512,
+      "shape": [
+        512
+      ]
+    },
+    {
+      "name": "garment_head.weight",
+      "scalar_count": 2560,
+      "shape": [
+        5,
+        512
+      ]
+    },
+    {
+      "name": "garment_head.bias",
+      "scalar_count": 5,
+      "shape": [
+        5
+      ]
+    },
+    {
+      "name": "mixedness_head.weight",
+      "scalar_count": 512,
+      "shape": [
+        1,
+        512
+      ]
+    },
+    {
+      "name": "mixedness_head.bias",
+      "scalar_count": 1,
+      "shape": [
+        1
+      ]
+    },
+    {
+      "name": "pair_weight_head.weight",
+      "scalar_count": 5120,
+      "shape": [
+        10,
+        512
+      ]
+    },
+    {
+      "name": "pair_weight_head.bias",
+      "scalar_count": 10,
+      "shape": [
+        10
+      ]
+    }
+  ],
+  "v2_total_scalar_count": 9232
+}
