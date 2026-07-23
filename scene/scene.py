@@ -1,6 +1,7 @@
 
 import os
 from os import path
+import pathlib
 import torch
 import numpy as np
 import json
@@ -13,6 +14,12 @@ from utils.config_utils import Config
 from utils.smpl_utils import init_smpl, smpl
 from utils.general_utils import serialize_to_list, storePly, fetchPly
 from utils.graphics_utils import rand_point_on_mesh
+from utils.surface_lbs_utils import (
+    deterministic_surface_points,
+    load_surface_attachment_assets,
+    sha256_file,
+    SurfaceLBSContractError,
+)
 from scene.gaussian_model import GaussianModel
 from scene.dataset import get_dataset_type, AVRexDataset
 
@@ -89,20 +96,75 @@ class Scene:
             json.dump(serialize_to_list(cam_list), file)
         
         # skinning weights
-        os.makedirs(path.join(args.data_dir, 'gaussian'), exist_ok=True)
-        weights_grid_path = path.join(args.data_dir, 'gaussian/lbs_weights_grid.npz')
-        if not path.exists(weights_grid_path):
-            raise FileExistsError
-        grid_info = dict(np.load(weights_grid_path, allow_pickle=True))
+        lbs_mode = getattr(args, 'lbs_mode', 'legacy_grid')
+        grid_info = None
+        surface_attachment = None
+        if lbs_mode == 'surface_attachment_cached':
+            if not getattr(args, 'require_surface_attachment', False):
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    'surface mode requires require_surface_attachment=true',
+                )
+            if getattr(args, 'allow_off_surface_fallback', True):
+                raise SurfaceLBSContractError(
+                    'UNSUPPORTED_OFF_SURFACE_REBIND',
+                    'surface mode requires allow_off_surface_fallback=false',
+                )
+            if getattr(args, 'allow_topology_mutation', True):
+                raise SurfaceLBSContractError(
+                    'UNSUPPORTED_DENSIFICATION',
+                    'surface mode requires allow_topology_mutation=false',
+                )
+            surface_attachment = load_surface_attachment_assets(
+                args.surface_attachment_root,
+                expected_count=args.init_num_gs,
+            )
+            temp_path = args.template_path
+            expected_template_sha = surface_attachment['manifest'][
+                'template'
+            ]['files']['template_smplx_body_surface.ply']['sha256']
+            if sha256_file(pathlib.Path(temp_path)) != expected_template_sha:
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    'runtime template SHA differs from attachment manifest',
+                )
+            gaussians.runtime_lbs_counters['legacy_grid_loads'] = 0
+        elif lbs_mode == 'legacy_grid':
+            os.makedirs(
+                path.join(args.data_dir, 'gaussian'),
+                exist_ok=True,
+            )
+            configured_grid = getattr(args, 'legacy_lbs_grid_path', None)
+            weights_grid_path = (
+                configured_grid
+                if configured_grid
+                else path.join(
+                    args.data_dir,
+                    'gaussian/lbs_weights_grid.npz',
+                )
+            )
+            if not path.exists(weights_grid_path):
+                raise FileNotFoundError(weights_grid_path)
+            grid_info = dict(
+                np.load(weights_grid_path, allow_pickle=True)
+            )
+            temp_path = path.join(
+                args.data_dir,
+                'gaussian/template.ply',
+            )
+        else:
+            raise ValueError(f'Unsupported lbs_mode: {lbs_mode}')
 
         # initialize gaussian model
         scene_scale = trainset.get_scene_scale(args.data_dir) * 1.1
         tpose_model = smpl.model(betas=beta[None], body_pose=smpl.smpl_tpose[None,3*1:22*3])
         t_joints = tpose_model.joints.detach().numpy()[0,:smpl.model.NUM_JOINTS+1]
-        xyz_path = path.join(args.data_dir, 'gaussian/init_body_points.ply')
+        xyz_path = path.join(
+            args.data_dir,
+            'gaussian/init_body_points.ply',
+        )
 
-        temp_path = path.join(args.data_dir, 'gaussian/template.ply')
-        if not path.exists(temp_path):
+        if lbs_mode == 'legacy_grid' and not path.exists(temp_path):
             print('No template found, using SMPLX mesh')
             bigpose_model = smpl.model(betas=beta[None], body_pose=smpl.smpl_bigpose[None,3*1:22*3])
             verts = bigpose_model.vertices[0].detach().float().numpy()
@@ -113,19 +175,48 @@ class Scene:
             mesh.triangles = o3d.utility.Vector3iVector(faces)
             o3d.io.write_triangle_mesh(temp_path, mesh)
 
-        mesh = o3d.io.read_triangle_mesh(path.join(args.data_dir, 'gaussian/template.ply'))
+        mesh = o3d.io.read_triangle_mesh(temp_path)
         verts = np.array(mesh.vertices).astype(np.float32)
-        faces = np.array(mesh.triangles).astype(np.float32)
+        faces = np.array(mesh.triangles).astype(np.int64)
 
-        if path.exists(xyz_path):
-            xyz = np.array(fetchPly(xyz_path)[0], dtype=np.float32)
+        if lbs_mode == 'surface_attachment_cached':
+            xyz = surface_attachment['canonical_xyz']
+            xyz_ft = deterministic_surface_points(
+                verts,
+                faces,
+                args.num_features,
+            )['points'].astype(np.float32)
+            xyz_vt = deterministic_surface_points(
+                verts,
+                faces,
+                args.num_verts,
+            )['points'].astype(np.float32)
         else:
-            print('Initialize Gaussians on Mesh...')
-            xyz = rand_point_on_mesh(verts, faces, pts_num=args.init_num_gs)
-            storePly(xyz_path, xyz, np.zeros_like(xyz))
-
-        xyz_ft = rand_point_on_mesh(verts, faces, pts_num=args.num_features, init_factor=7)
-        xyz_vt = rand_point_on_mesh(verts, faces, pts_num=args.num_verts, init_factor=7)
+            if path.exists(xyz_path):
+                xyz = np.array(
+                    fetchPly(xyz_path)[0],
+                    dtype=np.float32,
+                )
+            else:
+                print('Initialize Gaussians on Mesh...')
+                xyz = rand_point_on_mesh(
+                    verts,
+                    faces,
+                    pts_num=args.init_num_gs,
+                )
+                storePly(xyz_path, xyz, np.zeros_like(xyz))
+            xyz_ft = rand_point_on_mesh(
+                verts,
+                faces,
+                pts_num=args.num_features,
+                init_factor=7,
+            )
+            xyz_vt = rand_point_on_mesh(
+                verts,
+                faces,
+                pts_num=args.num_verts,
+                init_factor=7,
+            )
 
         gaussians.create_from_pcd(
             xyz=xyz,
@@ -135,6 +226,28 @@ class Scene:
             all_poses=all_poses,
             xyz_ft=xyz_ft,
             xyz_vt=xyz_vt,
+            fixed_lbs_weights=(
+                surface_attachment['lbs_weights']
+                if surface_attachment is not None
+                else None
+            ),
+            surface_attachment=surface_attachment,
+            lbs_mode=lbs_mode,
+            require_surface_attachment=getattr(
+                args,
+                'require_surface_attachment',
+                False,
+            ),
+            allow_off_surface_fallback=getattr(
+                args,
+                'allow_off_surface_fallback',
+                False,
+            ),
+            allow_topology_mutation=getattr(
+                args,
+                'allow_topology_mutation',
+                False,
+            ),
         )
 
         self.tb_writer = tb_writer

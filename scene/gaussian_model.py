@@ -16,6 +16,11 @@ from scene.mlp import MLP, vmap_mlp
 from utils.smpl_utils import smpl, interpolate_skinningfield, rigid_transform_tensor, rigid_transform_numba
 from utils.config_utils import Config
 from utils.sh_utils import RGB2SH
+from utils.surface_lbs_utils import (
+    SURFACE_LBS_FILES,
+    SurfaceLBSContractError,
+    validate_surface_attachment_arrays,
+)
 
 class GaussianModel:
 
@@ -63,6 +68,19 @@ class GaussianModel:
 
         # lbs weights
         self._weights = None
+        self.weights_grid_info = None
+        self.lbs_mode = 'legacy_grid'
+        self.require_surface_attachment = False
+        self.allow_off_surface_fallback = False
+        self.allow_topology_mutation = False
+        self.surface_attachment = None
+        self.surface_attachment_provenance = {}
+        self.runtime_lbs_counters = {
+            'legacy_grid_loads': 0,
+            'spatial_weight_queries': 0,
+            'off_surface_rebinds': 0,
+            'topology_mutations': 0,
+        }
 
         # pose
         self._Rh = torch.empty(0)
@@ -101,6 +119,7 @@ class GaussianModel:
         self.setup_functions()
 
     def capture(self):
+        self.validate_gaussian_attribute_alignment()
         data = {
             '_xyz': self._xyz,
             'xyz_offset': self.xyz_offset,
@@ -113,6 +132,15 @@ class GaussianModel:
             'sh_degree': self.sh_degree,
 
             '_weights': self.get_weights,
+            'lbs_mode': self.lbs_mode,
+            'require_surface_attachment': self.require_surface_attachment,
+            'allow_off_surface_fallback': self.allow_off_surface_fallback,
+            'allow_topology_mutation': self.allow_topology_mutation,
+            'surface_attachment': self.surface_attachment_state_dict(
+                cpu=False,
+            ) if self.lbs_mode == 'surface_attachment_cached' else None,
+            'surface_attachment_provenance': self.surface_attachment_provenance,
+            'runtime_lbs_counters': self.runtime_lbs_counters,
 
             't_joints': self.t_joints,
             'all_poses': self.all_poses,
@@ -164,6 +192,45 @@ class GaussianModel:
         self.sh_degree = data['sh_degree']
 
         self._weights = data['_weights']
+        self.lbs_mode = data.get('lbs_mode', 'legacy_grid')
+        self.require_surface_attachment = data.get(
+            'require_surface_attachment',
+            self.lbs_mode == 'surface_attachment_cached',
+        )
+        self.allow_off_surface_fallback = data.get(
+            'allow_off_surface_fallback',
+            False,
+        )
+        self.allow_topology_mutation = data.get(
+            'allow_topology_mutation',
+            False,
+        )
+        self.surface_attachment_provenance = data.get(
+            'surface_attachment_provenance',
+            {},
+        )
+        self.runtime_lbs_counters = data.get(
+            'runtime_lbs_counters',
+            {
+                'legacy_grid_loads': 0,
+                'spatial_weight_queries': 0,
+                'off_surface_rebinds': 0,
+                'topology_mutations': 0,
+            },
+        )
+        surface_attachment = data.get('surface_attachment')
+        if self.lbs_mode == 'surface_attachment_cached':
+            if surface_attachment is None:
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    'surface checkpoint has no attachment state',
+                )
+            self.load_surface_attachment_state_dict(
+                surface_attachment,
+                strict=True,
+            )
+        else:
+            self.surface_attachment = None
 
         self.t_joints = loader('t_joints')
         self.all_poses = loader('all_poses')
@@ -197,6 +264,7 @@ class GaussianModel:
         self.is_gsparam_bs = loader('is_gsparam_bs')
 
         self.init()
+        self.validate_gaussian_attribute_alignment()
 
     def init(self):
         self.init_body() 
@@ -225,9 +293,20 @@ class GaussianModel:
     @property
     def get_weights(self):
         if self._weights is None:
+            if self.lbs_mode == 'surface_attachment_cached':
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    'cached surface LBS weights are absent',
+                )
+            if self.weights_grid_info is None:
+                raise SurfaceLBSContractError(
+                    'INVALID_LBS',
+                    'legacy grid state is absent',
+                )
             xyz = self._xyz
             weights = interpolate_skinningfield(self.weights_grid_info, xyz)
             self._weights = weights
+            self.runtime_lbs_counters['spatial_weight_queries'] += 1
         else:
             weights = self._weights
         return weights
@@ -465,7 +544,75 @@ class GaussianModel:
 
         return color
 
-    def create_from_pcd(self, xyz=None, t_joints=None, joint_parents=None, all_poses=None, lbs_weights_grid_info=None, xyz_vt=None, xyz_ft=None):
+    def create_from_pcd(
+        self,
+        xyz=None,
+        t_joints=None,
+        joint_parents=None,
+        all_poses=None,
+        lbs_weights_grid_info=None,
+        xyz_vt=None,
+        xyz_ft=None,
+        fixed_lbs_weights=None,
+        surface_attachment=None,
+        lbs_mode='legacy_grid',
+        require_surface_attachment=False,
+        allow_off_surface_fallback=False,
+        allow_topology_mutation=False,
+    ):
+        if lbs_mode not in {
+            'legacy_grid',
+            'surface_attachment_cached',
+        }:
+            raise ValueError(f'Unsupported lbs_mode: {lbs_mode}')
+        self.lbs_mode = lbs_mode
+        self.require_surface_attachment = bool(
+            require_surface_attachment
+        )
+        self.allow_off_surface_fallback = bool(
+            allow_off_surface_fallback
+        )
+        self.allow_topology_mutation = bool(allow_topology_mutation)
+        if self.lbs_mode == 'surface_attachment_cached':
+            if self.allow_off_surface_fallback:
+                raise SurfaceLBSContractError(
+                    'UNSUPPORTED_OFF_SURFACE_REBIND',
+                    'surface-only mode forbids off-surface fallback',
+                )
+            if self.allow_topology_mutation:
+                raise SurfaceLBSContractError(
+                    'UNSUPPORTED_DENSIFICATION',
+                    'surface-only mode forbids topology mutation',
+                )
+            if surface_attachment is None or fixed_lbs_weights is None:
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    'surface payload and fixed weights are required',
+                )
+            if lbs_weights_grid_info is not None:
+                raise SurfaceLBSContractError(
+                    'INVALID_LBS',
+                    'surface-only mode must not receive a legacy grid',
+                )
+            validation_payload = {
+                key: np.asarray(surface_attachment[key])
+                for key in SURFACE_LBS_FILES
+                if key != 'lbs_weights'
+            }
+            validation_payload['lbs_weights'] = np.asarray(
+                fixed_lbs_weights
+            )
+            manifest = surface_attachment.get('manifest', {})
+            validate_surface_attachment_arrays(
+                validation_payload,
+                expected_count=len(xyz),
+                template_face_count=int(
+                    manifest.get('template', {}).get(
+                        'face_count',
+                        -1,
+                    )
+                ),
+            )
         xyz = torch.as_tensor(xyz).float().cuda() # [N,3]
         N = xyz.shape[0]
         print("Number of points at initialization : ", N)
@@ -497,9 +644,25 @@ class GaussianModel:
         for key in all_poses: all_poses[key] = torch.as_tensor(all_poses[key]).float().cpu()
         self.all_poses = all_poses
 
-        ginfo = lbs_weights_grid_info
-        for key in ['grid', 'bbox_min', 'bbox_max', 'grid_dims']: ginfo[key] = torch.as_tensor(ginfo[key]).detach().cuda()
-        self.weights_grid_info = ginfo
+        if self.lbs_mode == 'surface_attachment_cached':
+            self.weights_grid_info = None
+            self._weights = torch.as_tensor(
+                fixed_lbs_weights,
+            ).detach().float().cuda()
+            self._set_surface_attachment(surface_attachment)
+        else:
+            ginfo = lbs_weights_grid_info
+            if ginfo is None:
+                raise SurfaceLBSContractError(
+                    'INVALID_LBS',
+                    'legacy_grid mode requires grid state',
+                )
+            for key in ['grid', 'bbox_min', 'bbox_max', 'grid_dims']:
+                ginfo[key] = torch.as_tensor(
+                    ginfo[key],
+                ).detach().cuda()
+            self.weights_grid_info = ginfo
+            self.runtime_lbs_counters['legacy_grid_loads'] += 1
 
         # Pose encoder
         models = [MLP(layers_size_list=[63, 512, 256, 256, 256, self.num_basis+self.num_vt_basis]) for i in range(len(xyz_ft))]
@@ -533,6 +696,149 @@ class GaussianModel:
         self.prepare_interpolating_weights(xyz_ft, xyz_vt)
 
         self.init()
+        self.validate_gaussian_attribute_alignment()
+
+    def _set_surface_attachment(self, payload):
+        device = self._xyz.device
+        self.surface_attachment = {}
+        for key in SURFACE_LBS_FILES:
+            value = (
+                self._weights
+                if key == 'lbs_weights'
+                else torch.as_tensor(payload[key]).detach().to(device)
+            )
+            self.surface_attachment[key] = value
+        self.surface_attachment_provenance = {
+            'manifest': payload.get('manifest', {}),
+            'manifest_path': payload.get('manifest_path'),
+            'manifest_sha256': payload.get('manifest_sha256'),
+            'validation': payload.get('validation', {}),
+        }
+
+    def surface_attachment_state_dict(self, cpu=True):
+        if (
+            self.lbs_mode != 'surface_attachment_cached'
+            or self.surface_attachment is None
+        ):
+            raise SurfaceLBSContractError(
+                'MISSING_ATTACHMENT',
+                'surface attachment state is unavailable',
+            )
+        state = {}
+        for key in SURFACE_LBS_FILES:
+            value = self.surface_attachment[key].detach()
+            state[key] = value.cpu() if cpu else value
+        return state
+
+    def load_surface_attachment_state_dict(self, state, strict=True):
+        expected = set(SURFACE_LBS_FILES)
+        actual = set(state)
+        if strict and actual != expected:
+            raise SurfaceLBSContractError(
+                'MISSING_ATTACHMENT',
+                f'state keys mismatch: missing={sorted(expected - actual)}, '
+                f'unexpected={sorted(actual - expected)}',
+            )
+        missing = sorted(expected - actual)
+        if missing:
+            raise SurfaceLBSContractError(
+                'MISSING_ATTACHMENT',
+                f'state is missing keys: {missing}',
+            )
+        device = self._xyz.device
+        self.surface_attachment = {
+            key: torch.as_tensor(state[key]).detach().to(device)
+            for key in SURFACE_LBS_FILES
+        }
+        self._weights = self.surface_attachment['lbs_weights'].float()
+
+    def validate_gaussian_attribute_alignment(self):
+        if self._xyz.numel() == 0:
+            return {'gaussian_count': 0, 'aligned': True}
+        count = int(self._xyz.shape[0])
+        attributes = {
+            '_xyz': self._xyz,
+            'xyz_offset': self.xyz_offset,
+            '_scaling': self._scaling,
+            '_rotation': self._rotation,
+            '_opacity': self._opacity,
+            '_sh0': self._sh0,
+            '_shN': self._shN,
+            '_weights': self.get_weights,
+        }
+        for name in (
+            'sh0_bs',
+            'shN_bs',
+            'scaling_bs',
+            'rotation_bs',
+            'opacity_bs',
+        ):
+            value = getattr(self, name)
+            if value is not None and value.numel() > 0:
+                attributes[name] = value
+        for name, value in attributes.items():
+            if int(value.shape[0]) != count:
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    f'{name} length {value.shape[0]} != {count}',
+                )
+        if tuple(self.get_weights.shape) != (count, 55):
+            raise SurfaceLBSContractError(
+                'INVALID_LBS',
+                f'weight shape {tuple(self.get_weights.shape)} '
+                f'!= {(count, 55)}',
+            )
+        if self.lbs_mode == 'surface_attachment_cached':
+            if self.surface_attachment is None:
+                raise SurfaceLBSContractError(
+                    'MISSING_ATTACHMENT',
+                    'surface attachment state is absent',
+                )
+            for name, value in self.surface_attachment.items():
+                if int(value.shape[0]) != count:
+                    raise SurfaceLBSContractError(
+                        'MISSING_ATTACHMENT',
+                        f'{name} length {value.shape[0]} != {count}',
+                    )
+            if not torch.equal(
+                self.surface_attachment['lbs_weights'].float(),
+                self.get_weights,
+            ):
+                raise SurfaceLBSContractError(
+                    'INVALID_LBS',
+                    'attachment weights differ from cached weights',
+                )
+        return {
+            'gaussian_count': count,
+            'aligned': True,
+            'attribute_count': len(attributes),
+            'attachment_field_count': (
+                len(self.surface_attachment)
+                if self.surface_attachment is not None
+                else 0
+            ),
+        }
+
+    def reject_topology_mutation(self, operation):
+        codes = {
+            'clone': 'UNSUPPORTED_CLONE',
+            'split': 'UNSUPPORTED_SPLIT',
+            'densification': 'UNSUPPORTED_DENSIFICATION',
+            'prune_with_index_reorder': (
+                'UNSUPPORTED_PRUNE_WITH_INDEX_REORDER'
+            ),
+            'off_surface_rebind': 'UNSUPPORTED_OFF_SURFACE_REBIND',
+        }
+        if operation not in codes:
+            raise ValueError(f'Unknown topology operation: {operation}')
+        if operation == 'off_surface_rebind':
+            self.runtime_lbs_counters['off_surface_rebinds'] += 1
+        else:
+            self.runtime_lbs_counters['topology_mutations'] += 1
+        raise SurfaceLBSContractError(
+            codes[operation],
+            f'{operation} is disabled in surface_attachment_cached mode',
+        )
 
     def training_setup(self, args: Config, scene_scale):
         eps=1e-15 
@@ -585,7 +891,15 @@ class GaussianModel:
         
         self.cache_dict = {}
 
-    def render(self, cam, override_color=None, scaling_modifier=1.0, background=None, canonical_overrides=None):
+    def render(
+        self,
+        cam,
+        override_color=None,
+        scaling_modifier=1.0,
+        background=None,
+        canonical_overrides=None,
+        return_depth=False,
+    ):
         self._validate_canonical_overrides(canonical_overrides)
         sh = self.compute_sh(canonical_overrides)      # can be faster
         covars = self.get_covariance(scaling_modifier, canonical_overrides)
@@ -593,7 +907,7 @@ class GaussianModel:
             cam_pos = torch.linalg.inv_ex(cam['w2c'])[0][:3,3]
             override_color = self.get_color(cam_pos, canonical_overrides)
         
-        image, alpha, info = rasterization(
+        rendered, alpha, info = rasterization(
             means=self.compute_xyz(canonical_overrides),
             quats=None,
             scales=None,
@@ -607,8 +921,16 @@ class GaussianModel:
             near_plane=0.1,
             backgrounds=background[None],  # [1, 3]
             covars=covars,
+            render_mode='RGB+D' if return_depth else 'RGB',
         )
-        return image[0], alpha[0], info
+        if return_depth:
+            return (
+                rendered[0, ..., :3],
+                alpha[0],
+                rendered[0, ..., 3:4],
+                info,
+            )
+        return rendered[0], alpha[0], info
 
     def _get_canonical_override(self, canonical_overrides, key, fallback):
         if canonical_overrides is None:
