@@ -1,0 +1,169 @@
+{
+  "aggregation": {
+    "best_seed_selection": false,
+    "deterministic_replicates_are_not_independent_seed_samples": true,
+    "report_every_replicate": true,
+    "report_every_rotation": true,
+    "test_fold_used_for_calibration": false,
+    "threshold_selection": false
+  },
+  "coefficient": {
+    "also_report_standardized": true,
+    "basis_reconstruction_error": "bound-normalized six-channel residual RMSE versus full Teacher Upper Bound residual",
+    "coefficient_mae": "continuous raw rank-4 prediction MAE versus true endpoint coefficient",
+    "coefficient_rmse": "continuous raw rank-4 prediction RMSE versus true endpoint coefficient",
+    "endpoint_coefficient_error": "L2 selected raw endpoint versus true raw endpoint"
+  },
+  "efficiency": {
+    "active_gaussian_count": "Gaussians passing the frozen renderer active test",
+    "forward_time": "batch-one aggregation plus predictor and endpoint selection",
+    "peak_vram": "torch.cuda.max_memory_allocated after reset",
+    "predictor_parameters": "all trainable predictor parameters",
+    "render_time": "frozen deformation plus renderer after selection",
+    "timing_protocol": "20 warm-up then 100 synchronized iterations; median and IQR"
+  },
+  "formal_rendering_in_this_task": 0,
+  "identification": {
+    "class_order": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "confusion_matrix": "rows true garment, columns selected endpoint",
+    "macro_5way_top1": "unweighted mean of five per-garment recalls",
+    "per_garment_recall": "TP_g divided by true unique test queries for g",
+    "per_rotation": true,
+    "protocol_weighted": "mean over 20 protocol records per rotation",
+    "top1": "selected endpoint equals true garment",
+    "unique_query": "mean after grouping identical logical_input_sha256 values"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "perturbations": {
+    "assignment_permutation": {
+      "normal_slots": [
+        0,
+        1,
+        2
+      ],
+      "permuted_slots": [
+        2,
+        0,
+        1
+      ]
+    },
+    "mask_dilation": {
+      "iterations": 3,
+      "operation": "scipy.ndimage.binary_dilation",
+      "structure": "SciPy default cross connectivity 1"
+    },
+    "mask_erosion": {
+      "iterations": 3,
+      "operation": "scipy.ndimage.binary_erosion",
+      "structure": "SciPy default cross connectivity 1"
+    },
+    "mild_blur": {
+      "kernel": 11,
+      "padding": "reflect",
+      "scope": "RGB inside clothing mask; restore outside pixels",
+      "sigma": 3.0
+    },
+    "mixed_controller_routing_metrics_used": false,
+    "reference_dropout": {
+      "complete_dropout": "all validity zero; require ABSTAIN_EMPTY_REFERENCE plus Base Avatar, not garment recovery",
+      "drop_one_retained_slots": [
+        0,
+        1
+      ]
+    },
+    "required_reports": [
+      "garment prediction stability",
+      "endpoint selection stability",
+      "coefficient drift",
+      "render drift",
+      "safe behavior"
+    ],
+    "single_reference": {
+      "report": "full identification, coefficient, render, and safety metrics",
+      "retained_slots": [
+        0
+      ]
+    }
+  },
+  "primary_denominator": {
+    "calibration_merged": false,
+    "duplicate_policy": "report protocol-weighted and unique-query metrics; duplicates never add training weight",
+    "formal_pure_20_merged": false,
+    "global_protocol_weighted_count": 80,
+    "global_unique_query_count": 20,
+    "per_rotation_protocol_weighted_count": 20,
+    "per_rotation_unique_query_count": 5,
+    "records": "test-partition pure AAA/BBB protocol records only"
+  },
+  "provenance": [
+    {
+      "path": "tools/paper/run_p0_color_spatial_soft_control_evaluations.py",
+      "sha256_lf": "5922b3ece3c8ecd2936b0a06fddf514c71d2636d31958661ca767241a5af0b51"
+    },
+    {
+      "path": "tools/paper/p0_evaluation_protocol.py",
+      "sha256_lf": "881724a70cbe5bb63bee3bd8decf532ab537efacd00c19fa599ed176e8be7ec4"
+    },
+    {
+      "path": "tools/paper/formal_batch_runtime.py",
+      "sha256_lf": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6"
+    },
+    {
+      "path": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py",
+      "sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720"
+    }
+  ],
+  "render": {
+    "boundary_fscore": {
+      "boundary": "3x3 binary erosion XOR mask",
+      "tolerance_pixels": "max(1,floor(0.005*min(height,width)+0.5))"
+    },
+    "endpoint_parity": "ground-truth class replacement must make CanonDressGS-Endpoint and Outfit-ID Oracle select identical coefficients and produce exact residual/render parity",
+    "identity_metric": "protected-mask mean absolute RGB difference against Base Avatar",
+    "lpips": {
+      "crop": "garment bbox plus 5 percent, aspect-preserving resize and zero pad to 256x256",
+      "mask_threshold": 0.5,
+      "network": "VGG LPIPS v0.1"
+    },
+    "protected_lpips": "LPIPS inside target_protected_mask against Base Avatar render",
+    "reference": "Teacher Upper Bound at identical pose and camera",
+    "rgb_mae": "mean absolute RGB error inside target garment mask",
+    "severe_artifact_grade": {
+      "categories": [
+        "wrong_outfit_endpoint",
+        "cloud_or_mottle",
+        "edge_scatter",
+        "silhouette_discontinuity",
+        "identity_contamination",
+        "component_contamination",
+        "empty_render"
+      ],
+      "review_policy": "review all unique primary test queries without cherry-picking",
+      "scale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "severe": 3
+    },
+    "silhouette_iou": "binary alpha>=0.5 versus target garment mask>=0.5"
+  },
+  "safety": {
+    "component_contamination": "component-contamination grade greater than zero",
+    "empty_render": "no foreground alpha>=0.5 or empty-render grade greater than zero",
+    "identity_contamination": "unique test query count with identity grade greater than zero",
+    "severe_wrong_outfit_endpoint": "wrong endpoint and wrong-outfit grade equals 3",
+    "wrong_outfit_endpoint": "selected endpoint differs from true garment"
+  },
+  "schema_version": "canondressgs.paper.pure_endpoint_evaluator_contract.v1",
+  "status": "FROZEN_BEFORE_TRAINING",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-PROTOCOL-001"
+}

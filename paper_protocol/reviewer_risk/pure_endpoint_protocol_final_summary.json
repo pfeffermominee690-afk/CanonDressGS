@@ -1,0 +1,142 @@
+{
+  "baseline_registry_status": "COMPLETE",
+  "classification": "PURE_ENDPOINT_CROSSFOLD_PROTOCOL_READY",
+  "classification_reason": "pure manifests, formal Ours-v2 model fields, baseline provenance, evaluator denominators, perturbations, and success gates are complete",
+  "evaluator_status": "FROZEN_BEFORE_TRAINING",
+  "execution_counts": {
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "formal_renderer_runs": 0,
+    "forward_training_batches": 0,
+    "optimizer_created": 0,
+    "threshold_selection": 0,
+    "training": 0
+  },
+  "frozen_upstream_mutation_count": 0,
+  "frozen_upstream_sha256_lf": {
+    "paper_protocol/frozen_asset_manifest.json": "ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb",
+    "paper_protocol/reviewer_risk/controller_v2_micro_pilot_rotation_manifests.json": "a0c716cb55df4f5ca026346518a36df4b498a473563391f17c7157e66aba09c8",
+    "paper_protocol/reviewer_risk/dual_support_controller_training_manifest.json": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3",
+    "paper_protocol/reviewer_risk/p0_formal_candidate_final_summary.json": "c8c8f0dbc5e314098b09ad6371c619a9bfd3f08a11a6ad4d075c5b55c0b5bba4",
+    "scene/p0_candidate_adapters.py": "6d96c5d783f7e80257aa9638d178fa9a61b7139c0ab1f7601afe4f646647fb99",
+    "scene/p0_candidate_initialization_protocol.py": "6f4bbd98a6dee280b5a066cbe25646ad37314b51442beae51a498a5eaa57eddb",
+    "tools/paper/formal_batch_runtime.py": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "tools/run_multi_outfit_explicit_basis.py": "d3fe616f84e3635fb54a3f2a8f6d7f733aaadf3a29a8d9cda9d30e6f65458447"
+  },
+  "generation_checks": {
+    "checks": [
+      "four rotations",
+      "pure counts and garment balance",
+      "record and logical disjointness",
+      "reference asset overlap",
+      "model contract complete",
+      "baseline names and provenance",
+      "evaluator denominator separation",
+      "success gates frozen"
+    ],
+    "status": "PASS"
+  },
+  "logical_overlap_all_zero": true,
+  "model_contract_status": "UNAMBIGUOUS",
+  "next_task": "TRAIN_AND_EVALUATE_PURE_ENDPOINT_CORE_METHOD_CROSSFIT",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "per_rotation_counts": {
+    "0": {
+      "calibration": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "test": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "train": {
+        "records": 40,
+        "unique_queries": 10
+      }
+    },
+    "1": {
+      "calibration": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "test": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "train": {
+        "records": 40,
+        "unique_queries": 10
+      }
+    },
+    "2": {
+      "calibration": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "test": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "train": {
+        "records": 40,
+        "unique_queries": 10
+      }
+    },
+    "3": {
+      "calibration": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "test": {
+        "records": 20,
+        "unique_queries": 5
+      },
+      "train": {
+        "records": 40,
+        "unique_queries": 10
+      }
+    }
+  },
+  "pure_task": {
+    "garments": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "identity": "subject02",
+    "paper_method": "CanonDressGS-Endpoint",
+    "scientific_name": "PURE-ENDPOINT CONDITION-FOLD CROSS-FIT"
+  },
+  "reference_asset_overlap_per_rotation": {
+    "mask_calibration_test": 10,
+    "mask_train_calibration": 15,
+    "mask_train_test": 15,
+    "rgb_calibration_test": 10,
+    "rgb_train_calibration": 15,
+    "rgb_train_test": 15
+  },
+  "reports": {
+    "baseline_doc": "docs/PAPER/AAAI27_PURE_ENDPOINT_BASELINE_REGISTRY_20260724.md",
+    "baselines": "paper_protocol/reviewer_risk/pure_endpoint_baseline_registry.json",
+    "claim_doc": "docs/PAPER/AAAI27_PURE_ENDPOINT_CLAIM_BOUNDARY_20260724.md",
+    "evaluator": "paper_protocol/reviewer_risk/pure_endpoint_evaluator_contract.json",
+    "gates": "paper_protocol/reviewer_risk/pure_endpoint_success_gates.json",
+    "handoff": "project_control_handoff/pure_endpoint_protocol_handoff.json",
+    "model": "paper_protocol/reviewer_risk/pure_endpoint_model_contract.json",
+    "protocol": "paper_protocol/reviewer_risk/pure_endpoint_crossfit_protocol.yaml",
+    "protocol_doc": "docs/PAPER/AAAI27_PURE_ENDPOINT_CORE_METHOD_PROTOCOL_20260724.md",
+    "rotations": "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json",
+    "summary": "paper_protocol/reviewer_risk/pure_endpoint_protocol_final_summary.json"
+  },
+  "run_branch": "research/pure-endpoint-core-method-protocol-20260724",
+  "schema_version": "canondressgs.paper.pure_endpoint_protocol_final_summary.v1",
+  "source_branch": "research/controller-v2-crossfit-micro-pilot-from-repaired-contract-20260723",
+  "source_head": "a8557b461f301c19a0f24eb17d924ddd9159a580",
+  "success_gate_status": "PREREGISTERED_BEFORE_TRAINING",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-PROTOCOL-001"
+}

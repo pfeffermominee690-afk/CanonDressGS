@@ -1,0 +1,30 @@
+{
+  "decision_rules": {
+    "PURE_ENDPOINT_CORE_METHOD_PARTIAL": "at least one but not all rotation clauses pass",
+    "PURE_ENDPOINT_CORE_METHOD_SUPPORTED": "all primary gate clauses pass on frozen crossfit results",
+    "REFERENCE_CONTROL_NOT_SUPPORTED": "reference identification fails while Outfit-ID Oracle endpoint parity and rendering remain valid"
+  },
+  "information_ablation": {
+    "complete_dropout_garment_recovery_required": false,
+    "complete_dropout_required_behavior": "SAFE_ABSTAIN_AND_BASE_AVATAR",
+    "single_reference_full_report_required": true,
+    "single_reference_gate_required": false
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "post_result_gate_changes_allowed": false,
+  "primary_gate": {
+    "all_clauses_required": true,
+    "endpoint_parity": "PASS",
+    "every_garment_recall_min": 0.75,
+    "every_rotation_top1_min": 0.8,
+    "identity_contamination_count": 0,
+    "macro_5way_top1_min": 0.9,
+    "severe_wrong_outfit_endpoint_rate_max": 0.05
+  },
+  "primary_method": "CanonDressGS-Endpoint",
+  "schema_version": "canondressgs.paper.pure_endpoint_success_gates.v1",
+  "status": "PREREGISTERED_BEFORE_TRAINING",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-PROTOCOL-001",
+  "threshold_selection_allowed": false
+}

@@ -1,0 +1,269 @@
+{
+  "basis": {
+    "asset": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/selected_basis.pt",
+    "channel_bounds": {
+      "log_scaling": 0.35,
+      "opacity_logit": 2.0,
+      "rotation": 0.2617993878,
+      "sh0": 0.25,
+      "shN": 0.1,
+      "xyz": 0.05
+    },
+    "explained_variance": 0.9999999999978457,
+    "method": "deterministic centered SVD",
+    "rank": 4,
+    "schema": "canondressgs.multi_outfit_explicit_basis_artifact.v1",
+    "sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430",
+    "trainable": false
+  },
+  "checkpoint_rule": {
+    "best_checkpoint_selection": false,
+    "evaluate_checkpoint": 300,
+    "exact_resume_required": true,
+    "milestone_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "payload": [
+      "model state",
+      "optimizer state",
+      "scheduler state",
+      "RNG state",
+      "global step",
+      "condition position",
+      "frozen asset fingerprints"
+    ],
+    "writes_per_run": 6
+  },
+  "classification_on_missing_field": "PURE_ENDPOINT_PROTOCOL_BLOCKED_MODEL_CONTRACT",
+  "coefficient_target": {
+    "mean": [
+      -1.220703143189894e-05,
+      -3.051757857974735e-06,
+      2.441406286379788e-05,
+      -6.103515625e-05
+    ],
+    "normalization_asset": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/coefficient_normalization.json",
+    "normalization_asset_sha256": "c4eef5e6f86d91315d5e2a13d4e7949e0e6eaebde6182f3a60e5574790044fb2",
+    "normalization_scope": "five closed-wardrobe endpoint coefficients; every rotation train partition contains all five garments",
+    "raw_target": "teacher_coefficients[outfit] in selected_basis.pt; one rank-4 canonical endpoint coefficient per closed-wardrobe garment",
+    "standardized_target": "y_g = (c_g - mean) / std",
+    "std": [
+      412.4079895019531,
+      364.3363037109375,
+      313.2566223144531,
+      297.9817810058594
+    ],
+    "test_condition_statistics_used": false
+  },
+  "endpoint_selection": {
+    "candidate_order": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "distance": "squared L2 in standardized rank-4 coefficient space",
+    "linear_coefficient_predictor_baseline": "renders the de-normalized continuous prediction before snapping",
+    "rule": "argmin_g ||predicted_standardized-target_standardized[g]||_2^2",
+    "selected_residual": "basis(selected raw teacher coefficient); continuous prediction is not rendered by CanonDressGS-Endpoint",
+    "tie_break": "first garment in frozen candidate_order"
+  },
+  "execution_in_this_task": {
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "formal_renderer_runs": 0,
+    "forward_training_batches": 0,
+    "optimizer_created": 0,
+    "training": 0
+  },
+  "frozen_f2": {
+    "backbone_checkpoint": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth",
+    "backbone_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+    "backbone_state_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+    "per_reference_contract": "clothing-weighted mean concatenated with clothing-masked max",
+    "per_reference_output_dimension": 256,
+    "predictor_input_dimension": 512,
+    "reference_count_normal": 3,
+    "set_aggregation": "validity-aware mean concatenated with validity-aware max",
+    "trainable": false
+  },
+  "frozen_runtime": {
+    "base_gaussian_state_fingerprint": "de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9",
+    "mmlp_human_checkpoint": "${CANONDRESSGS_OUTPUT_ROOT}/subject02_formal_800k/chkpnt100000.pth",
+    "mmlp_human_checkpoint_sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+    "renderer_source_bundle_sha256": "0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6",
+    "teacher_endpoint_bank": {
+      "O01": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+        "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+      },
+      "O02": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth",
+        "sha256": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820"
+      },
+      "O03": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+        "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+      },
+      "O04": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+        "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+      },
+      "O08": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth",
+        "sha256": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e"
+      }
+    }
+  },
+  "historical_internal_name": "Ours-v2",
+  "identity": "subject02",
+  "loss": {
+    "classification_loss": 0.0,
+    "definition": "mean smooth_l1(predicted-target,beta=1); 0.5*d^2 for |d|<1, |d|-0.5 otherwise",
+    "domain": "standardized rank-4 coefficients",
+    "name": "coefficient SmoothL1 only",
+    "pairwise_geometry_weight": 0.0,
+    "reduction": "mean over batch and four dimensions",
+    "render_loss": 0.0
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "paper_name": "CanonDressGS-Endpoint",
+  "pipeline": [
+    "reference RGB and clothing mask",
+    "frozen F2",
+    "per-reference clothing-weighted mean and clothing-masked max",
+    "deterministic validity-aware reference-set mean and max",
+    "LayerNorm(512)",
+    "Linear(512,4)",
+    "coefficient de-normalization",
+    "nearest frozen endpoint in standardized coefficient space",
+    "rank-4 explicit canonical residual basis",
+    "frozen MMLP-Human deformation and renderer"
+  ],
+  "prediction_boundary": {
+    "allowed_inputs": [
+      "reference_rgb",
+      "reference_clothing_mask",
+      "reference_foreground_mask",
+      "reference_validity"
+    ],
+    "empty_reference_guard": "valid count zero emits ABSTAIN_EMPTY_REFERENCE and Base Avatar; no garment endpoint is selected",
+    "forbidden_inputs": [
+      "target_rgb",
+      "target_mask",
+      "target_pose",
+      "target_camera",
+      "ground_truth_outfit_id",
+      "ground_truth_coefficient",
+      "teacher_residual",
+      "pair_label",
+      "mixture_alpha",
+      "compatibility_label",
+      "AAB",
+      "ABB"
+    ],
+    "target_pose_camera_downstream_renderer_only": true
+  },
+  "predictor": {
+    "architecture": "LayerNorm(512) followed by Linear(512,4); no output activation",
+    "initialization": {
+      "layer_norm_bias": 0.0,
+      "layer_norm_weight": 1.0,
+      "linear_bias": 0.0,
+      "linear_weight": 0.0,
+      "semantics": "mean-garment standardized coefficient at step zero"
+    },
+    "input_dimension": 512,
+    "output_dimension": 4,
+    "parameter_breakdown": {
+      "layer_norm_weight_bias": 1024,
+      "linear_weight_bias": 2052
+    },
+    "parameter_count": 3076
+  },
+  "provenance": [
+    {
+      "path": "scene/p0_candidate_initialization_protocol.py",
+      "sha256_lf": "6f4bbd98a6dee280b5a066cbe25646ad37314b51442beae51a498a5eaa57eddb"
+    },
+    {
+      "path": "scene/p0_candidate_adapters.py",
+      "sha256_lf": "6d96c5d783f7e80257aa9638d178fa9a61b7139c0ab1f7601afe4f646647fb99"
+    },
+    {
+      "path": "tools/paper/formal_batch_runtime.py",
+      "sha256_lf": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/p0_formal_candidate_run_registry.yaml",
+      "sha256_lf": "7f6afad5eeef8ce66a0e0754d349e69f2df7d7c18c3b56722b0c8df67d4b1605"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/p0_formal_candidate_final_summary.json",
+      "sha256_lf": "c8c8f0dbc5e314098b09ad6371c619a9bfd3f08a11a6ad4d075c5b55c0b5bba4"
+    },
+    {
+      "path": "paper_protocol/frozen_asset_manifest.json",
+      "sha256_lf": "ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb"
+    },
+    {
+      "path": "tools/run_multi_outfit_explicit_basis.py",
+      "sha256_lf": "d3fe616f84e3635fb54a3f2a8f6d7f733aaadf3a29a8d9cda9d30e6f65458447"
+    }
+  ],
+  "schema_version": "canondressgs.paper.pure_endpoint_model_contract.v1",
+  "status": "UNAMBIGUOUS",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-PROTOCOL-001",
+  "training_plan": {
+    "batch_rule": "one unique pure query per garment in frozen garment order; pair-container duplicates add no weight",
+    "batch_size": 5,
+    "best_seed_selection": false,
+    "condition_order_per_rotation": "registered two train folds, round-robin as train_folds[(step-1) mod 2]",
+    "data_order_identical_across_replicates": true,
+    "early_stopping": false,
+    "garment_order": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "gradient_clip_norm": 5.0,
+    "initialization_is_seed_independent_by_contract": true,
+    "optimizer": {
+      "amsgrad": false,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "class": "torch.optim.Adam",
+      "epsilon": 1e-08,
+      "learning_rate": 0.02,
+      "weight_decay": 0.0
+    },
+    "replicate_indices": [
+      0,
+      1,
+      2
+    ],
+    "runs": "4 rotations x 3 deterministic protocol replicates",
+    "scheduler": {
+      "class": "torch.optim.lr_scheduler.LambdaLR",
+      "multiplier": 1.0
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "steps": 300,
+    "threshold_selection": false
+  }
+}
