@@ -74,6 +74,10 @@ def test_zero_copy_runtime_and_camera_contracts() -> None:
     assert runtime["status"] == "DATASET_AND_PARAMETER_ADAPTER_SMOKE_PASS"
     assert runtime["blocker"] == "TEMPLATE_AND_LBS_ASSETS_REQUIRED"
     assert runtime["mutation_audit"]["raw_tree_metadata_unchanged"] is True
+    assert adapter["frozen_provenance"]["post_smoke_rehash_status"] == "MATCH"
+    assert adapter["frozen_provenance"]["raw_full_content_fingerprint"] == (
+        "00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15"
+    )
 
 
 def test_smpl_schema_neutral_compatibility_and_unknown_gender() -> None:
@@ -189,5 +193,6 @@ def test_preflight_classification_and_all_forbidden_counts() -> None:
         assert counts[key] == 0
     assert summary["classification"] == preflight["classification"]
     assert summary["paper_final"] == 0
+    assert all(row["status"] == "MATCH" for row in summary["post_smoke_rehash_audit"].values() if isinstance(row, dict))
     assert summary["next_task"] == "PREPARE_AVATARREX_LBN1_BASE_AVATAR_DERIVED_ASSETS_WITHOUT_TRAINING"
     assert summary["next_task_automatic_execution"] is False

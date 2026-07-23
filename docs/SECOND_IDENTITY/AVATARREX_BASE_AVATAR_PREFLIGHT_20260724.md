@@ -8,6 +8,8 @@ Runtime status: `DATASET_AND_PARAMETER_ADAPTER_SMOKE_PASS`. The 16-camera calibr
 
 This task does not claim a complete model or render pass. `/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/gaussian/template.ply` and `/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/gaussian/lbs_weights_grid.npz` are absent, so the explicit blocker is `TEMPLATE_AND_LBS_ASSETS_REQUIRED`. Calling `Scene` was intentionally forbidden because the missing-template fallback writes derived files.
 
+After all smoke operations, the complete 60834-file raw tree was content-rehashed with `sha256(sorted(relative_path<TAB>bytes<TAB>file_sha256_hex<LF>))`; it matched `00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15`. The retained archive, calibration JSON, and SMPL-X NPZ also matched their frozen SHA256 values.
+
 ## Calibration And Pose
 
 - Raw/runtime extrinsics: `x_camera = R @ x_world + T`; camera center `C=-R^T T`.

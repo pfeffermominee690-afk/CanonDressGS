@@ -20,8 +20,10 @@ RAW_ROOT = "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex
 ARCHIVE_PATH = "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z"
 ARCHIVE_SHA256 = "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1"
 RAW_FINGERPRINT = "00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15"
+RAW_FINGERPRINT_ALGORITHM = "sha256(sorted(relative_path<TAB>bytes<TAB>file_sha256_hex<LF>))"
 CALIBRATION_SHA256 = "793281a00b808976122c0d33b4dd22d0ed0a48518577345c709db6cbb3d7f315"
 SMPL_SHA256 = "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b"
+REHASH_AT_UTC = "2026-07-23T22:35:32Z"
 
 
 def canonical_sha256(value: Any) -> str:
@@ -210,6 +212,15 @@ def build_runtime_adapter(old_adapter: dict[str, Any], runtime: dict[str, Any]) 
             "logical_rgb_mask_pairs": 30416,
             "all_pairs_available": True,
             "source": "avatarrex_camera_pose_split.json:availability_manifest",
+        },
+        "frozen_provenance": {
+            "archive_sha256": ARCHIVE_SHA256,
+            "raw_full_content_fingerprint": RAW_FINGERPRINT,
+            "raw_full_content_fingerprint_algorithm": RAW_FINGERPRINT_ALGORITHM,
+            "calibration_sha256": CALIBRATION_SHA256,
+            "smpl_params_sha256": SMPL_SHA256,
+            "post_smoke_rehash_at_utc": REHASH_AT_UTC,
+            "post_smoke_rehash_status": "MATCH",
         },
         "calibration_adapter": {
             "mode": "READ_ONLY_IN_MEMORY",
@@ -644,10 +655,13 @@ def build_preflight_contract(
             "raw_file_count": 60834,
             "raw_apparent_bytes": 19135049684,
             "raw_full_content_fingerprint": RAW_FINGERPRINT,
+            "raw_full_content_fingerprint_algorithm": RAW_FINGERPRINT_ALGORITHM,
             "calibration_sha256": CALIBRATION_SHA256,
             "smpl_params_sha256": SMPL_SHA256,
             "adapter_sha256": None,
             "split_sha256": None,
+            "post_smoke_rehash_at_utc": REHASH_AT_UTC,
+            "post_smoke_rehash_status": "MATCH",
         },
         "gates": {
             "license": "PASS_PRIVATE_INTERNAL_NONCOMMERCIAL_SINGLE_SITE_ONLY",
@@ -807,6 +821,35 @@ def build_final_summary(runtime: dict[str, Any], artifact_parent_head: str) -> d
             f"{RAW_ROOT}/gaussian/init_body_points.ply",
         ],
         "model_render_claim": "No complete model/render PASS is claimed; only DATASET_AND_PARAMETER_ADAPTER_SMOKE_PASS.",
+        "post_smoke_rehash_audit": {
+            "completed_at_utc": REHASH_AT_UTC,
+            "raw_tree": {
+                "file_count": 60834,
+                "bytes": 19135049684,
+                "algorithm": RAW_FINGERPRINT_ALGORITHM,
+                "expected": RAW_FINGERPRINT,
+                "observed": RAW_FINGERPRINT,
+                "status": "MATCH",
+            },
+            "archive": {
+                "bytes": 12569755256,
+                "expected_sha256": ARCHIVE_SHA256,
+                "observed_sha256": ARCHIVE_SHA256,
+                "status": "MATCH",
+            },
+            "calibration": {
+                "bytes": 15350,
+                "expected_sha256": CALIBRATION_SHA256,
+                "observed_sha256": CALIBRATION_SHA256,
+                "status": "MATCH",
+            },
+            "smpl_params": {
+                "bytes": 1309966,
+                "expected_sha256": SMPL_SHA256,
+                "observed_sha256": SMPL_SHA256,
+                "status": "MATCH",
+            },
+        },
         "forbidden_counts": runtime["mutation_audit"],
         "reports": [
             "docs/DATASET/AVATARREX_LICENSE_CLOSURE_20260724.md",
@@ -845,8 +888,11 @@ def build_handoff(summary: dict[str, Any], artifacts: dict[str, str]) -> dict[st
             "archive_path": ARCHIVE_PATH,
             "archive_sha256": ARCHIVE_SHA256,
             "raw_full_content_fingerprint": RAW_FINGERPRINT,
+            "raw_full_content_fingerprint_algorithm": RAW_FINGERPRINT_ALGORITHM,
             "calibration_sha256": CALIBRATION_SHA256,
             "smpl_params_sha256": SMPL_SHA256,
+            "post_smoke_rehash_at_utc": REHASH_AT_UTC,
+            "post_smoke_rehash_status": "MATCH",
         },
         "private_output_policy": "All raw data, derived assets, templates, LBS volumes, position maps, and data-derived checkpoints remain private at the same organizational site.",
         "runtime_status": "DATASET_AND_PARAMETER_ADAPTER_SMOKE_PASS",
@@ -910,6 +956,8 @@ Task: `{TASK_ID}`
 Runtime status: `{runtime['status']}`. The 16-camera calibration audit, 3-camera x 3-frame loader smoke, SMPL-X schema, neutral SMPL-X forward, strict split regeneration, config parse, and model/renderer interface parse passed. Raw tree metadata was unchanged before and after the smoke.
 
 This task does not claim a complete model or render pass. `{RAW_ROOT}/gaussian/template.ply` and `{RAW_ROOT}/gaussian/lbs_weights_grid.npz` are absent, so the explicit blocker is `TEMPLATE_AND_LBS_ASSETS_REQUIRED`. Calling `Scene` was intentionally forbidden because the missing-template fallback writes derived files.
+
+After all smoke operations, the complete 60834-file raw tree was content-rehashed with `sha256(sorted(relative_path<TAB>bytes<TAB>file_sha256_hex<LF>))`; it matched `{RAW_FINGERPRINT}`. The retained archive, calibration JSON, and SMPL-X NPZ also matched their frozen SHA256 values.
 
 ## Calibration And Pose
 
