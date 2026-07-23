@@ -35,7 +35,17 @@ class Scene:
         init_smpl(args.smpl_pkl_path)
 
         # dataset
-        frame_ids = np.arange(args.begin_ith_frame, args.begin_ith_frame+args.frame_interval*args.num_train_frame, args.frame_interval).tolist()
+        configured_frame_ids = getattr(args, 'train_frame_ids', None)
+        frame_ids = (
+            list(configured_frame_ids)
+            if configured_frame_ids is not None
+            else np.arange(
+                args.begin_ith_frame,
+                args.begin_ith_frame
+                + args.frame_interval * args.num_train_frame,
+                args.frame_interval,
+            ).tolist()
+        )
         cam_ids = np.array(args.train_cam_ids).tolist()
         image_scaling = args.image_scaling
         DatasetType = get_dataset_type(args.data_dir)
@@ -63,8 +73,8 @@ class Scene:
         trainloader = DataLoader(
             dataset=trainset,
             batch_size=1,
-            shuffle=True,
-            num_workers=8,
+            shuffle=getattr(args, 'train_shuffle', True),
+            num_workers=getattr(args, 'train_num_workers', 8),
             persistent_workers=False,
             pin_memory=True,
         )

@@ -1,0 +1,855 @@
+{
+  "PAPER_FINAL": 0,
+  "authorization_boundary": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "training_authorized_before_this_contract_is_pushed": false,
+    "training_forwards": 0
+  },
+  "budget": {
+    "backward_calls": 384,
+    "batch_size": 1,
+    "evaluation_renders": 216,
+    "main_visual_reviews": 192,
+    "optimizer_steps": 384,
+    "seed": 0,
+    "training_forwards": 384,
+    "training_runs": 1
+  },
+  "checkpoint_steps": [
+    0,
+    96,
+    192,
+    288,
+    384
+  ],
+  "classification": "PRE_RESULT_EXECUTION_CONTRACT_FROZEN",
+  "execution_implementation": {
+    "hash_policy": "normalize CRLF and CR to LF before SHA256",
+    "files": {
+      "scene/scene.py": "64cf96fa31eafe51d39b98d3110be0802c9b18d2893cec115137cd1d0c3c0993",
+      "tools/second_identity/run_subject00_short_canary.py": "2520fb2ebc88eb621b1dafc7cc57987ab858fbd7e342465dc5df176eb333076c"
+    }
+  },
+  "diagnostic_query_ordinals": [
+    1,
+    24,
+    25,
+    48,
+    49,
+    72,
+    73,
+    96
+  ],
+  "diagnostic_steps": [
+    96,
+    192,
+    288
+  ],
+  "evaluation_query_count": 96,
+  "evaluation_query_order_sha256": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+  "fixed_policies": {
+    "boundary_f_tolerance_pixels": 3,
+    "evaluation_background": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "lpips_input": "foreground square crop resized to 512, matching formal loss",
+    "primary_image_error": "lpips",
+    "silhouette_threshold": 0.5,
+    "training_background": "torch.rand(3, device='cuda') once per training batch",
+    "visual_composite_height_pixels": 320
+  },
+  "formal_evaluation_steps": [
+    0,
+    384
+  ],
+  "pre_result_snapshot": {
+    "attachment_inventory": {
+      "arrays": {
+        "attachment_valid": {
+          "dtype": "torch.uint8",
+          "sha256": "6015fcd09f3f14b7da9d89cb95f1e4ee007948bc7cf9a59be8163c3460e4f954",
+          "shape": [
+            200000
+          ]
+        },
+        "barycentric": {
+          "dtype": "torch.float64",
+          "sha256": "8c5a1889c296609d800b51f6decc5b5b81f20803b7e98778cf9ac4220538da23",
+          "shape": [
+            200000,
+            3
+          ]
+        },
+        "canonical_xyz": {
+          "dtype": "torch.float64",
+          "sha256": "f096c2b6d6686c298724f66b559cc82e8917dea64e4e910c6f4564ca0e4296b4",
+          "shape": [
+            200000,
+            3
+          ]
+        },
+        "component_ids": {
+          "dtype": "torch.int16",
+          "sha256": "b91c843c4ff70ffd641e1ad61244e5bccf7ff2a6c88a0290d1edf0463c45758b",
+          "shape": [
+            200000
+          ]
+        },
+        "face_ids": {
+          "dtype": "torch.int64",
+          "sha256": "2f63bb67f115661614fa6be9cbb584240e5b88ee928f65b95e3fc316c1c195a4",
+          "shape": [
+            200000
+          ]
+        },
+        "gaussian_indices": {
+          "dtype": "torch.int64",
+          "sha256": "fb545a85ce37ecb423552e75d31c0c396a611e9029f9cdeaf3fad43bc4f5d87c",
+          "shape": [
+            200000
+          ]
+        },
+        "lbs_weights": {
+          "dtype": "torch.float32",
+          "sha256": "5176b447e1213e9275e08633589ef32ba4841825a05957d77b2f2c4ce18dc899",
+          "shape": [
+            200000,
+            55
+          ]
+        },
+        "semantic_region_ids": {
+          "dtype": "torch.int16",
+          "sha256": "75d964575e616950298b610b535f30c5b2fb52368e0e370c3aaf31f719a777a6",
+          "shape": [
+            200000
+          ]
+        },
+        "source_type_ids": {
+          "dtype": "torch.uint8",
+          "sha256": "6015fcd09f3f14b7da9d89cb95f1e4ee007948bc7cf9a59be8163c3460e4f954",
+          "shape": [
+            200000
+          ]
+        },
+        "surface_distance": {
+          "dtype": "torch.float64",
+          "sha256": "58e0a2f7c0e88d03332c57054d218a14ea5c2b4a408cc7a5f7780f04298ba981",
+          "shape": [
+            200000
+          ]
+        }
+      },
+      "attachment_count": 200000,
+      "attachment_valid_count": 200000,
+      "gaussian_count": 200000,
+      "lbs_shape": [
+        200000,
+        55
+      ],
+      "manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8",
+      "off_surface_count": 0,
+      "template_faces_sha256": "c69d15f4631b49585df55b4581c6b47ba731af5bc7ff04461c6ba0e25c557a1d",
+      "template_ply_sha256": "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031",
+      "template_vertices_sha256": "7d5450e493c6d6d211bd051dadbb83eaf362b8652d849f859acd11513b46936c"
+    },
+    "external_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/snapshots/pre_result_snapshot.json",
+    "external_sha256": "e60be713e3a3cdd14cd93aaaa6380c73dd36067da528b81cdf7a413f784f6620",
+    "model_inventory": {
+      "frozen_scalar_count_selected": 11631120,
+      "frozen_tensors": {
+        "_weights": {
+          "dtype": "torch.float32",
+          "numel": 11000000,
+          "requires_grad": false,
+          "sha256": "5176b447e1213e9275e08633589ef32ba4841825a05957d77b2f2c4ce18dc899",
+          "shape": [
+            200000,
+            55
+          ]
+        },
+        "_xyz": {
+          "dtype": "torch.float32",
+          "numel": 600000,
+          "requires_grad": false,
+          "sha256": "e7e539b14f31f185bccc8d38260daab0063bd6ab85fb10bf62f2b9e46614f1d4",
+          "shape": [
+            200000,
+            3
+          ]
+        },
+        "joint_parents": {
+          "dtype": "torch.int64",
+          "numel": 55,
+          "requires_grad": false,
+          "sha256": "b47cce371bad79c83ff18ecef858db3712f38410091b600574f0eacb57306d93",
+          "shape": [
+            55
+          ]
+        },
+        "t_joints": {
+          "dtype": "torch.float32",
+          "numel": 165,
+          "requires_grad": false,
+          "sha256": "86d3a1b11a0cdfb275b125e19fef3dc5baf74521d6dd60f4c2cdc5994ba72f59",
+          "shape": [
+            55,
+            3
+          ]
+        },
+        "xyz_ft": {
+          "dtype": "torch.float32",
+          "numel": 900,
+          "requires_grad": false,
+          "sha256": "1f4d33de00b113b0306a14b82f8031e06bf5043330498d39f4df1eeb7aad2a2c",
+          "shape": [
+            300,
+            3
+          ]
+        },
+        "xyz_vt": {
+          "dtype": "torch.float32",
+          "numel": 30000,
+          "requires_grad": false,
+          "sha256": "0dba35536cadd448152e6ded6fb4104fa3b3cdc46aedc730d47f4a3a2ea99a50",
+          "shape": [
+            10000,
+            3
+          ]
+        }
+      },
+      "trainable_parameters": {
+        "_opacity": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 200000,
+          "requires_grad": true,
+          "sha256": "d53ef6684f0c46236b7a6de7f7a039a53ed249f4b4dcbe3bbf449854551d807f",
+          "shape": [
+            200000
+          ]
+        },
+        "_rotation": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 800000,
+          "requires_grad": true,
+          "sha256": "1525c84de097fa9e055aea8ccd22d4b997eab9b4023aacf4df8ce5e6b426f77a",
+          "shape": [
+            200000,
+            4
+          ]
+        },
+        "_scaling": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 600000,
+          "requires_grad": true,
+          "sha256": "32f2e4cd79bd6ca973f10a0a0e8d7d4fc422d4d629cec3f12f8638c4cb7fd1bb",
+          "shape": [
+            200000,
+            3
+          ]
+        },
+        "_sh0": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 600000,
+          "requires_grad": true,
+          "sha256": "2a638511358c57fd3502715df9f97f6be12b5bea719df0dc39185e291832cce8",
+          "shape": [
+            200000,
+            1,
+            3
+          ]
+        },
+        "_shN": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 1800000,
+          "requires_grad": true,
+          "sha256": "4f8e006788058cdc3574f711d9adc4a35932d34b9fb3e2a567e6218caa000a8c",
+          "shape": [
+            200000,
+            3,
+            3
+          ]
+        },
+        "dxyz_bs": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 450000,
+          "requires_grad": true,
+          "sha256": "a5a3e6470000313270a4e27d8b4bf262ec0a6c72529c537d3d4cdb9c29d92bb7",
+          "shape": [
+            10000,
+            15,
+            3
+          ]
+        },
+        "dxyz_vt": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 30000,
+          "requires_grad": true,
+          "sha256": "9a413b131ecf0ccfb02a837ddb33766d8604cc00da7937b79bd363b53c8d7d86",
+          "shape": [
+            10000,
+            3
+          ]
+        },
+        "encoder_feat_params.layers.0.bias": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 153600,
+          "requires_grad": true,
+          "sha256": "9e93df4e0eb99c5c3389d7d3af041fe94a6ad78262a2b4f4862c98cdef401c61",
+          "shape": [
+            300,
+            512
+          ]
+        },
+        "encoder_feat_params.layers.0.weight": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 9676800,
+          "requires_grad": true,
+          "sha256": "10ae562e66c348980c640e9d8c86474c0702943c8ab81ebcffc893c7aca89470",
+          "shape": [
+            300,
+            512,
+            63
+          ]
+        },
+        "encoder_feat_params.layers.2.bias": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 76800,
+          "requires_grad": true,
+          "sha256": "bf4a490f09ed9d184c9d3ef7cba426408c691cef7594c7139d0a9316bb7fb860",
+          "shape": [
+            300,
+            256
+          ]
+        },
+        "encoder_feat_params.layers.2.weight": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 39321600,
+          "requires_grad": true,
+          "sha256": "9af7d106b9fd34777dab53e334db8daac7e16edb7322c43a0d449f990f80adc1",
+          "shape": [
+            300,
+            256,
+            512
+          ]
+        },
+        "encoder_feat_params.layers.4.bias": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 76800,
+          "requires_grad": true,
+          "sha256": "ebdcf776c4ab2850fabcb5671a7d1a9e736432fc053bb46bb6ea11911b216217",
+          "shape": [
+            300,
+            256
+          ]
+        },
+        "encoder_feat_params.layers.4.weight": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 19660800,
+          "requires_grad": true,
+          "sha256": "86a6bbb1f459f79dd36721875ad0119d8cceff0227b133f68f02b81ea2ed9f8e",
+          "shape": [
+            300,
+            256,
+            256
+          ]
+        },
+        "encoder_feat_params.layers.6.bias": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 76800,
+          "requires_grad": true,
+          "sha256": "35785aff409f1c195896730441c0bdc57287203d545bc0f04efeba617ad7f1cf",
+          "shape": [
+            300,
+            256
+          ]
+        },
+        "encoder_feat_params.layers.6.weight": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 19660800,
+          "requires_grad": true,
+          "sha256": "6de70a06d1bf413607fe543475e9aeae212f777ea03aec9c6fb4f31ec8377a79",
+          "shape": [
+            300,
+            256,
+            256
+          ]
+        },
+        "encoder_feat_params.layers.8.bias": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 9000,
+          "requires_grad": true,
+          "sha256": "95222d69648c963cdd39100c2bdf864abdaa68ceaef8da0c6e1ffcca93b05c9a",
+          "shape": [
+            300,
+            30
+          ]
+        },
+        "encoder_feat_params.layers.8.weight": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 2304000,
+          "requires_grad": true,
+          "sha256": "4fea7e1d9bd8484b947030af049e41c5053c7f8f236c34aef2d8d43c4d8bbfa5",
+          "shape": [
+            300,
+            30,
+            256
+          ]
+        },
+        "opacity_bs": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 3000000,
+          "requires_grad": true,
+          "sha256": "4b325cff47acd4e708509ae30536efc8cc03346c7b55e76457751ba62d463822",
+          "shape": [
+            200000,
+            15
+          ]
+        },
+        "rotation_bs": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 12000000,
+          "requires_grad": true,
+          "sha256": "5fea34dcd27c0aa506424387f5633d29771e88e407e42999160374484ad4af3b",
+          "shape": [
+            200000,
+            15,
+            4
+          ]
+        },
+        "scaling_bs": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 9000000,
+          "requires_grad": true,
+          "sha256": "5716242a3d80618dcc890702a0c4fdacbb7fd743d19edb4ad54cf4830f58bd0a",
+          "shape": [
+            200000,
+            15,
+            3
+          ]
+        },
+        "sh0_bs": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 9000000,
+          "requires_grad": true,
+          "sha256": "215511d0f9ceec9c2de528a73db1816c324a79f701cf0590c10cc23a9c78e4d6",
+          "shape": [
+            200000,
+            15,
+            1,
+            3
+          ]
+        },
+        "shN_bs": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 27000000,
+          "requires_grad": true,
+          "sha256": "f1e6edd879de71a2f918a1475d001aff50addaea5c4d18be4328f9009afef24a",
+          "shape": [
+            200000,
+            15,
+            3,
+            3
+          ]
+        },
+        "xyz_offset": {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "numel": 600000,
+          "requires_grad": true,
+          "sha256": "2a638511358c57fd3502715df9f97f6be12b5bea719df0dc39185e291832cce8",
+          "shape": [
+            200000,
+            3
+          ]
+        }
+      },
+      "trainable_scalar_count": 156097000
+    },
+    "rng_state": {
+      "bytes": 14310,
+      "cuda_device_count": 1,
+      "cuda_rng_sha256": [
+        "1614b2b17996da052c99a6a7b511f7d953baa58e6de82041d1506b3d9fa72d60"
+      ],
+      "numpy": true,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/snapshots/pre_result_rng_state.pt",
+      "python": true,
+      "sha256": "058dbf84404af8ff8e41ad4e0597240d91717a33328d61782b4b7c66382a4191",
+      "torch": true,
+      "torch_rng_sha256": "c15b4be993f84cfc635d0058cc66b0a0ce664e6fb22302d6df270e72a2a30a0b"
+    },
+    "runtime_lbs_counters": {
+      "legacy_grid_loads": 0,
+      "off_surface_rebind_attempts_rejected": 0,
+      "spatial_weight_queries": 0,
+      "topology_mutation_attempts_rejected": 0
+    },
+    "step0_evaluation": {
+      "contact_sheet_count": 12,
+      "contact_sheets": [
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_01.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_02.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_03.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_04.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_05.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_06.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_07.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_08.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_09.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_10.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_11.jpg",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/visuals/step_000000_contact_sheets/sheet_12.jpg"
+      ],
+      "failed_render_count": 0,
+      "lpips_available": true,
+      "lpips_unavailable_reason": null,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/evaluations/step_000000_results.json",
+      "primary_image_error": "lpips",
+      "quadrants": {
+        "Q_HELDOUT_POSE_HELDOUT_CAMERA": {
+          "metrics": {
+            "alpha_occupancy": {
+              "max": 0.10692775416802877,
+              "mean": 0.042875340525226104,
+              "median": 0.03846976135992154,
+              "min": 0.023386073880353058
+            },
+            "boundary_f_score": {
+              "max": 0.654717231826872,
+              "mean": 0.5148629692781667,
+              "median": 0.5117749988882427,
+              "min": 0.3702135574987667
+            },
+            "depth_finite_ratio": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0
+            },
+            "foreground_coverage": {
+              "max": 0.10174174566851912,
+              "mean": 0.04082851149613164,
+              "median": 0.036537430532853875,
+              "min": 0.02228244524354364
+            },
+            "lpips": {
+              "max": 0.162203848361969,
+              "mean": 0.13689511766036352,
+              "median": 0.13549309968948364,
+              "min": 0.12147584557533264
+            },
+            "peak_vram_bytes": {
+              "max": 1612932608.0,
+              "mean": 1610467946.6666667,
+              "median": 1610211840.0,
+              "min": 1609060352.0
+            },
+            "psnr": {
+              "max": 26.973499298095703,
+              "mean": 23.19017243385315,
+              "median": 23.420373916625977,
+              "min": 17.877286911010742
+            },
+            "render_seconds": {
+              "max": 0.0034484192728996277,
+              "mean": 0.003071173715094725,
+              "median": 0.003052394837141037,
+              "min": 0.0026296451687812805
+            },
+            "rgb_mae": {
+              "max": 0.037399981170892715,
+              "mean": 0.012751839860963324,
+              "median": 0.011114886030554771,
+              "min": 0.0055264742113649845
+            },
+            "silhouette_iou": {
+              "max": 0.8768553279792172,
+              "mean": 0.844019006177208,
+              "median": 0.8451930913864079,
+              "min": 0.79709529872212
+            },
+            "ssim": {
+              "max": 0.9851179122924805,
+              "mean": 0.9696056122581164,
+              "median": 0.9723069965839386,
+              "min": 0.92402583360672
+            }
+          },
+          "query_count": 24
+        },
+        "Q_HELDOUT_POSE_TRAIN_CAMERA": {
+          "metrics": {
+            "alpha_occupancy": {
+              "max": 0.11478653154625695,
+              "mean": 0.042276588209654575,
+              "median": 0.03718175874468781,
+              "min": 0.023023210199411573
+            },
+            "boundary_f_score": {
+              "max": 0.671190766121006,
+              "mean": 0.5143651513179609,
+              "median": 0.5094224376156806,
+              "min": 0.37112050692238313
+            },
+            "depth_finite_ratio": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0
+            },
+            "foreground_coverage": {
+              "max": 0.10940568813337692,
+              "mean": 0.040242399476953246,
+              "median": 0.03531448185681595,
+              "min": 0.022022883295194508
+            },
+            "lpips": {
+              "max": 0.15190112590789795,
+              "mean": 0.13484364096075296,
+              "median": 0.1370379701256752,
+              "min": 0.10943883657455444
+            },
+            "peak_vram_bytes": {
+              "max": 1612732928.0,
+              "mean": 1610744661.3333333,
+              "median": 1610839040.0,
+              "min": 1607867392.0
+            },
+            "psnr": {
+              "max": 26.62777328491211,
+              "mean": 23.306285937627155,
+              "median": 23.51182746887207,
+              "min": 17.735857009887695
+            },
+            "render_seconds": {
+              "max": 0.003340013325214386,
+              "mean": 0.0029234037113686404,
+              "median": 0.0028960350900888443,
+              "min": 0.002671755850315094
+            },
+            "rgb_mae": {
+              "max": 0.039281558245420456,
+              "mean": 0.012393549705545107,
+              "median": 0.010874265804886818,
+              "min": 0.0056393821723759174
+            },
+            "silhouette_iou": {
+              "max": 0.878188679245283,
+              "mean": 0.8403742852619778,
+              "median": 0.8375749983226654,
+              "min": 0.8142401346899325
+            },
+            "ssim": {
+              "max": 0.9849064946174622,
+              "mean": 0.9703051373362541,
+              "median": 0.973768025636673,
+              "min": 0.9214305281639099
+            }
+          },
+          "query_count": 24
+        },
+        "Q_TRAIN_POSE_HELDOUT_CAMERA": {
+          "metrics": {
+            "alpha_occupancy": {
+              "max": 0.08587381497221314,
+              "mean": 0.0409464694344557,
+              "median": 0.03987610330173259,
+              "min": 0.02493690748610657
+            },
+            "boundary_f_score": {
+              "max": 0.6637124180969832,
+              "mean": 0.4905581426439749,
+              "median": 0.4864018098133567,
+              "min": 0.3425694868659345
+            },
+            "depth_finite_ratio": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0
+            },
+            "foreground_coverage": {
+              "max": 0.08165740438051651,
+              "mean": 0.03897041516835567,
+              "median": 0.03816279830009807,
+              "min": 0.02380974174566852
+            },
+            "lpips": {
+              "max": 0.16985055804252625,
+              "mean": 0.14040740796675286,
+              "median": 0.14101310074329376,
+              "min": 0.09836646914482117
+            },
+            "peak_vram_bytes": {
+              "max": 1615865856.0,
+              "mean": 1611011776.0,
+              "median": 1610883584.0,
+              "min": 1608702464.0
+            },
+            "psnr": {
+              "max": 26.021900177001953,
+              "mean": 23.21166443824768,
+              "median": 23.227563858032227,
+              "min": 18.93639373779297
+            },
+            "render_seconds": {
+              "max": 0.003194674849510193,
+              "mean": 0.0029385389449695745,
+              "median": 0.0029735825955867767,
+              "min": 0.0026505030691623688
+            },
+            "rgb_mae": {
+              "max": 0.02913375198841095,
+              "mean": 0.012222244559476772,
+              "median": 0.01163566019386053,
+              "min": 0.006558342836797237
+            },
+            "silhouette_iou": {
+              "max": 0.8815823425497707,
+              "mean": 0.8322766055538704,
+              "median": 0.835409216449013,
+              "min": 0.7871133394632293
+            },
+            "ssim": {
+              "max": 0.9837197661399841,
+              "mean": 0.9707237233718237,
+              "median": 0.9711293578147888,
+              "min": 0.9368249177932739
+            }
+          },
+          "query_count": 24
+        },
+        "Q_TRAIN_POSE_TRAIN_CAMERA": {
+          "metrics": {
+            "alpha_occupancy": {
+              "max": 0.09543576332134684,
+              "mean": 0.040417783589408306,
+              "median": 0.03838443935926773,
+              "min": 0.023856162144491665
+            },
+            "boundary_f_score": {
+              "max": 0.6207695598987635,
+              "mean": 0.49093341250038725,
+              "median": 0.4798472698739555,
+              "min": 0.3434857541466456
+            },
+            "depth_finite_ratio": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0
+            },
+            "foreground_coverage": {
+              "max": 0.09099575024517817,
+              "mean": 0.038482401656314696,
+              "median": 0.036584831644328214,
+              "min": 0.02283883622098725
+            },
+            "lpips": {
+              "max": 0.1629091501235962,
+              "mean": 0.1374319310610493,
+              "median": 0.13655687123537064,
+              "min": 0.10879334062337875
+            },
+            "peak_vram_bytes": {
+              "max": 1612693504.0,
+              "mean": 1609731456.0,
+              "median": 1609786624.0,
+              "min": 1603445760.0
+            },
+            "psnr": {
+              "max": 26.22821044921875,
+              "mean": 23.442235151926678,
+              "median": 23.073612213134766,
+              "min": 18.636682510375977
+            },
+            "render_seconds": {
+              "max": 0.006101951003074646,
+              "mean": 0.0031641415941218534,
+              "median": 0.003030790016055107,
+              "min": 0.0026857033371925354
+            },
+            "rgb_mae": {
+              "max": 0.03188108280301094,
+              "mean": 0.011807970178779215,
+              "median": 0.011581046506762505,
+              "min": 0.0061061750166118145
+            },
+            "silhouette_iou": {
+              "max": 0.8742349797431256,
+              "mean": 0.8318404477359342,
+              "median": 0.8324597582396887,
+              "min": 0.7791743360504865
+            },
+            "ssim": {
+              "max": 0.9839150309562683,
+              "mean": 0.9713400627175967,
+              "median": 0.9714254140853882,
+              "min": 0.9308686852455139
+            }
+          },
+          "query_count": 24
+        }
+      },
+      "query_count": 96,
+      "sha256": "8afe556f1e8ed4e5441b10e4e812f584d9c9be2c0c11054fb47b49d6bb9e94e1",
+      "successful_render_count": 96,
+      "visual_count": 96
+    },
+    "zero_step_losses": {
+      "dxyz_smooth_loss": 0.0,
+      "l1_loss": 0.010296107269823551,
+      "lpips_loss": 0.0,
+      "scaling_loss": 0.0,
+      "total_loss": 0.010296107269823551
+    }
+  },
+  "repaired_contract_hashes": {
+    "availability_canonical_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+    "contract_repair_summary_file_sha256": "b5692082e4e7e653ddf56e5cfbb5c193af0078d0c8e4967cda85f2da6a691d25",
+    "evaluation_availability_file_sha256": "c67ebf9f8be71affab9658610fd5f75c7eaed2f3e9bf81cf3af6e0e2cb0df360",
+    "evaluation_manifest_file_sha256": "180c8a3116899b2cdcb3a8e9dbfa2ba91bd3c562edaeaba471859bd803e87b0b",
+    "evaluation_query_order_sha256": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+    "record_manifest_file_sha256": "180b588edb4f8ab30eaba7609a289a841da4a5622c1ad7ee3c01f6f2cfca7414",
+    "repaired_config_file_sha256": "573e330ea39092b2eeeb22cdcc71c0ebbfc4dc218a8e383fe707f3626b7f92e0",
+    "training_contract_file_sha256": "e69d07d16eeb0aa2103743a60216ec260f652dc8e05d08347a76ed20324598d0",
+    "training_data_order_sha256": "a64a8d40876946b8f0919a4761e7b814e9ca7182cd0434b0cf97a6b2737386ca"
+  },
+  "schema_version": "subject00.canary.execution_contract.v1",
+  "source": {
+    "branch": "research/mmlphuman-subject00-canary-contract-repair-20260723",
+    "head": "ebcf40da0fca0345f749f7c111e1a3a00f19dda3"
+  },
+  "target_branch": "research/mmlphuman-subject00-short-canary-from-repaired-contract-20260723",
+  "task_id": "MMLPHUMAN-SUBJECT00-SHORT-CANARY-FROM-REPAIRED-CONTRACT-001",
+  "train_data_order_sha256": "a64a8d40876946b8f0919a4761e7b814e9ca7182cd0434b0cf97a6b2737386ca",
+  "train_record_count": 384,
+  "training_source_head_resolution": "git rev-parse HEAD after the pre-result execution commit"
+}
