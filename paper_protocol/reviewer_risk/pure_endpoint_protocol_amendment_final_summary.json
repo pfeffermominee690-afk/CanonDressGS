@@ -1,0 +1,166 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "feature_inferences": 0,
+    "forward_calls": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "threshold_selections": 0,
+    "training_runs": 0,
+    "visual_sheets": 0
+  },
+  "amendment_timing": "PROSPECTIVE_PRE_RESULT_PROTOCOL_AMENDMENT",
+  "classification": "PURE_ENDPOINT_EXECUTION_CONTRACT_AMENDED_AND_READY",
+  "contract_status": "READY_BEFORE_OPTIMIZER",
+  "direct_decoder": {
+    "execution_count": 0,
+    "execution_required": false,
+    "formal_name": "Direct Residual Decoder (Historical V7)",
+    "historical_result_allowed": true,
+    "primary_table_eligible": false,
+    "reason": "CONTRACT_NOT_RECOVERABLE_WITHOUT_INVENTING_NEW_BASELINE",
+    "role": "PROVENANCE_ONLY_UNMATCHED_EXPLORATORY_BASELINE"
+  },
+  "frozen_mutations": {
+    "avatarrex": 0,
+    "basis": 0,
+    "blocked_crossfit_outputs": 0,
+    "controller": 0,
+    "f2": 0,
+    "mmlp_human": 0,
+    "original_11_protocol_artifacts": 0,
+    "reference": 0,
+    "renderer": 0,
+    "subject00": 0,
+    "target": 0,
+    "teacher": 0
+  },
+  "hard_lookup_claim_boundary": {
+    "claim_resolved": false,
+    "future_deciders": [
+      "Coefficient Headroom",
+      "Leave-One-Garment-Out"
+    ],
+    "nearest_centroid_role": "non-optimizer lookup baseline",
+    "outfit_id_oracle_role": "GT lookup upper bound",
+    "reference_classifier_role": "key learned hard-lookup baseline"
+  },
+  "historical_preservation": {
+    "blocked_artifact_count": 21,
+    "blocked_artifact_mutation_count": 0,
+    "blocked_history_aggregate_fingerprint": "04cc7ecf08780264c71ccfc9f0466664c052df6ae4a698df08663b5625ccaaff",
+    "historical_classifications_retained": [
+      "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+      "PURE_ENDPOINT_DIRECT_DECODER_CONTRACT_BLOCKED"
+    ],
+    "resolution_explanation": "The blocker was resolved by a prospective pre-result baseline-scope amendment, not by recovering or executing the baseline."
+  },
+  "next_task": "TRAIN_AND_EVALUATE_PURE_ENDPOINT_CORE_METHOD_FROM_AMENDED_CONTRACT",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "primary_registry": {
+    "deployable_method_count": 5,
+    "ground_truth_at_inference_method_count": 2,
+    "method_count": 7,
+    "method_names": [
+      "Base Avatar",
+      "Teacher Endpoint",
+      "Outfit-ID Oracle",
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Linear Coefficient Predictor",
+      "CanonDressGS-Endpoint"
+    ]
+  },
+  "protocol_hash_closure": {
+    "artifact_count": 11,
+    "manifest_sha256_lf": "9325900a8bff9060108066042df3d2e7bec8461b0d7fb0a23180f83fda691f57",
+    "original_artifact_mutation_count": 0,
+    "status": "PASS_INDEPENDENT_MANIFEST",
+    "value_mismatch_count": 0
+  },
+  "references": {
+    "adjudication": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_decoder_adjudication.json",
+      "sha256_lf": "6ca9fdd46ec7793572fd59ec962a2676f2e672510fc09f9947ec5441969e9a5a"
+    },
+    "amended_counts": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_expected_counts_amended.json",
+      "sha256_lf": "b9ccfb3acf95653afddb659a82b03db94ad76bd76bcda9a9d48848569b3fc9a2"
+    },
+    "amended_execution_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_execution_contract_amended.json",
+      "sha256_lf": "11428968a244ce8a309b5245a361763b5836fc8abac30cf827495ec1817d0ad4"
+    },
+    "amended_primary_registry": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_primary_baseline_registry_amended.json",
+      "sha256_lf": "9e37a70a375aa1741bb0280a4e43e6411ed81e8fd7c05ceeaafb00d41747f024"
+    },
+    "supplementary_registry": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_supplementary_baseline_registry.json",
+      "sha256_lf": "07061f417c2a00add53603c2b075fbbc600274a12babc941af236f5811ae29e9"
+    },
+    "tests": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_protocol_amendment_tests.json",
+      "sha256_lf": "e12c1b0933576e687f2ee2bd71c7cca71511204736337e086c4baa0ab2b7049b"
+    }
+  },
+  "reports": [
+    {
+      "relative_path": "docs/PAPER/AAAI27_DIRECT_DECODER_BASELINE_ADJUDICATION_20260724.md",
+      "sha256_lf": "2e2a76da78cd8e96b1270ca8834a3e1866188667ace8e9b426250d9695c650ae"
+    },
+    {
+      "relative_path": "docs/PAPER/AAAI27_PURE_ENDPOINT_PRIMARY_BASELINE_SCOPE_AMENDMENT_20260724.md",
+      "sha256_lf": "67ca33a80a244f9ce3bb807d9619836c895eea065113ae02a144b9ce4805d438"
+    },
+    {
+      "relative_path": "docs/PAPER/AAAI27_PURE_ENDPOINT_HARD_LOOKUP_CLAIM_BOUNDARY_20260724.md",
+      "sha256_lf": "3c8d229e44c35cbe2e0d5e681251abd01fa6448ec0c9710d83fee195a6541cdb"
+    }
+  ],
+  "schema_version": "canondressgs.paper.pure_endpoint_protocol_amendment_final_summary.v1",
+  "source_branch": "research/pure-endpoint-execution-contract-repair-20260724",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "status": "COMPLETE_READY_FOR_POSTCOMMIT_SYNC",
+  "supplementary_registry": {
+    "historical_result_location": "supplementary failure analysis",
+    "method_count": 1,
+    "primary_comparability": false
+  },
+  "task_id": "AAAI27-PURE-ENDPOINT-BASELINE-ADJUDICATION-001",
+  "tests": {
+    "check_count": 28,
+    "failed_count": 0,
+    "focused_unittest_count": 12,
+    "status": "PASS_STATIC_PRECOMMIT"
+  },
+  "unchanged_science": {
+    "data": true,
+    "evaluator": true,
+    "f2_basis_teacher_assets": true,
+    "main_loss": true,
+    "main_model": true,
+    "perturbations": true,
+    "schedules": true,
+    "success_gates": true,
+    "test_denominator": true,
+    "training_budget": true
+  },
+  "visual_and_execution_counts": {
+    "checkpoint_writes": 144,
+    "formal_pure_sheets": 60,
+    "logical_renders": 4620,
+    "main_visual_sheets": 60,
+    "method_columns": 7,
+    "optimizer_steps": 7200,
+    "perturbation_inferences": 2520,
+    "primary_test_inferences": 1680,
+    "total_training_runs": 24,
+    "unique_physical_renders": 1460
+  }
+}

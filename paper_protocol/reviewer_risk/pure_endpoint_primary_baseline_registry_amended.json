@@ -1,0 +1,158 @@
+{
+  "execution_authorized_by_scope": true,
+  "historical_metrics_may_replace_matched_results": false,
+  "method_count": 7,
+  "methods": [
+    {
+      "crossfit": false,
+      "deployable": true,
+      "execution_required": true,
+      "ground_truth_information": "none",
+      "index": 1,
+      "input": "none",
+      "model_family": "STATIC_BASE_AVATAR",
+      "output": "frozen base Gaussian state without garment residual",
+      "paper_name": "Base Avatar",
+      "primary_table_eligible": true,
+      "reference_controlled": false,
+      "role": "no-garment-residual lower reference",
+      "trainable": false
+    },
+    {
+      "crossfit": false,
+      "deployable": false,
+      "execution_required": true,
+      "ground_truth_information": "ground-truth outfit ID and full teacher endpoint",
+      "historical_registry_name": "Teacher Upper Bound",
+      "index": 2,
+      "input": "ground-truth outfit ID for evaluation-only retrieval",
+      "model_family": "STATIC_TEACHER_ENDPOINT",
+      "output": "full frozen teacher residual, not rank-4 reconstruction",
+      "paper_name": "Teacher Endpoint",
+      "primary_table_eligible": true,
+      "reference_controlled": false,
+      "role": "non-deployable full teacher endpoint reference",
+      "trainable": false
+    },
+    {
+      "crossfit": false,
+      "deployable": false,
+      "execution_required": true,
+      "ground_truth_information": "ground-truth outfit ID",
+      "index": 3,
+      "input": "ground-truth outfit ID",
+      "model_family": "STATIC_OUTFIT_ID_ORACLE",
+      "output": "rank-4 endpoint coefficient lookup and frozen basis",
+      "paper_name": "Outfit-ID Oracle",
+      "primary_table_eligible": true,
+      "reference_controlled": false,
+      "role": "non-deployable rank-4 endpoint oracle",
+      "trainable": false
+    },
+    {
+      "architecture": "LayerNorm(512) followed by Linear(512,5)",
+      "crossfit": true,
+      "deployable": true,
+      "execution_required": true,
+      "ground_truth_information": "train targets only; no test outfit ID",
+      "index": 4,
+      "input": "same pooled frozen-F2 512-vector",
+      "loss": "cross entropy only",
+      "model_family": "REFERENCE_CLASSIFIER_LOOKUP",
+      "output": "five logits; argmax selects rank-4 endpoint",
+      "paper_name": "Reference Classifier Lookup",
+      "primary_table_eligible": true,
+      "reference_controlled": true,
+      "role": "reference-controlled hard lookup baseline",
+      "trainable": true
+    },
+    {
+      "crossfit": true,
+      "deployable": true,
+      "distance": "squared L2",
+      "execution_required": true,
+      "ground_truth_information": "train labels only; no test outfit ID",
+      "index": 5,
+      "input": "same pooled frozen-F2 512-vector",
+      "model_family": "TRAIN_FOLD_NEAREST_CENTROID",
+      "output": "nearest train-only standardized garment centroid endpoint",
+      "paper_name": "Nearest-Centroid Lookup",
+      "primary_table_eligible": true,
+      "reference_controlled": true,
+      "role": "fixed non-optimizer reference lookup baseline",
+      "trainable": false
+    },
+    {
+      "architecture": "LayerNorm(512) followed by Linear(512,4); no output activation",
+      "crossfit": true,
+      "deployable": true,
+      "endpoint_snapping": false,
+      "execution_required": true,
+      "ground_truth_information": "rank-4 coefficient target in training loss only",
+      "index": 6,
+      "input": "reference RGB/mask only",
+      "model_family": "SHARED_LINEAR_ENDPOINT_PREDICTOR",
+      "output": "de-normalized predicted rank-4 coefficient rendered directly",
+      "paper_name": "Linear Coefficient Predictor",
+      "primary_table_eligible": true,
+      "reference_controlled": true,
+      "role": "continuous explicit-basis coefficient baseline",
+      "shares_training_run_with": "CanonDressGS-Endpoint",
+      "trainable": true
+    },
+    {
+      "architecture": "LayerNorm(512) followed by Linear(512,4); no output activation",
+      "crossfit": true,
+      "deployable": true,
+      "endpoint_snapping": true,
+      "execution_required": true,
+      "ground_truth_information": "rank-4 coefficient target in training loss only",
+      "index": 7,
+      "input": "reference RGB/mask only",
+      "model_family": "SHARED_LINEAR_ENDPOINT_PREDICTOR",
+      "output": "discrete nearest rank-4 garment endpoint",
+      "paper_name": "CanonDressGS-Endpoint",
+      "primary_table_eligible": true,
+      "reference_controlled": true,
+      "role": "primary pure endpoint method",
+      "shares_training_run_with": "Linear Coefficient Predictor",
+      "trainable": true
+    }
+  ],
+  "paper_final": false,
+  "paper_final_count": 0,
+  "paper_naming_guards": {
+    "coefficient_predictor_name_frozen": "Linear Coefficient Predictor",
+    "direct_decoder_present_in_primary_registry": false,
+    "forbidden_internal_names": [
+      "Ours-v2",
+      "B6",
+      "B7",
+      "M3",
+      "M4"
+    ]
+  },
+  "schema_version": "canondressgs.paper.pure_endpoint_primary_baseline_registry_amended.v1",
+  "shared_contract": {
+    "garments": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "identity": "subject02",
+    "primary_split": "same pure endpoint condition-fold cross-fit",
+    "renderer": "same frozen MMLP-Human and renderer",
+    "test_denominators": [
+      "protocol-weighted",
+      "unique-query"
+    ]
+  },
+  "source_repaired_registry": {
+    "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_baseline_registry_repaired.json",
+    "sha256": "83d79b79b63545819929b5107e22012fc7af5a395d418cafd81da2f2298ccff4"
+  },
+  "status": "PRIMARY_7_METHOD_REGISTRY_FROZEN",
+  "task_id": "AAAI27-PURE-ENDPOINT-BASELINE-ADJUDICATION-001"
+}

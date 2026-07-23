@@ -1,0 +1,121 @@
+{
+  "actual_amendment_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "feature_inferences": 0,
+    "forward_calls": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "threshold_selections": 0,
+    "training_runs": 0,
+    "visual_sheets": 0
+  },
+  "counting_contract": {
+    "formal_pure_alias_rule": "the 20 formal-pure records share the same 20 logical inputs and render signatures as the primary pure-query set but remain separate metric rows and sheets",
+    "logical_inference": "one method output for one protocol or audit record and one replicate",
+    "logical_render": "one method output RGB/alpha request before duplicate or signature reuse",
+    "physical_render": "one contract cache key after protocol-duplicate, formal-alias, and seed-invariant static reuse; no result-dependent cross-method reuse assumed",
+    "training_run": "one independent optimizer-backed model-family rotation replicate"
+  },
+  "evaluation": {
+    "formal_pure_inferences": 420,
+    "formal_pure_inferences_formula": "7 methods * 20 records * 3 replicates",
+    "optimizer_backed_model_forward_calls": 1320,
+    "optimizer_backed_model_forward_calls_breakdown": {
+      "formal_pure": 120,
+      "perturbation": 720,
+      "primary_test": 480
+    },
+    "perturbation_inferences": 2520,
+    "perturbation_inferences_formula": "7 methods * 20 unique test queries * 3 replicates * 6 variants",
+    "perturbation_variant_count": 6,
+    "primary_test_inferences": 1680,
+    "primary_test_inferences_formula": "7 methods * 4 rotations * 20 protocol records * 3 replicates",
+    "primary_test_unique_query_outputs": 420,
+    "total_logical_method_output_inferences": 4620
+  },
+  "feature_inference": {
+    "image_or_mask_modifying_variants": 3,
+    "image_or_mask_modifying_variants_list": [
+      "mild_blur",
+      "mask_erosion",
+      "mask_dilation"
+    ],
+    "new_normal_f2_inferences": 0,
+    "new_perturbation_reference_f2_inferences": 180,
+    "new_perturbation_reference_f2_inferences_formula": "20 unique query sets * 3 references * 3 pixel-or-mask variants",
+    "normal_reference_feature_rows_reused": 60,
+    "normal_unique_query_sets": 20,
+    "seed_and_method_reuse_required": true,
+    "total_new_feature_inferences": 180
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "registry": {
+    "independent_trainable_model_family_count": 2,
+    "primary_method_count": 7,
+    "render_family_count": 7,
+    "static_nonoptimizer_baseline_count": 4,
+    "trainable_registry_method_count": 3
+  },
+  "rendering": {
+    "formal_pure_additional_unique_physical_renders": 0,
+    "logical_renders": 4620,
+    "logical_renders_breakdown": {
+      "formal_pure": 420,
+      "perturbation": 2520,
+      "primary_test": 1680
+    },
+    "perturbation_unique_physical_renders": 1200,
+    "primary_unique_physical_renders": 260,
+    "render_cache_reuses": 3160,
+    "unique_physical_renders": 1460
+  },
+  "schema_version": "canondressgs.paper.pure_endpoint_expected_counts_amended.v1",
+  "status": "COUNTS_FROZEN_BEFORE_EXECUTION",
+  "task_id": "AAAI27-PURE-ENDPOINT-BASELINE-ADJUDICATION-001",
+  "training": {
+    "backward_calls": 7200,
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "checkpoint_writes": 144,
+    "direct_decoder_runs": 0,
+    "forward_training_batches": 7200,
+    "optimizer_creations": 24,
+    "optimizer_steps": 7200,
+    "reference_classifier_runs": 12,
+    "rotation_count": 4,
+    "scheduler_steps": 7200,
+    "seed_count": 3,
+    "shared_linear_endpoint_runs": 12,
+    "steps_per_run": 300,
+    "total_training_runs": 24
+  },
+  "visual_review": {
+    "context_column_count": 1,
+    "formal_pure_sheet_count": 60,
+    "formal_pure_sheet_count_formula": "20 unique formal-pure records * 3 replicates",
+    "main_sheet_count": 60,
+    "main_sheet_count_formula": "4 rotations * 5 unique test queries * 3 replicates",
+    "method_column_count": 7,
+    "method_columns": [
+      "Base Avatar",
+      "Teacher Endpoint",
+      "Outfit-ID Oracle",
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Linear Coefficient Predictor",
+      "CanonDressGS-Endpoint"
+    ],
+    "total_display_column_count": 8,
+    "total_sheet_count": 120
+  }
+}

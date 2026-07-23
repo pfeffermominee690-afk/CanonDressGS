@@ -1,0 +1,217 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "feature_inferences": 0,
+    "forward_calls": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "threshold_selections": 0,
+    "training_runs": 0,
+    "visual_sheets": 0
+  },
+  "amendment": {
+    "amendment_type": "PROSPECTIVE_PRE_RESULT_PROTOCOL_AMENDMENT",
+    "allowed_changes": [
+      "matched primary model family count",
+      "primary and supplementary baseline registries",
+      "expected execution counts",
+      "render family count",
+      "visual sheet method columns",
+      "Direct Decoder execution requirement",
+      "claim disclosure"
+    ],
+    "direct_decoder_execution_required": false,
+    "direct_decoder_primary_table_eligible": false,
+    "historical_blocker_resolution": "scope amendment, not baseline recovery or execution"
+  },
+  "classification": "PURE_ENDPOINT_EXECUTION_CONTRACT_AMENDED_AND_READY",
+  "component_references": {
+    "amended_counts": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_expected_counts_amended.json",
+      "sha256_lf": "b9ccfb3acf95653afddb659a82b03db94ad76bd76bcda9a9d48848569b3fc9a2"
+    },
+    "amended_primary_registry": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_primary_baseline_registry_amended.json",
+      "sha256_lf": "9e37a70a375aa1741bb0280a4e43e6411ed81e8fd7c05ceeaafb00d41747f024"
+    },
+    "asset_snapshot": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_asset_snapshot.json",
+      "sha256_lf": "a20c65f3f84956c7ee0db96e00498bf2371ff02e4f75fff56ff5d132f10bbe28"
+    },
+    "crossfit_protocol": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_crossfit_protocol.yaml",
+      "sha256_lf": "721c203f78c63a707317e846362d1579d4b21914b625168fa9143186abd971f6"
+    },
+    "direct_decoder_adjudication": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_decoder_adjudication.json",
+      "sha256_lf": "6ca9fdd46ec7793572fd59ec962a2676f2e672510fc09f9947ec5441969e9a5a"
+    },
+    "direct_decoder_audit": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_residual_decoder_audit.json",
+      "sha256_lf": "fc7ed9c720defdd0b0883bb5692b28c43a550cd904fc36b05d7dbc309049619f"
+    },
+    "direct_decoder_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_residual_decoder_contract.json",
+      "sha256_lf": "73318509f85d4a530fc79f35091c7a9d3e0384afd34ae5ae61ab6d638f41a5f9"
+    },
+    "evaluator_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_evaluator_contract.json",
+      "sha256_lf": "0f86c6413a0db955d179de139f85b401bc80044f89222219afe5d0506c4aaedd"
+    },
+    "model_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_model_contract.json",
+      "sha256_lf": "abca0350821fbcc706003c45b9aec0357223168ac7c6ab2913b3ecde617d73d6"
+    },
+    "protocol_hash_manifest": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_protocol_artifact_hash_manifest.json",
+      "sha256_lf": "9325900a8bff9060108066042df3d2e7bec8461b0d7fb0a23180f83fda691f57"
+    },
+    "rotation_manifests": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json",
+      "sha256_lf": "5a86f57ef44a54fd234690c3a133b82a17d982aebad7f451833122eecb9825c9"
+    },
+    "success_gates": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_success_gates.json",
+      "sha256_lf": "badb9a2cefeaa4ff914b96014bd51625af2e2cefa05b98115557505b43b12351"
+    },
+    "supplementary_registry": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_supplementary_baseline_registry.json",
+      "sha256_lf": "07061f417c2a00add53603c2b075fbbc600274a12babc941af236f5811ae29e9"
+    },
+    "training_schedules": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_training_schedules.json",
+      "sha256_lf": "643e9812e1e40b800aaa3aeb09c17e5cd58d6caf8b20c091d793d87c53081040"
+    }
+  },
+  "critical_null_count": 0,
+  "data_contract": {
+    "calibration_records_per_rotation": 20,
+    "duplicate_training_weight": 0,
+    "formal_pure_primary_denominator_use": 0,
+    "formal_pure_record_count": 20,
+    "identity": "subject02",
+    "outfits": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "test_protocol_records_per_rotation": 20,
+    "test_unique_queries_per_rotation": 5,
+    "train_records_per_rotation": 40,
+    "train_unique_queries_per_rotation": 10,
+    "unique_query_training": true
+  },
+  "evaluator_contract": {
+    "best_checkpoint_selection_allowed": false,
+    "best_seed_selection_allowed": false,
+    "formal_pure_merged_into_primary": false,
+    "hard_lookup_claim_resolved_by_this_protocol": false,
+    "protocol_weighted_denominator": 80,
+    "same_frozen_mmlp_human": true,
+    "same_frozen_renderer": true,
+    "threshold_selection_allowed": false,
+    "unique_query_denominator": 20
+  },
+  "execution_authorized": true,
+  "execution_task_id": "TRAIN_AND_EVALUATE_PURE_ENDPOINT_CORE_METHOD_FROM_AMENDED_CONTRACT",
+  "formal_output_attempt_created": false,
+  "frozen_before_result": true,
+  "frozen_mutations": {
+    "avatarrex": 0,
+    "basis": 0,
+    "blocked_crossfit_outputs": 0,
+    "controller": 0,
+    "f2": 0,
+    "mmlp_human": 0,
+    "original_11_protocol_artifacts": 0,
+    "reference": 0,
+    "renderer": 0,
+    "subject00": 0,
+    "target": 0,
+    "teacher": 0
+  },
+  "historical_preservation": {
+    "blocked_artifact_count": 21,
+    "blocked_artifact_mutation_count": 0,
+    "blocked_history_aggregate_fingerprint": "04cc7ecf08780264c71ccfc9f0466664c052df6ae4a698df08663b5625ccaaff",
+    "historical_classifications": [
+      "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+      "PURE_ENDPOINT_DIRECT_DECODER_CONTRACT_BLOCKED"
+    ]
+  },
+  "implicit_default_count": 0,
+  "model_and_training_contract": {
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "coefficient_loss": "mean SmoothL1 beta=1 over four standardized coefficients",
+    "fresh_initialization_required": true,
+    "fresh_process_required": true,
+    "main_architecture": "LayerNorm(512) followed by Linear(512,4)",
+    "main_optimizer": "Adam lr=0.02 weight_decay=0",
+    "model_contract_changed": false,
+    "rotation_count": 4,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "steps": 300,
+    "training_budget_changed": false
+  },
+  "new_branch": "research/pure-endpoint-direct-decoder-adjudication-20260724",
+  "next_task": "TRAIN_AND_EVALUATE_PURE_ENDPOINT_CORE_METHOD_FROM_AMENDED_CONTRACT",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "protocol_hash_closure": {
+    "artifact_count": 11,
+    "historical_failure_interpretation": "PROTOCOL_HASH_DECLARATION_MISSING_NOT_ASSET_CORRUPTION",
+    "status": "PASS_INDEPENDENT_MANIFEST",
+    "value_mismatch_count": 0
+  },
+  "schedule_hashes": {
+    "rotation_0": "e5dd8e70ee8e606aa765816d6bbebb75b189a873df793fcfba6ad0bfa08cd55f",
+    "rotation_1": "f65232b0e0dceb8e2ea5c0485e0928191a08a5befde660493bc2a43c1675db34",
+    "rotation_2": "ec9d4e842e065628533b2f414cd0953eb4add5f78a5360e43e4465bb0a67ae58",
+    "rotation_3": "b00c63394ce1627e8727615bf7052a9a59049634a2cd7441977dd1c9201dd977"
+  },
+  "schema_version": "canondressgs.paper.pure_endpoint_execution_contract_amended.v1",
+  "source_branch": "research/pure-endpoint-execution-contract-repair-20260724",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "status": "READY_BEFORE_OPTIMIZER",
+  "success_gates": {
+    "every_garment_recall_minimum": 0.75,
+    "every_rotation_top1_minimum": 0.8,
+    "identity_contamination_count_maximum": 0,
+    "macro_5way_top1_minimum": 0.9,
+    "parity_required": true,
+    "severe_wrong_outfit_endpoint_rate_maximum": 0.05,
+    "unchanged": true
+  },
+  "task_id": "AAAI27-PURE-ENDPOINT-BASELINE-ADJUDICATION-001",
+  "visual_contract": {
+    "formal_pure_sheet_count": 60,
+    "main_sheet_count": 60,
+    "method_column_count": 7,
+    "method_columns": [
+      "Base Avatar",
+      "Teacher Endpoint",
+      "Outfit-ID Oracle",
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Linear Coefficient Predictor",
+      "CanonDressGS-Endpoint"
+    ]
+  }
+}
