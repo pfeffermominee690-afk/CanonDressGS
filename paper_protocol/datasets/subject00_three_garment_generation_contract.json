@@ -1,0 +1,126 @@
+{
+  "adapter": {
+    "mode": "VALIDATE_AND_NORMALIZE_ONLY",
+    "path": "tools/datasets/subject00_three_garment_generation_record_adapter.py",
+    "submits_requests": false
+  },
+  "api_calls_in_this_task": 0,
+  "backend_dependency": {
+    "base_url_identifier": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "candidate_generation_count_per_garment": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "minimum_acceptable_count_per_garment": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "model_id_and_revision": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "must_be_frozen_before_first_request": true,
+    "provider": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "quality_and_image_parameters": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "status": "GENERATION_BACKEND_DEPENDENCY_PENDING"
+  },
+  "content_sha256": "2d49d3c3c915c5ca49e2e969f5450180f3aaee53e9ef35e9ecf78fc7eb4d2bbd",
+  "garment_ids": [
+    "O01",
+    "O03",
+    "O04"
+  ],
+  "generated_images_in_this_task": 0,
+  "identity_id": "subject00",
+  "medium_preview_as_formal_allowed": false,
+  "paper_final": 0,
+  "prompt_records": [
+    {
+      "garment_id": "O01",
+      "negative_prompt": "different identity, copied donor face, copied donor body shape, changed pose, changed camera, changed hands, changed feet, cropped body, close-up, extra person, duplicate limb, missing limb, text, number, logo, watermark, collage, border, non-neutral background, inconsistent garment across views, zip-front hoodie, short sleeves, blue trousers, double hood, retained old cuffs",
+      "negative_prompt_sha256": "bd4195d8fb02d7428accb373fd17b79a6000aa418ab8aa9a6f1aca45704f8d6c",
+      "reference_prompt": "A light heather-gray pullover hoodie with hood, drawstrings, long sleeves, ribbed cuffs and waist hem, paired with black full-length straight trousers.",
+      "reference_prompt_sha256": "955b62b1d14f67f2c0fff2f0479e834269a698c11a3bd2134502e027fcf0b5b6",
+      "semantic_fields_copied_without_change": [
+        "semantic_description",
+        "colors",
+        "material_appearance",
+        "fit",
+        "sleeve_length",
+        "hem",
+        "forbidden_attributes",
+        "reference_prompt",
+        "negative_prompt"
+      ]
+    },
+    {
+      "garment_id": "O03",
+      "negative_prompt": "different identity, copied donor face, copied donor body shape, changed pose, changed camera, changed hands, changed feet, cropped body, close-up, extra person, duplicate limb, missing limb, text, number, logo, watermark, collage, border, non-neutral background, inconsistent garment across views, casual jacket, missing tie, mismatched trousers, open bare chest, short sleeves",
+      "negative_prompt_sha256": "df0ba5a4a33f7fe7bf733fa62d5cc00675a26efca76e1ce7976f6fff4d193d0b",
+      "reference_prompt": "A dark navy tailored single-breasted two-button business suit with matching full-length trousers, a white dress shirt, and a dark navy tie.",
+      "reference_prompt_sha256": "5a79194e5801507e13ea65103a2e5a632b3aad6845de9ef1d6638096fcfc71e2",
+      "semantic_fields_copied_without_change": [
+        "semantic_description",
+        "colors",
+        "material_appearance",
+        "fit",
+        "sleeve_length",
+        "hem",
+        "forbidden_attributes",
+        "reference_prompt",
+        "negative_prompt"
+      ]
+    },
+    {
+      "garment_id": "O04",
+      "negative_prompt": "different identity, copied donor face, copied donor body shape, changed pose, changed camera, changed hands, changed feet, cropped body, close-up, extra person, duplicate limb, missing limb, text, number, logo, watermark, collage, border, non-neutral background, inconsistent garment across views, hood, long coat, black trousers, formal blazer, distressed or torn jeans",
+      "negative_prompt_sha256": "85306b0ec03b6fd107341206c5e7397f99e20ae3716ca03df33ca1676e260899",
+      "reference_prompt": "A black waist-length zip-front bomber jacket with long sleeves over a light-gray crew-neck shirt, paired with medium-blue full-length straight denim jeans.",
+      "reference_prompt_sha256": "dc128898dd9e34596c4215685d18fb629393d00942d9b26b0c38686b0f04c702",
+      "semantic_fields_copied_without_change": [
+        "semantic_description",
+        "colors",
+        "material_appearance",
+        "fit",
+        "sleeve_length",
+        "hem",
+        "forbidden_attributes",
+        "reference_prompt",
+        "negative_prompt"
+      ]
+    }
+  ],
+  "record_policy": {
+    "append_only": true,
+    "failed_outputs_retained": true,
+    "moderated_outputs_retained": true,
+    "retry_creates_new_record": true,
+    "retry_parent_required": true,
+    "successful_output_overwrite_allowed": false
+  },
+  "request_required_fields": [
+    "identity_id",
+    "garment_id",
+    "semantic_pose_slot",
+    "condition_id",
+    "source_rgb_sha256",
+    "source_alpha_sha256",
+    "prompt_sha256",
+    "negative_prompt_sha256",
+    "provider",
+    "model_id",
+    "base_url_identifier",
+    "seed",
+    "image_size",
+    "quality",
+    "response_metadata",
+    "output_sha256",
+    "moderation_state",
+    "retry_parent_record_id"
+  ],
+  "schema_version": "subject00.three_garment.generation_contract.v1",
+  "seed_policy": "uint32 big-endian first four bytes of sha256(identity_id|garment_id|semantic_pose_slot|attempt_index)",
+  "semantic_pose_slots": [
+    "front",
+    "front_left_three_quarter",
+    "front_right_three_quarter",
+    "left",
+    "right",
+    "back_left_three_quarter",
+    "back_right_three_quarter",
+    "back"
+  ],
+  "status": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+  "task_id": "AAAI27-SUBJECT00-THREE-GARMENT-CANARY-PROTOCOL-001"
+}
