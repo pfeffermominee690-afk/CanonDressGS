@@ -1,0 +1,220 @@
+{
+  "claim_contraction_if_insufficient": null,
+  "execution_counts": {
+    "checkpoint_inference_count": 69120,
+    "checkpoint_writes": 0,
+    "controller_optimizer_created": 0,
+    "controller_optimizer_steps": 0,
+    "controller_v1_training_runs": 0,
+    "controller_v2_training_runs": 0,
+    "diagnostic_backward_count": 240,
+    "f2_backward": 0,
+    "f2_training": 0,
+    "feature_forward_batches": 80,
+    "new_formal_renders": 0,
+    "renderer_runs": 0,
+    "ridge_probe_fit_count": 120
+  },
+  "formal_reaggregation": {
+    "MATCHED_V1": {
+      "macro_pair_accuracy": 0.6312500000000001,
+      "record_count": 960,
+      "rotation_pair_accuracy": [
+        0.6125,
+        0.5791666666666667,
+        0.6958333333333333,
+        0.6375
+      ],
+      "top1_accuracy": 0.8614583333333333
+    },
+    "V2": {
+      "macro_pair_accuracy": 0.6010416666666667,
+      "record_count": 960,
+      "rotation_pair_accuracy": [
+        0.6083333333333333,
+        0.5791666666666667,
+        0.6,
+        0.6166666666666667
+      ],
+      "top1_accuracy": 0.846875
+    },
+    "formal_classification": "CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL",
+    "matched_v1_weight": {
+      "mae": 0.203023,
+      "rmse": 0.23607
+    },
+    "mixedness_and_routing_source": "paper_protocol/reviewer_risk/controller_v2_repaired_final_summary.json",
+    "paper_final": false,
+    "required_values_verified": {
+      "mixed_false_single": 0.8305555555555555,
+      "mixedness_auprc": 0.9624652659220229,
+      "mixedness_auroc": 0.8747222222222222,
+      "pure_false_mixed": 0.05,
+      "v2_weight_mae": 0.15805836898719514,
+      "v2_weight_rmse": 0.1981430412872887
+    },
+    "schema_version": "controller_pair_reaggregation.v1",
+    "source_head": "a8557b461f301c19a0f24eb17d924ddd9159a580",
+    "status": "PASS",
+    "task_id": "AAAI27-CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSIS-001"
+  },
+  "gradient_summary": {
+    "garment_vs_consistency": {
+      "conflicting_fraction": 0.5833333333333334,
+      "mean_cosine": -0.1358750734886042,
+      "shared_case_count": 48,
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_vs_mixedness": {
+      "conflicting_fraction": 0.6666666666666666,
+      "mean_cosine": -0.06442793536250885,
+      "shared_case_count": 48,
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_vs_nuisance_garment": {
+      "conflicting_fraction": 0.3333333333333333,
+      "mean_cosine": 0.5470252095171295,
+      "shared_case_count": 48,
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_vs_weight": {
+      "conflicting_fraction": null,
+      "mean_cosine": null,
+      "shared_case_count": 0,
+      "status": "NO_SHARED_GRADIENT_PATH"
+    }
+  },
+  "historical_classification_preserved": "CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL",
+  "immutability": {
+    "attempt_001_mutation": 0,
+    "attempt_002_mutation": 0,
+    "attempt_003_mutation": 0,
+    "attempt_004_mutation": 0,
+    "compatibility_manifest_mutation": 0,
+    "controller_v2_checkpoint_mutation": 0,
+    "f2_mutation": 0,
+    "formal_v1_mutation": 0,
+    "garment_bank_mutation": 0,
+    "protocol_mutation": 0,
+    "reference_asset_mutation": 0,
+    "renderer_mutation": 0,
+    "target_asset_mutation": 0,
+    "teacher_mutation": 0,
+    "threshold_mutation": 0
+  },
+  "next_task": "DESIGN_DIRECT_PAIR_HEAD_CONTROLLER_V3",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "primary_diagnostic_classification": "SOFTMAX_PAIR_PARAMETERIZATION_FAILURE",
+  "probe_details": {
+    "CURRENT_SET_15WAY": {
+      "calibration_macro": 0.9375,
+      "test_macro": 0.9333333333333333,
+      "test_per_rotation": [
+        0.9666666666666667,
+        0.9166666666666666,
+        0.9,
+        0.95
+      ]
+    },
+    "CURRENT_SET_DIRECT_PAIR_10WAY": {
+      "calibration_macro": 0.9875,
+      "test_macro": 0.9875,
+      "test_per_rotation": [
+        1.0,
+        0.9833333333333333,
+        0.9833333333333333,
+        0.9833333333333333
+      ]
+    },
+    "CURRENT_SET_MULTI_LABEL_5WAY": {
+      "calibration_macro": 0.809375,
+      "test_macro": 0.8125,
+      "test_per_rotation": [
+        0.8125,
+        0.8125,
+        0.8125,
+        0.8125
+      ]
+    },
+    "CURRENT_SET_SOFT_TARGET_5WAY": {
+      "calibration_macro": 0.8125,
+      "test_macro": 0.8125,
+      "test_per_rotation": [
+        0.8125,
+        0.8125,
+        0.8125,
+        0.8125
+      ]
+    },
+    "PER_REF_TO_SET_PAIR": {
+      "calibration_macro": 0.8125,
+      "test_macro": 0.8125,
+      "test_per_rotation": [
+        0.8125,
+        0.8125,
+        0.8125,
+        0.8125
+      ]
+    },
+    "SINGLE_REF_5WAY": {
+      "calibration_macro": 1.0,
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "SINGLE_REF_SPATIAL_5WAY": {
+      "calibration_macro": 1.0,
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "probe_summary": {
+    "calibration_macro": 0.9875,
+    "name": "CURRENT_SET_DIRECT_PAIR_10WAY",
+    "test_macro": 0.9875,
+    "test_per_rotation": [
+      1.0,
+      0.9833333333333333,
+      0.9833333333333333,
+      0.9833333333333333
+    ]
+  },
+  "representation_classification": "REFERENCE_REPRESENTATION_RECOVERABLE",
+  "schema_version": "controller_pair_diagnosis_final_summary.v1",
+  "secondary_factors": [],
+  "source_head": "a8557b461f301c19a0f24eb17d924ddd9159a580",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSIS-001",
+  "tests": {
+    "calibration_only_selection": "PASS",
+    "checkpoint_registry_144": "PASS",
+    "credential_scan": "PENDING_GIT_SEAL",
+    "deterministic_training_free_and_ridge": "PASS",
+    "feature_finite_and_dimensions": "PASS",
+    "fold_logical_disjointness": "PASS",
+    "formal_reaggregation": "PASS",
+    "frozen_mutation": "PASS",
+    "git_diff_check": "PENDING_GIT_SEAL",
+    "json_parse": "PASS",
+    "markdown_nonempty": "PASS",
+    "no_optimizer_step": "PASS",
+    "py_compile": "PASS",
+    "renderer_count_zero": "PASS",
+    "run_registry_24": "PASS",
+    "target_feature_count_zero": "PASS",
+    "visual_60_open": "PASS",
+    "yaml_parse": "PASS"
+  },
+  "visual_review_status": "PASS_60_OF_60_OPENED_ORIGINAL_DETAIL"
+}
