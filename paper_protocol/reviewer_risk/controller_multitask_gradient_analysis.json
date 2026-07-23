@@ -1,0 +1,4165 @@
+{
+  "aggregate": {
+    "garment_vs_consistency": {
+      "conflicting_fraction": 0.5833333333333334,
+      "mean_cosine": -0.1358750734886042,
+      "shared_case_count": 48,
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_vs_mixedness": {
+      "conflicting_fraction": 0.6666666666666666,
+      "mean_cosine": -0.06442793536250885,
+      "shared_case_count": 48,
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_vs_nuisance_garment": {
+      "conflicting_fraction": 0.3333333333333333,
+      "mean_cosine": 0.5470252095171295,
+      "shared_case_count": 48,
+      "status": "SHARED_GRADIENT_PATH"
+    },
+    "garment_vs_weight": {
+      "conflicting_fraction": null,
+      "mean_cosine": null,
+      "shared_case_count": 0,
+      "status": "NO_SHARED_GRADIENT_PATH"
+    }
+  },
+  "checkpoint_writes": 0,
+  "diagnostic_backward_count": 240,
+  "optimizer_created": 0,
+  "optimizer_steps": 0,
+  "paper_final": false,
+  "rows": [
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.2705259551371451,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.016193503513932228,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.24495123400701602,
+          "garment_norm": 0.13737908005714417,
+          "other_norm": 0.14423388242721558,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8882111119137178,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.5863127112388611,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.03433401137590408,
+        "garment": 0.8075908422470093,
+        "mixedness": 1.1767659187316895,
+        "nuisance_garment": 1.1609504222869873,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.2705259551371451,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.016193503513932228,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.24495123400701602,
+          "garment_norm": 0.13737908005714417,
+          "other_norm": 0.14423388242721558,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8882111119137178,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.5863127112388611,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.03433401137590408,
+        "garment": 0.8075908422470093,
+        "mixedness": 1.1767659187316895,
+        "nuisance_garment": 1.1609504222869873,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.2705259551371451,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.016193503513932228,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.24495123400701602,
+          "garment_norm": 0.13737908005714417,
+          "other_norm": 0.14423388242721558,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8882111119137178,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.5863127112388611,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.03433401137590408,
+        "garment": 0.8075908422470093,
+        "mixedness": 1.1767659187316895,
+        "nuisance_garment": 1.1609504222869873,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.2705259551371451,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.016193503513932228,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.24495123400701602,
+          "garment_norm": 0.13737908005714417,
+          "other_norm": 0.14423388242721558,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8882111119137178,
+          "garment_norm": 0.34163686633110046,
+          "other_norm": 0.5863127112388611,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.03433401137590408,
+        "garment": 0.8075908422470093,
+        "mixedness": 1.1767659187316895,
+        "nuisance_garment": 1.1609504222869873,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5137176567549396,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 0.269656240940094,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11153893222559277,
+          "garment_norm": 0.20083943009376526,
+          "other_norm": 0.6826590299606323,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.10306117565329753,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 1.143796682357788,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.23508793115615845,
+        "garment": 0.08295212686061859,
+        "mixedness": 1.0097193717956543,
+        "nuisance_garment": 0.7866483926773071,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5137176567549396,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 0.269656240940094,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11153893222559277,
+          "garment_norm": 0.20083943009376526,
+          "other_norm": 0.6826590299606323,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.10306117565329753,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 1.143796682357788,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.23508793115615845,
+        "garment": 0.08295212686061859,
+        "mixedness": 1.0097193717956543,
+        "nuisance_garment": 0.7866483926773071,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5137176567549396,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 0.269656240940094,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11153893222559277,
+          "garment_norm": 0.20083943009376526,
+          "other_norm": 0.6826590299606323,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.10306117565329753,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 1.143796682357788,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.23508793115615845,
+        "garment": 0.08295212686061859,
+        "mixedness": 1.0097193717956543,
+        "nuisance_garment": 0.7866483926773071,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5137176567549396,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 0.269656240940094,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11153893222559277,
+          "garment_norm": 0.20083943009376526,
+          "other_norm": 0.6826590299606323,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.10306117565329753,
+          "garment_norm": 0.22293823957443237,
+          "other_norm": 1.143796682357788,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.23508793115615845,
+        "garment": 0.08295212686061859,
+        "mixedness": 1.0097193717956543,
+        "nuisance_garment": 0.7866483926773071,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 0,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.08379426896388842,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 6.9476914177357685e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03142183317771218,
+          "garment_norm": 0.001494820462539792,
+          "other_norm": 0.016979791224002838,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9499149744015563,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 0.05580215901136398,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 3.5449247661745176e-06,
+        "garment": 1.6095588207244873,
+        "mixedness": 0.6810940504074097,
+        "nuisance_garment": 1.609429121017456,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.08379426896388842,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 6.9476914177357685e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03142183317771218,
+          "garment_norm": 0.001494820462539792,
+          "other_norm": 0.016979791224002838,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9499149744015563,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 0.05580215901136398,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 3.5449247661745176e-06,
+        "garment": 1.6095588207244873,
+        "mixedness": 0.6810940504074097,
+        "nuisance_garment": 1.609429121017456,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.08379426896388842,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 6.9476914177357685e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03142183317771218,
+          "garment_norm": 0.001494820462539792,
+          "other_norm": 0.016979791224002838,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9499149744015563,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 0.05580215901136398,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 3.5449247661745176e-06,
+        "garment": 1.6095588207244873,
+        "mixedness": 0.6810940504074097,
+        "nuisance_garment": 1.609429121017456,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.08379426896388842,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 6.9476914177357685e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03142183317771218,
+          "garment_norm": 0.001494820462539792,
+          "other_norm": 0.016979791224002838,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9499149744015563,
+          "garment_norm": 0.05700278282165527,
+          "other_norm": 0.05580215901136398,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 3.5449247661745176e-06,
+        "garment": 1.6095588207244873,
+        "mixedness": 0.6810940504074097,
+        "nuisance_garment": 1.609429121017456,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.18161194774145617,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.017148440703749657,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.29349311417937185,
+          "garment_norm": 0.13076679408550262,
+          "other_norm": 0.15393708646297455,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8362092879555357,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.5177810192108154,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.03521563112735748,
+        "garment": 0.7750130295753479,
+        "mixedness": 1.149784803390503,
+        "nuisance_garment": 1.0462133884429932,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.18161194774145617,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.017148440703749657,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.29349311417937185,
+          "garment_norm": 0.13076679408550262,
+          "other_norm": 0.15393708646297455,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8362092879555357,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.5177810192108154,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.03521563112735748,
+        "garment": 0.7750130295753479,
+        "mixedness": 1.149784803390503,
+        "nuisance_garment": 1.0462133884429932,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.18161194774145617,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.017148440703749657,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.29349311417937185,
+          "garment_norm": 0.13076679408550262,
+          "other_norm": 0.15393708646297455,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8362092879555357,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.5177810192108154,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.03521563112735748,
+        "garment": 0.7750130295753479,
+        "mixedness": 1.149784803390503,
+        "nuisance_garment": 1.0462133884429932,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.18161194774145617,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.017148440703749657,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.29349311417937185,
+          "garment_norm": 0.13076679408550262,
+          "other_norm": 0.15393708646297455,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8362092879555357,
+          "garment_norm": 0.3260674476623535,
+          "other_norm": 0.5177810192108154,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.03521563112735748,
+        "garment": 0.7750130295753479,
+        "mixedness": 1.149784803390503,
+        "nuisance_garment": 1.0462133884429932,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.6134458271553181,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.22045981884002686,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.19370831093636476,
+          "garment_norm": 0.10225511342287064,
+          "other_norm": 0.6437344551086426,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.21795831890790587,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.977840781211853,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.22988945245742798,
+        "garment": 0.044895630329847336,
+        "mixedness": 0.8368393182754517,
+        "nuisance_garment": 0.6326543092727661,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.6134458271553181,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.22045981884002686,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.19370831093636476,
+          "garment_norm": 0.10225511342287064,
+          "other_norm": 0.6437344551086426,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.21795831890790587,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.977840781211853,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.22988945245742798,
+        "garment": 0.044895630329847336,
+        "mixedness": 0.8368393182754517,
+        "nuisance_garment": 0.6326543092727661,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.6134458271553181,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.22045981884002686,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.19370831093636476,
+          "garment_norm": 0.10225511342287064,
+          "other_norm": 0.6437344551086426,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.21795831890790587,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.977840781211853,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.22988945245742798,
+        "garment": 0.044895630329847336,
+        "mixedness": 0.8368393182754517,
+        "nuisance_garment": 0.6326543092727661,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.6134458271553181,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.22045981884002686,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.19370831093636476,
+          "garment_norm": 0.10225511342287064,
+          "other_norm": 0.6437344551086426,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.21795831890790587,
+          "garment_norm": 0.10689321905374527,
+          "other_norm": 0.977840781211853,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.22988945245742798,
+        "garment": 0.044895630329847336,
+        "mixedness": 0.8368393182754517,
+        "nuisance_garment": 0.6326543092727661,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 1,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.10817755287648698,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 8.58024759509135e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.035796378931074777,
+          "garment_norm": 0.00163445551879704,
+          "other_norm": 0.01695636287331581,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9468374964508048,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 0.0595821850001812,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 3.773462594836019e-06,
+        "garment": 1.6089048385620117,
+        "mixedness": 0.6814998388290405,
+        "nuisance_garment": 1.6083425283432007,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.10817755287648698,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 8.58024759509135e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.035796378931074777,
+          "garment_norm": 0.00163445551879704,
+          "other_norm": 0.01695636287331581,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9468374964508048,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 0.0595821850001812,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 3.773462594836019e-06,
+        "garment": 1.6089048385620117,
+        "mixedness": 0.6814998388290405,
+        "nuisance_garment": 1.6083425283432007,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.10817755287648698,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 8.58024759509135e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.035796378931074777,
+          "garment_norm": 0.00163445551879704,
+          "other_norm": 0.01695636287331581,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9468374964508048,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 0.0595821850001812,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 3.773462594836019e-06,
+        "garment": 1.6089048385620117,
+        "mixedness": 0.6814998388290405,
+        "nuisance_garment": 1.6083425283432007,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.10817755287648698,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 8.58024759509135e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.035796378931074777,
+          "garment_norm": 0.00163445551879704,
+          "other_norm": 0.01695636287331581,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.9468374964508048,
+          "garment_norm": 0.06095502898097038,
+          "other_norm": 0.0595821850001812,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 3.773462594836019e-06,
+        "garment": 1.6089048385620117,
+        "mixedness": 0.6814998388290405,
+        "nuisance_garment": 1.6083425283432007,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.09071843544049857,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.018981140106916428,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2831098646851876,
+          "garment_norm": 0.13903583586215973,
+          "other_norm": 0.1497562676668167,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8638269384556764,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.5797116756439209,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.04159907251596451,
+        "garment": 0.7299667000770569,
+        "mixedness": 1.1557550430297852,
+        "nuisance_garment": 1.1097157001495361,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.09071843544049857,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.018981140106916428,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2831098646851876,
+          "garment_norm": 0.13903583586215973,
+          "other_norm": 0.1497562676668167,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8638269384556764,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.5797116756439209,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.04159907251596451,
+        "garment": 0.7299667000770569,
+        "mixedness": 1.1557550430297852,
+        "nuisance_garment": 1.1097157001495361,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.09071843544049857,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.018981140106916428,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2831098646851876,
+          "garment_norm": 0.13903583586215973,
+          "other_norm": 0.1497562676668167,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8638269384556764,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.5797116756439209,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.04159907251596451,
+        "garment": 0.7299667000770569,
+        "mixedness": 1.1557550430297852,
+        "nuisance_garment": 1.1097157001495361,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.09071843544049857,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.018981140106916428,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2831098646851876,
+          "garment_norm": 0.13903583586215973,
+          "other_norm": 0.1497562676668167,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8638269384556764,
+          "garment_norm": 0.3272457718849182,
+          "other_norm": 0.5797116756439209,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.04159907251596451,
+        "garment": 0.7299667000770569,
+        "mixedness": 1.1557550430297852,
+        "nuisance_garment": 1.1097157001495361,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5471800170502241,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 0.24304631352424622,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11150684714691952,
+          "garment_norm": 0.12774761021137238,
+          "other_norm": 0.5969533324241638,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.2015444036211191,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 1.1807594299316406,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.2514627277851105,
+        "garment": 0.06592147797346115,
+        "mixedness": 0.9511097073554993,
+        "nuisance_garment": 0.821825385093689,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5471800170502241,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 0.24304631352424622,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11150684714691952,
+          "garment_norm": 0.12774761021137238,
+          "other_norm": 0.5969533324241638,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.2015444036211191,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 1.1807594299316406,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.2514627277851105,
+        "garment": 0.06592147797346115,
+        "mixedness": 0.9511097073554993,
+        "nuisance_garment": 0.821825385093689,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5471800170502241,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 0.24304631352424622,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11150684714691952,
+          "garment_norm": 0.12774761021137238,
+          "other_norm": 0.5969533324241638,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.2015444036211191,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 1.1807594299316406,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.2514627277851105,
+        "garment": 0.06592147797346115,
+        "mixedness": 0.9511097073554993,
+        "nuisance_garment": 0.821825385093689,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.5471800170502241,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 0.24304631352424622,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.11150684714691952,
+          "garment_norm": 0.12774761021137238,
+          "other_norm": 0.5969533324241638,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.2015444036211191,
+          "garment_norm": 0.1407773345708847,
+          "other_norm": 1.1807594299316406,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.2514627277851105,
+        "garment": 0.06592147797346115,
+        "mixedness": 0.9511097073554993,
+        "nuisance_garment": 0.821825385093689,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 2,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 0,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.06017774145951134,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 8.502342097926885e-06,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.03221860385766634,
+          "garment_norm": 0.001577767194248736,
+          "other_norm": 0.016955260187387466,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.946788508291752,
+          "garment_norm": 0.0593385212123394,
+          "other_norm": 0.05872650444507599,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 3.5214559375162935e-06,
+        "garment": 1.609183669090271,
+        "mixedness": 0.6810598969459534,
+        "nuisance_garment": 1.6088218688964844,
+        "weight": -0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.10723377265927511,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.015711069107055664,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2865709779305441,
+          "garment_norm": 0.14264968037605286,
+          "other_norm": 0.14426414668560028,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8874157400406267,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.5754420757293701,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.032904401421546936,
+        "garment": 0.767369270324707,
+        "mixedness": 1.1680612564086914,
+        "nuisance_garment": 1.1118558645248413,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.10723377265927511,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.015711069107055664,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2865709779305441,
+          "garment_norm": 0.14264968037605286,
+          "other_norm": 0.14426414668560028,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8874157400406267,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.5754420757293701,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.032904401421546936,
+        "garment": 0.767369270324707,
+        "mixedness": 1.1680612564086914,
+        "nuisance_garment": 1.1118558645248413,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.10723377265927511,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.015711069107055664,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2865709779305441,
+          "garment_norm": 0.14264968037605286,
+          "other_norm": 0.14426414668560028,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8874157400406267,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.5754420757293701,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.032904401421546936,
+        "garment": 0.767369270324707,
+        "mixedness": 1.1680612564086914,
+        "nuisance_garment": 1.1118558645248413,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 60,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": 0.10723377265927511,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.015711069107055664,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": -0.2865709779305441,
+          "garment_norm": 0.14264968037605286,
+          "other_norm": 0.14426414668560028,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": 0.8874157400406267,
+          "garment_norm": 0.3382260203361511,
+          "other_norm": 0.5754420757293701,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.032904401421546936,
+        "garment": 0.767369270324707,
+        "mixedness": 1.1680612564086914,
+        "nuisance_garment": 1.1118558645248413,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.46150872504952245,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 0.2570228576660156,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.04989129596725569,
+          "garment_norm": 0.11558559536933899,
+          "other_norm": 0.6278630495071411,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.17912615341354474,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 1.0978119373321533,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 0,
+      "losses": {
+        "consistency": 0.2161872237920761,
+        "garment": 0.054834287613630295,
+        "mixedness": 0.9819711446762085,
+        "nuisance_garment": 0.6863589286804199,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.46150872504952245,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 0.2570228576660156,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.04989129596725569,
+          "garment_norm": 0.11558559536933899,
+          "other_norm": 0.6278630495071411,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.17912615341354474,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 1.0978119373321533,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 8,
+      "losses": {
+        "consistency": 0.2161872237920761,
+        "garment": 0.054834287613630295,
+        "mixedness": 0.9819711446762085,
+        "nuisance_garment": 0.6863589286804199,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.46150872504952245,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 0.2570228576660156,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.04989129596725569,
+          "garment_norm": 0.11558559536933899,
+          "other_norm": 0.6278630495071411,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.17912615341354474,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 1.0978119373321533,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 16,
+      "losses": {
+        "consistency": 0.2161872237920761,
+        "garment": 0.054834287613630295,
+        "mixedness": 0.9819711446762085,
+        "nuisance_garment": 0.6863589286804199,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    },
+    {
+      "checkpoint_step": 150,
+      "comparisons": {
+        "garment_vs_consistency": {
+          "cosine": -0.46150872504952245,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 0.2570228576660156,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.5
+        },
+        "garment_vs_mixedness": {
+          "cosine": 0.04989129596725569,
+          "garment_norm": 0.11558559536933899,
+          "other_norm": 0.6278630495071411,
+          "shared_parameters": [
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 0.3333333333333333
+        },
+        "garment_vs_nuisance_garment": {
+          "cosine": -0.17912615341354474,
+          "garment_norm": 0.12569676339626312,
+          "other_norm": 1.0978119373321533,
+          "shared_parameters": [
+            "garment_head.bias",
+            "garment_head.weight",
+            "reference_normalization.bias",
+            "reference_normalization.weight"
+          ],
+          "status": "SHARED_GRADIENT_PATH",
+          "support_overlap": 1.0
+        },
+        "garment_vs_weight": {
+          "status": "NO_SHARED_GRADIENT_PATH"
+        }
+      },
+      "cycle_batch": 24,
+      "losses": {
+        "consistency": 0.2161872237920761,
+        "garment": 0.054834287613630295,
+        "mixedness": 0.9819711446762085,
+        "nuisance_garment": 0.6863589286804199,
+        "weight": 0.0
+      },
+      "nuisance_type": "blur",
+      "rotation": 3,
+      "supports": {
+        "consistency": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "pair_weight_head.bias",
+          "pair_weight_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "mixedness": [
+          "mixedness_head.bias",
+          "mixedness_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "nuisance_garment": [
+          "garment_head.bias",
+          "garment_head.weight",
+          "reference_normalization.bias",
+          "reference_normalization.weight"
+        ],
+        "weight": []
+      }
+    }
+  ],
+  "schema_version": "controller_multitask_gradient_analysis.v1",
+  "status": "PASS"
+}
