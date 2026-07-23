@@ -1,0 +1,69 @@
+{
+  "schema_version": "subject00.mmlphuman.surface_lbs_runtime_interface.v1",
+  "task_id": "MMLPHUMAN-SUBJECT00-SURFACE-LBS-RUNTIME-001",
+  "status": "PASS",
+  "implementation_head_at_validation": "5aaa8cc73ba1d64df5c9a974ee209c891f57c204",
+  "lbs_mode": "surface_attachment_cached",
+  "gaussian_count": 200000,
+  "attachment_count": 200000,
+  "attachment_coverage": 1.0,
+  "off_surface_count": 0,
+  "lbs_shape": [
+    200000,
+    55
+  ],
+  "cached_weights_exact_to_assets": true,
+  "forward_uses_cached_weights": true,
+  "legacy_grid_loads": 0,
+  "forward_spatial_weight_queries": 0,
+  "attribute_alignment": {
+    "status": "PASS",
+    "gaussian_count": 200000,
+    "attribute_count": 13,
+    "attachment_field_count": 10,
+    "identity_indices_exact": true,
+    "device_and_dtype_conversion": "PASS",
+    "serialization_and_strict_state_load": "PASS",
+    "cpu_gpu_roundtrip": "PASS",
+    "model_copy_via_fresh_checkpoint_restore": "PASS",
+    "evaluation_mode_contract": "NOT_APPLICABLE_GAUSSIAN_MODEL_IS_NOT_NN_MODULE"
+  },
+  "fail_closed": {
+    "status": "PASS",
+    "records": {
+      "MISSING_ATTACHMENT": "PASS",
+      "INVALID_FACE_ID": "PASS",
+      "INVALID_BARYCENTRIC": "PASS",
+      "INVALID_LBS": "PASS",
+      "UNSUPPORTED_CLONE": "PASS",
+      "UNSUPPORTED_SPLIT": "PASS",
+      "UNSUPPORTED_DENSIFICATION": "PASS",
+      "UNSUPPORTED_PRUNE_WITH_INDEX_REORDER": "PASS",
+      "UNSUPPORTED_OFF_SURFACE_REBIND": "PASS"
+    },
+    "rejected_topology_mutation_attempts": 4,
+    "rejected_off_surface_rebind_attempts": 1,
+    "silent_fallback_count": 0
+  },
+  "runtime_scope": {
+    "historical_classification": "CLOSEST_TRIANGLE_FALLBACK_INSUFFICIENT",
+    "historical_scope": "GENERAL_HYBRID_OFF_SURFACE_LBS",
+    "general_hybrid_status": "NOT_READY",
+    "current_subject00_runtime": "SURFACE_ATTACHMENT_ONLY",
+    "fixed_weights_after_initialization": true,
+    "dxyz_triggers_rebind": false,
+    "allow_off_surface_fallback": false,
+    "allow_topology_mutation": false
+  },
+  "counters": {
+    "training_steps": 0,
+    "training_forward_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "training_checkpoint_writes": 0,
+    "smoke_checkpoint_writes": 1,
+    "PAPER_FINAL": 0
+  }
+}

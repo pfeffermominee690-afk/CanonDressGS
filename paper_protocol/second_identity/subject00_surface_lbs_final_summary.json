@@ -1,0 +1,142 @@
+{
+  "schema_version": "subject00.mmlphuman.surface_lbs_final_summary.v1",
+  "task_id": "MMLPHUMAN-SUBJECT00-SURFACE-LBS-RUNTIME-001",
+  "source": {
+    "branch": "research/mmlphuman-subject00-high-fidelity-lbs-design-20260723",
+    "head": "7a9191e7e57fc92000d681cf7f0b73edd346af62"
+  },
+  "target_branch": "research/mmlphuman-subject00-surface-lbs-runtime-20260723",
+  "implementation_head_at_validation": "5aaa8cc73ba1d64df5c9a974ee209c891f57c204",
+  "historical_classification": "CLOSEST_TRIANGLE_FALLBACK_INSUFFICIENT",
+  "historical_scope": "GENERAL_HYBRID_OFF_SURFACE_LBS",
+  "general_hybrid_status": "NOT_READY",
+  "current_runtime_scope": "SURFACE_ATTACHMENT_ONLY",
+  "sampler_repeatability": "PASS",
+  "run_a_run_b_arrays_exact": true,
+  "run_a_run_b_manifest_exact": true,
+  "published_selection": "run_a",
+  "surface_attachment": {
+    "point_count": 200000,
+    "coverage": 1.0,
+    "off_surface_count": 0,
+    "invalid_face_count": 0,
+    "invalid_barycentric_count": 0,
+    "lbs_shape": [
+      200000,
+      55
+    ],
+    "weights_finite": true,
+    "lbs_max_abs_from_barycentric_truth": 0.0,
+    "surface_xyz_formula_max_abs": 0.0,
+    "dominant_agreement": 1.0
+  },
+  "formal_assets": {
+    "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+    "file_count": 15,
+    "total_bytes": 61000690,
+    "manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8",
+    "template_ply_sha256": "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031",
+    "forbidden_lbs_grid_present": false,
+    "atomic_publish": "PASS"
+  },
+  "runtime_interface": "PASS",
+  "gaussian_attribute_alignment": "PASS",
+  "fail_closed": "PASS",
+  "checkpoint_roundtrip": {
+    "status": "PASS",
+    "source_head_at_checkpoint_write": "ce9cc076377c3224c12d9caa3ff7772cc5d8dbbf",
+    "strict_restore": true,
+    "weights_exact": true,
+    "attachments_exact": true,
+    "render_parity_max_abs": 0.0,
+    "checkpoint_kind": "SMOKE_CHECKPOINT_WRITE",
+    "checkpoint_bytes": 701865298,
+    "checkpoint_sha256": "96b8091e1a23067eb7588499914a18a2c447c1333786aaa39a6cbe86d7e1d4a8"
+  },
+  "post_publish_renderer_smoke": {
+    "status": "PASS",
+    "poses": [
+      "canonical",
+      "frame_1250",
+      "heldout_44"
+    ],
+    "cameras": [
+      1,
+      4,
+      8,
+      12
+    ],
+    "render_count": 12,
+    "rgb_alpha_depth_finite": true,
+    "alpha_nonempty": true,
+    "body_explosion": false,
+    "bin_overflow_warning": false,
+    "warning_count": 0,
+    "render_parity_to_candidate_max_abs": 0.0,
+    "manual_rgb_alpha_depth_spot_check": "PASS_RUNTIME_CONTRACT_ONLY"
+  },
+  "immutability": {
+    "status": "PASS",
+    "source_worktree_local_clean_at_exact_head": true,
+    "source_worktree_cloud_clean_at_exact_head": true,
+    "subject00_raw_unchanged": true,
+    "subject02_unchanged": true,
+    "attempt_001_unchanged": true,
+    "attempt_002_unchanged": true,
+    "attempt_003_unchanged": true,
+    "strict_splits_unchanged": true,
+    "attempt_001": {
+      "file_count": 370,
+      "total_bytes": 4171424719,
+      "aggregate_sha256": "9ec619fd6923e507bfcc197bfa252ae6f4607a006ad03497baa215a5e3da75d2"
+    },
+    "attempt_002": {
+      "file_count": 1021,
+      "total_bytes": 24351029781,
+      "aggregate_sha256": "75bf719d906d94de476fb51ad82b2999d74f77d9056f2507a25fdc666b372457"
+    },
+    "attempt_003": {
+      "file_count": 43,
+      "total_bytes": 407411849,
+      "aggregate_sha256": "bd2bb0e7a3f284eaef20bee1cf6527368824fa3d08c648f1a8c42a9cd069e0aa"
+    },
+    "subject00_raw_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "subject02_template_sha256": "d8050cacca15a118fb1eee753fce1f6933fb1889cac758aa37d0962867dd735f",
+    "subject02_lbs_sha256": "61af875b0c9c9f8c8c5bab678e14bc262105435270be4384cd6fc465633cc5a7",
+    "subject02_checkpoint_sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+    "authorized_target_branch_runtime_files_changed": [
+      "scene/gaussian_model.py",
+      "scene/scene.py"
+    ],
+    "formal_target_transition": "absent_to_atomically_published"
+  },
+  "known_limits": [
+    "clone",
+    "split",
+    "densification",
+    "topology-changing prune",
+    "arbitrary off-surface initialization",
+    "off-surface rebind"
+  ],
+  "failure_history_preserved": [
+    "raw-worktree line-ending hash contract stopped before asset writes",
+    "design-prototype versus approved-template hash contract stopped before surface array writes",
+    "unavailable frame44-camera0 smoke combination stopped before checkpoint write",
+    "fresh-process smoke harness omitted production init_smpl_pose and stopped before render"
+  ],
+  "no_scientific_rerun_or_threshold_change": true,
+  "counters": {
+    "training_steps": 0,
+    "training_forward_batches": 0,
+    "backward_calls": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "training_checkpoint_writes": 0,
+    "smoke_checkpoint_writes": 1,
+    "PAPER_FINAL": 0
+  },
+  "readiness": "SUBJECT00_SURFACE_ATTACHED_LBS_RUNTIME_READY_FOR_CANARY",
+  "next_task": "RUN_SUBJECT00_MMLPHUMAN_SHORT_CANARY_TRAINING_WITH_STRICT_SPLITS",
+  "next_task_started": false
+}

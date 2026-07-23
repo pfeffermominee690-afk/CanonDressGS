@@ -1,0 +1,42 @@
+{
+  "schema_version": "subject00.mmlphuman.surface_lbs_runtime_handoff.v1",
+  "task_id": "MMLPHUMAN-SUBJECT00-SURFACE-LBS-RUNTIME-001",
+  "status": "SUBJECT00_SURFACE_ATTACHED_LBS_RUNTIME_READY_FOR_CANARY",
+  "branch": "research/mmlphuman-subject00-surface-lbs-runtime-20260723",
+  "implementation_head_at_validation": "5aaa8cc73ba1d64df5c9a974ee209c891f57c204",
+  "config": "config/subject00_surface_lbs_canary_ready.yaml",
+  "formal_asset_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+  "surface_manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8",
+  "camera_split_sha": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+  "pose_split_sha": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06",
+  "pre_canary_gates": {
+    "lbs_mode": "surface_attachment_cached",
+    "require_surface_attachment": true,
+    "allow_off_surface_fallback": false,
+    "allow_topology_mutation": false,
+    "formal_training_enabled": false,
+    "canary_training_enabled": false,
+    "training_enabled": false,
+    "strict_splits_required": true,
+    "do_not_use_lbs_grid": true,
+    "do_not_enable_topology_mutation": true
+  },
+  "evidence": {
+    "summary": "paper_protocol/second_identity/subject00_surface_lbs_final_summary.json",
+    "runtime_interface": "paper_protocol/second_identity/subject00_surface_lbs_runtime_interface.json",
+    "repeatability": "paper_protocol/second_identity/subject00_surface_sampler_repeatability.json",
+    "checkpoint_roundtrip": "paper_protocol/second_identity/subject00_surface_lbs_checkpoint_roundtrip.json",
+    "runtime_smoke": "paper_protocol/second_identity/subject00_surface_lbs_runtime_smoke.json"
+  },
+  "immutability": {
+    "subject00_raw": "PASS",
+    "subject02": "PASS",
+    "attempt_001": "PASS",
+    "attempt_002": "PASS",
+    "attempt_003": "PASS",
+    "strict_splits": "PASS"
+  },
+  "next_task": "RUN_SUBJECT00_MMLPHUMAN_SHORT_CANARY_TRAINING_WITH_STRICT_SPLITS",
+  "next_task_started": false,
+  "PAPER_FINAL": 0
+}
