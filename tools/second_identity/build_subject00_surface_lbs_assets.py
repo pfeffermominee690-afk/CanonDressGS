@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import sys
@@ -31,7 +32,7 @@ from utils.surface_lbs_utils import (  # noqa: E402
 
 
 EXPECTED_SAMPLER_SOURCE_SHA256 = (
-    "2789d792825ef9f62a75c928a3ea77a3f1478ed92b3d31952ac4a897b3ff4a29"
+    "98af26a3f578d1e0239f6ea414e3664dae10a4b60f47aef594d0978f61b9ee82"
 )
 EXPECTED_TEMPLATE_PLY_SHA256 = (
     "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031"
@@ -60,6 +61,12 @@ def save_array(path: Path, value: np.ndarray) -> None:
         np.save(handle, np.ascontiguousarray(value), allow_pickle=False)
 
 
+def canonical_lf_sha256(path: Path) -> str:
+    text = path.read_text(encoding="utf-8")
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--subject-root", type=Path, required=True)
@@ -78,7 +85,8 @@ def main() -> int:
         REPO_ROOT
         / "tools/second_identity/run_subject00_high_fidelity_lbs_prototype.py"
     )
-    sampler_source_sha256 = sha256_file(sampler_source)
+    sampler_source_raw_sha256 = sha256_file(sampler_source)
+    sampler_source_sha256 = canonical_lf_sha256(sampler_source)
     if sampler_source_sha256 != EXPECTED_SAMPLER_SOURCE_SHA256:
         raise RuntimeError(
             "Frozen sampler source SHA changed: "
@@ -220,6 +228,10 @@ def main() -> int:
                 "run_subject00_high_fidelity_lbs_prototype.py"
             ),
             "source_sha256": sampler_source_sha256,
+            "source_sha256_policy": (
+                "normalize_CRLF_and_CR_to_LF_before_SHA256"
+            ),
+            "source_raw_sha256_record_only": sampler_source_raw_sha256,
             "function": "deterministic_surface_points",
             "face_area_dtype": "float64",
             "face_order": "template_face_index_ascending",

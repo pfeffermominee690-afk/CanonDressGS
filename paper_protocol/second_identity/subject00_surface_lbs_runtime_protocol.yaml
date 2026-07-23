@@ -28,7 +28,9 @@ scope_decision:
 sampler:
   algorithm: deterministic_area_cdf_surface_sampler
   frozen_source: tools/second_identity/run_subject00_high_fidelity_lbs_prototype.py
-  frozen_source_sha256: 2789d792825ef9f62a75c928a3ea77a3f1478ed92b3d31952ac4a897b3ff4a29
+  frozen_source_sha256_canonical_lf: 98af26a3f578d1e0239f6ea414e3664dae10a4b60f47aef594d0978f61b9ee82
+  windows_worktree_raw_sha256_record_only: 2789d792825ef9f62a75c928a3ea77a3f1478ed92b3d31952ac4a897b3ff4a29
+  source_hash_policy: normalize_CRLF_and_CR_to_LF_before_SHA256
   function: deterministic_surface_points
   face_area_dtype: float64
   face_order: template_face_index_ascending
