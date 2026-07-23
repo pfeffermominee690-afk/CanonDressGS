@@ -38,7 +38,7 @@ EXPECTED_TEMPLATE_PLY_SHA256 = (
     "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031"
 )
 EXPECTED_VERTEX_ARRAY_SHA256 = (
-    "cb7edff9ec0ef82d97fb1444a65e894e39a9bd4cafd7cde0e90b388547e6e447"
+    "1f924c7e46a97b37272ea833ea09f54e8b10f79836824f43140bf8452e69ad97"
 )
 EXPECTED_FACE_ARRAY_SHA256 = (
     "2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b"
@@ -249,6 +249,13 @@ def main() -> int:
             "face_count": int(len(faces)),
             "joint_count": int(reference_weights.shape[1]),
             "vertices_array_sha256": sha256_array(vertices),
+            "design_prototype_reconstructed_vertices_sha256_record_only": (
+                "cb7edff9ec0ef82d97fb1444a65e894e39a9bd4cafd7cde0e90b388547e6e447"
+            ),
+            "vertex_authority": (
+                "approved_attempt_001_template_plus_matching_current_"
+                "SMPLX_reconstruction"
+            ),
             "faces_array_sha256": sha256_array(faces),
             "weights_array_sha256": sha256_array(reference_weights),
             "files": template_files,
