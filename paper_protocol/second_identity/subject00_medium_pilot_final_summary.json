@@ -1,0 +1,249 @@
+{
+  "PAPER_FINAL": 0,
+  "actual_runtime_code_provenance": {
+    "canary_execution_code_head": "b0e8096589fe18069d95d2137e1db3979b4fe89f",
+    "medium_execution_source_head": "36c43d9dd29abfe546a5352b46378244f3bd9f1b",
+    "runner": {
+      "file_sha256": "2b2106651045bdc44c9dec046f85e417b4382eb9e67aa8b24af7d24a5815ff5d",
+      "freeze_commit_head_resolution": "git rev-parse HEAD after this pre-result contract is committed",
+      "path": "tools/second_identity/run_subject00_medium_pilot.py"
+    }
+  },
+  "authorization": {
+    "formal_long_training_authorized": false,
+    "paper_final_authorized": false,
+    "template_change_authorized": false
+  },
+  "body_surface_representation_status": "APPEARANCE_AND_SILHOUETTE_EMERGING",
+  "checkpoints": [
+    {
+      "bytes": 701938720,
+      "data_order_position": 0,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+      "pointer_only": true,
+      "reused": true,
+      "sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+      "step": 0
+    },
+    {
+      "bytes": 724584644,
+      "data_order_position": 5062,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001/checkpoints/step_005062.pth",
+      "reused": false,
+      "sha256": "3e579a449a9859cb72f2b90c6f0ba59c28dc58d9d9ec771c367cdd73593d83e4",
+      "step": 5062
+    },
+    {
+      "bytes": 724584644,
+      "data_order_position": 10124,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001/checkpoints/step_010124.pth",
+      "reused": false,
+      "sha256": "12878f9bc25922528ad13a052aca7d76b5aedd19ca53ab7564f6c2a7d23ac2df",
+      "step": 10124
+    },
+    {
+      "bytes": 724584644,
+      "data_order_position": 15186,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001/checkpoints/step_015186.pth",
+      "reused": false,
+      "sha256": "d8ea19c998aa11e536e284701a3a92db9d307e55d8f89017fce55f5768f6b1f7",
+      "step": 15186
+    },
+    {
+      "bytes": 724584644,
+      "data_order_position": 20249,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001/checkpoints/step_020249.pth",
+      "reused": false,
+      "sha256": "480805878f1dba3d0748ab0b31d1e18c68fdd3f42267d92cf4763f97c0d1f443",
+      "step": 20249
+    }
+  ],
+  "classification": "SUBJECT00_MMLPHUMAN_MEDIUM_PILOT_PASS",
+  "evaluation": {
+    "all_finite": true,
+    "alpha_nonempty_count": 96,
+    "body_explosion_count": 0,
+    "final_vs_canary_step384": {
+      "lpips_improved_count": 96,
+      "mean_lpips_absolute_change": -0.05836051551159471,
+      "mean_lpips_final": 0.06328519639403869,
+      "mean_lpips_reference": 0.1216457119056334,
+      "mean_lpips_relative_change": -0.47975809913355477,
+      "mean_rgb_mae_absolute_change": -0.007081148625729838,
+      "mean_rgb_mae_final": 0.003577645001011357,
+      "mean_rgb_mae_reference": 0.010658793626741195,
+      "mean_rgb_mae_relative_change": -0.664348037282979,
+      "rgb_mae_improved_count": 96
+    },
+    "final_vs_step0": {
+      "lpips_improved_count": 96,
+      "mean_lpips_absolute_change": -0.07410932801819096,
+      "mean_lpips_final": 0.06328519639403869,
+      "mean_lpips_reference": 0.13739452441222966,
+      "mean_lpips_relative_change": -0.5393906950457364,
+      "mean_rgb_mae_absolute_change": -0.008716256075179748,
+      "mean_rgb_mae_final": 0.003577645001011357,
+      "mean_rgb_mae_reference": 0.012293901076191105,
+      "mean_rgb_mae_relative_change": -0.7089902563198611,
+      "rgb_mae_improved_count": 96
+    },
+    "heldout_relative_lpips_change_vs_step0": {
+      "Q_HELDOUT_POSE_HELDOUT_CAMERA": -0.5167386632434259,
+      "Q_HELDOUT_POSE_TRAIN_CAMERA": -0.5189410948414243,
+      "Q_TRAIN_POSE_HELDOUT_CAMERA": -0.5549166584452454
+    },
+    "query_count": 96,
+    "representation_metrics": {
+      "boundary_f_score": {
+        "max": 0.9798274734525004,
+        "mean": 0.803278516130951,
+        "median": 0.8082681637875657,
+        "min": 0.6682936809735169
+      },
+      "foreground_chroma": {
+        "max": 0.08628486096858978,
+        "mean": 0.07065231845869373,
+        "median": 0.07000638172030449,
+        "min": 0.059063222259283066
+      },
+      "foreground_coverage": {
+        "max": 0.11576005230467473,
+        "mean": 0.04188054375068106,
+        "median": 0.03867211507028441,
+        "min": 0.02271788166067342
+      },
+      "foreground_rgb_variance": {
+        "max": 0.0976022481918335,
+        "mean": 0.08338005111242335,
+        "median": 0.08396506309509277,
+        "min": 0.067105233669281
+      },
+      "garment_proxy_overcoverage": {
+        "max": 0.0031561500604018267,
+        "mean": 0.0015711241259540813,
+        "median": 0.001594992638515215,
+        "min": 0.0002472870854824962
+      },
+      "garment_proxy_undercoverage": {
+        "max": 0.08218980558025522,
+        "mean": 0.051245250757682735,
+        "median": 0.05272345774845356,
+        "min": 0.024950287807430666
+      },
+      "gt_pred_color_histogram_l1": {
+        "max": 0.28807256235827666,
+        "mean": 0.1530809770931756,
+        "median": 0.13901431669805822,
+        "min": 0.07471109554723487
+      },
+      "silhouette_iou": {
+        "max": 0.966085398365456,
+        "mean": 0.9155495896626089,
+        "median": 0.9152537028577181,
+        "min": 0.8854390873869996
+      }
+    },
+    "tt_lpips_improved_count": 24
+  },
+  "external_archive": {
+    "bytes": 3229325143,
+    "file_count": 250,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001"
+  },
+  "initialization": {
+    "attachment_count": 200000,
+    "attachment_inventory_exact": true,
+    "checkpoint_bytes": 701938720,
+    "checkpoint_sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+    "checkpoint_step": 0,
+    "data_order_position": 0,
+    "gaussian_count": 200000,
+    "lbs_shape": [
+      200000,
+      55
+    ],
+    "optimizer_initial": true,
+    "parameter_inventory_exact": true,
+    "rng_state_present": true,
+    "scheduler_initial": true,
+    "source_head": "55cb5a28b8ff0d6a3373582759b8704df2267331",
+    "status": "PASS"
+  },
+  "limitations": [
+    "Loose hoodie volume, sleeve bulk, and hem offset remain underrepresented by the body-surface fallback.",
+    "The result demonstrates emerging appearance and silhouette, not complete loose-clothing geometry.",
+    "Hands, fingers, face, and eyes remain fine-detail limited."
+  ],
+  "mutation_audit": {
+    "attachment": 0,
+    "avatarrex_raw_archive": 0,
+    "cached_lbs": 0,
+    "camera_pose_split": 0,
+    "canary_output": 0,
+    "frozen_parameters": 0,
+    "historical_attempts": 0,
+    "subject00_derived_assets": 0,
+    "subject00_raw": 0,
+    "subject02": 0,
+    "template": 0
+  },
+  "next_task": "DESIGN_SUBJECT00_FORMAL_STRICT_SPLIT_TRAINING_PROTOCOL",
+  "next_task_started": false,
+  "roundtrip": {
+    "render_all_exact": true,
+    "render_array_count": 24,
+    "render_max_abs": 0.0,
+    "render_query_count": 8,
+    "status": "PASS"
+  },
+  "schema_version": 1,
+  "source": {
+    "branch": "research/mmlphuman-subject00-short-canary-from-repaired-contract-20260723",
+    "head": "8c69cdce0139532a33b1d4f839da7467784270e6"
+  },
+  "strict_splits": {
+    "availability_manifest_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+    "buffer_pose_intersection": 0,
+    "camera_split_sha256": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+    "data_order_sha256": "0f0e7463d9f9066f54e19ec31f85f722afd58e58aba123af144918fdc97639f8",
+    "evaluation_query_order_sha256": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+    "heldout_camera_intersection": 0,
+    "heldout_pose_intersection": 0,
+    "pose_split_sha256": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06",
+    "record_manifest_sha256": "865118c2f216046008925ef14b049db6e1d2921922117f6e3c3e3e2fdacd3537"
+  },
+  "task_id": "MMLPHUMAN-SUBJECT00-ONE-PASS-MEDIUM-PILOT-001",
+  "training": {
+    "backward_calls": 20249,
+    "forward_batches": 20249,
+    "lpips_training_loss": {
+      "activation_rule": "step > 6000",
+      "first_nonzero_step": 6001,
+      "nonzero_step_count": 14249
+    },
+    "one_full_valid_strict_train_pass": true,
+    "optimizer_steps": 20249,
+    "primary_reconstruction_loss": {
+      "first5_percent_median": 0.008318810723721981,
+      "gate_last_below_first": true,
+      "last5_percent_median": 0.0021710058208554983,
+      "name": "l1_loss",
+      "relative_reduction": 0.739024496053908
+    },
+    "record_count": 20249,
+    "repeated_training_record_count": 0,
+    "total_loss": {
+      "first5_percent_median": 0.008396284189075232,
+      "gate_last_below_first": true,
+      "last5_percent_median": 0.007115250686183572,
+      "relative_reduction": 0.15257147972176405
+    },
+    "unique_exposure_count": 20249
+  },
+  "visual_review": {
+    "limitations_preserved": true,
+    "opened_original_detail_count": 96,
+    "severe_component_contamination_count": 0,
+    "sheet_count": 96
+  }
+}
