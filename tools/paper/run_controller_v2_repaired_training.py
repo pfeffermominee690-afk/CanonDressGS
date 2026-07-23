@@ -46,7 +46,7 @@ OUTPUT_NAME = "CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001"
 ATTEMPT = os.environ.get(
     "CANONDRESSGS_CONTROLLER_V2_ATTEMPT", "attempt_002"
 )
-if ATTEMPT not in {"attempt_002", "attempt_003"}:
+if ATTEMPT not in {"attempt_002", "attempt_003", "attempt_004"}:
     raise RuntimeError(f"unsupported append-only attempt: {ATTEMPT}")
 SEEDS = (0, 1, 2)
 FAMILIES = ("V2", "MATCHED_V1")
@@ -393,8 +393,33 @@ def prepare(
 
 
 def seal_startup_failure(output_root: Path) -> dict[str, Any]:
-    if ATTEMPT != "attempt_002":
-        raise RuntimeError("startup failure seal is bound to attempt_002")
+    failure_contract = {
+        "attempt_002": {
+            "message":
+                "CUDA deterministic CuBLAS requires "
+                "CUBLAS_WORKSPACE_CONFIG=:4096:8",
+            "phase": "FIRST_CLEAN_FORWARD_BEFORE_COMPLETION",
+            "completed_forward_batches": 0,
+            "record_forwards_clean": 0,
+            "record_forwards_augmented": 0,
+            "required_new_attempt": "attempt_003",
+        },
+        "attempt_003": {
+            "message":
+                "mixed-only pair-weight loss received an empty tensor list "
+                "for the all-pure first scheduled batch",
+            "phase": "FIRST_BATCH_LOSS_ASSEMBLY_BEFORE_BACKWARD",
+            "completed_forward_batches": 2,
+            "record_forwards_clean": 5,
+            "record_forwards_augmented": 5,
+            "required_new_attempt": "attempt_004",
+        },
+    }
+    if ATTEMPT not in failure_contract:
+        raise RuntimeError(
+            "startup failure seal supports attempt_002 and attempt_003 only"
+        )
+    failure = failure_contract[ATTEMPT]
     root = attempt_root(output_root)
     checkpoint = (
         training_root(output_root, "V2", 0, 0)
@@ -426,14 +451,16 @@ def seal_startup_failure(output_root: Path) -> dict[str, Any]:
         "seed": 0,
         "failure": {
             "exception": "RuntimeError",
-            "message":
-                "CUDA deterministic CuBLAS requires "
-                "CUBLAS_WORKSPACE_CONFIG=:4096:8",
-            "phase": "FIRST_CLEAN_FORWARD_BEFORE_COMPLETION",
+            "message": failure["message"],
+            "phase": failure["phase"],
         },
         "counts": {
             "completed_training_steps": 0,
-            "completed_forward_batches": 0,
+            "completed_forward_batches":
+                failure["completed_forward_batches"],
+            "record_forwards_clean": failure["record_forwards_clean"],
+            "record_forwards_augmented":
+                failure["record_forwards_augmented"],
             "backward_calls": 0,
             "optimizer_steps": 0,
             "scheduler_steps": 0,
@@ -448,7 +475,7 @@ def seal_startup_failure(output_root: Path) -> dict[str, Any]:
         "eligible_for_new_attempt": True,
         "eligibility_rule":
             "EXPLICIT_CODE_STARTUP_ERROR_AND_TRAINING_STEP_EQ_0",
-        "required_new_attempt": "attempt_003",
+        "required_new_attempt": failure["required_new_attempt"],
         "preserve_this_attempt": True,
         "paper_final": False,
         "paper_final_count": 0,
@@ -609,12 +636,17 @@ def v2_loss(
                 record["target_distribution"][earlier_index]
             )
         )
-    weight = F.smooth_l1_loss(
-        torch.stack(predicted_weights),
-        torch.stack(target_weights),
-        beta=0.1,
-        reduction="mean",
-    )
+    if predicted_weights:
+        weight = F.smooth_l1_loss(
+            torch.stack(predicted_weights),
+            torch.stack(target_weights),
+            beta=0.1,
+            reduction="mean",
+        )
+    else:
+        # The frozen outfit-dominant schedule contains legal all-pure batches.
+        # Mixed-only supervision contributes an exact differentiable zero.
+        weight = garment_logits.sum() * 0.0
     clean_garment = torch.stack(
         [output.garment_probabilities for output in outputs]
     )
