@@ -1,13 +1,14 @@
 {
   "best_legal_selected_by_calibration": {
-    "calibration_macro": 0.9875,
-    "name": "CURRENT_SET_DIRECT_PAIR_10WAY",
-    "test_macro": 0.9875,
+    "calibration_macro": 1.0,
+    "evaluation_population": "MIXED_ONLY",
+    "name": "PER_REF_TO_SET_PAIR",
+    "test_macro": 1.0,
     "test_per_rotation": [
       1.0,
-      0.9833333333333333,
-      0.9833333333333333,
-      0.9833333333333333
+      1.0,
+      1.0,
+      1.0
     ]
   },
   "calibration_only_lambda_selection": true,
@@ -69204,6 +69205,63 @@
   },
   "ridge_fit_count": 120,
   "ridge_formula": "(X^T X + lambda I)^-1 X^T Y",
+  "same_denominator_mixed_pair_comparison": {
+    "CURRENT_SET_15WAY": {
+      "calibration_macro": 0.9375,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 0.9333333333333333,
+      "test_per_rotation": [
+        0.9666666666666667,
+        0.9166666666666666,
+        0.9,
+        0.95
+      ]
+    },
+    "CURRENT_SET_DIRECT_PAIR_10WAY": {
+      "calibration_macro": 0.9875,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 0.9875,
+      "test_per_rotation": [
+        1.0,
+        0.9833333333333333,
+        0.9833333333333333,
+        0.9833333333333333
+      ]
+    },
+    "CURRENT_SET_MULTI_LABEL_5WAY": {
+      "calibration_macro": 0.9958333333333333,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "CURRENT_SET_SOFT_TARGET_5WAY": {
+      "calibration_macro": 1.0,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PER_REF_TO_SET_PAIR": {
+      "calibration_macro": 1.0,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
   "schema_version": "controller_linear_probe_results.v1",
   "status": "PASS",
   "test_evaluated_once": true,

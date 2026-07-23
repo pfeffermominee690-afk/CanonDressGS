@@ -102,11 +102,11 @@
     "teacher_mutation": 0,
     "threshold_mutation": 0
   },
-  "next_task": "DESIGN_DIRECT_PAIR_HEAD_CONTROLLER_V3",
+  "next_task": "AUDIT_PURE_RECORD_PAIR_IDENTIFIABILITY_AND_REDEFINE_DIAGNOSTIC_DENOMINATORS",
   "next_task_started": false,
   "paper_final": false,
   "paper_final_count": 0,
-  "primary_diagnostic_classification": "SOFTMAX_PAIR_PARAMETERIZATION_FAILURE",
+  "primary_diagnostic_classification": "PAIR_IDENTIFICATION_DIAGNOSIS_INCONCLUSIVE",
   "probe_details": {
     "CURRENT_SET_15WAY": {
       "calibration_macro": 0.9375,
@@ -180,19 +180,82 @@
     }
   },
   "probe_summary": {
-    "calibration_macro": 0.9875,
-    "name": "CURRENT_SET_DIRECT_PAIR_10WAY",
-    "test_macro": 0.9875,
+    "calibration_macro": 1.0,
+    "evaluation_population": "MIXED_ONLY",
+    "name": "PER_REF_TO_SET_PAIR",
+    "test_macro": 1.0,
     "test_per_rotation": [
       1.0,
-      0.9833333333333333,
-      0.9833333333333333,
-      0.9833333333333333
+      1.0,
+      1.0,
+      1.0
     ]
   },
   "representation_classification": "REFERENCE_REPRESENTATION_RECOVERABLE",
+  "same_denominator_mixed_pair_comparison": {
+    "CURRENT_SET_15WAY": {
+      "calibration_macro": 0.9375,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 0.9333333333333333,
+      "test_per_rotation": [
+        0.9666666666666667,
+        0.9166666666666666,
+        0.9,
+        0.95
+      ]
+    },
+    "CURRENT_SET_DIRECT_PAIR_10WAY": {
+      "calibration_macro": 0.9875,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 0.9875,
+      "test_per_rotation": [
+        1.0,
+        0.9833333333333333,
+        0.9833333333333333,
+        0.9833333333333333
+      ]
+    },
+    "CURRENT_SET_MULTI_LABEL_5WAY": {
+      "calibration_macro": 0.9958333333333333,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "CURRENT_SET_SOFT_TARGET_5WAY": {
+      "calibration_macro": 1.0,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PER_REF_TO_SET_PAIR": {
+      "calibration_macro": 1.0,
+      "evaluation_population": "MIXED_ONLY",
+      "test_macro": 1.0,
+      "test_per_rotation": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
   "schema_version": "controller_pair_diagnosis_final_summary.v1",
   "secondary_factors": [],
+  "secondary_observations": [
+    "PURE_RECORD_LATENT_SECOND_GARMENT_IS_NOT_INPUT_IDENTIFIABLE",
+    "V2_FINAL_IS_STILL_IMPROVING_RATHER_THAN_DEGRADING",
+    "MULTITASK_SHARED_PATH_GRADIENT_CONFLICT_WITHOUT_TRAJECTORY_CAUSALITY"
+  ],
   "source_head": "a8557b461f301c19a0f24eb17d924ddd9159a580",
   "status": "PASS",
   "task_id": "AAAI27-CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSIS-001",
