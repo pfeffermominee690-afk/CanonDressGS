@@ -1,0 +1,163 @@
+{
+  "schema_version": "canondressgs.paper.loo_baseline_registry_amended.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "FROZEN_FOR_REPAIRED_K1_K2_PROTOCOL",
+  "amends_without_mutation": {
+    "path": "paper_protocol/reviewer_risk/loo_baseline_registry.json",
+    "sha256_git_blob_bytes": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925",
+    "method_semantics_changed": false
+  },
+  "shared_contract": {
+    "identity": "subject02",
+    "basis_bank_size": 4,
+    "held_out_garment_in_bank": false,
+    "same_adaptation_calibration_test_manifests": true,
+    "same_renderer": true,
+    "primary_task_denominator": 40,
+    "K_applicability": [1, 2],
+    "K4_current_execution_count": 0
+  },
+  "methods": [
+    {
+      "id": "BASE_AVATAR",
+      "paper_name": "Base Avatar",
+      "deployable": true,
+      "trainable": false,
+      "output": "frozen base Gaussian state without garment residual",
+      "held_out_teacher_use": 0,
+      "K_applicability": [1, 2],
+      "planned_run_count": 0,
+      "planned_test_cells": 40,
+      "denominator": 40,
+      "primary_table_eligible": true
+    },
+    {
+      "id": "REFERENCE_NEAREST_HARD_LOOKUP",
+      "paper_name": "Reference Nearest Hard Lookup",
+      "deployable": true,
+      "trainable": false,
+      "output": "one of exactly four known LOO endpoint residuals",
+      "selection": "nearest Euclidean train-only frozen-F2 centroid to held-out adaptation reference feature",
+      "can_create_new_coefficient": false,
+      "held_out_teacher_use": 0,
+      "K_applicability": [1, 2],
+      "planned_run_count": 40,
+      "planned_test_cells": 40,
+      "denominator": 40,
+      "primary_table_eligible": true
+    },
+    {
+      "id": "RESIDUAL_NEAREST_ORACLE",
+      "paper_name": "Residual Nearest Oracle",
+      "deployable": false,
+      "trainable": false,
+      "output": "nearest of four known endpoints in bound-normalized residual space",
+      "role": "offline representation diagnostic only",
+      "held_out_teacher_use": 1,
+      "K_applicability": [1, 2],
+      "planned_run_count": 5,
+      "planned_test_cells": 40,
+      "denominator": 40,
+      "primary_table_eligible": false
+    },
+    {
+      "id": "ORACLE_PROJECTION_LOO_BASIS",
+      "paper_name": "Oracle Projection into LOO Basis",
+      "deployable": false,
+      "trainable": false,
+      "output": "mu_-i + B_-i c_oracle",
+      "coefficient": "B_-i^T flatten(bound_normalized(R_i^T-mu_-i))",
+      "role": "offline basis-capacity upper bound only",
+      "held_out_teacher_use": 1,
+      "K_applicability": [1, 2],
+      "planned_run_count": 5,
+      "planned_test_cells": 40,
+      "denominator": 40,
+      "primary_table_eligible": false
+    },
+    {
+      "id": "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+      "paper_name": "Few-View Low-Dimensional Adaptation",
+      "deployable": true,
+      "trainable": true,
+      "output": "new rank<=3 coefficient optimized from few-view rendering loss",
+      "held_out_teacher_use": 0,
+      "K_applicability": [1, 2],
+      "planned_run_count": 40,
+      "planned_test_cells": 240,
+      "denominator": 40,
+      "primary_table_eligible": true
+    },
+    {
+      "id": "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+      "paper_name": "Few-View Full-Residual Optimization",
+      "deployable": true,
+      "trainable": true,
+      "output": "full 4,400,000-scalar canonical residual optimization from same initial residual",
+      "held_out_teacher_use": 0,
+      "K_applicability": [1, 2],
+      "planned_run_count": 40,
+      "planned_test_cells": 240,
+      "denominator": 40,
+      "primary_table_eligible": true
+    },
+    {
+      "id": "HELD_OUT_TEACHER_ENDPOINT",
+      "paper_name": "Held-Out Teacher Endpoint",
+      "deployable": false,
+      "trainable": false,
+      "output": "full held-out Teacher residual",
+      "role": "evaluation reference only",
+      "held_out_teacher_use": 1,
+      "K_applicability": [1, 2],
+      "planned_run_count": 0,
+      "planned_test_cells": 40,
+      "denominator": 40,
+      "primary_table_eligible": false
+    },
+    {
+      "id": "REFERENCE_PREDICTOR_TRANSFER",
+      "paper_name": "Recoverable Reference Predictor Transfer",
+      "deployable": false,
+      "trainable": false,
+      "status": "NOT_APPLICABLE",
+      "reason": "The source predictor outputs rank-4 full-five-garment coefficients and no frozen label-free map to each rank<=3 LOO basis exists.",
+      "held_out_teacher_use": 0,
+      "K_applicability": [1, 2],
+      "planned_run_count": 0,
+      "planned_test_cells": 0,
+      "denominator": 40,
+      "primary_table_eligible": false
+    }
+  ],
+  "mandatory_diagnostics": {
+    "ZERO_COEFFICIENT_INITIALIZATION": {
+      "K_applicability": [1, 2],
+      "planned_run_count": 40,
+      "planned_test_cells": 240,
+      "may_replace_primary": false
+    }
+  },
+  "optional_diagnostic": {
+    "id": "CONVEX_COMBINATION_ORACLE",
+    "paper_name": "Convex Combination Oracle Diagnostic",
+    "enabled": true,
+    "deployable": false,
+    "domain": "convex hull of the four known LOO coefficients",
+    "solver": "offline deterministic nonnegative least squares with coefficients summing to one",
+    "held_out_teacher_use": 1,
+    "K_applicability": [1, 2],
+    "planned_run_count": 5,
+    "planned_test_cells": 40,
+    "denominator": 40,
+    "primary_table_eligible": false,
+    "may_replace_deployable_method": false
+  },
+  "primary_scientific_comparison": {
+    "treatment": "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+    "control": "REFERENCE_NEAREST_HARD_LOOKUP",
+    "primary_K": 2,
+    "denominator": "40 registered held-out garment x rotation x K tasks, with primary gate evaluated on the 20 K=2 tasks",
+    "outfit_id_oracle_applicable": false
+  }
+}

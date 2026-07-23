@@ -1,0 +1,62 @@
+{
+  "schema_version": "canondressgs.paper.loo_shared_render_adaptation_loss_reference.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "CORE_WEIGHT_ALIGNMENT_WITH_PREREGISTERED_SCOPE_DIFFERENCES",
+  "formal_name": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT",
+  "loo_contract": {
+    "source_branch": "research/leave-one-garment-out-basis-adaptation-protocol-20260724",
+    "source_head": "ecf11d6314126f02a9ed1305630a2eac2bd7da04",
+    "artifact_path": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+    "sha256_git_blob_bytes": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3",
+    "modified": false
+  },
+  "headroom_contract": {
+    "source_branch": "research/render-refined-coefficient-headroom-protocol-20260724",
+    "source_head": "2a42143f7942752aead16e7d53d1b7376fc5a143",
+    "artifact_path": "paper_protocol/reviewer_risk/coefficient_headroom_loss_contract.json",
+    "sha256_git_blob_bytes": "768948eb835da32eb3c48f1fab8af76045b42be660d8605ad9340d32fbf9ca36",
+    "modified": false
+  },
+  "shared_core_weights": {
+    "garment_rgb_l1": 1.0,
+    "foreground_or_mask_l1": 0.5,
+    "boundary_rgb_l1": 0.25,
+    "protected_identity_rgb_l1": 10.0,
+    "protected_identity_alpha_l1": 5.0
+  },
+  "intentional_loo_specific_differences": {
+    "lpips": {
+      "loo_weight": 0.1,
+      "headroom_weight": 0.0,
+      "reason": "LOO preregistered differentiable VGG LPIPS v0.1 for few-view adaptation; Headroom intentionally reuses historical CAPACITY_ORACLE_LOSS_V1 where LPIPS is evaluation-only."
+    },
+    "silhouette": {
+      "loo_term": "full-image mask_l1",
+      "headroom_additional_term": "new_silhouette_alpha weight 1.0",
+      "reason": "Headroom preserves its historical capacity-oracle silhouette decomposition; LOO preserves its earlier full-image mask contract."
+    },
+    "boundary_domain": {
+      "loo": "3x3 binary erosion XOR target garment mask",
+      "headroom": "target_transition_mask excluding target_protected_mask",
+      "reason": "Both definitions were frozen prospectively in their own protocol scopes."
+    },
+    "regularization": {
+      "loo": "basis-garment-only calibration over coefficient and residual trust-region grids",
+      "headroom": "coefficient anchor or historical direct stability",
+      "reason": "The optimized variables and preregistered scientific questions differ."
+    }
+  },
+  "equivalence_audit": {
+    "shared_core_weight_alignment": true,
+    "numerically_interchangeable": false,
+    "scientific_mismatch": false,
+    "unexplained_difference_count": 0,
+    "decision": "CORE_WEIGHT_ALIGNMENT_WITH_PREREGISTERED_SCOPE_DIFFERENCES"
+  },
+  "repair_task_execution_counts": {
+    "forward": 0,
+    "backward": 0,
+    "renderer_runs": 0,
+    "optimizer_created": 0
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "canondressgs.paper.loo_success_gates_amended.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "FROZEN_NUMERIC_GATES_REPAIRED_PRIMARY_K2",
+  "frozen_before_result": true,
+  "amends_without_mutation": {
+    "path": "paper_protocol/reviewer_risk/loo_success_gates.json",
+    "sha256_git_blob_bytes": "e9b1b7191f9e24d7fcd560cb72eb116ab5a8eee9cb46020b1c65159891129e76",
+    "only_primary_budget_substitution": "K4_TO_K2",
+    "other_numeric_thresholds_changed": false
+  },
+  "hard_lookup_outperformance": {
+    "K": 2,
+    "minimum_successful_garments": 4,
+    "per_rotation_lpips_absolute_reduction_min": 0.005,
+    "per_rotation_rgb_mae_absolute_reduction_min": 0.002,
+    "successful_rotations_per_garment_min": 3,
+    "identity_contamination_count_max": 0
+  },
+  "few_view_scaling": {
+    "comparison": "K2_MINUS_K1",
+    "minimum_garments_k2_not_worse_than_k1": 4,
+    "macro_lpips_k2_minus_k1_max": 0.002,
+    "macro_rgb_mae_k2_minus_k1_max": 0.001,
+    "classifications": [
+      "VIEW_BUDGET_SCALING_POSITIVE",
+      "VIEW_BUDGET_SCALING_MIXED",
+      "VIEW_BUDGET_SCALING_NEGATIVE"
+    ],
+    "post_result_selection_use_forbidden": true
+  },
+  "K1_role": {
+    "classification": "SAMPLE_EFFICIENCY_DIAGNOSTIC",
+    "may_replace_failed_K2_primary_gate": false,
+    "must_report_against_hard_lookup": true
+  },
+  "efficiency": {
+    "low_dimensional_trainable_scalars_max": 3,
+    "full_residual_trainable_scalars_min": 4400000,
+    "low_to_full_parameter_ratio_max": 0.000001,
+    "low_dimensional_wall_time_fraction_max": 0.25
+  },
+  "full_residual_comparison": {
+    "low_dimensional_gain_recovery_ratio_min": 0.75,
+    "gain_definition": "(hard_lookup_metric - low_dimensional_metric)/(hard_lookup_metric - full_residual_metric), separately for LPIPS and RGB MAE",
+    "minimum_garments_passing": 4
+  },
+  "oracle_span_capacity": {
+    "projection_ratio_min": 0.7,
+    "bound_normalized_residual_rmse_max": 0.15,
+    "oracle_projection_lpips_max": 0.05,
+    "capacity_failure_if_garments_failing_min": 3
+  },
+  "safety": {
+    "identity_contamination_count_max": 0,
+    "body_deformation_count_max": 0,
+    "severe_patch_cloud_mottle_count_max": 0,
+    "severe_component_contamination_count_max": 0,
+    "silhouette_iou_min": 0.7
+  },
+  "classification_order": [
+    "LOO_BASIS_CAPACITY_LIMITED if oracle span capacity fails",
+    "LOO_HARD_LOOKUP_NOT_OUTPERFORMED if the K=2 hard-lookup gate fails",
+    "LOO_OPTIMIZATION_LIMITED if oracle capacity passes but K=2 optimization reachability/recovery fails",
+    "LOO_BASIS_ADAPTATION_SUPPORTED if all K=2 outperformance, scaling, rotation, efficiency, recovery, and safety gates pass",
+    "LOO_BASIS_ADAPTATION_PARTIAL otherwise"
+  ],
+  "allowed_post_experiment_classifications": [
+    "LOO_BASIS_ADAPTATION_SUPPORTED",
+    "LOO_BASIS_ADAPTATION_PARTIAL",
+    "LOO_BASIS_CAPACITY_LIMITED",
+    "LOO_OPTIMIZATION_LIMITED",
+    "LOO_HARD_LOOKUP_NOT_OUTPERFORMED"
+  ],
+  "current_gate_evaluation": "NOT_RUN"
+}
