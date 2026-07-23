@@ -1,0 +1,77 @@
+schema_version: "canondressgs.paper.loo_basis_adaptation_protocol_amended.v1"
+task_id: "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001"
+status: "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY"
+repair_class: "PROSPECTIVE_PRE_RESULT_PROTOCOL_REPAIR"
+source:
+  branch: "research/leave-one-garment-out-basis-adaptation-protocol-20260724"
+  head: "ecf11d6314126f02a9ed1305630a2eac2bd7da04"
+  historical_classification: "LOO_PROTOCOL_INCOMPLETE"
+run:
+  branch: "research/loo-few-view-fold-manifest-repair-20260724"
+  windows_worktree: "E:/model_train/canondressgs_loo_few_view_fold_manifest_repair"
+  cloud_worktree: "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_loo_few_view_fold_manifest_repair"
+identity: "subject02"
+garments: ["O01", "O02", "O03", "O04", "O08"]
+primary_budgets: [1, 2]
+rotations:
+  R0: {optimize: ["cond_000000", "cond_000318"], K1: "cond_000000", calibration: ["cond_000017"], test: ["cond_000347"]}
+  R1: {optimize: ["cond_000318", "cond_000017"], K1: "cond_000017", calibration: ["cond_000347"], test: ["cond_000000"]}
+  R2: {optimize: ["cond_000017", "cond_000347"], K1: "cond_000347", calibration: ["cond_000000"], test: ["cond_000318"]}
+  R3: {optimize: ["cond_000347", "cond_000000"], K1: "cond_000000", calibration: ["cond_000318"], test: ["cond_000017"]}
+K1_selection:
+  name: "FRONT_PROXIMAL_TRAIN_VIEW"
+  score_tuple: ["exact_front_rank", "circular_azimuth_distance", "elevation_distance", "frozen_fold_index", "lexical_condition_id"]
+  garment_agnostic: true
+  future_quality_blind: true
+K2_selection:
+  name: "ALL_AVAILABLE_TRAIN_FOLD_VIEWS"
+  exact_unique_conditions: 2
+  K1_subset_of_K2: true
+K4:
+  name: "DEFERRED_ALL_AVAILABLE_VIEW_DIAGNOSTIC"
+  primary_crossfit_eligible: false
+  execution_authorized: false
+  current_task_count: 0
+  current_condition_units: 4
+  minimum_required_condition_units: 6
+basis:
+  inherited_artifact: "paper_protocol/reviewer_risk/loo_basis_manifests.json"
+  rank_rule: "min(numerical_rank,3)"
+  five_garment_rank4_basis_reused: false
+  computation_runs_in_repair: 0
+contracts:
+  repaired_manifests: "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json"
+  shared_loss_reference: "paper_protocol/reviewer_risk/loo_shared_render_adaptation_loss_reference.json"
+  baselines: "paper_protocol/reviewer_risk/loo_baseline_registry_amended.json"
+  evaluator: "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json"
+  success_gates: "paper_protocol/reviewer_risk/loo_success_gates_amended.json"
+  expected_counts: "paper_protocol/reviewer_risk/loo_expected_counts_amended.json"
+  execution: "paper_protocol/reviewer_risk/loo_execution_contract_amended.json"
+counts:
+  primary_tasks: 40
+  K1_tasks: 20
+  K2_tasks: 20
+  ready_tasks: 40
+  blocked_tasks: 0
+  K4_tasks: 0
+execution_in_this_task:
+  SVD_runs: 0
+  basis_generation: 0
+  adaptation_runs: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  forward: 0
+  backward: 0
+  checkpoint_writes: 0
+  renderer_runs: 0
+  new_renders: 0
+  evaluation_inference: 0
+  visual_sheets: 0
+  scientific_attempts: 0
+  PAPER_FINAL: 0
+formal_output:
+  root: "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001"
+  first_attempt: "attempt_001"
+  attempt_created_in_repair: false
+next_task: "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT"
+next_task_started: false

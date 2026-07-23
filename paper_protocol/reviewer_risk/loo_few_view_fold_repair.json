@@ -1,0 +1,271 @@
+{
+  "schema_version": "canondressgs.paper.loo_few_view_fold_repair.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
+  "repair_class": "PROSPECTIVE_PRE_RESULT_PROTOCOL_REPAIR",
+  "source": {
+    "branch": "research/leave-one-garment-out-basis-adaptation-protocol-20260724",
+    "head": "ecf11d6314126f02a9ed1305630a2eac2bd7da04",
+    "classification": "LOO_PROTOCOL_INCOMPLETE"
+  },
+  "historical_artifact_immutability": {
+    "required": true,
+    "mutation_count": 0,
+    "artifacts": [
+      {
+        "path": "docs/PAPER/AAAI27_LEAVE_ONE_GARMENT_OUT_BASIS_PROTOCOL_20260724.md",
+        "git_blob": "82c0576bf35b8429402a5c29a402e5b749e9399f",
+        "sha256_git_blob_bytes": "69c643b664d67865610b2ab6b80843911915665d7bc8095a37b91bc6a92f87d2"
+      },
+      {
+        "path": "docs/PAPER/AAAI27_FEW_VIEW_GARMENT_ADAPTATION_PROTOCOL_20260724.md",
+        "git_blob": "ed38d118d44c1ce1459997677279005dcfbad871",
+        "sha256_git_blob_bytes": "f1441379580a5eb2df27d7d4d5ec1e6b7a18ea36c1d809229496ec7eeb928a2a"
+      },
+      {
+        "path": "docs/PAPER/AAAI27_HARD_LOOKUP_FAIR_COMPARISON_PROTOCOL_20260724.md",
+        "git_blob": "5ae8371fb598cbda98fd52ceecb7e00abbcd7103",
+        "sha256_git_blob_bytes": "a350787420b18bf74b80898919a04e737662bc392ffc71f8749fad971e5b4b49"
+      },
+      {
+        "path": "docs/PAPER/AAAI27_LOO_BASIS_CAPACITY_ANALYSIS_PLAN_20260724.md",
+        "git_blob": "f6b5d6aa9624d2f3f5c0bb1dca5242ca5c02ad46",
+        "sha256_git_blob_bytes": "688ae75571959a357d380fb279a472163cc44a6350c4b52dca660d7a2d70a85f"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol.yaml",
+        "git_blob": "4997076fa16f7bce4c83c08c2f58bb8080e7c86b",
+        "sha256_git_blob_bytes": "ded5d8b843fff6678be45b68f36eaf208c01459933ffd85ccff85534f4a6c60c"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+        "git_blob": "039d351d00c3f7373abb56fcee240f71753eca7e",
+        "sha256_git_blob_bytes": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_few_view_manifests.json",
+        "git_blob": "969165ababae130956099ebea24da7eac1dca3cc",
+        "sha256_git_blob_bytes": "209897d8f85b6af1c01768cbb3d41b7a294f16a14f3f4022842ea667714047c7"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+        "git_blob": "05d89670234158dcdc3c741cc482cffecfc5dcee",
+        "sha256_git_blob_bytes": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+        "git_blob": "1e606e23011ee705bf2cb0340e1d64c78653ae79",
+        "sha256_git_blob_bytes": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_baseline_registry.json",
+        "git_blob": "359894561fe0f6218eebcc1cf91ce3446b353b44",
+        "sha256_git_blob_bytes": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_evaluator_contract.json",
+        "git_blob": "f7792b26da9e876249f76dfc816e8176e486b6b4",
+        "sha256_git_blob_bytes": "94e28a46ad71d9756f4afd1658cfbcca271fbc4ef92db56e96ed12aa2401b366"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_success_gates.json",
+        "git_blob": "f51cb30561ea657c74042b26ebdd6098fe03d497",
+        "sha256_git_blob_bytes": "e9b1b7191f9e24d7fcd560cb72eb116ab5a8eee9cb46020b1c65159891129e76"
+      },
+      {
+        "path": "paper_protocol/reviewer_risk/loo_protocol_final_summary.json",
+        "git_blob": "f3397de3bee05d11793f55b5ff6da4ee4b32b56f",
+        "sha256_git_blob_bytes": "88d2d50baa46801df8ea55af7ca99c7cd52e1c0a02ea1bac8d38361d149e4149"
+      },
+      {
+        "path": "project_control_handoff/loo_basis_adaptation_protocol_handoff.json",
+        "git_blob": "fba0f398b2154ef56a3fe8d690f3ba95e2d5b625",
+        "sha256_git_blob_bytes": "aea9b040c2ec0e54db6be0ba23d8111c17d6e40bcd5f023ffa6baf30323593b8"
+      }
+    ]
+  },
+  "root_cause": {
+    "source_condition_units": 4,
+    "optimize_per_rotation": 2,
+    "calibration_per_rotation": 1,
+    "test_per_rotation": 1,
+    "old_primary_budgets": [
+      1,
+      2,
+      4
+    ],
+    "old_valid_tasks": 15,
+    "old_blocked_tasks": 45,
+    "reason": "K=4 cannot coexist with independent calibration/test in four units, and exact-front K=1 was absent from R1/R2 optimize pools"
+  },
+  "amendment": {
+    "primary_budgets": [
+      1,
+      2
+    ],
+    "K4_primary_removed": true,
+    "K4_deferred_not_deleted": true,
+    "primary_tasks": 40,
+    "ready_tasks": 40,
+    "blocked_tasks": 0,
+    "K1_rule": "FRONT_PROXIMAL_TRAIN_VIEW",
+    "K2_rule": "ALL_AVAILABLE_TRAIN_FOLD_VIEWS"
+  },
+  "deterministic_k1_mapping": {
+    "R0": {
+      "optimize_pool": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "selected": "cond_000000",
+      "candidate_scores": [
+        {
+          "condition_id": "cond_000000",
+          "score_tuple": [
+            0,
+            0,
+            0,
+            0,
+            "cond_000000"
+          ]
+        },
+        {
+          "condition_id": "cond_000318",
+          "score_tuple": [
+            1,
+            179.451402115761,
+            0.612384363468,
+            1,
+            "cond_000318"
+          ]
+        }
+      ]
+    },
+    "R1": {
+      "optimize_pool": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "selected": "cond_000017",
+      "candidate_scores": [
+        {
+          "condition_id": "cond_000318",
+          "score_tuple": [
+            1,
+            179.451402115761,
+            0.612384363468,
+            0,
+            "cond_000318"
+          ]
+        },
+        {
+          "condition_id": "cond_000017",
+          "score_tuple": [
+            1,
+            90.180009466464,
+            0.066182179565,
+            1,
+            "cond_000017"
+          ]
+        }
+      ]
+    },
+    "R2": {
+      "optimize_pool": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "selected": "cond_000347",
+      "candidate_scores": [
+        {
+          "condition_id": "cond_000017",
+          "score_tuple": [
+            1,
+            90.180009466464,
+            0.066182179565,
+            0,
+            "cond_000017"
+          ]
+        },
+        {
+          "condition_id": "cond_000347",
+          "score_tuple": [
+            1,
+            89.819992350939,
+            0.599605887301,
+            1,
+            "cond_000347"
+          ]
+        }
+      ]
+    },
+    "R3": {
+      "optimize_pool": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "selected": "cond_000000",
+      "candidate_scores": [
+        {
+          "condition_id": "cond_000347",
+          "score_tuple": [
+            1,
+            89.819992350939,
+            0.599605887301,
+            0,
+            "cond_000347"
+          ]
+        },
+        {
+          "condition_id": "cond_000000",
+          "score_tuple": [
+            0,
+            0,
+            0,
+            1,
+            "cond_000000"
+          ]
+        }
+      ]
+    }
+  },
+  "inherited_unchanged": {
+    "identity": "subject02",
+    "garments": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "loo_splits": [
+      "LOO-O01",
+      "LOO-O02",
+      "LOO-O03",
+      "LOO-O04",
+      "LOO-O08"
+    ],
+    "basis_rank_rule": "min(numerical rank,3)",
+    "five_garment_rank4_basis_reused": false,
+    "held_out_teacher_deployable_use": 0,
+    "loss_contract_sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3",
+    "optimizer_contract_sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb",
+    "baseline_registry_sha256": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925"
+  },
+  "actual_execution_counts": {
+    "SVD_runs": 0,
+    "basis_generation": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "evaluation_inference": 0,
+    "visual_sheets": 0,
+    "scientific_attempts": 0,
+    "PAPER_FINAL": 0
+  }
+}
