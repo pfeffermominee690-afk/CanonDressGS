@@ -82,21 +82,21 @@ def _endpoint_bank() -> dict[str, str]:
 
 def test_v2_has_five_garment_logits() -> None:
     model = CompatibilityGatedReferenceControllerV2(seed=0)
-    value = model(torch.zeros(3, 512), torch.ones(3, 1))
+    value = model(torch.zeros(3, 256), torch.ones(3, 1))
     assert value.garment_logits.shape == (5,)
     assert model.head_parameter_counts["garment_head"] == 2565
 
 
 def test_v2_has_one_mixedness_logit() -> None:
     model = CompatibilityGatedReferenceControllerV2(seed=0)
-    value = model(torch.zeros(3, 512), torch.ones(3, 1))
+    value = model(torch.zeros(3, 256), torch.ones(3, 1))
     assert value.mixedness_logit.shape == ()
     assert model.head_parameter_counts["mixedness_head"] == 513
 
 
 def test_v2_has_ten_pair_weight_logits() -> None:
     model = CompatibilityGatedReferenceControllerV2(seed=0)
-    value = model(torch.zeros(3, 512), torch.ones(3, 1))
+    value = model(torch.zeros(3, 256), torch.ones(3, 1))
     assert value.pair_weight_logits.shape == (10,)
     assert value.all_pair_weights.shape == (10,)
     assert model.head_parameter_counts["pair_weight_head"] == 5130

@@ -40,7 +40,9 @@ architecture:
     spatial_pooling: MASKED_MEAN_AND_MAX
     set_aggregation: DETERMINISTIC_VALIDITY_AWARE_MEAN
     normalization: LAYERNORM_THEN_L2
-    input_dim: 512
+    frozen_F2_channel_dim: 128
+    masked_spatial_row_dim: 256
+    aggregated_input_dim: 512
   garment_distribution_head:
     output_count: 5
     activation: SOFTMAX

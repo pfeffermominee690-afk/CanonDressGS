@@ -242,11 +242,12 @@ class CompatibilityGatedReferenceControllerV2(nn.Module):
         super().__init__()
         if isinstance(seed, bool) or not isinstance(seed, int):
             raise TypeError("seed must be an integer")
-        if input_dim <= 0:
-            raise ValueError("input_dim must be positive")
+        if input_dim <= 0 or input_dim % 2 != 0:
+            raise ValueError("input_dim must be a positive even aggregated dimension")
         seed_all(seed)
         self.seed = seed
         self.input_dim = int(input_dim)
+        self.reference_row_dim = self.input_dim // 2
         self.reference_normalization = nn.LayerNorm(self.input_dim)
         self.garment_head = nn.Linear(self.input_dim, len(OUTFIT_ORDER))
         self.mixedness_head = nn.Linear(self.input_dim, 1)
@@ -255,8 +256,8 @@ class CompatibilityGatedReferenceControllerV2(nn.Module):
     def aggregate_reference_representation(
         self, reference_f2: torch.Tensor, reference_valid: torch.Tensor
     ) -> tuple[torch.Tensor, int]:
-        if reference_f2.ndim != 2 or reference_f2.shape[1] != self.input_dim:
-            raise ValueError("reference_f2 must have shape [R,input_dim]")
+        if reference_f2.ndim != 2 or reference_f2.shape[1] != self.reference_row_dim:
+            raise ValueError("reference_f2 must have shape [R,input_dim/2]")
         if reference_valid.shape != (reference_f2.shape[0], 1):
             raise ValueError("reference_valid must have shape [R,1]")
         if not torch.isfinite(reference_f2).all() or not torch.isfinite(reference_valid).all():
