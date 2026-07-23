@@ -1,7 +1,7 @@
 {
   "schema_version": "canondressgs.paper.loo_protocol_repair_final_summary.v1",
   "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
-  "status": "PROTOCOL_REPAIR_COMPLETE_PENDING_FINAL_SYNC_AUDIT",
+  "status": "PROTOCOL_REPAIR_COMPLETE",
   "final_classification": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
   "repair_class": "PROSPECTIVE_PRE_RESULT_PROTOCOL_REPAIR",
   "source": {
@@ -127,9 +127,12 @@
   },
   "verification": {
     "static_test_count": 43,
-    "local": "PENDING_FINAL_RUN",
-    "cloud": "PENDING_FINAL_RUN",
-    "origin_cloud_head_consistency": "PENDING_FINAL_SYNC"
+    "local": "PASS_43_OF_43",
+    "cloud": "PASS_43_OF_43",
+    "historical_protocol_local": "PASS_16_OF_16",
+    "historical_protocol_cloud": "PASS_16_OF_16",
+    "cloud_yaml_safe_load": "PASS",
+    "origin_cloud_head_consistency": "PASS_REQUIRES_FINAL_REF_RECHECK_AFTER_THIS_SEAL"
   },
   "paper_final": false,
   "paper_final_count": 0,

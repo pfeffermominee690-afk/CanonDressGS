@@ -1,7 +1,7 @@
 {
   "schema_version": "canondressgs.project_control.loo_protocol_repair_handoff.v1",
   "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
-  "status": "HANDOFF_READY_PENDING_FINAL_SYNC_AUDIT",
+  "status": "HANDOFF_READY",
   "classification": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
   "source_head": "ecf11d6314126f02a9ed1305630a2eac2bd7da04",
   "branch": "research/loo-few-view-fold-manifest-repair-20260724",
@@ -44,10 +44,12 @@
     "PAPER_FINAL": 0
   },
   "verification": {
-    "local_static_tests": "PENDING_FINAL_RUN",
-    "cloud_static_tests": "PENDING_FINAL_RUN",
-    "local_origin_cloud_head": "PENDING_FINAL_SYNC",
-    "windows_cloud_clean": "PENDING_FINAL_SYNC"
+    "local_static_tests": "PASS_43_OF_43",
+    "cloud_static_tests": "PASS_43_OF_43",
+    "historical_tests_local_and_cloud": "PASS_16_OF_16_EACH",
+    "cloud_yaml_safe_load": "PASS",
+    "local_origin_cloud_head": "PASS_REQUIRES_FINAL_REF_RECHECK_AFTER_THIS_SEAL",
+    "windows_cloud_clean": "PASS_REQUIRES_FINAL_REF_RECHECK_AFTER_THIS_SEAL"
   },
   "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
   "auto_execute_next_task": false,
