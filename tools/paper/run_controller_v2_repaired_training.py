@@ -157,7 +157,12 @@ def validate_contract() -> dict[str, Any]:
     rotations = read_json(ROTATIONS)
     schedules = read_json(SCHEDULES)
     manifest = read_json(MANIFEST)
-    if repaired["source_head"] != SOURCE_HEAD:
+    if (
+        repaired["repair_branch"]
+        != "research/controller-v2-micro-pilot-contract-repair-20260723"
+        or repaired["classification"]
+        != "CONTROLLER_V2_MICRO_PILOT_TRAINING_CONTRACT_REPAIRED"
+    ):
         raise RuntimeError("REPAIRED-CONTRACT-SOURCE-MISMATCH")
     actual = {
         "repaired_protocol_sha256_lf":
