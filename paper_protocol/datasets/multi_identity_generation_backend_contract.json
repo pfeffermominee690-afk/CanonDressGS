@@ -1,0 +1,166 @@
+{
+  "schema_version": "multi_identity.generation_backend_contract.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "GENERATION_BACKEND_SELECTION_REQUIRED",
+  "contract_scope": "PROSPECTIVE_REPRODUCIBLE_CONTRACT",
+  "source": {
+    "branch": "research/multi-identity-garment-benchmark-foundations-20260724",
+    "head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2",
+    "classification": "MULTI_IDENTITY_GARMENT_BENCHMARK_FOUNDATIONS_READY"
+  },
+  "historical_execution_provenance": [
+    {
+      "provider": "CODEX_IMAGE_GENERATION_SKILL",
+      "generation_mode": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+      "tool_surface": "image_gen.imagegen",
+      "backend_model_id": null,
+      "backend_model_status": "NOT_EXPOSED_BY_PLATFORM",
+      "base_url": null,
+      "seed": null,
+      "seed_status": "NOT_RECORDED",
+      "known_output_dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "provenance_completeness": "LIMITED_GARMENT_GENERATION_PROVENANCE"
+    },
+    {
+      "provider": "HISTORICAL_OPENAI_COMPATIBLE_PROXY_SUBLYX",
+      "source_path": "E:/data_pre/scripts/run_gpt_image2_pose_outfit_sheets.py",
+      "base_url": "https://api.sublyx.org/",
+      "default_model_id": "gpt-image-2",
+      "endpoint": "/v1/images/edits",
+      "sdk_call": "client.images.with_raw_response.edit",
+      "request_fields": [
+        "model",
+        "image",
+        "prompt",
+        "n",
+        "size"
+      ],
+      "image_inputs": "identity reference image(s) plus condition/pose image",
+      "mask_input": "NOT_USED",
+      "size": "1536x1024",
+      "quality": "NOT_SET",
+      "background": "PROMPT_ONLY",
+      "response": "first data item b64_json or URL; HTTP status and request ID from raw response/headers",
+      "output_format": "PROVIDER_RESPONSE_BYTES; historical filename PNG",
+      "seed_support": "NOT_IMPLEMENTED_OR_RECORDED",
+      "retries": 2,
+      "timeout_seconds": 300,
+      "concurrency": 1,
+      "rate_limit": "NO_EXPLICIT_CLIENT LIMIT",
+      "moderation": "PROVIDER_SIDE_ONLY; NOT EXPLICITLY RECORDED",
+      "connectivity_and_model_probe_surfaces": true,
+      "debug_response_dump": "OPTIONAL_RAW_RESPONSE_JSON",
+      "provider_model_candidates_prepared_for_probe": [
+        "gpt-image-1",
+        "gpt-image-2",
+        "gpt-image2",
+        "gpt-image",
+        "gpt-image-2-limited",
+        "gpt-image2-limited",
+        "gpt-image2-1.5x",
+        "gpt-image-2-1.5x",
+        "dall-e-3",
+        "dall-e-2"
+      ],
+      "credential_env_name": "OPENAI_API_KEY",
+      "credential_logging_risk": "HISTORICAL_SCRIPT_PRINTS_CREDENTIAL_LENGTH_AND_SHA256_PREFIX; FORBIDDEN PROSPECTIVELY"
+    },
+    {
+      "provider": "HISTORICAL_OPENAI_COMPATIBLE_PROXY_78CODE",
+      "source_path": "E:/data_pre/scripts/run_jay_coverage_supplement_v1.py",
+      "base_url": "https://www.78code.cc/v1",
+      "model_id": "CLI_REQUIRED; DOCUMENTED_USUALLY_AS_gpt-image-2",
+      "endpoint": "/v1/images/edits",
+      "seed_support": "EXPLICITLY_FALSE_IN_HISTORICAL_FINGERPRINT",
+      "size": "1536x1024",
+      "retries": 2,
+      "timeout_seconds": 300,
+      "provider_migration_from_sublyx": true,
+      "credential_env_name": "OPENAI_API_KEY",
+      "credential_logging_risk": "HISTORICAL_SCRIPT PRINTS CREDENTIAL LENGTH AND SHA256 PREFIX; FORBIDDEN PROSPECTIVELY"
+    }
+  ],
+  "historical_output_manifest_audit": {
+    "Jay": {
+      "records": 915,
+      "success": 494,
+      "failed": 178,
+      "skipped_existing": 243
+    },
+    "Rose": {
+      "records": 1989,
+      "success": 293,
+      "failed": 1339,
+      "skipped_existing": 357
+    },
+    "conclusion": "Historical manifests demonstrate executions but do not uniquely establish a reproducible provider/model/revision/seed contract."
+  },
+  "selection_blockers": [
+    "multiple incompatible generation surfaces and provider base URLs",
+    "platform-managed backend model is not exposed",
+    "external model support cannot be verified without a real request",
+    "seed behavior is absent or explicitly unsupported historically",
+    "provider selection creates user payment, credential, availability, and risk decisions"
+  ],
+  "prospective_contract": {
+    "provider": null,
+    "model_id_and_revision": null,
+    "base_url_identifier": null,
+    "wire_endpoint": null,
+    "wire_api_schema": null,
+    "input_image_format": "PNG",
+    "normalized_output_format": "PNG",
+    "normalized_output_dimensions": {
+      "width": 1024,
+      "height": 1536,
+      "orientation": "portrait"
+    },
+    "wire_size_encoding": null,
+    "seed_support": "UNVERIFIED_UNTIL_BACKEND_SELECTION",
+    "reproducibility_level": "REQUEST_PROVENANCE_REPRODUCIBLE_ONLY",
+    "credential_env_name": "MULTI_IDENTITY_GENERATION_API_KEY",
+    "credential_access_policy": "Read only at explicitly authorized execution time; dry-run and review code never read it.",
+    "required_before_first_connectivity_request": [
+      "one user-selected provider",
+      "one exact model ID and revision/alias policy",
+      "one base URL identifier",
+      "one endpoint and wire request schema",
+      "verified input count and image format",
+      "verified output response mode",
+      "verified seed support",
+      "complete quality/background/moderation parameter behavior",
+      "user authorization for one minimal connectivity request"
+    ]
+  },
+  "credential_safety": {
+    "allowed_persisted_field": "credential_env_name",
+    "forbidden_persisted_data": [
+      "credential value",
+      "credential length",
+      "credential hash or fingerprint",
+      "credential prefix",
+      "authorization headers",
+      "raw debug responses that may contain credentials"
+    ],
+    "leak_classification": "API_CREDENTIAL_LEAK_RISK",
+    "stop_on_detection": true,
+    "print_detected_secret": false
+  },
+  "execution_counts": {
+    "api_connectivity_calls": 0,
+    "image_generation_api_calls": 0,
+    "generated_images": 0,
+    "candidate_images": 0,
+    "accepted_images": 0,
+    "retries": 0,
+    "avatar_training": 0,
+    "teacher_training": 0,
+    "renderer_formal_runs": 0,
+    "raw_mutation": 0,
+    "paper_final": 0
+  },
+  "next_task": "USER_SELECT_GENERATION_PROVIDER_AND_MODEL"
+}

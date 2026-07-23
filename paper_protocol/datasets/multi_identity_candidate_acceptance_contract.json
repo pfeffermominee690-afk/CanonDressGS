@@ -1,0 +1,43 @@
+{
+  "schema_version": "multi_identity.candidate_acceptance_contract.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "FROZEN_PROSPECTIVE_PROTOCOL",
+  "candidate_naming_template": "{identity_id}__{garment_id}__{semantic_pose_slot}__candidate{candidate_index:02d}__{request_id}.png",
+  "adjacent_candidate_manifest_required": true,
+  "manifest_lifecycle": [
+    "CANDIDATE_SEALED",
+    "AUTOMATIC_SCREENING_REJECTED_OR_HUMAN_REVIEW_REQUIRED",
+    "REVIEW_PAIR_RESOLVED_OR_ADJUDICATION_REQUIRED",
+    "GROUP_REVIEW_RESOLVED",
+    "ACCEPTED_REFERENCE_OR_REJECTED"
+  ],
+  "append_only_transitions": true,
+  "accepted_endpoint_record": {
+    "references_original_candidate_path": true,
+    "references_original_candidate_sha256": true,
+    "copy_without_provenance_forbidden": true,
+    "review_decision_history_retained": true,
+    "rejected_sibling_records_retained": true
+  },
+  "formal_acceptance_per_identity_garment": {
+    "endpoint_slots_accepted": "8/8",
+    "reference_slots_accepted": "4/4",
+    "reference_slots": [
+      "front",
+      "left",
+      "back",
+      "right"
+    ],
+    "group_review": "PASS",
+    "identity_contamination": 0,
+    "severe_anatomy_failure": 0,
+    "text_or_watermark": 0,
+    "full_body_completeness": "PASS",
+    "duplicate_candidate_sha_across_slots": 0
+  },
+  "missing_slot_status": "GARMENT_SLOT_GENERATION_INCOMPLETE",
+  "missing_slot_action": "STOP_AND_REQUIRE_USER_AUTHORIZATION_FOR_ADDITIONAL_GENERATION",
+  "automatic_budget_expansion_allowed": false,
+  "accepted_candidates_in_this_task": 0,
+  "paper_final": 0
+}

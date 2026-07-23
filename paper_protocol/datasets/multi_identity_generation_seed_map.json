@@ -1,0 +1,28 @@
+{
+  "schema_version": "multi_identity.generation_seed_map.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "SEED_SUPPORT_UNVERIFIED_BACKEND_SELECTION_REQUIRED",
+  "provider": null,
+  "model_id": null,
+  "seed_support": "UNVERIFIED_UNTIL_BACKEND_SELECTION",
+  "seed_field_policy": "OMIT_FROM_REQUEST_UNLESS_PROVIDER_SUPPORT_IS VERIFIED",
+  "seed_map": null,
+  "seed_map_sha256": null,
+  "bitwise_reproducibility_claim_allowed": false,
+  "current_reproducibility_claim": "REQUEST_PROVENANCE_REPRODUCIBLE_ONLY",
+  "conditional_seed_rule": {
+    "activation": "ONLY_AFTER VERIFIED BACKEND SUPPORT",
+    "formula": "uint32(first_4_bytes(sha256('multi_identity.seed.v1|' + identity_id + '|' + garment_id + '|' + semantic_pose_slot + '|' + candidate_index)))",
+    "byte_order": "big-endian",
+    "candidate_index_not_attempt_index": true,
+    "same_seed_on_retry": true,
+    "public_and_deterministic": true
+  },
+  "historical_evidence": {
+    "codex_platform_managed": "NOT_RECORDED",
+    "sublyx_openai_compatible": "NOT_IMPLEMENTED_OR_RECORDED",
+    "78code_coverage_supplement": "EXPLICITLY_UNSUPPORTED_IN_HISTORICAL_FINGERPRINT"
+  },
+  "generated_seed_count_in_this_task": 0,
+  "paper_final": 0
+}

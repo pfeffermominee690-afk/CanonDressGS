@@ -1,0 +1,60 @@
+{
+  "schema_version": "multi_identity.retry_contract.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "FROZEN_PROSPECTIVE_PROTOCOL",
+  "maximum_retries_after_initial_attempt": 2,
+  "maximum_total_attempts_per_candidate_request": 3,
+  "same_logical_candidate_on_retry": true,
+  "new_request_id_per_attempt": true,
+  "same_parent_request_id_per_logical_candidate": true,
+  "same_seed_on_retry_if_seed_supported": true,
+  "retryable_error_classes": [
+    "NETWORK",
+    "TIMEOUT",
+    "HTTP_5XX",
+    "PROVIDER_TRANSIENT_ERROR"
+  ],
+  "non_retryable_error_classes": [
+    "HTTP_4XX_NON_TRANSIENT",
+    "CONTENT_POLICY",
+    "MODERATION_REJECTION",
+    "AUTHENTICATION",
+    "INSUFFICIENT_CREDIT_OR_QUOTA",
+    "MALFORMED_RESPONSE",
+    "EMPTY_IMAGE",
+    "UNSUPPORTED_PARAMETER",
+    "SCIENTIFIC_QUALITY_REJECTION"
+  ],
+  "scientific_quality_policy": "Preserve candidate and screening rejection; never retry automatically for quality.",
+  "required_failure_event_fields": [
+    "request_id",
+    "parent_request_id",
+    "attempt_index",
+    "request_manifest_sha256",
+    "request_timestamp",
+    "response_timestamp",
+    "http_status",
+    "provider_request_id",
+    "error_class",
+    "retry_reason",
+    "billing_status_known",
+    "moderation_state",
+    "timeout_state",
+    "malformed_response_state",
+    "empty_image_state",
+    "provider_error_code"
+  ],
+  "append_only_policy": {
+    "failed_request_record_retained": true,
+    "error_record_overwrite_forbidden": true,
+    "failed_or_partial_output_overwrite_forbidden": true,
+    "each_retry_is_a_new_event": true,
+    "hash_chain_required": true
+  },
+  "backoff_schedule_seconds": [
+    3,
+    9
+  ],
+  "retries_executed_in_this_task": 0,
+  "paper_final": 0
+}

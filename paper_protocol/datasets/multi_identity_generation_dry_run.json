@@ -1,0 +1,154 @@
+{
+  "schema_version": "multi_identity.generation_dry_run.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "DRY_RUN_VALID_BACKEND_AND_FORMAL_BASE_BLOCKED",
+  "request_schema": "paper_protocol/datasets/multi_identity_generation_request_schema.json",
+  "requests": [
+    {
+      "schema_version": "multi_identity.generation_request.v1",
+      "mode": "DRY_RUN_ONLY",
+      "status": "BLOCKED_BACKEND_SELECTION_AND_FORMAL_BASE",
+      "request_id": "mir_331bd6c164cec9062c22dd86",
+      "parent_request_id": "mirp_a5837239d63f2c756f59a6fd",
+      "attempt_index": 0,
+      "candidate_index": 0,
+      "identity_id": "subject00",
+      "garment_id": "O01",
+      "semantic_pose_slot": "front",
+      "condition_id": "subject00_front_FORMAL_BASE_PENDING",
+      "source_inputs": {
+        "condition_rgb": {
+          "path": "multi_garment_benchmark/subject00/condition_manifests/front_rgb.png",
+          "sha256": null,
+          "status": "FORMAL_BASE_PENDING"
+        },
+        "condition_alpha_mask": {
+          "path": "multi_garment_benchmark/subject00/condition_manifests/front_alpha.png",
+          "sha256": null,
+          "status": "FORMAL_BASE_PENDING"
+        },
+        "identity_manifest": {
+          "path": "multi_garment_benchmark/subject00/identity_manifest/identity_manifest.json",
+          "sha256": null,
+          "status": "FORMAL_BASE_PENDING"
+        }
+      },
+      "prompt_sha256": "955b62b1d14f67f2c0fff2f0479e834269a698c11a3bd2134502e027fcf0b5b6",
+      "negative_prompt_sha256": "bd4195d8fb02d7428accb373fd17b79a6000aa418ab8aa9a6f1aca45704f8d6c",
+      "backend": {
+        "provider": null,
+        "model_id": null,
+        "base_url_identifier": null,
+        "endpoint": null,
+        "selection_status": "GENERATION_BACKEND_SELECTION_REQUIRED"
+      },
+      "request_parameters": {
+        "input_image_format": "PNG",
+        "output_format": "PNG",
+        "output_width": 1024,
+        "output_height": 1536,
+        "wire_size": null,
+        "quality": null,
+        "background": "LIGHT_GRAY_OR_WHITE",
+        "n": 1,
+        "timeout_seconds": 300,
+        "moderation": "PROVIDER_NATIVE_PLUS_LOCAL_SCREENING_REQUIRED"
+      },
+      "retry_policy_id": "multi_identity.retry_contract.v1",
+      "credential_env_name": "MULTI_IDENTITY_GENERATION_API_KEY",
+      "reproducibility": {
+        "level": "REQUEST_PROVENANCE_REPRODUCIBLE_ONLY",
+        "seed_support": "UNVERIFIED_UNTIL_BACKEND_SELECTION"
+      },
+      "paths": {
+        "output_path": "multi_garment_benchmark/subject00/generated_candidates/subject00__O01__front__candidate00__mir_331bd6c164cec9062c22dd86.png",
+        "candidate_manifest_path": "multi_garment_benchmark/subject00/generated_candidates/subject00__O01__front__candidate00__mir_331bd6c164cec9062c22dd86.png.manifest.json",
+        "request_event_path": "multi_garment_benchmark/subject00/provenance/request_events.jsonl",
+        "retry_event_path": "multi_garment_benchmark/subject00/provenance/request_events.jsonl",
+        "review_event_path": "multi_garment_benchmark/subject00/screening/review_events.jsonl"
+      },
+      "prepared_at": null,
+      "network_call_performed": false
+    },
+    {
+      "schema_version": "multi_identity.generation_request.v1",
+      "mode": "DRY_RUN_ONLY",
+      "status": "BLOCKED_BACKEND_SELECTION_AND_FORMAL_BASE",
+      "request_id": "mir_6ac5332357a7de5be09014e1",
+      "parent_request_id": "mirp_2c8cb0636fc2a1e74a94927c",
+      "attempt_index": 0,
+      "candidate_index": 0,
+      "identity_id": "avatarrex_lbn1",
+      "garment_id": "O03",
+      "semantic_pose_slot": "back",
+      "condition_id": "avatarrex_lbn1_back_FORMAL_BASE_PENDING",
+      "source_inputs": {
+        "condition_rgb": {
+          "path": "multi_garment_benchmark/avatarrex_lbn1/condition_manifests/back_rgb.png",
+          "sha256": null,
+          "status": "FORMAL_BASE_PENDING"
+        },
+        "condition_alpha_mask": {
+          "path": "multi_garment_benchmark/avatarrex_lbn1/condition_manifests/back_alpha.png",
+          "sha256": null,
+          "status": "FORMAL_BASE_PENDING"
+        },
+        "identity_manifest": {
+          "path": "multi_garment_benchmark/avatarrex_lbn1/identity_manifest/identity_manifest.json",
+          "sha256": null,
+          "status": "FORMAL_BASE_PENDING"
+        }
+      },
+      "prompt_sha256": "5a79194e5801507e13ea65103a2e5a632b3aad6845de9ef1d6638096fcfc71e2",
+      "negative_prompt_sha256": "df0ba5a4a33f7fe7bf733fa62d5cc00675a26efca76e1ce7976f6fff4d193d0b",
+      "backend": {
+        "provider": null,
+        "model_id": null,
+        "base_url_identifier": null,
+        "endpoint": null,
+        "selection_status": "GENERATION_BACKEND_SELECTION_REQUIRED"
+      },
+      "request_parameters": {
+        "input_image_format": "PNG",
+        "output_format": "PNG",
+        "output_width": 1024,
+        "output_height": 1536,
+        "wire_size": null,
+        "quality": null,
+        "background": "LIGHT_GRAY_OR_WHITE",
+        "n": 1,
+        "timeout_seconds": 300,
+        "moderation": "PROVIDER_NATIVE_PLUS_LOCAL_SCREENING_REQUIRED"
+      },
+      "retry_policy_id": "multi_identity.retry_contract.v1",
+      "credential_env_name": "MULTI_IDENTITY_GENERATION_API_KEY",
+      "reproducibility": {
+        "level": "REQUEST_PROVENANCE_REPRODUCIBLE_ONLY",
+        "seed_support": "UNVERIFIED_UNTIL_BACKEND_SELECTION"
+      },
+      "paths": {
+        "output_path": "multi_garment_benchmark/avatarrex_lbn1/generated_candidates/avatarrex_lbn1__O03__back__candidate00__mir_6ac5332357a7de5be09014e1.png",
+        "candidate_manifest_path": "multi_garment_benchmark/avatarrex_lbn1/generated_candidates/avatarrex_lbn1__O03__back__candidate00__mir_6ac5332357a7de5be09014e1.png.manifest.json",
+        "request_event_path": "multi_garment_benchmark/avatarrex_lbn1/provenance/request_events.jsonl",
+        "retry_event_path": "multi_garment_benchmark/avatarrex_lbn1/provenance/request_events.jsonl",
+        "review_event_path": "multi_garment_benchmark/avatarrex_lbn1/screening/review_events.jsonl"
+      },
+      "prepared_at": null,
+      "network_call_performed": false
+    }
+  ],
+  "validation": {
+    "request_count": 2,
+    "schema_parse": "PASS",
+    "all_source_paths": "FORMAL_BASE_PENDING",
+    "invented_source_sha_count": 0,
+    "output_paths_present": true,
+    "manifest_paths_present": true,
+    "retry_paths_present": true,
+    "review_paths_present": true,
+    "seed_fields_present": 0,
+    "credential_value_fields_present": 0,
+    "network_calls": 0
+  },
+  "paper_final": 0
+}

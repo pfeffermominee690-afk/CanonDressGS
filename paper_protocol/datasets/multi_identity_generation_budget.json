@@ -1,0 +1,42 @@
+{
+  "schema_version": "multi_identity.generation_budget.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "FROZEN_RESOURCE_OPTIONS_COST_PENDING",
+  "axes": {
+    "identities": 2,
+    "garments_per_identity": 5,
+    "semantic_slots_per_garment": 8
+  },
+  "options": [
+    {
+      "name": "MINIMAL",
+      "valid_candidates_per_identity_garment_slot": 1,
+      "valid_candidate_budget": 80
+    },
+    {
+      "name": "STANDARD",
+      "valid_candidates_per_identity_garment_slot": 2,
+      "valid_candidate_budget": 160
+    },
+    {
+      "name": "ROBUST",
+      "valid_candidates_per_identity_garment_slot": 4,
+      "valid_candidate_budget": 320
+    }
+  ],
+  "recommended_option": "STANDARD",
+  "recommendation_basis": "Provider cost and measured failure rate are unknown; N=2 gives one planned alternative per slot while preserving identity parity and avoiding result-driven budget expansion.",
+  "fairness_rules": {
+    "same_n_for_both_identities": true,
+    "n_frozen_before_first_request": true,
+    "dynamic_identity_specific_expansion_forbidden": true,
+    "failed_request_counts_as_valid_candidate": false,
+    "retries_counted_separately": true,
+    "scientific_rejection_triggers_automatic_extra_generation": false
+  },
+  "no_passing_candidate_status": "GARMENT_SLOT_GENERATION_INCOMPLETE",
+  "additional_generation_requires_user_authorization": true,
+  "valid_candidates_created_in_this_task": 0,
+  "requests_sent_in_this_task": 0,
+  "paper_final": 0
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": "multi_identity.automatic_screening_contract.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "FROZEN_PROSPECTIVE_PROTOCOL",
+  "decision_boundary": {
+    "automatic_acceptance_allowed": false,
+    "automatic_hard_rejection_allowed": true,
+    "automatic_warning_allowed": true,
+    "single_aggregate_score_allowed": false,
+    "vlm_only_formal_acceptance_allowed": false
+  },
+  "record_schema": {
+    "required_per_check": [
+      "check_name",
+      "raw_score",
+      "raw_score_units",
+      "threshold",
+      "comparison",
+      "decision",
+      "evaluator_id_and_version",
+      "timestamp"
+    ],
+    "aggregate_score_may_replace_per_check_records": false,
+    "records_append_only": true
+  },
+  "checks": [
+    {
+      "name": "file_decodable",
+      "threshold": true,
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "dimensions",
+      "threshold": {
+        "width": 1024,
+        "height": 1536
+      },
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "channels",
+      "threshold": "RGB_OR_RGBA_NORMALIZED_TO_PNG",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "alpha_validity",
+      "threshold": "FINITE_NONEMPTY_IF_PRESENT",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "nonempty_image",
+      "threshold": "NONZERO_BYTES_AND_NONCONSTANT_PIXELS",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "multi_person",
+      "threshold": 0,
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "text_or_watermark",
+      "threshold": 0,
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "background_compliance",
+      "threshold": "LIGHT_GRAY_OR_WHITE",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "body_completeness",
+      "threshold": "FULL_BODY_PASS",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "hands",
+      "threshold": "BOTH_HANDS_VISIBLE_AND_PLAUSIBLE",
+      "hard_reject_on_fail": false
+    },
+    {
+      "name": "feet",
+      "threshold": "BOTH_FEET_COMPLETE",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "anatomy",
+      "threshold": "NO_SEVERE_FAILURE",
+      "hard_reject_on_fail": true
+    },
+    {
+      "name": "identity_face_similarity",
+      "threshold": "TO_BE_CALIBRATED_WITH FROZEN EVALUATOR BEFORE USE",
+      "hard_reject_on_fail": false
+    },
+    {
+      "name": "garment_semantic_match",
+      "threshold": "GARMENT_SPECIFIC_ATTRIBUTES_PASS",
+      "hard_reject_on_fail": false
+    },
+    {
+      "name": "view_consistency",
+      "threshold": "SEMANTIC_SLOT_PASS",
+      "hard_reject_on_fail": false
+    },
+    {
+      "name": "blur",
+      "threshold": "TO_BE_CALIBRATED_WITH FROZEN EVALUATOR BEFORE USE",
+      "hard_reject_on_fail": false
+    },
+    {
+      "name": "cross_view_garment_consistency",
+      "threshold": "GROUP_REVIEW_REQUIRED",
+      "hard_reject_on_fail": false
+    }
+  ],
+  "screened_candidates_in_this_task": 0,
+  "automatic_acceptances_in_this_task": 0,
+  "paper_final": 0
+}

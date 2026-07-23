@@ -1,0 +1,71 @@
+{
+  "schema_version": "multi_identity.human_review_contract.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "HUMAN_REVIEW_WORKFLOW_READY_BACKEND_PENDING",
+  "minimum_independent_initial_reviewers": 2,
+  "reviewer_roles": [
+    "REVIEWER_A",
+    "REVIEWER_B",
+    "ADJUDICATOR"
+  ],
+  "blindness": {
+    "reviewer_a_can_view_reviewer_b_initial_decision": false,
+    "reviewer_b_can_view_reviewer_a_initial_decision": false,
+    "initial_decisions_revealed_only_after_both_are_appended": true,
+    "adjudicator_receives_explicit_disagreement_context": true
+  },
+  "candidate_review_required_fields": [
+    "candidate_id",
+    "reviewer_id",
+    "review_stage",
+    "decision",
+    "identity_preservation",
+    "garment_semantics",
+    "full_body",
+    "hands",
+    "feet",
+    "anatomy",
+    "background",
+    "blur",
+    "view",
+    "cross_view_consistency",
+    "body_conforming_bias",
+    "garment_volume",
+    "comment",
+    "timestamp"
+  ],
+  "decision_values": [
+    "ACCEPT",
+    "REJECT",
+    "MAYBE"
+  ],
+  "dimension_values": [
+    "PASS",
+    "FAIL",
+    "UNCERTAIN",
+    "NOT_APPLICABLE"
+  ],
+  "initial_resolution": [
+    {
+      "condition": "REVIEWER_A=ACCEPT AND REVIEWER_B=ACCEPT",
+      "result": "ACCEPT"
+    },
+    {
+      "condition": "EITHER INITIAL REVIEWER=REJECT",
+      "result": "REJECT"
+    },
+    {
+      "condition": "ANY OTHER COMPLETE INITIAL PAIR",
+      "result": "ADJUDICATION_REQUIRED"
+    }
+  ],
+  "record_policy": {
+    "append_only": true,
+    "hash_chain": true,
+    "draft_storage": "BROWSER_LOCAL_ONLY",
+    "candidate_pixels_read_only": true,
+    "vlm_tie_break_forbidden": true
+  },
+  "review_events_in_this_task": 0,
+  "paper_final": 0
+}

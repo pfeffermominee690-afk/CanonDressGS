@@ -1,0 +1,43 @@
+{
+  "schema_version": "multi_identity.group_review_contract.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "status": "HUMAN_REVIEW_WORKFLOW_READY_BACKEND_PENDING",
+  "unit": "IDENTITY_X_GARMENT_EIGHT_SLOT_GROUP",
+  "group_count_when_complete": 10,
+  "required_slot_count": 8,
+  "required_slots": [
+    "front",
+    "front_left_three_quarter",
+    "left",
+    "back_left_three_quarter",
+    "back",
+    "back_right_three_quarter",
+    "right",
+    "front_right_three_quarter"
+  ],
+  "checks": [
+    "color_consistency",
+    "material_consistency",
+    "sleeve_length_consistency",
+    "hem_consistency",
+    "front_back_semantic_consistency",
+    "left_right_consistency",
+    "identity_consistency",
+    "accessory_consistency"
+  ],
+  "review_rules": {
+    "eight_distinct_candidate_sha256_values_required": true,
+    "all_eight_slots_present_required": true,
+    "same_independent_review_and_adjudication_rules_as_candidate_review": true,
+    "formal_endpoint_acceptance_requires_group_pass": true,
+    "random_accessory_change_is_failure": true
+  },
+  "output_values": [
+    "PASS",
+    "FAIL",
+    "ADJUDICATION_REQUIRED",
+    "INCOMPLETE"
+  ],
+  "group_reviews_in_this_task": 0,
+  "paper_final": 0
+}

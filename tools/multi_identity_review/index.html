@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-Identity Candidate Review</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Candidate review</h1>
+      <p id="recordMeta">No candidate loaded</p>
+    </div>
+    <div class="session-controls">
+      <label for="reviewer">Reviewer</label>
+      <select id="reviewer">
+        <option value="REVIEWER_A">Reviewer A</option>
+        <option value="REVIEWER_B">Reviewer B</option>
+        <option value="ADJUDICATOR">Adjudicator</option>
+      </select>
+      <label for="reviewMode">Mode</label>
+      <select id="reviewMode">
+        <option value="candidate">Candidate</option>
+        <option value="group">8-slot group</option>
+      </select>
+      <button id="load" type="button">Load queue</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="queue-nav" aria-label="Candidate navigation">
+      <button id="previous" type="button" aria-label="Previous candidate" title="Previous candidate">&#8592;</button>
+      <span id="position">0 / 0</span>
+      <button id="next" type="button" aria-label="Next candidate" title="Next candidate">&#8594;</button>
+    </nav>
+
+    <section class="evidence-grid" aria-label="Review evidence">
+      <figure><figcaption>Candidate</figcaption><img id="candidateImage" alt="Candidate image"></figure>
+      <figure><figcaption>Condition mask</figcaption><img id="maskImage" alt="Condition mask"></figure>
+      <figure><figcaption>Identity reference</figcaption><img id="identityImage" alt="Identity reference"></figure>
+      <figure><figcaption>Cross-view garment</figcaption><img id="crossViewImage" alt="Cross-view garment reference"></figure>
+    </section>
+    <section id="groupEvidence" class="group-evidence" aria-label="Eight-slot group evidence" hidden></section>
+
+    <section class="review-panel">
+      <form id="reviewForm">
+        <fieldset>
+          <legend>Decision</legend>
+          <div class="decision-control">
+            <label><input type="radio" name="decision" value="ACCEPT" required> Accept</label>
+            <label><input type="radio" name="decision" value="MAYBE"> Maybe</label>
+            <label><input type="radio" name="decision" value="REJECT"> Reject</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Checks</legend>
+          <div id="scoreGrid" class="score-grid"></div>
+        </fieldset>
+        <label for="comment">Comment</label>
+        <textarea id="comment" rows="3"></textarea>
+        <div class="form-actions">
+          <button id="saveDraft" type="button">Save draft</button>
+          <button type="submit">Append decision</button>
+        </div>
+        <p id="status" role="status"></p>
+      </form>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

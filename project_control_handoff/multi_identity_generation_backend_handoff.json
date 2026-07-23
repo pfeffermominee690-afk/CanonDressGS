@@ -1,0 +1,58 @@
+{
+  "schema_version": "multi_identity.generation_backend_handoff.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GENERATION-BACKEND-001",
+  "source": {
+    "branch": "research/multi-identity-garment-benchmark-foundations-20260724",
+    "head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2"
+  },
+  "branch": "research/multi-identity-generation-backend-review-workflow-20260724",
+  "status": "GENERATION_BACKEND_SELECTION_REQUIRED",
+  "review_workflow_status": "HUMAN_REVIEW_WORKFLOW_READY_BACKEND_PENDING",
+  "blocking_dependencies": [
+    "user must select one generation provider and exact model ID/revision policy",
+    "provider wire API and seed behavior require a separately authorized minimal connectivity request",
+    "subject00 formal base is pending",
+    "avatarrex_lbn1 base avatar and license authorization are pending"
+  ],
+  "frozen_decisions": {
+    "normalized_output": "PNG_1024x1536_PORTRAIT",
+    "credential_env_name": "MULTI_IDENTITY_GENERATION_API_KEY",
+    "credential_values_persisted": false,
+    "recommended_budget": "STANDARD_N2_160_VALID_CANDIDATES",
+    "maximum_retries": 2,
+    "reviewers": "TWO_INDEPENDENT_PLUS_THIRD_PERSON_ADJUDICATION_WHEN_REQUIRED",
+    "acceptance": "8_OF_8_ENDPOINTS_4_OF_4_REFERENCES_GROUP_PASS_ZERO_HARD_FAILURES"
+  },
+  "artifacts": {
+    "backend_contract": "paper_protocol/datasets/multi_identity_generation_backend_contract.json",
+    "request_schema": "paper_protocol/datasets/multi_identity_generation_request_schema.json",
+    "seed_map": "paper_protocol/datasets/multi_identity_generation_seed_map.json",
+    "budget": "paper_protocol/datasets/multi_identity_generation_budget.json",
+    "retry": "paper_protocol/datasets/multi_identity_retry_contract.json",
+    "automatic_screening": "paper_protocol/datasets/multi_identity_automatic_screening_contract.json",
+    "human_review": "paper_protocol/datasets/multi_identity_human_review_contract.json",
+    "group_review": "paper_protocol/datasets/multi_identity_group_review_contract.json",
+    "acceptance": "paper_protocol/datasets/multi_identity_candidate_acceptance_contract.json",
+    "dry_run": "paper_protocol/datasets/multi_identity_generation_dry_run.json",
+    "summary": "paper_protocol/datasets/multi_identity_generation_backend_final_summary.json",
+    "tool": "tools/multi_identity_review"
+  },
+  "execution_counts": {
+    "api_connectivity_calls": 0,
+    "image_generation_api_calls": 0,
+    "generated_images": 0,
+    "candidate_images": 0,
+    "accepted_images": 0,
+    "retries": 0,
+    "avatar_training": 0,
+    "teacher_training": 0,
+    "renderer_formal_runs": 0,
+    "raw_mutation": 0,
+    "paper_final": 0
+  },
+  "frozen_source_contracts_modified": 0,
+  "next_task": "USER_SELECT_GENERATION_PROVIDER_AND_MODEL",
+  "next_task_started": false,
+  "control_center_modified": false,
+  "paper_final": 0
+}

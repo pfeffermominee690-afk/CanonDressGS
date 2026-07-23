@@ -1,0 +1,438 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canondressgs.multi_identity_generation_request.v1",
+  "title": "Provider-neutral multi-identity generation request envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "status",
+    "request_id",
+    "parent_request_id",
+    "attempt_index",
+    "candidate_index",
+    "identity_id",
+    "garment_id",
+    "semantic_pose_slot",
+    "condition_id",
+    "source_inputs",
+    "prompt_sha256",
+    "negative_prompt_sha256",
+    "backend",
+    "request_parameters",
+    "retry_policy_id",
+    "credential_env_name",
+    "reproducibility",
+    "paths",
+    "prepared_at",
+    "network_call_performed"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "multi_identity.generation_request.v1"
+    },
+    "mode": {
+      "enum": [
+        "DRY_RUN_ONLY",
+        "AUTHORIZED_EXECUTION"
+      ]
+    },
+    "status": {
+      "enum": [
+        "BLOCKED_BACKEND_SELECTION_AND_FORMAL_BASE",
+        "PREPARED",
+        "EXECUTION_AUTHORIZED"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^mir_[0-9a-f]{24}$"
+    },
+    "parent_request_id": {
+      "type": "string",
+      "pattern": "^mirp_[0-9a-f]{24}$"
+    },
+    "attempt_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "candidate_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "identity_id": {
+      "enum": [
+        "subject00",
+        "avatarrex_lbn1"
+      ]
+    },
+    "garment_id": {
+      "enum": [
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ]
+    },
+    "semantic_pose_slot": {
+      "enum": [
+        "front",
+        "front_left_three_quarter",
+        "left",
+        "back_left_three_quarter",
+        "back",
+        "back_right_three_quarter",
+        "right",
+        "front_right_three_quarter"
+      ]
+    },
+    "condition_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition_rgb",
+        "condition_alpha_mask",
+        "identity_manifest"
+      ],
+      "properties": {
+        "condition_rgb": {
+          "$ref": "#/$defs/sourceInput"
+        },
+        "condition_alpha_mask": {
+          "$ref": "#/$defs/sourceInput"
+        },
+        "identity_manifest": {
+          "$ref": "#/$defs/sourceInput"
+        }
+      }
+    },
+    "prompt_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "negative_prompt_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "backend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "model_id",
+        "base_url_identifier",
+        "endpoint",
+        "selection_status"
+      ],
+      "properties": {
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "base_url_identifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "endpoint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "selection_status": {
+          "enum": [
+            "GENERATION_BACKEND_SELECTION_REQUIRED",
+            "GENERATION_BACKEND_CONTRACT_READY"
+          ]
+        }
+      }
+    },
+    "request_parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_image_format",
+        "output_format",
+        "output_width",
+        "output_height",
+        "wire_size",
+        "quality",
+        "background",
+        "n",
+        "timeout_seconds",
+        "moderation"
+      ],
+      "properties": {
+        "input_image_format": {
+          "const": "PNG"
+        },
+        "output_format": {
+          "const": "PNG"
+        },
+        "output_width": {
+          "const": 1024
+        },
+        "output_height": {
+          "const": 1536
+        },
+        "wire_size": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "background": {
+          "const": "LIGHT_GRAY_OR_WHITE"
+        },
+        "n": {
+          "const": 1
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "moderation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "retry_policy_id": {
+      "const": "multi_identity.retry_contract.v1"
+    },
+    "credential_env_name": {
+      "const": "MULTI_IDENTITY_GENERATION_API_KEY"
+    },
+    "reproducibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "seed_support"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "REQUEST_PROVENANCE_REPRODUCIBLE_ONLY",
+            "SEEDED_REQUEST_REPRODUCIBLE"
+          ]
+        },
+        "seed_support": {
+          "enum": [
+            "UNVERIFIED_UNTIL_BACKEND_SELECTION",
+            "UNSUPPORTED",
+            "SUPPORTED_AND_VERIFIED"
+          ]
+        }
+      }
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "output_path",
+        "candidate_manifest_path",
+        "request_event_path",
+        "retry_event_path",
+        "review_event_path"
+      ],
+      "properties": {
+        "output_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_manifest_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_event_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retry_event_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_event_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "prepared_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "network_call_performed": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "status"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "status": {
+          "enum": [
+            "FORMAL_BASE_PENDING",
+            "READY_AND_HASHED"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "reproducibility": {
+            "properties": {
+              "seed_support": {
+                "const": "SUPPORTED_AND_VERIFIED"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "seed"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "seed"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "AUTHORIZED_EXECUTION"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "EXECUTION_AUTHORIZED"
+          },
+          "backend": {
+            "properties": {
+              "provider": {
+                "type": "string",
+                "minLength": 1
+              },
+              "model_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "base_url_identifier": {
+                "type": "string",
+                "minLength": 1
+              },
+              "endpoint": {
+                "type": "string",
+                "minLength": 1
+              },
+              "selection_status": {
+                "const": "GENERATION_BACKEND_CONTRACT_READY"
+              }
+            }
+          },
+          "request_parameters": {
+            "properties": {
+              "wire_size": {
+                "type": "string",
+                "minLength": 1
+              },
+              "quality": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "x_append_only_response_event_fields": [
+    "request_id",
+    "parent_request_id",
+    "attempt_index",
+    "event_type",
+    "request_timestamp",
+    "response_timestamp",
+    "http_status",
+    "provider_request_id",
+    "output_sha256",
+    "error_class",
+    "retry_reason",
+    "billing_status_known",
+    "moderation_state",
+    "response_metadata"
+  ],
+  "x_deterministic_id_rule": {
+    "canonicalization": "UTF-8 JSON with sorted keys and separators ',' ':'",
+    "logical_coordinates": [
+      "schema version multi_identity.request_id.v1",
+      "identity_id",
+      "garment_id",
+      "semantic_pose_slot",
+      "candidate_index"
+    ],
+    "parent_request_id": "mirp_ + first 24 lowercase hex characters of SHA-256(canonical logical coordinates)",
+    "request_id": "mir_ + first 24 lowercase hex characters of SHA-256(canonical logical coordinates plus attempt_index)",
+    "retry_behavior": "new request_id, same parent_request_id"
+  },
+  "x_secret_policy": "credential_env_name is the only credential-related field permitted"
+}
