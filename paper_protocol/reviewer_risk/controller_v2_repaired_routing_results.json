@@ -1,0 +1,3839 @@
+{
+  "attempt": "attempt_004",
+  "controller_seconds_total_clean": 4.445504538714886,
+  "formal_pure_secondary": {
+    "MATCHED_V1": {
+      "record_count": 240,
+      "single_rate": 0.9333333333333333,
+      "top1_accuracy": 1.0
+    },
+    "V2": {
+      "record_count": 240,
+      "single_rate": 1.0,
+      "top1_accuracy": 1.0
+    }
+  },
+  "group_metrics": [
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.949004688015165,
+          "auroc": 0.8333333333333334,
+          "brier": 0.1514300425947308,
+          "cross_entropy": 0.45643978467546936,
+          "ece_10_bin": 0.1247796420007944,
+          "mixed_false_single_rate": 0.8666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 7,
+              "O02": 4,
+              "O03": 3,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 1,
+              "O04": 0,
+              "O08": 14
+            }
+          },
+          "dominant_order_accuracy": 0.8625,
+          "top1_accuracy": 0.8625,
+          "unordered_top2_accuracy": 0.6125
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.18421052631578946,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 16
+          },
+          "dual_rate": 0.0875,
+          "hard_rate": 0.0125,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.16666666666666666,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.9,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 44,
+          "mae": 0.1307634230364452,
+          "rmse": 0.16989676576378102
+        }
+      },
+      "rotation": 0,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9851510809782794,
+          "auroc": 0.8333333333333334,
+          "brier": 0.0819684555944982,
+          "cross_entropy": 0.3006811242455961,
+          "ece_10_bin": 0.13211732323353106,
+          "mixed_false_single_rate": 0.8666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 4,
+              "O02": 4,
+              "O03": 3,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 1,
+              "O04": 0,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.8307692307692308,
+          "top1_accuracy": 0.8307692307692308,
+          "unordered_top2_accuracy": 0.7076923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.18421052631578946,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 16
+          },
+          "dual_rate": 0.1076923076923077,
+          "hard_rate": 0.015384615384615385,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.16666666666666666,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8769230769230769,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 44,
+          "mae": 0.1307634230364452,
+          "rmse": 0.16989676576378102
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9459631466569903,
+          "auroc": 0.82,
+          "brier": 0.15070406390108956,
+          "cross_entropy": 0.45346901379906396,
+          "ece_10_bin": 0.12021469697356224,
+          "mixed_false_single_rate": 0.9166666666666666,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 4,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.8625,
+          "top1_accuracy": 0.8625,
+          "unordered_top2_accuracy": 0.6125
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.07894736842105263,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 16
+          },
+          "dual_rate": 0.0375,
+          "hard_rate": 0.025,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.16666666666666666,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.9375,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 44,
+          "mae": 0.11123950384331475,
+          "rmse": 0.1599252671362019
+        }
+      },
+      "rotation": 0,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.984030506227176,
+          "auroc": 0.82,
+          "brier": 0.0819169492240763,
+          "cross_entropy": 0.29895158421055623,
+          "ece_10_bin": 0.1309469264287215,
+          "mixed_false_single_rate": 0.9166666666666666,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 3,
+              "O02": 4,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8307692307692308,
+          "top1_accuracy": 0.8307692307692308,
+          "unordered_top2_accuracy": 0.7076923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.07894736842105263,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 16
+          },
+          "dual_rate": 0.046153846153846156,
+          "hard_rate": 0.03076923076923077,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.16666666666666666,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.9230769230769231,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 44,
+          "mae": 0.11123950384331475,
+          "rmse": 0.1599252671362019
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9492074861155372,
+          "auroc": 0.8333333333333334,
+          "brier": 0.15015066083231637,
+          "cross_entropy": 0.4507001750091356,
+          "ece_10_bin": 0.14919952154159544,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 5,
+              "O02": 5,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 2,
+              "O03": 0,
+              "O04": 0,
+              "O08": 14
+            }
+          },
+          "dominant_order_accuracy": 0.8375,
+          "top1_accuracy": 0.8375,
+          "unordered_top2_accuracy": 0.6
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.1891891891891892,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 37,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.0875,
+          "hard_rate": 0.025,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.16666666666666666,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8875,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.14121372229600138,
+          "rmse": 0.20415766028074106
+        }
+      },
+      "rotation": 0,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9851842565056596,
+          "auroc": 0.8333333333333334,
+          "brier": 0.08123995821746197,
+          "cross_entropy": 0.2953555800161808,
+          "ece_10_bin": 0.12755568440143875,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 2,
+              "O02": 5,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 2,
+              "O03": 0,
+              "O04": 0,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.8,
+          "top1_accuracy": 0.8,
+          "unordered_top2_accuracy": 0.6923076923076923
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.1891891891891892,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 37,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.1076923076923077,
+          "hard_rate": 0.03076923076923077,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.16666666666666666,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8615384615384616,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.14121372229600138,
+          "rmse": 0.20415766028074106
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9553653182168743,
+          "auroc": 0.8533333333333334,
+          "brier": 0.14144957655153295,
+          "cross_entropy": 0.431824780166187,
+          "ece_10_bin": 0.1623468592762947,
+          "mixed_false_single_rate": 0.7333333333333333,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 8,
+              "O02": 5,
+              "O03": 2,
+              "O04": 1,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 14,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.8625,
+          "top1_accuracy": 0.8625,
+          "unordered_top2_accuracy": 0.5625
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.2571428571428571,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 35,
+            "correct_incompatible": 5,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 20
+          },
+          "dual_rate": 0.1625,
+          "hard_rate": 0.0375,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.6,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8,
+          "wrong_pair_dual_rate": 0.2
+        },
+        "weight": {
+          "correct_pair_count": 40,
+          "mae": 0.153385459817946,
+          "rmse": 0.20227317723538882
+        }
+      },
+      "rotation": 1,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9870970324977997,
+          "auroc": 0.8533333333333334,
+          "brier": 0.08394627554564316,
+          "cross_entropy": 0.3035286733161048,
+          "ece_10_bin": 0.1594033603484814,
+          "mixed_false_single_rate": 0.7333333333333333,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 5,
+              "O02": 5,
+              "O03": 2,
+              "O04": 1,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 11,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8307692307692308,
+          "top1_accuracy": 0.8307692307692308,
+          "unordered_top2_accuracy": 0.6307692307692307
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.2571428571428571,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 35,
+            "correct_incompatible": 5,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 20
+          },
+          "dual_rate": 0.2,
+          "hard_rate": 0.046153846153846156,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.6,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.7538461538461538,
+          "wrong_pair_dual_rate": 0.2
+        },
+        "weight": {
+          "correct_pair_count": 40,
+          "mae": 0.153385459817946,
+          "rmse": 0.20227317723538882
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9581726468220754,
+          "auroc": 0.86,
+          "brier": 0.14237357635229525,
+          "cross_entropy": 0.43175008481812427,
+          "ece_10_bin": 0.16535470783710482,
+          "mixed_false_single_rate": 0.8666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 9,
+              "O02": 4,
+              "O03": 2,
+              "O04": 1,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 14,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.875,
+          "top1_accuracy": 0.875,
+          "unordered_top2_accuracy": 0.6
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.13513513513513514,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 37,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.075,
+          "hard_rate": 0.025,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.3333333333333333,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.9,
+          "wrong_pair_dual_rate": 0.058823529411764705
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.1446366298568341,
+          "rmse": 0.17555757281411827
+        }
+      },
+      "rotation": 1,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9878461907469579,
+          "auroc": 0.86,
+          "brier": 0.08061975196256872,
+          "cross_entropy": 0.2934431458238887,
+          "ece_10_bin": 0.14856764582487259,
+          "mixed_false_single_rate": 0.8666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 4,
+              "O03": 2,
+              "O04": 1,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 11,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8461538461538461,
+          "top1_accuracy": 0.8461538461538461,
+          "unordered_top2_accuracy": 0.6923076923076923
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.13513513513513514,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 37,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.09230769230769231,
+          "hard_rate": 0.03076923076923077,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.3333333333333333,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8769230769230769,
+          "wrong_pair_dual_rate": 0.058823529411764705
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.1446366298568341,
+          "rmse": 0.17555757281411827
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9567837579331864,
+          "auroc": 0.8566666666666667,
+          "brier": 0.14203123115348,
+          "cross_entropy": 0.43085205993143694,
+          "ece_10_bin": 0.164499182254076,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 9,
+              "O02": 5,
+              "O03": 1,
+              "O04": 1,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 14,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.875,
+          "top1_accuracy": 0.875,
+          "unordered_top2_accuracy": 0.575
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.14285714285714285,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 35,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 19
+          },
+          "dual_rate": 0.0875,
+          "hard_rate": 0.025,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.3333333333333333,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8875,
+          "wrong_pair_dual_rate": 0.10526315789473684
+        },
+        "weight": {
+          "correct_pair_count": 41,
+          "mae": 0.1667534257096004,
+          "rmse": 0.22546299004990336
+        }
+      },
+      "rotation": 1,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9874758203765875,
+          "auroc": 0.8566666666666667,
+          "brier": 0.08099287815876952,
+          "cross_entropy": 0.29414366652398694,
+          "ece_10_bin": 0.1496329073722546,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 5,
+              "O03": 1,
+              "O04": 1,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 11,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8461538461538461,
+          "top1_accuracy": 0.8461538461538461,
+          "unordered_top2_accuracy": 0.676923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.14285714285714285,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 35,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 19
+          },
+          "dual_rate": 0.1076923076923077,
+          "hard_rate": 0.03076923076923077,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.3333333333333333,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8615384615384616,
+          "wrong_pair_dual_rate": 0.10526315789473684
+        },
+        "weight": {
+          "correct_pair_count": 41,
+          "mae": 0.1667534257096004,
+          "rmse": 0.22546299004990336
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9817577339323137,
+          "auroc": 0.9366666666666666,
+          "brier": 0.1392145015059624,
+          "cross_entropy": 0.442077147085738,
+          "ece_10_bin": 0.21167515665292738,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 10,
+              "O02": 2,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 1,
+              "O04": 2,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 15,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 2,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.8125,
+          "top1_accuracy": 0.8125,
+          "unordered_top2_accuracy": 0.625
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.17073170731707318,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 41,
+            "correct_incompatible": 4,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.0875,
+          "hard_rate": 0.025,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8875,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.18519554027804627,
+          "rmse": 0.21671245030698325
+        }
+      },
+      "rotation": 2,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9947721071619318,
+          "auroc": 0.9366666666666666,
+          "brier": 0.09791457154755058,
+          "cross_entropy": 0.3523244455675251,
+          "ece_10_bin": 0.19667326395328225,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 7,
+              "O02": 2,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 10,
+              "O03": 1,
+              "O04": 2,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 12,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 2,
+              "O08": 8
+            }
+          },
+          "dominant_order_accuracy": 0.7692307692307693,
+          "top1_accuracy": 0.7692307692307693,
+          "unordered_top2_accuracy": 0.7076923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.17073170731707318,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 41,
+            "correct_incompatible": 4,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.1076923076923077,
+          "hard_rate": 0.03076923076923077,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8615384615384616,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.18519554027804627,
+          "rmse": 0.21671245030698325
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9702624265569392,
+          "auroc": 0.9033333333333333,
+          "brier": 0.1395404913899992,
+          "cross_entropy": 0.4401238790776051,
+          "ece_10_bin": 0.15164193511009216,
+          "mixed_false_single_rate": 0.9666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 10,
+              "O02": 2,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 1,
+              "O04": 2,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 15,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 2,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.8125,
+          "top1_accuracy": 0.8125,
+          "unordered_top2_accuracy": 0.5875
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.025,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 40,
+            "correct_incompatible": 2,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.0125,
+          "hard_rate": 0.0125,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.975,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.2135715229170663,
+          "rmse": 0.25278919843798253
+        }
+      },
+      "rotation": 2,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9915972344088401,
+          "auroc": 0.9033333333333333,
+          "brier": 0.09253386958241101,
+          "cross_entropy": 0.33768784085441284,
+          "ece_10_bin": 0.1970272976618547,
+          "mixed_false_single_rate": 0.9666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 7,
+              "O02": 2,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 10,
+              "O03": 1,
+              "O04": 2,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 12,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 2,
+              "O08": 8
+            }
+          },
+          "dominant_order_accuracy": 0.7692307692307693,
+          "top1_accuracy": 0.7692307692307693,
+          "unordered_top2_accuracy": 0.676923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.025,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 40,
+            "correct_incompatible": 2,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.015384615384615385,
+          "hard_rate": 0.015384615384615385,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.9692307692307692,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.2135715229170663,
+          "rmse": 0.25278919843798253
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9724080288817468,
+          "auroc": 0.91,
+          "brier": 0.13832201578140885,
+          "cross_entropy": 0.4377547843988358,
+          "ece_10_bin": 0.1491041999310255,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 10,
+              "O02": 2,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 1,
+              "O04": 2,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 2,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.825,
+          "top1_accuracy": 0.825,
+          "unordered_top2_accuracy": 0.5875
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.18421052631578946,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 38,
+            "correct_incompatible": 4,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.0875,
+          "hard_rate": 0.025,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8875,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.2134614561994871,
+          "rmse": 0.2399864613546357
+        }
+      },
+      "rotation": 2,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9922317241021532,
+          "auroc": 0.91,
+          "brier": 0.09436917529843473,
+          "cross_entropy": 0.3418126781466391,
+          "ece_10_bin": 0.1868228187927833,
+          "mixed_false_single_rate": 0.85,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 7,
+              "O02": 2,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 10,
+              "O03": 1,
+              "O04": 2,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 2,
+              "O08": 8
+            }
+          },
+          "dominant_order_accuracy": 0.7846153846153846,
+          "top1_accuracy": 0.7846153846153846,
+          "unordered_top2_accuracy": 0.676923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.18421052631578946,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 38,
+            "correct_incompatible": 4,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.1076923076923077,
+          "hard_rate": 0.03076923076923077,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8615384615384616,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.2134614561994871,
+          "rmse": 0.2399864613546357
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9695958920994473,
+          "auroc": 0.8966666666666666,
+          "brier": 0.14320744178101297,
+          "cross_entropy": 0.44113151486826424,
+          "ece_10_bin": 0.24569308683276175,
+          "mixed_false_single_rate": 0.7666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 1,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.825,
+          "top1_accuracy": 0.825,
+          "unordered_top2_accuracy": 0.625
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.2857142857142857,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 42,
+            "correct_incompatible": 3,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.175,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.825,
+          "wrong_pair_dual_rate": 0.13333333333333333
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.12515609650700182,
+          "rmse": 0.15078825683790142
+        }
+      },
+      "rotation": 3,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9912368346589329,
+          "auroc": 0.8966666666666666,
+          "brier": 0.08338713676334789,
+          "cross_entropy": 0.30948196400988204,
+          "ece_10_bin": 0.16501212624403147,
+          "mixed_false_single_rate": 0.7666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 3,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 1,
+              "O04": 1,
+              "O08": 9
+            }
+          },
+          "dominant_order_accuracy": 0.7846153846153846,
+          "top1_accuracy": 0.7846153846153846,
+          "unordered_top2_accuracy": 0.7384615384615385
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.2857142857142857,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 42,
+            "correct_incompatible": 3,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.2153846153846154,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.7846153846153846,
+          "wrong_pair_dual_rate": 0.13333333333333333
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.12515609650700182,
+          "rmse": 0.15078825683790142
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9694010894141747,
+          "auroc": 0.8933333333333333,
+          "brier": 0.1448042090986743,
+          "cross_entropy": 0.44117882481396115,
+          "ece_10_bin": 0.12034101113677023,
+          "mixed_false_single_rate": 0.7333333333333333,
+          "pure_false_mixed_rate": 0.4
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 8,
+              "O02": 1,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 0,
+              "O04": 1,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.8625,
+          "top1_accuracy": 0.8625,
+          "unordered_top2_accuracy": 0.625
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.3023255813953488,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 43,
+            "correct_incompatible": 2,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.2,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.8,
+          "wrong_pair_dual_rate": 0.2
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.1277183808662274,
+          "rmse": 0.15672705319176558
+        }
+      },
+      "rotation": 3,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9910433991996025,
+          "auroc": 0.8933333333333333,
+          "brier": 0.07851000397971143,
+          "cross_entropy": 0.293971267149993,
+          "ece_10_bin": 0.13227777022581835,
+          "mixed_false_single_rate": 0.7333333333333333,
+          "pure_false_mixed_rate": 0.4
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 5,
+              "O02": 1,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 1,
+              "O02": 1,
+              "O03": 0,
+              "O04": 1,
+              "O08": 10
+            }
+          },
+          "dominant_order_accuracy": 0.8307692307692308,
+          "top1_accuracy": 0.8307692307692308,
+          "unordered_top2_accuracy": 0.7384615384615385
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.3023255813953488,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 43,
+            "correct_incompatible": 2,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.24615384615384617,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.7538461538461538,
+          "wrong_pair_dual_rate": 0.2
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.1277183808662274,
+          "rmse": 0.15672705319176558
+        }
+      }
+    },
+    {
+      "family": "V2",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9716609764198244,
+          "auroc": 0.9,
+          "brier": 0.14433482018867355,
+          "cross_entropy": 0.4406459439362824,
+          "ece_10_bin": 0.15838640257716186,
+          "mixed_false_single_rate": 0.7166666666666667,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 1,
+              "O08": 14
+            }
+          },
+          "dominant_order_accuracy": 0.85,
+          "top1_accuracy": 0.85,
+          "unordered_top2_accuracy": 0.6
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.3170731707317073,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 41,
+            "correct_incompatible": 2,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.2,
+          "hard_rate": 0.0125,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.7875,
+          "wrong_pair_dual_rate": 0.17647058823529413
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.18360526651837106,
+          "rmse": 0.2234396420380616
+        }
+      },
+      "rotation": 3,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9916723300172126,
+          "auroc": 0.9,
+          "brier": 0.07962067209086778,
+          "cross_entropy": 0.2973332673381158,
+          "ece_10_bin": 0.1362082628103403,
+          "mixed_false_single_rate": 0.7166666666666667,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 3,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 1,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.8153846153846154,
+          "top1_accuracy": 0.8153846153846154,
+          "unordered_top2_accuracy": 0.6923076923076923
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.3170731707317073,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 41,
+            "correct_incompatible": 2,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.24615384615384617,
+          "hard_rate": 0.015384615384615385,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.5,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.7384615384615385,
+          "wrong_pair_dual_rate": 0.17647058823529413
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.18360526651837106,
+          "rmse": 0.2234396420380616
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9634333079095811,
+          "auroc": 0.9,
+          "brier": 0.487689813526751,
+          "cross_entropy": 1.4087732952156173,
+          "ece_10_bin": 0.5850180042208531,
+          "mixed_false_single_rate": 0.55,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 7,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 3,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.85,
+          "top1_accuracy": 0.85,
+          "unordered_top2_accuracy": 0.65
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.45,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 40,
+            "correct_incompatible": 7,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 13
+          },
+          "dual_rate": 0.3875,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.8571428571428571,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.6125,
+          "wrong_pair_dual_rate": 0.23076923076923078
+        },
+        "weight": {
+          "correct_pair_count": 47,
+          "mae": 0.19440890698399083,
+          "rmse": 0.22409218705951997
+        }
+      },
+      "rotation": 0,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9901332756522448,
+          "auroc": 0.9,
+          "brier": 0.5992498307154879,
+          "cross_entropy": 1.7235741907182898,
+          "ece_10_bin": 0.7297837125672855,
+          "mixed_false_single_rate": 0.55,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 4,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 3,
+              "O08": 10
+            }
+          },
+          "dominant_order_accuracy": 0.8153846153846154,
+          "top1_accuracy": 0.8153846153846154,
+          "unordered_top2_accuracy": 0.7538461538461538
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.45,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 40,
+            "correct_incompatible": 7,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 13
+          },
+          "dual_rate": 0.4307692307692308,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.8571428571428571,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.5692307692307692,
+          "wrong_pair_dual_rate": 0.23076923076923078
+        },
+        "weight": {
+          "correct_pair_count": 47,
+          "mae": 0.19440890698399083,
+          "rmse": 0.22409218705951997
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.928875705453708,
+          "auroc": 0.8566666666666667,
+          "brier": 0.5129705699985014,
+          "cross_entropy": 1.487899374753272,
+          "ece_10_bin": 0.5990945376931863,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 5,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 2
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 0,
+              "O08": 16
+            }
+          },
+          "dominant_order_accuracy": 0.8625,
+          "top1_accuracy": 0.8625,
+          "unordered_top2_accuracy": 0.5875
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.6,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 35,
+            "correct_incompatible": 7,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.4,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.8571428571428571,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.6,
+          "wrong_pair_dual_rate": 0.05555555555555555
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.1860027569874115,
+          "rmse": 0.22461084690067348
+        }
+      },
+      "rotation": 0,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9805935196612633,
+          "auroc": 0.8566666666666667,
+          "brier": 0.6288557119548233,
+          "cross_entropy": 1.8170864953351187,
+          "ece_10_bin": 0.7500452859580513,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 2,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 2
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 0,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.8307692307692308,
+          "top1_accuracy": 0.8307692307692308,
+          "unordered_top2_accuracy": 0.6615384615384615
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.6,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 35,
+            "correct_incompatible": 7,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.4461538461538462,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.8571428571428571,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.5538461538461539,
+          "wrong_pair_dual_rate": 0.05555555555555555
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.1860027569874115,
+          "rmse": 0.22461084690067348
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.944356048130725,
+          "auroc": 0.87,
+          "brier": 0.48718496561571667,
+          "cross_entropy": 1.460090902637166,
+          "ece_10_bin": 0.579489442627645,
+          "mixed_false_single_rate": 0.5666666666666667,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 5,
+              "O02": 5,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 1,
+              "O08": 14
+            }
+          },
+          "dominant_order_accuracy": 0.8375,
+          "top1_accuracy": 0.8375,
+          "unordered_top2_accuracy": 0.6
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.5277777777777778,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 36,
+            "correct_incompatible": 7,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.375,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.8571428571428571,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.625,
+          "wrong_pair_dual_rate": 0.058823529411764705
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.20430745643742815,
+          "rmse": 0.23985676229941838
+        }
+      },
+      "rotation": 0,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9849201637589452,
+          "auroc": 0.87,
+          "brier": 0.5974197555780862,
+          "cross_entropy": 1.783179865184688,
+          "ece_10_bin": 0.7257923725152927,
+          "mixed_false_single_rate": 0.5666666666666667,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 2,
+              "O02": 5,
+              "O03": 3,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 1,
+              "O08": 11
+            }
+          },
+          "dominant_order_accuracy": 0.8,
+          "top1_accuracy": 0.8,
+          "unordered_top2_accuracy": 0.6923076923076923
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.5277777777777778,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 36,
+            "correct_incompatible": 7,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 17
+          },
+          "dual_rate": 0.4153846153846154,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.8571428571428571,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.5846153846153846,
+          "wrong_pair_dual_rate": 0.058823529411764705
+        },
+        "weight": {
+          "correct_pair_count": 43,
+          "mae": 0.20430745643742815,
+          "rmse": 0.23985676229941838
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.941320899872716,
+          "auroc": 0.86,
+          "brier": 0.48454849105511577,
+          "cross_entropy": 1.4093797488002464,
+          "ece_10_bin": 0.5776142253273423,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 7,
+              "O03": 2,
+              "O04": 0,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 14,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 0,
+              "O08": 16
+            }
+          },
+          "dominant_order_accuracy": 0.85,
+          "top1_accuracy": 0.85,
+          "unordered_top2_accuracy": 0.6375
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.5405405405405406,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 37,
+            "correct_incompatible": 9,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 14
+          },
+          "dual_rate": 0.4,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.6666666666666666,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.6,
+          "wrong_pair_dual_rate": 0.14285714285714285
+        },
+        "weight": {
+          "correct_pair_count": 46,
+          "mae": 0.19732170270194,
+          "rmse": 0.2369839239242591
+        }
+      },
+      "rotation": 1,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9840599909181161,
+          "auroc": 0.86,
+          "brier": 0.5943203811113873,
+          "cross_entropy": 1.7207417138148802,
+          "ece_10_bin": 0.7236051334980075,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 3,
+              "O02": 7,
+              "O03": 2,
+              "O04": 0,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 11,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 0,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.8153846153846154,
+          "top1_accuracy": 0.8153846153846154,
+          "unordered_top2_accuracy": 0.7230769230769231
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.5405405405405406,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 37,
+            "correct_incompatible": 9,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 14
+          },
+          "dual_rate": 0.4461538461538462,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.6666666666666666,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.5538461538461539,
+          "wrong_pair_dual_rate": 0.14285714285714285
+        },
+        "weight": {
+          "correct_pair_count": 46,
+          "mae": 0.19732170270194,
+          "rmse": 0.2369839239242591
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9541596279289486,
+          "auroc": 0.86,
+          "brier": 0.47816539032932504,
+          "cross_entropy": 1.4112423531634959,
+          "ece_10_bin": 0.5752564012386298,
+          "mixed_false_single_rate": 0.6,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 11,
+              "O02": 4,
+              "O03": 1,
+              "O04": 0,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 14,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 3,
+              "O03": 0,
+              "O04": 0,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.875,
+          "top1_accuracy": 0.875,
+          "unordered_top2_accuracy": 0.5875
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.5161290322580645,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 31,
+            "correct_incompatible": 11,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.35,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.36363636363636365,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.65,
+          "wrong_pair_dual_rate": 0.2222222222222222
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.2142658995786093,
+          "rmse": 0.2477261291669633
+        }
+      },
+      "rotation": 1,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9871168035672058,
+          "auroc": 0.86,
+          "brier": 0.5873511367772699,
+          "cross_entropy": 1.7241138929582922,
+          "ece_10_bin": 0.7201795918589866,
+          "mixed_false_single_rate": 0.6,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 8,
+              "O02": 4,
+              "O03": 1,
+              "O04": 0,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 11,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 3,
+              "O03": 0,
+              "O04": 0,
+              "O08": 10
+            }
+          },
+          "dominant_order_accuracy": 0.8461538461538461,
+          "top1_accuracy": 0.8461538461538461,
+          "unordered_top2_accuracy": 0.676923076923077
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.5161290322580645,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 31,
+            "correct_incompatible": 11,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 18
+          },
+          "dual_rate": 0.38461538461538464,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.36363636363636365,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.6153846153846154,
+          "wrong_pair_dual_rate": 0.2222222222222222
+        },
+        "weight": {
+          "correct_pair_count": 42,
+          "mae": 0.2142658995786093,
+          "rmse": 0.2477261291669633
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.8938246171177919,
+          "auroc": 0.7466666666666667,
+          "brier": 0.4886846022184028,
+          "cross_entropy": 1.5097361262348095,
+          "ece_10_bin": 0.5689253021495384,
+          "mixed_false_single_rate": 0.6666666666666666,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 9,
+              "O03": 1,
+              "O04": 0,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 2,
+              "O03": 13,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 3,
+              "O03": 0,
+              "O04": 0,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.8,
+          "top1_accuracy": 0.8,
+          "unordered_top2_accuracy": 0.5125
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.4,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 30,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 24
+          },
+          "dual_rate": 0.3,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.3333333333333333,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.7,
+          "wrong_pair_dual_rate": 0.25
+        },
+        "weight": {
+          "correct_pair_count": 36,
+          "mae": 0.26827098687990486,
+          "rmse": 0.30224763201757454
+        }
+      },
+      "rotation": 1,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9698828662884955,
+          "auroc": 0.7466666666666667,
+          "brier": 0.5965709226023457,
+          "cross_entropy": 1.8335188463875645,
+          "ece_10_bin": 0.7217870974697054,
+          "mixed_false_single_rate": 0.6666666666666666,
+          "pure_false_mixed_rate": 0.2
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 3,
+              "O02": 9,
+              "O03": 1,
+              "O04": 0,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 2,
+              "O03": 10,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 3,
+              "O03": 0,
+              "O04": 0,
+              "O08": 10
+            }
+          },
+          "dominant_order_accuracy": 0.7538461538461538,
+          "top1_accuracy": 0.7538461538461538,
+          "unordered_top2_accuracy": 0.5692307692307692
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.4,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 30,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 24
+          },
+          "dual_rate": 0.3230769230769231,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.3333333333333333,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 0.8,
+          "single_rate": 0.676923076923077,
+          "wrong_pair_dual_rate": 0.25
+        },
+        "weight": {
+          "correct_pair_count": 36,
+          "mae": 0.26827098687990486,
+          "rmse": 0.30224763201757454
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9832587074062829,
+          "auroc": 0.95,
+          "brier": 0.502830738987396,
+          "cross_entropy": 1.4771137486251098,
+          "ece_10_bin": 0.600708881209816,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 9,
+              "O02": 2,
+              "O03": 3,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 14,
+              "O03": 2,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 0,
+              "O08": 16
+            }
+          },
+          "dominant_order_accuracy": 0.8875,
+          "top1_accuracy": 0.8875,
+          "unordered_top2_accuracy": 0.7
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.4883720930232558,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 43,
+            "correct_incompatible": 8,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 9
+          },
+          "dual_rate": 0.35,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.75,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.65,
+          "wrong_pair_dual_rate": 0.1111111111111111
+        },
+        "weight": {
+          "correct_pair_count": 51,
+          "mae": 0.19568925580403743,
+          "rmse": 0.22933926996062032
+        }
+      },
+      "rotation": 2,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9955217952415555,
+          "auroc": 0.95,
+          "brier": 0.6186881736651405,
+          "cross_entropy": 1.8132637446837956,
+          "ece_10_bin": 0.7439628382933807,
+          "mixed_false_single_rate": 0.5333333333333333,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 2,
+              "O03": 3,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 11,
+              "O03": 2,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 0,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.8615384615384616,
+          "top1_accuracy": 0.8615384615384616,
+          "unordered_top2_accuracy": 0.8153846153846154
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.4883720930232558,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 43,
+            "correct_incompatible": 8,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 9
+          },
+          "dual_rate": 0.4307692307692308,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.75,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.5692307692307692,
+          "wrong_pair_dual_rate": 0.1111111111111111
+        },
+        "weight": {
+          "correct_pair_count": 51,
+          "mae": 0.19568925580403743,
+          "rmse": 0.22933926996062032
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9959057458108692,
+          "auroc": 0.9866666666666667,
+          "brier": 0.49143307999680524,
+          "cross_entropy": 1.4358170770980854,
+          "ece_10_bin": 0.5933928818366709,
+          "mixed_false_single_rate": 0.5166666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 11,
+              "O02": 1,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 15,
+              "O03": 1,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 16,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.9125,
+          "top1_accuracy": 0.9125,
+          "unordered_top2_accuracy": 0.6875
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.6,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 40,
+            "correct_incompatible": 10,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 10
+          },
+          "dual_rate": 0.3625,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.5,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.6375,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 50,
+          "mae": 0.18807158330267115,
+          "rmse": 0.2126142808420294
+        }
+      },
+      "rotation": 2,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9989021019379138,
+          "auroc": 0.9866666666666667,
+          "brier": 0.6047760713549074,
+          "cross_entropy": 1.763731945285482,
+          "ece_10_bin": 0.7337243939810661,
+          "mixed_false_single_rate": 0.5166666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 8,
+              "O02": 1,
+              "O03": 2,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 12,
+              "O03": 1,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 13,
+              "O04": 0,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 1,
+              "O03": 0,
+              "O04": 0,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8923076923076924,
+          "top1_accuracy": 0.8923076923076924,
+          "unordered_top2_accuracy": 0.8
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.6,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 40,
+            "correct_incompatible": 10,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 10
+          },
+          "dual_rate": 0.4461538461538462,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.5,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.5538461538461539,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 50,
+          "mae": 0.18807158330267115,
+          "rmse": 0.2126142808420294
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.986445389096757,
+          "auroc": 0.9566666666666667,
+          "brier": 0.49942963670291374,
+          "cross_entropy": 1.4711788723679775,
+          "ece_10_bin": 0.5988864776552685,
+          "mixed_false_single_rate": 0.5166666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 9,
+              "O02": 2,
+              "O03": 3,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 15,
+              "O03": 0,
+              "O04": 1,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 15,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 1,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.875,
+          "top1_accuracy": 0.875,
+          "unordered_top2_accuracy": 0.7
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.5813953488372093,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 43,
+            "correct_incompatible": 8,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 9
+          },
+          "dual_rate": 0.3625,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.5,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.6375,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 51,
+          "mae": 0.18414063732239236,
+          "rmse": 0.2109554306102278
+        }
+      },
+      "rotation": 2,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9963113862273619,
+          "auroc": 0.9566666666666667,
+          "brier": 0.6145539918965452,
+          "cross_entropy": 1.8063579491229163,
+          "ece_10_bin": 0.7413487835050931,
+          "mixed_false_single_rate": 0.5166666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 2,
+              "O03": 3,
+              "O04": 2,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 12,
+              "O03": 0,
+              "O04": 1,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 12,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 1,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8461538461538461,
+          "top1_accuracy": 0.8461538461538461,
+          "unordered_top2_accuracy": 0.8307692307692308
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.5813953488372093,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 43,
+            "correct_incompatible": 8,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 9
+          },
+          "dual_rate": 0.4461538461538462,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.5,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.5538461538461539,
+          "wrong_pair_dual_rate": 0.0
+        },
+        "weight": {
+          "correct_pair_count": 51,
+          "mae": 0.18414063732239236,
+          "rmse": 0.2109554306102278
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9654458738407924,
+          "auroc": 0.9,
+          "brier": 0.5073089708562474,
+          "cross_entropy": 1.5104887438336887,
+          "ece_10_bin": 0.6006328450986758,
+          "mixed_false_single_rate": 0.6333333333333333,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 15,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 1,
+              "O08": 15
+            }
+          },
+          "dominant_order_accuracy": 0.85,
+          "top1_accuracy": 0.85,
+          "unordered_top2_accuracy": 0.6125
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.47368421052631576,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 16
+          },
+          "dual_rate": 0.275,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.3333333333333333,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.725,
+          "wrong_pair_dual_rate": 0.125
+        },
+        "weight": {
+          "correct_pair_count": 44,
+          "mae": 0.17520422833624075,
+          "rmse": 0.21360328828883415
+        }
+      },
+      "rotation": 3,
+      "seed": 0,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9905903704516917,
+          "auroc": 0.9,
+          "brier": 0.62384823583292,
+          "cross_entropy": 1.8511444613122103,
+          "ece_10_bin": 0.7468770541444854,
+          "mixed_false_single_rate": 0.6333333333333333,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 3,
+              "O02": 3,
+              "O03": 3,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 12,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 1,
+              "O08": 12
+            }
+          },
+          "dominant_order_accuracy": 0.8153846153846154,
+          "top1_accuracy": 0.8153846153846154,
+          "unordered_top2_accuracy": 0.6923076923076923
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.47368421052631576,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 38,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 16
+          },
+          "dual_rate": 0.3384615384615385,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.3333333333333333,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.6615384615384615,
+          "wrong_pair_dual_rate": 0.125
+        },
+        "weight": {
+          "correct_pair_count": 44,
+          "mae": 0.17520422833624075,
+          "rmse": 0.21360328828883415
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9674340221526151,
+          "auroc": 0.8966666666666666,
+          "brier": 0.4813086467898001,
+          "cross_entropy": 1.4739047558651046,
+          "ece_10_bin": 0.5826060554130201,
+          "mixed_false_single_rate": 0.6166666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 11,
+              "O02": 0,
+              "O03": 2,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 15,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 3,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.8875,
+          "top1_accuracy": 0.8875,
+          "unordered_top2_accuracy": 0.625
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.5128205128205128,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 39,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.2875,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.7125,
+          "wrong_pair_dual_rate": 0.2
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.21200756816230357,
+          "rmse": 0.2464527443233042
+        }
+      },
+      "rotation": 3,
+      "seed": 1,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9908841056076508,
+          "auroc": 0.8966666666666666,
+          "brier": 0.5918477318565952,
+          "cross_entropy": 1.8062328595513688,
+          "ece_10_bin": 0.7245743499217745,
+          "mixed_false_single_rate": 0.6166666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 8,
+              "O02": 0,
+              "O03": 2,
+              "O04": 3,
+              "O08": 0
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 12,
+              "O04": 1,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 3,
+              "O08": 10
+            }
+          },
+          "dominant_order_accuracy": 0.8615384615384616,
+          "top1_accuracy": 0.8615384615384616,
+          "unordered_top2_accuracy": 0.7230769230769231
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.5128205128205128,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 39,
+            "correct_incompatible": 6,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 15
+          },
+          "dual_rate": 0.35384615384615387,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.6461538461538462,
+          "wrong_pair_dual_rate": 0.2
+        },
+        "weight": {
+          "correct_pair_count": 45,
+          "mae": 0.21200756816230357,
+          "rmse": 0.2464527443233042
+        }
+      }
+    },
+    {
+      "family": "MATCHED_V1",
+      "protocol_weighted": {
+        "mixedness": {
+          "auprc": 0.9730558465448911,
+          "auroc": 0.9133333333333333,
+          "brier": 0.4922711981972364,
+          "cross_entropy": 1.4764322528383003,
+          "ece_10_bin": 0.5922335254193413,
+          "mixed_false_single_rate": 0.5666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 9,
+              "O02": 1,
+              "O03": 2,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 16,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 14,
+              "O04": 2,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 16,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 3,
+              "O08": 13
+            }
+          },
+          "dominant_order_accuracy": 0.85,
+          "top1_accuracy": 0.85,
+          "unordered_top2_accuracy": 0.675
+        },
+        "record_count": 80,
+        "routing": {
+          "compatible_dual_rate": 0.5853658536585366,
+          "denominators": {
+            "all": 80,
+            "correct_compatible": 41,
+            "correct_incompatible": 8,
+            "mixed": 60,
+            "pure": 20,
+            "wrong_pair_mixed": 11
+          },
+          "dual_rate": 0.325,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.675,
+          "wrong_pair_dual_rate": 0.18181818181818182
+        },
+        "weight": {
+          "correct_pair_count": 49,
+          "mae": 0.21658874607624437,
+          "rmse": 0.2443526926965239
+        }
+      },
+      "rotation": 3,
+      "seed": 2,
+      "unique_query": {
+        "mixedness": {
+          "auprc": 0.9924527639838238,
+          "auroc": 0.9133333333333333,
+          "brier": 0.605478457830597,
+          "cross_entropy": 1.8104553889570425,
+          "ece_10_bin": 0.7353868061897223,
+          "mixed_false_single_rate": 0.5666666666666667,
+          "pure_false_mixed_rate": 0.0
+        },
+        "pair": {
+          "confusion_matrix": {
+            "O01": {
+              "O01": 6,
+              "O02": 1,
+              "O03": 2,
+              "O04": 3,
+              "O08": 1
+            },
+            "O02": {
+              "O01": 0,
+              "O02": 13,
+              "O03": 0,
+              "O04": 0,
+              "O08": 0
+            },
+            "O03": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 11,
+              "O04": 2,
+              "O08": 0
+            },
+            "O04": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 13,
+              "O08": 0
+            },
+            "O08": {
+              "O01": 0,
+              "O02": 0,
+              "O03": 0,
+              "O04": 3,
+              "O08": 10
+            }
+          },
+          "dominant_order_accuracy": 0.8153846153846154,
+          "top1_accuracy": 0.8153846153846154,
+          "unordered_top2_accuracy": 0.7846153846153846
+        },
+        "record_count": 65,
+        "routing": {
+          "compatible_dual_rate": 0.5853658536585366,
+          "denominators": {
+            "all": 65,
+            "correct_compatible": 41,
+            "correct_incompatible": 8,
+            "mixed": 60,
+            "pure": 5,
+            "wrong_pair_mixed": 11
+          },
+          "dual_rate": 0.4,
+          "hard_rate": 0.0,
+          "incompatible_dual_rate": 0.0,
+          "incompatible_hard_rate": 0.0,
+          "pure_single_rate": 1.0,
+          "single_rate": 0.6,
+          "wrong_pair_dual_rate": 0.18181818181818182
+        },
+        "weight": {
+          "correct_pair_count": 49,
+          "mae": 0.21658874607624437,
+          "rmse": 0.2443526926965239
+        }
+      }
+    }
+  ],
+  "paper_final": false,
+  "paper_final_count": 0,
+  "schema_version": "canondressgs.research.controller_v2_repaired_routing.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-V2-CROSSFIT-MICRO-PILOT-REPAIRED-001"
+}
