@@ -1,0 +1,474 @@
+{
+  "PAPER_FINAL": 0,
+  "authorization_counts_during_protocol_task": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "formal_metrics": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selection": 0,
+    "training_forwards": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "checkpoint_contract": {
+    "best_checkpoint_selection": false,
+    "new_checkpoint_steps": [
+      20249,
+      40498,
+      60747,
+      80996,
+      100000,
+      101245
+    ],
+    "new_checkpoint_write_count": 6,
+    "only_final_step": 101245,
+    "preserve_every_checkpoint": true,
+    "schema": {
+      "model_keys": [
+        "_xyz",
+        "xyz_offset",
+        "dxyz_vt",
+        "_scaling",
+        "_rotation",
+        "_opacity",
+        "_sh0",
+        "_shN",
+        "sh_degree",
+        "_weights",
+        "t_joints",
+        "all_poses",
+        "joint_parents",
+        "nbr_gs_invdist",
+        "nbr_gs",
+        "nbr_vt",
+        "nbr_gsft",
+        "nbr_vtft",
+        "nbr_gsft_wght",
+        "nbr_vtft_wght",
+        "xyz_vt",
+        "xyz_ft",
+        "num_vt_basis",
+        "num_basis",
+        "encoder_feat_params",
+        "encoder_feat_model_meta",
+        "dxyz_bs",
+        "sh0_bs",
+        "shN_bs",
+        "scaling_bs",
+        "rotation_bs",
+        "opacity_bs",
+        "is_dxyz_bs",
+        "is_gsparam_bs"
+      ],
+      "required_canary_extensions": [
+        "data_order_position",
+        "attachment_provenance",
+        "face_ids",
+        "barycentric",
+        "cached_lbs",
+        "template_sha256",
+        "sampler_sha256",
+        "derived_asset_manifest_sha256",
+        "camera_split_sha256",
+        "pose_split_sha256",
+        "source_branch",
+        "source_head"
+      ],
+      "training_keys": [
+        "checkpoint_version",
+        "iteration",
+        "optimizer_states",
+        "scheduler_states",
+        "python_rng_state",
+        "numpy_rng_state",
+        "torch_rng_state",
+        "cuda_rng_states"
+      ],
+      "version": 2
+    },
+    "step0_pointer_only": true
+  },
+  "claim_boundary": {
+    "conditionally_supported_after_future_frozen_run": [
+      "subject00 avatar reconstruction portability",
+      "surface-attached LBS on a second identity",
+      "strict held-out camera evaluation",
+      "strict held-out pose evaluation",
+      "strict combined held-out pose/view evaluation"
+    ],
+    "initialization_distinction": "subject00 uses a body-surface fallback; subject02 uses a loose-clothing template; the contracts are not equivalent",
+    "not_supported": [
+      "cross-identity garment editing",
+      "unseen garment",
+      "multi-garment subject00 benchmark",
+      "loose-clothing template equivalence",
+      "arbitrary garment synthesis",
+      "complete second-identity CanonDressGS dressing result"
+    ]
+  },
+  "classification": "PRE_RESULT_FORMAL_TRAINING_CONTRACT_FROZEN",
+  "contract_content_sha256": "3df033f7e9a0943ef478c42bb2e44678e88123cd1c773ddf9fe7afdbe2a8c8de",
+  "execution_provenance": {
+    "canary_runtime_code_head": "b0e8096589fe18069d95d2137e1db3979b4fe89f",
+    "medium_runner_path": "tools/second_identity/run_subject00_medium_pilot.py",
+    "medium_runner_source_commit": "36c43d9dd29abfe546a5352b46378244f3bd9f1b"
+  },
+  "formal_output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001",
+  "formal_output_root_created_during_protocol_task": false,
+  "initialization": {
+    "forbidden_initializations": [
+      "canary step384",
+      "medium step5062",
+      "medium step10124",
+      "medium step15186",
+      "medium step20249",
+      "any subject02 checkpoint",
+      "new random initialization"
+    ],
+    "medium_final_checkpoint_reference_only": {
+      "bytes": 724584644,
+      "sha256": "480805878f1dba3d0748ab0b31d1e18c68fdd3f42267d92cf4763f97c0d1f443",
+      "training_initialization_authorized": false
+    },
+    "only_authorized_checkpoint": {
+      "bytes": 701938720,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+      "sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+      "step": 0
+    }
+  },
+  "mutation_contract": {
+    "attachment": 0,
+    "avatarrex": 0,
+    "cached_lbs": 0,
+    "canary_outputs": 0,
+    "medium_outputs": 0,
+    "strict_splits": 0,
+    "subject00_derived_assets": 0,
+    "subject00_raw": 0,
+    "subject02": 0,
+    "template": 0
+  },
+  "optimizer_loss_scheduler_renderer": {
+    "frozen_or_non_optimizer_state": [
+      "_xyz",
+      "_weights",
+      "t_joints",
+      "all_poses",
+      "joint_parents",
+      "neighbor index and interpolation tensors",
+      "xyz_vt",
+      "xyz_ft",
+      "encoder_feat_model_meta",
+      "template vertices and faces",
+      "surface face IDs",
+      "surface barycentric coordinates",
+      "cached surface LBS weights",
+      "strict split manifests"
+    ],
+    "historically_exact_training_source": false,
+    "loss": {
+      "components": {
+        "dxyz_smooth": {
+          "weight": 0.1
+        },
+        "gaussian_scaling": {
+          "threshold": 0.01,
+          "weight": 1.0
+        },
+        "l1": {
+          "domain": "masked/background-replaced full image",
+          "weight": 1.0
+        },
+        "lpips": {
+          "activation": "iteration > 6000",
+          "canary_steps_1_to_384": "zero by formal schedule",
+          "crop_size": 512,
+          "random_patch_activation": "iteration >= 300000",
+          "weight": 0.1
+        }
+      },
+      "total": "l1 + lpips + dxyz_smooth + gaussian_scaling"
+    },
+    "optimizer": {
+      "common_adam": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "groups": {
+        "dopacities_bs": {
+          "lr": 0.0001,
+          "parameter": "opacity_bs",
+          "type": "Adam"
+        },
+        "dquats_bs": {
+          "lr": 0.0001,
+          "parameter": "rotation_bs",
+          "type": "Adam"
+        },
+        "dscales_bs": {
+          "lr": 0.0001,
+          "parameter": "scaling_bs",
+          "type": "Adam"
+        },
+        "dsh0_bs": {
+          "lr": 0.0001,
+          "parameter": "sh0_bs",
+          "type": "Adam"
+        },
+        "dshN_bs": {
+          "lr": 2.5e-06,
+          "parameter": "shN_bs",
+          "type": "Adam"
+        },
+        "dxyz": {
+          "lr": "0.00016 * scene_scale",
+          "parameter": "dxyz_vt",
+          "type": "Adam"
+        },
+        "dxyz_bs": {
+          "lr": "0.00016 * scene_scale / 10",
+          "parameter": "dxyz_bs",
+          "type": "Adam"
+        },
+        "encoder_feat_params": {
+          "lr": 0.0005,
+          "parameter": "encoder_feat_params.values()",
+          "type": "AdamW",
+          "weight_decay": 0.001
+        },
+        "opacities": {
+          "lr": 0.0005,
+          "parameter": "_opacity",
+          "type": "Adam"
+        },
+        "quats": {
+          "lr": 0.0005,
+          "parameter": "_rotation",
+          "type": "Adam"
+        },
+        "scales": {
+          "lr": 0.0005,
+          "parameter": "_scaling",
+          "type": "Adam"
+        },
+        "sh0": {
+          "lr": 0.0005,
+          "parameter": "_sh0",
+          "type": "Adam"
+        },
+        "shN": {
+          "lr": 2.5e-05,
+          "parameter": "_shN",
+          "type": "Adam"
+        },
+        "xyz_offset": {
+          "lr": 0.001,
+          "parameter": "xyz_offset",
+          "type": "Adam"
+        }
+      }
+    },
+    "provenance_status": "LIMITED_HISTORICAL_PROVENANCE",
+    "renderer": {
+      "backend": "gsplat.rasterization",
+      "entrypoint": "scene.gaussian_model.GaussianModel.render",
+      "image_scaling": 1,
+      "output_rgb_clamp": [
+        0.0,
+        1.0
+      ],
+      "outputs": [
+        "RGB",
+        "alpha",
+        "depth auxiliary"
+      ],
+      "scaling_modifier": 1.0
+    },
+    "runtime": {
+      "background": {
+        "base_rgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "random_background": true,
+        "sampling": "torch.rand(3, device='cuda') once per training batch"
+      },
+      "basis_activation": {
+        "dxyz_iteration": 2000,
+        "gaussian_parameter_iteration": 2000,
+        "sh_degree_iteration": 250000
+      },
+      "batch_size": 1,
+      "data_in_memory": false,
+      "data_order_source": "subject00_formal_training_schedule.json; direct stable schedule indexing overrides the historical shuffled loader",
+      "dataloader_shuffle": false,
+      "dataloader_workers": 8,
+      "detect_anomaly": false,
+      "gaussian_count": 200000,
+      "gradient_accumulation_steps": 1,
+      "gradient_clipping": "NONE",
+      "image_scaling": 1,
+      "mask": {
+        "ground_truth_mask_boundary": "replace with sampled background",
+        "ground_truth_outside_mask": "replace with sampled background",
+        "loss_domain": "full image after replacements",
+        "prediction_mask_boundary": "replace with sampled background"
+      },
+      "mixed_precision": "DISABLED_NO_AUTOCAST_OR_GRADSCALER",
+      "num_features": 300,
+      "num_verts": 10000,
+      "pin_memory": true,
+      "scheduler_horizon_steps": 800000,
+      "seed": 0
+    },
+    "scheduler": {
+      "groups": {
+        "dxyz": "gamma = 0.01 ** (1 / 800000)",
+        "dxyz_bs": "gamma = 0.1 ** (1 / 800000)",
+        "encoder_feat_params": "gamma = 0.1 ** (1 / 800000)",
+        "opacities": "gamma = 0.1 ** (1 / 800000)",
+        "quats": "gamma = 0.1 ** (1 / 800000)",
+        "scales": "gamma = 0.1 ** (1 / 800000)",
+        "sh0": "gamma = 0.1 ** (1 / 800000)",
+        "shN": "gamma = 0.1 ** (1 / 800000)",
+        "xyz_offset": "gamma = 0.1 ** (1 / 800000)"
+      },
+      "horizon": 800000,
+      "step_timing": "after every optimizer step",
+      "type": "ExponentialLR",
+      "unscheduled_groups": [
+        "dscales_bs",
+        "dquats_bs",
+        "dopacities_bs",
+        "dsh0_bs",
+        "dshN_bs"
+      ]
+    },
+    "source_closure": {
+      "branch": "research/mmlphuman-subject02-runtime-snapshot-v2-20260723",
+      "commit": "3382078fbdd77bba8bb9df54452647456a4c9b00",
+      "historical_boundary": "clean frozen prospective runtime baseline; historical git ancestry of the executed subject02 run was not recovered",
+      "lf_normalized_closure_sha256": "6999a663a826a2db8ae093ea3e560aace526ef66e3f2fa404cbaffb520e22c89",
+      "raw_closure_sha256": "dafe40e736b37a7023ab5db06dd3f82a8c8797c475f496619491861281b99415",
+      "runtime_relevant_difference_count": 0,
+      "unknown_difference_count": 0
+    },
+    "source_files": {
+      "config/subject02_formal_800k.yaml": "b804ff566347b368ca7a5ea04fb84e9d02d3afc2ef69d345cc52af3a745dec67",
+      "scene/dataset.py": "7b84b24cba08a36f23551ef8fc7bd43a7aa84b980db370e18890ef2f7b7eb423",
+      "scene/gaussian_model.py": "0e55c9bc16b11ce1f825862de6e980e0b217f1ef5b91dabf553fcf595a553181",
+      "scene/scene.py": "3aa0a3102289f172d7cde4d318e7f6a2e815d1bf61a365ba7fe3fafa06ad038b",
+      "train.py": "d45dc76e2cee93b696f772202c7291e7892fc1f87724d974d47a37c0174fc5c7",
+      "utils/config_utils.py": "e4f8b85d42587eed833d8ff735a28443b466c0678b6fde7a30db1d039fe47f1d",
+      "utils/general_utils.py": "98ff3731c91807d4c7a82879b7cd870a67462f36446bbe318206317c5b296a79",
+      "utils/image_utils.py": "eb59747b4509dc96beefe76b84c8cd5271476a1e52257bf21648a2f70b4823d6",
+      "utils/loss_utils.py": "61ad2814634def599730c06ec9d69d24c4a9c6cf0b78a5c4f4af1c5ac1b50ca6"
+    },
+    "trainable_modules": [
+      "dxyz_vt",
+      "_scaling",
+      "_rotation",
+      "_opacity",
+      "_sh0",
+      "_shN",
+      "dxyz_bs",
+      "scaling_bs",
+      "rotation_bs",
+      "opacity_bs",
+      "sh0_bs",
+      "shN_bs",
+      "encoder_feat_params",
+      "xyz_offset"
+    ]
+  },
+  "resume_contract": {
+    "better_attempt_creation_allowed": false,
+    "complete_checkpoint_requires": [
+      "checkpoint payload exists",
+      "checkpoint sidecar is atomically sealed",
+      "payload SHA256 matches sidecar",
+      "training_step and data_order_position are internally consistent"
+    ],
+    "contract_change_after_results_allowed": false,
+    "duplicate_records_allowed": false,
+    "infrastructure_resume_allowed": true,
+    "interruption_reason_and_timestamps_required": true,
+    "restore_exactly": [
+      "model state",
+      "optimizer states",
+      "scheduler states",
+      "Python RNG",
+      "NumPy RNG",
+      "Torch RNG",
+      "CUDA RNG states",
+      "data-order position"
+    ],
+    "result_driven_step_extension_allowed": false,
+    "resume_from": "NEAREST_COMPLETE_CHECKPOINT",
+    "same_attempt_required": true,
+    "scientific_restart_allowed": false,
+    "skipped_records_allowed": false
+  },
+  "schema_version": "subject00.formal.training_contract.v1",
+  "source": {
+    "branch": "research/mmlphuman-subject00-one-pass-medium-pilot-20260723",
+    "classification": "SUBJECT00_MMLPHUMAN_MEDIUM_PILOT_PASS",
+    "head": "2d0913eb1b163a79e81c1804c216f91b0a737b44"
+  },
+  "target_branch": "research/mmlphuman-subject00-formal-strict-split-protocol-20260723",
+  "task_id": "MMLPHUMAN-SUBJECT00-FORMAL-STRICT-SPLIT-PROTOCOL-001",
+  "topology_lbs_safety": {
+    "attachment_count": 200000,
+    "gaussian_count": 200000,
+    "lbs_shape": [
+      200000,
+      55
+    ],
+    "off_surface_count": 0,
+    "required_zero_call_counts": {
+      "clone": 0,
+      "densification": 0,
+      "legacy_grid_load": 0,
+      "off_surface_rebind": 0,
+      "spatial_lbs_query": 0,
+      "split": 0,
+      "topology_changing_prune": 0
+    }
+  },
+  "training_records": {
+    "formal_manifest_content_sha256": "1e04023e1df2219e79972ac43062164010816fa77d1a83d009612838e5f89b96",
+    "official_missing": 91,
+    "path": "paper_protocol/second_identity/subject00_formal_train_record_manifest.json",
+    "single_pass_data_order_sha256": "0f0e7463d9f9066f54e19ec31f85f722afd58e58aba123af144918fdc97639f8",
+    "source_manifest_content_sha256": "865118c2f216046008925ef14b049db6e1d2921922117f6e3c3e3e2fdacd3537",
+    "theoretical": 20340,
+    "valid": 20249
+  },
+  "training_schedule": {
+    "checkpoint_steps": [
+      0,
+      20249,
+      40498,
+      60747,
+      80996,
+      100000,
+      101245
+    ],
+    "final_step": 101245,
+    "matched_reference_step": 100000,
+    "pass_count": 5,
+    "path": "paper_protocol/second_identity/subject00_formal_training_schedule.json",
+    "schedule_content_sha256": "79e007e3d4884ea199a273287bb42388473cddd63278efff6490ad28ddecaf78"
+  },
+  "tuning_or_result_selection_authorized": false
+}
