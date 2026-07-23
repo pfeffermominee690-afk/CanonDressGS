@@ -1,0 +1,124 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "feature_forwards": 0,
+    "formal_pure_inferences": 0,
+    "forward_training_batches": 0,
+    "logical_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "perturbation_inferences": 0,
+    "test_inferences": 0,
+    "training_runs": 0,
+    "unique_physical_renders": 0,
+    "visual_sheets": 0
+  },
+  "classification": "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+  "comparability_audit": {
+    "ambiguity": [
+      "The registry does not choose V7 stage A versus stage B as the matched model.",
+      "The historical contract covers two outfits and 1000 steps, while this task requires five outfits and 300 steps.",
+      "The registry does not freeze whether V7 multi-rate optimization or the primary Adam lr=0.02 contract applies.",
+      "The historical reference-conditioned stage B has no executed checkpoint or validated trajectory."
+    ],
+    "evidence": {
+      "historical_attempt_status": "V7-D",
+      "historical_config": "configs/research/subject02_residual_decoder_capacity_v7.yaml",
+      "historical_config_sha256_lf": "c2b89556205732fdad396975a5d9e16fefedf095e7a0126ad5bcb57c8366243d",
+      "historical_milestones_are_not_crossfit_milestones": true,
+      "historical_outfits_are_only_O01_O08": true,
+      "historical_reference_conditioned_stage_b_executed": false,
+      "historical_source_sha256_lf": "462e4f360bfa7b3905dad55696694f6443b00c85b9b2c68f7a2d249198e92bdb",
+      "historical_stage_a_uses_diagnostic_latent": true,
+      "historical_stage_b_has_multiple_learning_rates": true,
+      "historical_stage_steps_are_1000": true,
+      "registry_source_sha256_lf": "462e4f360bfa7b3905dad55696694f6443b00c85b9b2c68f7a2d249198e92bdb"
+    },
+    "method": "Direct Residual Decoder",
+    "missing_field_count": 14,
+    "missing_fields": [
+      "architecture",
+      "parameter_count",
+      "trainable_modules",
+      "frozen_modules",
+      "training_steps",
+      "seed",
+      "initialization",
+      "optimizer",
+      "loss",
+      "calibration_rule",
+      "checkpoint_rule",
+      "renderer",
+      "test_denominator",
+      "target_information_boundary"
+    ],
+    "required_field_count": 14,
+    "status": "PURE_ENDPOINT_BASELINE_COMPARABILITY_INCOMPLETE"
+  },
+  "methods": [
+    {
+      "formal_renders": 0,
+      "paper_name": "Base Avatar",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "Teacher Upper Bound",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "Outfit-ID Oracle",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "Reference Classifier Lookup",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "Nearest-Centroid Lookup",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "Direct Residual Decoder",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "Linear Coefficient Predictor",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    },
+    {
+      "formal_renders": 0,
+      "paper_name": "CanonDressGS-Endpoint",
+      "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+      "test_inferences": 0,
+      "training_runs": 0
+    }
+  ],
+  "paper_final": false,
+  "paper_final_count": 0,
+  "run_branch": "research/pure-endpoint-core-method-crossfit-20260724",
+  "schema_version": "canondressgs.paper.pure_endpoint_baseline_results.v1",
+  "source_head": "9ca0f44bdd5480a429e8cd5705df1341746d4381",
+  "status": "NOT_RUN_PROTOCOL_HASH_MISMATCH",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001"
+}

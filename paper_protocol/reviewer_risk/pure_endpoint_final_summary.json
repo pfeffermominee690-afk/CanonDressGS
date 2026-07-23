@@ -1,0 +1,156 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "feature_forwards": 0,
+    "formal_pure_inferences": 0,
+    "forward_training_batches": 0,
+    "logical_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "perturbation_inferences": 0,
+    "test_inferences": 0,
+    "training_runs": 0,
+    "unique_physical_renders": 0,
+    "visual_sheets": 0
+  },
+  "baseline_comparability": {
+    "ambiguity": [
+      "The registry does not choose V7 stage A versus stage B as the matched model.",
+      "The historical contract covers two outfits and 1000 steps, while this task requires five outfits and 300 steps.",
+      "The registry does not freeze whether V7 multi-rate optimization or the primary Adam lr=0.02 contract applies.",
+      "The historical reference-conditioned stage B has no executed checkpoint or validated trajectory."
+    ],
+    "evidence": {
+      "historical_attempt_status": "V7-D",
+      "historical_config": "configs/research/subject02_residual_decoder_capacity_v7.yaml",
+      "historical_config_sha256_lf": "c2b89556205732fdad396975a5d9e16fefedf095e7a0126ad5bcb57c8366243d",
+      "historical_milestones_are_not_crossfit_milestones": true,
+      "historical_outfits_are_only_O01_O08": true,
+      "historical_reference_conditioned_stage_b_executed": false,
+      "historical_source_sha256_lf": "462e4f360bfa7b3905dad55696694f6443b00c85b9b2c68f7a2d249198e92bdb",
+      "historical_stage_a_uses_diagnostic_latent": true,
+      "historical_stage_b_has_multiple_learning_rates": true,
+      "historical_stage_steps_are_1000": true,
+      "registry_source_sha256_lf": "462e4f360bfa7b3905dad55696694f6443b00c85b9b2c68f7a2d249198e92bdb"
+    },
+    "method": "Direct Residual Decoder",
+    "missing_field_count": 14,
+    "missing_fields": [
+      "architecture",
+      "parameter_count",
+      "trainable_modules",
+      "frozen_modules",
+      "training_steps",
+      "seed",
+      "initialization",
+      "optimizer",
+      "loss",
+      "calibration_rule",
+      "checkpoint_rule",
+      "renderer",
+      "test_denominator",
+      "target_information_boundary"
+    ],
+    "required_field_count": 14,
+    "status": "PURE_ENDPOINT_BASELINE_COMPARABILITY_INCOMPLETE"
+  },
+  "classification": "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+  "classification_reason": "The source final summary does not declare the required protocol artifact hashes, so exact pre-optimizer agreement cannot be established.",
+  "next_task": "NONE_FROZEN_FOR_PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "primary_gates": {
+    "endpoint_parity": "NOT_EVALUATED",
+    "every_garment_recall": "NOT_EVALUATED",
+    "every_rotation_top1": "NOT_EVALUATED",
+    "identity_contamination": "NOT_EVALUATED",
+    "macro_5way_top1": "NOT_EVALUATED",
+    "severe_wrong_outfit_rate": "NOT_EVALUATED"
+  },
+  "protocol_hash_audit": {
+    "checked_count": 11,
+    "missing_declaration_count": 11,
+    "passed_count": 0,
+    "records": [
+      {
+        "actual_sha256_lf": "c578bc233c5fcd2d8fab9bf74cf7b3b2a267dcdcc550bb6b4d36279cebec9298",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "docs/PAPER/AAAI27_PURE_ENDPOINT_CORE_METHOD_PROTOCOL_20260724.md"
+      },
+      {
+        "actual_sha256_lf": "aeb77d9ec0bcc6991cb06983998588d31de9cd78f186ca8c6343ab09367c84ac",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "docs/PAPER/AAAI27_PURE_ENDPOINT_BASELINE_REGISTRY_20260724.md"
+      },
+      {
+        "actual_sha256_lf": "b63b6bea13afdf171be6787ca4c3f94a7c46435d4bd5ce9618ba91428d933411",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "docs/PAPER/AAAI27_PURE_ENDPOINT_CLAIM_BOUNDARY_20260724.md"
+      },
+      {
+        "actual_sha256_lf": "721c203f78c63a707317e846362d1579d4b21914b625168fa9143186abd971f6",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_crossfit_protocol.yaml"
+      },
+      {
+        "actual_sha256_lf": "5a86f57ef44a54fd234690c3a133b82a17d982aebad7f451833122eecb9825c9",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json"
+      },
+      {
+        "actual_sha256_lf": "abca0350821fbcc706003c45b9aec0357223168ac7c6ab2913b3ecde617d73d6",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_model_contract.json"
+      },
+      {
+        "actual_sha256_lf": "32fdd0de700ceb7a86257c0f16995ff0e62e456b8f11a7a021a19f3942d3b4b5",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_baseline_registry.json"
+      },
+      {
+        "actual_sha256_lf": "0f86c6413a0db955d179de139f85b401bc80044f89222219afe5d0506c4aaedd",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_evaluator_contract.json"
+      },
+      {
+        "actual_sha256_lf": "badb9a2cefeaa4ff914b96014bd51625af2e2cefa05b98115557505b43b12351",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_success_gates.json"
+      },
+      {
+        "actual_sha256_lf": "7f4bb9b840462e3c556edd28bb5e0e7b216754bb75f13f06c8e25bb3908fda4d",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "paper_protocol/reviewer_risk/pure_endpoint_protocol_final_summary.json"
+      },
+      {
+        "actual_sha256_lf": "5b4bf468449e9965592b6aff09eef3cde111addffac16c8703420f26e5e25bf6",
+        "declared_sha256_lf": "MISSING",
+        "pass": false,
+        "path": "project_control_handoff/pure_endpoint_protocol_handoff.json"
+      }
+    ],
+    "required_summary_field": "protocol_artifact_sha256_lf",
+    "status": "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+    "summary_field_present": false
+  },
+  "run_branch": "research/pure-endpoint-core-method-crossfit-20260724",
+  "schema_version": "canondressgs.paper.pure_endpoint_final_summary.v1",
+  "secondary_blockers": [
+    "PURE_ENDPOINT_BASELINE_COMPARABILITY_INCOMPLETE"
+  ],
+  "source_head": "9ca0f44bdd5480a429e8cd5705df1341746d4381",
+  "status": "BLOCKED_BEFORE_OPTIMIZER",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001"
+}
