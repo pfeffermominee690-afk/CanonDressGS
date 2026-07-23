@@ -43,7 +43,10 @@ RENDER_VARIANTS = (
     ("frame_1250", 1250, False),
     ("heldout_44", 44, False),
 )
-RENDER_CAMERAS = (0, 1, 4, 8)
+# All four cameras are present for every selected pose. Camera 0 is
+# officially absent for frame 44, so the frozen availability manifest
+# requires this explicit replacement with held-out camera 12.
+RENDER_CAMERAS = (1, 4, 8, 12)
 CANONICAL_AND_AUDIT_POSES = (
     "canonical",
     0,
@@ -293,7 +296,7 @@ def render_suite(
                 "canonical_pose": canonical_pose,
                 "camera_id": camera_id,
                 "heldout_pose": frame_id == 44,
-                "heldout_camera": camera_id in {0, 4, 8},
+                "heldout_camera": camera_id in {0, 4, 8, 12, 16, 20},
                 "resolution": [int(rgb.shape[0]), int(rgb.shape[1])],
                 "rgb_finite": bool(torch.isfinite(rgb).all().item()),
                 "alpha_finite": bool(torch.isfinite(alpha).all().item()),
