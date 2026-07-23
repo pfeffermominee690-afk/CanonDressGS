@@ -1,0 +1,94 @@
+{
+  "schema_version": "canondressgs.paper.loo_evaluator_contract.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "FROZEN_BEFORE_RESULT",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "denominator": {
+    "cells": "target garment x rotation x K x method",
+    "target_garments": 5,
+    "rotations": 4,
+    "few_view_budgets": 3,
+    "planned_adaptation_tasks": 60,
+    "current_manifest_valid_tasks": 15,
+    "current_blocked_tasks": 45,
+    "test_view_rule": "exact registered test fold only; never adaptation or calibration",
+    "blocked_cells_reported_not_dropped": true,
+    "aggregation": [
+      "per garment",
+      "per rotation",
+      "per K",
+      "macro garment",
+      "macro rotation"
+    ],
+    "best_seed_or_checkpoint_selection": false
+  },
+  "render_metrics": {
+    "rgb_mae": "mean absolute RGB inside target garment mask",
+    "psnr": "from masked RGB MSE with data range 1",
+    "ssim": "masked garment crop, fixed implementation and data range 1",
+    "lpips": "VGG LPIPS v0.1 garment bbox plus 5 percent, aspect-preserving 256 square",
+    "silhouette_iou": "binary renderer alpha>=0.5 versus target garment mask>=0.5",
+    "boundary_f": "3x3 erosion XOR boundary; tolerance max(1,floor(0.005*min(H,W)+0.5))",
+    "protected_lpips": "LPIPS inside target_protected_mask against Base Avatar render",
+    "identity": "protected-mask mean absolute RGB difference against Base Avatar"
+  },
+  "adaptation_metrics": {
+    "coefficient_displacement": "L2(c_final-c_init) in raw LOO coordinates",
+    "coefficient_norm": "L2(c_final) in raw LOO coordinates",
+    "nearest_known_distance": "minimum standardized coefficient L2 to four known coefficients",
+    "oracle_projection_distance": "L2(c_final-c_oracle), offline analysis only",
+    "span_error": "bound-normalized six-channel residual RMSE of oracle projection versus held-out Teacher",
+    "full_residual_error": "bound-normalized six-channel residual RMSE versus held-out Teacher"
+  },
+  "efficiency_metrics": {
+    "trainable_parameters": "exact scalar count",
+    "steps": "completed optimizer steps",
+    "wall_time": "synchronized elapsed seconds",
+    "peak_vram": "torch.cuda.max_memory_allocated after reset",
+    "checkpoint_size": "serialized byte count",
+    "timing_protocol": "20 warm-up renders excluded; synchronize before and after measured region"
+  },
+  "safety_metrics": {
+    "identity_contamination": "unique test views with identity grade >0",
+    "patch_cloud_mottle": "manual grade 0..3",
+    "component_contamination": "manual grade 0..3",
+    "silhouette_collapse": "silhouette IoU <0.70 or manual collapse grade >0",
+    "body_deformation": "protected-region geometry/appearance change or manual grade >0",
+    "review_policy": "review every held-out test cell without cherry-picking"
+  },
+  "oracle_metrics": {
+    "oracle_residual_error": true,
+    "oracle_render_metrics": [
+      "rgb_mae",
+      "psnr",
+      "ssim",
+      "lpips",
+      "silhouette_iou",
+      "boundary_f",
+      "protected_lpips",
+      "identity"
+    ],
+    "span_distance": true,
+    "projection_ratio": "1 - squared residual error / squared distance from held-out Teacher to mu_-i",
+    "offline_only": true,
+    "deployable_tables_separate": true
+  },
+  "leakage_guards": {
+    "held_out_teacher_in_deployable_forward": 0,
+    "held_out_teacher_in_deployable_loss": 0,
+    "test_in_adaptation": 0,
+    "test_in_regularization_selection": 0,
+    "full_five_garment_basis_use": 0
+  },
+  "execution_counts": {
+    "basis_execution_runs": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "paper_final": 0
+  }
+}

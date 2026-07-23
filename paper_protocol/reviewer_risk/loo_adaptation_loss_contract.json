@@ -1,0 +1,131 @@
+{
+  "schema_version": "canondressgs.paper.loo_adaptation_loss_contract.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "FROZEN_BEFORE_ANY_ADAPTATION",
+  "formal_name": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "sharing": {
+    "coefficient_headroom_contract_present_at_source": false,
+    "rule": "Any parallel Coefficient Headroom protocol must reference this exact contract instead of defining task-specific weights.",
+    "per_loo_task_tuning": false
+  },
+  "common_domain": {
+    "methods": [
+      "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+      "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION"
+    ],
+    "views": "exact adaptation-view manifest only",
+    "target_inputs_allowed": [
+      "held-out adaptation RGB",
+      "held-out adaptation clothing/foreground masks",
+      "adaptation camera",
+      "adaptation pose"
+    ],
+    "target_inputs_forbidden": [
+      "test RGB/mask",
+      "test metric",
+      "held-out Teacher residual",
+      "held-out endpoint ID lookup"
+    ],
+    "initial_rendered_state": "Reference Nearest Hard Lookup residual at identical adaptation poses/cameras",
+    "frozen_runtime": "subject02 MMLP-Human and renderer"
+  },
+  "components": {
+    "garment_rgb_l1": {
+      "weight": 1,
+      "domain": "target garment mask",
+      "reduction": "mean absolute RGB"
+    },
+    "lpips": {
+      "weight": 0.1,
+      "network": "VGG LPIPS v0.1",
+      "crop": "garment bbox plus 5 percent, aspect-preserving resize and zero pad to 256x256"
+    },
+    "mask_l1": {
+      "weight": 0.5,
+      "domain": "full image",
+      "prediction": "renderer alpha",
+      "target": "held-out adaptation foreground mask"
+    },
+    "boundary_rgb_l1": {
+      "weight": 0.25,
+      "boundary": "3x3 binary erosion XOR target garment mask",
+      "reduction": "mean absolute RGB"
+    },
+    "identity_rgb_l1": {
+      "weight": 10,
+      "domain": "frozen target_protected_mask",
+      "reference": "Base Avatar render at identical pose/camera"
+    },
+    "identity_alpha_l1": {
+      "weight": 5,
+      "domain": "frozen target_protected_mask",
+      "reference": "Base Avatar alpha at identical pose/camera"
+    },
+    "regularization": {
+      "weight": "selected by frozen basis-garment-only calibration rule",
+      "allowed_terms": [
+        "coefficient_anchor",
+        "coefficient_trust_region",
+        "residual_delta"
+      ],
+      "other_terms_forbidden": true
+    }
+  },
+  "regularization_selection": {
+    "held_out_garment_information_used": 0,
+    "selection_data": "four basis garments on calibration fold only, using internal leave-one-basis-garment-out simulation",
+    "low_dimensional_grid": {
+      "coefficient_anchor_lambda": [
+        0,
+        0.0001,
+        0.001,
+        0.01
+      ],
+      "trust_region_radius_standardized_l2": [
+        1,
+        2,
+        4
+      ]
+    },
+    "full_residual_grid": {
+      "residual_delta_lambda": [
+        0,
+        0.000001,
+        0.00001,
+        0.0001
+      ],
+      "trust_region_radius_bound_normalized_l2_per_gaussian": [
+        0.25,
+        0.5,
+        1
+      ]
+    },
+    "selection_scope": "once per LOO split and method, then shared across R0/R1/R2/R3 and K=1/2/4",
+    "objective": "minimum mean calibration common rendering loss subject to zero identity contamination",
+    "tie_break": [
+      "lowest mean loss",
+      "smaller trust-region radius",
+      "larger regularization lambda",
+      "lexicographic candidate order"
+    ],
+    "test_used": false
+  },
+  "oracle_separation": {
+    "oracle_projection_in_loss": false,
+    "residual_nearest_oracle_in_initialization": false,
+    "held_out_teacher_forward_count": 0,
+    "held_out_teacher_loss_count": 0
+  },
+  "execution_counts": {
+    "basis_execution_runs": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "paper_final": 0
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "canondressgs.paper.loo_protocol_final_summary.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "COMPLETE_PROTOCOL_AUDIT",
+  "final_classification": "LOO_PROTOCOL_INCOMPLETE",
+  "source": {
+    "branch": "research/pure-endpoint-execution-contract-repair-20260724",
+    "head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8"
+  },
+  "run_branch": "research/leave-one-garment-out-basis-adaptation-protocol-20260724",
+  "scientific_question": "Can a centered rank<=3 residual basis built from four garments adapt a fifth, bank-excluded garment from few-view RGB/masks and outperform four-endpoint hard lookup?",
+  "frozen_scope": {
+    "identity": "subject02",
+    "wardrobe": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "loo_splits": 5,
+    "planned_tasks": 60
+  },
+  "readiness_audit": {
+    "valid_task_manifests": 15,
+    "blocked_task_manifests": 45,
+    "blocker": "The four source condition IDs are themselves front/back/left/right view IDs, while every R0-R3 rotation assigns only two IDs to train. K=4 requires all four, and R1/R2 cannot supply K=1 front from train.",
+    "strict_contract_relaxed": false,
+    "fabricated_view_ids": 0
+  },
+  "information_boundary": {
+    "held_out_in_basis": false,
+    "held_out_in_mean": false,
+    "held_out_in_normalization": false,
+    "held_out_in_lookup_bank": false,
+    "held_out_teacher_deployable_use": 0,
+    "oracle_only_use": true
+  },
+  "basis_contract": {
+    "centered": true,
+    "rank_max": 3,
+    "full_rank4_basis_reused": false,
+    "actual_svd_run": false
+  },
+  "execution_counts": {
+    "basis_execution_runs": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "paper_final": 0
+  },
+  "frozen_mutations": {
+    "source_protocol": 0,
+    "teacher_endpoints": 0,
+    "rank4_basis": 0,
+    "reference_assets": 0,
+    "frozen_f2": 0,
+    "mmlp_human": 0,
+    "renderer": 0,
+    "identity_masks": 0,
+    "subject00": 0
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "claim_boundary": "No adaptation claim is supported by this protocol-only audit. Even after repair, the experiment would cover only leave-one-garment-out simulation within the same five-garment subject02 study set, not arbitrary garments or identities.",
+  "artifacts": {
+    "protocol": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol.yaml",
+    "basis": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+    "views": "paper_protocol/reviewer_risk/loo_few_view_manifests.json",
+    "loss": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+    "optimizer": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+    "baselines": "paper_protocol/reviewer_risk/loo_baseline_registry.json",
+    "evaluator": "paper_protocol/reviewer_risk/loo_evaluator_contract.json",
+    "gates": "paper_protocol/reviewer_risk/loo_success_gates.json",
+    "summary": "paper_protocol/reviewer_risk/loo_protocol_final_summary.json"
+  },
+  "next_task": "REPAIR_LOO_FEW_VIEW_FOLD_MANIFEST",
+  "run_experiment_next_task_started": false,
+  "forbidden_next_task_until_repair": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT"
+}

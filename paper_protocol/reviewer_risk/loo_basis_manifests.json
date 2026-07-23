@@ -1,0 +1,640 @@
+{
+  "schema_version": "canondressgs.paper.loo_basis_manifests.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "FROZEN_PROTOCOL_ONLY_VIEW_FOLD_BLOCKED",
+  "source": {
+    "branch": "research/pure-endpoint-execution-contract-repair-20260724",
+    "head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8"
+  },
+  "identity": "subject02",
+  "wardrobe": [
+    "O01",
+    "O02",
+    "O03",
+    "O04",
+    "O08"
+  ],
+  "source_assets": {
+    "reference_feature_cache": {
+      "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/shared_preflight/frozen_reference_feature_rows_v1.pt",
+      "sha256": "30cf19a99bbc620112928d678a0257bfabd3420be66fe1053ded3ce7e90875cb"
+    },
+    "stable_protected_attribution": {
+      "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet",
+      "sha256": "4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d",
+      "protected_gaussian_count": 30894
+    },
+    "mmlp_human": {
+      "path": "${CANONDRESSGS_OUTPUT_ROOT}/subject02_formal_800k/chkpnt100000.pth",
+      "sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70"
+    },
+    "renderer_source_bundle_sha256": "0e568a7b771137228c1ec63f29817a7e2b2b796f74c9da9349cb8a610b1d8ba6",
+    "target_reference_manifest": {
+      "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json",
+      "sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf"
+    }
+  },
+  "code_provenance": [
+    {
+      "path": "scene/explicit_gaussian_residual_basis.py",
+      "source_worktree_sha256": "17f28b9cb901c27303eca57cac163befa712786240b55795ac90e0da2c4a85b1"
+    },
+    {
+      "path": "scene/gaussian_clothing_residuals.py",
+      "source_worktree_sha256": "b6241508304747e78ff918d18bcf124f640af115c5816d55b1e104e2f6d3891d"
+    },
+    {
+      "path": "tools/run_multi_outfit_explicit_basis.py",
+      "source_worktree_sha256": "aa495762810bb4095e12d508eb1a951bdec469e1ac8700f690bbc3651e7e70ce"
+    }
+  ],
+  "uncentered_linear_diagnostic": {
+    "enabled": false,
+    "may_be_added_only_by_separate_preregistered_diagnostic": true,
+    "may_not_replace_primary_centered_rank3_basis": true
+  },
+  "splits": [
+    {
+      "split_id": "LOO-O01",
+      "held_out_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "held_out_exclusion": {
+        "teacher_residual_from_basis": true,
+        "residual_mean": true,
+        "centered_residual_matrix": true,
+        "svd": true,
+        "coefficient_normalization": true,
+        "garment_centroid_bank": true,
+        "hard_lookup_bank": true,
+        "optimizer_hyperparameter_selection": true,
+        "regularization_selection": true,
+        "checkpoint_selection": true
+      },
+      "basis_teacher_assets": {
+        "O02": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth",
+          "sha256": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820"
+        },
+        "O03": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+          "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+        },
+        "O04": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+          "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+        },
+        "O08": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth",
+          "sha256": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e"
+        }
+      },
+      "held_out_teacher_asset": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+        "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56",
+        "allowed_use": [
+          "OFFLINE_ORACLE_PROJECTION",
+          "FINAL_ANALYSIS",
+          "HELD_OUT_TEACHER_EVALUATION_REFERENCE"
+        ],
+        "forbidden_use": [
+          "DEPLOYABLE_ADAPTATION_FORWARD",
+          "DEPLOYABLE_ADAPTATION_LOSS",
+          "INITIALIZATION",
+          "BASIS",
+          "NORMALIZATION",
+          "LOOKUP_BANK"
+        ],
+        "deployable_information_use_count": 0
+      },
+      "basis_contract": {
+        "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+        "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+        "runtime_basis_artifact_sha256_required_before_experiment": true,
+        "runtime_basis_artifact_created_in_this_task": false,
+        "residual_space": "bound_normalized_six_channel_gaussian_residual",
+        "channel_order": [
+          "delta_xyz",
+          "delta_log_scaling",
+          "delta_rotvec",
+          "delta_opacity_logit",
+          "delta_sh0",
+          "delta_shN"
+        ],
+        "channel_bounds": {
+          "xyz": 0.05,
+          "log_scaling": 0.35,
+          "rotation": 0.2617993878,
+          "opacity_logit": 2,
+          "sh0": 0.25,
+          "shN": 0.1
+        },
+        "protected_guard": "apply_protected_full_residual_guard before flattening",
+        "mean": "mu_-i = arithmetic mean of exactly four protected Teacher residuals",
+        "centered_matrix": "rows are flatten(bound_normalized(R_g^T - mu_-i)) in frozen basis_garments order",
+        "svd": "torch.linalg.svd(centered, full_matrices=False), component signs fixed by positive largest-absolute pivot",
+        "numerical_rank_tolerance": "max(4,D) * eps(dtype) * singular_values[0]",
+        "rank_rule": "min(numerical_rank,3)",
+        "affine_rank_upper_bound": 3,
+        "full_five_garment_basis_reused": false,
+        "forbidden_full_basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430"
+      },
+      "coefficient_contract": {
+        "train_garment_coefficients": "c_g = B_-i^T flatten(bound_normalized(R_g^T - mu_-i))",
+        "coefficient_mean": "population mean over exactly four basis garment coefficients",
+        "coefficient_std": "sqrt(population mean squared centered coefficient), clamp_min(1e-8)",
+        "standardized_coefficients": "(c_g - coefficient_mean) / coefficient_std",
+        "held_out_in_normalization": false
+      },
+      "required_post_execution_statistics": {
+        "singular_values": "REQUIRED_NOT_COMPUTED_PROTOCOL_ONLY",
+        "explained_variance": "REQUIRED_PER_COMPONENT_AND_CUMULATIVE",
+        "numerical_rank": "REQUIRED",
+        "rank3_reconstruction_error": "REQUIRED_BOUND_NORMALIZED_RMSE_PER_GARMENT_AND_AGGREGATE",
+        "four_basis_garment_parity": "REQUIRED_RESIDUAL_AND_RENDER_PARITY",
+        "basis_stability": "REQUIRED_REPEAT_BUILD_HASH_AND_SUBSPACE_PRINCIPAL_ANGLE",
+        "oracle_span_distance": "REQUIRED_OFFLINE_ONLY"
+      },
+      "static_audit": {
+        "input_teacher_count": 4,
+        "maximum_centered_affine_rank": 3,
+        "held_out_teacher_in_basis_count": 0,
+        "held_out_teacher_in_normalization_count": 0,
+        "optimizer_creations": 0,
+        "svd_execution_runs": 0,
+        "binary_basis_writes": 0
+      }
+    },
+    {
+      "split_id": "LOO-O02",
+      "held_out_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "held_out_exclusion": {
+        "teacher_residual_from_basis": true,
+        "residual_mean": true,
+        "centered_residual_matrix": true,
+        "svd": true,
+        "coefficient_normalization": true,
+        "garment_centroid_bank": true,
+        "hard_lookup_bank": true,
+        "optimizer_hyperparameter_selection": true,
+        "regularization_selection": true,
+        "checkpoint_selection": true
+      },
+      "basis_teacher_assets": {
+        "O01": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+          "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+        },
+        "O03": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+          "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+        },
+        "O04": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+          "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+        },
+        "O08": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth",
+          "sha256": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e"
+        }
+      },
+      "held_out_teacher_asset": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth",
+        "sha256": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820",
+        "allowed_use": [
+          "OFFLINE_ORACLE_PROJECTION",
+          "FINAL_ANALYSIS",
+          "HELD_OUT_TEACHER_EVALUATION_REFERENCE"
+        ],
+        "forbidden_use": [
+          "DEPLOYABLE_ADAPTATION_FORWARD",
+          "DEPLOYABLE_ADAPTATION_LOSS",
+          "INITIALIZATION",
+          "BASIS",
+          "NORMALIZATION",
+          "LOOKUP_BANK"
+        ],
+        "deployable_information_use_count": 0
+      },
+      "basis_contract": {
+        "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+        "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+        "runtime_basis_artifact_sha256_required_before_experiment": true,
+        "runtime_basis_artifact_created_in_this_task": false,
+        "residual_space": "bound_normalized_six_channel_gaussian_residual",
+        "channel_order": [
+          "delta_xyz",
+          "delta_log_scaling",
+          "delta_rotvec",
+          "delta_opacity_logit",
+          "delta_sh0",
+          "delta_shN"
+        ],
+        "channel_bounds": {
+          "xyz": 0.05,
+          "log_scaling": 0.35,
+          "rotation": 0.2617993878,
+          "opacity_logit": 2,
+          "sh0": 0.25,
+          "shN": 0.1
+        },
+        "protected_guard": "apply_protected_full_residual_guard before flattening",
+        "mean": "mu_-i = arithmetic mean of exactly four protected Teacher residuals",
+        "centered_matrix": "rows are flatten(bound_normalized(R_g^T - mu_-i)) in frozen basis_garments order",
+        "svd": "torch.linalg.svd(centered, full_matrices=False), component signs fixed by positive largest-absolute pivot",
+        "numerical_rank_tolerance": "max(4,D) * eps(dtype) * singular_values[0]",
+        "rank_rule": "min(numerical_rank,3)",
+        "affine_rank_upper_bound": 3,
+        "full_five_garment_basis_reused": false,
+        "forbidden_full_basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430"
+      },
+      "coefficient_contract": {
+        "train_garment_coefficients": "c_g = B_-i^T flatten(bound_normalized(R_g^T - mu_-i))",
+        "coefficient_mean": "population mean over exactly four basis garment coefficients",
+        "coefficient_std": "sqrt(population mean squared centered coefficient), clamp_min(1e-8)",
+        "standardized_coefficients": "(c_g - coefficient_mean) / coefficient_std",
+        "held_out_in_normalization": false
+      },
+      "required_post_execution_statistics": {
+        "singular_values": "REQUIRED_NOT_COMPUTED_PROTOCOL_ONLY",
+        "explained_variance": "REQUIRED_PER_COMPONENT_AND_CUMULATIVE",
+        "numerical_rank": "REQUIRED",
+        "rank3_reconstruction_error": "REQUIRED_BOUND_NORMALIZED_RMSE_PER_GARMENT_AND_AGGREGATE",
+        "four_basis_garment_parity": "REQUIRED_RESIDUAL_AND_RENDER_PARITY",
+        "basis_stability": "REQUIRED_REPEAT_BUILD_HASH_AND_SUBSPACE_PRINCIPAL_ANGLE",
+        "oracle_span_distance": "REQUIRED_OFFLINE_ONLY"
+      },
+      "static_audit": {
+        "input_teacher_count": 4,
+        "maximum_centered_affine_rank": 3,
+        "held_out_teacher_in_basis_count": 0,
+        "held_out_teacher_in_normalization_count": 0,
+        "optimizer_creations": 0,
+        "svd_execution_runs": 0,
+        "binary_basis_writes": 0
+      }
+    },
+    {
+      "split_id": "LOO-O03",
+      "held_out_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "held_out_exclusion": {
+        "teacher_residual_from_basis": true,
+        "residual_mean": true,
+        "centered_residual_matrix": true,
+        "svd": true,
+        "coefficient_normalization": true,
+        "garment_centroid_bank": true,
+        "hard_lookup_bank": true,
+        "optimizer_hyperparameter_selection": true,
+        "regularization_selection": true,
+        "checkpoint_selection": true
+      },
+      "basis_teacher_assets": {
+        "O01": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+          "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+        },
+        "O02": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth",
+          "sha256": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820"
+        },
+        "O04": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+          "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+        },
+        "O08": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth",
+          "sha256": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e"
+        }
+      },
+      "held_out_teacher_asset": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+        "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93",
+        "allowed_use": [
+          "OFFLINE_ORACLE_PROJECTION",
+          "FINAL_ANALYSIS",
+          "HELD_OUT_TEACHER_EVALUATION_REFERENCE"
+        ],
+        "forbidden_use": [
+          "DEPLOYABLE_ADAPTATION_FORWARD",
+          "DEPLOYABLE_ADAPTATION_LOSS",
+          "INITIALIZATION",
+          "BASIS",
+          "NORMALIZATION",
+          "LOOKUP_BANK"
+        ],
+        "deployable_information_use_count": 0
+      },
+      "basis_contract": {
+        "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+        "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+        "runtime_basis_artifact_sha256_required_before_experiment": true,
+        "runtime_basis_artifact_created_in_this_task": false,
+        "residual_space": "bound_normalized_six_channel_gaussian_residual",
+        "channel_order": [
+          "delta_xyz",
+          "delta_log_scaling",
+          "delta_rotvec",
+          "delta_opacity_logit",
+          "delta_sh0",
+          "delta_shN"
+        ],
+        "channel_bounds": {
+          "xyz": 0.05,
+          "log_scaling": 0.35,
+          "rotation": 0.2617993878,
+          "opacity_logit": 2,
+          "sh0": 0.25,
+          "shN": 0.1
+        },
+        "protected_guard": "apply_protected_full_residual_guard before flattening",
+        "mean": "mu_-i = arithmetic mean of exactly four protected Teacher residuals",
+        "centered_matrix": "rows are flatten(bound_normalized(R_g^T - mu_-i)) in frozen basis_garments order",
+        "svd": "torch.linalg.svd(centered, full_matrices=False), component signs fixed by positive largest-absolute pivot",
+        "numerical_rank_tolerance": "max(4,D) * eps(dtype) * singular_values[0]",
+        "rank_rule": "min(numerical_rank,3)",
+        "affine_rank_upper_bound": 3,
+        "full_five_garment_basis_reused": false,
+        "forbidden_full_basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430"
+      },
+      "coefficient_contract": {
+        "train_garment_coefficients": "c_g = B_-i^T flatten(bound_normalized(R_g^T - mu_-i))",
+        "coefficient_mean": "population mean over exactly four basis garment coefficients",
+        "coefficient_std": "sqrt(population mean squared centered coefficient), clamp_min(1e-8)",
+        "standardized_coefficients": "(c_g - coefficient_mean) / coefficient_std",
+        "held_out_in_normalization": false
+      },
+      "required_post_execution_statistics": {
+        "singular_values": "REQUIRED_NOT_COMPUTED_PROTOCOL_ONLY",
+        "explained_variance": "REQUIRED_PER_COMPONENT_AND_CUMULATIVE",
+        "numerical_rank": "REQUIRED",
+        "rank3_reconstruction_error": "REQUIRED_BOUND_NORMALIZED_RMSE_PER_GARMENT_AND_AGGREGATE",
+        "four_basis_garment_parity": "REQUIRED_RESIDUAL_AND_RENDER_PARITY",
+        "basis_stability": "REQUIRED_REPEAT_BUILD_HASH_AND_SUBSPACE_PRINCIPAL_ANGLE",
+        "oracle_span_distance": "REQUIRED_OFFLINE_ONLY"
+      },
+      "static_audit": {
+        "input_teacher_count": 4,
+        "maximum_centered_affine_rank": 3,
+        "held_out_teacher_in_basis_count": 0,
+        "held_out_teacher_in_normalization_count": 0,
+        "optimizer_creations": 0,
+        "svd_execution_runs": 0,
+        "binary_basis_writes": 0
+      }
+    },
+    {
+      "split_id": "LOO-O04",
+      "held_out_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "held_out_exclusion": {
+        "teacher_residual_from_basis": true,
+        "residual_mean": true,
+        "centered_residual_matrix": true,
+        "svd": true,
+        "coefficient_normalization": true,
+        "garment_centroid_bank": true,
+        "hard_lookup_bank": true,
+        "optimizer_hyperparameter_selection": true,
+        "regularization_selection": true,
+        "checkpoint_selection": true
+      },
+      "basis_teacher_assets": {
+        "O01": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+          "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+        },
+        "O02": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth",
+          "sha256": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820"
+        },
+        "O03": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+          "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+        },
+        "O08": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth",
+          "sha256": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e"
+        }
+      },
+      "held_out_teacher_asset": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+        "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3",
+        "allowed_use": [
+          "OFFLINE_ORACLE_PROJECTION",
+          "FINAL_ANALYSIS",
+          "HELD_OUT_TEACHER_EVALUATION_REFERENCE"
+        ],
+        "forbidden_use": [
+          "DEPLOYABLE_ADAPTATION_FORWARD",
+          "DEPLOYABLE_ADAPTATION_LOSS",
+          "INITIALIZATION",
+          "BASIS",
+          "NORMALIZATION",
+          "LOOKUP_BANK"
+        ],
+        "deployable_information_use_count": 0
+      },
+      "basis_contract": {
+        "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+        "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+        "runtime_basis_artifact_sha256_required_before_experiment": true,
+        "runtime_basis_artifact_created_in_this_task": false,
+        "residual_space": "bound_normalized_six_channel_gaussian_residual",
+        "channel_order": [
+          "delta_xyz",
+          "delta_log_scaling",
+          "delta_rotvec",
+          "delta_opacity_logit",
+          "delta_sh0",
+          "delta_shN"
+        ],
+        "channel_bounds": {
+          "xyz": 0.05,
+          "log_scaling": 0.35,
+          "rotation": 0.2617993878,
+          "opacity_logit": 2,
+          "sh0": 0.25,
+          "shN": 0.1
+        },
+        "protected_guard": "apply_protected_full_residual_guard before flattening",
+        "mean": "mu_-i = arithmetic mean of exactly four protected Teacher residuals",
+        "centered_matrix": "rows are flatten(bound_normalized(R_g^T - mu_-i)) in frozen basis_garments order",
+        "svd": "torch.linalg.svd(centered, full_matrices=False), component signs fixed by positive largest-absolute pivot",
+        "numerical_rank_tolerance": "max(4,D) * eps(dtype) * singular_values[0]",
+        "rank_rule": "min(numerical_rank,3)",
+        "affine_rank_upper_bound": 3,
+        "full_five_garment_basis_reused": false,
+        "forbidden_full_basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430"
+      },
+      "coefficient_contract": {
+        "train_garment_coefficients": "c_g = B_-i^T flatten(bound_normalized(R_g^T - mu_-i))",
+        "coefficient_mean": "population mean over exactly four basis garment coefficients",
+        "coefficient_std": "sqrt(population mean squared centered coefficient), clamp_min(1e-8)",
+        "standardized_coefficients": "(c_g - coefficient_mean) / coefficient_std",
+        "held_out_in_normalization": false
+      },
+      "required_post_execution_statistics": {
+        "singular_values": "REQUIRED_NOT_COMPUTED_PROTOCOL_ONLY",
+        "explained_variance": "REQUIRED_PER_COMPONENT_AND_CUMULATIVE",
+        "numerical_rank": "REQUIRED",
+        "rank3_reconstruction_error": "REQUIRED_BOUND_NORMALIZED_RMSE_PER_GARMENT_AND_AGGREGATE",
+        "four_basis_garment_parity": "REQUIRED_RESIDUAL_AND_RENDER_PARITY",
+        "basis_stability": "REQUIRED_REPEAT_BUILD_HASH_AND_SUBSPACE_PRINCIPAL_ANGLE",
+        "oracle_span_distance": "REQUIRED_OFFLINE_ONLY"
+      },
+      "static_audit": {
+        "input_teacher_count": 4,
+        "maximum_centered_affine_rank": 3,
+        "held_out_teacher_in_basis_count": 0,
+        "held_out_teacher_in_normalization_count": 0,
+        "optimizer_creations": 0,
+        "svd_execution_runs": 0,
+        "binary_basis_writes": 0
+      }
+    },
+    {
+      "split_id": "LOO-O08",
+      "held_out_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "held_out_exclusion": {
+        "teacher_residual_from_basis": true,
+        "residual_mean": true,
+        "centered_residual_matrix": true,
+        "svd": true,
+        "coefficient_normalization": true,
+        "garment_centroid_bank": true,
+        "hard_lookup_bank": true,
+        "optimizer_hyperparameter_selection": true,
+        "regularization_selection": true,
+        "checkpoint_selection": true
+      },
+      "basis_teacher_assets": {
+        "O01": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+          "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+        },
+        "O02": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O02/checkpoints/step_001200.pth",
+          "sha256": "8ed55520a42a47b6db1ac5c7f08a6054309802fe92c378eb20401e2777c69820"
+        },
+        "O03": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+          "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+        },
+        "O04": {
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+          "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+        }
+      },
+      "held_out_teacher_asset": {
+        "path": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth",
+        "sha256": "4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e",
+        "allowed_use": [
+          "OFFLINE_ORACLE_PROJECTION",
+          "FINAL_ANALYSIS",
+          "HELD_OUT_TEACHER_EVALUATION_REFERENCE"
+        ],
+        "forbidden_use": [
+          "DEPLOYABLE_ADAPTATION_FORWARD",
+          "DEPLOYABLE_ADAPTATION_LOSS",
+          "INITIALIZATION",
+          "BASIS",
+          "NORMALIZATION",
+          "LOOKUP_BANK"
+        ],
+        "deployable_information_use_count": 0
+      },
+      "basis_contract": {
+        "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+        "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+        "runtime_basis_artifact_sha256_required_before_experiment": true,
+        "runtime_basis_artifact_created_in_this_task": false,
+        "residual_space": "bound_normalized_six_channel_gaussian_residual",
+        "channel_order": [
+          "delta_xyz",
+          "delta_log_scaling",
+          "delta_rotvec",
+          "delta_opacity_logit",
+          "delta_sh0",
+          "delta_shN"
+        ],
+        "channel_bounds": {
+          "xyz": 0.05,
+          "log_scaling": 0.35,
+          "rotation": 0.2617993878,
+          "opacity_logit": 2,
+          "sh0": 0.25,
+          "shN": 0.1
+        },
+        "protected_guard": "apply_protected_full_residual_guard before flattening",
+        "mean": "mu_-i = arithmetic mean of exactly four protected Teacher residuals",
+        "centered_matrix": "rows are flatten(bound_normalized(R_g^T - mu_-i)) in frozen basis_garments order",
+        "svd": "torch.linalg.svd(centered, full_matrices=False), component signs fixed by positive largest-absolute pivot",
+        "numerical_rank_tolerance": "max(4,D) * eps(dtype) * singular_values[0]",
+        "rank_rule": "min(numerical_rank,3)",
+        "affine_rank_upper_bound": 3,
+        "full_five_garment_basis_reused": false,
+        "forbidden_full_basis_sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430"
+      },
+      "coefficient_contract": {
+        "train_garment_coefficients": "c_g = B_-i^T flatten(bound_normalized(R_g^T - mu_-i))",
+        "coefficient_mean": "population mean over exactly four basis garment coefficients",
+        "coefficient_std": "sqrt(population mean squared centered coefficient), clamp_min(1e-8)",
+        "standardized_coefficients": "(c_g - coefficient_mean) / coefficient_std",
+        "held_out_in_normalization": false
+      },
+      "required_post_execution_statistics": {
+        "singular_values": "REQUIRED_NOT_COMPUTED_PROTOCOL_ONLY",
+        "explained_variance": "REQUIRED_PER_COMPONENT_AND_CUMULATIVE",
+        "numerical_rank": "REQUIRED",
+        "rank3_reconstruction_error": "REQUIRED_BOUND_NORMALIZED_RMSE_PER_GARMENT_AND_AGGREGATE",
+        "four_basis_garment_parity": "REQUIRED_RESIDUAL_AND_RENDER_PARITY",
+        "basis_stability": "REQUIRED_REPEAT_BUILD_HASH_AND_SUBSPACE_PRINCIPAL_ANGLE",
+        "oracle_span_distance": "REQUIRED_OFFLINE_ONLY"
+      },
+      "static_audit": {
+        "input_teacher_count": 4,
+        "maximum_centered_affine_rank": 3,
+        "held_out_teacher_in_basis_count": 0,
+        "held_out_teacher_in_normalization_count": 0,
+        "optimizer_creations": 0,
+        "svd_execution_runs": 0,
+        "binary_basis_writes": 0
+      }
+    }
+  ],
+  "counts": {
+    "loo_splits": 5,
+    "basis_teacher_assets": 20,
+    "held_out_teacher_in_basis": 0,
+    "svd_execution_runs": 0,
+    "basis_binary_writes": 0
+  }
+}

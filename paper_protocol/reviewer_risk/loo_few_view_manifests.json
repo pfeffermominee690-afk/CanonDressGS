@@ -1,0 +1,5673 @@
+{
+  "schema_version": "canondressgs.paper.loo_few_view_manifests.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "LOO_PROTOCOL_INCOMPLETE",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "identity": "subject02",
+  "semantic_slot_manifest": {
+    "mapping": {
+      "front": "cond_000000",
+      "back": "cond_000318",
+      "left": "cond_000017",
+      "right": "cond_000347"
+    },
+    "selection_order": [
+      "front",
+      "left",
+      "back",
+      "right"
+    ],
+    "source": "configs/research/subject02_multi_outfit_explicit_basis_v1.yaml"
+  },
+  "budgets": {
+    "1": {
+      "required_semantic_slots": [
+        "front"
+      ],
+      "exact_view_ids": [
+        "cond_000000"
+      ]
+    },
+    "2": {
+      "required_semantic_slots": [
+        "front",
+        "back"
+      ],
+      "exact_view_ids": [
+        "cond_000000",
+        "cond_000318"
+      ]
+    },
+    "4": {
+      "required_semantic_slots": [
+        "front",
+        "left",
+        "back",
+        "right"
+      ],
+      "exact_view_ids": [
+        "cond_000000",
+        "cond_000017",
+        "cond_000318",
+        "cond_000347"
+      ]
+    }
+  },
+  "rotations": [
+    {
+      "id": "R0",
+      "train": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "calibration": "cond_000017",
+      "test": "cond_000347"
+    },
+    {
+      "id": "R1",
+      "train": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "calibration": "cond_000347",
+      "test": "cond_000000"
+    },
+    {
+      "id": "R2",
+      "train": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "calibration": "cond_000000",
+      "test": "cond_000318"
+    },
+    {
+      "id": "R3",
+      "train": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "calibration": "cond_000318",
+      "test": "cond_000017"
+    }
+  ],
+  "source_feasibility_audit": {
+    "unique_source_view_count": 4,
+    "train_view_count_per_rotation": 2,
+    "strict_partition_rule": "adaptation views from train folds; calibration and test are disjoint exact view IDs",
+    "required_k4_unique_views": 4,
+    "conclusion": "K=4 cannot be selected from two train-fold view IDs; R1/R2 also cannot supply K=1 front",
+    "valid_task_count": 15,
+    "blocked_task_count": 45
+  },
+  "tasks": [
+    {
+      "task_id": "LOO-O01-R0-K1",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 1,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R0",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "e767a4efa25cc54b3b379cafa8e0f10c73f966274355dc1d390ea5b0f2ee2432",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O01-R0-K2",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 2,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R0",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "99da0ec95bc301535792ae0b09f81d1b7fe672a160596c584fcd4295553ca572",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O01-R0-K4",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 4,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R0",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "5866b515d2349843383954cf4b7959eab42bd190213563c376431a0210ce6797",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:CALIBRATION,cond_000347:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R1-K1",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 1,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R1",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "0790edb1365d138caf419f652ef85058bd8d6be44ff3114c08e9e0947523861f",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R1-K2",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 2,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R1",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "33d639d5e203dbf0c1d55f7a723e564ae885566ccee0ddf471da4fcc2904c3c0",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R1-K4",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 4,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R1",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "602df271531217787b9e5768c2a97097031dc8337f00fd0f8c10cc141d8cacae",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST,cond_000347:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R2-K1",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 1,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R2",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "96b1cc7a762a0187dcad75245a435d2a0b9f46ecd7f2c3aff8ffdc2d9a15a57b",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R2-K2",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 2,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R2",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "f3f03d7145006caefc928bc3160467fc9b0d6b668c8611f19c6d5917cbf07d64",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R2-K4",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 4,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R2",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "78381bcd087aa7af845b6784fe14a0910d619ec96b74b0b564e018fc5f1ca65d",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R3-K1",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 1,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R3",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "eb4f00bdb6f98d0da14f0085ffd20835cebd1e2853fdbb69974ebcc0b113fe7b",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O01-R3-K2",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 2,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R3",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "2cc9ee9f0fdb3b7ae782e528b3707958f486209ad9dd70b2432ffad7eeaa41a9",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O01-R3-K4",
+      "target_garment": "O01",
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 4,
+      "basis_hash": "bea78ebdb668d05caa8930bcbe41f9daa7241ca76f8976d11da81fe610d610a2",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O01",
+        "rotation": "R3",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "766a58d5d7569943a61da22df183f3d55bb225c4b6e186804738aef8268ef52a",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:TEST,cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R0-K1",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 1,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R0",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "102b239e94b9d7fadd121f96fe1651a8d7293288ffe641af0e2d3e0357dcc145",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O02-R0-K2",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 2,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R0",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "df2879bd5f4c825c681faec2cfd937a5b50f250140dad53ccbc34f361c5e6f7f",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O02-R0-K4",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 4,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R0",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "bc47c8fc72c38eed4b8260f8133fe3536f226431979c40cd15a8c39231343067",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:CALIBRATION,cond_000347:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R1-K1",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 1,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R1",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "db0373f31770537a28c56dbbd2f048d695f5f756746a3aef9c09524e53fc4be5",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R1-K2",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 2,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R1",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "f5d895db512c2bed462f95766ae8d21b44fdf5690d7b91d54fc4b3b3c82c2797",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R1-K4",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 4,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R1",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "814e365d3de17a5385b3469894231191ce4b13e343a7f0bcac76a3e0a9956a03",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST,cond_000347:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R2-K1",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 1,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R2",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "3442c6200b74e65eaa94d50c7d21a7290803d893154862a33ae99f5c7c64eee7",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R2-K2",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 2,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R2",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "daab81bf32e433638dc6402a2971f2be16d18bea5fea336dfbd3e50aa8609c3a",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R2-K4",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 4,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R2",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "30be6559b51ac629bd324f4fab1601198611759891822d63d0e9e6da4516da31",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R3-K1",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 1,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R3",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "6959f0cc2e7801ce6328de27411dc6314541c8f5163fee7c2986f88b7568501d",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O02-R3-K2",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 2,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R3",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "144b98ceef3adea4b71ba013a36205a84680eae0ccf1063a01c90c9b3f224059",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O02-R3-K4",
+      "target_garment": "O02",
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 4,
+      "basis_hash": "e7e758f04b62308355bc5a429cbf3cb69f48409a1789d88465c5d6cffa7c14b4",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O02",
+        "rotation": "R3",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "db05ee4bf2f39942a50b492787dea364ea6b9ad7ad538feaa93f8d1a9fb9272f",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:TEST,cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R0-K1",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 1,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R0",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "a294ec13c3ee0ecc73bf3a80698aa942cecdd2795765235043b1a3d75be4b59c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O03-R0-K2",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 2,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R0",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "462132d28e4f5ae9156d1138efd21020780d8a179c3bb11b93afe0fbdfff78f6",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O03-R0-K4",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 4,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R0",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "a16f5928f326bb9c4ffba8a188e592117874e998b80ef81fab32361cc0cac91e",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:CALIBRATION,cond_000347:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R1-K1",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 1,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R1",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "9f896ec66567133892e1b5024bec8c15bc8d68ea83a45b822774c7f4b86d8c54",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R1-K2",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 2,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R1",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "b11e900efb5b522ee96bed24823a2dea638c53f6d6f8e914eb518477683b0d53",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R1-K4",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 4,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R1",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "facb16253d5d51c1712d00d552f3370cb3927987e1a89398a7003dede5df3c35",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST,cond_000347:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R2-K1",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 1,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R2",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "9b343d7458f36c346fd05f6bc1a5af750898bdbee9569dbfdf1ad42b384d576f",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R2-K2",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 2,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R2",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "dc04f74496aa2f46127957a15084d036d2d17228c6cb5be4dfa3e88ebc91e149",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R2-K4",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 4,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R2",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "9dc1dc00711a8cafd109363b3661c83a3ae5131395c748419b3781fae604ec03",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R3-K1",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 1,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R3",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "4be3e5f21d96d4d2ce346c0982503f38642b67c1d4f8daa01dd80ff1dbb9dd2c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O03-R3-K2",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 2,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R3",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "697de4389a0693bef575e5fdd1c4a65b0448ca34c5bab3fdd0e1c778cbc27841",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O03-R3-K4",
+      "target_garment": "O03",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 4,
+      "basis_hash": "acbc46ee9b7ff03b4e66d8ce21964f4a6cc453c106b71222b46dde89b3a75f6d",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O03",
+        "rotation": "R3",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "cabf6737bc2343b1891800d2f7492a00f823fc2664e28a654829fda027e06d94",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:TEST,cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R0-K1",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 1,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R0",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "853a5dfce69566dfc358ccfed121c789e1d7e1d9ac70252c2e9230b249a16501",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O04-R0-K2",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 2,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R0",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "161f582712a9dc4d08fe1b69c15bf4d9809e4a042df34a1a8cf254ede141c7d1",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O04-R0-K4",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 4,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R0",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "a62b5d659e6c070486c93d32144b8a0af0749ee9dcf04f8d32f944572226f26c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:CALIBRATION,cond_000347:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R1-K1",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 1,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R1",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "3b2e61cd3761a005d32d0a757f371a75347f4e88ea4f609ba9477264955a1e4c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R1-K2",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 2,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R1",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "79232bd869d4d231f42cdac7cc61849187ff80c8c1fb318f749c6717c172773c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R1-K4",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 4,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R1",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "6b6d0ec24e277af2c34263e1f9ad83dedf8ff6c5dc64dff5f425d7fe7945e5ce",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST,cond_000347:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R2-K1",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 1,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R2",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "ff33ce836b93b379c3e8bd75b51cc6eea90db56370784051231389cad31b835c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R2-K2",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 2,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R2",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "1a1d9b98e32a07264b947f189455550a9e66232ee3a0d5b6b087c64ee1e50b8f",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R2-K4",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 4,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R2",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "1c06f3a921317c100c6f4b12aabb9bdcd0566f82e8d486983f0843787b1962f7",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R3-K1",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 1,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R3",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "f1fc06b0e18f87631606e2909b57b6ff65e912fc03d5be44a72632c1dd6b1e12",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O04-R3-K2",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 2,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R3",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "6a34ad4df439f9dca1a013a74ba55fcd0ecda6babbc9c0c031b852cb0dcc182e",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O04-R3-K4",
+      "target_garment": "O04",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 4,
+      "basis_hash": "972f61cfa8c9c09ab5fb0d6356f13220a6abd0d53849687bbbc656c3ec1c7130",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O04",
+        "rotation": "R3",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "f4a5ab94b7cc150ea9a0ca4f692cf06bff38f96fe7beac2f17191318c789fee6",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:TEST,cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R0-K1",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 1,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R0",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "6e6f2918742c57930d2421d3ccc0823c9ccbafbb9749de73a0f0d76ba1c30f3a",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O08-R0-K2",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 2,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R0",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "f67845a671964e1f9767792a7485aa28b4087c8a43762c6240cceb592f85b478",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O08-R0-K4",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R0",
+      "few_view_budget": 4,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R0",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000347"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "e164868f515fddf9c671a1db5e1d180dce7d868e531afae7ba9852480f27b79d",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:CALIBRATION,cond_000347:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R1-K1",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 1,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R1",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "81434831d8766de6f1a6081127d74b688fca6a26cd98aa84b0d3d6afdc3f4539",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R1-K2",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 2,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R1",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "8c958f5ede4fdc32fef687e7a34800ce67d6885725dcb248c123e83a94469358",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R1-K4",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R1",
+      "few_view_budget": 4,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000347",
+        "exact_view_ids": [
+          "cond_000347"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R1",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000000"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "7d1fa531fad31a8a6902b7a596506775db62e1e52560e14e310c3e44760fecec",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:TEST,cond_000347:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R2-K1",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 1,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R2",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "65ce74600369ca514afd0648cd83fe55a02ddec64917931e67dbb80f746a06c8",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R2-K2",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 2,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R2",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "8b0a35883f56ee49b87c1ebed269ca5a79b23b7a71ff6200d979f91319e86a5c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R2-K4",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R2",
+      "few_view_budget": 4,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000000",
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R2",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000318"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "02855d3b621c1eaf070abec9b056395a8d4f20b4c9a97f93dc36c24f56eab058",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000000:CALIBRATION,cond_000318:TEST",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R3-K1",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 1,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000"
+        ],
+        "semantic_rule": "front",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R3",
+        "K": 1,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "8babd8a7534bf4ced641f923030aa394647b500ca00dda418003c5e572c8466c",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": true,
+      "all_adaptation_views_in_train": true,
+      "status": "MANIFEST_VALID_PROTOCOL_ONLY",
+      "blockers": []
+    },
+    {
+      "task_id": "LOO-O08-R3-K2",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 2,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "semantic_rule": "front+back",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R3",
+        "K": 2,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "ae558bd8bd1a9c216bf31fd0f5c97086cebcd452c6ba2c0f751c7f6d3147db84",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": true,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap"
+      ]
+    },
+    {
+      "task_id": "LOO-O08-R3-K4",
+      "target_garment": "O08",
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "rotation": "R3",
+      "few_view_budget": 4,
+      "basis_hash": "4b7e788565c563a26c98dff020bbbf3833aba75db73b785cf99cedf9a55090bc",
+      "basis_hash_kind": "PREEXECUTION_BASIS_INPUT_CONTRACT_SHA256",
+      "adaptation_view_manifest": {
+        "source_partition": "TRAIN_FOLDS_ONLY",
+        "exact_views": [
+          {
+            "semantic_slot": "front",
+            "view_id": "cond_000000",
+            "partition_role": "TRAIN"
+          },
+          {
+            "semantic_slot": "left",
+            "view_id": "cond_000017",
+            "partition_role": "TEST"
+          },
+          {
+            "semantic_slot": "back",
+            "view_id": "cond_000318",
+            "partition_role": "CALIBRATION"
+          },
+          {
+            "semantic_slot": "right",
+            "view_id": "cond_000347",
+            "partition_role": "TRAIN"
+          }
+        ],
+        "exact_view_ids": [
+          "cond_000000",
+          "cond_000017",
+          "cond_000318",
+          "cond_000347"
+        ],
+        "semantic_rule": "front+left+back+right",
+        "image_quality_selection": false,
+        "future_metric_selection": false
+      },
+      "calibration_manifest": {
+        "fold": "cond_000318",
+        "exact_view_ids": [
+          "cond_000318"
+        ],
+        "held_out_used_for_regularization_selection": false,
+        "basis_garment_calibration_only": true
+      },
+      "test_manifest": {
+        "fold": "cond_000017",
+        "exact_view_ids": [
+          "cond_000017"
+        ]
+      },
+      "query_order": {
+        "target_garment": "O08",
+        "rotation": "R3",
+        "K": 4,
+        "method_order": [
+          "BASE_AVATAR",
+          "REFERENCE_NEAREST_HARD_LOOKUP",
+          "RESIDUAL_NEAREST_ORACLE",
+          "ORACLE_PROJECTION_LOO_BASIS",
+          "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION",
+          "HELD_OUT_TEACHER_ENDPOINT"
+        ],
+        "test_view_order": [
+          "cond_000017"
+        ],
+        "metric_order": [
+          "rgb_mae",
+          "psnr",
+          "ssim",
+          "lpips",
+          "silhouette_iou",
+          "boundary_f",
+          "protected_lpips",
+          "identity"
+        ]
+      },
+      "query_order_sha256": "9e44518ae77e97ce961c023c4cfb0a325e051195c0faca652cac18c7a87d1b5b",
+      "held_out_teacher_information_use": {
+        "deployable_adaptation": 0,
+        "offline_oracle_projection_only": 1,
+        "final_analysis_only": 1
+      },
+      "adaptation_test_disjoint": false,
+      "adaptation_calibration_disjoint": false,
+      "all_adaptation_views_in_train": false,
+      "status": "BLOCKED_VIEW_FOLD_CONFLICT",
+      "blockers": [
+        "required adaptation views outside train folds: cond_000017:TEST,cond_000318:CALIBRATION",
+        "adaptation/calibration view overlap",
+        "adaptation/test view overlap"
+      ]
+    }
+  ],
+  "counts": {
+    "garments": 5,
+    "rotations": 4,
+    "budgets": 3,
+    "planned_tasks": 60,
+    "manifest_valid_tasks": 15,
+    "blocked_tasks": 45
+  }
+}

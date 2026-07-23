@@ -1,0 +1,61 @@
+schema_version: "canondressgs.paper.loo_basis_adaptation_protocol.v1"
+task_id: "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001"
+status: "LOO_PROTOCOL_INCOMPLETE"
+source:
+  branch: "research/pure-endpoint-execution-contract-repair-20260724"
+  head: "ff56ebfaf7b733adbb41799e248d01d0e7801ea8"
+run:
+  branch: "research/leave-one-garment-out-basis-adaptation-protocol-20260724"
+  windows_worktree: "E:/model_train/canondressgs_leave_one_garment_out_basis_protocol"
+  cloud_worktree: "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_leave_one_garment_out_basis_protocol"
+identity: "subject02"
+wardrobe: ["O01", "O02", "O03", "O04", "O08"]
+scientific_question: "Can a four-garment centered rank<=3 residual basis few-view-adapt a bank-excluded fifth garment and outperform four-endpoint hard lookup?"
+loo_splits:
+  LOO-O01: ["O02", "O03", "O04", "O08"]
+  LOO-O02: ["O01", "O03", "O04", "O08"]
+  LOO-O03: ["O01", "O02", "O04", "O08"]
+  LOO-O04: ["O01", "O02", "O03", "O08"]
+  LOO-O08: ["O01", "O02", "O03", "O04"]
+basis:
+  method: "deterministic centered SVD in bound-normalized six-channel residual space"
+  rank_rule: "min(numerical_rank,3)"
+  full_five_garment_basis_reused: false
+  held_out_in_mean_basis_normalization: false
+few_view:
+  budgets: [1, 2, 4]
+  semantic_slots:
+    front: "cond_000000"
+    back: "cond_000318"
+    left: "cond_000017"
+    right: "cond_000347"
+  rotations:
+    R0: {train: ["cond_000000", "cond_000318"], calibration: "cond_000017", test: "cond_000347"}
+    R1: {train: ["cond_000318", "cond_000017"], calibration: "cond_000347", test: "cond_000000"}
+    R2: {train: ["cond_000017", "cond_000347"], calibration: "cond_000000", test: "cond_000318"}
+    R3: {train: ["cond_000347", "cond_000000"], calibration: "cond_000318", test: "cond_000017"}
+  planned_tasks: 60
+  manifest_valid_tasks: 15
+  blocked_tasks: 45
+  blocker: "Every rotation has only two train view IDs; K=4 requires four. R1/R2 also lack front in train for K=1."
+contracts:
+  basis_manifests: "paper_protocol/reviewer_risk/loo_basis_manifests.json"
+  few_view_manifests: "paper_protocol/reviewer_risk/loo_few_view_manifests.json"
+  adaptation_loss: "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json"
+  optimizer: "paper_protocol/reviewer_risk/loo_optimizer_contract.json"
+  baselines: "paper_protocol/reviewer_risk/loo_baseline_registry.json"
+  evaluator: "paper_protocol/reviewer_risk/loo_evaluator_contract.json"
+  success_gates: "paper_protocol/reviewer_risk/loo_success_gates.json"
+execution_boundary:
+  basis_execution_runs: 0
+  adaptation_runs: 0
+  optimizer_created: 0
+  forward: 0
+  backward: 0
+  checkpoint_writes: 0
+  renderer_runs: 0
+  new_renders: 0
+  paper_final: 0
+final_classification: "LOO_PROTOCOL_INCOMPLETE"
+next_task: "REPAIR_LOO_FEW_VIEW_FOLD_MANIFEST"
+run_experiment_next_task_started: false

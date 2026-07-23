@@ -1,0 +1,51 @@
+{
+  "schema_version": "canondressgs.project_control.loo_basis_adaptation_protocol_handoff.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "HANDOFF_BLOCKED_PROTOCOL",
+  "classification": "LOO_PROTOCOL_INCOMPLETE",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "branch": "research/leave-one-garment-out-basis-adaptation-protocol-20260724",
+  "windows_worktree": "E:/model_train/canondressgs_leave_one_garment_out_basis_protocol",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_leave_one_garment_out_basis_protocol",
+  "completed": [
+    "five LOO exclusion contracts",
+    "rank<=3 centered-basis contract",
+    "60 planned task records",
+    "loss/optimizer/baseline/evaluator/success-gate freeze",
+    "view-fold feasibility audit"
+  ],
+  "blocker": {
+    "valid_tasks": 15,
+    "blocked_tasks": 45,
+    "repair_required": "provide preregistered train/calibration/test folds with enough exact, mutually disjoint semantic views for K=1/2/4, or change K/rotation requirements in a new task"
+  },
+  "immutable_execution_counts": {
+    "basis_execution_runs": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "paper_final": 0
+  },
+  "artifacts": [
+    "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol.yaml",
+    "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+    "paper_protocol/reviewer_risk/loo_few_view_manifests.json",
+    "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+    "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+    "paper_protocol/reviewer_risk/loo_baseline_registry.json",
+    "paper_protocol/reviewer_risk/loo_evaluator_contract.json",
+    "paper_protocol/reviewer_risk/loo_success_gates.json",
+    "paper_protocol/reviewer_risk/loo_protocol_final_summary.json",
+    "docs/PAPER/AAAI27_LEAVE_ONE_GARMENT_OUT_BASIS_PROTOCOL_20260724.md",
+    "docs/PAPER/AAAI27_FEW_VIEW_GARMENT_ADAPTATION_PROTOCOL_20260724.md",
+    "docs/PAPER/AAAI27_HARD_LOOKUP_FAIR_COMPARISON_PROTOCOL_20260724.md",
+    "docs/PAPER/AAAI27_LOO_BASIS_CAPACITY_ANALYSIS_PLAN_20260724.md"
+  ],
+  "next_task": "REPAIR_LOO_FEW_VIEW_FOLD_MANIFEST",
+  "auto_execute_next_task": false,
+  "paper_final": false
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "canondressgs.paper.loo_optimizer_contract.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "FROZEN_NOT_AUTHORIZED_DUE_VIEW_FOLD_BLOCKER",
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "shared_budget": {
+    "optimizer": "torch.optim.Adam",
+    "learning_rate": 0.02,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epsilon": 1e-8,
+    "weight_decay": 0,
+    "steps": 300,
+    "checkpoints": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "gradient_clip_norm": 5,
+    "scheduler": "torch.optim.lr_scheduler.LambdaLR multiplier 1.0",
+    "seed": 20260724,
+    "retry_count": 0,
+    "early_stopping": false,
+    "best_checkpoint_selection": false,
+    "final_rule": "step 300 only",
+    "same_for_all_garment_rotation_k": true
+  },
+  "methods": {
+    "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION": {
+      "variable": "c_new in R^r",
+      "rank_rule": "r=min(numerical_rank,3)",
+      "trainable_scalar_count_max": 3,
+      "initialization_primary": "Reference-feature nearest known garment coefficient from the four-garment train-only centroid bank",
+      "initialization_diagnostic": "ZERO_COEFFICIENT_INITIALIZATION",
+      "post_result_initialization_selection": false,
+      "loss_contract": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT"
+    },
+    "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION": {
+      "variable": "additive bound-normalized six-channel canonical residual delta",
+      "gaussian_count": 200000,
+      "scalars_per_gaussian": 22,
+      "trainable_scalar_count": 4400000,
+      "protected_gaussian_gradients": "masked to zero by frozen protected guard",
+      "initialization_primary": "same Reference Nearest Hard Lookup residual and therefore identical initial rendered state",
+      "initialization_diagnostic": "Base Avatar initialization, separately labeled and never substituted as primary",
+      "loss_contract": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT",
+      "same_steps": true,
+      "extra_views": false,
+      "held_out_teacher_used": false
+    }
+  },
+  "equal_wall_time_diagnostic": {
+    "primary_comparison": "equal 300-step budget",
+    "required_secondary": true,
+    "rule": "Run the full-residual method for at most the measured wall time of its paired low-dimensional task; report the last completed step without extrapolation.",
+    "changes_primary_result": false
+  },
+  "required_telemetry": [
+    "trainable scalar count",
+    "wall time",
+    "peak VRAM",
+    "convergence at every checkpoint",
+    "coefficient trajectory",
+    "checkpoint size"
+  ],
+  "execution_authorized": false,
+  "execution_counts": {
+    "basis_execution_runs": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "paper_final": 0
+  }
+}

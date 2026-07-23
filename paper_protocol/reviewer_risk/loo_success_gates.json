@@ -1,0 +1,53 @@
+{
+  "schema_version": "canondressgs.paper.loo_success_gates.v1",
+  "task_id": "AAAI27-LEAVE-ONE-GARMENT-OUT-BASIS-ADAPTATION-001",
+  "status": "FROZEN_NUMERIC_GATES_PROTOCOL_BLOCKED",
+  "frozen_before_result": true,
+  "source_head": "ff56ebfaf7b733adbb41799e248d01d0e7801ea8",
+  "hard_lookup_outperformance": {
+    "K": 4,
+    "minimum_successful_garments": 4,
+    "per_rotation_lpips_absolute_reduction_min": 0.005,
+    "per_rotation_rgb_mae_absolute_reduction_min": 0.002,
+    "successful_rotations_per_garment_min": 3,
+    "identity_contamination_count_max": 0
+  },
+  "few_view_scaling": {
+    "minimum_garments_k4_not_worse_than_k1": 4,
+    "macro_lpips_k4_minus_k1_max": 0.002,
+    "macro_rgb_mae_k4_minus_k1_max": 0.001
+  },
+  "efficiency": {
+    "low_dimensional_trainable_scalars_max": 3,
+    "full_residual_trainable_scalars_min": 4400000,
+    "low_to_full_parameter_ratio_max": 0.000001,
+    "low_dimensional_wall_time_fraction_max": 0.25
+  },
+  "full_residual_comparison": {
+    "low_dimensional_gain_recovery_ratio_min": 0.75,
+    "gain_definition": "(hard_lookup_metric - low_dimensional_metric)/(hard_lookup_metric - full_residual_metric), separately for LPIPS and RGB MAE",
+    "minimum_garments_passing": 4
+  },
+  "oracle_span_capacity": {
+    "projection_ratio_min": 0.7,
+    "bound_normalized_residual_rmse_max": 0.15,
+    "oracle_projection_lpips_max": 0.05,
+    "capacity_failure_if_garments_failing_min": 3
+  },
+  "safety": {
+    "identity_contamination_count_max": 0,
+    "body_deformation_count_max": 0,
+    "severe_patch_cloud_mottle_count_max": 0,
+    "severe_component_contamination_count_max": 0,
+    "silhouette_iou_min": 0.7
+  },
+  "classification_order": [
+    "LOO_PROTOCOL_INCOMPLETE if any required task manifest is blocked",
+    "LOO_BASIS_CAPACITY_LIMITED if oracle span capacity fails",
+    "LOO_HARD_LOOKUP_NOT_OUTPERFORMED if primary hard-lookup gate fails",
+    "LOO_OPTIMIZATION_LIMITED if oracle capacity passes but optimization reachability/recovery fails",
+    "LOO_BASIS_ADAPTATION_SUPPORTED if all outperformance, scaling, rotation, efficiency, recovery, and safety gates pass",
+    "LOO_BASIS_ADAPTATION_PARTIAL otherwise"
+  ],
+  "current_gate_evaluation": "NOT_RUN"
+}
