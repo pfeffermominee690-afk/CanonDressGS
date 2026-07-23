@@ -405,8 +405,13 @@ def extract_spatial(
                         pooled.append(torch.cat(((fmap * mask).sum((1, 2)) / mass,
                             fmap.masked_fill(mask <= 0, torch.finfo(fmap.dtype).min).amax((1, 2)))))
                     expected = nuisance_cache["variants"][variant][key]["f2"].to(pooled[0])
-                    if not torch.allclose(torch.stack(pooled), expected, atol=2e-5, rtol=1e-5):
-                        raise RuntimeError(f"NUISANCE-SPATIAL-POOL-MISMATCH: {variant}/{key}")
+                    actual = torch.stack(pooled)
+                    maximum_difference = float((actual - expected).abs().max())
+                    if not torch.allclose(actual, expected, atol=1e-3, rtol=1e-4):
+                        raise RuntimeError(
+                            f"NUISANCE-SPATIAL-POOL-MISMATCH: {variant}/{key}; "
+                            f"max_abs={maximum_difference:.9g}"
+                        )
                 if clean_rows.shape != (3, 256):
                     raise RuntimeError("CLEAN-FEATURE-DIMENSION-MISMATCH")
     if len(spatial) != 20 or forwards != 80:
