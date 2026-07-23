@@ -1,0 +1,248 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "controller_inferences": 0,
+    "feature_inferences": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selections": 0,
+    "training_forward_batches": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "check_count": 38,
+  "checks": [
+    {
+      "detail": "SJWen Proxy responses provider; session continuity retained",
+      "name": "api_continuity",
+      "status": "PASS"
+    },
+    {
+      "detail": "completed after all repair outputs were generated",
+      "name": "credential_scan",
+      "status": "PASS"
+    },
+    {
+      "detail": "d5d90e07ba5b8ddfe296b86e2b0330ccf22251e1",
+      "name": "exact_source_head",
+      "status": "PASS"
+    },
+    {
+      "detail": "21 files",
+      "name": "blocked_output_immutability",
+      "status": "PASS"
+    },
+    {
+      "detail": "11 files",
+      "name": "original_protocol_immutability",
+      "status": "PASS"
+    },
+    {
+      "detail": "eafa974d4c2bcea32133855d8613d5b272b3d365f9a1b43fa566abdda36f576d",
+      "name": "exact_11_path_set",
+      "status": "PASS"
+    },
+    {
+      "detail": "11/11",
+      "name": "raw_sha_complete",
+      "status": "PASS"
+    },
+    {
+      "detail": "11/11",
+      "name": "lf_sha_complete",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "line_ending_normalization",
+      "status": "PASS"
+    },
+    {
+      "detail": "two independent in-memory generations match",
+      "name": "byte_identical_manifest_regeneration",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "no_self_hash_recursion",
+      "status": "PASS"
+    },
+    {
+      "detail": "PROTOCOL_HASH_DECLARATION_MISSING",
+      "name": "hash_declaration_classification",
+      "status": "PASS"
+    },
+    {
+      "detail": "0",
+      "name": "no_hash_value_mismatch",
+      "status": "PASS"
+    },
+    {
+      "detail": "19/19 inherited verifier PASS",
+      "name": "external_assets",
+      "status": "PASS"
+    },
+    {
+      "detail": "4 commits",
+      "name": "direct_decoder_git_history_search",
+      "status": "PASS"
+    },
+    {
+      "detail": "V7-D; Stage B not run",
+      "name": "source_config_checkpoint_log_crosscheck",
+      "status": "PASS"
+    },
+    {
+      "detail": "historical mechanics unique",
+      "name": "architecture_uniqueness",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "input_output_shapes",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "residual_flatten_order",
+      "status": "PASS"
+    },
+    {
+      "detail": "static instantiation exact",
+      "name": "parameter_count",
+      "status": "PASS"
+    },
+    {
+      "detail": "historical only",
+      "name": "target_loss_optimizer_completeness",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "no_renamed_coefficient_predictor",
+      "status": "PASS"
+    },
+    {
+      "detail": "BLOCKED: local F2 binding and safe initialization absent",
+      "name": "matched_crossfit_fairness",
+      "status": "EXPECTED_BLOCKER"
+    },
+    {
+      "detail": "8/8 names retained",
+      "name": "eight_method_registry",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "historical_v7_provenance_only",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "execution_fields_non_null",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "expected_counts_non_null",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "no_implicit_defaults",
+      "status": "PASS"
+    },
+    {
+      "detail": "all repair-task counts zero",
+      "name": "no_execution",
+      "status": "PASS"
+    },
+    {
+      "detail": "0",
+      "name": "frozen_mutation",
+      "status": "PASS"
+    },
+    {
+      "detail": "strict object_pairs_hook used",
+      "name": "json_duplicate_key_rejection",
+      "status": "PASS"
+    },
+    {
+      "detail": "all generated JSON parsed after generation",
+      "name": "json_parse",
+      "status": "PASS"
+    },
+    {
+      "detail": "source YAML parsed with yaml.safe_load",
+      "name": "yaml_parse",
+      "status": "PASS"
+    },
+    {
+      "detail": "all four repair reports nonempty",
+      "name": "markdown_nonempty",
+      "status": "PASS"
+    },
+    {
+      "detail": "repair generator compiled without error",
+      "name": "py_compile",
+      "status": "PASS"
+    },
+    {
+      "detail": "executed as final local static validation",
+      "name": "git_diff_check",
+      "status": "PASS"
+    },
+    {
+      "detail": "module construction only; no optimizer or forward",
+      "name": "static_model_inventory",
+      "status": "PASS"
+    },
+    {
+      "detail": "verified on Cloud before generation",
+      "name": "formal_attempt_absent",
+      "status": "PASS"
+    }
+  ],
+  "credential_scan": {
+    "excluded_test_fixture_count": 2,
+    "excluded_test_fixtures": [
+      {
+        "relative_path": "tools/check_codex_direct_generation_contract.py",
+        "type": "credential_detector_fixture"
+      },
+      {
+        "relative_path": "tools/check_codex_direct_generation_contract.py",
+        "type": "credential_detector_fixture"
+      }
+    ],
+    "finding_count": 0,
+    "findings_redacted": [],
+    "scope": "tracked, staged, unstaged, and task-created text files",
+    "secret_values_persisted": false,
+    "status": "PASS_NO_REAL_SECRET_MATCH",
+    "text_file_count": 699
+  },
+  "expected_blocker_count": 1,
+  "generated_artifact_sha256": {
+    "baseline_registry": "83d79b79b63545819929b5107e22012fc7af5a395d418cafd81da2f2298ccff4",
+    "decoder_audit": "fc7ed9c720defdd0b0883bb5692b28c43a550cd904fc36b05d7dbc309049619f",
+    "decoder_contract": "73318509f85d4a530fc79f35091c7a9d3e0384afd34ae5ae61ab6d638f41a5f9",
+    "decoder_contract_report": "38da2aae58e4c31426d5362af5dbede4b9719b8995658b2acd3e816181c6c978",
+    "decoder_report": "d29bf53639cee8565a2115722b2c8ade28a462fbf9c6270cb66d6bda49ae6086",
+    "execution_contract": "317a2efe9214f250577890aeca44fa8e620db687a79befb8a689e25d5175519f",
+    "execution_report": "28a09f6e4b2872ab2a5a61dd8d88d4dd6e495678c36a14c02f8091a83caac468",
+    "hash_manifest": "9325900a8bff9060108066042df3d2e7bec8461b0d7fb0a23180f83fda691f57",
+    "hash_report": "cbffe734c1b92ac153d58eae381b609385444c731910c07d5f32cb903aa2dfb2"
+  },
+  "paper_final": false,
+  "pass_count": 37,
+  "schema_version": "canondressgs.paper.pure_endpoint_contract_repair_tests.v1",
+  "status": "PASS_EXPECTED_DIRECT_DECODER_BLOCKER",
+  "task_id": "AAAI27-PURE-ENDPOINT-EXECUTION-CONTRACT-REPAIR-001",
+  "unexpected_failure_count": 0
+}

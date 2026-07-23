@@ -1,0 +1,213 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "controller_inferences": 0,
+    "feature_inferences": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selections": 0,
+    "training_forward_batches": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "blocked_artifact_preservation": {
+    "aggregate_fingerprint": "04cc7ecf08780264c71ccfc9f0466664c052df6ae4a698df08663b5625ccaaff",
+    "artifact_count": 21,
+    "mutation_count": 0
+  },
+  "classification": "PURE_ENDPOINT_DIRECT_DECODER_CONTRACT_BLOCKED",
+  "component_references": {
+    "asset_snapshot": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_asset_snapshot.json",
+      "sha256": "a20c65f3f84956c7ee0db96e00498bf2371ff02e4f75fff56ff5d132f10bbe28"
+    },
+    "baseline_registry": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_baseline_registry_repaired.json",
+      "sha256": "83d79b79b63545819929b5107e22012fc7af5a395d418cafd81da2f2298ccff4"
+    },
+    "crossfit_protocol": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_crossfit_protocol.yaml",
+      "sha256": "721c203f78c63a707317e846362d1579d4b21914b625168fa9143186abd971f6"
+    },
+    "direct_decoder_audit": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_residual_decoder_audit.json",
+      "sha256": "fc7ed9c720defdd0b0883bb5692b28c43a550cd904fc36b05d7dbc309049619f"
+    },
+    "direct_decoder_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_direct_residual_decoder_contract.json",
+      "sha256": "73318509f85d4a530fc79f35091c7a9d3e0384afd34ae5ae61ab6d638f41a5f9"
+    },
+    "evaluator_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_evaluator_contract.json",
+      "sha256": "0f86c6413a0db955d179de139f85b401bc80044f89222219afe5d0506c4aaedd"
+    },
+    "model_contract": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_model_contract.json",
+      "sha256": "abca0350821fbcc706003c45b9aec0357223168ac7c6ab2913b3ecde617d73d6"
+    },
+    "protocol_hash_manifest": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_protocol_artifact_hash_manifest.json",
+      "sha256": "9325900a8bff9060108066042df3d2e7bec8461b0d7fb0a23180f83fda691f57"
+    },
+    "rotation_manifests": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json",
+      "sha256": "5a86f57ef44a54fd234690c3a133b82a17d982aebad7f451833122eecb9825c9"
+    },
+    "success_gates": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_success_gates.json",
+      "sha256": "badb9a2cefeaa4ff914b96014bd51625af2e2cefa05b98115557505b43b12351"
+    },
+    "training_schedules": {
+      "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_training_schedules.json",
+      "sha256": "643e9812e1e40b800aaa3aeb09c17e5cd58d6caf8b20c091d793d87c53081040"
+    }
+  },
+  "critical_null_count": 0,
+  "evaluator_contract": {
+    "best_seed_or_checkpoint_selection_allowed": false,
+    "same_frozen_mmlp_human": true,
+    "same_frozen_renderer": true,
+    "same_protocol_weighted_denominator": true,
+    "same_unique_query_denominator": true,
+    "test_leakage_allowed": false,
+    "threshold_selection_allowed": false
+  },
+  "execution_authorized": false,
+  "execution_task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001",
+  "external_asset_verification": {
+    "evidence_source": "immutable pure_endpoint_asset_snapshot.json",
+    "failed_asset_count": 0,
+    "status": "PASS",
+    "verified_asset_count": 19
+  },
+  "forbidden_attempt_path": "/root/autodl-tmp/canondressgs_work/outputs/PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001/attempt_001",
+  "formal_output_attempt_created": false,
+  "frozen_before_result": true,
+  "global_repaired_contract_hash": "69a5258e067f5edc8ac5a1a442cc5ad16ca127d3c81f19bf12d46cb83602bb12",
+  "global_repaired_contract_hash_algorithm": "SHA256 of canonical JSON over component references, rotation hashes, model-family plan hashes, seeds, steps, milestones, and classification",
+  "historical_failure_classification": "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+  "historical_failure_interpretation": "PROTOCOL_HASH_DECLARATION_MISSING_NOT_ASSET_CORRUPTION",
+  "implicit_default_count": 0,
+  "next_task": "MANUAL_REVIEW_DIRECT_RESIDUAL_DECODER_BASELINE_REQUIREMENT",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "planned_counts_if_direct_decoder_is_manually_resolved": {
+    "backward_calls": 10800,
+    "checkpoint_writes": 216,
+    "direct_decoder_runs": 12,
+    "main_method_shared_runs": 12,
+    "optimizer_creations": 36,
+    "optimizer_steps": 10800,
+    "reference_classifier_runs": 12,
+    "rotation_count": 4,
+    "seed_count": 3,
+    "total_unique_training_runs": 36
+  },
+  "protocol_hash_closure": {
+    "artifact_count": 11,
+    "status": "PASS_INDEPENDENT_MANIFEST",
+    "value_mismatch_count": 0
+  },
+  "repair_branch": "research/pure-endpoint-execution-contract-repair-20260724",
+  "schedule_and_plan_hashes": {
+    "model_family_training_plan_sha256": {
+      "Base Avatar": "9a63db7f504696d8c95d747e6e473c03a643513e9048c4c45f23ac02df4c8a1a",
+      "CanonDressGS-Endpoint": "83f2292bf57eb5fc527f6daf5dd09adacd32b1530c91392c918926e16c78a395",
+      "Direct Residual Decoder": "843b15318e3c919c5bc5de9f54849fe86534733f223a06212f2863c856fe679e",
+      "Linear Coefficient Predictor": "e25c1ef55ca31d4fff042cd00c24d22a1337c9fbec58bfaaf86b86bdd07a8bfc",
+      "Nearest-Centroid Lookup": "abfcbf5efefae86b05df7d41e3119e4c6da82bed2c823fdd0628397ef1a12c2b",
+      "Outfit-ID Oracle": "9a63db7f504696d8c95d747e6e473c03a643513e9048c4c45f23ac02df4c8a1a",
+      "Reference Classifier Lookup": "f2a505cba2426a75f64606e535ed79775a2cde79aeae71481d6dc3377ed282fd",
+      "Teacher Upper Bound": "9a63db7f504696d8c95d747e6e473c03a643513e9048c4c45f23ac02df4c8a1a"
+    },
+    "model_family_training_plans": {
+      "Base Avatar": {
+        "plan": "no training",
+        "trainable": false
+      },
+      "CanonDressGS-Endpoint": {
+        "optimizer": "Adam lr=0.02",
+        "shared_runs_with_linear": 12,
+        "steps": 300,
+        "trainable": true
+      },
+      "Direct Residual Decoder": {
+        "runs": 12,
+        "status": "BLOCKED_CONTRACT_NOT_RECOVERABLE",
+        "steps": 300,
+        "trainable": true
+      },
+      "Linear Coefficient Predictor": {
+        "optimizer": "Adam lr=0.02",
+        "shared_runs_with_primary": 12,
+        "steps": 300,
+        "trainable": true
+      },
+      "Nearest-Centroid Lookup": {
+        "plan": "train-fold-only centroid fit",
+        "trainable": false
+      },
+      "Outfit-ID Oracle": {
+        "plan": "no training",
+        "trainable": false
+      },
+      "Reference Classifier Lookup": {
+        "optimizer": "Adam lr=0.02",
+        "runs": 12,
+        "steps": 300,
+        "trainable": true
+      },
+      "Teacher Upper Bound": {
+        "plan": "no training",
+        "trainable": false
+      }
+    },
+    "per_rotation_schedule_sha256": {
+      "0": "e5dd8e70ee8e606aa765816d6bbebb75b189a873df793fcfba6ad0bfa08cd55f",
+      "1": "f65232b0e0dceb8e2ea5c0485e0928191a08a5befde660493bc2a43c1675db34",
+      "2": "ec9d4e842e065628533b2f414cd0953eb4add5f78a5360e43e4465bb0a67ae58",
+      "3": "b00c63394ce1627e8727615bf7052a9a59049634a2cd7441977dd1c9201dd977"
+    }
+  },
+  "schema_version": "canondressgs.paper.pure_endpoint_execution_contract_repaired.v1",
+  "seed_contract": {
+    "best_seed_selection": false,
+    "fresh_initialization_required": true,
+    "fresh_process_required": true,
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "source_branch": "research/pure-endpoint-core-method-crossfit-20260724",
+  "source_head": "d5d90e07ba5b8ddfe296b86e2b0330ccf22251e1",
+  "status": "BLOCKED_BEFORE_OPTIMIZER",
+  "task_id": "AAAI27-PURE-ENDPOINT-EXECUTION-CONTRACT-REPAIR-001",
+  "training_contract": {
+    "blocker": "DIRECT_DECODER_CONTRACT_NOT_RECOVERABLE",
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "final_checkpoint_rule": "step 300 only",
+    "optimizer_creation_authorized": false,
+    "pair_container_duplicate_weight": 0,
+    "rotation_count": 4,
+    "steps": 300,
+    "test_protocol_records_per_rotation": 20,
+    "test_unique_queries_per_rotation": 5,
+    "train_unique_queries_per_rotation": 10,
+    "unique_query_weighting": true
+  }
+}
