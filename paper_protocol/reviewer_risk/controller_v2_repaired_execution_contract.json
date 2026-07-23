@@ -9,7 +9,7 @@
   "cloud_environment": {
     "cuda_available": true,
     "cuda_runtime": "12.1",
-    "cudnn": 8902,
+    "cudnn": 90100,
     "free_bytes_before_worktree_creation": 41187147776,
     "free_bytes_pre_snapshot": 41121366016,
     "gpu": "NVIDIA GeForce RTX 4090",
@@ -19,8 +19,8 @@
     "gpu_used_mib": 0,
     "gpu_utilization_percent": 0,
     "platform": "Linux-5.15.0-88-generic-x86_64-with-glibc2.35",
-    "python": "3.10.8",
-    "torch": "2.1.2+cu121"
+    "python": "3.10.20",
+    "torch": "2.4.1+cu121"
   },
   "contract_hashes": {
     "batch_schedule_archive_content_sha256": "3d50420ed45b893cbde1851d44d2d892bbb3bb1e0590e4774dfa447b529bc446",
@@ -109,6 +109,10 @@
     }
   },
   "run_branch": "research/controller-v2-crossfit-micro-pilot-from-repaired-contract-20260723",
+  "runtime_determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true
+  },
   "schema_version": "canondressgs.research.controller_v2_repaired_execution_contract.v1",
   "source_branch": "research/controller-v2-micro-pilot-contract-repair-20260723",
   "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",

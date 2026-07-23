@@ -18,6 +18,8 @@ import time
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+
 import torch
 import torch.nn.functional as F
 
@@ -41,7 +43,11 @@ TASK_ID = "AAAI27-CONTROLLER-V2-CROSSFIT-MICRO-PILOT-REPAIRED-001"
 SOURCE_HEAD = "1a2059301e3a0ec7fa0f73591b69b7b428e986c4"
 RUN_BRANCH = "research/controller-v2-crossfit-micro-pilot-from-repaired-contract-20260723"
 OUTPUT_NAME = "CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001"
-ATTEMPT = "attempt_002"
+ATTEMPT = os.environ.get(
+    "CANONDRESSGS_CONTROLLER_V2_ATTEMPT", "attempt_002"
+)
+if ATTEMPT not in {"attempt_002", "attempt_003"}:
+    raise RuntimeError(f"unsupported append-only attempt: {ATTEMPT}")
 SEEDS = (0, 1, 2)
 FAMILIES = ("V2", "MATCHED_V1")
 CHECKPOINT_STEPS = (0, 30, 60, 90, 120, 150)
@@ -383,6 +389,71 @@ def prepare(
         },
     }
     atomic_json(attempt_root(output_root) / "audits/preflight.json", result)
+    return result
+
+
+def seal_startup_failure(output_root: Path) -> dict[str, Any]:
+    if ATTEMPT != "attempt_002":
+        raise RuntimeError("startup failure seal is bound to attempt_002")
+    root = attempt_root(output_root)
+    checkpoint = (
+        training_root(output_root, "V2", 0, 0)
+        / "checkpoints/step_000.pt"
+    )
+    if not checkpoint.is_file():
+        raise RuntimeError("attempt_002 step-0 checkpoint is missing")
+    scientific_results = list(root.glob(
+        "training/*/rotation_*/seed_*/training_result.json"
+    ))
+    nonzero_checkpoints = [
+        path for path in root.glob(
+            "training/*/rotation_*/seed_*/checkpoints/*.pt"
+        )
+        if path.name != "step_000.pt"
+    ]
+    if scientific_results or nonzero_checkpoints:
+        raise RuntimeError(
+            "attempt_002 contains scientific steps and cannot use startup rule"
+        )
+    result = {
+        "schema_version":
+            "canondressgs.research.controller_v2_repaired_startup_failure.v1",
+        "status": "FAILED_CODE_STARTUP_ERROR_STEP_0",
+        "task_id": TASK_ID,
+        "attempt": ATTEMPT,
+        "family": "V2",
+        "rotation": 0,
+        "seed": 0,
+        "failure": {
+            "exception": "RuntimeError",
+            "message":
+                "CUDA deterministic CuBLAS requires "
+                "CUBLAS_WORKSPACE_CONFIG=:4096:8",
+            "phase": "FIRST_CLEAN_FORWARD_BEFORE_COMPLETION",
+        },
+        "counts": {
+            "completed_training_steps": 0,
+            "completed_forward_batches": 0,
+            "backward_calls": 0,
+            "optimizer_steps": 0,
+            "scheduler_steps": 0,
+            "checkpoint_writes": 1,
+            "checkpoint_step": 0,
+        },
+        "step_0_checkpoint": {
+            "path": str(checkpoint),
+            "sha256": file_hash(checkpoint),
+        },
+        "scientific_training_results": 0,
+        "eligible_for_new_attempt": True,
+        "eligibility_rule":
+            "EXPLICIT_CODE_STARTUP_ERROR_AND_TRAINING_STEP_EQ_0",
+        "required_new_attempt": "attempt_003",
+        "preserve_this_attempt": True,
+        "paper_final": False,
+        "paper_final_count": 0,
+    }
+    atomic_json(root / "audits/startup_failure.json", result)
     return result
 
 
@@ -879,7 +950,10 @@ def aggregate(output_root: Path) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--phase", choices=("validate", "prepare", "train", "aggregate"),
+        "--phase", choices=(
+            "validate", "prepare", "seal-startup-failure", "train",
+            "aggregate",
+        ),
         required=True,
     )
     parser.add_argument("--output-root", type=Path)
@@ -908,6 +982,8 @@ def main() -> None:
                 output_root, arguments.asset_root.resolve(),
                 arguments.execution_snapshot_head,
             )
+        elif arguments.phase == "seal-startup-failure":
+            result = seal_startup_failure(output_root)
         elif arguments.phase == "train":
             if (
                 arguments.family is None
