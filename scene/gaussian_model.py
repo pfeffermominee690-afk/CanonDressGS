@@ -78,8 +78,8 @@ class GaussianModel:
         self.runtime_lbs_counters = {
             'legacy_grid_loads': 0,
             'spatial_weight_queries': 0,
-            'off_surface_rebinds': 0,
-            'topology_mutations': 0,
+            'off_surface_rebind_attempts_rejected': 0,
+            'topology_mutation_attempts_rejected': 0,
         }
 
         # pose
@@ -214,8 +214,8 @@ class GaussianModel:
             {
                 'legacy_grid_loads': 0,
                 'spatial_weight_queries': 0,
-                'off_surface_rebinds': 0,
-                'topology_mutations': 0,
+                'off_surface_rebind_attempts_rejected': 0,
+                'topology_mutation_attempts_rejected': 0,
             },
         )
         surface_attachment = data.get('surface_attachment')
@@ -832,9 +832,13 @@ class GaussianModel:
         if operation not in codes:
             raise ValueError(f'Unknown topology operation: {operation}')
         if operation == 'off_surface_rebind':
-            self.runtime_lbs_counters['off_surface_rebinds'] += 1
+            self.runtime_lbs_counters[
+                'off_surface_rebind_attempts_rejected'
+            ] += 1
         else:
-            self.runtime_lbs_counters['topology_mutations'] += 1
+            self.runtime_lbs_counters[
+                'topology_mutation_attempts_rejected'
+            ] += 1
         raise SurfaceLBSContractError(
             codes[operation],
             f'{operation} is disabled in surface_attachment_cached mode',
