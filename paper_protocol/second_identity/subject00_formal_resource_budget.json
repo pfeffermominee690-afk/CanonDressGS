@@ -1,0 +1,79 @@
+{
+  "basis": {
+    "all_14_group_adam_moment_upper_estimate_bytes_per_checkpoint": 1248776000,
+    "medium_current_tree_file_count": 250,
+    "medium_current_tree_observed_bytes": 3229291588,
+    "medium_empirical_checkpoint_bytes": 724584644,
+    "medium_empirical_optimizer_tensor_bytes_in_checkpoint": 22640024,
+    "medium_external_archive_reported_bytes": 3229325143,
+    "medium_optimizer_steps": 20249,
+    "medium_peak_vram_bytes": 1710931456,
+    "medium_wall_seconds": 4338.664056
+  },
+  "budget_content_sha256": "f126f68a86e02aec15c5a26704aa672397115b835640b3ccf9949c343195966c",
+  "formal": {
+    "checkpoint_bytes_central_per_file": 724584644,
+    "checkpoint_bytes_conservative_per_file": 1950720620,
+    "checkpoint_storage_bytes_central": 4347507864,
+    "checkpoint_storage_bytes_conservative": 11704323720,
+    "end_to_end_wall_seconds_expected_interval": [
+      19154.656224000002,
+      33231.984335999994
+    ],
+    "evaluation_wall_seconds_budget_interval": [
+      1800,
+      7200
+    ],
+    "full_final_evaluation_query_count": 29954,
+    "metrics_storage_bytes_budget": 189800448,
+    "new_checkpoint_count": 6,
+    "optimizer_state_storage_bytes_central_total_included": 135840144,
+    "optimizer_state_storage_bytes_upper_total_included": 7492656000,
+    "optimizer_steps": 101245,
+    "other_protocol_and_audit_bytes_budget": 67108864,
+    "peak_vram_bytes_expected": 1710931456,
+    "peak_vram_bytes_gate": 4294967296,
+    "total_incremental_storage_bytes_central": 4923837902,
+    "total_incremental_storage_bytes_conservative": 12280653758,
+    "training_log_storage_bytes_budget": 218757430,
+    "training_wall_hours_linear_estimate": 6.0259223,
+    "training_wall_seconds_expected_interval": [
+      17354.656224000002,
+      26031.984335999998
+    ],
+    "training_wall_seconds_linear_estimate": 21693.32028,
+    "visual_storage_bytes_budget": 100663296
+  },
+  "output_immutability_baseline": {
+    "canary_attempt_001": {
+      "bytes": 3864571005,
+      "file_count": 272,
+      "metadata_sha256": "0f2fd6a3f341050d4ee5c2e1fc3b8dcb2c7fa4105f3e95113f1de3c13ec6dd40"
+    },
+    "medium_attempt_001": {
+      "bytes": 3229291588,
+      "file_count": 250,
+      "metadata_sha256": "c4092946c92d1553f4d693073e6c16428dd31874803b61c7872e4c009f5da213"
+    },
+    "policy": "SHA256(canonical JSON list sorted by POSIX relative path; each row contains path,size,mtime_ns; UTF-8, sort_keys=true, separators=(',',':'), ensure_ascii=false)",
+    "required_before_after_change_count": 0
+  },
+  "resource_gate": {
+    "gpu_free_mib_at_protocol_audit": 24081,
+    "gpu_total_mib": 24564,
+    "gpu_utilization_percent_at_protocol_audit": 0,
+    "insufficient_resource_may_block_but_may_not_change_steps": true,
+    "minimum_free_bytes": 32212254720,
+    "must_be_rechecked_immediately_before_future_training": true,
+    "observed_cloud_free_bytes": 41215741952,
+    "observed_cloud_free_inodes": 702696143,
+    "status": "PASS"
+  },
+  "schema_version": "subject00.formal.resource_budget.v1",
+  "step100000_choice": {
+    "choice": "FROZEN_FIXED96_ONLY",
+    "resource_basis": "avoid a redundant 29,954-query full metric archive at a secondary contextual checkpoint; preserve full evaluation for the fixed step101245 final",
+    "scientific_result_known_at_choice_time": false
+  },
+  "task_id": "MMLPHUMAN-SUBJECT00-FORMAL-STRICT-SPLIT-PROTOCOL-001"
+}
