@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from tools.paper import seal_controller_v2_crossfit_contract_incomplete as seal
@@ -22,7 +23,10 @@ def test_exact_source_head_is_frozen() -> None:
 def test_all_ten_design_artifact_hashes_match() -> None:
     assert len(seal.DESIGN_HASHES) == 10
     for relative, expected in seal.DESIGN_HASHES.items():
-        actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+        blob = subprocess.check_output(
+            ["git", "show", f"{seal.SOURCE_HEAD}:{relative}"], cwd=ROOT
+        )
+        actual = hashlib.sha256(blob).hexdigest()
         assert actual == expected
 
 

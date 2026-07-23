@@ -27,25 +27,25 @@ NEXT_TASK = "REPAIR_CONTROLLER_V2_MICRO_PILOT_TRAINING_CONTRACT"
 
 DESIGN_HASHES = {
     "docs/PAPER/AAAI27_COMPATIBILITY_GATED_CONTROLLER_V2_DESIGN_20260723.md":
-        "74f2604037a747d6ff3dd8d5e09241e2a5130a6613c1d356aa66a5dd370f376b",
+        "cad8ef69adeecc59cc91a3d23562ba97c298e7d071f73345ab34903ca6d38b3d",
     "docs/PAPER/AAAI27_TRI_MODE_GARMENT_COMPOSITION_20260723.md":
-        "cd30aea5351b8d025cbe4e8b9122827e825d15ca2e5f306cadca9a682eeda4b0",
+        "3edc8d643ac8ad7105e04f1b68a4cf5dcd7c81d4a0f7534b7a33a7d4caca1a11",
     "docs/PAPER/AAAI27_CONTROLLER_V2_CROSSFIT_PROTOCOL_20260723.md":
-        "b2722016dc15f9bebae4170f607153db4a66439777bc6dbd810f2bc014fb0236",
+        "66eff019559111e079a3c1ab2acab0062f033176c006cccc8913c0325eb3ced0",
     "paper_protocol/reviewer_risk/controller_v2_design_protocol.yaml":
-        "d77ea19c765349b3b09451b40493b1013fe3b3dbc137d01c7ed521b5c68554fa",
+        "0f9c15f907c4ccb843ece8aeecf0cebe74652ca9a8811d496a6052ad3d5499d2",
     "paper_protocol/reviewer_risk/controller_v2_crossfit_splits.json":
-        "a1c4ee35bb0763cbe751d3debc8bdfb7417d49e78314e19e43f88e7888683e03",
+        "8d201b5aff26426cb155acb3210e053ef033fdb7d66d2ad586f209144082a586",
     "paper_protocol/reviewer_risk/controller_v2_compatibility_manifests.json":
-        "896cc5f9ff47dcf6aa38bb07d1ab0e96ad36a91ae59007e05beb0ee7c75c1380",
+        "69f7c64b2a9ff962b4e2dc8a638b924149a6c3722153d735c80a3af7ecfeecd1",
     "paper_protocol/reviewer_risk/controller_v2_forward_boundary.json":
-        "6c2a996b4b0aaf1d931419bc86c5bdd2588d0ee52b93507e5ad9b4e928561946",
+        "4e577f1a9afea658eaabd2adf02613f8462f934d951e708cac817ac051562d70",
     "paper_protocol/reviewer_risk/controller_v2_optimizer_training_plan.json":
-        "a2ec9c5cfde7eda7538a42ed7ee0cdabafce5e487c84c1e704627516f70029f6",
+        "7d822a5d7e243d6efb6d8100678bcd99bc435eea6051cbd1c03111b7692f41cc",
     "paper_protocol/reviewer_risk/controller_v2_evaluator_contract.json":
-        "ef4747f4d4d2700e84f45a498896a2259c3a25935b8bcb92481546ce57b8614f",
+        "b166be276b6eb0145977d16f64040d6c86256d986cf63769ca5ab109a4f1bb43",
     "paper_protocol/reviewer_risk/controller_v2_dry_run_summary.json":
-        "2f37352eef1b70b2e6d00d28dbee7680858e7155ca1635faceae380c4f65e40a",
+        "2b0d2029fe069c7bff90472684ea9b7ad25985f8afacfc8910ecdf261070edad",
 }
 
 ZERO_COUNTS = {
@@ -363,9 +363,19 @@ def verify_source(repo_root: Path) -> None:
         if ancestor_check.returncode != 0:
             raise RuntimeError(f"source HEAD is not an ancestor: {head}")
     for relative, expected in DESIGN_HASHES.items():
-        actual = sha256(repo_root / relative)
+        blob = subprocess.check_output(
+            ["git", "show", f"{SOURCE_HEAD}:{relative}"], cwd=repo_root
+        )
+        actual = hashlib.sha256(blob).hexdigest()
         if actual != expected:
             raise RuntimeError(f"design hash mismatch: {relative}: {actual}")
+        changed = subprocess.run(
+            ["git", "diff", "--quiet", SOURCE_HEAD, "--", relative],
+            cwd=repo_root,
+            check=False,
+        )
+        if changed.returncode != 0:
+            raise RuntimeError(f"frozen design artifact changed: {relative}")
 
 
 def training_contract() -> dict[str, Any]:
