@@ -1,0 +1,131 @@
+schema_version: subject00.mmlphuman.surface_lbs_runtime_protocol.v1
+task_id: MMLPHUMAN-SUBJECT00-SURFACE-LBS-RUNTIME-001
+date: 2026-07-23
+
+governance:
+  source_branch: research/mmlphuman-subject00-high-fidelity-lbs-design-20260723
+  source_head: 7a9191e7e57fc92000d681cf7f0b73edd346af62
+  target_branch: research/mmlphuman-subject00-surface-lbs-runtime-20260723
+  windows_worktree: E:/model_train/mmlphuman_subject00_surface_lbs_runtime
+  cloud_worktree: /root/autodl-tmp/canondressgs_work/worktrees/mmlphuman_subject00_surface_lbs_runtime
+  attempt_root: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/_building_subject00_surface_lbs_attempt_004
+  formal_target: /root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00
+  immutable_attempts:
+    - _building_subject00_attempt_001
+    - _building_subject00_attempt_002
+    - _lbs_design_subject00_attempt_003
+
+scope_decision:
+  historical_classification: CLOSEST_TRIANGLE_FALLBACK_INSUFFICIENT
+  historical_scope: GENERAL_HYBRID_OFF_SURFACE_LBS
+  general_hybrid_status: NOT_READY
+  current_runtime_mode: SURFACE_ATTACHMENT_ONLY
+  region_gated_fallback: DEFERRED_FUTURE_CAPABILITY
+  require_surface_attachment: true
+  allow_off_surface_fallback: false
+  allow_topology_mutation: false
+
+sampler:
+  algorithm: deterministic_area_cdf_surface_sampler
+  frozen_source: tools/second_identity/run_subject00_high_fidelity_lbs_prototype.py
+  frozen_source_sha256: 2789d792825ef9f62a75c928a3ea77a3f1478ed92b3d31952ac4a897b3ff4a29
+  function: deterministic_surface_points
+  face_area_dtype: float64
+  face_order: template_face_index_ascending
+  area_cdf: numpy_cumsum_float64
+  sample_targets: midpoint_stratified_area_targets
+  face_selection: numpy_searchsorted_side_right
+  barycentric_sequence: sqrt_radical_inverse_base_2_and_3
+  sample_sequence: integer_1_through_N
+  tie_rule: face_order_then_searchsorted_side_right
+  process_seed: NOT_USED_STATELESS_SEQUENCE
+  point_count: 200000
+  canonical_xyz_dtype: float64
+  face_id_dtype: int64
+  barycentric_dtype: float64
+  lbs_dtype: float32
+  component_dtype: int16
+  region_dtype: int16
+  attachment_valid_dtype: uint8
+
+frozen_reference:
+  topology: SMPL-X_10475_vertices_20908_faces_55_joints
+  template_ply_sha256: f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031
+  vertices_array_sha256: cb7edff9ec0ef82d97fb1444a65e894e39a9bd4cafd7cde0e90b388547e6e447
+  faces_array_sha256: 2cb81d8e6c789896d764805d58fb44bdce62424bab97b519bbd6c1668d66ce2b
+  weights_array_sha256: 645bde9f2a656a888b31173b06231da1ebb78d1363d33ba8f44eeb60e6bb4e29
+  vertex_fidelity: 10475/10475_bitwise_exact
+  surface_fidelity: 104540/104540_exact
+
+attachment_schema:
+  fields:
+    - gaussian_index
+    - source_type_id
+    - canonical_xyz
+    - face_id
+    - barycentric
+    - component_id
+    - semantic_region_id
+    - lbs_weights
+    - attachment_valid
+    - surface_distance
+  source_type_mapping:
+    1: SURFACE_FACE_SAMPLE
+  weight_formula: b0_W_v0_plus_b1_W_v1_plus_b2_W_v2
+  barycentric_sum_tolerance: 1.0e-8
+  weight_sum_tolerance: 1.0e-6
+  nonnegative_tolerance: 1.0e-7
+  surface_distance_tolerance_meters: 1.0e-7
+
+runtime:
+  subject00_mode: surface_attachment_cached
+  subject02_mode: legacy_grid
+  fixed_weights_cached: true
+  load_legacy_grid_in_subject00: false
+  forward_spatial_query_count: 0
+  attachment_changes_with_dxyz: false
+  checkpoint_persists_attachment: true
+  checkpoint_persists_weights: true
+
+fail_closed:
+  missing_attachment: MISSING_ATTACHMENT
+  invalid_face_id: INVALID_FACE_ID
+  invalid_barycentric: INVALID_BARYCENTRIC
+  invalid_lbs: INVALID_LBS
+  clone: UNSUPPORTED_CLONE
+  split: UNSUPPORTED_SPLIT
+  densification: UNSUPPORTED_DENSIFICATION
+  prune_with_index_reorder: UNSUPPORTED_PRUNE_WITH_INDEX_REORDER
+  off_surface_rebind: UNSUPPORTED_OFF_SURFACE_REBIND
+
+repeatability:
+  fresh_process_runs: [run_a, run_b]
+  arrays_exact: true
+  manifest_exact: true
+  numeric_tolerance: 1.0e-8
+  publish_run_if_exact: run_a
+
+strict_splits:
+  train_camera_ids: [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 21, 22, 23]
+  heldout_camera_ids: [0, 4, 8, 12, 16, 20]
+  camera_split_sha: 8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44
+  pose_split_sha: c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06
+
+counters:
+  training_steps: 0
+  training_forward_batches: 0
+  backward_calls: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  training_checkpoint_writes: 0
+  PAPER_FINAL: 0
+
+readiness_allowed:
+  - SUBJECT00_SURFACE_ATTACHED_LBS_RUNTIME_READY_FOR_CANARY
+  - SUBJECT00_BLOCKED_SURFACE_SAMPLER_NONDETERMINISTIC
+  - SUBJECT00_BLOCKED_RUNTIME_ATTACHMENT_INTERFACE
+  - SUBJECT00_BLOCKED_GAUSSIAN_INDEX_ALIGNMENT
+  - SUBJECT00_BLOCKED_CHECKPOINT_ATTACHMENT_CONTRACT
+  - SUBJECT00_BLOCKED_SURFACE_LBS_RENDERER
+  - SUBJECT00_BLOCKED_UNSUPPORTED_TOPOLOGY_OPERATION
