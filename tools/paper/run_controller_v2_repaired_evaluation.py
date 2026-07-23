@@ -893,8 +893,23 @@ def perturbation_rows(
                             rows, valid = training.case_rows_variant(
                                 clean_cache, nuisance_cache, record, variant
                             )
+                        information_valid_count = int(
+                            (valid.reshape(-1) > 0).sum().item()
+                        )
+                        forward_rows, forward_valid = rows, valid
+                        empty_reference_forward_surrogate = None
+                        if family == "MATCHED_V1" and information_valid_count == 0:
+                            # The frozen V1 pool rejects an empty set.  A zero
+                            # row provides no reference information but keeps
+                            # the required network-forward accounting; the
+                            # information boundary below then forces SINGLE.
+                            forward_rows = rows[:1]
+                            forward_valid = torch.ones_like(valid[:1])
+                            empty_reference_forward_surrogate = (
+                                "ONE_ZERO_FEATURE_ROW_NUMERIC_FORWARD_ONLY"
+                            )
                         output, seconds = infer_raw(
-                            model, family, rows, valid, device
+                            model, family, forward_rows, forward_valid, device
                         )
                         controller_seconds += seconds
                         if family == "V2":
@@ -907,6 +922,20 @@ def perturbation_rows(
                             row["compatibility_label"] = labels[
                                 row["predicted_pair"]
                             ]
+                            row["network_mode_before_information_boundary"] = (
+                                row["mode"]
+                            )
+                            if information_valid_count < 2:
+                                row["mode"] = "SINGLE_ENDPOINT"
+                                row["fallback_reason"] = (
+                                    "REFERENCE_INFORMATION_INSUFFICIENT"
+                                )
+                        row["information_valid_reference_count"] = (
+                            information_valid_count
+                        )
+                        row["empty_reference_forward_surrogate"] = (
+                            empty_reference_forward_surrogate
+                        )
                         baseline = baseline_index[
                             (family, rotation, seed, record["record_id"])
                         ]
@@ -1056,8 +1085,17 @@ def main() -> None:
         perturbations = perturbation_rows(
             output_root, asset_root, calibration, predictions
         )
-    else:
+    elif arguments.phase == "all":
         perturbations = read_json(root(output_root) / "perturbations/results.json")
+    else:
+        result = {
+            "status": "PASS",
+            "phase": "clean",
+            "clean_inference_count": predictions["counts"]["clean_total"],
+            "perturbation_started": False,
+        }
+        print(json.dumps(result, sort_keys=True))
+        return
     result = aggregate_summary(
         output_root, calibration, predictions, routing, perturbations
     )
