@@ -748,17 +748,37 @@ def linear_probes(datasets: Mapping[int, Mapping[str, Any]]) -> dict[str, Any]:
     direct = ridge_probe("CURRENT_SET_DIRECT_PAIR_10WAY", datasets, "set_feature", "pair", mixed_only=True)
     composition = ridge_probe("CURRENT_SET_15WAY", datasets, "set_feature", "composition")
     probes = [single, spatial, per_ref, soft, multi, direct, composition]
-    selected = max(probes[2:], key=lambda row: (row["calibration_macro"], row["name"]))
+    comparable = {}
+    for probe in probes[2:]:
+        calibration_values, test_values = [], []
+        for rotation in probe["rotation_results"]:
+            if probe["name"] == "CURRENT_SET_DIRECT_PAIR_10WAY":
+                calibration_values.append(rotation["splits"]["calibration"]["pair_accuracy"])
+                test_values.append(rotation["splits"]["test"]["pair_accuracy"])
+            else:
+                calibration_values.append(rotation["splits"]["calibration"]["mixed_pair_accuracy"])
+                test_values.append(rotation["splits"]["test"]["mixed_pair_accuracy"])
+        comparable[probe["name"]] = {
+            "calibration_macro": mean(calibration_values), "test_macro": mean(test_values),
+            "test_per_rotation": test_values, "evaluation_population": "MIXED_ONLY",
+        }
+    selected_name = max(
+        enumerate(probes[2:]),
+        key=lambda item: (comparable[item[1]["name"]]["calibration_macro"], -item[0]),
+    )[1]["name"]
+    selected = comparable[selected_name]
     return {
         "schema_version": "controller_linear_probe_results.v1", "status": "PASS",
         "ridge_formula": "(X^T X + lambda I)^-1 X^T Y", "dtype": "float64",
         "lambda_grid": list(LAMBDAS), "train_only_standardization": True,
         "calibration_only_lambda_selection": True, "test_evaluated_once": True,
         "probes": {row["name"]: row for row in probes},
+        "same_denominator_mixed_pair_comparison": comparable,
         "best_legal_selected_by_calibration": {
-            "name": selected["name"], "test_macro": selected["test_macro"],
+            "name": selected_name, "test_macro": selected["test_macro"],
             "test_per_rotation": selected["test_per_rotation"],
             "calibration_macro": selected["calibration_macro"],
+            "evaluation_population": "MIXED_ONLY",
         },
         "ridge_fit_count": 4 * 5 * 6,
         "paper_final": False,
@@ -1290,7 +1310,7 @@ def visual_review(
         })
     if len(items) != 60:
         raise RuntimeError("VISUAL-SELECTION-COUNT-MISMATCH")
-    output_dir = attempt / "visuals/diagnostic_sheets_v2"
+    output_dir = attempt / "visuals/diagnostic_sheets_v3"
     output_dir.mkdir(parents=True, exist_ok=False)
     for index, item in enumerate(items):
         references = item["references"]
@@ -1320,7 +1340,7 @@ def visual_review(
     return {
         "schema_version": "controller_pair_diagnosis_visual_review.v1",
         "status": "PENDING_CODEX_IMAGE_OPEN", "selection_frozen_before_review": True,
-        "selection_revision": "v2_target_fold_centroid_rule",
+        "selection_revision": "v3_target_fold_centroid_and_same_denominator_probe_rule",
         "generated_diagnostic_sheet_count": 60, "actual_opened_count": 0,
         "required_opened_count": 60, "items": items,
         "renderer_runs": 0, "new_formal_renders": 0, "paper_final": False,
@@ -1366,9 +1386,10 @@ def classify(
     single = rows["SINGLE_REF_5WAY"]["test_macro"]
     spatial = rows["SINGLE_REF_SPATIAL_5WAY"]["test_macro"]
     per_ref = rows["PER_REF_TO_SET_PAIR"]["test_macro"]
-    soft = rows["CURRENT_SET_SOFT_TARGET_5WAY"]["test_macro"]
-    multi = rows["CURRENT_SET_MULTI_LABEL_5WAY"]["test_macro"]
-    direct = rows["CURRENT_SET_DIRECT_PAIR_10WAY"]["test_macro"]
+    comparable = probes["same_denominator_mixed_pair_comparison"]
+    soft = comparable["CURRENT_SET_SOFT_TARGET_5WAY"]["test_macro"]
+    multi = comparable["CURRENT_SET_MULTI_LABEL_5WAY"]["test_macro"]
+    direct = comparable["CURRENT_SET_DIRECT_PAIR_10WAY"]["test_macro"]
     factors = []
     if single < 0.80 and spatial - single < 0.10:
         factors.append("FROZEN_F2_CROSSFOLD_SEPARABILITY_LIMIT")
@@ -1416,7 +1437,8 @@ def classify(
         "CONDITION_FOLD_DOMAIN_SHIFT": "DESIGN_CROSSFOLD_REFERENCE_INVARIANCE_PROTOCOL",
         "GARMENT_SPECIFIC_REFERENCE_AMBIGUITY": "AUDIT_AND_REPAIR_GARMENT_REFERENCE_ASSETS",
         "MULTIPLE_FACTORS": "DESIGN_CONTROLLER_V3_FROM_PAIR_IDENTIFICATION_CAUSAL_DIAGNOSIS",
-        "PAIR_IDENTIFICATION_DIAGNOSIS_INCONCLUSIVE": "FREEZE_ORACLE_DUAL_SUPPORT_AND_REPORT_CONTROLLER_AS_LIMITATION",
+        "PAIR_IDENTIFICATION_DIAGNOSIS_INCONCLUSIVE":
+            "AUDIT_PURE_RECORD_PAIR_IDENTIFIABILITY_AND_REDEFINE_DIAGNOSTIC_DENOMINATORS",
     }
     secondary = [factor for factor in factors if factor != primary]
     return primary, secondary, representation, next_tasks[primary]
@@ -1463,15 +1485,17 @@ Logical records are disjoint, but exact RGB/mask reference assets overlap across
 
 Per-reference-to-set pair macro: `{final['probe_details']['PER_REF_TO_SET_PAIR']['test_macro']:.6f}`.
 
-Current-set soft-target 5-way macro: `{final['probe_details']['CURRENT_SET_SOFT_TARGET_5WAY']['test_macro']:.6f}`.
+Current-set soft-target 5-way all-record macro: `{final['probe_details']['CURRENT_SET_SOFT_TARGET_5WAY']['test_macro']:.6f}`.
 
-Current-set multi-label 5-way macro: `{final['probe_details']['CURRENT_SET_MULTI_LABEL_5WAY']['test_macro']:.6f}`.
+Same-denominator mixed-only soft-target macro: `{final['same_denominator_mixed_pair_comparison']['CURRENT_SET_SOFT_TARGET_5WAY']['test_macro']:.6f}`.
 
-Direct mixed-pair 10-way macro: `{final['probe_details']['CURRENT_SET_DIRECT_PAIR_10WAY']['test_macro']:.6f}`.
+Same-denominator mixed-only multi-label macro: `{final['same_denominator_mixed_pair_comparison']['CURRENT_SET_MULTI_LABEL_5WAY']['test_macro']:.6f}`.
+
+Direct mixed-pair 10-way macro: `{final['same_denominator_mixed_pair_comparison']['CURRENT_SET_DIRECT_PAIR_10WAY']['test_macro']:.6f}`.
 
 15-way mixed-pair macro: `{final['probe_details']['CURRENT_SET_15WAY']['test_macro']:.6f}`.
 
-All ridge fits are deterministic float64 closed-form fits using train-only standardization, calibration-only lambda selection, and one held-out test evaluation.
+All ridge fits are deterministic float64 closed-form fits using train-only standardization, calibration-only lambda selection, and one held-out test evaluation. Direct-pair and soft-target comparisons use the same mixed-only denominator; direct pair does not improve on soft-target under that boundary.
 """
     write_text(DOCS / "AAAI27_SET_AGGREGATION_AND_PARAMETERIZATION_ANALYSIS_20260724.md", aggregation)
     gradient = f"""# Controller Multitask Gradient Analysis
@@ -1512,7 +1536,7 @@ def regenerate_visual_review(output_root: Path, asset_root: Path) -> dict[str, A
 def finalize_visual_review(output_root: Path) -> dict[str, Any]:
     review_path = RISK / "controller_pair_diagnosis_visual_review.json"
     review = read_json(review_path)
-    if review.get("selection_revision") != "v2_target_fold_centroid_rule":
+    if review.get("selection_revision") != "v3_target_fold_centroid_and_same_denominator_probe_rule":
         raise RuntimeError("VISUAL-REVIEW-SELECTION-REVISION-MISMATCH")
     opened = 0
     for item in review["items"]:
@@ -1579,15 +1603,68 @@ def refresh_derived_artifacts(output_root: Path, asset_root: Path) -> dict[str, 
             else "NO_FAILURE_PERMUTATION_INVARIANT"
         )
     write_json(perturbation_path, perturbation)
+    linear_path = RISK / "controller_linear_probe_results.json"
+    linear = read_json(linear_path)
+    comparable_names = (
+        "PER_REF_TO_SET_PAIR", "CURRENT_SET_SOFT_TARGET_5WAY",
+        "CURRENT_SET_MULTI_LABEL_5WAY", "CURRENT_SET_DIRECT_PAIR_10WAY",
+        "CURRENT_SET_15WAY",
+    )
+    comparable = {}
+    for name in comparable_names:
+        probe = linear["probes"][name]
+        calibration_values, test_values = [], []
+        for rotation in probe["rotation_results"]:
+            key = (
+                "pair_accuracy" if name == "CURRENT_SET_DIRECT_PAIR_10WAY"
+                else "mixed_pair_accuracy"
+            )
+            calibration_values.append(rotation["splits"]["calibration"][key])
+            test_values.append(rotation["splits"]["test"][key])
+        comparable[name] = {
+            "calibration_macro": mean(calibration_values),
+            "test_macro": mean(test_values),
+            "test_per_rotation": test_values,
+            "evaluation_population": "MIXED_ONLY",
+        }
+    selected_name = max(
+        enumerate(comparable_names),
+        key=lambda item: (comparable[item[1]]["calibration_macro"], -item[0]),
+    )[1]
+    linear["same_denominator_mixed_pair_comparison"] = comparable
+    linear["best_legal_selected_by_calibration"] = {
+        "name": selected_name, **comparable[selected_name]
+    }
+    write_json(linear_path, linear)
     final_path = RISK / "controller_pair_diagnosis_final_summary.json"
     final = read_json(final_path)
-    primary = final["primary_diagnostic_classification"]
-    final["secondary_factors"] = [
-        value for value in final["secondary_factors"] if value != primary
+    primary, factors, representation, next_task = classify(
+        linear,
+        read_json(RISK / "controller_checkpoint_pair_trajectory.json"),
+        gradient,
+        read_json(RISK / "controller_pair_confusion_analysis.json"),
+    )
+    final["primary_diagnostic_classification"] = primary
+    final["secondary_factors"] = factors
+    final["secondary_observations"] = [
+        "PURE_RECORD_LATENT_SECOND_GARMENT_IS_NOT_INPUT_IDENTIFIABLE",
+        "V2_FINAL_IS_STILL_IMPROVING_RATHER_THAN_DEGRADING",
+        "MULTITASK_SHARED_PATH_GRADIENT_CONFLICT_WITHOUT_TRAJECTORY_CAUSALITY",
     ]
+    final["representation_classification"] = representation
+    final["next_task"] = next_task
+    final["probe_summary"] = linear["best_legal_selected_by_calibration"]
+    final["same_denominator_mixed_pair_comparison"] = comparable
     final["gradient_summary"] = gradient["aggregate"]
     write_json(final_path, final)
     write_json(output_root / ATTEMPT / "aggregates/final_summary.json", final)
+    handoff_path = HANDOFF / "controller_pair_identification_diagnosis_handoff.json"
+    handoff = read_json(handoff_path)
+    handoff["diagnostic_classification"] = primary
+    handoff["representation_classification"] = representation
+    handoff["next_task"] = next_task
+    handoff["status"] = "PASS_PENDING_VISUAL_REVIEW_REFRESH"
+    write_json(handoff_path, handoff)
     reports(final)
     visual = regenerate_visual_review(output_root, asset_root)
     return {"status": "PASS", "visual_sheet_count": len(visual["items"])}
@@ -1699,6 +1776,8 @@ def main() -> None:
             if representation == "REFERENCE_REPRESENTATION_INSUFFICIENT" else None),
         "formal_reaggregation": reaggregation,
         "probe_summary": probe_value["best_legal_selected_by_calibration"],
+        "same_denominator_mixed_pair_comparison":
+            probe_value["same_denominator_mixed_pair_comparison"],
         "probe_details": {name: {key: value for key, value in row.items()
                                   if key in {"test_macro", "test_per_rotation", "calibration_macro"}}
                           for name, row in probe_value["probes"].items()},
