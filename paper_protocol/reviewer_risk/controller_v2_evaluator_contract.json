@@ -1,0 +1,65 @@
+{
+  "compatibility_manifest_uses_test_fold": false,
+  "condition_order": [
+    "cond_000000",
+    "cond_000318",
+    "cond_000017",
+    "cond_000347"
+  ],
+  "formal_rendering_in_this_task": false,
+  "modes": [
+    "SINGLE_ENDPOINT",
+    "DUAL_SUPPORT",
+    "HARD_GEOMETRY_SOFT_VA"
+  ],
+  "paper_final": 0,
+  "report_every_rotation_and_seed": true,
+  "rotations": [
+    {
+      "calibration_fold": 2,
+      "rotation": 0,
+      "test_fold": 3,
+      "train_folds": [
+        0,
+        1
+      ]
+    },
+    {
+      "calibration_fold": 3,
+      "rotation": 1,
+      "test_fold": 0,
+      "train_folds": [
+        1,
+        2
+      ]
+    },
+    {
+      "calibration_fold": 0,
+      "rotation": 2,
+      "test_fold": 1,
+      "train_folds": [
+        2,
+        3
+      ]
+    },
+    {
+      "calibration_fold": 1,
+      "rotation": 3,
+      "test_fold": 2,
+      "train_folds": [
+        3,
+        0
+      ]
+    }
+  ],
+  "schema_version": "canondressgs.research.controller_v2_evaluator_contract.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "selection_or_cherry_picking": "FORBIDDEN",
+  "status": "DESIGN_ONLY",
+  "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+  "threshold_calibration_uses_test_fold": false
+}

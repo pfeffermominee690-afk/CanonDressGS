@@ -1,0 +1,2810 @@
+{
+  "archive_content_sha256": "bbf700a7738f20f50dc2ab46737bf92284433a7777ed072aa9d7deb23f64d2e8",
+  "execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_loads": 0,
+    "checkpoint_writes": 0,
+    "evaluation_runs": 0,
+    "formal_metrics": 0,
+    "formal_renders": 0,
+    "formal_visual_reviews": 0,
+    "inference_runs": 0,
+    "metric_aggregations": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "paper_final": 0,
+    "renderer_calls": 0,
+    "scheduler_steps": 0,
+    "training_forward_batches": 0,
+    "training_steps": 0
+  },
+  "labels_are_rule_generated_not_blacklisted": true,
+  "manifests": [
+    {
+      "calibration_condition": "cond_000017",
+      "calibration_fold": 2,
+      "condition_order": [
+        "cond_000000",
+        "cond_000318",
+        "cond_000017",
+        "cond_000347"
+      ],
+      "entries": [
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.45426354797089163,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7054531698462067,
+            "garment_coverage_ratio": 0.9999000000000001,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9498686914642652,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7054531698462067,
+            "symmetric_nearest_support_distance": 0.030255587043160493
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "cdfed1a3c6519fed5b1d2ea06493e8b4bcf4a4938fb06aff42bb8b183f16fba3",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.45426354797089163,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7054531698462067,
+            "garment_support_coverage_ratio_active_over_total": 0.9999000000000001,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9498686914642652,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.030255587043160493
+          },
+          "pair_id": "O01_O02",
+          "pair_order_index": 0,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.43590458334019083,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7199972270986442,
+            "garment_coverage_ratio": 0.9999008333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9519557412713766,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7199972270986442,
+            "symmetric_nearest_support_distance": 0.034281628670954196
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "258eb46a68a51bbb89e556d92ab7f3e2ebcd167637e332c0efa4bf70c29631d6",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.43590458334019083,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7199972270986442,
+            "garment_support_coverage_ratio_active_over_total": 0.9999008333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9519557412713766,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.034281628670954196
+          },
+          "pair_id": "O01_O03",
+          "pair_order_index": 1,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4105443063497307,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7108620986063606,
+            "garment_coverage_ratio": 0.9999008333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9482693194101254,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7108620986063606,
+            "symmetric_nearest_support_distance": 0.035039425589316824
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "23076144737f853198a2d9ca1ed41485fcbd0da37f69bacff26b2b40abad5877",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4105443063497307,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7108620986063606,
+            "garment_support_coverage_ratio_active_over_total": 0.9999008333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9482693194101254,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.035039425589316824
+          },
+          "pair_id": "O01_O04",
+          "pair_order_index": 2,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4504017853278824,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7177397115636306,
+            "garment_coverage_ratio": 0.9998999999999999,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9535924661904573,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7177397115636306,
+            "symmetric_nearest_support_distance": 0.02978741051084029
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "2f1192225c98b2fcfd7934527cab6e3b2d78a13da3f0ff39237dad2f0cb0fcec",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4504017853278824,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7177397115636306,
+            "garment_support_coverage_ratio_active_over_total": 0.9998999999999999,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9535924661904573,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.02978741051084029
+          },
+          "pair_id": "O01_O08",
+          "pair_order_index": 3,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.32866308030649155,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.6780361997205366,
+            "garment_coverage_ratio": 0.9999008333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9467751402407885,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.6780361997205366,
+            "symmetric_nearest_support_distance": 0.03851382006477925
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "4026f0f5483324feba9dfe7c02a363ec69e232db5c2499f0334978f54f38d745",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.32866308030649155,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.6780361997205366,
+            "garment_support_coverage_ratio_active_over_total": 0.9999008333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9467751402407885,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03851382006477925
+          },
+          "pair_id": "O02_O03",
+          "pair_order_index": 4,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.35748475521517914,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.6752174591269896,
+            "garment_coverage_ratio": 0.9999008333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.943232573568821,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.6752174591269896,
+            "symmetric_nearest_support_distance": 0.03844372145119502
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "efbc0b1fbdf8f98105446f1073f4305063d26203ab9d1c3c53b58b66e4b55861",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.35748475521517914,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.6752174591269896,
+            "garment_support_coverage_ratio_active_over_total": 0.9999008333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.943232573568821,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03844372145119502
+          },
+          "pair_id": "O02_O04",
+          "pair_order_index": 5,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3365194882262334,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.6746854529910511,
+            "garment_coverage_ratio": 0.9998999999999999,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9475508338461319,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.6746854529910511,
+            "symmetric_nearest_support_distance": 0.032489593104994885
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "65b3adb42acb89865337a43b37dcc39f8369580123157074a1640df740d16ec9",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3365194882262334,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.6746854529910511,
+            "garment_support_coverage_ratio_active_over_total": 0.9998999999999999,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9475508338461319,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.032489593104994885
+          },
+          "pair_id": "O02_O08",
+          "pair_order_index": 6,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3896394790831002,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.704868009477214,
+            "garment_coverage_ratio": 0.9999016666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9502514203389486,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.704868009477214,
+            "symmetric_nearest_support_distance": 0.03286529890538561
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "8e6b8d637f0b7934c8dcca52764464db6146c207d04014906266da1041a168a3",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3896394790831002,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.704868009477214,
+            "garment_support_coverage_ratio_active_over_total": 0.9999016666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9502514203389486,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03286529890538561
+          },
+          "pair_id": "O03_O04",
+          "pair_order_index": 7,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4317951267824898,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7046902646673031,
+            "garment_coverage_ratio": 0.9999008333333332,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9537413387248913,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7046902646673031,
+            "symmetric_nearest_support_distance": 0.03573840712795027
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "7acec561973604e3ed76e3646530596d9214ccf3c7777341488310436a2f08bd",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4317951267824898,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7046902646673031,
+            "garment_support_coverage_ratio_active_over_total": 0.9999008333333332,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9537413387248913,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03573840712795027
+          },
+          "pair_id": "O03_O08",
+          "pair_order_index": 8,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000017",
+          "calibration_fold": 2,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.43779158040294286,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7059190223293356,
+            "garment_coverage_ratio": 0.9999008333333332,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9512812426934639,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7059190223293356,
+            "symmetric_nearest_support_distance": 0.03379031690100759
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "4e2ae306a3fc6b2db246150d76f30427db862a7198510a9ae003e633d992299d",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.43779158040294286,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7059190223293356,
+            "garment_support_coverage_ratio_active_over_total": 0.9999008333333332,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9512812426934639,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03379031690100759
+          },
+          "pair_id": "O04_O08",
+          "pair_order_index": 9,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000347",
+          "test_fold": 3,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        }
+      ],
+      "manifest_content_sha256": "56178eff4f7101efc9b484ec2057237eb3a320f93b3443137e991e3e41aa1af6",
+      "pair_count": 10,
+      "pair_order": [
+        "O01_O02",
+        "O01_O03",
+        "O01_O04",
+        "O01_O08",
+        "O02_O03",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "provenance": {
+        "allowed": [
+          "canonical_endpoint_intrinsic_descriptors",
+          "calibration_fold_frozen_oracle_evaluations"
+        ],
+        "forbidden_and_unused": [
+          "target_query_ground_truth",
+          "test_fold",
+          "manual_pair_blacklist"
+        ],
+        "source_sha256": {
+          "controller_pair_compatibility_analysis.json": "a94bdcf16f4ce1c0d0d4f354b7d40eadf362446e37043bd97c4ed707c5faa0e9",
+          "dual_support_all_pair_results.json": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+          "dual_support_all_pair_visual_review.json": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa"
+        }
+      },
+      "rotation": 0,
+      "schema_version": "canondressgs.research.controller_v2_compatibility_manifest.v1",
+      "smoke_manifest_content_sha256": "a2743cb7d82b2061a8ffa48823b199896684ab500b6ef3fc8ab54fa6c462c5ee",
+      "status": "PASS",
+      "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+      "test_condition": "cond_000347",
+      "test_fold": 3,
+      "train_folds": [
+        0,
+        1
+      ],
+      "uniform_rule": {
+        "compatible_iff_all": [
+          "maximum_core_artifact_grade <= 2",
+          "severe_patch_cloud_mottle_full_body_count == 0",
+          "identity_contamination_maximum_grade == 0",
+          "grade3_ghosting_count == 0",
+          "endpoint_parity == PASS"
+        ],
+        "explicit_pair_blacklist": false
+      }
+    },
+    {
+      "calibration_condition": "cond_000347",
+      "calibration_fold": 3,
+      "condition_order": [
+        "cond_000000",
+        "cond_000318",
+        "cond_000017",
+        "cond_000347"
+      ],
+      "entries": [
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.26676904397908396,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.6918486574331478,
+            "garment_coverage_ratio": 0.9998983333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9451596277455488,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.6918486574331478,
+            "symmetric_nearest_support_distance": 0.030255587043160493
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "062e9907bf4be16a2ddd2b5b628c9f88a3b92814021728b297d562260ab8b953",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.26676904397908396,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.6918486574331478,
+            "garment_support_coverage_ratio_active_over_total": 0.9998983333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9451596277455488,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.030255587043160493
+          },
+          "pair_id": "O01_O02",
+          "pair_order_index": 0,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.38780969321395964,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7160376235258901,
+            "garment_coverage_ratio": 0.9999000000000001,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9475760292261839,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7160376235258901,
+            "symmetric_nearest_support_distance": 0.034281628670954196
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "77c8cce0b078e700b482d0dad40d4171af2796af736b03b02f83efff77443148",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.38780969321395964,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7160376235258901,
+            "garment_support_coverage_ratio_active_over_total": 0.9999000000000001,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9475760292261839,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.034281628670954196
+          },
+          "pair_id": "O01_O03",
+          "pair_order_index": 1,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.33901716987840036,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7103291925429415,
+            "garment_coverage_ratio": 0.9998991666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.943476939573884,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7103291925429415,
+            "symmetric_nearest_support_distance": 0.035039425589316824
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "b7510129943a98bc3807fd975ec908d638e6aab1449370ba54e6b3e1e6c1ac27",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.33901716987840036,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7103291925429415,
+            "garment_support_coverage_ratio_active_over_total": 0.9998991666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.943476939573884,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.035039425589316824
+          },
+          "pair_id": "O01_O04",
+          "pair_order_index": 2,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3162272977342822,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.6953356943244925,
+            "garment_coverage_ratio": 0.9998991666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9486588792254528,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.6953356943244925,
+            "symmetric_nearest_support_distance": 0.02978741051084029
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "4f2092dd590567e740cfa77ca13a7da529ea992882d652b4121422ad110f5a85",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3162272977342822,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.6953356943244925,
+            "garment_support_coverage_ratio_active_over_total": 0.9998991666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9486588792254528,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.02978741051084029
+          },
+          "pair_id": "O01_O08",
+          "pair_order_index": 3,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4179094657592643,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7204676616036801,
+            "garment_coverage_ratio": 0.9999033333333335,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9491465364893278,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7204676616036801,
+            "symmetric_nearest_support_distance": 0.03851382006477925
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "15fb2c5d8eb86ef6660b1a503a15bb9593b881ba1f0e9ad8e78a087743446f7a",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4179094657592643,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7204676616036801,
+            "garment_support_coverage_ratio_active_over_total": 0.9999033333333335,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9491465364893278,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03851382006477925
+          },
+          "pair_id": "O02_O03",
+          "pair_order_index": 4,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.35543543632247965,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.717188237489761,
+            "garment_coverage_ratio": 0.9999025000000001,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9456851246456305,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.717188237489761,
+            "symmetric_nearest_support_distance": 0.03844372145119502
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "df945140ac8b9d408368bfc64dcdbc3bd32a33fdae925743f3d59b30390f9832",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.35543543632247965,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.717188237489761,
+            "garment_support_coverage_ratio_active_over_total": 0.9999025000000001,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9456851246456305,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03844372145119502
+          },
+          "pair_id": "O02_O04",
+          "pair_order_index": 5,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.31153106563527283,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.6952525503153333,
+            "garment_coverage_ratio": 0.9999025000000001,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9488591315845648,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.6952525503153333,
+            "symmetric_nearest_support_distance": 0.032489593104994885
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "1e55954268c8d5d9bc43a505ce841c57bb4831d5086e4115698c4701ffb02559",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.31153106563527283,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.6952525503153333,
+            "garment_support_coverage_ratio_active_over_total": 0.9999025000000001,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9488591315845648,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.032489593104994885
+          },
+          "pair_id": "O02_O08",
+          "pair_order_index": 6,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.42663614373134107,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7205855988824174,
+            "garment_coverage_ratio": 0.9999041666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9457904907564322,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7205855988824174,
+            "symmetric_nearest_support_distance": 0.03286529890538561
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "0a7152c5e75797b16d857246f2b6afa4b4f6a3db52bdffd309bfe9dbb01cf7f5",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.42663614373134107,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7205855988824174,
+            "garment_support_coverage_ratio_active_over_total": 0.9999041666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9457904907564322,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03286529890538561
+          },
+          "pair_id": "O03_O04",
+          "pair_order_index": 7,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.42407976994391244,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7106877239674946,
+            "garment_coverage_ratio": 0.9999041666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9488323647528887,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7106877239674946,
+            "symmetric_nearest_support_distance": 0.03573840712795027
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "b79efa6535c4907fa0824c1d012756103ba7d5a6d098df79e16c0023dad28dbc",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.42407976994391244,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7106877239674946,
+            "garment_support_coverage_ratio_active_over_total": 0.9999041666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9488323647528887,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03573840712795027
+          },
+          "pair_id": "O03_O08",
+          "pair_order_index": 8,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000347",
+          "calibration_fold": 3,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4121019185859747,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7158839723257285,
+            "garment_coverage_ratio": 0.9999033333333335,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9474555309861898,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7158839723257285,
+            "symmetric_nearest_support_distance": 0.03379031690100759
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "c1a60f2a727fe0e7b0fcb3fec2abbed5cd611ebf59e472c48995cd337be30914",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4121019185859747,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7158839723257285,
+            "garment_support_coverage_ratio_active_over_total": 0.9999033333333335,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9474555309861898,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03379031690100759
+          },
+          "pair_id": "O04_O08",
+          "pair_order_index": 9,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000000",
+          "test_fold": 0,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        }
+      ],
+      "manifest_content_sha256": "0fde566831eb1a4a9d472dbae5cc9944f1c1e5ef2bf681b22028d160a6547ce7",
+      "pair_count": 10,
+      "pair_order": [
+        "O01_O02",
+        "O01_O03",
+        "O01_O04",
+        "O01_O08",
+        "O02_O03",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "provenance": {
+        "allowed": [
+          "canonical_endpoint_intrinsic_descriptors",
+          "calibration_fold_frozen_oracle_evaluations"
+        ],
+        "forbidden_and_unused": [
+          "target_query_ground_truth",
+          "test_fold",
+          "manual_pair_blacklist"
+        ],
+        "source_sha256": {
+          "controller_pair_compatibility_analysis.json": "a94bdcf16f4ce1c0d0d4f354b7d40eadf362446e37043bd97c4ed707c5faa0e9",
+          "dual_support_all_pair_results.json": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+          "dual_support_all_pair_visual_review.json": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa"
+        }
+      },
+      "rotation": 1,
+      "schema_version": "canondressgs.research.controller_v2_compatibility_manifest.v1",
+      "smoke_manifest_content_sha256": "2121605e0cc7af3caa77d555a2a53e5dc0ed7317f573998156c37b3c41290a19",
+      "status": "PASS",
+      "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+      "test_condition": "cond_000000",
+      "test_fold": 0,
+      "train_folds": [
+        1,
+        2
+      ],
+      "uniform_rule": {
+        "compatible_iff_all": [
+          "maximum_core_artifact_grade <= 2",
+          "severe_patch_cloud_mottle_full_body_count == 0",
+          "identity_contamination_maximum_grade == 0",
+          "grade3_ghosting_count == 0",
+          "endpoint_parity == PASS"
+        ],
+        "explicit_pair_blacklist": false
+      }
+    },
+    {
+      "calibration_condition": "cond_000000",
+      "calibration_fold": 0,
+      "condition_order": [
+        "cond_000000",
+        "cond_000318",
+        "cond_000017",
+        "cond_000347"
+      ],
+      "entries": [
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.411851160632299,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7649119724983297,
+            "garment_coverage_ratio": 0.9998858333333334,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9459119501213232,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7649119724983297,
+            "symmetric_nearest_support_distance": 0.030255587043160493
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "5b127f97181ee708b09e6eec31b6067b426fd3d99a4beb5e8fa2c89d3a7d533f",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.411851160632299,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7649119724983297,
+            "garment_support_coverage_ratio_active_over_total": 0.9998858333333334,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9459119501213232,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.030255587043160493
+          },
+          "pair_id": "O01_O02",
+          "pair_order_index": 0,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3346514563332861,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7497032773727846,
+            "garment_coverage_ratio": 0.9998866666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9352488045891126,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7497032773727846,
+            "symmetric_nearest_support_distance": 0.034281628670954196
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "72ce470d7db12ca47544a8ff2ea903704ae755d04df0f81237f1763eaa828139",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3346514563332861,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7497032773727846,
+            "garment_support_coverage_ratio_active_over_total": 0.9998866666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9352488045891126,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.034281628670954196
+          },
+          "pair_id": "O01_O03",
+          "pair_order_index": 1,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3574197961109144,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7488127391194346,
+            "garment_coverage_ratio": 0.9998858333333334,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9372797707716624,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7488127391194346,
+            "symmetric_nearest_support_distance": 0.035039425589316824
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "ab6d1d8b79733ecfa81fff4d1bd6b5125108efe140d80adfc90fe5d78304f788",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3574197961109144,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7488127391194346,
+            "garment_support_coverage_ratio_active_over_total": 0.9998858333333334,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9372797707716624,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.035039425589316824
+          },
+          "pair_id": "O01_O04",
+          "pair_order_index": 2,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.43989691848005413,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7622315463617287,
+            "garment_coverage_ratio": 0.999885,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9448074201742808,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7622315463617287,
+            "symmetric_nearest_support_distance": 0.02978741051084029
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "2a5340506d49c3c4f56d2c632e3efa3e70a2c53b30ed8af2d4af5bd92d454fbb",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.43989691848005413,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7622315463617287,
+            "garment_support_coverage_ratio_active_over_total": 0.999885,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9448074201742808,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.02978741051084029
+          },
+          "pair_id": "O01_O08",
+          "pair_order_index": 3,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.36914332027270685,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7341654375803909,
+            "garment_coverage_ratio": 0.9998875000000002,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9367588423192501,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7341654375803909,
+            "symmetric_nearest_support_distance": 0.03851382006477925
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "1874ad470322833ca0c983ac1d4cddc1438645cd75fb76b89d3f0186845fed51",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.36914332027270685,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7341654375803909,
+            "garment_support_coverage_ratio_active_over_total": 0.9998875000000002,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9367588423192501,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03851382006477925
+          },
+          "pair_id": "O02_O03",
+          "pair_order_index": 4,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.361772516080545,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7378164405998292,
+            "garment_coverage_ratio": 0.9998866666666668,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9379937263826529,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7378164405998292,
+            "symmetric_nearest_support_distance": 0.03844372145119502
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "f33bd7a60b4629fa13f5a49bd15ff3c1886ec6a698ea093414f26dbb62e42c3e",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.361772516080545,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7378164405998292,
+            "garment_support_coverage_ratio_active_over_total": 0.9998866666666668,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9379937263826529,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03844372145119502
+          },
+          "pair_id": "O02_O04",
+          "pair_order_index": 5,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4187984669911582,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7525300016521713,
+            "garment_coverage_ratio": 0.9998858333333334,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9456768780946732,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7525300016521713,
+            "symmetric_nearest_support_distance": 0.032489593104994885
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "94410e82ce3a07585bc164a76653f44f7f874934552a7f4f3ec802082b37be4b",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4187984669911582,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7525300016521713,
+            "garment_support_coverage_ratio_active_over_total": 0.9998858333333334,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9456768780946732,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.032489593104994885
+          },
+          "pair_id": "O02_O08",
+          "pair_order_index": 6,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3660196230517221,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7266287084638862,
+            "garment_coverage_ratio": 0.9998874999999999,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9369965605437756,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7266287084638862,
+            "symmetric_nearest_support_distance": 0.03286529890538561
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "f76770a29bfa8ebad1510a77b7bae5ce6a56a8f64375da2b6d2517674d9c9e62",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3660196230517221,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7266287084638862,
+            "garment_support_coverage_ratio_active_over_total": 0.9998874999999999,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9369965605437756,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03286529890538561
+          },
+          "pair_id": "O03_O04",
+          "pair_order_index": 7,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.38391131413888324,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7445879384553309,
+            "garment_coverage_ratio": 0.9998866666666667,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9396897194286188,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7445879384553309,
+            "symmetric_nearest_support_distance": 0.03573840712795027
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "0db05be9e02d12d7a53d2bb40bc98fb401b24f59106c8959605b8086fbabb573",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.38391131413888324,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7445879384553309,
+            "garment_support_coverage_ratio_active_over_total": 0.9998866666666667,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9396897194286188,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03573840712795027
+          },
+          "pair_id": "O03_O08",
+          "pair_order_index": 8,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000000",
+          "calibration_fold": 0,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.41405214799478474,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7531872348878563,
+            "garment_coverage_ratio": 0.9998858333333334,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9412113291521867,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7531872348878563,
+            "symmetric_nearest_support_distance": 0.03379031690100759
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "b5a2f81e09fd85fe268c84bd0949e6449fde88ea22ca3f80ab3db071ea700c45",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.41405214799478474,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7531872348878563,
+            "garment_support_coverage_ratio_active_over_total": 0.9998858333333334,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9412113291521867,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03379031690100759
+          },
+          "pair_id": "O04_O08",
+          "pair_order_index": 9,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000318",
+          "test_fold": 1,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        }
+      ],
+      "manifest_content_sha256": "d9839c910439e282e646d94908aa742e74dfb225d666e41315eb1282b1dc27ea",
+      "pair_count": 10,
+      "pair_order": [
+        "O01_O02",
+        "O01_O03",
+        "O01_O04",
+        "O01_O08",
+        "O02_O03",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "provenance": {
+        "allowed": [
+          "canonical_endpoint_intrinsic_descriptors",
+          "calibration_fold_frozen_oracle_evaluations"
+        ],
+        "forbidden_and_unused": [
+          "target_query_ground_truth",
+          "test_fold",
+          "manual_pair_blacklist"
+        ],
+        "source_sha256": {
+          "controller_pair_compatibility_analysis.json": "a94bdcf16f4ce1c0d0d4f354b7d40eadf362446e37043bd97c4ed707c5faa0e9",
+          "dual_support_all_pair_results.json": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+          "dual_support_all_pair_visual_review.json": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa"
+        }
+      },
+      "rotation": 2,
+      "schema_version": "canondressgs.research.controller_v2_compatibility_manifest.v1",
+      "smoke_manifest_content_sha256": "b148734ac34136e53bd00e90be089bac646eedd2195bec4ac2dda5b1831a08c2",
+      "status": "PASS",
+      "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+      "test_condition": "cond_000318",
+      "test_fold": 1,
+      "train_folds": [
+        2,
+        3
+      ],
+      "uniform_rule": {
+        "compatible_iff_all": [
+          "maximum_core_artifact_grade <= 2",
+          "severe_patch_cloud_mottle_full_body_count == 0",
+          "identity_contamination_maximum_grade == 0",
+          "grade3_ghosting_count == 0",
+          "endpoint_parity == PASS"
+        ],
+        "explicit_pair_blacklist": false
+      }
+    },
+    {
+      "calibration_condition": "cond_000318",
+      "calibration_fold": 1,
+      "condition_order": [
+        "cond_000000",
+        "cond_000318",
+        "cond_000017",
+        "cond_000347"
+      ],
+      "entries": [
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3835973990372752,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7501713226195671,
+            "garment_coverage_ratio": 0.99993,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9660078926632801,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7501713226195671,
+            "symmetric_nearest_support_distance": 0.030255587043160493
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "3b7ffebe9f3d52f651079dcc1c7db35cd1fa23e5b06b9f810a84439cdfad2505",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3835973990372752,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7501713226195671,
+            "garment_support_coverage_ratio_active_over_total": 0.99993,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9660078926632801,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.030255587043160493
+          },
+          "pair_id": "O01_O02",
+          "pair_order_index": 0,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.38510754645346523,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7544908512130707,
+            "garment_coverage_ratio": 0.99993,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9578788541257381,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7544908512130707,
+            "symmetric_nearest_support_distance": 0.034281628670954196
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "bfdbc15edd40baddf0876f08fb2d4347f03e03d6516a638febc0ef86326ee8f8",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.38510754645346523,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7544908512130707,
+            "garment_support_coverage_ratio_active_over_total": 0.99993,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9578788541257381,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.034281628670954196
+          },
+          "pair_id": "O01_O03",
+          "pair_order_index": 1,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3693480665013098,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7453405676213571,
+            "garment_coverage_ratio": 0.99993,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9600009539475044,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7453405676213571,
+            "symmetric_nearest_support_distance": 0.035039425589316824
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "41d17906bfb93bd906984e33aa5df341d8248b98606653092c44f440b4d895e3",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3693480665013098,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7453405676213571,
+            "garment_support_coverage_ratio_active_over_total": 0.99993,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9600009539475044,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.035039425589316824
+          },
+          "pair_id": "O01_O04",
+          "pair_order_index": 2,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.36898180331060565,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7434561857057461,
+            "garment_coverage_ratio": 0.9999308333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9648664388805628,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7434561857057461,
+            "symmetric_nearest_support_distance": 0.02978741051084029
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "587c7be87e811275b780b989e8e0238358780b78f64de27465d01dd7c4c62a22",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.36898180331060565,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7434561857057461,
+            "garment_support_coverage_ratio_active_over_total": 0.9999308333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9648664388805628,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.02978741051084029
+          },
+          "pair_id": "O01_O08",
+          "pair_order_index": 3,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.3597406343938347,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7496929671755388,
+            "garment_coverage_ratio": 0.99993,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9585961190362772,
+            "oracle_dual_support_core_artifact_maximum_grade": 3,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 8,
+            "silhouette_overlap_on_calibration_conditions": 0.7496929671755388,
+            "symmetric_nearest_support_distance": 0.03851382006477925
+          },
+          "compatibility_label": "INCOMPATIBLE",
+          "compatibility_score": 0.6,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "629518be15ad48dc89bfd9ecf946337a4eb7c270f01ad5ab02bf7c1ebc3e9994",
+          "expected_mode_when_mixed_and_pair_confident": "HARD_GEOMETRY_SOFT_VA",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.3597406343938347,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7496929671755388,
+            "garment_support_coverage_ratio_active_over_total": 0.99993,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9585961190362772,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03851382006477925
+          },
+          "pair_id": "O02_O03",
+          "pair_order_index": 4,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 3,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 8,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": false,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": false
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.2781511148095293,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7328341339023949,
+            "garment_coverage_ratio": 0.99993,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9586943443864584,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7328341339023949,
+            "symmetric_nearest_support_distance": 0.03844372145119502
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "57f33bc48c47cfaeb69388abeea59a3eccd0c4c49799559dcb6aa6786b5c68e6",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.2781511148095293,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7328341339023949,
+            "garment_support_coverage_ratio_active_over_total": 0.99993,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9586943443864584,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03844372145119502
+          },
+          "pair_id": "O02_O04",
+          "pair_order_index": 5,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.34692562356388695,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7302055420343324,
+            "garment_coverage_ratio": 0.9999308333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9649990908801556,
+            "oracle_dual_support_core_artifact_maximum_grade": 1,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7302055420343324,
+            "symmetric_nearest_support_distance": 0.032489593104994885
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "4682034330dbc31e0298c9eff4d747c721fdba35564e3b4a4f173608c825253d",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.34692562356388695,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7302055420343324,
+            "garment_support_coverage_ratio_active_over_total": 0.9999308333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9649990908801556,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.032489593104994885
+          },
+          "pair_id": "O02_O08",
+          "pair_order_index": 6,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 1,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.34052803425767975,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7475242492117652,
+            "garment_coverage_ratio": 0.99993,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9579578048239151,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7475242492117652,
+            "symmetric_nearest_support_distance": 0.03286529890538561
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "495ac46515c36c5f511ccc43cf178a944bd8c489ca6ab50d997e737a8798e0df",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.34052803425767975,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7475242492117652,
+            "garment_support_coverage_ratio_active_over_total": 0.99993,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9579578048239151,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03286529890538561
+          },
+          "pair_id": "O03_O04",
+          "pair_order_index": 7,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.4087430217181387,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7557795219598628,
+            "garment_coverage_ratio": 0.9999308333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9613748379051685,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7557795219598628,
+            "symmetric_nearest_support_distance": 0.03573840712795027
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "b731c063b51f8243d61c1536bb65f5aca90fd9034f2d570e913568f5741bff23",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.4087430217181387,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7557795219598628,
+            "garment_support_coverage_ratio_active_over_total": 0.9999308333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9613748379051685,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03573840712795027
+          },
+          "pair_id": "O03_O08",
+          "pair_order_index": 8,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        },
+        {
+          "calibration_condition": "cond_000318",
+          "calibration_fold": 1,
+          "compatibility_descriptors": {
+            "boundary_consistency": 0.37497016816198103,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_geometry_support_overlap": 0.7364357071102449,
+            "garment_coverage_ratio": 0.9999308333333333,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "opacity_weighted_support_overlap": 0.9620819880316654,
+            "oracle_dual_support_core_artifact_maximum_grade": 2,
+            "oracle_severe_patch_cloud_mottle_full_body_count": 0,
+            "silhouette_overlap_on_calibration_conditions": 0.7364357071102449,
+            "symmetric_nearest_support_distance": 0.03379031690100759
+          },
+          "compatibility_label": "COMPATIBLE",
+          "compatibility_score": 1.0,
+          "descriptor_measurement_contract": {
+            "boundary_consistency": "calibration-fold frozen Oracle mean boundary F-score",
+            "canonical_bbox_ratio": "not present in the frozen archive; null is retained rather than fabricating a value",
+            "canonical_geometry_support_overlap": "calibration-fold frozen Oracle silhouette-IoU proxy; no target/test query is used",
+            "garment_coverage_ratio": "calibration-fold active Gaussian count divided by total count",
+            "opacity_weighted_support_overlap": "one minus calibration-fold frozen Oracle mean outside-garment opacity",
+            "symmetric_nearest_support_distance": "calibration-fold frozen Oracle mean displacement RMS proxy"
+          },
+          "descriptor_provenance": "CALIBRATION_FOLD_FROZEN_ORACLE_ARCHIVE_ONLY",
+          "entry_content_sha256": "16c55961aa7fb25d2fe45ecfa3ff05144e604304966312f1d0a80965bbc16217",
+          "expected_mode_when_mixed_and_pair_confident": "DUAL_SUPPORT",
+          "intrinsic_and_calibration_descriptors": {
+            "boundary_consistency_mean_fscore": 0.37497016816198103,
+            "canonical_bbox_ratio": null,
+            "canonical_bbox_ratio_status": "UNAVAILABLE_IN_FROZEN_ARCHIVE_NOT_FABRICATED",
+            "canonical_support_overlap_proxy_mean_silhouette_iou": 0.7364357071102449,
+            "garment_support_coverage_ratio_active_over_total": 0.9999308333333333,
+            "opacity_weighted_support_overlap_proxy_one_minus_outside_opacity": 0.9620819880316654,
+            "symmetric_nearest_support_distance_proxy_mean_displacement_rms": 0.03379031690100759
+          },
+          "pair_id": "O04_O08",
+          "pair_order_index": 9,
+          "query_ground_truth_used": false,
+          "rule_evidence": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count": 0,
+            "identity_contamination_maximum_grade": 0,
+            "maximum_core_artifact_grade": 2,
+            "oracle_metric_record_count": 6,
+            "severe_patch_cloud_mottle_full_body_count": 0,
+            "visual_record_count": 6
+          },
+          "target_or_test_artifact_label_used": false,
+          "test_condition": "cond_000017",
+          "test_fold": 2,
+          "test_fold_excluded_from_manifest_construction": true,
+          "uniform_rule_components": {
+            "endpoint_parity_pass": true,
+            "grade3_ghosting_count_eq_0": true,
+            "identity_contamination_maximum_grade_eq_0": true,
+            "maximum_core_artifact_grade_lte_2": true,
+            "severe_patch_cloud_mottle_full_body_count_eq_0": true
+          }
+        }
+      ],
+      "manifest_content_sha256": "2e0ef4b1c196c738cf60b0cdd5e48289ab24a9026b481576f37ab0e6b48d4607",
+      "pair_count": 10,
+      "pair_order": [
+        "O01_O02",
+        "O01_O03",
+        "O01_O04",
+        "O01_O08",
+        "O02_O03",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "provenance": {
+        "allowed": [
+          "canonical_endpoint_intrinsic_descriptors",
+          "calibration_fold_frozen_oracle_evaluations"
+        ],
+        "forbidden_and_unused": [
+          "target_query_ground_truth",
+          "test_fold",
+          "manual_pair_blacklist"
+        ],
+        "source_sha256": {
+          "controller_pair_compatibility_analysis.json": "a94bdcf16f4ce1c0d0d4f354b7d40eadf362446e37043bd97c4ed707c5faa0e9",
+          "dual_support_all_pair_results.json": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+          "dual_support_all_pair_visual_review.json": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa"
+        }
+      },
+      "rotation": 3,
+      "schema_version": "canondressgs.research.controller_v2_compatibility_manifest.v1",
+      "smoke_manifest_content_sha256": "fef707881e9474a4b19bab6b0f0b3f6b1947976f8999506a3b3a5b463f08d7d1",
+      "status": "PASS",
+      "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+      "test_condition": "cond_000017",
+      "test_fold": 2,
+      "train_folds": [
+        3,
+        0
+      ],
+      "uniform_rule": {
+        "compatible_iff_all": [
+          "maximum_core_artifact_grade <= 2",
+          "severe_patch_cloud_mottle_full_body_count == 0",
+          "identity_contamination_maximum_grade == 0",
+          "grade3_ghosting_count == 0",
+          "endpoint_parity == PASS"
+        ],
+        "explicit_pair_blacklist": false
+      }
+    }
+  ],
+  "pair_count_per_rotation": 10,
+  "required_descriptor_names_materialized": true,
+  "rotation_count": 4,
+  "rotation_differences_preserved": true,
+  "rotation_specific_calibration_conditions": [
+    "cond_000017",
+    "cond_000347",
+    "cond_000000",
+    "cond_000318"
+  ],
+  "schema_version": "canondressgs.research.controller_v2_compatibility_manifests.v2",
+  "status": "PASS",
+  "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+  "total_pair_records": 40
+}

@@ -1,0 +1,88 @@
+{
+  "best_seed_or_rotation_selection": "FORBIDDEN",
+  "execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_loads": 0,
+    "checkpoint_writes": 0,
+    "evaluation_runs": 0,
+    "formal_metrics": 0,
+    "formal_renders": 0,
+    "formal_visual_reviews": 0,
+    "inference_runs": 0,
+    "metric_aggregations": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "paper_final": 0,
+    "renderer_calls": 0,
+    "scheduler_steps": 0,
+    "training_forward_batches": 0,
+    "training_steps": 0
+  },
+  "fresh_initialization_seeds": [
+    0,
+    1,
+    2
+  ],
+  "fresh_process_per_rotation_and_seed": true,
+  "frozen_F2": true,
+  "initialization_source": "RANDOM_SEEDED",
+  "loss_schema": {
+    "consistency": {
+      "eligible": [
+        "mild_blur",
+        "mild_mask_erosion",
+        "mild_mask_dilation",
+        "assignment_permutation"
+      ],
+      "excluded_information_ablations": [
+        "complete_reference_dropout",
+        "single_reference"
+      ]
+    },
+    "garment": {
+      "loss": "soft_target_cross_entropy",
+      "mixed_target": "TWO_THIRDS_PLUS_ONE_THIRD",
+      "pure_target": "ONE_HOT"
+    },
+    "mixedness": {
+      "loss": "mixedness_binary_cross_entropy",
+      "mixed_target": 1,
+      "pure_target": 0
+    },
+    "total": "L_garment + lambda_mix*L_mixedness + lambda_weight*L_weight + lambda_cons*L_consistency",
+    "weight": {
+      "forward_output_count": 10,
+      "loss": "pair_weight_smooth_l1",
+      "records": "MIXED_ONLY",
+      "supervised_scalar": "GROUND_TRUTH_PAIR_TRAINING_ONLY"
+    }
+  },
+  "mixedness_threshold_grid": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "optimizer_object_created_in_this_task": false,
+  "pair_confidence_threshold_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "schema_version": "canondressgs.research.controller_v2_optimizer_training_plan.v1",
+  "status": "DESIGN_ONLY_NO_OPTIMIZER_CREATED",
+  "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+  "threshold_selection_source": "CALIBRATION_FOLD_ONLY_FUTURE_PILOT",
+  "v1_or_b6_initialization": "FORBIDDEN"
+}

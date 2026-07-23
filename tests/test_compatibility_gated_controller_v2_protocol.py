@@ -84,7 +84,7 @@ def test_v2_pair_confidence_threshold_grid_is_exact() -> None:
     )
 
 
-def test_v2_crossfit_has_four_rotations() -> None:
+def test_crossfit_has_four_rotations() -> None:
     assert len(design.ROTATIONS) == 4
     assert len(_splits()["rotations"]) == 4
 
@@ -143,7 +143,19 @@ def test_v2_every_rotation_partitions_all_folds() -> None:
         assert sorted(folds) == [0, 1, 2, 3]
 
 
-def test_v2_compatibility_rule_uses_calibration_fold_only() -> None:
+def test_test_fold_never_enters_training() -> None:
+    for rotation in _splits()["rotations"]:
+        assert rotation["test_fold_index"] not in rotation["train_fold_indices"]
+        assert rotation["test_fold_excluded_from_training"] is True
+
+
+def test_test_fold_never_enters_calibration() -> None:
+    for rotation in _splits()["rotations"]:
+        assert rotation["test_fold_index"] != rotation["calibration_fold_index"]
+        assert rotation["test_fold_excluded_from_calibration"] is True
+
+
+def test_compatibility_uses_calibration_fold_only() -> None:
     results, visual = _frozen()
     source_hashes = {"test": "0" * 64}
     manifest = design.build_manifest(
@@ -289,6 +301,28 @@ def test_v2_protocol_does_not_authorize_paper_final() -> None:
     protocol = _protocol()
     assert protocol["paper_final"] is False
     assert protocol["paper_final_count"] == 0
+
+
+def test_formal_archives_immutable() -> None:
+    handoff = json.loads(
+        (ROOT / "project_control_handoff/controller_v2_design_handoff.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert handoff["formal_v1_and_diagnostic_archives_unchanged"] is True
+
+
+def test_paper_final_zero() -> None:
+    handoff = json.loads(
+        (ROOT / "project_control_handoff/controller_v2_design_handoff.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    dry_run = json.loads(
+        (RISK / "controller_v2_dry_run_summary.json").read_text(encoding="utf-8")
+    )
+    assert handoff["paper_final"] == 0
+    assert dry_run["execution_counts"]["paper_final"] == 0
 
 
 def test_v2_source_head_is_exact() -> None:

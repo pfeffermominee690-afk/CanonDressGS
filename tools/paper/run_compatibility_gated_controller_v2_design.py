@@ -86,6 +86,7 @@ FROZEN_REPOSITORY_INPUTS = (
 )
 ZERO_EXECUTION_COUNTS = {
     "training_steps": 0,
+    "training_forward_batches": 0,
     "backward_calls": 0,
     "optimizer_creations": 0,
     "optimizer_steps": 0,
