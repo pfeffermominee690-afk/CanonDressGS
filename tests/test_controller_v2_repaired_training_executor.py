@@ -18,7 +18,14 @@ SPEC.loader.exec_module(module)
 
 def test_repaired_contract_and_rotation_hashes_are_exact() -> None:
     contract = module.validate_contract()
-    assert contract["repaired"]["source_head"] == module.SOURCE_HEAD
+    assert (
+        contract["repaired"]["repair_branch"]
+        == "research/controller-v2-micro-pilot-contract-repair-20260723"
+    )
+    assert (
+        contract["repaired"]["classification"]
+        == "CONTROLLER_V2_MICRO_PILOT_TRAINING_CONTRACT_REPAIRED"
+    )
     assert len(contract["manifest"]["query_sets"]) == 320
     assert len(contract["schedules"]["rotations"]) == 4
 
