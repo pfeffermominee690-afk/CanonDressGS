@@ -1,0 +1,108 @@
+{
+  "bulk_manuscript_edits": 0,
+  "candidate_statement_count": 10,
+  "entries": [
+    {
+      "corrected_interpretation": "Describe only as CLOSED_WARDROBE_PROTOCOL_FIT_RESULT.",
+      "current_statement": "The weight-fix numerical gain is large, but it is measured against the reused exact-oracle target render and does not imply visual compatibility. Manual sheets show that oracle weighting can expose full-body mottling that a clean SINGLE fallback hides. Pair fix has a near-zero mean gain because pair accuracy is already 96.25% and the worst focus pairs are correctly recognized.",
+      "future_action": "MANUAL_EDIT_IN_FUTURE_PAPER_TASK_NO_BULK_EDIT_PERFORMED",
+      "issue": "HISTORICAL_96_25_INTERPRETATION",
+      "line": 12,
+      "path": "docs/PAPER/AAAI27_CONTROLLER_COUNTERFACTUAL_RENDER_DECOMPOSITION_20260723.md",
+      "review_status": "MANUAL_REVIEW_REQUIRED"
+    },
+    {
+      "corrected_interpretation": "Use CONDITION_FOLD_HELD_OUT_WITH_REFERENCE_ASSET_OVERLAP; do not claim unseen-reference generalization.",
+      "current_statement": "The split is condition-fold held-out but has exact reference-asset overlap. It does not support unseen-reference generalization. The historical V1 96.25% is only a **closed-wardrobe protocol-fit result**, not strict cross-fold generalization.",
+      "future_action": "PRESERVE_CURRENT_BOUNDARY_LANGUAGE",
+      "issue": "UNSEEN_REFERENCE_CLAIM",
+      "line": 14,
+      "path": "docs/PAPER/AAAI27_CONTROLLER_V2_PAIR_IDENTIFICATION_DIAGNOSIS_20260724.md",
+      "review_status": "ALREADY_CORRECT_NO_ACTION"
+    },
+    {
+      "corrected_interpretation": "Describe only as CLOSED_WARDROBE_PROTOCOL_FIT_RESULT.",
+      "current_statement": "The split is condition-fold held-out but has exact reference-asset overlap. It does not support unseen-reference generalization. The historical V1 96.25% is only a **closed-wardrobe protocol-fit result**, not strict cross-fold generalization.",
+      "future_action": "PRESERVE_CURRENT_BOUNDARY_LANGUAGE",
+      "issue": "HISTORICAL_96_25_INTERPRETATION",
+      "line": 14,
+      "path": "docs/PAPER/AAAI27_CONTROLLER_V2_PAIR_IDENTIFICATION_DIAGNOSIS_20260724.md",
+      "review_status": "ALREADY_CORRECT_NO_ACTION"
+    },
+    {
+      "corrected_interpretation": "Use CONDITION_FOLD_HELD_OUT_WITH_REFERENCE_ASSET_OVERLAP; do not claim unseen-reference generalization.",
+      "current_statement": "The 320-record mixed classification task remains a closed-wardrobe protocol-fit evaluation. It is not unseen-reference, novel-view, cross-identity, or unseen-garment generalization.",
+      "future_action": "PRESERVE_CURRENT_BOUNDARY_LANGUAGE",
+      "issue": "UNSEEN_REFERENCE_CLAIM",
+      "line": 17,
+      "path": "docs/PAPER/AAAI27_DUAL_SUPPORT_CONTROLLER_TRAINING_CONTRACT_CORRECTION_20260723.md",
+      "review_status": "ALREADY_CORRECT_NO_ACTION"
+    },
+    {
+      "corrected_interpretation": "Use CONDITION_FOLD_HELD_OUT_WITH_REFERENCE_ASSET_OVERLAP; do not claim unseen-reference generalization.",
+      "current_statement": "Logical records are disjoint, but exact RGB/mask reference assets overlap across partitions. Results are closed-wardrobe feature diagnostics and do not establish unseen-reference generalization. PCA is auxiliary only; conclusions use full-dimensional geometry and preregistered probes.",
+      "future_action": "PRESERVE_CURRENT_BOUNDARY_LANGUAGE",
+      "issue": "UNSEEN_REFERENCE_CLAIM",
+      "line": 9,
+      "path": "docs/PAPER/AAAI27_FROZEN_REFERENCE_FEATURE_SEPARABILITY_20260724.md",
+      "review_status": "ALREADY_CORRECT_NO_ACTION"
+    },
+    {
+      "corrected_interpretation": "Pure records use visible-garment top-1 and endpoint safety; hidden pair fields are provenance-only.",
+      "current_statement": "`REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_PARTIAL` is the only defensible classification. Pure safety, top-2 pairing, ordering, leakage, ground-truth-information, geometry, identity, and frozen-asset gates pass; excessive fallback/low activation, weak calibration, perturbation fragility, and non-comparable visual-improvement gates prevent PASS. Partial value remains because pairing/ordering are strong and some activated dual-support outputs are useful.",
+      "future_action": "MANUAL_EDIT_IN_FUTURE_PAPER_TASK_NO_BULK_EDIT_PERFORMED",
+      "issue": "PURE_PAIR_METRIC",
+      "line": 66,
+      "path": "docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_FORMAL_20260723.md",
+      "review_status": "MANUAL_REVIEW_REQUIRED"
+    },
+    {
+      "corrected_interpretation": "Use CONDITION_FOLD_HELD_OUT_WITH_REFERENCE_ASSET_OVERLAP; do not claim unseen-reference generalization.",
+      "current_statement": "Scientific scope is fixed identity, closed seen-garment wardrobe, protocol-fit mixed evaluation, record-isolated but reference-overlapping formal-pure evaluation, and view-transductive operation. This is not evidence of unseen-garment, unseen-reference, cross-identity, novel-view, novel-pose, or second-dataset generalization.",
+      "future_action": "PRESERVE_CURRENT_BOUNDARY_LANGUAGE",
+      "issue": "UNSEEN_REFERENCE_CLAIM",
+      "line": 68,
+      "path": "docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_FORMAL_20260723.md",
+      "review_status": "ALREADY_CORRECT_NO_ACTION"
+    },
+    {
+      "corrected_interpretation": "Use CONDITION_FOLD_HELD_OUT_WITH_REFERENCE_ASSET_OVERLAP; do not claim unseen-reference generalization.",
+      "current_statement": "\"unseen_reference_claim\": false",
+      "future_action": "PRESERVE_CURRENT_BOUNDARY_LANGUAGE",
+      "issue": "UNSEEN_REFERENCE_CLAIM",
+      "line": 99,
+      "path": "paper_protocol/reviewer_risk/controller_calibration_diagnostic_final_summary.json",
+      "review_status": "ALREADY_CORRECT_NO_ACTION"
+    },
+    {
+      "corrected_interpretation": "Replace the primary interpretation with the corrected mixed-only classification where the statement is current rather than historical.",
+      "current_statement": "\"primary_failure\": \"CORE_PAIR_IDENTIFICATION_FAILURE\",",
+      "future_action": "PRESERVE_HISTORICAL_ARTIFACT_USE_NEW_REINTERPRETATION_REPORT",
+      "issue": "PAIR_FAILURE_INTERPRETATION",
+      "line": 10,
+      "path": "paper_protocol/reviewer_risk/controller_v2_repaired_final_summary.json",
+      "review_status": "HISTORICAL_PROVENANCE"
+    },
+    {
+      "corrected_interpretation": "Pure records use visible-garment top-1 and endpoint safety; hidden pair fields are provenance-only.",
+      "current_statement": "\"classification_reason\": \"Pure endpoint safety, top-2 pair accuracy, and AAB/ABB ordering pass, and active dual-support outputs are sometimes useful. However activation is only about 50.8%, every seed is below the 70% floor, weight calibration is weak, fallback is excessive, and perturbations are fragile.\",",
+      "future_action": "MANUAL_EDIT_IN_FUTURE_PAPER_TASK_NO_BULK_EDIT_PERFORMED",
+      "issue": "PURE_PAIR_METRIC",
+      "line": 5,
+      "path": "paper_protocol/reviewer_risk/dual_support_controller_final_summary.json",
+      "review_status": "MANUAL_REVIEW_REQUIRED"
+    }
+  ],
+  "manual_review_required_count": 3,
+  "paper_final": false,
+  "review_status_counts": {
+    "ALREADY_CORRECT_NO_ACTION": 6,
+    "HISTORICAL_PROVENANCE": 1,
+    "MANUAL_REVIEW_REQUIRED": 3
+  },
+  "scanned_file_count": 187,
+  "schema_version": "controller_claim_correction_manifest.v1",
+  "source_head": "56988a7e4b5cdd63be481005b070a44b20feab13",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-PAIR-METRIC-SEMANTICS-REPAIR-001"
+}

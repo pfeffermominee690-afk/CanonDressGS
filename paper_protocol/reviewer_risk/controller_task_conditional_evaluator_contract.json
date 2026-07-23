@@ -1,0 +1,80 @@
+{
+  "controller_crossfit_boundary": "CONDITION_FOLD_HELD_OUT_WITH_REFERENCE_ASSET_OVERLAP",
+  "denominator_selection": "OFFLINE_GROUND_TRUTH_CARDINALITY_ONLY",
+  "denominator_selection_in_inference": false,
+  "end_to_end_composition_control": {
+    "mixed_composition_control": [
+      "pair",
+      "ordering",
+      "weight",
+      "mode"
+    ],
+    "must_be_reported_separately": true,
+    "pure_endpoint_control": [
+      "top1_garment",
+      "single_safety",
+      "endpoint_parity"
+    ]
+  },
+  "forbidden_claim": "UNSEEN_REFERENCE_GENERALIZATION",
+  "formal_pure_20": "SECONDARY_ENDPOINT_SAFETY_ONLY",
+  "historical_v1_96_25": "CLOSED_WARDROBE_PROTOCOL_FIT_RESULT",
+  "mandatory_reporting_views": [
+    "protocol_weighted",
+    "unique_query",
+    "per_rotation",
+    "rotation_macro",
+    "per_seed",
+    "seed_macro",
+    "global_macro"
+  ],
+  "mixed_pair_identification": {
+    "primary_metrics": [
+      "unordered_top2_pair_accuracy",
+      "dominant_ordering",
+      "pair_conditioned_weight_mae_rmse",
+      "compatible_dual_rate",
+      "incompatible_hard_rate",
+      "incompatible_dual_rate",
+      "wrong_pair_dual_rate",
+      "composition_accuracy",
+      "per_pair_recall",
+      "per_rotation",
+      "per_seed"
+    ],
+    "scope": "GT_MIXED_AAB_ABB_RECORDS"
+  },
+  "paper_final": false,
+  "pure_garment_identification": {
+    "forbidden_metrics": [
+      "exact_unordered_top2_pair_accuracy",
+      "latent_secondary_accuracy",
+      "pair_conditioned_weight",
+      "compatibility_routing"
+    ],
+    "historical_pair_field_role": "PROVENANCE_ONLY_NOT_EVALUABLE",
+    "primary_metrics": [
+      "5_way_top1_visible_garment_accuracy",
+      "per_garment_recall",
+      "mixedness_false_positive",
+      "single_endpoint_rate",
+      "endpoint_selection_correctness",
+      "endpoint_parity",
+      "identity_preservation"
+    ],
+    "scope": "GT_PURE_RECORDS"
+  },
+  "schema_version": "controller_task_conditional_evaluator_contract.v1",
+  "source_head": "56988a7e4b5cdd63be481005b070a44b20feab13",
+  "status": "PASS",
+  "task_conditional_identification_accuracy": {
+    "cannot_replace_primary_split_metrics": true,
+    "inference_use": false,
+    "mixed_rule": "UNORDERED_VISIBLE_GARMENT_PAIR_CORRECT",
+    "offline_gt_cardinality_selects_rule": true,
+    "pure_rule": "TOP1_VISIBLE_GARMENT_CORRECT",
+    "role": "SECONDARY_SUMMARY_ONLY"
+  },
+  "task_id": "AAAI27-CONTROLLER-PAIR-METRIC-SEMANTICS-REPAIR-001",
+  "visible_garment_set_definition": "UNIQUE_GARMENT_LABEL_SET_OF_ACTUAL_REFERENCE_SLOTS_ONLY"
+}
