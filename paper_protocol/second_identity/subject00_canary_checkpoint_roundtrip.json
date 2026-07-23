@@ -1,0 +1,471 @@
+{
+  "PAPER_FINAL": 0,
+  "attachment_count": 200000,
+  "barycentric_exact_to_checkpoint": true,
+  "baseline_query_count_reused": 8,
+  "cached_weights_exact_to_checkpoint": true,
+  "checkpoint": {
+    "bytes": 724584196,
+    "data_order_position": 384,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000384.pth",
+    "sha256": "310ea027464214c3d99735794103b6e2c9f6174cd51a3ff13317750f292d17e3",
+    "source_branch": "research/mmlphuman-subject00-short-canary-from-repaired-contract-20260723",
+    "source_head": "b0e8096589fe18069d95d2137e1db3979b4fe89f",
+    "step": 384
+  },
+  "face_ids_exact_to_checkpoint": true,
+  "formal_render_count_excludes_roundtrip": 216,
+  "fresh_roundtrip_render_count": 8,
+  "gaussian_count": 200000,
+  "lbs_shape": [
+    200000,
+    55
+  ],
+  "legacy_grid_loads": 0,
+  "optimizer_audit": {
+    "duplicate_parameter_memberships": {},
+    "excluded_state_in_optimizer": [],
+    "group_count": 14,
+    "groups": {
+      "dopacities_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 3000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dquats_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 12000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dscales_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 9000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dsh0_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 9000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dshN_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.5e-06,
+        "parameter_scalar_count": 27000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dxyz": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0002851378305034033,
+        "parameter_scalar_count": 30000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dxyz_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.854531507003097e-05,
+        "parameter_scalar_count": 450000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "encoder_feat_params": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "AdamW",
+        "eps": 1e-15,
+        "lr": 0.0004994476848545397,
+        "parameter_scalar_count": 91017000,
+        "parameter_tensor_count": 10,
+        "weight_decay": 0.001
+      },
+      "opacities": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004994476848545397,
+        "parameter_scalar_count": 200000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "quats": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004994476848545397,
+        "parameter_scalar_count": 800000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "scales": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004994476848545397,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "sh0": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004994476848545397,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "shN": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.4972384242726972e-05,
+        "parameter_scalar_count": 1800000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "xyz_offset": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0009988953697090794,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      }
+    },
+    "lr_mismatches": {},
+    "omitted_trainable_parameters": [],
+    "optimizer_parameter_tensor_count": 23,
+    "scene_scale": 1.786055122466469,
+    "scheduler_count": 9,
+    "scheduler_horizon": 800000,
+    "scheduler_step": 384,
+    "status": "PASS",
+    "trainable_parameter_tensor_count": 23
+  },
+  "optimizer_state_restored": true,
+  "render_all_exact": true,
+  "render_array_count": 24,
+  "render_max_abs": 0.0,
+  "render_query_count": 8,
+  "render_records": [
+    {
+      "array": "query_001_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_001_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_001_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_024_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_024_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_024_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_025_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_025_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_025_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_048_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_048_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_048_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_049_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_049_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_049_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_072_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_072_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_072_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_073_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_073_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_073_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_096_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_096_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_096_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    }
+  ],
+  "render_tolerance": 1e-06,
+  "rng_state_present": true,
+  "scheduler_state_restored": true,
+  "schema_version": "subject00.canary.checkpoint_roundtrip.v1",
+  "spatial_weight_queries": 0,
+  "status": "PASS",
+  "task_id": "MMLPHUMAN-SUBJECT00-SHORT-CANARY-FROM-REPAIRED-CONTRACT-001"
+}
