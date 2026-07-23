@@ -30,7 +30,7 @@
     "hash_policy": "normalize CRLF and CR to LF before SHA256",
     "files": {
       "scene/scene.py": "64cf96fa31eafe51d39b98d3110be0802c9b18d2893cec115137cd1d0c3c0993",
-      "tools/second_identity/run_subject00_short_canary.py": "603f77aa47c1300b5f4b9b456bfdb18241db31c670785dd2be69d2528d568cbb"
+      "tools/second_identity/run_subject00_short_canary.py": "b9c9d66e9b5f781517fbd2465558342cbbf1466c41166fa95ef979bcf14bf042"
     }
   },
   "infrastructure_continuation": {
@@ -41,6 +41,7 @@
     "repair_scope": "replace exact-set equality with expected-query subset containment",
     "resume_checkpoint": "checkpoints/step_000096.pth",
     "resume_data_order_position": 96,
+    "resume_optimizer_audit_correction": "compare restored group LR against initial_lr multiplied by the frozen ExponentialLR gamma raised to checkpoint step 96",
     "restore_requirements": [
       "model state",
       "optimizer state",

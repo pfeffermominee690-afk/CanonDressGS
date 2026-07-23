@@ -1044,6 +1044,7 @@ def optimizer_audit(
     model: GaussianModel,
     contract: dict[str, Any],
     scene_scale: float,
+    scheduler_step: int = 0,
 ) -> dict[str, Any]:
     if tuple(model.optimizers) != EXPECTED_OPTIMIZER_GROUPS:
         raise RuntimeError(
@@ -1119,6 +1120,22 @@ def optimizer_audit(
         "encoder_feat_params": 0.0005,
         "xyz_offset": 0.001,
     }
+    scheduled_groups = {
+        "dxyz",
+        "scales",
+        "quats",
+        "opacities",
+        "sh0",
+        "shN",
+        "dxyz_bs",
+        "encoder_feat_params",
+        "xyz_offset",
+    }
+    for name in scheduled_groups:
+        decay_base = 0.01 if name == "dxyz" else 0.1
+        expected_lr[name] *= decay_base ** (
+            float(scheduler_step) / 800000.0
+        )
     lr_mismatches = {
         name: {
             "actual": group_records[name]["lr"],
@@ -1157,6 +1174,7 @@ def optimizer_audit(
         "optimizer_parameter_tensor_count": len(actual_ids),
         "scheduler_count": len(model.schedulers),
         "scheduler_horizon": 800000,
+        "scheduler_step": scheduler_step,
     }
     if not passed:
         raise RuntimeError(f"optimizer membership audit failed: {result}")
@@ -1747,6 +1765,7 @@ def training_phase(args) -> int:
         model,
         bundle["contract"],
         scene.scene_scale,
+        scheduler_step=resume_step,
     )
     write_json(
         args.attempt_root / "audits/optimizer_membership.json",
@@ -2058,6 +2077,7 @@ def roundtrip_phase(args) -> int:
         model,
         bundle["contract"],
         float(payload["scene_scale"]),
+        scheduler_step=384,
     )
     diagnostic = diagnostic_queries(bundle["evaluation"])
     current: dict[str, np.ndarray] = {}
