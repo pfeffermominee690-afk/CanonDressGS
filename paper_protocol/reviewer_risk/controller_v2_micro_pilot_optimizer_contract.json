@@ -1,0 +1,94 @@
+{
+  "applies_identically_to": [
+    "V2",
+    "MATCHED_V1"
+  ],
+  "checkpoint": {
+    "atomic_replace": "TEMPORARY_PATH_THEN_OS_REPLACE",
+    "best_checkpoint_selection": false,
+    "early_stopping": false,
+    "evaluation_rule": "FINAL_STEP_150_ONLY",
+    "payload": [
+      "model_state_dict",
+      "optimizer_state_dict",
+      "scheduler_state_dict",
+      "global_step",
+      "cpu_rng_state",
+      "cuda_rng_state_all"
+    ],
+    "schedule": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150
+    ],
+    "serializer": "torch.save"
+  },
+  "contract_content_sha256": "faf13c2689a61e1f1da63853ec3ecd94832fc386af99246331f424b3fe40b7a3",
+  "evidence": {
+    "formal_v1_final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_001/seed_0/checkpoints/final_step_300.pt",
+    "formal_v1_final_checkpoint_sha256": "53ba849467cc7c8b4cd9a79c04839f0d938defbeec8dd31010e38b30ebdf797a",
+    "formal_v1_head": "f45a518f330fb407942055756373e83f65717853",
+    "formal_v1_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal.py",
+    "formal_v1_training_contract": "paper_protocol/reviewer_risk/dual_support_controller_protocol.yaml",
+    "formal_v1_training_results": "paper_protocol/reviewer_risk/dual_support_controller_training_results.json"
+  },
+  "matched_v1_parameter_count": 3589,
+  "optimizer": {
+    "amsgrad": false,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "capturable": false,
+    "class": "torch.optim.Adam",
+    "defaults_used_as_provenance": false,
+    "differentiable": false,
+    "epsilon": 1e-08,
+    "foreach": "PYTORCH_EXPLICIT_NONE",
+    "fused": "PYTORCH_EXPLICIT_NONE",
+    "learning_rate": 0.02,
+    "maximize": false,
+    "optimizer_state_keys_per_parameter": [
+      "exp_avg",
+      "exp_avg_sq",
+      "step"
+    ],
+    "parameter_group_count": 1,
+    "parameter_group_rule": "ALL_AND_ONLY_TRAINABLE_CONTROLLER_PARAMETERS",
+    "weight_decay": 0.0
+  },
+  "optimizer_created_by_contract_repair": 0,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "runtime": {
+    "batch_size": 5,
+    "dtype": "FLOAT32",
+    "f2_optimizer_membership": false,
+    "f2_requires_grad": false,
+    "frozen_f2": true,
+    "gradient_accumulation_steps": 1,
+    "gradient_clipping": {
+      "max_norm": 5.0,
+      "type": "CLIP_GRAD_NORM"
+    },
+    "independent_fresh_process_per_rotation_seed": true,
+    "loss_reduction": "MEAN_OVER_BATCH",
+    "mixed_precision": false,
+    "zero_grad": {
+      "before_each_forward": true,
+      "set_to_none": true
+    }
+  },
+  "scheduler": {
+    "base_lr": 0.02,
+    "class": "torch.optim.lr_scheduler.LambdaLR",
+    "lambda": "CONSTANT_1.0",
+    "step_after_each_optimizer_step": true,
+    "warmup_steps": 0
+  },
+  "schema_version": "canondressgs.research.controller_v2_optimizer_runtime_contract.v1",
+  "task_id": "AAAI27-CONTROLLER-V2-MICRO-PILOT-CONTRACT-REPAIR-001"
+}
