@@ -1,0 +1,348 @@
+{
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "controller_inferences": 0,
+    "feature_inferences": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selections": 0,
+    "training_forward_batches": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "architecture": {
+    "activation": "SiLU in trunks; tanh channel bounds; vector-norm tanh for rotation",
+    "appearance_input": "Linear(256,128), LayerNorm(128), SiLU",
+    "block": "LayerNorm(128), Linear(128,128), SiLU, Linear(128,128), residual add",
+    "branch_blocks": 4,
+    "condition": "completed local 64 plus global 64",
+    "condition_reinjection": "independent Linear(128,128) at block index 2",
+    "gate_mode": "fixed_one_capacity_probe",
+    "geometry_input": "Linear(256,128), LayerNorm(128), SiLU",
+    "heads": [
+      "xyz: Linear(128,3)",
+      "log_scaling: Linear(128,3)",
+      "rotation: Linear(128,3)",
+      "opacity_logit: Linear(128,1)",
+      "sh0: Linear(128,3)",
+      "shN: Linear(128,9)"
+    ],
+    "normalization": "per-row LayerNorm only",
+    "support_descriptor_dimension": 68,
+    "support_descriptor_gaussian_count": 200000,
+    "support_encoder": "Linear(68,128), LayerNorm(128), SiLU, one ResidualMLPBlock(128)"
+  },
+  "git_history": [
+    {
+      "commit": "ca176dcd1a356d1dfc87968571a0374c89539dc8",
+      "role": "architecture, Stage A/B runner, config, and tests introduced",
+      "subject": "feat(imagecond): add V7 support-conditioned residual decoder"
+    },
+    {
+      "commit": "fa9d97bef5ebba2d50fb1de4758395132dc10e28",
+      "role": "run-time persistence fix only",
+      "subject": "fix(imagecond): create V7 milestone render directories"
+    },
+    {
+      "commit": "e61d4aa6eccb78dd4b282ba98fc88adb1be4188f",
+      "role": "visual adjudication persistence",
+      "subject": "fix(imagecond): persist V7 visual capacity adjudication"
+    },
+    {
+      "commit": "b1ddd084b51c2eba83b3c26ec6b479d1d162b3c3",
+      "role": "final historical provenance seal",
+      "subject": "fix(imagecond): preserve V7 run provenance in adjudication"
+    }
+  ],
+  "historical_execution": {
+    "attempt": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-RESIDUAL-DECODER-CAPACITY-V7-001/attempt_002",
+    "final_case": "V7-D",
+    "garments": [
+      "O01",
+      "O08"
+    ],
+    "historical_result_status": "PROVENANCE_ONLY_NOT_MATCHED_RESULT",
+    "matched_metrics_reusable": false,
+    "stage_a_checkpoint_sha256": "6701ca0137e34c4f07d4d4642bb2b38787036ab5e86f453025102354d4de940e",
+    "stage_a_optimizer_steps": 1000,
+    "stage_a_status": "FAIL_NUMERIC_AND_VISUAL",
+    "stage_b_optimizer_steps": 0,
+    "stage_b_status": "NOT_RUN_STAGE_A_FAILED"
+  },
+  "historical_stage_b_contract": {
+    "architecture_unique": true,
+    "checkpoint_schema": {
+      "fields": [
+        "stage",
+        "global_step",
+        "model",
+        "optimizer",
+        "scheduler",
+        "rng",
+        "target_tensors_stored=false",
+        "oracle_residual_in_forward=false",
+        "extra.schedule_position",
+        "extra.outfit_view_schedule"
+      ],
+      "schema_version": "canondressgs.residual_decoder_capacity_v7.v1"
+    },
+    "checkpoint_steps": [
+      100,
+      300,
+      600,
+      1000
+    ],
+    "data_order": "condition-major then outfit-minor eight-episode cycle; one episode per step",
+    "frozen_modules": [
+      "MMLP-Human base",
+      "image backbone",
+      "legacy anchor clothing MLP",
+      "canonical support descriptor and assignment"
+    ],
+    "gradient_clip_norm": 5.0,
+    "initialization": "mandatory load of Stage A step-1000 V7 decoder checkpoint before Stage B; other trainable Stage B modules retain constructor initialization",
+    "loss": "mean over six channel SmoothL1 losses after division by channel bound; beta=0.1; PyTorch mean reduction",
+    "optimizer": {
+      "aggregator_lr": 0.0001,
+      "amsgrad": false,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "class": "torch.optim.Adam",
+      "completion_lr": 0.001,
+      "encoder_projection_and_norm_lr": 0.0001,
+      "epsilon": 1e-08,
+      "v7_decoder_lr": 0.001,
+      "weight_decay": 0.0
+    },
+    "scheduler": "LambdaLR constant multiplier 1.0",
+    "source_mechanics_recovered": true,
+    "steps": 1000,
+    "target": "detached full teacher canonical Gaussian residual for the outfit",
+    "target_bounds": {
+      "log_scaling": 0.35,
+      "opacity_logit": 2.0,
+      "rotation": 0.2617993878,
+      "sh0": 0.25,
+      "shN": 0.1,
+      "xyz": 0.05
+    },
+    "target_channels": [
+      "delta_xyz",
+      "delta_log_scaling",
+      "delta_rotvec",
+      "delta_opacity_logit",
+      "delta_sh0",
+      "delta_shN"
+    ],
+    "target_information_boundary": "teacher residual enters loss and offline evaluation only; no target image, outfit ID, or teacher tensor enters prediction forward",
+    "training_gaussian_sample_count_per_step": 8192
+  },
+  "input_output": {
+    "anchor_assignment": {
+      "indices_shape": [
+        200000,
+        4
+      ]
+    },
+    "flatten_unflatten_order": "PyTorch contiguous row-major flatten of each channel suffix; reshape back to the frozen base tensor suffix in channel order xyz, log_scaling, rotvec, opacity_logit, sh0, shN",
+    "global_input": {
+      "shape": [
+        1,
+        64
+      ],
+      "source": "online reference encoder"
+    },
+    "local_input": {
+      "shape": [
+        10000,
+        64
+      ],
+      "source": "online per-anchor projection, aggregation, and graph completion"
+    },
+    "output_space": "full canonical per-Gaussian residual; no coefficient output",
+    "renderer_boundary": "bounded residuals are protected-mask guarded, composed with frozen canonical base Gaussians, then passed to frozen MMLP-Human deformation and renderer",
+    "residual_tensor_schema": {
+      "delta_log_scaling": [
+        200000,
+        3
+      ],
+      "delta_opacity_logit": [
+        200000,
+        1
+      ],
+      "delta_rotvec": [
+        200000,
+        3
+      ],
+      "delta_sh0": [
+        200000,
+        1,
+        3
+      ],
+      "delta_shN": [
+        200000,
+        3,
+        3
+      ],
+      "delta_xyz": [
+        200000,
+        3
+      ]
+    },
+    "static_support": {
+      "shape": [
+        200000,
+        68
+      ]
+    }
+  },
+  "matched_recoverability": {
+    "allowed_prospective_adaptation_exceeded": true,
+    "architecture_change_required": true,
+    "decision": "DIRECT_DECODER_CONTRACT_NOT_RECOVERABLE",
+    "forbidden_bridge_choices": [
+      "repeat a pooled 512-vector across 10000 anchors",
+      "invent a 512-to-64 global or local projection",
+      "rerun a different feature path instead of consuming the frozen F2 cache",
+      "reuse O01/O08 target-trained Stage A initialization",
+      "silently replace Stage B initialization with a fresh V7 constructor",
+      "rename the Linear Coefficient Predictor as Direct Residual Decoder"
+    ],
+    "global_path_partial_reconstruction_possible": true,
+    "historical_initialization_leakage": "Stage B requires a Stage A decoder checkpoint trained with O01/O08 teacher residual targets; reusing it in every cross-fit rotation is not a matched-safe fresh initialization",
+    "initialization_change_required": true,
+    "local_path_reconstruction_possible": false,
+    "missing_required_tensors": [
+      "per-view feature maps",
+      "per-view per-anchor sampled features [K,10000,128]",
+      "per-view per-anchor visibility [K,10000,1]",
+      "per-view per-anchor clothing probability [K,10000,1]",
+      "completed local anchor features [10000,64]"
+    ],
+    "required_feature_asset": {
+      "episode_count": 24,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/shared_preflight/frozen_reference_feature_rows_v1.pt",
+      "sha256": "30cf19a99bbc620112928d678a0257bfabd3420be66fe1053ded3ce7e90875cb",
+      "stored_per_variant": {
+        "f2": [
+          3,
+          256
+        ],
+        "global": [
+          3,
+          128
+        ],
+        "mean": [
+          3,
+          128
+        ],
+        "rff": [
+          3,
+          519
+        ],
+        "valid": [
+          3,
+          1
+        ]
+      },
+      "stored_variants": [
+        "normal",
+        "zero",
+        "base"
+      ]
+    }
+  },
+  "method": "Direct Residual Decoder",
+  "paper_final": false,
+  "parameter_inventory": {
+    "decoder": 410774,
+    "decoder_state_tensor_count": 82,
+    "historical_stage_a_diagnostic_latents": 128,
+    "historical_stage_a_total": 410902,
+    "historical_stage_b_trainable_total": 862425,
+    "optimizer_created_during_repair": false,
+    "report_decoder_count_crosscheck": "PASS_EXACT_410774",
+    "stage_b_aggregator": 12480,
+    "stage_b_completion": 430787,
+    "stage_b_encoder_embedding_norm": 128,
+    "stage_b_encoder_projection_head": 8256,
+    "static_instantiation_only": true
+  },
+  "provenance_classification": "DIRECT_DECODER_CONTRACT_NOT_RECOVERABLE",
+  "schema_version": "canondressgs.paper.pure_endpoint_direct_residual_decoder_audit.v1",
+  "scientific_name_separation": {
+    "CanonDressGS-Endpoint": "pooled frozen-F2 512-vector to rank-4 coefficient, nearest frozen endpoint, then basis residual",
+    "Direct Residual Decoder": "reference-conditioned features to full six-channel canonical Gaussian residual",
+    "Linear Coefficient Predictor": "pooled frozen-F2 512-vector to rank-4 coefficient to basis residual",
+    "naming_collision_count": 0
+  },
+  "search_scope": {
+    "surfaces": [
+      "current source",
+      "configuration",
+      "tests",
+      "reports",
+      "Git all-branch history",
+      "historical attempt_002 checkpoint metadata",
+      "historical run status and final adjudication",
+      "frozen F2 cache tensor inventory"
+    ],
+    "terms": [
+      "DirectResidualDecoder",
+      "direct residual",
+      "residual decoder",
+      "Stage B",
+      "V7",
+      "reference-conditioned residual",
+      "coefficient-free decoder",
+      "reference feature to residual"
+    ],
+    "unique_implementation_found": "scene/support_conditioned_dual_branch_residual_decoder_v7.py"
+  },
+  "source_files": {
+    "config": {
+      "git_blob_at_introduction": "ab2673b2d0791705dff7db120bde8c550f479250",
+      "relative_path": "configs/research/subject02_residual_decoder_capacity_v7.yaml",
+      "sha256": "c2b89556205732fdad396975a5d9e16fefedf095e7a0126ad5bcb57c8366243d"
+    },
+    "implementation": {
+      "git_blob_at_introduction": "94d2fe0b74968a6908dcf6b8d1bf38aa96811b87",
+      "relative_path": "scene/support_conditioned_dual_branch_residual_decoder_v7.py",
+      "sha256": "462e4f360bfa7b3905dad55696694f6443b00c85b9b2c68f7a2d249198e92bdb"
+    },
+    "report": {
+      "git_blob_at_introduction": "775466be8ae6d9b067a41d8081ec61da1c9d7d0c",
+      "relative_path": "docs/MAIN/V7残差解码器容量重设计与验证报告_20260720.md",
+      "sha256": "3193d538978f90d7daa669884a819b07193b0e8312174176f6d580532e81704d"
+    },
+    "runner": {
+      "git_blob_at_introduction": "a90ac0d679a3e7f7618bf59133b435a39abed81d",
+      "relative_path": "tools/run_residual_decoder_capacity_v7.py",
+      "sha256": "f81fe4499b23584e4b6a11606ca33415802751da9f9996eb176c6e0d73ea9123"
+    },
+    "tests": {
+      "git_blob_at_introduction": "a2775c1c35381a783daacb836efcc9ab44f9c007",
+      "relative_path": "tests/test_residual_decoder_capacity_v7.py",
+      "sha256": "e1d23cc8e39acf358883fcf03aa34f86a758eca4b69d8b051ed92d2efa9aa6cc"
+    }
+  },
+  "status": "COMPLETE_BLOCKING_EVIDENCE",
+  "symbols": {
+    "decoder_class": "SupportConditionedDualBranchResidualDecoderV7",
+    "loss_function": "normalized_residual_regression_loss",
+    "model_constructor": "construct_model",
+    "optimizer_function": "stage_b_optimizer",
+    "output_dataclass": "V7DecoderOutput",
+    "prediction_function": "stage_b_prediction",
+    "trainable_group_function": "stage_b_trainable_groups",
+    "training_function": "run_stage_b"
+  },
+  "task_id": "AAAI27-PURE-ENDPOINT-EXECUTION-CONTRACT-REPAIR-001"
+}
