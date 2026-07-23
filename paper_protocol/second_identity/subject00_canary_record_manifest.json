@@ -1,0 +1,2018 @@
+{
+  "schema_version": "subject00.canary.record_manifest.v1",
+  "task_id": "MMLPHUMAN-SUBJECT00-CANARY-CONTRACT-REPAIR-001",
+  "subject_id": "subject00",
+  "pose_selection": {
+    "source": "sorted strict train pose IDs",
+    "formula": "floor(i * (1130 - 1) / 63), i=0..63",
+    "pose_ids": [
+      0,
+      17,
+      35,
+      75,
+      93,
+      122,
+      151,
+      169,
+      220,
+      260,
+      300,
+      329,
+      358,
+      397,
+      426,
+      477,
+      517,
+      546,
+      564,
+      593,
+      644,
+      673,
+      702,
+      775,
+      815,
+      855,
+      883,
+      923,
+      974,
+      1047,
+      1087,
+      1149,
+      1167,
+      1218,
+      1258,
+      1298,
+      1349,
+      1389,
+      1417,
+      1435,
+      1497,
+      1526,
+      1555,
+      1573,
+      1613,
+      1675,
+      1693,
+      1755,
+      1806,
+      1868,
+      1919,
+      1947,
+      2031,
+      2082,
+      2100,
+      2151,
+      2169,
+      2198,
+      2249,
+      2289,
+      2362,
+      2413,
+      2464,
+      2493
+    ],
+    "pose_count": 64
+  },
+  "camera_ids": [
+    1,
+    5,
+    10,
+    14,
+    19,
+    23
+  ],
+  "record_order": "pose_id ascending, then frozen camera list ascending",
+  "batch_size": 1,
+  "shuffle": false,
+  "replacement": false,
+  "exposures_per_record": 1,
+  "record_count": 384,
+  "unique_record_count": 384,
+  "heldout_camera_exposure_count": 0,
+  "heldout_pose_exposure_count": 0,
+  "buffer_pose_exposure_count": 0,
+  "data_order_sha256": "a64a8d40876946b8f0919a4761e7b814e9ca7182cd0434b0cf97a6b2737386ca",
+  "data_order_sha256_policy": "SHA256(canonical JSON of records array; UTF-8, sort_keys=true, separators=(',',':'), ensure_ascii=false)",
+  "records": [
+    {
+      "ordinal": 1,
+      "pose_id": 0,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 2,
+      "pose_id": 0,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 3,
+      "pose_id": 0,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 4,
+      "pose_id": 0,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 5,
+      "pose_id": 0,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 6,
+      "pose_id": 0,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 7,
+      "pose_id": 17,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 8,
+      "pose_id": 17,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 9,
+      "pose_id": 17,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 10,
+      "pose_id": 17,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 11,
+      "pose_id": 17,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 12,
+      "pose_id": 17,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 13,
+      "pose_id": 35,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 14,
+      "pose_id": 35,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 15,
+      "pose_id": 35,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 16,
+      "pose_id": 35,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 17,
+      "pose_id": 35,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 18,
+      "pose_id": 35,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 19,
+      "pose_id": 75,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 20,
+      "pose_id": 75,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 21,
+      "pose_id": 75,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 22,
+      "pose_id": 75,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 23,
+      "pose_id": 75,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 24,
+      "pose_id": 75,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 25,
+      "pose_id": 93,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 26,
+      "pose_id": 93,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 27,
+      "pose_id": 93,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 28,
+      "pose_id": 93,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 29,
+      "pose_id": 93,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 30,
+      "pose_id": 93,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 31,
+      "pose_id": 122,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 32,
+      "pose_id": 122,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 33,
+      "pose_id": 122,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 34,
+      "pose_id": 122,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 35,
+      "pose_id": 122,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 36,
+      "pose_id": 122,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 37,
+      "pose_id": 151,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 38,
+      "pose_id": 151,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 39,
+      "pose_id": 151,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 40,
+      "pose_id": 151,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 41,
+      "pose_id": 151,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 42,
+      "pose_id": 151,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 43,
+      "pose_id": 169,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 44,
+      "pose_id": 169,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 45,
+      "pose_id": 169,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 46,
+      "pose_id": 169,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 47,
+      "pose_id": 169,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 48,
+      "pose_id": 169,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 49,
+      "pose_id": 220,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 50,
+      "pose_id": 220,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 51,
+      "pose_id": 220,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 52,
+      "pose_id": 220,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 53,
+      "pose_id": 220,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 54,
+      "pose_id": 220,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 55,
+      "pose_id": 260,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 56,
+      "pose_id": 260,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 57,
+      "pose_id": 260,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 58,
+      "pose_id": 260,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 59,
+      "pose_id": 260,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 60,
+      "pose_id": 260,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 61,
+      "pose_id": 300,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 62,
+      "pose_id": 300,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 63,
+      "pose_id": 300,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 64,
+      "pose_id": 300,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 65,
+      "pose_id": 300,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 66,
+      "pose_id": 300,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 67,
+      "pose_id": 329,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 68,
+      "pose_id": 329,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 69,
+      "pose_id": 329,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 70,
+      "pose_id": 329,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 71,
+      "pose_id": 329,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 72,
+      "pose_id": 329,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 73,
+      "pose_id": 358,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 74,
+      "pose_id": 358,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 75,
+      "pose_id": 358,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 76,
+      "pose_id": 358,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 77,
+      "pose_id": 358,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 78,
+      "pose_id": 358,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 79,
+      "pose_id": 397,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 80,
+      "pose_id": 397,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 81,
+      "pose_id": 397,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 82,
+      "pose_id": 397,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 83,
+      "pose_id": 397,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 84,
+      "pose_id": 397,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 85,
+      "pose_id": 426,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 86,
+      "pose_id": 426,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 87,
+      "pose_id": 426,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 88,
+      "pose_id": 426,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 89,
+      "pose_id": 426,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 90,
+      "pose_id": 426,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 91,
+      "pose_id": 477,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 92,
+      "pose_id": 477,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 93,
+      "pose_id": 477,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 94,
+      "pose_id": 477,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 95,
+      "pose_id": 477,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 96,
+      "pose_id": 477,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 97,
+      "pose_id": 517,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 98,
+      "pose_id": 517,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 99,
+      "pose_id": 517,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 100,
+      "pose_id": 517,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 101,
+      "pose_id": 517,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 102,
+      "pose_id": 517,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 103,
+      "pose_id": 546,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 104,
+      "pose_id": 546,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 105,
+      "pose_id": 546,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 106,
+      "pose_id": 546,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 107,
+      "pose_id": 546,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 108,
+      "pose_id": 546,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 109,
+      "pose_id": 564,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 110,
+      "pose_id": 564,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 111,
+      "pose_id": 564,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 112,
+      "pose_id": 564,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 113,
+      "pose_id": 564,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 114,
+      "pose_id": 564,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 115,
+      "pose_id": 593,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 116,
+      "pose_id": 593,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 117,
+      "pose_id": 593,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 118,
+      "pose_id": 593,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 119,
+      "pose_id": 593,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 120,
+      "pose_id": 593,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 121,
+      "pose_id": 644,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 122,
+      "pose_id": 644,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 123,
+      "pose_id": 644,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 124,
+      "pose_id": 644,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 125,
+      "pose_id": 644,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 126,
+      "pose_id": 644,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 127,
+      "pose_id": 673,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 128,
+      "pose_id": 673,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 129,
+      "pose_id": 673,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 130,
+      "pose_id": 673,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 131,
+      "pose_id": 673,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 132,
+      "pose_id": 673,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 133,
+      "pose_id": 702,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 134,
+      "pose_id": 702,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 135,
+      "pose_id": 702,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 136,
+      "pose_id": 702,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 137,
+      "pose_id": 702,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 138,
+      "pose_id": 702,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 139,
+      "pose_id": 775,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 140,
+      "pose_id": 775,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 141,
+      "pose_id": 775,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 142,
+      "pose_id": 775,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 143,
+      "pose_id": 775,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 144,
+      "pose_id": 775,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 145,
+      "pose_id": 815,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 146,
+      "pose_id": 815,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 147,
+      "pose_id": 815,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 148,
+      "pose_id": 815,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 149,
+      "pose_id": 815,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 150,
+      "pose_id": 815,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 151,
+      "pose_id": 855,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 152,
+      "pose_id": 855,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 153,
+      "pose_id": 855,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 154,
+      "pose_id": 855,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 155,
+      "pose_id": 855,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 156,
+      "pose_id": 855,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 157,
+      "pose_id": 883,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 158,
+      "pose_id": 883,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 159,
+      "pose_id": 883,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 160,
+      "pose_id": 883,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 161,
+      "pose_id": 883,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 162,
+      "pose_id": 883,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 163,
+      "pose_id": 923,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 164,
+      "pose_id": 923,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 165,
+      "pose_id": 923,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 166,
+      "pose_id": 923,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 167,
+      "pose_id": 923,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 168,
+      "pose_id": 923,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 169,
+      "pose_id": 974,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 170,
+      "pose_id": 974,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 171,
+      "pose_id": 974,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 172,
+      "pose_id": 974,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 173,
+      "pose_id": 974,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 174,
+      "pose_id": 974,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 175,
+      "pose_id": 1047,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 176,
+      "pose_id": 1047,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 177,
+      "pose_id": 1047,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 178,
+      "pose_id": 1047,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 179,
+      "pose_id": 1047,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 180,
+      "pose_id": 1047,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 181,
+      "pose_id": 1087,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 182,
+      "pose_id": 1087,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 183,
+      "pose_id": 1087,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 184,
+      "pose_id": 1087,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 185,
+      "pose_id": 1087,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 186,
+      "pose_id": 1087,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 187,
+      "pose_id": 1149,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 188,
+      "pose_id": 1149,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 189,
+      "pose_id": 1149,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 190,
+      "pose_id": 1149,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 191,
+      "pose_id": 1149,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 192,
+      "pose_id": 1149,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 193,
+      "pose_id": 1167,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 194,
+      "pose_id": 1167,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 195,
+      "pose_id": 1167,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 196,
+      "pose_id": 1167,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 197,
+      "pose_id": 1167,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 198,
+      "pose_id": 1167,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 199,
+      "pose_id": 1218,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 200,
+      "pose_id": 1218,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 201,
+      "pose_id": 1218,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 202,
+      "pose_id": 1218,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 203,
+      "pose_id": 1218,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 204,
+      "pose_id": 1218,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 205,
+      "pose_id": 1258,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 206,
+      "pose_id": 1258,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 207,
+      "pose_id": 1258,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 208,
+      "pose_id": 1258,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 209,
+      "pose_id": 1258,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 210,
+      "pose_id": 1258,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 211,
+      "pose_id": 1298,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 212,
+      "pose_id": 1298,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 213,
+      "pose_id": 1298,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 214,
+      "pose_id": 1298,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 215,
+      "pose_id": 1298,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 216,
+      "pose_id": 1298,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 217,
+      "pose_id": 1349,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 218,
+      "pose_id": 1349,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 219,
+      "pose_id": 1349,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 220,
+      "pose_id": 1349,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 221,
+      "pose_id": 1349,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 222,
+      "pose_id": 1349,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 223,
+      "pose_id": 1389,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 224,
+      "pose_id": 1389,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 225,
+      "pose_id": 1389,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 226,
+      "pose_id": 1389,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 227,
+      "pose_id": 1389,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 228,
+      "pose_id": 1389,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 229,
+      "pose_id": 1417,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 230,
+      "pose_id": 1417,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 231,
+      "pose_id": 1417,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 232,
+      "pose_id": 1417,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 233,
+      "pose_id": 1417,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 234,
+      "pose_id": 1417,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 235,
+      "pose_id": 1435,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 236,
+      "pose_id": 1435,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 237,
+      "pose_id": 1435,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 238,
+      "pose_id": 1435,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 239,
+      "pose_id": 1435,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 240,
+      "pose_id": 1435,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 241,
+      "pose_id": 1497,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 242,
+      "pose_id": 1497,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 243,
+      "pose_id": 1497,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 244,
+      "pose_id": 1497,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 245,
+      "pose_id": 1497,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 246,
+      "pose_id": 1497,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 247,
+      "pose_id": 1526,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 248,
+      "pose_id": 1526,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 249,
+      "pose_id": 1526,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 250,
+      "pose_id": 1526,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 251,
+      "pose_id": 1526,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 252,
+      "pose_id": 1526,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 253,
+      "pose_id": 1555,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 254,
+      "pose_id": 1555,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 255,
+      "pose_id": 1555,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 256,
+      "pose_id": 1555,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 257,
+      "pose_id": 1555,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 258,
+      "pose_id": 1555,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 259,
+      "pose_id": 1573,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 260,
+      "pose_id": 1573,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 261,
+      "pose_id": 1573,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 262,
+      "pose_id": 1573,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 263,
+      "pose_id": 1573,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 264,
+      "pose_id": 1573,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 265,
+      "pose_id": 1613,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 266,
+      "pose_id": 1613,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 267,
+      "pose_id": 1613,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 268,
+      "pose_id": 1613,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 269,
+      "pose_id": 1613,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 270,
+      "pose_id": 1613,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 271,
+      "pose_id": 1675,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 272,
+      "pose_id": 1675,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 273,
+      "pose_id": 1675,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 274,
+      "pose_id": 1675,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 275,
+      "pose_id": 1675,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 276,
+      "pose_id": 1675,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 277,
+      "pose_id": 1693,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 278,
+      "pose_id": 1693,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 279,
+      "pose_id": 1693,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 280,
+      "pose_id": 1693,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 281,
+      "pose_id": 1693,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 282,
+      "pose_id": 1693,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 283,
+      "pose_id": 1755,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 284,
+      "pose_id": 1755,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 285,
+      "pose_id": 1755,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 286,
+      "pose_id": 1755,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 287,
+      "pose_id": 1755,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 288,
+      "pose_id": 1755,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 289,
+      "pose_id": 1806,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 290,
+      "pose_id": 1806,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 291,
+      "pose_id": 1806,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 292,
+      "pose_id": 1806,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 293,
+      "pose_id": 1806,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 294,
+      "pose_id": 1806,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 295,
+      "pose_id": 1868,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 296,
+      "pose_id": 1868,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 297,
+      "pose_id": 1868,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 298,
+      "pose_id": 1868,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 299,
+      "pose_id": 1868,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 300,
+      "pose_id": 1868,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 301,
+      "pose_id": 1919,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 302,
+      "pose_id": 1919,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 303,
+      "pose_id": 1919,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 304,
+      "pose_id": 1919,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 305,
+      "pose_id": 1919,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 306,
+      "pose_id": 1919,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 307,
+      "pose_id": 1947,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 308,
+      "pose_id": 1947,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 309,
+      "pose_id": 1947,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 310,
+      "pose_id": 1947,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 311,
+      "pose_id": 1947,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 312,
+      "pose_id": 1947,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 313,
+      "pose_id": 2031,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 314,
+      "pose_id": 2031,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 315,
+      "pose_id": 2031,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 316,
+      "pose_id": 2031,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 317,
+      "pose_id": 2031,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 318,
+      "pose_id": 2031,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 319,
+      "pose_id": 2082,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 320,
+      "pose_id": 2082,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 321,
+      "pose_id": 2082,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 322,
+      "pose_id": 2082,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 323,
+      "pose_id": 2082,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 324,
+      "pose_id": 2082,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 325,
+      "pose_id": 2100,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 326,
+      "pose_id": 2100,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 327,
+      "pose_id": 2100,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 328,
+      "pose_id": 2100,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 329,
+      "pose_id": 2100,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 330,
+      "pose_id": 2100,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 331,
+      "pose_id": 2151,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 332,
+      "pose_id": 2151,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 333,
+      "pose_id": 2151,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 334,
+      "pose_id": 2151,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 335,
+      "pose_id": 2151,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 336,
+      "pose_id": 2151,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 337,
+      "pose_id": 2169,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 338,
+      "pose_id": 2169,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 339,
+      "pose_id": 2169,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 340,
+      "pose_id": 2169,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 341,
+      "pose_id": 2169,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 342,
+      "pose_id": 2169,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 343,
+      "pose_id": 2198,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 344,
+      "pose_id": 2198,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 345,
+      "pose_id": 2198,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 346,
+      "pose_id": 2198,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 347,
+      "pose_id": 2198,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 348,
+      "pose_id": 2198,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 349,
+      "pose_id": 2249,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 350,
+      "pose_id": 2249,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 351,
+      "pose_id": 2249,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 352,
+      "pose_id": 2249,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 353,
+      "pose_id": 2249,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 354,
+      "pose_id": 2249,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 355,
+      "pose_id": 2289,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 356,
+      "pose_id": 2289,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 357,
+      "pose_id": 2289,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 358,
+      "pose_id": 2289,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 359,
+      "pose_id": 2289,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 360,
+      "pose_id": 2289,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 361,
+      "pose_id": 2362,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 362,
+      "pose_id": 2362,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 363,
+      "pose_id": 2362,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 364,
+      "pose_id": 2362,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 365,
+      "pose_id": 2362,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 366,
+      "pose_id": 2362,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 367,
+      "pose_id": 2413,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 368,
+      "pose_id": 2413,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 369,
+      "pose_id": 2413,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 370,
+      "pose_id": 2413,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 371,
+      "pose_id": 2413,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 372,
+      "pose_id": 2413,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 373,
+      "pose_id": 2464,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 374,
+      "pose_id": 2464,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 375,
+      "pose_id": 2464,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 376,
+      "pose_id": 2464,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 377,
+      "pose_id": 2464,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 378,
+      "pose_id": 2464,
+      "camera_id": 23
+    },
+    {
+      "ordinal": 379,
+      "pose_id": 2493,
+      "camera_id": 1
+    },
+    {
+      "ordinal": 380,
+      "pose_id": 2493,
+      "camera_id": 5
+    },
+    {
+      "ordinal": 381,
+      "pose_id": 2493,
+      "camera_id": 10
+    },
+    {
+      "ordinal": 382,
+      "pose_id": 2493,
+      "camera_id": 14
+    },
+    {
+      "ordinal": 383,
+      "pose_id": 2493,
+      "camera_id": 19
+    },
+    {
+      "ordinal": 384,
+      "pose_id": 2493,
+      "camera_id": 23
+    }
+  ]
+}
