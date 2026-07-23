@@ -86,7 +86,7 @@ def test_v2_pair_confidence_threshold_grid_is_exact() -> None:
 
 def test_v2_crossfit_has_four_rotations() -> None:
     assert len(design.ROTATIONS) == 4
-    assert _splits()["rotation_count"] == 4
+    assert len(_splits()["rotations"]) == 4
 
 
 def test_v2_crossfit_rotation_zero_is_exact() -> None:
