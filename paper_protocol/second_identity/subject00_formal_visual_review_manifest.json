@@ -1,0 +1,2461 @@
+{
+  "extra_case_selection": {
+    "categories": {
+      "body_conforming_bias": {
+        "count": 12,
+        "score": "abs(predicted_foreground_coverage - ground_truth_foreground_coverage) + garment_proxy_undercoverage + garment_proxy_overcoverage",
+        "sort": "body_conforming_bias_score DESC, silhouette_iou ASC, ordinal ASC"
+      },
+      "face_or_hand": {
+        "count": 12,
+        "roi": "frozen subject00 face and bilateral hand boxes from the dataset keypoints; missing ROI sorts last",
+        "sort": "face_hand_roi_lpips DESC, face_hand_roi_rgb_mae DESC, ordinal ASC"
+      },
+      "hem_offset": {
+        "count": 12,
+        "measurement": "absolute vertical distance between the lowest predicted and GT foreground boundary in the frozen lower-torso central half ROI",
+        "sort": "hem_boundary_vertical_error_px DESC, ordinal ASC"
+      },
+      "hoodie_sleeve_or_bulk": {
+        "count": 12,
+        "roi": "frozen GT-mask shoulder-to-wrist lateral thirds",
+        "sort": "sleeve_bulk_roi_absolute_coverage_error DESC, ordinal ASC"
+      },
+      "lpips_worst": {
+        "count": 12,
+        "sort": "lpips DESC, rgb_mae DESC, ordinal ASC"
+      },
+      "silhouette_worst": {
+        "count": 12,
+        "sort": "silhouette_iou ASC, boundary_f_score ASC, ordinal ASC"
+      }
+    },
+    "deduplication": "Within each category keep the first unique query in the frozen numeric ordering; cross-category duplicates remain visible and are labeled.",
+    "human_posthoc_selection_allowed": false,
+    "selection_time": "AFTER_METRIC_COMPUTATION_USING_ONLY_FROZEN_RULES"
+  },
+  "manifest_content_sha256": "da97ad5fc3f71431c274e5b6cb454dc538d7a7b4586729c6a858a37771e98125",
+  "planned_sheets": [
+    {
+      "camera_id": 1,
+      "ordinal": 1,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/001_pose0000_cam01.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 2,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/002_pose0000_cam05.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 3,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/003_pose0000_cam10.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 4,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/004_pose0000_cam14.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 5,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/005_pose0000_cam19.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 6,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/006_pose0000_cam23.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 7,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/007_pose0673_cam01.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 8,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/008_pose0673_cam05.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 9,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/009_pose0673_cam10.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 10,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/010_pose0673_cam14.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 11,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/011_pose0673_cam19.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 12,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/012_pose0673_cam23.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 13,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/013_pose1555_cam01.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 14,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/014_pose1555_cam05.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 15,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/015_pose1555_cam10.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 16,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/016_pose1555_cam14.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 17,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/017_pose1555_cam19.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 18,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/018_pose1555_cam23.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 19,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/019_pose2493_cam01.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 20,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/020_pose2493_cam05.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 21,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/021_pose2493_cam10.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 22,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/022_pose2493_cam14.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 23,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/023_pose2493_cam19.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 24,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/024_pose2493_cam23.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 25,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/025_pose0000_cam00.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 26,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/026_pose0000_cam04.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 27,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/027_pose0000_cam08.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 28,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/028_pose0000_cam12.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 29,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/029_pose0000_cam16.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 30,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/030_pose0000_cam20.png",
+      "pose_id": 0,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 31,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/031_pose0673_cam00.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 32,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/032_pose0673_cam04.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 33,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/033_pose0673_cam08.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 34,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/034_pose0673_cam12.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 35,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/035_pose0673_cam16.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 36,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/036_pose0673_cam20.png",
+      "pose_id": 673,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 37,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/037_pose1555_cam00.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 38,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/038_pose1555_cam04.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 39,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/039_pose1555_cam08.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 40,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/040_pose1555_cam12.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 41,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/041_pose1555_cam16.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 42,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/042_pose1555_cam20.png",
+      "pose_id": 1555,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 43,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/043_pose2493_cam00.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 44,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/044_pose2493_cam04.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 45,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/045_pose2493_cam08.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 46,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/046_pose2493_cam12.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 47,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/047_pose2493_cam16.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 48,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/048_pose2493_cam20.png",
+      "pose_id": 2493,
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 49,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/049_pose0056_cam01.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 50,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/050_pose0056_cam05.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 51,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/051_pose0056_cam10.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 52,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/052_pose0056_cam14.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 53,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/053_pose0056_cam19.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 54,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/054_pose0056_cam23.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 55,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/055_pose0931_cam01.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 56,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/056_pose0931_cam05.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 57,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/057_pose0931_cam10.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 58,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/058_pose0931_cam14.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 59,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/059_pose0931_cam19.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 60,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/060_pose0931_cam23.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 61,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/061_pose1763_cam01.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 62,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/062_pose1763_cam05.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 63,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/063_pose1763_cam10.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 64,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/064_pose1763_cam14.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 65,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/065_pose1763_cam19.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 66,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/066_pose1763_cam23.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "ordinal": 67,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/067_pose2499_cam01.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "ordinal": 68,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/068_pose2499_cam05.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "ordinal": 69,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/069_pose2499_cam10.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "ordinal": 70,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/070_pose2499_cam14.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "ordinal": 71,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/071_pose2499_cam19.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "ordinal": 72,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/072_pose2499_cam23.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 73,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/073_pose0056_cam00.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 74,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/074_pose0056_cam04.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 75,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/075_pose0056_cam08.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 76,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/076_pose0056_cam12.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 77,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/077_pose0056_cam16.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 78,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/078_pose0056_cam20.png",
+      "pose_id": 56,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 79,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/079_pose0931_cam00.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 80,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/080_pose0931_cam04.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 81,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/081_pose0931_cam08.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 82,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/082_pose0931_cam12.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 83,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/083_pose0931_cam16.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 84,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/084_pose0931_cam20.png",
+      "pose_id": 931,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 85,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/085_pose1763_cam00.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 86,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/086_pose1763_cam04.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 87,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/087_pose1763_cam08.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 88,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/088_pose1763_cam12.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 89,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/089_pose1763_cam16.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 90,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/090_pose1763_cam20.png",
+      "pose_id": 1763,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "ordinal": 91,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/091_pose2499_cam00.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "ordinal": 92,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/092_pose2499_cam04.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "ordinal": 93,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/093_pose2499_cam08.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "ordinal": 94,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/094_pose2499_cam12.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "ordinal": 95,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/095_pose2499_cam16.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "ordinal": 96,
+      "panels": [
+        "ground_truth",
+        "step0",
+        "medium_step20249",
+        "formal_step100000",
+        "formal_step101245",
+        "alpha",
+        "depth",
+        "metrics_and_identifiers"
+      ],
+      "planned_relative_path": "visual_review/fixed96/096_pose2499_cam20.png",
+      "pose_id": 2499,
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    }
+  ],
+  "queries": [
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 1,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 2,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 3,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 4,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 5,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 6,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 7,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 8,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 9,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 10,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 11,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 12,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 13,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 14,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 15,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 16,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 17,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 18,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 19,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 20,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 21,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 22,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 23,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 24,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 25,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 26,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 27,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 28,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 29,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 30,
+      "pose_id": 0,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 31,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 32,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 33,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 34,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 35,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 36,
+      "pose_id": 673,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 37,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 38,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 39,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 40,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 41,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 42,
+      "pose_id": 1555,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 43,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 44,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 45,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 46,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 47,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 48,
+      "pose_id": 2493,
+      "pose_semantics": "train",
+      "quadrant": "Q_TRAIN_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 49,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 50,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 51,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 52,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 53,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 54,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 55,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 56,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 57,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 58,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 59,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 60,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 61,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 62,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 63,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 64,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 65,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 66,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 1,
+      "camera_semantics": "train",
+      "ordinal": 67,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 5,
+      "camera_semantics": "train",
+      "ordinal": 68,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 10,
+      "camera_semantics": "train",
+      "ordinal": 69,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 14,
+      "camera_semantics": "train",
+      "ordinal": 70,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 19,
+      "camera_semantics": "train",
+      "ordinal": 71,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 23,
+      "camera_semantics": "train",
+      "ordinal": 72,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_TRAIN_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 73,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 74,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 75,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 76,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 77,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 78,
+      "pose_id": 56,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 79,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 80,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 81,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 82,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 83,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 84,
+      "pose_id": 931,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 85,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 86,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 87,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 88,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 89,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 90,
+      "pose_id": 1763,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 0,
+      "camera_semantics": "heldout",
+      "ordinal": 91,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 4,
+      "camera_semantics": "heldout",
+      "ordinal": 92,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 8,
+      "camera_semantics": "heldout",
+      "ordinal": 93,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 12,
+      "camera_semantics": "heldout",
+      "ordinal": 94,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 16,
+      "camera_semantics": "heldout",
+      "ordinal": 95,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    },
+    {
+      "camera_id": 20,
+      "camera_semantics": "heldout",
+      "ordinal": 96,
+      "pose_id": 2499,
+      "pose_semantics": "heldout",
+      "quadrant": "Q_HELDOUT_POSE_HELDOUT_CAMERA"
+    }
+  ],
+  "query_count": 96,
+  "query_order_sha256": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+  "required_original_detail_open_count": 96,
+  "review_completion_rule": "Every one of 96 sheets must be opened at original detail and receive a persisted human record; contact-sheet-only review fails.",
+  "review_fields": [
+    "body_conforming_bias",
+    "loose_clothing_volume_missing",
+    "sleeve_bulk",
+    "hem_offset",
+    "head_eye_detail",
+    "hand_finger_detail",
+    "silhouette_discontinuity",
+    "failed_or_invalid",
+    "notes"
+  ],
+  "schema_version": "subject00.formal.visual_review_manifest.v1",
+  "source_fixed96_manifest_path": "paper_protocol/second_identity/subject00_canary_evaluation_manifest.json",
+  "task_id": "MMLPHUMAN-SUBJECT00-FORMAL-STRICT-SPLIT-PROTOCOL-001",
+  "visual_sheets_created_during_protocol_task": 0
+}
