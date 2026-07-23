@@ -1,0 +1,472 @@
+{
+  "PAPER_FINAL": 0,
+  "attachment_count": 200000,
+  "barycentric_exact_to_checkpoint": true,
+  "cached_weights_exact_to_checkpoint": true,
+  "checkpoint": {
+    "bytes": 724584644,
+    "data_order_position": 20249,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001/checkpoints/step_020249.pth",
+    "sha256": "480805878f1dba3d0748ab0b31d1e18c68fdd3f42267d92cf4763f97c0d1f443",
+    "source_branch": "research/mmlphuman-subject00-one-pass-medium-pilot-20260723",
+    "source_head": "36c43d9dd29abfe546a5352b46378244f3bd9f1b",
+    "step": 20249
+  },
+  "derived_manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8",
+  "face_ids_exact_to_checkpoint": true,
+  "gaussian_count": 200000,
+  "lbs_shape": [
+    200000,
+    55
+  ],
+  "legacy_grid_loads": 0,
+  "optimizer_audit": {
+    "duplicate_parameter_memberships": {},
+    "excluded_state_in_optimizer": [],
+    "group_count": 14,
+    "groups": {
+      "dopacities_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 3000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dquats_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 12000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dscales_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 9000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dsh0_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 9000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dshN_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.5e-06,
+        "parameter_scalar_count": 27000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dxyz": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.00025432692532516597,
+        "parameter_scalar_count": 30000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dxyz_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.69589883418064e-05,
+        "parameter_scalar_count": 450000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "encoder_feat_params": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "AdamW",
+        "eps": 1e-15,
+        "lr": 0.00047169226474827106,
+        "parameter_scalar_count": 91017000,
+        "parameter_tensor_count": 10,
+        "weight_decay": 0.001
+      },
+      "opacities": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.00047169226474827106,
+        "parameter_scalar_count": 200000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "quats": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.00047169226474827106,
+        "parameter_scalar_count": 800000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "scales": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.00047169226474827106,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "sh0": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.00047169226474827106,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "shN": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.3584613237413405e-05,
+        "parameter_scalar_count": 1800000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "xyz_offset": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0009433845294965421,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      }
+    },
+    "lr_mismatches": {},
+    "omitted_trainable_parameters": [],
+    "optimizer_parameter_tensor_count": 23,
+    "scene_scale": 1.786055122466469,
+    "scheduler_count": 9,
+    "scheduler_horizon": 800000,
+    "scheduler_step": 20249,
+    "status": "PASS",
+    "trainable_parameter_tensor_count": 23
+  },
+  "optimizer_state_restored": true,
+  "render_all_exact": true,
+  "render_array_count": 24,
+  "render_max_abs": 0.0,
+  "render_query_count": 8,
+  "render_records": [
+    {
+      "array": "query_001_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_001_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_001_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_024_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_024_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_024_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_025_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_025_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_025_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_048_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_048_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_048_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_049_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_049_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_049_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_072_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_072_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_072_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_073_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_073_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_073_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    },
+    {
+      "array": "query_096_alpha",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_096_depth",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330
+      ]
+    },
+    {
+      "array": "query_096_rgb",
+      "exact": true,
+      "mae": 0.0,
+      "max_abs": 0.0,
+      "shape": [
+        1150,
+        1330,
+        3
+      ]
+    }
+  ],
+  "render_tolerance": 1e-06,
+  "rng_state_present": true,
+  "sampler_sha256": "98af26a3f578d1e0239f6ea414e3664dae10a4b60f47aef594d0978f61b9ee82",
+  "scheduler_state_restored": true,
+  "schema_version": "subject00.medium.checkpoint_roundtrip.v1",
+  "sealed_from_existing_evidence": true,
+  "spatial_weight_queries": 0,
+  "status": "PASS",
+  "task_id": "MMLPHUMAN-SUBJECT00-ONE-PASS-MEDIUM-PILOT-001",
+  "template_sha256": "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031"
+}

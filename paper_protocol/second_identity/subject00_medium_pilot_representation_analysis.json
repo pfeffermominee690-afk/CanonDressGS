@@ -1,0 +1,88 @@
+{
+  "PAPER_FINAL": 0,
+  "decision_basis": [
+    "Medium-final RGB consistently contains the blue/white hoodie and dark jeans/shoes rather than a nearly uniform gray body.",
+    "All 96 final queries improve LPIPS and RGB MAE relative to step0.",
+    "Silhouette IoU and boundary F-score improve materially while outputs remain coherent in all four strict quadrants.",
+    "Manual review shows no severe body explosion, component separation, detached clouds, or head/hand contamination."
+  ],
+  "metric_limitation": "No separate garment mask exists. Under/overcoverage uses the frozen human silhouette as an explicit garment proxy. Reused step0/canary archives did not contain the newly defined color statistics, so those metrics are reported for medium final without inventing non-equivalent baselines.",
+  "metrics": {
+    "boundary_f_score": {
+      "max": 0.9798274734525004,
+      "mean": 0.803278516130951,
+      "median": 0.8082681637875657,
+      "min": 0.6682936809735169
+    },
+    "foreground_chroma": {
+      "max": 0.08628486096858978,
+      "mean": 0.07065231845869373,
+      "median": 0.07000638172030449,
+      "min": 0.059063222259283066
+    },
+    "foreground_coverage": {
+      "max": 0.11576005230467473,
+      "mean": 0.04188054375068106,
+      "median": 0.03867211507028441,
+      "min": 0.02271788166067342
+    },
+    "foreground_rgb_variance": {
+      "max": 0.0976022481918335,
+      "mean": 0.08338005111242335,
+      "median": 0.08396506309509277,
+      "min": 0.067105233669281
+    },
+    "garment_proxy_overcoverage": {
+      "max": 0.0031561500604018267,
+      "mean": 0.0015711241259540813,
+      "median": 0.001594992638515215,
+      "min": 0.0002472870854824962
+    },
+    "garment_proxy_undercoverage": {
+      "max": 0.08218980558025522,
+      "mean": 0.051245250757682735,
+      "median": 0.05272345774845356,
+      "min": 0.024950287807430666
+    },
+    "gt_pred_color_histogram_l1": {
+      "max": 0.28807256235827666,
+      "mean": 0.1530809770931756,
+      "median": 0.13901431669805822,
+      "min": 0.07471109554723487
+    },
+    "silhouette_iou": {
+      "max": 0.966085398365456,
+      "mean": 0.9155495896626089,
+      "median": 0.9152537028577181,
+      "min": 0.8854390873869996
+    }
+  },
+  "not_claimed": [
+    "No formal long-training claim.",
+    "No paper-final metric.",
+    "No proof that the current body-surface template is sufficient for high-resolution loose clothing."
+  ],
+  "preserved_limitations": [
+    "Loose hoodie volume, sleeve bulk, and hem offset remain underrepresented by the body-surface fallback.",
+    "The result demonstrates emerging appearance and silhouette, not complete loose-clothing geometry.",
+    "Hands, fingers, face, and eyes remain fine-detail limited."
+  ],
+  "schema_version": 1,
+  "status": "APPEARANCE_AND_SILHOUETTE_EMERGING",
+  "task_id": "MMLPHUMAN-SUBJECT00-ONE-PASS-MEDIUM-PILOT-001",
+  "visual_evidence": {
+    "appearance_color_texture_emergence": "CLEAR_AND_CONSISTENT",
+    "body_conforming_bias": "MILD_TO_MODERATE",
+    "body_explosion_count": 0,
+    "camera_mismatch_count": 0,
+    "component_separation_count": 0,
+    "detached_cloud_count": 0,
+    "empty_or_black_count": 0,
+    "full_frame_opacity_count": 0,
+    "garment_silhouette": "IMPROVED_BUT_BODY_SURFACE_CONSTRAINED",
+    "hand_finger_severe_contamination_count": 0,
+    "head_eye_severe_contamination_count": 0,
+    "loose_clothing_volume_missing": "PRESENT_ACROSS_VIEWS",
+    "silhouette_collapse_count": 0
+  }
+}
