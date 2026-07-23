@@ -1,0 +1,135 @@
+{
+  "PAPER_FINAL": 0,
+  "authorization_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "formal_metrics": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selection": 0,
+    "training_forwards": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "claim_boundary": {
+    "conditionally_supported_after_future_frozen_run": [
+      "subject00 avatar reconstruction portability",
+      "surface-attached LBS on a second identity",
+      "strict held-out camera evaluation",
+      "strict held-out pose evaluation",
+      "strict combined held-out pose/view evaluation"
+    ],
+    "initialization_distinction": "subject00 uses a body-surface fallback; subject02 uses a loose-clothing template; the contracts are not equivalent",
+    "not_supported": [
+      "cross-identity garment editing",
+      "unseen garment",
+      "multi-garment subject00 benchmark",
+      "loose-clothing template equivalence",
+      "arbitrary garment synthesis",
+      "complete second-identity CanonDressGS dressing result"
+    ]
+  },
+  "classification": "SUBJECT00_FORMAL_STRICT_SPLIT_PROTOCOL_READY",
+  "config": "config/subject00_surface_lbs_formal_strict_split.yaml",
+  "evaluation": {
+    "counts": {
+      "STRICT_NOVEL_POSE": {
+        "missing": 33,
+        "theoretical": 2250,
+        "valid": 2217
+      },
+      "STRICT_NOVEL_POSE_AND_VIEW": {
+        "missing": 11,
+        "theoretical": 750,
+        "valid": 739
+      },
+      "STRICT_NOVEL_VIEW": {
+        "missing": 31,
+        "theoretical": 6780,
+        "valid": 6749
+      },
+      "TRAIN_FIT": {
+        "missing": 91,
+        "theoretical": 20340,
+        "valid": 20249
+      }
+    },
+    "full_evaluation_png_count": 0,
+    "manifest_content_sha256": "2fdb96243b47aa32e2c73d968c73a5233fb0677e6e7598b95b3d75c466328199",
+    "step100000": "FROZEN_FIXED96_ONLY",
+    "step101245": "FULL_FOUR_QUADRANT_STREAMING_ONLY_FINAL"
+  },
+  "execution_provenance": {
+    "canary_runtime_code_head": "b0e8096589fe18069d95d2137e1db3979b4fe89f",
+    "medium_runner_source_commit": "36c43d9dd29abfe546a5352b46378244f3bd9f1b"
+  },
+  "initialization_checkpoint": {
+    "bytes": 701938720,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+    "sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a"
+  },
+  "mutation_audit": {
+    "attachment": 0,
+    "avatarrex": 0,
+    "cached_lbs": 0,
+    "canary_outputs": 0,
+    "medium_outputs": 0,
+    "strict_splits": 0,
+    "subject00_derived_assets": 0,
+    "subject00_raw": 0,
+    "subject02": 0,
+    "template": 0
+  },
+  "next_task": "RUN_SUBJECT00_FORMAL_STRICT_SPLIT_TRAINING_FROM_FROZEN_PROTOCOL",
+  "next_task_started": false,
+  "reports": [
+    "docs/SECOND_IDENTITY/SUBJECT00_FORMAL_STRICT_SPLIT_TRAINING_PROTOCOL_20260723.md",
+    "docs/SECOND_IDENTITY/SUBJECT00_FORMAL_EVALUATION_PROTOCOL_20260723.md",
+    "docs/SECOND_IDENTITY/SUBJECT00_FORMAL_REPRESENTATION_CAPACITY_PROTOCOL_20260723.md"
+  ],
+  "representation": {
+    "candidate_labels": [
+      "APPEARANCE_AND_SILHOUETTE_ESTABLISHED",
+      "APPEARANCE_EMERGING_GEOMETRY_LIMITED",
+      "LOW_TEXTURE_BODY_BOUND",
+      "REPRESENTATION_INCONCLUSIVE"
+    ],
+    "lpips_only_classification_forbidden": true,
+    "status_to_be_assigned_after_future_evidence": true
+  },
+  "schema_version": "subject00.formal.protocol_final_summary.v1",
+  "seal_commit_resolution": "git rev-parse HEAD after final seal commit",
+  "source": {
+    "branch": "research/mmlphuman-subject00-one-pass-medium-pilot-20260723",
+    "head": "2d0913eb1b163a79e81c1804c216f91b0a737b44"
+  },
+  "strict_split_hashes": {
+    "availability": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+    "camera": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+    "fixed96": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+    "pose": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06"
+  },
+  "summary_content_sha256": "43e6227ec1daa0f9fcfbb14edfb49f12064247d627e3746e525e89db59d92a76",
+  "target_branch": "research/mmlphuman-subject00-formal-strict-split-protocol-20260723",
+  "task_id": "MMLPHUMAN-SUBJECT00-FORMAL-STRICT-SPLIT-PROTOCOL-001",
+  "training": {
+    "checkpoint_steps": [
+      0,
+      20249,
+      40498,
+      60747,
+      80996,
+      100000,
+      101245
+    ],
+    "exposures_per_record": 5,
+    "final_step": 101245,
+    "pass_count": 5,
+    "record_count": 20249,
+    "record_manifest_source_sha256": "865118c2f216046008925ef14b049db6e1d2921922117f6e3c3e3e2fdacd3537",
+    "schedule_content_sha256": "79e007e3d4884ea199a273287bb42388473cddd63278efff6490ad28ddecaf78"
+  }
+}
