@@ -1,0 +1,135 @@
+{
+  "schema_version": "canondressgs.paper.loo_execution_contract_amended.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "READY_FOR_SEPARATE_SCIENTIFIC_EXECUTION_TASK",
+  "classification": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
+  "source": {
+    "branch": "research/leave-one-garment-out-basis-adaptation-protocol-20260724",
+    "head": "ecf11d6314126f02a9ed1305630a2eac2bd7da04",
+    "historical_classification": "LOO_PROTOCOL_INCOMPLETE"
+  },
+  "repair": {
+    "branch": "research/loo-few-view-fold-manifest-repair-20260724",
+    "head_binding": "resolve branch ref at execution start; a tracked artifact cannot embed its own containing commit hash",
+    "repair_class": "PROSPECTIVE_PRE_RESULT_PROTOCOL_REPAIR",
+    "result_information_used": false
+  },
+  "authorization": {
+    "execution_in_repair_task_authorized": false,
+    "next_task_execution_authorized": true,
+    "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
+    "next_task_started": false,
+    "K4_execution_authorized": false,
+    "retry_count": 0
+  },
+  "formal_output": {
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001",
+    "first_scientific_attempt": "attempt_001",
+    "attempt_directory_created_in_repair": false,
+    "scientific_attempt_count": 0
+  },
+  "required_inputs": {
+    "basis_contract": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+    "task_manifest": "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+    "loss_contract": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+    "loss_cross_protocol_audit": "paper_protocol/reviewer_risk/loo_shared_render_adaptation_loss_reference.json",
+    "optimizer_contract": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+    "baseline_registry": "paper_protocol/reviewer_risk/loo_baseline_registry_amended.json",
+    "evaluator_contract": "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+    "success_gates": "paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+    "expected_counts": "paper_protocol/reviewer_risk/loo_expected_counts_amended.json"
+  },
+  "primary_task_contract": {
+    "task_count": 40,
+    "K1_task_count": 20,
+    "K2_task_count": 20,
+    "blocked_task_count": 0,
+    "allowed_K": [1, 2],
+    "K1_role": "SAMPLE_EFFICIENCY_DIAGNOSTIC",
+    "primary_support_K": 2,
+    "partial_denominator_allowed": false
+  },
+  "basis_contract": {
+    "construction_plan_count": 5,
+    "basis_garments_per_split": 4,
+    "rank_rule": "min(numerical rank,3)",
+    "full_five_garment_rank4_basis_reused": false,
+    "held_out_teacher_in_basis": 0,
+    "basis_artifact_sha_required_before_optimizer": true
+  },
+  "optimizer_budget": {
+    "optimizer": "torch.optim.Adam",
+    "learning_rate": 0.02,
+    "betas": [0.9, 0.999],
+    "epsilon": 1e-8,
+    "weight_decay": 0,
+    "steps": 300,
+    "checkpoints": [0, 20, 50, 100, 200, 300],
+    "gradient_clip_norm": 5,
+    "scheduler": "torch.optim.lr_scheduler.LambdaLR multiplier 1.0",
+    "seed": 20260724,
+    "retry_count": 0,
+    "early_stopping": false,
+    "best_checkpoint_selection": false,
+    "final_rule": "step 300 only",
+    "same_for_all_garment_rotation_k": true
+  },
+  "optimizer_plans": {
+    "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION": {
+      "paired_task_plan_count": 40,
+      "initialization": "Reference Nearest Hard Lookup coefficient",
+      "loss": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT"
+    },
+    "ZERO_COEFFICIENT_INITIALIZATION_DIAGNOSTIC": {
+      "paired_task_plan_count": 40,
+      "initialization": "zero coefficient",
+      "may_replace_primary": false,
+      "loss": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT"
+    },
+    "FEW_VIEW_FULL_RESIDUAL_OPTIMIZATION": {
+      "paired_task_plan_count": 40,
+      "initialization": "same Reference Nearest Hard Lookup residual and identical initial render",
+      "loss": "LOW_DIMENSIONAL_RENDER_ADAPTATION_LOSS_CONTRACT"
+    }
+  },
+  "full_residual_fairness": {
+    "paired_plan_for_every_primary_task": true,
+    "same_adaptation_views": true,
+    "same_calibration": true,
+    "same_test": true,
+    "same_rendering_loss": true,
+    "same_300_step_budget": true,
+    "same_initial_render": true,
+    "same_identity_protection": true,
+    "extra_views": false,
+    "test_used_for_optimization": false,
+    "held_out_teacher_initialization": false,
+    "equal_wall_time_secondary_required": true
+  },
+  "information_boundary": {
+    "held_out_teacher_in_deployable_forward": 0,
+    "held_out_teacher_in_deployable_loss": 0,
+    "held_out_teacher_offline_oracle_only": true,
+    "test_in_adaptation": 0,
+    "calibration_in_adaptation": 0,
+    "test_in_regularization_selection": 0
+  },
+  "actual_execution_counts": {
+    "SVD_runs": 0,
+    "basis_generation": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "evaluation_inference": 0,
+    "visual_sheets": 0,
+    "scientific_attempts": 0,
+    "PAPER_FINAL": 0
+  },
+  "paper_final": false,
+  "paper_final_count": 0
+}

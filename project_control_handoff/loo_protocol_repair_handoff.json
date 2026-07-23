@@ -1,0 +1,55 @@
+{
+  "schema_version": "canondressgs.project_control.loo_protocol_repair_handoff.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "HANDOFF_READY_PENDING_FINAL_SYNC_AUDIT",
+  "classification": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
+  "source_head": "ecf11d6314126f02a9ed1305630a2eac2bd7da04",
+  "branch": "research/loo-few-view-fold-manifest-repair-20260724",
+  "head_binding": "resolve the branch ref after the sealing commit",
+  "windows_worktree": "E:/model_train/canondressgs_loo_few_view_fold_manifest_repair",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_loo_few_view_fold_manifest_repair",
+  "completed": [
+    "historical 14-artifact immutability manifest",
+    "rotation-level garment-agnostic K1 mapping",
+    "40 READY K1/K2 task records",
+    "K4 deferred diagnostic boundary",
+    "shared loss provenance audit",
+    "amended baseline, evaluator, success-gate, count, and execution contracts",
+    "43-check static validation contract"
+  ],
+  "execution_readiness": {
+    "primary_tasks": 40,
+    "blocked_tasks": 0,
+    "primary_budgets": [1, 2],
+    "primary_success_K": 2,
+    "K4_execution_authorized": false,
+    "formal_output_root": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001",
+    "first_attempt": "attempt_001",
+    "attempt_created": false
+  },
+  "immutable_execution_counts": {
+    "SVD_runs": 0,
+    "basis_generation": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "evaluation_inference": 0,
+    "visual_sheets": 0,
+    "scientific_attempts": 0,
+    "PAPER_FINAL": 0
+  },
+  "verification": {
+    "local_static_tests": "PENDING_FINAL_RUN",
+    "cloud_static_tests": "PENDING_FINAL_RUN",
+    "local_origin_cloud_head": "PENDING_FINAL_SYNC",
+    "windows_cloud_clean": "PENDING_FINAL_SYNC"
+  },
+  "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
+  "auto_execute_next_task": false,
+  "paper_final": false
+}

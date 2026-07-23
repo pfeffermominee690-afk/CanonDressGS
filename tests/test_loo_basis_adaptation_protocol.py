@@ -37,6 +37,24 @@ ALLOWED_PATHS = set(JSON_PATHS + MARKDOWN_PATHS + [
     "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol.yaml",
     "tests/test_loo_basis_adaptation_protocol.py",
 ])
+ALLOWED_PATHS.update({
+    "docs/PAPER/AAAI27_LOO_FEW_VIEW_FOLD_REPAIR_20260724.md",
+    "docs/PAPER/AAAI27_LOO_K1_K2_PRIMARY_CROSSFIT_PROTOCOL_20260724.md",
+    "docs/PAPER/AAAI27_LOO_K4_DEFERRED_DIAGNOSTIC_BOUNDARY_20260724.md",
+    "paper_protocol/reviewer_risk/loo_few_view_fold_repair.json",
+    "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+    "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml",
+    "paper_protocol/reviewer_risk/loo_shared_render_adaptation_loss_reference.json",
+    "paper_protocol/reviewer_risk/loo_baseline_registry_amended.json",
+    "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+    "paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+    "paper_protocol/reviewer_risk/loo_expected_counts_amended.json",
+    "paper_protocol/reviewer_risk/loo_execution_contract_amended.json",
+    "paper_protocol/reviewer_risk/loo_protocol_repair_tests.json",
+    "paper_protocol/reviewer_risk/loo_protocol_repair_final_summary.json",
+    "project_control_handoff/loo_protocol_repair_handoff.json",
+    "tests/test_loo_few_view_fold_manifest_repair.py",
+})
 
 
 def load_json(relative: str):

@@ -1,0 +1,138 @@
+{
+  "schema_version": "canondressgs.paper.loo_protocol_repair_final_summary.v1",
+  "task_id": "AAAI27-LOO-FEW-VIEW-FOLD-REPAIR-001",
+  "status": "PROTOCOL_REPAIR_COMPLETE_PENDING_FINAL_SYNC_AUDIT",
+  "final_classification": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
+  "repair_class": "PROSPECTIVE_PRE_RESULT_PROTOCOL_REPAIR",
+  "source": {
+    "branch": "research/leave-one-garment-out-basis-adaptation-protocol-20260724",
+    "head": "ecf11d6314126f02a9ed1305630a2eac2bd7da04",
+    "classification_preserved": "LOO_PROTOCOL_INCOMPLETE"
+  },
+  "repair_branch": {
+    "name": "research/loo-few-view-fold-manifest-repair-20260724",
+    "head_binding": "git branch ref resolved after the sealing commit",
+    "self_referential_head_embedded": false
+  },
+  "historical_preservation": {
+    "artifact_count": 14,
+    "mutation_count": 0,
+    "original_summary_sha256": "88d2d50baa46801df8ea55af7ca99c7cd52e1c0a02ea1bac8d38361d149e4149",
+    "original_incomplete_classification_preserved": true,
+    "original_15_valid_45_blocked_evidence_preserved": true
+  },
+  "root_cause": "Four independent condition units cannot support K=4 adaptation plus separate calibration and test; exact-front K=1 was also absent from the R1 and R2 optimize pools.",
+  "repair_decision": {
+    "primary_budgets": [1, 2],
+    "primary_tasks": 40,
+    "ready_tasks": 40,
+    "blocked_tasks": 0,
+    "K1_tasks": 20,
+    "K2_tasks": 20,
+    "K4_tasks": 0,
+    "K4_status": "DEFERRED_ALL_AVAILABLE_VIEW_DIAGNOSTIC"
+  },
+  "K1_mapping": {
+    "rule": "FRONT_PROXIMAL_TRAIN_VIEW",
+    "score_tuple": ["exact_front_rank", "circular_azimuth_distance", "elevation_distance", "frozen_optimize_fold_index", "lexical_condition_id"],
+    "R0": "cond_000000",
+    "R1": "cond_000017",
+    "R2": "cond_000347",
+    "R3": "cond_000000",
+    "garment_agnostic": true,
+    "future_quality_blind": true
+  },
+  "K2_mapping": {
+    "rule": "ALL_AVAILABLE_TRAIN_FOLD_VIEWS",
+    "conditions_per_task": 2,
+    "K1_subset_of_K2_groups": 20
+  },
+  "scientific_contract": {
+    "identity": "subject02",
+    "garments": ["O01", "O02", "O03", "O04", "O08"],
+    "loo_splits": 5,
+    "basis_garments_per_split": 4,
+    "basis_rank_rule": "min(numerical rank,3)",
+    "five_garment_rank4_basis_reused": false,
+    "held_out_teacher_deployable_use": 0,
+    "loss_status": "CORE_WEIGHT_ALIGNMENT_WITH_PREREGISTERED_SCOPE_DIFFERENCES",
+    "optimizer_budget_changed": false,
+    "baseline_semantics_changed": false,
+    "evaluator_metrics_changed": false,
+    "primary_success_K": 2,
+    "K1_role": "SAMPLE_EFFICIENCY_DIAGNOSTIC"
+  },
+  "planned_future_counts": {
+    "basis_construction_plans": 5,
+    "optimizer_runs": 120,
+    "optimizer_steps": 36000,
+    "forward_loss_calls": 36000,
+    "backward_calls": 36000,
+    "checkpoint_writes": 720,
+    "evaluation_inference": 960,
+    "logical_renders": 54960,
+    "unique_physical_renders": 54840,
+    "table_rows": 65,
+    "visual_sheets": 26
+  },
+  "actual_execution_counts": {
+    "SVD_runs": 0,
+    "basis_generation": 0,
+    "adaptation_runs": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "forward": 0,
+    "backward": 0,
+    "checkpoint_writes": 0,
+    "renderer_runs": 0,
+    "new_renders": 0,
+    "evaluation_inference": 0,
+    "visual_sheets": 0,
+    "scientific_attempts": 0,
+    "PAPER_FINAL": 0
+  },
+  "frozen_mutations": {
+    "original_LOO_protocol_artifacts": 0,
+    "original_incomplete_summary": 0,
+    "Teacher_bank": 0,
+    "full_rank4_basis": 0,
+    "F2": 0,
+    "MMLP_Human": 0,
+    "renderer": 0,
+    "identity_masks": 0,
+    "condition_assets": 0,
+    "Pure_Endpoint": 0,
+    "Coefficient_Headroom_branch": 0,
+    "Controller": 0,
+    "subject00": 0,
+    "AvatarReX": 0
+  },
+  "formal_output": {
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001",
+    "first_attempt": "attempt_001",
+    "attempt_created": false
+  },
+  "artifacts": {
+    "fold_repair": "paper_protocol/reviewer_risk/loo_few_view_fold_repair.json",
+    "task_manifests": "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+    "protocol": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml",
+    "loss_reference": "paper_protocol/reviewer_risk/loo_shared_render_adaptation_loss_reference.json",
+    "baselines": "paper_protocol/reviewer_risk/loo_baseline_registry_amended.json",
+    "evaluator": "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+    "gates": "paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+    "counts": "paper_protocol/reviewer_risk/loo_expected_counts_amended.json",
+    "execution": "paper_protocol/reviewer_risk/loo_execution_contract_amended.json",
+    "tests": "paper_protocol/reviewer_risk/loo_protocol_repair_tests.json",
+    "handoff": "project_control_handoff/loo_protocol_repair_handoff.json"
+  },
+  "verification": {
+    "static_test_count": 43,
+    "local": "PENDING_FINAL_RUN",
+    "cloud": "PENDING_FINAL_RUN",
+    "origin_cloud_head_consistency": "PENDING_FINAL_SYNC"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
+  "next_task_started": false
+}
