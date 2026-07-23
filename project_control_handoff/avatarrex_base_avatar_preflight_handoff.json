@@ -1,0 +1,45 @@
+{
+  "artifact_sha256": {
+    "docs/DATASET/AVATARREX_LICENSE_CLOSURE_20260724.md": "bf4f32885fc13c42b6a865ac94fcbb3c3a7dbadb92879c3128d149b8e9369f6e",
+    "docs/SECOND_IDENTITY/AVATARREX_BASE_AVATAR_PREFLIGHT_20260724.md": "3ad460651e4b0ed7493e2293704fa5f6a2774d38177918761dd7b40729bb2a80",
+    "docs/SECOND_IDENTITY/AVATARREX_STRICT_SPLIT_AUDIT_20260724.md": "ea54a25e43d4ee0f0056aaa6a0c611928ca3c2be11b61ffef105a3bd2263f1ee",
+    "docs/SECOND_IDENTITY/AVATARREX_TEMPLATE_AND_LBS_ROUTE_20260724.md": "629e275e02d737c276eb1566750c1692e5c8c6ab37d3fdf43f044a2c4cf2051f",
+    "paper_protocol/datasets/avatarrex_base_avatar_preflight_contract.json": "ec64f180719f1aa2d0dc64322ff188cad9402ddf07ff6c2084e0d497979ca5e5",
+    "paper_protocol/datasets/avatarrex_base_avatar_preflight_final_summary.json": "6ac400a407586b88ee264b21ea690d12100754163ccd7cff2e5979955cbf98be",
+    "paper_protocol/datasets/avatarrex_base_avatar_runtime_audit.json": "370c2468c90f6980b977b3066c98e890294f69ebdb10883d91ddfedc358ccdec",
+    "paper_protocol/datasets/avatarrex_calibration_runtime_contract.json": "01a357fbec8793a128c059b5c975bafb997e96fed476abbc68691a10cab789e7",
+    "paper_protocol/datasets/avatarrex_canary_training_contract_draft.json": "1d5f7e27198c52f90d0cade0af888e886f63b473f2107f0a393d63b847322c56",
+    "paper_protocol/datasets/avatarrex_lbs_route_audit.json": "68648e993b9f6ec19ddbfefc29ab812cf88080ac3e0f0eb7d0b2b300471f74e0",
+    "paper_protocol/datasets/avatarrex_license_and_citation_contract.json": "7c4f8d55af843714c28ca31c083215a98963c856fe6c151b7dddb0529930db11",
+    "paper_protocol/datasets/avatarrex_smplx_runtime_contract.json": "89d0213c19124b98b764ff02f1dea76b11df4f6cb6483e5a6d15a9c4c3d97985",
+    "paper_protocol/datasets/avatarrex_template_route_audit.json": "defbbe3de447e5ad06a1e1472ea40cb01b4c236a4f8c2b6dbf3632de454af320",
+    "paper_protocol/datasets/avatarrex_zero_copy_runtime_adapter.json": "4b2ceb392722cf8060abff3c730a7e630eb7c6a2552d625514e59072dbb505af"
+  },
+  "blocker": "TEMPLATE_AND_LBS_ASSETS_REQUIRED",
+  "branch": "research/avatarrex-base-avatar-preflight-20260724",
+  "classification": "AVATARREX_BASE_AVATAR_PREFLIGHT_READY_FOR_DERIVED_ASSETS",
+  "frozen_inputs": {
+    "archive_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z",
+    "archive_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "calibration_sha256": "793281a00b808976122c0d33b4dd22d0ed0a48518577345c709db6cbb3d7f315",
+    "raw_full_content_fingerprint": "00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15",
+    "raw_root": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1",
+    "smpl_params_sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b"
+  },
+  "next_task": "PREPARE_AVATARREX_LBN1_BASE_AVATAR_DERIVED_ASSETS_WITHOUT_TRAINING",
+  "next_task_automatic_execution": false,
+  "next_task_entry_gates": [
+    "Reconfirm private single-site noncommercial license guard.",
+    "Acquire official lbn1 preprocessed archive without raw RGB/mask duplication.",
+    "Freeze archive/member hashes before extraction and validate template topology/schema.",
+    "Generate and validate MMLP PointInterpolant LBS grid in isolated private staging.",
+    "Do not train; stop after derived-asset validation and handoff."
+  ],
+  "paper_final": 0,
+  "private_output_policy": "All raw data, derived assets, templates, LBS volumes, position maps, and data-derived checkpoints remain private at the same organizational site.",
+  "runtime_status": "DATASET_AND_PARAMETER_ADAPTER_SMOKE_PASS",
+  "schema_version": "avatarrex.base_avatar_preflight_handoff.v1",
+  "source_head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2",
+  "summary": "paper_protocol/datasets/avatarrex_base_avatar_preflight_final_summary.json",
+  "task_id": "AAAI27-AVATARREX-BASE-AVATAR-PREFLIGHT-001"
+}

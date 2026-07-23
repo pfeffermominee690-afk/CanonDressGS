@@ -1,0 +1,120 @@
+{
+  "asset_acquisition_plan": [
+    "Run only in the next authorized derived-assets task at the same private organizational site.",
+    "Download the official Drive file once into a private staging directory; record byte count and SHA256 before extraction.",
+    "List the 7z archive before extraction; freeze every path, size, and archive-member CRC/hash available.",
+    "Reject path traversal, unexpected RGB/mask duplication, executable payloads, and subject mismatches.",
+    "Extract only required preprocessed assets into private staging and hash each file.",
+    "Inspect template PLY schema, vertex/face counts, finiteness, manifold diagnostics, bounds, canonical pose, and lbn1 correspondence.",
+    "Confirm whether canonical LBS and position maps are present; do not infer from the archive title.",
+    "Materialize the accepted mesh at {DATASET_DIR}/gaussian/template.ply and freeze the exact source-to-destination provenance."
+  ],
+  "candidates": [
+    {
+      "archive_contents": "UNKNOWN_UNTIL_CONTROLLED_ACQUISITION",
+      "archive_sha256": null,
+      "availability": "OFFICIALLY_INDEXED_FOR_AVATARREX_LBN1",
+      "canonical_lbs_volume_in_archive": "UNKNOWN_UNTIL_ARCHIVE_LISTING",
+      "downloaded_in_this_task": false,
+      "drive_file_id": "1RDM3v5P4XF6Sp88EusDvokw-yHg6Je0C",
+      "drive_page_size_bytes": 2271523272,
+      "drive_title": "avatarrex_lbn1.7z",
+      "face_count": null,
+      "id": "A_OFFICIAL_PREPROCESSED_LOOSE_CLOTHING_TEMPLATE",
+      "license": "Dataset license applies; private internal use only and no third-party sharing.",
+      "mmlp_direct_compatibility": "PENDING_SCHEMA_AND_TOPOLOGY_VALIDATION",
+      "position_maps_in_archive": "UNKNOWN_UNTIL_ARCHIVE_LISTING",
+      "rank": 1,
+      "raw_sequence_correspondence": "MUST_BE_VALIDATED_AGAINST_LBN1_BETAS_AND_CANONICAL_FRAME",
+      "source": "AnimatableGaussians PREPROCESSED_DATASET.md at pinned commit",
+      "template_topology": "UNKNOWN_UNTIL_CONTROLLED_ACQUISITION",
+      "vertex_count": null
+    },
+    {
+      "availability": "SOURCE_AND_LBN1_CONFIG_PUBLIC_AT_PINNED_COMMIT",
+      "determinism": "SEEDED_BUT_BITWISE_DETERMINISM_NOT_ESTABLISHED_FOR_CUDA_TRAINING",
+      "external_components": [
+        "PointInterpolant compiled from PoissonRecon/AdaptiveSolvers",
+        "custom pose-vocabulary and root-finding operations",
+        "SMPL-X model under its separate license"
+      ],
+      "gpu_cpu_budget": "NOT_BENCHMARKED_IN_THIS_NO_GENERATION_TASK",
+      "id": "B_OFFICIAL_ANIMATABLE_GAUSSIANS_TEMPLATE_RECONSTRUCTION",
+      "inputs": [
+        "raw lbn1 RGB/masks/calibration/SMPL-X",
+        "neutral SMPL-X model",
+        "canonical LBS volume"
+      ],
+      "license": "AnimatableGaussians code license plus AvatarReX dataset license and SMPL-X terms",
+      "official_git_blobs": {
+        "configs/avatarrex_lbn1/template.yaml": "bc94c1a24b1b9abaa15cf01797bf41611a86a113",
+        "gen_data/gen_weight_volume.py": "7b08114c52f48aceca45c7177ad97a70391979e3",
+        "main_template.py": "38367402ae8363874a1b6020ca2bcf78f24d53e6",
+        "network/template.py": "070177275c72534baa886d88872c468c0dcf2169"
+      },
+      "official_paths": [
+        "configs/avatarrex_lbn1/template.yaml",
+        "gen_data/gen_weight_volume.py",
+        "main_template.py",
+        "network/template.py"
+      ],
+      "output_schema": "data_root/template.ply followed by position-map generation",
+      "pretrained_model_required": false,
+      "rank": 2,
+      "training_contract": {
+        "lbn1_config_camera_count": 14,
+        "lbn1_config_frame_range": [
+          1033,
+          1034,
+          1
+        ],
+        "optimizer": "Adam",
+        "seed": 31359,
+        "template_iterations_in_official_main": 150000
+      }
+    },
+    {
+      "admitted_use": "CANARY_ONLY_AFTER_EXPLICIT_FALLBACK_APPROVAL",
+      "availability": "EXISTING_NEUTRAL_SMPLX_MODEL_FORWARD_PASS",
+      "equivalent_to_loose_clothing_template": false,
+      "formal_base_avatar_route": false,
+      "garment_volume_loss_risk": "HIGH_FOR_LBN1_BECAUSE_MMLP_README_EXPLICITLY_RECOMMENDS_A_LOOSE_CLOTHING_TEMPLATE",
+      "generation": "Deterministic body mesh for fixed model/betas/pose; MMLP Scene writes fallback template when missing.",
+      "id": "C_SMPLX_BODY_SURFACE_FALLBACK",
+      "rank": 3
+    },
+    {
+      "actorshq_template_archive_substitution_allowed": false,
+      "availability": "NO_ADDITIONAL_TOPOLOGY_KNOWN_LBN1_TEMPLATE_FOUND_AT_PINNED_OFFICIAL_COMMIT",
+      "id": "D_OTHER_OFFICIAL_ASSETS",
+      "rank": 4
+    }
+  ],
+  "counts": {
+    "large_downloads": 0,
+    "raw_mutation": 0,
+    "template_generation": 0
+  },
+  "expected_hash_path_contract": {
+    "expected_sha_policy": "MUST_BE_OBSERVED_AND_FROZEN_BEFORE_EXTRACTION; NO GUESSED HASH",
+    "mmlp_template_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/gaussian/template.ply",
+    "official_archive_expected_bytes_from_drive_page": 2271523272,
+    "official_archive_expected_path": "PRIVATE_STAGING/avatarrex_lbn1_preprocessed/avatarrex_lbn1.7z",
+    "official_archive_expected_sha256": null,
+    "status": "PENDING_CONTROLLED_ACQUISITION",
+    "template_sha256": null,
+    "topology": null
+  },
+  "license_contract_status": "CLOSED_FOR_PRIVATE_INTERNAL_NONCOMMERCIAL_SINGLE_SITE_DERIVED_ASSET_PREPARATION",
+  "license_policy": "PRIVATE_INTERNAL_NONCOMMERCIAL_SINGLE_SITE_ONLY",
+  "paper_final": 0,
+  "recommended_route": {
+    "canary_only_fallback": "C_SMPLX_BODY_SURFACE_FALLBACK",
+    "candidate": "A_OFFICIAL_PREPROCESSED_LOOSE_CLOTHING_TEMPLATE",
+    "fallback": "B_OFFICIAL_ANIMATABLE_GAUSSIANS_TEMPLATE_RECONSTRUCTION",
+    "reason": "It is the official lbn1 asset recommended by MMLP-Human for loose clothing and avoids reconstructing a learned template if its contents validate."
+  },
+  "schema_version": "avatarrex.template_route_audit.v1",
+  "status": "ROUTE_SELECTED_ASSET_NOT_ACQUIRED",
+  "task_id": "AAAI27-AVATARREX-BASE-AVATAR-PREFLIGHT-001"
+}

@@ -1,0 +1,153 @@
+{
+  "availability": {
+    "all_pairs_available": true,
+    "camera_count": 16,
+    "frame_count_per_camera": 1901,
+    "logical_rgb_mask_pairs": 30416,
+    "source": "avatarrex_camera_pose_split.json:availability_manifest"
+  },
+  "calibration_adapter": {
+    "contract": "avatarrex_calibration_runtime_contract.json",
+    "mode": "READ_ONLY_IN_MEMORY",
+    "source_sha256": "793281a00b808976122c0d33b4dd22d0ed0a48518577345c709db6cbb3d7f315"
+  },
+  "camera_mapping": [
+    {
+      "camera_index": 0,
+      "canonical_camera_id": "camera_00",
+      "raw_camera_name": "22010708"
+    },
+    {
+      "camera_index": 1,
+      "canonical_camera_id": "camera_01",
+      "raw_camera_name": "22010710"
+    },
+    {
+      "camera_index": 2,
+      "canonical_camera_id": "camera_02",
+      "raw_camera_name": "22010714"
+    },
+    {
+      "camera_index": 3,
+      "canonical_camera_id": "camera_03",
+      "raw_camera_name": "22010716"
+    },
+    {
+      "camera_index": 4,
+      "canonical_camera_id": "camera_04",
+      "raw_camera_name": "22053903"
+    },
+    {
+      "camera_index": 5,
+      "canonical_camera_id": "camera_05",
+      "raw_camera_name": "22053907"
+    },
+    {
+      "camera_index": 6,
+      "canonical_camera_id": "camera_06",
+      "raw_camera_name": "22053908"
+    },
+    {
+      "camera_index": 7,
+      "canonical_camera_id": "camera_07",
+      "raw_camera_name": "22053912"
+    },
+    {
+      "camera_index": 8,
+      "canonical_camera_id": "camera_08",
+      "raw_camera_name": "22053917"
+    },
+    {
+      "camera_index": 9,
+      "canonical_camera_id": "camera_09",
+      "raw_camera_name": "22053923"
+    },
+    {
+      "camera_index": 10,
+      "canonical_camera_id": "camera_10",
+      "raw_camera_name": "22053925"
+    },
+    {
+      "camera_index": 11,
+      "canonical_camera_id": "camera_11",
+      "raw_camera_name": "22053926"
+    },
+    {
+      "camera_index": 12,
+      "canonical_camera_id": "camera_12",
+      "raw_camera_name": "22070928"
+    },
+    {
+      "camera_index": 13,
+      "canonical_camera_id": "camera_13",
+      "raw_camera_name": "22070932"
+    },
+    {
+      "camera_index": 14,
+      "canonical_camera_id": "camera_14",
+      "raw_camera_name": "22070935"
+    },
+    {
+      "camera_index": 15,
+      "canonical_camera_id": "camera_15",
+      "raw_camera_name": "22139907"
+    }
+  ],
+  "frame_naming": "zero-padded eight-digit frame_id with source suffix",
+  "identity_id": "avatarrex_lbn1",
+  "immutability": {
+    "calibration_rewrites": 0,
+    "full_mask_copy_count": 0,
+    "full_rgb_copy_count": 0,
+    "raw_apparent_bytes": 19135049684,
+    "raw_file_count": 60834,
+    "raw_mutation": 0,
+    "raw_tree_metadata_unchanged": true,
+    "smpl_npz_rewrites": 0
+  },
+  "license_guard": {
+    "derived_asset_publication_authorized": false,
+    "private_internal_derived_generation_after_preflight": true,
+    "raw_redistribution_authorized": false,
+    "status": "PRIVATE_INTERNAL_NONCOMMERCIAL_SINGLE_SITE_ONLY"
+  },
+  "loader_smoke": {
+    "camera_indices": [
+      0,
+      8,
+      15
+    ],
+    "dataset_class": "scene.dataset.AVRexDataset",
+    "decoded_record_count": 9,
+    "frame_ids": [
+      0,
+      950,
+      1900
+    ],
+    "runtime_audit_sha256": "370c2468c90f6980b977b3066c98e890294f69ebdb10883d91ddfedc358ccdec",
+    "status": "PASS"
+  },
+  "mask_resolver": "{raw_root}/{raw_camera_name}/mask/pha/{frame_id:08d}{source_mask_suffix}",
+  "paper_final": 0,
+  "record_key": [
+    "identity_id",
+    "canonical_camera_id",
+    "frame_id"
+  ],
+  "rgb_resolver": "{raw_root}/{raw_camera_name}/{frame_id:08d}.jpg",
+  "schema_version": "avatarrex.zero_copy_runtime_adapter.v1",
+  "smpl_x_adapter": {
+    "contract": "avatarrex_smplx_runtime_contract.json",
+    "mode": "READ_ONLY_IN_MEMORY",
+    "source_sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b"
+  },
+  "source_root": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1",
+  "standardization_mode": "READ_ONLY_ZERO_COPY_LOADER_ADAPTER",
+  "status": "PASS",
+  "strict_split": {
+    "audit": "avatarrex_base_avatar_runtime_audit.json:strict_split_audit",
+    "contract": "avatarrex_camera_pose_split.json",
+    "status": "PASS"
+  },
+  "task_id": "AAAI27-AVATARREX-BASE-AVATAR-PREFLIGHT-001"
+}

@@ -1,0 +1,92 @@
+{
+  "candidates": [
+    {
+      "direct_mmlp_compatibility": false,
+      "expected_official_schema": [
+        "diff_weight_volume",
+        "ori_weight_volume",
+        "sdf_volume",
+        "volume_bounds",
+        "smpl_bounds",
+        "center"
+      ],
+      "id": "OFFICIAL_CANONICAL_LBS_VOLUME",
+      "reason": "The official AnimatableGaussians schema differs from the MMLP-Human NPZ consumer schema.",
+      "status": "PENDING_OFFICIAL_ARCHIVE_CONTENT_INSPECTION"
+    },
+    {
+      "direct_mmlp_compatibility": false,
+      "id": "ANIMATABLE_GAUSSIANS_LBS_ASSET",
+      "status": "SAME_SCHEMA_RISK_AS_OFFICIAL_CANONICAL_VOLUME"
+    },
+    {
+      "direct_mmlp_compatibility": false,
+      "id": "SURFACE_ATTACHED_LBS",
+      "status": "FEASIBLE_BUT_REQUIRES_A_NEW_RUNTIME_AND_CHECKPOINT_CONTRACT",
+      "topology_leakage_risk": "Weights bind to a specific template or Gaussian point set unless recomputed after topology changes."
+    },
+    {
+      "direct_mmlp_compatibility": false,
+      "id": "DETERMINISTIC_CLOSEST_SURFACE_FALLBACK",
+      "method": "Closest SMPL-X triangle plus barycentric interpolation of official SMPL-X vertex LBS weights.",
+      "status": "CANARY_FALLBACK_ONLY"
+    },
+    {
+      "determinism_gate": "Generate twice in isolated staging and require equal schema, arrays, bounds, and canonical content hash.",
+      "generator": "script/gen_weight_volume.py",
+      "id": "MMLP_POINTINTERPOLANT_VOLUME",
+      "inputs": [
+        "smpl_params.npz betas[0]",
+        "neutral SMPL-X model",
+        "PointInterpolant"
+      ],
+      "output": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/gaussian/lbs_weights_grid.npz",
+      "schema_matches_current_consumer": true,
+      "status": "RECOMMENDED",
+      "topology_independence": "The continuous grid is generated from fixed SMPL-X topology and queried at the actual initial Gaussian positions."
+    }
+  ],
+  "counts": {
+    "lbs_generation": 0,
+    "raw_mutation": 0,
+    "template_generation": 0,
+    "training": 0
+  },
+  "gaussian_lifecycle": {
+    "checkpoint_consumption": "capture serializes _weights; restore loads _weights directly.",
+    "clone_split_densification_in_current_train_path": "ABSENT; the audited train.py and GaussianModel have a fixed initialized point set.",
+    "future_topology_change_rule": "Any clone/split/densification or point replacement must explicitly rebind weights and version the checkpoint schema.",
+    "initialization_source": "Poisson-disk sampling of the accepted canonical template mesh",
+    "weight_materialization": "First get_weights query interpolates the grid at _xyz and caches the result."
+  },
+  "generation_gate_for_next_task": [
+    "Pin the exact neutral SMPL-X hash and PointInterpolant source/build hash.",
+    "Generate only in private staging, never in raw root until validation passes.",
+    "Require finite nonnegative weights, row sums near one, expected joint count, valid bbox, and exact required NPZ keys.",
+    "Query template vertices and representative interior/exterior points; reject discontinuities or NaN/Inf.",
+    "Run isolated duplicate generation or a stronger deterministic equivalence test before promotion.",
+    "Promote once to gaussian/lbs_weights_grid.npz with append-only provenance and no raw RGB/mask writes."
+  ],
+  "mmlp_consumer_contract": {
+    "checkpoint_behavior": "GaussianModel.capture stores materialized per-Gaussian _weights; restore consumes stored _weights.",
+    "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/gaussian/lbs_weights_grid.npz",
+    "query_consumer": "GaussianModel.get_weights",
+    "required_keys": [
+      "grid",
+      "bbox_min",
+      "bbox_max",
+      "grid_dims",
+      "grid_resolution"
+    ],
+    "runtime_query": "torch.nn.functional.grid_sample with xyz-to-zyx permutation, border padding, align_corners=True"
+  },
+  "paper_final": 0,
+  "recommended_route": {
+    "candidate": "MMLP_POINTINTERPOLANT_VOLUME",
+    "official_volume_role": "Cross-check only unless an explicit deterministic schema adapter is separately reviewed.",
+    "reason": "It produces the exact current consumer schema, avoids binding weights to one loose-clothing mesh topology, and queries the actual Gaussian initialization positions."
+  },
+  "schema_version": "avatarrex.lbs_route_audit.v1",
+  "status": "ROUTE_SELECTED_ASSET_NOT_GENERATED",
+  "task_id": "AAAI27-AVATARREX-BASE-AVATAR-PREFLIGHT-001"
+}

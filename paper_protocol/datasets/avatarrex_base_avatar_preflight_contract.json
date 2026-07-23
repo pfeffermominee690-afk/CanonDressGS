@@ -1,0 +1,100 @@
+{
+  "admission": {
+    "derived_asset_preparation": true,
+    "formal_training": false,
+    "formal_training_from_this_task": "FORBIDDEN",
+    "short_canary": false,
+    "short_canary_blocker": "TEMPLATE_AND_LBS_ASSETS_REQUIRED"
+  },
+  "classification": "AVATARREX_BASE_AVATAR_PREFLIGHT_READY_FOR_DERIVED_ASSETS",
+  "environment": {
+    "neutral_model_sha256": "376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992",
+    "platform": "Linux-5.15.0-88-generic-x86_64-with-glibc2.35",
+    "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+    "required_future_runtime": [
+      "CUDA-capable PyTorch",
+      "SMPL-X",
+      "Open3D",
+      "PyTorch3D",
+      "gsplat",
+      "PointInterpolant"
+    ],
+    "smplx": "0.1.28",
+    "torch": "2.4.1+cu121"
+  },
+  "execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "formal_renderer_runs": 0,
+    "full_mask_copies": 0,
+    "full_rgb_copies": 0,
+    "image_generation_api_calls": 0,
+    "large_downloads": 0,
+    "lbs_generation": 0,
+    "optimizer_created": 0,
+    "paper_final": 0,
+    "raw_mutation": 0,
+    "raw_tree_metadata_after": {
+      "algorithm": "sha256(relative_path NUL size NUL mtime_ns LF) over sorted files",
+      "apparent_bytes": 19135049684,
+      "file_count": 60834,
+      "sha256": "c64cc633f7cba3abe87f8de4bfc0e2e6636e15a0dbc10624f5bbad60a53268e2"
+    },
+    "raw_tree_metadata_before": {
+      "algorithm": "sha256(relative_path NUL size NUL mtime_ns LF) over sorted files",
+      "apparent_bytes": 19135049684,
+      "file_count": 60834,
+      "sha256": "c64cc633f7cba3abe87f8de4bfc0e2e6636e15a0dbc10624f5bbad60a53268e2"
+    },
+    "raw_tree_metadata_unchanged": true,
+    "template_generation": 0,
+    "training_runs": 0
+  },
+  "frozen_inputs": {
+    "adapter_sha256": "0796b2e31825aa15393fd84e69e4bbcf9731b9b94682e2da33ca179aeaa95808",
+    "archive_bytes": 12569755256,
+    "archive_path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z",
+    "archive_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "calibration_sha256": "793281a00b808976122c0d33b4dd22d0ed0a48518577345c709db6cbb3d7f315",
+    "raw_apparent_bytes": 19135049684,
+    "raw_file_count": 60834,
+    "raw_full_content_fingerprint": "00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15",
+    "raw_root": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1",
+    "smpl_params_sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b",
+    "split_sha256": "8a3cc389b42b104a2c483a161b2b15f5b700110797f72205ef4573714e72ee5c"
+  },
+  "gates": {
+    "camera_calibration": "PASS",
+    "checkpoint_schema": "STATIC_CAPTURE_RESTORE_PARSE_ONLY_PENDING_RUNTIME_INSTANCE",
+    "image_mask_decode": "PASS",
+    "lbs": "ROUTE_SELECTED_ASSET_NOT_GENERATED",
+    "license": "PASS_PRIVATE_INTERNAL_NONCOMMERCIAL_SINGLE_SITE_ONLY",
+    "model_config_parse": "PASS",
+    "model_construction": "PENDING_TEMPLATE_AND_LBS_ASSETS",
+    "mutation_audit": "PASS",
+    "neutral_smpl_x_forward": "PASS",
+    "smpl_x_schema": "PASS",
+    "strict_split": "PASS",
+    "template": "ROUTE_SELECTED_ASSET_NOT_ACQUIRED",
+    "training_contract_recovery": "PENDING_DERIVED_ASSET_AND_RUNTIME_CLOSURE",
+    "zero_copy_adapter": "PASS",
+    "zero_step_render": "PENDING_TEMPLATE_AND_LBS_ASSETS"
+  },
+  "paper_final": 0,
+  "required_future_preflight_sequence": [
+    "Verify environment and all frozen hashes before access.",
+    "Verify private-license guard and output-root access control.",
+    "Acquire and validate the official loose-clothing template under the frozen acquisition contract.",
+    "Generate and validate the MMLP PointInterpolant LBS grid in private staging.",
+    "Promote template and LBS assets once with immutable provenance.",
+    "Re-run zero-copy loader, calibration, SMPL-X, and strict-split audits.",
+    "Construct the model with writes redirected to an isolated derived-output root.",
+    "Run one zero-step render with no optimizer or backward and validate finite RGB/alpha and camera parity.",
+    "Freeze actual checkpoint capture/restore schema and bitwise zero-step restoration.",
+    "Recover and approve the short-canary step budget, checkpoint cadence, and optimization signal thresholds.",
+    "Audit raw/frozen mutations and require every forbidden count to remain zero before canary admission."
+  ],
+  "schema_version": "avatarrex.base_avatar_preflight_contract.v1",
+  "status": "READY_TO_PREPARE_PRIVATE_DERIVED_ASSETS_WITHOUT_TRAINING",
+  "task_id": "AAAI27-AVATARREX-BASE-AVATAR-PREFLIGHT-001"
+}

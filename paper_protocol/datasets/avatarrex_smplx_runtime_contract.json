@@ -1,0 +1,135 @@
+{
+  "axis_angle_convention": "SMPL-X axis-angle vectors in radians for global, body, jaw, and hand pose fields",
+  "fields": {
+    "betas": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 1.0589842796325684,
+      "minimum": -1.0900590419769287,
+      "shape": [
+        1,
+        10
+      ]
+    },
+    "body_pose": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 2.461738109588623,
+      "minimum": -2.4466588497161865,
+      "shape": [
+        1901,
+        63
+      ]
+    },
+    "expression": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 1.6280914545059204,
+      "minimum": -0.6980868577957153,
+      "shape": [
+        1901,
+        10
+      ]
+    },
+    "global_orient": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 2.451908588409424,
+      "minimum": -2.646953582763672,
+      "shape": [
+        1901,
+        3
+      ]
+    },
+    "jaw_pose": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 0.623584508895874,
+      "minimum": -0.21706309914588928,
+      "shape": [
+        1901,
+        3
+      ]
+    },
+    "left_hand_pose": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 2.662473201751709,
+      "minimum": -2.513363838195801,
+      "shape": [
+        1901,
+        45
+      ]
+    },
+    "right_hand_pose": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 2.8137693405151367,
+      "minimum": -3.5526247024536133,
+      "shape": [
+        1901,
+        45
+      ]
+    },
+    "transl": {
+      "dtype": "float32",
+      "finite": true,
+      "maximum": 0.9522379636764526,
+      "minimum": -0.1821836233139038,
+      "shape": [
+        1901,
+        3
+      ]
+    }
+  },
+  "frame_index_correspondence": "frame_id indexes every time-varying field directly; betas[0] is identity shape",
+  "gender": "UNKNOWN",
+  "gender_reason": "No authoritative gender metadata exists in the raw archive; neutral model compatibility is not gender evidence.",
+  "load_mode": "READ_ONLY_IN_MEMORY_NPZ_ALLOW_PICKLE_FALSE",
+  "mmlp_mapping": {
+    "Rh": "identity matrix; global orientation remains in pose[0:3]",
+    "Th": "transl[frame_id]",
+    "beta": "betas[0]",
+    "expression_consumed_by_current_mmlp_body_deformation": false,
+    "jaw_pose_consumed_by_current_mmlp_body_deformation": false,
+    "pose_165": "global_orient(3) + body_pose(63) + zero jaw slot(3) + zero eye slots(6) + left_hand_pose(45) + right_hand_pose(45)"
+  },
+  "neutral_model_compatibility": {
+    "all_outputs_finite": true,
+    "claim": "NEUTRAL_SMPLX_FORWARD_COMPATIBLE",
+    "does_not_establish_gender": true,
+    "face_count": 20908,
+    "frame_ids": [
+      0,
+      950,
+      1900
+    ],
+    "model_bytes": 108752058,
+    "model_path": "/root/autodl-tmp/canondressgs_work/mmlphuman_code/smpl_model/smplx/SMPLX_NEUTRAL.npz",
+    "model_sha256": "376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992",
+    "status": "PASS",
+    "vertex_count": 10475
+  },
+  "paper_final": 0,
+  "parameter_dtype": "float32",
+  "schema_version": "avatarrex.smplx_runtime_contract.v1",
+  "source": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/smpl_params.npz",
+  "source_sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b",
+  "status": "PASS",
+  "subject00_comparison": {
+    "different": [
+      "AvatarReX uses calibration_full.json and camera-root RGB/mask paths.",
+      "subject00 uses calibration.json and images/{camera}/ plus masks/{camera}/ paths.",
+      "Identity shape values, frame counts, camera names, and capture calibration differ."
+    ],
+    "same": [
+      "Both use AVRexDataset.load_pose_data and the same 165D pose assembly.",
+      "Both pass transl as Th, identity as Rh, and betas[0] as beta."
+    ]
+  },
+  "task_id": "AAAI27-AVATARREX-BASE-AVATAR-PREFLIGHT-001",
+  "translation": {
+    "explicit_unit_metadata_in_npz": false,
+    "runtime_contract": "model-native meters; official code forwards transl without rescaling"
+  }
+}
