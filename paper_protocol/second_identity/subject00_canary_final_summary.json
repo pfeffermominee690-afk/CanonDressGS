@@ -1,0 +1,464 @@
+{
+  "PAPER_FINAL": 0,
+  "checkpoint_roundtrip": {
+    "attachment_count": 200000,
+    "checkpoint": {
+      "bytes": 724584196,
+      "data_order_position": 384,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000384.pth",
+      "sha256": "310ea027464214c3d99735794103b6e2c9f6174cd51a3ff13317750f292d17e3",
+      "source_branch": "research/mmlphuman-subject00-short-canary-from-repaired-contract-20260723",
+      "source_head": "b0e8096589fe18069d95d2137e1db3979b4fe89f",
+      "step": 384
+    },
+    "gaussian_count": 200000,
+    "lbs_shape": [
+      200000,
+      55
+    ],
+    "optimizer_state_restored": true,
+    "render_array_count": 24,
+    "render_max_abs": 0.0,
+    "render_query_count": 8,
+    "rng_state_present": true,
+    "scheduler_state_restored": true,
+    "status": "PASS"
+  },
+  "classification": "SUBJECT00_MMLPHUMAN_SHORT_CANARY_PASS",
+  "evaluation": {
+    "all_renderer_invocations": 224,
+    "failed_formal_renders": 0,
+    "formal_render_count": 216,
+    "heldout_runtime": {
+      "Q_HELDOUT_POSE_HELDOUT_CAMERA": {
+        "alpha_nonempty_count": 24,
+        "body_explosion_count": 0,
+        "finite_count": 24,
+        "query_count": 24,
+        "status": "PASS"
+      },
+      "Q_HELDOUT_POSE_TRAIN_CAMERA": {
+        "alpha_nonempty_count": 24,
+        "body_explosion_count": 0,
+        "finite_count": 24,
+        "query_count": 24,
+        "status": "PASS"
+      }
+    },
+    "quadrant_changes": {
+      "Q_HELDOUT_POSE_HELDOUT_CAMERA": {
+        "metrics": {
+          "alpha_occupancy": {
+            "absolute_change": 0.0002692873488068098,
+            "relative_change": 0.006280704608010568,
+            "step0_mean": 0.042875340525226104,
+            "step384_mean": 0.04314462787403291
+          },
+          "boundary_f_score": {
+            "absolute_change": 0.17435170305884262,
+            "relative_change": 0.3386371004760396,
+            "step0_mean": 0.5148629692781667,
+            "step384_mean": 0.6892146723370093
+          },
+          "depth_finite_ratio": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "step0_mean": 1.0,
+            "step384_mean": 1.0
+          },
+          "foreground_coverage": {
+            "absolute_change": 0.00019423558897242732,
+            "relative_change": 0.004757351709744071,
+            "step0_mean": 0.04082851149613164,
+            "step384_mean": 0.04102274708510407
+          },
+          "lpips": {
+            "absolute_change": -0.015690331968168422,
+            "relative_change": -0.11461571629673528,
+            "step0_mean": 0.13689511766036352,
+            "step384_mean": 0.1212047856921951
+          },
+          "peak_vram_bytes": {
+            "absolute_change": 29200981.333333254,
+            "relative_change": 0.01813198542310215,
+            "step0_mean": 1610467946.6666667,
+            "step384_mean": 1639668928.0
+          },
+          "psnr": {
+            "absolute_change": 1.093335549036663,
+            "relative_change": 0.04714650363878301,
+            "step0_mean": 23.19017243385315,
+            "step384_mean": 24.283507982889812
+          },
+          "render_seconds": {
+            "absolute_change": 8.951686322689056e-05,
+            "relative_change": 0.029147443788971595,
+            "step0_mean": 0.003071173715094725,
+            "step384_mean": 0.0031606905783216157
+          },
+          "rgb_mae": {
+            "absolute_change": -0.0016832216060720384,
+            "relative_change": -0.1319983331366021,
+            "step0_mean": 0.012751839860963324,
+            "step384_mean": 0.011068618254891286
+          },
+          "silhouette_iou": {
+            "absolute_change": 0.0451539352235959,
+            "relative_change": 0.05349871850411328,
+            "step0_mean": 0.844019006177208,
+            "step384_mean": 0.8891729414008039
+          },
+          "ssim": {
+            "absolute_change": 0.0031198784708976746,
+            "relative_change": 0.0032176778181303876,
+            "step0_mean": 0.9696056122581164,
+            "step384_mean": 0.972725490729014
+          }
+        },
+        "query_count": 24
+      },
+      "Q_HELDOUT_POSE_TRAIN_CAMERA": {
+        "metrics": {
+          "alpha_occupancy": {
+            "absolute_change": 0.0002655279503105609,
+            "relative_change": 0.006280732707042881,
+            "step0_mean": 0.042276588209654575,
+            "step384_mean": 0.042542116159965136
+          },
+          "boundary_f_score": {
+            "absolute_change": 0.1795653081523596,
+            "relative_change": 0.3491008434227287,
+            "step0_mean": 0.5143651513179609,
+            "step384_mean": 0.6939304594703205
+          },
+          "depth_finite_ratio": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "step0_mean": 1.0,
+            "step384_mean": 1.0
+          },
+          "foreground_coverage": {
+            "absolute_change": 0.0001727143946823606,
+            "relative_change": 0.004291851304276074,
+            "step0_mean": 0.040242399476953246,
+            "step384_mean": 0.040415113871635606
+          },
+          "lpips": {
+            "absolute_change": -0.015756990139683083,
+            "relative_change": -0.11685378730072446,
+            "step0_mean": 0.13484364096075296,
+            "step384_mean": 0.11908665082106988
+          },
+          "peak_vram_bytes": {
+            "absolute_change": 29745557.333333492,
+            "relative_change": 0.018466960063496893,
+            "step0_mean": 1610744661.3333333,
+            "step384_mean": 1640490218.6666667
+          },
+          "psnr": {
+            "absolute_change": 1.1214849948883057,
+            "relative_change": 0.04811942142517477,
+            "step0_mean": 23.306285937627155,
+            "step384_mean": 24.42777093251546
+          },
+          "render_seconds": {
+            "absolute_change": 0.00010655463362733509,
+            "relative_change": 0.03644882614500402,
+            "step0_mean": 0.0029234037113686404,
+            "step384_mean": 0.0030299583449959755
+          },
+          "rgb_mae": {
+            "absolute_change": -0.0016688978842770048,
+            "relative_change": -0.13465858643632247,
+            "step0_mean": 0.012393549705545107,
+            "step384_mean": 0.010724651821268102
+          },
+          "silhouette_iou": {
+            "absolute_change": 0.047071647945265305,
+            "relative_change": 0.056012718107612276,
+            "step0_mean": 0.8403742852619778,
+            "step384_mean": 0.8874459332072431
+          },
+          "ssim": {
+            "absolute_change": 0.0031303688883781433,
+            "relative_change": 0.0032261695500982704,
+            "step0_mean": 0.9703051373362541,
+            "step384_mean": 0.9734355062246323
+          }
+        },
+        "query_count": 24
+      },
+      "Q_TRAIN_POSE_HELDOUT_CAMERA": {
+        "metrics": {
+          "alpha_occupancy": {
+            "absolute_change": 0.00025800915331808394,
+            "relative_change": 0.006301133086238053,
+            "step0_mean": 0.0409464694344557,
+            "step384_mean": 0.041204478587773784
+          },
+          "boundary_f_score": {
+            "absolute_change": 0.15838133512910002,
+            "relative_change": 0.3228594561196512,
+            "step0_mean": 0.4905581426439749,
+            "step384_mean": 0.6489394777730749
+          },
+          "depth_finite_ratio": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "step0_mean": 1.0,
+            "step384_mean": 1.0
+          },
+          "foreground_coverage": {
+            "absolute_change": 0.0001723874904652964,
+            "relative_change": 0.004423547702034147,
+            "step0_mean": 0.03897041516835567,
+            "step384_mean": 0.03914280265882097
+          },
+          "lpips": {
+            "absolute_change": -0.015202817196647345,
+            "relative_change": -0.10827646074235077,
+            "step0_mean": 0.14040740796675286,
+            "step384_mean": 0.1252045907701055
+          },
+          "peak_vram_bytes": {
+            "absolute_change": 28959018.666666746,
+            "relative_change": 0.01797567162331329,
+            "step0_mean": 1611011776.0,
+            "step384_mean": 1639970794.6666667
+          },
+          "psnr": {
+            "absolute_change": 1.0515721638997384,
+            "relative_change": 0.045303608739362115,
+            "step0_mean": 23.21166443824768,
+            "step384_mean": 24.26323660214742
+          },
+          "render_seconds": {
+            "absolute_change": 6.79241493344307e-05,
+            "relative_change": 0.023114939296859986,
+            "step0_mean": 0.0029385389449695745,
+            "step384_mean": 0.003006463094304005
+          },
+          "rgb_mae": {
+            "absolute_change": -0.0015942040093553551,
+            "relative_change": -0.1304346351112125,
+            "step0_mean": 0.012222244559476772,
+            "step384_mean": 0.010628040550121417
+          },
+          "silhouette_iou": {
+            "absolute_change": 0.043773016923877806,
+            "relative_change": 0.05259431375551806,
+            "step0_mean": 0.8322766055538704,
+            "step384_mean": 0.8760496224777482
+          },
+          "ssim": {
+            "absolute_change": 0.0027402664224306372,
+            "relative_change": 0.0028229107380957786,
+            "step0_mean": 0.9707237233718237,
+            "step384_mean": 0.9734639897942543
+          }
+        },
+        "query_count": 24
+      },
+      "Q_TRAIN_POSE_TRAIN_CAMERA": {
+        "metrics": {
+          "alpha_occupancy": {
+            "absolute_change": 0.0002091914569031239,
+            "relative_change": 0.005175728066344133,
+            "step0_mean": 0.040417783589408306,
+            "step384_mean": 0.04062697504631143
+          },
+          "boundary_f_score": {
+            "absolute_change": 0.18124520092796725,
+            "relative_change": 0.3691848961855378,
+            "step0_mean": 0.49093341250038725,
+            "step384_mean": 0.6721786134283545
+          },
+          "depth_finite_ratio": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0,
+            "step0_mean": 1.0,
+            "step384_mean": 1.0
+          },
+          "foreground_coverage": {
+            "absolute_change": 0.00014149504195271057,
+            "relative_change": 0.0036768765945638998,
+            "step0_mean": 0.038482401656314696,
+            "step384_mean": 0.03862389669826741
+          },
+          "lpips": {
+            "absolute_change": -0.016345110721886172,
+            "relative_change": -0.11893240963503184,
+            "step0_mean": 0.1374319310610493,
+            "step384_mean": 0.12108682033916314
+          },
+          "peak_vram_bytes": {
+            "absolute_change": 30137344.0,
+            "relative_change": 0.018721969983047905,
+            "step0_mean": 1609731456.0,
+            "step384_mean": 1639868800.0
+          },
+          "psnr": {
+            "absolute_change": 1.0879693031311035,
+            "relative_change": 0.0464106471110834,
+            "step0_mean": 23.442235151926678,
+            "step384_mean": 24.53020445505778
+          },
+          "render_seconds": {
+            "absolute_change": -7.714160407582904e-05,
+            "relative_change": -0.024379946908551105,
+            "step0_mean": 0.0031641415941218534,
+            "step384_mean": 0.0030869999900460243
+          },
+          "rgb_mae": {
+            "absolute_change": -0.0015941062980952356,
+            "relative_change": -0.13500256809253264,
+            "step0_mean": 0.011807970178779215,
+            "step384_mean": 0.010213863880683979
+          },
+          "silhouette_iou": {
+            "absolute_change": 0.04808570506682497,
+            "relative_change": 0.057806404097928234,
+            "step0_mean": 0.8318404477359342,
+            "step384_mean": 0.8799261528027592
+          },
+          "ssim": {
+            "absolute_change": 0.0030732229351997375,
+            "relative_change": 0.003163900114035792,
+            "step0_mean": 0.9713400627175967,
+            "step384_mean": 0.9744132856527964
+          }
+        },
+        "query_count": 24
+      }
+    },
+    "roundtrip_baseline_queries_reused": 8,
+    "roundtrip_fresh_renders": 8,
+    "step0_96_of_96": true,
+    "step384_96_of_96": true,
+    "successful_formal_renders": 216,
+    "train_query_lpips_improved": "24/24"
+  },
+  "execution_code_head": "b0e8096589fe18069d95d2137e1db3979b4fe89f",
+  "external_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001",
+  "gates": {
+    "checkpoint_roundtrip": true,
+    "optimization_signal": true,
+    "runtime": true,
+    "visual_review_complete": true
+  },
+  "hash_gate": {
+    "availability_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+    "derived_manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8",
+    "evaluation_query_order_sha256": "38476b7d9f6a012e0e21d7f188c5db5131506ec2231e8a7b50a389c7c92ad98a",
+    "status": "PASS",
+    "train_data_order_sha256": "a64a8d40876946b8f0919a4761e7b814e9ca7182cd0434b0cf97a6b2737386ca"
+  },
+  "immutability": {
+    "AvatarReX_archive_mutations": 0,
+    "AvatarReX_raw_mutations": 0,
+    "attachment_mutations": 0,
+    "attempt_001_to_004_mutations": 0,
+    "cached_lbs_mutations": 0,
+    "frozen_parameter_mutations": 0,
+    "status": "PASS",
+    "strict_camera_split_mutations": 0,
+    "strict_pose_split_mutations": 0,
+    "subject00_derived_asset_mutations": 0,
+    "subject00_raw_mutations": 0,
+    "subject02_mutations": 0,
+    "template_mutations": 0
+  },
+  "inventory": {
+    "attachments": 200000,
+    "gaussians": 200000,
+    "lbs_shape": [
+      200000,
+      55
+    ],
+    "off_surface": 0,
+    "optimizer_groups": 14,
+    "selected_frozen_scalars": 11631120,
+    "trainable_scalars": 156097000,
+    "valid_attachments": 200000
+  },
+  "next_task": "RUN_SUBJECT00_MMLPHUMAN_MEDIUM_PILOT_WITH_STRICT_SPLITS",
+  "next_task_started": false,
+  "provenance": {
+    "formal_reference": "subject02 formal MMLP-Human run (output directory: subject02_formal_800k, archived checkpoint iteration: 100000)",
+    "historically_exact_subject02_training_source_recovered": false,
+    "status": "LIMITED_HISTORICAL_PROVENANCE"
+  },
+  "resource_gate": {
+    "conflicting_dataset_io_tasks": 0,
+    "conflicting_gpu_tasks": 0,
+    "free_bytes_before_start": 48350000000,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_memory_free_mib_before_start": 24081,
+    "gpu_memory_total_mib": 24564,
+    "required_minimum_bytes": 21474836480,
+    "status": "PASS"
+  },
+  "schema_version": "subject00.canary.final_summary.v1",
+  "source": {
+    "branch": "research/mmlphuman-subject00-canary-contract-repair-20260723",
+    "classification": "SUBJECT00_CANARY_TRAINING_CONTRACT_REPAIRED",
+    "head": "ebcf40da0fca0345f749f7c111e1a3a00f19dda3"
+  },
+  "storage": {
+    "attempt_archive_wall_span_seconds": 836,
+    "attempt_bytes": 3864616645,
+    "attempt_file_count": 272,
+    "checkpoint_bytes": 3600275521,
+    "cloud_free_bytes_after_roundtrip": 44490887168,
+    "evaluation_bytes": 245042047,
+    "note": "Archive span includes infrastructure validation failures, repairs, commits and operator audit time; it is not pure GPU time.",
+    "visual_bytes": 18316072
+  },
+  "target_branch": "research/mmlphuman-subject00-short-canary-from-repaired-contract-20260723",
+  "task_id": "MMLPHUMAN-SUBJECT00-SHORT-CANARY-FROM-REPAIRED-CONTRACT-001",
+  "training": {
+    "backward_calls": 384,
+    "checkpoints": 5,
+    "final_resume_process_wall_seconds": 108.89055106788874,
+    "logical_runs": 1,
+    "optimizer_steps": 384,
+    "peak_vram_bytes": 1640268288,
+    "primary_reconstruction_loss": {
+      "first48_median": 0.00959837855771184,
+      "gate_last_below_first": true,
+      "last48_median": 0.008991606067866087,
+      "name": "l1_loss",
+      "relative_reduction": 0.06321614491420949
+    },
+    "repeated_exposures": 0,
+    "total_loss": {
+      "first48_median": 0.009627176448702812,
+      "gate_reduction_at_least_5_percent": true,
+      "last48_median": 0.009059807751327753,
+      "relative_reduction": 0.058934070690218596
+    },
+    "training_forwards": 384,
+    "unique_exposures": 384
+  },
+  "visual_review": {
+    "gross_failure_counts": {
+      "body_explosion": 0,
+      "camera_mismatch": 0,
+      "component_separation": 0,
+      "detached_clouds": 0,
+      "empty_or_black_render": 0,
+      "full_frame_opacity": 0,
+      "hand_finger_contamination": 0,
+      "head_eye_contamination": 0,
+      "severe_component_contamination": 0,
+      "silhouette_collapse": 0
+    },
+    "limitation": [
+      "Predicted RGB remains a low-texture gray body at both steps; visual improvement is small at contact-sheet scale.",
+      "Absence of gross head/eye or hand/finger contamination is a runtime-canary observation, not a fine-detail quality claim."
+    ],
+    "step0": "96/96",
+    "step384": "96/96",
+    "total": "192/192"
+  }
+}
