@@ -1,0 +1,1196 @@
+{
+  "aggregate_full_result": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/aggregates/training_results.json",
+    "sha256": "47de611cafdc40a248008c4d2755da0934848ca0927e6922d46e9075548991d4"
+  },
+  "counts": {
+    "augmented_forward_batches": 0,
+    "backward_calls": 1800,
+    "checkpoint_writes": 72,
+    "clean_forward_batches": 1800,
+    "optimizer_created": 12,
+    "optimizer_steps": 1800,
+    "record_forwards_augmented": 0,
+    "record_forwards_clean": 9000,
+    "scheduler_steps": 1800,
+    "training_steps": 1800
+  },
+  "execution_attempt": "attempt_004",
+  "family": "MATCHED_V1",
+  "paper_final": false,
+  "paper_final_count": 0,
+  "preserved_startup_failures": [
+    {
+      "attempt": "attempt_002",
+      "audit_path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_002/audits/startup_failure.json",
+      "audit_sha256": "c578153c6857c348ffc4e5cda94cc2187c5eed17e9e00596f7c34cb1a229429f",
+      "completed_training_steps": 0,
+      "status": "FAILED_CODE_STARTUP_ERROR_STEP_0"
+    },
+    {
+      "attempt": "attempt_003",
+      "audit_path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_003/audits/startup_failure.json",
+      "audit_sha256": "febfb32481aa07a296c9fbe98c2d01e64931efa33822105ee65f382e5e76364e",
+      "completed_training_steps": 0,
+      "status": "FAILED_CODE_STARTUP_ERROR_STEP_0"
+    }
+  ],
+  "rotations": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "run_count": 12,
+  "runs": [
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "e32dc5c98494f51673ef0d42cc03e71ead26d993da93521291b315ebc33d41fd",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_0/seed_0/training_result.json",
+        "sha256": "419e559f2cd08ff87fe65c14f3130c520c9251653fe35bdc941be988052082af"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_0/seed_0/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "e7bbeaa8ec9093f96a9d88b5335abedb085814b531ebdab8f1d6719db2aa1f76",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "0fb5ec34e4c355730cbd3b8464dcff82551abbfcd8a03d20202507d558b8b4b0",
+      "numerics": {
+        "gradient_norm_max": 21.583185243272382,
+        "loss_final": {
+          "garment": 0.7892686128616333,
+          "total": 0.7892686128616333
+        },
+        "loss_initial": {
+          "garment": 1.6445480585098267,
+          "total": 1.6445480585098267
+        },
+        "loss_max": 9.043913841247559,
+        "loss_min": 0.03429137542843819,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 0,
+      "schedule_sha256": "d6221272b531e01e848563b8c7bb5e924209e0b341f45cfc3a9e816c17f8fa36",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 0,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "28604117efb866bb7312760356668915eeecd54af7b4f63b9001047eec7ff0a0",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.740291256457567
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "e32dc5c98494f51673ef0d42cc03e71ead26d993da93521291b315ebc33d41fd",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_0/seed_1/training_result.json",
+        "sha256": "7caba04b84f34561cdd93e860b8b6af8495a9b6f5570cdd908966ffe5bf69dc4"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_0/seed_1/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "84203e91ec213d9c7076db18a86c47cff3f63c3bb1cbbd85d0cf599ec35217c4",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "ca16a3ce150e9d30032f5dff83532e0b09c2891ca861de37996e328df45ef64a",
+      "numerics": {
+        "gradient_norm_max": 19.59997948434943,
+        "loss_final": {
+          "garment": 0.8140814900398254,
+          "total": 0.8140814900398254
+        },
+        "loss_initial": {
+          "garment": 1.6362494230270386,
+          "total": 1.6362494230270386
+        },
+        "loss_max": 6.8948798179626465,
+        "loss_min": 0.031560268253088,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 0,
+      "schedule_sha256": "d6221272b531e01e848563b8c7bb5e924209e0b341f45cfc3a9e816c17f8fa36",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 1,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "46abdf39718b56a8b2fadec7ac5f70cbe10282463a6fcb9caca6f0d351d4d7da",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.473347119987011
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "e32dc5c98494f51673ef0d42cc03e71ead26d993da93521291b315ebc33d41fd",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_0/seed_2/training_result.json",
+        "sha256": "62688057f53a415d4bfca65c59aefafcfeba076c014c461b7bae7f9798d729ab"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_0/seed_2/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "530251a208e799592ef1556d99e2b0466cfd41134a8af394a49ccdfe40ed3cfd",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "aca66b1554a36ce4e5bf405e211160185a55594697624c17fe8d5b3521419f10",
+      "numerics": {
+        "gradient_norm_max": 17.87736495628769,
+        "loss_final": {
+          "garment": 0.8157661557197571,
+          "total": 0.8157661557197571
+        },
+        "loss_initial": {
+          "garment": 1.6426277160644531,
+          "total": 1.6426277160644531
+        },
+        "loss_max": 8.160404205322266,
+        "loss_min": 0.03670494630932808,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 0,
+      "schedule_sha256": "d6221272b531e01e848563b8c7bb5e924209e0b341f45cfc3a9e816c17f8fa36",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 2,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "575ddcb0fdaa8f36407d1978b2bb6539834cc734b55667eb69c28f7381e91bfb",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.424628157168627
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "93a8f5873a7ac3f8d01492c01cd4a2b39068db3c988fce6aca14d58bf4b094bb",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_1/seed_0/training_result.json",
+        "sha256": "d4dfee567be2887ea0182eda264df0a657e419ebdb7706b4f7e28f926bf2022d"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_1/seed_0/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "a31bff00c4a032e945725ab7793ceaf1d1cc99d63386c2f1b10f71bd4598808a",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "0fb5ec34e4c355730cbd3b8464dcff82551abbfcd8a03d20202507d558b8b4b0",
+      "numerics": {
+        "gradient_norm_max": 21.577779969278183,
+        "loss_final": {
+          "garment": 0.9665592312812805,
+          "total": 0.9665592312812805
+        },
+        "loss_initial": {
+          "garment": 1.6553329229354858,
+          "total": 1.6553329229354858
+        },
+        "loss_max": 8.714527130126953,
+        "loss_min": 0.03200696036219597,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 1,
+      "schedule_sha256": "f2305c089e843a78045cd43200bbfd7c9ba7e967cecb89395422253f7776530a",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 0,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "81fe6440dc20b1f718665ec47950b097f61c9098e6f0a903fdb3e87e7926c910",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.487988494336605
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "93a8f5873a7ac3f8d01492c01cd4a2b39068db3c988fce6aca14d58bf4b094bb",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_1/seed_1/training_result.json",
+        "sha256": "d3d8befb22d69a7e7b22ecc1eeff421424b971db2727bc9674bede18fec001dc"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_1/seed_1/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "c3e6e24cdfdf95744501c08dbb06b23fbe4e133f15f7110e6244c81b530d0057",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "ca16a3ce150e9d30032f5dff83532e0b09c2891ca861de37996e328df45ef64a",
+      "numerics": {
+        "gradient_norm_max": 19.166002440195616,
+        "loss_final": {
+          "garment": 1.0313996076583862,
+          "total": 1.0313996076583862
+        },
+        "loss_initial": {
+          "garment": 1.6493536233901978,
+          "total": 1.6493536233901978
+        },
+        "loss_max": 6.710139751434326,
+        "loss_min": 0.0364680252969265,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 1,
+      "schedule_sha256": "f2305c089e843a78045cd43200bbfd7c9ba7e967cecb89395422253f7776530a",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 1,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "e4319784f1a32913db561ff58ca12cfd3c073c8f495482da1345fc8f4e64fb7a",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.466196734458208
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "93a8f5873a7ac3f8d01492c01cd4a2b39068db3c988fce6aca14d58bf4b094bb",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_1/seed_2/training_result.json",
+        "sha256": "8db2502d9338c818e18be78e8171314cb41f056d8719ab842083f5cbf3d9eaff"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_1/seed_2/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "17b43ef2bcee4fc479200dd556b152c2991e861312193d67d47adf96080b8b5c",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "aca66b1554a36ce4e5bf405e211160185a55594697624c17fe8d5b3521419f10",
+      "numerics": {
+        "gradient_norm_max": 21.180430781108928,
+        "loss_final": {
+          "garment": 1.0241916179656982,
+          "total": 1.0241916179656982
+        },
+        "loss_initial": {
+          "garment": 1.656005859375,
+          "total": 1.656005859375
+        },
+        "loss_max": 8.637371063232422,
+        "loss_min": 0.04043656587600708,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 1,
+      "schedule_sha256": "f2305c089e843a78045cd43200bbfd7c9ba7e967cecb89395422253f7776530a",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 2,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "fb81c5f5a27ebc9305febebdadd7cfebc8a7d11badfc98624a85581b57de8b1c",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.6786444894969463
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "9e03c9fffc1eefcd9abaeae6e2140fec7b8018a022fc6d606fd1ebbfa0cdd849",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_2/seed_0/training_result.json",
+        "sha256": "89087184f04dc1c2e1cf9ff0ceb0280df245f7c27a72a3b5e3623a240bd30199"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_2/seed_0/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "37f79b47403b40afc715a7f9b47eaab4a414a7810af0738c66b6ad65b75a7e3d",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "0fb5ec34e4c355730cbd3b8464dcff82551abbfcd8a03d20202507d558b8b4b0",
+      "numerics": {
+        "gradient_norm_max": 21.551030695028476,
+        "loss_final": {
+          "garment": 0.90845787525177,
+          "total": 0.90845787525177
+        },
+        "loss_initial": {
+          "garment": 1.6379101276397705,
+          "total": 1.6379101276397705
+        },
+        "loss_max": 9.05428695678711,
+        "loss_min": 0.02554868534207344,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 2,
+      "schedule_sha256": "e6c87095797384f46142cb93c1e5a407d808287fdc83d7b1df99aa3e9309dfa9",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 0,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "e3639bd57b5d139cd432806c26e79fb0a79e2cd03de9ab93e3025892b3c354f2",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.467005878686905
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "9e03c9fffc1eefcd9abaeae6e2140fec7b8018a022fc6d606fd1ebbfa0cdd849",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_2/seed_1/training_result.json",
+        "sha256": "f7631417d2e3879da62d981ff64ff96e282cbbe38bb5b9529ddc80b6e5902588"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_2/seed_1/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "66dcaed3e4872635d72458c61fcb01bdd783d01fd6d87e2b902018263f417b45",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "ca16a3ce150e9d30032f5dff83532e0b09c2891ca861de37996e328df45ef64a",
+      "numerics": {
+        "gradient_norm_max": 19.874638033364775,
+        "loss_final": {
+          "garment": 0.8975448608398438,
+          "total": 0.8975448608398438
+        },
+        "loss_initial": {
+          "garment": 1.64679753780365,
+          "total": 1.64679753780365
+        },
+        "loss_max": 7.374006748199463,
+        "loss_min": 0.029346415773034096,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 2,
+      "schedule_sha256": "e6c87095797384f46142cb93c1e5a407d808287fdc83d7b1df99aa3e9309dfa9",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 1,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "2f55b032ab6d21dac01a9565786c63b7ec563a95dcb07fd3f348f53f078cf91d",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.6831277273595333
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "9e03c9fffc1eefcd9abaeae6e2140fec7b8018a022fc6d606fd1ebbfa0cdd849",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_2/seed_2/training_result.json",
+        "sha256": "447996e27fdf7e8f885d20b5d2875c90dc4320f3228a16847970b857ac2b6165"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_2/seed_2/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "99235c41867bc126d439587eea9a796fbf281b7fb3f642dc307f536284f7c479",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "aca66b1554a36ce4e5bf405e211160185a55594697624c17fe8d5b3521419f10",
+      "numerics": {
+        "gradient_norm_max": 20.983740444714524,
+        "loss_final": {
+          "garment": 0.9499618411064148,
+          "total": 0.9499618411064148
+        },
+        "loss_initial": {
+          "garment": 1.6404316425323486,
+          "total": 1.6404316425323486
+        },
+        "loss_max": 8.314193725585938,
+        "loss_min": 0.0346829853951931,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 2,
+      "schedule_sha256": "e6c87095797384f46142cb93c1e5a407d808287fdc83d7b1df99aa3e9309dfa9",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 2,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "8ad121ed47a44d6bb86ea29d8b058428654a1f72c898fb69ad4dba104ad63b54",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.584912583231926
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "01fb6be48611fb5fb5e63b0205053337e8ab48d5c50325ba1c0ff44c2bb4ac2a",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_3/seed_0/training_result.json",
+        "sha256": "2fbea633df83a58f160215dd65eafee27ca7ee6590f615ca317c82faaf69f09c"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_3/seed_0/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "7d75c1d81f692ba2728de91d0c118412d4a42fc8254b20780e362c9c287d99cd",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "0fb5ec34e4c355730cbd3b8464dcff82551abbfcd8a03d20202507d558b8b4b0",
+      "numerics": {
+        "gradient_norm_max": 21.58535417767491,
+        "loss_final": {
+          "garment": 0.9043043255805969,
+          "total": 0.9043043255805969
+        },
+        "loss_initial": {
+          "garment": 1.6445480585098267,
+          "total": 1.6445480585098267
+        },
+        "loss_max": 9.03943157196045,
+        "loss_min": 0.035354357212781906,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 3,
+      "schedule_sha256": "0b45485d601ae49991195e66947457370f9d2b08474bd85e3d8bd5182b828ebd",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 0,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "ab0086528deb9413c1d965a131f6da89281e5fa84e059cb709d003c5d69182fe",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.381062526255846
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "01fb6be48611fb5fb5e63b0205053337e8ab48d5c50325ba1c0ff44c2bb4ac2a",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_3/seed_1/training_result.json",
+        "sha256": "e24970cb2237caa0b12386d2d28b76dacdb90d9e195ab04128a15124b35b71d2"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_3/seed_1/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "c9d28950e7f7e09726a6bde0b09112f03fc6a41cb3661f3838f8638560a574b5",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "ca16a3ce150e9d30032f5dff83532e0b09c2891ca861de37996e328df45ef64a",
+      "numerics": {
+        "gradient_norm_max": 19.605712849029537,
+        "loss_final": {
+          "garment": 0.8268064856529236,
+          "total": 0.8268064856529236
+        },
+        "loss_initial": {
+          "garment": 1.6362494230270386,
+          "total": 1.6362494230270386
+        },
+        "loss_max": 6.919952392578125,
+        "loss_min": 0.028345851227641106,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 3,
+      "schedule_sha256": "0b45485d601ae49991195e66947457370f9d2b08474bd85e3d8bd5182b828ebd",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 1,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "4d3f2f5379e509c5ec9688bbae293c2118bf2752019eb324ec43bd550fa9f672",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.7050970792770386
+    },
+    {
+      "best_checkpoint_selection": false,
+      "checkpoint_steps": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "counts": {
+        "augmented_forward_batches": 0,
+        "backward_calls": 150,
+        "checkpoint_writes": 6,
+        "clean_forward_batches": 150,
+        "optimizer_created": 1,
+        "optimizer_steps": 150,
+        "record_forwards_augmented": 0,
+        "record_forwards_clean": 750,
+        "scheduler_steps": 150,
+        "training_steps": 150
+      },
+      "cycle_sha256": "01fb6be48611fb5fb5e63b0205053337e8ab48d5c50325ba1c0ff44c2bb4ac2a",
+      "early_stopping": false,
+      "extension_steps": 0,
+      "external_full_result": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_3/seed_2/training_result.json",
+        "sha256": "b21006eceed7b7e80f4fc171a9ed1cbe623955d5c4d8f49c7bd937c8516513c1"
+      },
+      "family": "MATCHED_V1",
+      "final_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_004/training/matched_v1/rotation_3/seed_2/checkpoints/final_step_150.pt",
+      "final_checkpoint_sha256": "a7d8af7d603bee0aff7f9ba888e81a021b35bbcdbf8040690f6d21c0e0dc8f17",
+      "final_only_evaluated": true,
+      "fresh_process": true,
+      "frozen_f2_optimizer_membership": false,
+      "frozen_f2_requires_grad": false,
+      "gradient_clip_max_norm": 5.0,
+      "historical_controller_checkpoint_loads": 0,
+      "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+      "initialization_sha256": "aca66b1554a36ce4e5bf405e211160185a55594697624c17fe8d5b3521419f10",
+      "numerics": {
+        "gradient_norm_max": 20.249687694718325,
+        "loss_final": {
+          "garment": 0.8790681958198547,
+          "total": 0.8790681958198547
+        },
+        "loss_initial": {
+          "garment": 1.6426277160644531,
+          "total": 1.6426277160644531
+        },
+        "loss_max": 8.129557609558105,
+        "loss_min": 0.03050227276980877,
+        "nan_or_inf_count": 0
+      },
+      "optimizer": {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "class": "torch.optim.Adam",
+        "differentiable": false,
+        "epsilon": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "learning_rate": 0.02,
+        "maximize": false,
+        "membership_exact": true,
+        "parameter_group_count": 1,
+        "weight_decay": 0.0
+      },
+      "paper_final": false,
+      "paper_final_count": 0,
+      "parameter_count": 3589,
+      "peak_vram_bytes": 68238336,
+      "rotation": 3,
+      "schedule_sha256": "0b45485d601ae49991195e66947457370f9d2b08474bd85e3d8bd5182b828ebd",
+      "scheduler": {
+        "class": "torch.optim.lr_scheduler.LambdaLR",
+        "constant": 1.0,
+        "warmup_steps": 0
+      },
+      "seed": 2,
+      "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+      "status": "PASS",
+      "trace_sha256": "8b78816b11f45d14e1467eff653e169346ebdbd1dbf7f10f8319965657abcda3",
+      "trainable_parameter_names": [
+        "normalization.weight",
+        "normalization.bias",
+        "linear.weight",
+        "linear.bias"
+      ],
+      "wall_clock_seconds": 2.3586216792464256
+    }
+  ],
+  "schema_version": "canondressgs.research.controller_v1_matched_repaired_results.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTROLLER-V2-CROSSFIT-MICRO-PILOT-REPAIRED-001"
+}
