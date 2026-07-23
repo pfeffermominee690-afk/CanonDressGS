@@ -1,0 +1,35 @@
+schema_version: controller_pair_diagnosis_protocol.v1
+task_id: AAAI27-CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSIS-001
+source_head: a8557b461f301c19a0f24eb17d924ddd9159a580
+branch: research/controller-v2-pair-identification-diagnosis-20260724
+immutable_inputs:
+- attempt_001
+- attempt_002
+- attempt_003
+- attempt_004
+- 24 formal runs
+- 144 formal checkpoints
+- frozen F2
+- reference assets
+- thresholds
+- compatibility manifests
+allowed:
+- frozen F2 inference
+- checkpoint inference
+- nearest centroid
+- kNN
+- closed-form ridge
+- diagnostic backward
+forbidden_counts:
+  controller_v1_training: 0
+  controller_v2_training: 0
+  controller_optimizer_created: 0
+  controller_optimizer_steps: 0
+  f2_training: 0
+  f2_backward: 0
+  checkpoint_writes: 0
+  threshold_changes: 0
+  compatibility_changes: 0
+  renderer_runs: 0
+  new_formal_renders: 0
+paper_final: false

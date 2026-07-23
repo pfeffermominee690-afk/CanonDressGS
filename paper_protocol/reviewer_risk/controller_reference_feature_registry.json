@@ -1,0 +1,45 @@
+{
+  "current_set_representation": {
+    "controller_post_processing": "LayerNorm_then_L2_normalize_for_V2",
+    "definition": "valid_row_mean_256_then_valid_row_max_256",
+    "dimension": 512
+  },
+  "f2_backward_count": 0,
+  "feature_forward_batches": 80,
+  "official_cache": {
+    "episode_count": 24,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/shared_preflight/frozen_reference_feature_rows_v1.pt",
+    "sha256": "30cf19a99bbc620112928d678a0257bfabd3420be66fe1053ded3ce7e90875cb"
+  },
+  "optimizer_steps": 0,
+  "paper_final": false,
+  "per_reference_pooled": {
+    "definition": "masked_mean_128_then_masked_max_128",
+    "dimension": 256,
+    "finite": true,
+    "pre_normalization": true
+  },
+  "reference_slot_registry_count": 3840,
+  "schema_version": "controller_reference_feature_registry.v1",
+  "source_spatial_f2": {
+    "dtype": "torch.float32",
+    "persisted_full_tensor_copy": false,
+    "shape": [
+      3,
+      128,
+      192,
+      128
+    ]
+  },
+  "spatial_pyramid": {
+    "definition": "mask_bbox_normalized_2x2_each_cell_masked_mean_then_masked_max",
+    "dimension": 1024,
+    "feature_count": 20,
+    "finite": true,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSTIC-001/attempt_001/feature_registry/spatial_pyramid_features.pt",
+    "sha256": "288112b439b170d94590e75af5c36e0e5930e7d037a2caba7e6a823776503be4"
+  },
+  "status": "PASS",
+  "target_feature_count": 0,
+  "unique_reference_asset_count": 20
+}
