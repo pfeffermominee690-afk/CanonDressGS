@@ -1,0 +1,325 @@
+{
+  "PAPER_FINAL": 0,
+  "exact_record_manifest_order": true,
+  "exact_step_sequence_1_to_384": true,
+  "frozen_gradient_audit": {
+    "checked_each_step": [
+      "_xyz",
+      "cached LBS weights",
+      "surface attachment state"
+    ],
+    "gradient_present_count": 0,
+    "status": "PASS_FAIL_CLOSED_ASSERTION_EXECUTED_EACH_STEP"
+  },
+  "gradient_finite_all": true,
+  "intended_gradient_nonzero_all": true,
+  "loss_finite_all": true,
+  "mutation_audit": {
+    "AvatarReX_archive_mutations": 0,
+    "AvatarReX_raw_mutations": 0,
+    "attachment_array_hashes_before": {
+      "attachment_valid": {
+        "dtype": "torch.uint8",
+        "sha256": "6015fcd09f3f14b7da9d89cb95f1e4ee007948bc7cf9a59be8163c3460e4f954",
+        "shape": [
+          200000
+        ]
+      },
+      "barycentric": {
+        "dtype": "torch.float64",
+        "sha256": "8c5a1889c296609d800b51f6decc5b5b81f20803b7e98778cf9ac4220538da23",
+        "shape": [
+          200000,
+          3
+        ]
+      },
+      "canonical_xyz": {
+        "dtype": "torch.float64",
+        "sha256": "f096c2b6d6686c298724f66b559cc82e8917dea64e4e910c6f4564ca0e4296b4",
+        "shape": [
+          200000,
+          3
+        ]
+      },
+      "component_ids": {
+        "dtype": "torch.int16",
+        "sha256": "b91c843c4ff70ffd641e1ad61244e5bccf7ff2a6c88a0290d1edf0463c45758b",
+        "shape": [
+          200000
+        ]
+      },
+      "face_ids": {
+        "dtype": "torch.int64",
+        "sha256": "2f63bb67f115661614fa6be9cbb584240e5b88ee928f65b95e3fc316c1c195a4",
+        "shape": [
+          200000
+        ]
+      },
+      "gaussian_indices": {
+        "dtype": "torch.int64",
+        "sha256": "fb545a85ce37ecb423552e75d31c0c396a611e9029f9cdeaf3fad43bc4f5d87c",
+        "shape": [
+          200000
+        ]
+      },
+      "lbs_weights": {
+        "dtype": "torch.float32",
+        "sha256": "5176b447e1213e9275e08633589ef32ba4841825a05957d77b2f2c4ce18dc899",
+        "shape": [
+          200000,
+          55
+        ]
+      },
+      "semantic_region_ids": {
+        "dtype": "torch.int16",
+        "sha256": "75d964575e616950298b610b535f30c5b2fb52368e0e370c3aaf31f719a777a6",
+        "shape": [
+          200000
+        ]
+      },
+      "source_type_ids": {
+        "dtype": "torch.uint8",
+        "sha256": "6015fcd09f3f14b7da9d89cb95f1e4ee007948bc7cf9a59be8163c3460e4f954",
+        "shape": [
+          200000
+        ]
+      },
+      "surface_distance": {
+        "dtype": "torch.float64",
+        "sha256": "58e0a2f7c0e88d03332c57054d218a14ea5c2b4a408cc7a5f7780f04298ba981",
+        "shape": [
+          200000
+        ]
+      }
+    },
+    "attempt_001_to_004_mutations": 0,
+    "derived_asset_manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8",
+    "evidence": "Authorized code wrote only the dedicated attempt_001 output root; in-memory before/after hashes for template, attachment and cached LBS were exact, and frozen data was excluded from the optimizer.",
+    "frozen_parameter_gradient_events": 0,
+    "frozen_parameters_in_optimizer": 0,
+    "status": "PASS",
+    "strict_camera_split_mutations": 0,
+    "strict_pose_split_mutations": 0,
+    "subject00_derived_asset_mutations": 0,
+    "subject00_raw_mutations": 0,
+    "subject02_mutations": 0,
+    "template_attachment_lbs_unchanged": true
+  },
+  "nonzero_gradient_step_counts_by_group": {
+    "dxyz": 384,
+    "opacities": 384,
+    "quats": 383,
+    "scales": 384,
+    "sh0": 384,
+    "xyz_offset": 384
+  },
+  "optimizer_membership": {
+    "duplicate_parameter_memberships": {},
+    "excluded_state_in_optimizer": [],
+    "group_count": 14,
+    "groups": {
+      "dopacities_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 3000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dquats_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 12000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dscales_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 9000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dsh0_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0001,
+        "parameter_scalar_count": 9000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dshN_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.5e-06,
+        "parameter_scalar_count": 27000000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dxyz": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.00028561094153620317,
+        "parameter_scalar_count": 30000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "dxyz_bs": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.856898696595898e-05,
+        "parameter_scalar_count": 450000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "encoder_feat_params": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "AdamW",
+        "eps": 1e-15,
+        "lr": 0.0004998618639794976,
+        "parameter_scalar_count": 91017000,
+        "parameter_tensor_count": 10,
+        "weight_decay": 0.001
+      },
+      "opacities": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004998618639794976,
+        "parameter_scalar_count": 200000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "quats": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004998618639794976,
+        "parameter_scalar_count": 800000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "scales": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004998618639794976,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "sh0": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0004998618639794976,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "shN": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 2.499309319897485e-05,
+        "parameter_scalar_count": 1800000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      },
+      "xyz_offset": {
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "class": "Adam",
+        "eps": 1e-15,
+        "lr": 0.0009997237279589953,
+        "parameter_scalar_count": 600000,
+        "parameter_tensor_count": 1,
+        "weight_decay": 0.0
+      }
+    },
+    "lr_mismatches": {},
+    "omitted_trainable_parameters": [],
+    "optimizer_parameter_tensor_count": 23,
+    "scene_scale": 1.786055122466469,
+    "scheduler_count": 9,
+    "scheduler_horizon": 800000,
+    "scheduler_step": 96,
+    "status": "PASS",
+    "trainable_parameter_tensor_count": 23
+  },
+  "optimizer_state_finite_all": true,
+  "runtime_lbs_counters": {
+    "legacy_grid_loads": 0,
+    "off_surface_rebind_attempts_rejected": 0,
+    "spatial_weight_queries": 0,
+    "topology_mutation_attempts_rejected": 0
+  },
+  "schema_version": "subject00.canary.gradient_and_mutation_audit.v1",
+  "status": "PASS",
+  "step_record_count": 384,
+  "step_record_sha256": "4b5182e7dbae7976600b86bcb623245ea73d84e2c101bd0e8e6163292a730110",
+  "task_id": "MMLPHUMAN-SUBJECT00-SHORT-CANARY-FROM-REPAIRED-CONTRACT-001",
+  "topology_call_counts": {
+    "clone": 0,
+    "densification": 0,
+    "off_surface_rebind": 0,
+    "split": 0,
+    "topology_changing_prune": 0
+  },
+  "warnings": {
+    "bin_overflow": false,
+    "cuda_illegal_access": false,
+    "nan_or_inf": false,
+    "warning_message_count": 0
+  }
+}
