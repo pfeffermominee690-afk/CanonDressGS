@@ -1,0 +1,210 @@
+schema_version: canondressgs.research.compatibility_gated_controller_v2_design.v1
+label: "RESEARCH METHOD DESIGN — NOT PAPER FINAL"
+task_id: AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001
+frozen_at: 2026-07-23T00:00:00+08:00
+source:
+  branch: research/controller-calibration-compatibility-diagnostic-20260723
+  head: 25318857b4cc4ee11011cd852c5cfc237a8b3cee
+  upstream_controller_branch: research/reference-conditioned-dual-support-controller-formal-20260723
+  upstream_controller_head: f45a518f330fb407942055756373e83f65717853
+  diagnosis: MULTIPLE_FACTORS
+  primary_failure_source: DUAL_SUPPORT_COMPATIBILITY_DOMINANT
+  secondary_failure_sources:
+    - WEIGHT_CALIBRATION_DOMINANT
+    - FALLBACK_CALIBRATION_DOMINANT
+    - REFERENCE_ROBUSTNESS_DOMINANT
+run:
+  branch: research/compatibility-gated-controller-v2-design-20260723
+  windows_worktree: 'E:\model_train\canondressgs_compatibility_gated_controller_v2_design'
+  cloud_worktree: /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_compatibility_gated_controller_v2_design
+  smoke_output_root: /root/autodl-tmp/canondressgs_work/outputs/COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-SMOKE-001
+  output_policy: APPEND_ONLY
+  training_allowed: false
+wardrobe:
+  scope: CLOSED_SEEN_GARMENT_WARDROBE
+  outfit_order: [O01, O02, O03, O04, O08]
+  unordered_pair_order:
+    - O01_O02
+    - O01_O03
+    - O01_O04
+    - O01_O08
+    - O02_O03
+    - O02_O04
+    - O02_O08
+    - O03_O04
+    - O03_O08
+    - O04_O08
+architecture:
+  input: frozen_F2_spatial_features
+  shared_reference_representation:
+    spatial_pooling: MASKED_MEAN_AND_MAX
+    set_aggregation: DETERMINISTIC_VALIDITY_AWARE_MEAN
+    normalization: LAYERNORM_THEN_L2
+    input_dim: 512
+  garment_distribution_head:
+    output_count: 5
+    activation: SOFTMAX
+    responsibilities: [top1_endpoint, unordered_top2_pair, dominant_ordering]
+    forbidden_responsibility: final_mixture_weight
+  pure_mixed_head:
+    output_count: 1
+    activation: SIGMOID
+    target: {pure: 0, AAB: 1, ABB: 1}
+  pair_conditioned_weight_head:
+    output_count: 10
+    activation: SIGMOID
+    orientation: EARLIER_FROZEN_OUTFIT_WEIGHT
+    all_outputs_computed: true
+    inference_index: PREDICTED_PAIR_ONLY
+    ground_truth_pair_index_for_inference: false
+  final_weight_from_garment_probabilities: false
+routing:
+  modes: [SINGLE_ENDPOINT, DUAL_SUPPORT, HARD_GEOMETRY_SOFT_VA]
+  pair_confidence_definition: TOP2_VS_TOP3_PROBABILITY_MARGIN
+  thresholds:
+    selection_scope: CALIBRATION_FOLD_ONLY
+    mixedness_grid: [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90]
+    pair_confidence_grid: [0.00, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50]
+    calibration_priority:
+      - MINIMIZE_PURE_FALSE_MIXED
+      - MINIMIZE_WRONG_PAIR_DUAL
+      - MAXIMIZE_MIXED_SAFE_MODE_COVERAGE
+    test_fold_selection: false
+  information_sufficient_definition: AT_LEAST_TWO_VALID_REFERENCES
+  SINGLE_ENDPOINT:
+    triggers:
+      - LOW_MIXEDNESS
+      - LOW_PAIR_CONFIDENCE
+      - REFERENCE_INFORMATION_INSUFFICIENT
+      - INFORMATION_ABLATION
+    geometry_support_count: 1
+    geometry_endpoint: PREDICTED_TOP1
+  DUAL_SUPPORT:
+    triggers:
+      - MIXEDNESS_PASS
+      - PAIR_CONFIDENCE_PASS
+      - PREDICTED_PAIR_COMPATIBLE
+      - REFERENCE_INFORMATION_COMPLETE
+    geometry_support_count: 2
+    geometry_policy: IMMUTABLE_ENDPOINTS_NO_INTERPOLATION
+    weights: PAIR_CONDITIONED_PREDICTED
+  HARD_GEOMETRY_SOFT_VA:
+    triggers:
+      - MIXEDNESS_PASS
+      - PAIR_CONFIDENCE_PASS
+      - PREDICTED_PAIR_INCOMPATIBLE
+      - REFERENCE_INFORMATION_COMPLETE
+    geometry_support_count: 1
+    geometry_endpoint: PREDICTED_DOMINANT
+    visibility_appearance_sources: 2
+    weights: PAIR_CONDITIONED_PREDICTED
+    geometry_interpolation: false
+compatibility:
+  property_scope: GARMENT_BANK_LEVEL_CLOSED_WARDROBE
+  lookup_index: PREDICTED_PAIR
+  explicit_pair_blacklist: false
+  allowed_sources:
+    - canonical_garment_endpoints
+    - intrinsic_geometry_opacity_support_descriptors
+    - calibration_fold_oracle_evaluations
+  forbidden_sources:
+    - target_rgb
+    - target_mask
+    - target_pose
+    - target_camera
+    - current_query_ground_truth_pair
+    - current_query_render
+    - test_fold
+  required_descriptors:
+    - canonical_geometry_support_overlap
+    - symmetric_nearest_support_distance
+    - opacity_weighted_support_overlap
+    - garment_coverage_ratio
+    - canonical_bbox_ratio
+    - silhouette_overlap_on_calibration_condition
+    - oracle_core_artifact_maximum_grade
+    - oracle_severe_count
+    - identity_contamination_maximum_grade
+    - ghosting_maximum_grade
+    - boundary_consistency
+  compatible_rule:
+    oracle_core_artifact_maximum_grade_max: 2
+    severe_patch_cloud_mottle_full_body_count: 0
+    identity_contamination_maximum_grade: 0
+    grade3_ghosting_count: 0
+    endpoint_parity: PASS
+  pair_specific_override_count: 0
+crossfit:
+  scientific_name: CONDITION-FOLD_CROSS-FIT_EVALUATION
+  forbidden_name: NOVEL-VIEW_EVALUATION
+  condition_order: [cond_000000, cond_000318, cond_000017, cond_000347]
+  rotations: 4
+  aggregate_all_held_out_test_folds: true
+  best_rotation_selection: false
+loss:
+  total: L_garment + lambda_mix*L_mixedness + lambda_weight*L_weight + lambda_cons*L_consistency
+  garment: SOFT_TARGET_CROSS_ENTROPY
+  mixedness: BINARY_CROSS_ENTROPY_WITH_LOGITS
+  weight:
+    type: SMOOTHL1
+    records: MIXED_ONLY
+    supervised_output: GROUND_TRUTH_PAIR_SCALAR_TRAINING_ONLY
+    forward_output_count: 10
+  consistency:
+    nuisance_only: [mild_blur, mild_mask_erosion, mild_mask_dilation, assignment_permutation]
+    outputs: [garment_distribution, mixedness, pair_weights]
+    information_ablations_excluded: [complete_reference_dropout, single_reference]
+perturbation_semantics:
+  nuisance:
+    - grayscale_when_color_nonessential
+    - hue
+    - blur
+    - mask_erosion
+    - mask_dilation
+    - assignment_permutation
+  information_ablation:
+    - reference_dropout
+    - single_reference
+  information_ablation_target: SAFE_SINGLE_ENDPOINT
+future_training:
+  initialization: FRESH_RANDOM
+  seeds: [0, 1, 2]
+  rotations: [0, 1, 2, 3]
+  process_policy: INDEPENDENT_FRESH_PROCESS_PER_ROTATION_AND_SEED
+  frozen_F2: true
+  load_v1_checkpoint: false
+  load_b6_or_ours_v2: false
+  best_seed_rotation_checkpoint_selection: false
+forward_boundary:
+  allowed:
+    - reference_rgb
+    - garment_masks
+    - reference_validity
+    - frozen_F2
+    - precomputed_garment_bank_compatibility_prior
+  forbidden:
+    - ground_truth_garment_id
+    - ground_truth_pair
+    - ground_truth_composition
+    - ground_truth_alpha
+    - target_rgb
+    - target_mask
+    - target_pose
+    - target_camera
+    - teacher_residual
+    - target_render
+    - visual_artifact_label
+no_training_gate:
+  training: 0
+  training_forward_batches: 0
+  backward: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  formal_renders: 0
+  formal_metrics: 0
+  formal_visual_reviews: 0
+paper_final: false
+paper_final_count: 0
+next_task_started: false
