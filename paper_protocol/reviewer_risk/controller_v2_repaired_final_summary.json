@@ -1,0 +1,140 @@
+{
+  "attempt": "attempt_004",
+  "classification_reason": {
+    "additional_failures": [
+      "compatible_dual_rate_below_gate",
+      "incompatible_hard_rate_below_gate",
+      "correct_pair_weight_mae_above_gate",
+      "residual_grade_3_visual_contamination"
+    ],
+    "primary_failure": "CORE_PAIR_IDENTIFICATION_FAILURE",
+    "safety_exclusions": {
+      "cross_fit_leakage": 0,
+      "ground_truth_inference_use": 0,
+      "identity_contamination_maximum_grade": 0,
+      "numerical_instability": 0,
+      "target_forward_leakage": 0
+    }
+  },
+  "execution_counts": {
+    "augmented_forward_batches": 1800,
+    "augmented_record_forwards": 9000,
+    "backward_calls": 3600,
+    "checkpoint_writes": 144,
+    "clean_forward_batches": 3600,
+    "clean_record_forwards": 18000,
+    "failed_inference": 0,
+    "failed_render": 0,
+    "logical_inference": 6240,
+    "logical_render": 5280,
+    "matched_v1_runs": 12,
+    "new_physical_render": 1035,
+    "optimizer_creations": 24,
+    "optimizer_steps": 3600,
+    "reused_render": 4245,
+    "scheduler_steps": 3600,
+    "training_steps": 3600,
+    "v2_runs": 12
+  },
+  "final_classification": "CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL",
+  "frozen_mutations": {
+    "backbone": 0,
+    "checkpoint": 0,
+    "compatibility_manifest": 0,
+    "dataset": 0,
+    "endpoint": 0,
+    "evaluation_threshold": 0,
+    "f2": 0,
+    "paper_final": 0,
+    "renderer": 0,
+    "source_model": 0,
+    "split": 0
+  },
+  "information_boundary": {
+    "compatibility_lookup_key": "PREDICTED_PAIR",
+    "cross_fit_test_leakage": 0,
+    "ground_truth_pair_in_inference": 0,
+    "target_forward_leakage": 0,
+    "target_render_in_training": 0
+  },
+  "machine_results": {
+    "compatible_dual_rate": 0.18937812421128092,
+    "correct_pair_weight_mae": 0.15805836898719514,
+    "correct_pair_weight_rmse": 0.1981430412872887,
+    "incompatible_dual_rate": 0.0,
+    "incompatible_hard_rate": 0.3138888888888889,
+    "mixed_auprc": 0.9624652659220229,
+    "mixed_auroc": 0.8747222222222222,
+    "mixed_false_single_rate": 0.8305555555555555,
+    "pair_rotation_macro": {
+      "0": 0.6083333333333334,
+      "1": 0.5791666666666666,
+      "2": 0.6,
+      "3": 0.6166666666666667
+    },
+    "pair_unordered_top2_macro": 0.6010416666666667,
+    "pure_false_mixed_rate": 0.05,
+    "pure_single_rate": 1.0,
+    "wrong_pair_dual_rate": 0.07282421740626076
+  },
+  "next_task": "DIAGNOSE_CONTROLLER_V2_PAIR_IDENTIFICATION_FAILURE",
+  "next_task_started": false,
+  "paper_final": 0,
+  "paper_final_count": 0,
+  "preregistered_gates": {
+    "failed": [
+      "pair_macro_top2_ge_0_90",
+      "every_rotation_top2_ge_0_80",
+      "compatible_dual_ge_0_80",
+      "incompatible_hard_ge_0_80",
+      "correct_pair_weight_mae_le_0_12"
+    ],
+    "passed": [
+      "pure_false_mixed_le_0_05",
+      "incompatible_dual_le_0_10",
+      "wrong_pair_dual_le_0_10",
+      "severe_artifact_reduction_ge_0_50",
+      "identity_contamination_eq_0",
+      "grade_3_ghosting_pairs_le_1_of_10",
+      "dropout_and_single_reference_safe_single_ge_0_95"
+    ]
+  },
+  "reports": [
+    "docs/PAPER/AAAI27_CONTROLLER_V2_CROSSFIT_MICRO_PILOT_REPAIRED_20260723.md",
+    "docs/PAPER/AAAI27_CONTROLLER_V2_MATCHED_V1_COMPARISON_REPAIRED_20260723.md",
+    "docs/PAPER/AAAI27_CONTROLLER_V2_ROUTING_AND_WEIGHT_REPAIRED_20260723.md",
+    "docs/PAPER/AAAI27_CONTROLLER_V2_VISUAL_FAILURE_REPAIRED_20260723.md",
+    "docs/PAPER/AAAI27_CONTROLLER_V2_EFFICIENCY_REPAIRED_20260723.md"
+  ],
+  "run_branch": "research/controller-v2-crossfit-micro-pilot-from-repaired-contract-20260723",
+  "schema_version": "canondressgs.research.controller_v2_repaired_final_summary.v1",
+  "seal_parent_head": "ee18234da1efdfee8d4cb8fff5d6ec1825076e29",
+  "source_branch": "research/controller-v2-micro-pilot-contract-repair-20260723",
+  "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+  "status": "FINAL",
+  "task_id": "AAAI27-CONTROLLER-V2-CROSSFIT-MICRO-PILOT-REPAIRED-001",
+  "validation": {
+    "all_240_local_visual_paths_exist": true,
+    "current_executor_and_design_tests": {
+      "failed": 0,
+      "passed": 56
+    },
+    "git_diff_check": "PASS",
+    "json_parse": "PASS",
+    "legacy_contract_repair_module": {
+      "failed": 1,
+      "failure_reason": "The legacy test requires checkout of the preceding repair branch and is inapplicable on the mandated execution branch.",
+      "passed": 19
+    },
+    "markdown_nonempty": "PASS",
+    "yaml_parse": "PASS"
+  },
+  "visual_review": {
+    "generated": 240,
+    "identity_contamination_maximum_grade": 0,
+    "matched_v1_severe_core_artifact_sheets": 100,
+    "opened_original_detail": 240,
+    "severe_artifact_reduction_fraction": 0.73,
+    "v2_severe_core_artifact_sheets": 27
+  }
+}
