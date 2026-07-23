@@ -1426,9 +1426,11 @@ def reports(final: Mapping[str, Any]) -> None:
     p = final["probe_summary"]
     body = f"""# Controller V2 Pair Identification Diagnosis
 
-Status: `{final['status']}`  
-Historical result remains: `CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL`.  
-Primary diagnosis: `{final['primary_diagnostic_classification']}`.  
+Status: `{final['status']}`
+
+Historical result remains: `CONTROLLER_V2_CROSSFIT_MICRO_PILOT_FAIL`.
+
+Primary diagnosis: `{final['primary_diagnostic_classification']}`.
 Representation: `{final['representation_classification']}`.
 
 ## Result
@@ -1441,7 +1443,8 @@ No Controller/F2 training, optimizer step, threshold change, compatibility chang
 
 ## Decision
 
-Secondary factors: `{', '.join(final['secondary_factors']) or 'none'}`.  
+Secondary factors: `{', '.join(final['secondary_factors']) or 'none'}`.
+
 NEXT_TASK: `{final['next_task']}`. It was not started.
 """
     write_text(DOCS / "AAAI27_CONTROLLER_V2_PAIR_IDENTIFICATION_DIAGNOSIS_20260724.md", body)
@@ -1449,7 +1452,8 @@ NEXT_TASK: `{final['next_task']}`. It was not started.
 
 The official pooled F2 cache contains 256-dimensional per-reference rows. The current set aggregation is 512-dimensional. A fixed 2x2 mask bounding-box pyramid produced 1024-dimensional vectors through frozen-F2 inference only.
 
-Global single-reference ridge test macro: `{final['probe_details']['SINGLE_REF_5WAY']['test_macro']:.6f}`.  
+Global single-reference ridge test macro: `{final['probe_details']['SINGLE_REF_5WAY']['test_macro']:.6f}`.
+
 Spatial single-reference ridge test macro: `{final['probe_details']['SINGLE_REF_SPATIAL_5WAY']['test_macro']:.6f}`.
 
 Logical records are disjoint, but exact RGB/mask reference assets overlap across partitions. Results are closed-wardrobe feature diagnostics and do not establish unseen-reference generalization. PCA is auxiliary only; conclusions use full-dimensional geometry and preregistered probes.
@@ -1457,10 +1461,14 @@ Logical records are disjoint, but exact RGB/mask reference assets overlap across
     write_text(DOCS / "AAAI27_FROZEN_REFERENCE_FEATURE_SEPARABILITY_20260724.md", feature)
     aggregation = f"""# Set Aggregation and Parameterization Analysis
 
-Per-reference-to-set pair macro: `{final['probe_details']['PER_REF_TO_SET_PAIR']['test_macro']:.6f}`.  
-Current-set soft-target 5-way macro: `{final['probe_details']['CURRENT_SET_SOFT_TARGET_5WAY']['test_macro']:.6f}`.  
-Current-set multi-label 5-way macro: `{final['probe_details']['CURRENT_SET_MULTI_LABEL_5WAY']['test_macro']:.6f}`.  
-Direct mixed-pair 10-way macro: `{final['probe_details']['CURRENT_SET_DIRECT_PAIR_10WAY']['test_macro']:.6f}`.  
+Per-reference-to-set pair macro: `{final['probe_details']['PER_REF_TO_SET_PAIR']['test_macro']:.6f}`.
+
+Current-set soft-target 5-way macro: `{final['probe_details']['CURRENT_SET_SOFT_TARGET_5WAY']['test_macro']:.6f}`.
+
+Current-set multi-label 5-way macro: `{final['probe_details']['CURRENT_SET_MULTI_LABEL_5WAY']['test_macro']:.6f}`.
+
+Direct mixed-pair 10-way macro: `{final['probe_details']['CURRENT_SET_DIRECT_PAIR_10WAY']['test_macro']:.6f}`.
+
 15-way mixed-pair macro: `{final['probe_details']['CURRENT_SET_15WAY']['test_macro']:.6f}`.
 
 All ridge fits are deterministic float64 closed-form fits using train-only standardization, calibration-only lambda selection, and one held-out test evaluation.
