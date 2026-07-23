@@ -1435,20 +1435,20 @@ def main() -> None:
         raise RuntimeError("DIAGNOSTIC-EXECUTOR-REQUIRES-CLEAN-WORKTREE")
     attempt = setup_attempt(args.output_root.resolve())
     reaggregation = reaggregate()
-    write_json(RISK / "controller_pair_diagnosis_reaggregation.json", reaggregation)
     registry = checkpoint_registry()
     manifest = read_json(RISK / "dual_support_controller_training_manifest.json")
     rotations = read_json(RISK / "controller_v2_micro_pilot_rotation_manifests.json")
     schedules = read_json(RISK / "controller_v2_micro_pilot_batch_schedules.json")
     manifest_index = {row["record_id"]: row for row in manifest["query_sets"]}
     overlap = reference_audit(manifest, rotations)
-    write_json(RISK / "controller_reference_asset_overlap.json", overlap)
     cache_path = args.asset_root.resolve() / training.FEATURE_CACHE_RELATIVE
     cache = torch.load(cache_path, map_location="cpu", weights_only=False)
     nuisance_path = Path(registry[0]["checkpoint_path"]).parents[5] / "features/v2_nuisance_feature_rows.pt"
     nuisance = torch.load(nuisance_path, map_location="cpu", weights_only=False)
     spatial, spatial_drift, feature_forwards = extract_spatial(
         args.asset_root.resolve(), cache, nuisance, attempt)
+    write_json(RISK / "controller_pair_diagnosis_reaggregation.json", reaggregation)
+    write_json(RISK / "controller_reference_asset_overlap.json", overlap)
     feature_value = feature_registry(attempt, cache_path, cache, spatial, overlap, feature_forwards)
     write_json(RISK / "controller_reference_feature_registry.json", feature_value)
     datasets = {}
