@@ -55,6 +55,34 @@ ALLOWED_PATHS.update({
     "project_control_handoff/loo_protocol_repair_handoff.json",
     "tests/test_loo_few_view_fold_manifest_repair.py",
 })
+ALLOWED_PATHS.update({
+    "tools/paper/loo_basis_output.py",
+    "tools/paper/run_loo_basis_adaptation_experiment.py",
+    "tests/test_loo_basis_adaptation_experiment.py",
+    "paper_protocol/reviewer_risk/loo_execution_binding.json",
+    "paper_protocol/reviewer_risk/loo_basis_execution_registry.json",
+    "paper_protocol/reviewer_risk/loo_adaptation_run_registry.json",
+    "paper_protocol/reviewer_risk/loo_checkpoint_registry.json",
+    "paper_protocol/reviewer_risk/loo_prediction_registry.json",
+    "paper_protocol/reviewer_risk/loo_metric_summary.json",
+    "paper_protocol/reviewer_risk/loo_oracle_capacity_analysis.json",
+    "paper_protocol/reviewer_risk/loo_hard_lookup_analysis.json",
+    "paper_protocol/reviewer_risk/loo_view_budget_scaling.json",
+    "paper_protocol/reviewer_risk/loo_full_residual_summary.json",
+    "paper_protocol/reviewer_risk/loo_visual_review_summary.json",
+    "paper_protocol/reviewer_risk/loo_execution_count_verification.json",
+    "paper_protocol/reviewer_risk/loo_tests.json",
+    "paper_protocol/reviewer_risk/loo_final_summary.json",
+    "paper_protocol/reviewer_risk/sealed_loo_figure_refresh_manifest.json",
+    "docs/PAPER/AAAI27_LOO_BASIS_ADAPTATION_RESULTS_20260724.md",
+    "docs/PAPER/AAAI27_LOO_HARD_LOOKUP_COMPARISON_20260724.md",
+    "docs/PAPER/AAAI27_LOO_BASIS_CAPACITY_ANALYSIS_20260724.md",
+    "docs/PAPER/AAAI27_LOO_FEW_VIEW_SCALING_RESULTS_20260724.md",
+    "docs/PAPER/AAAI27_LOO_FULL_RESIDUAL_COMPARISON_20260724.md",
+    "docs/PAPER/AAAI27_LOO_VISUAL_REVIEW_20260724.md",
+    "docs/PAPER/AAAI27_LOO_FAILURE_ANALYSIS_20260724.md",
+    "project_control_handoff/loo_basis_adaptation_experiment_handoff.json",
+})
 
 
 def load_json(relative: str):
