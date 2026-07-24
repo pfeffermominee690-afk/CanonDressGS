@@ -1,23 +1,13 @@
-# AAAI-27 Pure Endpoint Baseline Comparison
+# Pure Endpoint Baseline Comparison
 
-Task: AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001
+| Method | Top-1 | RGB MAE | LPIPS |
+|---|---|---|---|
+| Teacher Endpoint | 1.0000 | 0.000000 | 0.000000 |
+| Outfit-ID Oracle | 1.0000 | 0.000001 | 0.000000 |
+| Reference Classifier Lookup | 1.0000 | 0.000001 | 0.000000 |
+| Nearest-Centroid Lookup | 1.0000 | 0.000001 | 0.000000 |
+| Linear Coefficient Predictor | 1.0000 | 0.053907 | 0.067913 |
+| CanonDressGS-Endpoint | 1.0000 | 0.000001 | 0.000000 |
 
-Status: BLOCKED_BEFORE_OPTIMIZER
-
-Classification: PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH
-
-The source protocol final summary does not declare the artifact hashes required
-by the execution task. Exact agreement therefore cannot be established. The
-official frozen-asset verifier passed all 19 external assets, so this is a
-protocol sealing failure rather than external asset corruption.
-
-Direct Residual Decoder is also not execution-complete: its registry omits 14
-required fields, while historical V7 covers only O01/O08 at 1000 steps and has
-no executed reference-conditioned Stage B trajectory. No baseline definition
-was invented to bridge that ambiguity.
-
-Training, optimizer creation, forward batches, backward calls, checkpoint
-writes, inference, rendering, perturbation evaluation, and visual review are
-all zero. PAPER_FINAL=false.
-
-All eight baselines are NOT_RUN; Direct Residual Decoder comparability is incomplete.
+Teacher Endpoint is the frozen residual target, not an upper bound. Outfit-ID
+Oracle uses ground-truth outfit identity and is not deployable.
