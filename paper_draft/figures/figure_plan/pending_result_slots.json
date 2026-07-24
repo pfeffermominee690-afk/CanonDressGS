@@ -1,0 +1,29 @@
+{
+  "schema_version": "paper_figure_pending_slots.v1",
+  "slots": [
+    {
+      "integration_task": "REFRESH_PAPER_FIGURE_BANK_WITH_PURE_ENDPOINT_RESULTS",
+      "required_gates": ["final_summary", "final_classification", "output_sealed", "final_head_pushed", "attempt_complete"],
+      "slot_id": "PENDING_PURE_ENDPOINT_CROSSFIT",
+      "status": "PENDING_PURE_ENDPOINT_CROSSFIT"
+    },
+    {
+      "integration_task": "REFRESH_PAPER_FIGURE_BANK_WITH_HEADROOM_RESULTS",
+      "required_gates": ["final_summary", "final_classification", "output_sealed", "final_head_pushed", "attempt_complete"],
+      "slot_id": "PENDING_COEFFICIENT_HEADROOM",
+      "status": "PENDING_COEFFICIENT_HEADROOM"
+    },
+    {
+      "integration_task": "REFRESH_PAPER_FIGURE_BANK_WITH_LOO_RESULTS",
+      "required_gates": ["final_summary", "final_classification", "output_sealed", "final_head_pushed", "attempt_complete"],
+      "slot_id": "PENDING_LOO_ADAPTATION",
+      "status": "PENDING_LOO_ADAPTATION"
+    },
+    {
+      "integration_task": "MANUAL_LICENSE_ADJUDICATION_REQUIRED",
+      "required_gates": ["explicit_human_license_clearance"],
+      "slot_id": "AVATARREX_LICENSE_RESTRICTED",
+      "status": "LICENSE_RESTRICTED_DO_NOT_EXPORT"
+    }
+  ]
+}
