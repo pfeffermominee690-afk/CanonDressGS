@@ -1,0 +1,53 @@
+{
+  "schema_version": "canondressgs.subject00.second_identity_scope.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "scientific_semantics": "SECOND_IDENTITY_REPLICATION",
+  "identity": "THuman4.0 Subject00",
+  "closed_wardrobe": ["O01", "O03", "O04"],
+  "included": [
+    "Subject00 formal strict-split base dependency",
+    "three independent Teacher Endpoints",
+    "reference-controlled discrete endpoint selection",
+    "hard-lookup comparison",
+    "endpoint parity",
+    "identity safety",
+    "qualitative figures"
+  ],
+  "excluded": [
+    "Subject00 LOO",
+    "Subject00 Headroom",
+    "automatic mixed controller",
+    "spatial coefficient field",
+    "five-garment scale-up",
+    "unseen garment",
+    "cross-dataset generalization",
+    "cross-identity zero-shot generalization",
+    "unseen-identity transfer",
+    "Subject02 controller zero-shot transfer to Subject00"
+  ],
+  "claim_boundary": {
+    "allowed": "A separately trained Subject00 controller may select among Subject00 O01/O03/O04 endpoints in a closed wardrobe.",
+    "forbidden_phrases": [
+      "CROSS_IDENTITY_ZERO_SHOT_GENERALIZATION",
+      "CROSS_DATASET_GENERALIZATION",
+      "UNSEEN_IDENTITY_TRANSFER"
+    ],
+    "paper_final": false
+  },
+  "formal_base_dependency": "PENDING",
+  "backend_status": "BACKEND_SELECTION_REQUIRED",
+  "classification": "SUBJECT00_CONDITION_RESOURCE_GAP",
+  "next_task_when_ready": "AUTHORIZE_AND_GENERATE_SUBJECT00_THREE_GARMENT_CANDIDATES_AFTER_BACKEND_SELECTION",
+  "next_task_authorized": false,
+  "execution_counts": {
+    "gpu_runs": 0,
+    "renderer_runs": 0,
+    "training_runs": 0,
+    "image_generation_api_calls": 0,
+    "external_api_calls": 0,
+    "new_dataset_images": 0,
+    "teacher_endpoints": 0,
+    "controller_runs": 0,
+    "paper_final": 0
+  }
+}

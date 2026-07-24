@@ -1,0 +1,91 @@
+{
+  "schema_version": "canondressgs.subject00.generation_backend_adjudication.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "BACKEND_SELECTION_REQUIRED",
+  "selection": null,
+  "network_or_api_probe_performed": false,
+  "comparison_basis": "Frozen local provenance only; current capabilities were not probed.",
+  "candidates": [
+    {
+      "candidate": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+      "historical_surface": "image_gen.imagegen",
+      "current_availability": "NOT_VERIFIED",
+      "exact_model_and_revision": "NOT_EXPOSED_BY_PLATFORM",
+      "image_conditioning": "HISTORICALLY_USED_NOT_CURRENTLY_VERIFIED",
+      "identity_preservation": "NOT_VERIFIED",
+      "mask_conditioning": "NOT_VERIFIED",
+      "pose_conditioning": "IMAGE_CONDITION_HISTORICALLY_USED_NOT_SEPARATELY_VERIFIED",
+      "price": "PRICE_NOT_VERIFIED",
+      "rate_limit": "NOT_VERIFIED",
+      "reproducibility": "LIMITED_GARMENT_GENERATION_PROVENANCE; seed not recorded",
+      "content_policy_risk": "NOT_VERIFIED",
+      "output_resolution": "historical expected 1024x1536 portrait",
+      "batch_capability": "NOT_VERIFIED",
+      "raw_response_retention": "NOT_VERIFIED",
+      "license_and_paper_use": "NOT_VERIFIED"
+    },
+    {
+      "candidate": "HISTORICAL_OPENAI_COMPATIBLE_PROXY_SUBLYX",
+      "historical_surface": "https://api.sublyx.org/v1/images/edits",
+      "current_availability": "NOT_VERIFIED",
+      "exact_model_and_revision": "historical default gpt-image-2; revision not pinned",
+      "image_conditioning": "HISTORICALLY_IMPLEMENTED_WITH_IDENTITY_AND_CONDITION_IMAGES",
+      "identity_preservation": "NOT_VERIFIED",
+      "mask_conditioning": "HISTORICALLY_NOT_USED",
+      "pose_conditioning": "HISTORICAL_CONDITION_IMAGE_ONLY",
+      "price": "PRICE_NOT_VERIFIED",
+      "rate_limit": "NO_EXPLICIT_HISTORICAL_CLIENT_LIMIT; provider limit not verified",
+      "reproducibility": "REQUEST_PROVENANCE_ONLY; seed not implemented or recorded",
+      "content_policy_risk": "PROVIDER_SIDE_ONLY_NOT_EXPLICITLY_RECORDED",
+      "output_resolution": "historical wire size 1536x1024",
+      "batch_capability": "historical concurrency 1; n=1",
+      "raw_response_retention": "HTTP status/request ID and optional raw JSON historically available; unsafe raw dumps forbidden prospectively",
+      "license_and_paper_use": "NOT_VERIFIED"
+    },
+    {
+      "candidate": "HISTORICAL_OPENAI_COMPATIBLE_PROXY_78CODE",
+      "historical_surface": "https://www.78code.cc/v1/images/edits",
+      "current_availability": "NOT_VERIFIED",
+      "exact_model_and_revision": "CLI-required; historically documented as gpt-image-2 without pinned revision",
+      "image_conditioning": "HISTORICALLY_IMPLEMENTED",
+      "identity_preservation": "NOT_VERIFIED",
+      "mask_conditioning": "NOT_VERIFIED",
+      "pose_conditioning": "HISTORICAL_CONDITION IMAGE ONLY",
+      "price": "PRICE_NOT_VERIFIED",
+      "rate_limit": "NOT_VERIFIED",
+      "reproducibility": "REQUEST_PROVENANCE_ONLY; historical seed support explicitly false",
+      "content_policy_risk": "NOT_VERIFIED",
+      "output_resolution": "historical wire size 1536x1024",
+      "batch_capability": "historical retries 2 and n=1; current batch behavior not verified",
+      "raw_response_retention": "NOT_VERIFIED_PROSPECTIVELY",
+      "license_and_paper_use": "NOT_VERIFIED"
+    }
+  ],
+  "selection_blockers": [
+    "no current connectivity or model-capability probe is authorized",
+    "provider and exact model revision are not selected",
+    "identity preservation and mask/pose conditioning are unverified",
+    "price and rate limits are unverified",
+    "seed behavior is absent, unsupported, or unverified",
+    "content policy, data processing, license, and paper-use boundaries are unverified",
+    "provider choice creates payment and credential-risk decisions reserved for the user"
+  ],
+  "required_before_selection": [
+    "user-selected provider",
+    "exact model ID and revision or alias policy",
+    "base URL identifier and endpoint schema",
+    "verified image input count and formats",
+    "verified response mode and raw-metadata retention policy",
+    "verified seed behavior",
+    "verified price, rate limit, content policy, data processing, and paper-use license",
+    "separate authorization for one minimal connectivity request"
+  ],
+  "credential_policy": {
+    "prospective_env_name": "MULTI_IDENTITY_GENERATION_API_KEY",
+    "persist_value_or_fingerprint": false,
+    "dry_run_reads_credential": false
+  },
+  "image_generation_api_calls": 0,
+  "external_api_calls": 0,
+  "paper_final": false
+}
