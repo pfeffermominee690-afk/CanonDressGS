@@ -1,0 +1,27 @@
+{
+  "schema_version": "canondressgs.paper.loo_hard_lookup_analysis.failure.v1",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001",
+  "status": "PREFLIGHT_REPLAY_PASS_RUNTIME_NOT_RUN",
+  "runtime_reason": "EXECUTION_STOPPED_BEFORE_LOOKUP_PHASE",
+  "preflight_replay": {
+    "status": "PASS",
+    "same_endpoint_pairs": 15,
+    "different_endpoint_pairs": 5,
+    "held_out_teacher_reads": 0,
+    "test_metric_reads": 0,
+    "optimizer_reads": 0,
+    "mismatches": [
+      {"held_out_garment": "O01", "rotation": "R0", "K1": "O04", "K2": "O02"},
+      {"held_out_garment": "O01", "rotation": "R1", "K1": "O04", "K2": "O02"},
+      {"held_out_garment": "O02", "rotation": "R2", "K1": "O08", "K2": "O01"},
+      {"held_out_garment": "O04", "rotation": "R0", "K1": "O03", "K2": "O01"},
+      {"held_out_garment": "O08", "rotation": "R3", "K1": "O01", "K2": "O02"}
+    ]
+  },
+  "expected_runtime_inferences": 40,
+  "actual_runtime_inferences": 0,
+  "runtime_selections": [],
+  "per_garment_metrics": [],
+  "per_rotation_metrics": [],
+  "metric_reason": "EVALUATION_PHASE_NOT_REACHED"
+}

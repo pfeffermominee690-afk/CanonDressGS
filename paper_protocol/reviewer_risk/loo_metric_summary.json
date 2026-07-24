@@ -1,0 +1,31 @@
+{
+  "schema_version": "canondressgs.paper.loo_metric_summary.failure.v1",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001",
+  "status": "EXECUTION_INVALID",
+  "classification": "LOO_ADAPTATION_EXECUTION_INVALID",
+  "reason": "LOO_BASIS_CONSTRUCTION_PARITY_FAILURE",
+  "primary_comparison": "K2_LOW_DIMENSIONAL_ADAPTATION_VS_K2_REFERENCE_NEAREST_HARD_LOOKUP",
+  "primary_metrics": {
+    "lpips": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "rgb_mae": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "psnr": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "ssim": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "silhouette_iou": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "boundary_f": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "protected_rgb": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "protected_lpips": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+    "identity": {"value": null, "reason": "EVALUATION_PHASE_NOT_REACHED"}
+  },
+  "per_garment_metrics": [],
+  "per_rotation_metrics": [],
+  "wins": {"adaptation": null, "hard_lookup": null, "ties": null, "both_fail": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+  "garment_gate": {"passed": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+  "rotation_gate": {"passed": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+  "lpips_gate": {"passed": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+  "rgb_gate": {"passed": null, "reason": "EVALUATION_PHASE_NOT_REACHED"},
+  "recovery_gate": {"passed": null, "reason": "FULL_RESIDUAL_PHASE_NOT_REACHED"},
+  "identity_component_contamination": {"value": null, "reason": "VISUAL_REVIEW_NOT_RUN"},
+  "claim_boundary": "No scientific method claim is supported by this invalid execution.",
+  "PAPER_FINAL": false,
+  "paper_final_count": 0
+}
