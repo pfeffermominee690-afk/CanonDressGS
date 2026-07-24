@@ -1,0 +1,64 @@
+{
+  "adaptation_calibration_separation": "PASS",
+  "calibration_test_separation": "PASS",
+  "contract_sources": [
+    "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+    "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+    "paper_protocol/reviewer_risk/loo_baseline_registry_amended.json"
+  ],
+  "held_out_teacher_reads": 0,
+  "rows": [
+    {
+      "authorization": "AUTHORIZED",
+      "boundary": "train-only adaptation F2 selects a basis endpoint",
+      "phase": "Reference Nearest Hard Lookup"
+    },
+    {
+      "authorization": "AUTHORIZED",
+      "boundary": "deployable reference evidence only",
+      "phase": "nearest-known coefficient initialization"
+    },
+    {
+      "authorization": "AUTHORIZED",
+      "boundary": "one registered adaptation reference unit",
+      "phase": "K1 adaptation input preparation"
+    },
+    {
+      "authorization": "AUTHORIZED",
+      "boundary": "two registered adaptation reference units",
+      "phase": "K2 adaptation input preparation"
+    },
+    {
+      "authorization": "FORBIDDEN",
+      "boundary": "render loss uses RGB/mask observations, never F2 as a metric",
+      "phase": "calibration loss"
+    },
+    {
+      "authorization": "AUTHORIZED",
+      "boundary": "F2 only initializes internal basis-garment simulations; selection uses render loss",
+      "phase": "calibration model selection"
+    },
+    {
+      "authorization": "FORBIDDEN",
+      "boundary": "test target and metrics are evaluation-only",
+      "phase": "test evaluation"
+    },
+    {
+      "authorization": "NOT_APPLICABLE",
+      "boundary": "offline residual projection does not read F2",
+      "phase": "Oracle Projection"
+    },
+    {
+      "authorization": "AUTHORIZED",
+      "boundary": "same nearest-known train-only initialization",
+      "phase": "full-residual initialization"
+    }
+  ],
+  "schema_version": "canondressgs.paper.loo_calibration_f2_information_boundary_audit.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-CALIBRATION-F2-INTERFACE-REPAIR-001",
+  "test_metric_reads": 0,
+  "test_target_reads": 0,
+  "train_only_centroid_boundary": "PASS",
+  "unauthorized_f2_reads": 0
+}

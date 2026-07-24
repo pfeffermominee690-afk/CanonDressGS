@@ -1,0 +1,24 @@
+{
+  "F2_role": "initialization only; never calibration objective or selection signal",
+  "adaptation_isolated": true,
+  "interfaces_separated": true,
+  "metrics": "mean calibration common rendering loss subject to zero identity contamination",
+  "outer_held_out_isolated": true,
+  "participates_in_selection": true,
+  "purpose": "select preregistered regularization candidate",
+  "reads": [
+    "basis-garment calibration RGB and masks",
+    "basis-garment train-only frozen F2 for nearest-known initialization",
+    "fixed basis-garment Teacher residuals inside internal simulation"
+  ],
+  "reference_feature_selection_interface": "F2ReferenceFeatureSet",
+  "render_calibration_interface": "CALIBRATION_RENDER_OBSERVATION",
+  "schema_version": "canondressgs.paper.loo_calibration_semantics_audit.v1",
+  "scope": "once per LOO split and method, shared across rotations and K",
+  "selection_data": "four basis garments on calibration folds via internal leave-one-basis-garment-out simulation",
+  "selects": "regularization lambda and trust-region radius from frozen grids",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-CALIBRATION-F2-INTERFACE-REPAIR-001",
+  "test_isolated": true,
+  "uses_F2": true
+}

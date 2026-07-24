@@ -1534,6 +1534,38 @@ def _reference_feature(
     return value[0]
 
 
+def _calibration_initialization_feature_record(
+    extractor: Any, context: Mapping[str, Any], outfit: str, conditions: Sequence[str]
+) -> Any:
+    from scene.loo_f2_feature_adapter import (
+        CALIBRATION_INITIALIZATION_ROLE,
+        build_reference_metadata,
+        extract_reference_feature_set,
+    )
+
+    images = torch.stack([
+        context["samples"][f"{outfit}/{condition}"]["target_edit_rgb"]
+        for condition in conditions
+    ])
+    masks = torch.stack([
+        context["samples"][f"{outfit}/{condition}"]["target_clothing_mask"]
+        for condition in conditions
+    ])
+    valid = torch.ones((len(conditions), 1), device=images.device, dtype=images.dtype)
+    with torch.inference_mode():
+        value = extract_reference_feature_set(
+            extractor, images, masks, valid,
+            build_reference_metadata(context, outfit, conditions),
+            role=CALIBRATION_INITIALIZATION_ROLE,
+        )
+    if (
+        value.aggregated_feature.shape != (1, 512)
+        or not torch.isfinite(value.aggregated_feature).all()
+    ):
+        raise RuntimeError("frozen F2 calibration initialization feature contract mismatch")
+    return value
+
+
 def _loo_centroid_selection(
     task: Mapping[str, Any],
     feature: Any,
@@ -2174,11 +2206,19 @@ def calibrate_regularization(
             decomposition = modules["build_svd_basis"](
                 {name: teachers[name] for name in internal_bank}, bounds, internal_bank, inner_rank
             )
-            known_features = {
-                name: _reference_feature(extractor, context, name, calibration_conditions)
+            known_feature_records = {
+                name: _calibration_initialization_feature_record(
+                    extractor, context, name, calibration_conditions,
+                )
                 for name in internal_bank
             }
-            query = _reference_feature(extractor, context, internal_held_out, calibration_conditions)
+            query_record = _calibration_initialization_feature_record(
+                extractor, context, internal_held_out, calibration_conditions,
+            )
+            known_features = {
+                name: record.feature_vector() for name, record in known_feature_records.items()
+            }
+            query = query_record.feature_vector()
             feature_matrix = torch.stack(list(known_features.values()))
             feature_mean = feature_matrix.mean(0)
             feature_std = feature_matrix.std(0, unbiased=False).clamp_min(1e-8)
