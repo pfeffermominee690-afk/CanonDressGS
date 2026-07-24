@@ -1,0 +1,525 @@
+{
+  "attempt": "attempt_002",
+  "attempt_path": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_002",
+  "claim_boundary": "Teacher-derived affine residual span supports low-dimensional rendering-objective refinement for a fixed identity and a closed five-garment study set.",
+  "classification": "TEACHER_SPAN_AT_LOCAL_OPTIMUM",
+  "counts": {
+    "actual": {
+      "backward_calls": 36000,
+      "base_visual_renders": 20,
+      "cache_hits": 0,
+      "calibration_evaluations": 120,
+      "checkpoint_writes": 960,
+      "coefficient_diagnostic_runs": 20,
+      "coefficient_optimizer_render_calls": 30000,
+      "coefficient_regularized_runs": 80,
+      "determinism_probe_renders": 2,
+      "evaluation_physical_renders": 660,
+      "failure_records": 0,
+      "formal_logical_renders": 480,
+      "forward_calls": 36000,
+      "full_residual_optimizer_render_calls": 6000,
+      "full_residual_runs": 20,
+      "lambda_selection_evaluations": 80,
+      "logical_renders": 660,
+      "optimization_runs": 120,
+      "optimize_evaluations": 240,
+      "optimizer_creations": 120,
+      "optimizer_steps": 36000,
+      "paper_final_count": 0,
+      "parity_renders": 40,
+      "refined_lookup_logical_renders": 40,
+      "renderer_calls": 36662,
+      "scheduler_steps": 0,
+      "test_evaluations": 160,
+      "unique_physical_renders": 660,
+      "visual_sheets": 20
+    },
+    "all_expected_nonnull": true,
+    "delta": {
+      "backward_calls": 0,
+      "base_visual_renders": 0,
+      "cache_hits": 0,
+      "calibration_evaluations": 0,
+      "checkpoint_writes": 0,
+      "coefficient_diagnostic_runs": 0,
+      "coefficient_optimizer_render_calls": 0,
+      "coefficient_regularized_runs": 0,
+      "determinism_probe_renders": 0,
+      "evaluation_physical_renders": 0,
+      "failure_records": 0,
+      "formal_logical_renders": 0,
+      "forward_calls": 0,
+      "full_residual_optimizer_render_calls": 0,
+      "full_residual_runs": 0,
+      "lambda_selection_evaluations": 0,
+      "logical_renders": 0,
+      "optimization_runs": 0,
+      "optimize_evaluations": 0,
+      "optimizer_creations": 0,
+      "optimizer_steps": 0,
+      "paper_final_count": 0,
+      "parity_renders": 0,
+      "refined_lookup_logical_renders": 0,
+      "renderer_calls": 0,
+      "scheduler_steps": 0,
+      "test_evaluations": 0,
+      "unique_physical_renders": 0,
+      "visual_sheets": 0
+    },
+    "expected": {
+      "backward_calls": 36000,
+      "base_visual_renders": 20,
+      "cache_hits": 0,
+      "calibration_evaluations": 120,
+      "checkpoint_writes": 960,
+      "coefficient_diagnostic_runs": 20,
+      "coefficient_optimizer_render_calls": 30000,
+      "coefficient_regularized_runs": 80,
+      "determinism_probe_renders": 2,
+      "evaluation_physical_renders": 660,
+      "failure_records": 0,
+      "formal_logical_renders": 480,
+      "forward_calls": 36000,
+      "full_residual_optimizer_render_calls": 6000,
+      "full_residual_runs": 20,
+      "lambda_selection_evaluations": 80,
+      "logical_renders": 660,
+      "optimization_runs": 120,
+      "optimize_evaluations": 240,
+      "optimizer_creations": 120,
+      "optimizer_steps": 36000,
+      "paper_final_count": 0,
+      "parity_renders": 40,
+      "refined_lookup_logical_renders": 40,
+      "renderer_calls": 36662,
+      "scheduler_steps": 0,
+      "test_evaluations": 160,
+      "unique_physical_renders": 660,
+      "visual_sheets": 20
+    },
+    "schema_version": "canondressgs.paper.coefficient_headroom_execution_count_verification.v1",
+    "status": "PASS",
+    "task_id": "AAAI27-RENDER-REFINED-COEFFICIENT-HEADROOM-ATTEMPT-002",
+    "unexplained_nonzero_delta_count": 0
+  },
+  "execution_head": "3fb53786a4af264f117701a01e8559c4b2bfafd1",
+  "final_head": "PENDING_RESULT_COMMIT",
+  "gains": {
+    "COEFFICIENT_HEADROOM_GAIN": {
+      "baseline": "SVD Endpoint",
+      "method": "Render-Refined Coefficient",
+      "metrics": {
+        "boundary_f": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.0007648480946331748,
+          "raw_method_minus_baseline_delta": 0.0007648480946331748
+        },
+        "identity_metric": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.944848336279427e-05,
+          "raw_method_minus_baseline_delta": -1.944848336279427e-05
+        },
+        "lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.00021653417497873723,
+          "raw_method_minus_baseline_delta": 0.00021653417497873723
+        },
+        "protected_lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.4548181934515058e-05,
+          "raw_method_minus_baseline_delta": -1.4548181934515058e-05
+        },
+        "psnr": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.028103807038974082,
+          "raw_method_minus_baseline_delta": -0.028103807038974082
+        },
+        "render_objective": {
+          "direction": "lower",
+          "direction_normalized_improvement": 0.00014848560094832264,
+          "raw_method_minus_baseline_delta": -0.00014848560094832264
+        },
+        "rgb_mae": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.0001557932235300534,
+          "raw_method_minus_baseline_delta": 0.0001557932235300534
+        },
+        "silhouette_iou": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.0001282801258817301,
+          "raw_method_minus_baseline_delta": 0.0001282801258817301
+        },
+        "ssim": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.0010943475092568544,
+          "raw_method_minus_baseline_delta": -0.0010943475092568544
+        }
+      }
+    },
+    "FULL_RESIDUAL_GAIN": {
+      "baseline": "Teacher Endpoint",
+      "method": "Full-Residual Equal-Step",
+      "metrics": {
+        "boundary_f": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.25105015723375745,
+          "raw_method_minus_baseline_delta": -0.25105015723375745
+        },
+        "identity_metric": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.03826342038810253,
+          "raw_method_minus_baseline_delta": 0.03826342038810253
+        },
+        "lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.07965331631712616,
+          "raw_method_minus_baseline_delta": 0.07965331631712616
+        },
+        "protected_lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.008749238622112897,
+          "raw_method_minus_baseline_delta": 0.008749238622112897
+        },
+        "psnr": {
+          "direction": "higher",
+          "direction_normalized_improvement": -8.364078609127159,
+          "raw_method_minus_baseline_delta": -8.364078609127159
+        },
+        "render_objective": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.6105688855051995,
+          "raw_method_minus_baseline_delta": 0.6105688855051995
+        },
+        "rgb_mae": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.05984706268645823,
+          "raw_method_minus_baseline_delta": 0.05984706268645823
+        },
+        "silhouette_iou": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.061740575557540756,
+          "raw_method_minus_baseline_delta": -0.061740575557540756
+        },
+        "ssim": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.33774606745234514,
+          "raw_method_minus_baseline_delta": -0.33774606745234514
+        }
+      }
+    },
+    "TEACHER_HEADROOM_GAIN": {
+      "baseline": "Teacher Endpoint",
+      "method": "Render-Refined Coefficient",
+      "metrics": {
+        "boundary_f": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.0007643593285566741,
+          "raw_method_minus_baseline_delta": 0.0007643593285566741
+        },
+        "identity_metric": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.945635303855081e-05,
+          "raw_method_minus_baseline_delta": -1.945635303855081e-05
+        },
+        "lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.00021440605632960796,
+          "raw_method_minus_baseline_delta": 0.00021440605632960796
+        },
+        "protected_lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.4689720410387833e-05,
+          "raw_method_minus_baseline_delta": -1.4689720410387833e-05
+        },
+        "psnr": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.02811099003749362,
+          "raw_method_minus_baseline_delta": -0.02811099003749362
+        },
+        "render_objective": {
+          "direction": "lower",
+          "direction_normalized_improvement": 0.0001484900712966919,
+          "raw_method_minus_baseline_delta": -0.0001484900712966919
+        },
+        "rgb_mae": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.0001559005118906484,
+          "raw_method_minus_baseline_delta": 0.0001559005118906484
+        },
+        "silhouette_iou": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.00012824026049063075,
+          "raw_method_minus_baseline_delta": 0.00012824026049063075
+        },
+        "ssim": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.0010944807096571196,
+          "raw_method_minus_baseline_delta": -0.0010944807096571196
+        }
+      }
+    }
+  },
+  "historical_attempt_count_before": 1,
+  "macro_test_metrics": {
+    "Full-Residual Equal-Step": {
+      "boundary_f": 0.4647667127390879,
+      "identity_metric": 0.04873618073761463,
+      "lpips": 0.1184210479259491,
+      "protected_lpips": 0.01034005342517048,
+      "psnr": 17.415982443263374,
+      "render_objective": 1.0897127151489259,
+      "rgb_mae": 0.07889334671199322,
+      "silhouette_iou": 0.8514433822685936,
+      "ssim": 0.5407706942430892
+    },
+    "Full-Residual Equal-Wall-Time": {
+      "boundary_f": 0.4647667127390879,
+      "identity_metric": 0.04873618073761463,
+      "lpips": 0.1184210479259491,
+      "protected_lpips": 0.01034005342517048,
+      "psnr": 17.415982443263374,
+      "render_objective": 1.0897127151489259,
+      "rgb_mae": 0.07889334671199322,
+      "silhouette_iou": 0.8514433822685936,
+      "ssim": 0.5407706942430892
+    },
+    "Render-Refined Coefficient": {
+      "boundary_f": 0.716581229301402,
+      "identity_metric": 0.01045330399647355,
+      "lpips": 0.03898213766515255,
+      "protected_lpips": 0.0015761250826471951,
+      "psnr": 25.75195006235304,
+      "render_objective": 0.4789953395724297,
+      "rgb_mae": 0.019202184537425636,
+      "silhouette_iou": 0.913312198086625,
+      "ssim": 0.8774222809857772
+    },
+    "SVD Endpoint": {
+      "boundary_f": 0.7158163812067688,
+      "identity_metric": 0.010472752479836344,
+      "lpips": 0.038765603490173814,
+      "protected_lpips": 0.0015906732645817102,
+      "psnr": 25.780053869392013,
+      "render_objective": 0.479143825173378,
+      "rgb_mae": 0.019046391313895582,
+      "silhouette_iou": 0.9131839179607433,
+      "ssim": 0.8785166284950341
+    },
+    "Teacher Endpoint": {
+      "boundary_f": 0.7158168699728453,
+      "identity_metric": 0.010472760349512101,
+      "lpips": 0.03876773160882294,
+      "protected_lpips": 0.001590814803057583,
+      "psnr": 25.780061052390533,
+      "render_objective": 0.47914382964372637,
+      "rgb_mae": 0.019046284025534987,
+      "silhouette_iou": 0.9131839578261344,
+      "ssim": 0.8785167616954344
+    },
+    "UNREGULARIZED_DIAGNOSTIC": {
+      "boundary_f": 0.7166294531757655,
+      "identity_metric": 0.010450155800208449,
+      "lpips": 0.03898075264878571,
+      "protected_lpips": 0.0015619163248629774,
+      "psnr": 25.75087967358718,
+      "render_objective": 0.4789696216583252,
+      "rgb_mae": 0.019208031753078104,
+      "silhouette_iou": 0.9133119237406578,
+      "ssim": 0.8773807580728852
+    }
+  },
+  "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
+  "next_task_source_branch": "research/loo-few-view-fold-manifest-repair-20260724",
+  "next_task_source_head": "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "protocol_source_branch": "research/render-refined-coefficient-headroom-protocol-20260724",
+  "protocol_source_head": "2a42143f7942752aead16e7d53d1b7376fc5a143",
+  "pure_endpoint_output_mutation_count": 0,
+  "pure_endpoint_prediction_sha256": "13e685087686d0ad597fd67daaad328f07910bceba33f46c6630623ba6e21290",
+  "repaired_contract_fingerprints": {
+    "atomic_write_contract_sha256": "fe0b955266d5dec45d5a9726333c6fa48a16d6e581421946e53d9f99f071f55b",
+    "checks": {
+      "atomic_write_contract": true,
+      "attempt_001_no_reuse": true,
+      "execution_status": true,
+      "path_plan_aggregate": true,
+      "path_plan_canonical": true,
+      "path_plan_generated": true,
+      "repaired_preflight": true,
+      "scientific_semantic_drift": true,
+      "unaudited_writers": true,
+      "writer_count": true,
+      "writer_registry": true
+    },
+    "path_plan_aggregate_sha256": "694eca63bdaead253ab52c3f64bad2300cc91053183774e8181ab91d7a6d1766",
+    "path_plan_canonical_sha256": "568cb7d3b27b95eb40d1d0c9f5b98a85cefb19dfdc911f96ce438406f7dc8bb6",
+    "repaired_execution_contract_semantic_sha256": "952daef972c5d41abfa01effd59667bcbbeb2ec04367474f74abfab9d55cbfaa",
+    "repaired_execution_contract_sha256_lf": "f3d8b1ad5a445944d2a01495eef28979d5cf849fd7dc264e152bdcb3be63e6cb",
+    "repaired_preflight_sha256": "36e90a52f4223ea99baa3c46f39a802dc8670108c69db7f84d32a27fa57bc200",
+    "status": "PASS",
+    "writer_registry_sha256": "7a210d5c4371b1e9d4921faf5ff39673b84887531a912670f30272dd1627ae8b"
+  },
+  "reporting_head": "PENDING_SEAL_COMMIT",
+  "result_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+  "schema_version": "canondressgs.paper.coefficient_headroom_final_summary.v1",
+  "scientific_attempt_count": 1,
+  "selected_lambdas": {
+    "R0": {
+      "calibration_condition": "cond_000017",
+      "five_garment_macro_objective": {
+        "0.0001": 0.5104428708553315,
+        "0.001": 0.5104426860809326,
+        "0.01": 0.5104410231113434,
+        "0.1": 0.5104428648948669
+      },
+      "garment_count": 5,
+      "rotation": "R0",
+      "selected_lambda": 0.1,
+      "selection_rule": {
+        "eligible_within_tolerance": [
+          0.1,
+          0.01,
+          0.001,
+          0.0001
+        ],
+        "minimum_objective": 0.5104410231113434,
+        "tie_break": "largest lambda (stronger regularization)",
+        "tie_tolerance_absolute": 0.0001
+      },
+      "test_condition": "cond_000347",
+      "test_used": false
+    },
+    "R1": {
+      "calibration_condition": "cond_000347",
+      "five_garment_macro_objective": {
+        "0.0001": 0.4730422854423523,
+        "0.001": 0.4730398178100586,
+        "0.01": 0.4730398654937744,
+        "0.1": 0.47304352521896365
+      },
+      "garment_count": 5,
+      "rotation": "R1",
+      "selected_lambda": 0.1,
+      "selection_rule": {
+        "eligible_within_tolerance": [
+          0.1,
+          0.01,
+          0.001,
+          0.0001
+        ],
+        "minimum_objective": 0.4730398178100586,
+        "tie_break": "largest lambda (stronger regularization)",
+        "tie_tolerance_absolute": 0.0001
+      },
+      "test_condition": "cond_000000",
+      "test_used": false
+    },
+    "R2": {
+      "calibration_condition": "cond_000000",
+      "five_garment_macro_objective": {
+        "0.0001": 0.4799901366233826,
+        "0.001": 0.4799898862838745,
+        "0.01": 0.47998872995376585,
+        "0.1": 0.47998322248458863
+      },
+      "garment_count": 5,
+      "rotation": "R2",
+      "selected_lambda": 0.1,
+      "selection_rule": {
+        "eligible_within_tolerance": [
+          0.1,
+          0.01,
+          0.001,
+          0.0001
+        ],
+        "minimum_objective": 0.47998322248458863,
+        "tie_break": "largest lambda (stronger regularization)",
+        "tie_tolerance_absolute": 0.0001
+      },
+      "test_condition": "cond_000318",
+      "test_used": false
+    },
+    "R3": {
+      "calibration_condition": "cond_000318",
+      "five_garment_macro_objective": {
+        "0.0001": 0.452575820684433,
+        "0.001": 0.45257519483566283,
+        "0.01": 0.4525738894939423,
+        "0.1": 0.4525654137134552
+      },
+      "garment_count": 5,
+      "rotation": "R3",
+      "selected_lambda": 0.1,
+      "selection_rule": {
+        "eligible_within_tolerance": [
+          0.1,
+          0.01,
+          0.001,
+          0.0001
+        ],
+        "minimum_objective": 0.4525654137134552,
+        "tie_break": "largest lambda (stronger regularization)",
+        "tie_tolerance_absolute": 0.0001
+      },
+      "test_condition": "cond_000017",
+      "test_used": false
+    }
+  },
+  "source_branch": "research/coefficient-headroom-output-path-repair-20260724",
+  "source_head": "77d2f4e32de984d766e0beab5ded7afe12aecab0",
+  "span_recovery": {
+    "macro": null,
+    "rows": [
+      {
+        "denominator": -0.0784117323346436,
+        "numerator": -3.0001625418663025e-05,
+        "outfit_id": "O01",
+        "reason": "Teacher_error-FullResidual_error<=0",
+        "value": null
+      },
+      {
+        "denominator": -0.08138133911415935,
+        "numerator": -7.659662514925003e-05,
+        "outfit_id": "O02",
+        "reason": "Teacher_error-FullResidual_error<=0",
+        "value": null
+      },
+      {
+        "denominator": -0.09105673432350159,
+        "numerator": 2.304092049598694e-06,
+        "outfit_id": "O03",
+        "reason": "Teacher_error-FullResidual_error<=0",
+        "value": null
+      },
+      {
+        "denominator": -0.07892502658069134,
+        "numerator": -4.0510669350624084e-05,
+        "outfit_id": "O04",
+        "reason": "Teacher_error-FullResidual_error<=0",
+        "value": null
+      },
+      {
+        "denominator": -0.0684917492326349,
+        "numerator": -0.0009272254537791014,
+        "outfit_id": "O08",
+        "reason": "Teacher_error-FullResidual_error<=0",
+        "value": null
+      }
+    ],
+    "valid_count": 0
+  },
+  "status": "RESULTS_COMPLETE_PENDING_RESULT_COMMIT",
+  "statuses": {
+    "FULL_RESIDUAL_HEADROOM_STATUS": "NO_FULL_RESIDUAL_GAIN",
+    "IDENTITY_SAFETY_STATUS": "PASS",
+    "LOW_DIMENSIONAL_GENERALIZATION_STATUS": "NO_HELD_OUT_REFINEMENT_GAIN",
+    "REFINED_LOOKUP_DECOMPOSITION_STATUS": "PASS",
+    "REGULARIZATION_SELECTION_STATUS": "PASS_CALIBRATION_ONLY_ONE_LAMBDA_PER_ROTATION",
+    "SPAN_RECOVERY_STATUS": "UNDEFINED_NONPOSITIVE_DENOMINATORS",
+    "TEACHER_SVD_PARITY_STATUS": "PASS"
+  },
+  "task_id": "AAAI27-RENDER-REFINED-COEFFICIENT-HEADROOM-ATTEMPT-002"
+}

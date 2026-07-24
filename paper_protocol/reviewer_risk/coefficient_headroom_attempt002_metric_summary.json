@@ -1,0 +1,432 @@
+{
+  "gains": {
+    "COEFFICIENT_HEADROOM_GAIN": {
+      "baseline": "SVD Endpoint",
+      "method": "Render-Refined Coefficient",
+      "metrics": {
+        "boundary_f": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.0007648480946331748,
+          "raw_method_minus_baseline_delta": 0.0007648480946331748
+        },
+        "identity_metric": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.944848336279427e-05,
+          "raw_method_minus_baseline_delta": -1.944848336279427e-05
+        },
+        "lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.00021653417497873723,
+          "raw_method_minus_baseline_delta": 0.00021653417497873723
+        },
+        "protected_lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.4548181934515058e-05,
+          "raw_method_minus_baseline_delta": -1.4548181934515058e-05
+        },
+        "psnr": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.028103807038974082,
+          "raw_method_minus_baseline_delta": -0.028103807038974082
+        },
+        "render_objective": {
+          "direction": "lower",
+          "direction_normalized_improvement": 0.00014848560094832264,
+          "raw_method_minus_baseline_delta": -0.00014848560094832264
+        },
+        "rgb_mae": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.0001557932235300534,
+          "raw_method_minus_baseline_delta": 0.0001557932235300534
+        },
+        "silhouette_iou": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.0001282801258817301,
+          "raw_method_minus_baseline_delta": 0.0001282801258817301
+        },
+        "ssim": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.0010943475092568544,
+          "raw_method_minus_baseline_delta": -0.0010943475092568544
+        }
+      }
+    },
+    "FULL_RESIDUAL_GAIN": {
+      "baseline": "Teacher Endpoint",
+      "method": "Full-Residual Equal-Step",
+      "metrics": {
+        "boundary_f": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.25105015723375745,
+          "raw_method_minus_baseline_delta": -0.25105015723375745
+        },
+        "identity_metric": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.03826342038810253,
+          "raw_method_minus_baseline_delta": 0.03826342038810253
+        },
+        "lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.07965331631712616,
+          "raw_method_minus_baseline_delta": 0.07965331631712616
+        },
+        "protected_lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.008749238622112897,
+          "raw_method_minus_baseline_delta": 0.008749238622112897
+        },
+        "psnr": {
+          "direction": "higher",
+          "direction_normalized_improvement": -8.364078609127159,
+          "raw_method_minus_baseline_delta": -8.364078609127159
+        },
+        "render_objective": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.6105688855051995,
+          "raw_method_minus_baseline_delta": 0.6105688855051995
+        },
+        "rgb_mae": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.05984706268645823,
+          "raw_method_minus_baseline_delta": 0.05984706268645823
+        },
+        "silhouette_iou": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.061740575557540756,
+          "raw_method_minus_baseline_delta": -0.061740575557540756
+        },
+        "ssim": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.33774606745234514,
+          "raw_method_minus_baseline_delta": -0.33774606745234514
+        }
+      }
+    },
+    "TEACHER_HEADROOM_GAIN": {
+      "baseline": "Teacher Endpoint",
+      "method": "Render-Refined Coefficient",
+      "metrics": {
+        "boundary_f": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.0007643593285566741,
+          "raw_method_minus_baseline_delta": 0.0007643593285566741
+        },
+        "identity_metric": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.945635303855081e-05,
+          "raw_method_minus_baseline_delta": -1.945635303855081e-05
+        },
+        "lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.00021440605632960796,
+          "raw_method_minus_baseline_delta": 0.00021440605632960796
+        },
+        "protected_lpips": {
+          "direction": "lower",
+          "direction_normalized_improvement": 1.4689720410387833e-05,
+          "raw_method_minus_baseline_delta": -1.4689720410387833e-05
+        },
+        "psnr": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.02811099003749362,
+          "raw_method_minus_baseline_delta": -0.02811099003749362
+        },
+        "render_objective": {
+          "direction": "lower",
+          "direction_normalized_improvement": 0.0001484900712966919,
+          "raw_method_minus_baseline_delta": -0.0001484900712966919
+        },
+        "rgb_mae": {
+          "direction": "lower",
+          "direction_normalized_improvement": -0.0001559005118906484,
+          "raw_method_minus_baseline_delta": 0.0001559005118906484
+        },
+        "silhouette_iou": {
+          "direction": "higher",
+          "direction_normalized_improvement": 0.00012824026049063075,
+          "raw_method_minus_baseline_delta": 0.00012824026049063075
+        },
+        "ssim": {
+          "direction": "higher",
+          "direction_normalized_improvement": -0.0010944807096571196,
+          "raw_method_minus_baseline_delta": -0.0010944807096571196
+        }
+      }
+    }
+  },
+  "macro_test_metrics": {
+    "Full-Residual Equal-Step": {
+      "boundary_f": 0.4647667127390879,
+      "identity_metric": 0.04873618073761463,
+      "lpips": 0.1184210479259491,
+      "protected_lpips": 0.01034005342517048,
+      "psnr": 17.415982443263374,
+      "render_objective": 1.0897127151489259,
+      "rgb_mae": 0.07889334671199322,
+      "silhouette_iou": 0.8514433822685936,
+      "ssim": 0.5407706942430892
+    },
+    "Full-Residual Equal-Wall-Time": {
+      "boundary_f": 0.4647667127390879,
+      "identity_metric": 0.04873618073761463,
+      "lpips": 0.1184210479259491,
+      "protected_lpips": 0.01034005342517048,
+      "psnr": 17.415982443263374,
+      "render_objective": 1.0897127151489259,
+      "rgb_mae": 0.07889334671199322,
+      "silhouette_iou": 0.8514433822685936,
+      "ssim": 0.5407706942430892
+    },
+    "Render-Refined Coefficient": {
+      "boundary_f": 0.716581229301402,
+      "identity_metric": 0.01045330399647355,
+      "lpips": 0.03898213766515255,
+      "protected_lpips": 0.0015761250826471951,
+      "psnr": 25.75195006235304,
+      "render_objective": 0.4789953395724297,
+      "rgb_mae": 0.019202184537425636,
+      "silhouette_iou": 0.913312198086625,
+      "ssim": 0.8774222809857772
+    },
+    "SVD Endpoint": {
+      "boundary_f": 0.7158163812067688,
+      "identity_metric": 0.010472752479836344,
+      "lpips": 0.038765603490173814,
+      "protected_lpips": 0.0015906732645817102,
+      "psnr": 25.780053869392013,
+      "render_objective": 0.479143825173378,
+      "rgb_mae": 0.019046391313895582,
+      "silhouette_iou": 0.9131839179607433,
+      "ssim": 0.8785166284950341
+    },
+    "Teacher Endpoint": {
+      "boundary_f": 0.7158168699728453,
+      "identity_metric": 0.010472760349512101,
+      "lpips": 0.03876773160882294,
+      "protected_lpips": 0.001590814803057583,
+      "psnr": 25.780061052390533,
+      "render_objective": 0.47914382964372637,
+      "rgb_mae": 0.019046284025534987,
+      "silhouette_iou": 0.9131839578261344,
+      "ssim": 0.8785167616954344
+    },
+    "UNREGULARIZED_DIAGNOSTIC": {
+      "boundary_f": 0.7166294531757655,
+      "identity_metric": 0.010450155800208449,
+      "lpips": 0.03898075264878571,
+      "protected_lpips": 0.0015619163248629774,
+      "psnr": 25.75087967358718,
+      "render_objective": 0.4789696216583252,
+      "rgb_mae": 0.019208031753078104,
+      "silhouette_iou": 0.9133119237406578,
+      "ssim": 0.8773807580728852
+    }
+  },
+  "partition_macro_metrics": {
+    "calibration": {
+      "Full-Residual Equal-Step": {
+        "boundary_f": 0.46174796268861573,
+        "identity_metric": 0.045095919631421566,
+        "lpips": 0.11932469122111797,
+        "protected_lpips": 0.009256705758161843,
+        "psnr": 17.686160590901057,
+        "render_objective": 1.0640835613012314,
+        "rgb_mae": 0.0791891435161233,
+        "silhouette_iou": 0.853172427086451,
+        "ssim": 0.5343158914741317
+      },
+      "Full-Residual Equal-Wall-Time": {
+        "boundary_f": 0.46174796268861573,
+        "identity_metric": 0.045095919631421566,
+        "lpips": 0.11932469122111797,
+        "protected_lpips": 0.009256705758161843,
+        "psnr": 17.686160590901057,
+        "render_objective": 1.0640835613012314,
+        "rgb_mae": 0.0791891435161233,
+        "silhouette_iou": 0.853172427086451,
+        "ssim": 0.5343158914741317
+      },
+      "Render-Refined Coefficient": {
+        "boundary_f": 0.7164896092055943,
+        "identity_metric": 0.010457176598720253,
+        "lpips": 0.03903848673216999,
+        "protected_lpips": 0.0015772731054312316,
+        "psnr": 25.750927241734207,
+        "render_objective": 0.4790087565779686,
+        "rgb_mae": 0.01920063546858728,
+        "silhouette_iou": 0.9132743110495015,
+        "ssim": 0.877421758150261
+      },
+      "SVD Endpoint": {
+        "boundary_f": 0.7158163812067688,
+        "identity_metric": 0.010472752479836344,
+        "lpips": 0.038765603490173814,
+        "protected_lpips": 0.0015906732645817102,
+        "psnr": 25.780053869392013,
+        "render_objective": 0.479143825173378,
+        "rgb_mae": 0.019046391313895582,
+        "silhouette_iou": 0.9131839179607433,
+        "ssim": 0.8785166284950341
+      },
+      "Teacher Endpoint": {
+        "boundary_f": 0.7158168699728453,
+        "identity_metric": 0.010472760349512101,
+        "lpips": 0.03876773160882294,
+        "protected_lpips": 0.001590814803057583,
+        "psnr": 25.780061052390533,
+        "render_objective": 0.47914382964372637,
+        "rgb_mae": 0.019046284025534987,
+        "silhouette_iou": 0.9131839578261344,
+        "ssim": 0.8785167616954344
+      },
+      "UNREGULARIZED_DIAGNOSTIC": {
+        "boundary_f": 0.7164862244531752,
+        "identity_metric": 0.010457024816423655,
+        "lpips": 0.03904767893254757,
+        "protected_lpips": 0.0015769974765134976,
+        "psnr": 25.749491329550438,
+        "render_objective": 0.4790132284164429,
+        "rgb_mae": 0.01920781973749399,
+        "silhouette_iou": 0.9132767152377363,
+        "ssim": 0.877369555959057
+      }
+    },
+    "optimize": {
+      "Full-Residual Equal-Step": {
+        "boundary_f": 0.771459699740727,
+        "identity_metric": 0.00590519803809002,
+        "lpips": 0.017361816752236338,
+        "protected_lpips": 0.0005406876945016848,
+        "psnr": 27.73664744354711,
+        "render_objective": 0.3518145002424717,
+        "rgb_mae": 0.012283887166995555,
+        "silhouette_iou": 0.928102440772671,
+        "ssim": 0.9370115924381951
+      },
+      "Full-Residual Equal-Wall-Time": {
+        "boundary_f": 0.771459699740727,
+        "identity_metric": 0.00590519803809002,
+        "lpips": 0.017361816752236338,
+        "protected_lpips": 0.0005406876945016848,
+        "psnr": 27.73664744354711,
+        "render_objective": 0.3518145002424717,
+        "rgb_mae": 0.012283887166995555,
+        "silhouette_iou": 0.928102440772671,
+        "ssim": 0.9370115924381951
+      },
+      "Render-Refined Coefficient": {
+        "boundary_f": 0.7164859626135707,
+        "identity_metric": 0.010449893376789986,
+        "lpips": 0.03895481959916651,
+        "protected_lpips": 0.0015715118741354672,
+        "psnr": 25.751781731618262,
+        "render_objective": 0.4788846932351589,
+        "rgb_mae": 0.01918772989884019,
+        "silhouette_iou": 0.9133172897044443,
+        "ssim": 0.8774864336586147
+      },
+      "SVD Endpoint": {
+        "boundary_f": 0.7158163812067688,
+        "identity_metric": 0.010472752479836344,
+        "lpips": 0.038765603490173814,
+        "protected_lpips": 0.0015906732645817102,
+        "psnr": 25.780053869392013,
+        "render_objective": 0.479143825173378,
+        "rgb_mae": 0.019046391313895582,
+        "silhouette_iou": 0.9131839179607433,
+        "ssim": 0.8785166284950341
+      },
+      "Teacher Endpoint": {
+        "boundary_f": 0.7158168699728453,
+        "identity_metric": 0.010472760349512101,
+        "lpips": 0.03876773160882294,
+        "protected_lpips": 0.001590814803057583,
+        "psnr": 25.780061052390533,
+        "render_objective": 0.47914382964372637,
+        "rgb_mae": 0.019046284025534987,
+        "silhouette_iou": 0.9131839578261344,
+        "ssim": 0.8785167616954344
+      },
+      "UNREGULARIZED_DIAGNOSTIC": {
+        "boundary_f": 0.7164702315304519,
+        "identity_metric": 0.010449662199243903,
+        "lpips": 0.03896558508276939,
+        "protected_lpips": 0.001571570953638002,
+        "psnr": 25.750548786054793,
+        "render_objective": 0.478886403888464,
+        "rgb_mae": 0.019193675136193633,
+        "silhouette_iou": 0.9133174146775509,
+        "ssim": 0.8774422110242911
+      }
+    },
+    "test": {
+      "Full-Residual Equal-Step": {
+        "boundary_f": 0.4647667127390879,
+        "identity_metric": 0.04873618073761463,
+        "lpips": 0.1184210479259491,
+        "protected_lpips": 0.01034005342517048,
+        "psnr": 17.415982443263374,
+        "render_objective": 1.0897127151489259,
+        "rgb_mae": 0.07889334671199322,
+        "silhouette_iou": 0.8514433822685936,
+        "ssim": 0.5407706942430892
+      },
+      "Full-Residual Equal-Wall-Time": {
+        "boundary_f": 0.4647667127390879,
+        "identity_metric": 0.04873618073761463,
+        "lpips": 0.1184210479259491,
+        "protected_lpips": 0.01034005342517048,
+        "psnr": 17.415982443263374,
+        "render_objective": 1.0897127151489259,
+        "rgb_mae": 0.07889334671199322,
+        "silhouette_iou": 0.8514433822685936,
+        "ssim": 0.5407706942430892
+      },
+      "Render-Refined Coefficient": {
+        "boundary_f": 0.716581229301402,
+        "identity_metric": 0.01045330399647355,
+        "lpips": 0.03898213766515255,
+        "protected_lpips": 0.0015761250826471951,
+        "psnr": 25.75195006235304,
+        "render_objective": 0.4789953395724297,
+        "rgb_mae": 0.019202184537425636,
+        "silhouette_iou": 0.913312198086625,
+        "ssim": 0.8774222809857772
+      },
+      "SVD Endpoint": {
+        "boundary_f": 0.7158163812067688,
+        "identity_metric": 0.010472752479836344,
+        "lpips": 0.038765603490173814,
+        "protected_lpips": 0.0015906732645817102,
+        "psnr": 25.780053869392013,
+        "render_objective": 0.479143825173378,
+        "rgb_mae": 0.019046391313895582,
+        "silhouette_iou": 0.9131839179607433,
+        "ssim": 0.8785166284950341
+      },
+      "Teacher Endpoint": {
+        "boundary_f": 0.7158168699728453,
+        "identity_metric": 0.010472760349512101,
+        "lpips": 0.03876773160882294,
+        "protected_lpips": 0.001590814803057583,
+        "psnr": 25.780061052390533,
+        "render_objective": 0.47914382964372637,
+        "rgb_mae": 0.019046284025534987,
+        "silhouette_iou": 0.9131839578261344,
+        "ssim": 0.8785167616954344
+      },
+      "UNREGULARIZED_DIAGNOSTIC": {
+        "boundary_f": 0.7166294531757655,
+        "identity_metric": 0.010450155800208449,
+        "lpips": 0.03898075264878571,
+        "protected_lpips": 0.0015619163248629774,
+        "psnr": 25.75087967358718,
+        "render_objective": 0.4789696216583252,
+        "rgb_mae": 0.019208031753078104,
+        "silhouette_iou": 0.9133119237406578,
+        "ssim": 0.8773807580728852
+      }
+    }
+  },
+  "status": "PASS"
+}
