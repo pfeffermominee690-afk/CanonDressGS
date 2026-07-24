@@ -1,0 +1,471 @@
+{
+  "auxiliary_render_calls": 40,
+  "basis_generation_runs": 5,
+  "rows": [
+    {
+      "aggregate_reconstruction_rmse": 7.264333465496768e-09,
+      "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+      "basis_fingerprint": "bcb155aa9c2aa938dcaa28e246e5cf9d3f7954528cadd0ab3b12ed8142f182db",
+      "basis_garment_reconstruction_rmse": {
+        "O02": 6.962236329409111e-09,
+        "O03": 7.064223844156287e-09,
+        "O04": 7.814346218467084e-09,
+        "O08": 7.216527469954592e-09
+      },
+      "basis_garments": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "basis_scalar_count": 17600000,
+      "centered_sum_norm": 0.0,
+      "condition_number": 1.2612389596817324,
+      "construction_dtype": "torch.float64",
+      "cumulative_explained_variance": [
+        0.40480121190464763,
+        0.7455238716253378,
+        1.0,
+        1.0
+      ],
+      "explained_variance": [
+        0.40480121190464763,
+        0.3407226597206902,
+        0.25447612837466216,
+        3.310040547310085e-32
+      ],
+      "full_five_garment_basis_reused": false,
+      "held_out_garment": "O01",
+      "held_out_teacher_in_basis_count": 0,
+      "held_out_teacher_in_normalization_count": 0,
+      "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+      "numerical_rank": 3,
+      "numerical_rank_tolerance": 8.591071256378403e-07,
+      "rank_rule": "min(numerical_rank,3)",
+      "render_parity": "PASS",
+      "render_parity_rows": {
+        "O02": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O03": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O04": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O08": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        }
+      },
+      "repeat_build_fingerprint_match": true,
+      "residual_parity": "PASS",
+      "selected_rank": 3,
+      "singular_values": [
+        879.3351206577081,
+        806.740808139659,
+        697.1994592361816,
+        2.514491513080209e-13
+      ],
+      "split_id": "LOO-O01",
+      "status": "PASS",
+      "subspace_principal_angle_max_degrees": 0.0
+    },
+    {
+      "aggregate_reconstruction_rmse": 6.907982136242561e-09,
+      "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+      "basis_fingerprint": "3ed61e3debb7573707b8fb07f34d84dc2e0c78c35ccef8a111bd3893d3ca4aba",
+      "basis_garment_reconstruction_rmse": {
+        "O01": 5.536830917449167e-09,
+        "O03": 7.064223869220779e-09,
+        "O04": 7.814346267022393e-09,
+        "O08": 7.216527491277906e-09
+      },
+      "basis_garments": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "basis_scalar_count": 17600000,
+      "centered_sum_norm": 0.0,
+      "condition_number": 1.255156847998989,
+      "construction_dtype": "torch.float64",
+      "cumulative_explained_variance": [
+        0.3908304558599085,
+        0.751919630879508,
+        1.0,
+        1.0
+      ],
+      "explained_variance": [
+        0.3908304558599085,
+        0.3610891750195994,
+        0.248080369120492,
+        1.374760901220006e-32
+      ],
+      "full_five_garment_basis_reused": false,
+      "held_out_garment": "O02",
+      "held_out_teacher_in_basis_count": 0,
+      "held_out_teacher_in_normalization_count": 0,
+      "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+      "numerical_rank": 3,
+      "numerical_rank_tolerance": 8.278778791731475e-07,
+      "rank_rule": "min(numerical_rank,3)",
+      "render_parity": "PASS",
+      "render_parity_rows": {
+        "O01": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O03": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O04": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O08": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        }
+      },
+      "repeat_build_fingerprint_match": true,
+      "residual_parity": "PASS",
+      "selected_rank": 3,
+      "singular_values": [
+        847.3705700346508,
+        814.4912280761168,
+        675.1112989468654,
+        1.5892519864386658e-13
+      ],
+      "split_id": "LOO-O02",
+      "status": "PASS",
+      "subspace_principal_angle_max_degrees": 0.0
+    },
+    {
+      "aggregate_reconstruction_rmse": 6.882485235321533e-09,
+      "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+      "basis_fingerprint": "d7f1a0b92d7cc1de1b803d70f329a5386360bb72955dd8b87b20427a119291bf",
+      "basis_garment_reconstruction_rmse": {
+        "O01": 5.536830896665332e-09,
+        "O02": 6.962236324759828e-09,
+        "O04": 7.814346243194107e-09,
+        "O08": 7.216527476666863e-09
+      },
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "basis_scalar_count": 17600000,
+      "centered_sum_norm": 0.0,
+      "condition_number": 1.329620884382606,
+      "construction_dtype": "torch.float64",
+      "cumulative_explained_variance": [
+        0.45494539979224724,
+        0.7426621773417259,
+        1.0000000000000002,
+        1.0000000000000002
+      ],
+      "explained_variance": [
+        0.45494539979224724,
+        0.2877167775494786,
+        0.25733782265827426,
+        2.8491129819984962e-33
+      ],
+      "full_five_garment_basis_reused": false,
+      "held_out_garment": "O03",
+      "held_out_teacher_in_basis_count": 0,
+      "held_out_teacher_in_normalization_count": 0,
+      "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+      "numerical_rank": 3,
+      "numerical_rank_tolerance": 8.853127046156448e-07,
+      "rank_rule": "min(numerical_rank,3)",
+      "render_parity": "PASS",
+      "render_parity_rows": {
+        "O01": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O02": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O04": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O08": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        }
+      },
+      "repeat_build_fingerprint_match": true,
+      "residual_parity": "PASS",
+      "selected_rank": 3,
+      "singular_values": [
+        906.1577196848599,
+        720.620726887317,
+        681.5158593914713,
+        7.170987928445746e-14
+      ],
+      "split_id": "LOO-O03",
+      "status": "PASS",
+      "subspace_principal_angle_max_degrees": 0.0
+    },
+    {
+      "aggregate_reconstruction_rmse": 6.694954639576013e-09,
+      "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+      "basis_fingerprint": "31883fbeb0c412e00cfc733497a96d14dd3e5d860174e736acb4e22cffac201b",
+      "basis_garment_reconstruction_rmse": {
+        "O01": 5.5368309030497985e-09,
+        "O02": 6.962236335036304e-09,
+        "O03": 7.0642238473520276e-09,
+        "O08": 7.216527472865923e-09
+      },
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "basis_scalar_count": 17600000,
+      "centered_sum_norm": 0.0,
+      "condition_number": 1.245603291005972,
+      "construction_dtype": "torch.float64",
+      "cumulative_explained_variance": [
+        0.40488683151420857,
+        0.7390398712036348,
+        1.0,
+        1.0
+      ],
+      "explained_variance": [
+        0.40488683151420857,
+        0.3341530396894262,
+        0.2609601287963652,
+        1.3934257468097523e-32
+      ],
+      "full_five_garment_basis_reused": false,
+      "held_out_garment": "O04",
+      "held_out_teacher_in_basis_count": 0,
+      "held_out_teacher_in_normalization_count": 0,
+      "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+      "numerical_rank": 3,
+      "numerical_rank_tolerance": 8.221429555101394e-07,
+      "rank_rule": "min(numerical_rank,3)",
+      "render_parity": "PASS",
+      "render_parity_rows": {
+        "O01": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O02": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O03": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O08": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        }
+      },
+      "repeat_build_fingerprint_match": true,
+      "residual_parity": "PASS",
+      "selected_rank": 3,
+      "singular_values": [
+        841.5006154728959,
+        764.4697762123291,
+        675.5767438550075,
+        1.5610956996040064e-13
+      ],
+      "split_id": "LOO-O04",
+      "status": "PASS",
+      "subspace_principal_angle_max_degrees": 0.0
+    },
+    {
+      "aggregate_reconstruction_rmse": 6.8444093311179355e-09,
+      "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+      "basis_fingerprint": "5a90c45897203819adb97bf4e77021ae24047e748e6f1e2c5e8151d83f57a181",
+      "basis_garment_reconstruction_rmse": {
+        "O01": 5.536830899836372e-09,
+        "O02": 6.962236349212154e-09,
+        "O03": 7.0642238518827224e-09,
+        "O04": 7.814346223540494e-09
+      },
+      "basis_garments": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "basis_scalar_count": 17600000,
+      "centered_sum_norm": 0.0,
+      "condition_number": 1.3666423484172838,
+      "construction_dtype": "torch.float64",
+      "cumulative_explained_variance": [
+        0.4515247249690671,
+        0.7582470465766382,
+        1.0,
+        1.0
+      ],
+      "explained_variance": [
+        0.4515247249690671,
+        0.30672232160757107,
+        0.2417529534233619,
+        1.85541057734e-32
+      ],
+      "full_five_garment_basis_reused": false,
+      "held_out_garment": "O08",
+      "held_out_teacher_in_basis_count": 0,
+      "held_out_teacher_in_normalization_count": 0,
+      "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+      "numerical_rank": 3,
+      "numerical_rank_tolerance": 9.00513537418122e-07,
+      "rank_rule": "min(numerical_rank,3)",
+      "render_parity": "PASS",
+      "render_parity_rows": {
+        "O01": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O02": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O03": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        },
+        "O04": {
+          "alpha_bitwise_equal": true,
+          "alpha_max_abs_error": 0.0,
+          "condition": "cond_000000",
+          "rgb_bitwise_equal": true,
+          "rgb_max_abs_error": 0.0,
+          "status": "PASS",
+          "threshold": 0.0
+        }
+      },
+      "repeat_build_fingerprint_match": true,
+      "residual_parity": "PASS",
+      "selected_rank": 3,
+      "singular_values": [
+        921.7164617178049,
+        759.6775056987811,
+        674.4386801603579,
+        1.8684289581937493e-13
+      ],
+      "split_id": "LOO-O08",
+      "status": "PASS",
+      "subspace_principal_angle_max_degrees": 0.0
+    }
+  ],
+  "schema_version": "canondressgs.paper.loo_basis_execution_registry.v1",
+  "split_count": 5,
+  "status": "PASS",
+  "svd_runs": 5,
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-003"
+}

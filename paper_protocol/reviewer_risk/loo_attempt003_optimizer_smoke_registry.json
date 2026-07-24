@@ -1,0 +1,99 @@
+{
+  "cache_registry_entries": 0,
+  "checkpoint_writes": 0,
+  "checks": {
+    "frozen_gradients_zero": true,
+    "gradient_nonzero": true,
+    "no_checkpoint_written": true,
+    "one_backward_finite": true,
+    "one_forward_finite": true,
+    "optimizer_state_schema": true,
+    "source_initial_unchanged": true,
+    "trainable_scalar_count_3": true
+  },
+  "classification": "OPTIMIZER_CONSTRUCTOR_AND_GRADIENT_SMOKE_PASS",
+  "condition_ids": [
+    "cond_000000"
+  ],
+  "diagnostic_backward_calls": 1,
+  "diagnostic_forward_calls": 1,
+  "diagnostic_optimizer_creations": 1,
+  "diagnostic_optimizer_steps": 0,
+  "diagnostic_renderer_calls": 1,
+  "execution_head": "7d192f3328a5046c7fdb2dd0e75615bb7e7bf384",
+  "first_formal_task_clone": "LOO-O01-R0-K1",
+  "formal_backward_calls": 0,
+  "formal_forward_calls": 0,
+  "formal_optimizer_creations": 0,
+  "formal_optimizer_steps": 0,
+  "formal_renderer_calls": 0,
+  "frozen_gradient_audit": {
+    "audited_parameter_count": 0,
+    "status": "PASS",
+    "violations": []
+  },
+  "gradient_norm": 0.00026217262083106686,
+  "loss": 0.6358737945556641,
+  "method_family": "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+  "metric_denominator_entries": 0,
+  "optimizer_class": "torch.optim.adam.Adam",
+  "optimizer_state_before_first_step": {
+    "param_groups": [
+      {
+        "amsgrad": false,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "capturable": false,
+        "differentiable": false,
+        "eps": 1e-08,
+        "foreach": null,
+        "fused": null,
+        "initial_lr": 0.02,
+        "lr": 0.02,
+        "maximize": false,
+        "params": [
+          0
+        ],
+        "weight_decay": 0.0
+      }
+    ],
+    "state": {}
+  },
+  "phase": "BEFORE_FIRST_FORMAL_OPTIMIZER",
+  "prerequisites": {
+    "cache_key_v2_pass": true,
+    "calibration_f2_typed_contract_pass": true,
+    "five_split_basis_pass": true,
+    "formal_checkpoints_absent": true,
+    "formal_optimizer_runs_absent": true,
+    "hard_lookup_15_5_pass": true,
+    "held_out_boundary_pass": true,
+    "oracle_static_diagnostics_pass": true,
+    "renderer_parity_20_of_20": true
+  },
+  "scheduler_state_before_first_step": {
+    "_get_lr_called_within_step": false,
+    "_last_lr": [
+      0.02
+    ],
+    "_step_count": 1,
+    "base_lrs": [
+      0.02
+    ],
+    "last_epoch": 0,
+    "lr_lambdas": [
+      null
+    ],
+    "verbose": false
+  },
+  "schema_version": "canondressgs.paper.loo_attempt003_optimizer_smoke.v1",
+  "selected_known_endpoint": "O04",
+  "smoke_state_destroyed_before_formal_initialization": true,
+  "source_initial_sha256_after": "349b3ccc6fb254e7d665d393b255f05aa5559a80f1abc9f9edb867204037df57",
+  "source_initial_sha256_before": "349b3ccc6fb254e7d665d393b255f05aa5559a80f1abc9f9edb867204037df57",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-003",
+  "trainable_scalar_count": 3
+}
