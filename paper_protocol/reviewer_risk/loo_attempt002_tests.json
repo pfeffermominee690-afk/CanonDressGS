@@ -1,0 +1,25 @@
+{
+  "schema_version": "canondressgs.paper.loo_attempt002_tests.v1",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002",
+  "status": "EXECUTION_FAILURE_SEALED",
+  "classification": "LOO_ADAPTATION_EXECUTION_INVALID",
+  "windows_static_tests": "21/21 PASS",
+  "windows_repair_regression_tests": "95/95 PASS",
+  "cloud_regression_tests": "145/145 PASS",
+  "static_preflight": "PASS",
+  "cloud_resource_preflight": "PASS",
+  "basis_split_parity": "5/5 PASS",
+  "endpoint_renderer_parity": "20/20 PASS",
+  "hard_lookup_replay": "15 SAME / 5 DIFFERENT PASS",
+  "attempt_001_immutability": "PASS",
+  "temporary_files": 0,
+  "optimizer_creations": 0,
+  "failure": {
+    "stage": "REGULARIZATION_CALIBRATION_BEFORE_OPTIMIZER",
+    "error": "frozen F2 control supports K in {1,2,3}",
+    "root_cause": "CALIBRATION_F2_BATCH_CARDINALITY_EXCEEDS_FROZEN_RUNTIME",
+    "implementation_callsite": "tools/paper/run_loo_basis_adaptation_experiment.py:2178",
+    "runtime_guard_callsite": "scene/frozen_f2_linear_coefficient_control.py:62"
+  },
+  "automatic_rerun_performed": false
+}

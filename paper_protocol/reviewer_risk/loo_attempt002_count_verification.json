@@ -1,0 +1,26 @@
+{
+  "schema_version": "canondressgs.paper.loo_attempt002_invalid_count_verification.v1",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002",
+  "status": "FAIL",
+  "classification": "LOO_ADAPTATION_EXECUTION_INVALID",
+  "failure_stage": "REGULARIZATION_CALIBRATION_BEFORE_OPTIMIZER",
+  "all_deltas_zero": false,
+  "rows": {
+    "basis_construction_runs": {"expected": 5, "actual": 5, "delta": 0},
+    "hard_lookup_inferences": {"expected": 40, "actual": 40, "delta": 0},
+    "low_dimensional_primary_runs": {"expected": 40, "actual": 0, "delta": -40},
+    "zero_init_diagnostic_runs": {"expected": 40, "actual": 0, "delta": -40},
+    "full_residual_runs": {"expected": 40, "actual": 0, "delta": -40},
+    "optimizer_creations": {"expected": 120, "actual": 0, "delta": -120},
+    "optimizer_steps": {"expected": 36000, "actual": 0, "delta": -36000},
+    "forward_calls": {"expected": 36000, "actual": 0, "delta": -36000},
+    "backward_calls": {"expected": 36000, "actual": 0, "delta": -36000},
+    "checkpoint_instances": {"expected": 720, "actual": 0, "delta": -720},
+    "evaluations": {"expected": 960, "actual": 0, "delta": -960},
+    "logical_renders": {"expected": 54960, "actual": 0, "delta": -54960},
+    "physical_renders": {"expected": 54845, "actual": 0, "delta": -54845},
+    "cache_hits": {"expected": 115, "actual": 0, "delta": -115},
+    "table_rows": {"expected": 65, "actual": 0, "delta": -65},
+    "visual_sheets": {"expected": 26, "actual": 0, "delta": -26}
+  }
+}
