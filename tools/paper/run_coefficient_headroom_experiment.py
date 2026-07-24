@@ -42,11 +42,13 @@ if str(ROOT) not in sys.path:
 
 from tools.paper import coefficient_headroom_output as output_io
 
-TASK_ID = "AAAI27-RENDER-REFINED-COEFFICIENT-HEADROOM-001"
+TASK_ID = "AAAI27-RENDER-REFINED-COEFFICIENT-HEADROOM-ATTEMPT-002"
 REPAIR_TASK_ID = "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001"
 PROTOCOL_TASK_ID = "AAAI27-COEFFICIENT-HEADROOM-PROTOCOL-001"
 SOURCE_BRANCH = "research/render-refined-coefficient-headroom-protocol-20260724"
 SOURCE_HEAD = "2a42143f7942752aead16e7d53d1b7376fc5a143"
+REPAIRED_SOURCE_BRANCH = "research/coefficient-headroom-output-path-repair-20260724"
+REPAIRED_SOURCE_HEAD = "77d2f4e32de984d766e0beab5ded7afe12aecab0"
 PURE_BRANCH = "research/pure-endpoint-core-method-crossfit-amended-20260724"
 PURE_HEAD = "ce110887a942cf8db082ba688c8d36d2433bfdbe"
 INVALID_RUN_BRANCH = "research/render-refined-coefficient-headroom-experiment-20260724"
@@ -63,7 +65,7 @@ HISTORICAL_WRITER_CALLER_CHAIN = (
     "torchvision.utils.save_image",
     "PIL.Image.Image.save",
 )
-RUN_BRANCH = "research/coefficient-headroom-output-path-repair-20260724"
+RUN_BRANCH = "research/render-refined-coefficient-headroom-attempt2-20260724"
 OUTPUT_NAME = "COEFFICIENT-HEADROOM-001"
 PRESERVED_ATTEMPT_NAME = "attempt_001"
 ATTEMPT_NAME = "attempt_002"
@@ -90,6 +92,48 @@ CONTRACT_FILES = (
     "paper_protocol/reviewer_risk/coefficient_headroom_evaluator_contract.json",
     "paper_protocol/reviewer_risk/coefficient_headroom_success_gates.json",
 )
+SCIENTIFIC_CONTRACT_FILES = (
+    "paper_protocol/reviewer_risk/coefficient_headroom_protocol.yaml",
+    "paper_protocol/reviewer_risk/coefficient_headroom_rotation_manifests.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_loss_contract.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_optimizer_contract.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_full_residual_contract.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_evaluator_contract.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_success_gates.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_protocol_final_summary.json",
+)
+REPAIRED_ARTIFACT_FILES = (
+    "docs/PAPER/AAAI27_COEFFICIENT_HEADROOM_OUTPUT_PATH_ROOT_CAUSE_20260724.md",
+    "docs/PAPER/AAAI27_COEFFICIENT_HEADROOM_OUTPUT_WRITER_AUDIT_20260724.md",
+    "docs/PAPER/AAAI27_COEFFICIENT_HEADROOM_ATTEMPT002_PATH_PLAN_20260724.md",
+    "docs/PAPER/AAAI27_COEFFICIENT_HEADROOM_EXECUTION_REPAIR_20260724.md",
+    "paper_protocol/reviewer_risk/coefficient_headroom_output_path_root_cause.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_attempt001_immutability_snapshot.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_output_writer_registry.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_atomic_write_contract.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_preflight_repaired.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_attempt_002_output_path_plan.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_execution_contract_repaired.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_execution_repair_tests.json",
+    "paper_protocol/reviewer_risk/coefficient_headroom_execution_repair_final_summary.json",
+    "project_control_handoff/coefficient_headroom_execution_repair_handoff.json",
+    "tools/paper/coefficient_headroom_output.py",
+)
+ATTEMPT002_BINDING_REPO_FILES = {
+    "coefficient_headroom_execution_binding.json": "coefficient_headroom_attempt002_execution_binding.json",
+    "coefficient_headroom_expected_counts.json": "coefficient_headroom_attempt002_expected_counts.json",
+    "coefficient_headroom_pre_result_tests.json": "coefficient_headroom_attempt002_pre_result_tests.json",
+}
+ATTEMPT002_REPORT_NAMES = (
+    "AAAI27_COEFFICIENT_HEADROOM_ATTEMPT002_RESULTS_20260724.md",
+    "AAAI27_TEACHER_SPAN_ATTEMPT002_ANALYSIS_20260724.md",
+    "AAAI27_RENDER_REFINED_COEFFICIENT_ATTEMPT002_20260724.md",
+    "AAAI27_FULL_RESIDUAL_ATTEMPT002_COMPARISON_20260724.md",
+    "AAAI27_HEADROOM_ATTEMPT002_VISUAL_REVIEW_20260724.md",
+    "AAAI27_HEADROOM_ATTEMPT002_FAILURE_ANALYSIS_20260724.md",
+)
+ATTEMPT002_FIGURE_MANIFEST = "sealed_headroom_attempt002_figure_refresh_manifest.json"
+ATTEMPT002_HANDOFF = "coefficient_headroom_attempt002_handoff.json"
 _RUNTIME_MODULE_CACHE: dict[str, Any] | None = None
 
 
@@ -324,6 +368,99 @@ def contract_hash_audit() -> dict[str, Any]:
     }
 
 
+def git_artifact_lf_sha256(head: str, relative: str) -> str:
+    data = subprocess.check_output(["git", "show", f"{head}:{relative}"], cwd=ROOT)
+    normalized = data.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def repaired_artifact_audit() -> dict[str, Any]:
+    rows = []
+    for relative in REPAIRED_ARTIFACT_FILES:
+        expected = git_artifact_lf_sha256(REPAIRED_SOURCE_HEAD, relative)
+        actual = sha256(ROOT / relative, lf=True)
+        rows.append({
+            "path": relative,
+            "expected_sha256_lf": expected,
+            "actual_sha256_lf": actual,
+            "match": expected == actual,
+        })
+    return {
+        "status": "PASS" if all(row["match"] for row in rows) else "FAIL",
+        "repaired_source_branch": REPAIRED_SOURCE_BRANCH,
+        "repaired_source_head": REPAIRED_SOURCE_HEAD,
+        "artifact_count": len(rows),
+        "match_count": sum(row["match"] for row in rows),
+        "artifacts": rows,
+    }
+
+
+def scientific_semantic_audit() -> dict[str, Any]:
+    if yaml is None:
+        raise RuntimeError("PyYAML is required for scientific semantic audit")
+    rows = []
+    for relative in SCIENTIFIC_CONTRACT_FILES:
+        current_text = (ROOT / relative).read_text(encoding="utf-8")
+        source_text = subprocess.check_output(
+            ["git", "show", f"{INVALID_REPORTING_HEAD}:{relative}"],
+            cwd=ROOT,
+            text=True,
+            encoding="utf-8",
+        )
+        parser = yaml.safe_load if relative.endswith((".yaml", ".yml")) else json.loads
+        before_sha = canonical_sha(parser(source_text))
+        after_sha = canonical_sha(parser(current_text))
+        rows.append({
+            "path": relative,
+            "before_semantic_sha256": before_sha,
+            "after_semantic_sha256": after_sha,
+            "match": before_sha == after_sha,
+        })
+    drift_count = sum(not row["match"] for row in rows)
+    return {
+        "status": "PASS" if drift_count == 0 else "FAIL",
+        "source_head": INVALID_REPORTING_HEAD,
+        "semantic_drift_count": drift_count,
+        "artifact_count": len(rows),
+        "artifacts": rows,
+    }
+
+
+def repaired_contract_fingerprints() -> dict[str, Any]:
+    execution = read_json(RISK / "coefficient_headroom_execution_contract_repaired.json")
+    plan = read_json(RISK / "coefficient_headroom_attempt_002_output_path_plan.json")
+    writer = read_json(RISK / "coefficient_headroom_output_writer_registry.json")
+    atomic = read_json(RISK / "coefficient_headroom_atomic_write_contract.json")
+    preflight = read_json(RISK / "coefficient_headroom_preflight_repaired.json")
+    generated_plan = attempt_002_output_path_plan()
+    checks = {
+        "execution_status": execution["status"] == "READY_FOR_ATTEMPT_002_BEFORE_OPTIMIZER",
+        "path_plan_canonical": canonical_sha(plan) == execution["path_plan_sha256"],
+        "path_plan_generated": canonical_sha(generated_plan) == execution["path_plan_sha256"],
+        "path_plan_aggregate": generated_plan["deterministic_aggregate_sha256"] == execution["path_plan_aggregate_sha256"],
+        "writer_registry": canonical_sha(writer) == execution["writer_registry_sha256"],
+        "writer_count": writer["writer_count"] == 12,
+        "unaudited_writers": writer["unaudited_scientific_writer_count"] == 0,
+        "atomic_write_contract": canonical_sha(atomic) == execution["atomic_write_contract_sha256"],
+        "repaired_preflight": canonical_sha(preflight) == execution["preflight_contract_sha256"],
+        "scientific_semantic_drift": execution["scientific_contract_inheritance"]["semantic_drift_count"] == 0,
+        "attempt_001_no_reuse": execution["no_reuse_attempt_001_rule"] is True,
+    }
+    return {
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "repaired_execution_contract_sha256_lf": sha256(
+            RISK / "coefficient_headroom_execution_contract_repaired.json", lf=True
+        ),
+        "repaired_execution_contract_semantic_sha256": canonical_sha(execution),
+        "path_plan_canonical_sha256": execution["path_plan_sha256"],
+        "path_plan_aggregate_sha256": execution["path_plan_aggregate_sha256"],
+        "writer_registry_sha256": execution["writer_registry_sha256"],
+        "atomic_write_contract_sha256": execution["atomic_write_contract_sha256"],
+        "repaired_preflight_sha256": execution["preflight_contract_sha256"],
+    }
+
+
 def credential_scan(paths: Sequence[Path]) -> dict[str, Any]:
     patterns = (
         re.compile(r"sk-[A-Za-z0-9]{16,}"),
@@ -372,12 +509,61 @@ def pure_endpoint_audit(root: Path) -> dict[str, Any]:
     }
 
 
+def preserved_attempt_immutability(root: Path) -> dict[str, Any]:
+    attempt = root / OUTPUT_NAME / PRESERVED_ATTEMPT_NAME
+    snapshot = read_json(RISK / "coefficient_headroom_attempt001_immutability_snapshot.json")
+    expected = {row["relative_path"]: row for row in snapshot["files"]}
+    actual_paths = {
+        path.relative_to(attempt).as_posix(): path
+        for path in attempt.rglob("*")
+        if path.is_file()
+    } if attempt.is_dir() else {}
+    rows = []
+    for relative, record in sorted(expected.items()):
+        path = actual_paths.get(relative)
+        actual_size = path.stat().st_size if path is not None else None
+        actual_sha = sha256(path) if path is not None else None
+        rows.append({
+            "relative_path": relative,
+            "expected_bytes": record["bytes"],
+            "actual_bytes": actual_size,
+            "expected_sha256": record["sha256"],
+            "actual_sha256": actual_sha,
+            "match": actual_size == record["bytes"] and actual_sha == record["sha256"],
+        })
+    unexpected = sorted(set(actual_paths).difference(expected))
+    missing = sorted(set(expected).difference(actual_paths))
+    aggregate_lines = "".join(sorted(
+        f"{row['actual_sha256']}  ./{row['relative_path']}\n"
+        for row in rows
+        if row["actual_sha256"] is not None
+    ))
+    actual_aggregate = hashlib.sha256(aggregate_lines.encode()).hexdigest()
+    aggregate_matches = actual_aggregate == snapshot["aggregate_sha256_after"]
+    status = "PASS" if all(row["match"] for row in rows) and not unexpected and not missing and aggregate_matches else "FAIL"
+    return {
+        "status": status,
+        "expected_aggregate_sha256": snapshot["aggregate_sha256_after"],
+        "actual_aggregate_sha256": actual_aggregate,
+        "aggregate_matches_snapshot": aggregate_matches,
+        "expected_file_count": snapshot["file_count"],
+        "actual_file_count": len(actual_paths),
+        "expected_total_bytes": snapshot["total_bytes"],
+        "actual_total_bytes": sum(path.stat().st_size for path in actual_paths.values()),
+        "mutation_count": sum(not row["match"] for row in rows) + len(unexpected) + len(missing),
+        "unexpected_files": unexpected,
+        "missing_files": missing,
+        "files": rows,
+    }
+
+
 def preserved_attempt_status(root: Path) -> dict[str, Any]:
     attempt = root / OUTPUT_NAME / PRESERVED_ATTEMPT_NAME
     status_path = attempt / "RUN_STATUS.json"
     if not status_path.is_file():
         return {"exists": attempt.is_dir(), "sealed": False, "status": None}
     status = read_json(status_path)
+    immutability = preserved_attempt_immutability(root)
     return {
         "exists": attempt.is_dir(),
         "sealed": (
@@ -390,6 +576,7 @@ def preserved_attempt_status(root: Path) -> dict[str, Any]:
         "failure_code": status.get("failure_code"),
         "renderer_calls": status.get("renderer_calls"),
         "optimizer_steps": status.get("optimizer_steps"),
+        "immutability": immutability,
     }
 
 
@@ -434,8 +621,11 @@ def static_preflight(root: Path) -> dict[str, Any]:
     protocol_ancestor = subprocess.call(
         ["git", "merge-base", "--is-ancestor", SOURCE_HEAD, head], cwd=ROOT
     ) == 0
-    repair_source_ancestor = subprocess.call(
+    invalid_reporting_ancestor = subprocess.call(
         ["git", "merge-base", "--is-ancestor", INVALID_REPORTING_HEAD, head], cwd=ROOT
+    ) == 0
+    repaired_source_ancestor = subprocess.call(
+        ["git", "merge-base", "--is-ancestor", REPAIRED_SOURCE_HEAD, head], cwd=ROOT
     ) == 0
     protocol = read_yaml(RISK / "coefficient_headroom_protocol.yaml")
     opt = optimizer_contract()
@@ -461,15 +651,24 @@ def static_preflight(root: Path) -> dict[str, Any]:
     preserved = preserved_attempt_status(root)
     path_plan = attempt_002_output_path_plan()
     smoke = repaired_write_smoke()
+    repaired_artifacts = repaired_artifact_audit()
+    repaired_fingerprints = repaired_contract_fingerprints()
+    semantic = scientific_semantic_audit()
     checks = {
         "branch": branch == RUN_BRANCH,
         "protocol_source_ancestor": protocol_ancestor,
-        "repair_source_ancestor": repair_source_ancestor,
+        "invalid_reporting_ancestor": invalid_reporting_ancestor,
+        "repaired_source_ancestor": repaired_source_ancestor,
         "source_protocol_head": protocol["governance"]["branch"] == SOURCE_BRANCH,
+        "repaired_artifact_closure": repaired_artifacts["status"] == "PASS",
+        "repaired_contract_fingerprints": repaired_fingerprints["status"] == "PASS",
+        "scientific_semantic_drift_zero": semantic["status"] == "PASS" and semantic["semantic_drift_count"] == 0,
         "attempt_absent": not attempt_path(root).exists(),
         "attempt_001_exists": preserved["exists"],
         "attempt_001_sealed": preserved["sealed"],
+        "attempt_001_immutable": preserved.get("immutability", {}).get("status") == "PASS",
         "attempt_002_absent": not attempt_path(root).exists(),
+        "attempt_003_absent": not (root / OUTPUT_NAME / "attempt_003").exists(),
         "contract_hash_closure": contract_hash_audit()["status"] == "PASS",
         "basis_sha": protocol["assets"]["rank4_basis"]["sha256"] == BASIS_SHA,
         "normalization_sha": protocol["assets"]["coefficient_normalization"]["sha256"] == NORMALIZATION_SHA,
@@ -501,9 +700,14 @@ def static_preflight(root: Path) -> dict[str, Any]:
         "branch": branch,
         "head": head,
         "source_head": SOURCE_HEAD,
-        "repair_source_head": INVALID_REPORTING_HEAD,
+        "invalid_reporting_head": INVALID_REPORTING_HEAD,
+        "repaired_source_branch": REPAIRED_SOURCE_BRANCH,
+        "repaired_source_head": REPAIRED_SOURCE_HEAD,
         "checks": checks,
         "contract_hash_audit": contract_hash_audit(),
+        "scientific_semantic_audit": semantic,
+        "repaired_artifact_audit": repaired_artifacts,
+        "repaired_contract_fingerprints": repaired_fingerprints,
         "pure_endpoint_audit": pure,
         "expected_counts": counts,
         "attempt_001": preserved,
@@ -528,10 +732,16 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
     checks = {
         "local_preflight": local["status"] == "PASS",
         "cloud_preflight": cloud.get("status") == "PASS",
-        "same_source": local["source_head"] == cloud.get("source_head") == SOURCE_HEAD,
+        "same_protocol_source": local["source_head"] == cloud.get("source_head") == SOURCE_HEAD,
+        "same_repaired_source": local["repaired_source_head"] == cloud.get("repaired_source_head") == REPAIRED_SOURCE_HEAD,
         "same_counts": local["expected_counts"] == cloud.get("expected_counts"),
+        "same_path_plan": local["attempt_002_output_path_plan_sha256"] == cloud.get("attempt_002_output_path_plan_sha256"),
+        "scientific_semantic_drift_zero": local["scientific_semantic_audit"]["semantic_drift_count"] == cloud["scientific_semantic_audit"]["semantic_drift_count"] == 0,
+        "repaired_contract_bound": local["repaired_contract_fingerprints"] == cloud["repaired_contract_fingerprints"],
         "attempt_absent_both": local["checks"]["attempt_002_absent"] and cloud["checks"]["attempt_002_absent"],
+        "attempt_003_absent_both": local["checks"]["attempt_003_absent"] and cloud["checks"]["attempt_003_absent"],
         "preserved_attempt_sealed_both": local["checks"]["attempt_001_sealed"] and cloud["checks"]["attempt_001_sealed"],
+        "preserved_attempt_immutable_both": local["checks"]["attempt_001_immutable"] and cloud["checks"]["attempt_001_immutable"],
         "pure_endpoint_read_only": local["pure_endpoint_audit"]["mutation_count"] == 0,
     }
     if not all(checks.values()):
@@ -542,11 +752,20 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         "status": "BOUND_PRE_RESULT",
         "source_branch": SOURCE_BRANCH,
         "source_head": SOURCE_HEAD,
+        "repaired_source_branch": REPAIRED_SOURCE_BRANCH,
+        "repaired_source_head": REPAIRED_SOURCE_HEAD,
         "run_branch": RUN_BRANCH,
         "execution_head": None,
         "pure_endpoint_branch": PURE_BRANCH,
         "pure_endpoint_head": PURE_HEAD,
         "pure_endpoint_prediction_sha256": PURE_PREDICTION_SHA,
+        "repaired_contract_fingerprints": repaired_contract_fingerprints(),
+        "attempt_lineage": {
+            "attempt_001": "PRESERVED_PRE_OPTIMIZER_OUTPUT_PATH_FAILURE_READ_ONLY",
+            "attempt_002": "PLANNED_FIRST_VALID_SCIENTIFIC_EXECUTION",
+            "attempt_003_created": False,
+            "reuse_attempt_001_outputs": False,
+        },
         "expected_counts": expected_counts(),
         "checks": checks,
         "paper_final": False,
@@ -562,22 +781,22 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         "credential_findings": 0,
         "paper_final": False,
     }
-    atomic_json(RISK / "coefficient_headroom_execution_binding.json", binding)
-    atomic_json(RISK / "coefficient_headroom_expected_counts.json", {
+    atomic_json(RISK / ATTEMPT002_BINDING_REPO_FILES["coefficient_headroom_execution_binding.json"], binding, replace=False)
+    atomic_json(RISK / ATTEMPT002_BINDING_REPO_FILES["coefficient_headroom_expected_counts.json"], {
         "schema_version": "canondressgs.paper.coefficient_headroom_expected_counts.v1",
         "task_id": TASK_ID,
         "status": "FROZEN_PRE_RESULT",
         "counts": expected_counts(),
         "derivation": "frozen garment x rotation x lambda x checkpoint x partition x method cardinalities",
-    })
-    atomic_json(RISK / "coefficient_headroom_pre_result_tests.json", tests)
-    atomic_text(DOCS / "AAAI27_COEFFICIENT_HEADROOM_EXECUTION_BINDING_20260724.md", f"""# Coefficient Headroom Execution Binding
+    }, replace=False)
+    atomic_json(RISK / ATTEMPT002_BINDING_REPO_FILES["coefficient_headroom_pre_result_tests.json"], tests, replace=False)
+    atomic_text(DOCS / "AAAI27_COEFFICIENT_HEADROOM_ATTEMPT002_EXECUTION_BINDING_20260724.md", f"""# Coefficient Headroom Attempt 002 Execution Binding
 
-The frozen protocol at `{SOURCE_HEAD}` is bound to `{RUN_BRANCH}` before any optimizer creation.
+The repaired execution contract at `{REPAIRED_SOURCE_HEAD}` and frozen protocol at `{SOURCE_HEAD}` are bound to `{RUN_BRANCH}` before any optimizer creation.
 The execution contains 120 fresh runs, 36,000 optimizer steps, 960 checkpoints, and one fresh `attempt_002`; sealed invalid `attempt_001` remains read-only.
 
 The Pure Endpoint source at `{PURE_HEAD}` is read-only and is used only for Refined Hard Lookup decomposition. Teacher Endpoint is an initialization and frozen comparison target, not an upper bound. `PAPER_FINAL=false`.
-""")
+""", replace=False)
     return {"status": "PASS", "checks": checks}
 
 
@@ -728,7 +947,9 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         "attempt_absent": not attempt_path(root).exists(),
         "attempt_001_exists": preserved["exists"],
         "attempt_001_sealed": preserved["sealed"],
+        "attempt_001_immutable": preserved.get("immutability", {}).get("status") == "PASS",
         "attempt_002_absent": not attempt_path(root).exists(),
+        "attempt_003_absent": not (root / OUTPUT_NAME / "attempt_003").exists(),
         "path_plan": plan["status"] == "PASS",
         "path_collision_zero": plan["counts"]["collision_count"] == 0,
         "path_traversal_zero": plan["counts"]["traversal_count"] == 0,
@@ -791,6 +1012,8 @@ def materialize(root: Path) -> dict[str, Any]:
     head = git("rev-parse", "HEAD")
     if subprocess.call(["git", "merge-base", "--is-ancestor", SOURCE_HEAD, head], cwd=ROOT) != 0:
         raise RuntimeError("SOURCE_HEAD mismatch")
+    if subprocess.call(["git", "merge-base", "--is-ancestor", REPAIRED_SOURCE_HEAD, head], cwd=ROOT) != 0:
+        raise RuntimeError("REPAIRED_SOURCE_HEAD mismatch")
     attempt = attempt_path(root)
     if attempt.exists():
         raise RuntimeError("COEFFICIENT_HEADROOM_ATTEMPT_COLLISION")
@@ -817,14 +1040,10 @@ def materialize(root: Path) -> dict[str, Any]:
             writer_id="headroom_contract_snapshot_writer",
             phase="01_contract_snapshot",
         )
-    for name in (
-        "coefficient_headroom_execution_binding.json",
-        "coefficient_headroom_expected_counts.json",
-        "coefficient_headroom_pre_result_tests.json",
-    ):
-        source = RISK / name
-        destination = attempt / "01_contract_snapshot" / name
-        if name == "coefficient_headroom_execution_binding.json":
+    for destination_name, source_name in ATTEMPT002_BINDING_REPO_FILES.items():
+        source = RISK / source_name
+        destination = attempt / "01_contract_snapshot" / destination_name
+        if destination_name == "coefficient_headroom_execution_binding.json":
             binding_snapshot = read_json(source)
             binding_snapshot["execution_head"] = head
             atomic_json(destination, binding_snapshot, replace=False)
@@ -884,11 +1103,26 @@ def materialize(root: Path) -> dict[str, Any]:
     }, replace=False)
     atomic_json(attempt / "00_preflight/execution_metadata.json", {
         "task_id": TASK_ID,
-        "source_head": SOURCE_HEAD,
+        "protocol_source_branch": SOURCE_BRANCH,
+        "protocol_source_head": SOURCE_HEAD,
+        "repaired_source_branch": REPAIRED_SOURCE_BRANCH,
+        "repaired_source_head": REPAIRED_SOURCE_HEAD,
+        "invalid_execution_head": INVALID_EXECUTION_HEAD,
+        "invalid_failure_head": INVALID_FAILURE_HEAD,
+        "invalid_reporting_head": INVALID_REPORTING_HEAD,
         "pure_endpoint_head": PURE_HEAD,
         "execution_head": head,
         "branch": RUN_BRANCH,
         "attempt": ATTEMPT_NAME,
+        "repaired_contract_fingerprints": repaired_contract_fingerprints(),
+        "attempt_lineage": {
+            "attempt_001": "PRESERVED_PRE_OPTIMIZER_OUTPUT_PATH_FAILURE_READ_ONLY",
+            "attempt_001_aggregate_sha256": preserved_attempt_immutability(root)["actual_aggregate_sha256"],
+            "attempt_002": "PLANNED_FIRST_VALID_SCIENTIFIC_EXECUTION",
+            "attempt_003_created": False,
+            "reuse_attempt_001_outputs": False,
+            "planned_start_phase": "TEACHER_SVD_PARITY",
+        },
         "created_at_utc": now(),
         "paper_final": False,
     }, replace=False)
@@ -1553,8 +1787,16 @@ def assert_execution_head(attempt: Path) -> str:
 
 
 def contract_snapshot(attempt: Path) -> dict[str, Any]:
+    metadata = execution_metadata(attempt)
+    repaired = metadata["repaired_contract_fingerprints"]
     return {
-        "execution_head": execution_metadata(attempt)["execution_head"],
+        "execution_head": metadata["execution_head"],
+        "attempt": metadata["attempt"],
+        "repaired_source_head": metadata["repaired_source_head"],
+        "repaired_execution_contract_sha256": repaired["repaired_execution_contract_sha256_lf"],
+        "repaired_execution_contract_semantic_sha256": repaired["repaired_execution_contract_semantic_sha256"],
+        "path_plan_sha256": repaired["path_plan_canonical_sha256"],
+        "path_plan_aggregate_sha256": repaired["path_plan_aggregate_sha256"],
         "protocol_sha256": sha256(attempt / "01_contract_snapshot/coefficient_headroom_protocol.yaml", lf=True),
         "loss_sha256": sha256(attempt / "01_contract_snapshot/coefficient_headroom_loss_contract.json", lf=True),
         "optimizer_sha256": sha256(attempt / "01_contract_snapshot/coefficient_headroom_optimizer_contract.json", lf=True),
@@ -1628,6 +1870,7 @@ def base_checkpoint_payload(
     return {
         "schema_version": "canondressgs.paper.coefficient_headroom_checkpoint.v1",
         "task_id": TASK_ID,
+        "attempt": snapshot["attempt"],
         "method": method,
         "rotation": rotation,
         "outfit_id": outfit,
@@ -1642,6 +1885,11 @@ def base_checkpoint_payload(
         "query_order_sha256": query_order_sha256,
         "cumulative_optimizer_wall_time_seconds": float(elapsed),
         "execution_head": snapshot["execution_head"],
+        "repaired_source_head": snapshot["repaired_source_head"],
+        "repaired_execution_contract_sha256": snapshot["repaired_execution_contract_sha256"],
+        "repaired_execution_contract_semantic_sha256": snapshot["repaired_execution_contract_semantic_sha256"],
+        "path_plan_sha256": snapshot["path_plan_sha256"],
+        "path_plan_aggregate_sha256": snapshot["path_plan_aggregate_sha256"],
         "protocol_sha256": snapshot["protocol_sha256"],
         "loss_sha256": snapshot["loss_sha256"],
         "optimizer_sha256": snapshot["optimizer_sha256"],
@@ -3373,7 +3621,7 @@ def report_payloads(analysis: Mapping[str, Any], selection: Mapping[str, Any], w
 Final classification: `{classification}`. `PAPER_FINAL=false`.
 """
     return {
-        "AAAI27_COEFFICIENT_HEADROOM_RESULTS_20260724.md": f"""# Coefficient Headroom Results
+        "AAAI27_COEFFICIENT_HEADROOM_ATTEMPT002_RESULTS_20260724.md": f"""# Coefficient Headroom Attempt 002 Results
 
 {common}
 
@@ -3387,7 +3635,7 @@ Final classification: `{classification}`. `PAPER_FINAL=false`.
 - TEACHER_HEADROOM_GAIN LPIPS improvement: {fmt(analysis['gains']['TEACHER_HEADROOM_GAIN']['metrics']['lpips']['direction_normalized_improvement'])}
 - FULL_RESIDUAL_GAIN LPIPS improvement: {fmt(analysis['gains']['FULL_RESIDUAL_GAIN']['metrics']['lpips']['direction_normalized_improvement'])}
 """,
-        "AAAI27_TEACHER_SPAN_ANALYSIS_20260724.md": f"""# Teacher Span Analysis
+        "AAAI27_TEACHER_SPAN_ATTEMPT002_ANALYSIS_20260724.md": f"""# Teacher Span Attempt 002 Analysis
 
 {common}
 
@@ -3395,15 +3643,17 @@ Final classification: `{classification}`. `PAPER_FINAL=false`.
 - macro SPAN_RECOVERY_RATIO: {fmt(analysis['span_recovery']['macro'])}
 - nonpositive denominators are stored as `null` with `Teacher_error-FullResidual_error<=0`.
 """,
-        "AAAI27_RENDER_REFINED_COEFFICIENT_RESULTS_20260724.md": f"""# Render-Refined Coefficient Results
+        "AAAI27_RENDER_REFINED_COEFFICIENT_ATTEMPT002_20260724.md": f"""# Render-Refined Coefficient Attempt 002
 
 {common}
 
 Selected positive anchors: {selected}.
 
+Selection used only each rotation's calibration fold, the five-garment macro render objective, step 300, and the frozen absolute tie tolerance 1e-4. The stronger lambda wins a tie. Test observations were not used.
+
 {metric_table({'Teacher Endpoint': macro['Teacher Endpoint'], 'SVD Endpoint': macro['SVD Endpoint'], 'Render-Refined Coefficient': macro['Render-Refined Coefficient'], 'UNREGULARIZED_DIAGNOSTIC': macro['UNREGULARIZED_DIAGNOSTIC']})}
 """,
-        "AAAI27_FULL_RESIDUAL_HEADROOM_COMPARISON_20260724.md": f"""# Full-Residual Headroom Comparison
+        "AAAI27_FULL_RESIDUAL_ATTEMPT002_COMPARISON_20260724.md": f"""# Full-Residual Attempt 002 Comparison
 
 {common}
 
@@ -3411,22 +3661,40 @@ Selected positive anchors: {selected}.
 
 Equal-wall-time used the largest registered full-residual checkpoint whose cumulative optimizer-section time did not exceed its selected coefficient run. No interpolation or test-metric selection was used. Cells: {wall['row_count']}.
 """,
-        "AAAI27_HEADROOM_REGULARIZATION_SELECTION_20260724.md": f"""# Headroom Regularization Selection
-
-Selection used only each rotation's calibration fold, the five-garment macro render objective, step 300, and the frozen absolute tie tolerance 1e-4. The stronger lambda wins a tie. Test observations were not used.
-
-Selected anchors: {selected}.
-""",
-        "AAAI27_COEFFICIENT_HEADROOM_VISUAL_REVIEW_20260724.md": f"""# Coefficient Headroom Visual Review
+        "AAAI27_HEADROOM_ATTEMPT002_VISUAL_REVIEW_20260724.md": f"""# Headroom Attempt 002 Visual Review
 
 All {analysis['visual_review']['reviewed_sheet_count']} registered garment-rotation sheets were reviewed. Identity contamination count: {analysis['visual_review']['identity_contamination_count']}; component contamination count: {analysis['visual_review']['component_contamination_count']}; silhouette collapse count: {analysis['visual_review']['silhouette_collapse_count']}; patch-cloud/mottle count: {analysis['visual_review']['patch_cloud_mottle_count']}.
 """,
-        "AAAI27_COEFFICIENT_HEADROOM_FAILURE_ANALYSIS_20260724.md": f"""# Coefficient Headroom Failure Analysis
+        "AAAI27_HEADROOM_ATTEMPT002_FAILURE_ANALYSIS_20260724.md": f"""# Headroom Attempt 002 Failure Analysis
 
 The append-only attempt completed with {analysis['count_verification']['actual']['failure_records']} preserved failure records, zero unexplained count deltas, zero hidden reruns, and zero repeated optimizer steps. Artifact and silhouette review outcomes are recorded in the visual review registry.
 
 {common}
 """,
+    }
+
+
+def next_task_route(classification: str) -> dict[str, Any]:
+    if classification == "TEACHER_SPAN_CAPACITY_LIMITED":
+        return {
+            "next_task": "FREEZE_SPATIALLY_DISTRIBUTED_CLOTHING_COEFFICIENT_ORACLE_PROTOCOL",
+            "next_task_source_branch": None,
+            "next_task_source_head": None,
+        }
+    if classification in {
+        "TEACHER_SPAN_HAS_USEFUL_RENDER_HEADROOM",
+        "TEACHER_SPAN_HEADROOM_SMALL",
+        "TEACHER_SPAN_AT_LOCAL_OPTIMUM",
+    }:
+        return {
+            "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
+            "next_task_source_branch": "research/loo-few-view-fold-manifest-repair-20260724",
+            "next_task_source_head": "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f",
+        }
+    return {
+        "next_task": "REPAIR_COEFFICIENT_HEADROOM_ATTEMPT2_EXECUTION_FAILURE",
+        "next_task_source_branch": None,
+        "next_task_source_head": None,
     }
 
 
@@ -3482,11 +3750,13 @@ def finalize(root: Path) -> dict[str, Any]:
         },
         "paper_final": False,
     }
+    route = next_task_route(analysis["classification"])
     final_summary = {
         "schema_version": "canondressgs.paper.coefficient_headroom_final_summary.v1",
         "task_id": TASK_ID, "status": "RESULTS_COMPLETE_PENDING_RESULT_COMMIT",
         "classification": analysis["classification"],
-        "source_branch": SOURCE_BRANCH, "source_head": SOURCE_HEAD,
+        "source_branch": REPAIRED_SOURCE_BRANCH, "source_head": REPAIRED_SOURCE_HEAD,
+        "protocol_source_branch": SOURCE_BRANCH, "protocol_source_head": SOURCE_HEAD,
         "result_branch": RUN_BRANCH, "execution_head": execution_head,
         "final_head": "PENDING_RESULT_COMMIT", "reporting_head": "PENDING_SEAL_COMMIT",
         "attempt_path": str(attempt), "attempt": ATTEMPT_NAME,
@@ -3497,10 +3767,9 @@ def finalize(root: Path) -> dict[str, Any]:
         "statuses": analysis["statuses"], "claim_boundary": analysis["claim_boundary"],
         "pure_endpoint_prediction_sha256": PURE_PREDICTION_SHA,
         "pure_endpoint_output_mutation_count": 0,
+        "repaired_contract_fingerprints": repaired_contract_fingerprints(),
         "paper_final": False, "paper_final_count": 0,
-        "next_task": "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
-        "next_task_source_branch": "research/loo-few-view-fold-manifest-repair-20260724",
-        "next_task_source_head": "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f",
+        **route,
         "next_task_started": False,
     }
     external_payloads = {
@@ -3529,24 +3798,26 @@ def finalize(root: Path) -> dict[str, Any]:
         "failure_count": len(failures), "failures": failures,
     }, replace=False)
     risk_payloads = {
-        "coefficient_headroom_run_registry.json": run_payload,
-        "coefficient_headroom_checkpoint_registry.json": checkpoint_payload,
-        "coefficient_headroom_lambda_selection.json": selection,
-        "coefficient_headroom_prediction_registry.json": external_payloads["prediction_registry.json"],
-        "coefficient_headroom_metric_summary.json": external_payloads["metric_summary.json"],
-        "coefficient_headroom_span_analysis.json": analysis["span_recovery"],
-        "coefficient_headroom_full_residual_summary.json": full_summary,
-        "coefficient_headroom_refined_lookup_analysis.json": analysis["lookup_analysis"],
-        "coefficient_headroom_visual_review_summary.json": analysis["visual_review"],
-        "coefficient_headroom_execution_count_verification.json": count_verification,
-        "coefficient_headroom_tests.json": test_payload,
-        "coefficient_headroom_final_summary.json": final_summary,
+        "coefficient_headroom_attempt002_run_registry.json": run_payload,
+        "coefficient_headroom_attempt002_checkpoint_registry.json": checkpoint_payload,
+        "coefficient_headroom_attempt002_lambda_selection.json": selection,
+        "coefficient_headroom_attempt002_prediction_registry.json": external_payloads["prediction_registry.json"],
+        "coefficient_headroom_attempt002_metric_summary.json": external_payloads["metric_summary.json"],
+        "coefficient_headroom_attempt002_span_analysis.json": analysis["span_recovery"],
+        "coefficient_headroom_attempt002_full_residual_summary.json": full_summary,
+        "coefficient_headroom_attempt002_refined_lookup_analysis.json": analysis["lookup_analysis"],
+        "coefficient_headroom_attempt002_visual_review_summary.json": analysis["visual_review"],
+        "coefficient_headroom_attempt002_count_verification.json": count_verification,
+        "coefficient_headroom_attempt002_tests.json": test_payload,
+        "coefficient_headroom_attempt002_final_summary.json": final_summary,
     }
     for name, payload in risk_payloads.items():
-        atomic_json(RISK / name, payload)
+        atomic_json(RISK / name, payload, replace=False)
     reports = report_payloads(analysis, selection, wall)
+    if tuple(reports) != ATTEMPT002_REPORT_NAMES:
+        raise RuntimeError("attempt_002 report path contract mismatch")
     for name, value in reports.items():
-        atomic_text(DOCS / name, value)
+        atomic_text(DOCS / name, value, replace=False)
     figure_manifest = {
         "schema_version": "canondressgs.paper.sealed_headroom_figure_refresh_manifest.v1",
         "status": "SEALED_HEADROOM_FIGURE_REFRESH_MANIFEST_PENDING_RESULT_COMMIT",
@@ -3560,7 +3831,7 @@ def finalize(root: Path) -> dict[str, Any]:
         "claim_boundary": analysis["claim_boundary"],
         "figure_bank_mutation_count": 0,
     }
-    atomic_json(RISK / "sealed_headroom_figure_refresh_manifest.json", figure_manifest)
+    atomic_json(RISK / ATTEMPT002_FIGURE_MANIFEST, figure_manifest, replace=False)
     atomic_json(attempt / "13_final_verification/SEALED_HEADROOM_FIGURE_REFRESH_MANIFEST.json", figure_manifest, replace=False)
     handoff = {
         "schema_version": "canondressgs.project_control.coefficient_headroom_experiment_handoff.v1",
@@ -3569,11 +3840,11 @@ def finalize(root: Path) -> dict[str, Any]:
         "final_head": "PENDING_RESULT_COMMIT", "reporting_head": "PENDING_SEAL_COMMIT",
         "attempt_path": str(attempt), "reports": [str(DOCS / name) for name in reports],
         "registries": [str(RISK / name) for name in risk_payloads],
-        "figure_refresh_manifest": str(RISK / "sealed_headroom_figure_refresh_manifest.json"),
+        "figure_refresh_manifest": str(RISK / ATTEMPT002_FIGURE_MANIFEST),
         "paper_final": False,
         "next_task": final_summary["next_task"], "next_task_started": False,
     }
-    atomic_json(HANDOFF / "coefficient_headroom_experiment_handoff.json", handoff)
+    atomic_json(HANDOFF / ATTEMPT002_HANDOFF, handoff, replace=False)
     atomic_json(attempt / "13_final_verification/handoff.json", handoff, replace=False)
     update_attempt_status(
         attempt, status="RESULTS_COMPLETE_PENDING_RESULT_COMMIT",
@@ -3605,10 +3876,10 @@ def seal_reporting_head(root: Path, final_head: str) -> dict[str, Any]:
         raise RuntimeError("final head is not descended from EXECUTION_HEAD")
     repo_paths = [
         *(RISK / name for name in (
-            "coefficient_headroom_final_summary.json",
-            "sealed_headroom_figure_refresh_manifest.json",
+            "coefficient_headroom_attempt002_final_summary.json",
+            ATTEMPT002_FIGURE_MANIFEST,
         )),
-        HANDOFF / "coefficient_headroom_experiment_handoff.json",
+        HANDOFF / ATTEMPT002_HANDOFF,
     ]
     output_paths = [
         attempt / "13_final_verification/final_summary.json",
@@ -3617,7 +3888,8 @@ def seal_reporting_head(root: Path, final_head: str) -> dict[str, Any]:
     ]
     for path in (*repo_paths, *output_paths):
         atomic_json(path, replace_head_markers(read_json(path), final_head))
-    for path in DOCS.glob("AAAI27_*HEADROOM*20260724.md"):
+    for name in ATTEMPT002_REPORT_NAMES:
+        path = DOCS / name
         text = path.read_text(encoding="utf-8")
         if "Result HEAD:" not in text:
             atomic_text(path, text + f"\n\nResult HEAD: `{final_head}`. Execution HEAD: `{execution_metadata(attempt)['execution_head']}`.")

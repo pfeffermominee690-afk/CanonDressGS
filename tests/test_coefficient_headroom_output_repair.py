@@ -17,6 +17,7 @@ from tools.paper import run_coefficient_headroom_experiment as runner
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_HEAD = "64f7bf09d7beb526eee50c8c1a0c47d792977378"
+REPAIRED_SOURCE_HEAD = "77d2f4e32de984d766e0beab5ded7afe12aecab0"
 SEMANTIC_CONTRACTS = (
     "paper_protocol/reviewer_risk/coefficient_headroom_protocol.yaml",
     "paper_protocol/reviewer_risk/coefficient_headroom_rotation_manifests.json",
@@ -199,6 +200,12 @@ class PathPlanTests(unittest.TestCase):
             regenerated["deterministic_aggregate_sha256"],
         )
 
+    def test_plan_aggregate_matches_repaired_contract(self) -> None:
+        self.assertEqual(
+            self.plan["deterministic_aggregate_sha256"],
+            "694eca63bdaead253ab52c3f64bad2300cc91053183774e8181ab91d7a6d1766",
+        )
+
     def test_plan_all_paths_live_under_declared_phase_tree(self) -> None:
         allowed = set(self.plan["directory_contract"]) | {"RUN_STATUS.json"}
         for record in self.plan["paths"]:
@@ -227,6 +234,19 @@ class PathPlanTests(unittest.TestCase):
 class ContractAndAuditTests(unittest.TestCase):
     def test_exact_repair_source_and_lineage(self) -> None:
         self.assertEqual(runner.INVALID_REPORTING_HEAD, SOURCE_HEAD)
+        self.assertEqual(runner.REPAIRED_SOURCE_HEAD, REPAIRED_SOURCE_HEAD)
+        self.assertEqual(
+            runner.REPAIRED_SOURCE_BRANCH,
+            "research/coefficient-headroom-output-path-repair-20260724",
+        )
+        self.assertEqual(
+            runner.RUN_BRANCH,
+            "research/render-refined-coefficient-headroom-attempt2-20260724",
+        )
+        self.assertEqual(
+            runner.TASK_ID,
+            "AAAI27-RENDER-REFINED-COEFFICIENT-HEADROOM-ATTEMPT-002",
+        )
         self.assertEqual(runner.INVALID_EXECUTION_HEAD, "11206393153d710a62b351ff1d136d82154d9e85")
         self.assertEqual(runner.INVALID_FAILURE_HEAD, "1275d79bde07fdd798987024310d822826aaf135")
         self.assertEqual(runner.ATTEMPT_NAME, "attempt_002")
@@ -303,6 +323,25 @@ class ContractAndAuditTests(unittest.TestCase):
         self.assertEqual(audit["status"], "PASS")
         self.assertEqual(audit["match_count"], audit["artifact_count"])
 
+    def test_repaired_artifact_closure_is_exact(self) -> None:
+        audit = runner.repaired_artifact_audit()
+        self.assertEqual(audit["status"], "PASS")
+        self.assertEqual(audit["match_count"], audit["artifact_count"])
+
+    def test_repaired_contract_fingerprints_are_bound(self) -> None:
+        audit = runner.repaired_contract_fingerprints()
+        self.assertEqual(audit["status"], "PASS")
+        self.assertEqual(
+            audit["path_plan_aggregate_sha256"],
+            "694eca63bdaead253ab52c3f64bad2300cc91053183774e8181ab91d7a6d1766",
+        )
+
+    def test_scientific_semantic_drift_is_zero(self) -> None:
+        audit = runner.scientific_semantic_audit()
+        self.assertEqual(audit["status"], "PASS")
+        self.assertEqual(audit["semantic_drift_count"], 0)
+        self.assertEqual(audit["artifact_count"], 8)
+
     def test_scientific_contract_semantics_match_source_head(self) -> None:
         for relative in SEMANTIC_CONTRACTS:
             current_text = (ROOT / relative).read_text(encoding="utf-8")
@@ -330,12 +369,43 @@ class ContractAndAuditTests(unittest.TestCase):
     def test_credential_scan_rejects_nonfixture_secret(self) -> None:
         with TemporaryDirectory() as directory:
             path = Path(directory) / "secret.txt"
-            path.write_text("Authorization: Bearer plausible_nonfixture_value_123456\n", encoding="utf-8")
+            path.write_text(
+                "Authorization: " + "Bearer plausible_nonfixture_value_123456\n",
+                encoding="utf-8",
+            )
             self.assertEqual(runner.credential_scan([path])["status"], "FAIL")
 
     def test_repair_error_enum_is_complete(self) -> None:
         self.assertEqual(len(output.ERROR_CODES), 9)
         self.assertIn("HEADROOM_OUTPUT_TEMP_FILE_LEAK", output.ERROR_CODES)
+
+    def test_attempt002_repository_outputs_are_isolated(self) -> None:
+        self.assertEqual(set(runner.ATTEMPT002_BINDING_REPO_FILES.values()), {
+            "coefficient_headroom_attempt002_execution_binding.json",
+            "coefficient_headroom_attempt002_expected_counts.json",
+            "coefficient_headroom_attempt002_pre_result_tests.json",
+        })
+        self.assertEqual(runner.ATTEMPT002_REPORT_NAMES, (
+            "AAAI27_COEFFICIENT_HEADROOM_ATTEMPT002_RESULTS_20260724.md",
+            "AAAI27_TEACHER_SPAN_ATTEMPT002_ANALYSIS_20260724.md",
+            "AAAI27_RENDER_REFINED_COEFFICIENT_ATTEMPT002_20260724.md",
+            "AAAI27_FULL_RESIDUAL_ATTEMPT002_COMPARISON_20260724.md",
+            "AAAI27_HEADROOM_ATTEMPT002_VISUAL_REVIEW_20260724.md",
+            "AAAI27_HEADROOM_ATTEMPT002_FAILURE_ANALYSIS_20260724.md",
+        ))
+        source = (ROOT / "tools/paper/run_coefficient_headroom_experiment.py").read_text(encoding="utf-8")
+        seal = source[source.index("def seal_reporting_head("):source.index("def verify(")]
+        self.assertNotIn('glob("AAAI27_*HEADROOM*20260724.md")', seal)
+
+    def test_next_task_route_depends_on_scientific_classification(self) -> None:
+        self.assertEqual(
+            runner.next_task_route("TEACHER_SPAN_CAPACITY_LIMITED")["next_task"],
+            "FREEZE_SPATIALLY_DISTRIBUTED_CLOTHING_COEFFICIENT_ORACLE_PROTOCOL",
+        )
+        self.assertEqual(
+            runner.next_task_route("TEACHER_SPAN_HEADROOM_SMALL")["next_task"],
+            "RUN_LEAVE_ONE_GARMENT_OUT_BASIS_ADAPTATION_EXPERIMENT_FROM_REPAIRED_CONTRACT",
+        )
 
 
 if __name__ == "__main__":
