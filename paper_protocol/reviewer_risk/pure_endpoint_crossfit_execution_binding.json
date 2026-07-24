@@ -1,0 +1,388 @@
+{
+  "checks": {
+    "amended_contract_ready": true,
+    "blocked_mutations_zero": true,
+    "cloud_static_preflight": true,
+    "credentials": true,
+    "exact_source_head": true,
+    "models_exact": true,
+    "new_branch": true,
+    "physical_render_count_1460": true,
+    "prediction_count_4620": true,
+    "protocol_hash_11_of_11": true,
+    "registry_exact": true,
+    "schedule_exact": true,
+    "training_count_7200": true
+  },
+  "cloud_preflight": {
+    "api_continuity": {
+      "credential_values_printed": false,
+      "external_api_required": false
+    },
+    "attempt_path": "/root/autodl-tmp/canondressgs_work/outputs/PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001/attempt_001",
+    "basis": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/selected_basis.pt",
+      "rank": 4,
+      "sha256": "a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430"
+    },
+    "branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+    "checks": {
+      "api_continuity": true,
+      "attempt_absent": true,
+      "basis": true,
+      "branch": true,
+      "credentials": true,
+      "disk_free_30gb": true,
+      "execution_authorized": true,
+      "external_assets_19_of_19": true,
+      "feature_cache": true,
+      "git_remote_continuity": true,
+      "gpu_exclusive": true,
+      "gpu_rtx4090": true,
+      "models": true,
+      "output_writable": true,
+      "paper_final_false": true,
+      "protocol_hash_closure": true,
+      "registry": true,
+      "schedules": true,
+      "source_ancestor": true
+    },
+    "credentials": {
+      "credential_environment_names": [],
+      "credential_values_printed": false,
+      "excluded_test_fixture_count": 2,
+      "excluded_test_fixtures": [
+        {
+          "classification": "credential_detector_fixture",
+          "pattern": "authorization_bearer",
+          "relative_path": "tools/check_codex_direct_generation_contract.py"
+        },
+        {
+          "classification": "credential_detector_fixture",
+          "pattern": "assigned_api_key",
+          "relative_path": "tools/check_codex_direct_generation_contract.py"
+        }
+      ],
+      "finding_count": 0,
+      "findings_without_secret_content": [],
+      "scanned_file_count": 713,
+      "status": "PASS"
+    },
+    "disk_free_bytes": 38389874688,
+    "external_verifier": {
+      "passed_19_of_19": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "895e11f800466c22d86e67a3c31a479a6645dd057f57c3b3859186790f974b2d"
+    },
+    "feature_cache": {
+      "episodes": 24,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/shared_preflight/frozen_reference_feature_rows_v1.pt",
+      "sha256": "30cf19a99bbc620112928d678a0257bfabd3420be66fe1053ded3ce7e90875cb"
+    },
+    "git_remote": {
+      "name": null,
+      "probe_pass": true,
+      "topology": "cloud_bare_common_dir",
+      "url_or_common_dir": "/root/autodl-tmp/canondressgs_work/git/canondressgs.git"
+    },
+    "gpu": "NVIDIA GeForce RTX 4090, 24081",
+    "gpu_compute_process_count": 0,
+    "head": "69cded463e3a88cecc83e8a4c5a7a89b93ee4b20",
+    "models": {
+      "checks": {
+        "classifier_output_shape": true,
+        "classifier_parameter_count": true,
+        "coefficient_output_shape": true,
+        "coefficient_parameter_count": true,
+        "coefficient_zero_initialization": true
+      },
+      "classifier": {
+        "parameters": 3589,
+        "state_dict_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ]
+      },
+      "shared_coefficient": {
+        "parameters": 3076,
+        "state_dict_keys": [
+          "predictor.linear.bias",
+          "predictor.linear.weight",
+          "predictor.normalization.bias",
+          "predictor.normalization.weight"
+        ]
+      },
+      "status": "PASS"
+    },
+    "protocol_hash": {
+      "artifact_count": 11,
+      "historical_classifications_preserved": [
+        "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+        "PURE_ENDPOINT_DIRECT_DECODER_CONTRACT_BLOCKED"
+      ],
+      "mutation_count": 0,
+      "rows": [
+        {
+          "actual_sha256_lf": "aeb77d9ec0bcc6991cb06983998588d31de9cd78f186ca8c6343ab09367c84ac",
+          "expected_sha256_lf": "aeb77d9ec0bcc6991cb06983998588d31de9cd78f186ca8c6343ab09367c84ac",
+          "relative_path": "docs/PAPER/AAAI27_PURE_ENDPOINT_BASELINE_REGISTRY_20260724.md"
+        },
+        {
+          "actual_sha256_lf": "b63b6bea13afdf171be6787ca4c3f94a7c46435d4bd5ce9618ba91428d933411",
+          "expected_sha256_lf": "b63b6bea13afdf171be6787ca4c3f94a7c46435d4bd5ce9618ba91428d933411",
+          "relative_path": "docs/PAPER/AAAI27_PURE_ENDPOINT_CLAIM_BOUNDARY_20260724.md"
+        },
+        {
+          "actual_sha256_lf": "c578bc233c5fcd2d8fab9bf74cf7b3b2a267dcdcc550bb6b4d36279cebec9298",
+          "expected_sha256_lf": "c578bc233c5fcd2d8fab9bf74cf7b3b2a267dcdcc550bb6b4d36279cebec9298",
+          "relative_path": "docs/PAPER/AAAI27_PURE_ENDPOINT_CORE_METHOD_PROTOCOL_20260724.md"
+        },
+        {
+          "actual_sha256_lf": "32fdd0de700ceb7a86257c0f16995ff0e62e456b8f11a7a021a19f3942d3b4b5",
+          "expected_sha256_lf": "32fdd0de700ceb7a86257c0f16995ff0e62e456b8f11a7a021a19f3942d3b4b5",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_baseline_registry.json"
+        },
+        {
+          "actual_sha256_lf": "721c203f78c63a707317e846362d1579d4b21914b625168fa9143186abd971f6",
+          "expected_sha256_lf": "721c203f78c63a707317e846362d1579d4b21914b625168fa9143186abd971f6",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_crossfit_protocol.yaml"
+        },
+        {
+          "actual_sha256_lf": "0f86c6413a0db955d179de139f85b401bc80044f89222219afe5d0506c4aaedd",
+          "expected_sha256_lf": "0f86c6413a0db955d179de139f85b401bc80044f89222219afe5d0506c4aaedd",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_evaluator_contract.json"
+        },
+        {
+          "actual_sha256_lf": "abca0350821fbcc706003c45b9aec0357223168ac7c6ab2913b3ecde617d73d6",
+          "expected_sha256_lf": "abca0350821fbcc706003c45b9aec0357223168ac7c6ab2913b3ecde617d73d6",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_model_contract.json"
+        },
+        {
+          "actual_sha256_lf": "7f4bb9b840462e3c556edd28bb5e0e7b216754bb75f13f06c8e25bb3908fda4d",
+          "expected_sha256_lf": "7f4bb9b840462e3c556edd28bb5e0e7b216754bb75f13f06c8e25bb3908fda4d",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_protocol_final_summary.json"
+        },
+        {
+          "actual_sha256_lf": "5a86f57ef44a54fd234690c3a133b82a17d982aebad7f451833122eecb9825c9",
+          "expected_sha256_lf": "5a86f57ef44a54fd234690c3a133b82a17d982aebad7f451833122eecb9825c9",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json"
+        },
+        {
+          "actual_sha256_lf": "badb9a2cefeaa4ff914b96014bd51625af2e2cefa05b98115557505b43b12351",
+          "expected_sha256_lf": "badb9a2cefeaa4ff914b96014bd51625af2e2cefa05b98115557505b43b12351",
+          "relative_path": "paper_protocol/reviewer_risk/pure_endpoint_success_gates.json"
+        },
+        {
+          "actual_sha256_lf": "5b4bf468449e9965592b6aff09eef3cde111addffac16c8703420f26e5e25bf6",
+          "expected_sha256_lf": "5b4bf468449e9965592b6aff09eef3cde111addffac16c8703420f26e5e25bf6",
+          "relative_path": "project_control_handoff/pure_endpoint_protocol_handoff.json"
+        }
+      ],
+      "status": "PASS_INDEPENDENT_MANIFEST"
+    },
+    "python": {
+      "executable": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python",
+      "torch": "2.4.1+cu121",
+      "version": "3.10.20"
+    },
+    "registry": {
+      "checks": {
+        "historical_v7_excluded": true,
+        "independent_families": true,
+        "method_count": true,
+        "method_order": true,
+        "paper_final_false": true,
+        "teacher_naming": true
+      },
+      "methods": [
+        "Base Avatar",
+        "Teacher Endpoint",
+        "Outfit-ID Oracle",
+        "Reference Classifier Lookup",
+        "Nearest-Centroid Lookup",
+        "Linear Coefficient Predictor",
+        "CanonDressGS-Endpoint"
+      ],
+      "status": "PASS"
+    },
+    "schedule": {
+      "actual": {
+        "0": "e5dd8e70ee8e606aa765816d6bbebb75b189a873df793fcfba6ad0bfa08cd55f",
+        "1": "f65232b0e0dceb8e2ea5c0485e0928191a08a5befde660493bc2a43c1675db34",
+        "2": "ec9d4e842e065628533b2f414cd0953eb4add5f78a5360e43e4465bb0a67ae58",
+        "3": "b00c63394ce1627e8727615bf7052a9a59049634a2cd7441977dd1c9201dd977"
+      },
+      "expected": {
+        "0": "e5dd8e70ee8e606aa765816d6bbebb75b189a873df793fcfba6ad0bfa08cd55f",
+        "1": "f65232b0e0dceb8e2ea5c0485e0928191a08a5befde660493bc2a43c1675db34",
+        "2": "ec9d4e842e065628533b2f414cd0953eb4add5f78a5360e43e4465bb0a67ae58",
+        "3": "b00c63394ce1627e8727615bf7052a9a59049634a2cd7441977dd1c9201dd977"
+      },
+      "old_internal_step_hashes_preserved": {
+        "0": "4df31d8785a5a5ca4437abf9bfc4e7fa6c2278d442bb03d83c7db49ecece52e2",
+        "1": "5582cb05f81783db1d23a8316ecd3666f153b7b341e9587543073e01b2c32e28",
+        "2": "7b9abf725dd4a78778870deb0216759f8867904285c912d51a33411679c154a8",
+        "3": "6e662303f621da4d36e0e253327e7969ce0721d7f83f59a06320312779a47261"
+      },
+      "status": "PASS"
+    },
+    "schema_version": "canondressgs.paper.pure_endpoint_crossfit_static_preflight.v1",
+    "source_head": "69cded463e3a88cecc83e8a4c5a7a89b93ee4b20",
+    "status": "PASS",
+    "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001",
+    "timestamp_utc": "2026-07-24T00:03:17Z"
+  },
+  "direct_v7_execution_count": 0,
+  "execution_head": null,
+  "frozen_counts": {
+    "actual_amendment_execution_counts": {
+      "backward_calls": 0,
+      "checkpoint_writes": 0,
+      "feature_inferences": 0,
+      "forward_calls": 0,
+      "new_renders": 0,
+      "optimizer_creations": 0,
+      "optimizer_steps": 0,
+      "renderer_runs": 0,
+      "threshold_selections": 0,
+      "training_runs": 0,
+      "visual_sheets": 0
+    },
+    "counting_contract": {
+      "formal_pure_alias_rule": "the 20 formal-pure records share the same 20 logical inputs and render signatures as the primary pure-query set but remain separate metric rows and sheets",
+      "logical_inference": "one method output for one protocol or audit record and one replicate",
+      "logical_render": "one method output RGB/alpha request before duplicate or signature reuse",
+      "physical_render": "one contract cache key after protocol-duplicate, formal-alias, and seed-invariant static reuse; no result-dependent cross-method reuse assumed",
+      "training_run": "one independent optimizer-backed model-family rotation replicate"
+    },
+    "evaluation": {
+      "formal_pure_inferences": 420,
+      "formal_pure_inferences_formula": "7 methods * 20 records * 3 replicates",
+      "optimizer_backed_model_forward_calls": 1320,
+      "optimizer_backed_model_forward_calls_breakdown": {
+        "formal_pure": 120,
+        "perturbation": 720,
+        "primary_test": 480
+      },
+      "perturbation_inferences": 2520,
+      "perturbation_inferences_formula": "7 methods * 20 unique test queries * 3 replicates * 6 variants",
+      "perturbation_variant_count": 6,
+      "primary_test_inferences": 1680,
+      "primary_test_inferences_formula": "7 methods * 4 rotations * 20 protocol records * 3 replicates",
+      "primary_test_unique_query_outputs": 420,
+      "total_logical_method_output_inferences": 4620
+    },
+    "feature_inference": {
+      "image_or_mask_modifying_variants": 3,
+      "image_or_mask_modifying_variants_list": [
+        "mild_blur",
+        "mask_erosion",
+        "mask_dilation"
+      ],
+      "new_normal_f2_inferences": 0,
+      "new_perturbation_reference_f2_inferences": 180,
+      "new_perturbation_reference_f2_inferences_formula": "20 unique query sets * 3 references * 3 pixel-or-mask variants",
+      "normal_reference_feature_rows_reused": 60,
+      "normal_unique_query_sets": 20,
+      "seed_and_method_reuse_required": true,
+      "total_new_feature_inferences": 180
+    },
+    "paper_final": false,
+    "paper_final_count": 0,
+    "registry": {
+      "independent_trainable_model_family_count": 2,
+      "primary_method_count": 7,
+      "render_family_count": 7,
+      "static_nonoptimizer_baseline_count": 4,
+      "trainable_registry_method_count": 3
+    },
+    "rendering": {
+      "formal_pure_additional_unique_physical_renders": 0,
+      "logical_renders": 4620,
+      "logical_renders_breakdown": {
+        "formal_pure": 420,
+        "perturbation": 2520,
+        "primary_test": 1680
+      },
+      "perturbation_unique_physical_renders": 1200,
+      "primary_unique_physical_renders": 260,
+      "render_cache_reuses": 3160,
+      "unique_physical_renders": 1460
+    },
+    "schema_version": "canondressgs.paper.pure_endpoint_expected_counts_amended.v1",
+    "status": "COUNTS_FROZEN_BEFORE_EXECUTION",
+    "task_id": "AAAI27-PURE-ENDPOINT-BASELINE-ADJUDICATION-001",
+    "training": {
+      "backward_calls": 7200,
+      "checkpoint_steps": [
+        0,
+        20,
+        50,
+        100,
+        200,
+        300
+      ],
+      "checkpoint_writes": 144,
+      "direct_decoder_runs": 0,
+      "forward_training_batches": 7200,
+      "optimizer_creations": 24,
+      "optimizer_steps": 7200,
+      "reference_classifier_runs": 12,
+      "rotation_count": 4,
+      "scheduler_steps": 7200,
+      "seed_count": 3,
+      "shared_linear_endpoint_runs": 12,
+      "steps_per_run": 300,
+      "total_training_runs": 24
+    },
+    "visual_review": {
+      "context_column_count": 1,
+      "formal_pure_sheet_count": 60,
+      "formal_pure_sheet_count_formula": "20 unique formal-pure records * 3 replicates",
+      "main_sheet_count": 60,
+      "main_sheet_count_formula": "4 rotations * 5 unique test queries * 3 replicates",
+      "method_column_count": 7,
+      "method_columns": [
+        "Base Avatar",
+        "Teacher Endpoint",
+        "Outfit-ID Oracle",
+        "Reference Classifier Lookup",
+        "Nearest-Centroid Lookup",
+        "Linear Coefficient Predictor",
+        "CanonDressGS-Endpoint"
+      ],
+      "total_display_column_count": 8,
+      "total_sheet_count": 120
+    }
+  },
+  "frozen_method_order": [
+    "Base Avatar",
+    "Teacher Endpoint",
+    "Outfit-ID Oracle",
+    "Reference Classifier Lookup",
+    "Nearest-Centroid Lookup",
+    "Linear Coefficient Predictor",
+    "CanonDressGS-Endpoint"
+  ],
+  "frozen_schedule_hashes": {
+    "0": "e5dd8e70ee8e606aa765816d6bbebb75b189a873df793fcfba6ad0bfa08cd55f",
+    "1": "f65232b0e0dceb8e2ea5c0485e0928191a08a5befde660493bc2a43c1675db34",
+    "2": "ec9d4e842e065628533b2f414cd0953eb4add5f78a5360e43e4465bb0a67ae58",
+    "3": "b00c63394ce1627e8727615bf7052a9a59049634a2cd7441977dd1c9201dd977"
+  },
+  "historical_classifications_preserved": [
+    "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+    "PURE_ENDPOINT_DIRECT_DECODER_CONTRACT_BLOCKED"
+  ],
+  "paper_final": false,
+  "paper_final_count": 0,
+  "run_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+  "schema_version": "canondressgs.paper.pure_endpoint_crossfit_execution_binding.v1",
+  "source_branch": "research/pure-endpoint-direct-decoder-adjudication-20260724",
+  "source_head": "69cded463e3a88cecc83e8a4c5a7a89b93ee4b20",
+  "status": "BOUND_BEFORE_RESULT",
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001"
+}
