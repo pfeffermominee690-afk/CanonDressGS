@@ -11,7 +11,7 @@ from PIL import Image
 
 
 OUTPUT_NAME = "LOO-BASIS-ADAPTATION-001"
-ATTEMPT_NAME = "attempt_001"
+ATTEMPT_NAME = "attempt_002"
 TEMPORARY_MARKER = ".loo-tmp-"
 
 

@@ -48,11 +48,11 @@ from tools.paper import loo_basis_output as output_io
 from tools.paper import loo_cache_key_plan
 
 
-TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001"
-SOURCE_BRANCH = "research/loo-k-dependent-cache-count-contract-repair-20260724"
-SOURCE_HEAD = "d595264dd0bc9f8b19077955e9ba605f0d25fdd5"
+TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002"
+SOURCE_BRANCH = "research/loo-basis-renderer-parity-closure-repair-20260724"
+SOURCE_HEAD = "a34f750c64ba5c70fc360d16ada97ec0c6b84851"
 DIAGNOSTIC_HEAD = "695ae9ca092f8260e6c5f0b016f491c5e4324fd1"
-RUN_BRANCH = "research/leave-one-garment-out-basis-adaptation-cache-repaired-20260724"
+RUN_BRANCH = "research/loo-basis-adaptation-attempt2-renderer-parity-repaired-20260724"
 PURE_BRANCH = "research/pure-endpoint-core-method-crossfit-amended-20260724"
 PURE_HEAD = "ce110887a942cf8db082ba688c8d36d2433bfdbe"
 HEADROOM_BRANCH = "research/render-refined-coefficient-headroom-attempt2-20260724"
@@ -61,6 +61,13 @@ FIGURE_BANK_BRANCH = "research/paper-figure-bank-pure-endpoint-refresh-20260724"
 FIGURE_BANK_HEAD = "1fe425d2cc3cb3efd372334e1d845e63bf9d630a"
 OUTPUT_NAME = output_io.OUTPUT_NAME
 ATTEMPT_NAME = output_io.ATTEMPT_NAME
+ORIGINAL_ATTEMPT_NAME = "attempt_001"
+FORBIDDEN_NEXT_ATTEMPT_NAME = "attempt_003"
+EXPECTED_ORIGINAL_FILE_COUNT = 66
+EXPECTED_ORIGINAL_TOTAL_BYTES = 71_076_354
+EXPECTED_ORIGINAL_AGGREGATE_SHA256 = (
+    "4cd4ca03e21092431348c16a5103aff8863fd20861af9510913e02479761a31a"
+)
 OUTFITS = ("O01", "O02", "O03", "O04", "O08")
 CONDITIONS = ("cond_000000", "cond_000318", "cond_000017", "cond_000347")
 MILESTONES = (0, 20, 50, 100, 200, 300)
@@ -115,30 +122,43 @@ CACHE_REPAIRED_FILES = (
     "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
     "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
 )
+RENDERER_PARITY_REPAIRED_FILES = (
+    "paper_protocol/reviewer_risk/loo_basis_renderer_parity_execution_contract_repaired.json",
+    "paper_protocol/reviewer_risk/loo_basis_renderer_parity_repair_final_summary.json",
+    "project_control_handoff/loo_basis_renderer_parity_repair_handoff.json",
+    "scene/explicit_gaussian_residual_basis.py",
+    "scene/gaussian_clothing_residuals.py",
+)
 REPORT_NAMES = (
-    "AAAI27_LOO_BASIS_ADAPTATION_RESULTS_20260724.md",
-    "AAAI27_LOO_HARD_LOOKUP_COMPARISON_20260724.md",
-    "AAAI27_LOO_BASIS_CAPACITY_ANALYSIS_20260724.md",
-    "AAAI27_LOO_FEW_VIEW_SCALING_RESULTS_20260724.md",
-    "AAAI27_LOO_FULL_RESIDUAL_COMPARISON_20260724.md",
-    "AAAI27_LOO_VISUAL_REVIEW_20260724.md",
-    "AAAI27_LOO_FAILURE_ANALYSIS_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_BASIS_ADAPTATION_RESULTS_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_HARD_LOOKUP_COMPARISON_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_BASIS_CAPACITY_ANALYSIS_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_VIEW_SCALING_RESULTS_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_FULL_RESIDUAL_COMPARISON_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_VISUAL_REVIEW_20260724.md",
+    "AAAI27_LOO_ATTEMPT002_FAILURE_ANALYSIS_20260724.md",
 )
 REGISTRY_NAMES = (
-    "loo_basis_execution_registry.json",
-    "loo_adaptation_run_registry.json",
-    "loo_checkpoint_registry.json",
-    "loo_prediction_registry.json",
-    "loo_metric_summary.json",
-    "loo_oracle_capacity_analysis.json",
-    "loo_hard_lookup_analysis.json",
-    "loo_view_budget_scaling.json",
-    "loo_full_residual_summary.json",
-    "loo_visual_review_summary.json",
-    "loo_execution_count_verification.json",
-    "loo_tests.json",
-    "loo_final_summary.json",
+    "loo_attempt002_basis_execution_registry.json",
+    "loo_attempt002_adaptation_run_registry.json",
+    "loo_attempt002_checkpoint_registry.json",
+    "loo_attempt002_prediction_registry.json",
+    "loo_attempt002_metric_summary.json",
+    "loo_attempt002_oracle_capacity_analysis.json",
+    "loo_attempt002_hard_lookup_analysis.json",
+    "loo_attempt002_view_budget_scaling.json",
+    "loo_attempt002_full_residual_summary.json",
+    "loo_attempt002_visual_review_summary.json",
+    "loo_attempt002_count_verification.json",
+    "loo_attempt002_tests.json",
+    "loo_attempt002_final_summary.json",
 )
+EXECUTION_BINDING_NAME = "loo_attempt002_execution_binding.json"
+EXPECTED_COUNTS_BINDING_NAME = "loo_attempt002_execution_expected_counts.json"
+PRE_RESULT_TESTS_NAME = "loo_attempt002_pre_result_tests.json"
+ORIGINAL_MANIFEST_NAME = "loo_attempt002_attempt001_immutable_manifest.json"
+HANDOFF_NAME = "loo_basis_adaptation_attempt002_handoff.json"
+FIGURE_REFRESH_MANIFEST_NAME = "sealed_loo_attempt002_figure_refresh_manifest.json"
 ALLOWED_CLASSIFICATIONS = (
     "LOO_BASIS_ADAPTATION_SUPPORTED",
     "LOO_BASIS_ADAPTATION_PARTIAL",
@@ -235,6 +255,81 @@ def attempt_path(root: Path) -> Path:
     return output_io.attempt_path(root)
 
 
+def original_attempt_path(root: Path) -> Path:
+    return root.resolve() / OUTPUT_NAME / ORIGINAL_ATTEMPT_NAME
+
+
+def forbidden_next_attempt_path(root: Path) -> Path:
+    return root.resolve() / OUTPUT_NAME / FORBIDDEN_NEXT_ATTEMPT_NAME
+
+
+def tree_manifest(root: Path) -> dict[str, Any]:
+    if not root.is_dir():
+        raise FileNotFoundError(root)
+    rows = []
+    for path in sorted(
+        (item for item in root.rglob("*") if item.is_file()),
+        key=lambda item: item.relative_to(root).as_posix(),
+    ):
+        rows.append({
+            "path": path.relative_to(root).as_posix(),
+            "bytes": path.stat().st_size,
+            "sha256": sha256(path),
+        })
+    file_content_bytes = sum(row["bytes"] for row in rows)
+    du = subprocess.run(["du", "-sb", str(root)], capture_output=True, text=True)
+    total_bytes = int(du.stdout.split()[0]) if du.returncode == 0 else file_content_bytes
+    aggregate_rows = [
+        {"path": row["path"], "bytes": row["bytes"], "sha256": row["sha256"]}
+        for row in rows
+    ]
+    return {
+        "schema_version": "canondressgs.paper.immutable_tree_manifest.v1",
+        "root": str(root),
+        "file_count": len(rows),
+        "total_bytes": total_bytes,
+        "file_content_bytes": file_content_bytes,
+        "aggregate_sha256": canonical_sha(aggregate_rows),
+        "aggregate_definition": "sha256(canonical JSON of ordered path/bytes/sha256 rows)",
+        "files": rows,
+    }
+
+
+def original_attempt_immutability_audit(
+    root: Path, expected: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    actual = tree_manifest(original_attempt_path(root))
+    frozen_checks = {
+        "file_count_66": actual["file_count"] == EXPECTED_ORIGINAL_FILE_COUNT,
+        "tree_bytes_exact": actual["total_bytes"] == EXPECTED_ORIGINAL_TOTAL_BYTES,
+        "aggregate_sha256_exact": (
+            actual["aggregate_sha256"] == EXPECTED_ORIGINAL_AGGREGATE_SHA256
+        ),
+    }
+    manifest_match = True
+    if expected is not None:
+        manifest_match = all(
+            actual.get(name) == expected.get(name)
+            for name in (
+                "file_count", "total_bytes", "file_content_bytes",
+                "aggregate_sha256", "files",
+            )
+        )
+    checks = {**frozen_checks, "bound_manifest_exact": manifest_match}
+    return {
+        "schema_version": "canondressgs.paper.loo_attempt002_attempt001_immutability.v1",
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "mutation_count": 0 if all(checks.values()) else 1,
+        "checks": checks,
+        "expected": {
+            "file_count": EXPECTED_ORIGINAL_FILE_COUNT,
+            "total_bytes": EXPECTED_ORIGINAL_TOTAL_BYTES,
+            "aggregate_sha256": EXPECTED_ORIGINAL_AGGREGATE_SHA256,
+        },
+        "actual": actual,
+    }
+
+
 def json_write(path: Path, value: Any, *, replace: bool = False) -> dict[str, Any]:
     attempt = next(
         (parent for parent in (path.absolute(), *path.absolute().parents)
@@ -304,6 +399,12 @@ def contracts() -> dict[str, Any]:
         "cache_plan": read_json(RISK / "loo_cache_key_plan_v2.json"),
         "hard_lookup_replay": read_json(RISK / "loo_hard_lookup_k_replay.json"),
         "storage": read_json(RISK / "loo_storage_forecast_cache_repaired.json"),
+        "renderer_parity": read_json(
+            RISK / "loo_basis_renderer_parity_execution_contract_repaired.json"
+        ),
+        "renderer_parity_summary": read_json(
+            RISK / "loo_basis_renderer_parity_repair_final_summary.json"
+        ),
     }
 
 
@@ -328,7 +429,10 @@ def git_source_bytes(relative: str) -> bytes:
 
 def source_artifact_audit() -> dict[str, Any]:
     rows = []
-    for relative in (*REPAIRED_FILES, *INHERITED_FILES):
+    for relative in (
+        *REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES,
+        *RENDERER_PARITY_REPAIRED_FILES,
+    ):
         source = git_source_bytes(relative)
         source_digest = hashlib.sha256(source).hexdigest()
         current_digest = sha256(ROOT / relative, lf=True)
@@ -343,6 +447,45 @@ def source_artifact_audit() -> dict[str, Any]:
         "artifact_count": len(rows),
         "match_count": sum(row["match"] for row in rows),
         "rows": rows,
+    }
+
+
+def renderer_parity_contract_audit() -> dict[str, Any]:
+    contract = contracts()["renderer_parity"]
+    summary = contracts()["renderer_parity_summary"]
+    checks = {
+        "authorization_exact": (
+            contract["authorization"] == "READY_FOR_LOO_ATTEMPT_002_BEFORE_OPTIMIZER"
+        ),
+        "status_exact": contract["status"] == "READY_FOR_LOO_ATTEMPT_002_BEFORE_OPTIMIZER",
+        "algorithm_float64_strict_zero_sum": (
+            contract["repaired_construction_algorithm"]
+            == "float64_mean_center_rank3_svd_strict_zero_sum"
+        ),
+        "dtype_contract_float64": "float64" in contract["dtype_contract"],
+        "coefficient_solver_projection": (
+            contract["coefficient_solver_contract"]
+            == "orthonormal_basis_transpose_projection"
+        ),
+        "split_parity_5_of_5": contract["all_five_split_parity"] == "5/5 PASS",
+        "endpoint_parity_20_of_20": contract["all_endpoint_parity"] == "20/20 PASS",
+        "scientific_semantic_drift_zero": (
+            contract["scientific_contract_audit"]["scientific_semantic_drift"] == 0
+        ),
+        "summary_ready": summary["classification"] == "LOO_BASIS_RENDERER_PARITY_REPAIR_READY",
+        "attempt_002_not_created_by_repair": summary["attempt_002_created"] is False,
+        "optimizer_not_created_by_repair": summary["optimizer_creations"] == 0,
+    }
+    return {
+        "schema_version": "canondressgs.paper.loo_attempt002_renderer_parity_contract_audit.v1",
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "contract_sha256": sha256(
+            RISK / "loo_basis_renderer_parity_execution_contract_repaired.json"
+        ),
+        "summary_sha256": sha256(
+            RISK / "loo_basis_renderer_parity_repair_final_summary.json"
+        ),
     }
 
 
@@ -495,49 +638,25 @@ def planned_paths() -> list[str]:
 
 
 def storage_forecast(root: Path) -> dict[str, Any]:
-    sealed_checkpoint = root / "COEFFICIENT-HEADROOM-001/attempt_002/05_checkpoints/full_residual_R0_O01/step_000300.pth"
-    sealed_prediction = root / "COEFFICIENT-HEADROOM-001/attempt_002/07_predictions"
-    sealed_sheets = root / "COEFFICIENT-HEADROOM-001/attempt_002/11_visual_sheets"
-    checkpoint_unit = sealed_checkpoint.stat().st_size if sealed_checkpoint.is_file() else 38_623_718
-    # Headroom stored 2.6M field scalars plus Adam state. LOO stores 4.4M.
-    full_checkpoint_unit = math.ceil(checkpoint_unit * 4_400_000 / 2_600_000)
-    full_checkpoints = 40 * len(MILESTONES)
-    low_checkpoints = 80 * len(MILESTONES)
-    low_checkpoint_unit = 96 << 10
-    prediction_unit = 300 << 10
-    sheet_unit = 2 << 20
-    basis_bytes = 5 * 4 * 4_400_000 * 4
-    equal_wall_time_state_bytes = 40 * 4_400_000 * 4
-    raw = (
-        full_checkpoints * full_checkpoint_unit
-        + low_checkpoints * low_checkpoint_unit
-        + 885 * 2 * prediction_unit
-        + 26 * sheet_unit
-        + basis_bytes
-        + equal_wall_time_state_bytes
-        + (1 << 30)
-    )
-    safety = math.ceil(raw * 0.30)
-    required = raw + safety + full_checkpoint_unit
+    artifact = contracts()["storage"]
+    frozen = artifact["new_forecast"]
+    required = int(frozen["required_free_bytes"])
     free = shutil.disk_usage(root).free
     return {
+        "schema_version": "canondressgs.paper.loo_attempt002_storage_preflight.v1",
         "status": "PASS" if free >= required else "FAIL",
-        "sealed_checkpoint_path": str(sealed_checkpoint),
-        "sealed_checkpoint_bytes": checkpoint_unit,
-        "estimated_full_residual_checkpoint_bytes": full_checkpoint_unit,
-        "full_residual_checkpoint_count": full_checkpoints,
-        "low_dimensional_checkpoint_count": low_checkpoints,
-        "basis_bytes": basis_bytes,
-        "equal_wall_time_state_bytes": equal_wall_time_state_bytes,
-        "prediction_render_pairs": 885,
-        "physical_render_count": 54_845,
-        "raw_estimated_bytes": raw,
-        "safety_margin_fraction": 0.30,
-        "safety_margin_bytes": safety,
+        "source": "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
+        "source_sha256": sha256(RISK / "loo_storage_forecast_cache_repaired.json"),
+        "source_status": artifact["status"],
+        "raw_estimated_bytes": int(frozen["raw_estimated_bytes"]),
+        "safety_margin_fraction": float(frozen["safety_margin_fraction"]),
+        "safety_margin_bytes": int(frozen["safety_margin_bytes"]),
         "required_free_bytes": required,
         "actual_free_bytes": free,
-        "sealed_prediction_tree_present": sealed_prediction.is_dir(),
-        "sealed_visual_tree_present": sealed_sheets.is_dir(),
+        "available_safety_margin_bytes": free - required,
+        "prediction_render_pairs": int(frozen["prediction_render_pairs"]),
+        "physical_render_count": int(artifact["physical_render_count"]),
+        "formal_artifact_requirement_used": True,
     }
 
 
@@ -840,6 +959,7 @@ def verify_runtime_cache_registry(attempt: Path) -> dict[str, Any]:
 def static_preflight(root: Path | None = None) -> dict[str, Any]:
     artifacts = source_artifact_audit()
     historical = historical_immutability_audit()
+    renderer_parity = renderer_parity_contract_audit()
     protocol = protocol_audit()
     cache_contract = cache_contract_preflight()
     path_plan = output_io.audit_relative_paths(planned_paths())
@@ -849,15 +969,19 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "worktree_clean": not git("status", "--short"),
         "source_artifacts": artifacts["status"] == "PASS",
         "historical_immutability": historical["status"] == "PASS",
+        "renderer_parity_contract": renderer_parity["status"] == "PASS",
         "protocol": protocol["status"] == "PASS",
         "cache_contract": cache_contract["status"] == "PASS",
         "output_path_plan": path_plan["status"] == "PASS",
         "credential_scan": credentials["status"] == "PASS",
     }
+    original_attempt = None
     if root is not None:
+        original_attempt = original_attempt_immutability_audit(root)
         checks.update({
-            "attempt_001_absent": not attempt_path(root).exists(),
-            "attempt_002_absent": not (root / OUTPUT_NAME / "attempt_002").exists(),
+            "attempt_001_exists_and_immutable": original_attempt["status"] == "PASS",
+            "attempt_002_absent": not attempt_path(root).exists(),
+            "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
             "storage_forecast": storage_forecast(root)["status"] == "PASS",
         })
     return {
@@ -867,6 +991,8 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "checks": checks,
         "source_artifact_audit": artifacts,
         "historical_immutability": historical,
+        "renderer_parity_contract_audit": renderer_parity,
+        "original_attempt_immutability": original_attempt,
         "protocol_audit": protocol,
         "cache_contract_preflight": cache_contract,
         "path_plan": path_plan,
@@ -924,15 +1050,20 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
     )
     forecast = storage_forecast(root)
     f2_cache = f2_cache_preflight(root)
+    original_attempt = original_attempt_immutability_audit(root)
     checks = {
         "gpu_is_rtx_4090": gpu_name == "NVIDIA GeForce RTX 4090",
         "free_vram_at_least_20_gib": int(free_mib) >= 20 * 1024,
         "no_active_compute_process": not active_compute,
         "torch_cuda_available": torch.cuda.is_available(),
+        "python_3_10_20": platform.python_version() == "3.10.20",
+        "torch_2_4_1_cu121": torch.__version__ == "2.4.1+cu121",
+        "cuda_12_1": torch.version.cuda == "12.1",
         "cuda_tensor_smoke": float(torch.tensor([6.0, 7.0], device="cuda").sum()) == 13.0,
         "output_writable": True,
-        "attempt_001_absent": not attempt_path(root).exists(),
-        "attempt_002_absent": not (root / OUTPUT_NAME / "attempt_002").exists(),
+        "attempt_001_exists_and_immutable": original_attempt["status"] == "PASS",
+        "attempt_002_absent": not attempt_path(root).exists(),
+        "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
         "storage_forecast": forecast["status"] == "PASS",
         "git_remote_continuity": remote_ok,
         "static_preflight": static["status"] == "PASS",
@@ -954,6 +1085,7 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
             "torch_cuda": torch.version.cuda,
         },
         "storage_forecast": forecast,
+        "original_attempt_immutability": original_attempt,
         "f2_cache_preflight": f2_cache,
         "cache_contract_preflight": static["cache_contract_preflight"],
         "preflight_order": static["preflight_order"],
@@ -977,8 +1109,15 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
             "sha256": sha256(ROOT / relative),
             "sha256_lf": sha256(ROOT / relative, lf=True),
         }
-        for relative in (*REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES)
+        for relative in (
+            *REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES,
+            *RENDERER_PARITY_REPAIRED_FILES,
+        )
     }
+    original_manifest = cloud["original_attempt_immutability"]["actual"]
+    original_audit = original_attempt_immutability_audit(root, original_manifest)
+    if original_audit["status"] != "PASS":
+        raise RuntimeError("LOO_ATTEMPT_001_IMMUTABILITY_FAILURE")
     payload = {
         "schema_version": "canondressgs.paper.loo_execution_binding.v1",
         "task_id": TASK_ID,
@@ -989,13 +1128,21 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         "binding_parent_head": git("rev-parse", "HEAD"),
         "execution_head": "RESOLVE_AFTER_BINDING_COMMIT",
         "attempt": ATTEMPT_NAME,
-        "attempt_count_before_execution": 0,
-        "attempt_002_absent": not (root / OUTPUT_NAME / "attempt_002").exists(),
+        "attempt_count_before_execution": 1,
+        "attempt_001_role": "PRESERVED_PRE_OPTIMIZER_BASIS_RENDERER_PARITY_FAILURE",
+        "attempt_001_immutable": original_audit["status"] == "PASS",
+        "attempt_002_absent": not attempt_path(root).exists(),
+        "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
+        "reuse_attempt_001_basis_artifacts": False,
+        "reuse_attempt_001_auxiliary_renders": False,
+        "reuse_attempt_001_optimizer_state": False,
         "contract_fingerprints": fingerprints,
         "task_manifest_semantic_sha256": canonical_sha(contracts()["tasks"]),
         "expected_counts_semantic_sha256": canonical_sha(contracts()["counts"]),
         "protocol_audit": local["protocol_audit"],
         "historical_immutability": local["historical_immutability"],
+        "renderer_parity_contract_audit": local["renderer_parity_contract_audit"],
+        "original_attempt_immutability": original_audit,
         "storage_forecast": cloud["storage_forecast"],
         "cloud_preflight_sha256": sha256(cloud_preflight_path),
         "held_out_teacher_use_in_deployable_adaptation": 0,
@@ -1006,17 +1153,18 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         "created_at_utc": now(),
     }
     paths = {
-        RISK / "loo_execution_binding.json": payload,
-        RISK / "loo_execution_expected_counts.json": {
-            "schema_version": "canondressgs.paper.loo_execution_expected_counts.v1",
+        RISK / EXECUTION_BINDING_NAME: payload,
+        RISK / EXPECTED_COUNTS_BINDING_NAME: {
+            "schema_version": "canondressgs.paper.loo_attempt002_execution_expected_counts.v1",
             "task_id": TASK_ID, "status": "FROZEN", "counts": expected_counts(),
             "source_sha256": sha256(RISK / "loo_expected_counts_cache_repaired.json"),
         },
-        RISK / "loo_pre_result_tests.json": {
-            "schema_version": "canondressgs.paper.loo_pre_result_tests.v1",
+        RISK / PRE_RESULT_TESTS_NAME: {
+            "schema_version": "canondressgs.paper.loo_attempt002_pre_result_tests.v1",
             "task_id": TASK_ID, "status": "PASS", "local": local,
             "cloud": cloud, "result_information_used": False,
         },
+        RISK / ORIGINAL_MANIFEST_NAME: original_manifest,
     }
     for path, value in paths.items():
         json_write(path, value, replace=False)
@@ -1026,12 +1174,16 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
 def materialize(root: Path) -> dict[str, Any]:
     attempt = attempt_path(root)
     if attempt.exists():
-        raise RuntimeError("LOO_ADAPTATION_ATTEMPT_COLLISION")
-    if (root / OUTPUT_NAME / "attempt_002").exists():
-        raise RuntimeError("LOO_ADAPTATION_ATTEMPT_002_FORBIDDEN")
+        raise RuntimeError("LOO_ATTEMPT_002_COLLISION")
+    if forbidden_next_attempt_path(root).exists():
+        raise RuntimeError("LOO_ATTEMPT_003_FORBIDDEN")
     if git("status", "--short"):
         raise RuntimeError("materialize requires the clean EXECUTION_HEAD")
-    binding = read_json(RISK / "loo_execution_binding.json")
+    binding = read_json(RISK / EXECUTION_BINDING_NAME)
+    original_manifest = read_json(RISK / ORIGINAL_MANIFEST_NAME)
+    original_audit = original_attempt_immutability_audit(root, original_manifest)
+    if original_audit["status"] != "PASS":
+        raise RuntimeError("LOO_ATTEMPT_001_IMMUTABILITY_FAILURE")
     resource = cloud_resource_preflight(root)
     if resource["status"] != "PASS":
         raise RuntimeError("LOO_ADAPTATION_RESOURCE_PREFLIGHT_FAILED")
@@ -1053,24 +1205,34 @@ def materialize(root: Path) -> dict[str, Any]:
         "task_id": TASK_ID, "status": "EXECUTION_HEAD_FROZEN",
         "attempt": ATTEMPT_NAME, "execution_head": execution_head,
         "source_head": SOURCE_HEAD, "run_branch": RUN_BRANCH,
-        "binding_sha256": sha256(RISK / "loo_execution_binding.json"),
+        "binding_sha256": sha256(RISK / EXECUTION_BINDING_NAME),
+        "attempt_001_manifest_sha256": sha256(RISK / ORIGINAL_MANIFEST_NAME),
+        "reuse_attempt_001_basis_artifacts": False,
+        "reuse_attempt_001_auxiliary_renders": False,
+        "reuse_attempt_001_optimizer_state": False,
         "created_at_utc": now(),
     }
     json_write(attempt / "00_preflight/execution_metadata.json", metadata)
     json_write(attempt / "00_preflight/cloud_resource_preflight.json", resource)
     json_write(attempt / "00_preflight/historical_immutability.json", historical_immutability_audit())
+    json_write(attempt / "00_preflight/attempt_001_immutability.json", original_audit)
+    json_write(attempt / "00_preflight/attempt_001_manifest.json", original_manifest)
     json_write(attempt / "00_preflight/storage_forecast.json", resource["storage_forecast"])
     json_write(attempt / "00_preflight/credential_scan.json", credential_scan((ROOT,)))
     json_write(attempt / "00_preflight/cache_contract_preflight.json", cache_preflight)
-    for relative in (*REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES):
+    snapshot_files = (
+        *REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES,
+        *RENDERER_PARITY_REPAIRED_FILES,
+    )
+    for relative in snapshot_files:
         destination = attempt / "01_contract_snapshot" / relative
         output_io.atomic_write_bytes(attempt, destination, (ROOT / relative).read_bytes())
     json_write(attempt / "01_contract_snapshot/contract_registry.json", {
         "status": "PASS",
-        "artifact_count": len(REPAIRED_FILES) + len(INHERITED_FILES) + len(CACHE_REPAIRED_FILES),
+        "artifact_count": len(snapshot_files),
         "artifacts": {
             relative: sha256(attempt / "01_contract_snapshot" / relative)
-            for relative in (*REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES)
+            for relative in snapshot_files
         },
     })
     json_write(attempt / "01_contract_snapshot/runtime_cache_plan_binding.json", {
@@ -1096,6 +1258,14 @@ def assert_execution_head(attempt: Path) -> str:
     head = git("rev-parse", "HEAD")
     if head != metadata["execution_head"] or git("status", "--short"):
         raise RuntimeError("scientific execution requires the clean EXECUTION_HEAD")
+    if metadata.get("attempt") != ATTEMPT_NAME or attempt.name != ATTEMPT_NAME:
+        raise RuntimeError("LOO_ATTEMPT_002_BINDING_MISMATCH")
+    root = attempt.parent.parent
+    original_manifest = read_json(RISK / ORIGINAL_MANIFEST_NAME)
+    if original_attempt_immutability_audit(root, original_manifest)["status"] != "PASS":
+        raise RuntimeError("LOO_ATTEMPT_001_IMMUTABILITY_FAILURE")
+    if forbidden_next_attempt_path(root).exists():
+        raise RuntimeError("LOO_ATTEMPT_003_FORBIDDEN")
     return head
 
 
@@ -4017,10 +4187,10 @@ Final diagnosis: `{analysis['classification']}`.
 
 def next_task_route(classification: str) -> str:
     return {
-        "LOO_BASIS_ADAPTATION_SUPPORTED": "REFRESH_PAPER_FIGURE_BANK_WITH_HEADROOM_AND_LOO_RESULTS_THEN_FREEZE_METHOD",
+        "LOO_BASIS_ADAPTATION_SUPPORTED": "REFRESH_PAPER_FIGURE_BANK_WITH_LOO_RESULTS_AND_FREEZE_MAIN_METHOD",
         "LOO_BASIS_ADAPTATION_PARTIAL": "ADJUDICATE_PARTIAL_LOO_AND_FREEZE_CANONDRESSGS_METHOD_SCOPE",
-        "LOO_BASIS_CAPACITY_LIMITED": "FREEZE_SPATIALLY_DISTRIBUTED_CLOTHING_COEFFICIENT_ORACLE_PROTOCOL",
-        "LOO_OPTIMIZATION_LIMITED": "DIAGNOSE_LOO_COEFFICIENT_OPTIMIZATION_AND_INITIALIZATION",
+        "LOO_BASIS_CAPACITY_LIMITED": "EVALUATE_PAPER_VALUE_BEFORE_ANY_SPATIAL_COEFFICIENT_FIELD_EXPERIMENT",
+        "LOO_OPTIMIZATION_LIMITED": "EVALUATE_WHETHER_ONE_FINAL_LOO_OPTIMIZATION_REPAIR_IS_PAPER_CRITICAL",
         "LOO_HARD_LOOKUP_NOT_OUTPERFORMED": "FREEZE_ENDPOINT_COORDINATE_SYSTEM_PAPER_METHOD_SCOPE",
     }[classification]
 
@@ -4043,17 +4213,17 @@ def finalize(root: Path) -> dict[str, Any]:
     lookup = read_json(attempt / "09_hard_lookup_analysis/hard_lookup_registry.json")
     visual = read_json(attempt / "11_visual_sheets/visual_review_summary.json")
     registries = {
-        "loo_basis_execution_registry.json": basis_registry,
-        "loo_adaptation_run_registry.json": {
+        REGISTRY_NAMES[0]: basis_registry,
+        REGISTRY_NAMES[1]: {
             "schema_version": "canondressgs.paper.loo_adaptation_run_registry.v1",
             "task_id": TASK_ID, "status": "PASS", "run_count": len(runs), "runs": runs,
         },
-        "loo_checkpoint_registry.json": {
+        REGISTRY_NAMES[2]: {
             "schema_version": "canondressgs.paper.loo_checkpoint_registry.v1",
             "task_id": TASK_ID, "status": "PASS", "checkpoint_count": len(checkpoints),
             "checkpoints": checkpoints,
         },
-        "loo_prediction_registry.json": {
+        REGISTRY_NAMES[3]: {
             "schema_version": "canondressgs.paper.loo_prediction_registry.v1",
             "task_id": TASK_ID, "status": "PASS",
             "prediction_count": len(evaluation["prediction_registry"]),
@@ -4061,35 +4231,38 @@ def finalize(root: Path) -> dict[str, Any]:
             "auxiliary_equal_wall_time_prediction_count": len(evaluation["equal_wall_time_prediction_registry"]),
             "auxiliary_equal_wall_time_predictions": evaluation["equal_wall_time_prediction_registry"],
         },
-        "loo_metric_summary.json": analysis,
-        "loo_oracle_capacity_analysis.json": {
+        REGISTRY_NAMES[4]: analysis,
+        REGISTRY_NAMES[5]: {
             "status": "PASS", "oracle_registry": oracle,
             "capacity_rows": analysis["capacity_rows"],
         },
-        "loo_hard_lookup_analysis.json": {
+        REGISTRY_NAMES[6]: {
             "status": "PASS", "lookup_registry": lookup,
             "garment_results": analysis["garment_results"],
             "rotation_results": analysis["rotation_results"],
         },
-        "loo_view_budget_scaling.json": {
+        REGISTRY_NAMES[7]: {
             "status": "PASS", "classification": analysis["view_budget_scaling_classification"],
             "rows": analysis["scaling_rows"], "per_garment": analysis["scaling_garments"],
         },
-        "loo_full_residual_summary.json": {
+        REGISTRY_NAMES[8]: {
             "status": "PASS", "recovery_rows": analysis["recovery_rows"],
             "recovery_gate_pass": analysis["recovery_gate_pass"],
             "equal_wall_time": analysis["equal_wall_time_full_residual"],
         },
-        "loo_visual_review_summary.json": visual,
-        "loo_execution_count_verification.json": counts,
-        "loo_tests.json": {
+        REGISTRY_NAMES[9]: visual,
+        REGISTRY_NAMES[10]: counts,
+        REGISTRY_NAMES[11]: {
             "status": "PASS", "execution_head": execution_head,
             "source_artifacts": source_artifact_audit()["status"],
             "historical_immutability": historical_immutability_audit()["status"],
+            "attempt_001_immutability": original_attempt_immutability_audit(
+                root, read_json(RISK / ORIGINAL_MANIFEST_NAME)
+            )["status"],
             "counts": counts["status"], "temporary_leaks": output_io.temporary_file_leaks(attempt),
         },
-        "loo_final_summary.json": {
-            "schema_version": "canondressgs.paper.loo_final_summary.v1",
+        REGISTRY_NAMES[12]: {
+            "schema_version": "canondressgs.paper.loo_attempt002_final_summary.v1",
             "task_id": TASK_ID, "status": "SCIENTIFIC_EXECUTION_COMPLETE",
             "classification": analysis["classification"],
             "source_head": SOURCE_HEAD, "execution_head": execution_head,
@@ -4112,15 +4285,15 @@ def finalize(root: Path) -> dict[str, Any]:
         "execution_head": execution_head, "result_head": "RESULT_HEAD_PENDING_COMMIT",
         "final_reporting_head": "FINAL_REPORTING_HEAD_RESOLVES_AFTER_SEAL_COMMIT",
         "attempt": ATTEMPT_NAME, "classification": analysis["classification"],
-        "metric_source": "paper_protocol/reviewer_risk/loo_metric_summary.json",
-        "visual_registry": "paper_protocol/reviewer_risk/loo_visual_review_summary.json",
-        "capacity_analysis": "paper_protocol/reviewer_risk/loo_oracle_capacity_analysis.json",
-        "hard_lookup_comparison": "paper_protocol/reviewer_risk/loo_hard_lookup_analysis.json",
+        "metric_source": f"paper_protocol/reviewer_risk/{REGISTRY_NAMES[4]}",
+        "visual_registry": f"paper_protocol/reviewer_risk/{REGISTRY_NAMES[9]}",
+        "capacity_analysis": f"paper_protocol/reviewer_risk/{REGISTRY_NAMES[5]}",
+        "hard_lookup_comparison": f"paper_protocol/reviewer_risk/{REGISTRY_NAMES[6]}",
         "claim_boundary": analysis["claim_boundary"],
         "license": "inherits source dataset and repository licenses; no generated imagery",
         "figure_bank_modified": False,
     }
-    json_write(RISK / "sealed_loo_figure_refresh_manifest.json", figure_manifest)
+    json_write(RISK / FIGURE_REFRESH_MANIFEST_NAME, figure_manifest)
     json_write(attempt / "13_final_verification/SEALED_LOO_FIGURE_REFRESH_MANIFEST.json", figure_manifest)
     handoff = {
         "schema_version": "canondressgs.project_control.loo_basis_adaptation_experiment_handoff.v1",
@@ -4129,15 +4302,16 @@ def finalize(root: Path) -> dict[str, Any]:
         "source_head": SOURCE_HEAD, "execution_head": execution_head,
         "result_head": "RESULT_HEAD_PENDING_COMMIT",
         "final_reporting_head": "FINAL_REPORTING_HEAD_RESOLVES_AFTER_SEAL_COMMIT",
-        "output": str(attempt), "attempt_002_created": False,
+        "output": str(attempt), "attempt_002_created": True,
+        "attempt_001_preserved": True, "attempt_003_created": False,
         "PAPER_FINAL": False, "paper_final_count": 0,
         "next_task": next_task_route(analysis["classification"]),
     }
-    json_write(HANDOFF / "loo_basis_adaptation_experiment_handoff.json", handoff)
+    json_write(HANDOFF / HANDOFF_NAME, handoff)
     json_write(attempt / "13_final_verification/handoff.json", handoff)
-    json_write(attempt / "13_final_verification/final_summary.json", registries["loo_final_summary.json"])
+    json_write(attempt / "13_final_verification/final_summary.json", registries[REGISTRY_NAMES[12]])
     update_status(attempt, status="FINALIZED_PENDING_RESULT_COMMIT", classification=analysis["classification"])
-    return registries["loo_final_summary.json"]
+    return registries[REGISTRY_NAMES[12]]
 
 
 def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
@@ -4147,8 +4321,8 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
         errors.append("worktree_dirty")
     if not attempt.is_dir():
         errors.append("attempt_missing")
-    if (root / OUTPUT_NAME / "attempt_002").exists():
-        errors.append("attempt_002_exists")
+    if forbidden_next_attempt_path(root).exists():
+        errors.append("attempt_003_exists")
     for path in list(attempt.rglob("*.json")) + [RISK / name for name in REGISTRY_NAMES]:
         try:
             read_json(path)
@@ -4172,6 +4346,11 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
     source = source_artifact_audit()
     if source["status"] != "PASS":
         errors.append("source_artifact_mutation")
+    original = original_attempt_immutability_audit(
+        root, read_json(RISK / ORIGINAL_MANIFEST_NAME)
+    )
+    if original["status"] != "PASS":
+        errors.append("attempt_001_mutation")
     counts_path = attempt / "13_final_verification/execution_count_verification.json"
     if not counts_path.is_file() or read_json(counts_path)["status"] != "PASS":
         errors.append("count_verification")
@@ -4192,9 +4371,11 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
         "errors": errors, "require_clean": require_clean,
         "head": git("rev-parse", "HEAD"), "branch": git("branch", "--show-current"),
         "historical_immutability": historical["status"],
+        "attempt_001_immutability": original["status"],
         "source_artifact_audit": source["status"],
         "credential_scan": credentials,
-        "attempt_002_absent": not (root / OUTPUT_NAME / "attempt_002").exists(),
+        "attempt_002_present": attempt.is_dir(),
+        "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
         "PAPER_FINAL": False, "paper_final_count": 0,
         "checked_at_utc": now(),
     }

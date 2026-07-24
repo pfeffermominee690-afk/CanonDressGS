@@ -10,20 +10,39 @@ from tools.paper import run_loo_basis_adaptation_experiment as runner
 
 
 def test_repaired_source_and_historical_artifacts_are_exact() -> None:
-    assert runner.TASK_ID == "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001"
-    assert runner.SOURCE_BRANCH == "research/loo-k-dependent-cache-count-contract-repair-20260724"
-    assert runner.SOURCE_HEAD == "d595264dd0bc9f8b19077955e9ba605f0d25fdd5"
-    assert runner.RUN_BRANCH == "research/leave-one-garment-out-basis-adaptation-cache-repaired-20260724"
+    assert runner.TASK_ID == "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002"
+    assert runner.SOURCE_BRANCH == "research/loo-basis-renderer-parity-closure-repair-20260724"
+    assert runner.SOURCE_HEAD == "a34f750c64ba5c70fc360d16ada97ec0c6b84851"
+    assert runner.RUN_BRANCH == "research/loo-basis-adaptation-attempt2-renderer-parity-repaired-20260724"
+    assert runner.ATTEMPT_NAME == "attempt_002"
+    assert runner.ORIGINAL_ATTEMPT_NAME == "attempt_001"
+    assert runner.FORBIDDEN_NEXT_ATTEMPT_NAME == "attempt_003"
     source = runner.source_artifact_audit()
     historical = runner.historical_immutability_audit()
+    parity = runner.renderer_parity_contract_audit()
     assert source["status"] == "PASS"
-    assert source["artifact_count"] == len(runner.REPAIRED_FILES) + len(runner.INHERITED_FILES)
+    assert source["artifact_count"] == sum(map(len, (
+        runner.REPAIRED_FILES,
+        runner.INHERITED_FILES,
+        runner.CACHE_REPAIRED_FILES,
+        runner.RENDERER_PARITY_REPAIRED_FILES,
+    )))
     assert historical["status"] == "PASS"
     assert historical["artifact_count"] == 14
     assert historical["mutation_count"] == 0
     assert historical["historical_classification"] == "LOO_PROTOCOL_INCOMPLETE"
     assert historical["historical_valid_tasks"] == 15
     assert historical["historical_blocked_tasks"] == 45
+    assert parity["status"] == "PASS"
+    assert all(parity["checks"].values())
+
+
+def test_attempt002_artifact_names_are_append_only() -> None:
+    assert all("ATTEMPT002" in name for name in runner.REPORT_NAMES)
+    assert all("attempt002" in name for name in runner.REGISTRY_NAMES)
+    assert runner.HANDOFF_NAME == "loo_basis_adaptation_attempt002_handoff.json"
+    assert runner.EXECUTION_BINDING_NAME == "loo_attempt002_execution_binding.json"
+    assert runner.ORIGINAL_MANIFEST_NAME == "loo_attempt002_attempt001_immutable_manifest.json"
 
 
 def test_protocol_audit_freezes_40_ready_k1_k2_tasks() -> None:
