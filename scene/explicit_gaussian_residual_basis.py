@@ -46,6 +46,8 @@ def _validate_bounds(channel_bounds: Mapping[str, float]) -> dict[str, float]:
 def normalized_residual_dict(
     residuals: GaussianClothingResiduals,
     channel_bounds: Mapping[str, float],
+    *,
+    dtype: torch.dtype | None = None,
 ) -> dict[str, torch.Tensor]:
     bounds = _validate_bounds(channel_bounds)
     values = {}
@@ -53,6 +55,8 @@ def normalized_residual_dict(
         value = getattr(residuals, name)
         if not torch.is_floating_point(value) or not torch.isfinite(value).all():
             raise ValueError(f"{name} must be a finite floating-point tensor")
+        if dtype is not None:
+            value = value.to(dtype=dtype)
         values[name] = value / bounds[CHANNEL_TO_BOUND[name]]
     return values
 
@@ -168,8 +172,10 @@ class ExplicitGaussianResidualBasis(nn.Module):
             coefficients = coefficients[0]
         if coefficients.shape != (self.rank,):
             raise ValueError(f"coefficients must have shape [{self.rank}] or [1,{self.rank}]")
-        if coefficients.device != reference.device or coefficients.dtype != reference.dtype:
-            raise ValueError("coefficients must share basis device and dtype")
+        if coefficients.device != reference.device:
+            raise ValueError("coefficients must share the basis device")
+        if coefficients.dtype != reference.dtype:
+            coefficients = coefficients.to(dtype=reference.dtype)
         if not torch.isfinite(coefficients).all():
             raise ValueError("coefficients contain NaN or Inf")
         if gaussian_indices is None:
@@ -273,7 +279,12 @@ def build_svd_basis(
     order = tuple(outfit_order)
     if len(order) < 2 or set(teacher_residuals) != set(order) or len(set(order)) != len(order):
         raise ValueError("SVD decomposition requires at least two ordered teachers")
-    normalized = {name: normalized_residual_dict(teacher_residuals[name], channel_bounds) for name in order}
+    normalized = {
+        name: normalized_residual_dict(
+            teacher_residuals[name], channel_bounds, dtype=torch.float64,
+        )
+        for name in order
+    }
     flattened = []; shapes = None
     for name in order:
         flat, current_shapes = _flatten_normalized_fields(normalized[name])
@@ -283,7 +294,12 @@ def build_svd_basis(
             raise ValueError("all SVD teachers must share six-channel shapes")
         flattened.append(flat)
     matrix = torch.stack(flattened)
-    mean_flat = matrix.mean(0); centered = matrix - mean_flat
+    mean_flat = matrix.mean(0)
+    projection_rows = matrix - mean_flat
+    # Finite-precision centered rows must realize their theoretical affine rank <= M-1.
+    # Closing the final row removes only centering roundoff, not scientific signal.
+    centered = projection_rows.clone()
+    centered[-1] = -centered[:-1].sum(0)
     maximum_rank = min(len(order) - 1, int(centered.shape[1]))
     if rank <= 0 or rank > maximum_rank:
         raise ValueError(f"rank must be in [1,{maximum_rank}]")
@@ -293,7 +309,7 @@ def build_svd_basis(
         pivot = int(basis_flat[index].abs().argmax())
         if basis_flat[index, pivot] < 0:
             basis_flat[index].neg_()
-    coefficient_matrix = centered @ basis_flat.t()
+    coefficient_matrix = projection_rows @ basis_flat.t()
     assert shapes is not None
     mean = _unflatten_normalized_fields(mean_flat, shapes)
     basis_fields = {name: [] for name in CHANNELS}
@@ -306,6 +322,10 @@ def build_svd_basis(
     coefficients = {name: coefficient_matrix[index] for index, name in enumerate(order)}
     metadata = {
         "method": "deterministic_centered_svd", "rank": rank, "outfit_order": list(order),
+        "numerical_dtype": "torch.float64",
+        "centering_contract": "final centered row is negative sum of prior rows",
+        "coefficient_solver": "orthonormal_basis_transpose_projection",
+        "renderer_entry_cast": "shared canonical composition casts once to base dtype",
         "teacher_coefficients": {name: value.detach().cpu().tolist() for name, value in coefficients.items()},
         "teacher_fingerprints": {name: tensor_mapping_fingerprint(normalized[name]) for name in order},
         "basis_fingerprint": basis.fingerprint(), "space": "bound_normalized_six_channel_gaussian_residual",

@@ -240,7 +240,9 @@ def compose_canonical_gaussian_overrides(
 
     def residual(name: str, fallback: torch.Tensor) -> torch.Tensor:
         value = getattr(gaussian_residuals, name)
-        return torch.zeros_like(fallback) if value is None or name not in enabled else value
+        if value is None or name not in enabled:
+            return torch.zeros_like(fallback)
+        return value.to(device=fallback.device, dtype=fallback.dtype)
 
     delta_rotvec = residual(
         "delta_rotvec",

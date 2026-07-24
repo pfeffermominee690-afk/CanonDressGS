@@ -130,3 +130,21 @@ def test_interrupted_diagnostic_renders_are_counted_without_scientific_outputs()
     assert '"diagnostic_render_calls": 68' in SOURCE
     assert '"status": "INTERRUPTED_IMPLEMENTATION_ERROR"' in SOURCE
     assert "prior_interrupted_render_calls(diagnostic)" in SOURCE
+
+
+def test_selected_repair_is_float64_zero_sum_with_one_renderer_entry_cast() -> None:
+    basis_source = (ROOT / "scene/explicit_gaussian_residual_basis.py").read_text(
+        encoding="utf-8"
+    )
+    composition_source = (ROOT / "scene/gaussian_clothing_residuals.py").read_text(
+        encoding="utf-8"
+    )
+    executor_source = (
+        ROOT / "tools/paper/run_loo_basis_adaptation_experiment.py"
+    ).read_text(encoding="utf-8")
+    assert "dtype=torch.float64" in basis_source
+    assert "centered[-1] = -centered[:-1].sum(0)" in basis_source
+    assert '"coefficient_solver": "orthonormal_basis_transpose_projection"' in basis_source
+    assert "value.to(device=fallback.device, dtype=fallback.dtype)" in composition_source
+    assert "dtype=torch.float64" in executor_source
+    assert "centered[-1] = -centered[:-1].sum(0)" in executor_source

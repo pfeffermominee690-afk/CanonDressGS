@@ -19,6 +19,7 @@ from scene.explicit_gaussian_residual_basis import (
     project_residual_onto_basis,
 )
 from scene.gaussian_clothing_residuals import CHANNELS, GaussianClothingResiduals
+from scene.gaussian_clothing_residuals import compose_canonical_gaussian_overrides
 from tools import run_explicit_gaussian_residual_basis as runner
 
 
@@ -182,6 +183,37 @@ def test_future_svd_basis_supports_multiple_outfits_and_projection() -> None:
     assert decomposition.basis.rank == 1
     coefficient = project_residual_onto_basis(decomposition.basis, teachers["B"])
     assert coefficient.shape == (1,) and torch.isfinite(coefficient).all()
+
+
+def test_svd_basis_uses_float64_affine_closure() -> None:
+    teachers = {
+        "A": _teacher(-1.0),
+        "B": _teacher(-0.2),
+        "C": _teacher(0.3),
+        "D": _teacher(1.0),
+    }
+    decomposition = build_svd_basis(teachers, BOUNDS, tuple(teachers), rank=3)
+    mean, components = decomposition.basis.normalized_fields()
+    assert all(value.dtype == torch.float64 for value in mean.values())
+    assert all(value.dtype == torch.float64 for value in components.values())
+    assert decomposition.metadata["numerical_dtype"] == "torch.float64"
+    assert decomposition.metadata["centering_contract"] == (
+        "final centered row is negative sum of prior rows"
+    )
+
+
+def test_canonical_composition_casts_float64_residual_once_to_base_dtype() -> None:
+    class Base:
+        _xyz = torch.zeros(12, 3, dtype=torch.float32)
+        _scaling = torch.zeros(12, 3, dtype=torch.float32)
+        _rotation = torch.tensor([[1.0, 0.0, 0.0, 0.0]]).repeat(12, 1)
+        _opacity = torch.zeros(12, 1, dtype=torch.float32)
+        _sh0 = torch.zeros(12, 1, 3, dtype=torch.float32)
+        _shN = torch.zeros(12, 3, 3, dtype=torch.float32)
+
+    residual = _teacher(0.3).to(dtype=torch.float64)
+    overrides = compose_canonical_gaussian_overrides(Base(), residual)
+    assert all(value.dtype == torch.float32 for value in overrides.as_dict().values())
 
 
 def test_future_learned_basis_mode_is_available_but_not_used_here() -> None:

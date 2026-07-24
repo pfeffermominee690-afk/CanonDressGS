@@ -1232,13 +1232,17 @@ def build_bases(root: Path) -> dict[str, Any]:
         basis_garments = list(split["basis_garments"])
         bounds = split["basis_contract"]["channel_bounds"]
         normalized = {
-            name: modules["normalized_residual_dict"](teachers[name], bounds)
+            name: modules["normalized_residual_dict"](
+                teachers[name], bounds, dtype=torch.float64,
+            )
             for name in basis_garments
         }
         flattened = [torch.cat([normalized[name][field].reshape(-1) for field in modules["CHANNELS"]]) for name in basis_garments]
         matrix = torch.stack(flattened)
         centered = matrix - matrix.mean(0)
-        singular_values = torch.linalg.svdvals(centered.double()).detach().cpu()
+        centered = centered.clone()
+        centered[-1] = -centered[:-1].sum(0)
+        singular_values = torch.linalg.svdvals(centered).detach().cpu()
         tolerance = max(4, int(centered.shape[1])) * torch.finfo(centered.dtype).eps * float(singular_values[0])
         numerical_rank = int((singular_values > tolerance).sum())
         selected_rank = min(numerical_rank, 3)

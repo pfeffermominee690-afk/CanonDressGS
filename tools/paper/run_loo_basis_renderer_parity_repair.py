@@ -546,16 +546,31 @@ def render_formal(
     return render_prediction(base, sample, cast, context["background"])
 
 
+def render_formal_repaired(
+    context: Mapping[str, Any], sample: Mapping[str, Any], residual: Any,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    from tools.run_residual_field_parameterization import render_prediction
+
+    return render_prediction(
+        context["base"], sample, residual, context["background"],
+    )
+
+
 def capture_render(
     context: Mapping[str, Any], sample: Mapping[str, Any], residual: Any,
+    *,
+    explicit_entry_cast: bool = True,
 ) -> tuple[torch.Tensor, torch.Tensor, dict[str, torch.Tensor], dict[str, Any]]:
     from gsplat import rasterization
     from scene.gaussian_clothing_residuals import compose_canonical_gaussian_overrides
     from tools import run_alpha_raster_audit as audit
 
     base = context["base"]
-    cast = residual.to(device=base._xyz.device, dtype=base._xyz.dtype)
-    overrides = compose_canonical_gaussian_overrides(base, cast)
+    renderer_residual = (
+        residual.to(device=base._xyz.device, dtype=base._xyz.dtype)
+        if explicit_entry_cast else residual
+    )
+    overrides = compose_canonical_gaussian_overrides(base, renderer_residual)
     state = audit.target_free_state(sample, base._xyz.device)
     camera = audit.build_mmlphuman_camera(
         state["camera"], state["camera"]["height"], state["camera"]["width"],
@@ -1133,11 +1148,210 @@ def verify_preflight(asset_root: Path) -> dict[str, Any]:
     }
 
 
+def repaired_basis_semantic_sha(decomposition: Any) -> str:
+    mean, components = decomposition.basis.normalized_fields()
+    return canonical_sha({
+        "basis_fingerprint": decomposition.basis.fingerprint(),
+        "mean": {name: tensor_sha(value) for name, value in mean.items()},
+        "components": {name: tensor_sha(value) for name, value in components.items()},
+        "coefficients": {
+            name: tensor_sha(value)
+            for name, value in decomposition.teacher_coefficients.items()
+        },
+    })
+
+
+def validate_repair(asset_root: Path) -> dict[str, Any]:
+    from scene.explicit_gaussian_residual_basis import (
+        build_svd_basis,
+        normalized_residual_dict,
+    )
+    from scene.gaussian_clothing_residuals import CHANNELS
+
+    diagnostic, immutable = require_diagnostic_runtime(asset_root)
+    diagnosis_path = diagnostic / "diagnosis_summary.json"
+    if not diagnosis_path.is_file():
+        raise RuntimeError("diagnosis must pass before repaired validation")
+    diagnosis = json.loads(diagnosis_path.read_text(encoding="utf-8"))
+    if diagnosis["status"] != "PASS" or not diagnosis["original_failure_reproduced"]:
+        raise RuntimeError("diagnosis did not reproduce the frozen failure")
+    context = runtime_context(diagnostic)
+    teachers = load_teachers(context)
+    split_results = []
+    validation_render_calls = 0
+    for split in split_rows():
+        held_out = split["held_out_garment"]
+        order = list(split["basis_garments"])
+        bounds = split["basis_contract"]["channel_bounds"]
+        normalized = {
+            name: normalized_residual_dict(
+                teachers[name], bounds, dtype=torch.float64,
+            )
+            for name in order
+        }
+        matrix = torch.stack([
+            torch.cat([normalized[name][field].reshape(-1) for field in CHANNELS])
+            for name in order
+        ])
+        centered = matrix - matrix.mean(0)
+        centered = centered.clone()
+        centered[-1] = -centered[:-1].sum(0)
+        singular_values = torch.linalg.svdvals(centered)
+        tolerance = max(4, int(centered.shape[1])) * torch.finfo(
+            centered.dtype
+        ).eps * float(singular_values[0])
+        numerical_rank = int((singular_values > tolerance).sum())
+        selected_rank = min(numerical_rank, 3)
+        decomposition = build_svd_basis(
+            {name: teachers[name] for name in order}, bounds, order, selected_rank,
+        )
+        repeated = build_svd_basis(
+            {name: teachers[name] for name in order}, bounds, order, selected_rank,
+        )
+        coefficient_matrix = torch.stack([
+            decomposition.teacher_coefficients[name] for name in order
+        ])
+        normalization = {
+            "held_out_garment": held_out,
+            "basis_garments": order,
+            "mean": coefficient_matrix.mean(0).detach().cpu().tolist(),
+            "std": coefficient_matrix.std(0, unbiased=False).clamp_min(1e-8).detach().cpu().tolist(),
+            "held_out_in_normalization": False,
+            "dtype": "torch.float64",
+        }
+        endpoint_results = {}
+        for name in order:
+            sample = context["samples"][f"{name}/{CONDITION}"]
+            rebuilt = decomposition.basis(
+                decomposition.teacher_coefficients[name], chunk_size=16384,
+            )
+            with torch.inference_mode():
+                teacher_rgb, teacher_alpha = render_formal_repaired(
+                    context, sample, teachers[name],
+                )
+                rebuilt_rgb, rebuilt_alpha = render_formal_repaired(
+                    context, sample, rebuilt,
+                )
+                _, _, teacher_inputs, teacher_summary = capture_render(
+                    context, sample, teachers[name], explicit_entry_cast=False,
+                )
+                _, _, rebuilt_inputs, rebuilt_summary = capture_render(
+                    context, sample, rebuilt, explicit_entry_cast=False,
+                )
+            validation_render_calls += 4
+            rgb = image_error(teacher_rgb, rebuilt_rgb)
+            alpha = image_error(teacher_alpha, rebuilt_alpha)
+            input_rows = {
+                key: tensor_error(teacher_inputs[key], rebuilt_inputs[key])
+                for key in teacher_inputs
+                if key.startswith("L7/")
+            }
+            input_max = max(row["max_abs"] for row in input_rows.values())
+            residual = residual_error(teachers[name], rebuilt)
+            endpoint_results[name] = {
+                "residual": residual,
+                "rgb": rgb,
+                "alpha": alpha,
+                "renderer_input": input_rows,
+                "renderer_input_max_abs": input_max,
+                "camera_pose_background_equal": (
+                    teacher_summary["camera_sha256"] == rebuilt_summary["camera_sha256"]
+                    and teacher_summary["pose_sha256"] == rebuilt_summary["pose_sha256"]
+                    and teacher_summary["background_sha256"] == rebuilt_summary["background_sha256"]
+                ),
+                "status": "PASS" if (
+                    max(rgb["max_abs"], alpha["max_abs"]) <= RENDER_GATE
+                    and input_max <= RENDER_GATE
+                    and residual["max_abs"] <= 1e-12
+                ) else "FAIL",
+            }
+        basis_sha = repaired_basis_semantic_sha(decomposition)
+        split_result = {
+            "split_id": split["split_id"],
+            "held_out_garment": held_out,
+            "basis_garments": order,
+            "singular_values": [float(value) for value in singular_values],
+            "numerical_rank_tolerance": tolerance,
+            "numerical_rank": numerical_rank,
+            "selected_rank": selected_rank,
+            "centered_sum_l2": float(torch.linalg.vector_norm(centered.sum(0))),
+            "centered_sum_max_abs": float(centered.sum(0).abs().max()),
+            "basis_fingerprint": decomposition.basis.fingerprint(),
+            "basis_semantic_sha256": basis_sha,
+            "normalization_sha256": canonical_sha(normalization),
+            "normalization": normalization,
+            "repeat_fingerprint_match": (
+                decomposition.basis.fingerprint() == repeated.basis.fingerprint()
+                and basis_sha == repaired_basis_semantic_sha(repeated)
+            ),
+            "held_out_teacher_in_basis_count": 0,
+            "held_out_teacher_in_normalization_count": 0,
+            "full_five_garment_basis_reused": False,
+            "endpoints": endpoint_results,
+            "status": "PASS" if all(
+                row["status"] == "PASS" for row in endpoint_results.values()
+            ) else "FAIL",
+        }
+        split_results.append(split_result)
+        del matrix, centered, decomposition, repeated
+        torch.cuda.empty_cache()
+    split_pass_count = sum(row["status"] == "PASS" for row in split_results)
+    endpoint_pass_count = sum(
+        endpoint["status"] == "PASS"
+        for split in split_results
+        for endpoint in split["endpoints"].values()
+    )
+    renderer_input_pass_count = sum(
+        endpoint["renderer_input_max_abs"] <= RENDER_GATE
+        for split in split_results
+        for endpoint in split["endpoints"].values()
+    )
+    final_immutable = original_immutability(asset_root, load_manifest(asset_root))
+    result = {
+        "schema_version": "canondressgs.paper.loo_all_split_basis_parity_repaired.v1",
+        "task_id": TASK_ID,
+        "diagnostic_label": DIAGNOSTIC_LABEL,
+        "status": "PASS" if (
+            split_pass_count == 5
+            and endpoint_pass_count == 20
+            and renderer_input_pass_count == 20
+            and final_immutable["status"] == "PASS"
+        ) else "FAIL",
+        "algorithm": "float64_mean_center_rank3_svd_strict_zero_sum",
+        "coefficient_solver": "orthonormal_basis_transpose_projection",
+        "renderer_entry_cast": "shared canonical composition once to base dtype",
+        "renderer_gate": RENDER_GATE,
+        "split_pass_count": split_pass_count,
+        "endpoint_pass_count": endpoint_pass_count,
+        "renderer_input_pass_count": renderer_input_pass_count,
+        "splits": split_results,
+        "validation_diagnostic_render_calls": validation_render_calls,
+        "prior_diagnostic_render_calls": int(diagnosis["diagnostic_render_calls"]),
+        "actual_diagnostic_render_calls": (
+            int(diagnosis["diagnostic_render_calls"]) + validation_render_calls
+        ),
+        "optimizer_creations": 0,
+        "optimizer_steps": 0,
+        "checkpoint_writes": 0,
+        "formal_metrics": 0,
+        "scientific_visual_sheets": 0,
+        "attempt_002_created": False,
+        "held_out_teacher_use_count": 0,
+        "original_attempt_immutability": final_immutable,
+        "PAPER_FINAL": False,
+    }
+    write_json(diagnostic / "03_repaired_validation/all_split_parity.json", result)
+    return result
+
+
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description="Diagnose and repair LOO basis renderer parity")
     result.add_argument(
         "command",
-        choices=("preflight", "record-known-interruption", "diagnose", "verify-preflight"),
+        choices=(
+            "preflight", "record-known-interruption", "diagnose", "validate-repair",
+            "verify-preflight",
+        ),
     )
     result.add_argument("--asset-root", type=Path)
     return result
@@ -1155,6 +1369,7 @@ def main() -> None:
         "preflight": preflight,
         "record-known-interruption": record_known_interruption,
         "diagnose": diagnose,
+        "validate-repair": validate_repair,
         "verify-preflight": verify_preflight,
     }
     output = commands[arguments.command](asset_root)
