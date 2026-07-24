@@ -1,0 +1,52 @@
+{
+  "first_incompatible_field": "reference_images.shape[0] / semantic view_count",
+  "root_cause_classifications": [
+    "C. SINGLE_VIEW_MULTI_VIEW_AGGREGATION_MISMATCH",
+    "D. CALIBRATION_CONSUMER_EXPECTS_WRONG_INTERFACE"
+  ],
+  "rows": [
+    {
+      "ACTUAL": "4 calibration render observations",
+      "COMPATIBLE": false,
+      "EXPECTED": "1 <= K <= 3 adaptation reference units",
+      "MISMATCH_REASON": "K4 passed to frozen adaptation producer",
+      "SCIENTIFIC_MEANING": "Four rotation folds are independent calibration observations, not one registered K4 adaptation set.",
+      "field": "reference_images.shape[0]"
+    },
+    {
+      "ACTUAL": "CALIBRATION_RENDER_OBSERVATION",
+      "COMPATIBLE": false,
+      "EXPECTED": "ADAPTATION_REFERENCE_UNIT",
+      "MISMATCH_REASON": "consumer reused an adaptation-set interface for split calibration initialization",
+      "SCIENTIFIC_MEANING": "F2 initialization evidence and render-based calibration loss have distinct roles.",
+      "field": "condition_unit_role"
+    },
+    {
+      "ACTUAL": "NO_PAYLOAD_RETURNED",
+      "COMPATIBLE": false,
+      "EXPECTED": "[V,256] with V explicit",
+      "MISMATCH_REASON": "cardinality guard raised before producer output",
+      "SCIENTIFIC_MEANING": "A typed adapter must extract legal singleton records before aggregation.",
+      "field": "per_reference_f2"
+    },
+    {
+      "ACTUAL": "NO_PAYLOAD_RETURNED",
+      "COMPATIBLE": false,
+      "EXPECTED": "[1,512], explicit mean+max rule",
+      "MISMATCH_REASON": "no explicit cross-observation aggregation adapter existed",
+      "SCIENTIFIC_MEANING": "The repair preserves frozen F2 pooling without changing its K guard.",
+      "field": "aggregated_feature"
+    },
+    {
+      "ACTUAL": "dtype/device present; role/order/source provenance untyped",
+      "COMPATIBLE": false,
+      "EXPECTED": "validated and preserved",
+      "MISMATCH_REASON": "legacy consumer passed anonymous tensors",
+      "SCIENTIFIC_MEANING": "The repaired record binds every feature row to a source condition and checksum.",
+      "field": "dtype/device/order/source SHA"
+    }
+  ],
+  "schema_version": "canondressgs.paper.loo_f2_interface_schema_diff.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-CALIBRATION-F2-INTERFACE-REPAIR-001"
+}
