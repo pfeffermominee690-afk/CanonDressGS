@@ -524,12 +524,12 @@ def test_75_py_compile() -> None:
 
 
 def test_76_windows_unit_test_evidence_slot() -> None:
-    assert TESTS["local_python_311"] in {"PENDING", "PASS"}
-    assert TESTS["local_python_310_torch"] in {"PENDING", "PASS"}
+    assert TESTS["local_python_311"] == "PENDING" or TESTS["local_python_311"].startswith("PASS:")
+    assert TESTS["local_python_310_torch"] == "PENDING" or TESTS["local_python_310_torch"].startswith("PASS:")
 
 
 def test_77_cloud_unit_test_evidence_slot() -> None:
-    assert TESTS["cloud_python_310_torch"] in {"PENDING", "PASS"}
+    assert TESTS["cloud_python_310_torch"] == "PENDING" or TESTS["cloud_python_310_torch"].startswith("PASS:")
 
 
 def test_78_deterministic_artifact_regeneration() -> None:
