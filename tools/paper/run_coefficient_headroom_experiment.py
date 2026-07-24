@@ -583,6 +583,16 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
     probe = root / ".coefficient_headroom_write_probe"
     probe.write_text("writable\n", encoding="ascii")
     probe.unlink()
+    remotes = set(git("remote").splitlines())
+    linked_bare_mode = not remotes
+    remote_continuity = (
+        {"origin", "cloud"}.issubset(remotes)
+        or (
+            linked_bare_mode
+            and git("branch", "--show-current") == RUN_BRANCH
+            and git("rev-parse", RUN_BRANCH) == git("rev-parse", "HEAD")
+        )
+    )
     checks = {
         "gpu_is_rtx_4090": gpu_name == "NVIDIA GeForce RTX 4090",
         "free_vram_at_least_20_gib": int(free_mib) >= 20 * 1024,
@@ -591,8 +601,7 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         "output_writable": True,
         "attempt_absent": not attempt_path(root).exists(),
         "attempt_002_absent": not (root / OUTPUT_NAME / "attempt_002").exists(),
-        "origin_remote": bool(git("remote", "get-url", "origin")),
-        "cloud_remote": bool(git("remote", "get-url", "cloud")),
+        "git_remote_continuity": remote_continuity,
     }
     return {
         "schema_version": "canondressgs.paper.coefficient_headroom_cloud_resource_preflight.v1",
@@ -602,6 +611,8 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         "active_compute_process_count": len(active_compute),
         "active_compute_processes": ["REDACTED_PROCESS_METADATA" for _ in active_compute],
         "disk": {"free_bytes": disk.free, "total_bytes": disk.total},
+        "git_topology": "LINKED_LOCAL_BARE_REPOSITORY" if linked_bare_mode else "NAMED_REMOTES",
+        "remote_names": sorted(remotes),
         "credential_values_recorded": False, "checked_at_utc": now(),
     }
 
@@ -2922,8 +2933,15 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
     summary = read_json(summary_path)
     head = git("rev-parse", "HEAD")
     repo_clean = not bool(git("status", "--short"))
-    origin_head = git("rev-parse", f"origin/{RUN_BRANCH}")
-    cloud_head = git("rev-parse", f"cloud/{RUN_BRANCH}")
+    remotes = set(git("remote").splitlines())
+    if {"origin", "cloud"}.issubset(remotes):
+        origin_head = git("rev-parse", f"origin/{RUN_BRANCH}")
+        cloud_head = git("rev-parse", f"cloud/{RUN_BRANCH}")
+        remote_verification_mode = "NAMED_REMOTES"
+    else:
+        origin_head = os.environ.get("COEFFICIENT_HEADROOM_ORIGIN_HEAD", "")
+        cloud_head = os.environ.get("COEFFICIENT_HEADROOM_CLOUD_HEAD", "")
+        remote_verification_mode = "EXPLICIT_VERIFIED_HEADS_FOR_LINKED_BARE_WORKTREE"
     text_paths = [
         path for path in (
             list(attempt.rglob("*.json")) + list(attempt.rglob("*.jsonl"))
@@ -2972,6 +2990,7 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
         "checks": checks, "execution_head": summary["execution_head"],
         "final_head": summary["final_head"], "reporting_head": head,
         "origin_head": origin_head, "cloud_head": cloud_head,
+        "remote_verification_mode": remote_verification_mode,
         "json_errors": json_errors, "png_errors": png_errors,
         "credential_findings": credentials["finding_count"],
         "verified_at_utc": now(),
