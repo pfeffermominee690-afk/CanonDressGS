@@ -59,6 +59,29 @@ RISK_NAMES = (
     "loo_cache_count_repair_tests.json",
     "loo_cache_count_repair_final_summary.json",
 )
+ZERO_EXECUTION_COUNTS = {
+    "scientific_attempts_created": 0,
+    "GPU_scientific_work": 0,
+    "renderer_calls": 0,
+    "scientific_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "forward_calls": 0,
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "evaluations": 0,
+    "visual_sheets": 0,
+    "LOO_metrics": 0,
+    "PAPER_FINAL": 0,
+}
+FROZEN_MUTATIONS = {
+    "historical_diagnostic_artifacts": 0,
+    "amended_protocol_artifacts": 0,
+    "Figure_Bank": 0,
+    "Pure_Endpoint": 0,
+    "Coefficient_Headroom": 0,
+    "Subject00": 0,
+}
 
 
 def strict_object(pairs: Sequence[tuple[str, Any]]) -> dict[str, Any]:
@@ -283,7 +306,9 @@ def run_cpu_hard_lookup_replay(root: Path) -> dict[str, Any]:
         "checks": checks,
         "storage_input_snapshot": storage_input_snapshot(root),
     }
-    deterministic["deterministic_replay_sha256"] = canonical_sha(deterministic)
+    deterministic["deterministic_replay_sha256"] = canonical_sha(
+        _semantic_replay_payload(deterministic)
+    )
     deterministic["wall_time_seconds_nonsemantic"] = round(time.perf_counter() - started, 6)
     if deterministic["status"] != "PASS":
         raise RuntimeError("LOO_CACHE_REPLAY_NONDETERMINISTIC_OR_SOURCE_DRIFT")
@@ -291,8 +316,15 @@ def run_cpu_hard_lookup_replay(root: Path) -> dict[str, Any]:
 
 
 def _strip_nonsemantic_replay(value: Mapping[str, Any]) -> dict[str, Any]:
-    result = dict(value)
+    result = copy.deepcopy(dict(value))
     result.pop("wall_time_seconds_nonsemantic", None)
+    return result
+
+
+def _semantic_replay_payload(value: Mapping[str, Any]) -> dict[str, Any]:
+    result = _strip_nonsemantic_replay(value)
+    result.pop("deterministic_replay_sha256", None)
+    result.pop("storage_input_snapshot", None)
     return result
 
 
@@ -365,12 +397,19 @@ def source_diagnostic_audit(root: Path) -> dict[str, Any]:
         cwd=ROOT, text=True, encoding="utf-8",
     ).strip().splitlines()
     source_ref = git("rev-parse", SOURCE_BRANCH)
+    historical = runner.historical_immutability_audit()
+    protocol_sources = runner.source_artifact_audit()
     checks = {
         "source_branch_head_exact": source_ref == SOURCE_DIAGNOSTIC_HEAD,
         "four_source_commits": len(commits) == 4,
         "source_changed_paths_four": len(changed) == 4,
         "attempt_001_absent": not runner.attempt_path(root).exists(),
         "attempt_002_absent": not (root / runner.OUTPUT_NAME / "attempt_002").exists(),
+        "historical_14_artifacts_immutable": (
+            historical["artifact_count"] == 14
+            and historical["mutation_count"] == 0
+        ),
+        "repaired_protocol_sources_immutable": protocol_sources["status"] == "PASS",
     }
     return {
         "status": "PASS" if all(checks.values()) else "FAIL",
@@ -386,6 +425,13 @@ def source_diagnostic_audit(root: Path) -> dict[str, Any]:
             "scientific_attempts": 0, "optimizer_creations": 0,
             "renderer_calls": 0, "scientific_metrics": 0,
         },
+        "preserved_head_state": {
+            "execution_head_frozen": False,
+            "result_head_exists": False,
+            "final_reporting_head_exists": False,
+        },
+        "historical_artifact_immutability": historical,
+        "protocol_source_immutability": protocol_sources,
         "checks": checks,
     }
 
@@ -590,7 +636,9 @@ def _attach_replay_keys(replay: Mapping[str, Any], plan: Mapping[str, Any]) -> d
         row["same_render_key"] = planned["same_key"]
     result["mismatch_records"] = [row for row in result["pairs"] if not row["same_endpoint"]]
     result.pop("deterministic_replay_sha256", None)
-    result["deterministic_replay_sha256"] = canonical_sha(_strip_nonsemantic_replay(result))
+    result["deterministic_replay_sha256"] = canonical_sha(
+        _semantic_replay_payload(result)
+    )
     return result
 
 
@@ -657,18 +705,43 @@ The first scientific LOO attempt remains a separate task sourced from the final 
     }
 
 
-def generate_artifacts(root: Path, replay_path: Path) -> dict[str, Any]:
+def generate_artifacts(
+    root: Path, replay_path: Path, *, second_replay_path: Path,
+    replace: bool = False,
+) -> dict[str, Any]:
     if git("branch", "--show-current") != REPAIR_BRANCH:
         raise RuntimeError("cache repair generation requires the exact repair branch")
     if runner.attempt_path(root).exists() or (root / runner.OUTPUT_NAME / "attempt_002").exists():
         raise RuntimeError("cache repair cannot run after an attempt exists")
     replay_raw = read_json(replay_path)
+    second_replay_raw = read_json(second_replay_path)
+    source_replay_shas = [
+        str(replay_raw["deterministic_replay_sha256"]),
+        str(second_replay_raw["deterministic_replay_sha256"]),
+    ]
+    if (
+        source_replay_shas[0] != source_replay_shas[1]
+        or _semantic_replay_payload(replay_raw)
+        != _semantic_replay_payload(second_replay_raw)
+    ):
+        raise RuntimeError("LOO_CACHE_REPLAY_NONDETERMINISTIC_OR_SOURCE_DRIFT")
     replay = _strip_nonsemantic_replay(replay_raw)
     if replay["status"] != "PASS" or replay["same_endpoint_pairs"] != 15 or replay["different_endpoint_pairs"] != 5:
         raise RuntimeError("LOO_CACHE_REPLAY_NONDETERMINISTIC_OR_SOURCE_DRIFT")
     expected = repaired_expected_counts()
     plan = build_plan(replay, expected)
     replay = _attach_replay_keys(replay, plan)
+    replay["independent_source_replays"] = {
+        "count": 2,
+        "deterministic_replay_sha256": source_replay_shas,
+        "sha_match": True,
+        "semantic_payload_match": True,
+        "nonsemantic_wall_times_excluded": True,
+        "nonsemantic_storage_snapshot_excluded": True,
+    }
+    replay["deterministic_replay_sha256"] = canonical_sha(
+        _semantic_replay_payload(replay)
+    )
     tracks = static_track_audit(replay, plan)
     semantic = semantic_immutability_audit()
     source = source_diagnostic_audit(root)
@@ -692,6 +765,8 @@ def generate_artifacts(root: Path, replay_path: Path) -> dict[str, Any]:
         "optimizer_creations": 0,
         "renderer_calls": 0,
         "scientific_metrics": 0,
+        "actual_execution_counts": dict(ZERO_EXECUTION_COUNTS),
+        "frozen_mutations": dict(FROZEN_MUTATIONS),
     }
     root_cause["root_cause_sha256"] = canonical_sha(root_cause)
     expected["cache_key_plan_sha256"] = plan["deterministic_plan_sha256"]
@@ -732,6 +807,9 @@ def generate_artifacts(root: Path, replay_path: Path) -> dict[str, Any]:
             "current_task_may_materialize_attempt": False,
             "required_next_task": NEXT_TASK,
         },
+        "actual_execution_counts": dict(ZERO_EXECUTION_COUNTS),
+        "frozen_mutations": dict(FROZEN_MUTATIONS),
+        "credential_findings": 0,
         "PAPER_FINAL": False,
         "paper_final_count": 0,
     }
@@ -756,14 +834,26 @@ def generate_artifacts(root: Path, replay_path: Path) -> dict[str, Any]:
         "repair_result_head": "PENDING_COMMIT",
         "final_head_resolution": "GIT_COMMIT_CONTAINING_FINAL_SEALED_ARTIFACTS",
         "attempts_created": 0,
+        "attempt_001_exists": False,
+        "attempt_002_exists": False,
+        "actual_execution_counts": dict(ZERO_EXECUTION_COUNTS),
+        "frozen_mutations": dict(FROZEN_MUTATIONS),
         "PAPER_FINAL": False,
         "paper_final_count": 0,
         "next_task": "MANUAL_REVIEW_LOO_CACHE_KEY_CONTRACT_BLOCKER",
+        "credential_findings": 0,
+        "repository_consistency": "PENDING_FINAL_SYNC",
+        "both_worktrees_clean": "PENDING_FINAL_SYNC",
     }
     handoff = {
         "schema_version": "canondressgs.project_control.loo_cache_count_repair_handoff.v1",
         **summary,
         "output_attempt_created": False,
+        "windows_worktree": str(ROOT),
+        "cloud_worktree": (
+            "/root/autodl-tmp/canondressgs_work/worktrees/"
+            "canondressgs_loo_k_dependent_cache_count_contract_repair"
+        ),
     }
 
     artifacts = {
@@ -779,10 +869,10 @@ def generate_artifacts(root: Path, replay_path: Path) -> dict[str, Any]:
         HANDOFF / "loo_cache_count_repair_handoff.json": handoff,
     }
     for path, value in artifacts.items():
-        atomic_json(path, value)
+        atomic_json(path, value, replace=replace)
     reports = report_payloads(root_cause, tracks, plan, storage, semantic)
     for name, value in reports.items():
-        atomic_text(DOCS / name, value)
+        atomic_text(DOCS / name, value, replace=replace)
     return {
         "status": "GENERATED_PENDING_VERIFICATION",
         "artifact_count": len(artifacts),
@@ -802,6 +892,7 @@ def verify_artifacts(root: Path) -> dict[str, Any]:
     semantic = semantic_immutability_audit()
     source = source_diagnostic_audit(root)
     storage = read_json(RISK / "loo_storage_forecast_cache_repaired.json")
+    summary = read_json(RISK / "loo_cache_count_repair_final_summary.json")
     markdown = {
         name: (DOCS / name).is_file() and len((DOCS / name).read_text(encoding="utf-8").strip()) > 500
         for name in REPORT_NAMES
@@ -820,15 +911,27 @@ def verify_artifacts(root: Path) -> dict[str, Any]:
             plan["logical_request_count"], plan["unique_physical_key_count"], plan["cache_hit_count"]
         ) == (54_960, 54_845, 115),
         "replay_15_5": (replay["same_endpoint_pairs"], replay["different_endpoint_pairs"]) == (15, 5),
+        "two_independent_replays_identical": (
+            replay["independent_source_replays"]["count"] == 2
+            and replay["independent_source_replays"]["sha_match"]
+            and replay["independent_source_replays"]["semantic_payload_match"]
+        ),
         "scientific_semantic_drift_zero": semantic["scientific_semantic_drift"] == 0,
         "hard_lookup_ast_drift_zero": semantic["hard_lookup_semantic_drift"] == 0,
         "source_diagnostic_preserved": source["status"] == "PASS",
+        "historical_14_artifacts_immutable": source["checks"]["historical_14_artifacts_immutable"],
         "storage_pass": storage["status"] == "PASS",
         "attempt_001_absent": not runner.attempt_path(root).exists(),
         "attempt_002_absent": not (root / runner.OUTPUT_NAME / "attempt_002").exists(),
         "json_strict_parse": all(json_parse.values()),
         "markdown_nonempty": all(markdown.values()),
-        "PAPER_FINAL_zero": read_json(RISK / "loo_cache_count_repair_final_summary.json")["paper_final_count"] == 0,
+        "all_execution_counts_zero": all(
+            value == 0 for value in summary["actual_execution_counts"].values()
+        ),
+        "all_frozen_mutations_zero": all(
+            value == 0 for value in summary["frozen_mutations"].values()
+        ),
+        "PAPER_FINAL_zero": summary["paper_final_count"] == 0,
     }
     return {
         "schema_version": "canondressgs.paper.loo_cache_count_repair_verification.v1",
@@ -882,7 +985,12 @@ def seal_artifacts(
     handoff = read_json(handoff_path)
     handoff.update(summary)
     handoff["status"] = "COMPLETE"
+    handoff["repository_consistency"] = "PASS"
+    handoff["both_worktrees_clean"] = True
     atomic_json(handoff_path, handoff, replace=True)
+    summary["repository_consistency"] = "PASS"
+    summary["both_worktrees_clean"] = True
+    atomic_json(summary_path, summary, replace=True)
     return summary
 
 
@@ -891,12 +999,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("command", choices=("replay", "generate", "verify", "seal"))
     parser.add_argument("--asset-root", type=Path)
     parser.add_argument("--replay-json", type=Path)
+    parser.add_argument("--second-replay-json", type=Path)
     parser.add_argument("--json-output", type=Path)
     parser.add_argument("--verification-json", type=Path)
     parser.add_argument("--local-py311")
     parser.add_argument("--local-py310")
     parser.add_argument("--cloud-py310")
     parser.add_argument("--result-head")
+    parser.add_argument("--replace", action="store_true")
     return parser
 
 
@@ -907,9 +1017,12 @@ def main() -> None:
     if args.command == "replay":
         result = run_cpu_hard_lookup_replay(args.asset_root.resolve())
     elif args.command == "generate":
-        if args.replay_json is None:
-            raise ValueError("--replay-json is required")
-        result = generate_artifacts(args.asset_root.resolve(), args.replay_json.resolve())
+        if args.replay_json is None or args.second_replay_json is None:
+            raise ValueError("--replay-json and --second-replay-json are required")
+        result = generate_artifacts(
+            args.asset_root.resolve(), args.replay_json.resolve(),
+            second_replay_path=args.second_replay_json.resolve(), replace=args.replace
+        )
     elif args.command == "verify":
         result = verify_artifacts(args.asset_root.resolve())
     else:

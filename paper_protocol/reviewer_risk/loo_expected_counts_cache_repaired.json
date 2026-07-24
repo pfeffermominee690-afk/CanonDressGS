@@ -1,0 +1,128 @@
+{
+  "actual_counts_in_repair_task": {
+    "PAPER_FINAL": 0,
+    "SVD_runs": 0,
+    "adaptation_runs": 0,
+    "backward": 0,
+    "basis_generation": 0,
+    "checkpoint_writes": 0,
+    "evaluation_inference": 0,
+    "forward": 0,
+    "new_renders": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scientific_attempts": 0,
+    "visual_sheets": 0
+  },
+  "amends_without_mutation": {
+    "allowed_count_changes": {
+      "K_shared_static_cache_hits": {
+        "new": 115,
+        "old": 120
+      },
+      "unique_physical_renders": {
+        "new": 54845,
+        "old": 54840
+      }
+    },
+    "path": "paper_protocol/reviewer_risk/loo_expected_counts_amended.json",
+    "scientific_count_changes": 0,
+    "sha256": "7928fd30b4f97135debf940081bc6c588bfee3ab6eb4bca1865d9c6b782f1851"
+  },
+  "cache_contract": {
+    "cache_count_derivation": "DETERMINISTIC_CACHE_KEY_PLAN_V2",
+    "guaranteed_k_invariant_hits": 100,
+    "guaranteed_k_invariant_static_tracks": 5,
+    "hard_lookup_k_divergent_pairs": 5,
+    "hard_lookup_k_shared_hits": 15,
+    "k_dependent_reference_hard_lookup_tracks": 1,
+    "logical_denominator_unchanged_by_cache": true,
+    "logical_request_count": 54960,
+    "optimizer_render_cache_across_K": false,
+    "total_cache_hits": 115,
+    "unique_physical_key_count": 54845
+  },
+  "cache_key_plan_sha256": "3c8d1fb49448e16c4856ef53ea64e0b29c2130287fd175beddecf810b7c94b99",
+  "count_basis": {
+    "K1_primary_tasks": 20,
+    "K2_primary_tasks": 20,
+    "K4_primary_tasks": 0,
+    "checkpoints_per_run": 6,
+    "held_out_garments": 5,
+    "optimizer_methods_per_task": 3,
+    "optimizer_steps_per_run": 300,
+    "primary_budgets": [
+      1,
+      2
+    ],
+    "primary_tasks": 40,
+    "rotations": 4,
+    "static_oracle_test_tracks_per_task": 6,
+    "test_conditions_per_task": 1
+  },
+  "derivations": {
+    "K1_adaptation_renders": "20 tasks x 3 optimizer methods x 300 steps x 1 view = 18,000",
+    "K2_adaptation_renders": "20 tasks x 3 optimizer methods x 300 steps x 2 views = 36,000",
+    "checkpoint_writes": "120 runs x 6 frozen checkpoints = 720",
+    "logical_renders": "54,000 adaptation-view renders + 960 test evaluations = 54,960",
+    "optimized_evaluation": "40 tasks x 3 optimizer methods x 6 checkpoints x 1 test view = 720",
+    "optimizer_runs": "40 tasks x (primary low-dimensional + zero-initialization diagnostic + full residual) = 120",
+    "optimizer_steps": "120 runs x 300 steps = 36,000",
+    "physical_renders": "54,960 logical renders - 115 deterministic CACHE_KEY_V2 hits = 54,845",
+    "primary_tasks": "5 garments x 4 rotations x 2 budgets = 40",
+    "static_oracle_evaluation": "40 tasks x 6 static/oracle tracks x 1 test view = 240",
+    "table_rows": "40 task rows + 20 paired scaling rows + 5 capacity rows = 65",
+    "visual_sheets": "20 garment-rotation + 5 capacity + 1 aggregate scaling = 26"
+  },
+  "hard_lookup_replay_sha256": "8e5a1ab151975ab06234d8717fe8e2f6ab2c9c775907ecd03393001dd405dea9",
+  "planned_future_counts": {
+    "K1_adaptation_view_logical_renders": 18000,
+    "K1_primary_tasks": 20,
+    "K2_adaptation_view_logical_renders": 36000,
+    "K2_minus_K1_scaling_rows": 20,
+    "K2_primary_tasks": 20,
+    "K4_primary_tasks": 0,
+    "K_shared_static_cache_hits": 115,
+    "adaptation_view_logical_renders": 54000,
+    "aggregate_scaling_visual_sheets": 1,
+    "backward_calls": 36000,
+    "capacity_visual_sheets": 5,
+    "checkpoint_writes": 720,
+    "convex_combination_oracle_computations": 5,
+    "evaluation_inference": 960,
+    "forward_loss_calls": 36000,
+    "full_residual_optimizer_runs": 40,
+    "garment_rotation_visual_sheets": 20,
+    "guaranteed_k_invariant_hits": 100,
+    "hard_lookup_inferences": 40,
+    "hard_lookup_k_divergent_pairs": 5,
+    "hard_lookup_k_shared_hits": 15,
+    "loo_basis_construction_plans": 5,
+    "low_dimensional_optimizer_runs": 40,
+    "optimized_checkpoint_evaluation_inferences": 720,
+    "optimizer_steps": 36000,
+    "oracle_capacity_rows": 5,
+    "oracle_projection_computations": 5,
+    "primary_task_table_rows": 40,
+    "primary_tasks": 40,
+    "residual_nearest_computations": 5,
+    "static_oracle_evaluation_inferences": 240,
+    "total_logical_renders": 54960,
+    "total_optimizer_creations": 120,
+    "total_optimizer_runs": 120,
+    "unique_physical_renders": 54845,
+    "visual_sheets": 26,
+    "wide_result_table_rows": 65,
+    "zero_initialization_diagnostic_runs": 40
+  },
+  "schema_version": "canondressgs.paper.loo_expected_counts_cache_repaired.v1",
+  "source_diagnostic": {
+    "branch": "research/leave-one-garment-out-basis-adaptation-experiment-20260724",
+    "head": "695ae9ca092f8260e6c5f0b016f491c5e4324fd1",
+    "previous_classification": "LOO_ADAPTATION_EXECUTION_INVALID"
+  },
+  "static_track_audit_sha256": "25c152250c5d8afcbe18f340b41e6c37a90ffbba21905bc602effed750088f5d",
+  "status": "PROSPECTIVE_CACHE_COUNTS_REPAIRED_BEFORE_FIRST_ATTEMPT",
+  "task_id": "AAAI27-LOO-K-DEPENDENT-CACHE-COUNT-REPAIR-001"
+}

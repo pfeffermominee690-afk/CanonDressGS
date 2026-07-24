@@ -85,6 +85,25 @@ ALLOWED_PATHS.update({
     "docs/PAPER/AAAI27_LOO_FAILURE_ANALYSIS_20260724.md",
     "project_control_handoff/loo_basis_adaptation_experiment_handoff.json",
 })
+ALLOWED_PATHS.update({
+    "tools/paper/loo_cache_key_plan.py",
+    "tools/paper/repair_loo_k_dependent_cache_count_contract.py",
+    "tests/test_loo_k_dependent_cache_count_contract_repair.py",
+    "docs/PAPER/AAAI27_LOO_CACHE_COUNT_ROOT_CAUSE_20260724.md",
+    "docs/PAPER/AAAI27_LOO_K_DEPENDENT_HARD_LOOKUP_CACHE_AUDIT_20260724.md",
+    "docs/PAPER/AAAI27_LOO_CACHE_KEY_PLAN_V2_20260724.md",
+    "docs/PAPER/AAAI27_LOO_CACHE_COUNT_CONTRACT_REPAIR_20260724.md",
+    "paper_protocol/reviewer_risk/loo_cache_count_root_cause.json",
+    "paper_protocol/reviewer_risk/loo_static_render_track_cache_audit.json",
+    "paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json",
+    "paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json",
+    "paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json",
+    "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
+    "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
+    "paper_protocol/reviewer_risk/loo_cache_count_repair_tests.json",
+    "paper_protocol/reviewer_risk/loo_cache_count_repair_final_summary.json",
+    "project_control_handoff/loo_cache_count_repair_handoff.json",
+})
 
 
 def load_json(relative: str):

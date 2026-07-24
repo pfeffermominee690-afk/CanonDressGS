@@ -1,0 +1,2588 @@
+{
+  "checks": {
+    "attempt_001_absent": true,
+    "attempt_002_absent": true,
+    "different_endpoints_5": true,
+    "exact_mismatch_identities": true,
+    "four_garment_centroid_banks": true,
+    "held_out_excluded": true,
+    "held_out_teacher_reads_zero": true,
+    "optimizer_reads_zero": true,
+    "pair_rows_20": true,
+    "same_endpoints_15": true,
+    "task_rows_40": true,
+    "test_metric_reads_zero": true,
+    "test_target_reads_zero": true
+  },
+  "classification": "DEPLOYABLE_INPUT_DETERMINISTIC_PREFLIGHT",
+  "deterministic_replay_sha256": "8e5a1ab151975ab06234d8717fe8e2f6ab2c9c775907ecd03393001dd405dea9",
+  "different_endpoint_pairs": 5,
+  "feature_cache_entries": 40,
+  "feature_forward_device": "cpu",
+  "held_out_teacher_reads": 0,
+  "independent_source_replays": {
+    "count": 2,
+    "deterministic_replay_sha256": [
+      "09f3d093479b6f0dae7b94db6d2a13ee88c23bc440640ef304a6226f2275b210",
+      "09f3d093479b6f0dae7b94db6d2a13ee88c23bc440640ef304a6226f2275b210"
+    ],
+    "nonsemantic_storage_snapshot_excluded": true,
+    "nonsemantic_wall_times_excluded": true,
+    "semantic_payload_match": true,
+    "sha_match": true
+  },
+  "mismatch_records": [
+    {
+      "K1_cache_key_v2": "5faedc7bbba201d53a60cd60ce5dc4b362f7bad4d76193f755cc279faf3899ee",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "9e7ea8d2ad223c9d864195916b2d7896bf877928aee1b8668ab6a1bcba18cbc2",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O01-R0-K1",
+      "K2_cache_key_v2": "6f489185996dd0db835827e6fb74c48b8eb7aa75ce5c51157f6bd0ceb2326d2d",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "b565db8e19ea541c2d4e0302fbbaf4dc36ce218a11bce8db293f5bfdafaa6b75",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O01-R0-K2",
+      "centroid_bank_hash": "27bbd58f43d8395e3b1cd66b3ced8cfbe71d0c08c9e471fca2ce3c5686856a32",
+      "held_out_garment": "O01",
+      "rotation": "R0",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "1fc2c9158c5bcabe43531cb736421a38b3ce5937f75c13c8f7db2d5a6be1c546",
+      "K1_conditions": [
+        "cond_000017"
+      ],
+      "K1_query_feature_sha256": "01e515b835a8679fffdc61e475bf19f29be46240d3c2848b72e99346cbe839dc",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O01-R1-K1",
+      "K2_cache_key_v2": "3da4634565f670db20f79ac6dc149c668e902c2d91f7b9abb840d268b81745bb",
+      "K2_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "K2_query_feature_sha256": "ecc7d7c6b7d63d65cb73eb52b200b352ea8232c431f0a9ce3789ddbab447bbc6",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O01-R1-K2",
+      "centroid_bank_hash": "b841913d73e47e09420573262688370d43c28b5974c3cd4ac28be9c50e79c40d",
+      "held_out_garment": "O01",
+      "rotation": "R1",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "0446302f2e8f0f974c3201ca4b7d703caaa4e0c45f3a2585f3b0d80d39a94b53",
+      "K1_conditions": [
+        "cond_000347"
+      ],
+      "K1_query_feature_sha256": "7794674aa456429750177375d7ddbaaf387421beed2d7170b615c25389a7eb3b",
+      "K1_selected_known_endpoint": "O08",
+      "K1_task_id": "LOO-O02-R2-K1",
+      "K2_cache_key_v2": "ddd3070b2430f8ff4e6a5709b8449338977d0f4f1a38c0bb4a1d6b30b0010530",
+      "K2_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "K2_query_feature_sha256": "ba7a6cafc7238448356f7cf96d4be50d21563e8e3ce96aa8352c1572f2a0aaca",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O02-R2-K2",
+      "centroid_bank_hash": "5dee8d675b4e0749220d330adb57b54716f3915a7b6e87f9a7419a80f6d4346e",
+      "held_out_garment": "O02",
+      "rotation": "R2",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "81d8672379b090cedecb1d9616d2aee18ca32c644b3d3ae9e87335b7beb77382",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "dd6456362ba3c7e03393d4ceafe8ffa7f0ce35f068d58668b01e155a9ab7a100",
+      "K1_selected_known_endpoint": "O03",
+      "K1_task_id": "LOO-O04-R0-K1",
+      "K2_cache_key_v2": "8d3d3b755b4f0d5e68c2dbf781959789bc8c6b37b48ccd503f1ed16dca1dbf37",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "7ad8440c108636dc6fe6d36b8e7285224ec1ede9ce743279d8a891ed016fe97f",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O04-R0-K2",
+      "centroid_bank_hash": "7e9d1bf13b49ce7fe2485a54c0dfd0c68c5d21ddd472b6b3fbd1c987fe98ed1d",
+      "held_out_garment": "O04",
+      "rotation": "R0",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "47c010bb234525409ec32b0b14336696e3211f127821bb460b9e629375a0b681",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "d1b1aa36c95ef57cac3ef06bd2c3e56a15c5ac368a6e2562b724e1f43a7d28c1",
+      "K1_selected_known_endpoint": "O01",
+      "K1_task_id": "LOO-O08-R3-K1",
+      "K2_cache_key_v2": "1c7159d15919483f87ee7473a2ad093fcc1d391a790063309931b51f6021560d",
+      "K2_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "K2_query_feature_sha256": "152424a49b0c33eed94c3bf6c06ee3448f80ad8897bf97eb10762346d2e64ef9",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O08-R3-K2",
+      "centroid_bank_hash": "a02dc2a292ef30300fa3f719f7f8bea87c19a5b8789c86749d31f381c00482fd",
+      "held_out_garment": "O08",
+      "rotation": "R3",
+      "same_endpoint": false,
+      "same_render_key": false
+    }
+  ],
+  "optimizer_reads": 0,
+  "pairs": [
+    {
+      "K1_cache_key_v2": "5faedc7bbba201d53a60cd60ce5dc4b362f7bad4d76193f755cc279faf3899ee",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "9e7ea8d2ad223c9d864195916b2d7896bf877928aee1b8668ab6a1bcba18cbc2",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O01-R0-K1",
+      "K2_cache_key_v2": "6f489185996dd0db835827e6fb74c48b8eb7aa75ce5c51157f6bd0ceb2326d2d",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "b565db8e19ea541c2d4e0302fbbaf4dc36ce218a11bce8db293f5bfdafaa6b75",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O01-R0-K2",
+      "centroid_bank_hash": "27bbd58f43d8395e3b1cd66b3ced8cfbe71d0c08c9e471fca2ce3c5686856a32",
+      "held_out_garment": "O01",
+      "rotation": "R0",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "1fc2c9158c5bcabe43531cb736421a38b3ce5937f75c13c8f7db2d5a6be1c546",
+      "K1_conditions": [
+        "cond_000017"
+      ],
+      "K1_query_feature_sha256": "01e515b835a8679fffdc61e475bf19f29be46240d3c2848b72e99346cbe839dc",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O01-R1-K1",
+      "K2_cache_key_v2": "3da4634565f670db20f79ac6dc149c668e902c2d91f7b9abb840d268b81745bb",
+      "K2_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "K2_query_feature_sha256": "ecc7d7c6b7d63d65cb73eb52b200b352ea8232c431f0a9ce3789ddbab447bbc6",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O01-R1-K2",
+      "centroid_bank_hash": "b841913d73e47e09420573262688370d43c28b5974c3cd4ac28be9c50e79c40d",
+      "held_out_garment": "O01",
+      "rotation": "R1",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "cc6d9b6d385c761812a9b0d339acc042b6003afe0858177bcaca27e8bce0bf32",
+      "K1_conditions": [
+        "cond_000347"
+      ],
+      "K1_query_feature_sha256": "e7881712f2ea49bc29106e3985e87e3d3814c97699ac48025aa42832cf0eba2a",
+      "K1_selected_known_endpoint": "O02",
+      "K1_task_id": "LOO-O01-R2-K1",
+      "K2_cache_key_v2": "cc6d9b6d385c761812a9b0d339acc042b6003afe0858177bcaca27e8bce0bf32",
+      "K2_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "K2_query_feature_sha256": "4a64f5b7cbf160c96881284faa9db731af0832e88a7e299c2099ea9582549086",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O01-R2-K2",
+      "centroid_bank_hash": "b14f45dd846be2093e61b90b50b8551eb1080a2a8f134149e65e918e42348436",
+      "held_out_garment": "O01",
+      "rotation": "R2",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "0bbb00ef27966a822baebc9fbfac3861524eefaaf2968c69bb194a866009dbc6",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "9e7ea8d2ad223c9d864195916b2d7896bf877928aee1b8668ab6a1bcba18cbc2",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O01-R3-K1",
+      "K2_cache_key_v2": "0bbb00ef27966a822baebc9fbfac3861524eefaaf2968c69bb194a866009dbc6",
+      "K2_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "K2_query_feature_sha256": "3ec40a8d52c15077ef959dbb48ae5fa80ff23af39a692495b536681f73ed66d4",
+      "K2_selected_known_endpoint": "O04",
+      "K2_task_id": "LOO-O01-R3-K2",
+      "centroid_bank_hash": "f81a7dce8591315fa4a3d70a9219175a36bf81406df3174aaf9051198893d90f",
+      "held_out_garment": "O01",
+      "rotation": "R3",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "0f814dad11750a8e7b01860a4edd0b776de750ca7ef97e44ba615f3598000863",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "039edfbe734936f166612d3a9f96ffa759f432ddef084c9aa8d8bdeb1126b016",
+      "K1_selected_known_endpoint": "O01",
+      "K1_task_id": "LOO-O02-R0-K1",
+      "K2_cache_key_v2": "0f814dad11750a8e7b01860a4edd0b776de750ca7ef97e44ba615f3598000863",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "8a1846f21509e2f28a588bad5c24f96f8141066947ced54d9d837cc4bf379095",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O02-R0-K2",
+      "centroid_bank_hash": "5baa08b95422a2ec8d55a0ea8cb002036e92ff59dd8257d6ff66608547789aa1",
+      "held_out_garment": "O02",
+      "rotation": "R0",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "048e14d080761c39a6efc05418bb9fb60367ad86b964cd919c801c0b32ccc7e6",
+      "K1_conditions": [
+        "cond_000017"
+      ],
+      "K1_query_feature_sha256": "5a2e14cc8b44247e23e6096c0f56ff4ec970a1b185bd638c8d4c107585ed1bc1",
+      "K1_selected_known_endpoint": "O01",
+      "K1_task_id": "LOO-O02-R1-K1",
+      "K2_cache_key_v2": "048e14d080761c39a6efc05418bb9fb60367ad86b964cd919c801c0b32ccc7e6",
+      "K2_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "K2_query_feature_sha256": "fb52c0937aefb2cdd8da34775203fbbfdf9e5d988cc048b4302105cc85798199",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O02-R1-K2",
+      "centroid_bank_hash": "273626f7b97a3e6597ac63cc942747d5a4f9982f76e30b31349ed02a89db8dfa",
+      "held_out_garment": "O02",
+      "rotation": "R1",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "0446302f2e8f0f974c3201ca4b7d703caaa4e0c45f3a2585f3b0d80d39a94b53",
+      "K1_conditions": [
+        "cond_000347"
+      ],
+      "K1_query_feature_sha256": "7794674aa456429750177375d7ddbaaf387421beed2d7170b615c25389a7eb3b",
+      "K1_selected_known_endpoint": "O08",
+      "K1_task_id": "LOO-O02-R2-K1",
+      "K2_cache_key_v2": "ddd3070b2430f8ff4e6a5709b8449338977d0f4f1a38c0bb4a1d6b30b0010530",
+      "K2_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "K2_query_feature_sha256": "ba7a6cafc7238448356f7cf96d4be50d21563e8e3ce96aa8352c1572f2a0aaca",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O02-R2-K2",
+      "centroid_bank_hash": "5dee8d675b4e0749220d330adb57b54716f3915a7b6e87f9a7419a80f6d4346e",
+      "held_out_garment": "O02",
+      "rotation": "R2",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "abf7d5c3b806a248e6b67218451f6f1daabdbbb4f704787b92d96e9c4f5d9e80",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "039edfbe734936f166612d3a9f96ffa759f432ddef084c9aa8d8bdeb1126b016",
+      "K1_selected_known_endpoint": "O01",
+      "K1_task_id": "LOO-O02-R3-K1",
+      "K2_cache_key_v2": "abf7d5c3b806a248e6b67218451f6f1daabdbbb4f704787b92d96e9c4f5d9e80",
+      "K2_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "K2_query_feature_sha256": "35217930933b57a91cc0659043779e7fdc53b994cac55a3a32f89fe3df8aa876",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O02-R3-K2",
+      "centroid_bank_hash": "cf2b0d2d190c969d43783af2a6253d9c209149a5a4bd3f89739ae32c328b78ee",
+      "held_out_garment": "O02",
+      "rotation": "R3",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "39500c5604bf409c864846040ce53fe81d59b4de85643c87a4c9195bdc78c079",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "ded63395e62d50b1259e4ad72909b14860f6f4c03fdb4b6ed1a5ae588f89e5d4",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O03-R0-K1",
+      "K2_cache_key_v2": "39500c5604bf409c864846040ce53fe81d59b4de85643c87a4c9195bdc78c079",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "ab5a528b4ecffca2eb7729946d07196793a2e16dcf79fd548b185187f10a05c0",
+      "K2_selected_known_endpoint": "O04",
+      "K2_task_id": "LOO-O03-R0-K2",
+      "centroid_bank_hash": "46de19779a5fa4a5a940db32626ebf7717dc49b516823a103ac79d8bd0ba59b5",
+      "held_out_garment": "O03",
+      "rotation": "R0",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "35278674980c8779e8dbb4e76cdccd26a954d7e67d9df3f7ae431c61eefa3fa0",
+      "K1_conditions": [
+        "cond_000017"
+      ],
+      "K1_query_feature_sha256": "9dd4595feb481eb4d1e25de04d0fb4f01758302eac2072b48ac4671f9e1a953a",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O03-R1-K1",
+      "K2_cache_key_v2": "35278674980c8779e8dbb4e76cdccd26a954d7e67d9df3f7ae431c61eefa3fa0",
+      "K2_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "K2_query_feature_sha256": "0c560af0e97f278863cc198a0bdf0ee3896ab73911fe6fe956eca4a44c8cfb6a",
+      "K2_selected_known_endpoint": "O04",
+      "K2_task_id": "LOO-O03-R1-K2",
+      "centroid_bank_hash": "c6e7390db464759db4f0712c64cd780b31893ad845a80e588f5be04ed8a23965",
+      "held_out_garment": "O03",
+      "rotation": "R1",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "0b5f780ee830874a77aa5e6bcc15a84e97db5c67ed2e31f573509cdd8e672c23",
+      "K1_conditions": [
+        "cond_000347"
+      ],
+      "K1_query_feature_sha256": "51267717535971b029052c7ba871e0e726f9288388deb3e1af2032efe8eecf01",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O03-R2-K1",
+      "K2_cache_key_v2": "0b5f780ee830874a77aa5e6bcc15a84e97db5c67ed2e31f573509cdd8e672c23",
+      "K2_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "K2_query_feature_sha256": "39dfd4d6bebf657f8b68bf08adc5e4cc802fee9c6adcf23faadd7b88489606d8",
+      "K2_selected_known_endpoint": "O04",
+      "K2_task_id": "LOO-O03-R2-K2",
+      "centroid_bank_hash": "ba5ec7a3f9d95cee17bb92bd23589a662687a867c7ca69d741b595e967938529",
+      "held_out_garment": "O03",
+      "rotation": "R2",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "68e95f393641610bdb7a8e458f86873afb9df2de42d3272ada9398626c9e349e",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "ded63395e62d50b1259e4ad72909b14860f6f4c03fdb4b6ed1a5ae588f89e5d4",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O03-R3-K1",
+      "K2_cache_key_v2": "68e95f393641610bdb7a8e458f86873afb9df2de42d3272ada9398626c9e349e",
+      "K2_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "K2_query_feature_sha256": "4533c6c961191bd7dd051fe580dc5d5725e906ebaa09416291bb29bbf9e2432e",
+      "K2_selected_known_endpoint": "O04",
+      "K2_task_id": "LOO-O03-R3-K2",
+      "centroid_bank_hash": "137dbbf85789f02c07f7570dc1e3d7ad41e0b943ea6a3ce3348e57d705e790bb",
+      "held_out_garment": "O03",
+      "rotation": "R3",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "81d8672379b090cedecb1d9616d2aee18ca32c644b3d3ae9e87335b7beb77382",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "dd6456362ba3c7e03393d4ceafe8ffa7f0ce35f068d58668b01e155a9ab7a100",
+      "K1_selected_known_endpoint": "O03",
+      "K1_task_id": "LOO-O04-R0-K1",
+      "K2_cache_key_v2": "8d3d3b755b4f0d5e68c2dbf781959789bc8c6b37b48ccd503f1ed16dca1dbf37",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "7ad8440c108636dc6fe6d36b8e7285224ec1ede9ce743279d8a891ed016fe97f",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O04-R0-K2",
+      "centroid_bank_hash": "7e9d1bf13b49ce7fe2485a54c0dfd0c68c5d21ddd472b6b3fbd1c987fe98ed1d",
+      "held_out_garment": "O04",
+      "rotation": "R0",
+      "same_endpoint": false,
+      "same_render_key": false
+    },
+    {
+      "K1_cache_key_v2": "fe43c7a4dec5b8e4f1e78b17c49926ccd3f4edecfd3ec02d714675254a899689",
+      "K1_conditions": [
+        "cond_000017"
+      ],
+      "K1_query_feature_sha256": "c229415c3d472d73f73f62d30ec8745a003d73f39bea07e91b365486915bfe57",
+      "K1_selected_known_endpoint": "O03",
+      "K1_task_id": "LOO-O04-R1-K1",
+      "K2_cache_key_v2": "fe43c7a4dec5b8e4f1e78b17c49926ccd3f4edecfd3ec02d714675254a899689",
+      "K2_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "K2_query_feature_sha256": "caa7908af4962fcebe9f08962482df8125623d009dd224b715ee8c3c484aa815",
+      "K2_selected_known_endpoint": "O03",
+      "K2_task_id": "LOO-O04-R1-K2",
+      "centroid_bank_hash": "04f3f27e2a0aeb819dd94772473663085a78aa7e6bc1b64fb287f8150c295f63",
+      "held_out_garment": "O04",
+      "rotation": "R1",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "f9c23c0ce75997d46d00372c548790940072caf13ff697a95d750ae8f7e24f1c",
+      "K1_conditions": [
+        "cond_000347"
+      ],
+      "K1_query_feature_sha256": "140be685ac8acff97ddaab74f6f4678d33c74b7d2c178a5a894c1436d0e45406",
+      "K1_selected_known_endpoint": "O03",
+      "K1_task_id": "LOO-O04-R2-K1",
+      "K2_cache_key_v2": "f9c23c0ce75997d46d00372c548790940072caf13ff697a95d750ae8f7e24f1c",
+      "K2_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "K2_query_feature_sha256": "1869aca485501c9b5f25fc1891544b17a7800007c084bc4bd12aae25ba764fa5",
+      "K2_selected_known_endpoint": "O03",
+      "K2_task_id": "LOO-O04-R2-K2",
+      "centroid_bank_hash": "198976ac50dbc5072a21be2619d36fd19444fc7c1f030d7b61ae98949e1a9251",
+      "held_out_garment": "O04",
+      "rotation": "R2",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "9b7a52ac270cd2a8e56dcdd02e3718546cd855e25b635f758e9cc14a462eaf87",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "dd6456362ba3c7e03393d4ceafe8ffa7f0ce35f068d58668b01e155a9ab7a100",
+      "K1_selected_known_endpoint": "O03",
+      "K1_task_id": "LOO-O04-R3-K1",
+      "K2_cache_key_v2": "9b7a52ac270cd2a8e56dcdd02e3718546cd855e25b635f758e9cc14a462eaf87",
+      "K2_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "K2_query_feature_sha256": "f43cb648a0b2ec243d92b9b962eb08bdb17b387c34f27e239ccccb2c3341b63a",
+      "K2_selected_known_endpoint": "O03",
+      "K2_task_id": "LOO-O04-R3-K2",
+      "centroid_bank_hash": "689782dfd0a931d6d4e35f5e6763384616a005b203c17419216e139e3f5d35dd",
+      "held_out_garment": "O04",
+      "rotation": "R3",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "b2702bec26ce1e84cfeecf4dbcda39792c6c995118f7c0a0e6203a4c181641d0",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "d1b1aa36c95ef57cac3ef06bd2c3e56a15c5ac368a6e2562b724e1f43a7d28c1",
+      "K1_selected_known_endpoint": "O01",
+      "K1_task_id": "LOO-O08-R0-K1",
+      "K2_cache_key_v2": "b2702bec26ce1e84cfeecf4dbcda39792c6c995118f7c0a0e6203a4c181641d0",
+      "K2_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "K2_query_feature_sha256": "5272d9fb4bf8ccf3e7fb5887fdcaf4e06ef115fbcba514b8580cb495696ce5f5",
+      "K2_selected_known_endpoint": "O01",
+      "K2_task_id": "LOO-O08-R0-K2",
+      "centroid_bank_hash": "19fc6714043fac14527092516b7963e3761e58d1cbe5147948bd07f0b62f4115",
+      "held_out_garment": "O08",
+      "rotation": "R0",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "34eadf2ec1e46736fa8c273ddcb6ad426aebbb4760720c1dabfae105a6f901f4",
+      "K1_conditions": [
+        "cond_000017"
+      ],
+      "K1_query_feature_sha256": "1032a18d3bda48c87715d93d0290733b9280c088dc49c118838f25b521fdd936",
+      "K1_selected_known_endpoint": "O04",
+      "K1_task_id": "LOO-O08-R1-K1",
+      "K2_cache_key_v2": "34eadf2ec1e46736fa8c273ddcb6ad426aebbb4760720c1dabfae105a6f901f4",
+      "K2_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "K2_query_feature_sha256": "b13130fe9b6ba6d53eeb0b826ab368def63d671dc942735d976c74e7f453ef4f",
+      "K2_selected_known_endpoint": "O04",
+      "K2_task_id": "LOO-O08-R1-K2",
+      "centroid_bank_hash": "f3d276aa74dde9863a6c723508153e3ea50a821121836a1ff6948074a6097c94",
+      "held_out_garment": "O08",
+      "rotation": "R1",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "4af1dccbc976b4391d8c8da45415ab8be65a9f05dc4415861b44027624a4cc2a",
+      "K1_conditions": [
+        "cond_000347"
+      ],
+      "K1_query_feature_sha256": "c56d14df28118fc9a1e6e79266a3a39270db71691dcdc58b11dc7fed1ca898b0",
+      "K1_selected_known_endpoint": "O02",
+      "K1_task_id": "LOO-O08-R2-K1",
+      "K2_cache_key_v2": "4af1dccbc976b4391d8c8da45415ab8be65a9f05dc4415861b44027624a4cc2a",
+      "K2_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "K2_query_feature_sha256": "8c0f0140eb82f68d5e7edf6764b4649d36c5a5549d8e88829115495166d3e2dc",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O08-R2-K2",
+      "centroid_bank_hash": "a067f275078f3d5f438cfbeb62f8db263fba1687b6130467b43384cb017b9bba",
+      "held_out_garment": "O08",
+      "rotation": "R2",
+      "same_endpoint": true,
+      "same_render_key": true
+    },
+    {
+      "K1_cache_key_v2": "47c010bb234525409ec32b0b14336696e3211f127821bb460b9e629375a0b681",
+      "K1_conditions": [
+        "cond_000000"
+      ],
+      "K1_query_feature_sha256": "d1b1aa36c95ef57cac3ef06bd2c3e56a15c5ac368a6e2562b724e1f43a7d28c1",
+      "K1_selected_known_endpoint": "O01",
+      "K1_task_id": "LOO-O08-R3-K1",
+      "K2_cache_key_v2": "1c7159d15919483f87ee7473a2ad093fcc1d391a790063309931b51f6021560d",
+      "K2_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "K2_query_feature_sha256": "152424a49b0c33eed94c3bf6c06ee3448f80ad8897bf97eb10762346d2e64ef9",
+      "K2_selected_known_endpoint": "O02",
+      "K2_task_id": "LOO-O08-R3-K2",
+      "centroid_bank_hash": "a02dc2a292ef30300fa3f719f7f8bea87c19a5b8789c86749d31f381c00482fd",
+      "held_out_garment": "O08",
+      "rotation": "R3",
+      "same_endpoint": false,
+      "same_render_key": false
+    }
+  ],
+  "renderer_calls": 0,
+  "rows": [
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "27bbd58f43d8395e3b1cd66b3ced8cfbe71d0c08c9e471fca2ce3c5686856a32",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "e788b4286d37d4fc46bc87aa1ea95a35d7d501ce327e881767d41a8cc59bd90f",
+      "feature_scale_sha256": "d38ce4c843d0782773528955c020e1e5a8b62f33d5f9964944ed652453716b14",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "9e7ea8d2ad223c9d864195916b2d7896bf877928aee1b8668ab6a1bcba18cbc2",
+      "raw_centroid_sha256": {
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 568.526611328125,
+      "squared_distances": {
+        "O02": 1052.695556640625,
+        "O03": 1177.669189453125,
+        "O04": 568.526611328125,
+        "O08": 993.0256958007812
+      },
+      "standardized_centroid_sha256": {
+        "O02": "460e276ca8b97227ffd92c6e1cf6c9d948f2c578a0cea99025338ddfe2a2658a",
+        "O03": "68d37dcc81bc7a1b582ecca7b6db5623a277ae79471a6f05703608be0745cddf",
+        "O04": "bf0bc3398289ed7cce7215fe372f3f43b43dad77d4edddd4016a11d214f1190e",
+        "O08": "d3ef8428155f4d023a2d5030a53399a6e43820ed8967ebe67648f6d7cb9ae777"
+      },
+      "task_id": "LOO-O01-R0-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "27bbd58f43d8395e3b1cd66b3ced8cfbe71d0c08c9e471fca2ce3c5686856a32",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "e788b4286d37d4fc46bc87aa1ea95a35d7d501ce327e881767d41a8cc59bd90f",
+      "feature_scale_sha256": "d38ce4c843d0782773528955c020e1e5a8b62f33d5f9964944ed652453716b14",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "b565db8e19ea541c2d4e0302fbbaf4dc36ce218a11bce8db293f5bfdafaa6b75",
+      "raw_centroid_sha256": {
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 683.2884521484375,
+      "squared_distances": {
+        "O02": 683.2884521484375,
+        "O03": 1386.00830078125,
+        "O04": 691.7904052734375,
+        "O08": 1036.7034912109375
+      },
+      "standardized_centroid_sha256": {
+        "O02": "460e276ca8b97227ffd92c6e1cf6c9d948f2c578a0cea99025338ddfe2a2658a",
+        "O03": "68d37dcc81bc7a1b582ecca7b6db5623a277ae79471a6f05703608be0745cddf",
+        "O04": "bf0bc3398289ed7cce7215fe372f3f43b43dad77d4edddd4016a11d214f1190e",
+        "O08": "d3ef8428155f4d023a2d5030a53399a6e43820ed8967ebe67648f6d7cb9ae777"
+      },
+      "task_id": "LOO-O01-R0-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "b841913d73e47e09420573262688370d43c28b5974c3cd4ac28be9c50e79c40d",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "f97c2970f2077e22a212e40b7242f358acf29545c38e9aa0ecd7d572c9fbb292",
+      "feature_scale_sha256": "2875946aeabbd5f59b6fc8a94c0841f4cd5249230d0c499abca076d1f97dc8b2",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "01e515b835a8679fffdc61e475bf19f29be46240d3c2848b72e99346cbe839dc",
+      "raw_centroid_sha256": {
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 874.515869140625,
+      "squared_distances": {
+        "O02": 975.0579223632812,
+        "O03": 1256.4368896484375,
+        "O04": 874.515869140625,
+        "O08": 1520.625244140625
+      },
+      "standardized_centroid_sha256": {
+        "O02": "97dd9dd3ea4934f33d07b2c07a52502f893e9dd3617cdd86ba657b69847ba3be",
+        "O03": "8a620b3edfdcf9284defc8932980ee9c158b025546d980cbda5c28e71015c708",
+        "O04": "14424a6513272f54a56f710d65fa194cc7d815b1c3e2ed293f525bd7973258c1",
+        "O08": "14138ff6a20a0124c2ec3ce33d434bd77d0304cf4fbe828514ab3cfb9b2608bc"
+      },
+      "task_id": "LOO-O01-R1-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "b841913d73e47e09420573262688370d43c28b5974c3cd4ac28be9c50e79c40d",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "f97c2970f2077e22a212e40b7242f358acf29545c38e9aa0ecd7d572c9fbb292",
+      "feature_scale_sha256": "2875946aeabbd5f59b6fc8a94c0841f4cd5249230d0c499abca076d1f97dc8b2",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "ecc7d7c6b7d63d65cb73eb52b200b352ea8232c431f0a9ce3789ddbab447bbc6",
+      "raw_centroid_sha256": {
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 631.9172973632812,
+      "squared_distances": {
+        "O02": 631.9172973632812,
+        "O03": 1439.88671875,
+        "O04": 1017.209228515625,
+        "O08": 1583.9560546875
+      },
+      "standardized_centroid_sha256": {
+        "O02": "97dd9dd3ea4934f33d07b2c07a52502f893e9dd3617cdd86ba657b69847ba3be",
+        "O03": "8a620b3edfdcf9284defc8932980ee9c158b025546d980cbda5c28e71015c708",
+        "O04": "14424a6513272f54a56f710d65fa194cc7d815b1c3e2ed293f525bd7973258c1",
+        "O08": "14138ff6a20a0124c2ec3ce33d434bd77d0304cf4fbe828514ab3cfb9b2608bc"
+      },
+      "task_id": "LOO-O01-R1-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "b14f45dd846be2093e61b90b50b8551eb1080a2a8f134149e65e918e42348436",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "6f9164c4cdd442f53d0ccdb314512ac4fd48e2469668f47d10d7850399269a8b",
+      "feature_scale_sha256": "4dd996c5aee60976aff29bba6c776ea83f1783562fa1ceff81d3885fcee1c20a",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "e7881712f2ea49bc29106e3985e87e3d3814c97699ac48025aa42832cf0eba2a",
+      "raw_centroid_sha256": {
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 904.937744140625,
+      "squared_distances": {
+        "O02": 904.937744140625,
+        "O03": 1545.8543701171875,
+        "O04": 1246.5250244140625,
+        "O08": 1204.505615234375
+      },
+      "standardized_centroid_sha256": {
+        "O02": "f1e0eac4bf6c1e6afa810911054a6021c051595357429989ad92e2336ae24422",
+        "O03": "5d946f7d15bee0d209a8c02ba450a51b78b827d326dff8fd2d6db5cfd58f267a",
+        "O04": "6d6392856de927cb6d864378e3797d0337ccda7388b4090c75f08404d57c79d0",
+        "O08": "10ff3e0f70f7fb34558849525a4e85162e3c5ef03ef072db2858794c94d7a34a"
+      },
+      "task_id": "LOO-O01-R2-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "b14f45dd846be2093e61b90b50b8551eb1080a2a8f134149e65e918e42348436",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "6f9164c4cdd442f53d0ccdb314512ac4fd48e2469668f47d10d7850399269a8b",
+      "feature_scale_sha256": "4dd996c5aee60976aff29bba6c776ea83f1783562fa1ceff81d3885fcee1c20a",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "4a64f5b7cbf160c96881284faa9db731af0832e88a7e299c2099ea9582549086",
+      "raw_centroid_sha256": {
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 814.4933471679688,
+      "squared_distances": {
+        "O02": 814.4933471679688,
+        "O03": 1184.52490234375,
+        "O04": 961.4486083984375,
+        "O08": 1264.099853515625
+      },
+      "standardized_centroid_sha256": {
+        "O02": "f1e0eac4bf6c1e6afa810911054a6021c051595357429989ad92e2336ae24422",
+        "O03": "5d946f7d15bee0d209a8c02ba450a51b78b827d326dff8fd2d6db5cfd58f267a",
+        "O04": "6d6392856de927cb6d864378e3797d0337ccda7388b4090c75f08404d57c79d0",
+        "O08": "10ff3e0f70f7fb34558849525a4e85162e3c5ef03ef072db2858794c94d7a34a"
+      },
+      "task_id": "LOO-O01-R2-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "f81a7dce8591315fa4a3d70a9219175a36bf81406df3174aaf9051198893d90f",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "ea6a6b555a550b998233ffdcb09a4eb5205f3a611f006246b02a66e6bf3c32d5",
+      "feature_scale_sha256": "f1b9565ac6071c1a99182bd680becef6f8c3a10160debc6feca809bbd4ddab77",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "9e7ea8d2ad223c9d864195916b2d7896bf877928aee1b8668ab6a1bcba18cbc2",
+      "raw_centroid_sha256": {
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 729.9884033203125,
+      "squared_distances": {
+        "O02": 968.761962890625,
+        "O03": 1231.53857421875,
+        "O04": 729.9884033203125,
+        "O08": 774.1241455078125
+      },
+      "standardized_centroid_sha256": {
+        "O02": "b3aba51a40633587d5d40c827b74679e13d8529b4a0fd62ad980b54040bda617",
+        "O03": "825415491c814f8b263db27351161a56e59e3afa79f68fe3082f1ef8ba32449a",
+        "O04": "c7e7880f9aa853cedec977265a681be107506997e208178176bc714c557263de",
+        "O08": "774eb4f3c6cbbc8c3c98d3fd663f859e63fca1f799729621a5ab67063a6669cc"
+      },
+      "task_id": "LOO-O01-R3-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "f81a7dce8591315fa4a3d70a9219175a36bf81406df3174aaf9051198893d90f",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "ea6a6b555a550b998233ffdcb09a4eb5205f3a611f006246b02a66e6bf3c32d5",
+      "feature_scale_sha256": "f1b9565ac6071c1a99182bd680becef6f8c3a10160debc6feca809bbd4ddab77",
+      "held_out_garment": "O01",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "3ec40a8d52c15077ef959dbb48ae5fa80ff23af39a692495b536681f73ed66d4",
+      "raw_centroid_sha256": {
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 934.0040283203125,
+      "squared_distances": {
+        "O02": 1122.227294921875,
+        "O03": 1485.1385498046875,
+        "O04": 934.0040283203125,
+        "O08": 1078.5301513671875
+      },
+      "standardized_centroid_sha256": {
+        "O02": "b3aba51a40633587d5d40c827b74679e13d8529b4a0fd62ad980b54040bda617",
+        "O03": "825415491c814f8b263db27351161a56e59e3afa79f68fe3082f1ef8ba32449a",
+        "O04": "c7e7880f9aa853cedec977265a681be107506997e208178176bc714c557263de",
+        "O08": "774eb4f3c6cbbc8c3c98d3fd663f859e63fca1f799729621a5ab67063a6669cc"
+      },
+      "task_id": "LOO-O01-R3-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "5baa08b95422a2ec8d55a0ea8cb002036e92ff59dd8257d6ff66608547789aa1",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "af6c2368c82c65738384d9f2c8238b0d22ccaa987b99ce9c9314597f748028d9",
+      "feature_scale_sha256": "7be87d6ad9b26653be7c2f7b3c132d6ce4635f0055c5fbae03331a6043c86ea2",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "039edfbe734936f166612d3a9f96ffa759f432ddef084c9aa8d8bdeb1126b016",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 670.9450073242188,
+      "squared_distances": {
+        "O01": 670.9450073242188,
+        "O03": 3483.36328125,
+        "O04": 1646.814453125,
+        "O08": 1225.5238037109375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "95ff2480c170ebd23cdff06476e1239b7744a7d12bd9484fb129105f150ea15f",
+        "O03": "24a8f5296789a842f907ed5b293a99b87e4439a093aecd7df931fe66a9c10388",
+        "O04": "1853ceee52cb9912f2601e65d0e3946134d2c54c399c2112c89ecace9d90bc74",
+        "O08": "9378d102db9b7eb4fb75d2c5bf6c24401100cdec64939601403a4fdc231565d8"
+      },
+      "task_id": "LOO-O02-R0-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "5baa08b95422a2ec8d55a0ea8cb002036e92ff59dd8257d6ff66608547789aa1",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "af6c2368c82c65738384d9f2c8238b0d22ccaa987b99ce9c9314597f748028d9",
+      "feature_scale_sha256": "7be87d6ad9b26653be7c2f7b3c132d6ce4635f0055c5fbae03331a6043c86ea2",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "8a1846f21509e2f28a588bad5c24f96f8141066947ced54d9d837cc4bf379095",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 1007.1617431640625,
+      "squared_distances": {
+        "O01": 1007.1617431640625,
+        "O03": 4152.72705078125,
+        "O04": 2100.983154296875,
+        "O08": 1653.6292724609375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "95ff2480c170ebd23cdff06476e1239b7744a7d12bd9484fb129105f150ea15f",
+        "O03": "24a8f5296789a842f907ed5b293a99b87e4439a093aecd7df931fe66a9c10388",
+        "O04": "1853ceee52cb9912f2601e65d0e3946134d2c54c399c2112c89ecace9d90bc74",
+        "O08": "9378d102db9b7eb4fb75d2c5bf6c24401100cdec64939601403a4fdc231565d8"
+      },
+      "task_id": "LOO-O02-R0-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "273626f7b97a3e6597ac63cc942747d5a4f9982f76e30b31349ed02a89db8dfa",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "cd86ef225fec462480bd91eb6e2880ea33bb7286e7f812b9452ab55f418d4c92",
+      "feature_scale_sha256": "55817b28a3215898fa1f9945870fee357b03a570d2197f7fbdc05a9a8419079b",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "5a2e14cc8b44247e23e6096c0f56ff4ec970a1b185bd638c8d4c107585ed1bc1",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 806.4630737304688,
+      "squared_distances": {
+        "O01": 806.4630737304688,
+        "O03": 2235.173095703125,
+        "O04": 1553.2408447265625,
+        "O08": 1747.71826171875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "d3bb91ffded891b3bf2f20120f0034b5f8eae229fe1efcb5e51e9222c9666d82",
+        "O03": "e4a3e889e47a83aff2ae0978afb8051a9a193bcc5d5845e2b1d691f30a99e1e0",
+        "O04": "898277142e634b5a29041f7bd49bdd21586ef34c8b213baaf94d7b05532f9bac",
+        "O08": "437e4dedbdca17f3019c114fa8fe11a1e7feefae889a93aee2b4a86023f31715"
+      },
+      "task_id": "LOO-O02-R1-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "273626f7b97a3e6597ac63cc942747d5a4f9982f76e30b31349ed02a89db8dfa",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "cd86ef225fec462480bd91eb6e2880ea33bb7286e7f812b9452ab55f418d4c92",
+      "feature_scale_sha256": "55817b28a3215898fa1f9945870fee357b03a570d2197f7fbdc05a9a8419079b",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "fb52c0937aefb2cdd8da34775203fbbfdf9e5d988cc048b4302105cc85798199",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 1081.211181640625,
+      "squared_distances": {
+        "O01": 1081.211181640625,
+        "O03": 3103.74951171875,
+        "O04": 2262.19873046875,
+        "O08": 2110.069580078125
+      },
+      "standardized_centroid_sha256": {
+        "O01": "d3bb91ffded891b3bf2f20120f0034b5f8eae229fe1efcb5e51e9222c9666d82",
+        "O03": "e4a3e889e47a83aff2ae0978afb8051a9a193bcc5d5845e2b1d691f30a99e1e0",
+        "O04": "898277142e634b5a29041f7bd49bdd21586ef34c8b213baaf94d7b05532f9bac",
+        "O08": "437e4dedbdca17f3019c114fa8fe11a1e7feefae889a93aee2b4a86023f31715"
+      },
+      "task_id": "LOO-O02-R1-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "5dee8d675b4e0749220d330adb57b54716f3915a7b6e87f9a7419a80f6d4346e",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "0f5b4e8e0e94fed986a7c0d921e263eee249ef2c2ad08c335b3848faa87b4b0f",
+      "feature_scale_sha256": "993469b33878b804c086301464d915c965d176c766fbde246c7985cc3a1db71c",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "7794674aa456429750177375d7ddbaaf387421beed2d7170b615c25389a7eb3b",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O08",
+      "selected_squared_distance": 1424.3511962890625,
+      "squared_distances": {
+        "O01": 1466.6585693359375,
+        "O03": 4197.35107421875,
+        "O04": 3358.879150390625,
+        "O08": 1424.3511962890625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "a7ed5322afc3f419883c6954604f03a95d92173679813d39e20a74dbb85a6034",
+        "O03": "cb518e6fb55ba844b3fb7c021781c0ad067564f71c94c52e551fc72a0f6bddde",
+        "O04": "e68fe5f9564f605ff8141529de44e887e9dd3ced788db6e152b867a0eaba6bbc",
+        "O08": "b668ec81f8be62bb9d35650a759d4d69bcc48b4e5be36efc512b3d66ffacae51"
+      },
+      "task_id": "LOO-O02-R2-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "5dee8d675b4e0749220d330adb57b54716f3915a7b6e87f9a7419a80f6d4346e",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "0f5b4e8e0e94fed986a7c0d921e263eee249ef2c2ad08c335b3848faa87b4b0f",
+      "feature_scale_sha256": "993469b33878b804c086301464d915c965d176c766fbde246c7985cc3a1db71c",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "ba7a6cafc7238448356f7cf96d4be50d21563e8e3ce96aa8352c1572f2a0aaca",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 1100.5001220703125,
+      "squared_distances": {
+        "O01": 1100.5001220703125,
+        "O03": 3282.1513671875,
+        "O04": 2502.4345703125,
+        "O08": 1765.5537109375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "a7ed5322afc3f419883c6954604f03a95d92173679813d39e20a74dbb85a6034",
+        "O03": "cb518e6fb55ba844b3fb7c021781c0ad067564f71c94c52e551fc72a0f6bddde",
+        "O04": "e68fe5f9564f605ff8141529de44e887e9dd3ced788db6e152b867a0eaba6bbc",
+        "O08": "b668ec81f8be62bb9d35650a759d4d69bcc48b4e5be36efc512b3d66ffacae51"
+      },
+      "task_id": "LOO-O02-R2-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "cf2b0d2d190c969d43783af2a6253d9c209149a5a4bd3f89739ae32c328b78ee",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "1a00b9d006dc353d0bade5f33d43ed1fecfbb3aa5b74a5e7f13b41ab69c2235d",
+      "feature_scale_sha256": "c6947e5fa733fe53162c2cd44b022614a9cefbabc96bcdc898f506b43415e0b1",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "039edfbe734936f166612d3a9f96ffa759f432ddef084c9aa8d8bdeb1126b016",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 1323.3773193359375,
+      "squared_distances": {
+        "O01": 1323.3773193359375,
+        "O03": 4291.64208984375,
+        "O04": 2683.01123046875,
+        "O08": 1664.8251953125
+      },
+      "standardized_centroid_sha256": {
+        "O01": "57e500baaec7e5bd8252393b125ee714440ed8589c7abf74e9ae70ce5262cce8",
+        "O03": "0dcd185b5d94afaf5a430b501ff4a0e8f4510ef7a9deb07c11f91a6f15ce7d29",
+        "O04": "e78a48a355ed1e407cfa47c59f744d8422e6edb0d456435556f1b95de16be066",
+        "O08": "3779cb46b012b30c1fa624b61dc0da632e5d0095607ec46e9fb5e6b3fffeb2c0"
+      },
+      "task_id": "LOO-O02-R3-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O03",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "cf2b0d2d190c969d43783af2a6253d9c209149a5a4bd3f89739ae32c328b78ee",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "1a00b9d006dc353d0bade5f33d43ed1fecfbb3aa5b74a5e7f13b41ab69c2235d",
+      "feature_scale_sha256": "c6947e5fa733fe53162c2cd44b022614a9cefbabc96bcdc898f506b43415e0b1",
+      "held_out_garment": "O02",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "35217930933b57a91cc0659043779e7fdc53b994cac55a3a32f89fe3df8aa876",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 1427.6202392578125,
+      "squared_distances": {
+        "O01": 1427.6202392578125,
+        "O03": 4576.68212890625,
+        "O04": 2849.10546875,
+        "O08": 1567.282470703125
+      },
+      "standardized_centroid_sha256": {
+        "O01": "57e500baaec7e5bd8252393b125ee714440ed8589c7abf74e9ae70ce5262cce8",
+        "O03": "0dcd185b5d94afaf5a430b501ff4a0e8f4510ef7a9deb07c11f91a6f15ce7d29",
+        "O04": "e78a48a355ed1e407cfa47c59f744d8422e6edb0d456435556f1b95de16be066",
+        "O08": "3779cb46b012b30c1fa624b61dc0da632e5d0095607ec46e9fb5e6b3fffeb2c0"
+      },
+      "task_id": "LOO-O02-R3-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "46de19779a5fa4a5a940db32626ebf7717dc49b516823a103ac79d8bd0ba59b5",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "d1a75b72ea325facc2f39d5e94b836a43b6fac0c17efeb820e7c2f975c9387fc",
+      "feature_scale_sha256": "266bdc6acd5d6d1fb869cedf6779d35ce61c160e5b85f7beafbdae681cad491c",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "ded63395e62d50b1259e4ad72909b14860f6f4c03fdb4b6ed1a5ae588f89e5d4",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 3732.60888671875,
+      "squared_distances": {
+        "O01": 4857.7666015625,
+        "O02": 8379.552734375,
+        "O04": 3732.60888671875,
+        "O08": 7802.6015625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "d99ce8626c91f36d37a5ccf39a9a91e6fd0673028b56765a85a5ed584b5fe401",
+        "O02": "c02e1be6332e36706932937a7ed7be1142703f7809c52e38955fed5f9207b182",
+        "O04": "f0160b91c299050cad29d5bdf80884ec4b0dc04a187563b1ae7bedd2b944c4dc",
+        "O08": "f2915704eadcb13291e485254694ba7f3e1f1609d6fe538b2099224e3bbd1357"
+      },
+      "task_id": "LOO-O03-R0-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "46de19779a5fa4a5a940db32626ebf7717dc49b516823a103ac79d8bd0ba59b5",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "d1a75b72ea325facc2f39d5e94b836a43b6fac0c17efeb820e7c2f975c9387fc",
+      "feature_scale_sha256": "266bdc6acd5d6d1fb869cedf6779d35ce61c160e5b85f7beafbdae681cad491c",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "ab5a528b4ecffca2eb7729946d07196793a2e16dcf79fd548b185187f10a05c0",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 2920.590087890625,
+      "squared_distances": {
+        "O01": 4146.3828125,
+        "O02": 7262.98583984375,
+        "O04": 2920.590087890625,
+        "O08": 6734.8505859375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "d99ce8626c91f36d37a5ccf39a9a91e6fd0673028b56765a85a5ed584b5fe401",
+        "O02": "c02e1be6332e36706932937a7ed7be1142703f7809c52e38955fed5f9207b182",
+        "O04": "f0160b91c299050cad29d5bdf80884ec4b0dc04a187563b1ae7bedd2b944c4dc",
+        "O08": "f2915704eadcb13291e485254694ba7f3e1f1609d6fe538b2099224e3bbd1357"
+      },
+      "task_id": "LOO-O03-R0-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "c6e7390db464759db4f0712c64cd780b31893ad845a80e588f5be04ed8a23965",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "879485a362ec4e8a95249bd1b1b9bc36ad8e7374c64bccaa7a49faade2684108",
+      "feature_scale_sha256": "fba9fa5977173302e859b4e63f46728141bb736495f79f171183119f6f51b7f2",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "9dd4595feb481eb4d1e25de04d0fb4f01758302eac2072b48ac4671f9e1a953a",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 1775.1787109375,
+      "squared_distances": {
+        "O01": 3040.40478515625,
+        "O02": 4858.8427734375,
+        "O04": 1775.1787109375,
+        "O08": 4714.076171875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "cb1dd3c155ee5cbe35ced8bce9706d61cf69ad4b06e3688bb22dede89a1821b3",
+        "O02": "d632d981e0db5a4cec9764f18fb5a5e632924407467e8e263524f4210a2bc3f5",
+        "O04": "de55663945aae598e53146a1138ffd61eeecef109be48d8a417aa85bbc3a1804",
+        "O08": "7e3719e3eb6b2aa3f15bfd2c614c4653d4eefede53cc9af731f8036563fabd97"
+      },
+      "task_id": "LOO-O03-R1-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "c6e7390db464759db4f0712c64cd780b31893ad845a80e588f5be04ed8a23965",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "879485a362ec4e8a95249bd1b1b9bc36ad8e7374c64bccaa7a49faade2684108",
+      "feature_scale_sha256": "fba9fa5977173302e859b4e63f46728141bb736495f79f171183119f6f51b7f2",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "0c560af0e97f278863cc198a0bdf0ee3896ab73911fe6fe956eca4a44c8cfb6a",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 1848.6611328125,
+      "squared_distances": {
+        "O01": 3463.5048828125,
+        "O02": 4983.83154296875,
+        "O04": 1848.6611328125,
+        "O08": 5530.03662109375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "cb1dd3c155ee5cbe35ced8bce9706d61cf69ad4b06e3688bb22dede89a1821b3",
+        "O02": "d632d981e0db5a4cec9764f18fb5a5e632924407467e8e263524f4210a2bc3f5",
+        "O04": "de55663945aae598e53146a1138ffd61eeecef109be48d8a417aa85bbc3a1804",
+        "O08": "7e3719e3eb6b2aa3f15bfd2c614c4653d4eefede53cc9af731f8036563fabd97"
+      },
+      "task_id": "LOO-O03-R1-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "ba5ec7a3f9d95cee17bb92bd23589a662687a867c7ca69d741b595e967938529",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "1423cbe67b861eaf37d5c7f7f2add834479a99af665dbb8e6acbeb629b71b90b",
+      "feature_scale_sha256": "0af2da61890be9ec42844899cc5e4143747ad8ce90326f1d6954a650d1057a5f",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "51267717535971b029052c7ba871e0e726f9288388deb3e1af2032efe8eecf01",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 1248.2476806640625,
+      "squared_distances": {
+        "O01": 2669.412109375,
+        "O02": 4336.7958984375,
+        "O04": 1248.2476806640625,
+        "O08": 4543.72998046875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "bd8d9eba53003284a2b69cd2d5d80f8290cd6e845a0837acc0d7b22b8b56c84f",
+        "O02": "80bfcf02ff5229a5afb2044f5b578a1b87389831c218599826c2cedbed242b8a",
+        "O04": "9fea68562fa3f672b26a0063500109fa4b701dfafc29726c653c870f5b102fa2",
+        "O08": "3da1e6ee8960df6217075f0d7f3943b2d615a3f0cf1b68a7a6621a0e99f375f8"
+      },
+      "task_id": "LOO-O03-R2-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "ba5ec7a3f9d95cee17bb92bd23589a662687a867c7ca69d741b595e967938529",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "1423cbe67b861eaf37d5c7f7f2add834479a99af665dbb8e6acbeb629b71b90b",
+      "feature_scale_sha256": "0af2da61890be9ec42844899cc5e4143747ad8ce90326f1d6954a650d1057a5f",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "39dfd4d6bebf657f8b68bf08adc5e4cc802fee9c6adcf23faadd7b88489606d8",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 997.177490234375,
+      "squared_distances": {
+        "O01": 2390.17138671875,
+        "O02": 3991.968017578125,
+        "O04": 997.177490234375,
+        "O08": 4234.1669921875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "bd8d9eba53003284a2b69cd2d5d80f8290cd6e845a0837acc0d7b22b8b56c84f",
+        "O02": "80bfcf02ff5229a5afb2044f5b578a1b87389831c218599826c2cedbed242b8a",
+        "O04": "9fea68562fa3f672b26a0063500109fa4b701dfafc29726c653c870f5b102fa2",
+        "O08": "3da1e6ee8960df6217075f0d7f3943b2d615a3f0cf1b68a7a6621a0e99f375f8"
+      },
+      "task_id": "LOO-O03-R2-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "137dbbf85789f02c07f7570dc1e3d7ad41e0b943ea6a3ce3348e57d705e790bb",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "9d638430e85a1f46ff28da12d40f7d8333564a19ed7aaa7e90b7063726c453fb",
+      "feature_scale_sha256": "6fa4a7436a5a365c3a2d3fb08b497b3ae96b344a02f41f9e7e28d3415251f698",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "ded63395e62d50b1259e4ad72909b14860f6f4c03fdb4b6ed1a5ae588f89e5d4",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 2462.469970703125,
+      "squared_distances": {
+        "O01": 4158.33740234375,
+        "O02": 6806.8671875,
+        "O04": 2462.469970703125,
+        "O08": 6400.51904296875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "056d4f0b537d5e54d59b054c2dcce97305a45e9681e637e80b527ddc7e746d29",
+        "O02": "2eac99de76a2da61a0d1877216635510e7b2f4ebe033027ecec0a3ae7b537d53",
+        "O04": "baca53fe5020aadb652951a4b7692d98045662171c2a69ba7dd1a5ec0e831c4b",
+        "O08": "93cdf64521ca2258fabc4c82e83ca4483bbfb70bedfe76fcb171ca058ccb724e"
+      },
+      "task_id": "LOO-O03-R3-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "centroid_bank_hash": "137dbbf85789f02c07f7570dc1e3d7ad41e0b943ea6a3ce3348e57d705e790bb",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "9d638430e85a1f46ff28da12d40f7d8333564a19ed7aaa7e90b7063726c453fb",
+      "feature_scale_sha256": "6fa4a7436a5a365c3a2d3fb08b497b3ae96b344a02f41f9e7e28d3415251f698",
+      "held_out_garment": "O03",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "4533c6c961191bd7dd051fe580dc5d5725e906ebaa09416291bb29bbf9e2432e",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 1855.55859375,
+      "squared_distances": {
+        "O01": 3476.17529296875,
+        "O02": 6016.00830078125,
+        "O04": 1855.55859375,
+        "O08": 5602.34814453125
+      },
+      "standardized_centroid_sha256": {
+        "O01": "056d4f0b537d5e54d59b054c2dcce97305a45e9681e637e80b527ddc7e746d29",
+        "O02": "2eac99de76a2da61a0d1877216635510e7b2f4ebe033027ecec0a3ae7b537d53",
+        "O04": "baca53fe5020aadb652951a4b7692d98045662171c2a69ba7dd1a5ec0e831c4b",
+        "O08": "93cdf64521ca2258fabc4c82e83ca4483bbfb70bedfe76fcb171ca058ccb724e"
+      },
+      "task_id": "LOO-O03-R3-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "7e9d1bf13b49ce7fe2485a54c0dfd0c68c5d21ddd472b6b3fbd1c987fe98ed1d",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "e83b666c42942ed626e5bbf708eb817ad24fa24ae49d30e08b580d24ec9d1927",
+      "feature_scale_sha256": "f6a7f72c3926d0de870cf75ede4b24e76eda2e2ed9a7902dcb19cf1f0f8d912f",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "dd6456362ba3c7e03393d4ceafe8ffa7f0ce35f068d58668b01e155a9ab7a100",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 731.3858032226562,
+      "squared_distances": {
+        "O01": 870.8901977539062,
+        "O02": 1553.5323486328125,
+        "O03": 731.3858032226562,
+        "O08": 1572.3115234375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "50e95a8d63cb4f8095cde9b15efd0661ac63c8ca4cb6cbfe0406ef01c6cff82c",
+        "O02": "31ed6695bc05f0928362a4fb40ff66937537d9af1bbe4e2fedb10a0ed8f778ce",
+        "O03": "a50723c1dcaf8653e5cb21a92ba04081f1237c3289e30cde893e52391fb3ece5",
+        "O08": "2941baccbac0b6d35c1ca6a8b68d6412adf121824f7af38f90ebbfb7b6a33403"
+      },
+      "task_id": "LOO-O04-R0-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "7e9d1bf13b49ce7fe2485a54c0dfd0c68c5d21ddd472b6b3fbd1c987fe98ed1d",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "e83b666c42942ed626e5bbf708eb817ad24fa24ae49d30e08b580d24ec9d1927",
+      "feature_scale_sha256": "f6a7f72c3926d0de870cf75ede4b24e76eda2e2ed9a7902dcb19cf1f0f8d912f",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "7ad8440c108636dc6fe6d36b8e7285224ec1ede9ce743279d8a891ed016fe97f",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O08": "5baa3e729abef6490b51e8bce7e8538655fc127e357bc4adc443e7a96119ae33"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 823.0316162109375,
+      "squared_distances": {
+        "O01": 823.0316162109375,
+        "O02": 1374.3294677734375,
+        "O03": 910.6776123046875,
+        "O08": 1334.51123046875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "50e95a8d63cb4f8095cde9b15efd0661ac63c8ca4cb6cbfe0406ef01c6cff82c",
+        "O02": "31ed6695bc05f0928362a4fb40ff66937537d9af1bbe4e2fedb10a0ed8f778ce",
+        "O03": "a50723c1dcaf8653e5cb21a92ba04081f1237c3289e30cde893e52391fb3ece5",
+        "O08": "2941baccbac0b6d35c1ca6a8b68d6412adf121824f7af38f90ebbfb7b6a33403"
+      },
+      "task_id": "LOO-O04-R0-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "04f3f27e2a0aeb819dd94772473663085a78aa7e6bc1b64fb287f8150c295f63",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "3131745640184f527c50b41c3e517388c19d8ffe6f68404e3fc492b8c7d215aa",
+      "feature_scale_sha256": "086d6f5d7d427409cb02dabeefafa5286a4e5d09477e89f1ba6370cba207adcb",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "c229415c3d472d73f73f62d30ec8745a003d73f39bea07e91b365486915bfe57",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 910.8834228515625,
+      "squared_distances": {
+        "O01": 1325.8323974609375,
+        "O02": 2200.8740234375,
+        "O03": 910.8834228515625,
+        "O08": 2162.19140625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "6d1a8431be1dc2f6ab099fc7d3c6843082f9387610c5b1fe7e8ad10db49211f4",
+        "O02": "58b83bb434d7260e27b2dfb606d6bedd78d280226175ac8dc6bd396231a519f2",
+        "O03": "53f9cfb487ed5949acddddbf7e72439173a1466cbf997ab508fdc3fca4010360",
+        "O08": "3db8add5a75bcd77516b698d300def9dc8b5c397c7aa37b22a1a711da6bf3cd5"
+      },
+      "task_id": "LOO-O04-R1-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "04f3f27e2a0aeb819dd94772473663085a78aa7e6bc1b64fb287f8150c295f63",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "3131745640184f527c50b41c3e517388c19d8ffe6f68404e3fc492b8c7d215aa",
+      "feature_scale_sha256": "086d6f5d7d427409cb02dabeefafa5286a4e5d09477e89f1ba6370cba207adcb",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "caa7908af4962fcebe9f08962482df8125623d009dd224b715ee8c3c484aa815",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O08": "9d51628ff9122bd2ac60d7401fa572809b653e6af32ceba66937658f37cfba52"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 1022.2579345703125,
+      "squared_distances": {
+        "O01": 1305.29345703125,
+        "O02": 1799.339599609375,
+        "O03": 1022.2579345703125,
+        "O08": 1984.51611328125
+      },
+      "standardized_centroid_sha256": {
+        "O01": "6d1a8431be1dc2f6ab099fc7d3c6843082f9387610c5b1fe7e8ad10db49211f4",
+        "O02": "58b83bb434d7260e27b2dfb606d6bedd78d280226175ac8dc6bd396231a519f2",
+        "O03": "53f9cfb487ed5949acddddbf7e72439173a1466cbf997ab508fdc3fca4010360",
+        "O08": "3db8add5a75bcd77516b698d300def9dc8b5c397c7aa37b22a1a711da6bf3cd5"
+      },
+      "task_id": "LOO-O04-R1-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "198976ac50dbc5072a21be2619d36fd19444fc7c1f030d7b61ae98949e1a9251",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "0dc591e32d0871af4000ed2f606d34863dbe8b66952f500fe000b525565475eb",
+      "feature_scale_sha256": "a5ecef5ac2e1500baaeb7271198f74d34cbc4e7346e958c7fe073655b7790280",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "140be685ac8acff97ddaab74f6f4678d33c74b7d2c178a5a894c1436d0e45406",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 1298.504150390625,
+      "squared_distances": {
+        "O01": 2284.8095703125,
+        "O02": 3189.184326171875,
+        "O03": 1298.504150390625,
+        "O08": 3943.545166015625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "de016b39d50251091125418ef123a97eac9c3b50929cbe8a9dce78fd8da4d900",
+        "O02": "f2a2648716dd959aceb6bb05bfca2b35f153c2e2efde57d4b732168b5c988445",
+        "O03": "9b8c1ee1c798c25ed038d0c4a1bde831489027adffeb26644a807f1616350df3",
+        "O08": "f8b7936efbb8720393631782568c980797b6a83aa9539bf076ba68c720b6f06d"
+      },
+      "task_id": "LOO-O04-R2-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "198976ac50dbc5072a21be2619d36fd19444fc7c1f030d7b61ae98949e1a9251",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "0dc591e32d0871af4000ed2f606d34863dbe8b66952f500fe000b525565475eb",
+      "feature_scale_sha256": "a5ecef5ac2e1500baaeb7271198f74d34cbc4e7346e958c7fe073655b7790280",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "1869aca485501c9b5f25fc1891544b17a7800007c084bc4bd12aae25ba764fa5",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O08": "1658528560d8455a79be583f6e6ddb9425233de7c9e618b8631480534d091683"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 1177.51416015625,
+      "squared_distances": {
+        "O01": 1980.3709716796875,
+        "O02": 3012.10693359375,
+        "O03": 1177.51416015625,
+        "O08": 3617.95166015625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "de016b39d50251091125418ef123a97eac9c3b50929cbe8a9dce78fd8da4d900",
+        "O02": "f2a2648716dd959aceb6bb05bfca2b35f153c2e2efde57d4b732168b5c988445",
+        "O03": "9b8c1ee1c798c25ed038d0c4a1bde831489027adffeb26644a807f1616350df3",
+        "O08": "f8b7936efbb8720393631782568c980797b6a83aa9539bf076ba68c720b6f06d"
+      },
+      "task_id": "LOO-O04-R2-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "689782dfd0a931d6d4e35f5e6763384616a005b203c17419216e139e3f5d35dd",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "26beee35736728323b274e4cceca5fc1127c25364fea3bff0522b2b3463a2939",
+      "feature_scale_sha256": "773b91b504be0f3a58653c2983eec93b237dca66974e8497d6541b6bde4a831c",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "dd6456362ba3c7e03393d4ceafe8ffa7f0ce35f068d58668b01e155a9ab7a100",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 820.9674682617188,
+      "squared_distances": {
+        "O01": 900.7064208984375,
+        "O02": 1807.957275390625,
+        "O03": 820.9674682617188,
+        "O08": 1627.411865234375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "730b946a54835684a82e6c18ab7c081ea7f22fb1e5b9fa6f49a142addd366b4a",
+        "O02": "fe576d438ab0dfecc24f6ea867a35f1d6ae32d72f31cc5baaadd7c43ef9c60be",
+        "O03": "f0504643964a1848103bbfd5c45e984dc8dacc9646e1b5bba58e38da373156f5",
+        "O08": "7e007b1ceb2a699bc2cab3c23c21b16816c971b6a2f6d93e6259b5d326d8b0ff"
+      },
+      "task_id": "LOO-O04-R3-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O08"
+      ],
+      "centroid_bank_hash": "689782dfd0a931d6d4e35f5e6763384616a005b203c17419216e139e3f5d35dd",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "26beee35736728323b274e4cceca5fc1127c25364fea3bff0522b2b3463a2939",
+      "feature_scale_sha256": "773b91b504be0f3a58653c2983eec93b237dca66974e8497d6541b6bde4a831c",
+      "held_out_garment": "O04",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "f43cb648a0b2ec243d92b9b962eb08bdb17b387c34f27e239ccccb2c3341b63a",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O08": "db54c22e3e4297a559e8bd4e4a8d8e7a69aef0c09cbc10bc2a86862c95de8ac9"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O03",
+      "selected_squared_distance": 751.6612548828125,
+      "squared_distances": {
+        "O01": 1298.308349609375,
+        "O02": 2308.786865234375,
+        "O03": 751.6612548828125,
+        "O08": 2461.415771484375
+      },
+      "standardized_centroid_sha256": {
+        "O01": "730b946a54835684a82e6c18ab7c081ea7f22fb1e5b9fa6f49a142addd366b4a",
+        "O02": "fe576d438ab0dfecc24f6ea867a35f1d6ae32d72f31cc5baaadd7c43ef9c60be",
+        "O03": "f0504643964a1848103bbfd5c45e984dc8dacc9646e1b5bba58e38da373156f5",
+        "O08": "7e007b1ceb2a699bc2cab3c23c21b16816c971b6a2f6d93e6259b5d326d8b0ff"
+      },
+      "task_id": "LOO-O04-R3-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "19fc6714043fac14527092516b7963e3761e58d1cbe5147948bd07f0b62f4115",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "129e0bc3d1979a59ed531bfba40b7d6e7fa6c2964e1d142c9bd11bad1cc3e871",
+      "feature_scale_sha256": "7026eddcaa8135ff5e1c66a5a4ebf959053372ad21461bbb79458851c3ce7815",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "d1b1aa36c95ef57cac3ef06bd2c3e56a15c5ac368a6e2562b724e1f43a7d28c1",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 1549.548095703125,
+      "squared_distances": {
+        "O01": 1549.548095703125,
+        "O02": 1982.602294921875,
+        "O03": 3751.9228515625,
+        "O04": 1754.546875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "242dac431da3b8c019cf3f9302ba9c0f87529766321f6d9e92f9cb6e6b5072f6",
+        "O02": "7c41af6569fa93647bc49a2490464ca467e6a43085b9f9681c55b27f65e7a1f7",
+        "O03": "08d641dcfe012b56194ef5fe208eedef6e8d072ef6ced2bc655cb8bf408e4451",
+        "O04": "691c6f18abfaac35cb69022b1248386884b6ffd80ed2e0b7ff400f240adaadf7"
+      },
+      "task_id": "LOO-O08-R0-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "19fc6714043fac14527092516b7963e3761e58d1cbe5147948bd07f0b62f4115",
+      "centroid_train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "feature_mean_sha256": "129e0bc3d1979a59ed531bfba40b7d6e7fa6c2964e1d142c9bd11bad1cc3e871",
+      "feature_scale_sha256": "7026eddcaa8135ff5e1c66a5a4ebf959053372ad21461bbb79458851c3ce7815",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "5272d9fb4bf8ccf3e7fb5887fdcaf4e06ef115fbcba514b8580cb495696ce5f5",
+      "raw_centroid_sha256": {
+        "O01": "3988bd8d06792929d608a4f74f63b91e0a8ccf3062eb8a1a64380c06099209fc",
+        "O02": "b4579c90a3a06662bb07b94ca37c8e6a117d2e65f765e19c3a144776f07a7fb3",
+        "O03": "925d76408c905b63e9d351d31dde38a3cee2dd98a18e97a42544a56678d574ca",
+        "O04": "9d90d6c61d29cfd536cee8bb517765786927bb08abdc0d92b4614d298ea118b2"
+      },
+      "rotation": "R0",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 2013.93310546875,
+      "squared_distances": {
+        "O01": 2013.93310546875,
+        "O02": 2098.556640625,
+        "O03": 4628.80126953125,
+        "O04": 2139.0625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "242dac431da3b8c019cf3f9302ba9c0f87529766321f6d9e92f9cb6e6b5072f6",
+        "O02": "7c41af6569fa93647bc49a2490464ca467e6a43085b9f9681c55b27f65e7a1f7",
+        "O03": "08d641dcfe012b56194ef5fe208eedef6e8d072ef6ced2bc655cb8bf408e4451",
+        "O04": "691c6f18abfaac35cb69022b1248386884b6ffd80ed2e0b7ff400f240adaadf7"
+      },
+      "task_id": "LOO-O08-R0-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "f3d276aa74dde9863a6c723508153e3ea50a821121836a1ff6948074a6097c94",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "f402f6c0c5fbd8f17682f5d6cca20acf66ff25cb94e3dea04f62d7ae55f0bdfc",
+      "feature_scale_sha256": "b401e5076432924498be7a6c97ab278e79793ba27140eeb4592b9d2a504778dd",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "1032a18d3bda48c87715d93d0290733b9280c088dc49c118838f25b521fdd936",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 5311.310546875,
+      "squared_distances": {
+        "O01": 6240.26220703125,
+        "O02": 6462.0400390625,
+        "O03": 7970.86474609375,
+        "O04": 5311.310546875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "ef1ed6e964babe3d6b74659cdcdf413aeb8b82c898d287b7933d6f1d91518243",
+        "O02": "95cf6cfbde0b2ac7510c905d83e9ea1589d383dc0d5e97f43b6c7c6e10955999",
+        "O03": "46d64e373d8975438a0b60a03bbd66d3b5f7b57e38283be3a724a82548e258c4",
+        "O04": "6f8c2598e4bd26cdcec29514421970ff911baf66007e0e0f29717863a7a92c4e"
+      },
+      "task_id": "LOO-O08-R1-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "f3d276aa74dde9863a6c723508153e3ea50a821121836a1ff6948074a6097c94",
+      "centroid_train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "feature_mean_sha256": "f402f6c0c5fbd8f17682f5d6cca20acf66ff25cb94e3dea04f62d7ae55f0bdfc",
+      "feature_scale_sha256": "b401e5076432924498be7a6c97ab278e79793ba27140eeb4592b9d2a504778dd",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "b13130fe9b6ba6d53eeb0b826ab368def63d671dc942735d976c74e7f453ef4f",
+      "raw_centroid_sha256": {
+        "O01": "ca14c5d67d0bebf49ea7cc7adcf2fcc68f0206231e605ee8714f18704ddb3146",
+        "O02": "425d97053bdb5a30dd970d886d4d3650511afeca59e2339e416cea5e882755dd",
+        "O03": "4c20cbbb4960b43dcc7d675a6d76946f69c6168856d6893d14428da01282ca2d",
+        "O04": "0234c953b55b7d9ebcdce1f7580904012dd7fca9132681830db39100796019d8"
+      },
+      "rotation": "R1",
+      "selected_known_endpoint": "O04",
+      "selected_squared_distance": 4576.28125,
+      "squared_distances": {
+        "O01": 5544.49267578125,
+        "O02": 5312.52490234375,
+        "O03": 7142.171875,
+        "O04": 4576.28125
+      },
+      "standardized_centroid_sha256": {
+        "O01": "ef1ed6e964babe3d6b74659cdcdf413aeb8b82c898d287b7933d6f1d91518243",
+        "O02": "95cf6cfbde0b2ac7510c905d83e9ea1589d383dc0d5e97f43b6c7c6e10955999",
+        "O03": "46d64e373d8975438a0b60a03bbd66d3b5f7b57e38283be3a724a82548e258c4",
+        "O04": "6f8c2598e4bd26cdcec29514421970ff911baf66007e0e0f29717863a7a92c4e"
+      },
+      "task_id": "LOO-O08-R1-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "a067f275078f3d5f438cfbeb62f8db263fba1687b6130467b43384cb017b9bba",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "3160b06c653215f14cf4c2cbfff642bc5e360422cae3388c12426ee49370b904",
+      "feature_scale_sha256": "a85e1632f35cb68bdd38abeaa66035c13687517356cb1553fbfd7ceceef67fd6",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "c56d14df28118fc9a1e6e79266a3a39270db71691dcdc58b11dc7fed1ca898b0",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 8437.9140625,
+      "squared_distances": {
+        "O01": 8937.2900390625,
+        "O02": 8437.9140625,
+        "O03": 11573.6142578125,
+        "O04": 10789.4306640625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "a8e9c1fcd924d493c33261ce69fd104b5dc23c110595bb646f116c396ee1ec14",
+        "O02": "f98b6466741607b37dbf1afe31729d2b1e131b71c0f2bdf2d3e77a8ae78c98bd",
+        "O03": "bc290278343acba869d230eab31135d17434b04f8ba02d86fae22d57509f4571",
+        "O04": "995bdeb6c9c2e8a404e903c8d3ed4ee7ba6b53775bfea395bb6d36575f1dc638"
+      },
+      "task_id": "LOO-O08-R2-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "a067f275078f3d5f438cfbeb62f8db263fba1687b6130467b43384cb017b9bba",
+      "centroid_train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "feature_mean_sha256": "3160b06c653215f14cf4c2cbfff642bc5e360422cae3388c12426ee49370b904",
+      "feature_scale_sha256": "a85e1632f35cb68bdd38abeaa66035c13687517356cb1553fbfd7ceceef67fd6",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "8c0f0140eb82f68d5e7edf6764b4649d36c5a5549d8e88829115495166d3e2dc",
+      "raw_centroid_sha256": {
+        "O01": "38ef1543775ad95a4b15a0a4b4032faf459f57e81e2045bbf9bde985638464ea",
+        "O02": "bfdaafa44b2411c55d62aaaf1237e7268ee2f820b1209ee06c8311d23b19db52",
+        "O03": "a112a30c92b8fff0115c39fe5335adb3f91ed638d98f2b13efa8b4563574b696",
+        "O04": "ea97779ce3815c290fc9ea85159537117436001ec1667541dd8652432a233fa1"
+      },
+      "rotation": "R2",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 5211.12451171875,
+      "squared_distances": {
+        "O01": 5464.736328125,
+        "O02": 5211.12451171875,
+        "O03": 7751.435546875,
+        "O04": 7014.83935546875
+      },
+      "standardized_centroid_sha256": {
+        "O01": "a8e9c1fcd924d493c33261ce69fd104b5dc23c110595bb646f116c396ee1ec14",
+        "O02": "f98b6466741607b37dbf1afe31729d2b1e131b71c0f2bdf2d3e77a8ae78c98bd",
+        "O03": "bc290278343acba869d230eab31135d17434b04f8ba02d86fae22d57509f4571",
+        "O04": "995bdeb6c9c2e8a404e903c8d3ed4ee7ba6b53775bfea395bb6d36575f1dc638"
+      },
+      "task_id": "LOO-O08-R2-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 1,
+      "adaptation_conditions": [
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "a02dc2a292ef30300fa3f719f7f8bea87c19a5b8789c86749d31f381c00482fd",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "d2a1000d6ffb6ebe397cfb4cdfa1f32bb003c17baf71791a7a6a94c3f132fa98",
+      "feature_scale_sha256": "4dfc940fde00e6de5c1d4599dde9ef3f99d19754f8c63aec3fc8f3d27a9fcdd6",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "d1b1aa36c95ef57cac3ef06bd2c3e56a15c5ac368a6e2562b724e1f43a7d28c1",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O01",
+      "selected_squared_distance": 2851.66650390625,
+      "squared_distances": {
+        "O01": 2851.66650390625,
+        "O02": 3124.876220703125,
+        "O03": 5250.7470703125,
+        "O04": 4168.4931640625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "a6161a84565090fec5f8568487c63e49f2551e05d69133061ad473df547fdebe",
+        "O02": "0681e47e557eb34d1cdb9734e1a8ca5851e88ca7c5be44429a31f657456254b7",
+        "O03": "0bca8d35515c5b17c2656a2debd8551a9614b41d4a36dca100df7344dcd39271",
+        "O04": "0eb6337a2fbe2f03a298bcd66b09ade8c0711c29b75af07a69c1e1e243a576de"
+      },
+      "task_id": "LOO-O08-R3-K1",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    },
+    {
+      "K": 2,
+      "adaptation_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "centroid_bank": [
+        "O01",
+        "O02",
+        "O03",
+        "O04"
+      ],
+      "centroid_bank_hash": "a02dc2a292ef30300fa3f719f7f8bea87c19a5b8789c86749d31f381c00482fd",
+      "centroid_train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "feature_mean_sha256": "d2a1000d6ffb6ebe397cfb4cdfa1f32bb003c17baf71791a7a6a94c3f132fa98",
+      "feature_scale_sha256": "4dfc940fde00e6de5c1d4599dde9ef3f99d19754f8c63aec3fc8f3d27a9fcdd6",
+      "held_out_garment": "O08",
+      "held_out_teacher_reads": 0,
+      "optimizer_reads": 0,
+      "query_feature_sha256": "152424a49b0c33eed94c3bf6c06ee3448f80ad8897bf97eb10762346d2e64ef9",
+      "raw_centroid_sha256": {
+        "O01": "ef0c0ba452270aacca18f7525313d2223790daf26850d80e677513fd1808755b",
+        "O02": "bdbcf7255e646095b11406d18ca35931fac1466e1cbd94e01c21ceef00f8a3d7",
+        "O03": "e0345ad0dbef8505e53c0af487fd591855f20f717dd709551a18b7e80f5b883a",
+        "O04": "2e53ebc9e31966155e3fa41fc55b10291a546fc98d8f11e0191c73648be55b16"
+      },
+      "rotation": "R3",
+      "selected_known_endpoint": "O02",
+      "selected_squared_distance": 2641.4296875,
+      "squared_distances": {
+        "O01": 2680.060791015625,
+        "O02": 2641.4296875,
+        "O03": 5306.02783203125,
+        "O04": 4076.9619140625
+      },
+      "standardized_centroid_sha256": {
+        "O01": "a6161a84565090fec5f8568487c63e49f2551e05d69133061ad473df547fdebe",
+        "O02": "0681e47e557eb34d1cdb9734e1a8ca5851e88ca7c5be44429a31f657456254b7",
+        "O03": "0bca8d35515c5b17c2656a2debd8551a9614b41d4a36dca100df7344dcd39271",
+        "O04": "0eb6337a2fbe2f03a298bcd66b09ade8c0711c29b75af07a69c1e1e243a576de"
+      },
+      "task_id": "LOO-O08-R3-K2",
+      "test_metric_reads": 0,
+      "test_target_reads": 0,
+      "tie_break": "minimum standardized squared L2 then lexical outfit id",
+      "tie_break_triggered": false
+    }
+  ],
+  "same_endpoint_pairs": 15,
+  "schema_version": "canondressgs.paper.loo_hard_lookup_k_replay.v2",
+  "scientific_gpu_work": 0,
+  "source_diagnostic_head": "695ae9ca092f8260e6c5f0b016f491c5e4324fd1",
+  "status": "PASS",
+  "storage_input_snapshot": {
+    "actual_free_bytes": 29791563776,
+    "asset_root": "/root/autodl-tmp/canondressgs_work/outputs",
+    "sealed_checkpoint_bytes": 38623718,
+    "sealed_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_002/05_checkpoints/full_residual_R0_O01/step_000300.pth",
+    "sealed_prediction_tree_present": true,
+    "sealed_visual_tree_present": true
+  },
+  "task_id": "AAAI27-LOO-K-DEPENDENT-CACHE-COUNT-REPAIR-001",
+  "test_metric_reads": 0,
+  "test_target_reads": 0
+}

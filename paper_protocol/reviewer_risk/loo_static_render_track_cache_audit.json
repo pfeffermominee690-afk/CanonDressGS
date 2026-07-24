@@ -1,0 +1,241 @@
+{
+  "audit_sha256": "25c152250c5d8afcbe18f340b41e6c37a90ffbba21905bc602effed750088f5d",
+  "checks": {
+    "allowed_hits_115": true,
+    "five_guaranteed_invariant": true,
+    "one_k_dependent": true,
+    "six_tracks_recovered_from_runner": true,
+    "unaudited_static_tracks_zero": true
+  },
+  "rows": [
+    {
+      "K_dependent_inputs": [],
+      "K_invariant_mathematically_guaranteed": true,
+      "allowed_cache_hit_count": 20,
+      "cache_key_fields": [
+        "split",
+        "held_out_garment",
+        "condition",
+        "checkpoint_or_final_state_role",
+        "selected_known_endpoint",
+        "basis_hash",
+        "coefficient_or_residual_state_identity",
+        "camera_metadata_sha256",
+        "pose_metadata_sha256",
+        "renderer_contract_sha256",
+        "background_identity",
+        "resolution_identity",
+        "output_semantic_role"
+      ],
+      "logical_render_count": 40,
+      "method_family": "DETERMINISTIC_STATIC_OR_ORACLE",
+      "observed_K1_K2_different_key_count": 0,
+      "observed_K1_K2_same_key_count": 20,
+      "registry_role": "Base Avatar",
+      "render_state_inputs": [
+        "split",
+        "test_condition",
+        "camera",
+        "pose",
+        "renderer_contract",
+        "background",
+        "resolution",
+        "residual_state_identity"
+      ],
+      "track_id": "BASE_AVATAR"
+    },
+    {
+      "K_dependent_inputs": [
+        "selected_adaptation_conditions",
+        "frozen_F2_query_aggregation",
+        "selected_known_endpoint"
+      ],
+      "K_invariant_mathematically_guaranteed": false,
+      "allowed_cache_hit_count": 15,
+      "cache_key_fields": [
+        "split",
+        "held_out_garment",
+        "condition",
+        "checkpoint_or_final_state_role",
+        "selected_known_endpoint",
+        "basis_hash",
+        "coefficient_or_residual_state_identity",
+        "camera_metadata_sha256",
+        "pose_metadata_sha256",
+        "renderer_contract_sha256",
+        "background_identity",
+        "resolution_identity",
+        "output_semantic_role"
+      ],
+      "logical_render_count": 40,
+      "method_family": "DEPLOYABLE_REFERENCE_HARD_LOOKUP",
+      "observed_K1_K2_different_key_count": 5,
+      "observed_K1_K2_same_key_count": 15,
+      "registry_role": "Reference Nearest Hard Lookup",
+      "render_state_inputs": [
+        "split",
+        "test_condition",
+        "camera",
+        "pose",
+        "renderer_contract",
+        "background",
+        "resolution",
+        "residual_state_identity"
+      ],
+      "track_id": "REFERENCE_NEAREST_HARD_LOOKUP"
+    },
+    {
+      "K_dependent_inputs": [],
+      "K_invariant_mathematically_guaranteed": true,
+      "allowed_cache_hit_count": 20,
+      "cache_key_fields": [
+        "split",
+        "held_out_garment",
+        "condition",
+        "checkpoint_or_final_state_role",
+        "selected_known_endpoint",
+        "basis_hash",
+        "coefficient_or_residual_state_identity",
+        "camera_metadata_sha256",
+        "pose_metadata_sha256",
+        "renderer_contract_sha256",
+        "background_identity",
+        "resolution_identity",
+        "output_semantic_role"
+      ],
+      "logical_render_count": 40,
+      "method_family": "DETERMINISTIC_STATIC_OR_ORACLE",
+      "observed_K1_K2_different_key_count": 0,
+      "observed_K1_K2_same_key_count": 20,
+      "registry_role": "offline representation diagnostic only",
+      "render_state_inputs": [
+        "split",
+        "test_condition",
+        "camera",
+        "pose",
+        "renderer_contract",
+        "background",
+        "resolution",
+        "residual_state_identity"
+      ],
+      "track_id": "RESIDUAL_NEAREST_ORACLE"
+    },
+    {
+      "K_dependent_inputs": [],
+      "K_invariant_mathematically_guaranteed": true,
+      "allowed_cache_hit_count": 20,
+      "cache_key_fields": [
+        "split",
+        "held_out_garment",
+        "condition",
+        "checkpoint_or_final_state_role",
+        "selected_known_endpoint",
+        "basis_hash",
+        "coefficient_or_residual_state_identity",
+        "camera_metadata_sha256",
+        "pose_metadata_sha256",
+        "renderer_contract_sha256",
+        "background_identity",
+        "resolution_identity",
+        "output_semantic_role"
+      ],
+      "logical_render_count": 40,
+      "method_family": "DETERMINISTIC_STATIC_OR_ORACLE",
+      "observed_K1_K2_different_key_count": 0,
+      "observed_K1_K2_same_key_count": 20,
+      "registry_role": "offline basis-capacity upper bound only",
+      "render_state_inputs": [
+        "split",
+        "test_condition",
+        "camera",
+        "pose",
+        "renderer_contract",
+        "background",
+        "resolution",
+        "residual_state_identity"
+      ],
+      "track_id": "ORACLE_PROJECTION_LOO_BASIS"
+    },
+    {
+      "K_dependent_inputs": [],
+      "K_invariant_mathematically_guaranteed": true,
+      "allowed_cache_hit_count": 20,
+      "cache_key_fields": [
+        "split",
+        "held_out_garment",
+        "condition",
+        "checkpoint_or_final_state_role",
+        "selected_known_endpoint",
+        "basis_hash",
+        "coefficient_or_residual_state_identity",
+        "camera_metadata_sha256",
+        "pose_metadata_sha256",
+        "renderer_contract_sha256",
+        "background_identity",
+        "resolution_identity",
+        "output_semantic_role"
+      ],
+      "logical_render_count": 40,
+      "method_family": "DETERMINISTIC_STATIC_OR_ORACLE",
+      "observed_K1_K2_different_key_count": 0,
+      "observed_K1_K2_same_key_count": 20,
+      "registry_role": "evaluation reference only",
+      "render_state_inputs": [
+        "split",
+        "test_condition",
+        "camera",
+        "pose",
+        "renderer_contract",
+        "background",
+        "resolution",
+        "residual_state_identity"
+      ],
+      "track_id": "HELD_OUT_TEACHER_ENDPOINT"
+    },
+    {
+      "K_dependent_inputs": [],
+      "K_invariant_mathematically_guaranteed": true,
+      "allowed_cache_hit_count": 20,
+      "cache_key_fields": [
+        "split",
+        "held_out_garment",
+        "condition",
+        "checkpoint_or_final_state_role",
+        "selected_known_endpoint",
+        "basis_hash",
+        "coefficient_or_residual_state_identity",
+        "camera_metadata_sha256",
+        "pose_metadata_sha256",
+        "renderer_contract_sha256",
+        "background_identity",
+        "resolution_identity",
+        "output_semantic_role"
+      ],
+      "logical_render_count": 40,
+      "method_family": "DETERMINISTIC_STATIC_OR_ORACLE",
+      "observed_K1_K2_different_key_count": 0,
+      "observed_K1_K2_same_key_count": 20,
+      "registry_role": "Convex Combination Oracle Diagnostic",
+      "render_state_inputs": [
+        "split",
+        "test_condition",
+        "camera",
+        "pose",
+        "renderer_contract",
+        "background",
+        "resolution",
+        "residual_state_identity"
+      ],
+      "track_id": "CONVEX_COMBINATION_ORACLE"
+    }
+  ],
+  "schema_version": "canondressgs.paper.loo_static_render_track_cache_audit.v1",
+  "source": {
+    "baseline_registry": "loo_baseline_registry_amended.json",
+    "runner_constant": "STATIC_METHODS"
+  },
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-K-DEPENDENT-CACHE-COUNT-REPAIR-001",
+  "track_count": 6,
+  "unaudited_static_tracks": []
+}
