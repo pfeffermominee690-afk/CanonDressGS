@@ -45,12 +45,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.paper import loo_basis_output as output_io
+from tools.paper import loo_cache_key_plan
 
 
 TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-EXPERIMENT-001"
 SOURCE_BRANCH = "research/loo-few-view-fold-manifest-repair-20260724"
 SOURCE_HEAD = "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f"
-RUN_BRANCH = "research/leave-one-garment-out-basis-adaptation-experiment-20260724"
+DIAGNOSTIC_HEAD = "695ae9ca092f8260e6c5f0b016f491c5e4324fd1"
+RUN_BRANCH = "research/loo-k-dependent-cache-count-contract-repair-20260724"
 PURE_BRANCH = "research/pure-endpoint-core-method-crossfit-amended-20260724"
 PURE_HEAD = "ce110887a942cf8db082ba688c8d36d2433bfdbe"
 HEADROOM_BRANCH = "research/render-refined-coefficient-headroom-attempt2-20260724"
@@ -104,6 +106,15 @@ INHERITED_FILES = (
     "paper_protocol/reviewer_risk/loo_baseline_registry.json",
     "paper_protocol/reviewer_risk/loo_evaluator_contract.json",
 )
+CACHE_REPAIRED_FILES = (
+    "paper_protocol/reviewer_risk/loo_cache_count_root_cause.json",
+    "paper_protocol/reviewer_risk/loo_static_render_track_cache_audit.json",
+    "paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json",
+    "paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json",
+    "paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json",
+    "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
+    "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
+)
 REPORT_NAMES = (
     "AAAI27_LOO_BASIS_ADAPTATION_RESULTS_20260724.md",
     "AAAI27_LOO_HARD_LOOKUP_COMPARISON_20260724.md",
@@ -152,6 +163,10 @@ PHASES = (
     "13_final_verification",
 )
 _RUNTIME_CACHE: dict[str, Any] | None = None
+_CACHE_PLAN_RUNTIME: dict[str, Any] | None = None
+_CACHE_REGISTRY_RUNTIME: dict[str, Any] | None = None
+_CACHE_RENDERER_SHA_RUNTIME: str | None = None
+_CONDITION_METADATA_RUNTIME: dict[str, Any] | None = None
 
 
 def strict_object(pairs: Iterable[tuple[str, Any]]) -> dict[str, Any]:
@@ -283,17 +298,21 @@ def contracts() -> dict[str, Any]:
         "baselines": read_json(RISK / "loo_baseline_registry_amended.json"),
         "evaluator": read_json(RISK / "loo_evaluator_contract_amended.json"),
         "gates": read_json(RISK / "loo_success_gates_amended.json"),
-        "counts": read_json(RISK / "loo_expected_counts_amended.json"),
+        "counts": read_json(RISK / "loo_expected_counts_cache_repaired.json"),
         "execution": read_json(RISK / "loo_execution_contract_amended.json"),
+        "cache_execution": read_json(RISK / "loo_execution_contract_cache_repaired.json"),
+        "cache_plan": read_json(RISK / "loo_cache_key_plan_v2.json"),
+        "hard_lookup_replay": read_json(RISK / "loo_hard_lookup_k_replay.json"),
+        "storage": read_json(RISK / "loo_storage_forecast_cache_repaired.json"),
     }
 
 
 def tasks() -> list[dict[str, Any]]:
-    return list(contracts()["tasks"]["primary_tasks"])
+    return list(read_json(RISK / "loo_few_view_manifests_repaired.json")["primary_tasks"])
 
 
 def split_rows() -> list[dict[str, Any]]:
-    return list(contracts()["basis"]["splits"])
+    return list(read_json(RISK / "loo_basis_manifests.json")["splits"])
 
 
 def expected_counts() -> dict[str, int]:
@@ -403,14 +422,15 @@ def protocol_audit() -> dict[str, Any]:
         "optimizer_runs_120": expected_counts()["total_optimizer_runs"] == 120,
         "checkpoint_writes_720": expected_counts()["checkpoint_writes"] == 720,
         "logical_renders_54960": expected_counts()["total_logical_renders"] == 54960,
-        "physical_renders_54840": expected_counts()["unique_physical_renders"] == 54840,
+        "physical_renders_54845": expected_counts()["unique_physical_renders"] == 54845,
+        "cache_hits_115": expected_counts()["K_shared_static_cache_hits"] == 115,
     }
     return {
         "status": "PASS" if all(checks.values()) else "FAIL",
         "checks": checks,
         "budget_counts": dict(counts),
         "task_manifest_sha256": sha256(RISK / "loo_few_view_manifests_repaired.json", lf=True),
-        "expected_counts_sha256": sha256(RISK / "loo_expected_counts_amended.json", lf=True),
+        "expected_counts_sha256": sha256(RISK / "loo_expected_counts_cache_repaired.json", lf=True),
     }
 
 
@@ -491,7 +511,7 @@ def storage_forecast(root: Path) -> dict[str, Any]:
     raw = (
         full_checkpoints * full_checkpoint_unit
         + low_checkpoints * low_checkpoint_unit
-        + 880 * 2 * prediction_unit
+        + 885 * 2 * prediction_unit
         + 26 * sheet_unit
         + basis_bytes
         + equal_wall_time_state_bytes
@@ -509,7 +529,8 @@ def storage_forecast(root: Path) -> dict[str, Any]:
         "low_dimensional_checkpoint_count": low_checkpoints,
         "basis_bytes": basis_bytes,
         "equal_wall_time_state_bytes": equal_wall_time_state_bytes,
-        "prediction_render_pairs": 880,
+        "prediction_render_pairs": 885,
+        "physical_render_count": 54_845,
         "raw_estimated_bytes": raw,
         "safety_margin_fraction": 0.30,
         "safety_margin_bytes": safety,
@@ -520,10 +541,307 @@ def storage_forecast(root: Path) -> dict[str, Any]:
     }
 
 
+def cache_renderer_contract_sha256() -> str:
+    global _CACHE_RENDERER_SHA_RUNTIME
+    if _CACHE_RENDERER_SHA_RUNTIME is not None:
+        return _CACHE_RENDERER_SHA_RUNTIME
+    payload = {
+        "evaluator": canonical_sha(read_json(RISK / "loo_evaluator_contract_amended.json")),
+        "loss": canonical_sha(read_json(RISK / "loo_shared_render_adaptation_loss_reference.json")),
+        "execution": canonical_sha(read_json(RISK / "loo_execution_contract_amended.json")),
+        "renderer_implementation_sha256_lf": sha256(
+            ROOT / "tools/run_residual_field_parameterization.py", lf=True
+        ),
+    }
+    _CACHE_RENDERER_SHA_RUNTIME = canonical_sha(payload)
+    return _CACHE_RENDERER_SHA_RUNTIME
+
+
+def condition_metadata() -> dict[str, Any]:
+    global _CONDITION_METADATA_RUNTIME
+    if _CONDITION_METADATA_RUNTIME is None:
+        manifest = read_json(RISK / "loo_few_view_manifests_repaired.json")
+        _CONDITION_METADATA_RUNTIME = dict(
+            manifest["semantic_and_camera_metadata"]["conditions"]
+        )
+    return _CONDITION_METADATA_RUNTIME
+
+
+def deterministic_cache_plan(*, include_runtime_index: bool = False) -> dict[str, Any]:
+    values = contracts()
+    manifest = values["tasks"]
+    numeric_counts = {
+        key: int(value)
+        for key, value in values["counts"]["planned_future_counts"].items()
+        if isinstance(value, (int, float)) and not isinstance(value, bool)
+    }
+    return loo_cache_key_plan.build_cache_key_plan(
+        tasks=manifest["primary_tasks"],
+        replay=values["hard_lookup_replay"],
+        expected_counts=numeric_counts,
+        static_methods=STATIC_METHODS,
+        optimizer_methods=METHOD_FAMILIES,
+        milestones=MILESTONES,
+        condition_metadata=manifest["semantic_and_camera_metadata"]["conditions"],
+        renderer_contract_sha256=cache_renderer_contract_sha256(),
+        background_identity="WHITE_BACKGROUND_RGB_1_1_1",
+        resolution_identity="FROZEN_NATIVE_SUBJECT02_CONDITION_RESOLUTION",
+        include_runtime_index=include_runtime_index,
+    )
+
+
+def cache_contract_preflight() -> dict[str, Any]:
+    values = contracts()
+    replay = values["hard_lookup_replay"]
+    committed = values["cache_plan"]
+    regenerated = deterministic_cache_plan()
+    mismatch_identities = {
+        (row["held_out_garment"], row["rotation"]): (
+            row["K1_selected_known_endpoint"], row["K2_selected_known_endpoint"]
+        )
+        for row in replay["pairs"] if not row["same_endpoint"]
+    }
+    expected_mismatches = {
+        ("O01", "R0"): ("O04", "O02"),
+        ("O01", "R1"): ("O04", "O02"),
+        ("O02", "R2"): ("O08", "O01"),
+        ("O04", "R0"): ("O03", "O01"),
+        ("O08", "R3"): ("O01", "O02"),
+    }
+    execution = values["cache_execution"]
+    expected = values["counts"]
+    checks = {
+        "diagnostic_head_exact": execution["source_diagnostic_head"] == DIAGNOSTIC_HEAD,
+        "replay_status_pass": replay["status"] == "PASS",
+        "replay_15_same": int(replay["same_endpoint_pairs"]) == 15,
+        "replay_5_different": int(replay["different_endpoint_pairs"]) == 5,
+        "replay_mismatches_exact": mismatch_identities == expected_mismatches,
+        "held_out_teacher_reads_zero": int(replay["held_out_teacher_reads"]) == 0,
+        "test_metric_reads_zero": int(replay["test_metric_reads"]) == 0,
+        "optimizer_reads_zero": int(replay["optimizer_reads"]) == 0,
+        "plan_regeneration_exact": regenerated == committed,
+        "plan_sha_exact": regenerated["deterministic_plan_sha256"] == expected["cache_key_plan_sha256"],
+        "logical_requests_54960": regenerated["logical_request_count"] == 54_960,
+        "unique_physical_keys_54845": regenerated["unique_physical_key_count"] == 54_845,
+        "cache_hits_115": regenerated["cache_hit_count"] == 115,
+        "hard_lookup_shared_15": regenerated["hard_lookup_k_shared_hits"] == 15,
+        "hard_lookup_divergent_5": regenerated["hard_lookup_k_divergent_pairs"] == 5,
+        "execution_contract_ready": execution["status"] == "READY_FOR_FIRST_LOO_SCIENTIFIC_ATTEMPT_BEFORE_OPTIMIZER",
+    }
+    return {
+        "schema_version": "canondressgs.paper.loo_cache_contract_preflight.v2",
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "replay_sha256": replay["deterministic_replay_sha256"],
+        "plan_sha256": regenerated["deterministic_plan_sha256"],
+        "logical_request_count": regenerated["logical_request_count"],
+        "unique_physical_key_count": regenerated["unique_physical_key_count"],
+        "cache_hit_count": regenerated["cache_hit_count"],
+    }
+
+
+def planned_cache_request(
+    task: Mapping[str, Any], method: str, condition: str, *, phase: str,
+    logical_request_id: str, state_role: str, selected_endpoint: str,
+    state_identity: str, output_semantic_role: str,
+) -> dict[str, Any]:
+    metadata = condition_metadata()[condition]
+    return {
+        "schema_version": "canondressgs.paper.loo_logical_render_request.v2",
+        "logical_request_id": logical_request_id,
+        "phase": phase,
+        "track_id": (
+            f"ADAPTATION/{method}" if phase == "ADAPTATION_LOSS_RENDER"
+            else f"CHECKPOINT_EVALUATION/{method}"
+            if phase == "OPTIMIZED_CHECKPOINT_TEST_EVALUATION"
+            else f"STATIC/{method}"
+        ),
+        "task_id": task["task_id"],
+        "held_out_garment": task["held_out_garment"],
+        "rotation": task["rotation"],
+        "K": int(task["K"]),
+        "method": method,
+        "split": f"LOO-{task['held_out_garment']}",
+        "condition": condition,
+        "checkpoint_or_final_state_role": state_role,
+        "selected_known_endpoint": selected_endpoint,
+        "basis_hash": loo_cache_key_plan._basis_hash(method, task),
+        "coefficient_or_residual_state_identity": state_identity,
+        "camera_metadata_sha256": metadata["camera_metadata_sha256"],
+        "pose_metadata_sha256": metadata["pose_metadata_sha256"],
+        "renderer_contract_sha256": cache_renderer_contract_sha256(),
+        "background_identity": "WHITE_BACKGROUND_RGB_1_1_1",
+        "resolution_identity": "FROZEN_NATIVE_SUBJECT02_CONDITION_RESOLUTION",
+        "output_semantic_role": output_semantic_role,
+    }
+
+
+def adaptation_cache_request(
+    task: Mapping[str, Any], method: str, step: int, condition: str,
+    selected_endpoint: str,
+) -> dict[str, Any]:
+    selected = (
+        "NOT_APPLICABLE"
+        if method == "ZERO_COEFFICIENT_INITIALIZATION_DIAGNOSTIC"
+        else selected_endpoint
+    )
+    return planned_cache_request(
+        task, method, condition,
+        phase="ADAPTATION_LOSS_RENDER",
+        logical_request_id=f"ADAPT/{task['task_id']}/{method}/step_{step:06d}/{condition}",
+        state_role=f"PRE_UPDATE_STEP_{step:06d}",
+        selected_endpoint=selected,
+        state_identity=f"OPTIMIZER_STATE/{task['task_id']}/{method}/step_{step:06d}",
+        output_semantic_role="ADAPTATION_RENDERING_LOSS_INPUT",
+    )
+
+
+def checkpoint_cache_request(
+    task: Mapping[str, Any], method: str, step: int, condition: str,
+    selected_endpoint: str,
+) -> dict[str, Any]:
+    selected = (
+        "NOT_APPLICABLE"
+        if method == "ZERO_COEFFICIENT_INITIALIZATION_DIAGNOSTIC"
+        else selected_endpoint
+    )
+    return planned_cache_request(
+        task, method, condition,
+        phase="OPTIMIZED_CHECKPOINT_TEST_EVALUATION",
+        logical_request_id=f"EVAL/{task['task_id']}/{method}/step_{step:06d}/{condition}",
+        state_role=f"CHECKPOINT_STEP_{step:06d}",
+        selected_endpoint=selected,
+        state_identity=f"CHECKPOINT/{task['task_id']}/{method}/step_{step:06d}",
+        output_semantic_role="FORMAL_TEST_METRIC_INPUT",
+    )
+
+
+def static_cache_request(
+    task: Mapping[str, Any], method: str, condition: str, selected_endpoint: str,
+) -> dict[str, Any]:
+    if method == loo_cache_key_plan.HARD_LOOKUP:
+        selected = selected_endpoint
+    elif method == "RESIDUAL_NEAREST_ORACLE":
+        selected = "DEFERRED_OFFLINE_ORACLE_ENDPOINT"
+    else:
+        selected = "NOT_APPLICABLE"
+    state_identity = (
+        f"STATIC/{method}/KNOWN_ENDPOINT/{selected}"
+        if method == loo_cache_key_plan.HARD_LOOKUP
+        else f"STATIC/{method}/HELD_OUT/{task['held_out_garment']}"
+    )
+    return planned_cache_request(
+        task, method, condition,
+        phase="STATIC_TEST_EVALUATION",
+        logical_request_id=f"STATIC/{task['task_id']}/{method}/{condition}",
+        state_role="STATIC_FINAL_STATE",
+        selected_endpoint=selected,
+        state_identity=state_identity,
+        output_semantic_role="FORMAL_TEST_METRIC_INPUT",
+    )
+
+
+def _runtime_cache_state(attempt: Path) -> dict[str, Any]:
+    global _CACHE_PLAN_RUNTIME, _CACHE_REGISTRY_RUNTIME
+    if _CACHE_PLAN_RUNTIME is None:
+        plan = deterministic_cache_plan(include_runtime_index=True)
+        _CACHE_PLAN_RUNTIME = {
+            "summary": {key: value for key, value in plan.items() if not key.startswith("_runtime_")},
+            "index": plan["_runtime_logical_request_key_index"],
+        }
+    path = attempt / "08_metrics/runtime_cache_request_registry.jsonl"
+    if (
+        _CACHE_REGISTRY_RUNTIME is not None
+        and _CACHE_REGISTRY_RUNTIME["path"] != path
+    ):
+        _CACHE_REGISTRY_RUNTIME = None
+    if _CACHE_REGISTRY_RUNTIME is None:
+        prior = jsonl(path)
+        logical_ids = {row["logical_request_id"] for row in prior}
+        if len(logical_ids) != len(prior):
+            raise RuntimeError("LOO_RUNTIME_CACHE_PLAN_DRIFT")
+        _CACHE_REGISTRY_RUNTIME = {
+            "path": path,
+            "logical_ids": logical_ids,
+            "physical_keys": {
+                row["source_physical_key"] for row in prior if row["physical_render"]
+            },
+            "cache_hits": sum(bool(row["cache_hit"]) for row in prior),
+        }
+    return _CACHE_REGISTRY_RUNTIME
+
+
+def validate_runtime_cache_request(
+    attempt: Path, request: Mapping[str, Any], *, cache_hit: bool,
+) -> tuple[str, str]:
+    state = _runtime_cache_state(attempt)
+    logical_id = str(request["logical_request_id"])
+    actual_key, identity = loo_cache_key_plan.cache_key_v2(request)
+    expected_key = _CACHE_PLAN_RUNTIME["index"].get(logical_id)
+    if expected_key != actual_key or logical_id in state["logical_ids"]:
+        raise RuntimeError("LOO_RUNTIME_CACHE_PLAN_DRIFT")
+    already_physical = actual_key in state["physical_keys"]
+    if cache_hit != already_physical:
+        raise RuntimeError("LOO_RUNTIME_CACHE_PLAN_DRIFT")
+    return actual_key, canonical_sha(identity)
+
+
+def register_runtime_cache_request(
+    attempt: Path, request: Mapping[str, Any], *, cache_hit: bool,
+) -> str:
+    state = _runtime_cache_state(attempt)
+    logical_id = str(request["logical_request_id"])
+    actual_key, identity_sha = validate_runtime_cache_request(
+        attempt, request, cache_hit=cache_hit
+    )
+    row = {
+        "logical_request_id": logical_id,
+        "task_id": request["task_id"],
+        "phase": request["phase"],
+        "track_id": request["track_id"],
+        "cache_key_v2": actual_key,
+        "render_identity_sha256": identity_sha,
+        "cache_hit": cache_hit,
+        "physical_render": not cache_hit,
+        "source_physical_key": actual_key,
+    }
+    append_jsonl(state["path"], row)
+    state["logical_ids"].add(logical_id)
+    if cache_hit:
+        state["cache_hits"] += 1
+    else:
+        state["physical_keys"].add(actual_key)
+    return actual_key
+
+
+def verify_runtime_cache_registry(attempt: Path) -> dict[str, Any]:
+    state = _runtime_cache_state(attempt)
+    plan = _CACHE_PLAN_RUNTIME["summary"]
+    checks = {
+        "logical_request_count": len(state["logical_ids"]) == plan["logical_request_count"],
+        "unique_physical_key_count": len(state["physical_keys"]) == plan["unique_physical_key_count"],
+        "cache_hit_count": int(state["cache_hits"]) == plan["cache_hit_count"],
+        "logical_request_ids_exact": state["logical_ids"] == set(_CACHE_PLAN_RUNTIME["index"]),
+    }
+    result = {
+        "schema_version": "canondressgs.paper.loo_runtime_cache_plan_verification.v2",
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "actual_logical_request_count": len(state["logical_ids"]),
+        "actual_unique_physical_key_count": len(state["physical_keys"]),
+        "actual_cache_hit_count": int(state["cache_hits"]),
+        "deterministic_plan_sha256": plan["deterministic_plan_sha256"],
+    }
+    if result["status"] != "PASS":
+        raise RuntimeError("LOO_RUNTIME_CACHE_PLAN_DRIFT")
+    return result
+
+
 def static_preflight(root: Path | None = None) -> dict[str, Any]:
     artifacts = source_artifact_audit()
     historical = historical_immutability_audit()
     protocol = protocol_audit()
+    cache_contract = cache_contract_preflight()
     path_plan = output_io.audit_relative_paths(planned_paths())
     credentials = credential_scan((ROOT / "tools/paper", ROOT / "docs/PAPER", RISK, HANDOFF))
     checks = {
@@ -532,6 +850,7 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "source_artifacts": artifacts["status"] == "PASS",
         "historical_immutability": historical["status"] == "PASS",
         "protocol": protocol["status"] == "PASS",
+        "cache_contract": cache_contract["status"] == "PASS",
         "output_path_plan": path_plan["status"] == "PASS",
         "credential_scan": credentials["status"] == "PASS",
     }
@@ -549,14 +868,27 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "source_artifact_audit": artifacts,
         "historical_immutability": historical,
         "protocol_audit": protocol,
+        "cache_contract_preflight": cache_contract,
         "path_plan": path_plan,
         "credential_scan": credentials,
         "storage_forecast": storage_forecast(root) if root is not None else None,
         "checked_at_utc": now(),
+        "preflight_order": [
+            "exact_source_head", "historical_artifact_immutability",
+            "repaired_protocol_hashes", "40_task_manifest", "K_mappings",
+            "held_out_boundary", "F2_centroid_replay", "15_5_hard_lookup_parity",
+            "complete_cache_key_plan", "exact_render_counts", "storage_forecast",
+            "GPU_resource_gate", "credential_gate", "output_collision_gate",
+            "execution_head_authorization", "attempt_materialization", "renderer",
+            "optimizer",
+        ],
     }
 
 
 def cloud_resource_preflight(root: Path) -> dict[str, Any]:
+    static = static_preflight(root)
+    if static["status"] != "PASS":
+        raise RuntimeError("LOO_ADAPTATION_STATIC_PREFLIGHT_FAILED")
     if torch is None or not torch.cuda.is_available():
         raise RuntimeError("LOO_ADAPTATION_CUDA_RUNTIME_MISSING")
     gpu_rows = subprocess.check_output(
@@ -591,7 +923,6 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         and git("rev-parse", RUN_BRANCH) == git("rev-parse", "HEAD")
     )
     forecast = storage_forecast(root)
-    static = static_preflight(root)
     f2_cache = f2_cache_preflight(root)
     checks = {
         "gpu_is_rtx_4090": gpu_name == "NVIDIA GeForce RTX 4090",
@@ -624,6 +955,8 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         },
         "storage_forecast": forecast,
         "f2_cache_preflight": f2_cache,
+        "cache_contract_preflight": static["cache_contract_preflight"],
+        "preflight_order": static["preflight_order"],
         "git_topology": "LINKED_LOCAL_BARE_REPOSITORY" if linked_bare else "NAMED_REMOTES",
         "remote_names": sorted(remotes),
         "credential_values_recorded": False,
@@ -644,7 +977,7 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
             "sha256": sha256(ROOT / relative),
             "sha256_lf": sha256(ROOT / relative, lf=True),
         }
-        for relative in (*REPAIRED_FILES, *INHERITED_FILES)
+        for relative in (*REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES)
     }
     payload = {
         "schema_version": "canondressgs.paper.loo_execution_binding.v1",
@@ -677,7 +1010,7 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         RISK / "loo_execution_expected_counts.json": {
             "schema_version": "canondressgs.paper.loo_execution_expected_counts.v1",
             "task_id": TASK_ID, "status": "FROZEN", "counts": expected_counts(),
-            "source_sha256": sha256(RISK / "loo_expected_counts_amended.json"),
+            "source_sha256": sha256(RISK / "loo_expected_counts_cache_repaired.json"),
         },
         RISK / "loo_pre_result_tests.json": {
             "schema_version": "canondressgs.paper.loo_pre_result_tests.v1",
@@ -702,6 +1035,13 @@ def materialize(root: Path) -> dict[str, Any]:
     resource = cloud_resource_preflight(root)
     if resource["status"] != "PASS":
         raise RuntimeError("LOO_ADAPTATION_RESOURCE_PREFLIGHT_FAILED")
+    cache_preflight = cache_contract_preflight()
+    runtime_plan = deterministic_cache_plan(include_runtime_index=True)
+    runtime_index = runtime_plan.pop("_runtime_logical_request_key_index")
+    if cache_preflight["status"] != "PASS" or runtime_plan != contracts()["cache_plan"]:
+        raise RuntimeError("LOO_RUNTIME_CACHE_PLAN_DRIFT")
+    if len(runtime_index) != int(expected_counts()["total_logical_renders"]):
+        raise RuntimeError("LOO_RUNTIME_CACHE_PLAN_DRIFT")
     output_parent = root / OUTPUT_NAME
     output_parent.mkdir(parents=True, exist_ok=True)
     attempt.mkdir(exist_ok=False)
@@ -721,15 +1061,26 @@ def materialize(root: Path) -> dict[str, Any]:
     json_write(attempt / "00_preflight/historical_immutability.json", historical_immutability_audit())
     json_write(attempt / "00_preflight/storage_forecast.json", resource["storage_forecast"])
     json_write(attempt / "00_preflight/credential_scan.json", credential_scan((ROOT,)))
-    for relative in (*REPAIRED_FILES, *INHERITED_FILES):
+    json_write(attempt / "00_preflight/cache_contract_preflight.json", cache_preflight)
+    for relative in (*REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES):
         destination = attempt / "01_contract_snapshot" / relative
         output_io.atomic_write_bytes(attempt, destination, (ROOT / relative).read_bytes())
     json_write(attempt / "01_contract_snapshot/contract_registry.json", {
-        "status": "PASS", "artifact_count": len(REPAIRED_FILES) + len(INHERITED_FILES),
+        "status": "PASS",
+        "artifact_count": len(REPAIRED_FILES) + len(INHERITED_FILES) + len(CACHE_REPAIRED_FILES),
         "artifacts": {
             relative: sha256(attempt / "01_contract_snapshot" / relative)
-            for relative in (*REPAIRED_FILES, *INHERITED_FILES)
+            for relative in (*REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES)
         },
+    })
+    json_write(attempt / "01_contract_snapshot/runtime_cache_plan_binding.json", {
+        "schema_version": "canondressgs.paper.loo_runtime_cache_plan_binding.v2",
+        "status": "PASS",
+        "logical_request_count": len(runtime_index),
+        "logical_request_key_index_sha256": runtime_plan["logical_request_key_index_sha256"],
+        "deterministic_plan_sha256": runtime_plan["deterministic_plan_sha256"],
+        "expected_unique_physical_key_count": runtime_plan["unique_physical_key_count"],
+        "expected_cache_hit_count": runtime_plan["cache_hit_count"],
     })
     json_write(attempt / "RUN_STATUS.json", {
         "task_id": TASK_ID, "attempt": ATTEMPT_NAME, "status": "MATERIALIZED_NO_OPTIMIZER",
@@ -1095,15 +1446,31 @@ def f2_cache_preflight(
     matching = sum(row["same_endpoint"] for row in pairs)
     expected_cache_hits = int(expected_counts()["K_shared_static_cache_hits"])
     actual_cache_hits = 100 + matching
+    mismatches = {
+        (row["held_out_garment"], row["rotation"]): (
+            row["K1_selected_known_endpoint"], row["K2_selected_known_endpoint"]
+        )
+        for row in pairs if not row["same_endpoint"]
+    }
+    expected_mismatches = {
+        ("O01", "R0"): ("O04", "O02"),
+        ("O01", "R1"): ("O04", "O02"),
+        ("O02", "R2"): ("O08", "O01"),
+        ("O04", "R0"): ("O03", "O01"),
+        ("O08", "R3"): ("O01", "O02"),
+    }
     return {
         "schema_version": "canondressgs.paper.loo_f2_cache_preflight.v1",
         "task_id": TASK_ID,
-        "status": "PASS" if matching == 20 and actual_cache_hits == expected_cache_hits else "FAIL",
+        "status": "PASS" if matching == 15 and len(pairs) - matching == 5 and mismatches == expected_mismatches and actual_cache_hits == expected_cache_hits else "FAIL",
         "task_count": len(rows), "paired_group_count": len(pairs),
         "K_shared_hard_lookup_pair_count": matching,
-        "expected_K_shared_hard_lookup_pair_count": 20,
+        "K_divergent_hard_lookup_pair_count": len(pairs) - matching,
+        "expected_K_shared_hard_lookup_pair_count": 15,
+        "expected_K_divergent_hard_lookup_pair_count": 5,
         "actual_static_cache_hits": actual_cache_hits,
         "expected_static_cache_hits": expected_cache_hits,
+        "mismatch_identities_exact": mismatches == expected_mismatches,
         "centroid_definition": "mean of per-condition frozen-F2 singleton features over the rotation train folds",
         "feature_forward_cache_entries": len(feature_cache),
         "rows": rows, "pairs": pairs,
@@ -1177,8 +1544,24 @@ def build_lookup_registry(root: Path) -> dict[str, Any]:
     matching = sum(row["same_endpoint"] for row in pairs)
     expected_cache_hits = int(expected_counts()["K_shared_static_cache_hits"])
     actual_cache_hits = 100 + matching
+    mismatches = {
+        (row["held_out_garment"], row["rotation"]): (
+            row["K1_selected_known_endpoint"], row["K2_selected_known_endpoint"]
+        )
+        for row in pairs if not row["same_endpoint"]
+    }
+    expected_mismatches = {
+        ("O01", "R0"): ("O04", "O02"),
+        ("O01", "R1"): ("O04", "O02"),
+        ("O02", "R2"): ("O08", "O01"),
+        ("O04", "R0"): ("O03", "O01"),
+        ("O08", "R3"): ("O01", "O02"),
+    }
     cache_contract_pass = (
-        len(pairs) == 20 and matching == 20 and actual_cache_hits == expected_cache_hits
+        len(pairs) == 20 and matching == 15
+        and len(pairs) - matching == 5
+        and mismatches == expected_mismatches
+        and actual_cache_hits == expected_cache_hits
     )
     result = {
         "schema_version": "canondressgs.paper.loo_hard_lookup_registry.v1",
@@ -1188,6 +1571,10 @@ def build_lookup_registry(root: Path) -> dict[str, Any]:
             "status": "PASS" if cache_contract_pass else "FAIL",
             "expected_pair_count": 20, "actual_pair_count": len(pairs),
             "matching_endpoint_pair_count": matching,
+            "divergent_endpoint_pair_count": len(pairs) - matching,
+            "expected_matching_endpoint_pair_count": 15,
+            "expected_divergent_endpoint_pair_count": 5,
+            "mismatch_identities_exact": mismatches == expected_mismatches,
             "expected_static_cache_hits": expected_cache_hits,
             "actual_static_cache_hits": actual_cache_hits,
             "pairs": pairs,
@@ -1862,8 +2249,17 @@ def train_one_low(
             residual = basis(coefficient, chunk_size=16384)
             for condition in conditions:
                 sample = context["samples"][f"{held_out}/{condition}"]
+                cache_request = adaptation_cache_request(
+                    task, family, step, condition, selected
+                )
+                validate_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
+                )
                 rgb, alpha = runtime_imports()["parameterization"].render_prediction(
                     context["base"], sample, residual, context["background"]
+                )
+                register_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
                 )
                 losses.append(loo_render_loss(lpips_runtime, rgb, alpha, sample, penalty))
             total = torch.stack([row["total"] for row in losses]).mean()
@@ -2078,8 +2474,17 @@ def train_one_full(
             residual = field.residual()
             for condition in conditions:
                 sample = context["samples"][f"{held_out}/{condition}"]
+                cache_request = adaptation_cache_request(
+                    task, family, step, condition, selected
+                )
+                validate_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
+                )
                 rgb, alpha = runtime_imports()["parameterization"].render_prediction(
                     context["base"], sample, residual, context["background"]
+                )
+                register_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
                 )
                 losses.append(loo_render_loss(lpips_runtime, rgb, alpha, sample, penalty))
             total = torch.stack([row["total"] for row in losses]).mean()
@@ -2638,19 +3043,28 @@ def run_evaluation(root: Path) -> dict[str, Any]:
                 residual, metadata, teachers[held_out], diagnostic["basis"],
                 diagnostic["coefficients"], diagnostic["payload"], diagnostic["oracle"],
             )
-            cache_key = canonical_sha({
-                "held_out": held_out, "rotation": task["rotation"],
-                "test_condition": test_condition, "method": method,
-                "residual_sha256": residual_sha,
-            })
+            cache_request = static_cache_request(
+                task, method, test_condition,
+                str(metadata.get("selected_known_endpoint", "NOT_APPLICABLE")),
+            )
+            cache_key, _ = loo_cache_key_plan.cache_key_v2(cache_request)
             if cache_key in static_cache:
+                validate_runtime_cache_request(
+                    attempt, cache_request, cache_hit=True
+                )
                 cached = static_cache[cache_key]
                 metrics = copy.deepcopy(cached["metrics"])
                 paths = copy.deepcopy(cached["paths"])
                 source_renderer_time = float(cached["renderer_time_seconds"])
                 cache_hit = True
                 static_cache_hits += 1
+                register_runtime_cache_request(
+                    attempt, cache_request, cache_hit=True
+                )
             else:
+                validate_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
+                )
                 with torch.inference_mode():
                     synchronize(); render_started = time.perf_counter()
                     rgb, alpha = runtime_imports()["parameterization"].render_prediction(
@@ -2665,6 +3079,9 @@ def run_evaluation(root: Path) -> dict[str, Any]:
                 }
                 cache_hit = False
                 physical += 1
+                register_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
+                )
                 prediction_registry.append({
                     "prediction_id": f"{task['task_id']}/{method}/static",
                     "task_id": task["task_id"], "method": method, "step": None,
@@ -2675,6 +3092,7 @@ def run_evaluation(root: Path) -> dict[str, Any]:
                 "logical_render_id": logical_id, "task_id": task["task_id"],
                 "method": method, "step": None, "physical_render": not cache_hit,
                 "cache_hit": cache_hit, "cache_key": cache_key,
+                "source_physical_key": cache_key,
             })
             metric_rows.append({
                 "evaluation_id": logical_id, "task_id": task["task_id"],
@@ -2691,14 +3109,24 @@ def run_evaluation(root: Path) -> dict[str, Any]:
             })
         for family in METHOD_FAMILIES:
             summary = _run_summary(attempt, task, family)
+            selected_endpoint = lookup_row(attempt, task["task_id"])["selected_known_endpoint"]
             for step in MILESTONES:
                 with torch.inference_mode():
                     residual, metadata = residual_from_checkpoint(attempt, context, task, family, step)
+                    cache_request = checkpoint_cache_request(
+                        task, family, step, test_condition, selected_endpoint
+                    )
+                    validate_runtime_cache_request(
+                        attempt, cache_request, cache_hit=False
+                    )
                     synchronize(); render_started = time.perf_counter()
                     rgb, alpha = runtime_imports()["parameterization"].render_prediction(
                         context["base"], sample, residual, context["background"]
                     )
                     synchronize(); renderer_time = time.perf_counter() - render_started
+                register_runtime_cache_request(
+                    attempt, cache_request, cache_hit=False
+                )
                 metrics = evaluate_metrics(lpips_runtime, rgb, alpha, sample, sample["target_base_rgb"])
                 paths = evaluation_render_paths(attempt, task["task_id"], family, step, rgb, alpha)
                 diagnostic = diagnostic_cache[held_out]
@@ -2711,7 +3139,9 @@ def run_evaluation(root: Path) -> dict[str, Any]:
                 render_registry.append({
                     "logical_render_id": logical_id, "task_id": task["task_id"],
                     "method": family, "step": step, "physical_render": True,
-                    "cache_hit": False, "cache_key": None,
+                    "cache_hit": False,
+                    "cache_key": loo_cache_key_plan.cache_key_v2(cache_request)[0],
+                    "source_physical_key": loo_cache_key_plan.cache_key_v2(cache_request)[0],
                 })
                 prediction_registry.append({
                     "prediction_id": logical_id, "task_id": task["task_id"],
@@ -2800,14 +3230,16 @@ def run_evaluation(root: Path) -> dict[str, Any]:
         "auxiliary_equal_wall_time_physical_renders": len(equal_wall_time_render_registry),
         "formal_denominator_excludes_auxiliary_equal_wall_time": True,
     }
+    result["runtime_cache_plan_verification"] = verify_runtime_cache_registry(attempt)
     expected = expected_counts()
     checks = {
         "evaluation_960": len(metric_rows) == expected["evaluation_inference"],
         "optimized_720": result["optimized_checkpoint_evaluations"] == expected["optimized_checkpoint_evaluation_inferences"],
         "static_240": result["static_oracle_evaluations"] == expected["static_oracle_evaluation_inferences"],
-        "cache_hits_120": static_cache_hits == expected["K_shared_static_cache_hits"],
+        "cache_hits_115": static_cache_hits == expected["K_shared_static_cache_hits"],
         "logical_54960": result["total_logical_renders"] == expected["total_logical_renders"],
-        "physical_54840": result["unique_physical_renders"] == expected["unique_physical_renders"],
+        "physical_54845": result["unique_physical_renders"] == expected["unique_physical_renders"],
+        "runtime_cache_plan_exact": result["runtime_cache_plan_verification"]["status"] == "PASS",
         "equal_wall_time_40": len(equal_wall_time_rows) == 40,
         "equal_wall_time_last_completed_step": all(
             0 <= int(row["equal_wall_time_step"]) <= 300

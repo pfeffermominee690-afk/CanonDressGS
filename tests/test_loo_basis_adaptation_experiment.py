@@ -32,10 +32,11 @@ def test_protocol_audit_freezes_40_ready_k1_k2_tasks() -> None:
     assert runner.expected_counts()["checkpoint_writes"] == 720
     assert runner.expected_counts()["evaluation_inference"] == 960
     assert runner.expected_counts()["total_logical_renders"] == 54_960
-    assert runner.expected_counts()["unique_physical_renders"] == 54_840
+    assert runner.expected_counts()["unique_physical_renders"] == 54_845
+    assert runner.expected_counts()["K_shared_static_cache_hits"] == 115
 
 
-def test_f2_cache_preflight_fails_on_five_k_dependent_lookup_pairs(
+def test_f2_cache_preflight_accepts_five_k_dependent_lookup_pairs(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path,
 ) -> None:
     class FakeMulti:
@@ -44,18 +45,17 @@ def test_f2_cache_preflight_fails_on_five_k_dependent_lookup_pairs(
             return object()
 
     divergent_groups = {
-        (outfit, rotation)
-        for outfit, rotation in [
-            ("O01", "R0"), ("O01", "R1"), ("O02", "R2"),
-            ("O04", "R0"), ("O08", "R3"),
-        ]
+        ("O01", "R0"): ("O04", "O02"),
+        ("O01", "R1"): ("O04", "O02"),
+        ("O02", "R2"): ("O08", "O01"),
+        ("O04", "R0"): ("O03", "O01"),
+        ("O08", "R3"): ("O01", "O02"),
     }
 
     def fake_selection(task: dict[str, object], feature: object) -> dict[str, object]:
         bank = task["basis_garments"]
-        selected = bank[0]
-        if int(task["K"]) == 2 and (task["held_out_garment"], task["rotation"]) in divergent_groups:
-            selected = bank[1]
+        pair = divergent_groups.get((task["held_out_garment"], task["rotation"]))
+        selected = pair[int(task["K"]) - 1] if pair else bank[0]
         return {
             "selected_known_endpoint": selected,
             "distances": {name: float(index) for index, name in enumerate(bank)},
@@ -65,10 +65,11 @@ def test_f2_cache_preflight_fails_on_five_k_dependent_lookup_pairs(
     monkeypatch.setattr(runner, "runtime_imports", lambda: {"multi": FakeMulti})
     monkeypatch.setattr(runner, "_loo_centroid_selection", fake_selection)
     result = runner.f2_cache_preflight(tmp_path, context={})
-    assert result["status"] == "FAIL"
+    assert result["status"] == "PASS"
     assert result["K_shared_hard_lookup_pair_count"] == 15
+    assert result["K_divergent_hard_lookup_pair_count"] == 5
     assert result["actual_static_cache_hits"] == 115
-    assert result["expected_static_cache_hits"] == 120
+    assert result["expected_static_cache_hits"] == 115
 
 
 def test_five_loo_banks_exclude_held_out_and_rank_contract() -> None:
