@@ -1,0 +1,55 @@
+{
+  "artifact_validation": {
+    "checkpoint": "torch.load roundtrip and frozen required fields",
+    "contract_copy": "source and destination SHA256 equality",
+    "json": "UTF-8, strict parse, duplicate-key rejection, optional required fields",
+    "jsonl": "strict parse of every row after atomic append",
+    "pdf": "nonempty PDF header and EOF trailer",
+    "png": "decode, PNG format, positive width/height, legal channel mode, nonempty",
+    "svg": "XML parse and SVG root"
+  },
+  "error_codes": [
+    "HEADROOM_OUTPUT_ATOMIC_WRITE_FAILED",
+    "HEADROOM_OUTPUT_PARENT_MISSING",
+    "HEADROOM_OUTPUT_PATH_COLLISION",
+    "HEADROOM_OUTPUT_PATH_OUTSIDE_ATTEMPT",
+    "HEADROOM_OUTPUT_PLAN_MISMATCH",
+    "HEADROOM_OUTPUT_REGISTRY_UPDATE_FAILED",
+    "HEADROOM_OUTPUT_TARGET_EXISTS",
+    "HEADROOM_OUTPUT_TEMP_FILE_LEAK",
+    "HEADROOM_OUTPUT_VALIDATION_FAILED"
+  ],
+  "immutable_overwrite_policy": "REJECT_EXISTING",
+  "implementation": "tools/paper/coefficient_headroom_output.py",
+  "mutable_overwrite_policy": "EXPLICIT_CONTROLLED_ATOMIC_REPLACE_ONLY",
+  "registry_receipt_fields": [
+    "writer_id",
+    "artifact_type",
+    "phase",
+    "attempt_id",
+    "relative_path",
+    "bytes",
+    "sha256",
+    "atomic_publish",
+    "validation"
+  ],
+  "schema_version": "canondressgs.paper.coefficient_headroom_atomic_write_contract.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001",
+  "temporary_name_policy": "same-directory hidden UUID temporary name",
+  "write_sequence": [
+    "assert target inside current attempt",
+    "reject attempt_001, traversal, drive-relative, foreign-root, and symlink escape",
+    "create parent with parents=True and exist_ok=True",
+    "reject existing target unless controlled mutable artifact",
+    "write unique temporary file in target directory",
+    "flush and fsync temporary file",
+    "decode or parse and validate artifact",
+    "calculate SHA256 and byte count",
+    "atomically publish without overwrite or explicitly replace mutable target",
+    "fsync parent directory where supported",
+    "verify published SHA256",
+    "remove temporary file in finally",
+    "return registry receipt"
+  ]
+}

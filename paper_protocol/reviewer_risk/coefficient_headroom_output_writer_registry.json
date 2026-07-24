@@ -1,0 +1,236 @@
+{
+  "historical_failure_writer": "tools.check_real_image_conditioned_one_batch.save_render_tensor",
+  "historical_failure_writer_status": "REMOVED_FROM_HEADROOM_RUNNER",
+  "historical_unified_writer_bypass_count": 16,
+  "historical_unsafe_render_writer_call_site_count": 10,
+  "implementation_head": "d5443ae9699d43404157abeac9d2788820c705ab",
+  "schema_version": "canondressgs.paper.coefficient_headroom_output_writer_registry.v1",
+  "source_head": "64f7bf09d7beb526eee50c8c1a0c47d792977378",
+  "status": "PASS",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001",
+  "unaudited_scientific_writer_count": 0,
+  "writer_count": 12,
+  "writers": [
+    {
+      "artifact_type": "contract_snapshot",
+      "atomic_writer": "output_io.atomic_copy",
+      "coverage": "PASS",
+      "function_or_symbol": "materialize -> output_io.atomic_copy",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "attempt_002/01_contract_snapshot/<source.name>",
+      "registry_update": "WRITE_RECEIPT_SHA256",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "01_contract_snapshot"
+      ],
+      "validation": "SOURCE_AND_TARGET_SHA256_EQUAL",
+      "writer_id": "headroom_contract_snapshot_writer"
+    },
+    {
+      "artifact_type": "json",
+      "atomic_writer": "output_io.atomic_write_json",
+      "coverage": "PASS",
+      "function_or_symbol": "atomic_json -> output_io.atomic_write_json",
+      "overwrite_policy": "REJECT_EXISTING_OR_EXPLICIT_CONTROLLED_REPLACE",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "phase-specific attempt path builder",
+      "registry_update": "WRITE_RECEIPT_SHA256_AND_PHASE_REGISTRY",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "00_preflight",
+        "02_static_parity",
+        "03_coefficient_runs",
+        "04_full_residual_runs",
+        "06_lambda_selection",
+        "07_predictions",
+        "08_metrics",
+        "09_span_analysis",
+        "10_refined_lookup_analysis",
+        "11_visual_sheets",
+        "12_failure_analysis",
+        "13_final_verification"
+      ],
+      "validation": "STRICT_JSON_PARSE_AND_DUPLICATE_KEY_REJECTION",
+      "writer_id": "headroom_json_writer"
+    },
+    {
+      "artifact_type": "repository_json",
+      "atomic_writer": "output_io.atomic_write_json",
+      "coverage": "PASS",
+      "function_or_symbol": "atomic_json -> output_io.atomic_write_json",
+      "overwrite_policy": "EXPLICIT_REPORTING_REPLACE",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "frozen docs/reviewer-risk/handoff path",
+      "registry_update": "GIT_TRACKED_REPORTING_ARTIFACT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "binding",
+        "finalize",
+        "seal_reporting_head"
+      ],
+      "validation": "STRICT_JSON_PARSE_AND_DUPLICATE_KEY_REJECTION",
+      "writer_id": "headroom_repository_json_writer"
+    },
+    {
+      "artifact_type": "markdown",
+      "atomic_writer": "output_io.atomic_write_text",
+      "coverage": "PASS",
+      "function_or_symbol": "atomic_text -> output_io.atomic_write_text",
+      "overwrite_policy": "EXPLICIT_REPORTING_REPLACE",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "frozen docs/PAPER path",
+      "registry_update": "GIT_TRACKED_REPORTING_ARTIFACT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "binding",
+        "finalize",
+        "seal_reporting_head"
+      ],
+      "validation": "UTF8_DECODE",
+      "writer_id": "headroom_repository_text_writer"
+    },
+    {
+      "artifact_type": "jsonl",
+      "atomic_writer": "output_io.atomic_append_jsonl",
+      "coverage": "PASS",
+      "function_or_symbol": "append_jsonl -> output_io.atomic_append_jsonl",
+      "overwrite_policy": "ATOMIC_APPEND_BY_FULL_FILE_REPLACE",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "run_dir/trajectory.jsonl",
+      "registry_update": "RUN_SUMMARY_TRAJECTORY_AND_WRITE_RECEIPT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "03_coefficient_runs",
+        "04_full_residual_runs"
+      ],
+      "validation": "STRICT_PARSE_EVERY_JSONL_ROW",
+      "writer_id": "headroom_trajectory_writer"
+    },
+    {
+      "artifact_type": "checkpoint",
+      "atomic_writer": "output_io.atomic_write_with",
+      "coverage": "PASS",
+      "function_or_symbol": "atomic_torch -> output_io.atomic_write_with",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "checkpoint_path",
+      "registry_update": "CHECKPOINT_RECORD_SHA256_BYTES_AND_WRITE_RECEIPT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "05_checkpoints"
+      ],
+      "validation": "TORCH_LOAD_AND_REQUIRED_CHECKPOINT_FIELDS",
+      "writer_id": "headroom_checkpoint_writer"
+    },
+    {
+      "artifact_type": "png",
+      "atomic_writer": "output_io.atomic_save_png",
+      "coverage": "PASS",
+      "function_or_symbol": "run_parity -> atomic_save_render_tensor",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "02_static_parity/renders/<garment>_<condition>_<endpoint>_<channel>.png",
+      "registry_update": "PARITY_ROWS_SHA256_AND_WRITE_RECEIPT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "02_static_parity"
+      ],
+      "validation": "PNG_DECODE_DIMENSIONS_CHANNEL_MODE_AND_NONEMPTY",
+      "writer_id": "headroom_parity_png_writer"
+    },
+    {
+      "artifact_type": "png",
+      "atomic_writer": "output_io.atomic_save_png",
+      "coverage": "PASS",
+      "function_or_symbol": "run_lambda_selection -> atomic_save_render_tensor",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "06_lambda_selection/renders/<rotation>/<garment>_<lambda>_<channel>.png",
+      "registry_update": "LAMBDA_SELECTION_ROWS_SHA256_AND_WRITE_RECEIPT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "06_lambda_selection"
+      ],
+      "validation": "PNG_DECODE_DIMENSIONS_CHANNEL_MODE_AND_NONEMPTY",
+      "writer_id": "headroom_lambda_selection_png_writer"
+    },
+    {
+      "artifact_type": "png",
+      "atomic_writer": "output_io.atomic_save_png",
+      "coverage": "PASS",
+      "function_or_symbol": "save_evaluation_render -> atomic_save_render_tensor",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "07_predictions/renders/<method>/<rotation>/<garment>/<condition>_<channel>.png",
+      "registry_update": "PREDICTION_AND_RENDER_REGISTRY_SHA256",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "07_predictions",
+        "08_metrics"
+      ],
+      "validation": "PNG_DECODE_DIMENSIONS_CHANNEL_MODE_AND_NONEMPTY",
+      "writer_id": "headroom_evaluation_png_writer"
+    },
+    {
+      "artifact_type": "png",
+      "atomic_writer": "output_io.atomic_save_png",
+      "coverage": "PASS",
+      "function_or_symbol": "run_evaluation -> atomic_save_render_tensor",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "07_predictions/renders/target/<rotation>/<garment>/<condition>_rgb.png",
+      "registry_update": "BASE_VISUAL_REGISTRY_SHA256",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "07_predictions"
+      ],
+      "validation": "PNG_DECODE_DIMENSIONS_CHANNEL_MODE_AND_NONEMPTY",
+      "writer_id": "headroom_target_png_writer"
+    },
+    {
+      "artifact_type": "png",
+      "atomic_writer": "output_io.atomic_save_png",
+      "coverage": "PASS",
+      "function_or_symbol": "create_visual_sheets -> output_io.atomic_save_png",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "output_io.ensure_parent_directory",
+      "path_builder": "11_visual_sheets/<rotation>_<garment>_<test_condition>.png",
+      "registry_update": "VISUAL_REGISTRY_SHA256_AND_WRITE_RECEIPT",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "11_visual_sheets"
+      ],
+      "validation": "PNG_DECODE_DIMENSIONS_CHANNEL_MODE_AND_NONEMPTY",
+      "writer_id": "headroom_visual_sheet_png_writer"
+    },
+    {
+      "artifact_type": "temporary_probe",
+      "atomic_writer": "WRITE_FLUSH_UNLINK",
+      "coverage": "PASS",
+      "function_or_symbol": "cloud_resource_preflight",
+      "overwrite_policy": "REJECT_EXISTING",
+      "parent_closure": "EXISTING_OUTPUT_ROOT",
+      "path_builder": "output_root/.coefficient_headroom_write_probe",
+      "registry_update": "PREFLIGHT_CHECK_ONLY",
+      "source_path": "tools/paper/run_coefficient_headroom_experiment.py",
+      "test_coverage": "PASS",
+      "used_phases": [
+        "00_preflight"
+      ],
+      "validation": "WRITE_AND_UNLINK",
+      "writer_id": "headroom_output_writability_probe"
+    }
+  ]
+}

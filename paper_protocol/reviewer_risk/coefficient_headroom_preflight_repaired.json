@@ -1,0 +1,129 @@
+{
+  "check_count": 20,
+  "checks": [
+    {
+      "check": "exact_source_head",
+      "status": "PASS"
+    },
+    {
+      "check": "attempt_001_exists_and_sealed",
+      "status": "PASS"
+    },
+    {
+      "check": "attempt_002_absent",
+      "status": "PASS"
+    },
+    {
+      "check": "protocol_hash_match",
+      "status": "PASS"
+    },
+    {
+      "check": "expected_counts_match",
+      "status": "PASS"
+    },
+    {
+      "check": "full_path_plan_generated",
+      "status": "PASS"
+    },
+    {
+      "check": "path_collision_zero",
+      "status": "PASS"
+    },
+    {
+      "check": "path_traversal_zero",
+      "status": "PASS"
+    },
+    {
+      "check": "parent_templates_materializable_in_smoke_root",
+      "status": "PASS"
+    },
+    {
+      "check": "atomic_png_write_smoke",
+      "status": "PASS"
+    },
+    {
+      "check": "atomic_json_write_smoke",
+      "status": "PASS"
+    },
+    {
+      "check": "nested_path_smoke",
+      "status": "PASS"
+    },
+    {
+      "check": "checkpoint_metadata_path_smoke",
+      "status": "PASS"
+    },
+    {
+      "check": "visual_sheet_path_smoke",
+      "status": "PASS"
+    },
+    {
+      "check": "metrics_path_smoke",
+      "status": "PASS"
+    },
+    {
+      "check": "output_filesystem_writable",
+      "status": "IMPLEMENTED_RUNTIME_GATE"
+    },
+    {
+      "check": "free_disk",
+      "status": "IMPLEMENTED_RUNTIME_GATE"
+    },
+    {
+      "check": "no_competing_gpu_or_renderer",
+      "status": "IMPLEMENTED_RUNTIME_GATE"
+    },
+    {
+      "check": "credential_scan",
+      "status": "PASS"
+    },
+    {
+      "check": "dry_run_temporary_files_cleaned",
+      "status": "PASS"
+    }
+  ],
+  "execution_status": "READY_FOR_ATTEMPT_002_BEFORE_OPTIMIZER",
+  "failure_behavior": {
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_calls": 0,
+    "stop": true
+  },
+  "ordering": "all checks complete before attempt materialization and before first renderer call",
+  "path_plan_sha256": "694eca63bdaead253ab52c3f64bad2300cc91053183774e8181ab91d7a6d1766",
+  "repair_validation": "PASS",
+  "schema_version": "canondressgs.paper.coefficient_headroom_preflight_repaired.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001",
+  "write_smoke": {
+    "cleanup_complete": true,
+    "error": null,
+    "first": {
+      "aggregate_sha256": "5a7debd1de4c10da3bcfdbedd7ff66fccef3025f2f92a4acec6f26f84fc1e950",
+      "cleanup_complete": true,
+      "gpu_calls": 0,
+      "optimizer_creations": 0,
+      "optimizer_steps": 0,
+      "receipt_count": 8,
+      "renderer_calls": 0,
+      "status": "PASS",
+      "temporary_file_leaks": []
+    },
+    "gpu_calls": 0,
+    "optimizer_creations": 0,
+    "renderer_calls": 0,
+    "second": {
+      "aggregate_sha256": "5a7debd1de4c10da3bcfdbedd7ff66fccef3025f2f92a4acec6f26f84fc1e950",
+      "cleanup_complete": true,
+      "gpu_calls": 0,
+      "optimizer_creations": 0,
+      "optimizer_steps": 0,
+      "receipt_count": 8,
+      "renderer_calls": 0,
+      "status": "PASS",
+      "temporary_file_leaks": []
+    },
+    "second_run_idempotent": true,
+    "status": "PASS"
+  }
+}

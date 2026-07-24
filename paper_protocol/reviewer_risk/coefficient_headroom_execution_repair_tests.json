@@ -1,0 +1,446 @@
+{
+  "check_count": 68,
+  "checks": [
+    {
+      "name": "exact source branch/HEAD",
+      "number": 1,
+      "status": "PASS"
+    },
+    {
+      "name": "invalid execution HEAD provenance",
+      "number": 2,
+      "status": "PASS"
+    },
+    {
+      "name": "scientific failure HEAD provenance",
+      "number": 3,
+      "status": "PASS"
+    },
+    {
+      "name": "reporting HEAD provenance",
+      "number": 4,
+      "status": "PASS"
+    },
+    {
+      "name": "attempt_001 exists",
+      "number": 5,
+      "status": "PASS"
+    },
+    {
+      "name": "attempt_001 sealed",
+      "number": 6,
+      "status": "PASS"
+    },
+    {
+      "name": "attempt_001 immutable snapshot",
+      "number": 7,
+      "status": "PASS"
+    },
+    {
+      "name": "attempt_002 absent",
+      "number": 8,
+      "status": "PASS"
+    },
+    {
+      "name": "historical counts preserved",
+      "number": 9,
+      "status": "PASS"
+    },
+    {
+      "name": "exact root cause path",
+      "number": 10,
+      "status": "PASS"
+    },
+    {
+      "name": "exact writer symbol",
+      "number": 11,
+      "status": "PASS"
+    },
+    {
+      "name": "all output writer call sites enumerated",
+      "number": 12,
+      "status": "PASS"
+    },
+    {
+      "name": "unaudited writers=0",
+      "number": 13,
+      "status": "PASS"
+    },
+    {
+      "name": "parent closure for every writer",
+      "number": 14,
+      "status": "PASS"
+    },
+    {
+      "name": "atomic writer for every scientific writer",
+      "number": 15,
+      "status": "PASS"
+    },
+    {
+      "name": "path inside attempt root",
+      "number": 16,
+      "status": "PASS"
+    },
+    {
+      "name": "symlink escape rejection",
+      "number": 17,
+      "status": "PASS"
+    },
+    {
+      "name": "dot-dot traversal rejection",
+      "number": 18,
+      "status": "PASS"
+    },
+    {
+      "name": "existing-target overwrite rejection",
+      "number": 19,
+      "status": "PASS"
+    },
+    {
+      "name": "deterministic lambda filename",
+      "number": 20,
+      "status": "PASS"
+    },
+    {
+      "name": "deterministic task filename",
+      "number": 21,
+      "status": "PASS"
+    },
+    {
+      "name": "complete directory tree",
+      "number": 22,
+      "status": "PASS"
+    },
+    {
+      "name": "attempt_002 path plan generated",
+      "number": 23,
+      "status": "PASS"
+    },
+    {
+      "name": "expected runs=120",
+      "number": 24,
+      "status": "PASS"
+    },
+    {
+      "name": "expected optimizer steps=36,000",
+      "number": 25,
+      "status": "PASS"
+    },
+    {
+      "name": "expected checkpoints=960",
+      "number": 26,
+      "status": "PASS"
+    },
+    {
+      "name": "expected renderer calls=36,662",
+      "number": 27,
+      "status": "PASS"
+    },
+    {
+      "name": "planned path duplicates=0",
+      "number": 28,
+      "status": "PASS"
+    },
+    {
+      "name": "planned path collisions=0",
+      "number": 29,
+      "status": "PASS"
+    },
+    {
+      "name": "attempt_001 targets=0",
+      "number": 30,
+      "status": "PASS"
+    },
+    {
+      "name": "foreign-root targets=0",
+      "number": 31,
+      "status": "PASS"
+    },
+    {
+      "name": "Windows path legality",
+      "number": 32,
+      "status": "PASS"
+    },
+    {
+      "name": "Linux path legality",
+      "number": 33,
+      "status": "PASS"
+    },
+    {
+      "name": "max-path audit",
+      "number": 34,
+      "status": "PASS"
+    },
+    {
+      "name": "PNG synthetic write smoke",
+      "number": 35,
+      "status": "PASS"
+    },
+    {
+      "name": "PNG decode",
+      "number": 36,
+      "status": "PASS"
+    },
+    {
+      "name": "JSON synthetic write smoke",
+      "number": 37,
+      "status": "PASS"
+    },
+    {
+      "name": "JSON duplicate-key rejection",
+      "number": 38,
+      "status": "PASS"
+    },
+    {
+      "name": "SVG write/parse smoke",
+      "number": 39,
+      "status": "PASS"
+    },
+    {
+      "name": "PDF write/validation smoke",
+      "number": 40,
+      "status": "PASS"
+    },
+    {
+      "name": "nested path smoke",
+      "number": 41,
+      "status": "PASS"
+    },
+    {
+      "name": "checkpoint metadata path smoke",
+      "number": 42,
+      "status": "PASS"
+    },
+    {
+      "name": "metrics path smoke",
+      "number": 43,
+      "status": "PASS"
+    },
+    {
+      "name": "visual-sheet path smoke",
+      "number": 44,
+      "status": "PASS"
+    },
+    {
+      "name": "temporary-file cleanup",
+      "number": 45,
+      "status": "PASS"
+    },
+    {
+      "name": "second-run idempotence",
+      "number": 46,
+      "status": "PASS"
+    },
+    {
+      "name": "preflight stops before renderer on path failure",
+      "number": 47,
+      "status": "PASS"
+    },
+    {
+      "name": "scientific protocol semantic hashes unchanged",
+      "number": 48,
+      "status": "PASS"
+    },
+    {
+      "name": "loss unchanged",
+      "number": 49,
+      "status": "PASS"
+    },
+    {
+      "name": "lambda grid unchanged",
+      "number": 50,
+      "status": "PASS"
+    },
+    {
+      "name": "optimizer unchanged",
+      "number": 51,
+      "status": "PASS"
+    },
+    {
+      "name": "rotations/views unchanged",
+      "number": 52,
+      "status": "PASS"
+    },
+    {
+      "name": "success gates unchanged",
+      "number": 53,
+      "status": "PASS"
+    },
+    {
+      "name": "full-residual schema unchanged",
+      "number": 54,
+      "status": "PASS"
+    },
+    {
+      "name": "no attempt_002",
+      "number": 55,
+      "status": "PASS"
+    },
+    {
+      "name": "no renderer",
+      "number": 56,
+      "status": "PASS"
+    },
+    {
+      "name": "no optimizer",
+      "number": 57,
+      "status": "PASS"
+    },
+    {
+      "name": "no GPU",
+      "number": 58,
+      "status": "PASS"
+    },
+    {
+      "name": "credential scan",
+      "number": 59,
+      "status": "PASS"
+    },
+    {
+      "name": "JSON parse",
+      "number": 60,
+      "status": "PASS"
+    },
+    {
+      "name": "YAML safe-load",
+      "number": 61,
+      "status": "PASS"
+    },
+    {
+      "name": "Markdown nonempty",
+      "number": 62,
+      "status": "PASS"
+    },
+    {
+      "name": "py_compile",
+      "number": 63,
+      "status": "PASS"
+    },
+    {
+      "name": "unit tests",
+      "number": 64,
+      "status": "PASS"
+    },
+    {
+      "name": "git diff --check",
+      "number": 65,
+      "status": "PASS"
+    },
+    {
+      "name": "deterministic artifact regeneration",
+      "number": 66,
+      "status": "PASS"
+    },
+    {
+      "name": "local/origin/cloud implementation HEAD equal",
+      "number": 67,
+      "status": "PASS"
+    },
+    {
+      "name": "Windows/cloud implementation worktrees clean",
+      "number": 68,
+      "status": "PASS"
+    }
+  ],
+  "cloud_status": "PASS",
+  "commands": {
+    "cloud": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -m unittest tests.test_coefficient_headroom_protocol tests.test_coefficient_headroom_experiment tests.test_coefficient_headroom_output_repair -v",
+    "git_diff_check": "git diff --check",
+    "py_compile": "python -m py_compile tools/paper/coefficient_headroom_output.py tools/paper/run_coefficient_headroom_experiment.py tests/test_coefficient_headroom_output_repair.py",
+    "unit_test_count_each_platform": 70,
+    "windows": "python -m unittest tests.test_coefficient_headroom_protocol tests.test_coefficient_headroom_experiment tests.test_coefficient_headroom_output_repair -v"
+  },
+  "paper_final": false,
+  "pass_count": 68,
+  "schema_version": "canondressgs.paper.coefficient_headroom_execution_repair_tests.v1",
+  "semantic_contract_audit": {
+    "artifact_count": 8,
+    "artifacts": [
+      {
+        "after_semantic_sha256": "ebbaba953d4047a5b275ef582fd329c6e595a0f1a65f47d04f34177090fce97a",
+        "before_semantic_sha256": "ebbaba953d4047a5b275ef582fd329c6e595a0f1a65f47d04f34177090fce97a",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_protocol.yaml"
+      },
+      {
+        "after_semantic_sha256": "5b1d9a263834447590a713b3954f87591d02e7496684dd88efb66b6bf77e944e",
+        "before_semantic_sha256": "5b1d9a263834447590a713b3954f87591d02e7496684dd88efb66b6bf77e944e",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_rotation_manifests.json"
+      },
+      {
+        "after_semantic_sha256": "ba482dc58ea10884df8207fdb690f2f39e04f9c2fe3f2a20f7a02959e6939759",
+        "before_semantic_sha256": "ba482dc58ea10884df8207fdb690f2f39e04f9c2fe3f2a20f7a02959e6939759",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_loss_contract.json"
+      },
+      {
+        "after_semantic_sha256": "8395e2a71e32e6ab134de20c56c8e973fbecf4834987349180e758bf361ca654",
+        "before_semantic_sha256": "8395e2a71e32e6ab134de20c56c8e973fbecf4834987349180e758bf361ca654",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_optimizer_contract.json"
+      },
+      {
+        "after_semantic_sha256": "c6b1df4cfea244bde45a06de48dbd17b09623ebf391748fbddd44ccae06ea063",
+        "before_semantic_sha256": "c6b1df4cfea244bde45a06de48dbd17b09623ebf391748fbddd44ccae06ea063",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_full_residual_contract.json"
+      },
+      {
+        "after_semantic_sha256": "25cf88621944c8c7b922275a968646afa799b97844b534f3821ffe7397e9e160",
+        "before_semantic_sha256": "25cf88621944c8c7b922275a968646afa799b97844b534f3821ffe7397e9e160",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_evaluator_contract.json"
+      },
+      {
+        "after_semantic_sha256": "64a93079d29dfbebf32735f82df89057a1663a4da744088a95d67ea699d881b3",
+        "before_semantic_sha256": "64a93079d29dfbebf32735f82df89057a1663a4da744088a95d67ea699d881b3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_success_gates.json"
+      },
+      {
+        "after_semantic_sha256": "8d1aa0cac3e94b7561634ae77f1024813aa807f3f0f9ef603ab29b7690071c48",
+        "before_semantic_sha256": "8d1aa0cac3e94b7561634ae77f1024813aa807f3f0f9ef603ab29b7690071c48",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_protocol_final_summary.json"
+      }
+    ],
+    "semantic_drift_count": 0,
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "synthetic_smoke": {
+    "cleanup_complete": true,
+    "error": null,
+    "first": {
+      "aggregate_sha256": "5a7debd1de4c10da3bcfdbedd7ff66fccef3025f2f92a4acec6f26f84fc1e950",
+      "cleanup_complete": true,
+      "gpu_calls": 0,
+      "optimizer_creations": 0,
+      "optimizer_steps": 0,
+      "receipt_count": 8,
+      "renderer_calls": 0,
+      "status": "PASS",
+      "temporary_file_leaks": []
+    },
+    "gpu_calls": 0,
+    "optimizer_creations": 0,
+    "renderer_calls": 0,
+    "second": {
+      "aggregate_sha256": "5a7debd1de4c10da3bcfdbedd7ff66fccef3025f2f92a4acec6f26f84fc1e950",
+      "cleanup_complete": true,
+      "gpu_calls": 0,
+      "optimizer_creations": 0,
+      "optimizer_steps": 0,
+      "receipt_count": 8,
+      "renderer_calls": 0,
+      "status": "PASS",
+      "temporary_file_leaks": []
+    },
+    "second_run_idempotent": true,
+    "status": "PASS"
+  },
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001",
+  "validated_implementation_head": "d5443ae9699d43404157abeac9d2788820c705ab",
+  "windows_status": "PASS"
+}

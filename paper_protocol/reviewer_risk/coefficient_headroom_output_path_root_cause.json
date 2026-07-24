@@ -1,0 +1,50 @@
+{
+  "actual_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "completed_runs": 0,
+    "forward_calls": 0,
+    "metric_rows": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "persisted_render_outputs": 0,
+    "renderer_calls": 2,
+    "visual_sheets": 0
+  },
+  "affected_scope": {
+    "first_failed_write": "Teacher RGB PNG",
+    "historical_unified_writer_bypass_count": 16,
+    "historical_unsafe_render_writer_call_sites": 10,
+    "parity_png_paths_exposed": 80,
+    "scientific_failure": false
+  },
+  "classification": "PRE_OPTIMIZER_OUTPUT_PATH_ENGINEERING_FAILURE",
+  "exception": {
+    "caller_chain": [
+      "run_parity",
+      "save_render_tensor",
+      "torchvision.utils.save_image",
+      "PIL.Image.Image.save"
+    ],
+    "execution_phase": "02_static_parity",
+    "failing_parent": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_001/02_static_parity/renders",
+    "failing_path": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_001/02_static_parity/renders/O01_cond_000000_teacher_rgb.png",
+    "first_cell": {
+      "channel": "rgb",
+      "condition": "cond_000000",
+      "endpoint": "Teacher Endpoint",
+      "garment": "O01"
+    },
+    "message": "[Errno 2] No such file or directory: '/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_001/02_static_parity/renders/O01_cond_000000_teacher_rgb.png'",
+    "type": "FileNotFoundError",
+    "writer_symbol": "tools.check_real_image_conditioned_one_batch.save_render_tensor"
+  },
+  "historical_classification": "COEFFICIENT_HEADROOM_EXECUTION_INVALID",
+  "historical_failure_code": "COEFFICIENT_HEADROOM_PARITY_OUTPUT_DIRECTORY_MISSING",
+  "preflight_gap": "the historical preflight checked top-level attempt existence and scientific contracts but did not expand every output target, validate nested parents, or execute an atomic PNG write smoke",
+  "root_cause": "materialize created 02_static_parity but not its renders child; run_parity built the nested target and delegated to save_render_tensor, whose torchvision/PIL paths did not create the parent",
+  "schema_version": "canondressgs.paper.coefficient_headroom_output_path_root_cause.v1",
+  "source_invalid_attempt": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_001",
+  "status": "PASS",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001"
+}

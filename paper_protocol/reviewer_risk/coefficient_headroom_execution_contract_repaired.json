@@ -1,0 +1,137 @@
+{
+  "atomic_write_contract_sha256": "fe0b955266d5dec45d5a9726333c6fa48a16d6e581421946e53d9f99f071f55b",
+  "attempt_002_collision_rule": "target and attempt directory must not exist before materialization",
+  "attempt_lineage": {
+    "attempt_001": {
+      "exists": true,
+      "optimizer_steps": 0,
+      "renderer_calls": 2,
+      "role": "PRESERVED_PRE_OPTIMIZER_OUTPUT_PATH_FAILURE",
+      "scientific_valid": false,
+      "sealed": true
+    },
+    "attempt_002": {
+      "exists": false,
+      "planned_start_phase": "TEACHER_SVD_PARITY",
+      "reuse_attempt_001_outputs": false,
+      "role": "PLANNED_FIRST_VALID_SCIENTIFIC_EXECUTION"
+    }
+  },
+  "classification": "COEFFICIENT_HEADROOM_OUTPUT_PATH_REPAIR_READY",
+  "execution_authorization": {
+    "authorization_point": "BEFORE_OPTIMIZER",
+    "authorized": true,
+    "create_attempt_002_only_in_next_task": true,
+    "require_fresh_teacher_svd_parity": true,
+    "reuse_attempt_001_renderer_calls": false
+  },
+  "expected_counts": {
+    "backward_calls": 36000,
+    "base_visual_renders": 20,
+    "cache_hits": 0,
+    "calibration_evaluations": 120,
+    "checkpoint_writes": 960,
+    "coefficient_diagnostic_runs": 20,
+    "coefficient_optimizer_render_calls": 30000,
+    "coefficient_regularized_runs": 80,
+    "determinism_probe_renders": 2,
+    "evaluation_physical_renders": 660,
+    "failure_records": 0,
+    "formal_logical_renders": 480,
+    "forward_calls": 36000,
+    "full_residual_optimizer_render_calls": 6000,
+    "full_residual_runs": 20,
+    "lambda_selection_evaluations": 80,
+    "logical_renders": 660,
+    "optimization_runs": 120,
+    "optimize_evaluations": 240,
+    "optimizer_creations": 120,
+    "optimizer_steps": 36000,
+    "paper_final_count": 0,
+    "parity_renders": 40,
+    "refined_lookup_logical_renders": 40,
+    "renderer_calls": 36662,
+    "scheduler_steps": 0,
+    "test_evaluations": 160,
+    "unique_physical_renders": 660,
+    "visual_sheets": 20
+  },
+  "failure_classification": "PRE_OPTIMIZER_OUTPUT_PATH_ENGINEERING_FAILURE",
+  "no_reuse_attempt_001_rule": true,
+  "paper_final": false,
+  "path_plan_aggregate_sha256": "694eca63bdaead253ab52c3f64bad2300cc91053183774e8181ab91d7a6d1766",
+  "path_plan_sha256": "568cb7d3b27b95eb40d1d0c9f5b98a85cefb19dfdc911f96ce438406f7dc8bb6",
+  "preflight_contract_sha256": "36e90a52f4223ea99baa3c46f39a802dc8670108c69db7f84d32a27fa57bc200",
+  "repair_branch": "research/coefficient-headroom-output-path-repair-20260724",
+  "repair_implementation_head": "d5443ae9699d43404157abeac9d2788820c705ab",
+  "root_cause_artifact": "paper_protocol/reviewer_risk/coefficient_headroom_output_path_root_cause.json",
+  "schema_version": "canondressgs.paper.coefficient_headroom_execution_contract_repaired.v1",
+  "scientific_conclusion": null,
+  "scientific_contract_inheritance": {
+    "contracts": [
+      {
+        "after_semantic_sha256": "ebbaba953d4047a5b275ef582fd329c6e595a0f1a65f47d04f34177090fce97a",
+        "before_semantic_sha256": "ebbaba953d4047a5b275ef582fd329c6e595a0f1a65f47d04f34177090fce97a",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_protocol.yaml"
+      },
+      {
+        "after_semantic_sha256": "5b1d9a263834447590a713b3954f87591d02e7496684dd88efb66b6bf77e944e",
+        "before_semantic_sha256": "5b1d9a263834447590a713b3954f87591d02e7496684dd88efb66b6bf77e944e",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_rotation_manifests.json"
+      },
+      {
+        "after_semantic_sha256": "ba482dc58ea10884df8207fdb690f2f39e04f9c2fe3f2a20f7a02959e6939759",
+        "before_semantic_sha256": "ba482dc58ea10884df8207fdb690f2f39e04f9c2fe3f2a20f7a02959e6939759",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_loss_contract.json"
+      },
+      {
+        "after_semantic_sha256": "8395e2a71e32e6ab134de20c56c8e973fbecf4834987349180e758bf361ca654",
+        "before_semantic_sha256": "8395e2a71e32e6ab134de20c56c8e973fbecf4834987349180e758bf361ca654",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_optimizer_contract.json"
+      },
+      {
+        "after_semantic_sha256": "c6b1df4cfea244bde45a06de48dbd17b09623ebf391748fbddd44ccae06ea063",
+        "before_semantic_sha256": "c6b1df4cfea244bde45a06de48dbd17b09623ebf391748fbddd44ccae06ea063",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_full_residual_contract.json"
+      },
+      {
+        "after_semantic_sha256": "25cf88621944c8c7b922275a968646afa799b97844b534f3821ffe7397e9e160",
+        "before_semantic_sha256": "25cf88621944c8c7b922275a968646afa799b97844b534f3821ffe7397e9e160",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_evaluator_contract.json"
+      },
+      {
+        "after_semantic_sha256": "64a93079d29dfbebf32735f82df89057a1663a4da744088a95d67ea699d881b3",
+        "before_semantic_sha256": "64a93079d29dfbebf32735f82df89057a1663a4da744088a95d67ea699d881b3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_success_gates.json"
+      },
+      {
+        "after_semantic_sha256": "8d1aa0cac3e94b7561634ae77f1024813aa807f3f0f9ef603ab29b7690071c48",
+        "before_semantic_sha256": "8d1aa0cac3e94b7561634ae77f1024813aa807f3f0f9ef603ab29b7690071c48",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/coefficient_headroom_protocol_final_summary.json"
+      }
+    ],
+    "evaluator_changed": false,
+    "full_residual_schema_changed": false,
+    "lambda_grid_changed": false,
+    "loss_changed": false,
+    "optimizer_changed": false,
+    "rotation_or_view_changed": false,
+    "semantic_drift_count": 0,
+    "status": "PASS",
+    "success_gates_changed": false
+  },
+  "source_branch": "research/render-refined-coefficient-headroom-experiment-20260724",
+  "source_head": "64f7bf09d7beb526eee50c8c1a0c47d792977378",
+  "source_invalid_attempt": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_001",
+  "status": "READY_FOR_ATTEMPT_002_BEFORE_OPTIMIZER",
+  "task_id": "AAAI27-COEFFICIENT-HEADROOM-EXECUTION-REPAIR-001",
+  "writer_registry_sha256": "7a210d5c4371b1e9d4921faf5ff39673b84887531a912670f30272dd1627ae8b"
+}
