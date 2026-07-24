@@ -20,10 +20,13 @@ GARMENTS = {"O01", "O02", "O03", "O04", "O08"}
 def load_json(path: Path):
     def reject_duplicates(pairs):
         value = {}
+        folded = set()
         for key, item in pairs:
-            if key in value:
+            normalized = key.casefold()
+            if normalized in folded:
                 raise AssertionError(f"duplicate key {key!r} in {path}")
             value[key] = item
+            folded.add(normalized)
         return value
 
     return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=reject_duplicates)

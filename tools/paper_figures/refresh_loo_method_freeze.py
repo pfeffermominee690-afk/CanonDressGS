@@ -102,10 +102,13 @@ def parse_args() -> argparse.Namespace:
 def load_json(path: Path) -> Any:
     def reject_duplicate(pairs: Sequence[tuple[str, Any]]) -> dict[str, Any]:
         result: dict[str, Any] = {}
+        folded: set[str] = set()
         for key, value in pairs:
-            if key in result:
+            normalized = key.casefold()
+            if normalized in folded:
                 raise RuntimeError(f"duplicate JSON key {key!r} in {path}")
             result[key] = value
+            folded.add(normalized)
         return result
 
     return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=reject_duplicate)
@@ -1312,7 +1315,6 @@ def main() -> None:
         "resource_counts": resource_counts,
         "tests": {"status": args.verification_status, "passed": args.unit_tests_passed, "failed": 0},
         "deterministic_regeneration": args.determinism_status,
-        "paper_final": False,
         "paper_final_count": 0,
         "PAPER_FINAL": False,
         "target_branch": TARGET_BRANCH,
