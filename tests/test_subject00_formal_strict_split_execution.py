@@ -119,6 +119,7 @@ def test_runner_has_atomic_checkpoint_and_exact_resume_contract() -> None:
         "train_phase",
         "roundtrip_phase",
         "evaluate_phase",
+        "git_blob",
     }.issubset(functions)
     assert "os.replace(temporary, path)" in source
     assert '"atomically_sealed": True' in source
@@ -126,6 +127,8 @@ def test_runner_has_atomic_checkpoint_and_exact_resume_contract() -> None:
     assert '"repeated_optimizer_steps": 0' in source
     assert "resume log must end exactly at the sealed checkpoint" in source
     assert "checkpoint overwrite forbidden" in source
+    assert "historical Subject02 source closure changed" in source
+    assert "formal runtime differs from executed medium source" in source
 
 
 def test_runner_preserves_streaming_evaluation_and_capacity_metrics() -> None:

@@ -166,6 +166,12 @@ def git_output(*args: str) -> str:
     ).strip()
 
 
+def git_blob(commit: str, relative: str) -> bytes:
+    return subprocess.check_output(
+        ["git", "-C", str(REPO_ROOT), "show", f"{commit}:{relative}"]
+    )
+
+
 def configure_runtime_modules() -> None:
     medium.TASK_ID = TASK_ID
     medium.TARGET_BRANCH = TARGET_BRANCH
@@ -245,10 +251,30 @@ def load_protocol(availability_path: Path) -> dict[str, Any]:
     if canonical_sha(availability["entries"]) != evaluation["availability_entries_sha256"]:
         raise RuntimeError("availability canonical hash changed")
 
-    source_files = contract["optimizer_loss_scheduler_renderer"]["source_files"]
+    runtime_contract = contract["optimizer_loss_scheduler_renderer"]
+    source_files = runtime_contract["source_files"]
+    closure_commit = runtime_contract["source_closure"]["commit"]
+    execution_commit = contract["execution_provenance"][
+        "medium_runner_source_commit"
+    ]
     for relative, expected in source_files.items():
-        if sha256_file(REPO_ROOT / relative) != expected:
-            raise RuntimeError(f"runtime source closure changed: {relative}")
+        historical_sha = hashlib.sha256(
+            git_blob(closure_commit, relative)
+        ).hexdigest()
+        if historical_sha != expected:
+            raise RuntimeError(
+                f"historical Subject02 source closure changed: {relative}"
+            )
+        executed_sha = hashlib.sha256(
+            git_blob(execution_commit, relative)
+        ).hexdigest()
+        current_sha = sha256_file(REPO_ROOT / relative)
+        if current_sha != executed_sha:
+            raise RuntimeError(
+                f"formal runtime differs from executed medium source: {relative}"
+            )
+        hashes[f"historical_source_file:{relative}"] = historical_sha
+        hashes[f"execution_source_file:{relative}"] = executed_sha
 
     medium_contract = read_json(
         REPO_ROOT
