@@ -60,6 +60,8 @@ ALLOWED_PATHS.update({
     "tools/paper/run_loo_basis_adaptation_experiment.py",
     "tests/test_loo_basis_adaptation_experiment.py",
     "paper_protocol/reviewer_risk/loo_execution_binding.json",
+    "paper_protocol/reviewer_risk/loo_execution_expected_counts.json",
+    "paper_protocol/reviewer_risk/loo_pre_result_tests.json",
     "paper_protocol/reviewer_risk/loo_basis_execution_registry.json",
     "paper_protocol/reviewer_risk/loo_adaptation_run_registry.json",
     "paper_protocol/reviewer_risk/loo_checkpoint_registry.json",
