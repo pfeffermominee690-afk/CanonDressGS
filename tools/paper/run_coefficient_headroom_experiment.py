@@ -176,7 +176,10 @@ def output_root(value: str | None) -> Path:
     raw = value or os.environ.get("CANONDRESSGS_ASSET_ROOT")
     if not raw:
         raise RuntimeError("CANONDRESSGS_ASSET_ROOT or --output-root is required")
-    return Path(raw).resolve()
+    root = Path(raw).resolve()
+    os.environ["CANONDRESSGS_ASSET_ROOT"] = str(root)
+    os.environ["CANONDRESSGS_OUTPUT_ROOT"] = str(root)
+    return root
 
 
 def attempt_path(root: Path) -> Path:
@@ -556,6 +559,53 @@ def render_loss(
     return triage.loss_for_sample(rgb, alpha, sample, weights, stability)
 
 
+def cloud_resource_preflight(root: Path) -> dict[str, Any]:
+    gpu_query = subprocess.check_output(
+        [
+            "nvidia-smi", "--query-gpu=name,memory.free,memory.used",
+            "--format=csv,noheader,nounits",
+        ], text=True, encoding="utf-8",
+    ).strip().splitlines()
+    if len(gpu_query) != 1:
+        raise RuntimeError("COEFFICIENT_HEADROOM_GPU_RESOURCE_CONFLICT")
+    gpu_name, free_mib, used_mib = [value.strip() for value in gpu_query[0].split(",")]
+    try:
+        process_output = subprocess.check_output(
+            [
+                "nvidia-smi", "--query-compute-apps=pid,process_name,used_memory",
+                "--format=csv,noheader,nounits",
+            ], text=True, encoding="utf-8", stderr=subprocess.DEVNULL,
+        ).strip()
+    except subprocess.CalledProcessError:
+        process_output = ""
+    active_compute = [line for line in process_output.splitlines() if line.strip()]
+    disk = shutil.disk_usage(root)
+    probe = root / ".coefficient_headroom_write_probe"
+    probe.write_text("writable\n", encoding="ascii")
+    probe.unlink()
+    checks = {
+        "gpu_is_rtx_4090": gpu_name == "NVIDIA GeForce RTX 4090",
+        "free_vram_at_least_20_gib": int(free_mib) >= 20 * 1024,
+        "no_active_compute_process": not active_compute,
+        "free_disk_at_least_20_gib": disk.free >= 20 * (1 << 30),
+        "output_writable": True,
+        "attempt_absent": not attempt_path(root).exists(),
+        "attempt_002_absent": not (root / OUTPUT_NAME / "attempt_002").exists(),
+        "origin_remote": bool(git("remote", "get-url", "origin")),
+        "cloud_remote": bool(git("remote", "get-url", "cloud")),
+    }
+    return {
+        "schema_version": "canondressgs.paper.coefficient_headroom_cloud_resource_preflight.v1",
+        "task_id": TASK_ID, "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "gpu": {"name": gpu_name, "memory_free_mib": int(free_mib), "memory_used_mib": int(used_mib)},
+        "active_compute_process_count": len(active_compute),
+        "active_compute_processes": ["REDACTED_PROCESS_METADATA" for _ in active_compute],
+        "disk": {"free_bytes": disk.free, "total_bytes": disk.total},
+        "credential_values_recorded": False, "checked_at_utc": now(),
+    }
+
+
 def materialize(root: Path) -> dict[str, Any]:
     if git("branch", "--show-current") != RUN_BRANCH or git("status", "--short"):
         raise RuntimeError("materialization requires the clean execution branch")
@@ -565,6 +615,9 @@ def materialize(root: Path) -> dict[str, Any]:
     attempt = attempt_path(root)
     if attempt.exists():
         raise RuntimeError("COEFFICIENT_HEADROOM_ATTEMPT_COLLISION")
+    resource_preflight = cloud_resource_preflight(root)
+    if resource_preflight["status"] != "PASS":
+        raise RuntimeError("COEFFICIENT_HEADROOM_GPU_RESOURCE_CONFLICT")
     names = (
         "00_preflight", "01_contract_snapshot", "02_static_parity", "03_coefficient_runs",
         "04_full_residual_runs", "05_checkpoints", "06_lambda_selection", "07_predictions",
@@ -581,12 +634,23 @@ def materialize(root: Path) -> dict[str, Any]:
         "coefficient_headroom_expected_counts.json",
         "coefficient_headroom_pre_result_tests.json",
     ):
-        shutil.copy2(RISK / name, attempt / "01_contract_snapshot" / name)
+        source = RISK / name
+        destination = attempt / "01_contract_snapshot" / name
+        if name == "coefficient_headroom_execution_binding.json":
+            binding_snapshot = read_json(source)
+            binding_snapshot["execution_head"] = head
+            atomic_json(destination, binding_snapshot, replace=False)
+        else:
+            shutil.copy2(source, destination)
     preflight = static_preflight(root)
     preflight["checks"]["attempt_absent"] = True
     preflight["checks"]["attempt_materialized_exactly_once"] = True
     preflight["status"] = "PASS" if all(preflight["checks"].values()) else "FAIL"
     atomic_json(attempt / "00_preflight/preflight.json", preflight, replace=False)
+    atomic_json(
+        attempt / "00_preflight/cloud_resource_preflight.json",
+        resource_preflight, replace=False,
+    )
     if preflight["status"] != "PASS":
         raise RuntimeError("runtime preflight failed")
     context = runtime_context(attempt)
