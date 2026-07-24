@@ -1,0 +1,177 @@
+{
+  "F2_cache_audit_sha256": "d541630571bbe488ecaf6c60eb62301542e3456ca16194bf142a8c151ae22fc3",
+  "PAPER_FINAL": false,
+  "actual_execution_counts": {
+    "backward_calls": 0,
+    "basis_renderer_calls": 0,
+    "checkpoint_writes": 0,
+    "formal_evaluations": 0,
+    "formal_metrics": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_calls": 0,
+    "scientific_attempts_created": 0,
+    "visual_sheets": 0
+  },
+  "attempt_003_exists": false,
+  "attempt_created_in_this_task": false,
+  "attempt_lineage": [
+    "attempt_001",
+    "attempt_002",
+    "prospective_attempt_003"
+  ],
+  "calibration_semantics_sha256": "c3826c2d0fc36c906b19871e07aa8db1ace5810780156d3fbcb8ea6c8b361077",
+  "consumer_schema_sha256": "78ffb3785e7985a4b815b7822505121a5a82e968e758a4ff3f3d50fc4aa816c9",
+  "exact_failure": {
+    "class": "ValueError",
+    "first_failing_task": "LOO-O01-R0-K1",
+    "message": "frozen F2 control supports K in {1,2,3}",
+    "phase": "REGULARIZATION_CALIBRATION_BEFORE_OPTIMIZER"
+  },
+  "exact_root_cause": [
+    "C. SINGLE_VIEW_MULTI_VIEW_AGGREGATION_MISMATCH",
+    "D. CALIBRATION_CONSUMER_EXPECTS_WRONG_INTERFACE"
+  ],
+  "execution_authorization": "PENDING_VERIFICATION",
+  "information_boundary_audit_sha256": "f07b8633e39fb3c51815e1e394eee0e19378a4b220dd3532429fde8f9c09a179",
+  "interface_diff_sha256": "b7107d21768aa37eb0b61fbf560d8c63f90aef3cf44a0d7fcac4b5c7e1ef2fee",
+  "producer_schema_sha256": "1c4f8456da452ce8e292b249250c95ee28ae6f6abe24dbf4e1c6dd5e7f181d66",
+  "schema_version": "canondressgs.paper.loo_calibration_f2_interface_execution_contract_repaired.v1",
+  "scientific_contract_hashes": [
+    {
+      "path": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+      "sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml",
+      "sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+      "sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+      "sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+      "sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+      "sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+      "sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json",
+      "sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json",
+      "sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json",
+      "sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
+      "sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41"
+    },
+    {
+      "path": "scene/frozen_f2_linear_coefficient_control.py",
+      "sha256": "653131616a0634099171a3ccb3eb90465ea6d33178315e8aab8f33423dae78de"
+    }
+  ],
+  "scientific_immutability_audit": {
+    "artifact_count": 12,
+    "rows": [
+      {
+        "current_sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+        "source_sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+      },
+      {
+        "current_sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml",
+        "source_sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499"
+      },
+      {
+        "current_sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+        "source_sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed"
+      },
+      {
+        "current_sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+        "source_sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+      },
+      {
+        "current_sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+        "source_sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+      },
+      {
+        "current_sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+        "source_sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df"
+      },
+      {
+        "current_sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+        "source_sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac"
+      },
+      {
+        "current_sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json",
+        "source_sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de"
+      },
+      {
+        "current_sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json",
+        "source_sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3"
+      },
+      {
+        "current_sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json",
+        "source_sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da"
+      },
+      {
+        "current_sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
+        "source_sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41"
+      },
+      {
+        "current_sha256": "653131616a0634099171a3ccb3eb90465ea6d33178315e8aab8f33423dae78de",
+        "match": true,
+        "path": "scene/frozen_f2_linear_coefficient_control.py",
+        "source_sha256": "653131616a0634099171a3ccb3eb90465ea6d33178315e8aab8f33423dae78de"
+      }
+    ],
+    "scientific_semantic_drift": 0,
+    "status": "PASS"
+  },
+  "selected_repair": "Extract legal F2 producer records per declared unit and explicitly aggregate per_reference_f2 with frozen mean+max; separate initialization from render loss.",
+  "source_attempt_002": "LOO-BASIS-ADAPTATION-001/attempt_002",
+  "source_execution_head": "c4532281c51a021bc6b899d4461d0c1085021aea",
+  "source_reporting_head": "1f93545816f274c9e186bbbb3fe171415ff1d92f",
+  "source_result_head": "91814a49b3a232a990aca872d8fdb774b7915539",
+  "status": "PENDING_VERIFICATION",
+  "task_id": "AAAI27-LOO-CALIBRATION-F2-INTERFACE-REPAIR-001",
+  "task_matrix_sha256": "88ee515483a91cd3e27725a9e6e36a3a553751ca3b3b56060b5351dd2506b22f"
+}
