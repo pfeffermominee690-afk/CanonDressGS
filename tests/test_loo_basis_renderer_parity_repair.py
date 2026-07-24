@@ -124,3 +124,9 @@ def test_paper_final_and_execution_counts_remain_zero() -> None:
     assert '"checkpoint_writes": 0' in SOURCE
     assert '"formal_metrics": 0' in SOURCE
     assert '"PAPER_FINAL": False' in SOURCE
+
+
+def test_interrupted_diagnostic_renders_are_counted_without_scientific_outputs() -> None:
+    assert '"diagnostic_render_calls": 68' in SOURCE
+    assert '"status": "INTERRUPTED_IMPLEMENTATION_ERROR"' in SOURCE
+    assert "prior_interrupted_render_calls(diagnostic)" in SOURCE

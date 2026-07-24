@@ -270,6 +270,41 @@ def require_diagnostic_runtime(asset_root: Path) -> tuple[Path, dict[str, Any]]:
     return diagnostic, immutable
 
 
+def record_known_interruption(asset_root: Path) -> dict[str, Any]:
+    diagnostic, immutable = require_diagnostic_runtime(asset_root)
+    result = {
+        "schema_version": "canondressgs.paper.loo_diagnostic_interruption_ledger.v1",
+        "task_id": TASK_ID,
+        "diagnostic_label": DIAGNOSTIC_LABEL,
+        "rows": [{
+            "run_id": "diagnose_run_001",
+            "status": "INTERRUPTED_IMPLEMENTATION_ERROR",
+            "last_completed_stage": "residual_channel_parity",
+            "error": "incorrect CHANNELS import in numerical unflatten helper",
+            "diagnostic_render_calls": 68,
+            "optimizer_creations": 0,
+            "optimizer_steps": 0,
+            "checkpoint_writes": 0,
+            "formal_metrics": 0,
+        }],
+        "diagnostic_render_calls": 68,
+        "original_attempt_immutability": immutable,
+        "attempt_002_absent": not (
+            asset_root / ORIGINAL_OUTPUT_NAME / "attempt_002"
+        ).exists(),
+        "PAPER_FINAL": False,
+    }
+    write_json(diagnostic / "00_preflight/diagnostic_interruption_ledger.json", result)
+    return result
+
+
+def prior_interrupted_render_calls(diagnostic: Path) -> int:
+    path = diagnostic / "00_preflight/diagnostic_interruption_ledger.json"
+    if not path.is_file():
+        return 0
+    return int(json.loads(path.read_text(encoding="utf-8"))["diagnostic_render_calls"])
+
+
 def runtime_context(diagnostic: Path) -> dict[str, Any]:
     from tools.paper import formal_runtime
 
@@ -314,7 +349,7 @@ def flatten_normalized(
 
 
 def unflatten(flat: torch.Tensor, shapes: Mapping[str, tuple[int, ...]]) -> dict[str, torch.Tensor]:
-    from scene.gaussian_clothing_residual_basis import CHANNELS
+    from scene.gaussian_clothing_residuals import CHANNELS
 
     result = {}
     start = 0
@@ -1019,7 +1054,7 @@ def diagnose(asset_root: Path) -> dict[str, Any]:
         **affine,
     }
 
-    total_render_calls = sum((
+    successful_run_render_calls = sum((
         original_render_count,
         determinism_render_count,
         layer_render_count,
@@ -1027,6 +1062,8 @@ def diagnose(asset_root: Path) -> dict[str, Any]:
         numerical_render_count,
         candidate_render_count,
     ))
+    interrupted_render_calls = prior_interrupted_render_calls(diagnostic)
+    total_render_calls = successful_run_render_calls + interrupted_render_calls
     final_immutable = original_immutability(asset_root, load_manifest(asset_root))
     summary = {
         "schema_version": "canondressgs.paper.loo_basis_renderer_parity_diagnosis_summary.v1",
@@ -1039,6 +1076,8 @@ def diagnose(asset_root: Path) -> dict[str, Any]:
         "candidate_split_pass_count": candidate_validation["split_pass_count"],
         "candidate_endpoint_pass_count": candidate_validation["endpoint_pass_count"],
         "diagnostic_render_calls": total_render_calls,
+        "successful_run_diagnostic_render_calls": successful_run_render_calls,
+        "interrupted_run_diagnostic_render_calls": interrupted_render_calls,
         "optimizer_creations": 0,
         "optimizer_steps": 0,
         "checkpoint_writes": 0,
@@ -1096,7 +1135,10 @@ def verify_preflight(asset_root: Path) -> dict[str, Any]:
 
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description="Diagnose and repair LOO basis renderer parity")
-    result.add_argument("command", choices=("preflight", "diagnose", "verify-preflight"))
+    result.add_argument(
+        "command",
+        choices=("preflight", "record-known-interruption", "diagnose", "verify-preflight"),
+    )
     result.add_argument("--asset-root", type=Path)
     return result
 
@@ -1111,6 +1153,7 @@ def main() -> None:
         asset_root = Path(value)
     commands = {
         "preflight": preflight,
+        "record-known-interruption": record_known_interruption,
         "diagnose": diagnose,
         "verify-preflight": verify_preflight,
     }
