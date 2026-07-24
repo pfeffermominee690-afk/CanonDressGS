@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import ast
 import hashlib
+import importlib
 import json
 from pathlib import Path
 from typing import Any
@@ -155,3 +156,46 @@ def test_runner_never_restores_medium_checkpoint_for_training() -> None:
     assert "MEDIUM_FINAL_PATH" not in source
     assert "torch.load(CANARY_STEP0_PATH" in source
     assert "restore_model_from_checkpoint" in source
+
+
+def test_runner_helpers_in_runtime_environment(tmp_path: Path) -> None:
+    pytest = __import__("pytest")
+    pytest.importorskip("torch")
+    module = importlib.import_module(
+        "tools.second_identity.run_subject00_formal_strict_split"
+    )
+    destination = tmp_path / "nested/result.json"
+    module.atomic_write_json(destination, {"b": 2, "a": 1})
+    assert json.loads(destination.read_text(encoding="utf-8")) == {
+        "a": 1,
+        "b": 2,
+    }
+    stats = module.metric_statistics(
+        [
+            {name: float(index) for name in module.METRIC_NAMES}
+            for index in range(1, 6)
+        ]
+    )
+    assert stats["rgb_mae"]["count"] == 5
+    assert stats["rgb_mae"]["mean"] == 3.0
+    assert stats["rgb_mae"]["median"] == 3.0
+    assert stats["rgb_mae"]["p05"] == 1.2
+    assert stats["rgb_mae"]["p95"] == 4.8
+
+
+def test_cloud_protocol_bundle_loads_when_frozen_manifest_is_available() -> None:
+    manifest = Path(
+        "/root/autodl-tmp/datasets/thuman4_second_identity_staging/"
+        "reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json"
+    )
+    if not manifest.is_file():
+        return
+    pytest = __import__("pytest")
+    pytest.importorskip("torch")
+    module = importlib.import_module(
+        "tools.second_identity.run_subject00_formal_strict_split"
+    )
+    protocol = module.load_protocol(manifest)
+    assert protocol["full_query_count"] == 29_954
+    assert protocol["schedule"]["optimizer_steps"] == 101_245
+    assert protocol["records"]["record_count"] == 20_249

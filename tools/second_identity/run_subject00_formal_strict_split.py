@@ -423,10 +423,6 @@ def preflight(
 
     output_parent = FORMAL_OUTPUT_ROOT.parent
     disk = shutil.disk_usage(output_parent)
-    if disk.free < MINIMUM_FREE_BYTES:
-        raise RuntimeError(
-            f"formal disk gate failed: free={disk.free}, required={MINIMUM_FREE_BYTES}"
-        )
     processes = active_gpu_processes()
     if processes:
         raise RuntimeError(f"formal GPU exclusivity gate failed: {processes}")
@@ -435,6 +431,10 @@ def preflight(
         raise RuntimeError(f"credential findings are nonzero: {findings}")
     if not os.access(output_parent, os.W_OK):
         raise RuntimeError("formal output parent is not writable")
+    if disk.free < MINIMUM_FREE_BYTES:
+        raise RuntimeError(
+            f"formal disk gate failed: free={disk.free}, required={MINIMUM_FREE_BYTES}"
+        )
     return {
         "schema_version": "subject00.formal.execution_preflight.v1",
         "task_id": TASK_ID,
