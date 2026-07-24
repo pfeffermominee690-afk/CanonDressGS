@@ -1,6 +1,7 @@
 # Coefficient Headroom Failure Analysis
 
 - execution HEAD: `11206393153d710a62b351ff1d136d82154d9e85`
+- final scientific evidence HEAD: `1275d79bde07fdd798987024310d822826aaf135`
 - failure code: `COEFFICIENT_HEADROOM_PARITY_OUTPUT_DIRECTORY_MISSING`
 - stage: `02_static_parity`
 - completed renderer calls before failure: 2
