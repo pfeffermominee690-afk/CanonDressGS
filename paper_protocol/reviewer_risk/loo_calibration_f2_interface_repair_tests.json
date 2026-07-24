@@ -1,12 +1,57 @@
 {
-  "both_worktrees_clean": "PENDING_FINAL_SYNC",
-  "cloud_python_310_torch": "PENDING",
-  "deterministic_regeneration": "PENDING",
-  "git_diff_check": "PENDING",
-  "local_origin_cloud": "PENDING_FINAL_SYNC",
+  "both_worktrees_clean": "PASS_AFTER_FINAL_COMMIT",
+  "cloud_python_310_torch": "PASS: 192 passed in 10.90s; repair suite 76/76",
+  "deterministic_regeneration": "PASS",
+  "git_diff_check": "PASS",
+  "local_origin_cloud": "PASS_AFTER_FINAL_PUSH",
   "required_test_count": 76,
   "schema_version": "canondressgs.paper.loo_calibration_f2_interface_repair_tests.v1",
-  "status": "PENDING_VERIFICATION",
+  "status": "PASS",
   "task_id": "AAAI27-LOO-CALIBRATION-F2-INTERFACE-REPAIR-001",
-  "windows_python_311": "PENDING"
+  "verification": {
+    "checks": {
+      "all_interfaces_40": true,
+      "attempt_001_exact": true,
+      "attempt_002_exact": true,
+      "attempt_003_absent": true,
+      "cache_clean": true,
+      "cloud_snapshot_pass": true,
+      "core_regeneration_exact": true,
+      "exact_failure_reproduced": true,
+      "execution_counts_zero": true,
+      "formal_attempt_mutations_zero": true,
+      "frozen_mutations_zero": true,
+      "information_reads_zero": true,
+      "markdown_nonempty": true,
+      "scientific_drift_zero": true,
+      "strict_json": true,
+      "task_matrix_40": true,
+      "task_matrix_K1_K2": true,
+      "temporary_files_zero": true
+    },
+    "markdown": {
+      "AAAI27_LOO_ATTEMPT002_CALIBRATION_F2_ROOT_CAUSE_20260724.md": true,
+      "AAAI27_LOO_CALIBRATION_F2_INTERFACE_REPAIR_20260724.md": true,
+      "AAAI27_LOO_CALIBRATION_INFORMATION_BOUNDARY_AUDIT_20260724.md": true,
+      "AAAI27_LOO_F2_PRODUCER_CONSUMER_INTERFACE_AUDIT_20260724.md": true
+    },
+    "schema_version": "canondressgs.paper.loo_calibration_f2_interface_verification.v1",
+    "status": "PASS",
+    "strict_json": {
+      "loo_attempt002_failure_reproduction.json": true,
+      "loo_calibration_consumer_schema.json": true,
+      "loo_calibration_f2_information_boundary_audit.json": true,
+      "loo_calibration_f2_interface_execution_contract_repaired.json": true,
+      "loo_calibration_f2_interface_repair_final_summary.json": true,
+      "loo_calibration_f2_interface_repair_tests.json": true,
+      "loo_calibration_f2_interface_task_matrix.json": true,
+      "loo_calibration_semantics_audit.json": true,
+      "loo_f2_cache_schema_audit.json": true,
+      "loo_f2_interface_schema_diff.json": true,
+      "loo_f2_producer_schema.json": true
+    },
+    "task_id": "AAAI27-LOO-CALIBRATION-F2-INTERFACE-REPAIR-001",
+    "task_matrix_sha256": "88ee515483a91cd3e27725a9e6e36a3a553751ca3b3b56060b5351dd2506b22f"
+  },
+  "windows_python_311": "PASS: 192 passed in 15.43s; repair suite 76/76"
 }
