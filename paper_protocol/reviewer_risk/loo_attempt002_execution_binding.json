@@ -1,0 +1,704 @@
+{
+  "K4_execution_authorized": false,
+  "PAPER_FINAL": false,
+  "attempt": "attempt_002",
+  "attempt_001_immutable": true,
+  "attempt_001_role": "PRESERVED_PRE_OPTIMIZER_BASIS_RENDERER_PARITY_FAILURE",
+  "attempt_002_absent": true,
+  "attempt_003_absent": true,
+  "attempt_count_before_execution": 1,
+  "binding_parent_head": "c6a2e200a3cc5ed6cef3349ab8035f7082b9d2fb",
+  "cloud_preflight_sha256": "418cd3591f932a831b6ac58560b9802904156a95c31179329782d732d72264ad",
+  "contract_fingerprints": {
+    "docs/PAPER/AAAI27_LOO_FEW_VIEW_FOLD_REPAIR_20260724.md": {
+      "sha256": "62db5bce721d2690e4123c195ee527fa6a0fdfad1186ab7ab5db9296281afbd9",
+      "sha256_lf": "62db5bce721d2690e4123c195ee527fa6a0fdfad1186ab7ab5db9296281afbd9"
+    },
+    "docs/PAPER/AAAI27_LOO_K1_K2_PRIMARY_CROSSFIT_PROTOCOL_20260724.md": {
+      "sha256": "49b3743a826b1f5172503dfa1dd698b214a1d9bf695e55c7b57e4ecef862198f",
+      "sha256_lf": "49b3743a826b1f5172503dfa1dd698b214a1d9bf695e55c7b57e4ecef862198f"
+    },
+    "docs/PAPER/AAAI27_LOO_K4_DEFERRED_DIAGNOSTIC_BOUNDARY_20260724.md": {
+      "sha256": "f8b617c502b7416573d67f811284285913fec7b2b7018b0441fe53921147ffc2",
+      "sha256_lf": "f8b617c502b7416573d67f811284285913fec7b2b7018b0441fe53921147ffc2"
+    },
+    "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json": {
+      "sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3",
+      "sha256_lf": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+    },
+    "paper_protocol/reviewer_risk/loo_baseline_registry.json": {
+      "sha256": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925",
+      "sha256_lf": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925"
+    },
+    "paper_protocol/reviewer_risk/loo_baseline_registry_amended.json": {
+      "sha256": "168d25ea7a7e879ed9e3b85587982c43e7d742c18d54796897da493d1f4fb274",
+      "sha256_lf": "168d25ea7a7e879ed9e3b85587982c43e7d742c18d54796897da493d1f4fb274"
+    },
+    "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml": {
+      "sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499",
+      "sha256_lf": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499"
+    },
+    "paper_protocol/reviewer_risk/loo_basis_manifests.json": {
+      "sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3",
+      "sha256_lf": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+    },
+    "paper_protocol/reviewer_risk/loo_basis_renderer_parity_execution_contract_repaired.json": {
+      "sha256": "b2c28c480d6da552185cd7a69178b1845cf977dc8d1de4c560ed8d81b35b4258",
+      "sha256_lf": "b2c28c480d6da552185cd7a69178b1845cf977dc8d1de4c560ed8d81b35b4258"
+    },
+    "paper_protocol/reviewer_risk/loo_basis_renderer_parity_repair_final_summary.json": {
+      "sha256": "62dfa040cb3b7747a72830c8bcfbd9eecdf9035f1f94dd6c594e428727d2c282",
+      "sha256_lf": "62dfa040cb3b7747a72830c8bcfbd9eecdf9035f1f94dd6c594e428727d2c282"
+    },
+    "paper_protocol/reviewer_risk/loo_cache_count_root_cause.json": {
+      "sha256": "99e947632c88b12f2ab12d0943ac059a0f0c4b8b93b692cbd1ae335e4abf3b7f",
+      "sha256_lf": "99e947632c88b12f2ab12d0943ac059a0f0c4b8b93b692cbd1ae335e4abf3b7f"
+    },
+    "paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json": {
+      "sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3",
+      "sha256_lf": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3"
+    },
+    "paper_protocol/reviewer_risk/loo_evaluator_contract.json": {
+      "sha256": "94e28a46ad71d9756f4afd1658cfbcca271fbc4ef92db56e96ed12aa2401b366",
+      "sha256_lf": "94e28a46ad71d9756f4afd1658cfbcca271fbc4ef92db56e96ed12aa2401b366"
+    },
+    "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json": {
+      "sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df",
+      "sha256_lf": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df"
+    },
+    "paper_protocol/reviewer_risk/loo_execution_contract_amended.json": {
+      "sha256": "a5739e8979ae93898a59be59528c1ffc0c4c34ba43bec2f27edfb16a84b8ec46",
+      "sha256_lf": "a5739e8979ae93898a59be59528c1ffc0c4c34ba43bec2f27edfb16a84b8ec46"
+    },
+    "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json": {
+      "sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41",
+      "sha256_lf": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41"
+    },
+    "paper_protocol/reviewer_risk/loo_expected_counts_amended.json": {
+      "sha256": "032baa006a36efaca34ef5ac274077a56011b43663cbdc544d5ba527ae6d748f",
+      "sha256_lf": "032baa006a36efaca34ef5ac274077a56011b43663cbdc544d5ba527ae6d748f"
+    },
+    "paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json": {
+      "sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de",
+      "sha256_lf": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de"
+    },
+    "paper_protocol/reviewer_risk/loo_few_view_fold_repair.json": {
+      "sha256": "ee0f1bb38e9a7bbadfbc83b48611c195d79a621e48fcd25e297564ba12509097",
+      "sha256_lf": "ee0f1bb38e9a7bbadfbc83b48611c195d79a621e48fcd25e297564ba12509097"
+    },
+    "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json": {
+      "sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed",
+      "sha256_lf": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed"
+    },
+    "paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json": {
+      "sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da",
+      "sha256_lf": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da"
+    },
+    "paper_protocol/reviewer_risk/loo_optimizer_contract.json": {
+      "sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb",
+      "sha256_lf": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+    },
+    "paper_protocol/reviewer_risk/loo_protocol_repair_final_summary.json": {
+      "sha256": "ee25986ca0c2e5827c7ca2ff1ad4240cfc58c95dcfd292e471ceeb5c8b23d3c0",
+      "sha256_lf": "ee25986ca0c2e5827c7ca2ff1ad4240cfc58c95dcfd292e471ceeb5c8b23d3c0"
+    },
+    "paper_protocol/reviewer_risk/loo_protocol_repair_tests.json": {
+      "sha256": "e3c25cfc3a332680c758302170428292e8b2b68f9cd298932cd3bfa0ed9fd634",
+      "sha256_lf": "e3c25cfc3a332680c758302170428292e8b2b68f9cd298932cd3bfa0ed9fd634"
+    },
+    "paper_protocol/reviewer_risk/loo_shared_render_adaptation_loss_reference.json": {
+      "sha256": "58a7cfac48ac652ff9deccb4a22bcf9d1ac4f34459f9d99c5e526804d9b27878",
+      "sha256_lf": "58a7cfac48ac652ff9deccb4a22bcf9d1ac4f34459f9d99c5e526804d9b27878"
+    },
+    "paper_protocol/reviewer_risk/loo_static_render_track_cache_audit.json": {
+      "sha256": "c7b16f70aba8f587a28ea6d50ac6cb88e929ec8caed9567390120e171946809c",
+      "sha256_lf": "c7b16f70aba8f587a28ea6d50ac6cb88e929ec8caed9567390120e171946809c"
+    },
+    "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json": {
+      "sha256": "2f9d6729360de2a1c25de9529d0c63c9ce469f8bf4ba8864a01d3df073a4d4a4",
+      "sha256_lf": "2f9d6729360de2a1c25de9529d0c63c9ce469f8bf4ba8864a01d3df073a4d4a4"
+    },
+    "paper_protocol/reviewer_risk/loo_success_gates_amended.json": {
+      "sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac",
+      "sha256_lf": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac"
+    },
+    "project_control_handoff/loo_basis_renderer_parity_repair_handoff.json": {
+      "sha256": "b708530fab79e85dea28a700e18b5993045eeb0612a3b377df2cb5813bddad72",
+      "sha256_lf": "b708530fab79e85dea28a700e18b5993045eeb0612a3b377df2cb5813bddad72"
+    },
+    "project_control_handoff/loo_protocol_repair_handoff.json": {
+      "sha256": "90b89b45e631d266a1bd8b18ea27fdba66b7b0cdaf391a26158a83cd285cb2cf",
+      "sha256_lf": "90b89b45e631d266a1bd8b18ea27fdba66b7b0cdaf391a26158a83cd285cb2cf"
+    },
+    "scene/explicit_gaussian_residual_basis.py": {
+      "sha256": "5a2416d18616745b5a34c5f971f4538f33fe93a4190938d2f3e75a984ecbad05",
+      "sha256_lf": "5a2416d18616745b5a34c5f971f4538f33fe93a4190938d2f3e75a984ecbad05"
+    },
+    "scene/gaussian_clothing_residuals.py": {
+      "sha256": "2a37dc90d9db9a9742d438b3ccbacff73b2b8fa931d5fcc70170b91ba747dcc9",
+      "sha256_lf": "2a37dc90d9db9a9742d438b3ccbacff73b2b8fa931d5fcc70170b91ba747dcc9"
+    }
+  },
+  "created_at_utc": "2026-07-24T12:53:29Z",
+  "execution_head": "RESOLVE_AFTER_BINDING_COMMIT",
+  "expected_counts_semantic_sha256": "0c27efdcf510973ae69b5691323ca647f23986e75669924a84e8cac74ef62471",
+  "full_five_garment_rank4_basis_reused": false,
+  "held_out_teacher_use_in_deployable_adaptation": 0,
+  "historical_immutability": {
+    "artifact_count": 14,
+    "historical_blocked_tasks": 45,
+    "historical_classification": "LOO_PROTOCOL_INCOMPLETE",
+    "historical_valid_tasks": 15,
+    "mutation_count": 0,
+    "rows": [
+      {
+        "actual_git_blob": "82c0576bf35b8429402a5c29a402e5b749e9399f",
+        "actual_sha256": "69c643b664d67865610b2ab6b80843911915665d7bc8095a37b91bc6a92f87d2",
+        "git_blob": "82c0576bf35b8429402a5c29a402e5b749e9399f",
+        "match": true,
+        "path": "docs/PAPER/AAAI27_LEAVE_ONE_GARMENT_OUT_BASIS_PROTOCOL_20260724.md",
+        "sha256_git_blob_bytes": "69c643b664d67865610b2ab6b80843911915665d7bc8095a37b91bc6a92f87d2"
+      },
+      {
+        "actual_git_blob": "ed38d118d44c1ce1459997677279005dcfbad871",
+        "actual_sha256": "f1441379580a5eb2df27d7d4d5ec1e6b7a18ea36c1d809229496ec7eeb928a2a",
+        "git_blob": "ed38d118d44c1ce1459997677279005dcfbad871",
+        "match": true,
+        "path": "docs/PAPER/AAAI27_FEW_VIEW_GARMENT_ADAPTATION_PROTOCOL_20260724.md",
+        "sha256_git_blob_bytes": "f1441379580a5eb2df27d7d4d5ec1e6b7a18ea36c1d809229496ec7eeb928a2a"
+      },
+      {
+        "actual_git_blob": "5ae8371fb598cbda98fd52ceecb7e00abbcd7103",
+        "actual_sha256": "a350787420b18bf74b80898919a04e737662bc392ffc71f8749fad971e5b4b49",
+        "git_blob": "5ae8371fb598cbda98fd52ceecb7e00abbcd7103",
+        "match": true,
+        "path": "docs/PAPER/AAAI27_HARD_LOOKUP_FAIR_COMPARISON_PROTOCOL_20260724.md",
+        "sha256_git_blob_bytes": "a350787420b18bf74b80898919a04e737662bc392ffc71f8749fad971e5b4b49"
+      },
+      {
+        "actual_git_blob": "f6b5d6aa9624d2f3f5c0bb1dca5242ca5c02ad46",
+        "actual_sha256": "688ae75571959a357d380fb279a472163cc44a6350c4b52dca660d7a2d70a85f",
+        "git_blob": "f6b5d6aa9624d2f3f5c0bb1dca5242ca5c02ad46",
+        "match": true,
+        "path": "docs/PAPER/AAAI27_LOO_BASIS_CAPACITY_ANALYSIS_PLAN_20260724.md",
+        "sha256_git_blob_bytes": "688ae75571959a357d380fb279a472163cc44a6350c4b52dca660d7a2d70a85f"
+      },
+      {
+        "actual_git_blob": "4997076fa16f7bce4c83c08c2f58bb8080e7c86b",
+        "actual_sha256": "ded5d8b843fff6678be45b68f36eaf208c01459933ffd85ccff85534f4a6c60c",
+        "git_blob": "4997076fa16f7bce4c83c08c2f58bb8080e7c86b",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol.yaml",
+        "sha256_git_blob_bytes": "ded5d8b843fff6678be45b68f36eaf208c01459933ffd85ccff85534f4a6c60c"
+      },
+      {
+        "actual_git_blob": "039d351d00c3f7373abb56fcee240f71753eca7e",
+        "actual_sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3",
+        "git_blob": "039d351d00c3f7373abb56fcee240f71753eca7e",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+        "sha256_git_blob_bytes": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+      },
+      {
+        "actual_git_blob": "969165ababae130956099ebea24da7eac1dca3cc",
+        "actual_sha256": "209897d8f85b6af1c01768cbb3d41b7a294f16a14f3f4022842ea667714047c7",
+        "git_blob": "969165ababae130956099ebea24da7eac1dca3cc",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_few_view_manifests.json",
+        "sha256_git_blob_bytes": "209897d8f85b6af1c01768cbb3d41b7a294f16a14f3f4022842ea667714047c7"
+      },
+      {
+        "actual_git_blob": "05d89670234158dcdc3c741cc482cffecfc5dcee",
+        "actual_sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3",
+        "git_blob": "05d89670234158dcdc3c741cc482cffecfc5dcee",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+        "sha256_git_blob_bytes": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+      },
+      {
+        "actual_git_blob": "1e606e23011ee705bf2cb0340e1d64c78653ae79",
+        "actual_sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb",
+        "git_blob": "1e606e23011ee705bf2cb0340e1d64c78653ae79",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+        "sha256_git_blob_bytes": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+      },
+      {
+        "actual_git_blob": "359894561fe0f6218eebcc1cf91ce3446b353b44",
+        "actual_sha256": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925",
+        "git_blob": "359894561fe0f6218eebcc1cf91ce3446b353b44",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_baseline_registry.json",
+        "sha256_git_blob_bytes": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925"
+      },
+      {
+        "actual_git_blob": "f7792b26da9e876249f76dfc816e8176e486b6b4",
+        "actual_sha256": "94e28a46ad71d9756f4afd1658cfbcca271fbc4ef92db56e96ed12aa2401b366",
+        "git_blob": "f7792b26da9e876249f76dfc816e8176e486b6b4",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_evaluator_contract.json",
+        "sha256_git_blob_bytes": "94e28a46ad71d9756f4afd1658cfbcca271fbc4ef92db56e96ed12aa2401b366"
+      },
+      {
+        "actual_git_blob": "f51cb30561ea657c74042b26ebdd6098fe03d497",
+        "actual_sha256": "e9b1b7191f9e24d7fcd560cb72eb116ab5a8eee9cb46020b1c65159891129e76",
+        "git_blob": "f51cb30561ea657c74042b26ebdd6098fe03d497",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_success_gates.json",
+        "sha256_git_blob_bytes": "e9b1b7191f9e24d7fcd560cb72eb116ab5a8eee9cb46020b1c65159891129e76"
+      },
+      {
+        "actual_git_blob": "f3397de3bee05d11793f55b5ff6da4ee4b32b56f",
+        "actual_sha256": "88d2d50baa46801df8ea55af7ca99c7cd52e1c0a02ea1bac8d38361d149e4149",
+        "git_blob": "f3397de3bee05d11793f55b5ff6da4ee4b32b56f",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_protocol_final_summary.json",
+        "sha256_git_blob_bytes": "88d2d50baa46801df8ea55af7ca99c7cd52e1c0a02ea1bac8d38361d149e4149"
+      },
+      {
+        "actual_git_blob": "fba0f398b2154ef56a3fe8d690f3ba95e2d5b625",
+        "actual_sha256": "aea9b040c2ec0e54db6be0ba23d8111c17d6e40bcd5f023ffa6baf30323593b8",
+        "git_blob": "fba0f398b2154ef56a3fe8d690f3ba95e2d5b625",
+        "match": true,
+        "path": "project_control_handoff/loo_basis_adaptation_protocol_handoff.json",
+        "sha256_git_blob_bytes": "aea9b040c2ec0e54db6be0ba23d8111c17d6e40bcd5f023ffa6baf30323593b8"
+      }
+    ],
+    "status": "PASS"
+  },
+  "original_attempt_immutability": {
+    "actual": {
+      "aggregate_definition": "sha256(canonical JSON of ordered path/bytes/sha256 rows)",
+      "aggregate_sha256": "4cd4ca03e21092431348c16a5103aff8863fd20861af9510913e02479761a31a",
+      "file_content_bytes": 71054711,
+      "file_count": 66,
+      "files": [
+        {
+          "bytes": 939,
+          "path": "00_preflight/cache_contract_preflight.json",
+          "sha256": "994be200efcffc1db347e84529262d3499dac4d9a0ad211f6f5fcaa430e72577"
+        },
+        {
+          "bytes": 26595,
+          "path": "00_preflight/cloud_resource_preflight.json",
+          "sha256": "07535e7e13b761abb8988b94c7f965657356b416a3704b0a33c7ff3ef0f7436e"
+        },
+        {
+          "bytes": 759,
+          "path": "00_preflight/credential_scan.json",
+          "sha256": "63b7d5e23852f50344874faf632316636b4d8fda368e7706bbcc05a7e05347a6"
+        },
+        {
+          "bytes": 555,
+          "path": "00_preflight/execution_metadata.json",
+          "sha256": "596ef3ddcb792749846c08058077361597011e46c6a5a8b8a0e4d0dc6e237bf5"
+        },
+        {
+          "bytes": 6256,
+          "path": "00_preflight/historical_immutability.json",
+          "sha256": "ff036ed12861e2edb61e6b83d4ba8f2c76758e273ff354e16d5bbd6efcecd8d0"
+        },
+        {
+          "bytes": 767,
+          "path": "00_preflight/storage_forecast.json",
+          "sha256": "af21fdd628f4fa4d60bb4aab2fc7ee88008e048923449c701502355a99d2a17f"
+        },
+        {
+          "bytes": 3800,
+          "path": "01_contract_snapshot/contract_registry.json",
+          "sha256": "9353252e7a1bf9505f4b679017d0c0ffab87371b26821dd0e4243efb55ee3a4c"
+        },
+        {
+          "bytes": 3107,
+          "path": "01_contract_snapshot/docs/PAPER/AAAI27_LOO_FEW_VIEW_FOLD_REPAIR_20260724.md",
+          "sha256": "62db5bce721d2690e4123c195ee527fa6a0fdfad1186ab7ab5db9296281afbd9"
+        },
+        {
+          "bytes": 3072,
+          "path": "01_contract_snapshot/docs/PAPER/AAAI27_LOO_K1_K2_PRIMARY_CROSSFIT_PROTOCOL_20260724.md",
+          "sha256": "49b3743a826b1f5172503dfa1dd698b214a1d9bf695e55c7b57e4ecef862198f"
+        },
+        {
+          "bytes": 2404,
+          "path": "01_contract_snapshot/docs/PAPER/AAAI27_LOO_K4_DEFERRED_DIAGNOSTIC_BOUNDARY_20260724.md",
+          "sha256": "f8b617c502b7416573d67f811284285913fec7b2b7018b0441fe53921147ffc2"
+        },
+        {
+          "bytes": 4022,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+          "sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+        },
+        {
+          "bytes": 3743,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_baseline_registry.json",
+          "sha256": "c36b291f2ee9d52c741fbb347f81d2e25e0f76421363f14abd958aeb3d397925"
+        },
+        {
+          "bytes": 5726,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_baseline_registry_amended.json",
+          "sha256": "168d25ea7a7e879ed9e3b85587982c43e7d742c18d54796897da493d1f4fb274"
+        },
+        {
+          "bytes": 3307,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml",
+          "sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499"
+        },
+        {
+          "bytes": 29176,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_basis_manifests.json",
+          "sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+        },
+        {
+          "bytes": 16733,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_cache_count_root_cause.json",
+          "sha256": "99e947632c88b12f2ab12d0943ac059a0f0c4b8b93b692cbd1ae335e4abf3b7f"
+        },
+        {
+          "bytes": 104453,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json",
+          "sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3"
+        },
+        {
+          "bytes": 3763,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_evaluator_contract.json",
+          "sha256": "94e28a46ad71d9756f4afd1658cfbcca271fbc4ef92db56e96ed12aa2401b366"
+        },
+        {
+          "bytes": 4480,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+          "sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df"
+        },
+        {
+          "bytes": 5168,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_execution_contract_amended.json",
+          "sha256": "a5739e8979ae93898a59be59528c1ffc0c4c34ba43bec2f27edfb16a84b8ec46"
+        },
+        {
+          "bytes": 2955,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
+          "sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41"
+        },
+        {
+          "bytes": 3581,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_expected_counts_amended.json",
+          "sha256": "032baa006a36efaca34ef5ac274077a56011b43663cbdc544d5ba527ae6d748f"
+        },
+        {
+          "bytes": 4996,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json",
+          "sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de"
+        },
+        {
+          "bytes": 8357,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_few_view_fold_repair.json",
+          "sha256": "ee0f1bb38e9a7bbadfbc83b48611c195d79a621e48fcd25e297564ba12509097"
+        },
+        {
+          "bytes": 219791,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+          "sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed"
+        },
+        {
+          "bytes": 105328,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json",
+          "sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da"
+        },
+        {
+          "bytes": 2879,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+          "sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+        },
+        {
+          "bytes": 5311,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_protocol_repair_final_summary.json",
+          "sha256": "ee25986ca0c2e5827c7ca2ff1ad4240cfc58c95dcfd292e471ceeb5c8b23d3c0"
+        },
+        {
+          "bytes": 2653,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_protocol_repair_tests.json",
+          "sha256": "e3c25cfc3a332680c758302170428292e8b2b68f9cd298932cd3bfa0ed9fd634"
+        },
+        {
+          "bytes": 2795,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_shared_render_adaptation_loss_reference.json",
+          "sha256": "58a7cfac48ac652ff9deccb4a22bcf9d1ac4f34459f9d99c5e526804d9b27878"
+        },
+        {
+          "bytes": 7300,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_static_render_track_cache_audit.json",
+          "sha256": "c7b16f70aba8f587a28ea6d50ac6cb88e929ec8caed9567390120e171946809c"
+        },
+        {
+          "bytes": 1433,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
+          "sha256": "2f9d6729360de2a1c25de9529d0c63c9ce469f8bf4ba8864a01d3df073a4d4a4"
+        },
+        {
+          "bytes": 3007,
+          "path": "01_contract_snapshot/paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+          "sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac"
+        },
+        {
+          "bytes": 2227,
+          "path": "01_contract_snapshot/project_control_handoff/loo_protocol_repair_handoff.json",
+          "sha256": "90b89b45e631d266a1bd8b18ea27fdba66b7b0cdaf391a26158a83cd285cb2cf"
+        },
+        {
+          "bytes": 420,
+          "path": "01_contract_snapshot/runtime_cache_plan_binding.json",
+          "sha256": "88c23734778afcfe4ec357dc296e76b1e66b99558365597072f1e1aedd90b726"
+        },
+        {
+          "bytes": 2618,
+          "path": "02_basis_construction/O01/basis_report.json",
+          "sha256": "12e008a9ef7384d1dd9439c7e879fcba2be2e2bdfcfa7269411c5706e9de21da"
+        },
+        {
+          "bytes": 297,
+          "path": "02_basis_construction/O01/coefficient_normalization.json",
+          "sha256": "91a4121a58fcf8b839e60284290022b9b2963e4b8a26c339f0dd5e7dab7f1d19"
+        },
+        {
+          "bytes": 70407076,
+          "path": "02_basis_construction/O01/loo_basis.pt",
+          "sha256": "71144cafcdfd070942dc0a808b65216539d0320c3a801a1cde7fb0b75ecd40c6"
+        },
+        {
+          "bytes": 1897,
+          "path": "08_metrics/analysis_invalid.json",
+          "sha256": "4075121995524964f4e4f5cd77f8ee96f919a751c9574026e7beddf29bb714b9"
+        },
+        {
+          "bytes": 1725,
+          "path": "12_failure_analysis/AAAI27_LOO_FAILURE_ANALYSIS_20260724.md",
+          "sha256": "742ddd0df837a88ab0e5e5fd0b848cff170ab097f1a4b74731047274e3ddb8e8"
+        },
+        {
+          "bytes": 3959,
+          "path": "13_final_verification/execution_count_verification.json",
+          "sha256": "ea8b8a80feb61ac36912ff0275bc404da4cbe6c2bfdf80396e2bee005d69ff12"
+        },
+        {
+          "bytes": 1077,
+          "path": "13_final_verification/final_summary.json",
+          "sha256": "272d6642a648951fc9f2bba059e46991f275f22ae8f44f7506c12db93c480ad3"
+        },
+        {
+          "bytes": 3826,
+          "path": "13_final_verification/final_verification.json",
+          "sha256": "cc8150184e7cc54f7a66a919f413e91ae7ba570718eb0723300bf8a6e98cc6db"
+        },
+        {
+          "bytes": 1453,
+          "path": "13_final_verification/handoff.json",
+          "sha256": "0e9c33aa8b92fb4cd0a66882e4e3e9eda8fda461cfe3fe5b7f6f80bc203f7c0d"
+        },
+        {
+          "bytes": 1608,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_BASIS_ADAPTATION_RESULTS_20260724.md",
+          "sha256": "fa38cf1a362906d9a532b03dfafe444d3472649054aee0e4cfeb554e0c45bc40"
+        },
+        {
+          "bytes": 1480,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_BASIS_CAPACITY_ANALYSIS_20260724.md",
+          "sha256": "306aa07fb56872afe600daa8627e9493f29afcbfb32029bcb51027b941c687b5"
+        },
+        {
+          "bytes": 1725,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_FAILURE_ANALYSIS_20260724.md",
+          "sha256": "742ddd0df837a88ab0e5e5fd0b848cff170ab097f1a4b74731047274e3ddb8e8"
+        },
+        {
+          "bytes": 1258,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_FEW_VIEW_SCALING_RESULTS_20260724.md",
+          "sha256": "8162215282739b586fe3221cd323e4ce9c8bee86b4f5d6ba59eca3dd0c4d7c71"
+        },
+        {
+          "bytes": 1163,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_FULL_RESIDUAL_COMPARISON_20260724.md",
+          "sha256": "688a9a4b51d422b3ff8b5fcef92ec2962d637760c6bcd38b9291e18d47fb3abb"
+        },
+        {
+          "bytes": 1371,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_HARD_LOOKUP_COMPARISON_20260724.md",
+          "sha256": "20de5ed8b83104d953f48d8091d9e70240fbefd480e53d810dfc136a1133126b"
+        },
+        {
+          "bytes": 1187,
+          "path": "13_final_verification/reporting_package/docs/PAPER/AAAI27_LOO_VISUAL_REVIEW_20260724.md",
+          "sha256": "e43f71610b584df0626831584ff583fea9a07f75fda356f12aaff7d47cfe789d"
+        },
+        {
+          "bytes": 685,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_adaptation_run_registry.json",
+          "sha256": "4172d6e932d928ffe374a94342bcad7131cfb00678768944a228b15688eca4a1"
+        },
+        {
+          "bytes": 2857,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_basis_execution_registry.json",
+          "sha256": "bf2bf27fbb761de60433c9544bfe6a80b8965ca04295a75f29338fff7d2962fb"
+        },
+        {
+          "bytes": 452,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_checkpoint_registry.json",
+          "sha256": "9f69b9ba2fc54826a6bae0e63b20c49678250d0510f531618b9fe16fd28c4075"
+        },
+        {
+          "bytes": 3959,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_execution_count_verification.json",
+          "sha256": "ea8b8a80feb61ac36912ff0275bc404da4cbe6c2bfdf80396e2bee005d69ff12"
+        },
+        {
+          "bytes": 1077,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_final_summary.json",
+          "sha256": "272d6642a648951fc9f2bba059e46991f275f22ae8f44f7506c12db93c480ad3"
+        },
+        {
+          "bytes": 849,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_full_residual_summary.json",
+          "sha256": "e020af2ac11296b7fbf19cc9353dfed6808e2a6edd1eb08d27a656b884261d22"
+        },
+        {
+          "bytes": 1099,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_hard_lookup_analysis.json",
+          "sha256": "3eeda9996aa605c53756e13faa4ec233523ed2c3a9cadb5841137614a68b3bf6"
+        },
+        {
+          "bytes": 1897,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_metric_summary.json",
+          "sha256": "4075121995524964f4e4f5cd77f8ee96f919a751c9574026e7beddf29bb714b9"
+        },
+        {
+          "bytes": 876,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_oracle_capacity_analysis.json",
+          "sha256": "04a65bcf7b332aa924b591b50e817acb57977bec8a3ba8865ca84c0b7061788c"
+        },
+        {
+          "bytes": 518,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_prediction_registry.json",
+          "sha256": "06c6640d7186bf473570280b1855015d6e98269ff10661dd9c76aa51cc635575"
+        },
+        {
+          "bytes": 1734,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_tests.json",
+          "sha256": "153f43e27f89cfe9bafa5aa76dd12ba53938eee4dd09f8201ebaa1407874ec65"
+        },
+        {
+          "bytes": 681,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_view_budget_scaling.json",
+          "sha256": "08c8fffe1cd1c3a7654dbc2ad26ae122921bb95282703a813fa023cba773d0a5"
+        },
+        {
+          "bytes": 623,
+          "path": "13_final_verification/reporting_package/paper_protocol/reviewer_risk/loo_visual_review_summary.json",
+          "sha256": "b00c6f05dc8ef9d63d30d2d646f65060038113172f52f7f0c760b70c9562e55b"
+        },
+        {
+          "bytes": 1453,
+          "path": "13_final_verification/reporting_package/project_control_handoff/loo_basis_adaptation_experiment_handoff.json",
+          "sha256": "0e9c33aa8b92fb4cd0a66882e4e3e9eda8fda461cfe3fe5b7f6f80bc203f7c0d"
+        },
+        {
+          "bytes": 373,
+          "path": "RUN_STATUS.json",
+          "sha256": "d51a57ae4c6f75411fd29d73a6446fe409eb43d62fe4bca4cb13e1c756f66717"
+        }
+      ],
+      "root": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001/attempt_001",
+      "schema_version": "canondressgs.paper.immutable_tree_manifest.v1",
+      "total_bytes": 71076354
+    },
+    "checks": {
+      "aggregate_sha256_exact": true,
+      "bound_manifest_exact": true,
+      "file_count_66": true,
+      "tree_bytes_exact": true
+    },
+    "expected": {
+      "aggregate_sha256": "4cd4ca03e21092431348c16a5103aff8863fd20861af9510913e02479761a31a",
+      "file_count": 66,
+      "total_bytes": 71076354
+    },
+    "mutation_count": 0,
+    "schema_version": "canondressgs.paper.loo_attempt002_attempt001_immutability.v1",
+    "status": "PASS"
+  },
+  "paper_final_count": 0,
+  "protocol_audit": {
+    "budget_counts": {
+      "1": 20,
+      "2": 20
+    },
+    "checks": {
+      "all_ready": true,
+      "blocked_zero": true,
+      "budgets_exactly_1_2": true,
+      "cache_hits_115": true,
+      "checkpoint_writes_720": true,
+      "five_splits": true,
+      "k1_count_20": true,
+      "k1_mapping_exact": true,
+      "k2_count_20": true,
+      "k4_task_count_zero": true,
+      "k4_unauthorized": true,
+      "logical_renders_54960": true,
+      "loss_name_exact": true,
+      "optimizer_runs_120": true,
+      "overlap_zero": true,
+      "physical_renders_54845": true,
+      "source_head_is_ancestor": true,
+      "split_banks_exact": true,
+      "subset_20_of_20": true,
+      "task_count_40": true,
+      "task_ids_unique": true
+    },
+    "expected_counts_sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de",
+    "status": "PASS",
+    "task_manifest_sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed"
+  },
+  "renderer_parity_contract_audit": {
+    "checks": {
+      "algorithm_float64_strict_zero_sum": true,
+      "attempt_002_not_created_by_repair": true,
+      "authorization_exact": true,
+      "coefficient_solver_projection": true,
+      "dtype_contract_float64": true,
+      "endpoint_parity_20_of_20": true,
+      "optimizer_not_created_by_repair": true,
+      "scientific_semantic_drift_zero": true,
+      "split_parity_5_of_5": true,
+      "status_exact": true,
+      "summary_ready": true
+    },
+    "contract_sha256": "b2c28c480d6da552185cd7a69178b1845cf977dc8d1de4c560ed8d81b35b4258",
+    "schema_version": "canondressgs.paper.loo_attempt002_renderer_parity_contract_audit.v1",
+    "status": "PASS",
+    "summary_sha256": "62dfa040cb3b7747a72830c8bcfbd9eecdf9035f1f94dd6c594e428727d2c282"
+  },
+  "reuse_attempt_001_auxiliary_renders": false,
+  "reuse_attempt_001_basis_artifacts": false,
+  "reuse_attempt_001_optimizer_state": false,
+  "run_branch": "research/loo-basis-adaptation-attempt2-renderer-parity-repaired-20260724",
+  "schema_version": "canondressgs.paper.loo_execution_binding.v1",
+  "source_branch": "research/loo-basis-renderer-parity-closure-repair-20260724",
+  "source_head": "a34f750c64ba5c70fc360d16ada97ec0c6b84851",
+  "status": "BOUND_PRE_RESULT",
+  "storage_forecast": {
+    "actual_free_bytes": 29413203968,
+    "available_safety_margin_bytes": 5346760355,
+    "formal_artifact_requirement_used": true,
+    "physical_render_count": 54845,
+    "prediction_render_pairs": 885,
+    "raw_estimated_bytes": 18462369536,
+    "required_free_bytes": 24066443613,
+    "safety_margin_bytes": 5538710861,
+    "safety_margin_fraction": 0.3,
+    "schema_version": "canondressgs.paper.loo_attempt002_storage_preflight.v1",
+    "source": "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
+    "source_sha256": "2f9d6729360de2a1c25de9529d0c63c9ce469f8bf4ba8864a01d3df073a4d4a4",
+    "source_status": "PASS",
+    "status": "PASS"
+  },
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002",
+  "task_manifest_semantic_sha256": "bbd7c24950e1a3624ad10871199088ec814f6f3ef7ba009e8f7b92c9b4cd1441"
+}
