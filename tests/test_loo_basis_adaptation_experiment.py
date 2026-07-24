@@ -10,22 +10,25 @@ from tools.paper import run_loo_basis_adaptation_experiment as runner
 
 
 def test_repaired_source_and_historical_artifacts_are_exact() -> None:
-    assert runner.TASK_ID == "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002"
-    assert runner.SOURCE_BRANCH == "research/loo-basis-renderer-parity-closure-repair-20260724"
-    assert runner.SOURCE_HEAD == "a34f750c64ba5c70fc360d16ada97ec0c6b84851"
-    assert runner.RUN_BRANCH == "research/loo-basis-adaptation-attempt2-renderer-parity-repaired-20260724"
-    assert runner.ATTEMPT_NAME == "attempt_002"
+    assert runner.TASK_ID == "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-003"
+    assert runner.SOURCE_BRANCH == "research/loo-calibration-f2-interface-repair-20260724"
+    assert runner.SOURCE_HEAD == "478907cd92200df199d90a5a7d9978c9a28a083f"
+    assert runner.RUN_BRANCH == "research/loo-basis-adaptation-attempt3-calibration-f2-repaired-20260724"
+    assert runner.ATTEMPT_NAME == "attempt_003"
     assert runner.ORIGINAL_ATTEMPT_NAME == "attempt_001"
-    assert runner.FORBIDDEN_NEXT_ATTEMPT_NAME == "attempt_003"
+    assert runner.PREVIOUS_ATTEMPT_NAME == "attempt_002"
+    assert runner.FORBIDDEN_NEXT_ATTEMPT_NAME == "attempt_004"
     source = runner.source_artifact_audit()
     historical = runner.historical_immutability_audit()
     parity = runner.renderer_parity_contract_audit()
+    calibration = runner.calibration_f2_contract_audit()
     assert source["status"] == "PASS"
     assert source["artifact_count"] == sum(map(len, (
         runner.REPAIRED_FILES,
         runner.INHERITED_FILES,
         runner.CACHE_REPAIRED_FILES,
         runner.RENDERER_PARITY_REPAIRED_FILES,
+        runner.CALIBRATION_F2_REPAIRED_FILES,
     )))
     assert historical["status"] == "PASS"
     assert historical["artifact_count"] == 14
@@ -35,14 +38,18 @@ def test_repaired_source_and_historical_artifacts_are_exact() -> None:
     assert historical["historical_blocked_tasks"] == 45
     assert parity["status"] == "PASS"
     assert all(parity["checks"].values())
+    assert calibration["status"] == "PASS"
+    assert all(calibration["checks"].values())
 
 
-def test_attempt002_artifact_names_are_append_only() -> None:
-    assert all("ATTEMPT002" in name for name in runner.REPORT_NAMES)
-    assert all("attempt002" in name for name in runner.REGISTRY_NAMES)
-    assert runner.HANDOFF_NAME == "loo_basis_adaptation_attempt002_handoff.json"
-    assert runner.EXECUTION_BINDING_NAME == "loo_attempt002_execution_binding.json"
-    assert runner.ORIGINAL_MANIFEST_NAME == "loo_attempt002_attempt001_immutable_manifest.json"
+def test_attempt003_artifact_names_are_append_only() -> None:
+    assert all("ATTEMPT003" in name for name in runner.REPORT_NAMES)
+    assert all("attempt003" in name for name in runner.REGISTRY_NAMES)
+    assert runner.HANDOFF_NAME == "loo_basis_adaptation_attempt003_handoff.json"
+    assert runner.EXECUTION_BINDING_NAME == "loo_attempt003_execution_binding.json"
+    assert runner.ORIGINAL_MANIFEST_NAME == "loo_attempt003_attempt001_immutable_manifest.json"
+    assert runner.PREVIOUS_MANIFEST_NAME == "loo_attempt003_attempt002_immutable_manifest.json"
+    assert runner.OPTIMIZER_SMOKE_REGISTRY_NAME == "loo_attempt003_optimizer_smoke_registry.json"
 
 
 def test_protocol_audit_freezes_40_ready_k1_k2_tasks() -> None:

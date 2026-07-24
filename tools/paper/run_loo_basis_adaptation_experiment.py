@@ -48,11 +48,11 @@ from tools.paper import loo_basis_output as output_io
 from tools.paper import loo_cache_key_plan
 
 
-TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-002"
-SOURCE_BRANCH = "research/loo-basis-renderer-parity-closure-repair-20260724"
-SOURCE_HEAD = "a34f750c64ba5c70fc360d16ada97ec0c6b84851"
+TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-003"
+SOURCE_BRANCH = "research/loo-calibration-f2-interface-repair-20260724"
+SOURCE_HEAD = "478907cd92200df199d90a5a7d9978c9a28a083f"
 DIAGNOSTIC_HEAD = "695ae9ca092f8260e6c5f0b016f491c5e4324fd1"
-RUN_BRANCH = "research/loo-basis-adaptation-attempt2-renderer-parity-repaired-20260724"
+RUN_BRANCH = "research/loo-basis-adaptation-attempt3-calibration-f2-repaired-20260724"
 PURE_BRANCH = "research/pure-endpoint-core-method-crossfit-amended-20260724"
 PURE_HEAD = "ce110887a942cf8db082ba688c8d36d2433bfdbe"
 HEADROOM_BRANCH = "research/render-refined-coefficient-headroom-attempt2-20260724"
@@ -62,11 +62,17 @@ FIGURE_BANK_HEAD = "1fe425d2cc3cb3efd372334e1d845e63bf9d630a"
 OUTPUT_NAME = output_io.OUTPUT_NAME
 ATTEMPT_NAME = output_io.ATTEMPT_NAME
 ORIGINAL_ATTEMPT_NAME = "attempt_001"
-FORBIDDEN_NEXT_ATTEMPT_NAME = "attempt_003"
+PREVIOUS_ATTEMPT_NAME = "attempt_002"
+FORBIDDEN_NEXT_ATTEMPT_NAME = "attempt_004"
 EXPECTED_ORIGINAL_FILE_COUNT = 66
 EXPECTED_ORIGINAL_TOTAL_BYTES = 71_076_354
 EXPECTED_ORIGINAL_AGGREGATE_SHA256 = (
     "4cd4ca03e21092431348c16a5103aff8863fd20861af9510913e02479761a31a"
+)
+EXPECTED_PREVIOUS_FILE_COUNT = 65
+EXPECTED_PREVIOUS_TOTAL_BYTES = 704_906_850
+EXPECTED_PREVIOUS_AGGREGATE_SHA256 = (
+    "0a93f068c1273d526a67ef3487e38583961ac50de64f9c16852053df7e9bec84"
 )
 OUTFITS = ("O01", "O02", "O03", "O04", "O08")
 CONDITIONS = ("cond_000000", "cond_000318", "cond_000017", "cond_000347")
@@ -129,36 +135,51 @@ RENDERER_PARITY_REPAIRED_FILES = (
     "scene/explicit_gaussian_residual_basis.py",
     "scene/gaussian_clothing_residuals.py",
 )
+CALIBRATION_F2_REPAIRED_FILES = (
+    "paper_protocol/reviewer_risk/loo_calibration_f2_interface_execution_contract_repaired.json",
+    "paper_protocol/reviewer_risk/loo_calibration_f2_interface_repair_final_summary.json",
+    "paper_protocol/reviewer_risk/loo_f2_producer_schema.json",
+    "paper_protocol/reviewer_risk/loo_calibration_consumer_schema.json",
+    "paper_protocol/reviewer_risk/loo_f2_interface_schema_diff.json",
+    "paper_protocol/reviewer_risk/loo_calibration_f2_information_boundary_audit.json",
+    "paper_protocol/reviewer_risk/loo_f2_cache_schema_audit.json",
+    "paper_protocol/reviewer_risk/loo_calibration_semantics_audit.json",
+    "paper_protocol/reviewer_risk/loo_calibration_f2_interface_task_matrix.json",
+    "project_control_handoff/loo_calibration_f2_interface_repair_handoff.json",
+    "scene/loo_f2_feature_adapter.py",
+)
 REPORT_NAMES = (
-    "AAAI27_LOO_ATTEMPT002_BASIS_ADAPTATION_RESULTS_20260724.md",
-    "AAAI27_LOO_ATTEMPT002_HARD_LOOKUP_COMPARISON_20260724.md",
-    "AAAI27_LOO_ATTEMPT002_BASIS_CAPACITY_ANALYSIS_20260724.md",
-    "AAAI27_LOO_ATTEMPT002_VIEW_SCALING_RESULTS_20260724.md",
-    "AAAI27_LOO_ATTEMPT002_FULL_RESIDUAL_COMPARISON_20260724.md",
-    "AAAI27_LOO_ATTEMPT002_VISUAL_REVIEW_20260724.md",
-    "AAAI27_LOO_ATTEMPT002_FAILURE_ANALYSIS_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_BASIS_ADAPTATION_RESULTS_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_HARD_LOOKUP_COMPARISON_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_BASIS_CAPACITY_ANALYSIS_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_VIEW_SCALING_RESULTS_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_FULL_RESIDUAL_COMPARISON_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_VISUAL_REVIEW_20260724.md",
+    "AAAI27_LOO_ATTEMPT003_FAILURE_ANALYSIS_20260724.md",
 )
 REGISTRY_NAMES = (
-    "loo_attempt002_basis_execution_registry.json",
-    "loo_attempt002_adaptation_run_registry.json",
-    "loo_attempt002_checkpoint_registry.json",
-    "loo_attempt002_prediction_registry.json",
-    "loo_attempt002_metric_summary.json",
-    "loo_attempt002_oracle_capacity_analysis.json",
-    "loo_attempt002_hard_lookup_analysis.json",
-    "loo_attempt002_view_budget_scaling.json",
-    "loo_attempt002_full_residual_summary.json",
-    "loo_attempt002_visual_review_summary.json",
-    "loo_attempt002_count_verification.json",
-    "loo_attempt002_tests.json",
-    "loo_attempt002_final_summary.json",
+    "loo_attempt003_basis_execution_registry.json",
+    "loo_attempt003_adaptation_run_registry.json",
+    "loo_attempt003_checkpoint_registry.json",
+    "loo_attempt003_prediction_registry.json",
+    "loo_attempt003_metric_summary.json",
+    "loo_attempt003_oracle_capacity_analysis.json",
+    "loo_attempt003_hard_lookup_analysis.json",
+    "loo_attempt003_view_budget_scaling.json",
+    "loo_attempt003_full_residual_summary.json",
+    "loo_attempt003_visual_review_summary.json",
+    "loo_attempt003_count_verification.json",
+    "loo_attempt003_tests.json",
+    "loo_attempt003_final_summary.json",
 )
-EXECUTION_BINDING_NAME = "loo_attempt002_execution_binding.json"
-EXPECTED_COUNTS_BINDING_NAME = "loo_attempt002_execution_expected_counts.json"
-PRE_RESULT_TESTS_NAME = "loo_attempt002_pre_result_tests.json"
-ORIGINAL_MANIFEST_NAME = "loo_attempt002_attempt001_immutable_manifest.json"
-HANDOFF_NAME = "loo_basis_adaptation_attempt002_handoff.json"
-FIGURE_REFRESH_MANIFEST_NAME = "sealed_loo_attempt002_figure_refresh_manifest.json"
+EXECUTION_BINDING_NAME = "loo_attempt003_execution_binding.json"
+EXPECTED_COUNTS_BINDING_NAME = "loo_attempt003_execution_expected_counts.json"
+PRE_RESULT_TESTS_NAME = "loo_attempt003_pre_result_tests.json"
+ORIGINAL_MANIFEST_NAME = "loo_attempt003_attempt001_immutable_manifest.json"
+PREVIOUS_MANIFEST_NAME = "loo_attempt003_attempt002_immutable_manifest.json"
+OPTIMIZER_SMOKE_REGISTRY_NAME = "loo_attempt003_optimizer_smoke_registry.json"
+HANDOFF_NAME = "loo_basis_adaptation_attempt003_handoff.json"
+FIGURE_REFRESH_MANIFEST_NAME = "sealed_loo_attempt003_figure_refresh_manifest.json"
 ALLOWED_CLASSIFICATIONS = (
     "LOO_BASIS_ADAPTATION_SUPPORTED",
     "LOO_BASIS_ADAPTATION_PARTIAL",
@@ -259,6 +280,10 @@ def original_attempt_path(root: Path) -> Path:
     return root.resolve() / OUTPUT_NAME / ORIGINAL_ATTEMPT_NAME
 
 
+def previous_attempt_path(root: Path) -> Path:
+    return root.resolve() / OUTPUT_NAME / PREVIOUS_ATTEMPT_NAME
+
+
 def forbidden_next_attempt_path(root: Path) -> Path:
     return root.resolve() / OUTPUT_NAME / FORBIDDEN_NEXT_ATTEMPT_NAME
 
@@ -317,7 +342,7 @@ def original_attempt_immutability_audit(
         )
     checks = {**frozen_checks, "bound_manifest_exact": manifest_match}
     return {
-        "schema_version": "canondressgs.paper.loo_attempt002_attempt001_immutability.v1",
+        "schema_version": "canondressgs.paper.loo_attempt003_attempt001_immutability.v1",
         "status": "PASS" if all(checks.values()) else "FAIL",
         "mutation_count": 0 if all(checks.values()) else 1,
         "checks": checks,
@@ -325,6 +350,41 @@ def original_attempt_immutability_audit(
             "file_count": EXPECTED_ORIGINAL_FILE_COUNT,
             "total_bytes": EXPECTED_ORIGINAL_TOTAL_BYTES,
             "aggregate_sha256": EXPECTED_ORIGINAL_AGGREGATE_SHA256,
+        },
+        "actual": actual,
+    }
+
+
+def previous_attempt_immutability_audit(
+    root: Path, expected: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    actual = tree_manifest(previous_attempt_path(root))
+    frozen_checks = {
+        "file_count_65": actual["file_count"] == EXPECTED_PREVIOUS_FILE_COUNT,
+        "tree_bytes_exact": actual["total_bytes"] == EXPECTED_PREVIOUS_TOTAL_BYTES,
+        "aggregate_sha256_exact": (
+            actual["aggregate_sha256"] == EXPECTED_PREVIOUS_AGGREGATE_SHA256
+        ),
+    }
+    manifest_match = True
+    if expected is not None:
+        manifest_match = all(
+            actual.get(name) == expected.get(name)
+            for name in (
+                "file_count", "total_bytes", "file_content_bytes",
+                "aggregate_sha256", "files",
+            )
+        )
+    checks = {**frozen_checks, "bound_manifest_exact": manifest_match}
+    return {
+        "schema_version": "canondressgs.paper.loo_attempt003_attempt002_immutability.v1",
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "mutation_count": 0 if all(checks.values()) else 1,
+        "checks": checks,
+        "expected": {
+            "file_count": EXPECTED_PREVIOUS_FILE_COUNT,
+            "total_bytes": EXPECTED_PREVIOUS_TOTAL_BYTES,
+            "aggregate_sha256": EXPECTED_PREVIOUS_AGGREGATE_SHA256,
         },
         "actual": actual,
     }
@@ -405,6 +465,21 @@ def contracts() -> dict[str, Any]:
         "renderer_parity_summary": read_json(
             RISK / "loo_basis_renderer_parity_repair_final_summary.json"
         ),
+        "calibration_f2_execution": read_json(
+            RISK / "loo_calibration_f2_interface_execution_contract_repaired.json"
+        ),
+        "calibration_f2_summary": read_json(
+            RISK / "loo_calibration_f2_interface_repair_final_summary.json"
+        ),
+        "calibration_f2_matrix": read_json(
+            RISK / "loo_calibration_f2_interface_task_matrix.json"
+        ),
+        "calibration_f2_boundary": read_json(
+            RISK / "loo_calibration_f2_information_boundary_audit.json"
+        ),
+        "calibration_semantics": read_json(
+            RISK / "loo_calibration_semantics_audit.json"
+        ),
     }
 
 
@@ -431,7 +506,7 @@ def source_artifact_audit() -> dict[str, Any]:
     rows = []
     for relative in (
         *REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES,
-        *RENDERER_PARITY_REPAIRED_FILES,
+        *RENDERER_PARITY_REPAIRED_FILES, *CALIBRATION_F2_REPAIRED_FILES,
     ):
         source = git_source_bytes(relative)
         source_digest = hashlib.sha256(source).hexdigest()
@@ -477,7 +552,7 @@ def renderer_parity_contract_audit() -> dict[str, Any]:
         "optimizer_not_created_by_repair": summary["optimizer_creations"] == 0,
     }
     return {
-        "schema_version": "canondressgs.paper.loo_attempt002_renderer_parity_contract_audit.v1",
+        "schema_version": "canondressgs.paper.loo_attempt003_renderer_parity_contract_audit.v1",
         "status": "PASS" if all(checks.values()) else "FAIL",
         "checks": checks,
         "contract_sha256": sha256(
@@ -485,6 +560,76 @@ def renderer_parity_contract_audit() -> dict[str, Any]:
         ),
         "summary_sha256": sha256(
             RISK / "loo_basis_renderer_parity_repair_final_summary.json"
+        ),
+    }
+
+
+def calibration_f2_contract_audit() -> dict[str, Any]:
+    values = contracts()
+    execution = values["calibration_f2_execution"]
+    summary = values["calibration_f2_summary"]
+    matrix = values["calibration_f2_matrix"]
+    boundary = values["calibration_f2_boundary"]
+    semantics = values["calibration_semantics"]
+    checks = {
+        "execution_ready": (
+            execution["status"] == "READY_FOR_LOO_ATTEMPT_003_BEFORE_OPTIMIZER"
+        ),
+        "authorization_exact": (
+            execution["execution_authorization"]
+            == "READY_FOR_LOO_ATTEMPT_003_BEFORE_OPTIMIZER"
+        ),
+        "summary_classification": (
+            summary["classification"] == "LOO_CALIBRATION_F2_INTERFACE_REPAIR_READY"
+        ),
+        "summary_authorization": (
+            summary["execution_authorization"]
+            == "READY_FOR_LOO_ATTEMPT_003_BEFORE_OPTIMIZER"
+        ),
+        "matrix_40_of_40": all(
+            int(matrix[name]) == 40
+            for name in (
+                "row_count", "unique_task_count", "F2_reference_closure_pass_count",
+                "adaptation_closure_pass_count", "calibration_closure_pass_count",
+                "test_closure_pass_count", "initialization_closure_pass_count",
+            )
+        ),
+        "matrix_K1_K2_20_each": (
+            int(matrix["K1_count"]) == 20 and int(matrix["K2_count"]) == 20
+        ),
+        "information_boundary_zero": all(
+            int(boundary[name]) == 0
+            for name in (
+                "held_out_teacher_reads", "test_target_reads", "test_metric_reads",
+                "unauthorized_f2_reads",
+            )
+        ),
+        "calibration_f2_initialization_only": (
+            semantics["status"] == "PASS"
+            and semantics["F2_role"]
+            == "initialization only; never calibration objective or selection signal"
+        ),
+        "attempts_preserved": (
+            summary["frozen_mutations"]["attempt_001"] == 0
+            and summary["frozen_mutations"]["attempt_002"] == 0
+            and not summary["attempt_003_exists"]
+        ),
+        "optimizer_not_created_by_repair": (
+            int(summary["actual_execution_counts"]["optimizer_creations"]) == 0
+        ),
+    }
+    return {
+        "schema_version": "canondressgs.paper.loo_attempt003_calibration_f2_contract_audit.v1",
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "execution_contract_sha256": sha256(
+            RISK / "loo_calibration_f2_interface_execution_contract_repaired.json"
+        ),
+        "task_matrix_sha256": sha256(
+            RISK / "loo_calibration_f2_interface_task_matrix.json"
+        ),
+        "information_boundary_sha256": sha256(
+            RISK / "loo_calibration_f2_information_boundary_audit.json"
         ),
     }
 
@@ -639,23 +784,59 @@ def planned_paths() -> list[str]:
 
 def storage_forecast(root: Path) -> dict[str, Any]:
     artifact = contracts()["storage"]
-    frozen = artifact["new_forecast"]
-    required = int(frozen["required_free_bytes"])
+    checkpoint_sample = (
+        root
+        / "COEFFICIENT-HEADROOM-001/attempt_002/05_checkpoints"
+        / "full_residual_R0_O01/step_000300.pth"
+    )
+    if not checkpoint_sample.is_file():
+        raise RuntimeError(f"sealed checkpoint sample is missing: {checkpoint_sample}")
+    checkpoint_sample_bytes = checkpoint_sample.stat().st_size
+    full_checkpoint_unit = math.ceil(
+        checkpoint_sample_bytes * 4_400_000 / 2_600_000
+    )
+    prediction_pairs = int(artifact["new_forecast"]["prediction_render_pairs"])
+    components = {
+        "full_residual_checkpoints": 240 * full_checkpoint_unit,
+        "low_dimensional_checkpoints": 480 * (96 << 10),
+        "persisted_prediction_render_pairs": prediction_pairs * 2 * (300 << 10),
+        "visual_sheets": 26 * (2 << 20),
+        "fresh_float64_basis_artifacts": 5 * 4 * 4_400_000 * 4,
+        "equal_wall_time_states": 40 * 4_400_000 * 4,
+        "registries_metrics_reports_and_temporary_space": 1 << 30,
+    }
+    raw = sum(components.values())
+    safety_margin_fraction = 0.30
+    safety_margin_bytes = math.ceil(raw * safety_margin_fraction)
+    atomic_write_temporary_headroom_bytes = full_checkpoint_unit
+    required = raw + safety_margin_bytes + atomic_write_temporary_headroom_bytes
     free = shutil.disk_usage(root).free
     return {
-        "schema_version": "canondressgs.paper.loo_attempt002_storage_preflight.v1",
+        "schema_version": "canondressgs.paper.loo_attempt003_storage_preflight.v1",
         "status": "PASS" if free >= required else "FAIL",
         "source": "paper_protocol/reviewer_risk/loo_storage_forecast_cache_repaired.json",
         "source_sha256": sha256(RISK / "loo_storage_forecast_cache_repaired.json"),
         "source_status": artifact["status"],
-        "raw_estimated_bytes": int(frozen["raw_estimated_bytes"]),
-        "safety_margin_fraction": float(frozen["safety_margin_fraction"]),
-        "safety_margin_bytes": int(frozen["safety_margin_bytes"]),
+        "recalculated_from_current_sealed_inputs": True,
+        "sealed_checkpoint_sample": str(checkpoint_sample),
+        "sealed_checkpoint_sample_bytes": checkpoint_sample_bytes,
+        "scaled_full_residual_checkpoint_unit_bytes": full_checkpoint_unit,
+        "components": components,
+        "raw_estimated_bytes": raw,
+        "safety_margin_fraction": safety_margin_fraction,
+        "safety_margin_bytes": safety_margin_bytes,
+        "atomic_write_temporary_headroom_bytes": atomic_write_temporary_headroom_bytes,
         "required_free_bytes": required,
         "actual_free_bytes": free,
         "available_safety_margin_bytes": free - required,
-        "prediction_render_pairs": int(frozen["prediction_render_pairs"]),
+        "prediction_render_pairs": prediction_pairs,
         "physical_render_count": int(artifact["physical_render_count"]),
+        "checkpoint_count": int(expected_counts()["checkpoint_writes"]),
+        "visual_sheet_count": int(expected_counts()["visual_sheets"]),
+        "historical_attempt_bytes_counted_against_requirement": 0,
+        "historical_attempts_already_reflected_in_actual_free_bytes": [
+            ORIGINAL_ATTEMPT_NAME, PREVIOUS_ATTEMPT_NAME,
+        ],
         "formal_artifact_requirement_used": True,
     }
 
@@ -960,6 +1141,7 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
     artifacts = source_artifact_audit()
     historical = historical_immutability_audit()
     renderer_parity = renderer_parity_contract_audit()
+    calibration_f2 = calibration_f2_contract_audit()
     protocol = protocol_audit()
     cache_contract = cache_contract_preflight()
     path_plan = output_io.audit_relative_paths(planned_paths())
@@ -970,18 +1152,22 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "source_artifacts": artifacts["status"] == "PASS",
         "historical_immutability": historical["status"] == "PASS",
         "renderer_parity_contract": renderer_parity["status"] == "PASS",
+        "calibration_f2_contract": calibration_f2["status"] == "PASS",
         "protocol": protocol["status"] == "PASS",
         "cache_contract": cache_contract["status"] == "PASS",
         "output_path_plan": path_plan["status"] == "PASS",
         "credential_scan": credentials["status"] == "PASS",
     }
     original_attempt = None
+    previous_attempt = None
     if root is not None:
         original_attempt = original_attempt_immutability_audit(root)
+        previous_attempt = previous_attempt_immutability_audit(root)
         checks.update({
             "attempt_001_exists_and_immutable": original_attempt["status"] == "PASS",
-            "attempt_002_absent": not attempt_path(root).exists(),
-            "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
+            "attempt_002_exists_and_immutable": previous_attempt["status"] == "PASS",
+            "attempt_003_absent": not attempt_path(root).exists(),
+            "attempt_004_absent": not forbidden_next_attempt_path(root).exists(),
             "storage_forecast": storage_forecast(root)["status"] == "PASS",
         })
     return {
@@ -992,7 +1178,9 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "source_artifact_audit": artifacts,
         "historical_immutability": historical,
         "renderer_parity_contract_audit": renderer_parity,
+        "calibration_f2_contract_audit": calibration_f2,
         "original_attempt_immutability": original_attempt,
+        "previous_attempt_immutability": previous_attempt,
         "protocol_audit": protocol,
         "cache_contract_preflight": cache_contract,
         "path_plan": path_plan,
@@ -1000,13 +1188,21 @@ def static_preflight(root: Path | None = None) -> dict[str, Any]:
         "storage_forecast": storage_forecast(root) if root is not None else None,
         "checked_at_utc": now(),
         "preflight_order": [
-            "exact_source_head", "historical_artifact_immutability",
-            "repaired_protocol_hashes", "40_task_manifest", "K_mappings",
-            "held_out_boundary", "F2_centroid_replay", "15_5_hard_lookup_parity",
-            "complete_cache_key_plan", "exact_render_counts", "storage_forecast",
-            "GPU_resource_gate", "credential_gate", "output_collision_gate",
-            "execution_head_authorization", "attempt_materialization", "renderer",
-            "optimizer",
+            "exact_source_branch_and_head", "attempt_001_002_immutability",
+            "attempt_003_absence", "scientific_contract_hashes", "five_splits",
+            "K_1_2", "40_task_manifest", "K1_K2_mappings",
+            "held_out_information_boundary", "float64_basis_numerical_contract",
+            "five_split_basis_dry_run", "renderer_input_parity_20_of_20",
+            "train_only_F2_producer_schema", "typed_consumer_schema",
+            "F2_interface_40_of_40", "adaptation_interface_40_of_40",
+            "calibration_interface_40_of_40", "test_interface_40_of_40",
+            "initialization_interface_40_of_40", "hard_lookup_15_5_replay",
+            "CACHE_KEY_V2_plan", "render_count_54960_54845_115",
+            "storage_forecast", "GPU_resource_gate", "credential_gate",
+            "output_collision_gate", "execution_authorization",
+            "attempt_003_materialization", "fresh_five_split_basis",
+            "fresh_renderer_parity_20_of_20", "oracle_static_diagnostics",
+            "optimizer_creation", "optimization",
         ],
     }
 
@@ -1051,6 +1247,7 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
     forecast = storage_forecast(root)
     f2_cache = f2_cache_preflight(root)
     original_attempt = original_attempt_immutability_audit(root)
+    previous_attempt = previous_attempt_immutability_audit(root)
     checks = {
         "gpu_is_rtx_4090": gpu_name == "NVIDIA GeForce RTX 4090",
         "free_vram_at_least_20_gib": int(free_mib) >= 20 * 1024,
@@ -1062,8 +1259,9 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         "cuda_tensor_smoke": float(torch.tensor([6.0, 7.0], device="cuda").sum()) == 13.0,
         "output_writable": True,
         "attempt_001_exists_and_immutable": original_attempt["status"] == "PASS",
-        "attempt_002_absent": not attempt_path(root).exists(),
-        "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
+        "attempt_002_exists_and_immutable": previous_attempt["status"] == "PASS",
+        "attempt_003_absent": not attempt_path(root).exists(),
+        "attempt_004_absent": not forbidden_next_attempt_path(root).exists(),
         "storage_forecast": forecast["status"] == "PASS",
         "git_remote_continuity": remote_ok,
         "static_preflight": static["status"] == "PASS",
@@ -1086,6 +1284,7 @@ def cloud_resource_preflight(root: Path) -> dict[str, Any]:
         },
         "storage_forecast": forecast,
         "original_attempt_immutability": original_attempt,
+        "previous_attempt_immutability": previous_attempt,
         "f2_cache_preflight": f2_cache,
         "cache_contract_preflight": static["cache_contract_preflight"],
         "preflight_order": static["preflight_order"],
@@ -1111,13 +1310,17 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         }
         for relative in (
             *REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES,
-            *RENDERER_PARITY_REPAIRED_FILES,
+            *RENDERER_PARITY_REPAIRED_FILES, *CALIBRATION_F2_REPAIRED_FILES,
         )
     }
     original_manifest = cloud["original_attempt_immutability"]["actual"]
+    previous_manifest = cloud["previous_attempt_immutability"]["actual"]
     original_audit = original_attempt_immutability_audit(root, original_manifest)
+    previous_audit = previous_attempt_immutability_audit(root, previous_manifest)
     if original_audit["status"] != "PASS":
         raise RuntimeError("LOO_ATTEMPT_001_IMMUTABILITY_FAILURE")
+    if previous_audit["status"] != "PASS":
+        raise RuntimeError("LOO_ATTEMPT_002_IMMUTABILITY_FAILURE")
     payload = {
         "schema_version": "canondressgs.paper.loo_execution_binding.v1",
         "task_id": TASK_ID,
@@ -1128,24 +1331,38 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
         "binding_parent_head": git("rev-parse", "HEAD"),
         "execution_head": "RESOLVE_AFTER_BINDING_COMMIT",
         "attempt": ATTEMPT_NAME,
-        "attempt_count_before_execution": 1,
+        "attempt_count_before_execution": 2,
         "attempt_001_role": "PRESERVED_PRE_OPTIMIZER_BASIS_RENDERER_PARITY_FAILURE",
+        "attempt_002_role": "PRESERVED_PRE_OPTIMIZER_CALIBRATION_F2_INTERFACE_FAILURE",
         "attempt_001_immutable": original_audit["status"] == "PASS",
-        "attempt_002_absent": not attempt_path(root).exists(),
-        "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
+        "attempt_002_immutable": previous_audit["status"] == "PASS",
+        "attempt_003_absent": not attempt_path(root).exists(),
+        "attempt_004_absent": not forbidden_next_attempt_path(root).exists(),
         "reuse_attempt_001_basis_artifacts": False,
         "reuse_attempt_001_auxiliary_renders": False,
         "reuse_attempt_001_optimizer_state": False,
+        "reuse_attempt_002_basis_artifacts": False,
+        "reuse_attempt_002_auxiliary_renders": False,
+        "reuse_attempt_002_optimizer_state": False,
         "contract_fingerprints": fingerprints,
         "task_manifest_semantic_sha256": canonical_sha(contracts()["tasks"]),
         "expected_counts_semantic_sha256": canonical_sha(contracts()["counts"]),
         "protocol_audit": local["protocol_audit"],
         "historical_immutability": local["historical_immutability"],
         "renderer_parity_contract_audit": local["renderer_parity_contract_audit"],
+        "calibration_f2_contract_audit": local["calibration_f2_contract_audit"],
         "original_attempt_immutability": original_audit,
+        "previous_attempt_immutability": previous_audit,
         "storage_forecast": cloud["storage_forecast"],
         "cloud_preflight_sha256": sha256(cloud_preflight_path),
         "held_out_teacher_use_in_deployable_adaptation": 0,
+        "test_target_use_in_adaptation": 0,
+        "test_metric_use_in_selection": 0,
+        "oracle_use_in_initialization": 0,
+        "unauthorized_f2_reads": 0,
+        "calibration_f2_use": "AUTHORIZED_INITIALIZATION_ONLY",
+        "calibration_loss_uses_f2": False,
+        "test_evaluation_uses_f2": False,
         "full_five_garment_rank4_basis_reused": False,
         "K4_execution_authorized": False,
         "PAPER_FINAL": False,
@@ -1155,16 +1372,17 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
     paths = {
         RISK / EXECUTION_BINDING_NAME: payload,
         RISK / EXPECTED_COUNTS_BINDING_NAME: {
-            "schema_version": "canondressgs.paper.loo_attempt002_execution_expected_counts.v1",
+            "schema_version": "canondressgs.paper.loo_attempt003_execution_expected_counts.v1",
             "task_id": TASK_ID, "status": "FROZEN", "counts": expected_counts(),
             "source_sha256": sha256(RISK / "loo_expected_counts_cache_repaired.json"),
         },
         RISK / PRE_RESULT_TESTS_NAME: {
-            "schema_version": "canondressgs.paper.loo_attempt002_pre_result_tests.v1",
+            "schema_version": "canondressgs.paper.loo_attempt003_pre_result_tests.v1",
             "task_id": TASK_ID, "status": "PASS", "local": local,
             "cloud": cloud, "result_information_used": False,
         },
         RISK / ORIGINAL_MANIFEST_NAME: original_manifest,
+        RISK / PREVIOUS_MANIFEST_NAME: previous_manifest,
     }
     for path, value in paths.items():
         json_write(path, value, replace=False)
@@ -1174,16 +1392,20 @@ def bind(cloud_preflight_path: Path, root: Path) -> dict[str, Any]:
 def materialize(root: Path) -> dict[str, Any]:
     attempt = attempt_path(root)
     if attempt.exists():
-        raise RuntimeError("LOO_ATTEMPT_002_COLLISION")
+        raise RuntimeError("LOO_ATTEMPT_003_COLLISION")
     if forbidden_next_attempt_path(root).exists():
-        raise RuntimeError("LOO_ATTEMPT_003_FORBIDDEN")
+        raise RuntimeError("LOO_ATTEMPT_004_FORBIDDEN")
     if git("status", "--short"):
         raise RuntimeError("materialize requires the clean EXECUTION_HEAD")
     binding = read_json(RISK / EXECUTION_BINDING_NAME)
     original_manifest = read_json(RISK / ORIGINAL_MANIFEST_NAME)
+    previous_manifest = read_json(RISK / PREVIOUS_MANIFEST_NAME)
     original_audit = original_attempt_immutability_audit(root, original_manifest)
+    previous_audit = previous_attempt_immutability_audit(root, previous_manifest)
     if original_audit["status"] != "PASS":
         raise RuntimeError("LOO_ATTEMPT_001_IMMUTABILITY_FAILURE")
+    if previous_audit["status"] != "PASS":
+        raise RuntimeError("LOO_ATTEMPT_002_IMMUTABILITY_FAILURE")
     resource = cloud_resource_preflight(root)
     if resource["status"] != "PASS":
         raise RuntimeError("LOO_ADAPTATION_RESOURCE_PREFLIGHT_FAILED")
@@ -1207,9 +1429,13 @@ def materialize(root: Path) -> dict[str, Any]:
         "source_head": SOURCE_HEAD, "run_branch": RUN_BRANCH,
         "binding_sha256": sha256(RISK / EXECUTION_BINDING_NAME),
         "attempt_001_manifest_sha256": sha256(RISK / ORIGINAL_MANIFEST_NAME),
+        "attempt_002_manifest_sha256": sha256(RISK / PREVIOUS_MANIFEST_NAME),
         "reuse_attempt_001_basis_artifacts": False,
         "reuse_attempt_001_auxiliary_renders": False,
         "reuse_attempt_001_optimizer_state": False,
+        "reuse_attempt_002_basis_artifacts": False,
+        "reuse_attempt_002_auxiliary_renders": False,
+        "reuse_attempt_002_optimizer_state": False,
         "created_at_utc": now(),
     }
     json_write(attempt / "00_preflight/execution_metadata.json", metadata)
@@ -1217,12 +1443,14 @@ def materialize(root: Path) -> dict[str, Any]:
     json_write(attempt / "00_preflight/historical_immutability.json", historical_immutability_audit())
     json_write(attempt / "00_preflight/attempt_001_immutability.json", original_audit)
     json_write(attempt / "00_preflight/attempt_001_manifest.json", original_manifest)
+    json_write(attempt / "00_preflight/attempt_002_immutability.json", previous_audit)
+    json_write(attempt / "00_preflight/attempt_002_manifest.json", previous_manifest)
     json_write(attempt / "00_preflight/storage_forecast.json", resource["storage_forecast"])
     json_write(attempt / "00_preflight/credential_scan.json", credential_scan((ROOT,)))
     json_write(attempt / "00_preflight/cache_contract_preflight.json", cache_preflight)
     snapshot_files = (
         *REPAIRED_FILES, *INHERITED_FILES, *CACHE_REPAIRED_FILES,
-        *RENDERER_PARITY_REPAIRED_FILES,
+        *RENDERER_PARITY_REPAIRED_FILES, *CALIBRATION_F2_REPAIRED_FILES,
     )
     for relative in snapshot_files:
         destination = attempt / "01_contract_snapshot" / relative
@@ -1259,13 +1487,16 @@ def assert_execution_head(attempt: Path) -> str:
     if head != metadata["execution_head"] or git("status", "--short"):
         raise RuntimeError("scientific execution requires the clean EXECUTION_HEAD")
     if metadata.get("attempt") != ATTEMPT_NAME or attempt.name != ATTEMPT_NAME:
-        raise RuntimeError("LOO_ATTEMPT_002_BINDING_MISMATCH")
+        raise RuntimeError("LOO_ATTEMPT_003_BINDING_MISMATCH")
     root = attempt.parent.parent
     original_manifest = read_json(RISK / ORIGINAL_MANIFEST_NAME)
     if original_attempt_immutability_audit(root, original_manifest)["status"] != "PASS":
         raise RuntimeError("LOO_ATTEMPT_001_IMMUTABILITY_FAILURE")
+    previous_manifest = read_json(RISK / PREVIOUS_MANIFEST_NAME)
+    if previous_attempt_immutability_audit(root, previous_manifest)["status"] != "PASS":
+        raise RuntimeError("LOO_ATTEMPT_002_IMMUTABILITY_FAILURE")
     if forbidden_next_attempt_path(root).exists():
-        raise RuntimeError("LOO_ATTEMPT_003_FORBIDDEN")
+        raise RuntimeError("LOO_ATTEMPT_004_FORBIDDEN")
     return head
 
 
@@ -1412,6 +1643,7 @@ def build_bases(root: Path) -> dict[str, Any]:
         centered = matrix - matrix.mean(0)
         centered = centered.clone()
         centered[-1] = -centered[:-1].sum(0)
+        centered_sum_norm = float(torch.linalg.vector_norm(centered.sum(0)))
         singular_values = torch.linalg.svdvals(centered).detach().cpu()
         tolerance = max(4, int(centered.shape[1])) * torch.finfo(centered.dtype).eps * float(singular_values[0])
         numerical_rank = int((singular_values > tolerance).sum())
@@ -1445,8 +1677,8 @@ def build_bases(root: Path) -> dict[str, Any]:
                 "alpha_max_abs_error": alpha_max,
                 "rgb_bitwise_equal": torch.equal(teacher_rgb, rebuilt_rgb),
                 "alpha_bitwise_equal": torch.equal(teacher_alpha, rebuilt_alpha),
-                "threshold": 1e-5,
-                "status": "PASS" if max(rgb_max, alpha_max) <= 1e-5 else "FAIL",
+                "threshold": 0.0,
+                "status": "PASS" if rgb_max == 0.0 and alpha_max == 0.0 else "FAIL",
             }
         total_variance = float(singular_values.square().sum())
         explained = [float(value.square() / max(total_variance, 1e-30)) for value in singular_values]
@@ -1458,6 +1690,9 @@ def build_bases(root: Path) -> dict[str, Any]:
             "numerical_rank_tolerance": tolerance,
             "numerical_rank": numerical_rank,
             "selected_rank": selected_rank,
+            "rank_rule": "min(numerical_rank,3)",
+            "construction_dtype": "torch.float64",
+            "centered_sum_norm": centered_sum_norm,
             "condition_number": condition_number,
             "basis_garment_reconstruction_rmse": reconstruction,
             "aggregate_reconstruction_rmse": statistics.fmean(reconstruction.values()),
@@ -1967,6 +2202,216 @@ def make_optimizer(parameters: Iterable["torch.Tensor"]) -> tuple[Any, Any]:
     )
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda _: 1.0)
     return optimizer, scheduler
+
+
+def optimizer_smoke(root: Path) -> dict[str, Any]:
+    attempt = attempt_path(root)
+    execution_head = assert_execution_head(attempt)
+    destination = attempt / "00_preflight/optimizer_smoke_registry.json"
+    if destination.is_file():
+        result = read_json(destination)
+        if result.get("status") != "PASS":
+            raise RuntimeError("LOO_OPTIMIZER_SMOKE_FAILURE")
+        return result
+
+    basis_summary = read_json(attempt / "02_basis_construction/summary.json")
+    lookup = build_lookup_registry(root)
+    oracle_path = attempt / "03_oracle_capacity/oracle_registry.json"
+    prerequisites = {
+        "five_split_basis_pass": (
+            basis_summary["status"] == "PASS"
+            and int(basis_summary["split_count"]) == 5
+        ),
+        "renderer_parity_20_of_20": sum(
+            row["render_parity"] == "PASS" and len(row["render_parity_rows"]) == 4
+            for row in basis_summary["rows"]
+        ) == 5,
+        "hard_lookup_15_5_pass": lookup["status"] == "PASS",
+        "cache_key_v2_pass": cache_contract_preflight()["status"] == "PASS",
+        "calibration_f2_typed_contract_pass": calibration_f2_contract_audit()["status"] == "PASS",
+        "held_out_boundary_pass": (
+            contracts()["calibration_f2_boundary"]["status"] == "PASS"
+        ),
+        "oracle_static_diagnostics_pass": (
+            oracle_path.is_file() and read_json(oracle_path)["status"] == "PASS"
+        ),
+        "formal_optimizer_runs_absent": not any(
+            run_dir(attempt, task, family).exists()
+            for task in tasks() for family in METHOD_FAMILIES
+        ),
+        "formal_checkpoints_absent": not any(
+            (attempt / "06_checkpoints").rglob("*.pth")
+        ),
+    }
+    if not all(prerequisites.values()):
+        result = {
+            "schema_version": "canondressgs.paper.loo_attempt003_optimizer_smoke.v1",
+            "task_id": TASK_ID,
+            "status": "FAIL",
+            "classification": "LOO_OPTIMIZER_SMOKE_FAILURE",
+            "phase": "BEFORE_FIRST_FORMAL_OPTIMIZER",
+            "prerequisites": prerequisites,
+            "formal_optimizer_creations": 0,
+            "formal_optimizer_steps": 0,
+            "diagnostic_optimizer_creations": 0,
+            "diagnostic_forward_calls": 0,
+            "diagnostic_backward_calls": 0,
+            "checkpoint_writes": 0,
+            "execution_head": execution_head,
+        }
+        json_write(destination, result)
+        raise RuntimeError("LOO_OPTIMIZER_SMOKE_FAILURE")
+
+    context = runtime_context(attempt)
+    lpips_runtime = LPIPSRuntime(root, context["base"]._xyz.device)
+    calibrate_regularization(root, context, lpips_runtime)
+    task = tasks()[0]
+    family = METHOD_FAMILIES[0]
+    held_out = task["held_out_garment"]
+    basis, coefficients, payload = load_loo_basis(
+        attempt, held_out, context["base"]._xyz.device
+    )
+    selected = lookup_row(attempt, task["task_id"])["selected_known_endpoint"]
+    source_initial = coefficients[selected]
+    source_initial_sha = tensor_sha(source_initial)
+    coefficient = nn.Parameter(source_initial.detach().clone())
+    optimizer, scheduler = make_optimizer([coefficient])
+    normalization_std = payload["coefficient_std"].to(coefficient).clamp_min(1e-8)
+    regularization = regularization_for_split(attempt, held_out, family)
+    condition_ids = list(task["selected_adaptation_conditions"])
+    try:
+        optimizer.zero_grad(set_to_none=True)
+        standardized_displacement = (coefficient - source_initial) / normalization_std
+        anchor = standardized_displacement.square().mean()
+        trust = torch.relu(
+            torch.linalg.vector_norm(standardized_displacement)
+            - float(regularization["trust_region_radius"])
+        ).square()
+        penalty = float(regularization["coefficient_anchor_lambda"]) * anchor + trust
+        residual = basis(coefficient, chunk_size=16384)
+        losses = []
+        for condition in condition_ids:
+            sample = context["samples"][f"{held_out}/{condition}"]
+            rgb, alpha = runtime_imports()["parameterization"].render_prediction(
+                context["base"], sample, residual, context["background"]
+            )
+            losses.append(loo_render_loss(lpips_runtime, rgb, alpha, sample, penalty))
+        total = torch.stack([row["total"] for row in losses]).mean()
+        forward_finite = bool(torch.isfinite(total))
+        total.backward()
+        gradient = coefficient.grad
+        gradient_finite = gradient is not None and bool(torch.isfinite(gradient).all())
+        gradient_nonzero = gradient is not None and bool(torch.count_nonzero(gradient))
+        frozen = _frozen_gradient_audit(context, basis)
+        budget = contracts()["execution"]["optimizer_budget"]
+        optimizer_state = optimizer.state_dict()
+        optimizer_schema_pass = (
+            optimizer.__class__ is torch.optim.Adam
+            and len(optimizer_state["state"]) == 0
+            and len(optimizer_state["param_groups"]) == 1
+            and float(optimizer_state["param_groups"][0]["lr"])
+            == float(budget["learning_rate"])
+            and tuple(optimizer_state["param_groups"][0]["betas"])
+            == tuple(float(value) for value in budget["betas"])
+            and float(optimizer_state["param_groups"][0]["eps"])
+            == float(budget["epsilon"])
+            and float(optimizer_state["param_groups"][0]["weight_decay"])
+            == float(budget["weight_decay"])
+        )
+        checks = {
+            "trainable_scalar_count_3": coefficient.numel() == 3,
+            "optimizer_state_schema": optimizer_schema_pass,
+            "one_forward_finite": forward_finite,
+            "one_backward_finite": gradient_finite,
+            "gradient_nonzero": gradient_nonzero,
+            "frozen_gradients_zero": frozen["status"] == "PASS",
+            "no_checkpoint_written": not any(
+                (attempt / "06_checkpoints").rglob("*.pth")
+            ),
+            "source_initial_unchanged": tensor_sha(source_initial) == source_initial_sha,
+        }
+        result = {
+            "schema_version": "canondressgs.paper.loo_attempt003_optimizer_smoke.v1",
+            "task_id": TASK_ID,
+            "status": "PASS" if all(checks.values()) else "FAIL",
+            "classification": (
+                "OPTIMIZER_CONSTRUCTOR_AND_GRADIENT_SMOKE_PASS"
+                if all(checks.values()) else "LOO_OPTIMIZER_SMOKE_FAILURE"
+            ),
+            "phase": "BEFORE_FIRST_FORMAL_OPTIMIZER",
+            "first_formal_task_clone": task["task_id"],
+            "method_family": family,
+            "condition_ids": condition_ids,
+            "selected_known_endpoint": selected,
+            "trainable_scalar_count": coefficient.numel(),
+            "optimizer_class": f"{optimizer.__class__.__module__}.{optimizer.__class__.__name__}",
+            "optimizer_state_before_first_step": optimizer_state,
+            "scheduler_state_before_first_step": scheduler.state_dict(),
+            "loss": float(total.detach()),
+            "gradient_norm": (
+                float(torch.linalg.vector_norm(gradient.detach()))
+                if gradient is not None else None
+            ),
+            "checks": checks,
+            "prerequisites": prerequisites,
+            "frozen_gradient_audit": frozen,
+            "formal_optimizer_creations": 0,
+            "formal_optimizer_steps": 0,
+            "formal_forward_calls": 0,
+            "formal_backward_calls": 0,
+            "formal_renderer_calls": 0,
+            "diagnostic_optimizer_creations": 1,
+            "diagnostic_optimizer_steps": 0,
+            "diagnostic_forward_calls": 1,
+            "diagnostic_backward_calls": 1,
+            "diagnostic_renderer_calls": len(condition_ids),
+            "checkpoint_writes": 0,
+            "metric_denominator_entries": 0,
+            "cache_registry_entries": 0,
+            "source_initial_sha256_before": source_initial_sha,
+            "source_initial_sha256_after": tensor_sha(source_initial),
+            "execution_head": execution_head,
+            "smoke_state_destroyed_before_formal_initialization": True,
+        }
+    except Exception as error:
+        result = {
+            "schema_version": "canondressgs.paper.loo_attempt003_optimizer_smoke.v1",
+            "task_id": TASK_ID,
+            "status": "FAIL",
+            "classification": "LOO_OPTIMIZER_SMOKE_FAILURE",
+            "phase": "BEFORE_FIRST_FORMAL_OPTIMIZER",
+            "error_type": type(error).__name__,
+            "message": str(error),
+            "traceback": traceback.format_exc(),
+            "formal_optimizer_creations": 0,
+            "formal_optimizer_steps": 0,
+            "checkpoint_writes": 0,
+            "execution_head": execution_head,
+        }
+    finally:
+        optimizer.zero_grad(set_to_none=True)
+        if hasattr(context["base"], "parameters"):
+            for value in context["base"].parameters():
+                value.grad = None
+        if hasattr(basis, "parameters"):
+            for value in basis.parameters():
+                value.grad = None
+        del optimizer, scheduler, coefficient
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+    json_write(destination, result)
+    if result["status"] != "PASS":
+        update_status(
+            attempt, status="LOO_OPTIMIZER_SMOKE_FAILURE",
+            optimizer_runs=0, optimizer_steps=0, checkpoint_writes=0,
+        )
+        raise RuntimeError("LOO_OPTIMIZER_SMOKE_FAILURE")
+    update_status(
+        attempt, status="OPTIMIZER_SMOKE_PASS_FORMAL_COUNTS_ZERO",
+        optimizer_runs=0, optimizer_steps=0, checkpoint_writes=0,
+    )
+    return result
 
 
 def checkpoint_path(attempt: Path, task_id: str, family: str, step: int) -> Path:
@@ -2569,6 +3014,8 @@ def train_low_dimensional(root: Path) -> dict[str, Any]:
         raise RuntimeError("low-dimensional training requires basis PASS")
     if build_lookup_registry(root)["status"] != "PASS":
         raise RuntimeError("low-dimensional training requires hard lookup PASS")
+    if optimizer_smoke(root)["status"] != "PASS":
+        raise RuntimeError("LOO_OPTIMIZER_SMOKE_FAILURE")
     destination = attempt / "04_low_dimensional_runs/summary.json"
     if destination.is_file():
         return read_json(destination)
@@ -4299,10 +4746,16 @@ def finalize(root: Path) -> dict[str, Any]:
             "attempt_001_immutability": original_attempt_immutability_audit(
                 root, read_json(RISK / ORIGINAL_MANIFEST_NAME)
             )["status"],
+            "attempt_002_immutability": previous_attempt_immutability_audit(
+                root, read_json(RISK / PREVIOUS_MANIFEST_NAME)
+            )["status"],
+            "optimizer_smoke": read_json(
+                attempt / "00_preflight/optimizer_smoke_registry.json"
+            )["status"],
             "counts": counts["status"], "temporary_leaks": output_io.temporary_file_leaks(attempt),
         },
         REGISTRY_NAMES[12]: {
-            "schema_version": "canondressgs.paper.loo_attempt002_final_summary.v1",
+            "schema_version": "canondressgs.paper.loo_attempt003_final_summary.v1",
             "task_id": TASK_ID, "status": "SCIENTIFIC_EXECUTION_COMPLETE",
             "classification": analysis["classification"],
             "source_head": SOURCE_HEAD, "execution_head": execution_head,
@@ -4315,6 +4768,8 @@ def finalize(root: Path) -> dict[str, Any]:
     }
     for name, payload in registries.items():
         json_write(RISK / name, payload)
+    smoke = read_json(attempt / "00_preflight/optimizer_smoke_registry.json")
+    json_write(RISK / OPTIMIZER_SMOKE_REGISTRY_NAME, smoke)
     reports = report_payloads(analysis)
     for name, payload in reports.items():
         text_write(DOCS / name, payload)
@@ -4342,8 +4797,9 @@ def finalize(root: Path) -> dict[str, Any]:
         "source_head": SOURCE_HEAD, "execution_head": execution_head,
         "result_head": "RESULT_HEAD_PENDING_COMMIT",
         "final_reporting_head": "FINAL_REPORTING_HEAD_RESOLVES_AFTER_SEAL_COMMIT",
-        "output": str(attempt), "attempt_002_created": True,
-        "attempt_001_preserved": True, "attempt_003_created": False,
+        "output": str(attempt), "attempt_003_created": True,
+        "attempt_001_preserved": True, "attempt_002_preserved": True,
+        "attempt_004_created": False,
         "PAPER_FINAL": False, "paper_final_count": 0,
         "next_task": next_task_route(analysis["classification"]),
     }
@@ -4362,7 +4818,7 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
     if not attempt.is_dir():
         errors.append("attempt_missing")
     if forbidden_next_attempt_path(root).exists():
-        errors.append("attempt_003_exists")
+        errors.append("attempt_004_exists")
     for path in list(attempt.rglob("*.json")) + [RISK / name for name in REGISTRY_NAMES]:
         try:
             read_json(path)
@@ -4391,6 +4847,14 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
     )
     if original["status"] != "PASS":
         errors.append("attempt_001_mutation")
+    previous = previous_attempt_immutability_audit(
+        root, read_json(RISK / PREVIOUS_MANIFEST_NAME)
+    )
+    if previous["status"] != "PASS":
+        errors.append("attempt_002_mutation")
+    smoke_path = attempt / "00_preflight/optimizer_smoke_registry.json"
+    if not smoke_path.is_file() or read_json(smoke_path).get("status") != "PASS":
+        errors.append("optimizer_smoke")
     counts_path = attempt / "13_final_verification/execution_count_verification.json"
     if not counts_path.is_file() or read_json(counts_path)["status"] != "PASS":
         errors.append("count_verification")
@@ -4412,10 +4876,11 @@ def verify(root: Path, *, require_clean: bool) -> dict[str, Any]:
         "head": git("rev-parse", "HEAD"), "branch": git("branch", "--show-current"),
         "historical_immutability": historical["status"],
         "attempt_001_immutability": original["status"],
+        "attempt_002_immutability": previous["status"],
         "source_artifact_audit": source["status"],
         "credential_scan": credentials,
-        "attempt_002_present": attempt.is_dir(),
-        "attempt_003_absent": not forbidden_next_attempt_path(root).exists(),
+        "attempt_003_present": attempt.is_dir(),
+        "attempt_004_absent": not forbidden_next_attempt_path(root).exists(),
         "PAPER_FINAL": False, "paper_final_count": 0,
         "checked_at_utc": now(),
     }
@@ -4431,7 +4896,7 @@ def build_parser() -> argparse.ArgumentParser:
         "command",
         choices=(
             "static-preflight", "cloud-preflight", "bind", "materialize", "basis",
-            "lookup", "calibrate", "oracles", "train-low", "train-full", "evaluate",
+            "lookup", "calibrate", "oracles", "optimizer-smoke", "train-low", "train-full", "evaluate",
             "visual-sheets", "seal-visual-review", "analyze", "finalize", "verify",
         ),
     )
@@ -4459,6 +4924,7 @@ def main() -> None:
             "lookup": lambda: build_lookup_registry(root),
             "calibrate": lambda: calibrate_regularization(root),
             "oracles": lambda: build_oracles(root),
+            "optimizer-smoke": lambda: optimizer_smoke(root),
             "train-low": lambda: train_low_dimensional(root),
             "train-full": lambda: train_full_residual(root),
             "evaluate": lambda: run_evaluation(root),
