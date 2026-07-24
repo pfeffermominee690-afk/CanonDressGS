@@ -127,9 +127,16 @@ def test_paper_final_and_execution_counts_remain_zero() -> None:
 
 
 def test_interrupted_diagnostic_renders_are_counted_without_scientific_outputs() -> None:
-    assert '"diagnostic_render_calls": 68' in SOURCE
+    assert '"diagnostic_render_calls": 148' in SOURCE
     assert '"status": "INTERRUPTED_IMPLEMENTATION_ERROR"' in SOURCE
+    assert '"status": "FAILED_DIAGNOSTIC_GATE_IMPLEMENTATION"' in SOURCE
     assert "prior_interrupted_render_calls(diagnostic)" in SOURCE
+
+
+def test_renderer_input_gate_excludes_post_projection_info_buffers() -> None:
+    assert 'if key.startswith("L7/raster_")' in SOURCE
+    assert '"L7/means2d"' not in SOURCE
+    assert '"L7/radii"' not in SOURCE
 
 
 def test_selected_repair_is_float64_zero_sum_with_one_renderer_entry_cast() -> None:

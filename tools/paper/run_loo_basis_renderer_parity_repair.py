@@ -276,25 +276,42 @@ def record_known_interruption(asset_root: Path) -> dict[str, Any]:
         "schema_version": "canondressgs.paper.loo_diagnostic_interruption_ledger.v1",
         "task_id": TASK_ID,
         "diagnostic_label": DIAGNOSTIC_LABEL,
-        "rows": [{
-            "run_id": "diagnose_run_001",
-            "status": "INTERRUPTED_IMPLEMENTATION_ERROR",
-            "last_completed_stage": "residual_channel_parity",
-            "error": "incorrect CHANNELS import in numerical unflatten helper",
-            "diagnostic_render_calls": 68,
-            "optimizer_creations": 0,
-            "optimizer_steps": 0,
-            "checkpoint_writes": 0,
-            "formal_metrics": 0,
-        }],
-        "diagnostic_render_calls": 68,
+        "rows": [
+            {
+                "run_id": "diagnose_run_001",
+                "status": "INTERRUPTED_IMPLEMENTATION_ERROR",
+                "last_completed_stage": "residual_channel_parity",
+                "error": "incorrect CHANNELS import in numerical unflatten helper",
+                "diagnostic_render_calls": 68,
+                "optimizer_creations": 0,
+                "optimizer_steps": 0,
+                "checkpoint_writes": 0,
+                "formal_metrics": 0,
+            },
+            {
+                "run_id": "validate_repair_run_001",
+                "status": "FAILED_DIAGNOSTIC_GATE_IMPLEMENTATION",
+                "last_completed_stage": "all_split_repaired_validation",
+                "error": "post-projection means2d info was incorrectly included in the renderer-input gate",
+                "diagnostic_render_calls": 80,
+                "optimizer_creations": 0,
+                "optimizer_steps": 0,
+                "checkpoint_writes": 0,
+                "formal_metrics": 0,
+            },
+        ],
+        "diagnostic_render_calls": 148,
         "original_attempt_immutability": immutable,
         "attempt_002_absent": not (
             asset_root / ORIGINAL_OUTPUT_NAME / "attempt_002"
         ).exists(),
         "PAPER_FINAL": False,
     }
-    write_json(diagnostic / "00_preflight/diagnostic_interruption_ledger.json", result)
+    write_json(
+        diagnostic / "00_preflight/diagnostic_interruption_ledger.json",
+        result,
+        replace=True,
+    )
     return result
 
 
@@ -624,9 +641,6 @@ def capture_render(
         "L7/raster_covariance": covariances,
         "L7/raster_opacity": opacities,
         "L7/raster_color": colors,
-        "L7/means2d": info["means2d"][0],
-        "L7/radii": info["radii"][0].float(),
-        "L7/tiles_per_gaussian": info["tiles_per_gauss"][0].float(),
     }
     summary = {
         "active_gaussian_count": int(torch.count_nonzero(opacities > 0)),
@@ -1244,7 +1258,7 @@ def validate_repair(asset_root: Path) -> dict[str, Any]:
             input_rows = {
                 key: tensor_error(teacher_inputs[key], rebuilt_inputs[key])
                 for key in teacher_inputs
-                if key.startswith("L7/")
+                if key.startswith("L7/raster_")
             }
             input_max = max(row["max_abs"] for row in input_rows.values())
             residual = residual_error(teachers[name], rebuilt)
@@ -1326,9 +1340,14 @@ def validate_repair(asset_root: Path) -> dict[str, Any]:
         "renderer_input_pass_count": renderer_input_pass_count,
         "splits": split_results,
         "validation_diagnostic_render_calls": validation_render_calls,
-        "prior_diagnostic_render_calls": int(diagnosis["diagnostic_render_calls"]),
+        "prior_diagnostic_render_calls": (
+            int(diagnosis["successful_run_diagnostic_render_calls"])
+            + prior_interrupted_render_calls(diagnostic)
+        ),
         "actual_diagnostic_render_calls": (
-            int(diagnosis["diagnostic_render_calls"]) + validation_render_calls
+            int(diagnosis["successful_run_diagnostic_render_calls"])
+            + prior_interrupted_render_calls(diagnostic)
+            + validation_render_calls
         ),
         "optimizer_creations": 0,
         "optimizer_steps": 0,
@@ -1340,7 +1359,11 @@ def validate_repair(asset_root: Path) -> dict[str, Any]:
         "original_attempt_immutability": final_immutable,
         "PAPER_FINAL": False,
     }
-    write_json(diagnostic / "03_repaired_validation/all_split_parity.json", result)
+    write_json(
+        diagnostic / "03_repaired_validation/all_split_parity.json",
+        result,
+        replace=True,
+    )
     return result
 
 
