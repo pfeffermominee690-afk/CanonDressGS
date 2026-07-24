@@ -1,0 +1,22 @@
+{
+  "actual": {
+    "checkpoint_writes": 0,
+    "failure_records": 1,
+    "optimization_runs": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "persisted_render_outputs": 0,
+    "renderer_calls_before_failure": 2,
+    "visual_sheets": 0
+  },
+  "expected": {
+    "checkpoint_writes": 960,
+    "failure_records": 0,
+    "optimization_runs": 120,
+    "optimizer_steps": 36000,
+    "renderer_calls": 36662,
+    "visual_sheets": 20
+  },
+  "reason": "Stopped at the first parity output write; no optimizer was created.",
+  "status": "FAIL"
+}
