@@ -1,0 +1,27 @@
+{
+  "schema_version": "paper_figure_headroom_refresh_tests.v1",
+  "command": "python -m unittest tests.test_paper_figure_headroom_refresh -v",
+  "checks": [
+    {
+      "command": "python -m unittest tests.test_paper_figure_headroom_refresh -v",
+      "failed": 0,
+      "passed": 10,
+      "status": "PASS"
+    },
+    {
+      "command": "python -m unittest tests.test_paper_figure_pure_endpoint_refresh.PureEndpointFigureRefreshTest.test_asset_registry_closure -v",
+      "failed": 0,
+      "passed": 1,
+      "status": "PASS",
+      "worktree": "E:/model_train/canondressgs_paper_figure_bank_pure_endpoint_refresh"
+    }
+  ],
+  "failed": 0,
+  "nonblocking_observations": [
+    "A fresh Windows checkout expands 29 LF text assets from the Pure Endpoint refresh to CRLF while Git blobs remain unchanged; byte-closure passes in the original exact-source worktree and parent tracked mutation remains zero."
+  ],
+  "passed": 10,
+  "status": "PASS",
+  "task_id": "AAAI27-PAPER-FIGURE-BANK-HEADROOM-REFRESH-001",
+  "test_file": "tests/test_paper_figure_headroom_refresh.py"
+}
