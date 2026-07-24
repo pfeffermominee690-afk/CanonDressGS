@@ -1,0 +1,81 @@
+{
+  "schema_version": "canondressgs.presentation.plan.v1",
+  "task_id": "CANONDRESSGS-GROUP-MEETING-PRESENTATION-PLAN-20260724",
+  "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+  "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37",
+  "target_branch": "research/group-meeting-presentation-plan-20260724",
+  "paper_final": 0,
+  "status": "FINAL",
+  "final_classification": "GROUP_MEETING_PRESENTATION_PLAN_READY",
+  "full_slide_count": 28,
+  "full_estimated_minutes": [
+    25,
+    30
+  ],
+  "compact_slide_count": 18,
+  "compact_estimated_minutes": [
+    15,
+    18
+  ],
+  "appendix_count": 12,
+  "formula_count": 10,
+  "qa_count": 18,
+  "claim_count": 18,
+  "asset_definition_count": 38,
+  "asset_usage_count": 145,
+  "directly_usable_asset_count": 37,
+  "manual_selection_asset_count": 4,
+  "pending_loo_asset_count": 1,
+  "loo": {
+    "protocol_status": "LOO_FEW_VIEW_FOLD_REPAIRED_AND_READY",
+    "execution_status": "READY / PENDING EXECUTION",
+    "attempt": "ABSENT",
+    "files_read": 0,
+    "result_fabricated": 0
+  },
+  "figure_status": {
+    "Figure 2": "METHOD_FREEZE_PENDING_LOO",
+    "Headroom": "CONSUMED_FROM_SEALED_RESULT",
+    "LOO": "PENDING_LOO_ADAPTATION",
+    "Spatial coefficient field": "CONTINGENCY_ONLY_NOT_STARTED"
+  },
+  "mutation_audit": {
+    "gpu": 0,
+    "training": 0,
+    "model_inference": 0,
+    "renderer": 0,
+    "new_scientific_images": 0,
+    "image_api_calls": 0,
+    "pptx_generated": 0,
+    "presentation_pdf_generated": 0,
+    "paper_modified": 0,
+    "experiment_output_mutation": 0,
+    "figure_bank_mutation": 0,
+    "paper_final": 0
+  },
+  "cloud_status": "CLOUD_SYNC_PENDING_DNS",
+  "outputs": [
+    "docs/PRESENTATION/CANONDRESSGS_GROUP_MEETING_PPT_STORYLINE_20260724.md",
+    "docs/PRESENTATION/CANONDRESSGS_GROUP_MEETING_FULL_OUTLINE_20260724.md",
+    "docs/PRESENTATION/CANONDRESSGS_GROUP_MEETING_COMPACT_OUTLINE_20260724.md",
+    "docs/PRESENTATION/CANONDRESSGS_GROUP_MEETING_SPEAKER_NOTES_20260724.md",
+    "docs/PRESENTATION/CANONDRESSGS_GROUP_MEETING_QA_PREPARATION_20260724.md",
+    "docs/PRESENTATION/CANONDRESSGS_GROUP_MEETING_MISSING_MATERIALS_20260724.md",
+    "docs/PRESENTATION/CANONDRESSGS_CURRENT_PAPER_NARRATIVE_GAP_MAP_20260724.md",
+    "paper_protocol/presentation/canondressgs_group_meeting_slide_plan.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_compact_slide_plan.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_slide_asset_manifest.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_formula_manifest.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_claim_manifest.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_question_answer_registry.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_missing_material_registry.json",
+    "paper_protocol/presentation/canondressgs_group_meeting_plan_final_summary.json",
+    "project_control_handoff/canondressgs_group_meeting_presentation_plan_handoff.json"
+  ],
+  "validation": {
+    "status": "32_CHECK_TEST_SUITE_INCLUDED; FINAL_RESULT_REPORTED_AFTER_PUSH",
+    "required_check_count": 32,
+    "test_command": "python tools/test_group_meeting_presentation_plan.py"
+  },
+  "next_task": "MANUALLY_REVIEW_GROUP_MEETING_PPT_OUTLINE_AND_SELECT_ASSETS"
+}

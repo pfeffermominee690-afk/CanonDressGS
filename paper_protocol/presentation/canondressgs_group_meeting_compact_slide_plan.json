@@ -1,0 +1,1267 @@
+{
+  "schema_version": "canondressgs.presentation.plan.v1",
+  "task_id": "CANONDRESSGS-GROUP-MEETING-PRESENTATION-PLAN-20260724",
+  "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+  "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37",
+  "target_branch": "research/group-meeting-presentation-plan-20260724",
+  "paper_final": 0,
+  "version": "COMPACT",
+  "slide_count": 18,
+  "estimated_minutes": [
+    15,
+    18
+  ],
+  "slides": [
+    {
+      "slide_id": "C01",
+      "section": "Opening",
+      "title_cn": "研究目标与当前边界",
+      "title_en_optional": "Task and Boundary",
+      "core_question": "当前到底支持什么？",
+      "one_sentence_conclusion": "当前支持 subject02 closed-bank seen-endpoint control，LOO 与 multi-identity 仍未完成。",
+      "main_content": [
+        "reference garment + target pose/camera",
+        "closed five-garment bank",
+        "PAPER_FINAL=0"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A01-ENDPOINT-TEASER"
+      ],
+      "secondary_assets": [
+        "GM-A35-FIGURE-MAP"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/candidates/fig01_teaser/pure_endpoint_endpoint_only_v1/contact_sheet_for_manual_adjudication.png",
+        "paper_protocol/reviewer_risk/paper_figure_map_headroom_refreshed.json"
+      ],
+      "asset_ids": [
+        "GM-A01-ENDPOINT-TEASER",
+        "GM-A35-FIGURE-MAP"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A01-ENDPOINT-TEASER",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A35-FIGURE-MAP",
+          "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+          "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37"
+        }
+      ],
+      "figure_status": "PAPER_CORE_METHOD_CANDIDATE",
+      "allowed_claims": [
+        "closed-bank endpoint control"
+      ],
+      "forbidden_claims": [
+        "unseen garment completion"
+      ],
+      "speaker_notes": [
+        "先讲任务。",
+        "第二句讲边界。",
+        "不要预告 LOO 结果。",
+        "进入困难。"
+      ],
+      "transition": "先解释这个任务为什么难。",
+      "timing_seconds": 50,
+      "paper_eligibility": "CANDIDATE",
+      "loo_dependency": "WAIT_FOR_LOO_FOR_TITLE",
+      "risks_todo": [
+        "人工选 teaser"
+      ],
+      "full_slide_mapping": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "slide_id": "C02",
+      "section": "Problem",
+      "title_cn": "服装控制的核心困难",
+      "title_en_optional": "Geometry, Visibility, Appearance",
+      "core_question": "为什么不能直接连续插值？",
+      "one_sentence_conclusion": "服装耦合 geometry、visibility 和 appearance，其中无效 geometry 是中间 artifact 主因。",
+      "main_content": [
+        "lookup stable/discrete",
+        "interpolation flexible/artifact-prone"
+      ],
+      "formulas": [
+        "F06"
+      ],
+      "primary_assets": [
+        "GM-A02-EARLY-FAILURES"
+      ],
+      "secondary_assets": [
+        "GM-A05-GEOMETRY-CAUSAL-DATA"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/contact_sheets/limitations/early_failures.png",
+        "paper_protocol/reviewer_risk/continuous_control_causal_attribution_final_summary.json"
+      ],
+      "asset_ids": [
+        "GM-A02-EARLY-FAILURES",
+        "GM-A05-GEOMETRY-CAUSAL-DATA"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A02-EARLY-FAILURES",
+          "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+          "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37"
+        },
+        {
+          "asset_id": "GM-A05-GEOMETRY-CAUSAL-DATA",
+          "source_branch": "research/continuous-control-causal-attribution-20260722",
+          "source_head": "8c43524b7ca0ee8b3c795dbe349466f30b29354f"
+        }
+      ],
+      "figure_status": "PAPER_CORE_EVIDENCE",
+      "allowed_claims": [
+        "三因素与几何主因"
+      ],
+      "forbidden_claims": [
+        "泛化到所有场景"
+      ],
+      "speaker_notes": [
+        "先讲 tradeoff。",
+        "点出 geometry。",
+        "预告因果证据。",
+        "进入演化。"
+      ],
+      "transition": "这推动方法路线发生了连续收缩。",
+      "timing_seconds": 55,
+      "paper_eligibility": "CORE_PROBLEM",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "历史图需标签"
+      ],
+      "full_slide_mapping": [
+        "S03",
+        "S04"
+      ]
+    },
+    {
+      "slide_id": "C03",
+      "section": "Research Evolution",
+      "title_cn": "从 reference-to-residual 到 endpoint control",
+      "title_en_optional": "Historical Research Contraction",
+      "core_question": "失败如何改变方法？",
+      "one_sentence_conclusion": "历史 capacity 与 causal 诊断排除了错误假设，路线收缩为 Teacher endpoints、explicit basis 与最小控制器。",
+      "main_content": [
+        "full model failures",
+        "support capacity PASS",
+        "Teacher → basis → Pure Endpoint → Headroom → LOO"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A02-EARLY-FAILURES"
+      ],
+      "secondary_assets": [
+        "GM-A27-HIST-REPRESENTATION"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/contact_sheets/limitations/early_failures.png",
+        "paper_draft/figures/contact_sheets/ablations/representation_ablations.png"
+      ],
+      "asset_ids": [
+        "GM-A02-EARLY-FAILURES",
+        "GM-A27-HIST-REPRESENTATION"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A02-EARLY-FAILURES",
+          "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+          "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37"
+        },
+        {
+          "asset_id": "GM-A27-HIST-REPRESENTATION",
+          "source_branch": "paper/aaai27-frozen-experiment-batches-20260720",
+          "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252"
+        }
+      ],
+      "figure_status": "HISTORICAL_DESIGN_EVIDENCE",
+      "allowed_claims": [
+        "历史负结果推动收缩"
+      ],
+      "forbidden_claims": [
+        "最终方案从一开始已确定"
+      ],
+      "speaker_notes": [
+        "按箭头讲。",
+        "不展开每个失败。",
+        "强调 causal diagnosis。",
+        "转到 pipeline。"
+      ],
+      "transition": "先看收缩后的当前 pipeline。",
+      "timing_seconds": 60,
+      "paper_eligibility": "PRESENTATION_ONLY",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "协议分层"
+      ],
+      "full_slide_mapping": [
+        "S05"
+      ]
+    },
+    {
+      "slide_id": "C04",
+      "section": "Core Method",
+      "title_cn": "当前 Pipeline",
+      "title_en_optional": "Pure Endpoint Pipeline",
+      "core_question": "reference 如何决定 Gaussian endpoint？",
+      "one_sentence_conclusion": "Frozen F2 预测 raw coefficient，endpoint snapping 选择 valid Teacher state，再由 frozen renderer 输出。",
+      "main_content": [
+        "reference → F2 → aggregation → Linear(4)",
+        "raw coefficient → endpoint snapping → renderer"
+      ],
+      "formulas": [
+        "F04",
+        "F05"
+      ],
+      "primary_assets": [
+        "GM-A03-METHOD-WIREFRAME"
+      ],
+      "secondary_assets": [
+        "GM-A12-RAW-SNAPPED-SHEET"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/candidates/fig02_method/layout_wireframe.svg",
+        "paper_draft/figures/pure_endpoint_refresh/contact_sheets/pure_endpoint/pure_endpoint_raw_vs_snapped.png"
+      ],
+      "asset_ids": [
+        "GM-A03-METHOD-WIREFRAME",
+        "GM-A12-RAW-SNAPPED-SHEET"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A03-METHOD-WIREFRAME",
+          "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+          "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37"
+        },
+        {
+          "asset_id": "GM-A12-RAW-SNAPPED-SHEET",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "PAPER_CORE_METHOD_CANDIDATE",
+      "allowed_claims": [
+        "raw/snapped distinction"
+      ],
+      "forbidden_claims": [
+        "continuous coefficient is exact"
+      ],
+      "speaker_notes": [
+        "按输入到输出讲。",
+        "停在 snapping。",
+        "标出 frozen 模块。",
+        "转到 Teacher。"
+      ],
+      "transition": "这个 pipeline 依赖稳定的 Teacher Endpoint。",
+      "timing_seconds": 65,
+      "paper_eligibility": "METHOD_CANDIDATE",
+      "loo_dependency": "WAIT_FOR_LOO_FOR_FIGURE2",
+      "risks_todo": [
+        "Figure 2 pending LOO"
+      ],
+      "full_slide_mapping": [
+        "S06",
+        "S11"
+      ]
+    },
+    {
+      "slide_id": "C05",
+      "section": "Method Foundation",
+      "title_cn": "Teacher Endpoint 与冻结底座",
+      "title_en_optional": "Valid Garment States",
+      "core_question": "稳定服装状态如何建立？",
+      "one_sentence_conclusion": "每件 seen garment 通过多视图 rendering objective 优化 canonical residual；Teacher 是 endpoint，不是 Upper Bound。",
+      "main_content": [
+        "frozen avatar",
+        "per-garment residual optimization",
+        "five valid endpoints"
+      ],
+      "formulas": [
+        "F01",
+        "F02"
+      ],
+      "primary_assets": [
+        "GM-A04-TEACHER-ENDPOINTS"
+      ],
+      "secondary_assets": [
+        "GM-A15-PARITY-SAFETY"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/contact_sheets/pure_endpoint/pure_endpoint_clean_all_garments.png",
+        "paper_draft/figures/pure_endpoint_refresh/candidates/supplementary/pure_endpoint_parity_safety_v1/pure_endpoint_parity_safety_v1.png"
+      ],
+      "asset_ids": [
+        "GM-A04-TEACHER-ENDPOINTS",
+        "GM-A15-PARITY-SAFETY"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A04-TEACHER-ENDPOINTS",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A15-PARITY-SAFETY",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "PAPER_CORE_EVIDENCE",
+      "allowed_claims": [
+        "Teacher endpoint"
+      ],
+      "forbidden_claims": [
+        "Teacher upper bound"
+      ],
+      "speaker_notes": [
+        "讲 frozen/trained。",
+        "报五件 garment。",
+        "禁止 upper bound。",
+        "转到 geometry。"
+      ],
+      "transition": "下一页给出不能插值它们的因果证据。",
+      "timing_seconds": 60,
+      "paper_eligibility": "CORE_EVIDENCE",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "术语审计"
+      ],
+      "full_slide_mapping": [
+        "S06",
+        "S07"
+      ]
+    },
+    {
+      "slide_id": "C06",
+      "section": "Causal Diagnosis",
+      "title_cn": "Geometry 是中间 artifact 主因",
+      "title_en_optional": "Geometry Main Effect",
+      "core_question": "哪一类通道导致失败？",
+      "one_sentence_conclusion": "geometry main effect 约 0.9959，sufficiency/necessity 均为 10/10。",
+      "main_content": [
+        "factor injection",
+        "0.9959",
+        "10/10 + 10/10"
+      ],
+      "formulas": [
+        "F06"
+      ],
+      "primary_assets": [
+        "GM-A05-GEOMETRY-CAUSAL-DATA"
+      ],
+      "secondary_assets": [
+        "GM-A07-DUAL-SHEET"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_protocol/reviewer_risk/continuous_control_causal_attribution_final_summary.json",
+        "paper_draft/figures/contact_sheets/dual_support/dual_support.png"
+      ],
+      "asset_ids": [
+        "GM-A05-GEOMETRY-CAUSAL-DATA",
+        "GM-A07-DUAL-SHEET"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A05-GEOMETRY-CAUSAL-DATA",
+          "source_branch": "research/continuous-control-causal-attribution-20260722",
+          "source_head": "8c43524b7ca0ee8b3c795dbe349466f30b29354f"
+        },
+        {
+          "asset_id": "GM-A07-DUAL-SHEET",
+          "source_branch": "research/dual-support-all-pair-evaluation-20260722",
+          "source_head": "d802f427f1e9c23595e1bdb4f10135f7de2c3f08"
+        }
+      ],
+      "figure_status": "PAPER_CORE_EVIDENCE",
+      "allowed_claims": [
+        "current-protocol geometry main effect"
+      ],
+      "forbidden_claims": [
+        "visibility/appearance universally irrelevant"
+      ],
+      "speaker_notes": [
+        "一句讲实验。",
+        "一句报数字。",
+        "一句给设计含义。",
+        "转到 basis。"
+      ],
+      "transition": "因此 basis 表示端点坐标，而不是直接插值几何。",
+      "timing_seconds": 55,
+      "paper_eligibility": "CORE_EVIDENCE",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "使用数字 callout"
+      ],
+      "full_slide_mapping": [
+        "S08",
+        "S09"
+      ]
+    },
+    {
+      "slide_id": "C07",
+      "section": "Core Method",
+      "title_cn": "Explicit Basis：endpoint 坐标系",
+      "title_en_optional": "Rank-4 Endpoint Basis",
+      "core_question": "rank-4 到底代表什么？",
+      "one_sentence_conclusion": "五个 centered Teacher residual 的最大 rank 本就是 4，因此它是精确 endpoint 坐标系，不是强压缩。",
+      "main_content": [
+        "ΔG≈μ+Bc",
+        "rank=4",
+        "adaptation value pending LOO"
+      ],
+      "formulas": [
+        "F03"
+      ],
+      "primary_assets": [
+        "GM-A17-HEADROOM-PARITY"
+      ],
+      "secondary_assets": [
+        "GM-A04-TEACHER-ENDPOINTS"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/headroom_refresh/plots/headroom/teacher_svd_parity.png",
+        "paper_draft/figures/pure_endpoint_refresh/contact_sheets/pure_endpoint/pure_endpoint_clean_all_garments.png"
+      ],
+      "asset_ids": [
+        "GM-A17-HEADROOM-PARITY",
+        "GM-A04-TEACHER-ENDPOINTS"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A17-HEADROOM-PARITY",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        },
+        {
+          "asset_id": "GM-A04-TEACHER-ENDPOINTS",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "PAPER_CORE_METHOD_CANDIDATE",
+      "allowed_claims": [
+        "endpoint coordinate system"
+      ],
+      "forbidden_claims": [
+        "universal semantic manifold",
+        "strong compression"
+      ],
+      "speaker_notes": [
+        "解释 centered rank。",
+        "区分坐标与泛化。",
+        "不讲压缩优势。",
+        "转入 protocol。"
+      ],
+      "transition": "接着看这个坐标系上的严格 cross-fit。",
+      "timing_seconds": 55,
+      "paper_eligibility": "METHOD_CANDIDATE",
+      "loo_dependency": "REQUIRED_FOR_BASIS_VALUE",
+      "risks_todo": [
+        "LOO decides claim"
+      ],
+      "full_slide_mapping": [
+        "S10"
+      ]
+    },
+    {
+      "slide_id": "C08",
+      "section": "Core Results",
+      "title_cn": "Pure Endpoint Protocol",
+      "title_en_optional": "Condition-Fold Cross-Fit",
+      "core_question": "成功是否来自泄漏或单一划分？",
+      "one_sentence_conclusion": "24 runs 覆盖 4 rotations×3 seeds，并审计 7 methods、perturbation、parity 与 identity safety。",
+      "main_content": [
+        "24 runs",
+        "4×3",
+        "condition folds",
+        "7 methods + safety"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A38-PURE-ROTATIONS"
+      ],
+      "secondary_assets": [
+        "GM-A15-PARITY-SAFETY"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_protocol/reviewer_risk/pure_endpoint_rotation_manifests.json",
+        "paper_draft/figures/pure_endpoint_refresh/candidates/supplementary/pure_endpoint_parity_safety_v1/pure_endpoint_parity_safety_v1.png"
+      ],
+      "asset_ids": [
+        "GM-A38-PURE-ROTATIONS",
+        "GM-A15-PARITY-SAFETY"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A38-PURE-ROTATIONS",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A15-PARITY-SAFETY",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "PROJECT_GOVERNANCE_APPENDIX",
+      "allowed_claims": [
+        "closed-bank protocol"
+      ],
+      "forbidden_claims": [
+        "garment-held-out"
+      ],
+      "speaker_notes": [
+        "报设计。",
+        "解释 fold 单位。",
+        "强调安全审计。",
+        "转结果。"
+      ],
+      "transition": "协议内的 clean 结果达到满分。",
+      "timing_seconds": 55,
+      "paper_eligibility": "EXPERIMENT_PROTOCOL",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "condition vs garment held-out"
+      ],
+      "full_slide_mapping": [
+        "S12"
+      ]
+    },
+    {
+      "slide_id": "C09",
+      "section": "Core Results",
+      "title_cn": "Pure Endpoint 结果",
+      "title_en_optional": "Closed-Bank Endpoint Control",
+      "core_question": "seen endpoint 能否可靠选择？",
+      "one_sentence_conclusion": "clean top-1 与每 garment precision/recall 均为 1，parity PASS 且 identity contamination=0。",
+      "main_content": [
+        "top-1=1",
+        "precision/recall=1",
+        "parity PASS",
+        "identity contamination=0"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A08-PURE-TOP1"
+      ],
+      "secondary_assets": [
+        "GM-A09-ENDPOINT-MATCH",
+        "GM-A15-PARITY-SAFETY"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/clean_method_top1.png",
+        "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/endpoint_exact_match.png",
+        "paper_draft/figures/pure_endpoint_refresh/candidates/supplementary/pure_endpoint_parity_safety_v1/pure_endpoint_parity_safety_v1.png"
+      ],
+      "asset_ids": [
+        "GM-A08-PURE-TOP1",
+        "GM-A09-ENDPOINT-MATCH",
+        "GM-A15-PARITY-SAFETY"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A08-PURE-TOP1",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A09-ENDPOINT-MATCH",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A15-PARITY-SAFETY",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "PAPER_CORE_EVIDENCE",
+      "allowed_claims": [
+        "seen endpoint selection supported"
+      ],
+      "forbidden_claims": [
+        "unseen garment supported"
+      ],
+      "speaker_notes": [
+        "报数字。",
+        "报安全。",
+        "限定 closed-bank。",
+        "转 lookup。"
+      ],
+      "transition": "但满分结果必须和 hard lookup 一起解释。",
+      "timing_seconds": 55,
+      "paper_eligibility": "CORE_EVIDENCE",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "benchmark saturation"
+      ],
+      "full_slide_mapping": [
+        "S13"
+      ]
+    },
+    {
+      "slide_id": "C10",
+      "section": "Core Results",
+      "title_cn": "与 Hard Lookup 功能等价",
+      "title_en_optional": "Descriptive Equivalence",
+      "core_question": "为什么这不是 superiority？",
+      "one_sentence_conclusion": "clean 条件下二者选择相同 endpoint 并产生等价 render，所以当前 relation 只能描述性报告。",
+      "main_content": [
+        "agreement",
+        "render equivalence",
+        "no superiority claim"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A10-HARD-LOOKUP"
+      ],
+      "secondary_assets": [
+        "GM-A36-RENDER-EQUIVALENCE"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/candidates/fig05_hard_lookup/pure_endpoint_hard_lookup_v1/pure_endpoint_hard_lookup_v1.png",
+        "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/render_equivalence_and_cache_summary.png"
+      ],
+      "asset_ids": [
+        "GM-A10-HARD-LOOKUP",
+        "GM-A36-RENDER-EQUIVALENCE"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A10-HARD-LOOKUP",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A36-RENDER-EQUIVALENCE",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "PAPER_CORE_EVIDENCE",
+      "allowed_claims": [
+        "functional equivalence"
+      ],
+      "forbidden_claims": [
+        "better than hard lookup"
+      ],
+      "speaker_notes": [
+        "主动承认等价。",
+        "解释同 endpoint 同 render。",
+        "不要回避 lookup。",
+        "连接 LOO。"
+      ],
+      "transition": "真正的差异需要 out-of-bank LOO 来检验。",
+      "timing_seconds": 55,
+      "paper_eligibility": "DESCRIPTIVE_ONLY",
+      "loo_dependency": "REQUIRED_FOR_VALUE_BEYOND_LOOKUP",
+      "risks_todo": [
+        "人工裁决 Figure 5"
+      ],
+      "full_slide_mapping": [
+        "S14"
+      ]
+    },
+    {
+      "slide_id": "C11",
+      "section": "Core Results",
+      "title_cn": "Snapping 有效，但 blur 仍脆弱",
+      "title_en_optional": "Realization and Robustness",
+      "core_question": "成功来自哪里，失败发生在哪？",
+      "one_sentence_conclusion": "成功主要来自 endpoint snapping 而非精确 continuous regression；mild blur 会触发 endpoint flip。",
+      "main_content": [
+        "raw coefficient error high",
+        "snapping exact endpoint",
+        "single reference stable",
+        "blur flips; dropout abstains"
+      ],
+      "formulas": [
+        "F05"
+      ],
+      "primary_assets": [
+        "GM-A11-RAW-SNAPPED-PLOT"
+      ],
+      "secondary_assets": [
+        "GM-A13-PERTURBATION",
+        "GM-A14-BLUR-FAILURES"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/raw_vs_realized_coefficient_error.png",
+        "paper_draft/figures/pure_endpoint_refresh/candidates/fig06_limitations/pure_endpoint_perturbation_v1/pure_endpoint_perturbation_v1.png",
+        "paper_draft/figures/pure_endpoint_refresh/contact_sheets/pure_endpoint/pure_endpoint_mild_blur_failures.png"
+      ],
+      "asset_ids": [
+        "GM-A11-RAW-SNAPPED-PLOT",
+        "GM-A13-PERTURBATION",
+        "GM-A14-BLUR-FAILURES"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A11-RAW-SNAPPED-PLOT",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A13-PERTURBATION",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A14-BLUR-FAILURES",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        }
+      ],
+      "figure_status": "LIMITATION",
+      "allowed_claims": [
+        "snapping and perturbation boundary"
+      ],
+      "forbidden_claims": [
+        "robust continuous manifold learned"
+      ],
+      "speaker_notes": [
+        "先讲 raw/snapped。",
+        "再讲 perturbation。",
+        "突出 blur。",
+        "转 Headroom。"
+      ],
+      "transition": "这正是做 Headroom refinement 的原因。",
+      "timing_seconds": 60,
+      "paper_eligibility": "CORE_EVIDENCE_AND_LIMITATION",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "不要弱化 blur"
+      ],
+      "full_slide_mapping": [
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "slide_id": "C12",
+      "section": "Headroom",
+      "title_cn": "Headroom：连续优化是否还有空间？",
+      "title_en_optional": "Refinement Hypothesis",
+      "core_question": "rendering loss 能否超过 Teacher？",
+      "one_sentence_conclusion": "实验固定 rank-4 basis，只优化 4 个系数，并用 full residual 作 headroom comparator。",
+      "main_content": [
+        "Teacher/SVD",
+        "refined coefficient",
+        "full residual",
+        "pre-registered gates"
+      ],
+      "formulas": [
+        "F08"
+      ],
+      "primary_assets": [
+        "GM-A24-REFINED-DECOMPOSITION"
+      ],
+      "secondary_assets": [
+        "GM-A17-HEADROOM-PARITY"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/headroom_refresh/plots/headroom/refined_lookup_decomposition.png",
+        "paper_draft/figures/headroom_refresh/plots/headroom/teacher_svd_parity.png"
+      ],
+      "asset_ids": [
+        "GM-A24-REFINED-DECOMPOSITION",
+        "GM-A17-HEADROOM-PARITY"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A24-REFINED-DECOMPOSITION",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        },
+        {
+          "asset_id": "GM-A17-HEADROOM-PARITY",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        }
+      ],
+      "figure_status": "NEGATIVE_DIAGNOSTIC",
+      "allowed_claims": [
+        "headroom hypothesis"
+      ],
+      "forbidden_claims": [
+        "refinement is main pipeline"
+      ],
+      "speaker_notes": [
+        "连接 raw error。",
+        "解释四方法。",
+        "说明门槛。",
+        "转结果。"
+      ],
+      "transition": "120 次优化给出了明确负结果。",
+      "timing_seconds": 50,
+      "paper_eligibility": "SUPPLEMENTARY_NEGATIVE",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "只讲 sealed attempt_002"
+      ],
+      "full_slide_mapping": [
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "slide_id": "C13",
+      "section": "Headroom",
+      "title_cn": "Headroom 负结果收缩了 Pipeline",
+      "title_en_optional": "Teacher Span at Local Optimum",
+      "core_question": "refinement 有改善吗？",
+      "one_sentence_conclusion": "0/5 garments 过门槛，refined coefficient 不改善 Teacher；full residual 产生 patch/cloud/mottle，因此 refinement 不进主线。",
+      "main_content": [
+        "120/120 runs",
+        "0/5 pass",
+        "macro gain < 0",
+        "full residual artifacts",
+        "TEACHER_SPAN_AT_LOCAL_OPTIMUM"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A16-HEADROOM-OVERVIEW"
+      ],
+      "secondary_assets": [
+        "GM-A20-HEADROOM-PER-GARMENT",
+        "GM-A22-FULL-RESIDUAL-ARTIFACT"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/headroom_refresh/candidates/supplementary/headroom_negative_diagnostic_v1/supplementary_negative_diagnostic_v1.png",
+        "paper_draft/figures/headroom_refresh/plots/headroom/per_garment_teacher_minus_refined_lpips.png",
+        "paper_draft/figures/headroom_refresh/contact_sheets/headroom/full_residual_artifact_examples.png"
+      ],
+      "asset_ids": [
+        "GM-A16-HEADROOM-OVERVIEW",
+        "GM-A20-HEADROOM-PER-GARMENT",
+        "GM-A22-FULL-RESIDUAL-ARTIFACT"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A16-HEADROOM-OVERVIEW",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        },
+        {
+          "asset_id": "GM-A20-HEADROOM-PER-GARMENT",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        },
+        {
+          "asset_id": "GM-A22-FULL-RESIDUAL-ARTIFACT",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        }
+      ],
+      "figure_status": "NEGATIVE_DIAGNOSTIC",
+      "allowed_claims": [
+        "negative result and design decision"
+      ],
+      "forbidden_claims": [
+        "positive headroom",
+        "spatial field tested"
+      ],
+      "speaker_notes": [
+        "先报 0/5。",
+        "再看 artifact。",
+        "给出 pipeline 决策。",
+        "转 LOO。"
+      ],
+      "transition": "只剩 LOO 能检验 basis 的独立价值。",
+      "timing_seconds": 70,
+      "paper_eligibility": "SUPPLEMENTARY_NEGATIVE",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "caption boundary"
+      ],
+      "full_slide_mapping": [
+        "S19",
+        "S20"
+      ]
+    },
+    {
+      "slide_id": "C14",
+      "section": "LOO Decision",
+      "title_cn": "LOO 设计与当前状态",
+      "title_en_optional": "Decisive Pending Test",
+      "core_question": "basis 能否适配完全排除的 garment？",
+      "one_sentence_conclusion": "四 garment 构建 rank≤3 basis、第五件完全 held out；protocol READY，但 LOO_ATTEMPT=ABSENT。",
+      "main_content": [
+        "μ_-g, B_-g",
+        "K=1/K=2",
+        "hard lookup / oracle projection / full residual",
+        "READY / PENDING EXECUTION; files_read=0"
+      ],
+      "formulas": [
+        "F09",
+        "F10"
+      ],
+      "primary_assets": [
+        "GM-A33-LOO-PENDING"
+      ],
+      "secondary_assets": [
+        "GM-A28-O07-LIMITATION"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/pending/loo/repaired_protocol_pending.json",
+        "paper_draft/figures/contact_sheets/limitations/o07.png"
+      ],
+      "asset_ids": [
+        "GM-A33-LOO-PENDING",
+        "GM-A28-O07-LIMITATION"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A33-LOO-PENDING",
+          "source_branch": "research/loo-few-view-fold-manifest-repair-20260724",
+          "source_head": "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f"
+        },
+        {
+          "asset_id": "GM-A28-O07-LIMITATION",
+          "source_branch": "paper/aaai27-frozen-experiment-batches-20260720",
+          "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252"
+        }
+      ],
+      "figure_status": "PENDING_LOO",
+      "allowed_claims": [
+        "design and pending status"
+      ],
+      "forbidden_claims": [
+        "fabricated LOO result"
+      ],
+      "speaker_notes": [
+        "讲 held-out 边界。",
+        "报 READY。",
+        "明确 absent。",
+        "不展示任何结果。"
+      ],
+      "transition": "等待 LOO 时，历史消融只能解释设计。",
+      "timing_seconds": 65,
+      "paper_eligibility": "WAIT_FOR_LOO",
+      "loo_dependency": "REQUIRED",
+      "risks_todo": [
+        "汇报前 metadata recheck"
+      ],
+      "full_slide_mapping": [
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "slide_id": "C15",
+      "section": "Historical Evidence",
+      "title_cn": "历史消融：设计证据，不是当前主表",
+      "title_en_optional": "Historical Design Evidence",
+      "core_question": "旧协议还能回答什么？",
+      "one_sentence_conclusion": "51 个 view-transductive 实验解释 rank、mask、standardization 与 reference count 选择，但不能与 current protocol 混表。",
+      "main_content": [
+        "51 runs",
+        "14,400 steps",
+        "rank/mask/mean/std/reference count"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A37-HIST-ALL"
+      ],
+      "secondary_assets": [
+        "GM-A25-HIST-RANK",
+        "GM-A26-HIST-REFERENCE"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/plots/historical_ablations/historical_ablation_edit_reduction.png",
+        "paper_draft/figures/plots/historical_ablations/rank_1_4_edit_reduction.png",
+        "paper_draft/figures/plots/historical_ablations/reference_count_1_3_edit_reduction.png"
+      ],
+      "asset_ids": [
+        "GM-A37-HIST-ALL",
+        "GM-A25-HIST-RANK",
+        "GM-A26-HIST-REFERENCE"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A37-HIST-ALL",
+          "source_branch": "paper/aaai27-frozen-experiment-batches-20260720",
+          "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252"
+        },
+        {
+          "asset_id": "GM-A25-HIST-RANK",
+          "source_branch": "paper/aaai27-frozen-experiment-batches-20260720",
+          "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252"
+        },
+        {
+          "asset_id": "GM-A26-HIST-REFERENCE",
+          "source_branch": "paper/aaai27-frozen-experiment-batches-20260720",
+          "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252"
+        }
+      ],
+      "figure_status": "HISTORICAL_DESIGN_EVIDENCE",
+      "allowed_claims": [
+        "design rationale"
+      ],
+      "forbidden_claims": [
+        "current generalization result"
+      ],
+      "speaker_notes": [
+        "先报历史协议。",
+        "挑关键消融。",
+        "说明不能混表。",
+        "转限制。"
+      ],
+      "transition": "这些历史结果与新负诊断共同定义限制。",
+      "timing_seconds": 55,
+      "paper_eligibility": "HISTORICAL_ONLY",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "Historical 标签"
+      ],
+      "full_slide_mapping": [
+        "S23"
+      ]
+    },
+    {
+      "slide_id": "C16",
+      "section": "Limitations",
+      "title_cn": "当前限制与第二身份基础",
+      "title_en_optional": "Limitations and Portability",
+      "core_question": "投稿前还有哪些实质缺口？",
+      "one_sentence_conclusion": "O07、blur、full-residual artifacts 与 controller failure 均未解决；Subject00 只完成 base-avatar foundation。",
+      "main_content": [
+        "failure modes",
+        "controller supplementary diagnostic",
+        "Subject00 base only",
+        "AvatarReX media=0"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A28-O07-LIMITATION"
+      ],
+      "secondary_assets": [
+        "GM-A22-FULL-RESIDUAL-ARTIFACT",
+        "GM-A31-SUBJECT00-SHEET"
+      ],
+      "backup_assets": [
+        "GM-A29-CONTROLLER-VISUALS"
+      ],
+      "formal_paths": [
+        "paper_draft/figures/contact_sheets/limitations/o07.png",
+        "paper_draft/figures/headroom_refresh/contact_sheets/headroom/full_residual_artifact_examples.png",
+        "paper_draft/figures/contact_sheets/subject00/subject00.png",
+        "paper_draft/figures/contact_sheets/controller/controller_visuals.png"
+      ],
+      "asset_ids": [
+        "GM-A28-O07-LIMITATION",
+        "GM-A22-FULL-RESIDUAL-ARTIFACT",
+        "GM-A31-SUBJECT00-SHEET",
+        "GM-A29-CONTROLLER-VISUALS"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A28-O07-LIMITATION",
+          "source_branch": "paper/aaai27-frozen-experiment-batches-20260720",
+          "source_head": "c60d61a67a87eb35d5debca7eb111778b637c252"
+        },
+        {
+          "asset_id": "GM-A22-FULL-RESIDUAL-ARTIFACT",
+          "source_branch": "research/render-refined-coefficient-headroom-attempt2-20260724",
+          "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+        },
+        {
+          "asset_id": "GM-A31-SUBJECT00-SHEET",
+          "source_branch": "research/mmlphuman-subject00-one-pass-medium-pilot-20260723",
+          "source_head": "2d0913eb1b163a79e81c1804c216f91b0a737b44"
+        },
+        {
+          "asset_id": "GM-A29-CONTROLLER-VISUALS",
+          "source_branch": "research/controller-garment-head-optimization-budget-diagnosis-20260724",
+          "source_head": "af3a4895c2c6c3a12a869907883bf68e2a2ba820"
+        }
+      ],
+      "figure_status": "LIMITATION",
+      "allowed_claims": [
+        "current limitations"
+      ],
+      "forbidden_claims": [
+        "multi-identity garment editing complete"
+      ],
+      "speaker_notes": [
+        "按三类失败讲。",
+        "Subject00 只讲 base。",
+        "AvatarReX 不出图。",
+        "转冻结。"
+      ],
+      "transition": "因此当前方法冻结必须保持保守。",
+      "timing_seconds": 60,
+      "paper_eligibility": "LIMITATION",
+      "loo_dependency": "NO",
+      "risks_todo": [
+        "避免把 Subject00 图写成 garment"
+      ],
+      "full_slide_mapping": [
+        "S24",
+        "S25"
+      ]
+    },
+    {
+      "slide_id": "C17",
+      "section": "Method Freeze",
+      "title_cn": "当前方法冻结与 Reviewer 风险",
+      "title_en_optional": "Method Freeze",
+      "core_question": "论文主线现在能冻结到哪里？",
+      "one_sentence_conclusion": "核心候选已收敛到 Teacher+basis+Pure Endpoint，但 hard lookup 等价和 LOO pending 阻止最终贡献冻结。",
+      "main_content": [
+        "core candidate",
+        "supplementary oracle",
+        "negative diagnostics",
+        "Figure 2 pending LOO",
+        "largest reviewer risk"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A35-FIGURE-MAP"
+      ],
+      "secondary_assets": [
+        "GM-A10-HARD-LOOKUP",
+        "GM-A33-LOO-PENDING"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_protocol/reviewer_risk/paper_figure_map_headroom_refreshed.json",
+        "paper_draft/figures/pure_endpoint_refresh/candidates/fig05_hard_lookup/pure_endpoint_hard_lookup_v1/pure_endpoint_hard_lookup_v1.png",
+        "paper_draft/figures/pure_endpoint_refresh/pending/loo/repaired_protocol_pending.json"
+      ],
+      "asset_ids": [
+        "GM-A35-FIGURE-MAP",
+        "GM-A10-HARD-LOOKUP",
+        "GM-A33-LOO-PENDING"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A35-FIGURE-MAP",
+          "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+          "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37"
+        },
+        {
+          "asset_id": "GM-A10-HARD-LOOKUP",
+          "source_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+          "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe"
+        },
+        {
+          "asset_id": "GM-A33-LOO-PENDING",
+          "source_branch": "research/loo-few-view-fold-manifest-repair-20260724",
+          "source_head": "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f"
+        }
+      ],
+      "figure_status": "LIMITATION",
+      "allowed_claims": [
+        "freeze matrix and reviewer risk"
+      ],
+      "forbidden_claims": [
+        "PAPER_FINAL"
+      ],
+      "speaker_notes": [
+        "列 core/supp/pending。",
+        "点名 hard lookup。",
+        "点名 LOO。",
+        "转 next steps。"
+      ],
+      "transition": "下一步只按决定性风险排序。",
+      "timing_seconds": 65,
+      "paper_eligibility": "GOVERNANCE",
+      "loo_dependency": "REQUIRED",
+      "risks_todo": [
+        "PAPER_FINAL=0"
+      ],
+      "full_slide_mapping": [
+        "S26",
+        "S27"
+      ]
+    },
+    {
+      "slide_id": "C18",
+      "section": "Closing",
+      "title_cn": "下一步",
+      "title_en_optional": "Next Steps",
+      "core_question": "最先做什么？",
+      "one_sentence_conclusion": "先 sealed LOO，再冻结 Figure 2 与论文 claim；随后人工选组会素材，不自动生成 PPTX。",
+      "main_content": [
+        "LOO",
+        "method/figure freeze",
+        "paper rewrite",
+        "Subject00",
+        "manual PPT asset selection"
+      ],
+      "formulas": [],
+      "primary_assets": [
+        "GM-A33-LOO-PENDING"
+      ],
+      "secondary_assets": [
+        "GM-A35-FIGURE-MAP"
+      ],
+      "backup_assets": [],
+      "formal_paths": [
+        "paper_draft/figures/pure_endpoint_refresh/pending/loo/repaired_protocol_pending.json",
+        "paper_protocol/reviewer_risk/paper_figure_map_headroom_refreshed.json"
+      ],
+      "asset_ids": [
+        "GM-A33-LOO-PENDING",
+        "GM-A35-FIGURE-MAP"
+      ],
+      "source_provenance": [
+        {
+          "asset_id": "GM-A33-LOO-PENDING",
+          "source_branch": "research/loo-few-view-fold-manifest-repair-20260724",
+          "source_head": "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f"
+        },
+        {
+          "asset_id": "GM-A35-FIGURE-MAP",
+          "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+          "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37"
+        }
+      ],
+      "figure_status": "PENDING_LOO",
+      "allowed_claims": [
+        "evidence-gated next steps"
+      ],
+      "forbidden_claims": [
+        "automatic PPTX generation"
+      ],
+      "speaker_notes": [
+        "第一项 LOO。",
+        "第二项 freeze。",
+        "强调人工选图。",
+        "结束。"
+      ],
+      "transition": "结束并进入讨论。",
+      "timing_seconds": 50,
+      "paper_eligibility": "CLOSING",
+      "loo_dependency": "REQUIRED",
+      "risks_todo": [
+        "NEXT_TASK fixed"
+      ],
+      "full_slide_mapping": [
+        "S28"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": "canondressgs.presentation.plan.v1",
+  "task_id": "CANONDRESSGS-GROUP-MEETING-PRESENTATION-PLAN-20260724",
+  "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+  "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37",
+  "target_branch": "research/group-meeting-presentation-plan-20260724",
+  "paper_final": 0,
+  "claims": [
+    {
+      "claim_id": "CL01",
+      "claim": "Canonical Gaussian support represents five seen garments.",
+      "claim_status": "SUPPORTED",
+      "slide_status": "PAPER_CORE_EVIDENCE",
+      "slides": [
+        "S07",
+        "S13"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL02",
+      "claim": "Geometry interpolation is the main source of intermediate artifacts in the sealed protocol.",
+      "claim_status": "SUPPORTED",
+      "slide_status": "PAPER_CORE_EVIDENCE",
+      "slides": [
+        "S08"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL03",
+      "claim": "Teacher Endpoints stably store valid seen garment states.",
+      "claim_status": "SUPPORTED",
+      "slide_status": "PAPER_CORE_EVIDENCE",
+      "slides": [
+        "S07"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL04",
+      "claim": "Pure Endpoint reliably selects five seen endpoints under clean closed-bank evaluation.",
+      "claim_status": "SUPPORTED",
+      "slide_status": "PAPER_CORE_EVIDENCE",
+      "slides": [
+        "S13"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL05",
+      "claim": "Pure Endpoint and hard lookup are functionally equivalent on clean closed-bank inputs.",
+      "claim_status": "DESCRIPTIVE_ONLY",
+      "slide_status": "PAPER_CORE_EVIDENCE",
+      "slides": [
+        "S14"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL06",
+      "claim": "Endpoint snapping is effective while raw continuous coefficients remain inaccurate.",
+      "claim_status": "SUPPORTED",
+      "slide_status": "PAPER_CORE_EVIDENCE",
+      "slides": [
+        "S15"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL07",
+      "claim": "Global rank-4 coefficient refinement does not improve Teacher Endpoint.",
+      "claim_status": "NEGATIVE_RESULT",
+      "slide_status": "NEGATIVE_DIAGNOSTIC",
+      "slides": [
+        "S19"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL08",
+      "claim": "Unconstrained full-residual optimization degrades and creates patch/cloud/mottle artifacts.",
+      "claim_status": "NEGATIVE_RESULT",
+      "slide_status": "NEGATIVE_DIAGNOSTIC",
+      "slides": [
+        "S19"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL09",
+      "claim": "Oracle Dual-Support improves all-pair aggregates without proving an automatic controller.",
+      "claim_status": "SUPPORTED_WITH_ORACLE_BOUNDARY",
+      "slide_status": "SUPPLEMENTARY_EXTENSION",
+      "slides": [
+        "S09"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL10",
+      "claim": "Unseen garment adaptation is supported.",
+      "claim_status": "PENDING_FORBIDDEN_UNTIL_LOO",
+      "slide_status": "PENDING_LOO",
+      "slides": [
+        "S21",
+        "S22"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL11",
+      "claim": "Arbitrary garment editing is supported.",
+      "claim_status": "FORBIDDEN",
+      "slide_status": "LIMITATION",
+      "slides": [
+        "S27"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL12",
+      "claim": "Strict unseen-reference generalization is supported.",
+      "claim_status": "FORBIDDEN",
+      "slide_status": "LIMITATION",
+      "slides": [
+        "S27"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL13",
+      "claim": "Cross-identity garment editing is complete.",
+      "claim_status": "FORBIDDEN",
+      "slide_status": "MULTI_IDENTITY_FOUNDATION",
+      "slides": [
+        "S25"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL14",
+      "claim": "Spatially distributed coefficient fields are effective.",
+      "claim_status": "FORBIDDEN_NOT_STARTED",
+      "slide_status": "LIMITATION",
+      "slides": [
+        "S20"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL15",
+      "claim": "The explicit basis is a universal semantic garment manifold.",
+      "claim_status": "FORBIDDEN",
+      "slide_status": "LIMITATION",
+      "slides": [
+        "S10"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL16",
+      "claim": "CanonDressGS outperforms all hard lookup baselines.",
+      "claim_status": "FORBIDDEN",
+      "slide_status": "LIMITATION",
+      "slides": [
+        "S14"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL17",
+      "claim": "Automated mixed-reference control succeeds.",
+      "claim_status": "FORBIDDEN",
+      "slide_status": "NEGATIVE_DIAGNOSTIC",
+      "slides": [
+        "S09",
+        "A06"
+      ],
+      "evidence_required": true
+    },
+    {
+      "claim_id": "CL18",
+      "claim": "Teacher is an Upper Bound.",
+      "claim_status": "FORBIDDEN_TERMINOLOGY",
+      "slide_status": "LIMITATION",
+      "slides": [
+        "S07"
+      ],
+      "evidence_required": true
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "schema_version": "canondressgs.presentation.plan.v1",
+  "task_id": "CANONDRESSGS-GROUP-MEETING-PRESENTATION-PLAN-20260724",
+  "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+  "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37",
+  "target_branch": "research/group-meeting-presentation-plan-20260724",
+  "paper_final": 0,
+  "formula_count": 10,
+  "formulas": [
+    {
+      "formula_id": "F01",
+      "name": "Teacher Endpoint optimization",
+      "latex": "\\Delta G_g^*=\\arg\\min_{\\Delta G_g}\\sum_{v\\in\\mathcal V_g}\\mathcal L_{render}(R(G_0\\oplus\\Delta G_g;v),I_{g,v})",
+      "full_slides": [
+        "S07"
+      ],
+      "compact_slides": [
+        "C05"
+      ],
+      "must_explain": true,
+      "timing_seconds": 35,
+      "variables": {
+        "G_0": "frozen base canonical Gaussians",
+        "Delta G_g": "garment residual",
+        "V_g": "teacher optimization views",
+        "R": "frozen renderer"
+      },
+      "avoid": "Do not call the Teacher an Upper Bound."
+    },
+    {
+      "formula_id": "F02",
+      "name": "Residual endpoint",
+      "latex": "G_g=G_0\\oplus\\Delta G_g^*",
+      "full_slides": [
+        "S07"
+      ],
+      "compact_slides": [
+        "C05"
+      ],
+      "must_explain": true,
+      "timing_seconds": 15,
+      "variables": {
+        "G_g": "valid garment endpoint",
+        "oplus": "field-wise canonical residual composition"
+      },
+      "avoid": "Do not imply interpolation between endpoints."
+    },
+    {
+      "formula_id": "F03",
+      "name": "Global affine basis",
+      "latex": "\\Delta G_g\\approx\\mu+B c_g,\\quad \\mathrm{rank}(B)=4",
+      "full_slides": [
+        "S10"
+      ],
+      "compact_slides": [
+        "C07"
+      ],
+      "must_explain": true,
+      "timing_seconds": 30,
+      "variables": {
+        "mu": "mean of five Teacher residuals",
+        "B": "centered SVD basis",
+        "c_g": "endpoint coefficient"
+      },
+      "avoid": "Rank 4 is not strong compression for five centered samples."
+    },
+    {
+      "formula_id": "F04",
+      "name": "Reference coefficient prediction",
+      "latex": "\\hat c=f_\\theta(\\operatorname{Agg}(F_2(I_{ref},M_{ref})))",
+      "full_slides": [
+        "S11",
+        "S15"
+      ],
+      "compact_slides": [
+        "C04"
+      ],
+      "must_explain": true,
+      "timing_seconds": 25,
+      "variables": {
+        "F_2": "frozen reference feature extractor",
+        "Agg": "mean/max aggregation",
+        "f_theta": "LayerNorm plus Linear(4)",
+        "hat c": "raw coefficient"
+      },
+      "avoid": "Do not present raw coefficients as exact."
+    },
+    {
+      "formula_id": "F05",
+      "name": "Endpoint realization",
+      "latex": "g^*=\\arg\\min_g\\|\\hat c-c_g\\|_2,\\qquad c_{realized}=c_{g^*}",
+      "full_slides": [
+        "S11",
+        "S15"
+      ],
+      "compact_slides": [
+        "C04",
+        "C11"
+      ],
+      "must_explain": true,
+      "timing_seconds": 25,
+      "variables": {
+        "c_g": "registered endpoint coefficient",
+        "g_star": "selected garment endpoint",
+        "c_realized": "snapped coefficient used for rendering"
+      },
+      "avoid": "Do not conflate prediction with realization."
+    },
+    {
+      "formula_id": "F06",
+      "name": "Linear geometry interpolation",
+      "latex": "G_{geom}(\\alpha)=(1-\\alpha)G_{geom}^{a}+\\alpha G_{geom}^{b}",
+      "full_slides": [
+        "S03",
+        "S08"
+      ],
+      "compact_slides": [
+        "C02",
+        "C06"
+      ],
+      "must_explain": true,
+      "timing_seconds": 20,
+      "variables": {
+        "alpha": "mix coefficient",
+        "G_geom": "Gaussian geometry channels"
+      },
+      "avoid": "Do not describe the interpolated support as necessarily valid."
+    },
+    {
+      "formula_id": "F07",
+      "name": "Dual-Support effective opacity",
+      "latex": "\\tilde\\alpha_i^{(a)}=(1-w)\\alpha_i^{(a)},\\qquad \\tilde\\alpha_j^{(b)}=w\\alpha_j^{(b)}",
+      "full_slides": [
+        "S09"
+      ],
+      "compact_slides": [],
+      "must_explain": false,
+      "timing_seconds": 25,
+      "variables": {
+        "w": "oracle mixture weight",
+        "alpha": "endpoint opacity",
+        "tilde_alpha": "effective opacity"
+      },
+      "avoid": "Do not call w an automatically predicted successful controller output."
+    },
+    {
+      "formula_id": "F08",
+      "name": "Headroom coefficient optimization",
+      "latex": "c^*=\\arg\\min_c\\mathcal L_{render}(R(G_0\\oplus(\\mu+Bc)))",
+      "full_slides": [
+        "S17",
+        "S18"
+      ],
+      "compact_slides": [
+        "C12"
+      ],
+      "must_explain": true,
+      "timing_seconds": 25,
+      "variables": {
+        "c": "four optimized coefficients",
+        "B": "fixed rank-4 basis",
+        "R": "frozen renderer"
+      },
+      "avoid": "Do not imply this improved Teacher Endpoint."
+    },
+    {
+      "formula_id": "F09",
+      "name": "LOO basis",
+      "latex": "\\mu_{-g}=\\frac{1}{4}\\sum_{h\\ne g}\\Delta G_h,\\qquad B_{-g}=\\operatorname{SVD}_{\\le3}(\\{\\Delta G_h-\\mu_{-g}\\}_{h\\ne g})",
+      "full_slides": [
+        "S21"
+      ],
+      "compact_slides": [
+        "C14"
+      ],
+      "must_explain": true,
+      "timing_seconds": 35,
+      "variables": {
+        "g": "fully held-out garment",
+        "mu_-g": "four-garment mean",
+        "B_-g": "rank at most 3 basis"
+      },
+      "avoid": "No held-out residual may enter basis construction."
+    },
+    {
+      "formula_id": "F10",
+      "name": "LOO coefficient fitting",
+      "latex": "c_{-g}^*=\\arg\\min_c\\sum_{v\\in\\mathcal V_{few}}\\mathcal L_{render}(R(G_0\\oplus(\\mu_{-g}+B_{-g}c);v),I_{g,v})",
+      "full_slides": [
+        "S21"
+      ],
+      "compact_slides": [
+        "C14"
+      ],
+      "must_explain": true,
+      "timing_seconds": 35,
+      "variables": {
+        "V_few": "few-view adaptation set",
+        "c_-g": "held-out garment fitted coefficient"
+      },
+      "avoid": "Do not report a result before a sealed LOO attempt exists."
+    }
+  ]
+}

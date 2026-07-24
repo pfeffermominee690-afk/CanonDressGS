@@ -1,0 +1,127 @@
+{
+  "schema_version": "canondressgs.presentation.plan.v1",
+  "task_id": "CANONDRESSGS-GROUP-MEETING-PRESENTATION-PLAN-20260724",
+  "source_branch": "research/paper-figure-bank-headroom-refresh-20260724",
+  "source_head": "7e2d8efb3925880da4a9b8b85c0ebdce2437bd37",
+  "target_branch": "research/group-meeting-presentation-plan-20260724",
+  "paper_final": 0,
+  "missing_material_count": 8,
+  "loo_pending_material_count": 3,
+  "materials": [
+    {
+      "material_id": "MISS-01",
+      "title": "Final Figure 1 five-query selection",
+      "priority": "P0",
+      "affected_slides": [
+        "S01",
+        "S02",
+        "C01"
+      ],
+      "reason": "Candidate contact sheet exists but requires manual adjudication.",
+      "action": "Select five representative clean queries without changing scientific pixels.",
+      "blocking": false,
+      "dependency": "MANUAL_REVIEW"
+    },
+    {
+      "material_id": "MISS-02",
+      "title": "Final Figure 2 method freeze",
+      "priority": "P0",
+      "affected_slides": [
+        "S06",
+        "S11",
+        "S26",
+        "C04",
+        "C17"
+      ],
+      "reason": "Figure 2 is METHOD_FREEZE_PENDING_LOO.",
+      "action": "Freeze pipeline after LOO classification.",
+      "blocking": true,
+      "dependency": "SEALED_LOO"
+    },
+    {
+      "material_id": "MISS-03",
+      "title": "Sealed LOO result assets",
+      "priority": "P0",
+      "affected_slides": [
+        "S21",
+        "S22",
+        "S27",
+        "S28",
+        "C14",
+        "C17",
+        "C18"
+      ],
+      "reason": "LOO_ATTEMPT=ABSENT; files_read=0.",
+      "action": "Execute, seal, audit, and then refresh the placeholder.",
+      "blocking": true,
+      "dependency": "SEALED_LOO"
+    },
+    {
+      "material_id": "MISS-04",
+      "title": "Dedicated geometry causal visual",
+      "priority": "P1",
+      "affected_slides": [
+        "S08",
+        "C06"
+      ],
+      "reason": "The sealed JSON exists but the current Figure Bank has no dedicated causal summary panel.",
+      "action": "Use numeric callouts now; later manually build an editable chart from sealed values.",
+      "blocking": false,
+      "dependency": "MANUAL_CHART_FROM_SEALED_JSON"
+    },
+    {
+      "material_id": "MISS-05",
+      "title": "Final paper baseline table after LOO",
+      "priority": "P0",
+      "affected_slides": [
+        "S27",
+        "C17"
+      ],
+      "reason": "Current and historical protocols cannot be merged, and LOO is pending.",
+      "action": "Design the current-protocol table only after LOO.",
+      "blocking": true,
+      "dependency": "SEALED_LOO"
+    },
+    {
+      "material_id": "MISS-06",
+      "title": "Subject00 formal and garment endpoints",
+      "priority": "P1",
+      "affected_slides": [
+        "S25",
+        "C16",
+        "A10"
+      ],
+      "reason": "Only short/medium base-avatar evidence exists.",
+      "action": "Complete formal base and three-garment canary under their protocols.",
+      "blocking": false,
+      "dependency": "FUTURE_EXPERIMENT"
+    },
+    {
+      "material_id": "MISS-07",
+      "title": "AvatarReX template/LBS derived assets",
+      "priority": "P2",
+      "affected_slides": [
+        "S25",
+        "A10"
+      ],
+      "reason": "Preflight is ready but derived assets are missing and media export is restricted.",
+      "action": "Keep metadata-only until license-compliant derived assets exist.",
+      "blocking": false,
+      "dependency": "LICENSE_AND_DERIVED_ASSETS"
+    },
+    {
+      "material_id": "MISS-08",
+      "title": "Final captions and paper wording",
+      "priority": "P0",
+      "affected_slides": [
+        "S26",
+        "S27",
+        "S28"
+      ],
+      "reason": "PAPER_FINAL=0 and method scope depends on LOO.",
+      "action": "Rewrite only after the presentation outline is manually reviewed and LOO is sealed.",
+      "blocking": true,
+      "dependency": "MANUAL_REVIEW_AND_LOO"
+    }
+  ]
+}
