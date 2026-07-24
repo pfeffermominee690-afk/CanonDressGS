@@ -1,0 +1,146 @@
+{
+  "plot_count": 8,
+  "plots": [
+    {
+      "claim_status": "CLOSED_WARDROBE_DESCRIPTIVE_ONLY",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominator: n=60",
+      "not_applicable": {
+        "Base Avatar": "NO_ENDPOINT_PREDICTION"
+      },
+      "outputs": {
+        "pdf": "ae9d22f615b1669bc4609daec4b97bde0b6045458d0f6a06060c44e3c46995fc",
+        "png": "712953a71c0ce6f7286d3297b69b40cd5c547305c29f8ca3a5067328c0c97c43",
+        "source_json": "c0cfa6adf1437a00eef812039aa229062968a8bc32095235503a1df6f59918b4",
+        "svg": "11d469dce0f1fd72b2bb5540b61fe5eda083ea5725e00dfcc790de4b3c015ea9"
+      },
+      "plot_id": "clean_method_top1",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+      ]
+    },
+    {
+      "claim_status": "RAW_AND_REALIZED_SEMANTICS_SEPARATED",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominator: n=60",
+      "not_applicable": {
+        "Base Avatar": "NO_ENDPOINT_PREDICTION",
+        "Teacher Endpoint": "TARGET_ENDPOINT_NOT_A_PREDICTION_FIELD"
+      },
+      "outputs": {
+        "pdf": "2f4c33e27fbffbecaca59e4cb709af2408dfb01550817ed63555f55b26b4b1e1",
+        "png": "69b5fa947d9779104aad9b0d1da93ec1ce5447c008ee9bed72ce57d2c2b8fb0f",
+        "source_json": "a6daf0b7a1c1414cad025fc8c03eddb74705f07a5ab5e56d93485230d97ef656",
+        "svg": "f51ca5b02193e4795a16e453346337c43eae3ac2af1d928701baec6657e69ccc"
+      },
+      "plot_id": "endpoint_exact_match",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+      ]
+    },
+    {
+      "claim_status": "PERTURBATION_ROBUSTNESS_EVALUATED_DESCRIPTIVE_ONLY",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominators: clean_per_method=60, complete_dropout_per_method=20, registered_perturbation_per_cell=60",
+      "not_applicable": {
+        "complete_dropout": "SAFE_ABSTENTION_NO_ENDPOINT_PREDICTION"
+      },
+      "outputs": {
+        "pdf": "ff3e988e14a90e4f3dbfe559c7f8d509a2a642a11ce2a7908a3372a7384e27c1",
+        "png": "8a7cf832b43a316534acc3c729cca91a3e9008ed2a35120aacd12e63b6de39fb",
+        "source_json": "96a86b57063b424e46dc0fdb3d0a42a5b7ef1c86194a1ed8b892701bd007f311",
+        "svg": "fdba57c053f5c61f0314e0c4ad151d9bb39e3ecba0f5b6c8e957e2fb159c8c26"
+      },
+      "plot_id": "endpoint_flip_by_perturbation",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json",
+        "paper_protocol/reviewer_risk/pure_endpoint_perturbation_summary.json",
+        "04_predictions/complete_dropout_safety_audit.json"
+      ]
+    },
+    {
+      "claim_status": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominators: endpoint_agreement_per_comparison=60, parity_rows=20",
+      "not_applicable": {},
+      "outputs": {
+        "pdf": "9bad9ebb5eb26ed0a61b2bb0cd8c23ba99a6a2e66130364069b6ab3a08edb106",
+        "png": "adc43ff713ad6c9f3b59746760bd0a336693532824b66941dbe67ca6e3c07771",
+        "source_json": "2db28db05f70382b5ea5a05184e23caf74493216550caf58548c4bb33dbf45fe",
+        "svg": "48b6e95d744cca9d7d93b85c49196b0b0e7a11ee64a476148f252a7147c49e6b"
+      },
+      "plot_id": "hard_lookup_agreement_clean",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json",
+        "05_metrics/endpoint_parity.json"
+      ]
+    },
+    {
+      "claim_status": "DESCRIPTIVE_COUNTS_NO_SUPERIORITY_CLAIM",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominator: n=360",
+      "not_applicable": {},
+      "outputs": {
+        "pdf": "9f6c02c1bd0a94b17158d2a87f37f1d399e6a0ad787be13801742d1e8c143e61",
+        "png": "30d60d92ef5b6ab2c566739c420fe4d051fde65c7b6eefa2112695fde6381e76",
+        "source_json": "951fa78116255f020b2474d96a4b5fd3d974e64780e0226125572d0e162db0a8",
+        "svg": "00dc9dda941d3697cc3b2ced0db6942836beabdc15f7de23f002b5579878ce43"
+      },
+      "plot_id": "hard_lookup_error_overlap_perturbation",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json"
+      ]
+    },
+    {
+      "claim_status": "ENGINEERING_SAFETY_EVIDENCE_NOT_GENERALIZATION",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominators: dropout=80, visual_sheets=120",
+      "not_applicable": {},
+      "outputs": {
+        "pdf": "0f7d8cc99be2a39cee65d6e85eb4e91ed7e7b1cf7180da453c6c0447fdd848ff",
+        "png": "6aa0ef867923692eeb45729e65b62cef8fd0385aea7cfef5f39af42be6b8e7ff",
+        "source_json": "68c16ddcc2afc1e024cfacf89b7a9195fdfdc5d4fd9d861d464c691db2ab8aaf",
+        "svg": "8c884b38779cbbecdeb9db667936492f948a0dc522ad11d8d9926fef84fd211c"
+      },
+      "plot_id": "identity_and_safety_summary",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_visual_review_summary.json",
+        "04_predictions/complete_dropout_safety_audit.json"
+      ]
+    },
+    {
+      "claim_status": "RAW_PREDICTION_IS_NOT_EXACT_ENDPOINT_SUCCESS_USES_SNAPPING",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "denominator: n=60",
+      "not_applicable": {},
+      "outputs": {
+        "pdf": "7ab6638a1e75b6ed42697b3cc1784b61c3f41dac820dee8535734ba043e77b13",
+        "png": "b55ae0540582ebfb3c76418a3e4a22a7bc1c770d24fefaff60328239f80bb9c5",
+        "source_json": "a5c81efa2df353b273c22ef7e65585896b8f4e7b2a529b4df120c9d1615f9e59",
+        "svg": "260f0a61da07fbe8abb347a4d543e502123215b78f8c10594acf63ae2996400c"
+      },
+      "plot_id": "raw_vs_realized_coefficient_error",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+      ]
+    },
+    {
+      "claim_status": "SAME_ENDPOINT_RENDER_PARITY_NOT_IMAGE_QUALITY_SUPERIORITY",
+      "data_origin": "STRUCTURED_JSON_OR_REGISTRY_NOT_SCREENSHOT_TRANSCRIPTION",
+      "denominator_note": "registered counts: logical_renders=4620, render_cache_reuses=3160, unique_physical_renders=1460",
+      "not_applicable": {},
+      "outputs": {
+        "pdf": "2f57b5178fbbd438dc2d8e9b39e5f7cd87a1d0a7a7d6cc21986ce5096792cbe1",
+        "png": "e00818f5d7fa3df8d543eb0f75e5b5bab190b396e78a83d6eb952ba21956c539",
+        "source_json": "880008a19c44e2a7bdf1d78261f875a9b0bf129e7536c76483a5f30f52f7cc3a",
+        "svg": "d09edc1493591f155b7f7f04920ae2c0b6538f4a51d738d4c0a14bff07f2bbbf"
+      },
+      "plot_id": "render_equivalence_and_cache_summary",
+      "source_files": [
+        "05_metrics/endpoint_parity.json",
+        "06_renders/render_manifest.json"
+      ]
+    }
+  ],
+  "schema_version": "paper_figure_pure_endpoint_plot_registry.v1"
+}
