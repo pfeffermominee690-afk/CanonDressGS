@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from tools.paper import run_coefficient_headroom_experiment as runner
 
@@ -118,6 +120,22 @@ class CoefficientHeadroomExperimentTests(unittest.TestCase):
     def test_paper_final_remains_false(self) -> None:
         self.assertFalse(runner.success_contract()["paper_final"])
         self.assertEqual(runner.expected_counts()["paper_final_count"], 0)
+
+    def test_credential_scan_only_ignores_explicit_fake_fixture(self) -> None:
+        with TemporaryDirectory() as directory:
+            fixture = Path(directory) / "fixture.txt"
+            fixture.write_text(
+                "Authorization: " + "Bearer deliberately_fake_secret_value_123\n",
+                encoding="utf-8",
+            )
+            self.assertEqual(runner.credential_scan([fixture])["status"], "PASS")
+            fixture.write_text(
+                "Authorization: " + "Bearer plausible_nonfixture_value_123456\n",
+                encoding="utf-8",
+            )
+            scan = runner.credential_scan([fixture])
+            self.assertEqual(scan["status"], "FAIL")
+            self.assertEqual(scan["finding_count"], 1)
 
 
 if __name__ == "__main__":

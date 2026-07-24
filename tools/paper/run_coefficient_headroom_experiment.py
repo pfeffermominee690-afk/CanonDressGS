@@ -288,6 +288,7 @@ def credential_scan(paths: Sequence[Path]) -> dict[str, Any]:
         re.compile(r"(?i)OPENAI_API_KEY\s*=\s*['\"]?[A-Za-z0-9._-]{16,}"),
     )
     findings: list[dict[str, Any]] = []
+    ignored_explicit_fixtures: list[dict[str, Any]] = []
     for path in paths:
         if not path.is_file() or path.stat().st_size > 32 << 20:
             continue
@@ -295,9 +296,20 @@ def credential_scan(paths: Sequence[Path]) -> dict[str, Any]:
             text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
-        if any(pattern.search(text) for pattern in patterns):
-            findings.append({"path": str(path), "pattern_class": "credential_value"})
-    return {"status": "PASS" if not findings else "FAIL", "finding_count": len(findings), "findings": findings}
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            if not any(pattern.search(line) for pattern in patterns):
+                continue
+            row = {"path": str(path), "line": line_number, "pattern_class": "credential_value"}
+            if "deliberately_fake_secret_value" in line:
+                ignored_explicit_fixtures.append(row)
+            else:
+                findings.append(row)
+    return {
+        "status": "PASS" if not findings else "FAIL",
+        "finding_count": len(findings), "findings": findings,
+        "ignored_explicit_fixture_count": len(ignored_explicit_fixtures),
+        "ignored_explicit_fixtures": ignored_explicit_fixtures,
+    }
 
 
 def pure_endpoint_audit(root: Path) -> dict[str, Any]:
