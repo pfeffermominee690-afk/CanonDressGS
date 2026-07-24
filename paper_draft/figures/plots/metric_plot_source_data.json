@@ -1,0 +1,622 @@
+{
+  "plots": [
+    {
+      "claim_status": "HISTORICAL_TRANSDUCTIVE_ABLATION | REQUIRES_MANUAL_ADJUDICATION",
+      "kind": "bar",
+      "plot_id": "historical_ablation_edit_reduction",
+      "series": [
+        {
+          "label": "mean +/- seed SD",
+          "values": [
+            {
+              "seed_count": 3,
+              "x": 0,
+              "y": 0.8830091512316894,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 1,
+              "y": 0.3252064226860072,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 2,
+              "y": 0.5876154509242986,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 3,
+              "y": 0.49375146918578033,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 4,
+              "y": 0.11556362542102061,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 5,
+              "y": 0.8971080497354244,
+              "yerr": 0.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json"
+      ],
+      "title": "Historical representation/objective ablations",
+      "x_label": "Frozen historical condition",
+      "x_ticks": [
+        {
+          "label": "Ours",
+          "value": 0
+        },
+        {
+          "label": "A2 mask",
+          "value": 1
+        },
+        {
+          "label": "A3 mean",
+          "value": 2
+        },
+        {
+          "label": "A4 std",
+          "value": 3
+        },
+        {
+          "label": "A5 legacy",
+          "value": 4
+        },
+        {
+          "label": "A6 no pair",
+          "value": 5
+        }
+      ],
+      "y_label": "Edit reduction"
+    },
+    {
+      "claim_status": "HISTORICAL_TRANSDUCTIVE_ABLATION | READY_FROM_HISTORICAL_EVIDENCE",
+      "kind": "line",
+      "plot_id": "rank_1_4_edit_reduction",
+      "series": [
+        {
+          "label": "mean +/- seed SD",
+          "values": [
+            {
+              "seed_count": 3,
+              "x": 1,
+              "y": 0.394752871367579,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 2,
+              "y": 0.5008724868447544,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 3,
+              "y": 0.618006769831207,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 4,
+              "y": 0.8830091512316894,
+              "yerr": 0.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S0/seed_0/attempt_002/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json"
+      ],
+      "title": "Historical explicit-basis rank ablation",
+      "x_label": "Basis rank",
+      "x_ticks": [
+        {
+          "label": "1",
+          "value": 1
+        },
+        {
+          "label": "2",
+          "value": 2
+        },
+        {
+          "label": "3",
+          "value": 3
+        },
+        {
+          "label": "4",
+          "value": 4
+        }
+      ],
+      "y_label": "Edit reduction"
+    },
+    {
+      "claim_status": "HISTORICAL_TRANSDUCTIVE_ABLATION | READY_FROM_HISTORICAL_EVIDENCE",
+      "kind": "line",
+      "plot_id": "reference_count_1_3_edit_reduction",
+      "series": [
+        {
+          "label": "mean +/- seed SD",
+          "values": [
+            {
+              "seed_count": 3,
+              "x": 1,
+              "y": 0.8191104273619404,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 2,
+              "y": 0.8870278730632712,
+              "yerr": 0.0
+            },
+            {
+              "seed_count": 3,
+              "x": 3,
+              "y": 0.8830091512316894,
+              "yerr": 0.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json"
+      ],
+      "title": "Historical reference-count ablation",
+      "x_label": "Reference count",
+      "x_ticks": [
+        {
+          "label": "1",
+          "value": 1
+        },
+        {
+          "label": "2",
+          "value": 2
+        },
+        {
+          "label": "3",
+          "value": 3
+        }
+      ],
+      "y_label": "Edit reduction"
+    },
+    {
+      "claim_status": "SUPPLEMENTARY_EXTENSION_CANDIDATE | CLOSED_WARDROBE_ONLY",
+      "kind": "line",
+      "plot_id": "dual_support_all_pair_garment_lpips",
+      "series": [
+        {
+          "label": "Single-support FULL",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.07792368655403455
+            },
+            {
+              "x": 1,
+              "y": 0.08827160857617855
+            },
+            {
+              "x": 2,
+              "y": 0.08391186563918988
+            },
+            {
+              "x": 3,
+              "y": 0.07496453200777371
+            },
+            {
+              "x": 4,
+              "y": 0.09286337718367577
+            },
+            {
+              "x": 5,
+              "y": 0.08940080025543769
+            },
+            {
+              "x": 6,
+              "y": 0.08488063234835863
+            },
+            {
+              "x": 7,
+              "y": 0.08465420051167409
+            },
+            {
+              "x": 8,
+              "y": 0.09220103546977043
+            },
+            {
+              "x": 9,
+              "y": 0.08395688359936078
+            }
+          ]
+        },
+        {
+          "label": "Dual-Support",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.047908381869395576
+            },
+            {
+              "x": 1,
+              "y": 0.06144794604430596
+            },
+            {
+              "x": 2,
+              "y": 0.06320612272247672
+            },
+            {
+              "x": 3,
+              "y": 0.04171089564139644
+            },
+            {
+              "x": 4,
+              "y": 0.06331777603675921
+            },
+            {
+              "x": 5,
+              "y": 0.06595121867333849
+            },
+            {
+              "x": 6,
+              "y": 0.05283546851327022
+            },
+            {
+              "x": 7,
+              "y": 0.05222473223693669
+            },
+            {
+              "x": 8,
+              "y": 0.06516989491259058
+            },
+            {
+              "x": 9,
+              "y": 0.05607569466034571
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/DUAL-SUPPORT-ALL-PAIR-EVALUATION-001/attempt_001/aggregates/dual_support_all_pair_results.json"
+      ],
+      "title": "Dual-Support all-pair garment LPIPS",
+      "x_label": "Frozen garment pair",
+      "x_ticks": [
+        {
+          "label": "O01_O02",
+          "value": 0
+        },
+        {
+          "label": "O01_O03",
+          "value": 1
+        },
+        {
+          "label": "O01_O04",
+          "value": 2
+        },
+        {
+          "label": "O01_O08",
+          "value": 3
+        },
+        {
+          "label": "O02_O03",
+          "value": 4
+        },
+        {
+          "label": "O02_O04",
+          "value": 5
+        },
+        {
+          "label": "O02_O08",
+          "value": 6
+        },
+        {
+          "label": "O03_O04",
+          "value": 7
+        },
+        {
+          "label": "O03_O08",
+          "value": 8
+        },
+        {
+          "label": "O04_O08",
+          "value": 9
+        }
+      ],
+      "y_label": "Garment LPIPS (lower is better)"
+    },
+    {
+      "claim_status": "SUPPLEMENTARY_DIAGNOSTIC_ONLY",
+      "kind": "line",
+      "plot_id": "controller_v1_v2_pair_accuracy_trajectory",
+      "series": [
+        {
+          "label": "Matched V1",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.08333333333333333
+            },
+            {
+              "x": 30,
+              "y": 0.35312499999999997
+            },
+            {
+              "x": 60,
+              "y": 0.5052083333333334
+            },
+            {
+              "x": 90,
+              "y": 0.5666666666666667
+            },
+            {
+              "x": 120,
+              "y": 0.61875
+            },
+            {
+              "x": 150,
+              "y": 0.63125
+            }
+          ]
+        },
+        {
+          "label": "V2",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.08020833333333333
+            },
+            {
+              "x": 30,
+              "y": 0.24895833333333336
+            },
+            {
+              "x": 60,
+              "y": 0.29583333333333334
+            },
+            {
+              "x": 90,
+              "y": 0.3645833333333334
+            },
+            {
+              "x": 120,
+              "y": 0.5208333333333333
+            },
+            {
+              "x": 150,
+              "y": 0.6010416666666667
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSTIC-001/attempt_001/checkpoint_trajectory/controller_checkpoint_pair_trajectory.json"
+      ],
+      "title": "Controller checkpoint pair-identification trajectory",
+      "x_label": "Training step",
+      "y_label": "Mixed-only test pair accuracy"
+    },
+    {
+      "claim_status": "SUPPLEMENTARY_DIAGNOSTIC_ONLY | POST_FAILURE_OPTIMIZATION_DIAGNOSTIC",
+      "kind": "line",
+      "plot_id": "controller_budget_continuation_trajectory",
+      "series": [
+        {
+          "label": "Matched V1",
+          "values": [
+            {
+              "x": 150,
+              "y": 0.7583333333333332
+            },
+            {
+              "x": 300,
+              "y": 0.7291666666666666
+            },
+            {
+              "x": 450,
+              "y": 0.7402777777777777
+            },
+            {
+              "x": 600,
+              "y": 0.8625000000000002
+            }
+          ]
+        },
+        {
+          "label": "Full V2",
+          "values": [
+            {
+              "x": 150,
+              "y": 0.7180555555555556
+            },
+            {
+              "x": 300,
+              "y": 0.6055555555555557
+            },
+            {
+              "x": 450,
+              "y": 0.6027777777777777
+            },
+            {
+              "x": 600,
+              "y": 0.7125
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-GARMENT-HEAD-OPTIMIZATION-BUDGET-DIAGNOSTIC-001/attempt_001/aggregates/final_summary.json"
+      ],
+      "title": "Controller continuation-budget trajectory",
+      "x_label": "Training step",
+      "y_label": "Mixed-only pair accuracy"
+    },
+    {
+      "claim_status": "SUPPLEMENTARY_DIAGNOSTIC_ONLY | ALL_ROTATIONS_AND_SEEDS",
+      "kind": "line",
+      "plot_id": "controller_difficult_pair_recall_trajectory",
+      "series": [
+        {
+          "label": "O01_O03",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.3333333333333333,
+              "yerr": 0.49236596391733095
+            },
+            {
+              "x": 30,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 60,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 90,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 120,
+              "y": 0.052083333333333336,
+              "yerr": 0.06436608131805466
+            },
+            {
+              "x": 150,
+              "y": 0.16666666666666666,
+              "yerr": 0.11095317057482432
+            }
+          ]
+        },
+        {
+          "label": "O02_O03",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 30,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 60,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 90,
+              "y": 0.0,
+              "yerr": 0.0
+            },
+            {
+              "x": 120,
+              "y": 0.10416666666666667,
+              "yerr": 0.12873216263610932
+            },
+            {
+              "x": 150,
+              "y": 0.375,
+              "yerr": 0.1767766952966369
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-PAIR-IDENTIFICATION-DIAGNOSTIC-001/attempt_001/checkpoint_trajectory/controller_checkpoint_pair_trajectory.json"
+      ],
+      "title": "Controller V2 difficult-pair recall",
+      "x_label": "Training step",
+      "y_label": "Test pair recall"
+    },
+    {
+      "claim_status": "SUPPLEMENTARY_PORTABILITY_CANDIDATE | BASE_AVATAR_ONLY",
+      "kind": "line",
+      "plot_id": "subject00_step0_to_medium_lpips",
+      "series": [
+        {
+          "label": "All 96 fixed queries",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.13739452441222966
+            },
+            {
+              "x": 384,
+              "y": 0.1216457119056334
+            },
+            {
+              "x": 20249,
+              "y": 0.06328519639403869
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/evaluations/step_000000_results.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/evaluations/step_000384_results.json",
+        "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001/evaluations/step_020249_results.json"
+      ],
+      "title": "Subject00 base-avatar progression",
+      "x_label": "Training step",
+      "y_label": "Mean LPIPS (lower is better)"
+    }
+  ],
+  "prohibited_pending_result_plots": [
+    "PURE_ENDPOINT",
+    "COEFFICIENT_HEADROOM",
+    "LOO_ADAPTATION"
+  ],
+  "schema_version": "paper_metric_plot_source_data.v1"
+}
