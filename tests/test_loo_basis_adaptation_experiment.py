@@ -35,6 +35,42 @@ def test_protocol_audit_freezes_40_ready_k1_k2_tasks() -> None:
     assert runner.expected_counts()["unique_physical_renders"] == 54_840
 
 
+def test_f2_cache_preflight_fails_on_five_k_dependent_lookup_pairs(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path,
+) -> None:
+    class FakeMulti:
+        @staticmethod
+        def _feature_extractor(context: object) -> object:
+            return object()
+
+    divergent_groups = {
+        (outfit, rotation)
+        for outfit, rotation in [
+            ("O01", "R0"), ("O01", "R1"), ("O02", "R2"),
+            ("O04", "R0"), ("O08", "R3"),
+        ]
+    }
+
+    def fake_selection(task: dict[str, object], feature: object) -> dict[str, object]:
+        bank = task["basis_garments"]
+        selected = bank[0]
+        if int(task["K"]) == 2 and (task["held_out_garment"], task["rotation"]) in divergent_groups:
+            selected = bank[1]
+        return {
+            "selected_known_endpoint": selected,
+            "distances": {name: float(index) for index, name in enumerate(bank)},
+            "centroid_train_conditions": ["train_a", "train_b"],
+        }
+
+    monkeypatch.setattr(runner, "runtime_imports", lambda: {"multi": FakeMulti})
+    monkeypatch.setattr(runner, "_loo_centroid_selection", fake_selection)
+    result = runner.f2_cache_preflight(tmp_path, context={})
+    assert result["status"] == "FAIL"
+    assert result["K_shared_hard_lookup_pair_count"] == 15
+    assert result["actual_static_cache_hits"] == 115
+    assert result["expected_static_cache_hits"] == 120
+
+
 def test_five_loo_banks_exclude_held_out_and_rank_contract() -> None:
     splits = runner.split_rows()
     assert len(splits) == 5

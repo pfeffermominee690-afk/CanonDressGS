@@ -1009,6 +1009,48 @@ def _reference_feature(
     return value[0]
 
 
+def _loo_centroid_selection(
+    task: Mapping[str, Any],
+    feature: Any,
+) -> dict[str, Any]:
+    paired_k2 = next(
+        row for row in tasks()
+        if row["held_out_garment"] == task["held_out_garment"]
+        and row["rotation"] == task["rotation"]
+        and int(row["K"]) == 2
+    )
+    train_conditions = paired_k2["selected_adaptation_conditions"]
+    raw_centroids = {
+        outfit: torch.stack([feature(outfit, [condition]) for condition in train_conditions]).mean(0)
+        for outfit in task["basis_garments"]
+    }
+    matrix = torch.stack([raw_centroids[outfit] for outfit in task["basis_garments"]])
+    mean = matrix.mean(0)
+    scale = matrix.std(0, unbiased=False)
+    scale = torch.where(scale > 1e-12, scale, torch.ones_like(scale))
+    centroids = {
+        outfit: (raw_centroids[outfit] - mean) / scale
+        for outfit in task["basis_garments"]
+    }
+    query = feature(task["held_out_garment"], task["selected_adaptation_conditions"])
+    standardized_query = (query - mean) / scale
+    distances = {
+        outfit: float(torch.square(centroids[outfit] - standardized_query).sum())
+        for outfit in task["basis_garments"]
+    }
+    selected = min(distances, key=lambda name: (distances[name], name))
+    return {
+        "centroid_train_conditions": list(train_conditions),
+        "raw_centroids": raw_centroids,
+        "centroids": centroids,
+        "feature_mean": mean,
+        "feature_scale": scale,
+        "query": query,
+        "distances": distances,
+        "selected_known_endpoint": selected,
+    }
+
+
 def f2_cache_preflight(
     root: Path, context: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -1025,22 +1067,14 @@ def f2_cache_preflight(
 
     rows = []
     for task in tasks():
-        conditions = task["selected_adaptation_conditions"]
-        known = {outfit: feature(outfit, conditions) for outfit in task["basis_garments"]}
-        query = feature(task["held_out_garment"], conditions)
-        matrix = torch.stack(list(known.values()))
-        mean = matrix.mean(0)
-        std = matrix.std(0, unbiased=False).clamp_min(1e-8)
-        standardized_query = (query - mean) / std
-        distances = {
-            outfit: float(torch.square((value - mean) / std - standardized_query).sum())
-            for outfit, value in known.items()
-        }
-        selected = min(distances, key=lambda name: (distances[name], name))
+        selection = _loo_centroid_selection(task, feature)
+        selected = selection["selected_known_endpoint"]
         rows.append({
             "task_id": task["task_id"], "held_out_garment": task["held_out_garment"],
             "rotation": task["rotation"], "K": int(task["K"]),
-            "selected_known_endpoint": selected, "selected_squared_distance": distances[selected],
+            "selected_known_endpoint": selected,
+            "selected_squared_distance": selection["distances"][selected],
+            "centroid_train_conditions": selection["centroid_train_conditions"],
             "bank": list(task["basis_garments"]), "held_out_teacher_used": False,
         })
     pairs = []
@@ -1059,13 +1093,18 @@ def f2_cache_preflight(
                 "same_endpoint": k1["selected_known_endpoint"] == k2["selected_known_endpoint"],
             })
     matching = sum(row["same_endpoint"] for row in pairs)
+    expected_cache_hits = int(expected_counts()["K_shared_static_cache_hits"])
+    actual_cache_hits = 100 + matching
     return {
         "schema_version": "canondressgs.paper.loo_f2_cache_preflight.v1",
-        "task_id": TASK_ID, "status": "PASS" if matching == 20 else "FAIL",
+        "task_id": TASK_ID,
+        "status": "PASS" if matching == 20 and actual_cache_hits == expected_cache_hits else "FAIL",
         "task_count": len(rows), "paired_group_count": len(pairs),
         "K_shared_hard_lookup_pair_count": matching,
         "expected_K_shared_hard_lookup_pair_count": 20,
-        "expected_static_cache_hits": 100 + matching,
+        "actual_static_cache_hits": actual_cache_hits,
+        "expected_static_cache_hits": expected_cache_hits,
+        "centroid_definition": "mean of per-condition frozen-F2 singleton features over the rotation train folds",
         "feature_forward_cache_entries": len(feature_cache),
         "rows": rows, "pairs": pairs,
     }
@@ -1079,35 +1118,37 @@ def build_lookup_registry(root: Path) -> dict[str, Any]:
         return read_json(destination)
     context = runtime_context(attempt)
     extractor = runtime_imports()["multi"]._feature_extractor(context)
+    feature_cache: dict[tuple[str, tuple[str, ...]], "torch.Tensor"] = {}
+
+    def feature(outfit: str, conditions: Sequence[str]) -> "torch.Tensor":
+        key = (outfit, tuple(conditions))
+        if key not in feature_cache:
+            feature_cache[key] = _reference_feature(extractor, context, outfit, conditions)
+        return feature_cache[key]
+
     rows = []
     for task in tasks():
         held_out = task["held_out_garment"]
-        conditions = task["selected_adaptation_conditions"]
         basis, coefficients, payload = load_loo_basis(attempt, held_out, context["base"]._xyz.device)
-        known_features = {
-            outfit: _reference_feature(extractor, context, outfit, conditions)
-            for outfit in task["basis_garments"]
-        }
-        query = _reference_feature(extractor, context, held_out, conditions)
-        matrix = torch.stack([known_features[outfit] for outfit in task["basis_garments"]])
-        mean = matrix.mean(0)
-        std = matrix.std(0, unbiased=False).clamp_min(1e-8)
-        standardized_query = (query - mean) / std
-        distances = {
-            outfit: float(torch.square((feature - mean) / std - standardized_query).sum())
-            for outfit, feature in known_features.items()
-        }
-        selected = min(distances, key=lambda name: (distances[name], name))
+        selection = _loo_centroid_selection(task, feature)
+        selected = selection["selected_known_endpoint"]
         row = {
             "task_id": task["task_id"], "held_out_garment": held_out,
             "rotation": task["rotation"], "K": int(task["K"]),
-            "adaptation_conditions": conditions,
+            "adaptation_conditions": task["selected_adaptation_conditions"],
+            "centroid_train_conditions": selection["centroid_train_conditions"],
             "hard_lookup_bank": list(task["basis_garments"]),
             "selected_known_endpoint": selected,
-            "squared_distances": distances,
-            "query_feature_sha256": tensor_sha(query),
-            "known_feature_sha256": {name: tensor_sha(value) for name, value in known_features.items()},
-            "feature_mean_sha256": tensor_sha(mean), "feature_std_sha256": tensor_sha(std),
+            "squared_distances": selection["distances"],
+            "query_feature_sha256": tensor_sha(selection["query"]),
+            "raw_centroid_sha256": {
+                name: tensor_sha(value) for name, value in selection["raw_centroids"].items()
+            },
+            "standardized_centroid_sha256": {
+                name: tensor_sha(value) for name, value in selection["centroids"].items()
+            },
+            "feature_mean_sha256": tensor_sha(selection["feature_mean"]),
+            "feature_scale_sha256": tensor_sha(selection["feature_scale"]),
             "selected_coefficient": coefficients[selected].detach().cpu().tolist(),
             "basis_artifact_sha256": sha256(attempt / f"02_basis_construction/{held_out}/loo_basis.pt"),
             "normalization_sha256": sha256(attempt / f"02_basis_construction/{held_out}/coefficient_normalization.json"),
@@ -1133,14 +1174,23 @@ def build_lookup_registry(root: Path) -> dict[str, Any]:
                 "K2_selected_known_endpoint": k2["selected_known_endpoint"],
                 "same_endpoint": k1["selected_known_endpoint"] == k2["selected_known_endpoint"],
             })
-    cache_contract_pass = len(pairs) == 20 and all(row["same_endpoint"] for row in pairs)
+    matching = sum(row["same_endpoint"] for row in pairs)
+    expected_cache_hits = int(expected_counts()["K_shared_static_cache_hits"])
+    actual_cache_hits = 100 + matching
+    cache_contract_pass = (
+        len(pairs) == 20 and matching == 20 and actual_cache_hits == expected_cache_hits
+    )
     result = {
         "schema_version": "canondressgs.paper.loo_hard_lookup_registry.v1",
         "task_id": TASK_ID, "status": "PASS" if len(rows) == 40 and cache_contract_pass else "FAIL",
         "row_count": len(rows), "rows": rows,
         "K_shared_cache_contract": {
             "status": "PASS" if cache_contract_pass else "FAIL",
-            "expected_pair_count": 20, "actual_pair_count": len(pairs), "pairs": pairs,
+            "expected_pair_count": 20, "actual_pair_count": len(pairs),
+            "matching_endpoint_pair_count": matching,
+            "expected_static_cache_hits": expected_cache_hits,
+            "actual_static_cache_hits": actual_cache_hits,
+            "pairs": pairs,
         },
         "held_out_teacher_use_in_deployable_adaptation": 0,
     }
