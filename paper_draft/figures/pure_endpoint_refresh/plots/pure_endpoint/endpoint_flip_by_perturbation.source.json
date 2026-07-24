@@ -1,0 +1,165 @@
+{
+  "claim_status": "PERTURBATION_ROBUSTNESS_EVALUATED_DESCRIPTIVE_ONLY",
+  "denominators": {
+    "clean_per_method": 60,
+    "complete_dropout_per_method": 20,
+    "registered_perturbation_per_cell": 60
+  },
+  "kind": "bar",
+  "not_applicable": {
+    "complete_dropout": "SAFE_ABSTENTION_NO_ENDPOINT_PREDICTION"
+  },
+  "plot_id": "endpoint_flip_by_perturbation",
+  "series": [
+    {
+      "label": "CanonDressGS-Endpoint",
+      "values": [
+        {
+          "x": 0,
+          "y": 0.0
+        },
+        {
+          "x": 1,
+          "y": 0.0
+        },
+        {
+          "x": 2,
+          "y": 0.0
+        },
+        {
+          "x": 3,
+          "y": 0.0
+        },
+        {
+          "x": 4,
+          "y": 0.65
+        },
+        {
+          "x": 5,
+          "y": 0.0
+        },
+        {
+          "x": 6,
+          "y": 0.05
+        }
+      ]
+    },
+    {
+      "label": "Reference Classifier Lookup",
+      "values": [
+        {
+          "x": 0,
+          "y": 0.0
+        },
+        {
+          "x": 1,
+          "y": 0.0
+        },
+        {
+          "x": 2,
+          "y": 0.0
+        },
+        {
+          "x": 3,
+          "y": 0.0
+        },
+        {
+          "x": 4,
+          "y": 0.48333333333333334
+        },
+        {
+          "x": 5,
+          "y": 0.0
+        },
+        {
+          "x": 6,
+          "y": 0.0
+        }
+      ]
+    },
+    {
+      "label": "Nearest-Centroid Lookup",
+      "values": [
+        {
+          "x": 0,
+          "y": 0.0
+        },
+        {
+          "x": 1,
+          "y": 0.0
+        },
+        {
+          "x": 2,
+          "y": 0.0
+        },
+        {
+          "x": 3,
+          "y": 0.0
+        },
+        {
+          "x": 4,
+          "y": 0.7
+        },
+        {
+          "x": 5,
+          "y": 0.0
+        },
+        {
+          "x": 6,
+          "y": 0.1
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json",
+    "paper_protocol/reviewer_risk/pure_endpoint_perturbation_summary.json",
+    "04_predictions/complete_dropout_safety_audit.json"
+  ],
+  "source_json_pointers": [
+    "/identification_unique_query/*/endpoint_exact_match",
+    "/methods/*/*/endpoint_flip_rate",
+    "/records"
+  ],
+  "title": "Endpoint flip by registered input condition",
+  "x_label": "Perturbation",
+  "x_ticks": [
+    {
+      "label": "clean",
+      "value": 0
+    },
+    {
+      "label": "assignment_permutation",
+      "value": 1
+    },
+    {
+      "label": "mask_dilation",
+      "value": 2
+    },
+    {
+      "label": "mask_erosion",
+      "value": 3
+    },
+    {
+      "label": "mild_blur",
+      "value": 4
+    },
+    {
+      "label": "reference_dropout",
+      "value": 5
+    },
+    {
+      "label": "single_reference",
+      "value": 6
+    },
+    {
+      "label": "complete_dropout",
+      "value": 7
+    }
+  ],
+  "y_label": "Flip rate",
+  "y_limits": [
+    0.0,
+    1.0
+  ]
+}

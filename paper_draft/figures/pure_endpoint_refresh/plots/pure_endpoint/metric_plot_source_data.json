@@ -1,0 +1,696 @@
+{
+  "execution_head": "195fb887f2cac8a72920b499c44bb66700a97e25",
+  "plots": [
+    {
+      "claim_status": "CLOSED_WARDROBE_DESCRIPTIVE_ONLY",
+      "denominator": 60,
+      "kind": "bar",
+      "not_applicable": {
+        "Base Avatar": "NO_ENDPOINT_PREDICTION"
+      },
+      "plot_id": "clean_method_top1",
+      "series": [
+        {
+          "label": "Top-1",
+          "values": [
+            {
+              "x": 1,
+              "y": 1.0
+            },
+            {
+              "x": 2,
+              "y": 1.0
+            },
+            {
+              "x": 3,
+              "y": 1.0
+            },
+            {
+              "x": 4,
+              "y": 1.0
+            },
+            {
+              "x": 5,
+              "y": 1.0
+            },
+            {
+              "x": 6,
+              "y": 1.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+      ],
+      "source_json_pointers": [
+        "/identification_unique_query/*/top1"
+      ],
+      "title": "Clean endpoint top-1 (n=60 per evaluated method)",
+      "x_label": "Method",
+      "x_ticks": [
+        {
+          "label": "Base Avatar",
+          "value": 0
+        },
+        {
+          "label": "Teacher Endpoint",
+          "value": 1
+        },
+        {
+          "label": "Outfit-ID Oracle",
+          "value": 2
+        },
+        {
+          "label": "Reference Classifier Lookup",
+          "value": 3
+        },
+        {
+          "label": "Nearest-Centroid Lookup",
+          "value": 4
+        },
+        {
+          "label": "Linear Coefficient Predictor",
+          "value": 5
+        },
+        {
+          "label": "CanonDressGS-Endpoint",
+          "value": 6
+        }
+      ],
+      "y_label": "Top-1",
+      "y_limits": [
+        0.0,
+        1.05
+      ]
+    },
+    {
+      "claim_status": "RAW_AND_REALIZED_SEMANTICS_SEPARATED",
+      "denominator": 60,
+      "kind": "bar",
+      "not_applicable": {
+        "Base Avatar": "NO_ENDPOINT_PREDICTION",
+        "Teacher Endpoint": "TARGET_ENDPOINT_NOT_A_PREDICTION_FIELD"
+      },
+      "plot_id": "endpoint_exact_match",
+      "series": [
+        {
+          "label": "Exact match",
+          "values": [
+            {
+              "x": 1,
+              "y": 0.0
+            },
+            {
+              "x": 2,
+              "y": 1.0
+            },
+            {
+              "x": 3,
+              "y": 1.0
+            },
+            {
+              "x": 4,
+              "y": 1.0
+            },
+            {
+              "x": 5,
+              "y": 0.0
+            },
+            {
+              "x": 6,
+              "y": 1.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+      ],
+      "source_json_pointers": [
+        "/identification_unique_query/*/endpoint_exact_match"
+      ],
+      "title": "Endpoint exact match (n=60)",
+      "x_label": "Method",
+      "x_ticks": [
+        {
+          "label": "Base Avatar",
+          "value": 0
+        },
+        {
+          "label": "Teacher Endpoint",
+          "value": 1
+        },
+        {
+          "label": "Outfit-ID Oracle",
+          "value": 2
+        },
+        {
+          "label": "Reference Classifier Lookup",
+          "value": 3
+        },
+        {
+          "label": "Nearest-Centroid Lookup",
+          "value": 4
+        },
+        {
+          "label": "Linear Coefficient Predictor",
+          "value": 5
+        },
+        {
+          "label": "CanonDressGS-Endpoint",
+          "value": 6
+        }
+      ],
+      "y_label": "Exact match",
+      "y_limits": [
+        0.0,
+        1.05
+      ]
+    },
+    {
+      "claim_status": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY",
+      "denominators": {
+        "endpoint_agreement_per_comparison": 60,
+        "parity_rows": 20
+      },
+      "kind": "bar",
+      "plot_id": "hard_lookup_agreement_clean",
+      "series": [
+        {
+          "label": "Agreement",
+          "values": [
+            {
+              "x": 0,
+              "y": 1.0
+            },
+            {
+              "x": 1,
+              "y": 1.0
+            },
+            {
+              "x": 2,
+              "y": 1.0
+            },
+            {
+              "x": 3,
+              "y": 1.0
+            },
+            {
+              "x": 4,
+              "y": 1.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json",
+        "05_metrics/endpoint_parity.json"
+      ],
+      "source_json_pointers": [
+        "/reference_classifier/clean",
+        "/nearest_centroid/clean",
+        "/outfit_id_oracle/clean",
+        "/rows"
+      ],
+      "title": "Clean functional equivalence",
+      "x_label": "Registered equivalence check",
+      "x_ticks": [
+        {
+          "label": "Reference classifier",
+          "value": 0
+        },
+        {
+          "label": "Nearest centroid",
+          "value": 1
+        },
+        {
+          "label": "Outfit-ID oracle",
+          "value": 2
+        },
+        {
+          "label": "Renderer input exact",
+          "value": 3
+        },
+        {
+          "label": "Physical render parity",
+          "value": 4
+        }
+      ],
+      "y_label": "Exact fraction",
+      "y_limits": [
+        0.0,
+        1.05
+      ]
+    },
+    {
+      "claim_status": "DESCRIPTIVE_COUNTS_NO_SUPERIORITY_CLAIM",
+      "denominator": 360,
+      "kind": "bar",
+      "plot_id": "hard_lookup_error_overlap_perturbation",
+      "series": [
+        {
+          "label": "both correct",
+          "values": [
+            {
+              "x": 0,
+              "y": 318
+            },
+            {
+              "x": 1,
+              "y": 312
+            },
+            {
+              "x": 2,
+              "y": 318
+            }
+          ]
+        },
+        {
+          "label": "canon only correct",
+          "values": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1,
+              "y": 6
+            },
+            {
+              "x": 2,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "label": "other only correct",
+          "values": [
+            {
+              "x": 0,
+              "y": 13
+            },
+            {
+              "x": 1,
+              "y": 0
+            },
+            {
+              "x": 2,
+              "y": 42
+            }
+          ]
+        },
+        {
+          "label": "both wrong",
+          "values": [
+            {
+              "x": 0,
+              "y": 29
+            },
+            {
+              "x": 1,
+              "y": 42
+            },
+            {
+              "x": 2,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json"
+      ],
+      "source_json_pointers": [
+        "/reference_classifier/perturbation",
+        "/nearest_centroid/perturbation",
+        "/outfit_id_oracle/perturbation"
+      ],
+      "title": "Perturbation outcome overlap (n=360 per comparison)",
+      "x_label": "Comparison",
+      "x_ticks": [
+        {
+          "label": "Reference classifier",
+          "value": 0
+        },
+        {
+          "label": "Nearest centroid",
+          "value": 1
+        },
+        {
+          "label": "Outfit-ID oracle",
+          "value": 2
+        }
+      ],
+      "y_label": "Count"
+    },
+    {
+      "claim_status": "PERTURBATION_ROBUSTNESS_EVALUATED_DESCRIPTIVE_ONLY",
+      "denominators": {
+        "clean_per_method": 60,
+        "complete_dropout_per_method": 20,
+        "registered_perturbation_per_cell": 60
+      },
+      "kind": "bar",
+      "not_applicable": {
+        "complete_dropout": "SAFE_ABSTENTION_NO_ENDPOINT_PREDICTION"
+      },
+      "plot_id": "endpoint_flip_by_perturbation",
+      "series": [
+        {
+          "label": "CanonDressGS-Endpoint",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.0
+            },
+            {
+              "x": 1,
+              "y": 0.0
+            },
+            {
+              "x": 2,
+              "y": 0.0
+            },
+            {
+              "x": 3,
+              "y": 0.0
+            },
+            {
+              "x": 4,
+              "y": 0.65
+            },
+            {
+              "x": 5,
+              "y": 0.0
+            },
+            {
+              "x": 6,
+              "y": 0.05
+            }
+          ]
+        },
+        {
+          "label": "Reference Classifier Lookup",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.0
+            },
+            {
+              "x": 1,
+              "y": 0.0
+            },
+            {
+              "x": 2,
+              "y": 0.0
+            },
+            {
+              "x": 3,
+              "y": 0.0
+            },
+            {
+              "x": 4,
+              "y": 0.48333333333333334
+            },
+            {
+              "x": 5,
+              "y": 0.0
+            },
+            {
+              "x": 6,
+              "y": 0.0
+            }
+          ]
+        },
+        {
+          "label": "Nearest-Centroid Lookup",
+          "values": [
+            {
+              "x": 0,
+              "y": 0.0
+            },
+            {
+              "x": 1,
+              "y": 0.0
+            },
+            {
+              "x": 2,
+              "y": 0.0
+            },
+            {
+              "x": 3,
+              "y": 0.0
+            },
+            {
+              "x": 4,
+              "y": 0.7
+            },
+            {
+              "x": 5,
+              "y": 0.0
+            },
+            {
+              "x": 6,
+              "y": 0.1
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json",
+        "paper_protocol/reviewer_risk/pure_endpoint_perturbation_summary.json",
+        "04_predictions/complete_dropout_safety_audit.json"
+      ],
+      "source_json_pointers": [
+        "/identification_unique_query/*/endpoint_exact_match",
+        "/methods/*/*/endpoint_flip_rate",
+        "/records"
+      ],
+      "title": "Endpoint flip by registered input condition",
+      "x_label": "Perturbation",
+      "x_ticks": [
+        {
+          "label": "clean",
+          "value": 0
+        },
+        {
+          "label": "assignment_permutation",
+          "value": 1
+        },
+        {
+          "label": "mask_dilation",
+          "value": 2
+        },
+        {
+          "label": "mask_erosion",
+          "value": 3
+        },
+        {
+          "label": "mild_blur",
+          "value": 4
+        },
+        {
+          "label": "reference_dropout",
+          "value": 5
+        },
+        {
+          "label": "single_reference",
+          "value": 6
+        },
+        {
+          "label": "complete_dropout",
+          "value": 7
+        }
+      ],
+      "y_label": "Flip rate",
+      "y_limits": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "claim_status": "RAW_PREDICTION_IS_NOT_EXACT_ENDPOINT_SUCCESS_USES_SNAPPING",
+      "denominator": 60,
+      "endpoint_exact_match": {
+        "Canon endpoint snap": 1.0,
+        "Linear continuous": 0.0
+      },
+      "kind": "bar",
+      "plot_id": "raw_vs_realized_coefficient_error",
+      "series": [
+        {
+          "label": "RAW_COEFFICIENT_ERROR",
+          "values": [
+            {
+              "x": 0,
+              "y": 71.44514598846436
+            },
+            {
+              "x": 1,
+              "y": 71.44514598846436
+            }
+          ]
+        },
+        {
+          "label": "REALIZED_ENDPOINT_ERROR",
+          "values": [
+            {
+              "x": 0,
+              "y": 71.44514598846436
+            },
+            {
+              "x": 1,
+              "y": 0.0
+            }
+          ]
+        }
+      ],
+      "shared_predictor_family_source": "Linear Coefficient Predictor sealed raw prediction",
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+      ],
+      "source_json_pointers": [
+        "/identification_unique_query/Linear Coefficient Predictor/coefficient_mae",
+        "/identification_unique_query/CanonDressGS-Endpoint/coefficient_mae"
+      ],
+      "title": "Shared raw predictor vs realized coefficient error (n=60)",
+      "x_label": "Realization",
+      "x_ticks": [
+        {
+          "label": "Linear continuous\nendpoint exact=0",
+          "value": 0
+        },
+        {
+          "label": "Canon endpoint snap\nendpoint exact=1",
+          "value": 1
+        }
+      ],
+      "y_label": "Coefficient MAE"
+    },
+    {
+      "claim_status": "ENGINEERING_SAFETY_EVIDENCE_NOT_GENERALIZATION",
+      "denominators": {
+        "dropout": 80,
+        "visual_sheets": 120
+      },
+      "kind": "bar",
+      "plot_id": "identity_and_safety_summary",
+      "series": [
+        {
+          "label": "Observed",
+          "values": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1,
+              "y": 0
+            },
+            {
+              "x": 2,
+              "y": 0
+            },
+            {
+              "x": 3,
+              "y": 1.0
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "paper_protocol/reviewer_risk/pure_endpoint_visual_review_summary.json",
+        "04_predictions/complete_dropout_safety_audit.json"
+      ],
+      "source_json_pointers": [
+        "/identity_contamination_count",
+        "/component_contamination_count",
+        "/records"
+      ],
+      "title": "Identity and registered safety checks",
+      "x_label": "Check",
+      "x_ticks": [
+        {
+          "label": "Identity contamination",
+          "value": 0
+        },
+        {
+          "label": "Component contamination",
+          "value": 1
+        },
+        {
+          "label": "Severe wrong outfit",
+          "value": 2
+        },
+        {
+          "label": "Dropout abstention",
+          "value": 3
+        }
+      ],
+      "y_label": "Count or registered rate"
+    },
+    {
+      "claim_status": "SAME_ENDPOINT_RENDER_PARITY_NOT_IMAGE_QUALITY_SUPERIORITY",
+      "counts": {
+        "logical_renders": 4620,
+        "render_cache_reuses": 3160,
+        "unique_physical_renders": 1460
+      },
+      "kind": "bar",
+      "plot_id": "render_equivalence_and_cache_summary",
+      "series": [
+        {
+          "label": "Fraction",
+          "values": [
+            {
+              "x": 0,
+              "y": 1.0
+            },
+            {
+              "x": 1,
+              "y": 1.0
+            },
+            {
+              "x": 2,
+              "y": 0.683982683982684
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        "05_metrics/endpoint_parity.json",
+        "06_renders/render_manifest.json"
+      ],
+      "source_json_pointers": [
+        "/rows",
+        "/logical_renders",
+        "/render_cache_reuses"
+      ],
+      "title": "Renderer equivalence and cache audit",
+      "x_label": "Audit item",
+      "x_ticks": [
+        {
+          "label": "Renderer input exact",
+          "value": 0
+        },
+        {
+          "label": "Physical render parity",
+          "value": 1
+        },
+        {
+          "label": "Logical cache reuse",
+          "value": 2
+        }
+      ],
+      "y_label": "Fraction",
+      "y_limits": [
+        0.0,
+        1.05
+      ]
+    }
+  ],
+  "schema_version": "paper_figure_pure_endpoint_plot_source.v1",
+  "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+  "task_id": "AAAI27-PAPER-FIGURE-BANK-PURE-ENDPOINT-REFRESH-001"
+}

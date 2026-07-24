@@ -1,0 +1,59 @@
+{
+  "claim_status": "SAME_ENDPOINT_RENDER_PARITY_NOT_IMAGE_QUALITY_SUPERIORITY",
+  "counts": {
+    "logical_renders": 4620,
+    "render_cache_reuses": 3160,
+    "unique_physical_renders": 1460
+  },
+  "kind": "bar",
+  "plot_id": "render_equivalence_and_cache_summary",
+  "series": [
+    {
+      "label": "Fraction",
+      "values": [
+        {
+          "x": 0,
+          "y": 1.0
+        },
+        {
+          "x": 1,
+          "y": 1.0
+        },
+        {
+          "x": 2,
+          "y": 0.683982683982684
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    "05_metrics/endpoint_parity.json",
+    "06_renders/render_manifest.json"
+  ],
+  "source_json_pointers": [
+    "/rows",
+    "/logical_renders",
+    "/render_cache_reuses"
+  ],
+  "title": "Renderer equivalence and cache audit",
+  "x_label": "Audit item",
+  "x_ticks": [
+    {
+      "label": "Renderer input exact",
+      "value": 0
+    },
+    {
+      "label": "Physical render parity",
+      "value": 1
+    },
+    {
+      "label": "Logical cache reuse",
+      "value": 2
+    }
+  ],
+  "y_label": "Fraction",
+  "y_limits": [
+    0.0,
+    1.05
+  ]
+}

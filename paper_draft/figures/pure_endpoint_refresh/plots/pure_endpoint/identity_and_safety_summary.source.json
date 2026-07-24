@@ -1,0 +1,62 @@
+{
+  "claim_status": "ENGINEERING_SAFETY_EVIDENCE_NOT_GENERALIZATION",
+  "denominators": {
+    "dropout": 80,
+    "visual_sheets": 120
+  },
+  "kind": "bar",
+  "plot_id": "identity_and_safety_summary",
+  "series": [
+    {
+      "label": "Observed",
+      "values": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 1,
+          "y": 0
+        },
+        {
+          "x": 2,
+          "y": 0
+        },
+        {
+          "x": 3,
+          "y": 1.0
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    "paper_protocol/reviewer_risk/pure_endpoint_visual_review_summary.json",
+    "04_predictions/complete_dropout_safety_audit.json"
+  ],
+  "source_json_pointers": [
+    "/identity_contamination_count",
+    "/component_contamination_count",
+    "/records"
+  ],
+  "title": "Identity and registered safety checks",
+  "x_label": "Check",
+  "x_ticks": [
+    {
+      "label": "Identity contamination",
+      "value": 0
+    },
+    {
+      "label": "Component contamination",
+      "value": 1
+    },
+    {
+      "label": "Severe wrong outfit",
+      "value": 2
+    },
+    {
+      "label": "Dropout abstention",
+      "value": 3
+    }
+  ],
+  "y_label": "Count or registered rate"
+}

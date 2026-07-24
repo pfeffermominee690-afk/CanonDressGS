@@ -1,0 +1,59 @@
+{
+  "claim_status": "RAW_PREDICTION_IS_NOT_EXACT_ENDPOINT_SUCCESS_USES_SNAPPING",
+  "denominator": 60,
+  "endpoint_exact_match": {
+    "Canon endpoint snap": 1.0,
+    "Linear continuous": 0.0
+  },
+  "kind": "bar",
+  "plot_id": "raw_vs_realized_coefficient_error",
+  "series": [
+    {
+      "label": "RAW_COEFFICIENT_ERROR",
+      "values": [
+        {
+          "x": 0,
+          "y": 71.44514598846436
+        },
+        {
+          "x": 1,
+          "y": 71.44514598846436
+        }
+      ]
+    },
+    {
+      "label": "REALIZED_ENDPOINT_ERROR",
+      "values": [
+        {
+          "x": 0,
+          "y": 71.44514598846436
+        },
+        {
+          "x": 1,
+          "y": 0.0
+        }
+      ]
+    }
+  ],
+  "shared_predictor_family_source": "Linear Coefficient Predictor sealed raw prediction",
+  "source_files": [
+    "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+  ],
+  "source_json_pointers": [
+    "/identification_unique_query/Linear Coefficient Predictor/coefficient_mae",
+    "/identification_unique_query/CanonDressGS-Endpoint/coefficient_mae"
+  ],
+  "title": "Shared raw predictor vs realized coefficient error (n=60)",
+  "x_label": "Realization",
+  "x_ticks": [
+    {
+      "label": "Linear continuous\nendpoint exact=0",
+      "value": 0
+    },
+    {
+      "label": "Canon endpoint snap\nendpoint exact=1",
+      "value": 1
+    }
+  ],
+  "y_label": "Coefficient MAE"
+}

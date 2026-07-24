@@ -401,6 +401,15 @@ def run_inventory(source_repo: Path, source_attempt: Path, output_root: Path) ->
     return {"gate": gate, "statistics": statistics}
 
 
+def is_safe_dropout_abstention(row: Dict[str, Any]) -> bool:
+    return (
+        row.get("status") == "ABSTAIN_EMPTY_REFERENCE"
+        and row.get("realization") == "Base Avatar"
+        and row.get("garment_endpoint_selected") is False
+        and row.get("valid_reference_count") == 0
+    )
+
+
 def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
     metrics = data["metrics"]["identification_unique_query"]
     hard = data["hard_lookup"]
@@ -436,10 +445,7 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
         "source_json_pointers": ["/identification_unique_query/*/top1"],
         "claim_status": "CLOSED_WARDROBE_DESCRIPTIVE_ONLY",
     })
-    endpoint_methods = [
-        "Reference Classifier Lookup", "Nearest-Centroid Lookup", "Outfit-ID Oracle",
-        "Linear Coefficient Predictor", "CanonDressGS-Endpoint",
-    ]
+    endpoint_methods = method_order
     plots.append({
         "plot_id": "endpoint_exact_match",
         "kind": "bar",
@@ -449,8 +455,9 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
         "y_limits": [0.0, 1.05],
         "x_ticks": [{"value": i, "label": method} for i, method in enumerate(endpoint_methods)],
         "series": [{"label": "Exact match", "values": [
-            {"x": i, "y": metrics[method]["endpoint_exact_match"]}
+            {"x": i, "y": metrics[method].get("endpoint_exact_match")}
             for i, method in enumerate(endpoint_methods)
+            if metrics[method].get("endpoint_exact_match") is not None
         ]}],
         "not_applicable": {
             "Base Avatar": "NO_ENDPOINT_PREDICTION",
@@ -463,21 +470,31 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
     })
     comparisons = ["reference_classifier", "nearest_centroid", "outfit_id_oracle"]
     labels = ["Reference classifier", "Nearest centroid", "Outfit-ID oracle"]
+    parity_rows = data["parity"]["rows"]
+    renderer_input_exact = all(row["renderer_input_exact"] is True for row in parity_rows)
+    physical_render_exact = all(
+        row["physical_render_parity"] == "SAME_INPUT_SAME_CACHE_SIGNATURE"
+        for row in parity_rows
+    )
+    equivalence_labels = labels + ["Renderer input exact", "Physical render parity"]
     plots.append({
         "plot_id": "hard_lookup_agreement_clean",
         "kind": "bar",
-        "title": "Clean Canon/lookup endpoint agreement (n=60)",
-        "x_label": "Comparison",
-        "y_label": "Agreement",
+        "title": "Clean functional equivalence",
+        "x_label": "Registered equivalence check",
+        "y_label": "Exact fraction",
         "y_limits": [0.0, 1.05],
-        "x_ticks": [{"value": i, "label": label} for i, label in enumerate(labels)],
+        "x_ticks": [{"value": i, "label": label} for i, label in enumerate(equivalence_labels)],
         "series": [{"label": "Agreement", "values": [
             {"x": i, "y": hard[key]["clean"]["agreement"]}
             for i, key in enumerate(comparisons)
+        ] + [
+            {"x": 3, "y": 1.0 if renderer_input_exact else 0.0},
+            {"x": 4, "y": 1.0 if physical_render_exact else 0.0},
         ]}],
-        "denominator": 60,
-        "source_files": [source_files["hard_lookup"]],
-        "source_json_pointers": [f"/{key}/clean" for key in comparisons],
+        "denominators": {"endpoint_agreement_per_comparison": 60, "parity_rows": len(parity_rows)},
+        "source_files": [source_files["hard_lookup"], source_files["parity"]],
+        "source_json_pointers": [f"/{key}/clean" for key in comparisons] + ["/rows"],
         "claim_status": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY",
     })
     overlap_fields = ["both_correct", "canon_only_correct", "other_only_correct", "both_wrong"]
@@ -498,23 +515,38 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
         "claim_status": "DESCRIPTIVE_COUNTS_NO_SUPERIORITY_CLAIM",
     })
     variants = sorted(perturb["methods"]["CanonDressGS-Endpoint"])
+    flip_variants = ["clean", *variants, "complete_dropout"]
     flip_methods = ["CanonDressGS-Endpoint", "Reference Classifier Lookup", "Nearest-Centroid Lookup"]
     plots.append({
         "plot_id": "endpoint_flip_by_perturbation",
         "kind": "bar",
-        "title": "Endpoint flip rate by registered perturbation (n=60 each)",
+        "title": "Endpoint flip by registered input condition",
         "x_label": "Perturbation",
         "y_label": "Flip rate",
         "y_limits": [0.0, 1.0],
-        "x_ticks": [{"value": i, "label": variant} for i, variant in enumerate(variants)],
+        "x_ticks": [{"value": i, "label": variant} for i, variant in enumerate(flip_variants)],
         "series": [{
             "label": method,
-            "values": [{"x": i, "y": perturb["methods"][method][variant]["endpoint_flip_rate"]}
-                       for i, variant in enumerate(variants)],
+            "values": [
+                {"x": 0, "y": 1.0 - metrics[method]["endpoint_exact_match"]},
+                *[
+                    {"x": i + 1, "y": perturb["methods"][method][variant]["endpoint_flip_rate"]}
+                    for i, variant in enumerate(variants)
+                ],
+            ],
         } for method in flip_methods],
-        "denominator_per_cell": 60,
-        "source_files": [source_files["perturbation"]],
-        "source_json_pointers": ["/methods/*/*/endpoint_flip_rate"],
+        "not_applicable": {"complete_dropout": "SAFE_ABSTENTION_NO_ENDPOINT_PREDICTION"},
+        "denominators": {
+            "clean_per_method": 60,
+            "registered_perturbation_per_cell": 60,
+            "complete_dropout_per_method": 20,
+        },
+        "source_files": [source_files["metrics"], source_files["perturbation"], source_files["dropout"]],
+        "source_json_pointers": [
+            "/identification_unique_query/*/endpoint_exact_match",
+            "/methods/*/*/endpoint_flip_rate",
+            "/records",
+        ],
         "claim_status": "PERTURBATION_ROBUSTNESS_EVALUATED_DESCRIPTIVE_ONLY",
     })
     shared_raw_mae = metrics["Linear Coefficient Predictor"]["coefficient_mae"]
@@ -524,7 +556,10 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
         "title": "Shared raw predictor vs realized coefficient error (n=60)",
         "x_label": "Realization",
         "y_label": "Coefficient MAE",
-        "x_ticks": [{"value": 0, "label": "Linear continuous"}, {"value": 1, "label": "Canon endpoint snap"}],
+        "x_ticks": [
+            {"value": 0, "label": "Linear continuous\nendpoint exact=0"},
+            {"value": 1, "label": "Canon endpoint snap\nendpoint exact=1"},
+        ],
         "series": [
             {"label": "RAW_COEFFICIENT_ERROR", "values": [
                 {"x": 0, "y": shared_raw_mae}, {"x": 1, "y": shared_raw_mae},
@@ -544,7 +579,7 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
         ],
         "claim_status": "RAW_PREDICTION_IS_NOT_EXACT_ENDPOINT_SUCCESS_USES_SNAPPING",
     })
-    dropout_count = sum(1 for row in data["dropout"]["records"] if row["status"] == "PASS")
+    dropout_count = sum(is_safe_dropout_abstention(row) for row in data["dropout"]["records"])
     reviewed = data["visual_review"]
     safety_labels = ["Identity contamination", "Component contamination", "Severe wrong outfit", "Dropout abstention"]
     safety_values = [
@@ -567,7 +602,7 @@ def build_plot_source(data: Dict[str, Any]) -> Dict[str, Any]:
         "claim_status": "ENGINEERING_SAFETY_EVIDENCE_NOT_GENERALIZATION",
     })
     final_counts = data["final_summary"]["counts"]
-    parity_pass = all(row["renderer_input_exact"] and row["physical_render_parity"] for row in data["parity"]["rows"])
+    parity_pass = renderer_input_exact and physical_render_exact
     plots.append({
         "plot_id": "render_equivalence_and_cache_summary",
         "kind": "bar",
@@ -670,13 +705,27 @@ def build_sheet(
         row, column = divmod(index, columns)
         x = 8 + column * cell_width
         y = title_height + row * cell_height
-        with Image.open(entry["source_path"]) as source:
-            source.load()
-            tile = source.convert("RGB")
-            tile.thumbnail(image_box, Image.Resampling.LANCZOS)
-        px = x + 10 + (image_box[0] - tile.width) // 2
-        py = y + 8 + (image_box[1] - tile.height) // 2
-        canvas.paste(tile, (px, py))
+        if entry.get("source_path"):
+            source_path = Path(entry["source_path"])
+            actual_source_sha = sha256_file(source_path)
+            if actual_source_sha != entry["source_sha256"]:
+                raise RuntimeError(
+                    f"selected source SHA mismatch: {source_path}: "
+                    f"{actual_source_sha} != {entry['source_sha256']}"
+                )
+            with Image.open(source_path) as source:
+                source.load()
+                tile = source.convert("RGB")
+                tile.thumbnail(image_box, Image.Resampling.LANCZOS)
+            px = x + 10 + (image_box[0] - tile.width) // 2
+            py = y + 8 + (image_box[1] - tile.height) // 2
+            canvas.paste(tile, (px, py))
+        else:
+            message = entry.get("placeholder_text", "SOURCE_VISUAL_NOT_AVAILABLE")
+            draw.multiline_text(
+                (x + 22, y + image_box[1] // 2), textwrap.fill(message, width=22),
+                fill=(110, 0, 0), font=font, spacing=3,
+            )
         draw.rectangle((x + 9, y + 7, x + 10 + image_box[0], y + 8 + image_box[1]), outline=(90, 90, 90))
         lines = [
             entry.get("asset_id", "NO_ASSET_ID"),
@@ -697,8 +746,8 @@ def build_sheet(
         "transform_id": f"PE-SHEET-{name.upper().replace('_', '-')}",
         "operation": "DETERMINISTIC_LANCZOS_THUMBNAIL_COMPOSITION",
         "parameters": {"columns": columns, "image_box": list(image_box), "selection_rule": selection_rule},
-        "input_asset_ids": [entry.get("asset_id") for entry in entries],
-        "input_sha256": [entry.get("source_sha256") for entry in entries],
+        "input_asset_ids": [entry.get("asset_id") for entry in entries if entry.get("source_path")],
+        "input_sha256": [entry.get("source_sha256") for entry in entries if entry.get("source_path")],
         "output_path": str(output),
         "output_sha256": sha256_file(output),
         "crop": None,
@@ -900,9 +949,35 @@ def build_artifacts(source_repo: Path, source_attempt: Path, output_root: Path, 
     )]
     fig5_path = output_root / "05_candidate_panels/fig05_hard_lookup/pure_endpoint_hard_lookup_v1.png"
     transforms.append(compose_plots("FIGURE5_HARD_LOOKUP_RELATION_CANDIDATE_V1", fig5_plots, fig5_path))
-    mild_first = select_first_by_garment(mild_failures)
+    mild_selected = {entry["garment"]: entry for entry in select_first_by_garment(mild_failures)}
+    mild_first: List[Dict[str, Any]] = []
+    for garment in GARMENTS:
+        if garment in mild_selected:
+            mild_first.append(mild_selected[garment])
+        else:
+            mild_first.append({
+                "asset_id": "NO_SOURCE_VISUAL",
+                "source_path": None,
+                "source_sha256": "",
+                "method": "CanonDressGS-Endpoint",
+                "rotation": "N/A",
+                "seed": "N/A",
+                "garment": garment,
+                "query_id": "NO_REGISTERED_FLIP",
+                "perturbation": "mild_blur",
+                "realized_endpoint": "N/A",
+                "correct_endpoint": garment,
+                "figure_eligibility": "NO_FLIP_FOR_THIS_GARMENT",
+                "placeholder_text": "NO_FLIP_FOR_THIS_GARMENT",
+            })
     single_first = select_first_by_garment(single_reference)
-    dropout_first = select_first_by_garment(dropout_base)
+    dropout_first = [dict(entry) for entry in select_first_by_garment(dropout_base)]
+    for entry in dropout_first:
+        entry["source_render_variant"] = entry["perturbation"]
+        entry["perturbation"] = "complete_dropout"
+        entry["predicted_endpoint"] = "ABSTAIN"
+        entry["realized_endpoint"] = "Base Avatar"
+        entry["correct_endpoint"] = "SAFE_ABSTAIN_TO_BASE_AVATAR"
     for entry in mild_first:
         entry["selection_group"] = "MILD_BLUR_FIRST_FLIP"
     for entry in single_first:
@@ -1056,7 +1131,9 @@ def build_artifacts(source_repo: Path, source_attempt: Path, output_root: Path, 
         "mild_blur_denominator": 60,
         "single_reference_flip_count": sum(1 for e in single_reference if e["endpoint_exact_match"] is False),
         "single_reference_denominator": 60,
-        "dropout_safe_abstention_count": sum(1 for row in data["dropout"]["records"] if row["status"] == "PASS"),
+        "dropout_safe_abstention_count": sum(
+            is_safe_dropout_abstention(row) for row in data["dropout"]["records"]
+        ),
         "dropout_denominator": data["dropout"]["record_count"],
         "paper_final": 0,
     }
@@ -1129,7 +1206,7 @@ def main() -> int:
         )
     if args.stage in {"verify", "all"}:
         results["verification"] = verify_output(args.output_root)
-    log_path = args.output_root / "08_final_verification/refresh_log.json"
+    log_path = args.output_root / f"08_final_verification/refresh_{args.stage}_log.json"
     write_json(log_path, {"schema_version": "paper_figure_pure_endpoint_refresh_log.v1", **results})
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0

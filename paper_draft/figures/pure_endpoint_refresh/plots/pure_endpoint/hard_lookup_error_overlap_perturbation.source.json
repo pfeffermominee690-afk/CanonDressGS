@@ -1,0 +1,101 @@
+{
+  "claim_status": "DESCRIPTIVE_COUNTS_NO_SUPERIORITY_CLAIM",
+  "denominator": 360,
+  "kind": "bar",
+  "plot_id": "hard_lookup_error_overlap_perturbation",
+  "series": [
+    {
+      "label": "both correct",
+      "values": [
+        {
+          "x": 0,
+          "y": 318
+        },
+        {
+          "x": 1,
+          "y": 312
+        },
+        {
+          "x": 2,
+          "y": 318
+        }
+      ]
+    },
+    {
+      "label": "canon only correct",
+      "values": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 1,
+          "y": 6
+        },
+        {
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "label": "other only correct",
+      "values": [
+        {
+          "x": 0,
+          "y": 13
+        },
+        {
+          "x": 1,
+          "y": 0
+        },
+        {
+          "x": 2,
+          "y": 42
+        }
+      ]
+    },
+    {
+      "label": "both wrong",
+      "values": [
+        {
+          "x": 0,
+          "y": 29
+        },
+        {
+          "x": 1,
+          "y": 42
+        },
+        {
+          "x": 2,
+          "y": 0
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    "paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json"
+  ],
+  "source_json_pointers": [
+    "/reference_classifier/perturbation",
+    "/nearest_centroid/perturbation",
+    "/outfit_id_oracle/perturbation"
+  ],
+  "title": "Perturbation outcome overlap (n=360 per comparison)",
+  "x_label": "Comparison",
+  "x_ticks": [
+    {
+      "label": "Reference classifier",
+      "value": 0
+    },
+    {
+      "label": "Nearest centroid",
+      "value": 1
+    },
+    {
+      "label": "Outfit-ID oracle",
+      "value": 2
+    }
+  ],
+  "y_label": "Count"
+}

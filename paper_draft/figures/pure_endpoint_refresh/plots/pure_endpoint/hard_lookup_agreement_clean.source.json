@@ -1,0 +1,75 @@
+{
+  "claim_status": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY",
+  "denominators": {
+    "endpoint_agreement_per_comparison": 60,
+    "parity_rows": 20
+  },
+  "kind": "bar",
+  "plot_id": "hard_lookup_agreement_clean",
+  "series": [
+    {
+      "label": "Agreement",
+      "values": [
+        {
+          "x": 0,
+          "y": 1.0
+        },
+        {
+          "x": 1,
+          "y": 1.0
+        },
+        {
+          "x": 2,
+          "y": 1.0
+        },
+        {
+          "x": 3,
+          "y": 1.0
+        },
+        {
+          "x": 4,
+          "y": 1.0
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    "paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json",
+    "05_metrics/endpoint_parity.json"
+  ],
+  "source_json_pointers": [
+    "/reference_classifier/clean",
+    "/nearest_centroid/clean",
+    "/outfit_id_oracle/clean",
+    "/rows"
+  ],
+  "title": "Clean functional equivalence",
+  "x_label": "Registered equivalence check",
+  "x_ticks": [
+    {
+      "label": "Reference classifier",
+      "value": 0
+    },
+    {
+      "label": "Nearest centroid",
+      "value": 1
+    },
+    {
+      "label": "Outfit-ID oracle",
+      "value": 2
+    },
+    {
+      "label": "Renderer input exact",
+      "value": 3
+    },
+    {
+      "label": "Physical render parity",
+      "value": 4
+    }
+  ],
+  "y_label": "Exact fraction",
+  "y_limits": [
+    0.0,
+    1.05
+  ]
+}

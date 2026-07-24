@@ -1,0 +1,83 @@
+{
+  "claim_status": "CLOSED_WARDROBE_DESCRIPTIVE_ONLY",
+  "denominator": 60,
+  "kind": "bar",
+  "not_applicable": {
+    "Base Avatar": "NO_ENDPOINT_PREDICTION"
+  },
+  "plot_id": "clean_method_top1",
+  "series": [
+    {
+      "label": "Top-1",
+      "values": [
+        {
+          "x": 1,
+          "y": 1.0
+        },
+        {
+          "x": 2,
+          "y": 1.0
+        },
+        {
+          "x": 3,
+          "y": 1.0
+        },
+        {
+          "x": 4,
+          "y": 1.0
+        },
+        {
+          "x": 5,
+          "y": 1.0
+        },
+        {
+          "x": 6,
+          "y": 1.0
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    "paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json"
+  ],
+  "source_json_pointers": [
+    "/identification_unique_query/*/top1"
+  ],
+  "title": "Clean endpoint top-1 (n=60 per evaluated method)",
+  "x_label": "Method",
+  "x_ticks": [
+    {
+      "label": "Base Avatar",
+      "value": 0
+    },
+    {
+      "label": "Teacher Endpoint",
+      "value": 1
+    },
+    {
+      "label": "Outfit-ID Oracle",
+      "value": 2
+    },
+    {
+      "label": "Reference Classifier Lookup",
+      "value": 3
+    },
+    {
+      "label": "Nearest-Centroid Lookup",
+      "value": 4
+    },
+    {
+      "label": "Linear Coefficient Predictor",
+      "value": 5
+    },
+    {
+      "label": "CanonDressGS-Endpoint",
+      "value": 6
+    }
+  ],
+  "y_label": "Top-1",
+  "y_limits": [
+    0.0,
+    1.05
+  ]
+}
