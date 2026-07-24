@@ -1,0 +1,102 @@
+{
+  "analysis_table": {
+    "rows": [
+      {
+        "analysis": "Geometry causal",
+        "role": "DOMINANT_INVALID_INTERMEDIATE_STATE_CAUSE",
+        "source": "paper_protocol/reviewer_risk/continuous_control_causal_attribution_final_summary.json"
+      },
+      {
+        "analysis": "Dual-Support",
+        "role": "ORACLE_OR_USER_SPECIFIED_GEOMETRY_SAFE_EXTENSION",
+        "source": "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json"
+      },
+      {
+        "analysis": "Headroom",
+        "classification": "TEACHER_SPAN_AT_LOCAL_OPTIMUM",
+        "role": "SEALED_NEGATIVE_DIAGNOSTIC",
+        "source_head": "674e6092e21eeddeb22e963536247a3385c4e200"
+      },
+      {
+        "analysis": "LOO",
+        "classification": "LOO_BASIS_CAPACITY_LIMITED",
+        "modes": {
+          "deployable_adaptation": "FEW_VIEW_LOW_DIMENSIONAL_ADAPTATION",
+          "hard_lookup": "REFERENCE_NEAREST_HARD_LOOKUP",
+          "oracle_projection": "OFFLINE_ORACLE_ONLY"
+        },
+        "role": "SEALED_CAPACITY_LIMITATION",
+        "source_head": "4472e1815287b1866da6d3ed83b2984e0d43611d"
+      }
+    ]
+  },
+  "main_subject02_table": {
+    "historical_51_experiments_included": false,
+    "protocol": "CURRENT_SUBJECT02_CLOSED_WARDROBE",
+    "rows": [
+      {
+        "clean_top1": null,
+        "denominator": 60,
+        "endpoint_exact_match": null,
+        "not_applicable": [
+          "NO_ENDPOINT_PREDICTION",
+          "NO_ENDPOINT_PREDICTION"
+        ],
+        "paper_name": "Base Avatar",
+        "protocol": "CURRENT_SUBJECT02_CLOSED_WARDROBE",
+        "source": "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+        "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+        "source_name": "Base Avatar"
+      },
+      {
+        "clean_top1": 1.0,
+        "denominator": 60,
+        "endpoint_exact_match": 0.0,
+        "not_applicable": [
+          "TARGET_ENDPOINT_NOT_A_PREDICTION_FIELD"
+        ],
+        "paper_name": "Teacher Endpoint",
+        "protocol": "CURRENT_SUBJECT02_CLOSED_WARDROBE",
+        "source": "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+        "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+        "source_name": "Teacher Endpoint"
+      },
+      {
+        "clean_top1": 1.0,
+        "denominator": 60,
+        "endpoint_exact_match": 1.0,
+        "not_applicable": [],
+        "paper_name": "Reference Classifier Lookup",
+        "protocol": "CURRENT_SUBJECT02_CLOSED_WARDROBE",
+        "source": "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+        "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+        "source_name": "Reference Classifier Lookup"
+      },
+      {
+        "clean_top1": 1.0,
+        "denominator": 60,
+        "endpoint_exact_match": 1.0,
+        "not_applicable": [],
+        "paper_name": "Nearest-Centroid Lookup",
+        "protocol": "CURRENT_SUBJECT02_CLOSED_WARDROBE",
+        "source": "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+        "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+        "source_name": "Nearest-Centroid Lookup"
+      },
+      {
+        "clean_top1": 1.0,
+        "denominator": 60,
+        "endpoint_exact_match": 1.0,
+        "not_applicable": [],
+        "paper_name": "CanonDressGS Endpoint",
+        "protocol": "CURRENT_SUBJECT02_CLOSED_WARDROBE",
+        "source": "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+        "source_head": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+        "source_name": "CanonDressGS-Endpoint"
+      }
+    ]
+  },
+  "paper_final": 0,
+  "schema_version": "current_protocol_baseline_table_source.v1",
+  "task_id": "AAAI27-PAPER-FIGURE-BANK-LOO-METHOD-FREEZE-001"
+}
