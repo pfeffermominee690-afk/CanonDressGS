@@ -112,6 +112,12 @@ def test_preflight_manifest_is_required_before_diagnostic_runtime() -> None:
     assert "original_immutability(asset_root, manifest)" in require_source
 
 
+def test_manifest_records_both_frozen_tree_and_file_content_bytes() -> None:
+    assert '"total_bytes": tree_apparent_bytes' in SOURCE
+    assert '"file_content_bytes": file_content_bytes' in SOURCE
+    assert '"aggregate_sha256": canonical_sha(aggregate_rows)' in SOURCE
+
+
 def test_paper_final_and_execution_counts_remain_zero() -> None:
     assert '"optimizer_creations": 0' in SOURCE
     assert '"optimizer_steps": 0' in SOURCE

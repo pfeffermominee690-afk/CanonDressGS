@@ -137,11 +137,23 @@ def tree_manifest(root: Path) -> dict[str, Any]:
         {"path": row["path"], "bytes": row["bytes"], "sha256": row["sha256"]}
         for row in rows
     ]
+    file_content_bytes = sum(row["bytes"] for row in rows)
+    du = subprocess.run(
+        ["du", "-sb", str(root)], capture_output=True, text=True,
+    )
+    tree_apparent_bytes = (
+        int(du.stdout.split()[0]) if du.returncode == 0 else file_content_bytes
+    )
     return {
         "schema_version": "canondressgs.paper.immutable_tree_manifest.v1",
         "root": str(root),
         "file_count": len(rows),
-        "total_bytes": sum(row["bytes"] for row in rows),
+        "total_bytes": tree_apparent_bytes,
+        "file_content_bytes": file_content_bytes,
+        "byte_count_definition": (
+            "total_bytes is GNU du -sb tree apparent bytes; file_content_bytes is the "
+            "sum of the ordered regular-file sizes"
+        ),
         "aggregate_sha256": canonical_sha(aggregate_rows),
         "aggregate_definition": "sha256(canonical JSON of ordered path/bytes/sha256 rows)",
         "files": rows,
@@ -153,18 +165,24 @@ def original_immutability(asset_root: Path, expected: Mapping[str, Any]) -> dict
     actual = tree_manifest(original)
     stable = all(
         actual[name] == expected[name]
-        for name in ("file_count", "total_bytes", "aggregate_sha256", "files")
+        for name in (
+            "file_count", "total_bytes", "file_content_bytes", "aggregate_sha256", "files",
+        )
     )
     return {
         "status": "PASS" if stable else "FAIL",
         "mutation_count": 0 if stable else 1,
         "expected": {
             name: expected[name]
-            for name in ("file_count", "total_bytes", "aggregate_sha256")
+            for name in (
+                "file_count", "total_bytes", "file_content_bytes", "aggregate_sha256",
+            )
         },
         "actual": {
             name: actual[name]
-            for name in ("file_count", "total_bytes", "aggregate_sha256")
+            for name in (
+                "file_count", "total_bytes", "file_content_bytes", "aggregate_sha256",
+            )
         },
     }
 
@@ -210,6 +228,7 @@ def preflight(asset_root: Path) -> dict[str, Any]:
         ),
         "original_file_count": manifest["file_count"],
         "original_total_bytes": manifest["total_bytes"],
+        "original_file_content_bytes": manifest["file_content_bytes"],
         "original_aggregate_sha256": manifest["aggregate_sha256"],
         "original_basis_sha256": EXPECTED_ORIGINAL_BASIS_SHA256,
         "original_normalization_sha256": EXPECTED_ORIGINAL_NORMALIZATION_SHA256,
