@@ -1,0 +1,230 @@
+{
+  "checks": [
+    {
+      "evidence": "The first task commit has parent 69cded463e3a88cecc83e8a4c5a7a89b93ee4b20.",
+      "id": 1,
+      "name": "exact source HEAD",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Dedicated branch research/paper-figure-evidence-bank-20260724 and dedicated Windows/cloud worktrees were used.",
+      "id": 2,
+      "name": "new branch/worktree isolation",
+      "status": "PASS"
+    },
+    {
+      "evidence": "The Pure Endpoint attempt directory was detected at final validation; no matching process was found and no attempt file was opened.",
+      "id": 3,
+      "name": "active Pure Endpoint detection",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Disposition is ACTIVE_RUN_EXCLUDED_PENDING_FINAL_SEAL and active_run_files_consumed is 0.",
+      "id": 4,
+      "name": "active output exclusion",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Historical output, report, figure, checkpoint, controller, subject00, and raw-data mutation counts are all 0.",
+      "id": 5,
+      "name": "historical output read-only",
+      "status": "PASS"
+    },
+    {
+      "evidence": "The 27-entry source inventory and all source-data JSON files parsed successfully.",
+      "id": 6,
+      "name": "source manifest parsing",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 16 unique source branches/HEADs resolve; all 30 audited HEAD:path report references resolve.",
+      "id": 7,
+      "name": "branch/HEAD provenance",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Full provenance verification passed for 38,744 assets; unsupported attempts remain rejected.",
+      "id": 8,
+      "name": "attempt provenance",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Full provenance verification required original_sha256 and passed 38,744/38,744 assets.",
+      "id": 9,
+      "name": "original SHA computation",
+      "status": "PASS"
+    },
+    {
+      "evidence": "12,804 unique visual SHA values and 25,940 duplicate visual records were registered.",
+      "id": 10,
+      "name": "duplicate SHA detection",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 11 incomplete-provenance assets are UNKNOWN_PROVENANCE_DO_NOT_USE.",
+      "id": 11,
+      "name": "unsupported provenance rejection",
+      "status": "PASS"
+    },
+    {
+      "evidence": "AvatarReX exported media count is 0 and only a metadata placeholder was created.",
+      "id": 12,
+      "name": "AvatarReX media export=0",
+      "status": "PASS"
+    },
+    {
+      "evidence": "No checkpoint, tensor, raw dataset, model binary, or AvatarReX visual was added by the branch.",
+      "id": 13,
+      "name": "no raw dataset copy",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Contact sheets matched 9/9 SHA values and metric outputs matched 34/34 SHA values on fresh reruns.",
+      "id": 14,
+      "name": "deterministic transforms",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 17 registered transforms have crop=null; no asymmetric crop is registered.",
+      "id": 15,
+      "name": "no asymmetric crop",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 17 transforms have method_specific_enhancement=false.",
+      "id": 16,
+      "name": "no method-specific enhancement",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 17 transforms have ai_generated=false; image-generation API calls are 0.",
+      "id": 17,
+      "name": "no AI-generated media",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 8 plots identify structured JSON/registry source files and include per-plot source JSON.",
+      "id": 18,
+      "name": "plot source data traceability",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 13 figure-map entries have a frozen selection_rule.",
+      "id": 19,
+      "name": "figure selection rule registration",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Rules use fixed protocol order, all-level display, registered seeds, or explicit NO_BEST_SEED semantics.",
+      "id": 20,
+      "name": "no best-seed selection",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Six main/main-or-supplementary and four supplementary candidates use only the frozen status enum.",
+      "id": 21,
+      "name": "main/supplementary/history classification",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Pure Endpoint, coefficient headroom, LOO adaptation, and AvatarReX license slots are registered.",
+      "id": 22,
+      "name": "pending-result slots",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Claim-boundary verification passed 10/10 figure entries with no forbidden phrase.",
+      "id": 23,
+      "name": "caption claim boundary",
+      "status": "PASS"
+    },
+    {
+      "evidence": "25 committed binary files total 4,195,487 bytes; the largest is 417,332 bytes.",
+      "id": 24,
+      "name": "binary-size budget",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Fresh cloud reruns produced no contact-sheet or metric-output mismatch.",
+      "id": 25,
+      "name": "second run idempotence",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Duplicate-key rejecting JSON loads passed all 25 pre-seal figure-bank JSON files.",
+      "id": 26,
+      "name": "JSON duplicate-key rejection",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Windows and cloud JSON parsing passed all 25 pre-seal figure-bank JSON files.",
+      "id": 27,
+      "name": "JSON parse",
+      "status": "PASS"
+    },
+    {
+      "evidence": "The task added no YAML file; safe-load is not applicable.",
+      "id": 28,
+      "name": "YAML safe-load",
+      "status": "PASS_NOT_APPLICABLE"
+    },
+    {
+      "evidence": "Windows and cloud XML parsers accepted all 10 SVG files.",
+      "id": 29,
+      "name": "SVG parse",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Cloud Pillow decoded and verified all 17 committed PNG files.",
+      "id": 30,
+      "name": "PNG decode",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All 8 committed PDF plots exist and are non-empty.",
+      "id": 31,
+      "name": "PDF existence/size",
+      "status": "PASS"
+    },
+    {
+      "evidence": "All tools/paper_figures Python files compiled on Windows and cloud.",
+      "id": 32,
+      "name": "py_compile",
+      "status": "PASS"
+    },
+    {
+      "evidence": "High-risk OpenAI, GitHub, AWS, and private-key patterns produced 0 real hits.",
+      "id": 33,
+      "name": "credential scan",
+      "status": "PASS"
+    },
+    {
+      "evidence": "git diff --check passed on Windows and cloud after SVG normalization.",
+      "id": 34,
+      "name": "git diff --check",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Local, origin, and cloud branch refs matched seal parent 1181e904254bee12d70339d86c62d31f7c66317a; final-seal sync is rechecked after commit.",
+      "id": 35,
+      "name": "local/origin/cloud consistency",
+      "status": "PASS"
+    },
+    {
+      "evidence": "Windows and cloud worktrees were clean at seal parent 1181e904254bee12d70339d86c62d31f7c66317a; final-seal cleanliness is rechecked after commit.",
+      "id": 36,
+      "name": "Windows/cloud worktree clean",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "passed_count": 36,
+  "postseal_recheck_ids": [
+    35,
+    36
+  ],
+  "schema_version": "paper_figure_evidence_bank_tests.v1",
+  "seal_parent_head": "1181e904254bee12d70339d86c62d31f7c66317a",
+  "status": "PASS",
+  "task_id": "AAAI27-PAPER-FIGURE-EVIDENCE-BANK-001"
+}

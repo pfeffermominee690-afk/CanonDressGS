@@ -1,0 +1,61 @@
+{
+  "active_run": {
+    "disposition": "ACTIVE_RUN_EXCLUDED_PENDING_FINAL_SEAL",
+    "files_consumed": 0,
+    "refresh_is_append_only": true,
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001/attempt_001"
+  },
+  "branch": "research/paper-figure-evidence-bank-20260724",
+  "classification": "PAPER_FIGURE_EVIDENCE_BANK_READY",
+  "cloud_remote": "canondress-cloud:/root/autodl-tmp/canondressgs_work/git/canondressgs.git",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_paper_figure_evidence_bank",
+  "external_cache": {
+    "bytes_at_seal": 765325579,
+    "full_registry_sha256": "611bf4cac206d0230de8c4911095eb1ae16c526dbc00244b8acf7e6ce71cf7ba",
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/PAPER-FIGURE-EVIDENCE-BANK-001/attempt_001"
+  },
+  "final_head_contract": "Resolve the exact seal commit from research/paper-figure-evidence-bank-20260724 after post-commit synchronization.",
+  "final_summary": {
+    "relative_path": "paper_protocol/reviewer_risk/paper_figure_evidence_bank_final_summary.json",
+    "sha256_lf": "732f547d8bc4868424b68ca45c8cca5cad223f2cc894f872839fadda0f349295"
+  },
+  "figure_root": "paper_draft/figures",
+  "license_boundary": {
+    "avatarrex_media_export_count": 0,
+    "status": "PASS_METADATA_ONLY"
+  },
+  "local_worktree": "E:/model_train/canondressgs_paper_figure_evidence_bank",
+  "next_task": "REFRESH_PAPER_FIGURE_BANK_WITH_PURE_ENDPOINT_RESULTS",
+  "next_task_preconditions": [
+    "Pure Endpoint final summary exists",
+    "Pure Endpoint final classification exists",
+    "Pure Endpoint output is sealed",
+    "Pure Endpoint final HEAD is pushed",
+    "Pure Endpoint attempt is complete"
+  ],
+  "next_task_started": false,
+  "origin_remote": "https://github.com/pfeffermominee690-afk/CanonDressGS.git",
+  "paper_final": 0,
+  "primary_registries": [
+    "paper_protocol/reviewer_risk/paper_figure_asset_registry.json",
+    "paper_protocol/reviewer_risk/paper_figure_candidate_registry.json",
+    "paper_protocol/reviewer_risk/paper_figure_transform_registry.json",
+    "paper_protocol/reviewer_risk/paper_figure_license_registry.json",
+    "paper_protocol/reviewer_risk/paper_figure_claim_boundary.json",
+    "paper_protocol/reviewer_risk/paper_figure_pending_refresh_registry.json",
+    "paper_protocol/reviewer_risk/paper_figure_evidence_bank_tests.json",
+    "paper_protocol/reviewer_risk/paper_figure_evidence_bank_final_summary.json"
+  ],
+  "schema_version": "paper_figure_evidence_bank_handoff.v1",
+  "seal_parent_head": "1181e904254bee12d70339d86c62d31f7c66317a",
+  "source_branch": "research/pure-endpoint-direct-decoder-adjudication-20260724",
+  "source_head": "69cded463e3a88cecc83e8a4c5a7a89b93ee4b20",
+  "status": "READY_FOR_AUTHORIZED_REFRESH_AFTER_PRECONDITIONS",
+  "stop_rule": "Do not start any refresh or manual adjudication automatically. Pure Endpoint refresh must be append-only and may begin only after every listed precondition passes.",
+  "task_id": "AAAI27-PAPER-FIGURE-EVIDENCE-BANK-001",
+  "tests": {
+    "relative_path": "paper_protocol/reviewer_risk/paper_figure_evidence_bank_tests.json",
+    "sha256_lf": "d6cebec5ae9da51d4158c6add5481730b8b981c4670e914c6080809f20144aa4",
+    "status": "PASS_36_OF_36"
+  }
+}
