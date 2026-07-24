@@ -1,0 +1,69 @@
+{
+  "schema_version": "canondressgs.paper.loo_basis_execution_registry.failure.v1",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001",
+  "status": "FAIL",
+  "classification": "LOO_ADAPTATION_EXECUTION_INVALID",
+  "source_head": "d595264dd0bc9f8b19077955e9ba605f0d25fdd5",
+  "execution_head": "a868df3c3811483c5dd07456d8cabfdc3577d5f4",
+  "attempt": "attempt_001",
+  "failure_phase": "basis",
+  "failure_code": "LOO_BASIS_CONSTRUCTION_PARITY_FAILURE",
+  "failure_split": "LOO-O01",
+  "failure_gate": "RENDER_PARITY_MAX_ABS_ERROR_LE_1E_5",
+  "basis_generation_runs_expected": 5,
+  "basis_generation_runs_started": 1,
+  "basis_generation_runs_completed": 0,
+  "svd_runs_started": 1,
+  "auxiliary_render_calls_actual": 8,
+  "rows": [
+    {
+      "split_id": "LOO-O01",
+      "held_out_garment": "O01",
+      "basis_garments": ["O02", "O03", "O04", "O08"],
+      "singular_values": [
+        879.3351213828762,
+        806.7408088938806,
+        697.1994598902255,
+        0.00005195989704080849
+      ],
+      "numerical_rank_tolerance": 461.22962642725173,
+      "numerical_rank": 3,
+      "selected_rank": 3,
+      "condition_number": 1.261238959538678,
+      "basis_garment_reconstruction_rmse": {
+        "O02": 2.4059824506549355e-7,
+        "O03": 2.170523319855046e-7,
+        "O04": 2.605650267813034e-7,
+        "O08": 1.7254289003879928e-7
+      },
+      "aggregate_reconstruction_rmse": 2.2268962346777522e-7,
+      "repeat_build_fingerprint_match": true,
+      "basis_fingerprint": "a7a16acf8c0920c5d4bba80c76be87f343e708cba7a8836d4bba3fee176410b9",
+      "basis_artifact_sha256": "71144cafcdfd070942dc0a808b65216539d0320c3a801a1cde7fb0b75ecd40c6",
+      "normalization_sha256": "91a4121a58fcf8b839e60284290022b9b2963e4b8a26c339f0dd5e7dab7f1d19",
+      "held_out_teacher_in_basis_count": 0,
+      "held_out_teacher_in_normalization_count": 0,
+      "full_five_garment_basis_reused": false,
+      "residual_parity": "PASS",
+      "render_parity": "FAIL",
+      "render_parity_threshold": 0.00001,
+      "render_parity_rows": {
+        "O02": {"rgb_max_abs_error": 0.002937138080596924, "alpha_max_abs_error": 0.002937614917755127, "status": "FAIL"},
+        "O03": {"rgb_max_abs_error": 0.0028221607208251953, "alpha_max_abs_error": 0.000720679759979248, "status": "FAIL"},
+        "O04": {"rgb_max_abs_error": 0.0013329237699508667, "alpha_max_abs_error": 0.000438690185546875, "status": "FAIL"},
+        "O08": {"rgb_max_abs_error": 0.0007977485656738281, "alpha_max_abs_error": 0.003845691680908203, "status": "FAIL"}
+      },
+      "status": "FAIL"
+    }
+  ],
+  "optimizer_runs": 0,
+  "optimizer_steps": 0,
+  "checkpoint_writes": 0,
+  "formal_logical_renders": 0,
+  "formal_physical_renders": 0,
+  "runtime_cache_hits": 0,
+  "attempt_002_created": false,
+  "rerun_count": 0,
+  "PAPER_FINAL": false,
+  "paper_final_count": 0
+}

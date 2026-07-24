@@ -1,0 +1,52 @@
+{
+  "schema_version": "canondressgs.paper.loo_tests.failure.v1",
+  "task_id": "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001",
+  "status": "EXECUTION_INVALID",
+  "source_head": "d595264dd0bc9f8b19077955e9ba605f0d25fdd5",
+  "execution_head": "a868df3c3811483c5dd07456d8cabfdc3577d5f4",
+  "pre_execution": {
+    "windows_python_3_11": "PASS: 160 passed in 19.24s",
+    "windows_python_3_10_torch": "PASS: 160 passed in 23.61s",
+    "cloud_python_3_10_torch_before_binding": "PASS: 160 passed in 11.17s",
+    "cloud_python_3_10_torch_after_binding": "PASS: 160 passed in 10.55s",
+    "windows_static_preflight": "PASS",
+    "cloud_resource_preflight": "PASS",
+    "hard_lookup_semantic_ast_drift": 0,
+    "scientific_semantic_drift": 0,
+    "credential_findings": 0
+  },
+  "materialization": {
+    "status": "PASS",
+    "attempt_001_created": true,
+    "attempt_002_created": false,
+    "execution_head_exact": true
+  },
+  "scientific_execution": {
+    "basis": "FAIL: LOO_BASIS_CONSTRUCTION_PARITY_FAILURE",
+    "lookup": "NOT_RUN",
+    "calibrate": "NOT_RUN",
+    "oracles": "NOT_RUN",
+    "train_low": "NOT_RUN",
+    "train_full": "NOT_RUN",
+    "evaluate": "NOT_RUN",
+    "visual_sheets": "NOT_RUN",
+    "analyze": "NOT_RUN",
+    "finalize": "NOT_RUN"
+  },
+  "post_failure_verification": {
+    "status": "FAIL",
+    "expected_failure": true,
+    "historical_immutability": "PASS",
+    "source_artifact_audit": "PASS",
+    "credential_scan": "PASS",
+    "temporary_file_count": 0,
+    "attempt_file_count": 40,
+    "attempt_bytes": 71029072,
+    "visual_sheet_count": 0,
+    "classification": "LOO_ADAPTATION_EXECUTION_INVALID"
+  },
+  "rerun_count": 0,
+  "resume_count": 0,
+  "PAPER_FINAL": false,
+  "paper_final_count": 0
+}
