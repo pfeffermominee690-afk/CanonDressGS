@@ -13,3 +13,6 @@ Final classification: `TEACHER_SPAN_AT_LOCAL_OPTIMUM`. `PAPER_FINAL=false`.
 | Full-Residual Equal-Wall-Time | 0.118421 | 0.078893 | 17.415982 | 0.540771 | 0.851443 | 0.464767 | 0.048736 |
 
 Equal-wall-time used the largest registered full-residual checkpoint whose cumulative optimizer-section time did not exceed its selected coefficient run. No interpolation or test-metric selection was used. Cells: 20.
+
+
+Result HEAD: `85e5d4a3b928ae2566272e4cda2d2e594cf9f39c`. Execution HEAD: `3fb53786a4af264f117701a01e8559c4b2bfafd1`.

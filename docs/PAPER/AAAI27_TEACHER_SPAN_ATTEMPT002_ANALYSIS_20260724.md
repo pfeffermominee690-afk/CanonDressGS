@@ -8,3 +8,6 @@ Final classification: `TEACHER_SPAN_AT_LOCAL_OPTIMUM`. `PAPER_FINAL=false`.
 - valid garment span ratios: 0/5
 - macro SPAN_RECOVERY_RATIO: null
 - nonpositive denominators are stored as `null` with `Teacher_error-FullResidual_error<=0`.
+
+
+Result HEAD: `85e5d4a3b928ae2566272e4cda2d2e594cf9f39c`. Execution HEAD: `3fb53786a4af264f117701a01e8559c4b2bfafd1`.
