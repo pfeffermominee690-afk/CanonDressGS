@@ -898,7 +898,15 @@ def contract_snapshot(attempt: Path) -> dict[str, Any]:
 
 def frozen_gradient_audit(context: Mapping[str, Any], basis: Any) -> dict[str, Any]:
     values: list[tuple[str, torch.Tensor]] = []
-    values.extend((f"base.{name}", value) for name, value in context["base"].named_parameters())
+    base = context["base"]
+    if hasattr(base, "named_parameters"):
+        values.extend((f"base.{name}", value) for name, value in base.named_parameters())
+    else:
+        values.extend(
+            (f"base.{name}", getattr(base, name))
+            for name in ("_xyz", "_scaling", "_rotation", "_opacity", "_sh0", "_shN")
+            if isinstance(getattr(base, name, None), torch.Tensor)
+        )
     values.extend((f"basis.{name}", value) for name, value in basis.named_parameters())
     violations = [
         name for name, value in values
