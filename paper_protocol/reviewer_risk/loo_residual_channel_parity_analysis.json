@@ -1,0 +1,279 @@
+{
+  "PAPER_FINAL": false,
+  "conclusion": "geometry dominates; xyz is primary for O02/O03/O04 while rotation dominates O08 alpha; appearance stays below gate",
+  "schema_version": "canondressgs.paper.loo_residual_channel_parity_analysis.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-BASIS-RENDERER-PARITY-REPAIR-001",
+  "variants": {
+    "all_channels": {
+      "max_alpha": 0.003845691680908203,
+      "max_rgb": 0.002937138080596924,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 0.002937614917755127,
+          "rgb_max_abs": 0.002937138080596924,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 0.000720679759979248,
+          "rgb_max_abs": 0.0028221607208251953,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.000438690185546875,
+          "rgb_max_abs": 0.0013329237699508667,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 0.003845691680908203,
+          "rgb_max_abs": 0.0007977485656738281,
+          "status": "FAIL",
+          "visibility_change": 0
+        }
+      }
+    },
+    "appearance_combined": {
+      "max_alpha": 2.384185791015625e-07,
+      "max_rgb": 5.960464477539062e-07,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 2.384185791015625e-07,
+          "rgb_max_abs": 4.76837158203125e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 2.384185791015625e-07,
+          "rgb_max_abs": 4.172325134277344e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 2.384185791015625e-07,
+          "rgb_max_abs": 5.960464477539062e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 1.7881393432617188e-07,
+          "rgb_max_abs": 3.5762786865234375e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        }
+      }
+    },
+    "geometry_combined": {
+      "max_alpha": 0.003845691680908203,
+      "max_rgb": 0.002937138080596924,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 0.002937614917755127,
+          "rgb_max_abs": 0.002937138080596924,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 0.000720679759979248,
+          "rgb_max_abs": 0.0028222128748893738,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.000438690185546875,
+          "rgb_max_abs": 0.0013329386711120605,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 0.003845691680908203,
+          "rgb_max_abs": 0.0007977485656738281,
+          "status": "FAIL",
+          "visibility_change": 0
+        }
+      }
+    },
+    "opacity_only": {
+      "max_alpha": 2.384185791015625e-07,
+      "max_rgb": 3.5762786865234375e-07,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 2.384185791015625e-07,
+          "rgb_max_abs": 3.5762786865234375e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 2.384185791015625e-07,
+          "rgb_max_abs": 2.980232238769531e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 2.384185791015625e-07,
+          "rgb_max_abs": 3.5762786865234375e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 1.7881393432617188e-07,
+          "rgb_max_abs": 3.5762786865234375e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        }
+      }
+    },
+    "rotation_only": {
+      "max_alpha": 0.003846108913421631,
+      "max_rgb": 0.0007977485656738281,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 0.00014472007751464844,
+          "rgb_max_abs": 9.447336196899414e-05,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 2.3245811462402344e-06,
+          "rgb_max_abs": 0.00037288665771484375,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.00011056661605834961,
+          "rgb_max_abs": 0.00016123056411743164,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 0.003846108913421631,
+          "rgb_max_abs": 0.0007977485656738281,
+          "status": "FAIL",
+          "visibility_change": 0
+        }
+      }
+    },
+    "scale_only": {
+      "max_alpha": 0.00042724609375,
+      "max_rgb": 0.0003729313611984253,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 2.0265579223632812e-06,
+          "rgb_max_abs": 0.00010087341070175171,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 2.4437904357910156e-06,
+          "rgb_max_abs": 0.0003729313611984253,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.00042724609375,
+          "rgb_max_abs": 0.0003517568111419678,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 2.682209014892578e-06,
+          "rgb_max_abs": 3.808736801147461e-05,
+          "status": "FAIL",
+          "visibility_change": 0
+        }
+      }
+    },
+    "sh0_only": {
+      "max_alpha": 0.0,
+      "max_rgb": 4.76837158203125e-07,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 4.76837158203125e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 3.5762786865234375e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 4.76837158203125e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 2.980232238769531e-07,
+          "status": "PASS",
+          "visibility_change": 0
+        }
+      }
+    },
+    "shN_only": {
+      "max_alpha": 0.0,
+      "max_rgb": 0.0,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 0.0,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 0.0,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 0.0,
+          "status": "PASS",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 0.0,
+          "rgb_max_abs": 0.0,
+          "status": "PASS",
+          "visibility_change": 0
+        }
+      }
+    },
+    "xyz_only": {
+      "max_alpha": 0.00293731689453125,
+      "max_rgb": 0.002936840057373047,
+      "rows": {
+        "O02": {
+          "alpha_max_abs": 0.00293731689453125,
+          "rgb_max_abs": 0.002936840057373047,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O03": {
+          "alpha_max_abs": 0.000720679759979248,
+          "rgb_max_abs": 0.0028222277760505676,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O04": {
+          "alpha_max_abs": 0.000438690185546875,
+          "rgb_max_abs": 0.001332893967628479,
+          "status": "FAIL",
+          "visibility_change": 0
+        },
+        "O08": {
+          "alpha_max_abs": 8.696317672729492e-05,
+          "rgb_max_abs": 0.0004585385322570801,
+          "status": "FAIL",
+          "visibility_change": 0
+        }
+      }
+    }
+  }
+}

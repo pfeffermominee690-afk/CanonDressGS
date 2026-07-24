@@ -1,0 +1,29 @@
+{
+  "PAPER_FINAL": false,
+  "candidate_adjudication": {
+    "MULTIFACTOR_COMBINATION": "REJECTED_NO_INDEPENDENT_SECOND_FACTOR",
+    "NUMERICAL_CENTERING_OR_SVD_CLOSURE": "SUPPORTED_PRIMARY",
+    "PARITY_METRIC_OR_REDUCTION_IMPLEMENTATION_ERROR": "REJECTED_FLOAT_TENSOR_METRIC_CORRECT",
+    "RENDERER_NONDETERMINISM_FLOOR": "REJECTED_ZERO_FLOOR",
+    "RESIDUAL_TO_RENDER_STATE_COMPOSITION_MISMATCH": "REJECTED_SHARED_PATH",
+    "TRUE_RANK3_RENDER_NON_EQUIVALENCE": "REJECTED_FLOAT64_RANK3_BITWISE_RENDER"
+  },
+  "classification": "NUMERICAL_CENTERING_OR_SVD_CLOSURE",
+  "evidence": {
+    "candidate_20_of_20": 20,
+    "candidate_5_of_5": 5,
+    "float32_centered_sum_l2": 0.00010630184298853428,
+    "float32_fourth_singular_value": 8.549413905711845e-05,
+    "float64_fourth_singular_value": 2.541724320322229e-13,
+    "original_failure_reproduced": true,
+    "same_state_alpha_floor": 0.0,
+    "same_state_rgb_floor": 0.0,
+    "zero_sum_fourth_singular_value": 2.514491513080209e-13
+  },
+  "exact_failure": "LOO_BASIS_CONSTRUCTION_PARITY_FAILURE",
+  "failure_split": "LOO-O01",
+  "previous_classification": "LOO_ADAPTATION_EXECUTION_INVALID",
+  "schema_version": "canondressgs.paper.loo_basis_renderer_parity_root_cause.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-BASIS-RENDERER-PARITY-REPAIR-001"
+}

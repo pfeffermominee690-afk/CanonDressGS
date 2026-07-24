@@ -1,0 +1,31 @@
+{
+  "PAPER_FINAL": false,
+  "alpha_definition_shared": true,
+  "basis_composition_function": "scene.gaussian_clothing_residuals.compose_canonical_gaussian_overrides",
+  "camera_pose_background_equivalent": true,
+  "channel_order": [
+    "delta_xyz",
+    "delta_log_scaling",
+    "delta_rotvec",
+    "delta_opacity_logit",
+    "delta_sh0",
+    "delta_shN"
+  ],
+  "composition_path_equivalent": true,
+  "diagnostic_label": "DIAGNOSTIC_ONLY_NOT_SCIENTIFIC_EVALUATION",
+  "dtype_boundary_repair": "one cast in shared canonical composition to base renderer dtype",
+  "metric_tensor_domain": "unquantized float renderer outputs",
+  "opacity_parameterization": "additive raw opacity logit then sigmoid in renderer",
+  "png_used_for_metric": false,
+  "protected_guard_input_applied_to_both": true,
+  "raw_shN_freeze_semantics_shared": true,
+  "renderer_gate": 1e-05,
+  "rotation_parameterization": "normalize(q_base * axis_angle(delta_rotvec)), wxyz",
+  "scale_parameterization": "additive raw log scaling then exp in renderer",
+  "schema_version": "canondressgs.paper.loo_composition_metric_audit.v1",
+  "semantic_mismatch_found": false,
+  "sh_layout_shared": true,
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-BASIS-RENDERER-PARITY-REPAIR-001",
+  "teacher_composition_function": "scene.gaussian_clothing_residuals.compose_canonical_gaussian_overrides"
+}

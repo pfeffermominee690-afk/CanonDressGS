@@ -1,0 +1,109 @@
+{
+  "PAPER_FINAL": false,
+  "all_endpoint_parity": "20/20 PASS",
+  "all_five_split_parity": "5/5 PASS",
+  "authorization": "READY_FOR_LOO_ATTEMPT_002_BEFORE_OPTIMIZER",
+  "centering_contract": "final centered row equals negative sum of prior rows",
+  "coefficient_solver_contract": "orthonormal_basis_transpose_projection",
+  "composition_contract": "Teacher and basis share compose_canonical_gaussian_overrides",
+  "dtype_contract": "Teacher physical tensors cast to float64 before normalization through reconstruction",
+  "exact_failure": "LOO_BASIS_CONSTRUCTION_PARITY_FAILURE",
+  "no_attempt_created": true,
+  "no_optimizer_created": true,
+  "original_basis_artifact_sha256": "71144cafcdfd070942dc0a808b65216539d0320c3a801a1cde7fb0b75ecd40c6",
+  "planned_counts": {
+    "K": [
+      1,
+      2
+    ],
+    "cache_hits": 115,
+    "checkpoints": 720,
+    "logical_renders": 54960,
+    "optimizer_runs": 120,
+    "optimizer_steps": 36000,
+    "physical_renders": 54845,
+    "splits": 5,
+    "tasks": 40
+  },
+  "renderer_gate": 1e-05,
+  "renderer_input_parity_contract": "raw means/covariance/opacity/color <= 1e-5 before gsplat",
+  "repaired_construction_algorithm": "float64_mean_center_rank3_svd_strict_zero_sum",
+  "root_cause_classification": "NUMERICAL_CENTERING_OR_SVD_CLOSURE",
+  "schema_version": "canondressgs.paper.loo_basis_renderer_parity_execution_contract_repaired.v1",
+  "scientific_contract_audit": {
+    "artifact_count": 11,
+    "rows": [
+      {
+        "current_sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_basis_manifests.json",
+        "source_sha256": "24fd6eb106e17234aa2d22dafd00134bad673ed2b6a9285bd9537b3a93724df3"
+      },
+      {
+        "current_sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_basis_adaptation_protocol_amended.yaml",
+        "source_sha256": "654ff3afe47729e3e0b748ec4ba01a5a612159fc0db7792b914b32f387a6c499"
+      },
+      {
+        "current_sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_few_view_manifests_repaired.json",
+        "source_sha256": "7fbf80b1e50696d346b8578a3aba557e76cc2db78bb64c7bde3db5f1e793aeed"
+      },
+      {
+        "current_sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_adaptation_loss_contract.json",
+        "source_sha256": "d5eac4da4712208435e0c667bc49824708d473205c7d5942b017c33bada882f3"
+      },
+      {
+        "current_sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_optimizer_contract.json",
+        "source_sha256": "338ea96b20180fa07e2a16007f494d49be0746ca2814813f87741d787495c2cb"
+      },
+      {
+        "current_sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_evaluator_contract_amended.json",
+        "source_sha256": "4042609f77131baf0051fea18a4d715c30ca518ecad935dfe4be22d51c76d1df"
+      },
+      {
+        "current_sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_success_gates_amended.json",
+        "source_sha256": "a57d9f4b8a0aabe1961c768330405e530babf8904add3efadbc6df7efa0247ac"
+      },
+      {
+        "current_sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_expected_counts_cache_repaired.json",
+        "source_sha256": "280b073f54a551d92368f02026c1c7c54deca925f0ddb8c048cf309e97a6f9de"
+      },
+      {
+        "current_sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_cache_key_plan_v2.json",
+        "source_sha256": "5d78658f3d5d3e3f419bb4ba9a4ca7851266c03f6e55606f2e136f55670df9a3"
+      },
+      {
+        "current_sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_hard_lookup_k_replay.json",
+        "source_sha256": "3e10dd3d89595cd8b9e48dafe8e9838bd65a3886a92d614d405bf5afe874a7da"
+      },
+      {
+        "current_sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41",
+        "match": true,
+        "path": "paper_protocol/reviewer_risk/loo_execution_contract_cache_repaired.json",
+        "source_sha256": "ba73474659e6a4411d258bde777003f1e5d50adb900b46fc38e2a0a8fe111a41"
+      }
+    ],
+    "scientific_semantic_drift": 0,
+    "status": "PASS"
+  },
+  "source_invalid_attempt": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001/attempt_001",
+  "status": "READY_FOR_LOO_ATTEMPT_002_BEFORE_OPTIMIZER",
+  "task_id": "AAAI27-LOO-BASIS-RENDERER-PARITY-REPAIR-001"
+}

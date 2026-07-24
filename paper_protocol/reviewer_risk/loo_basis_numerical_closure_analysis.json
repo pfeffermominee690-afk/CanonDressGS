@@ -1,0 +1,70 @@
+{
+  "PAPER_FINAL": false,
+  "original_dtype_pipeline": {
+    "basis_storage": "torch.float32",
+    "centering": "torch.float32",
+    "coefficient_projection": "torch.float32",
+    "mean": "torch.float32",
+    "normalization": "torch.float32",
+    "rank_statistics_cast": "torch.float64 after float32 centering",
+    "reconstruction": "torch.float32",
+    "renderer_cast": "none because residual already matches base dtype",
+    "stack": "torch.float32",
+    "svd": "torch.float32",
+    "teacher_load": "torch.float32"
+  },
+  "paths": {
+    "N0_float32": {
+      "basis_fingerprint": "a7a16acf8c0920c5d4bba80c76be87f343e708cba7a8836d4bba3fee176410b9",
+      "centered_sum_l2": 0.00010630184298853428,
+      "centered_sum_max_abs": 1.9073486328125e-06,
+      "dtype": "torch.float32",
+      "fourth_singular_value": 8.549413905711845e-05,
+      "relative_fourth_singular_value": 9.722591443050987e-08,
+      "singular_values": [
+        879.3348999023438,
+        806.740478515625,
+        697.1994018554688,
+        8.549413905711845e-05
+      ],
+      "solver": "orthonormal_projection",
+      "zero_sum": false
+    },
+    "N1_float64": {
+      "basis_fingerprint": "c8f83dd310caf86d273d21cd560c53f9648a595a12763ff1ad3b62eacc4d5795",
+      "centered_sum_l2": 7.835223918882757e-14,
+      "centered_sum_max_abs": 1.7763568394002505e-15,
+      "dtype": "torch.float64",
+      "fourth_singular_value": 2.541724320322229e-13,
+      "relative_fourth_singular_value": 2.8905069985389863e-16,
+      "singular_values": [
+        879.3351206577081,
+        806.740808139659,
+        697.1994592361816,
+        2.541724320322229e-13
+      ],
+      "solver": "orthonormal_projection",
+      "zero_sum": false
+    },
+    "N2_float64_zero_sum": {
+      "basis_fingerprint": "bcb155aa9c2aa938dcaa28e246e5cf9d3f7954528cadd0ab3b12ed8142f182db",
+      "centered_sum_l2": 0.0,
+      "centered_sum_max_abs": 0.0,
+      "dtype": "torch.float64",
+      "fourth_singular_value": 2.514491513080209e-13,
+      "relative_fourth_singular_value": 2.85953722762656e-16,
+      "singular_values": [
+        879.3351206577081,
+        806.740808139659,
+        697.1994592361816,
+        2.514491513080209e-13
+      ],
+      "solver": "orthonormal_projection",
+      "zero_sum": true
+    }
+  },
+  "schema_version": "canondressgs.paper.loo_basis_numerical_closure_analysis.v1",
+  "selected_path": "N2_float64_zero_sum",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-BASIS-RENDERER-PARITY-REPAIR-001"
+}

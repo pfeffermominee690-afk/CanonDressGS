@@ -1,0 +1,22 @@
+{
+  "PAPER_FINAL": false,
+  "maximum_residual_error": {
+    "torch.float32": {
+      "lstsq": 2.7567148208618164e-06,
+      "orthonormal_projection": 2.7604401111602783e-06,
+      "pinv": 2.7548521757125854e-06,
+      "svd_coordinates": 2.7604401111602783e-06
+    },
+    "torch.float64": {
+      "lstsq": 1.1103639709075797e-14,
+      "orthonormal_projection": 1.1113343318519542e-14,
+      "pinv": 1.1104994961791403e-14,
+      "svd_coordinates": 1.1113343318519542e-14
+    }
+  },
+  "schema_version": "canondressgs.paper.loo_coefficient_solver_audit.v1",
+  "selected_solver": "orthonormal_projection",
+  "selection_basis": "mathematical correctness, closure, stability, determinism; never render outcome",
+  "status": "PASS",
+  "task_id": "AAAI27-LOO-BASIS-RENDERER-PARITY-REPAIR-001"
+}
