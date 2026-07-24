@@ -48,11 +48,11 @@ from tools.paper import loo_basis_output as output_io
 from tools.paper import loo_cache_key_plan
 
 
-TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-EXPERIMENT-001"
-SOURCE_BRANCH = "research/loo-few-view-fold-manifest-repair-20260724"
-SOURCE_HEAD = "2c7c748026307e82c88b7f96bf2dc41a79ba7b6f"
+TASK_ID = "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001"
+SOURCE_BRANCH = "research/loo-k-dependent-cache-count-contract-repair-20260724"
+SOURCE_HEAD = "d595264dd0bc9f8b19077955e9ba605f0d25fdd5"
 DIAGNOSTIC_HEAD = "695ae9ca092f8260e6c5f0b016f491c5e4324fd1"
-RUN_BRANCH = "research/loo-k-dependent-cache-count-contract-repair-20260724"
+RUN_BRANCH = "research/leave-one-garment-out-basis-adaptation-cache-repaired-20260724"
 PURE_BRANCH = "research/pure-endpoint-core-method-crossfit-amended-20260724"
 PURE_HEAD = "ce110887a942cf8db082ba688c8d36d2433bfdbe"
 HEADROOM_BRANCH = "research/render-refined-coefficient-headroom-attempt2-20260724"

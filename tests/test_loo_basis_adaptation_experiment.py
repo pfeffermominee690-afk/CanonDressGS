@@ -10,6 +10,10 @@ from tools.paper import run_loo_basis_adaptation_experiment as runner
 
 
 def test_repaired_source_and_historical_artifacts_are_exact() -> None:
+    assert runner.TASK_ID == "AAAI27-LOO-BASIS-ADAPTATION-CACHE-REPAIRED-ATTEMPT-001"
+    assert runner.SOURCE_BRANCH == "research/loo-k-dependent-cache-count-contract-repair-20260724"
+    assert runner.SOURCE_HEAD == "d595264dd0bc9f8b19077955e9ba605f0d25fdd5"
+    assert runner.RUN_BRANCH == "research/leave-one-garment-out-basis-adaptation-cache-repaired-20260724"
     source = runner.source_artifact_audit()
     historical = runner.historical_immutability_audit()
     assert source["status"] == "PASS"
