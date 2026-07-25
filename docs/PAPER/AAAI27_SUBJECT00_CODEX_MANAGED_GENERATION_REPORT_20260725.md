@@ -19,4 +19,4 @@
 
 Candidates are local Windows assets and are not committed to Git or copied to cloud storage. They are pre-Formal candidates, not accepted Teacher targets, final dataset images, or paper results.
 
-- Contract tests: `RUN_AFTER_METADATA_EMISSION`
+- Contract tests: `PASS` (27/27)
