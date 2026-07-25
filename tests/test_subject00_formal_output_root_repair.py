@@ -153,7 +153,7 @@ def test_frozen_splits_are_disjoint_and_count_exact() -> None:
     )
     assert pose["train_heldout_overlap"] == []
     assert pose["train_buffer_overlap"] == []
-    assert pose["temporal_leakage"] is False
+    assert pose["temporal_leakage"] == 0
 
 
 def test_surface_lbs_protected_roi_and_initialization_contracts() -> None:
