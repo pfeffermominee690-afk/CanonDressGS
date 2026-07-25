@@ -1,0 +1,36 @@
+\section{Implementation Details}
+\label{sec:supp_implementation}
+
+\paragraph{Reference inputs.}
+The reference set is
+\begin{equation}
+\mathcal S=\{(I_k,M_k)\}_{k=1}^{K},
+\end{equation}
+where $I_k$ is an RGB image and $M_k$ is its garment mask. A frozen F2 image backbone extracts one 256-dimensional feature from each masked reference. Mean and max aggregation produces a 512-dimensional vector, followed by LayerNorm and a single linear layer. For subject02 the output dimension is four and the trainable head contains 3,076 parameters.
+
+\paragraph{Teacher rendering.}
+For garment $g$ and registered view $v$, the observation used by the Teacher objective is
+\begin{equation}
+\widehat I_{g,v}=\mathcal R\!\left(\mathcal D(\mathcal G^0\oplus\Delta\mathcal G_g,\boldsymbol\theta_{g,v}),\mathcal C_{g,v}\right).
+\end{equation}
+The avatar, deformation operator, and renderer are frozen. Only the canonical residual over position, log-scale, rotation, opacity logit, and spherical-harmonic appearance is optimized and shared across the garment's registered views.
+
+\paragraph{Coefficient normalization and loss.}
+Let $\mathbf m_c$ and $\mathbf s_c$ be frozen per-coordinate statistics computed from the closed-wardrobe Teacher coefficients. Coordinates are standardized as
+\begin{equation}
+\widetilde{\mathbf c}_g=(\mathbf c_g-\mathbf m_c)\oslash\mathbf s_c,
+\end{equation}
+and the controller uses only
+\begin{equation}
+\mathcal L_{\mathrm{ctrl}}=\frac{1}{r}\sum_{j=1}^{r}
+\operatorname{SmoothL1}(\widehat{\widetilde c}_j-\widetilde c_{g,j};\beta=1).
+\end{equation}
+There is no classification, rendering, or pairwise-geometry loss. The head is trained for 300 Adam steps with learning rate 0.02; the F2 backbone, normalization statistics, endpoint basis, avatar, deformation operator, and renderer remain frozen.
+
+\paragraph{Realization and target rendering.}
+After nearest-endpoint selection and de-standardization, the reconstructed residual is $\Delta\mathcal G_{\mathrm{realized}}=\boldsymbol\mu+\mathbf B\mathbf c_{\mathrm{realized}}$. The final image is
+\begin{equation}
+\widehat I_t=\mathcal R\!\left(\mathcal D(\mathcal G^0\oplus\Delta\mathcal G_{\mathrm{realized}},\boldsymbol\theta_t),\mathcal C_t\right).
+\end{equation}
+Target RGB, mask, pose, camera, garment identity, and Teacher residuals are excluded from the reference predictor. Target pose and camera enter only the frozen deformation and rendering stages.
+

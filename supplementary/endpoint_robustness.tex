@@ -1,0 +1,15 @@
+\section{Endpoint Parity and Reference Robustness}
+\label{sec:supp_endpoint_robustness}
+
+\paragraph{Full-precision endpoint values.}
+The Base Avatar differs from the target Teacher by RGB MAE 0.247505309 and LPIPS 0.121243553. Oracle, classifier, centroid, and snapped \method{} realization have RGB MAE $9.288668\times10^{-7}$ and endpoint LPIPS $3.191450\times10^{-7}$. The shared unsnapped Linear Coefficient Predictor obtains coefficient MAE 71.4451, RGB MAE 0.053906807, and endpoint LPIPS 0.067913007. It routes all 60 clean queries to the correct endpoint region but records zero exact coefficient matches. Projection changes only realization: exact match becomes 1.0 without changing the selected garment.
+
+\paragraph{Perturbations.}
+For \method{}, top-1 remains 1.0 under mask erosion, mask dilation, reference-assignment permutation, and partial reference dropout. Single-reference top-1 is 0.95. Mild blur is the clear weakness: top-1 falls to 0.35 and the endpoint-flip rate is 0.65. Because raw and snapped variants share routing, projection does not change these top-1 values. The Reference Classifier obtains blur top-1 0.516667 and single-reference top-1 1.0; Nearest-Centroid obtains 0.300000 and 0.900, respectively. We therefore make no robustness-superiority claim.
+
+\paragraph{Safe fallback.}
+Complete reference dropout is evaluated separately from partial dropout. All 80 registered complete-dropout cases abstain to the Base Avatar, and observed identity contamination remains zero. On clean subject02 evaluation, identity and component contamination are both zero and no severe wrong-outfit failure is observed.
+
+\paragraph{Causal factor values.}
+The endpoint-anchored $2^3$ intervention gives main effects 0.99594054 for geometry, 0.0129 for visibility, and 0.0324 for appearance. Geometry is sufficient and necessary in 10/10 unordered garment pairs; visibility and appearance alone are sufficient in 0/10 and necessary in 0/10.
+

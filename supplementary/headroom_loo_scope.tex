@@ -1,0 +1,12 @@
+\section{Headroom and Leave-One-Garment-Out Scope}
+\label{sec:supp_scope}
+
+\paragraph{Teacher headroom.}
+Test-time coefficient refinement does not improve the sealed Teacher Endpoints. Mean Teacher LPIPS is 0.038768 and refined LPIPS is 0.038982, with 0/5 garments meeting the preregistered improvement threshold. Equal-step optimization of the full residual is worse at 0.118421 LPIPS. These results do not prove that all future refinement is impossible; they show that the evaluated refinement does not provide evidence beyond the optimized endpoint states.
+
+\paragraph{Leave-one-garment-out capacity.}
+A rank-3 affine basis constructed from four garments does not reliably adapt to the held-out fifth garment: 0/5 folds pass the capacity criterion. Low-dimensional adaptation obtains LPIPS 0.113551, while nearest hard lookup obtains 0.113437. Similar error for these two controls indicates that the four-garment span does not contain adequate information for reliable open-set adaptation under the tested contract.
+
+\paragraph{Interpretation.}
+The rank-4 subject02 basis exactly organizes its five seen endpoints and supports distances, prediction, projection, and controlled composition. Headroom and leave-one-out results bound that interpretation: the current basis is an endpoint-centered coordinate system over complete spatial residual fields, not a universal garment manifold or evidence of unseen-garment synthesis.
+

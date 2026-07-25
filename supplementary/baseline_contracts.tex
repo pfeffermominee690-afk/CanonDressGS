@@ -1,0 +1,20 @@
+\section{Baseline Contracts}
+\label{sec:supp_baselines}
+
+The following contracts define what signal each baseline receives and which mechanism it isolates.
+\begin{itemize}
+    \item \textbf{Base Avatar} applies no garment residual and has no trainable garment controller.
+    \item \textbf{Teacher Endpoint} directly renders the optimized target state. It is a non-deployable representation reference, not a reference-conditioned method.
+    \item \textbf{Outfit-ID Oracle Lookup} retrieves the correct Teacher Endpoint from privileged garment identity.
+    \item \textbf{Linear Coefficient Predictor} uses exactly the same reference features, aggregation, head, coefficient loss, data splits, and 300-step schedule as \method{}, but renders its de-standardized raw coefficient without nearest-endpoint projection.
+    \item \textbf{Reference Classifier Lookup} predicts one of the five seen garment labels from the same reference inputs and retrieves the associated endpoint. Its head has 3,589 trainable parameters.
+    \item \textbf{Nearest-Centroid Lookup} has no trainable parameters; it compares the frozen reference feature with garment centroids and retrieves the nearest endpoint.
+    \item \textbf{Linear Geometry} interpolates all Gaussian endpoint attributes, including center, scale, and rotation.
+    \item \textbf{Hard Geometry} selects one endpoint geometry. It can be perceptually close to a target but is a discrete switch, not an intermediate composition.
+    \item \textbf{\dual{}} retains both endpoint geometries and scales their effective opacity using oracle or user-specified endpoints and weights.
+\end{itemize}
+
+The primary protocol uses four condition rotations. In each rotation, two conditions train the controller, one calibrates it, and one is held out for testing. Three seeds produce 12 \method{} runs and 12 matched classifier runs, for 24 optimizer runs in total. Each evaluated reference method has 60 unique clean queries.
+
+Earlier global-feature, mean-only, legacy-supervision, and dense-decoder experiments belong to an exploratory protocol and are not pooled with the current cross-fit table. The historical dense decoder covers only O01/O08 and did not complete reference-conditioned training; the historical ``Legacy Endpoint'' label is contract-ambiguous. Those artifacts remain diagnostic provenance rather than formal matched baselines.
+

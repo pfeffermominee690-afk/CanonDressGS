@@ -1,0 +1,31 @@
+\section{Additional Analyses}
+\label{sec:supp_figures}
+
+\begin{figure*}[t]
+    \centering
+    \IfFileExists{figures/figure5_hard_lookup_relation.pdf}{
+        \includegraphics[width=\textwidth]{figures/figure5_hard_lookup_relation.pdf}
+    }{
+        \figureplaceholder{0.17\textheight}{Supplementary Figure S1 Placeholder}
+        {Raw coefficient location, nearest endpoint, snapped realization, Teacher parity, and relation to classifier and centroid lookup.}
+    }
+    \caption{\textbf{Raw prediction, snapping, and hard lookup.} Clean classifier, centroid, and \method{} predictions can select the same endpoint and therefore render equivalent closed-bank states. The coordinate prediction remains useful for residual-space analysis, while snapping converts an approximate prediction into exact valid-endpoint realization.}
+    \label{fig:supp_hard_lookup}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \IfFileExists{figures/figure6_scope_analysis.pdf}{
+        \includegraphics[width=\textwidth]{figures/figure6_scope_analysis.pdf}
+    }{
+        \figureplaceholder{0.18\textheight}{Supplementary Figure S2 Placeholder}
+        {Teacher versus refined LPIPS, five leave-one-out folds, raw versus snapped error, perturbations, and complete-dropout fallback.}
+    }
+    \caption{\textbf{Representation scope and failure boundaries.} Refinement does not surpass the Teacher states, and a four-garment rank-3 span does not reliably adapt to the fifth garment. Perturbations further separate endpoint realization from reference-routing robustness.}
+    \label{fig:supp_scope}
+\end{figure*}
+
+% Subject00 has no placeholder figure. After sealing, add one compact row to
+% main-paper Figure 1; add a full supplementary sheet only when it carries
+% evidence beyond that row.
+
