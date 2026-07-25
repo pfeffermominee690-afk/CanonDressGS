@@ -712,6 +712,184 @@ def verification_map(report: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {item["source_path"]: item for item in report.get("items", [])}
 
 
+def aggregate_verifications(
+    execution_path: Path,
+    archive_kind: str,
+    destination_verification_paths: list[Path],
+    source_verification_paths: list[Path],
+    output: Path,
+) -> None:
+    execution = load_json(execution_path)
+    key = (
+        "avatarrex_archive_set"
+        if archive_kind == "avatarrex"
+        else "checkpoint_archive_set"
+    )
+    expected_items = execution[key]
+    expected_paths = {item["source_path"] for item in expected_items}
+    destination_results = [
+        load_json(path) for path in destination_verification_paths
+    ]
+    source_results = [load_json(path) for path in source_verification_paths]
+    destination_by_source = {
+        item["source_path"]: item for item in destination_results
+    }
+    source_by_source = {item["source_path"]: item for item in source_results}
+    rows = []
+    for item in expected_items:
+        source_path = item["source_path"]
+        destination_result = destination_by_source.get(source_path)
+        source_result = source_by_source.get(source_path)
+        passed = bool(
+            destination_result
+            and source_result
+            and destination_result.get("overall_status") == "PASS"
+            and source_result.get("overall_status") == "PASS"
+            and destination_result.get("expected_file_count")
+            == item["expected_file_count"]
+            and destination_result.get("expected_logical_bytes")
+            == item["expected_logical_bytes"]
+        )
+        rows.append(
+            {
+                "source_path": source_path,
+                "destination_path": item["destination_path"],
+                "expected_file_count": item["expected_file_count"],
+                "expected_logical_bytes": item["expected_logical_bytes"],
+                "manifest_path": (
+                    destination_result.get("manifest_path")
+                    if destination_result
+                    else None
+                ),
+                "manifest_sha256": (
+                    destination_result.get("manifest_sha256")
+                    if destination_result
+                    else None
+                ),
+                "file_count_match": bool(
+                    destination_result
+                    and destination_result.get("file_count_match")
+                ),
+                "total_bytes_match": bool(
+                    destination_result
+                    and destination_result.get("total_bytes_match")
+                ),
+                "sha256_all_match": bool(
+                    destination_result
+                    and destination_result.get("sha256_all_match")
+                ),
+                "source_unchanged_after_transfer": bool(
+                    source_result and source_result.get("sha256_all_match")
+                ),
+                "destination_verification": destination_result,
+                "source_verification": source_result,
+                "overall_status": "PASS" if passed else "FAIL",
+            }
+        )
+    exact_coverage = bool(
+        set(destination_by_source) == expected_paths
+        and set(source_by_source) == expected_paths
+    )
+    passed = exact_coverage and all(item["overall_status"] == "PASS" for item in rows)
+    result = {
+        "schema_version": (
+            "canondressgs.subject00.avatarrex_archive_verification.v1"
+            if archive_kind == "avatarrex"
+            else "canondressgs.subject00.checkpoint_archive_verification.v1"
+        ),
+        "task_id": TASK_ID,
+        "verified_at_utc": utc_now(),
+        "archive_kind": archive_kind,
+        "exact_source_coverage": exact_coverage,
+        "item_count": len(rows),
+        "expected_file_count": sum(
+            item["expected_file_count"] for item in expected_items
+        ),
+        "expected_logical_bytes": sum(
+            item["expected_logical_bytes"] for item in expected_items
+        ),
+        "file_count_match": all(item["file_count_match"] for item in rows),
+        "total_bytes_match": all(item["total_bytes_match"] for item in rows),
+        "sha256_all_match": all(item["sha256_all_match"] for item in rows),
+        "source_unchanged_after_transfer": all(
+            item["source_unchanged_after_transfer"] for item in rows
+        ),
+        "items": rows,
+        "overall_status": "PASS" if passed else "FAIL",
+    }
+    write_json_atomic(output, result)
+    if not passed:
+        raise RuntimeError(f"{archive_kind} archive verification failed")
+
+
+def close_repaired_verification(
+    initial_verification_path: Path,
+    manifest_path: Path,
+    destination: Path,
+    repaired_relative_path: str,
+    output: Path,
+) -> None:
+    initial = load_json(initial_verification_path)
+    manifest = load_json(manifest_path)
+    expected_by_path = {
+        item["relative_path"]: item for item in manifest["files"]
+    }
+    if repaired_relative_path not in expected_by_path:
+        raise RuntimeError("Repair path is outside the manifest")
+    expected = expected_by_path[repaired_relative_path]
+    repaired_path = destination.joinpath(*repaired_relative_path.split("/"))
+    observed_bytes = repaired_path.stat().st_size if repaired_path.is_file() else None
+    observed_sha = sha256_file(repaired_path) if repaired_path.is_file() else None
+    checks = {
+        "initial_scan_covered_exact_file_count": (
+            initial.get("destination_file_count") == manifest["file_count"]
+            and initial.get("file_count_match") is True
+        ),
+        "initial_scan_covered_exact_logical_bytes": (
+            initial.get("destination_logical_bytes") == manifest["logical_bytes"]
+            and initial.get("total_bytes_match") is True
+        ),
+        "initial_scan_had_no_missing_files": initial.get("missing_count") == 0,
+        "initial_scan_had_no_extra_files": initial.get("extra_count") == 0,
+        "initial_scan_had_exactly_one_mismatch": (
+            initial.get("sha_or_size_mismatch_count") == 1
+            and initial.get("mismatch_sample") == [repaired_relative_path]
+        ),
+        "repaired_file_exists": repaired_path.is_file(),
+        "repaired_file_size_matches": observed_bytes == expected["bytes"],
+        "repaired_file_sha256_matches": observed_sha == expected["sha256"],
+    }
+    passed = all(checks.values())
+    result = {
+        **initial,
+        "verified_at_utc": utc_now(),
+        "verification_method": "FULL_SCAN_PLUS_EXACT_SINGLE_FILE_REPAIR_CLOSURE",
+        "initial_full_scan_path": str(initial_verification_path),
+        "initial_full_scan_sha256": sha256_file(initial_verification_path),
+        "initial_full_scan_verified_file_count": manifest["file_count"] - 1,
+        "repaired_file": {
+            "relative_path": repaired_relative_path,
+            "expected_bytes": expected["bytes"],
+            "observed_bytes": observed_bytes,
+            "expected_sha256": expected["sha256"],
+            "observed_sha256": observed_sha,
+            "matches": checks["repaired_file_sha256_matches"],
+        },
+        "repair_closure_checks": checks,
+        "missing_count": 0,
+        "extra_count": 0,
+        "sha_or_size_mismatch_count": 0 if passed else 1,
+        "missing_sample": [],
+        "extra_sample": [],
+        "mismatch_sample": [] if passed else [repaired_relative_path],
+        "sha256_all_match": passed,
+        "overall_status": "PASS" if passed else "FAIL",
+    }
+    write_json_atomic(output, result)
+    if not passed:
+        raise RuntimeError("Exact repair did not close the initial full-scan mismatch")
+
+
 def build_pre_deletion_gate(
     execution_path: Path,
     avatar_verification_path: Path,
@@ -1231,6 +1409,26 @@ def main() -> int:
     gate_parser.add_argument("--inventory", required=True)
     gate_parser.add_argument("--output", required=True)
 
+    aggregate_parser = subparsers.add_parser("aggregate-verifications")
+    aggregate_parser.add_argument("--execution-set", required=True)
+    aggregate_parser.add_argument(
+        "--archive-kind", choices=("avatarrex", "checkpoint"), required=True
+    )
+    aggregate_parser.add_argument(
+        "--destination-verification", action="append", required=True
+    )
+    aggregate_parser.add_argument(
+        "--source-verification", action="append", required=True
+    )
+    aggregate_parser.add_argument("--output", required=True)
+
+    repair_close_parser = subparsers.add_parser("close-repaired-verification")
+    repair_close_parser.add_argument("--initial-verification", required=True)
+    repair_close_parser.add_argument("--manifest", required=True)
+    repair_close_parser.add_argument("--destination", required=True)
+    repair_close_parser.add_argument("--repaired-relative-path", required=True)
+    repair_close_parser.add_argument("--output", required=True)
+
     archive_delete_parser = subparsers.add_parser("delete-archive-item")
     archive_delete_parser.add_argument("--execution-set", required=True)
     archive_delete_parser.add_argument("--gate", required=True)
@@ -1282,6 +1480,22 @@ def main() -> int:
             Path(args.avatar_verification),
             Path(args.checkpoint_verification),
             Path(args.inventory),
+            Path(args.output),
+        )
+    elif args.command == "aggregate-verifications":
+        aggregate_verifications(
+            Path(args.execution_set),
+            args.archive_kind,
+            [Path(path) for path in args.destination_verification],
+            [Path(path) for path in args.source_verification],
+            Path(args.output),
+        )
+    elif args.command == "close-repaired-verification":
+        close_repaired_verification(
+            Path(args.initial_verification),
+            Path(args.manifest),
+            Path(args.destination),
+            args.repaired_relative_path,
             Path(args.output),
         )
     elif args.command == "delete-archive-item":
