@@ -35,6 +35,10 @@
 Animatable Gaussian avatars usually entangle identity with the clothing observed during reconstruction, limiting post-hoc redressing. We present \method{}, a reference-controlled garment editing framework for a frozen animatable Gaussian avatar. Direct interpolation of garment-dependent Gaussian geometry moves centers, scales, and rotations through unsupported configurations, producing invalid silhouettes and scattered boundaries. We instead optimize a canonical Teacher Endpoint for each garment, organize the full garment residuals in an explicit low-dimensional coordinate system, and map clothing-masked reference images to endpoint coordinates with a lightweight set predictor. The automatic single-garment path snaps the prediction to its nearest verified endpoint; snapping is a realization constraint, while the coordinates retain the spatial structure needed for analysis and composition. On a five-garment subject02 wardrobe, 12 cross-fit runs correctly route all 60 clean queries, attain exact endpoint realization, and show zero identity contamination and no severe wrong-outfit failures. Raw predictions obtain zero exact matches and 0.0679 endpoint LPIPS, whereas snapping reduces parity error below $10^{-6}$. Causal intervention attributes 0.9959 of the interpolation artifact effect to geometry. For mixed states, \dual{} improves LPIPS from 0.0853 to 0.0570, IoU from 0.7101 to 0.7253, and Boundary F from 0.3003 to 0.3791. Claims are limited to fixed identities, seen garments, and oracle/user-specified mixed-state controls.
 \end{abstract}
 
+\section{Introduction}
+
+Animatable 3D Gaussian avatars combine explicit primitives, fast rendering, and pose-driven deformation, but the reconstructed representation normally binds identity to the garment present during capture. Replacing that garment is not a texture transfer: positions, scales, rotations, opacity, and appearance must change coherently while identity and the animation interface remain fixed. A practical controller must also infer the desired state from a small, unordered set of garment images rather than privileged garment labels. These requirements rule out simply training a new avatar for every outfit, because doing so changes the identity model, incurs full reconstruction cost, and provides no shared control interface. They also distinguish canonical redressing from per-frame image editing: one edited state must remain reusable across the poses and cameras already supported by the avatar. We study this problem after avatar training, asking how references can control a frozen canonical Gaussian representation without rebuilding its deformation or renderer.
+
 \begin{figure*}[t]
     \centering
     \IfFileExists{figures/figure1_canondressgs_teaser.pdf}{
@@ -46,10 +50,6 @@ Animatable Gaussian avatars usually entangle identity with the clothing observed
     \caption{\textbf{Reference-controlled canonical garment editing.} Clothing-masked references select a garment state for the same frozen animatable identity. \method{} realizes the corresponding valid Teacher Endpoint; the shown subject02 wardrobe contains five garments evaluated under matched poses and cameras.}
     \label{fig:teaser}
 \end{figure*}
-
-\section{Introduction}
-
-Animatable 3D Gaussian avatars combine explicit primitives, fast rendering, and pose-driven deformation, but the reconstructed representation normally binds identity to the garment present during capture. Replacing that garment is not a texture transfer: positions, scales, rotations, opacity, and appearance must change coherently while identity and the animation interface remain fixed. A practical controller must also infer the desired state from a small, unordered set of garment images rather than privileged garment labels. These requirements rule out simply training a new avatar for every outfit, because doing so changes the identity model, incurs full reconstruction cost, and provides no shared control interface. They also distinguish canonical redressing from per-frame image editing: one edited state must remain reusable across the poses and cameras already supported by the avatar. We study this problem after avatar training, asking how references can control a frozen canonical Gaussian representation without rebuilding its deformation or renderer.
 
 A direct reference-to-residual network would need to generate a localized field over roughly two hundred thousand irregular Gaussians. The output is not only high dimensional but highly nonuniform: sleeve boundaries, torso visibility, and cloth appearance require different changes at different primitives, whereas the references provide only sparse image evidence. Our diagnostics instead reveal a representation--conditioning mismatch. The frozen support can express each seen garment when its canonical residual is optimized from registered views, yet unconstrained prediction does not reliably reconstruct the same high-dimensional state. We therefore preserve the spatial field in optimized \emph{Teacher Endpoints} and predict only coordinates in their joint residual space. SVD is used here to parameterize the variation already present in complete residual fields, not to replace garments by identifiers. Each basis direction remains a field over all Gaussian attributes, and a coefficient vector specifies how those spatial fields combine. The coordinates are therefore not arbitrary class codes: they expose distances, directions, and composition operators even when the robust deployed path ultimately realizes a discrete endpoint.
 
@@ -103,19 +103,25 @@ with position, scale, rotation, opacity logit, and spherical-harmonic appearance
 
 For each garment $g$, a shared canonical residual $\Delta\mathcal{G}_g$ changes geometry, visibility, and appearance over all registered views $\mathcal{V}_g$. Its Teacher Endpoint is
 \begin{equation}
-\Delta\mathcal{G}_{g}^{*}=\arg\min_{\Delta\mathcal{G}_{g}}
-\sum_{v\in\mathcal{V}_{g}}\left[
-\mathcal{L}_{\mathrm{img}}\!\left(\mathcal{R}(\mathcal{D}(\mathcal{G}^{0}\!\oplus\!\Delta\mathcal{G}_{g},\boldsymbol{\theta}_{g,v}),\mathcal{C}_{g,v}),I_{g,v},M_{g,v}\right)
-+\lambda_{\mathrm{reg}}\mathcal{L}_{\mathrm{reg}}(\Delta\mathcal{G}_{g})\right].
+\begin{aligned}
+\widehat I_{g,v}&=\mathcal R\!\left(
+\mathcal D(\mathcal G^0\!\oplus\!\Delta\mathcal G_g,\boldsymbol\theta_{g,v}),
+\mathcal C_{g,v}\right),\\
+\Delta\mathcal G_g^*&=\arg\min_{\Delta\mathcal G_g}
+\sum_{v\in\mathcal V_g}\big[
+\mathcal L_{\mathrm{img}}(\widehat I_{g,v},I_{g,v},M_{g,v})\\[-1mm]
+&\hspace{31mm}+\lambda_{\mathrm{reg}}
+\mathcal L_{\mathrm{reg}}(\Delta\mathcal G_g)\big].
+\end{aligned}
 \label{eq:teacher}
 \end{equation}
 This optimized field is a valid state under the frozen avatar, not a ground-truth garment mesh. For $G$ endpoints, we construct their centered affine coordinates in one joint residual vector space:
 \begin{align}
-\boldsymbol{\mu}&=G^{-1}\textstyle\sum_g\Delta\mathcal{G}_{g}^{*}, &
-\mathbf{H}&=[\Delta\mathcal{G}_{1}^{*}-\boldsymbol{\mu},\ldots,\Delta\mathcal{G}_{G}^{*}-\boldsymbol{\mu}],\nonumber\\
-\mathbf{H}&=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\top},\quad
-\mathbf{B}=\mathbf{U}_{[:,1:r]}, &
-\mathbf{c}_g&=\mathbf{B}^{\top}(\Delta\mathcal{G}_{g}^{*}-\boldsymbol{\mu}).
+\boldsymbol{\mu}&=G^{-1}\textstyle\sum_g\Delta\mathcal G_g^*,\qquad
+\mathbf H=[\Delta\mathcal G_1^*-\boldsymbol\mu,\ldots,\Delta\mathcal G_G^*-\boldsymbol\mu],\nonumber\\
+\mathbf H&=\mathbf U\boldsymbol\Sigma\mathbf V^\top,\qquad
+\mathbf B=\mathbf U_{[:,1:r]},\nonumber\\
+\mathbf c_g&=\mathbf B^\top(\Delta\mathcal G_g^*-\boldsymbol\mu).
 \label{eq:basis}
 \end{align}
 For subject02, $G=5$ and $r=4$. Because $\mathbf{B}$ consists of spatial residual fields, $\mathbf{c}_g$ organizes coupled garment structure rather than replacing it with a class code. Affine-span membership, however, does not guarantee a valid intermediate render.
