@@ -142,8 +142,10 @@ def test_frozen_splits_are_disjoint_and_count_exact() -> None:
     assert view["overlap"] == []
     assert len(pose["train_frame_ids"]) == pose["train_count"] == 1130
     assert len(pose["heldout_frame_ids"]) == pose["heldout_count"] == 125
-    assert len(pose["buffer_excluded_frame_ids"]) == (
-        pose["buffer_excluded_count"] == 1245
+    assert (
+        len(pose["buffer_excluded_frame_ids"])
+        == pose["buffer_excluded_count"]
+        == 1245
     )
     assert set(pose["train_frame_ids"]).isdisjoint(pose["heldout_frame_ids"])
     assert set(pose["train_frame_ids"]).isdisjoint(
