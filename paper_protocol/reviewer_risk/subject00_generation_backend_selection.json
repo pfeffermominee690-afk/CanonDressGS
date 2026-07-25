@@ -1,0 +1,120 @@
+{
+  "candidates": [
+    {
+      "batch": "UNVERIFIED",
+      "candidate": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+      "content_policy_risk": "UNVERIFIED_FOR_THIS_DATASET",
+      "identity_preservation": "HISTORICAL_SUCCESS_ONLY_NOT_CURRENTLY_VERIFIED",
+      "image_conditioning": "HISTORICALLY_USED",
+      "input_count": "UNVERIFIED",
+      "local_evidence": "historical Subject02 success through image_gen.imagegen",
+      "mask_pose_support": "UNVERIFIED",
+      "model": null,
+      "model_status": "NOT_EXPOSED_BY_PLATFORM",
+      "output_resolution": "historical 1024x1536 portrait",
+      "reproducibility": "request provenance only; seed/model revision unavailable",
+      "response_retention": "platform result asset only; raw provider response unavailable",
+      "retry": "technical retry contract reusable after backend binding",
+      "selection_result": "NOT_SELECTED",
+      "verified_cost": false
+    },
+    {
+      "batch": "n=1 concurrency=1",
+      "candidate": "HISTORICAL_OPENAI_COMPATIBLE_PROXY_SUBLYX",
+      "content_policy_risk": "provider-side only and not frozen",
+      "evidence_sha256": "2a431927e591e60a31ff796d8a5a774b415b58b0f31c0b8b3096c4c26ea6ae04",
+      "historical_endpoint_identifier": "api.sublyx.org/v1/images/edits",
+      "identity_preservation": "NOT_CURRENTLY_VERIFIED",
+      "image_conditioning": "IMPLEMENTED_WITH_IDENTITY_AND_CONDITION_IMAGES",
+      "input_count": "multiple images historically accepted; current limit unverified",
+      "local_evidence": "E:/data_pre/scripts/run_gpt_image2_pose_outfit_sheets.py",
+      "mask_pose_support": "condition image only; mask not used",
+      "model": "historical alias gpt-image-2; revision unpinned",
+      "output_resolution": "1536x1024 wire size",
+      "reproducibility": "request provenance only; seed absent",
+      "response_retention": "status/request-id and optional JSON historically available; unsafe dumps forbidden",
+      "retry": "2 historical retries; prospective 3/9 second technical backoff",
+      "selection_result": "NOT_SELECTED",
+      "verified_cost": false
+    },
+    {
+      "batch": "n=1; retries=2 historically",
+      "candidate": "HISTORICAL_OPENAI_COMPATIBLE_PROXY_78CODE",
+      "content_policy_risk": "UNVERIFIED",
+      "evidence_sha256": "f3b493f9da325e38683260fdedb6315921c6f642bab1fbe8cb192698f2036e8b",
+      "historical_endpoint_identifier": "www.78code.cc/v1/images/edits",
+      "identity_preservation": "NOT_CURRENTLY_VERIFIED",
+      "image_conditioning": "HISTORICALLY_IMPLEMENTED",
+      "input_count": "UNVERIFIED",
+      "local_evidence": "E:/data_pre/scripts/run_jay_coverage_supplement_v1.py",
+      "mask_pose_support": "UNVERIFIED",
+      "model": "CLI required; historically documented as gpt-image-2 without revision",
+      "output_resolution": "1536x1024 wire size",
+      "reproducibility": "request provenance only",
+      "response_retention": "NOT_VERIFIED_PROSPECTIVELY",
+      "retry": "seed explicitly unsupported in historical fingerprint",
+      "selection_result": "NOT_SELECTED",
+      "verified_cost": false
+    }
+  ],
+  "comparison_basis": "local scripts, manifests, historical logs, and frozen workflow contracts only",
+  "content_sha256": "3d3606c3235132d8059dd70bc1cf68061736df576ccc4700b2883538d8b6ce21",
+  "credential_policy": {
+    "credential_read_in_this_task": false,
+    "dry_run_reads_credential": false,
+    "persist_value_length_prefix_fingerprint_or_header": false,
+    "prospective_env_name": "MULTI_IDENTITY_GENERATION_API_KEY"
+  },
+  "external_api_calls": 0,
+  "historical_execution_counts": {
+    "Jay_records": 915,
+    "Jay_success": 494,
+    "Rose_records": 1989,
+    "Rose_success": 293
+  },
+  "image_generation_api_calls": 0,
+  "network_or_connectivity_probe_performed": false,
+  "paid_call_performed": false,
+  "paper_final": false,
+  "request_and_review_workflow_source": {
+    "branch": "research/multi-identity-generation-backend-review-workflow-20260724",
+    "head": "e8a09525f745f373e38418c43040766d69a50d10",
+    "review_server_sha256": "5f4861f58bc47f85f62a80c19ca83450af888faa7fef00ab9e5870ed71f7e360",
+    "workflow_sha256": "135df99fbdef71ffffcdc8a54822fd25ed5a562c4153a4b26016bd327c4161aa"
+  },
+  "schema_version": "canondressgs.subject00.generation_backend_selection.v1",
+  "selection": null,
+  "selection_blockers": [
+    "user has not selected a provider and exact model/revision or alias policy",
+    "current provider capability, image count, mask support, seed behavior, price, rate limits, data processing, content policy, and paper-use license are unverified",
+    "no connectivity or paid request is authorized",
+    "platform-managed route does not expose an exact backend model"
+  ],
+  "status": "BACKEND_SELECTION_REQUIRED",
+  "subject02_workflow_reuse": {
+    "NOT_REUSABLE": [
+      "Subject02 identity pixels, paths, condition IDs, frame IDs, or accepted target pixels",
+      "historical unpinned provider/model labels",
+      "historical credential length or SHA-prefix logging",
+      "historical unsafe raw debug-response dumps",
+      "historical 160-candidate budget"
+    ],
+    "REUSABLE_WITHOUT_CHANGE": [
+      "append-only request, failure, retry, review, and provenance events",
+      "two independent initial human reviewers plus human adjudication",
+      "2 ACCEPT accepts; any REJECT rejects; all other pairs adjudicate",
+      "VLM final tie-break forbidden",
+      "technical-only retry taxonomy with 3/9 second backoff and maximum two retries",
+      "credential-value, length, prefix, fingerprint, and authorization-header persistence forbidden",
+      "PNG 1024x1536 portrait normalized output contract"
+    ],
+    "REUSABLE_WITH_SUBJECT00_BINDING": [
+      "request schema and deterministic naming",
+      "identity/condition image binding",
+      "garment prompt templates",
+      "review queue and localhost review server",
+      "provider request/response field mapping after user selection"
+    ]
+  },
+  "task_id": "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001"
+}

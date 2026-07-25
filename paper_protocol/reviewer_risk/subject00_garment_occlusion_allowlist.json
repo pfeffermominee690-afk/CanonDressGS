@@ -1,0 +1,45 @@
+{
+  "allowlist_may_override_hard_reject": false,
+  "content_sha256": "0f17ccc641af4c9835146ffbbbc4f883b3606009037df15081ed9c03384b4f5c",
+  "garment_specific": {
+    "O01": [
+      "hood may cover the rear and sides of the head but not the face; sleeves and trousers may cover arms and legs normally"
+    ],
+    "O03": [
+      "suit jacket may cover shirt torso while collar, tie, jacket lapels, cuffs, and trouser separation remain legible"
+    ],
+    "O04": [
+      "bomber jacket may cover the inner shirt except at the intended opening; jeans may cover legs to ankle level"
+    ]
+  },
+  "never_allowed": [
+    "face covered by garment or artifact",
+    "missing hands or feet",
+    "severely missing body contour",
+    "garment fused into body",
+    "garment region replaced by background",
+    "camera crop removes any body part"
+  ],
+  "paper_final": false,
+  "schema_version": "canondressgs.subject00.garment_occlusion_allowlist.v1",
+  "shared_allowed": [
+    {
+      "code": "NATURAL_GARMENT_BODY_OCCLUSION",
+      "scope": "garment may cover the body regions it is designed to cover; body silhouette must remain anatomically coherent"
+    },
+    {
+      "code": "NORMAL_ARM_TORSO_SELF_OCCLUSION",
+      "scope": "an arm may naturally occlude a small torso or garment region in the frozen pose"
+    },
+    {
+      "code": "VIEW_DEPENDENT_SELF_OCCLUSION",
+      "scope": "far-side limbs and garment surfaces may be self-occluded in side/back views"
+    },
+    {
+      "code": "LOWER_GARMENT_LEG_OCCLUSION",
+      "scope": "trousers or jeans may cover legs to the ankles without deleting feet"
+    }
+  ],
+  "status": "FROZEN_STRICT_ALLOWLIST",
+  "task_id": "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001"
+}

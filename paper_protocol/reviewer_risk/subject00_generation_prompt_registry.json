@@ -1,0 +1,62 @@
+{
+  "content_sha256": "c363d751b07942b6ce4519b3e274730300e133cc5b9697e05ccf19d7a1d537a6",
+  "garment_redesign_allowed": false,
+  "identity_change_allowed": false,
+  "paper_final": false,
+  "pose_or_camera_change_allowed": false,
+  "prompt_count": 3,
+  "records": [
+    {
+      "backend_specific_mapping": {
+        "garment_semantics_role": "positive prompt; donor pixels are not yet frozen",
+        "mask_role": "provide only if selected backend supports and contract pins mask semantics",
+        "source_image_role": "identity_and_pose_condition",
+        "status": "PENDING_BACKEND_SELECTION"
+      },
+      "garment_id": "O01",
+      "negative_constraint_id": "subject00_O01_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, zip-front hoodie, short sleeves, blue trousers, double hood, retained old cuffs",
+      "negative_constraints_sha256": "a53b839b39c0f4a590f2f3af1821865cb2b7329a6cab3423841d1333092918dd",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A light heather-gray pullover hoodie with hood, drawstrings, long sleeves, ribbed cuffs and waist hem, paired with black full-length straight trousers. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_sha256": "a8ab791e57a57fd2c63bff333bdd9937e07b61f8a43e40018215d7c39df085c7",
+      "prompt_id": "subject00_O01_positive_v1",
+      "semantic_description": "Light heather-gray pullover hoodie with black full-length straight trousers."
+    },
+    {
+      "backend_specific_mapping": {
+        "garment_semantics_role": "positive prompt; donor pixels are not yet frozen",
+        "mask_role": "provide only if selected backend supports and contract pins mask semantics",
+        "source_image_role": "identity_and_pose_condition",
+        "status": "PENDING_BACKEND_SELECTION"
+      },
+      "garment_id": "O03",
+      "negative_constraint_id": "subject00_O03_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, casual jacket, missing tie, mismatched trousers, open bare chest, short sleeves",
+      "negative_constraints_sha256": "cad4f38f47f663bbfd908d6766135f68ee2f874f39804de0510cca15ab7c092e",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A dark navy tailored single-breasted two-button business suit with matching full-length trousers, a white dress shirt, and a dark navy tie. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_sha256": "d92a379a9450f2a5f1d092537c723f22f24a9c4ec01e4f9bc5a7496f02369f35",
+      "prompt_id": "subject00_O03_positive_v1",
+      "semantic_description": "Dark navy single-breasted business suit with matching trousers, white dress shirt, and dark navy tie."
+    },
+    {
+      "backend_specific_mapping": {
+        "garment_semantics_role": "positive prompt; donor pixels are not yet frozen",
+        "mask_role": "provide only if selected backend supports and contract pins mask semantics",
+        "source_image_role": "identity_and_pose_condition",
+        "status": "PENDING_BACKEND_SELECTION"
+      },
+      "garment_id": "O04",
+      "negative_constraint_id": "subject00_O04_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, hood, long coat, black trousers, formal blazer, distressed or torn jeans",
+      "negative_constraints_sha256": "408db71ea8e4d2a54b9b45a91e7934ca5cfee25e8d43d53697c4d06be99b83cf",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A black waist-length zip-front bomber jacket with long sleeves over a light-gray crew-neck shirt, paired with medium-blue full-length straight denim jeans. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_sha256": "ac71757350a278dc4b28d5cb7bc6abe7417f39e9a8e2beec579fa25b9b729473",
+      "prompt_id": "subject00_O04_positive_v1",
+      "semantic_description": "Black waist-length zip-front bomber jacket over a light-gray crew-neck shirt with medium-blue denim jeans."
+    }
+  ],
+  "schema_version": "canondressgs.subject00.generation_prompt_registry.v1",
+  "status": "PROMPTS_FROZEN_BACKEND_MAPPING_PENDING",
+  "task_id": "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001",
+  "test_result_tuning_used": false
+}
