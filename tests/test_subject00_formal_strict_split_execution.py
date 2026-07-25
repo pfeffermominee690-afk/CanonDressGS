@@ -97,10 +97,13 @@ def test_runner_freezes_execution_identity_and_paths() -> None:
         "4993f5c865ec19895f35811fa399fc4a1834c6a7"
     )
     assert ast.literal_eval(assignments["TARGET_BRANCH"]) == (
-        "research/mmlphuman-subject00-formal-strict-split-experiment-20260725"
+        "research/mmlphuman-subject00-formal-output-root-repaired-run-20260725"
     )
     assert "SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001" in source
     assert "SUBJECT00-FORMAL-STRICT-SPLIT-BASE-001" in source
+    assert "CANONICAL_FORMAL_OUTPUT_ROOT" in source
+    assert "REQUEST_LEVEL_OUTPUT_ROOT_ALIAS" in source
+    assert "REQUEST_LEVEL_OUTPUT_ROOT_ALIAS_CONFLICT" in source
     assert "conflicting non-protocol output root exists" in source
 
 

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canondressgs.subject00.formal_output_root_adjudication.v1",
+  "title": "Subject00 formal output-root adjudication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "prepared_experiment_head",
+    "execution_branch",
+    "classification",
+    "canonical_formal_output_root",
+    "rejected_output_root_alias",
+    "authority_order",
+    "candidate_roots_pre_execution",
+    "write_policy",
+    "scientific_semantic_drift",
+    "paper_final"
+  ],
+  "properties": {
+    "schema_version": {"const": "canondressgs.subject00.formal_output_root_adjudication.v1"},
+    "task_id": {"const": "AAAI27-SUBJECT00-FORMAL-OUTPUT-ROOT-REPAIR-AND-RUN-001"},
+    "prepared_experiment_head": {"pattern": "^[0-9a-f]{40}$"},
+    "execution_branch": {"type": "string", "minLength": 1},
+    "classification": {"const": "REQUEST_LEVEL_OUTPUT_ROOT_ALIAS_CONFLICT"},
+    "canonical_formal_output_root": {"type": "string", "minLength": 1},
+    "rejected_output_root_alias": {"type": "string", "minLength": 1},
+    "authority_order": {"type": "array", "minItems": 4, "maxItems": 4},
+    "candidate_roots_pre_execution": {
+      "type": "object",
+      "required": ["canonical_exists", "rejected_alias_exists"]
+    },
+    "write_policy": {"const": "CANONICAL_ROOT_ONLY"},
+    "copy_attempt_allowed": {"const": false},
+    "symbolic_link_allowed": {"const": false},
+    "compatibility_mirror_allowed": {"const": false},
+    "scientific_semantic_drift": {"const": 0},
+    "scientific_contract_mutations": {"const": 0},
+    "paper_final": {"const": false}
+  }
+}

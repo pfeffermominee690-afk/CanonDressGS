@@ -50,16 +50,24 @@ PROTOCOL_BRANCH = (
 )
 PROTOCOL_HEAD = "4993f5c865ec19895f35811fa399fc4a1834c6a7"
 TARGET_BRANCH = (
-    "research/mmlphuman-subject00-formal-strict-split-experiment-20260725"
+    "research/mmlphuman-subject00-formal-output-root-repaired-run-20260725"
 )
-FORMAL_OUTPUT_ROOT = Path(
+CANONICAL_FORMAL_OUTPUT_ROOT = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/"
     "SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001"
 )
+FORMAL_OUTPUT_ROOT = CANONICAL_FORMAL_OUTPUT_ROOT
 ATTEMPT_ROOT = FORMAL_OUTPUT_ROOT / "attempt_001"
-CONFLICTING_REQUEST_OUTPUT_ROOT = Path(
+REQUEST_LEVEL_OUTPUT_ROOT_ALIAS = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/"
     "SUBJECT00-FORMAL-STRICT-SPLIT-BASE-001"
+)
+CONFLICTING_REQUEST_OUTPUT_ROOT = REQUEST_LEVEL_OUTPUT_ROOT_ALIAS
+OUTPUT_ROOT_CLASSIFICATION = "REQUEST_LEVEL_OUTPUT_ROOT_ALIAS_CONFLICT"
+REPAIRED_EXECUTION_CONTRACT_PATH = (
+    REPO_ROOT
+    / "paper_protocol/reviewer_risk/"
+    "subject00_formal_execution_contract_repaired.json"
 )
 CANARY_ROOT = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/"
@@ -210,12 +218,21 @@ def load_protocol(availability_path: Path) -> dict[str, Any]:
     visual = values["visual"]
     resource = values["resource"]
     handoff = values["handoff"]
+    repaired_execution = read_json(REPAIRED_EXECUTION_CONTRACT_PATH)
     if contract["task_id"] != PROTOCOL_TASK_ID:
         raise RuntimeError("formal protocol task id changed")
     if Path(contract["formal_output_root"]) != FORMAL_OUTPUT_ROOT:
         raise RuntimeError("formal protocol output root changed")
     if Path(handoff["formal_output_root"]) != FORMAL_OUTPUT_ROOT:
         raise RuntimeError("formal handoff output root changed")
+    if Path(repaired_execution["canonical_formal_output_root"]) != FORMAL_OUTPUT_ROOT:
+        raise RuntimeError("repaired execution contract output root changed")
+    if Path(repaired_execution["rejected_output_root_alias"]) != REQUEST_LEVEL_OUTPUT_ROOT_ALIAS:
+        raise RuntimeError("repaired execution contract alias changed")
+    if repaired_execution["execution_branch"] != TARGET_BRANCH:
+        raise RuntimeError("repaired execution contract branch changed")
+    if repaired_execution["scientific_semantic_drift"] != 0:
+        raise RuntimeError("repaired execution contract has scientific drift")
     if int(resource["resource_gate"]["minimum_free_bytes"]) != MINIMUM_FREE_BYTES:
         raise RuntimeError("formal disk gate changed")
     if schedule["optimizer_steps"] != FINAL_STEP:
@@ -291,6 +308,7 @@ def load_protocol(availability_path: Path) -> dict[str, Any]:
     }
     return {
         **values,
+        "repaired_execution": repaired_execution,
         "availability": availability,
         "hashes": hashes,
         "runtime_bundle": runtime_bundle,

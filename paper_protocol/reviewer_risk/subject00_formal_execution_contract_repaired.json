@@ -1,0 +1,58 @@
+{
+  "schema_version": "canondressgs.subject00.formal_execution_contract_repaired.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-OUTPUT-ROOT-REPAIR-AND-RUN-001",
+  "protocol_branch": "research/mmlphuman-subject00-formal-strict-split-protocol-20260723",
+  "protocol_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+  "prepared_experiment_branch": "research/mmlphuman-subject00-formal-strict-split-experiment-20260725",
+  "prepared_experiment_head": "a0d8e64bd99517589870313ce2c71803cd737f7e",
+  "execution_branch": "research/mmlphuman-subject00-formal-output-root-repaired-run-20260725",
+  "canonical_formal_output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001",
+  "rejected_output_root_alias": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-STRICT-SPLIT-BASE-001",
+  "output_root_classification": "REQUEST_LEVEL_OUTPUT_ROOT_ALIAS_CONFLICT",
+  "scientific_semantic_drift": 0,
+  "formal_counts": {
+    "strict_train_records": 20249,
+    "passes": 5,
+    "optimizer_steps": 101245,
+    "checkpoint_steps": [0, 20249, 40498, 60747, 80996, 100000, 101245],
+    "train_cameras": 18,
+    "heldout_cameras": 6,
+    "train_poses": 1130,
+    "heldout_poses": 125,
+    "buffer_poses": 1245
+  },
+  "strict_split_sha256": {
+    "camera": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+    "pose": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06"
+  },
+  "initialization": {
+    "kind": "SUBJECT00_SHORT_CANARY_STEP_ZERO",
+    "step": 0,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+    "bytes": 701938720,
+    "sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a"
+  },
+  "attempt_policy": {
+    "scientific_attempt_count_before_run": 0,
+    "attempt_001_allowed_after_all_preflight_gates": true,
+    "attempt_002_allowed": false,
+    "same_attempt_exact_resume_only": true,
+    "result_driven_rerun_allowed": false
+  },
+  "resource_gate": {
+    "minimum_free_bytes": 32212254720,
+    "must_pass_before_attempt_creation": true,
+    "insufficient_storage_may_not_change_training_contract": true
+  },
+  "immutable_sources": {
+    "formal_protocol_mutation": 0,
+    "prepared_experiment_mutation": 0,
+    "surface_lbs_mutation": 0,
+    "short_canary_mutation": 0,
+    "medium_pilot_mutation": 0
+  },
+  "execution_head": null,
+  "result_head": null,
+  "final_reporting_head": null,
+  "paper_final": false
+}

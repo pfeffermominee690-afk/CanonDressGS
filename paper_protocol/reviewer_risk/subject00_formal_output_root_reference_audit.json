@@ -1,0 +1,62 @@
+{
+  "schema_version": "canondressgs.subject00.formal_output_root_reference_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-OUTPUT-ROOT-REPAIR-AND-RUN-001",
+  "authority_order": [
+    "SEALED_FORMAL_PROTOCOL",
+    "FORMAL_EXECUTION_CONTRACT",
+    "PREPARED_RUNNER_TEST_CONSENSUS",
+    "NATURAL_LANGUAGE_REQUEST"
+  ],
+  "authoritative_root_sources": [
+    {
+      "authority": "SEALED_FORMAL_PROTOCOL",
+      "path": "paper_protocol/second_identity/subject00_formal_training_contract.json",
+      "content_sha256": "3df033f7e9a0943ef478c42bb2e44678e88123cd1c773ddf9fe7afdbe2a8c8de",
+      "observed_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001"
+    },
+    {
+      "authority": "SEALED_FORMAL_PROTOCOL",
+      "path": "project_control_handoff/subject00_formal_protocol_handoff.json",
+      "content_sha256": "fd8ccfaae492551a2aded30bcf2d2962deed96148304e589790fc8f7b00d147d",
+      "observed_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001"
+    },
+    {
+      "authority": "FORMAL_EXECUTION_CONTRACT",
+      "path": "paper_protocol/reviewer_risk/subject00_formal_execution_contract_repaired.json",
+      "content_sha256": null,
+      "observed_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001"
+    },
+    {
+      "authority": "PREPARED_RUNNER_TEST_CONSENSUS",
+      "path": "tools/second_identity/run_subject00_formal_strict_split.py",
+      "content_sha256": null,
+      "observed_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001"
+    },
+    {
+      "authority": "PREPARED_RUNNER_TEST_CONSENSUS",
+      "path": "tests/test_subject00_formal_strict_split_execution.py",
+      "content_sha256": null,
+      "observed_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001"
+    }
+  ],
+  "expected_count_artifacts": [
+    "paper_protocol/second_identity/subject00_formal_training_schedule.json",
+    "paper_protocol/second_identity/subject00_formal_train_record_manifest.json",
+    "paper_protocol/second_identity/subject00_formal_evaluation_manifests.json",
+    "paper_protocol/second_identity/subject00_formal_visual_review_manifest.json",
+    "paper_protocol/second_identity/subject00_formal_resource_budget.json"
+  ],
+  "documentation_audit": {
+    "path": "docs/SECOND_IDENTITY/SUBJECT00_FORMAL_STRICT_SPLIT_TRAINING_PROTOCOL_20260723.md",
+    "explicit_root_literal": null,
+    "conflict_with_sealed_protocol": false
+  },
+  "request_alias_source": {
+    "authority": "NATURAL_LANGUAGE_REQUEST",
+    "classification": "REQUEST_LEVEL_OUTPUT_ROOT_ALIAS_CONFLICT",
+    "observed_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-STRICT-SPLIT-BASE-001"
+  },
+  "canonical_root_consensus": true,
+  "scientific_semantic_drift": 0,
+  "paper_final": false
+}
