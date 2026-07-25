@@ -1,0 +1,7 @@
+my $path_sep = ($^O eq 'MSWin32') ? ';' : ':';
+$ENV{'TEXINPUTS'} = './aaai_author_kit//' . $path_sep . ($ENV{'TEXINPUTS'} // '');
+$ENV{'BSTINPUTS'} = './aaai_author_kit//' . $path_sep . ($ENV{'BSTINPUTS'} // '');
+
+$pdf_mode = 1;
+$out_dir = 'build';
+$aux_dir = 'build';
