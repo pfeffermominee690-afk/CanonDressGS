@@ -1,0 +1,204 @@
+{
+  "schema_version": "canondressgs.subject00.checkpoint_reclamation_final_summary.v1",
+  "task_id": "AAAI27-SUBJECT00-CHECKPOINT-RECLAMATION-ADJUDICATION-001",
+  "audit_timestamp_utc": "2026-07-25T19:11:13+00:00",
+  "source": {
+    "branch": "research/mmlphuman-subject00-storage-migration-adjudication-20260725",
+    "head": "34e91445ef45c001cebcd789a4a6a88cad7b9ad8"
+  },
+  "adjudication": {
+    "branch": "research/subject00-checkpoint-reclamation-adjudication-20260725",
+    "base_head": "34e91445ef45c001cebcd789a4a6a88cad7b9ad8",
+    "windows_worktree": "E:\\model_train\\canondressgs_subject00_checkpoint_reclamation_adjudication",
+    "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_checkpoint_reclamation_adjudication",
+    "checkpoint_adjudication_head": "8e8f1b29b5c1f1eb3107d2cb2ab9e669a9bc1782",
+    "final_reporting_head": "SELF_ON_FINAL_REPORTING_COMMIT"
+  },
+  "lost_storage_report": {
+    "recovered": true,
+    "artifact_count": 14,
+    "original_final_classification": "SUBJECT00_STORAGE_MIGRATION_PLAN_READY",
+    "original_recommended_plan": "PLAN_C",
+    "original_next_task": "EXECUTE_USER_SELECTED_SUBJECT00_STORAGE_RECLAMATION_PLAN"
+  },
+  "formal_guard": {
+    "canonical_output_root": "ABSENT",
+    "attempt_001": "ABSENT",
+    "attempt_002": "ABSENT",
+    "rejected_alias": "ABSENT",
+    "active_training_process_count": 0,
+    "gpu_compute_process_count": 0,
+    "formal_execution_count": 0,
+    "optimizer_step_count": 0
+  },
+  "capacity": {
+    "cloud_free_bytes_at_inventory": 17104633856,
+    "contract_required_bytes": 32212254720,
+    "safety_target_bytes": 40802189312,
+    "recommended_45_gib_bytes": 48318382080,
+    "windows_e_free_bytes": 115592388608
+  },
+  "checkpoint_count": 3733,
+  "checkpoint_total_bytes": 72582423760,
+  "classification_summary": {
+    "CRITICAL_ACTIVE_KEEP": {
+      "count": 670,
+      "bytes": 6475388881
+    },
+    "SEALED_PROVENANCE_KEEP": {
+      "count": 2344,
+      "bytes": 28044766919
+    },
+    "UNIQUE_FINAL_KEEP": {
+      "count": 15,
+      "bytes": 1835148753
+    },
+    "DUPLICATE_SAFE_DELETE_CANDIDATE": {
+      "count": 70,
+      "bytes": 293877819
+    },
+    "ARCHIVE_THEN_DELETE_CANDIDATE": {
+      "count": 11,
+      "bytes": 9735410800
+    },
+    "REGENERABLE_DELETE_CANDIDATE": {
+      "count": 0,
+      "bytes": 0
+    },
+    "TEMPORARY_OPTIMIZER_STATE_CANDIDATE": {
+      "count": 1,
+      "bytes": 219104837
+    },
+    "UNKNOWN_KEEP": {
+      "count": 622,
+      "bytes": 25978725751
+    }
+  },
+  "short_canary_step0": {
+    "expected_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+    "expected_sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+    "exists": true,
+    "observed_sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+    "sha256_matches": true
+  },
+  "duplicate_group_count": 40,
+  "largest_checkpoint_directories": [
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001/attempt_003",
+      "checkpoint_count": 765,
+      "checkpoint_bytes": 12684479420
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k",
+      "checkpoint_count": 4,
+      "checkpoint_bytes": 5830680962
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001/attempt_002",
+      "checkpoint_count": 960,
+      "checkpoint_bytes": 5778029080
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001",
+      "checkpoint_count": 7,
+      "checkpoint_bytes": 3845015964
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001/attempt_001",
+      "checkpoint_count": 5,
+      "checkpoint_bytes": 3143064854
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003",
+      "checkpoint_count": 85,
+      "checkpoint_bytes": 3088316236
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_benchmark_basis_2010",
+      "checkpoint_count": 2,
+      "checkpoint_bytes": 2417462642
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/training_state",
+      "checkpoint_count": 2,
+      "checkpoint_bytes": 2223135748
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/diffusion_30k/checkpoints/030000/training_state",
+      "checkpoint_count": 2,
+      "checkpoint_bytes": 2133542220
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/irregular_diffusion_30k/checkpoints/030000/training_state",
+      "checkpoint_count": 2,
+      "checkpoint_bytes": 2133542220
+    }
+  ],
+  "reference_counts": {
+    "paper_or_figure": 669,
+    "figure_bank": 343,
+    "final_summary": 27,
+    "handoff": 1,
+    "checkpoint_registry": 1105,
+    "sealed_checkpoint_count": 2576
+  },
+  "archive_candidate_summary": {
+    "root_count": 3,
+    "whole_tree_file_count": 28,
+    "checkpoint_count": 11,
+    "transfer_logical_bytes": 9735450405,
+    "projected_cloud_release_allocated_bytes": 9735524352
+  },
+  "recommended_plan": {
+    "id": "PLAN_CKPT_D",
+    "name": "RECOMMENDED_CONSERVATIVE_COMBINATION",
+    "status": "PLAN_READY_BUT_SAFE_CAPACITY_TARGET_REMAINS_UNMET",
+    "components": [
+      "ARCHIVE_THEN_DELETE_CANDIDATE",
+      "DUPLICATE_SAFE_DELETE_CANDIDATE",
+      "REGENERABLE_DELETE_CANDIDATE",
+      "TEMPORARY_OPTIMIZER_STATE_CANDIDATE"
+    ],
+    "checkpoint_count": 82,
+    "directory_count": 68,
+    "archive_bytes": 9735450405,
+    "delete_bytes": 10248507008,
+    "projected_release_bytes": 10248507008,
+    "projected_release_gib": 9.544665932655334,
+    "projected_free_bytes": 27353140864,
+    "contract_margin_bytes": -4859113856,
+    "safety_margin_bytes": -13449048448,
+    "recommended_45_gib_margin_bytes": -20965241216,
+    "reaches_contract": false,
+    "reaches_safety": false,
+    "reaches_recommended_45_gib": false,
+    "remaining_contract_shortfall_bytes": 4859113856,
+    "remaining_safety_shortfall_bytes": 13449048448,
+    "remaining_45_gib_shortfall_bytes": 20965241216,
+    "automatic_execution_authorized": false
+  },
+  "actual_mutations": {
+    "checkpoint_deletion": 0,
+    "checkpoint_movement": 0,
+    "checkpoint_compression": 0,
+    "scientific_output_mutation": 0,
+    "dataset_mutation": 0,
+    "attempt_mutation": 0,
+    "manifest_mutation": 0,
+    "formal_base_execution": 0,
+    "optimizer_steps": 0,
+    "renderer": 0,
+    "api_calls": 0,
+    "report_and_audit_files_created": true,
+    "audit_scratch_files": [
+      "/tmp/subject00_checkpoint_reclamation_hash_cache.json",
+      "/tmp/subject00_checkpoint_reclamation_inventory.json",
+      "/tmp/subject00_checkpoint_reclamation_audit.log"
+    ]
+  },
+  "tests": "PASS_WITH_CHECKPOINT_RECLAMATION_SPACE_INSUFFICIENT",
+  "paper_final": false,
+  "classification": "SUBJECT00_CHECKPOINT_SAFE_DELETE_SPACE_INSUFFICIENT",
+  "next_task": "EXECUTE_USER_SELECTED_SUBJECT00_CHECKPOINT_RECLAMATION_PLAN",
+  "next_task_authorized": false
+}

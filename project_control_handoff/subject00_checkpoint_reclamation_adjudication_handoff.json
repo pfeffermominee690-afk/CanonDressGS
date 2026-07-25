@@ -1,0 +1,65 @@
+{
+  "schema_version": "canondressgs.subject00.checkpoint_reclamation_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-CHECKPOINT-RECLAMATION-ADJUDICATION-001",
+  "handoff_timestamp_utc": "2026-07-25T19:11:13+00:00",
+  "status": "PLAN_READY_CAPACITY_STILL_INSUFFICIENT",
+  "classification": "SUBJECT00_CHECKPOINT_SAFE_DELETE_SPACE_INSUFFICIENT",
+  "source_branch": "research/mmlphuman-subject00-storage-migration-adjudication-20260725",
+  "source_head": "34e91445ef45c001cebcd789a4a6a88cad7b9ad8",
+  "adjudication_branch": "research/subject00-checkpoint-reclamation-adjudication-20260725",
+  "checkpoint_adjudication_head": "8e8f1b29b5c1f1eb3107d2cb2ab9e669a9bc1782",
+  "final_reporting_head": "SELF_ON_FINAL_REPORTING_COMMIT",
+  "recommended_plan": {
+    "id": "PLAN_CKPT_D",
+    "name": "RECOMMENDED_CONSERVATIVE_COMBINATION",
+    "status": "PLAN_READY_BUT_SAFE_CAPACITY_TARGET_REMAINS_UNMET",
+    "components": [
+      "ARCHIVE_THEN_DELETE_CANDIDATE",
+      "DUPLICATE_SAFE_DELETE_CANDIDATE",
+      "REGENERABLE_DELETE_CANDIDATE",
+      "TEMPORARY_OPTIMIZER_STATE_CANDIDATE"
+    ],
+    "checkpoint_count": 82,
+    "directory_count": 68,
+    "archive_bytes": 9735450405,
+    "delete_bytes": 10248507008,
+    "projected_release_bytes": 10248507008,
+    "projected_release_gib": 9.544665932655334,
+    "projected_free_bytes": 27353140864,
+    "contract_margin_bytes": -4859113856,
+    "safety_margin_bytes": -13449048448,
+    "recommended_45_gib_margin_bytes": -20965241216,
+    "reaches_contract": false,
+    "reaches_safety": false,
+    "reaches_recommended_45_gib": false,
+    "remaining_contract_shortfall_bytes": 4859113856,
+    "remaining_safety_shortfall_bytes": 13449048448,
+    "remaining_45_gib_shortfall_bytes": 20965241216,
+    "automatic_execution_authorized": false
+  },
+  "hard_stop_conditions": [
+    "Any checkpoint path, byte count or SHA256 differs from the inventory",
+    "Any candidate becomes open by a process",
+    "Any formal canonical attempt or active training process appears",
+    "Any archive count, logical byte count or SHA256 manifest mismatch",
+    "Windows E: capacity falls below transfer bytes plus 8 GiB reserve",
+    "No explicit user authorization for exact archive or deletion paths",
+    "Projected free capacity remains below the selected execution gate"
+  ],
+  "protected_boundaries": [
+    "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+    "/root/autodl-tmp/canondressgs_work/outputs",
+    "/root/autodl-tmp/datasets/thuman4_second_identity_staging",
+    "/root/autodl-tmp/canondressgs_work/models"
+  ],
+  "critical_artifacts": [
+    "docs/PAPER/AAAI27_SUBJECT00_LOST_STORAGE_REPORT_RECOVERY_20260725.md",
+    "docs/PAPER/AAAI27_SUBJECT00_CHECKPOINT_RECLAMATION_PLAN_20260725.md",
+    "paper_protocol/reviewer_risk/subject00_checkpoint_full_inventory.json",
+    "paper_protocol/reviewer_risk/subject00_checkpoint_reclamation_plans.json",
+    "paper_protocol/reviewer_risk/subject00_checkpoint_reclamation_final_summary.json"
+  ],
+  "next_task": "EXECUTE_USER_SELECTED_SUBJECT00_CHECKPOINT_RECLAMATION_PLAN",
+  "next_task_authorized": false,
+  "paper_final": false
+}
