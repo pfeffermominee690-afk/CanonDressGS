@@ -1,0 +1,35 @@
+{
+  "schema_version": "canondressgs.subject00.combined_storage_reclamation_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-COMBINED-STORAGE-RECLAMATION-EXECUTION-001",
+  "handoff_at_utc": "2026-07-25T22:29:37Z",
+  "execution_branch": "research/subject00-storage-reclamation-execution-20260725",
+  "reclamation_result_head": "3183cbedf338d9bbe50b41110daa0e256adc4809",
+  "final_reporting_head": "SELF_ON_FINAL_REPORTING_COMMIT",
+  "state": {
+    "cloud_free_bytes": 59215609856,
+    "storage_target": "STORAGE_45GIB_TARGET_PASS",
+    "avatarrex_archive": "PASS",
+    "checkpoint_archive": "PASS",
+    "duplicate_deletion": "PASS_70_OF_70",
+    "optimizer_deletion": "PASS_1_OF_1",
+    "protection_audit": "PASS_AFTER_EXACT_SEALED_SUBPATH_RESTORATION",
+    "formal_attempt_count": 0,
+    "training_started": false,
+    "paper_final": false
+  },
+  "protected_restoration": {
+    "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/smpl_params.npz",
+    "bytes": 1309966,
+    "sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b",
+    "must_remain_on_cloud": true
+  },
+  "required_preflight_inputs": [
+    "paper_protocol/reviewer_risk/subject00_combined_reclamation_final_summary.json",
+    "paper_protocol/reviewer_risk/subject00_post_reclamation_storage_audit.json",
+    "paper_protocol/reviewer_risk/subject00_post_reclamation_protection_audit.json",
+    "paper_protocol/reviewer_risk/subject00_combined_reclamation_tests.json"
+  ],
+  "classification": "SUBJECT00_COMBINED_RECLAMATION_45GIB_TARGET_PASS",
+  "next_task": "RUN_SUBJECT00_FORMAL_BASE_FULL_PREFLIGHT_AND_FREEZE_EXECUTION_HEAD",
+  "next_task_authorized": true
+}
