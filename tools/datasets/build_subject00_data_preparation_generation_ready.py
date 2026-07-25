@@ -14,6 +14,7 @@ TASK_ID = "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001"
 SOURCE_BRANCH = "research/subject00-minimal-second-identity-dataset-contract-20260725"
 SOURCE_HEAD = "9da04d923c7c6c03c6a6f7c732d8d9c58d59c88d"
 BRANCH = "research/subject00-data-preparation-generation-ready-20260725"
+DATA_PREP_RESULT_HEAD = "44413b5665bce7749ec1d2e6a1c4726fa850b7ba"
 WINDOWS_WORKTREE = "E:/model_train/canondressgs_subject00_data_preparation_generation_ready"
 CLOUD_WORKTREE = (
     "/root/autodl-tmp/canondressgs_work/worktrees/"
@@ -1310,6 +1311,7 @@ def build_final_summary() -> dict[str, Any]:
             "task_id": TASK_ID,
             "branch": BRANCH,
             "base_head": SOURCE_HEAD,
+            "data_prep_result_head": DATA_PREP_RESULT_HEAD,
             "data_prep_result_head_resolution": "git rev-parse HEAD after the data binding commit",
             "final_reporting_head_resolution": "git rev-parse HEAD after the final audit seal commit",
             "scientific_semantics": "SECOND_IDENTITY_REPLICATION",
@@ -1384,6 +1386,7 @@ def build_handoff() -> dict[str, Any]:
             "branch": BRANCH,
             "windows_worktree": WINDOWS_WORKTREE,
             "cloud_worktree": CLOUD_WORKTREE,
+            "data_prep_result_head": DATA_PREP_RESULT_HEAD,
             "data_prep_result_head_resolution": "git rev-parse HEAD after the data binding commit",
             "final_reporting_head_resolution": "git rev-parse HEAD after the final audit seal commit",
             "classification": CLASSIFICATION,
