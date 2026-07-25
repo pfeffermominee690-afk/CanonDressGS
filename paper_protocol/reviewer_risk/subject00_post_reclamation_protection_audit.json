@@ -1,0 +1,104 @@
+{
+  "schema_version": "canondressgs.subject00.post_reclamation_protection_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-COMBINED-STORAGE-RECLAMATION-EXECUTION-001",
+  "audited_at_utc": "2026-07-25T22:26:14+00:00",
+  "protected_class_counts": {
+    "UNKNOWN_KEEP": 622,
+    "CRITICAL_ACTIVE_KEEP": 670,
+    "SEALED_PROVENANCE_KEEP": 2344,
+    "UNIQUE_FINAL_KEEP": 15
+  },
+  "protected_checkpoint_count": 3651,
+  "protected_checkpoint_failures": [],
+  "authorized_deleted_checkpoint_count": 82,
+  "authorized_deletion_failures": [],
+  "paper_or_figure_protected_count": 669,
+  "figure_bank_protected_count": 343,
+  "protected_scope_results": [
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/outputs",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/datasets",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/data",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/git",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/conda_envs",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/models",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/diffusion_piper_handoff",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/provenance_reports",
+      "exists": true
+    },
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+      "exists": true
+    }
+  ],
+  "protected_dataset_results": [
+    {
+      "path": "/root/autodl-tmp/canondressgs_work/data/subject02/images",
+      "classification": "B",
+      "exists": true,
+      "expected_file_count": 74640,
+      "observed_file_count": 74640,
+      "expected_logical_bytes": 35220311772,
+      "observed_logical_bytes": 35220311772,
+      "expected_allocated_bytes": 35376238592,
+      "observed_allocated_bytes": 35376238592,
+      "matches": true
+    },
+    {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets",
+      "classification": "A",
+      "exists": true,
+      "expected_file_count": 1634,
+      "observed_file_count": 1634,
+      "expected_logical_bytes": 29880835208,
+      "observed_logical_bytes": 29880835208,
+      "expected_allocated_bytes": 29884325888,
+      "observed_allocated_bytes": 29884325888,
+      "matches": true
+    },
+    {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+      "classification": "A",
+      "exists": true,
+      "expected_file_count": 119412,
+      "observed_file_count": 119412,
+      "expected_logical_bytes": 26459647641,
+      "observed_logical_bytes": 26459647641,
+      "expected_allocated_bytes": 26707615744,
+      "observed_allocated_bytes": 26707615744,
+      "matches": true
+    }
+  ],
+  "short_canary_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+  "short_canary_sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+  "overall_status": "PASS"
+}

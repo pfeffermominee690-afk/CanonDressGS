@@ -933,11 +933,17 @@ def build_pre_deletion_gate(
     checkpoint_roots = [
         item["source_path"] for item in execution["checkpoint_archive_set"]
     ]
+    avatar_roots = [
+        item["source_path"] for item in execution["avatarrex_archive_set"]
+    ]
     planned_checkpoint_rows = [
         row
         for row in inventory["checkpoints"]
         if row["path"] in duplicate_paths | optimizer_paths
-        or any(is_under(row["path"], root) for root in checkpoint_roots)
+        or any(
+            is_under(row["path"], root)
+            for root in checkpoint_roots + avatar_roots
+        )
     ]
     class_counts: dict[str, int] = {}
     for row in planned_checkpoint_rows:
