@@ -1,0 +1,43 @@
+{
+  "schema_version": "paper_compile_build1_registry.v1",
+  "task_id": "AAAI27-CANONDRESSGS-AAAI-BUILD-PROVISION-COMPILE-001",
+  "status": "PASS_BYTE_REPRODUCIBLE",
+  "build_number": 1,
+  "compile_result_head": "5af83d483d8f06751b79fd18e49267d594aa457b",
+  "environment": "canondress-cloud Ubuntu root toolchain",
+  "working_copy": "/root/canondressgs_paper_aaai_build_scratch/paper_draft",
+  "external_cache": "/root/canondressgs_paper_aaai_build_cache/formal_build1_5af83d4",
+  "source_date_epoch": 1784977469,
+  "force_source_date": true,
+  "timezone": "UTC",
+  "clean_command": "latexmk -C main.tex",
+  "build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex",
+  "clean_exit_status": 0,
+  "build_exit_status": 0,
+  "source_sha256": {
+    "main.tex": "9168DCBF0FF5B3C667DA1F755F1227E7A2BBB212B0B233DFF6DF9016692BDC27",
+    "references.bib": "2B8472B4FE564C3ECA634110C1B9AAAAA12A98982D01FF51D54561AB019E4D4A",
+    "latexmkrc": "2369DD220534F43ED6F4FC8099A062DFF03B88E5C0AD191D53E82ED58DCCC5FA",
+    "aaai2027.sty": "391BCE82815BF698B8E382DD3AE7E30C75D7AB46DF140CB295B1266016BC8623",
+    "aaai2027.bst": "5DB7765BA99DE5C1E4686F9B3940A0ADD9C5E702F2164514462BEC130CCB6E3C"
+  },
+  "artifact_sha256": {
+    "main.pdf": "BED98C75B5411606D578632452014D628198024B638C410988222091AF456236",
+    "main.log": "2187CA293425F2BDEE2F86393D0B5AF42DECD89585DB983839AF09CC081AB540",
+    "main.aux": "88B42EE054E14F7C7A896DE7B3324DDB2C7E140CF4000171CAF7D80281459588",
+    "main.bbl": "E54F08CEEB517A235A9832F1EBB4C7E51254FA8050BA6C3676748593CAC62BC5",
+    "main.blg": "C36AFA95169387EB94B34CCCA1D65089A8BE9043ED48A62F87E682B8933AC55D",
+    "main.txt": "DE02A0EEE4C8328F74EC8ACE6D90E413D9B75702D01670987BE6B889F281C76B"
+  },
+  "pdf_size_bytes": 233555,
+  "page_count": 5,
+  "final_fatal_error_count": 0,
+  "final_undefined_reference_count": 0,
+  "final_undefined_citation_count": 0,
+  "final_overfull_box_count": 0,
+  "final_underfull_hbox_count": 0,
+  "final_underfull_vbox_count": 2,
+  "ghostscript_exit_status": 0,
+  "rendered_page_count": 5,
+  "paper_final": false
+}

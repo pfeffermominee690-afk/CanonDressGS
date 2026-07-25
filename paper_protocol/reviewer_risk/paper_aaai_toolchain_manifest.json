@@ -1,0 +1,72 @@
+{
+  "schema_version": "paper_aaai_toolchain_manifest.v1",
+  "task_id": "AAAI27-CANONDRESSGS-AAAI-BUILD-PROVISION-COMPILE-001",
+  "status": "CLOUD_TOOLCHAIN_PROVISIONED",
+  "windows_probe": {
+    "pdflatex": false,
+    "latexmk": false,
+    "bibtex": false,
+    "biber": false,
+    "kpsewhich": false,
+    "ghostscript": false,
+    "pdftotext": false,
+    "pdfinfo_wrapper_present": true,
+    "windows_build_used": false
+  },
+  "cloud_versions": {
+    "pdflatex": "pdfTeX 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian)",
+    "bibtex": "BibTeX 0.99d (TeX Live 2022/dev/Debian)",
+    "latexmk": "4.76",
+    "kpsewhich": "kpathsea 6.3.4/dev",
+    "biber": null,
+    "ghostscript": "9.55.0",
+    "pdfinfo": "22.02.0",
+    "pdftotext": "22.02.0"
+  },
+  "installed_packages": {
+    "ghostscript": "9.55.0~dfsg1-0ubuntu5.13",
+    "latexmk": "1:4.76-1",
+    "poppler-utils": "22.02.0-2ubuntu0.13",
+    "tex-gyre": "20180621-3.1",
+    "texlive-fonts-extra": "2021.20220204-1",
+    "texlive-fonts-recommended": "2021.20220204-1",
+    "texlive-latex-base": "2021.20220204-1",
+    "texlive-latex-extra": "2021.20220204-1",
+    "texlive-latex-recommended": "2021.20220204-1",
+    "texlive-plain-generic": "2021.20220204-1",
+    "texlive-publishers": "2021.20220204-1"
+  },
+  "install_commands": [
+    "DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-publishers latexmk poppler-utils ghostscript",
+    "DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends texlive-plain-generic",
+    "DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tex-gyre",
+    "apt-get clean"
+  ],
+  "package_manager_estimates": {
+    "initial_download_mb": 607.0,
+    "initial_added_mb": 1803.0,
+    "dependency_download_mb": 34.396,
+    "dependency_added_mb": 86.1
+  },
+  "storage": {
+    "installation_filesystem": "/",
+    "root_final_available_bytes": 22701973504,
+    "autodl_tmp_final_available_bytes": 17562742784,
+    "tex_distribution_installed_under_autodl_tmp": false,
+    "apt_cache_cleaned": true
+  },
+  "verified_dependencies": [
+    "newtxtext.sty",
+    "placeins.sty",
+    "binhex.tex",
+    "ts1-qtmr.tfm"
+  ],
+  "environment_mutation": {
+    "conda": 0,
+    "gpu": 0,
+    "training": 0,
+    "renderer": 0,
+    "model_inference": 0
+  },
+  "paper_final": false
+}

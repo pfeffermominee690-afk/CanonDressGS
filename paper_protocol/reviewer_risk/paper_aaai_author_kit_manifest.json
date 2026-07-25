@@ -1,0 +1,90 @@
+{
+  "schema_version": "paper_aaai_author_kit_manifest.v1",
+  "task_id": "AAAI27-CANONDRESSGS-AAAI-BUILD-PROVISION-COMPILE-001",
+  "status": "AUTHORIZED_OFFICIAL_KIT_BOUND",
+  "conference": "AAAI-27",
+  "conference_page": "https://aaai.org/conference/aaai/aaai-27/",
+  "author_kit_link": "https://aaai.org/authorkit27/",
+  "resolved_official_archive": "https://aaai.org/wp-content/uploads/2026/05/AuthorKit27.zip",
+  "retrieved_at": "2026-07-25T18:35:24+08:00",
+  "http_last_modified": "Thu, 28 May 2026 15:54:36 GMT",
+  "archive_filename": "AuthorKit27.zip",
+  "archive_size_bytes": 5495535,
+  "archive_sha256": "E28C6AC9BC6EB3B4E2D849547D2CEFB5162610EE39D0A12E0DC62D1126B44A7D",
+  "style_version": "2027/05/04 AAAI 2027 Submission format",
+  "official_files": [
+    {
+      "filename": "aaai2027.sty",
+      "sha256": "391BCE82815BF698B8E382DD3AE7E30C75D7AB46DF140CB295B1266016BC8623",
+      "committed_path": "paper_draft/aaai_author_kit/aaai2027.sty",
+      "committed": true,
+      "byte_identical": true,
+      "use_restriction": "The official header prohibits modification for AAAI publication use and provides the file as-is without warranty."
+    },
+    {
+      "filename": "aaai2027.bst",
+      "sha256": "5DB7765BA99DE5C1E4686F9B3940A0ADD9C5E702F2164514462BEC130CCB6E3C",
+      "committed_path": "paper_draft/aaai_author_kit/aaai2027.bst",
+      "committed": true,
+      "byte_identical": true,
+      "license": "LaTeX Project Public License, version 1 or later"
+    },
+    {
+      "filename": "aaai2027.bib",
+      "sha256": "FF8A860F20602B2645723856B80F0A0AD28EE7EC270158254400FDB80B429E45",
+      "committed": false,
+      "external_cache_only": true
+    },
+    {
+      "filename": "AnonymousSubmission2027.tex",
+      "sha256": "035EBDB17E57885A1FD43A188FD17777BDBF90F1FDA1A1E000C49C7F52CE1F9D",
+      "committed": false,
+      "external_cache_only": true
+    },
+    {
+      "filename": "AnonymousSubmission2027.pdf",
+      "sha256": "AD424E5A94CE98DA7CB10ED07B12EF20571E72F649B7C2B30E6AF0F234A0C96A",
+      "committed": false,
+      "external_cache_only": true
+    },
+    {
+      "filename": "CameraReady2027.tex",
+      "sha256": "DB509CB393DAE5C113BF29633E17D31A5FEFA610AAD09056569034F9BCFF5B46",
+      "committed": false,
+      "external_cache_only": true
+    },
+    {
+      "filename": "CameraReady2027.pdf",
+      "sha256": "CFA0A7E59C31FCB39C2BBD492673EB969AFC269FB0E568B5C692AC3A53F1FEF5",
+      "committed": false,
+      "external_cache_only": true
+    },
+    {
+      "filename": "ReproducibilityChecklist.tex",
+      "sha256": "06A3459158089BF1C64B738986118F1D1566E816DA4B710C6397561E33C3D5E6",
+      "committed": false,
+      "external_cache_only": true
+    },
+    {
+      "filename": "ReproducibilityChecklist.pdf",
+      "sha256": "7FCC703769036E3566DACCD59560AACA9B187F49DA79FC9D1E13155B61E7DD9E",
+      "committed": false,
+      "external_cache_only": true
+    }
+  ],
+  "repository_eol_policy": {
+    "path": ".gitattributes",
+    "style_text_conversion_disabled": true,
+    "bst_text_conversion_disabled": true,
+    "cross_platform_archive_hash_verified": true
+  },
+  "main_binding": {
+    "entry": "paper_draft/main.tex",
+    "style_command": "\\usepackage[submission]{aaai2027}",
+    "bibliography_command": "\\bibliography{references}",
+    "search_config": "paper_draft/latexmkrc"
+  },
+  "provision_commit": "4821853ae6510a6014b1580942c83d1ab0b21bd1",
+  "official_files_modified": false,
+  "paper_final": false
+}

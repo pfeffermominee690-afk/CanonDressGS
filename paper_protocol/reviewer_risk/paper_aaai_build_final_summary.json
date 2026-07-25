@@ -1,0 +1,72 @@
+{
+  "schema_version": "paper_aaai_build_final_summary.v1",
+  "task_id": "AAAI27-CANONDRESSGS-AAAI-BUILD-PROVISION-COMPILE-001",
+  "status": "PAPER_ENDPOINT_DRAFT_COMPILED_WITH_P0_GAPS",
+  "source_branch": "research/paper-endpoint-method-restructure-20260725",
+  "source_head": "20e7d029958f61beb15b095d526e3d894e1571f3",
+  "target_branch": "research/paper-aaai-build-provisioned-compile-20260725",
+  "main_entry": "paper_draft/main.tex",
+  "compile_result_head": "5af83d483d8f06751b79fd18e49267d594aa457b",
+  "final_reporting_head": "REPORTED_OUT_OF_BAND_TO_AVOID_SELF_REFERENCE",
+  "pdf": "paper_draft/build/main.pdf",
+  "pdf_sha256": "BED98C75B5411606D578632452014D628198024B638C410988222091AF456236",
+  "checks": {
+    "official_author_kit": true,
+    "bibliography_verified": true,
+    "build1": true,
+    "build2": true,
+    "byte_identical_builds": true,
+    "page_budget": true,
+    "anonymity": true,
+    "undefined_reference_count": 0,
+    "undefined_citation_count": 0,
+    "overfull_box_count": 0,
+    "missing_included_asset_count": 0,
+    "unsupported_positive_claim_count": 0,
+    "subject00_result_claim_count": 0,
+    "unseen_garment_success_claim_count": 0,
+    "automatic_mixed_controller_success_claim_count": 0
+  },
+  "closed_build_gaps": [
+    "official AAAI-27 author kit provision",
+    "verified bibliography binding",
+    "LaTeX toolchain provision",
+    "real PDF compilation",
+    "citation and cross-reference resolution",
+    "page-count and content audit"
+  ],
+  "remaining_p0": [
+    "Figure 1 requires manual adjudication and insertion",
+    "Figure 3 core geometry-causal asset remains unassembled",
+    "Final Subject00 second-identity integration or single-identity scope decision remains open"
+  ],
+  "remaining_p1": [
+    "Figure 2 publication export without pixel-embedded candidate label",
+    "Figure 4 publication export without pixel-embedded supplementary/candidate label",
+    "Figure 5 publication export without pixel-embedded governance labels",
+    "Figure 6 publication export without attempt/classification/pass-fail labels",
+    "final qualitative-case and supplementary organization"
+  ],
+  "remaining_p2": [
+    "two non-lossy underfull vertical boxes may be polished after figure integration"
+  ],
+  "execution_boundary": {
+    "gpu": 0,
+    "training": 0,
+    "optimizer": 0,
+    "renderer": 0,
+    "model_inference": 0,
+    "image_generation": 0,
+    "scientific_result_mutation": 0,
+    "scientific_pixel_mutation": 0,
+    "subject00_execution": 0
+  },
+  "commits": [
+    {"head": "4821853ae6510a6014b1580942c83d1ab0b21bd1", "subject": "paper: provision official AAAI build inputs"},
+    {"head": "5af83d483d8f06751b79fd18e49267d594aa457b", "subject": "paper: compile endpoint-method draft"},
+    {"head": "REPORTED_OUT_OF_BAND_TO_AVOID_SELF_REFERENCE", "subject": "audit: verify bibliography anonymity and page budget"}
+  ],
+  "next_task": "MANUALLY_ADJUDICATE_FIGURE1_AND_CLOSE_REMAINING_PAPER_P0_GAPS",
+  "next_task_started": false,
+  "paper_final": false
+}
