@@ -100,11 +100,11 @@ with position, scale, rotation, opacity logit, and spherical-harmonic appearance
       \IfFileExists{figures/figure2_canondressgs_pipeline.pdf}{
           \includegraphics[width=\textwidth]{figures/figure2_canondressgs_pipeline.pdf}
       }{
-          \figureplaceholder{0.16\textheight}{Figure 2 Placeholder: \method{} Pipeline}
+          \figureplaceholder{0.29\textheight}{Figure 2 Placeholder: \method{} Pipeline}
           {Offline Teacher optimization and endpoint coordinates; inference-time frozen features, set aggregation, coefficient prediction, snapping, and frozen rendering.}
       }
     \else
-        \figureplaceholder{0.16\textheight}{Figure 2 Placeholder: \method{} Pipeline}
+        \figureplaceholder{0.29\textheight}{Figure 2 Placeholder: \method{} Pipeline}
         {Offline Teacher optimization and endpoint coordinates; inference-time frozen features, set aggregation, coefficient prediction, snapping, and frozen rendering.}
     \fi
     \caption{\textbf{\method{} pipeline.} Offline optimization constructs garment-specific canonical Teacher Endpoints and their coordinate system. At inference, frozen image features are pooled over the reference set, a 3,076-parameter head predicts coordinates, and nearest-endpoint snapping realizes a verified state before frozen deformation and rendering.}
@@ -221,11 +221,11 @@ Endpoint-anchored geometry, visibility, and appearance interventions attribute a
       \IfFileExists{figures/figure3_geometry_causal_analysis.pdf}{
           \includegraphics[width=\textwidth]{figures/figure3_geometry_causal_analysis.pdf}
       }{
-          \figureplaceholder{0.17\textheight}{Figure 3 Placeholder: Geometry-Causal Analysis}
+          \figureplaceholder{0.38\textheight}{Figure 3 Placeholder: Geometry-Causal Analysis}
           {Linear intermediate failures; geometry, visibility, and appearance interventions; aggregate main effects and sufficient/necessary counts.}
       }
     \else
-        \figureplaceholder{0.17\textheight}{Figure 3 Placeholder: Geometry-Causal Analysis}
+        \figureplaceholder{0.38\textheight}{Figure 3 Placeholder: Geometry-Causal Analysis}
         {Linear intermediate failures; geometry, visibility, and appearance interventions; aggregate main effects and sufficient/necessary counts.}
     \fi
     \caption{\textbf{Causal diagnosis of interpolation failure.} Geometry explains 0.9959 of the measured artifact effect and is sufficient and necessary in all 10/10 pairs. The intervention results motivate preserving optimized endpoint supports rather than moving Gaussian geometry through unsupported intermediate configurations.}
@@ -259,11 +259,11 @@ Hard Geometry & \textbf{0.0318} & 0.7120 & 0.3689\\
       \IfFileExists{figures/figure4_dual_support_all_pair.pdf}{
           \includegraphics[width=\textwidth]{figures/figure4_dual_support_all_pair.pdf}
       }{
-          \figureplaceholder{0.18\textheight}{Figure 4 Placeholder: Geometry-Safe Intermediate States}
+          \figureplaceholder{0.36\textheight}{Figure 4 Placeholder: Geometry-Safe Intermediate States}
           {Matched linear, hard, and \dual{} rows over all garment pairs, with aggregate quality and resource cost.}
       }
     \else
-        \figureplaceholder{0.18\textheight}{Figure 4 Placeholder: Geometry-Safe Intermediate States}
+        \figureplaceholder{0.36\textheight}{Figure 4 Placeholder: Geometry-Safe Intermediate States}
         {Matched linear, hard, and \dual{} rows over all garment pairs, with aggregate quality and resource cost.}
     \fi
     \caption{\textbf{Geometry-safe intermediate states.} Linear interpolation moves primitives through unsupported geometry; Hard Geometry chooses one endpoint; \dual{} retains and weights two valid supports. The all-pair comparison shows cleaner boundaries while making the additional active-Gaussian and runtime cost explicit.}
