@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 from typing import Any, Iterable
 
 
@@ -679,6 +680,513 @@ def append_progress_event(
     write_json_atomic(progress_path, progress)
 
 
+def archive_item_matches(item: dict[str, Any]) -> tuple[bool, dict[str, Any]]:
+    path = Path(item["source_path"])
+    observed: dict[str, Any] = {"source_path": str(path), "exists": path.exists()}
+    if path.exists():
+        observed.update(
+            tree_stats(
+                path,
+                item["source_type"],
+                item.get("allocated_bytes_policy") == "FILES_AND_DIRECTORIES",
+            )
+        )
+        observed["file_sha256"] = (
+            sha256_file(path) if item["source_type"] == "file" else None
+        )
+    matches = bool(
+        observed["exists"]
+        and observed.get("file_count") == item["expected_file_count"]
+        and observed.get("logical_bytes") == item["expected_logical_bytes"]
+        and observed.get("allocated_bytes") == item["expected_allocated_bytes"]
+        and (
+            not item.get("expected_file_sha256")
+            or observed.get("file_sha256") == item["expected_file_sha256"]
+        )
+    )
+    observed["matches_adjudication"] = matches
+    return matches, observed
+
+
+def verification_map(report: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {item["source_path"]: item for item in report.get("items", [])}
+
+
+def build_pre_deletion_gate(
+    execution_path: Path,
+    avatar_verification_path: Path,
+    checkpoint_verification_path: Path,
+    inventory_path: Path,
+    output: Path,
+) -> None:
+    execution = load_json(execution_path)
+    avatar_verification = load_json(avatar_verification_path)
+    checkpoint_verification = load_json(checkpoint_verification_path)
+    inventory = load_json(inventory_path)
+
+    live_path = output.with_name(output.name + ".live.tmp")
+    validate_live(execution_path, live_path)
+    live = load_json(live_path)
+    live_path.unlink()
+
+    avatar_map = verification_map(avatar_verification)
+    checkpoint_map = verification_map(checkpoint_verification)
+    expected_avatar = {
+        item["source_path"] for item in execution["avatarrex_archive_set"]
+    }
+    expected_checkpoint = {
+        item["source_path"] for item in execution["checkpoint_archive_set"]
+    }
+    verified_avatar = {
+        path for path, item in avatar_map.items() if item.get("overall_status") == "PASS"
+    }
+    verified_checkpoint = {
+        path
+        for path, item in checkpoint_map.items()
+        if item.get("overall_status") == "PASS"
+    }
+
+    duplicate_paths = {
+        item["source_path"] for item in execution["duplicate_delete_set"]
+    }
+    optimizer_paths = {
+        item["source_path"] for item in execution["optimizer_delete_set"]
+    }
+    checkpoint_roots = [
+        item["source_path"] for item in execution["checkpoint_archive_set"]
+    ]
+    planned_checkpoint_rows = [
+        row
+        for row in inventory["checkpoints"]
+        if row["path"] in duplicate_paths | optimizer_paths
+        or any(is_under(row["path"], root) for root in checkpoint_roots)
+    ]
+    class_counts: dict[str, int] = {}
+    for row in planned_checkpoint_rows:
+        classification = row["classification"]
+        class_counts[classification] = class_counts.get(classification, 0) + 1
+    protected_classes = {
+        "CRITICAL_ACTIVE_KEEP",
+        "SEALED_PROVENANCE_KEEP",
+        "UNIQUE_FINAL_KEEP",
+        "UNKNOWN_KEEP",
+    }
+    protected_planned = [
+        row["path"]
+        for row in planned_checkpoint_rows
+        if row["classification"] in protected_classes
+    ]
+    paper_planned = [
+        row["path"]
+        for row in planned_checkpoint_rows
+        if row.get("reference_flags", {}).get("paper_or_figure")
+    ]
+    figure_planned = [
+        row["path"]
+        for row in planned_checkpoint_rows
+        if row.get("reference_flags", {}).get("figure_bank")
+    ]
+    sealed_planned = [
+        row["path"] for row in planned_checkpoint_rows if row.get("sealed_attempt")
+    ]
+
+    checks = {
+        "task_id_matches": execution.get("task_id") == TASK_ID,
+        "execution_scope_is_frozen": not execution.get(
+            "execution_scope_expansion_allowed", True
+        ),
+        "live_validation_pass": live.get("overall_status") == "PASS",
+        "avatarrex_archive_all_verified": verified_avatar == expected_avatar,
+        "checkpoint_archive_all_verified": verified_checkpoint == expected_checkpoint,
+        "duplicate_count_matches": len(duplicate_paths) == 70,
+        "optimizer_count_matches": len(optimizer_paths) == 1,
+        "paper_or_figure_checkpoint_delete_count_zero": not paper_planned,
+        "figure_bank_checkpoint_delete_count_zero": not figure_planned,
+        "sealed_provenance_delete_count_zero": not sealed_planned,
+        "protected_class_delete_count_zero": not protected_planned,
+        "archive_checkpoint_class_count_matches": class_counts.get(
+            "ARCHIVE_THEN_DELETE_CANDIDATE", 0
+        )
+        == 11,
+        "duplicate_class_count_matches": class_counts.get(
+            "DUPLICATE_SAFE_DELETE_CANDIDATE", 0
+        )
+        == 70,
+        "optimizer_class_count_matches": class_counts.get(
+            "TEMPORARY_OPTIMIZER_STATE_CANDIDATE", 0
+        )
+        == 1,
+        "short_canary_matches": live.get("short_canary", {}).get("matches", False),
+        "no_active_training_or_transfer": not live.get("blocking_processes"),
+        "no_candidate_open_files": not live.get("open_candidate_files"),
+        "no_formal_attempt": not live.get("formal_paths_present"),
+    }
+    passed = all(checks.values())
+    result = {
+        "schema_version": "canondressgs.subject00.pre_deletion_final_gate.v1",
+        "task_id": TASK_ID,
+        "generated_at_utc": utc_now(),
+        "execution_set_path": str(execution_path),
+        "execution_set_sha256": sha256_file(execution_path),
+        "avatarrex_verification_path": str(avatar_verification_path),
+        "avatarrex_verification_sha256": sha256_file(avatar_verification_path),
+        "checkpoint_verification_path": str(checkpoint_verification_path),
+        "checkpoint_verification_sha256": sha256_file(
+            checkpoint_verification_path
+        ),
+        "checks": checks,
+        "planned_checkpoint_class_counts": class_counts,
+        "protected_planned_paths": protected_planned,
+        "paper_or_figure_planned_paths": paper_planned,
+        "figure_bank_planned_paths": figure_planned,
+        "sealed_planned_paths": sealed_planned,
+        "archive_deletion_eligible_paths": sorted(
+            expected_avatar | expected_checkpoint
+        ),
+        "duplicate_deletion_eligible_paths": sorted(duplicate_paths),
+        "optimizer_deletion_eligible_paths": sorted(optimizer_paths),
+        "live_validation": live,
+        "overall_status": "PASS" if passed else "BLOCKED",
+    }
+    write_json_atomic(output, result)
+    if not passed:
+        raise RuntimeError("Pre-deletion final gate is blocked")
+
+
+def delete_archive_item(
+    execution_path: Path, gate_path: Path, source_path: str, output: Path
+) -> None:
+    execution = load_json(execution_path)
+    gate = load_json(gate_path)
+    items = execution["avatarrex_archive_set"] + execution["checkpoint_archive_set"]
+    by_path = {item["source_path"]: item for item in items}
+    if source_path not in by_path:
+        raise RuntimeError("Requested source is outside the frozen archive set")
+    if gate.get("task_id") != TASK_ID or gate.get("overall_status") != "PASS":
+        raise RuntimeError("Pre-deletion final gate is not PASS")
+    if source_path not in gate.get("archive_deletion_eligible_paths", []):
+        raise RuntimeError("Requested source is not eligible in the final gate")
+
+    item = by_path[source_path]
+    matches, observed = archive_item_matches(item)
+    blockers = matching_processes()
+    open_matches = open_fd_matches([source_path])
+    canary_before = sha256_file(Path(CANARY_PATH))
+    if not matches or blockers or open_matches or canary_before != CANARY_SHA256:
+        raise RuntimeError("Archive source failed immediate pre-deletion validation")
+
+    source = Path(source_path)
+    free_before = shutil.disk_usage("/root/autodl-tmp").free
+    if item["source_type"] == "file":
+        source.unlink()
+    else:
+        shutil.rmtree(source)
+    os.sync()
+    free_after = shutil.disk_usage("/root/autodl-tmp").free
+    released = free_after - free_before
+    expected = item["expected_allocated_bytes"]
+    release_error_ratio = abs(released - expected) / expected
+    canary_after = sha256_file(Path(CANARY_PATH))
+    passed = bool(
+        not source.exists()
+        and release_error_ratio <= 0.05
+        and canary_after == CANARY_SHA256
+    )
+    result = {
+        "schema_version": "canondressgs.subject00.archive_source_deletion_item.v1",
+        "task_id": TASK_ID,
+        "deleted_at_utc": utc_now(),
+        "source_path": source_path,
+        "source_type": item["source_type"],
+        "pre_deletion_observation": observed,
+        "free_bytes_before": free_before,
+        "free_bytes_after": free_after,
+        "released_bytes": released,
+        "expected_released_bytes": expected,
+        "release_error_ratio": release_error_ratio,
+        "source_absent_after": not source.exists(),
+        "short_canary_sha256_before": canary_before,
+        "short_canary_sha256_after": canary_after,
+        "overall_status": "PASS" if passed else "PAUSED_RELEASE_DELTA_MISMATCH",
+    }
+    write_json_atomic(output, result)
+    if not passed:
+        raise RuntimeError("Archive deletion paused after release-delta audit")
+
+
+def duplicate_matches(item: dict[str, Any]) -> tuple[bool, dict[str, Any]]:
+    source = Path(item["source_path"])
+    retained = Path(item["retained_duplicate_path"])
+    observed = {
+        "source_path": str(source),
+        "retained_duplicate_path": str(retained),
+        "source_exists": source.is_file(),
+        "retained_exists": retained.is_file(),
+    }
+    if source.is_file():
+        observed["source_bytes"] = source.stat().st_size
+        observed["source_sha256"] = sha256_file(source)
+    if retained.is_file():
+        observed["retained_bytes"] = retained.stat().st_size
+        observed["retained_sha256"] = sha256_file(retained)
+    matches = bool(
+        observed["source_exists"]
+        and observed["retained_exists"]
+        and observed.get("source_bytes") == item["expected_bytes"]
+        and observed.get("source_sha256") == item["expected_sha256"]
+        and observed.get("retained_sha256") == item["retained_duplicate_sha256"]
+        and observed.get("source_sha256") == observed.get("retained_sha256")
+        and not item["manifest_references"]
+    )
+    observed["matches_adjudication"] = matches
+    return matches, observed
+
+
+def delete_low_risk_checkpoints(
+    execution_path: Path,
+    gate_path: Path,
+    inventory_path: Path,
+    duplicate_output: Path,
+    optimizer_output: Path,
+) -> None:
+    execution = load_json(execution_path)
+    gate = load_json(gate_path)
+    inventory = load_json(inventory_path)
+    inventory_by_path = {row["path"]: row for row in inventory["checkpoints"]}
+    if gate.get("task_id") != TASK_ID or gate.get("overall_status") != "PASS":
+        raise RuntimeError("Pre-deletion final gate is not PASS")
+    for item in execution["avatarrex_archive_set"] + execution["checkpoint_archive_set"]:
+        if Path(item["source_path"]).exists():
+            raise RuntimeError("Archive-source deletion stage is not complete")
+    if matching_processes() or any(Path(path).exists() for path in FORMAL_PATHS):
+        raise RuntimeError("Blocking process or Formal path detected")
+
+    duplicate_report = {
+        "schema_version": "canondressgs.subject00.duplicate_deletion_execution.v1",
+        "task_id": TASK_ID,
+        "started_at_utc": utc_now(),
+        "items": [],
+        "overall_status": "IN_PROGRESS",
+    }
+    write_json_atomic(duplicate_output, duplicate_report)
+    for item in execution["duplicate_delete_set"]:
+        source_path = item["source_path"]
+        inventory_row = inventory_by_path.get(source_path)
+        matches, observed = duplicate_matches(item)
+        if (
+            source_path not in gate["duplicate_deletion_eligible_paths"]
+            or not inventory_row
+            or inventory_row["classification"]
+            != "DUPLICATE_SAFE_DELETE_CANDIDATE"
+            or inventory_row.get("sealed_attempt")
+            or not matches
+            or open_fd_matches([source_path])
+        ):
+            duplicate_report["overall_status"] = "BLOCKED"
+            write_json_atomic(duplicate_output, duplicate_report)
+            raise RuntimeError(f"Duplicate failed validation: {source_path}")
+        Path(source_path).unlink()
+        row = {
+            **observed,
+            "deleted": not Path(source_path).exists(),
+            "retained_exists_after": Path(item["retained_duplicate_path"]).is_file(),
+        }
+        duplicate_report["items"].append(row)
+        write_json_atomic(duplicate_output, duplicate_report)
+    duplicate_report["completed_at_utc"] = utc_now()
+    duplicate_report["deleted_count"] = len(duplicate_report["items"])
+    duplicate_report["deleted_bytes"] = sum(
+        item["expected_bytes"] for item in execution["duplicate_delete_set"]
+    )
+    duplicate_report["overall_status"] = (
+        "PASS" if duplicate_report["deleted_count"] == 70 else "FAIL"
+    )
+    write_json_atomic(duplicate_output, duplicate_report)
+
+    optimizer_report = {
+        "schema_version": "canondressgs.subject00.optimizer_deletion_execution.v1",
+        "task_id": TASK_ID,
+        "started_at_utc": utc_now(),
+        "items": [],
+        "overall_status": "IN_PROGRESS",
+    }
+    write_json_atomic(optimizer_output, optimizer_report)
+    for item in execution["optimizer_delete_set"]:
+        path = Path(item["source_path"])
+        inventory_row = inventory_by_path.get(item["source_path"])
+        observed = {
+            "source_path": item["source_path"],
+            "exists": path.is_file(),
+            "bytes": path.stat().st_size if path.is_file() else None,
+            "sha256": sha256_file(path) if path.is_file() else None,
+        }
+        valid = bool(
+            item["source_path"] in gate["optimizer_deletion_eligible_paths"]
+            and inventory_row
+            and inventory_row["classification"]
+            == "TEMPORARY_OPTIMIZER_STATE_CANDIDATE"
+            and not inventory_row.get("sealed_attempt")
+            and observed["exists"]
+            and observed["bytes"] == item["expected_bytes"]
+            and observed["sha256"] == item["expected_sha256"]
+            and not item["manifest_references"]
+            and not open_fd_matches([item["source_path"]])
+        )
+        if not valid:
+            optimizer_report["overall_status"] = "BLOCKED"
+            write_json_atomic(optimizer_output, optimizer_report)
+            raise RuntimeError("Optimizer-only candidate failed validation")
+        path.unlink()
+        optimizer_report["items"].append(
+            {**observed, "deleted": not path.exists()}
+        )
+        write_json_atomic(optimizer_output, optimizer_report)
+    optimizer_report["completed_at_utc"] = utc_now()
+    optimizer_report["deleted_count"] = len(optimizer_report["items"])
+    optimizer_report["deleted_bytes"] = sum(
+        item["expected_bytes"] for item in execution["optimizer_delete_set"]
+    )
+    optimizer_report["short_canary_sha256_after"] = sha256_file(Path(CANARY_PATH))
+    optimizer_report["overall_status"] = (
+        "PASS"
+        if optimizer_report["deleted_count"] == 1
+        and optimizer_report["short_canary_sha256_after"] == CANARY_SHA256
+        else "FAIL"
+    )
+    write_json_atomic(optimizer_output, optimizer_report)
+
+
+def audit_protection(
+    inventory_path: Path,
+    protection_registry_path: Path,
+    storage_inventory_path: Path,
+    output: Path,
+) -> None:
+    inventory = load_json(inventory_path)
+    registry = load_json(protection_registry_path)
+    storage_inventory = load_json(storage_inventory_path)
+    protected_classes = {
+        "CRITICAL_ACTIVE_KEEP",
+        "SEALED_PROVENANCE_KEEP",
+        "UNIQUE_FINAL_KEEP",
+        "UNKNOWN_KEEP",
+    }
+    deleted_classes = {
+        "ARCHIVE_THEN_DELETE_CANDIDATE",
+        "DUPLICATE_SAFE_DELETE_CANDIDATE",
+        "TEMPORARY_OPTIMIZER_STATE_CANDIDATE",
+    }
+    protected_results = []
+    deleted_results = []
+    for row in inventory["checkpoints"]:
+        path = Path(row["path"])
+        if row["classification"] in protected_classes:
+            exists = path.is_file()
+            observed_sha = sha256_file(path) if exists else None
+            protected_results.append(
+                {
+                    "path": row["path"],
+                    "classification": row["classification"],
+                    "exists": exists,
+                    "bytes_match": exists and path.stat().st_size == row["bytes"],
+                    "sha256_match": observed_sha == row["sha256"],
+                    "paper_or_figure": row.get("reference_flags", {}).get(
+                        "paper_or_figure", False
+                    ),
+                    "figure_bank": row.get("reference_flags", {}).get(
+                        "figure_bank", False
+                    ),
+                }
+            )
+        elif row["classification"] in deleted_classes:
+            deleted_results.append(
+                {
+                    "path": row["path"],
+                    "classification": row["classification"],
+                    "absent": not path.exists(),
+                }
+            )
+    protected_failures = [
+        item
+        for item in protected_results
+        if not item["exists"] or not item["bytes_match"] or not item["sha256_match"]
+    ]
+    deletion_failures = [item for item in deleted_results if not item["absent"]]
+    real_scopes = [
+        item
+        for item in registry["protected_scopes"]
+        if str(item["path"]).startswith("/")
+    ]
+    scope_results = [
+        {"path": item["path"], "exists": Path(item["path"]).exists()}
+        for item in real_scopes
+    ]
+    protected_dataset_results = []
+    for item in storage_inventory["large_candidates"]:
+        if item["classification"] not in {"A", "B"}:
+            continue
+        path = Path(item["path"])
+        observed = (
+            tree_stats(path, "directory", include_directory_blocks=True)
+            if path.is_dir()
+            else {}
+        )
+        protected_dataset_results.append(
+            {
+                "path": item["path"],
+                "classification": item["classification"],
+                "exists": path.is_dir(),
+                "expected_file_count": item["file_count"],
+                "observed_file_count": observed.get("file_count"),
+                "expected_logical_bytes": item["apparent_file_bytes"],
+                "observed_logical_bytes": observed.get("logical_bytes"),
+                "expected_allocated_bytes": item["allocated_bytes"],
+                "observed_allocated_bytes": observed.get("allocated_bytes"),
+                "matches": bool(
+                    path.is_dir()
+                    and observed.get("file_count") == item["file_count"]
+                    and observed.get("logical_bytes") == item["apparent_file_bytes"]
+                    and observed.get("allocated_bytes") == item["allocated_bytes"]
+                ),
+            }
+        )
+    class_summary: dict[str, int] = {}
+    for item in protected_results:
+        classification = item["classification"]
+        class_summary[classification] = class_summary.get(classification, 0) + 1
+    passed = bool(
+        not protected_failures
+        and not deletion_failures
+        and all(item["exists"] for item in scope_results)
+        and all(item["matches"] for item in protected_dataset_results)
+        and sha256_file(Path(CANARY_PATH)) == CANARY_SHA256
+    )
+    result = {
+        "schema_version": "canondressgs.subject00.post_reclamation_protection_audit.v1",
+        "task_id": TASK_ID,
+        "audited_at_utc": utc_now(),
+        "protected_class_counts": class_summary,
+        "protected_checkpoint_count": len(protected_results),
+        "protected_checkpoint_failures": protected_failures[:20],
+        "authorized_deleted_checkpoint_count": len(deleted_results),
+        "authorized_deletion_failures": deletion_failures[:20],
+        "paper_or_figure_protected_count": sum(
+            bool(item["paper_or_figure"]) for item in protected_results
+        ),
+        "figure_bank_protected_count": sum(
+            bool(item["figure_bank"]) for item in protected_results
+        ),
+        "protected_scope_results": scope_results,
+        "protected_dataset_results": protected_dataset_results,
+        "short_canary_path": CANARY_PATH,
+        "short_canary_sha256": sha256_file(Path(CANARY_PATH)),
+        "overall_status": "PASS" if passed else "FAIL",
+    }
+    write_json_atomic(output, result)
+    if not passed:
+        raise RuntimeError("Post-reclamation protection audit failed")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -716,6 +1224,34 @@ def main() -> int:
     progress_event_parser.add_argument("--status", required=True)
     progress_event_parser.add_argument("--note", required=True)
 
+    gate_parser = subparsers.add_parser("build-pre-deletion-gate")
+    gate_parser.add_argument("--execution-set", required=True)
+    gate_parser.add_argument("--avatar-verification", required=True)
+    gate_parser.add_argument("--checkpoint-verification", required=True)
+    gate_parser.add_argument("--inventory", required=True)
+    gate_parser.add_argument("--output", required=True)
+
+    archive_delete_parser = subparsers.add_parser("delete-archive-item")
+    archive_delete_parser.add_argument("--execution-set", required=True)
+    archive_delete_parser.add_argument("--gate", required=True)
+    archive_delete_parser.add_argument("--source", required=True)
+    archive_delete_parser.add_argument("--output", required=True)
+
+    low_risk_delete_parser = subparsers.add_parser(
+        "delete-low-risk-checkpoints"
+    )
+    low_risk_delete_parser.add_argument("--execution-set", required=True)
+    low_risk_delete_parser.add_argument("--gate", required=True)
+    low_risk_delete_parser.add_argument("--inventory", required=True)
+    low_risk_delete_parser.add_argument("--duplicate-output", required=True)
+    low_risk_delete_parser.add_argument("--optimizer-output", required=True)
+
+    protection_parser = subparsers.add_parser("audit-protection")
+    protection_parser.add_argument("--inventory", required=True)
+    protection_parser.add_argument("--protection-registry", required=True)
+    protection_parser.add_argument("--storage-inventory", required=True)
+    protection_parser.add_argument("--output", required=True)
+
     args = parser.parse_args()
     if args.command == "freeze":
         freeze(
@@ -739,6 +1275,33 @@ def main() -> int:
     elif args.command == "progress-event":
         append_progress_event(
             Path(args.progress), args.phase, args.status, args.note
+        )
+    elif args.command == "build-pre-deletion-gate":
+        build_pre_deletion_gate(
+            Path(args.execution_set),
+            Path(args.avatar_verification),
+            Path(args.checkpoint_verification),
+            Path(args.inventory),
+            Path(args.output),
+        )
+    elif args.command == "delete-archive-item":
+        delete_archive_item(
+            Path(args.execution_set), Path(args.gate), args.source, Path(args.output)
+        )
+    elif args.command == "delete-low-risk-checkpoints":
+        delete_low_risk_checkpoints(
+            Path(args.execution_set),
+            Path(args.gate),
+            Path(args.inventory),
+            Path(args.duplicate_output),
+            Path(args.optimizer_output),
+        )
+    elif args.command == "audit-protection":
+        audit_protection(
+            Path(args.inventory),
+            Path(args.protection_registry),
+            Path(args.storage_inventory),
+            Path(args.output),
         )
     return 0
 
