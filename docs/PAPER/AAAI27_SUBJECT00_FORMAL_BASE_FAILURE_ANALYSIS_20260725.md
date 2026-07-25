@@ -6,9 +6,11 @@ adjudicated the canonical output root, but no scientific attempt was created.
 The live preflight reached its final resource gate after passing branch and
 worktree cleanliness, root and attempt absence, step-0 checkpoint identity,
 canary and medium immutable fingerprints, GPU exclusivity, credential scan,
-and output-parent writeability. Available storage was `14756466688` bytes;
+and output-parent writeability. At tested head
+`96ee35c321d9b6c37a62a7239c381eb7dd1facbe`, available storage was
+`14756306944` bytes;
 the sealed protocol requires `32212254720` bytes. The shortfall was
-`17455788032` bytes.
+`17455947776` bytes.
 
 This is a pre-attempt execution invalidation, not an optimization failure,
 capacity result, scientific failure, or completed formal run. `attempt_001`
