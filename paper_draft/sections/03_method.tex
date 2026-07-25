@@ -45,13 +45,8 @@ The trainable head is $\mathrm{Linear}_{512\rightarrow4}(\mathrm{LayerNorm}(h))$
 \end{equation}
 The raw prediction and realized snapped coefficient are therefore distinct. Only $\widehat{\Delta G}(c_{\mathrm{realized}})$ is passed to the frozen deformation and renderer. Snapping prevents unsupported interpolated geometry, restricts realization to optimized supports, and converts approximate coefficient prediction into stable endpoint selection. If no reference is valid, the method abstains and renders $G_{\mathrm{base}}$.
 
-\setcounter{figure}{1}
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{loo_method_freeze/candidates/figure2/endpoint_method_freeze/endpoint_method_freeze_overview.png}
-  \caption{Working method overview for subject02 and its closed five-garment bank. Offline optimization constructs valid Teacher Endpoints and their coordinate system. At inference, seen-garment references produce a raw coefficient that is snapped to a valid endpoint before frozen deformation, LBS, and rendering. This registered panel remains a Figure~2 candidate pending final human confirmation.}
-  \label{fig:method-overview}
-\end{figure}
+% TODO[FIGURE2_PUBLICATION_REGENERATION]: Recreate the frozen method diagram
+% without pixel-embedded governance labels; do not retouch the registered asset.
 
 \subsection{Geometry-Safe Dual-Support Extension}
 For oracle- or user-specified endpoints $g_a,g_b\in\mathcal{W}$ and weight $\alpha$, Dual-Support retains $G_{g_a}^*$ and $G_{g_b}^*$ as separate Gaussian supports. Geometry is not interpolated. Instead, the two valid supports are rendered with combined opacity or effective contribution according to $\alpha$. This extension can compose two registered garments without forcing their geometry into an invalid midpoint, but it approximately doubles active Gaussians. Predicting the pair or weight from mixed references is unresolved and is not part of the default single-endpoint path.

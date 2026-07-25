@@ -23,21 +23,10 @@ The all-pair evaluation covers all ten unordered pairs, both directions, three m
 
 \input{tables/table2_dual_support}
 
-\setcounter{figure}{3}
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{plots/dual_support/dual_support_all_pair_garment_lpips.png}
-  \caption{All ten subject02 garment pairs under the frozen mixed-composition setting. Dual-Support retains two valid endpoint geometries and improves garment LPIPS over full residual interpolation for every pair. Pair identities and mixture weights are oracle- or user-specified; no automatic mixed-reference controller is evaluated.}
-  \label{fig:dual-support}
-\end{figure}
-
-\setcounter{figure}{4}
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{pure_endpoint_refresh/candidates/fig05_hard_lookup/pure_endpoint_hard_lookup_v1/pure_endpoint_hard_lookup_v1.png}
-  \caption{Descriptive hard-lookup relation on subject02 with five seen garments. Under clean references, the raw predictor, snapping rule, Reference Classifier Lookup, Nearest-Centroid Lookup, and Outfit-ID Oracle realize the same registered endpoint. Perturbation overlap is descriptive only; the panel does not establish continuous regression or superiority over lookup.}
-  \label{fig:hard-lookup}
-\end{figure}
+% TODO[FIGURE4_PUBLICATION_REGENERATION]: Re-export the frozen all-pair plot
+% without its pixel-embedded candidate label; preserve all ten pairs.
+% TODO[FIGURE5_PUBLICATION_REGENERATION]: Re-export the registered lookup
+% analysis without pixel-embedded governance labels or scientific changes.
 
 \subsection{Endpoint-Space Headroom}
 Test-time coefficient refinement provides no additional headroom. Teacher Endpoint LPIPS is 0.038768, whereas the refined coefficient obtains 0.038982; the Teacher-relative macro gain is negative and 0/5 garments meet the improvement criterion. A full-residual optimizer is worse (LPIPS 0.118421) and produces severe patch, cloud, and mottle artifacts. We therefore omit test-time refinement from the inference pipeline.
@@ -47,9 +36,5 @@ For each held-out garment, the remaining four centered endpoints span at most a 
 
 \input{tables/table3_scope_adjudication}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{loo_method_freeze/plots/loo/loo_overall_classification.png}
-  \caption{Registered limitation panel for subject02 leave-one-garment-out analysis. A rank-3 affine basis built from four garments is capacity-limited for each held-out fifth garment, while identity and component contamination remain absent. This is a same-identity diagnostic, not an unseen-garment capability.}
-  \label{fig:loo-capacity}
-\end{figure}
+% TODO[FIGURE6_PUBLICATION_REGENERATION]: Re-export the registered LOO panel
+% without attempt identifiers, pass/fail badges, or classification strings.

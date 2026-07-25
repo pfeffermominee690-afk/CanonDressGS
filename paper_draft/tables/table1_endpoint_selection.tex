@@ -1,12 +1,9 @@
 \begin{table*}[t]
 \centering
 \small
-\caption{Subject02 closed-wardrobe endpoint selection on 60 unique clean queries. Precision and recall are macro averages over O01, O02, O03, O04, and O08. Dashes denote metrics that are not defined for a non-predictive reference. Teacher Endpoint and Outfit-ID Oracle are evaluation references, not deployable controllers.}
-\label{tab:endpoint-selection}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lccccccc}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccc@{}}
 \toprule
-Method & Clean top-1 & Macro P & Macro R & Endpoint exact & Identity contam. & Severe wrong outfit & Trainable params. \\
+Method & Top-1 & Macro P & Macro R & Exact & Identity & Severe & Params. \\
 \midrule
 Base Avatar & -- & -- & -- & -- & -- & -- & 0 \\
 Teacher Endpoint & 1.000 & 1.000 & 1.000 & -- & -- & -- & 0 \\
@@ -15,5 +12,7 @@ Reference Classifier Lookup & 1.000 & 1.000 & 1.000 & 1.000 & -- & -- & 3,589 \\
 Nearest-Centroid Lookup & 1.000 & 1.000 & 1.000 & 1.000 & -- & -- & 0 \\
 CanonDressGS Endpoint & 1.000 & 1.000 & 1.000 & 1.000 & 0 & 0 & 3,076 \\
 \bottomrule
-\end{tabular}}
+\end{tabular*}
+\caption{Subject02 closed-wardrobe endpoint selection on 60 unique clean queries. Precision and recall are macro averages over O01, O02, O03, O04, and O08. Dashes denote metrics that are not defined for a non-predictive reference. Teacher Endpoint and Outfit-ID Oracle are evaluation references, not deployable controllers.}
+\label{tab:endpoint-selection}
 \end{table*}

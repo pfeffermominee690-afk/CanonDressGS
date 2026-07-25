@@ -1,15 +1,14 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
 \small
-\caption{Geometry-safe Dual-Support analysis over all ten garment pairs. Active-count ratios are relative to one hard geometry support; the reused full-interpolation baseline has no registered timing measurement. Lower LPIPS is better; higher IoU and boundary F-score are better.}
-\label{tab:dual-support}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{lccccc}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccc@{}}
 \toprule
-Method & LPIPS & IoU & Boundary F & Active ratio & Time ratio \\
+Method & LPIPS & IoU & B-F & Active & Time \\
 \midrule
-Full residual interpolation & 0.085303 & 0.710052 & 0.300263 & 1.000000 & -- \\
+Full interpolation & 0.085303 & 0.710052 & 0.300263 & 1.000000 & -- \\
 Dual-Support & 0.056985 & 0.725290 & 0.379103 & 1.999817 & 1.625864 \\
 \bottomrule
-\end{tabular}}
-\end{table}
+\end{tabular*}
+\caption{Geometry-safe Dual-Support analysis over all ten garment pairs. Active-count ratios are relative to one hard geometry support; the reused full-interpolation baseline has no registered timing measurement. Lower LPIPS is better; higher IoU and boundary F-score are better.}
+\label{tab:dual-support}
+\end{table*}

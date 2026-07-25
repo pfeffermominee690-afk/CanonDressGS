@@ -1,10 +1,7 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
 \small
-\caption{Endpoint-space scope analysis. Headroom and leave-one-garment-out results are negative diagnostics that delimit the method; they are not deployment improvements.}
-\label{tab:scope-adjudication}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{p{0.24\columnwidth}p{0.22\columnwidth}p{0.42\columnwidth}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.52\textwidth}@{}}
 \toprule
 Analysis & Evidence & Method implication \\
 \midrule
@@ -13,5 +10,7 @@ Full residual & LPIPS 0.118421; severe artifacts & Diagnostic only; do not enter
 Leave-one-out basis & Rank 3; 0/5 pass capacity & The affine basis is not a held-out adaptation space. \\
 Hard lookup & 0.113437 vs. 0.113551 low-dimensional LPIPS & Retain as a descriptive closed-wardrobe relation. \\
 \bottomrule
-\end{tabular}}
-\end{table}
+\end{tabular}
+\caption{Endpoint-space scope analysis. Headroom and leave-one-garment-out results are negative diagnostics that delimit the method; they are not deployment improvements.}
+\label{tab:scope-adjudication}
+\end{table*}
