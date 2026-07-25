@@ -13,7 +13,7 @@ The official AAAI source compiles to six total pages. Figure 4 occupies the top 
 - Initial HEAD: `49f304bbeeb15b629cae7fc21b3f3305085d1d94`
 - Expanded-draft checkpoint: `b914ce71ba463ebff3b201fde494bae0569730b2`
 - Compression result HEAD: `828357688c84825c7466f795efa3a40d4ab2a4ac`
-- Final reporting HEAD: `TO_BE_RECORDED_AFTER_AUDIT_COMMIT`
+- Final reporting HEAD: `687dd633e5bdf155ebea274e145c09563e2978cb`
 - Canonical source: `paper_draft/CanonDressGS_revised_initial_draft_v2_20260725.tex`
 - Formal entry: `paper_draft/main.tex`
 
@@ -56,4 +56,3 @@ The final log records zero overfull boxes, zero undefined references, zero undef
 ## Next Task
 
 `INTEGRATE_FINAL_FIGURES_AND_SUBJECT00_RESULTS_WITHIN_FROZEN_PAGE_BUDGET`
-
