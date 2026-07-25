@@ -138,7 +138,7 @@ def save_figure(fig: plt.Figure, stem: Path, *, png_dpi: int = 200, svg: bool = 
     fig.savefig(outputs[1], bbox_inches="tight", dpi=png_dpi, metadata={"Software": PDF_META["Creator"]})
     if svg:
         outputs.append(stem.with_suffix(".svg"))
-        fig.savefig(outputs[-1], bbox_inches="tight", metadata={"Creator": PDF_META["Creator"]})
+        fig.savefig(outputs[-1], bbox_inches="tight", metadata={"Creator": PDF_META["Creator"], "Date": "2026-07-25T00:00:00+00:00"})
     plt.close(fig)
     return outputs
 
@@ -496,6 +496,28 @@ def collect_sources(root: Path, source: Path) -> list[dict[str, Any]]:
                 "source_head": head_for_folder[source_group],
                 "copy_transform": "BYTE_IDENTICAL_COPY",
                 "scientific_pixel_mutation": False,
+                "source_type": "REGISTERED_RASTER_COPY",
+            }
+        )
+    structured = {
+        "paper_protocol/reviewer_risk/canondressgs_main_method_freeze.json": HEADS["figure_bank"],
+        "paper_protocol/reviewer_risk/factor_causal_profiles.json": HEADS["geometry_causal"],
+        "paper_draft/figures/plots/dual_support/dual_support_all_pair_garment_lpips.source.json": HEADS["dual_support"],
+        "paper_protocol/reviewer_risk/dual_support_all_pair_results.json": HEADS["dual_support"],
+        "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json": HEADS["pure_endpoint"],
+        "paper_draft/figures/headroom_refresh/plots/headroom/metric_plot_source_data.json": HEADS["headroom"],
+        "paper_draft/figures/loo_method_freeze/plots/loo/loo_plot_source_data.json": HEADS["loo"],
+    }
+    for relative, source_head in structured.items():
+        path = root / relative
+        records.append(
+            {
+                "path": relative,
+                "sha256": sha256(path),
+                "bytes": path.stat().st_size,
+                "source_head": source_head,
+                "source_type": "REGISTERED_STRUCTURED_DATA",
+                "scientific_pixel_mutation": False,
             }
         )
     return records
@@ -596,6 +618,29 @@ def write_registries(root: Path, source: Path, review: Path, publication: Path, 
         },
     )
     write_json(root / "paper_publication_figure_source_registry.json", {**common, "status": "PASS", "source_heads": HEADS, "sources": source_records, "scientific_source_pixel_mutation_count": 0})
+    source_sha = {record["path"]: record["sha256"] for record in source_records}
+    dependencies = {
+        2: ["paper_protocol/reviewer_risk/canondressgs_main_method_freeze.json"],
+        3: [
+            "paper_protocol/reviewer_risk/factor_causal_profiles.json",
+            "paper_draft/figures/publication/source/causal/O01_O02_strongest_factor.png",
+        ],
+        4: [
+            "paper_draft/figures/plots/dual_support/dual_support_all_pair_garment_lpips.source.json",
+            "paper_protocol/reviewer_risk/dual_support_all_pair_results.json",
+        ],
+        5: [
+            "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+            "paper_draft/figures/publication/source/pure_endpoint/renders/O01_raw_prediction.png",
+            "paper_draft/figures/publication/source/pure_endpoint/renders/O01_snapped.png",
+            "paper_draft/figures/publication/source/pure_endpoint/renders/O01_teacher.png",
+        ],
+        6: [
+            "paper_draft/figures/headroom_refresh/plots/headroom/metric_plot_source_data.json",
+            "paper_draft/figures/loo_method_freeze/plots/loo/loo_plot_source_data.json",
+            "paper_draft/figures/pure_endpoint_refresh/plots/pure_endpoint/metric_plot_source_data.json",
+        ],
+    }
     publication_transforms = []
     for number, stem in [(2, "figure2_method"), (3, "figure3_geometry_causal"), (4, "figure4_dual_support"), (5, "figure5_hard_lookup_relation"), (6, "figure6_endpoint_limits")]:
         output = publication / f"{stem}.pdf"
@@ -605,7 +650,7 @@ def write_registries(root: Path, source: Path, review: Path, publication: Path, 
                 "output_path": output.relative_to(root).as_posix(),
                 "output_sha256": sha256(output),
                 "operation": "DETERMINISTIC_VECTOR_AND_REGISTERED_RASTER_LAYOUT",
-                "source_sha256s": [record["sha256"] for record in source_records],
+                "sources": [{"path": path, "sha256": source_sha[path]} for path in dependencies[number]],
                 "source_retouch": False,
                 "source_crop": False,
                 "scientific_source_pixel_mutation": False,
