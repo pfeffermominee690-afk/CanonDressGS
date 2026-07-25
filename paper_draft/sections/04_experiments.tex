@@ -1,25 +1,55 @@
 \section{Experiments}
 
-\subsection{Dataset and Protocol}
-TODO: Describe training/test splits and generated same-pose multi-clothing data.
+\subsection{Experimental Setup}
+We evaluate subject02 with the closed garment bank O01, O02, O03, O04, and O08. The avatar, Teacher Endpoint bank, rank-4 coordinate system, F2 features, deformation, LBS, and renderer are frozen. Four condition-fold rotations use two folds for training, one for calibration, and one for testing. Record identifiers and logical query hashes are disjoint across these partitions, but exact reference assets can recur; this is a closed-wardrobe condition split, not a novel-view or unseen-reference protocol. The formal execution contains 24 optimizer runs and 7,200 optimizer steps across the two trainable predictor families. We report unique-query endpoint identification, per-garment precision and recall, exact endpoint realization, image metrics, and registered visual safety grades.
 
 \subsection{Baselines}
-TODO: Include MMLPHuman single-cloth, no LHM supervision, no HyperNetwork modulation, and no anchor alignment supervision.
+The matched table includes the Base Avatar, the non-deployable Teacher Endpoint and Outfit-ID Oracle references, a trained Reference Classifier Lookup, a fixed Nearest-Centroid Lookup, and CanonDressGS Endpoint. The Linear Coefficient Predictor shares CanonDressGS training but renders its raw coefficient directly and is used only to analyze the role of snapping. A historical Direct Residual Decoder has unmatched exploratory provenance and is excluded from matched comparisons.
 
-\subsection{Metrics}
-TODO: Include PSNR, SSIM, LPIPS, Mask IoU, runtime, parameter count, and offset statistics.
+\input{tables/table1_endpoint_selection}
 
-\subsection{Implementation Details}
-TODO: Include training iterations, image resolution, optimizer, loss weights, and hardware.
+\subsection{Geometry Causal Attribution}
+We intervene independently on Gaussian geometry, visibility, and appearance for all ten unordered garment pairs. Geometry has a global main-effect magnitude of 0.995941 and satisfies the registered sufficiency and necessity criteria in 10/10 pairs. Visibility and appearance satisfy neither criterion in any pair. The result motivates valid-support realization rather than direct residual interpolation.
+% TODO[FIGURE3_GEOMETRY_CAUSAL]: Assemble only from the sealed causal registry; no scientific pixels may be generated or retouched in this task.
 
-\subsection{Quantitative Results}
-TODO: Insert main result table.
+\subsection{Closed-Wardrobe Endpoint Selection}
+Table~\ref{tab:endpoint-selection} reports the unique-query clean condition. CanonDressGS selects all 60 endpoints correctly across four rotations: clean top-1, macro precision, macro recall, and endpoint exact match are all 1.000. Every garment has precision and recall 1.000, and every rotation has top-1 1.000. No identity or component contamination and no severe wrong outfit are observed. The Teacher image metrics establish parity, not a quality improvement over the Teacher. Reference Classifier Lookup, Nearest-Centroid Lookup, Outfit-ID Oracle, and CanonDressGS select the same clean endpoints; this hard-lookup relation is a disclosed functional equivalence rather than a superiority claim.
 
-\subsection{Qualitative Results}
-TODO: Insert cloth switching, novel pose, and novel view figures.
+\subsection{Robustness and Safe Fallback}
+Input perturbations reveal prediction sensitivity without producing interpolated geometry artifacts. CanonDressGS clean top-1 drops to 0.350 under mild blur and reaches 0.950 with one reference; its registered endpoint-flip rates are 0.650 and 0.050, respectively. Assignment permutation, mask dilation, mask erosion, and ordinary reference dropout leave endpoint selection unchanged. Across 80 complete-reference-dropout cases, the empty-set guard abstains and returns the Base Avatar. Thus an incorrect endpoint is a prediction failure, while the snapping and abstention rules prevent an unsupported intermediate geometry from being rendered.
 
-\subsection{Ablation Study}
-TODO: Insert ablation table and analysis.
+\subsection{Dual-Support Analysis}
+The all-pair evaluation covers all ten unordered pairs, both directions, three mixture weights, and four views, without pair or view selection. Relative to full residual interpolation, Dual-Support improves pair-average LPIPS from 0.085303 to 0.056985, silhouette IoU from 0.710052 to 0.725290, and boundary F-score from 0.300263 to 0.379103. Severe-artifact counts decrease for all ten pairs and identity-contamination grade remains zero. The result is not artifact-free: O01--O03 and O02--O03 retain severe patch, cloud, mottle, or full-body contamination at the central mixture. Table~\ref{tab:dual-support} reports the quality and cost tradeoff.
 
-\subsection{Runtime and Parameter Analysis}
-TODO: Insert runtime and parameter table.
+\input{tables/table2_dual_support}
+
+\setcounter{figure}{3}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{plots/dual_support/dual_support_all_pair_garment_lpips.png}
+  \caption{All ten subject02 garment pairs under the frozen mixed-composition setting. Dual-Support retains two valid endpoint geometries and improves garment LPIPS over full residual interpolation for every pair. Pair identities and mixture weights are oracle- or user-specified; no automatic mixed-reference controller is evaluated.}
+  \label{fig:dual-support}
+\end{figure}
+
+\setcounter{figure}{4}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{pure_endpoint_refresh/candidates/fig05_hard_lookup/pure_endpoint_hard_lookup_v1/pure_endpoint_hard_lookup_v1.png}
+  \caption{Descriptive hard-lookup relation on subject02 with five seen garments. Under clean references, the raw predictor, snapping rule, Reference Classifier Lookup, Nearest-Centroid Lookup, and Outfit-ID Oracle realize the same registered endpoint. Perturbation overlap is descriptive only; the panel does not establish continuous regression or superiority over lookup.}
+  \label{fig:hard-lookup}
+\end{figure}
+
+\subsection{Endpoint-Space Headroom}
+Test-time coefficient refinement provides no additional headroom. Teacher Endpoint LPIPS is 0.038768, whereas the refined coefficient obtains 0.038982; the Teacher-relative macro gain is negative and 0/5 garments meet the improvement criterion. A full-residual optimizer is worse (LPIPS 0.118421) and produces severe patch, cloud, and mottle artifacts. We therefore omit test-time refinement from the inference pipeline.
+
+\subsection{Leave-One-Garment-Out Capacity Analysis}
+For each held-out garment, the remaining four centered endpoints span at most a rank-3 affine basis. Offline oracle projection fails its capacity criterion in all five folds, and deployable low-dimensional adaptation does not reliably improve over nearest hard lookup: macro LPIPS is 0.113551 versus 0.113437. Increasing the reference budget is also negative. Identity and component contamination remain zero, so the failure is representational rather than an identity-safety failure. We retain the full five-garment rank-4 basis as a closed-wardrobe coordinate system, not as evidence of held-out-garment adaptation.
+
+\input{tables/table3_scope_adjudication}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{loo_method_freeze/plots/loo/loo_overall_classification.png}
+  \caption{Registered limitation panel for subject02 leave-one-garment-out analysis. A rank-3 affine basis built from four garments is capacity-limited for each held-out fifth garment, while identity and component contamination remain absent. This is a same-identity diagnostic, not an unseen-garment capability.}
+  \label{fig:loo-capacity}
+\end{figure}

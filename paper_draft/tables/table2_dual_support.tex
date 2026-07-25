@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Geometry-safe Dual-Support analysis over all ten garment pairs. Ratios are relative to one hard geometry support. Lower LPIPS is better; higher IoU and boundary F-score are better.}
+\label{tab:dual-support}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Method & LPIPS & IoU & Boundary F & Active ratio & Time ratio \\
+\midrule
+Full residual interpolation & 0.085303 & 0.710052 & 0.300263 & 1.000000 & 1.000000 \\
+Dual-Support & 0.056985 & 0.725290 & 0.379103 & 1.999817 & 1.625864 \\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Endpoint-space scope analysis. Headroom and leave-one-garment-out results are negative diagnostics that delimit the method; they are not deployment improvements.}
+\label{tab:scope-adjudication}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{p{0.24\columnwidth}p{0.22\columnwidth}p{0.42\columnwidth}}
+\toprule
+Analysis & Evidence & Method implication \\
+\midrule
+Test-time headroom & LPIPS 0.038768 $\rightarrow$ 0.038982; 0/5 improve & Keep the frozen Teacher Endpoint; omit refinement. \\
+Full residual & LPIPS 0.118421; severe artifacts & Diagnostic only; do not enter the main pipeline. \\
+Leave-one-out basis & Rank 3; 0/5 pass capacity & The affine basis is not a held-out adaptation space. \\
+Hard lookup & 0.113437 vs. 0.113551 low-dimensional LPIPS & Retain as a descriptive closed-wardrobe relation. \\
+\bottomrule
+\end{tabular}}
+\end{table}

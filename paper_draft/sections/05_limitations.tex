@@ -1,3 +1,7 @@
 \section{Limitations}
 
-TODO: Discuss same-identity focus, unseen clothing generalization, dependency on LHM prior quality, loose garments, and possible inconsistencies between white-body conditions and GPT-image-2 generated supervision.
+The formal evaluation is limited to subject02, so it does not establish cross-identity generalization. The wardrobe is closed and contains five seen garments; unseen garments and open-world synthesis are unsupported. Although the head predicts a coefficient, the deployed method is endpoint selection: under clean references it is functionally equivalent to the registered hard-lookup baselines, and its raw coefficient is not evidence of accurate continuous control.
+
+The global affine coordinate system also has limited scope. Test-time coefficient refinement yields no improvement, and a four-garment rank-3 basis cannot represent the held-out fifth garment reliably. Richer localized representations would be required before claiming held-out adaptation. Dual-Support does not resolve automatic mixed-reference control because its endpoint pair and weight are oracle- or user-specified. It uses 1.999817 times as many active Gaussians and 1.625864 times the render time of a single hard support, and two pairs retain severe residual artifacts.
+
+Finally, endpoint prediction is sensitive to reference quality: mild blur reduces cleanly registered top-1 from 1.000 to 0.350, and a single reference gives 0.950. Complete reference dropout is safe because the system abstains and returns the Base Avatar, but that behavior is a safety fallback rather than garment recovery.
