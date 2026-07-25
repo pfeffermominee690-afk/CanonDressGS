@@ -9,32 +9,51 @@ The matched table includes the Base Avatar, the non-deployable Teacher Endpoint 
 \input{tables/table1_endpoint_selection}
 
 \subsection{Geometry Causal Attribution}
-We intervene independently on Gaussian geometry, visibility, and appearance for all ten unordered garment pairs. Geometry has a global main-effect magnitude of 0.995941 and satisfies the registered sufficiency and necessity criteria in 10/10 pairs. Visibility and appearance satisfy neither criterion in any pair. The result motivates valid-support realization rather than direct residual interpolation.
-% TODO[FIGURE3_GEOMETRY_CAUSAL]: Assemble only from the sealed causal registry; no scientific pixels may be generated or retouched in this task.
+We intervene independently on Gaussian geometry, visibility, and appearance for all ten unordered garment pairs. Geometry has a global main-effect magnitude of 0.995941 and satisfies the registered sufficiency and necessity criteria in 10/10 pairs. Visibility and appearance satisfy neither criterion in any pair. Figure~\ref{fig:geometry-causal} visualizes the decomposition and all-pair criteria. The result motivates valid-support realization rather than direct residual interpolation.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{publication/figure3_geometry_causal.pdf}
+  \caption{Geometry interpolation causal attribution over all 10 subject02 garment pairs under the frozen geometry/visibility/appearance decomposition, fixed identity, and closed wardrobe. (A) A registered O01-to-O02 visual decomposition; this fixed first pair is illustrative rather than quality-selected. (B) Geometry has global main-effect magnitude 0.995941, compared with 0.0129 for visibility and 0.0324 for appearance. (C) Geometry is sufficient and necessary in 10/10 pairs. (D) Scope of the registered protocol.}
+  \label{fig:geometry-causal}
+\end{figure*}
 
 \subsection{Closed-Wardrobe Endpoint Selection}
-Table~\ref{tab:endpoint-selection} reports the unique-query clean condition. CanonDressGS selects all 60 endpoints correctly across four rotations: clean top-1, macro precision, macro recall, and endpoint exact match are all 1.000. Every garment has precision and recall 1.000, and every rotation has top-1 1.000. No identity or component contamination and no severe wrong outfit are observed. The Teacher image metrics establish parity, not a quality improvement over the Teacher. Reference Classifier Lookup, Nearest-Centroid Lookup, Outfit-ID Oracle, and CanonDressGS select the same clean endpoints; this hard-lookup relation is a disclosed functional equivalence rather than a superiority claim.
+Table~\ref{tab:endpoint-selection} reports the unique-query clean condition. CanonDressGS selects all 60 endpoints correctly across four rotations: clean top-1, macro precision, macro recall, and endpoint exact match are all 1.000. Every garment has precision and recall 1.000, and every rotation has top-1 1.000. No identity or component contamination and no severe wrong outfit are observed. The Teacher image metrics establish parity, not a quality improvement over the Teacher. Reference Classifier Lookup, Nearest-Centroid Lookup, Outfit-ID Oracle, and CanonDressGS select the same clean endpoints; Figure~\ref{fig:hard-lookup} discloses this functional equivalence rather than claiming superiority.
 
 \subsection{Robustness and Safe Fallback}
-Input perturbations reveal prediction sensitivity without producing interpolated geometry artifacts. CanonDressGS clean top-1 drops to 0.350 under mild blur and reaches 0.950 with one reference; its registered endpoint-flip rates are 0.650 and 0.050, respectively. Assignment permutation, mask dilation, mask erosion, and ordinary reference dropout leave endpoint selection unchanged. Across 80 complete-reference-dropout cases, the empty-set guard abstains and returns the Base Avatar. Thus an incorrect endpoint is a prediction failure, while the snapping and abstention rules prevent an unsupported intermediate geometry from being rendered.
+Input perturbations reveal prediction sensitivity without producing interpolated geometry artifacts. CanonDressGS clean top-1 drops to 0.350 under mild blur and reaches 0.950 with one reference; its registered endpoint-flip rates are 0.650 and 0.050, respectively. Assignment permutation, mask dilation, mask erosion, and ordinary reference dropout leave endpoint selection unchanged. Across 80 complete-reference-dropout cases, the empty-set guard abstains and returns the Base Avatar. Figure~\ref{fig:endpoint-limits}(C) summarizes these registered rates. Thus an incorrect endpoint is a prediction failure, while the snapping and abstention rules prevent an unsupported intermediate geometry from being rendered.
 
 \subsection{Dual-Support Analysis}
-The all-pair evaluation covers all ten unordered pairs, both directions, three mixture weights, and four views, without pair or view selection. Relative to full residual interpolation, Dual-Support improves pair-average LPIPS from 0.085303 to 0.056985, silhouette IoU from 0.710052 to 0.725290, and boundary F-score from 0.300263 to 0.379103. Severe-artifact counts decrease for all ten pairs and identity-contamination grade remains zero. The result is not artifact-free: O01--O03 and O02--O03 retain severe patch, cloud, mottle, or full-body contamination at the central mixture. Table~\ref{tab:dual-support} reports the quality and cost tradeoff.
+The all-pair evaluation covers all ten unordered pairs, both directions, three mixture weights, and four views, without pair or view selection. Relative to full residual interpolation, Dual-Support improves pair-average LPIPS from 0.085303 to 0.056985, silhouette IoU from 0.710052 to 0.725290, and boundary F-score from 0.300263 to 0.379103. Severe-artifact counts decrease for all ten pairs and identity-contamination grade remains zero. The result is not artifact-free: O01--O03 and O02--O03 retain severe patch, cloud, mottle, or full-body contamination at the central mixture. Figure~\ref{fig:dual-support} reports the complete all-pair LPIPS profile, aggregate metrics, visual audit, and cost; Table~\ref{tab:dual-support} gives the corresponding tradeoff.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{publication/figure4_dual_support.pdf}
+  \caption{Dual-Support all-pair evaluation in the fixed-identity subject02 five-seen-garment closed wardrobe, using an oracle- or user-specified endpoint pair and weight. (A) LPIPS for all 10 unordered garment pairs. (B) Aggregate LPIPS improves from 0.085303 to 0.056985, silhouette IoU from 0.710052 to 0.725290, and Boundary F from 0.300263 to 0.379103. (C) Severe artifacts improve in 10/10 pairs with zero identity contamination. (D) The extension uses approximately twice the active Gaussians and 1.626 times the render time. Pair and weight are specified externally; no routing predictor is evaluated.}
+  \label{fig:dual-support}
+\end{figure*}
 
 \input{tables/table2_dual_support}
 
-% TODO[FIGURE4_PUBLICATION_REGENERATION]: Re-export the frozen all-pair plot
-% without its pixel-embedded candidate label; preserve all ten pairs.
-% TODO[FIGURE5_PUBLICATION_REGENERATION]: Re-export the registered lookup
-% analysis without pixel-embedded governance labels or scientific changes.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{publication/figure5_hard_lookup_relation.pdf}
+  \caption{Hard-lookup relation in the registered clean fixed-identity subject02, five-seen-garment closed-wardrobe protocol (60 unique queries). The raw continuous coefficient can produce an unsupported render, whereas CanonDressGS snapping, Reference Classifier Lookup, and Nearest-Centroid Lookup realize the same registered endpoint and match the Teacher Endpoint. The clean equivalence supports a unified reference-to-endpoint interface and geometry-safe realization; it does not establish superiority over hard lookup.}
+  \label{fig:hard-lookup}
+\end{figure*}
 
 \subsection{Endpoint-Space Headroom}
-Test-time coefficient refinement provides no additional headroom. Teacher Endpoint LPIPS is 0.038768, whereas the refined coefficient obtains 0.038982; the Teacher-relative macro gain is negative and 0/5 garments meet the improvement criterion. A full-residual optimizer is worse (LPIPS 0.118421) and produces severe patch, cloud, and mottle artifacts. We therefore omit test-time refinement from the inference pipeline.
+Test-time coefficient refinement provides no additional headroom. Teacher Endpoint LPIPS is 0.038768, whereas the refined coefficient obtains 0.038982; the Teacher-relative macro gain is negative and 0/5 garments meet the improvement criterion. Figure~\ref{fig:endpoint-limits}(A) reports this boundary. A full-residual optimizer is worse (LPIPS 0.118421) and produces severe patch, cloud, and mottle artifacts. We therefore omit test-time refinement from the inference pipeline.
 
 \subsection{Leave-One-Garment-Out Capacity Analysis}
-For each held-out garment, the remaining four centered endpoints span at most a rank-3 affine basis. Offline oracle projection fails its capacity criterion in all five folds, and deployable low-dimensional adaptation does not reliably improve over nearest hard lookup: macro LPIPS is 0.113551 versus 0.113437. Increasing the reference budget is also negative. Identity and component contamination remain zero, so the failure is representational rather than an identity-safety failure. We retain the full five-garment rank-4 basis as a closed-wardrobe coordinate system, not as evidence of held-out-garment adaptation.
+For each held-out garment, the remaining four centered endpoints span at most a rank-3 affine basis. Offline oracle projection fails its capacity criterion in all five folds, and deployable low-dimensional adaptation does not reliably improve over nearest hard lookup: macro LPIPS is 0.113551 versus 0.113437. Increasing the reference budget is also negative. Figure~\ref{fig:endpoint-limits}(B) identifies this as a representational boundary rather than an identity-safety failure: identity and component contamination remain zero. We retain the full five-garment rank-4 basis as a closed-wardrobe coordinate system, not as evidence of held-out-garment adaptation.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{publication/figure6_endpoint_limits.pdf}
+  \caption{Endpoint-space analysis boundaries under the fixed-identity subject02, five-seen-garment closed-wardrobe protocol. (A) Test-time coefficient refinement does not improve Teacher Endpoint LPIPS (0.038982 versus 0.038768; 0/5 garments improve). (B) In leave-one-garment-out analysis, a four-garment rank-3 basis is capacity-limited for the held-out fifth garment and does not improve over hard lookup (0.113551 versus 0.113437 LPIPS). (C) Endpoint prediction is sensitive to mild blur and single-reference input, while complete reference dropout safely returns the Base Avatar in 80/80 cases. These are analysis boundaries, not deployment capabilities beyond the registered wardrobe.}
+  \label{fig:endpoint-limits}
+\end{figure*}
 
 \input{tables/table3_scope_adjudication}
-
-% TODO[FIGURE6_PUBLICATION_REGENERATION]: Re-export the registered LOO panel
-% without attempt identifiers, pass/fail badges, or classification strings.

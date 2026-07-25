@@ -45,8 +45,15 @@ The trainable head is $\mathrm{Linear}_{512\rightarrow4}(\mathrm{LayerNorm}(h))$
 \end{equation}
 The raw prediction and realized snapped coefficient are therefore distinct. Only $\widehat{\Delta G}(c_{\mathrm{realized}})$ is passed to the frozen deformation and renderer. Snapping prevents unsupported interpolated geometry, restricts realization to optimized supports, and converts approximate coefficient prediction into stable endpoint selection. If no reference is valid, the method abstains and renders $G_{\mathrm{base}}$.
 
-% TODO[FIGURE2_PUBLICATION_REGENERATION]: Recreate the frozen method diagram
-% without pixel-embedded governance labels; do not retouch the registered asset.
+Figure~\ref{fig:method} summarizes the offline endpoint construction and the reference-conditioned realization path, including the distinction between raw prediction and the snapped endpoint actually rendered.
+
+\setcounter{figure}{1}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{publication/figure2_method.pdf}
+  \caption{CanonDressGS method overview for the fixed subject02 identity and five-seen-garment closed wardrobe. Offline, per-garment multi-view optimization constructs canonical Teacher Endpoints and an explicit endpoint coordinate system for a frozen animatable Gaussian avatar. At inference, frozen reference features are aggregated by mean and max, and a small normalized linear head predicts a raw coefficient. The raw coefficient is not rendered directly: nearest-valid-endpoint snapping realizes a registered Teacher Endpoint before frozen deformation, LBS, and rendering.}
+  \label{fig:method}
+\end{figure*}
 
 \subsection{Geometry-Safe Dual-Support Extension}
 For oracle- or user-specified endpoints $g_a,g_b\in\mathcal{W}$ and weight $\alpha$, Dual-Support retains $G_{g_a}^*$ and $G_{g_b}^*$ as separate Gaussian supports. Geometry is not interpolated. Instead, the two valid supports are rendered with combined opacity or effective contribution according to $\alpha$. This extension can compose two registered garments without forcing their geometry into an invalid midpoint, but it approximately doubles active Gaussians. Predicting the pair or weight from mixed references is unresolved and is not part of the default single-endpoint path.
