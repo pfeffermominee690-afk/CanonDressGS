@@ -7,6 +7,13 @@ tmp
 .pytest_cache/
 .mypy_cache/
 *.pyo
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
 
 # Local environments
 .venv/
@@ -54,6 +61,11 @@ changed_files.txt
 
 # Generated presentation artifacts
 组会汇报_可换装GaussianAvatar_pipeline方案讨论/
+
+# Intermediate page rasters used for paper visual review.
+/paper_draft/build_seven_page/pages/
+/paper_draft/build_before/
+/paper_draft/build_before_clean/
 
 # Keep source-side examples if explicitly added under docs or paper draft.
 !paper_draft/figures/.gitkeep
