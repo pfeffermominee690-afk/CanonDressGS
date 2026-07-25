@@ -1,0 +1,173 @@
+{
+  "schema_version": "canondressgs.subject00.formal_storage_inventory.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-PROVISION-AND-RUN-001",
+  "audit_timestamp": "2026-07-25T16:08:01+08:00",
+  "audit_mode": "READ_ONLY_BEFORE_ANY_DELETION",
+  "source": {
+    "branch": "research/mmlphuman-subject00-formal-output-root-repaired-run-20260725",
+    "head": "c104642f2e347f6f57d09ddb6b68e85de461f6b5",
+    "provisioning_branch": "research/mmlphuman-subject00-formal-storage-provisioned-run-20260725"
+  },
+  "formal_paths": {
+    "canonical_output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001",
+    "canonical_output_root_state": "ABSENT",
+    "rejected_alias": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-STRICT-SPLIT-BASE-001",
+    "rejected_alias_state": "ABSENT",
+    "attempt_001_state": "ABSENT",
+    "attempt_002_state": "ABSENT",
+    "scientific_attempt_count": 0
+  },
+  "filesystem": {
+    "device": "/dev/md0",
+    "mountpoint": "/root/autodl-tmp",
+    "type": "xfs",
+    "block_size": 4096,
+    "total_bytes": 268435456000,
+    "used_bytes": 253719359488,
+    "available_bytes_before_cleanup": 14716096512,
+    "use_percent": 95,
+    "mount_options": "rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,sunit=256,swidth=256,prjquota",
+    "canonical_parent_same_filesystem": true
+  },
+  "task_entry_free_bytes_before_worktree_provisioning": 14756257792,
+  "contract": {
+    "source": "paper_protocol/second_identity/subject00_formal_resource_budget.json",
+    "source_sha256": "93d10b0f651f30f6c08951e8108347fca430b0d563224c8a61d01a90efd4e43d",
+    "required_free_bytes": 32212254720,
+    "safety_target_bytes": 40802189312
+  },
+  "inventory_commands": [
+    "df -hT /root/autodl-tmp /root/autodl-tmp/canondressgs_work/outputs",
+    "df -B1 /root/autodl-tmp /root/autodl-tmp/canondressgs_work/outputs",
+    "findmnt -T /root/autodl-tmp/canondressgs_work/outputs -o TARGET,SOURCE,FSTYPE,OPTIONS",
+    "stat -f -c '%T,%S,%b,%f,%a,%n' /root/autodl-tmp/canondressgs_work/outputs",
+    "du -x -B1 --max-depth=1 /root/autodl-tmp",
+    "du -x -B1 --max-depth=1 /root/autodl-tmp/canondressgs_work",
+    "du -x -B1 --max-depth=1 /root/autodl-tmp/canondressgs_work/outputs",
+    "du -x -B1 --max-depth=1 /root/autodl-tmp/canondressgs_work/worktrees",
+    "du -x -B1 --max-depth=2 /root/autodl-tmp/datasets",
+    "du -x -B1 --max-depth=1 /root/autodl-tmp/conda_envs",
+    "du -x -B1 --max-depth=2 /root/.cache",
+    "du -x -B1 --max-depth=2 /tmp",
+    "find /root/autodl-tmp -xdev -type f -size +1G -printf '%s,%u,%g,%n,%p\\n'",
+    "du -x -B1 --max-depth=3 /root/autodl-tmp | sort -nr | head -n 80",
+    "find /root/autodl-tmp -xdev -type l",
+    "find /root/autodl-tmp -xdev -type f -links +1",
+    "ps -eo pid,ppid,user,stat,etimes,cmd --sort=-etimes",
+    "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader,nounits"
+  ],
+  "directory_inventory": {
+    "autodl_tmp": {
+      "bytes": 253719359488,
+      "first_level_entry_count": 30,
+      "largest_entries": [
+        {"path": "/root/autodl-tmp/canondressgs_work", "bytes": 124749275136},
+        {"path": "/root/autodl-tmp/datasets", "bytes": 91097190400},
+        {"path": "/root/autodl-tmp/conda_envs", "bytes": 21635891200},
+        {"path": "/root/autodl-tmp/outputs", "bytes": 10807627776},
+        {"path": "/root/autodl-tmp/pip_cache", "bytes": 3142000640},
+        {"path": "/root/autodl-tmp/diffusion_piper_handoff", "bytes": 1112481792}
+      ]
+    },
+    "canondressgs_work": {
+      "bytes": 124749275136,
+      "first_level_entry_count": 36,
+      "largest_entries": [
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs", "bytes": 78265159680},
+        {"path": "/root/autodl-tmp/canondressgs_work/data", "bytes": 38690635776},
+        {"path": "/root/autodl-tmp/canondressgs_work/worktrees", "bytes": 4346535936},
+        {"path": "/root/autodl-tmp/canondressgs_work/mmlphuman_code", "bytes": 1489252352},
+        {"path": "/root/autodl-tmp/canondressgs_work/models", "bytes": 548671488},
+        {"path": "/root/autodl-tmp/canondressgs_work/PoissonRecon-16.04", "bytes": 446062592},
+        {"path": "/root/autodl-tmp/canondressgs_work/provenance_reports", "bytes": 333873152},
+        {"path": "/root/autodl-tmp/canondressgs_work/tmp", "bytes": 308985856}
+      ]
+    },
+    "scientific_outputs": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs",
+      "bytes": 78265159680,
+      "first_level_entry_count": 67,
+      "largest_entries": [
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full", "bytes": 23738216448},
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001", "bytes": 14057574400},
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001", "bytes": 6169628672},
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k", "bytes": 5838528512},
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002", "bytes": 4082728960},
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001", "bytes": 3865182208},
+        {"path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001", "bytes": 3229880320}
+      ]
+    },
+    "datasets": {
+      "path": "/root/autodl-tmp/datasets",
+      "bytes": 91097190400,
+      "first_level_entry_count": 7,
+      "largest_entries": [
+        {"path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging", "bytes": 56639778816},
+        {"path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging", "bytes": 31963389952},
+        {"path": "/root/autodl-tmp/datasets/piper_pi05_lerobot", "bytes": 676499456},
+        {"path": "/root/autodl-tmp/datasets/piper_irregular_variant_a_pi05_no_6dpose", "bytes": 579383296},
+        {"path": "/root/autodl-tmp/datasets/piper_circle_pi05_no_6dpose", "bytes": 329666560}
+      ]
+    },
+    "conda_environments": {
+      "path": "/root/autodl-tmp/conda_envs",
+      "bytes": 21635891200,
+      "first_level_entry_count": 3,
+      "entries": [
+        {"path": "/root/autodl-tmp/conda_envs/mmlphuman", "bytes": 8146964480},
+        {"path": "/root/autodl-tmp/conda_envs/lerobot-v21-diffusion", "bytes": 6880169984},
+        {"path": "/root/autodl-tmp/conda_envs/lerobot-diffusion", "bytes": 6608756736}
+      ]
+    },
+    "git_worktrees": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees",
+      "bytes": 4346535936,
+      "first_level_entry_count": 87,
+      "largest_single_worktree_bytes": 126525440,
+      "protected": true
+    },
+    "overlay_only_caches": {
+      "filesystem": "overlay",
+      "entries": [
+        {"path": "/root/.cache/pip", "bytes": 3421220864},
+        {"path": "/root/.cache/torch", "bytes": 600477696},
+        {"path": "/root/.nv/ComputeCache", "bytes": 1368064},
+        {"path": "/tmp", "bytes": 428531712},
+        {"path": "/root/miniconda3/pkgs", "bytes": 673869824}
+      ],
+      "can_increase_canonical_filesystem_free_bytes": false
+    }
+  },
+  "files_larger_than_1_gib": [
+    {"path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z", "bytes": 12569755256, "owner": "root", "group": "root", "links": 1, "classification": "DATASET_ARCHIVE_PROTECTED"},
+    {"path": "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/pretrained_model/model.safetensors", "bytes": 1111652324, "owner": "root", "group": "root", "links": 1, "classification": "MODEL_WEIGHT_PROTECTED"},
+    {"path": "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/training_state/optimizer_state.safetensors", "bytes": 2223120040, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"},
+    {"path": "/root/autodl-tmp/outputs/diffusion_30k/checkpoints/030000/training_state/optimizer_state.safetensors", "bytes": 2133526512, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"},
+    {"path": "/root/autodl-tmp/outputs/irregular_diffusion_30k/checkpoints/030000/training_state/optimizer_state.safetensors", "bytes": 2133526512, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"},
+    {"path": "/root/autodl-tmp/diffusion_piper_handoff/best_model_045000/model.safetensors", "bytes": 1111652324, "owner": "root", "group": "root", "links": 1, "classification": "MODEL_WEIGHT_PROTECTED"},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_benchmark_basis_2010/chkpnt2010.pth", "bytes": 1706605798, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt6000.pth", "bytes": 1706605798, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt50000.pth", "bytes": 1706608018, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt100000.pth", "bytes": 1706610302, "owner": "root", "group": "root", "links": 1, "classification": "CHECKPOINT_PROTECTED"}
+  ],
+  "link_audit": {
+    "symlink_count": 4581,
+    "symlink_dominant_scope": "PROTECTED_CONDA_ENVIRONMENTS",
+    "hardlinked_file_path_count": 26280,
+    "hardlink_dominant_scope": "PROTECTED_GIT_OBJECTS_SHARED_ACROSS_WORKTREES",
+    "automatic_action": "NONE"
+  },
+  "process_audit": {
+    "formal_training_processes": 0,
+    "gpu_compute_processes": 0,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_memory_total_mib": 24564,
+    "gpu_memory_used_mib": 0,
+    "gpu_utilization_percent": 0,
+    "lsof_plus_l1": "UNAVAILABLE_LSOF_NOT_INSTALLED",
+    "fuser": "UNAVAILABLE_FUSER_NOT_INSTALLED"
+  },
+  "ownership_summary": "Audited roots and listed large entries are root:root.",
+  "git_tracking_summary": "Git repositories and all Git worktrees are protected. /root/autodl-tmp/pip_cache is not a Git worktree; its path is not referenced by the audited repository, but it is outside the exact automatic-cleanup allowlist.",
+  "classification": "SUBJECT00_FORMAL_STORAGE_PROVISIONING_INSUFFICIENT"
+}

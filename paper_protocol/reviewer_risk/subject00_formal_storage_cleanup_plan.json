@@ -1,0 +1,53 @@
+{
+  "schema_version": "canondressgs.subject00.formal_storage_cleanup_plan.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-PROVISION-AND-RUN-001",
+  "required_free_bytes": 32212254720,
+  "safety_target_bytes": 40802189312,
+  "before_cleanup_free_bytes": 14716096512,
+  "required_reclaim_for_contract_bytes": 17496158208,
+  "required_reclaim_for_safety_bytes": 26086092800,
+  "automatic_categories": [
+    {"category": "PYTHON_CACHE", "eligible_target_filesystem_bytes": 0, "action": "NONE", "reason": "The only 204800 bytes found after broad protection exclusions are inside a protected Git repository or an unknown research staging directory."},
+    {"category": "PIP_CACHE", "path": "/root/.cache/pip", "bytes": 3421220864, "filesystem": "overlay", "action": "NONE", "reason": "Deletion cannot increase free space on /dev/md0."},
+    {"category": "TORCH_EXTENSIONS", "path": "/root/.cache/torch_extensions", "bytes": 0, "action": "NONE_ABSENT"},
+    {"category": "CUDA_COMPUTE_CACHE", "path": "/root/.nv/ComputeCache", "bytes": 1368064, "filesystem": "overlay", "action": "NONE", "reason": "Deletion cannot increase free space on /dev/md0."},
+    {"category": "TRITON_CACHE", "bytes": 0, "action": "NONE_ABSENT"},
+    {"category": "CONDA_TARBALL_INDEX_TEMPFILES", "dry_run_reclaim_bytes": 110100000, "filesystem": "overlay", "action": "NONE", "reason": "The exact allowed conda clean dry run affects /root/miniconda3, not /dev/md0."},
+    {"category": "EXACT_TEMP_FILES", "eligible_target_filesystem_bytes": 0, "action": "NONE", "reason": "No unoccupied, unreferenced, clearly failed temporary payload on /dev/md0 was proven safe."},
+    {"category": "CURRENT_TASK_TEMP_FILES", "eligible_target_filesystem_bytes": 0, "action": "NONE_ABSENT"}
+  ],
+  "explicitly_not_authorized": {
+    "path": "/root/autodl-tmp/pip_cache",
+    "bytes": 3142000640,
+    "filesystem": "/dev/md0",
+    "configured_current_pip_cache": false,
+    "git_worktree": false,
+    "repository_path_reference_found": false,
+    "links_found": 0,
+    "action": "USER_ADJUDICATION_REQUIRED",
+    "reason": "The task names /root/.cache/pip as the exact automatic pip cache path; this separate target-volume directory is outside that allowlist. Even deleting it would not reach the contract gate."
+  },
+  "top_20_user_adjudication_candidates": [
+    {"rank": 1, "path": "/root/autodl-tmp/canondressgs_work/data/subject02/images", "bytes": 35376238592, "purpose": "Subject02 image dataset", "rebuildability": "NOT_PROVEN", "deletion_risk": "CRITICAL_RAW_DATA_LOSS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 2, "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets", "bytes": 29884325888, "purpose": "Subject00 derived assets and attempt provenance", "rebuildability": "COMPUTATIONALLY_REBUILDABLE_BUT_PROVENANCE_BOUND", "deletion_risk": "CRITICAL", "manifest_reference": "CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_AS_A_UNIT"},
+    {"rank": 3, "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00", "bytes": 26707615744, "purpose": "THuman4.0 Subject00 raw dataset", "rebuildability": "NOT_LOCALLY_REBUILDABLE", "deletion_risk": "CRITICAL_RAW_DATA_LOSS", "manifest_reference": "CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 4, "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full", "bytes": 23738216448, "purpose": "Historical scientific pipeline output", "rebuildability": "EXPENSIVE_AND_NOT_PROVEN_EXACT", "deletion_risk": "CRITICAL_PROVENANCE_LOSS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 5, "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1", "bytes": 19262648320, "purpose": "Extracted AvatarReX dataset", "rebuildability": "POSSIBLE_FROM_ARCHIVE_BUT_NOT_PROVEN", "deletion_risk": "CRITICAL_DATASET_LOSS", "manifest_reference": "UNKNOWN_NOT_PROVEN_ABSENT", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 6, "path": "/root/autodl-tmp/canondressgs_work/outputs/LOO-BASIS-ADAPTATION-001", "bytes": 14057574400, "purpose": "LOO scientific attempts", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_PROVENANCE_LOSS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 7, "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads", "bytes": 12569784320, "purpose": "AvatarReX source archive", "rebuildability": "REDOWNLOAD_NOT_PROVEN", "deletion_risk": "HIGH_LICENSE_AND_PROVENANCE_RISK", "manifest_reference": "UNKNOWN_NOT_PROVEN_ABSENT", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 8, "path": "/root/autodl-tmp/conda_envs/mmlphuman", "bytes": 8146964480, "purpose": "Formal execution environment", "rebuildability": "THEORETICAL_ONLY", "deletion_risk": "CRITICAL_ENVIRONMENT_LOSS", "manifest_reference": "ENVIRONMENT_CONTRACT_DEPENDENCY", "recommendation": "KEEP"},
+    {"rank": 9, "path": "/root/autodl-tmp/conda_envs/lerobot-v21-diffusion", "bytes": 6880169984, "purpose": "LeRobot v2.1 diffusion environment", "rebuildability": "THEORETICAL_ONLY", "deletion_risk": "HIGH", "manifest_reference": "UNKNOWN", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 10, "path": "/root/autodl-tmp/conda_envs/lerobot-diffusion", "bytes": 6608756736, "purpose": "LeRobot diffusion environment", "rebuildability": "THEORETICAL_ONLY", "deletion_risk": "HIGH", "manifest_reference": "UNKNOWN", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 11, "path": "/root/autodl-tmp/canondressgs_work/outputs/COEFFICIENT-HEADROOM-001", "bytes": 6169628672, "purpose": "Coefficient headroom scientific output", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_PROVENANCE_LOSS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 12, "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k", "bytes": 5838528512, "purpose": "Subject02 formal checkpoints and output", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_CHECKPOINT_LOSS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 13, "path": "/root/autodl-tmp/canondressgs_work/worktrees", "bytes": 4346535936, "purpose": "87 Git worktrees with shared hardlinked objects", "rebuildability": "NOT_SAFE_TO_ASSUME_DUE_TO_UNTRACKED_STATE", "deletion_risk": "CRITICAL_SOURCE_AND_PROVENANCE_LOSS", "manifest_reference": "NOT_APPLICABLE", "recommendation": "KEEP; USER MAY ARCHIVE CLEAN WORKTREES AFTER SEPARATE AUDIT"},
+    {"rank": 14, "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002", "bytes": 4082728960, "purpose": "Formal controller scientific output", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_PROVENANCE_LOSS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 15, "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001", "bytes": 3865182208, "purpose": "Subject00 short canary including frozen step-0 initialization", "rebuildability": "FROZEN_DEPENDENCY", "deletion_risk": "CRITICAL_INITIALIZATION_LOSS", "manifest_reference": "CONFIRMED", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 16, "path": "/root/autodl-tmp/outputs/diffusion_piper_50k", "bytes": 3334856704, "purpose": "Diffusion scientific checkpoints", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_CHECKPOINT_LOSS", "manifest_reference": "UNKNOWN_NOT_PROVEN_ABSENT", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 17, "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-MEDIUM-PILOT-001", "bytes": 3229880320, "purpose": "Subject00 medium pilot scientific output", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_PROVENANCE_LOSS", "manifest_reference": "CONFIRMED_BY_FORMAL_RESOURCE_BUDGET", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 18, "path": "/root/autodl-tmp/outputs/diffusion_30k", "bytes": 3200339968, "purpose": "Diffusion scientific checkpoints", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_CHECKPOINT_LOSS", "manifest_reference": "UNKNOWN_NOT_PROVEN_ABSENT", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 19, "path": "/root/autodl-tmp/outputs/irregular_diffusion_30k", "bytes": 3200331776, "purpose": "Irregular diffusion scientific checkpoints", "rebuildability": "EXPENSIVE", "deletion_risk": "CRITICAL_CHECKPOINT_LOSS", "manifest_reference": "UNKNOWN_NOT_PROVEN_ABSENT", "recommendation": "KEEP_OR_MIGRATE_ONLY"},
+    {"rank": 20, "path": "/root/autodl-tmp/pip_cache", "bytes": 3142000640, "purpose": "Apparently stale pip HTTP cache; current pip reports /root/.cache/pip", "rebuildability": "YES_IF_CONFIRMED_CACHE_ONLY", "deletion_risk": "LOW_TO_MEDIUM_PENDING_EXPLICIT_PATH_AUTHORIZATION", "manifest_reference": "NO_REPOSITORY_PATH_REFERENCE_FOUND", "recommendation": "BEST_EXPLICIT_DELETE_CANDIDATE, BUT INSUFFICIENT ALONE"}
+  ],
+  "plan_classification": "NO_AUTHORIZED_TARGET_FILESYSTEM_CLEANUP_CAN_REACH_GATE"
+}

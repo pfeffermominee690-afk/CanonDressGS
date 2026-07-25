@@ -1,0 +1,22 @@
+{
+  "schema_version": "canondressgs.subject00.formal_storage_cleanup_execution.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-PROVISION-AND-RUN-001",
+  "execution_timestamp": "2026-07-25T16:08:01+08:00",
+  "before_free_bytes": 14716096512,
+  "deletions": [],
+  "category_reclaimed_bytes": {
+    "python_cache": 0,
+    "pip_cache": 0,
+    "torch_cuda_triton_cache": 0,
+    "conda_tarball_index_tempfiles": 0,
+    "exact_temp_files": 0,
+    "current_task_temp_files": 0
+  },
+  "total_reclaimed_bytes": 0,
+  "after_free_bytes": 14716096512,
+  "no_deletion_reason": "Every explicitly allowlisted significant cache is on overlay and cannot free /dev/md0. The only significant cache-like directory on /dev/md0 is outside the exact automatic allowlist. Target-volume Python cache findings are protected by Git or unknown research provenance.",
+  "scientific_mutations": 0,
+  "protected_path_mutations": 0,
+  "attempts_created": 0,
+  "optimizer_steps": 0
+}

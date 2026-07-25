@@ -1,0 +1,27 @@
+{
+  "schema_version": "canondressgs.subject00.formal_storage_provisioning_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-PROVISION-AND-RUN-001",
+  "tested_source_head": "c104642f2e347f6f57d09ddb6b68e85de461f6b5",
+  "checks": [
+    {"id": 1, "name": "source_branch_head_and_clean_guard", "status": "PASS"},
+    {"id": 2, "name": "local_origin_cloud_source_head_equality", "status": "PASS"},
+    {"id": 3, "name": "canonical_root_rejected_alias_attempt_absence", "status": "PASS"},
+    {"id": 4, "name": "formal_contract_required_bytes_read", "status": "PASS", "value": 32212254720},
+    {"id": 5, "name": "canonical_parent_filesystem_identified", "status": "PASS", "value": "/dev/md0 xfs"},
+    {"id": 6, "name": "required_storage_inventory_categories", "status": "PASS"},
+    {"id": 7, "name": "large_file_directory_link_process_gpu_audit", "status": "PASS_WITH_LSOF_UNAVAILABLE"},
+    {"id": 8, "name": "protected_scope_conflict_check", "status": "PASS"},
+    {"id": 9, "name": "automatic_cleanup_allowlist_boundary", "status": "PASS"},
+    {"id": 10, "name": "protected_or_scientific_mutation_count_zero", "status": "PASS"},
+    {"id": 11, "name": "live_contract_storage_gate", "status": "FAIL", "observed": 14716096512, "required": 32212254720},
+    {"id": 12, "name": "live_safety_target", "status": "FAIL", "observed": 14716096512, "required": 40802189312},
+    {"id": 13, "name": "full_22_item_formal_preflight", "status": "NOT_RUN_STORAGE_BLOCKED"},
+    {"id": 14, "name": "execution_head_freeze", "status": "NOT_RUN_STORAGE_BLOCKED"},
+    {"id": 15, "name": "attempt_001_creation", "status": "NOT_RUN_STORAGE_BLOCKED"},
+    {"id": 16, "name": "new_json_strict_parse_and_duplicate_key_rejection", "status": "PASS", "parsed_artifacts": 7},
+    {"id": 17, "name": "git_diff_check", "status": "PASS"},
+    {"id": 18, "name": "credential_scan_new_artifacts", "status": "PASS"}
+  ],
+  "full_preflight": "NOT_RUN_BECAUSE_SAFETY_TARGET_AND_CONTRACT_GATE_FAILED",
+  "classification": "SUBJECT00_FORMAL_STORAGE_PROVISIONING_INSUFFICIENT"
+}

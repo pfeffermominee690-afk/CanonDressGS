@@ -1,0 +1,33 @@
+{
+  "schema_version": "canondressgs.subject00.formal_storage_protection_registry.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-PROVISION-AND-RUN-001",
+  "policy": "NO_DELETE_MOVE_COMPRESS_OVERWRITE_TRUNCATE",
+  "protected_scopes": [
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs", "kind": "SCIENTIFIC_OUTPUTS_AND_ATTEMPTS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "reason": "All valid, invalid, and historical scientific outputs are explicitly protected."},
+    {"path": "/root/autodl-tmp/outputs", "kind": "SCIENTIFIC_OUTPUTS_CHECKPOINTS_AND_MODEL_WEIGHTS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "reason": "Contains diffusion checkpoints, optimizer state, and model weights."},
+    {"path": "/root/autodl-tmp/datasets", "kind": "RAW_AND_DERIVED_DATASETS", "manifest_reference": "CONFIRMED", "reason": "THuman4.0 Subject00 and AvatarReX staging data are protected."},
+    {"path": "/root/autodl-tmp/canondressgs_work/data", "kind": "SUBJECT02_DATASET", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "reason": "Raw or prepared Subject02 data are protected."},
+    {"path": "/root/autodl-tmp/canondressgs_work/worktrees", "kind": "GIT_WORKTREES", "manifest_reference": "NOT_APPLICABLE", "reason": "All worktrees are protected, including possible untracked research state."},
+    {"path": "/root/autodl-tmp/canondressgs_work/git", "kind": "GIT_REPOSITORY", "manifest_reference": "NOT_APPLICABLE", "reason": "Git storage is explicitly protected."},
+    {"path": "/root/autodl-tmp/conda_envs", "kind": "CONDA_ENVIRONMENTS", "manifest_reference": "ENVIRONMENT_CONTRACT_DEPENDENCY", "reason": "Environment deletion and package cleaning are forbidden."},
+    {"path": "/root/autodl-tmp/canondressgs_work/models", "kind": "MODEL_WEIGHTS", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "reason": "Model weights are explicitly protected."},
+    {"path": "/root/autodl-tmp/diffusion_piper_handoff", "kind": "MODEL_HANDOFF", "manifest_reference": "POSSIBLE_OR_CONFIRMED", "reason": "Contains a model weight handoff and provenance is not disposable."},
+    {"path": "/root/autodl-tmp/canondressgs_work/provenance_reports", "kind": "PROVENANCE", "manifest_reference": "CONFIRMED_BY_SCOPE", "reason": "Provenance records are explicitly protected."},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth", "kind": "FROZEN_INITIALIZATION", "manifest_reference": "CONFIRMED", "sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a", "reason": "Frozen formal initialization."},
+    {"path": "UNTRACKED_OR_UNCOMMITTED_RESEARCH_FILES", "kind": "RESEARCH_STATE", "manifest_reference": "UNKNOWN", "reason": "Unknown or uncommitted research state may not be removed."},
+    {"path": "PAPER_AND_FIGURE_BANK_SOURCES", "kind": "PUBLICATION_EVIDENCE", "manifest_reference": "CONFIRMED_BY_SCOPE", "reason": "Paper sources and Figure Bank evidence are explicitly protected."},
+    {"path": "SUBJECT00_TASK_B_CONTRACT_ARTIFACTS", "kind": "CONTRACT_PROVENANCE", "manifest_reference": "CONFIRMED_BY_SCOPE", "reason": "Task B artifacts are explicitly protected."}
+  ],
+  "automatic_cleanup_allowlist": [
+    {"path_or_class": "Python cache outside protected scopes", "status": "ALLOWED_WITH_EXACT_LISTING"},
+    {"path_or_class": "/root/.cache/pip", "status": "ALLOWED_BUT_DIFFERENT_FILESYSTEM"},
+    {"path_or_class": "/root/.cache/torch_extensions", "status": "ALLOWED_BUT_ABSENT"},
+    {"path_or_class": "/root/.nv/ComputeCache", "status": "ALLOWED_BUT_DIFFERENT_FILESYSTEM"},
+    {"path_or_class": "Rebuildable Triton cache", "status": "ALLOWED_BUT_ABSENT"},
+    {"path_or_class": "conda clean --tarballs --index-cache --tempfiles --yes", "status": "ALLOWED_BUT_DIFFERENT_FILESYSTEM"},
+    {"path_or_class": "Exact unoccupied failed-download, compile, or pytest temp paths", "status": "ALLOWED_IF_PROVEN"}
+  ],
+  "protection_conflicts": [],
+  "protected_bytes_deleted": 0,
+  "scientific_mutations": 0
+}
