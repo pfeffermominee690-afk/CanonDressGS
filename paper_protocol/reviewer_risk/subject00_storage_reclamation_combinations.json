@@ -1,0 +1,83 @@
+{
+  "schema_version": "canondressgs.subject00.storage_reclamation_combinations.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "basis": {
+    "before_pip_deletion_free_bytes": 14548701184,
+    "observed_after_pip_deletion_free_bytes": 17690701824,
+    "pip_cache_reclaimed_bytes": 3142000640,
+    "contract_required_bytes": 32212254720,
+    "safety_target_bytes": 40802189312,
+    "safety_plus_5_gib_bytes": 46170898432,
+    "recommended_45_gib_target_bytes": 48318382080,
+    "note": "All projected states use the observed post-pip state because the authorized pip deletion is already complete. Reclaimed bytes are total relative to the immediate pre-delete baseline."
+  },
+  "combinations": [
+    {
+      "id": 1,
+      "name": "pip cache only",
+      "components": {"pip_cache": 3142000640},
+      "reclaimed_bytes": 3142000640,
+      "projected_free_bytes": 17690701824,
+      "contract_margin_bytes": -14521552896,
+      "safety_margin_bytes": -23111487488,
+      "margin_over_safety_plus_5_gib_bytes": -28480196608,
+      "margin_over_45_gib_bytes": -30627680256,
+      "reaches_extra_5_gib_running_margin": false,
+      "reaches_45_gib": false
+    },
+    {
+      "id": 2,
+      "name": "pip cache plus pipeline safe migratable subset",
+      "components": {"pip_cache": 3142000640, "pipeline_safe_subset": 0},
+      "reclaimed_bytes": 3142000640,
+      "projected_free_bytes": 17690701824,
+      "contract_margin_bytes": -14521552896,
+      "safety_margin_bytes": -23111487488,
+      "margin_over_safety_plus_5_gib_bytes": -28480196608,
+      "margin_over_45_gib_bytes": -30627680256,
+      "reaches_extra_5_gib_running_margin": false,
+      "reaches_45_gib": false
+    },
+    {
+      "id": 3,
+      "name": "pip cache plus AvatarReX extracted data and reports migration",
+      "components": {"pip_cache": 3142000640, "avatarrex_extracted_and_reports": 19393605632},
+      "reclaimed_bytes": 22535606272,
+      "projected_free_bytes": 37084307456,
+      "contract_margin_bytes": 4872052736,
+      "safety_margin_bytes": -3717881856,
+      "margin_over_safety_plus_5_gib_bytes": -9086590976,
+      "margin_over_45_gib_bytes": -11234074624,
+      "reaches_extra_5_gib_running_margin": false,
+      "reaches_45_gib": false
+    },
+    {
+      "id": 4,
+      "name": "pipeline safe subset plus complete AvatarReX safe subset after realized pip deletion",
+      "components": {"pip_cache_already_realized": 3142000640, "pipeline_safe_subset": 0, "avatarrex_complete_staging_after_verification": 31963389952},
+      "reclaimed_bytes": 35105390592,
+      "projected_free_bytes": 49654091776,
+      "contract_margin_bytes": 17441837056,
+      "safety_margin_bytes": 8851902464,
+      "margin_over_safety_plus_5_gib_bytes": 3483193344,
+      "margin_over_45_gib_bytes": 1335709696,
+      "reaches_extra_5_gib_running_margin": true,
+      "reaches_45_gib": true
+    },
+    {
+      "id": 5,
+      "name": "recommended Plan C",
+      "components": {"pip_cache_already_realized": 3142000640, "avatarrex_extracted_and_reports_verified_migration": 19393605632, "avatarrex_verified_duplicate_archive_retirement": 12569784320},
+      "reclaimed_bytes": 35105390592,
+      "projected_free_bytes": 49654091776,
+      "contract_margin_bytes": 17441837056,
+      "safety_margin_bytes": 8851902464,
+      "margin_over_safety_plus_5_gib_bytes": 3483193344,
+      "margin_over_45_gib_bytes": 1335709696,
+      "reaches_extra_5_gib_running_margin": true,
+      "reaches_45_gib": true
+    }
+  ],
+  "recommended_combination_id": 5,
+  "automatic_execution_authorized": false
+}

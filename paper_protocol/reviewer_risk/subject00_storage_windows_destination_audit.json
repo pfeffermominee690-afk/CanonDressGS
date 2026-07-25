@@ -1,0 +1,72 @@
+{
+  "schema_version": "canondressgs.subject00.storage_windows_destination_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "audit_timestamp": "2026-07-25T18:19:00+08:00",
+  "psdrive": [
+    {"drive": "C:", "used_bytes": 248376971264, "free_bytes": 19018629120},
+    {"drive": "D:", "used_bytes": 192319746048, "free_bytes": 19833389056},
+    {"drive": "E:", "used_bytes": 280745390080, "free_bytes": 74060218368}
+  ],
+  "volumes": [
+    {"drive": "C:", "filesystem": "NTFS", "total_bytes": 267395600384, "free_bytes": 18944839680, "health": "Healthy", "type": "Fixed"},
+    {"drive": "D:", "filesystem": "NTFS", "total_bytes": 212153135104, "free_bytes": 19833389056, "health": "Healthy", "type": "Fixed"},
+    {"drive": "E:", "filesystem": "NTFS", "total_bytes": 354805608448, "free_bytes": 74059694080, "health": "Healthy", "type": "Fixed"}
+  ],
+  "physical_disks": [
+    {"name": "SAMSUNG MZVL8512HELU-00BTW", "media_type": "SSD", "size_bytes": 512110190592, "health": "Healthy"},
+    {"name": "HKCMemory DV630", "media_type": "SSD", "size_bytes": 512110190592, "health": "Healthy"}
+  ],
+  "capacity_adjudication": {
+    "e_can_hold_30_gib": true,
+    "e_can_hold_50_gib": true,
+    "e_free_after_50_gib_new_allocation_bytes": 20372602880,
+    "new_avatar_transfer_allocated_bytes": 19393605632,
+    "e_free_after_new_avatar_transfer_bytes": 54666088448,
+    "windows_free_space_gate_bytes": 27983540224,
+    "windows_free_space_gate_policy": "new transfer allocated bytes plus 8 GiB reserve",
+    "windows_free_space_gate_pass": true
+  },
+  "paths": {
+    "suggested_archive_root": "E:\\canondressgs_archive",
+    "suggested_archive_root_exists": false,
+    "existing_avatar_staging": "E:\\data_pre\\avatarrex_second_dataset_staging",
+    "existing_avatar_staging_exists": true,
+    "recommended_destination": "E:\\data_pre\\avatarrex_second_dataset_staging",
+    "recommendation_reason": "Use the existing private staging tree to avoid creating a second 12.57 GB Windows archive copy."
+  },
+  "write_test": {
+    "path": "E:\\.subject00_storage_adjudication_write_test_20260725",
+    "created_empty_directory": true,
+    "resolved_path_exact": true,
+    "deleted_empty_directory": true,
+    "absent_after_test": true,
+    "large_payload_written": false
+  },
+  "existing_copies": {
+    "archive": {
+      "path": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+      "logical_bytes": 12569755256,
+      "sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+      "matches_cloud_archive": true
+    },
+    "avatar_extracted_payload": "NOT_PRESENT",
+    "avatar_reports": "EMPTY_DESTINATION_DIRECTORY",
+    "subject02_images": "NOT_FOUND_UNDER_E_MODEL_TRAIN",
+    "pipeline_full": "NOT_FOUND_UNDER_E_MODEL_TRAIN",
+    "git_named_avatar_skeletons": "PRESENT_BUT_ONLY_13 TINY CONFIG FILES; NOT DATA COPIES"
+  },
+  "transfer_tools": {
+    "wsl_distribution": "Ubuntu",
+    "wsl_rsync": "3.2.7",
+    "wsl_ssh": true,
+    "windows_openssh_bridge_test": "PASS",
+    "native_scp": true,
+    "native_scp_resume": false,
+    "selected_tool": "WSL rsync over Windows OpenSSH"
+  },
+  "ntfs_semantics": {
+    "mtime_preservation": "SUPPORTED_BY_RSYNC_-t",
+    "posix_owner_group_mode_preservation": "NOT SEMANTICALLY PRESERVED; record source metadata in manifests",
+    "symlink_preservation": "NOT REQUIRED; audited source symlink count is zero"
+  }
+}

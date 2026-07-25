@@ -1,0 +1,67 @@
+{
+  "schema_version": "canondressgs.subject00.storage_migration_adjudication_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "handoff_status": "READY_FOR_USER_PLAN_SELECTION",
+  "classification": "SUBJECT00_STORAGE_MIGRATION_PLAN_READY",
+  "source_head": "f18eb0641afa2070ebeede3140f5c342c13944e9",
+  "audit_branch": "research/mmlphuman-subject00-storage-migration-adjudication-20260725",
+  "current_blocker": "STORAGE_CAPACITY",
+  "current_free_bytes": 17690701824,
+  "contract_required_bytes": 32212254720,
+  "safety_target_bytes": 40802189312,
+  "formal_execution_authorized": false,
+  "recommended_plan": {
+    "id": "PLAN_C",
+    "summary": "Migrate AvatarReX extracted raw data and all 19 reports to the existing private E: staging tree with resumable rsync; verify complete fingerprints; then retire only the exact cloud staging items after a new user authorization and deletion record.",
+    "expected_new_windows_bytes": 19393605632,
+    "expected_cloud_release_bytes": 31963389952,
+    "projected_cloud_free_bytes": 49654091776,
+    "execution_contract": "paper_protocol/reviewer_risk/subject00_storage_migration_plan.json"
+  },
+  "alternatives": [
+    {"id": "PLAN_A", "summary": "Add at least 50 GiB persistent capacity; no data migration."},
+    {"id": "PLAN_D", "summary": "Add 20 GiB persistent capacity and conditionally delete only the live-reverified duplicate AvatarReX cloud archive."}
+  ],
+  "plan_b": "UNAVAILABLE_NO_REAL_WRITABLE_PERSISTENT_CLOUD_TARGET",
+  "execution_sequence_for_plan_c": [
+    "Recheck formal guards, GPU/training process absence and current free bytes",
+    "Recheck E: free capacity >= 27983540224 bytes",
+    "Rehash both archive copies before any source action",
+    "Rsync extracted data and reports into migration_incoming with resume options",
+    "Verify counts, bytes, full content tree, path-size tree, key metadata and all report hashes",
+    "Publish incoming destination only after exact verification",
+    "Create and commit migration seal and deletion record",
+    "Request/confirm exact user authorization for the three source-retirement paths",
+    "Retire source paths one at a time and verify reclaimed capacity",
+    "Require final free bytes >= 48318382080",
+    "Stop; formal training still requires its own preflight/execution task"
+  ],
+  "hard_stop_conditions": [
+    "Any source/destination byte, count or hash mismatch",
+    "Any nonzero rsync exit",
+    "E: free-space gate failure",
+    "Archive second copy absent or unhealthy",
+    "Missing report or provenance record",
+    "Any active process holding a candidate path",
+    "Any formal root/alias/attempt state change",
+    "No explicit user selection and deletion authorization"
+  ],
+  "protected_paths": [
+    "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets",
+    "/root/autodl-tmp/canondressgs_work/data/subject02/images",
+    "/root/autodl-tmp/canondressgs_work/outputs",
+    "/root/autodl-tmp/canondressgs_work/worktrees",
+    "/root/autodl-tmp/canondressgs_work/git",
+    "/root/autodl-tmp/conda_envs"
+  ],
+  "critical_artifacts": [
+    "docs/PAPER/AAAI27_SUBJECT00_FORMAL_STORAGE_MIGRATION_ADJUDICATION_20260725.md",
+    "paper_protocol/reviewer_risk/subject00_storage_migration_plan.json",
+    "paper_protocol/reviewer_risk/subject00_storage_avatarrex_audit.json",
+    "paper_protocol/reviewer_risk/subject00_storage_reclamation_combinations.json",
+    "paper_protocol/reviewer_risk/subject00_storage_migration_adjudication_final_summary.json"
+  ],
+  "next_task": "EXECUTE_USER_SELECTED_SUBJECT00_STORAGE_RECLAMATION_PLAN",
+  "next_task_authorized": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "canondressgs.subject00.storage_large_candidate_classification.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "allowed_classes": {
+    "A": "REQUIRED_FOR_ACTIVE_SUBJECT00_FORMAL_BASE",
+    "B": "REQUIRED_FOR_CURRENT_PAPER_OR_FIGURE_EVIDENCE",
+    "C": "SEALED_SCIENTIFIC_PROVENANCE_DO_NOT_MOVE",
+    "D": "MIGRATABLE_WITH_BYTE_EXACT_VERIFICATION",
+    "E": "REGENERABLE_EXPLICIT_DELETE_CANDIDATE",
+    "F": "DUPLICATED_SAFE_DELETE_CANDIDATE",
+    "G": "UNKNOWN_DO_NOT_TOUCH"
+  },
+  "decisions": [
+    {"path": "/root/autodl-tmp/canondressgs_work/data/subject02/images", "allocated_bytes": 35376238592, "class": "B", "reason": "Subject02 primary image data underpins current paper and figure evidence; no replacement copy or redownload contract is proven.", "migration_allowed_now": false, "explicit_delete_allowed_now": false},
+    {"path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets", "allocated_bytes": 29884325888, "class": "A", "reason": "Required Subject00 formal-base LBS/template assets with confirmed contracts and provenance.", "migration_allowed_now": false, "explicit_delete_allowed_now": false},
+    {"path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00", "allocated_bytes": 26707615744, "class": "A", "reason": "Required raw Subject00 formal input; not locally regenerable.", "migration_allowed_now": false, "explicit_delete_allowed_now": false},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full", "allocated_bytes": 23738216448, "class": "C", "reason": "Historical scientific attempts, checkpoints, renders, selections, seals and manifests form sealed provenance.", "migration_allowed_now": false, "explicit_delete_allowed_now": false},
+    {"path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1", "allocated_bytes": 19262648320, "class": "D", "reason": "Not a Subject00 dependency and can move to private NTFS only after complete tree verification.", "migration_allowed_now": false, "migration_plan_allowed": true, "explicit_delete_allowed_now": false},
+    {"path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z", "allocated_bytes": 12569784320, "logical_bytes": 12569755256, "class": "F", "reason": "A private Windows archive has the same logical length and SHA-256; cloud deletion still requires a new explicit deletion record because the existing final summary says retained=true.", "migration_allowed_now": false, "explicit_delete_allowed_now": false, "explicit_delete_plan_allowed": true},
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs", "class": "C", "reason": "All output trees are protected."},
+    {"path": "/root/autodl-tmp/canondressgs_work/worktrees", "class": "C", "reason": "All Git/worktree state is protected."},
+    {"path": "/root/autodl-tmp/conda_envs", "class": "C", "reason": "Execution environments are contract/provenance dependencies."}
+  ],
+  "class_e_candidates": [],
+  "unknown_candidates": [],
+  "automatic_large_asset_actions": 0
+}

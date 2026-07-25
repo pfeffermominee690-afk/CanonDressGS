@@ -1,0 +1,96 @@
+{
+  "schema_version": "canondressgs.subject00.storage_cloud_destination_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "audit_timestamp": "2026-07-25T18:10:00+08:00",
+  "destinations": [
+    {
+      "path": "/root/autodl-tmp",
+      "exists": true,
+      "filesystem": "/dev/md0",
+      "type": "xfs",
+      "total_bytes": 268435456000,
+      "free_bytes": 17690701824,
+      "writable": true,
+      "persistent": true,
+      "survives_container_restart": true,
+      "large_research_data_allowed": true,
+      "transfer_speed": "SAME_FILESYSTEM_ONLY; move would not reclaim device capacity",
+      "metadata_support": "POSIX permissions, mtimes and symlinks supported",
+      "usable_as_reclamation_destination": false,
+      "reason": "Same full filesystem as formal output root"
+    },
+    {
+      "path": "/root/autodl-pub",
+      "exists": true,
+      "filesystem": "AutoFS:fswestb1",
+      "type": "fuse.autofs",
+      "total_bytes": 21474836480000,
+      "free_bytes": 19732321591296,
+      "writable": false,
+      "mount_options": "ro,relatime,user_id=0,group_id=0,default_permissions,allow_other",
+      "persistent": true,
+      "survives_container_restart": true,
+      "large_research_data_allowed": false,
+      "transfer_speed": "NOT_MEASURED_READ_ONLY",
+      "metadata_support": "Not applicable because target is read-only",
+      "usable_as_reclamation_destination": false,
+      "reason": "Read-only public storage and incompatible with private licensed datasets"
+    },
+    {
+      "path": "/root/autodl-nas",
+      "exists": false,
+      "usable_as_reclamation_destination": false
+    },
+    {
+      "path": "/mnt",
+      "exists": true,
+      "filesystem": "overlay",
+      "type": "overlay",
+      "total_bytes": 32212254720,
+      "free_bytes": 24823889920,
+      "writable": true,
+      "persistent": false,
+      "survives_container_restart": false,
+      "large_research_data_allowed": false,
+      "transfer_speed": "NOT_MEASURED_EPHEMERAL",
+      "metadata_support": "POSIX semantics in current container only",
+      "usable_as_reclamation_destination": false,
+      "reason": "Ephemeral container layer and too small for target"
+    },
+    {"path": "/data", "exists": false, "usable_as_reclamation_destination": false},
+    {"path": "/workspace", "exists": false, "usable_as_reclamation_destination": false},
+    {
+      "path": "/dev/shm",
+      "exists": true,
+      "filesystem": "shm",
+      "type": "tmpfs",
+      "total_bytes": 48318382080,
+      "free_bytes": 48318382080,
+      "writable": true,
+      "persistent": false,
+      "survives_container_restart": false,
+      "large_research_data_allowed": false,
+      "transfer_speed": "RAM SPEED; NOT A STORAGE TARGET",
+      "metadata_support": "Temporary POSIX semantics; noexec",
+      "usable_as_reclamation_destination": false
+    },
+    {
+      "path": "/usr/bin/nvidia-smi and individual NVIDIA bind mounts",
+      "filesystem": "/dev/sda2",
+      "type": "ext4",
+      "free_bytes": 427832492032,
+      "writable": false,
+      "persistent": "HOST FILE BINDS ONLY",
+      "large_research_data_allowed": false,
+      "usable_as_reclamation_destination": false,
+      "reason": "No writable directory from this filesystem is mounted"
+    }
+  ],
+  "duplicate_search": {
+    "autodl_tmp_exact_name_search": "Only canonical candidate payloads plus tiny Git config skeletons were found",
+    "autodl_pub_bounded_depth_4_search": "NO_MATCH",
+    "autodl_pub_search_scope_note": "A full 20 TB recursive scan was intentionally not performed"
+  },
+  "plan_b_status": "NOT_GENERATED_NO_REAL_WRITABLE_PERSISTENT_TARGET",
+  "usable_alternate_persistent_cloud_destinations": 0
+}

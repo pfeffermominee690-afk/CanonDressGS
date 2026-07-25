@@ -1,0 +1,53 @@
+{
+  "schema_version": "canondressgs.subject00.storage_explicit_deletion_candidates.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "executed_large_directory_deletions": 0,
+  "candidates": [
+    {
+      "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z",
+      "allocated_bytes": 12569784320,
+      "logical_bytes": 12569755256,
+      "classification": "F",
+      "why_eligible": "A private Windows second copy has identical logical bytes and SHA-256.",
+      "regenerability": "Not proven redownloadable; recoverable by copying back the verified Windows duplicate.",
+      "rebuild_source": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+      "rebuild_command_strategy": "Use rsync or scp from the private Windows copy back to the exact cloud downloads path, then verify SHA-256 531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1.",
+      "second_copy": {
+        "present": true,
+        "path": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+        "logical_bytes": 12569755256,
+        "sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1"
+      },
+      "manifest_reference": true,
+      "final_summary_reference": true,
+      "prior_final_summary_retained_value": true,
+      "deletion_risk": "MEDIUM_UNTIL_LIVE_REVERIFY_AND_SUPERSEDING_RECORD; LOW_AFTER_ALL CONDITIONS",
+      "paper_risk": "LOW; no current paper or Figure Bank reference found",
+      "license_risk": "MEDIUM; private licensed data must remain private and must not be moved to public storage",
+      "recommendation": "CONDITIONAL_HIGH_PRIORITY_AFTER_LIVE_SHA_REVERIFY_AND_NEW_DELETION_RECORD",
+      "eligible_in_this_task": false,
+      "minimum_conditions": [
+        "Explicit user selection of execution task",
+        "Live cloud and Windows SHA-256 equality",
+        "Live cloud and Windows logical byte equality",
+        "Healthy E: NTFS destination and sufficient reserve",
+        "Verified preservation of all 19 audit/provenance reports",
+        "Committed deletion record superseding retained=true",
+        "Exact non-wildcard archive path only"
+      ]
+    }
+  ],
+  "excluded": [
+    {"path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full", "reason": "Class C sealed attempts, checkpoints, renders, Figure sources and provenance; safe delete subset is zero."},
+    {"path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00", "reason": "Class A raw Subject00."},
+    {"path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets", "reason": "Class A required derived Subject00."},
+    {"path": "/root/autodl-tmp/canondressgs_work/data/subject02/images", "reason": "Class B current paper/Figure evidence."},
+    {"path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1", "reason": "Class D migration source; not an explicit-delete candidate before complete destination verification."}
+  ],
+  "executed_cache_record": {
+    "path": "/root/autodl-tmp/pip_cache",
+    "allocated_bytes": 3142000640,
+    "status": "ALREADY_DELETED_UNDER_EXACT_USER_AUTHORIZATION",
+    "large_asset_candidate": false
+  }
+}

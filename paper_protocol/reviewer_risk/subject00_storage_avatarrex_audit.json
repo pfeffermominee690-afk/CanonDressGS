@@ -1,0 +1,133 @@
+{
+  "schema_version": "canondressgs.subject00.storage_avatarrex_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "staging_root": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging",
+  "staging_allocated_bytes": 31963389952,
+  "staging_components": [
+    {
+      "name": "extracted_raw_media_and_metadata",
+      "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1",
+      "allocated_bytes": 19262648320,
+      "apparent_file_bytes": 19135049684,
+      "file_count": 60834,
+      "directory_count": 48,
+      "classification": "D",
+      "decision": "MIGRATABLE_TO_PRIVATE_WINDOWS_ONLY_AFTER_COMPLETE_VERIFICATION"
+    },
+    {
+      "name": "source_archive",
+      "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/downloads/avatarrex_lbn1.7z",
+      "allocated_bytes": 12569784320,
+      "logical_bytes": 12569755256,
+      "sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+      "classification": "F",
+      "decision": "FUTURE_EXPLICIT_DELETE_ONLY_AFTER SECOND COPY AND DELETION RECORD REVERIFICATION"
+    },
+    {
+      "name": "audit_and_provenance_reports",
+      "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging/reports",
+      "allocated_bytes": 130957312,
+      "apparent_file_bytes": 130905029,
+      "file_count": 19,
+      "classification": "D",
+      "decision": "MIGRATE_WITH_EXTRACTED DATA; NEVER DISCARD BEFORE VERIFIED DESTINATION"
+    }
+  ],
+  "extracted_structure": {
+    "raw_rgb": {"files": 30416, "apparent_bytes": 17211383898},
+    "raw_masks": {"files": 30416, "apparent_bytes": 1922340470},
+    "calibration": {"files": 1, "apparent_bytes": 15350, "sha256": "793281a00b808976122c0d33b4dd22d0ed0a48518577345c709db6cbb3d7f315"},
+    "smpl_parameters": {"files": 1, "apparent_bytes": 1309966, "sha256": "6ed3b3877d3895999e2636990bd417783328d695412b45d0679773e34b54613b"},
+    "derived_template": {"files": 0, "bytes": 0},
+    "lbs": {"files": 0, "bytes": 0},
+    "generated_assets": {"files": 0, "bytes": 0},
+    "caches": {"files": 0, "bytes": 0},
+    "incomplete_downloads": {"files": 0, "bytes": 0},
+    "nested_archives": {"files": 0, "bytes": 0},
+    "checkpoints": {"files": 0, "bytes": 0},
+    "symlinks": 0,
+    "hardlinked_files": 0,
+    "zero_byte_files": 0
+  },
+  "fingerprints": {
+    "path_size_algorithm": "sha256(sorted(relative_path<TAB>bytes<TAB>file_type<LF>))",
+    "path_size_tree_sha256": "a016e63be8472649d05d6cde7c4e7bfc5da74d828715df03e1e611ee17683aaa",
+    "content_algorithm": "sha256(sorted(relative_path<TAB>bytes<TAB>content_sha256<LF>)) over regular files",
+    "full_content_tree_sha256": "00482b7c98f6f46773fd13a3f33ebe278b9353e09fdb51fa9ed72583f7b27b15",
+    "content_hash_complete": true
+  },
+  "report_files": [
+    {"path": ".avatarrex_archive_listing_audit.json", "bytes": 1730, "sha256": "62164a6fd718c90b8601d3eb24ccae501371a5c70bd565f6e0e29cc25b42a102"},
+    {"path": ".avatarrex_archive_listing_slt.txt", "bytes": 10105372, "sha256": "d33cb311687a1034c37e795d26966f1a93b16bc5e7de3e96cce28b387081fc70"},
+    {"path": ".avatarrex_archive_listing_slt_after_move.txt", "bytes": 10105481, "sha256": "15cbe3541dd4d16879014ff15268283b957789ea3bcdbb1aafa4167b8e177356"},
+    {"path": ".avatarrex_decode_progress.json", "bytes": 165, "sha256": "997dcfa4b97080c1db7708d8bcad1d66dc613b59a051bd5b4e1793b47293c362"},
+    {"path": ".avatarrex_stage1_console.log", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"path": ".avatarrex_stage1_status", "bytes": 21, "sha256": "2fcc3359004fa3d497ecdeb5248c73db55dd8ad7ffef50b953a340c298510062"},
+    {"path": "AVATARREX_LBN1_ARCHIVE_INTEGRITY_LOG.txt", "bytes": 2113, "sha256": "e2f82ac387ae2eb6077facddc4999578e8f1f86b3993070aa3f5242619c45126"},
+    {"path": "AVATARREX_LBN1_CALIBRATION_AUDIT.json", "bytes": 37628, "sha256": "e651bd5450424ae65a148bc69ace090bb1831283b652fed0a81848b8141676ab"},
+    {"path": "AVATARREX_LBN1_EXTRACTION_LOG.txt", "bytes": 1736245, "sha256": "cecec4c8b3f9088556b5d04c43c44c1a0edf3dae317c98d4641a4a71c93fa4f9"},
+    {"path": "AVATARREX_LBN1_FINAL_SUMMARY.json", "bytes": 8536, "sha256": "ecf41313e39945a505c090a61bea73d993c486f0559bca911816c60ca88d6877"},
+    {"path": "AVATARREX_LBN1_LICENSE_AND_PROVENANCE.md", "bytes": 920, "sha256": "74f25cd2ceba3ac40fe655b375db6c7bbc2db7a11439a5de4780d9ddecaa4c6c"},
+    {"path": "AVATARREX_LBN1_MASK_DECODE_AUDIT.json", "bytes": 53387288, "sha256": "eebd79051273f02b4387c3f9d9fa35424068c4e4a79ddc7c2bda7a82844fb7b5"},
+    {"path": "AVATARREX_LBN1_RAW_DATA_AUDIT.md", "bytes": 1754, "sha256": "7cf4c85649b155006320b2038049c642e4b5270d04c697460abfefa277516112"},
+    {"path": "AVATARREX_LBN1_RAW_DATA_MANIFEST.json", "bytes": 18537763, "sha256": "78c127d9b545b1717fa3df6636d298833750b6e8a746350b75036ad7288b05ec"},
+    {"path": "AVATARREX_LBN1_RGB_DECODE_AUDIT.json", "bytes": 18328511, "sha256": "84e93bc1284186311ee97d9922d62a7590d6eca3be8b30732b54d55d4748ed75"},
+    {"path": "AVATARREX_LBN1_SMPLX_AUDIT.json", "bytes": 5789, "sha256": "09621158fe4ccdb3738bbf49424e5cf9847b54edb0c67ffac78f3dcac0b97a0e"},
+    {"path": "AVATARREX_LBN1_TREE_FINGERPRINT.json", "bytes": 1977, "sha256": "0e8e3ab7533e7346a93608cbedc7d8091b8a543b3ff16c76acc77a7ebcd2ba39"},
+    {"path": "AVATARREX_LBN1_VALID_FRAME_CAMERA_MANIFEST.json", "bytes": 18643635, "sha256": "902e3762478c9ee6fb5823bd330129c356d713fb27977db4df11d4e488da03c3"},
+    {"path": "avatarrex_archive_sha256.txt", "bytes": 101, "sha256": "413e9727eaa0c308f530cd773cd3ba74b0faba9f9035eac5b57a1d655ad944df"}
+  ],
+  "archive_integrity": {
+    "seven_zip_test": "PASS",
+    "archive_file_count": 60834,
+    "archive_directory_count": 48,
+    "prior_integrity_runtime_seconds": 874,
+    "cloud_final_summary_says_retained": true,
+    "redownload_proven": false,
+    "source_origin": "USER_PROVIDED_CLOUD_ARCHIVE"
+  },
+  "windows_duplicate": {
+    "path": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "logical_bytes": 12569755256,
+    "sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "byte_and_sha_match": true,
+    "extracted_payload_present": false,
+    "reports_present": false
+  },
+  "references": {
+    "current_subject00_dependency": false,
+    "current_paper_figure_reference": false,
+    "tracked_repository_exact_extracted_root_reference_files": 2,
+    "internal_manifest_reference": true,
+    "internal_final_summary_reference": true,
+    "provenance_reference": true,
+    "checkpoint_registry_reference": false
+  },
+  "license": {
+    "use": "NON_COMMERCIAL_RESEARCH",
+    "redistribution": "PROHIBITED",
+    "destination_boundary": "PRIVATE_LOCAL_WINDOWS_STORAGE_ONLY",
+    "public_cloud_destination_allowed": false
+  },
+  "migratable_subset": {
+    "items": ["avatarrex_lbn1", "reports"],
+    "allocated_bytes": 19393605632,
+    "file_count": 60853,
+    "source_deletion_before_destination_verification": false
+  },
+  "explicit_delete_subset": {
+    "items": ["downloads/avatarrex_lbn1.7z"],
+    "allocated_bytes": 12569784320,
+    "classification": "F",
+    "eligible_now": false,
+    "future_conditions": [
+      "Recompute cloud and Windows logical bytes and SHA-256 immediately before deletion",
+      "Confirm the Windows copy remains on healthy private NTFS storage",
+      "Copy and verify all 19 provenance reports",
+      "Create a new deletion record that supersedes the prior retained=true declaration",
+      "Obtain explicit user selection of the execution task"
+    ]
+  },
+  "projected_full_staging_release_after_verified_migration_and_archive_adjudication_bytes": 31963389952,
+  "mutations_in_this_task": 0
+}

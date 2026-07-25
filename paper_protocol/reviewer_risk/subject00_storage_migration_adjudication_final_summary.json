@@ -1,0 +1,89 @@
+{
+  "schema_version": "canondressgs.subject00.storage_migration_adjudication_final_summary.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "source": {
+    "branch": "research/mmlphuman-subject00-formal-storage-provisioned-run-20260725",
+    "head": "f18eb0641afa2070ebeede3140f5c342c13944e9"
+  },
+  "audit": {
+    "branch": "research/mmlphuman-subject00-storage-migration-adjudication-20260725",
+    "base_head": "f18eb0641afa2070ebeede3140f5c342c13944e9",
+    "commit": "SELF_ON_AUDIT_BRANCH",
+    "paper_final": "docs/PAPER/AAAI27_SUBJECT00_FORMAL_STORAGE_MIGRATION_ADJUDICATION_20260725.md"
+  },
+  "formal_state": {
+    "canonical_output_root": "ABSENT",
+    "rejected_alias": "ABSENT",
+    "attempt_001": "ABSENT",
+    "attempt_002": "ABSENT",
+    "execution_head": null,
+    "scientific_attempt_count": 0,
+    "training_started": false
+  },
+  "cache_cleanup": {
+    "path": "/root/autodl-tmp/pip_cache",
+    "protection_checks_passed": 10,
+    "deleted": true,
+    "reclaimed_bytes": 3142000640,
+    "after_free_bytes": 17690701824
+  },
+  "live_gate": {
+    "contract_required_bytes": 32212254720,
+    "safety_target_bytes": 40802189312,
+    "contract_shortfall_bytes": 14521552896,
+    "safety_shortfall_bytes": 23111487488,
+    "status": "BLOCKED"
+  },
+  "candidate_decisions": {
+    "subject02_images": "B",
+    "subject00_derived_assets": "A",
+    "subject00_raw": "A",
+    "pipeline_full": "C",
+    "avatarrex_extracted": "D",
+    "avatarrex_cloud_archive": "F",
+    "pipeline_safe_migratable_bytes": 0,
+    "pipeline_safe_delete_bytes": 0,
+    "avatarrex_full_staging_future_release_bytes": 31963389952
+  },
+  "destinations": {
+    "alternate_persistent_cloud_target": null,
+    "plan_b": "NOT_AVAILABLE",
+    "windows_e_free_bytes": 74059694080,
+    "windows_private_destination": "E:\\data_pre\\avatarrex_second_dataset_staging",
+    "windows_write_test": "PASS",
+    "rsync_bridge": "PASS"
+  },
+  "plans": {
+    "plan_a": "50 GiB or larger platform expansion recommended",
+    "plan_b": "Not generated; no real writable persistent cloud target",
+    "plan_c": "Verified AvatarReX migration to private Windows and conditional cloud source retirement",
+    "plan_d": "20 GiB expansion plus conditional duplicate archive deletion",
+    "recommended": "PLAN_C"
+  },
+  "recommended_projection": {
+    "total_reclaimed_from_pre_cache_baseline_bytes": 35105390592,
+    "projected_free_bytes": 49654091776,
+    "contract_margin_bytes": 17441837056,
+    "safety_margin_bytes": 8851902464,
+    "margin_over_safety_plus_5_gib_bytes": 3483193344,
+    "margin_over_45_gib_bytes": 1335709696
+  },
+  "mutations": {
+    "authorized_pip_cache_deletions": 1,
+    "empty_windows_write_tests_created_and_removed": 1,
+    "large_directory_deletions": 0,
+    "large_directory_moves": 0,
+    "large_archives_created": 0,
+    "large_uploads": 0,
+    "large_downloads": 0,
+    "mount_or_symlink_changes": 0,
+    "attempts_created": 0,
+    "optimizer_steps": 0,
+    "scientific_data_mutations": 0,
+    "paper_body_mutations": 0
+  },
+  "tests": "PASS_WITH_STORAGE_GATE_STILL_BLOCKED",
+  "classification": "SUBJECT00_STORAGE_MIGRATION_PLAN_READY",
+  "next_task": "EXECUTE_USER_SELECTED_SUBJECT00_STORAGE_RECLAMATION_PLAN",
+  "next_task_authorized": false
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "canondressgs.subject00.storage_pip_cache_deletion_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-STORAGE-MIGRATION-ADJUDICATION-001",
+  "target": "/root/autodl-tmp/pip_cache",
+  "authorization": "EXACT_PATH_USER_AUTHORIZED",
+  "pre_delete": {
+    "realpath": "/root/autodl-tmp/pip_cache",
+    "type": "directory",
+    "owner_group": "root:root",
+    "mode": "0755",
+    "device_id": 2304,
+    "filesystem": "/dev/md0 xfs",
+    "file_count": 847,
+    "directory_count_excluding_root": 1469,
+    "allocated_bytes": 3142000640,
+    "apparent_file_bytes": 3139890084,
+    "top_level_entries": [
+      {"name": "http-v2", "allocated_bytes": 3141996544},
+      {"name": "selfcheck", "allocated_bytes": 4096}
+    ],
+    "http_metadata_files": 423,
+    "http_body_files": 423,
+    "selfcheck_files": 1,
+    "suffix_counts": {".body": 423, "no_suffix": 424},
+    "mtime_utc_range": ["2026-07-11T13:52:46.663172+00:00", "2026-07-11T15:41:32.548487+00:00"],
+    "file_list_metadata_sha256": "51a54f021f3954bd0286f89981c30397fa694eaeac077352a39ccd603efd9dde",
+    "file_list_hash_policy": "SHA256 of canonical UTF-8 sorted JSON rows [relative_path,size,mtime_ns,mode,nlink]",
+    "free_bytes": 14548701184
+  },
+  "protection_checks": [
+    {"id": 1, "check": "realpath exact equality", "status": "PASS", "evidence": "/root/autodl-tmp/pip_cache"},
+    {"id": 2, "check": "not a symlink", "status": "PASS", "evidence": "root and descendants contain zero symlinks"},
+    {"id": 3, "check": "single filesystem", "status": "PASS", "evidence": "all descendants device 2304; findmnt -R found no child mount"},
+    {"id": 4, "check": "outside Git repositories and worktrees", "status": "PASS", "evidence": "no .git boundary and no worktree prefix match"},
+    {"id": 5, "check": "outside scientific outputs", "status": "PASS", "evidence": "path is independent of all outputs roots"},
+    {"id": 6, "check": "outside datasets", "status": "PASS", "evidence": "path is independent of all dataset roots"},
+    {"id": 7, "check": "contains no checkpoints", "status": "PASS", "evidence": "no checkpoint names or checkpoint extensions"},
+    {"id": 8, "check": "contains no user source", "status": "PASS", "evidence": "no source extensions; bodies sampled as package archives"},
+    {"id": 9, "check": "no protected final-summary/handoff/seal/manifest/Figure-Bank reference", "status": "PASS", "evidence": "repository and external protected-metadata searches found no protected reference"},
+    {"id": 10, "check": "pip package/download cache only", "status": "PASS", "evidence": "root children exactly http-v2 and selfcheck; 423 metadata/body pairs match pip SHA224 cache layout"}
+  ],
+  "additional_link_and_process_checks": {
+    "symlink_count": 0,
+    "hardlinked_file_count": 0,
+    "open_fd_count_from_proc": 0,
+    "lsof_available": false,
+    "fuser_available": false
+  },
+  "execution": {
+    "status": "DELETED",
+    "exact_command": "rm -rf --one-file-system /root/autodl-tmp/pip_cache",
+    "wildcard_used": false,
+    "find_delete_used": false,
+    "path_absent_after": true
+  },
+  "post_delete": {
+    "filesystem": "/dev/md0 xfs",
+    "total_bytes": 268435456000,
+    "free_bytes": 17690701824,
+    "reclaimed_bytes": 3142000640,
+    "reclaim_matches_pre_delete_allocated_bytes": true,
+    "lsof_plus_l1": "UNAVAILABLE_LSOF_NOT_INSTALLED",
+    "deleted_open_file_scan": "NO OPEN DESCRIPTORS FOUND BY /proc SCAN"
+  },
+  "formal_gate": {
+    "contract_required_bytes": 32212254720,
+    "safety_target_bytes": 40802189312,
+    "contract_shortfall_bytes": 14521552896,
+    "safety_shortfall_bytes": 23111487488,
+    "training_authorized": false
+  },
+  "classification": "AUTHORIZED_PIP_CACHE_DELETION_COMPLETE_GATE_STILL_BLOCKED"
+}
