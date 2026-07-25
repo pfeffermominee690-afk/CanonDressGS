@@ -1,0 +1,32 @@
+{
+  "schema_version": "paper_endpoint_method_internal_term_scan.v1",
+  "task_id": "AAAI27-CANONDRESSGS-PAPER-ENDPOINT-METHOD-RESTRUCTURE-001",
+  "status": "PASS_MANUSCRIPT_SOURCE_WITH_FIGURE_CANDIDATE_WARNINGS",
+  "scope": ["paper_draft/main.tex", "paper_draft/sections/*.tex", "paper_draft/tables/*.tex"],
+  "forbidden_term_counts": {
+    "B6_or_B7": 0,
+    "M3_or_M4": 0,
+    "V1_or_V2_or_V3": 0,
+    "attempt_identifier": 0,
+    "branch_name": 0,
+    "git_head_or_sha": 0,
+    "Codex": 0,
+    "repaired_contract": 0,
+    "cache_count": 0,
+    "result_or_reporting_head": 0,
+    "task_number": 0,
+    "PAPER_FINAL": 0
+  },
+  "unsupported_positive_claim_counts": {
+    "unseen_garment_success": 0,
+    "second_identity_result": 0,
+    "automatic_mixed_controller_success": 0,
+    "continuous_control_success": 0
+  },
+  "candidate_pixel_warnings": [
+    {"figure": 2, "terms": ["PAPER_FINAL=0", "candidate only"], "action": "human-confirm or replace in authorized publication-figure workflow"},
+    {"figure": 5, "terms": ["CANDIDATE", "REQUIRES MANUAL ADJUDICATION"], "action": "human-confirm before submission"},
+    {"figure": 6, "terms": ["attempt_003", "formal classification", "PASS/FAIL"], "action": "replace reporting labels before submission without changing scientific content"}
+  ],
+  "paper_final": false
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "paper_endpoint_method_figure_table_audit.v1",
+  "task_id": "AAAI27-CANONDRESSGS-PAPER-ENDPOINT-METHOD-RESTRUCTURE-001",
+  "status": "PASS_WITH_REGISTERED_GAPS",
+  "figures": [
+    {"figure": 1, "status": "REQUIRES_MANUAL_ADJUDICATION", "included": false, "source": "paper_draft/figures/pure_endpoint_refresh/candidates/fig01_teaser/pure_endpoint_endpoint_only_v1/contact_sheet_for_manual_adjudication.png", "scope_match": true, "action": "P0 manual selection"},
+    {"figure": 2, "status": "ENDPOINT_METHOD_FREEZE_CANDIDATE_READY", "included": true, "source": "paper_draft/figures/loo_method_freeze/candidates/figure2/endpoint_method_freeze/endpoint_method_freeze_overview.png", "scope_match": true, "action": "P1 human confirmation"},
+    {"figure": 3, "status": "READY_FROM_HISTORICAL_EVIDENCE_UNASSEMBLED", "included": false, "source": "paper_protocol/reviewer_risk/factor_causal_profiles.json", "scope_match": true, "action": "P1 assemble without new or retouched scientific pixels"},
+    {"figure": 4, "status": "READY_FROM_HISTORICAL_EVIDENCE", "included": true, "source": "paper_draft/figures/plots/dual_support/dual_support_all_pair_garment_lpips.png", "scope_match": true, "action": "P1 final human confirmation"},
+    {"figure": 5, "status": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY", "included": true, "source": "paper_draft/figures/pure_endpoint_refresh/candidates/fig05_hard_lookup/pure_endpoint_hard_lookup_v1/pure_endpoint_hard_lookup_v1.png", "scope_match": true, "action": "P1 final human confirmation"},
+    {"figure": 6, "status": "LIMITATION_CANDIDATE_READY", "included": true, "source": "paper_draft/figures/loo_method_freeze/plots/loo/loo_overall_classification.png", "scope_match": true, "action": "P1 publication-label cleanup in authorized figure workflow"}
+  ],
+  "tables": [
+    {"table": 1, "title": "Subject02 Closed-Wardrobe Endpoint Selection", "source": "paper_protocol/reviewer_risk/current_protocol_baseline_table_source.json", "historical_51_mixed": false, "hard_lookup_disclosed": true, "status": "PASS"},
+    {"table": 2, "title": "Geometry-Safe Dual-Support Analysis", "source": "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json", "all_ten_pairs": true, "status": "PASS"},
+    {"table": 3, "title": "Headroom and LOO Scope Adjudication", "source": "paper_protocol/reviewer_risk/coefficient_headroom_attempt002_final_summary.json; paper_draft/figures/loo_method_freeze/plots/loo/loo_plot_source_data.json", "negative_results_visible": true, "status": "PASS"}
+  ],
+  "checks": {
+    "referenced_figure_exists": true,
+    "referenced_table_source_exists": true,
+    "caption_subject_scope_present": true,
+    "caption_garment_scope_present": true,
+    "caption_reference_setting_present": true,
+    "teacher_prediction_snapped_distinction_present": true,
+    "unseen_garment_claim_in_caption": false,
+    "scientific_pixels_modified": false
+  },
+  "paper_final": false
+}

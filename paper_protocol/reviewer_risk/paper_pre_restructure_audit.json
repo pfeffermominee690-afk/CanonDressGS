@@ -1,0 +1,61 @@
+{
+  "schema_version": "paper_pre_restructure_audit.v1",
+  "task_id": "AAAI27-CANONDRESSGS-PAPER-ENDPOINT-METHOD-RESTRUCTURE-001",
+  "status": "BASELINE_CAPTURED_COMPILE_BLOCKED",
+  "source_head": "3f67f577b85e5f74951287e9a938c11aef74ac60",
+  "main_file": "paper_draft/main.tex",
+  "main_file_git_blob": "8e26f00a18e3dc7d9b099ae3556b076a0bc89361",
+  "bibliography": {
+    "path": "paper_draft/references.bib",
+    "status": "ABSENT_AT_BASELINE",
+    "sha": null
+  },
+  "line_counts": {
+    "main": 26,
+    "included_sections": 56,
+    "total_visible_source": 82
+  },
+  "title": "CanonDressGS: Canonical Clothing-conditioned Gaussian Avatars with LHM-assisted Priors",
+  "abstract": "We introduce CanonDressGS, a canonical-space framework for clothing-conditioned Gaussian human avatars with LHM-assisted priors. The method builds a canonical naked Gaussian base avatar from THuman/SMPL-X white-body priors, learns clothing-conditioned canonical Gaussian offsets with a lightweight HyperNetwork, and reuses MMLPHuman-style pose-driven deformation and Gaussian rendering for novel pose and novel view synthesis. LHM is used offline as a teacher prior to provide dressed Gaussian geometry supervision through SMPL-X surface-aware anchor alignment.",
+  "visible_sections": ["Introduction", "Related Work", "Method", "Experiments", "Limitations"],
+  "contribution_bullets": [
+    "Clothing-conditioned canonical Gaussian offset representation.",
+    "LHM-assisted anchor-level clothing offset supervision.",
+    "Lightweight HyperNetwork modulation for shared MMLPHuman-style offset MLPs."
+  ],
+  "method_subsections": [
+    "Overview",
+    "White-body Pose-condition Dataset Construction",
+    "Base Naked Gaussian Avatar",
+    "LHM-assisted Clothed Gaussian Prior",
+    "SMPL-X Surface-aware Anchor Alignment",
+    "Clothing-conditioned HyperNetwork",
+    "Canonical Dressed Gaussian Composition",
+    "Pose-driven Rendering with MMLPHuman",
+    "Training Objectives"
+  ],
+  "experiment_subsections": [
+    "Dataset and Protocol",
+    "Baselines",
+    "Metrics",
+    "Implementation Details",
+    "Quantitative Results",
+    "Qualitative Results",
+    "Ablation Study",
+    "Runtime and Parameter Analysis"
+  ],
+  "figure_references": [],
+  "table_references": [],
+  "compile": {
+    "status": "BLOCKED_BEFORE_INVOCATION",
+    "reasons": ["AAAI style/class absent", "references.bib absent", "pdflatex absent", "latexmk absent", "bibtex absent"],
+    "page_count": null,
+    "warnings": null,
+    "undefined_references": null,
+    "undefined_citations": null,
+    "overfull_boxes": null,
+    "baseline_pdf": null,
+    "baseline_log": null
+  },
+  "paper_final": false
+}

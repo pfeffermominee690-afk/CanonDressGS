@@ -1,0 +1,26 @@
+{
+  "schema_version": "paper_endpoint_method_equation_audit.v1",
+  "task_id": "AAAI27-CANONDRESSGS-PAPER-ENDPOINT-METHOD-RESTRUCTURE-001",
+  "status": "PASS_STATIC",
+  "equations": [
+    {"label": "eq:teacher-endpoint", "purpose": "Teacher Endpoint construction", "symbols_defined": ["G_base", "Delta G_g^*", "G_g^*"], "implementation_match": true},
+    {"label": null, "purpose": "mean residual", "symbols_defined": ["mu", "W"], "implementation_match": true},
+    {"label": "eq:endpoint-coordinate", "purpose": "rank-r SVD endpoint coordinates and reconstruction", "symbols_defined": ["B", "r", "c_g", "Delta G hat"], "implementation_match": true},
+    {"label": "eq:set-aggregation", "purpose": "validity-aware mean/max aggregation", "symbols_defined": ["f_i", "v_i", "N_v", "h"], "dimension_check": "256 + 256 = 512", "implementation_match": true},
+    {"label": "eq:endpoint-snap", "purpose": "nearest valid standardized endpoint", "symbols_defined": ["m", "s", "z_g", "z tilde", "g hat", "c_realized"], "raw_snapped_distinct": true, "implementation_match": true},
+    {"label": "eq:coefficient-loss", "purpose": "coefficient SmoothL1 training objective", "symbols_defined": ["L_coef", "beta"], "render_loss": 0.0, "classification_loss": 0.0, "implementation_match": true}
+  ],
+  "checks": {
+    "symbols_defined_on_first_use": true,
+    "teacher_vs_predicted_endpoint_distinct": true,
+    "raw_vs_snapped_coefficient_distinct": true,
+    "geometry_appearance_opacity_not_conflated": true,
+    "aggregation_dimensions_correct": true,
+    "rank_vs_garment_count_correct": true,
+    "dual_support_not_geometry_interpolation": true,
+    "loss_matches_frozen_contract": true,
+    "equation_references_resolved_statically": true,
+    "obsolete_controller_equations_present": false
+  },
+  "paper_final": false
+}

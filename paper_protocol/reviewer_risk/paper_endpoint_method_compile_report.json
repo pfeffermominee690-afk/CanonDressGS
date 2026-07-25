@@ -1,0 +1,48 @@
+{
+  "schema_version": "paper_endpoint_method_compile_report.v1",
+  "task_id": "AAAI27-CANONDRESSGS-PAPER-ENDPOINT-METHOD-RESTRUCTURE-001",
+  "status": "PAPER_ENDPOINT_METHOD_RESTRUCTURE_COMPILE_BLOCKED",
+  "main_entry": "paper_draft/main.tex",
+  "authorized_build_inputs": {
+    "aaai_style_or_class_present": false,
+    "baseline_bibliography_present": false,
+    "latex_build_script_present": false
+  },
+  "tool_discovery": {
+    "windows": {"pdflatex": false, "latexmk": false, "bibtex": false, "tectonic": false},
+    "wsl_ubuntu": {"pdflatex": false, "latexmk": false, "bibtex": false},
+    "cloud_host": {"pdflatex": false, "latexmk": false, "bibtex": false, "aaai_sty": false}
+  },
+  "builds": {
+    "pre_restructure": "BLOCKED_BEFORE_INVOCATION",
+    "clean_build_1": "BLOCKED_BEFORE_INVOCATION",
+    "clean_build_2": "BLOCKED_BEFORE_INVOCATION",
+    "bibliography_build": "BLOCKED_BEFORE_INVOCATION"
+  },
+  "static_checks": {
+    "input_graph_resolved": true,
+    "referenced_figures_exist": true,
+    "referenced_tables_exist": true,
+    "duplicate_labels": 0,
+    "undefined_label_tokens_static": 0,
+    "undefined_citation_tokens_static": 0,
+    "orphan_included_figures": 0,
+    "equation_labels_unique": true
+  },
+  "pdf": {
+    "path": null,
+    "page_count": null,
+    "sha256_build_1": null,
+    "sha256_build_2": null,
+    "text_extraction": "NOT_AVAILABLE",
+    "metadata": "NOT_AVAILABLE"
+  },
+  "layout": {
+    "overfull_boxes": null,
+    "underfull_boxes": null,
+    "table_width_verified_by_compile": false,
+    "warnings": ["Compile diagnostics unavailable until the authorized AAAI kit and LaTeX toolchain are provisioned."]
+  },
+  "libreoffice_used": false,
+  "paper_final": false
+}
