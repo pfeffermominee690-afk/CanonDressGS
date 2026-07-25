@@ -1,0 +1,115 @@
+{
+  "schema_version": "canondressgs.subject00.checkpoint_archive_candidates.v1",
+  "task_id": "AAAI27-SUBJECT00-CHECKPOINT-RECLAMATION-ADJUDICATION-001",
+  "audit_timestamp_utc": "2026-07-25T19:11:13+00:00",
+  "windows_archive_root": "E:\\canondressgs_archive\\cloud_checkpoints",
+  "windows_e_free_bytes": 115592388608,
+  "required_reserve_bytes": 8589934592,
+  "archive_candidate_count": 3,
+  "whole_tree_file_count": 28,
+  "checkpoint_count": 11,
+  "checkpoint_logical_bytes": 9735410800,
+  "transfer_logical_bytes": 9735450405,
+  "projected_cloud_release_allocated_bytes": 9735524352,
+  "windows_capacity_gate_bytes": 18325384997,
+  "windows_capacity_gate_pass": true,
+  "candidates": [
+    {
+      "cloud_source": "/root/autodl-tmp/outputs/diffusion_piper_50k",
+      "file_count": 12,
+      "logical_bytes": 3334819751,
+      "allocated_bytes": 3334852608,
+      "latest_mtime_utc": "2026-07-11T21:24:36.933420+00:00",
+      "checkpoint_count": 5,
+      "checkpoint_logical_bytes": 3334803392,
+      "checkpoint_paths": [
+        "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/pretrained_model/model.safetensors",
+        "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/pretrained_model/policy_postprocessor_step_0_unnormalizer_processor.safetensors",
+        "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/pretrained_model/policy_preprocessor_step_3_normalizer_processor.safetensors",
+        "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/training_state/optimizer_state.safetensors",
+        "/root/autodl-tmp/outputs/diffusion_piper_50k/checkpoints/050000/training_state/rng_state.safetensors"
+      ],
+      "windows_destination": "E:\\canondressgs_archive\\cloud_checkpoints\\diffusion_piper_50k",
+      "selection_reason": "OLD_INACTIVE_WHOLE_EXPERIMENT_OUTSIDE_RECOVERED_REPORT_PROTECTED_ROOTS",
+      "transfer_command_wsl_plan_only": "rsync -aH --partial --append-verify --protect-args -e \"ssh\" canondress-cloud:/root/autodl-tmp/outputs/diffusion_piper_50k/ /mnt/e/canondressgs_archive/cloud_checkpoints/diffusion_piper_50k/",
+      "resume_strategy": "Rerun the identical rsync command; --partial and --append-verify resume interrupted files. A nonzero exit is a hard stop.",
+      "sha256_verification": "Create sorted relative-path/byte-count/SHA256 manifests independently on cloud and Windows, then require byte-identical manifests.",
+      "metadata_preservation": "rsync -aH preserves mtimes and link topology where supported; record source uid/gid/mode because NTFS cannot preserve all POSIX semantics.",
+      "source_deletion_gate": [
+        "destination file count equals source file count",
+        "destination logical bytes equal source logical bytes",
+        "every relative path and SHA256 matches",
+        "archive manifest and verification seal are committed",
+        "no candidate file is open by a process",
+        "user explicitly authorizes exact source retirement"
+      ],
+      "rollback": "Cloud source remains authoritative until every gate passes. After a separately authorized retirement, restore by reverse rsync from the sealed Windows archive and revalidate the manifest.",
+      "transferred_in_this_task": false,
+      "deleted_in_this_task": false
+    },
+    {
+      "cloud_source": "/root/autodl-tmp/outputs/diffusion_30k",
+      "file_count": 8,
+      "logical_bytes": 3200315309,
+      "allocated_bytes": 3200339968,
+      "latest_mtime_utc": "2026-07-15T17:59:07.385347+00:00",
+      "checkpoint_count": 3,
+      "checkpoint_logical_bytes": 3200303704,
+      "checkpoint_paths": [
+        "/root/autodl-tmp/outputs/diffusion_30k/checkpoints/030000/pretrained_model/model.safetensors",
+        "/root/autodl-tmp/outputs/diffusion_30k/checkpoints/030000/training_state/optimizer_state.safetensors",
+        "/root/autodl-tmp/outputs/diffusion_30k/checkpoints/030000/training_state/rng_state.safetensors"
+      ],
+      "windows_destination": "E:\\canondressgs_archive\\cloud_checkpoints\\diffusion_30k",
+      "selection_reason": "OLD_INACTIVE_WHOLE_EXPERIMENT_OUTSIDE_RECOVERED_REPORT_PROTECTED_ROOTS",
+      "transfer_command_wsl_plan_only": "rsync -aH --partial --append-verify --protect-args -e \"ssh\" canondress-cloud:/root/autodl-tmp/outputs/diffusion_30k/ /mnt/e/canondressgs_archive/cloud_checkpoints/diffusion_30k/",
+      "resume_strategy": "Rerun the identical rsync command; --partial and --append-verify resume interrupted files. A nonzero exit is a hard stop.",
+      "sha256_verification": "Create sorted relative-path/byte-count/SHA256 manifests independently on cloud and Windows, then require byte-identical manifests.",
+      "metadata_preservation": "rsync -aH preserves mtimes and link topology where supported; record source uid/gid/mode because NTFS cannot preserve all POSIX semantics.",
+      "source_deletion_gate": [
+        "destination file count equals source file count",
+        "destination logical bytes equal source logical bytes",
+        "every relative path and SHA256 matches",
+        "archive manifest and verification seal are committed",
+        "no candidate file is open by a process",
+        "user explicitly authorizes exact source retirement"
+      ],
+      "rollback": "Cloud source remains authoritative until every gate passes. After a separately authorized retirement, restore by reverse rsync from the sealed Windows archive and revalidate the manifest.",
+      "transferred_in_this_task": false,
+      "deleted_in_this_task": false
+    },
+    {
+      "cloud_source": "/root/autodl-tmp/outputs/irregular_diffusion_30k",
+      "file_count": 8,
+      "logical_bytes": 3200315345,
+      "allocated_bytes": 3200331776,
+      "latest_mtime_utc": "2026-07-19T14:24:11.619124+00:00",
+      "checkpoint_count": 3,
+      "checkpoint_logical_bytes": 3200303704,
+      "checkpoint_paths": [
+        "/root/autodl-tmp/outputs/irregular_diffusion_30k/checkpoints/030000/pretrained_model/model.safetensors",
+        "/root/autodl-tmp/outputs/irregular_diffusion_30k/checkpoints/030000/training_state/optimizer_state.safetensors",
+        "/root/autodl-tmp/outputs/irregular_diffusion_30k/checkpoints/030000/training_state/rng_state.safetensors"
+      ],
+      "windows_destination": "E:\\canondressgs_archive\\cloud_checkpoints\\irregular_diffusion_30k",
+      "selection_reason": "OLD_INACTIVE_WHOLE_EXPERIMENT_OUTSIDE_RECOVERED_REPORT_PROTECTED_ROOTS",
+      "transfer_command_wsl_plan_only": "rsync -aH --partial --append-verify --protect-args -e \"ssh\" canondress-cloud:/root/autodl-tmp/outputs/irregular_diffusion_30k/ /mnt/e/canondressgs_archive/cloud_checkpoints/irregular_diffusion_30k/",
+      "resume_strategy": "Rerun the identical rsync command; --partial and --append-verify resume interrupted files. A nonzero exit is a hard stop.",
+      "sha256_verification": "Create sorted relative-path/byte-count/SHA256 manifests independently on cloud and Windows, then require byte-identical manifests.",
+      "metadata_preservation": "rsync -aH preserves mtimes and link topology where supported; record source uid/gid/mode because NTFS cannot preserve all POSIX semantics.",
+      "source_deletion_gate": [
+        "destination file count equals source file count",
+        "destination logical bytes equal source logical bytes",
+        "every relative path and SHA256 matches",
+        "archive manifest and verification seal are committed",
+        "no candidate file is open by a process",
+        "user explicitly authorizes exact source retirement"
+      ],
+      "rollback": "Cloud source remains authoritative until every gate passes. After a separately authorized retirement, restore by reverse rsync from the sealed Windows archive and revalidate the manifest.",
+      "transferred_in_this_task": false,
+      "deleted_in_this_task": false
+    }
+  ],
+  "large_transfer_count": 0,
+  "checkpoint_movement_count": 0
+}

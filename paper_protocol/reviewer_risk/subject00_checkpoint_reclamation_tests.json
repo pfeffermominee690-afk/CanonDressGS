@@ -1,0 +1,137 @@
+{
+  "schema_version": "canondressgs.subject00.checkpoint_reclamation_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-CHECKPOINT-RECLAMATION-ADJUDICATION-001",
+  "test_timestamp_utc": "2026-07-25T19:11:13+00:00",
+  "checks": [
+    {
+      "id": 1,
+      "name": "source_head_exact",
+      "status": "PASS"
+    },
+    {
+      "id": 2,
+      "name": "recovered_artifact_count",
+      "status": "PASS"
+    },
+    {
+      "id": 3,
+      "name": "recovered_source_git_objects_exact",
+      "status": "PASS"
+    },
+    {
+      "id": 4,
+      "name": "checkpoint_count",
+      "status": "PASS"
+    },
+    {
+      "id": 5,
+      "name": "checkpoint_byte_total",
+      "status": "PASS"
+    },
+    {
+      "id": 6,
+      "name": "classification_count_conservation",
+      "status": "PASS"
+    },
+    {
+      "id": 7,
+      "name": "classification_byte_conservation",
+      "status": "PASS"
+    },
+    {
+      "id": 8,
+      "name": "classification_alphabet",
+      "status": "PASS"
+    },
+    {
+      "id": 9,
+      "name": "short_canary_exists",
+      "status": "PASS"
+    },
+    {
+      "id": 10,
+      "name": "short_canary_path",
+      "status": "PASS"
+    },
+    {
+      "id": 11,
+      "name": "short_canary_sha256",
+      "status": "PASS"
+    },
+    {
+      "id": 12,
+      "name": "duplicate_group_count",
+      "status": "PASS"
+    },
+    {
+      "id": 13,
+      "name": "duplicate_candidate_count",
+      "status": "PASS"
+    },
+    {
+      "id": 14,
+      "name": "no_open_checkpoint_candidates",
+      "status": "PASS"
+    },
+    {
+      "id": 15,
+      "name": "no_archive_candidate_under_recovered_protected_output_root",
+      "status": "PASS"
+    },
+    {
+      "id": 16,
+      "name": "archive_candidate_root_count",
+      "status": "PASS"
+    },
+    {
+      "id": 17,
+      "name": "archive_whole_tree_file_count",
+      "status": "PASS"
+    },
+    {
+      "id": 18,
+      "name": "windows_capacity_gate",
+      "status": "PASS"
+    },
+    {
+      "id": 19,
+      "name": "plan_count",
+      "status": "PASS"
+    },
+    {
+      "id": 20,
+      "name": "plan_d_contract_expected_fail",
+      "status": "PASS"
+    },
+    {
+      "id": 21,
+      "name": "plan_d_safety_expected_fail",
+      "status": "PASS"
+    },
+    {
+      "id": 22,
+      "name": "checkpoint_deletion_zero",
+      "status": "PASS"
+    },
+    {
+      "id": 23,
+      "name": "checkpoint_movement_zero",
+      "status": "PASS"
+    },
+    {
+      "id": 24,
+      "name": "scientific_mutation_zero",
+      "status": "PASS"
+    },
+    {
+      "id": 25,
+      "name": "paper_final_false",
+      "status": "PASS"
+    }
+  ],
+  "overall_status": "PASS_WITH_CHECKPOINT_RECLAMATION_SPACE_INSUFFICIENT",
+  "actual_checkpoint_deletion_count": 0,
+  "actual_checkpoint_movement_count": 0,
+  "actual_checkpoint_compression_count": 0,
+  "paper_final": false
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "canondressgs.subject00.checkpoint_reclamation_plans.v1",
+  "task_id": "AAAI27-SUBJECT00-CHECKPOINT-RECLAMATION-ADJUDICATION-001",
+  "audit_timestamp_utc": "2026-07-25T19:11:13+00:00",
+  "basis": {
+    "cloud_free_bytes": 17104633856,
+    "contract_required_bytes": 32212254720,
+    "safety_target_bytes": 40802189312,
+    "recommended_45_gib_bytes": 48318382080,
+    "projection_policy": "Whole-tree archive retirement uses measured allocated bytes; direct file candidates use logical bytes, conservatively ignoring block rounding."
+  },
+  "plans": [
+    {
+      "id": "PLAN_CKPT_A",
+      "name": "BYTE_IDENTICAL_DUPLICATES_ONLY",
+      "status": "READY_AFTER_EXPLICIT_PATH_REVALIDATION_AND_USER_AUTHORIZATION",
+      "components": [
+        "DUPLICATE_SAFE_DELETE_CANDIDATE"
+      ],
+      "checkpoint_count": 70,
+      "directory_count": 64,
+      "archive_bytes": 0,
+      "delete_bytes": 293877819,
+      "projected_release_bytes": 293877819,
+      "projected_release_gib": 0.2736950470134616,
+      "projected_free_bytes": 17398511675,
+      "contract_margin_bytes": -14813743045,
+      "safety_margin_bytes": -23403677637,
+      "recommended_45_gib_margin_bytes": -30919870405,
+      "reaches_contract": false,
+      "reaches_safety": false,
+      "reaches_recommended_45_gib": false,
+      "remaining_contract_shortfall_bytes": 14813743045,
+      "remaining_safety_shortfall_bytes": 23403677637,
+      "remaining_45_gib_shortfall_bytes": 30919870405,
+      "automatic_execution_authorized": false
+    },
+    {
+      "id": "PLAN_CKPT_B",
+      "name": "DUPLICATES_PLUS_PROVEN_REGENERABLE_INTERMEDIATES",
+      "status": "NO_ADDITIONAL_REGENERABLE_CHECKPOINTS_PROVEN",
+      "components": [
+        "DUPLICATE_SAFE_DELETE_CANDIDATE",
+        "REGENERABLE_DELETE_CANDIDATE"
+      ],
+      "checkpoint_count": 70,
+      "directory_count": 64,
+      "archive_bytes": 0,
+      "delete_bytes": 293877819,
+      "projected_release_bytes": 293877819,
+      "projected_release_gib": 0.2736950470134616,
+      "projected_free_bytes": 17398511675,
+      "contract_margin_bytes": -14813743045,
+      "safety_margin_bytes": -23403677637,
+      "recommended_45_gib_margin_bytes": -30919870405,
+      "reaches_contract": false,
+      "reaches_safety": false,
+      "reaches_recommended_45_gib": false,
+      "remaining_contract_shortfall_bytes": 14813743045,
+      "remaining_safety_shortfall_bytes": 23403677637,
+      "remaining_45_gib_shortfall_bytes": 30919870405,
+      "automatic_execution_authorized": false
+    },
+    {
+      "id": "PLAN_CKPT_C",
+      "name": "ARCHIVE_COMPLETE_OLD_EXPERIMENTS_THEN_RETIRE_CLOUD_COPIES",
+      "status": "ARCHIVE_AND_EXACT_VERIFICATION_REQUIRED_BEFORE_DELETION",
+      "components": [
+        "ARCHIVE_THEN_DELETE_CANDIDATE"
+      ],
+      "checkpoint_count": 11,
+      "directory_count": 3,
+      "archive_bytes": 9735450405,
+      "delete_bytes": 9735524352,
+      "projected_release_bytes": 9735524352,
+      "projected_release_gib": 9.066913604736328,
+      "projected_free_bytes": 26840158208,
+      "contract_margin_bytes": -5372096512,
+      "safety_margin_bytes": -13962031104,
+      "recommended_45_gib_margin_bytes": -21478223872,
+      "reaches_contract": false,
+      "reaches_safety": false,
+      "reaches_recommended_45_gib": false,
+      "remaining_contract_shortfall_bytes": 5372096512,
+      "remaining_safety_shortfall_bytes": 13962031104,
+      "remaining_45_gib_shortfall_bytes": 21478223872,
+      "automatic_execution_authorized": false
+    },
+    {
+      "id": "PLAN_CKPT_D",
+      "name": "RECOMMENDED_CONSERVATIVE_COMBINATION",
+      "status": "PLAN_READY_BUT_SAFE_CAPACITY_TARGET_REMAINS_UNMET",
+      "components": [
+        "ARCHIVE_THEN_DELETE_CANDIDATE",
+        "DUPLICATE_SAFE_DELETE_CANDIDATE",
+        "REGENERABLE_DELETE_CANDIDATE",
+        "TEMPORARY_OPTIMIZER_STATE_CANDIDATE"
+      ],
+      "checkpoint_count": 82,
+      "directory_count": 68,
+      "archive_bytes": 9735450405,
+      "delete_bytes": 10248507008,
+      "projected_release_bytes": 10248507008,
+      "projected_release_gib": 9.544665932655334,
+      "projected_free_bytes": 27353140864,
+      "contract_margin_bytes": -4859113856,
+      "safety_margin_bytes": -13449048448,
+      "recommended_45_gib_margin_bytes": -20965241216,
+      "reaches_contract": false,
+      "reaches_safety": false,
+      "reaches_recommended_45_gib": false,
+      "remaining_contract_shortfall_bytes": 4859113856,
+      "remaining_safety_shortfall_bytes": 13449048448,
+      "remaining_45_gib_shortfall_bytes": 20965241216,
+      "automatic_execution_authorized": false
+    }
+  ],
+  "recommended_plan": "PLAN_CKPT_D",
+  "recommended_plan_limitation": "It reaches neither the safety target nor 45 GiB. Formal execution remains blocked unless capacity is added or a separately protected storage plan is selected.",
+  "classification": "SUBJECT00_CHECKPOINT_SAFE_DELETE_SPACE_INSUFFICIENT",
+  "next_task": "EXECUTE_USER_SELECTED_SUBJECT00_CHECKPOINT_RECLAMATION_PLAN",
+  "automatic_execution_authorized": false
+}
