@@ -1,13 +1,13 @@
 \section{Related Work}
 
-\subsection{3D Gaussian Human Avatars}
-TODO: Discuss 3DGS-based human avatars and MMLPHuman.
+\subsection{Animatable Human and Gaussian Avatars}
+Animatable human models factor a canonical representation from pose-driven deformation and rendering. Gaussian avatars make this factorization efficient by deforming and rasterizing explicit primitives, but the canonical state still reflects the captured clothing. CanonDressGS freezes the avatar, deformation, skinning, and renderer; it addresses only the canonical garment state needed to use that existing avatar.
+% TODO[CITATION_REQUIRED]: Add verified citations from the authorized AAAI bibliography for animatable Gaussian avatars and the frozen base-avatar lineage.
 
-\subsection{Animatable Human Reconstruction}
-TODO: Discuss LHM and related single-image or feed-forward animatable human reconstruction.
+\subsection{Garment-Aware Human Modeling and Editing}
+Garment-aware reconstruction and editing methods model clothing as geometry, appearance, deformation, or a combination of these factors. Our setting is narrower than garment generation or virtual try-on: every realizable garment is first optimized as a valid endpoint on one fixed avatar. This restriction permits an explicit test of whether interpolation preserves Gaussian support and leads to the endpoint-selection formulation.
+% TODO[CITATION_REQUIRED]: Add verified citations for garment-aware human reconstruction and editing; do not attribute open-world synthesis to endpoint selection.
 
-\subsection{Dressable and Controllable Human Generation}
-TODO: Discuss controllable human image generation and dressable avatars.
-
-\subsection{HyperNetworks and Conditional Modulation}
-TODO: Discuss HyperNetworks, FiLM, and LoRA-style parameter-efficient modulation.
+\subsection{Reference-Conditioned State Control}
+Reference-conditioned systems infer a discrete state or continuous control from one or more observations. Our predictor uses frozen per-reference features and permutation-invariant set aggregation, but its deployed output is discrete: a raw coefficient is mapped to the nearest member of a registered endpoint bank. This distinction separates the demonstrated method from continuous garment regression and automatic mixed-reference composition.
+% TODO[CITATION_REQUIRED]: Add verified citations for reference-conditioned state selection after the bibliography is restored.

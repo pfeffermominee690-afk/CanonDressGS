@@ -1,10 +1,23 @@
 \section{Introduction}
 
-TODO: Describe the motivation for dressable Gaussian avatars, the limitation of fixed-clothing pose-driven avatars, and the proposed canonical dressing then pose-driven rendering pipeline.
+Animatable Gaussian avatars provide efficient pose-driven rendering, but their canonical Gaussian state commonly entangles identity with the garment present during capture. Changing the garment is therefore not only an appearance-editing problem: it changes the spatial support, scale, rotation, opacity, and appearance carried by a large set of canonical Gaussians. A garment-control mechanism must preserve the frozen identity, deformation model, and renderer while replacing this coupled state.
 
-TODO: Add contributions:
+The tempting construction is to interpolate residual parameters between two optimized garments. Our causal analysis shows why this is unsafe. Interpolated geometry can occupy unsupported locations and scales even when endpoint states are individually valid. Across all ten unordered pairs in the five-garment study, geometry has a global main-effect magnitude of 0.995941 and is both sufficient and necessary for the observed invalid intermediate states in every pair. Appearance or visibility changes alone do not explain the failures.
+
+We consequently formulate garment control as endpoint realization rather than arbitrary intermediate-state generation. For a fixed avatar, we optimize one valid canonical Teacher Endpoint per seen garment and express the endpoint bank in an explicit affine coordinate system. Given one or more reference RGB images and masks, a small head predicts an endpoint-space coefficient. The prediction is not rendered directly: nearest-endpoint snapping deterministically realizes one registered valid support and then reuses the frozen deformation and renderer.
+
+This endpoint view also clarifies a separate mixed-composition extension. Dual-Support keeps two optimized geometry supports separate and combines their effective contributions, avoiding direct geometry interpolation. The pair and mixture weight are currently oracle- or user-specified; automatic mixed-reference routing is outside the demonstrated method.
+
+Our formal evaluation uses subject02, five seen garments (O01, O02, O03, O04, and O08), and a closed reference bank. It does not test a second identity or unseen garments. Within this scope, clean endpoint selection is exact and identity-safe, whereas headroom and leave-one-garment-out analyses expose the limits of the global affine coordinate system.
+
+Our contributions are:
 \begin{itemize}
-  \item Clothing-conditioned canonical Gaussian offset representation.
-  \item LHM-assisted anchor-level clothing offset supervision.
-  \item Lightweight HyperNetwork modulation for shared MMLPHuman-style offset MLPs.
+  \item a construction of canonical garment endpoints and an explicit Teacher-derived endpoint coordinate system for a frozen animatable Gaussian avatar;
+  \item a controlled causal decomposition showing that Gaussian geometry interpolation is the dominant source of invalid intermediate garment states; and
+  \item a lightweight reference-controlled endpoint-realization framework that preserves identity by snapping predictions to valid garment endpoints.
 \end{itemize}
+
+We additionally study Dual-Support as a geometry-safe extension for oracle- or user-specified composition.
+
+% TODO[FIGURE1_MANUAL_ADJUDICATION]: Insert only after the registered five-case
+% endpoint teaser has been manually selected; do not auto-select a qualitative case.

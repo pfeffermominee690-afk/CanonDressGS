@@ -1,28 +1,65 @@
 \section{Method}
 
-\subsection{Overview}
-TODO: Add the full pipeline figure and describe the canonical dressing then pose-driven rendering order.
+\subsection{Problem Setting and Scope}
+Let a fixed identity be represented by a frozen animatable Gaussian avatar with canonical base state $G_{\mathrm{base}}$, pose-driven deformation and linear blend skinning (LBS), and a Gaussian renderer. Let $\mathcal{W}=\{\mathrm{O01},\mathrm{O02},\mathrm{O03},\mathrm{O04},\mathrm{O08}\}$ be a closed bank of seen garments. Given one or more reference RGB images, clothing masks, foreground masks, and validity flags for a target $g\in\mathcal{W}$, the task is to realize the corresponding valid canonical garment endpoint. The task does not include unseen-garment synthesis, cross-person transfer, or arbitrary interpolation.
 
-\subsection{White-body Pose-condition Dataset Construction}
-TODO: Describe THuman/SMPL-X white-body rendering, PyTorch3D rendering, VLM hand-strict filtering, and GPT-image-2 multi-cloth generation.
+\subsection{Frozen Animatable Gaussian Avatar}
+The base state $G_{\mathrm{base}}$ contains the canonical Gaussian support and attributes required by the existing avatar. CanonDressGS does not retrain this state or its deformation stack. Canonical garment residuals are applied before the frozen pose-dependent deformation, LBS, and rendering operations. This ordering preserves the avatar's identity and motion model while allowing the canonical garment state to change.
 
-\subsection{Base Naked Gaussian Avatar}
-TODO: Describe base\_gs initialization from canonical naked SMPL-X/THuman body.
+\subsection{Canonical Teacher Endpoint Construction}
+For each $g\in\mathcal{W}$, frozen-avatar multi-view optimization produces a canonical residual $\Delta G_g^*$ and endpoint
+\begin{equation}
+G_g^* = G_{\mathrm{base}} + \Delta G_g^*.
+\label{eq:teacher-endpoint}
+\end{equation}
+Each $G_g^*$ is an optimized valid endpoint under the frozen avatar and renderer. It is not a ground-truth garment mesh. The endpoint bank is constructed offline and remains fixed during reference-conditioned training and inference.
 
-\subsection{LHM-assisted Clothed Gaussian Prior}
-TODO: Describe offline LHM prior generation for each outfit.
+\subsection{Explicit Endpoint Coordinate System}
+We vectorize the five Teacher residuals, compute their mean
+\begin{equation}
+\mu = \frac{1}{|\mathcal{W}|}\sum_{g\in\mathcal{W}}\Delta G_g^*,
+\end{equation}
+and obtain $B\in\mathbb{R}^{D\times r}$ from deterministic mean-centered SVD. With five endpoints, the maximum affine rank is $r=4$. The coefficient of endpoint $g$ is
+\begin{equation}
+c_g = B^\top(\Delta G_g^* - \mu),
+\qquad
+\widehat{\Delta G}(c)=\mu+Bc.
+\label{eq:endpoint-coordinate}
+\end{equation}
+This basis is an endpoint coordinate system over the registered wardrobe, not a semantic or generalizable garment manifold.
 
-\subsection{SMPL-X Surface-aware Anchor Alignment}
-TODO: Describe how LHM prior and base\_gs are projected or aggregated to canonical SMPL-X anchors to produce anchor-level clothing offset targets.
+\subsection{Reference Feature Aggregation}
+For each valid reference $i$, frozen F2 processing yields $f_i\in\mathbb{R}^{256}$ using the registered clothing-weighted mean and clothing-masked max contract. A permutation-invariant set representation concatenates validity-aware mean and max aggregation,
+\begin{equation}
+h = \left[\frac{1}{N_v}\sum_{i:v_i=1} f_i\ ;\ \max_{i:v_i=1} f_i\right]\in\mathbb{R}^{512},
+\label{eq:set-aggregation}
+\end{equation}
+where $v_i$ is the reference-validity indicator and $N_v=\sum_i v_i$. An empty valid set is handled by the safe fallback described below, so Eq.~\ref{eq:set-aggregation} is evaluated only for $N_v>0$.
 
-\subsection{Clothing-conditioned HyperNetwork}
-TODO: Describe cloth id embedding, lightweight HyperNetwork, FiLM/low-rank modulation, and shared clothing offset MLPs.
+\subsection{Endpoint Head and Snapping}
+The trainable head is $\mathrm{Linear}_{512\rightarrow4}(\mathrm{LayerNorm}(h))$ and has 3,076 parameters. Let $m,s\in\mathbb{R}^4$ be the registered mean and standard deviation of the endpoint coefficients and $z_g=(c_g-m)\oslash s$ the standardized endpoint. The head predicts a raw standardized coefficient $\widetilde z$. CanonDressGS selects
+\begin{equation}
+\widehat g=\arg\min_{g\in\mathcal{W}}\|\widetilde z-z_g\|_2^2,
+\qquad c_{\mathrm{realized}}=c_{\widehat g}.
+\label{eq:endpoint-snap}
+\end{equation}
+The raw prediction and realized snapped coefficient are therefore distinct. Only $\widehat{\Delta G}(c_{\mathrm{realized}})$ is passed to the frozen deformation and renderer. Snapping prevents unsupported interpolated geometry, restricts realization to optimized supports, and converts approximate coefficient prediction into stable endpoint selection. If no reference is valid, the method abstains and renders $G_{\mathrm{base}}$.
 
-\subsection{Canonical Dressed Gaussian Composition}
-TODO: Describe how base Gaussian parameters and predicted clothing offsets are composed.
+\setcounter{figure}{1}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{loo_method_freeze/candidates/figure2/endpoint_method_freeze/endpoint_method_freeze_overview.png}
+  \caption{Working method overview for subject02 and its closed five-garment bank. Offline optimization constructs valid Teacher Endpoints and their coordinate system. At inference, seen-garment references produce a raw coefficient that is snapped to a valid endpoint before frozen deformation, LBS, and rendering. This registered panel remains a Figure~2 candidate pending final human confirmation.}
+  \label{fig:method-overview}
+\end{figure}
 
-\subsection{Pose-driven Rendering with MMLPHuman}
-TODO: Describe reuse of MMLPHuman deformation, control points, LBS, and Gaussian rasterization.
+\subsection{Geometry-Safe Dual-Support Extension}
+For oracle- or user-specified endpoints $g_a,g_b\in\mathcal{W}$ and weight $\alpha$, Dual-Support retains $G_{g_a}^*$ and $G_{g_b}^*$ as separate Gaussian supports. Geometry is not interpolated. Instead, the two valid supports are rendered with combined opacity or effective contribution according to $\alpha$. This extension can compose two registered garments without forcing their geometry into an invalid midpoint, but it approximately doubles active Gaussians. Predicting the pair or weight from mixed references is unresolved and is not part of the default single-endpoint path.
 
 \subsection{Training Objectives}
-TODO: Add RGB, mask, LHM anchor offset, smoothness, non-clothing regularization, and scale regularization losses.
+Training uses only the standardized coefficient target. For a four-dimensional prediction $\widetilde z$ and target $z_g$, the objective is
+\begin{equation}
+\mathcal{L}_{\mathrm{coef}}=\frac{1}{4}\sum_{j=1}^{4}\operatorname{SmoothL1}(\widetilde z_j-z_{g,j};\beta=1),
+\label{eq:coefficient-loss}
+\end{equation}
+with the usual quadratic branch for absolute error below one and linear branch otherwise. There is no render loss, classification loss, pair-selection loss, or mixture-controller loss in the frozen endpoint method.
