@@ -1,0 +1,480 @@
+{
+  "candidates": [
+    {
+      "all_mandatory_gates_pass": false,
+      "backend_id": "BACKEND-A",
+      "counts": {
+        "FAIL": 4,
+        "PARTIAL": 4,
+        "PASS": 6,
+        "UNKNOWN": 1
+      },
+      "direct_selection_eligible": false,
+      "gates": [
+        {
+          "evidence_ids": [
+            "E-CODEX-DIRECT"
+          ],
+          "gate_id": "G1",
+          "reason": "Twelve real multi-image direct edits succeeded.",
+          "requirement": "image editing or image conditioning, not text-only generation",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-DIRECT"
+          ],
+          "gate_id": "G2",
+          "reason": "Identity, geometry, and garment images were supplied historically.",
+          "requirement": "Subject00 identity and condition images can be supplied",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-V5"
+          ],
+          "gate_id": "G3",
+          "reason": "Eleven identity reviews were WARN and one was FAIL.",
+          "requirement": "full-body identity, pose, and camera preservation",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-V5"
+          ],
+          "gate_id": "G4",
+          "reason": "One of twelve edits changed protected footwear.",
+          "requirement": "single full-body output without text and with complete hands and feet",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-MANAGER"
+          ],
+          "gate_id": "G5",
+          "reason": "Exact model ID and revision are unavailable.",
+          "requirement": "model name and revision can be frozen",
+          "status": "FAIL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-MANAGER"
+          ],
+          "gate_id": "G6",
+          "reason": "Evidence is an interactive platform workflow, not a 48-item batch API.",
+          "requirement": "at least 48 requests can be executed automatically",
+          "status": "FAIL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-DIRECT"
+          ],
+          "gate_id": "G7",
+          "reason": "Provider raw response is not exposed; only result assets and local records exist.",
+          "requirement": "raw response can be retained per request",
+          "status": "FAIL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-DIRECT"
+          ],
+          "gate_id": "G8",
+          "reason": "Native 1024x1536 PNG outputs were recorded.",
+          "requirement": "PNG or lossless normalizable output",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-MANAGER"
+          ],
+          "gate_id": "G9",
+          "reason": "Local naming/provenance exists but depends on session asset import.",
+          "requirement": "stable naming and provenance",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-SUPPLEMENT"
+          ],
+          "gate_id": "G10",
+          "reason": "Failures and bounded retries are recorded, but not via a formal API executor.",
+          "requirement": "auditable retry and error taxonomy",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-MANAGER"
+          ],
+          "gate_id": "G11",
+          "reason": "Platform session route used no project API key.",
+          "requirement": "credentials need not be persisted in Git or command-line plaintext",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-WORKFLOW"
+          ],
+          "gate_id": "G12",
+          "reason": "No local license or research-use boundary was frozen.",
+          "requirement": "research-use license or use boundary can be recorded",
+          "status": "UNKNOWN"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-DIRECT"
+          ],
+          "gate_id": "G13",
+          "reason": "Native output matches 1024x1536 portrait.",
+          "requirement": "Subject00 target resolution is supported",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-MANAGER"
+          ],
+          "gate_id": "G14",
+          "reason": "No exact manifest replay or noninteractive request adapter exists.",
+          "requirement": "the frozen 48-request manifest maps deterministically",
+          "status": "FAIL"
+        },
+        {
+          "evidence_ids": [
+            "E-CODEX-DIRECT",
+            "E-CODEX-SUPPLEMENT"
+          ],
+          "gate_id": "G15",
+          "reason": "Real image-edit and accepted donor outputs exist.",
+          "requirement": "real historical success evidence exists, otherwise a canary is mandatory",
+          "status": "PASS"
+        }
+      ],
+      "only_realtime_availability_missing": false,
+      "pending_canary_selection_eligible": false
+    },
+    {
+      "all_mandatory_gates_pass": false,
+      "backend_id": "BACKEND-B",
+      "counts": {
+        "FAIL": 2,
+        "PARTIAL": 5,
+        "PASS": 7,
+        "UNKNOWN": 1
+      },
+      "direct_selection_eligible": false,
+      "gates": [
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G1",
+          "reason": "The script calls /v1/images/edits with image inputs.",
+          "requirement": "image editing or image conditioning, not text-only generation",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G2",
+          "reason": "Identity reference and condition images are multipart inputs.",
+          "requirement": "Subject00 identity and condition images can be supplied",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-UNION"
+          ],
+          "gate_id": "G3",
+          "reason": "Historical accepted pose/camera evidence exists, but not Subject00 target evidence.",
+          "requirement": "full-body identity, pose, and camera preservation",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-UNION"
+          ],
+          "gate_id": "G4",
+          "reason": "Accepted historical sheets exist; current single portrait compliance is unverified.",
+          "requirement": "single full-body output without text and with complete hands and feet",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G5",
+          "reason": "gpt-image-2 is an unpinned alias and no server-returned revision was retained.",
+          "requirement": "model name and revision can be frozen",
+          "status": "FAIL"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT",
+            "E-SUBLYX-JAY"
+          ],
+          "gate_id": "G6",
+          "reason": "The runner iterates manifests; 915 Jay records were logged.",
+          "requirement": "at least 48 requests can be executed automatically",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G7",
+          "reason": "Raw-response metadata and optional JSON exist, but safe default retention is not frozen.",
+          "requirement": "raw response can be retained per request",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G8",
+          "reason": "Response bytes are saved and can be normalized to PNG.",
+          "requirement": "PNG or lossless normalizable output",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-JAY"
+          ],
+          "gate_id": "G9",
+          "reason": "Stable sheet paths, manifests, prompt paths, and hashes exist.",
+          "requirement": "stable naming and provenance",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G10",
+          "reason": "Two retries and explicit error classes are implemented.",
+          "requirement": "auditable retry and error taxonomy",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-WORKFLOW"
+          ],
+          "gate_id": "G11",
+          "reason": "Environment credentials are supported, but historical length/hash-prefix logging is forbidden prospectively.",
+          "requirement": "credentials need not be persisted in Git or command-line plaintext",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-WORKFLOW"
+          ],
+          "gate_id": "G12",
+          "reason": "No local provider license or research-use boundary was verified.",
+          "requirement": "research-use license or use boundary can be recorded",
+          "status": "UNKNOWN"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G13",
+          "reason": "Only 1536x1024 landscape is historically verified, not 1024x1536 portrait.",
+          "requirement": "Subject00 target resolution is supported",
+          "status": "FAIL"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-SCRIPT"
+          ],
+          "gate_id": "G14",
+          "reason": "Automation is adaptable, but the frozen 48-entry backend mapping is not implemented.",
+          "requirement": "the frozen 48-request manifest maps deterministically",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-SUBLYX-UNION"
+          ],
+          "gate_id": "G15",
+          "reason": "246 accepted traceable historical donor records exist.",
+          "requirement": "real historical success evidence exists, otherwise a canary is mandatory",
+          "status": "PASS"
+        }
+      ],
+      "only_realtime_availability_missing": false,
+      "pending_canary_selection_eligible": false
+    },
+    {
+      "all_mandatory_gates_pass": false,
+      "backend_id": "BACKEND-C",
+      "counts": {
+        "FAIL": 1,
+        "PARTIAL": 7,
+        "PASS": 3,
+        "UNKNOWN": 4
+      },
+      "direct_selection_eligible": false,
+      "gates": [
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G1",
+          "reason": "An edits endpoint is implemented, but successful edit execution is absent.",
+          "requirement": "image editing or image conditioning, not text-only generation",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G2",
+          "reason": "Multipart request support exists only as unproven code.",
+          "requirement": "Subject00 identity and condition images can be supplied",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-78-PROBE"
+          ],
+          "gate_id": "G3",
+          "reason": "No successful image provides preservation evidence.",
+          "requirement": "full-body identity, pose, and camera preservation",
+          "status": "UNKNOWN"
+        },
+        {
+          "evidence_ids": [
+            "E-78-PROBE"
+          ],
+          "gate_id": "G4",
+          "reason": "No successful output exists.",
+          "requirement": "single full-body output without text and with complete hands and feet",
+          "status": "UNKNOWN"
+        },
+        {
+          "evidence_ids": [
+            "E-78-MODELS"
+          ],
+          "gate_id": "G5",
+          "reason": "gpt-image-2 ID was confirmed, but no revision was exposed.",
+          "requirement": "model name and revision can be frozen",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G6",
+          "reason": "The historical runner is manifest-driven and sequential.",
+          "requirement": "at least 48 requests can be executed automatically",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G7",
+          "reason": "Diagnostic response metadata is saved; successful image response retention is unverified.",
+          "requirement": "raw response can be retained per request",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G8",
+          "reason": "PNG handling exists but has no successful provider output.",
+          "requirement": "PNG or lossless normalizable output",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G9",
+          "reason": "Stable paths and manifest logging are implemented.",
+          "requirement": "stable naming and provenance",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G10",
+          "reason": "HTTP/error classification and retry limits are implemented.",
+          "requirement": "auditable retry and error taxonomy",
+          "status": "PASS"
+        },
+        {
+          "evidence_ids": [
+            "E-WORKFLOW"
+          ],
+          "gate_id": "G11",
+          "reason": "Environment credentials are possible, but historical fingerprint logging is forbidden.",
+          "requirement": "credentials need not be persisted in Git or command-line plaintext",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-WORKFLOW"
+          ],
+          "gate_id": "G12",
+          "reason": "No local license or research-use boundary was verified.",
+          "requirement": "research-use license or use boundary can be recorded",
+          "status": "UNKNOWN"
+        },
+        {
+          "evidence_ids": [
+            "E-78-PROBE"
+          ],
+          "gate_id": "G13",
+          "reason": "The target portrait size has no successful evidence.",
+          "requirement": "Subject00 target resolution is supported",
+          "status": "UNKNOWN"
+        },
+        {
+          "evidence_ids": [
+            "E-78-SCRIPT"
+          ],
+          "gate_id": "G14",
+          "reason": "The runner can be adapted, but no frozen mapping has executed.",
+          "requirement": "the frozen 48-request manifest maps deterministically",
+          "status": "PARTIAL"
+        },
+        {
+          "evidence_ids": [
+            "E-78-PROBE"
+          ],
+          "gate_id": "G15",
+          "reason": "The edit probe returned HTTP 500 convert_request_failed; no image was created.",
+          "requirement": "real historical success evidence exists, otherwise a canary is mandatory",
+          "status": "FAIL"
+        }
+      ],
+      "only_realtime_availability_missing": false,
+      "pending_canary_selection_eligible": false
+    }
+  ],
+  "content_sha256": "1e986db3f23a70da0598108eabb83dc2467425ad5010b213d58023aef76ce00c",
+  "decision_rule": "EVERY_GATE_MUST_PASS_FOR_DIRECT_SELECTION; UNKNOWN_IS_NOT_PASS",
+  "eligible_backend_count": 0,
+  "gate_count": 15,
+  "gate_ids": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "G9",
+    "G10",
+    "G11",
+    "G12",
+    "G13",
+    "G14",
+    "G15"
+  ],
+  "paper_final": false,
+  "schema_version": "canondressgs.subject00.backend_mandatory_gate_matrix.v1",
+  "task_id": "AAAI27-SUBJECT00-GENERATION-BACKEND-ADJUDICATION-001"
+}

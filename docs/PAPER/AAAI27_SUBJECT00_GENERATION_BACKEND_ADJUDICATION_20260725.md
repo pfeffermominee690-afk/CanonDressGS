@@ -1,21 +1,22 @@
-# AAAI-27 Subject00 Generation Backend Adjudication
+# Subject00 Generation Backend Adjudication
 
-Task: `AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001`
+Task: `AAAI27-SUBJECT00-GENERATION-BACKEND-ADJUDICATION-001`
 
-Decision: `BACKEND_SELECTION_REQUIRED`
+## Decision
 
-No provider or model was selected, and no connectivity or generation request was made. The comparison below is limited to frozen local historical provenance; it is not a claim of current availability.
+- Source: `research/subject00-data-preparation-generation-ready-20260725` at `4e5e76a2a19ffdb94385660ec1d8ea4ce4c5d6b3`.
+- Classification: `SUBJECT00_GENERATION_BACKEND_SELECTION_REQUIRED`.
+- PRIMARY: `null`.
+- FALLBACK: `null`.
+- Generation authorization: `false`.
+- API, connectivity, and paid calls in this task: `0`.
 
-| Historical surface | Image conditioning | Identity/mask/pose support | Reproducibility | Price/rate | Resolution/batch | License and policy |
-|---|---|---|---|---|---|---|
-| Codex platform-managed direct image edit | Historically used | Identity preservation, mask support, and separate pose support not verified | Model/revision hidden; seed not recorded | `PRICE_NOT_VERIFIED`; rate not verified | Historical expected 1024 x 1536; batch not verified | Not verified |
-| Sublyx OpenAI-compatible `/v1/images/edits` | Historical identity plus condition image list | Identity quality not verified; mask not historically used; pose only through condition image | Request provenance only; seed absent | `PRICE_NOT_VERIFIED`; no explicit historical client limit | Historical 1536 x 1024, `n=1`, concurrency 1 | Provider moderation only; license not verified |
-| 78code OpenAI-compatible `/v1/images/edits` | Historically implemented | Identity/mask/pose capability not verified | Historical seed support explicitly false | `PRICE_NOT_VERIFIED`; rate not verified | Historical 1536 x 1024, `n=1`; current batch behavior not verified | Not verified |
+No candidate passes all mandatory gates. Codex managed image edit has real Subject02 edit evidence but is interactive, has no exposed model revision, and does not expose complete raw provider responses. Sublyx has the strongest scriptable historical evidence, including 246 accepted traceable donor records, but its model is an unpinned alias, its latest availability is unverified, portrait resolution and safe default raw-response retention are not established, and the research-use boundary is absent. 78Code has a confirmed model ID but no successful image-edit artifact.
 
-None can be selected under the zero-external-call boundary because current provider/model availability, exact revision, image count/format, response mode, seed behavior, price, rate limit, identity preservation, mask/pose conditioning, policy, data processing, license, and paper-use boundary all remain unverified.
+## Formal And Storage Stop
 
-Before even one connectivity request, the user must select a provider and exact model/revision policy, freeze the base URL and wire schema, accept payment and data-processing risk, and separately authorize a minimal probe. Batch generation requires another explicit authorization after a probe passes.
+The sealed Formal Base manifest is absent and `/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001` is absent. Live free capacity observed during this audit was `17239027712` bytes versus `32212254720` required. Storage remains `BLOCKED_CAPACITY`; `PLAN_C` is recommended but unexecuted.
 
-Only the credential environment variable name `MULTI_IDENTITY_GENERATION_API_KEY` may be persisted. Credential value, presence, length, prefix, hash/fingerprint, authorization headers, and unsafe raw response dumps are forbidden. Dry-run code must not read the credential.
+## Next Action
 
-The planning budget is two valid candidates per 24 slots: 48 `n=1` calls before retries. This is a count forecast, not authorization. API price and total API cost remain `PRICE_NOT_VERIFIED`.
+`USER_SELECT_SUBJECT00_GENERATION_PROVIDER_AND_COMPLETE_MANDATORY_BACKEND_EVIDENCE`. Selection requires exact provider/model/revision policy, portrait image-edit evidence, safe raw-response retention, deterministic 48-request mapping, and a recorded license/data-processing boundary. No generation starts automatically.
