@@ -4,7 +4,7 @@
 
 - Task: `AAAI27-CANONDRESSGS-FIGURE-P0-CLOSURE-PREP-001`
 - Figure asset result: `e3878b7b304c5458b8e3b6fdba2b01be9dc4eda1`
-- Figure integration result: `b82caee59ac9638e68075f1fc480c9eefe99cd51`
+- Figure integration result: `0cbea907be66976ae530a6982e14b1199a0b5d7c`
 - Classification: `PAPER_FIGURE_P0_PREP_READY_FOR_MANUAL_FIGURE1_SELECTION`
 - `PAPER_FINAL=false`
 

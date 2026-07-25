@@ -23,7 +23,7 @@ Panels B-D are regenerated labels and plots from registered structured data:
 - Panel C reports the all-pair sufficiency and necessity counts.
 - Panel D states the frozen protocol scope and denominator.
 
-The assembled PDF is `paper_draft/figures/publication/figure3_geometry_causal.pdf`. Full source and output hashes are recorded in `paper_figure3_geometry_causal_registry.json` and `paper_publication_figure_transform_registry.json`.
+The assembled PDF is `paper_draft/figures/publication/figure3_geometry_causal.pdf`. Full source and output hashes are recorded in `paper_protocol/reviewer_risk/paper_figure3_geometry_causal_registry.json` and `paper_protocol/reviewer_risk/paper_publication_figure_transform_registry.json`.
 
 ## Caption Boundary
 

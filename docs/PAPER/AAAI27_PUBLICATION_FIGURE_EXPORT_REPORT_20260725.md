@@ -47,7 +47,7 @@ All 35 copied source PNGs are registered with SHA-256, byte size, dimensions, an
 
 The authoritative machine-readable records are:
 
-- `paper_publication_figure_source_registry.json`
-- `paper_publication_figure_transform_registry.json`
-- `paper_publication_figure_asset_registry.json`
-- `paper_figure3_geometry_causal_registry.json`
+- `paper_protocol/reviewer_risk/paper_publication_figure_source_registry.json`
+- `paper_protocol/reviewer_risk/paper_publication_figure_transform_registry.json`
+- `paper_protocol/reviewer_risk/paper_publication_figure_asset_registry.json`
+- `paper_protocol/reviewer_risk/paper_figure3_geometry_causal_registry.json`

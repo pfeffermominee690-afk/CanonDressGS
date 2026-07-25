@@ -539,12 +539,14 @@ Status: `AWAITING_USER_MANUAL_SELECTION`
 
 No candidate is selected by this preparation task. The recommendation below is editorial advice only.
 
-| Candidate | Editorial purpose | Main risk | User selection |
-|---|---|---|---|
-| FIG1-A | Five-garment closed-wardrobe overview | Dense reference-view grid | [ ] |
-| FIG1-B | Input-to-result main-method example | Main row emphasizes one garment | [ ] |
-| FIG1-C | Five garments x Reference / Prediction / Teacher | Less explicit pipeline detail | [ ] |
-| FIG1-D | Main method plus Dual-Support extension | Conflates core method and optional extension; NOT RECOMMENDED | [ ] |
+| Candidate | Scientific completeness | Main-method clarity | Closed-wardrobe boundary | Identity consistency | Garment distinction | Layout readability | Unseen-garment misunderstanding risk | Recommendation | Final selection |
+|---|---|---|---|---|---|---|---|---|---|
+| FIG1-A | Five garments; three references and one realized endpoint each | Medium | High | Fixed subject02 | High | Medium; dense grid | Low | Viable overview | [ ] |
+| FIG1-B | Main O01 raw/snapped/Teacher path plus five-endpoint bank | High | High | Fixed subject02 | High | High | Medium; main row emphasizes O01 | Viable method story | [ ] |
+| FIG1-C | Five garments x Reference / Prediction / Teacher | High | High | Fixed subject02 | High | High | High | Low | EDITORIAL_RECOMMENDATION only | [ ] |
+| FIG1-D | Main O01 path plus registered Dual-Support extension panel | High, but mixed scope | Medium | Fixed subject02 | High | Medium | Medium | Medium; extension may be read as default inference | NOT_RECOMMENDED | [ ] |
+
+All candidate sources are registered and byte-verified. The scientific-completeness field describes evidence coverage, not a visual-quality score.
 
 `EDITORIAL_RECOMMENDATION`: **FIG1-C**, because it gives equal five-garment coverage and the clearest direct qualitative comparison. This is not a formal selection.
 
@@ -562,14 +564,15 @@ Required next task after a user decision: `USER_SELECT_FIGURE1_CANDIDATE_THEN_IN
 
 
 def write_registries(root: Path, source: Path, review: Path, publication: Path, generated: Iterable[Path]) -> None:
+    registry_dir = root / "paper_protocol" / "reviewer_risk"
     source_records = collect_sources(root, source)
     generated = sorted(set(generated))
     artifacts = [artifact_record(root, path) for path in generated]
     common = {"schema_version": "canondressgs.paper_figure_p0.v1", "task_id": TASK_ID, "created_at": CREATED, "paper_final": False}
     figure1_paths = [record for record in source_records if "/pure_endpoint/" in record["path"] or "/dual_support/" in record["path"]]
-    write_json(root / "paper_figure1_candidate_source_registry.json", {**common, "status": "PASS", "source_heads": HEADS, "sources": figure1_paths, "scientific_source_pixel_mutation_count": 0})
+    write_json(registry_dir / "paper_figure1_candidate_source_registry.json", {**common, "status": "PASS", "source_heads": HEADS, "sources": figure1_paths, "scientific_source_pixel_mutation_count": 0})
     write_json(
-        root / "paper_figure1_candidate_transform_registry.json",
+        registry_dir / "paper_figure1_candidate_transform_registry.json",
         {
             **common,
             "status": "PASS",
@@ -590,7 +593,7 @@ def write_registries(root: Path, source: Path, review: Path, publication: Path, 
         },
     )
     write_json(
-        root / "paper_figure1_manual_adjudication_manifest.json",
+        registry_dir / "paper_figure1_manual_adjudication_manifest.json",
         {
             **common,
             "status": "AWAITING_USER_MANUAL_SELECTION",
@@ -605,7 +608,7 @@ def write_registries(root: Path, source: Path, review: Path, publication: Path, 
     )
     causal_sources = [record for record in source_records if "/causal/" in record["path"]]
     write_json(
-        root / "paper_figure3_geometry_causal_registry.json",
+        registry_dir / "paper_figure3_geometry_causal_registry.json",
         {
             **common,
             "status": "PASS",
@@ -617,7 +620,7 @@ def write_registries(root: Path, source: Path, review: Path, publication: Path, 
             "sources": causal_sources,
         },
     )
-    write_json(root / "paper_publication_figure_source_registry.json", {**common, "status": "PASS", "source_heads": HEADS, "sources": source_records, "scientific_source_pixel_mutation_count": 0})
+    write_json(registry_dir / "paper_publication_figure_source_registry.json", {**common, "status": "PASS", "source_heads": HEADS, "sources": source_records, "scientific_source_pixel_mutation_count": 0})
     source_sha = {record["path"]: record["sha256"] for record in source_records}
     dependencies = {
         2: ["paper_protocol/reviewer_risk/canondressgs_main_method_freeze.json"],
@@ -656,8 +659,8 @@ def write_registries(root: Path, source: Path, review: Path, publication: Path, 
                 "scientific_source_pixel_mutation": False,
             }
         )
-    write_json(root / "paper_publication_figure_transform_registry.json", {**common, "status": "PASS", "transforms": publication_transforms, "scientific_source_pixel_mutation_count": 0})
-    write_json(root / "paper_publication_figure_asset_registry.json", {**common, "status": "PASS", "assets": artifacts, "required_publication_pdfs_present": all((publication / name).exists() for name in ["figure2_method.pdf", "figure3_geometry_causal.pdf", "figure4_dual_support.pdf", "figure5_hard_lookup_relation.pdf", "figure6_endpoint_limits.pdf"])})
+    write_json(registry_dir / "paper_publication_figure_transform_registry.json", {**common, "status": "PASS", "transforms": publication_transforms, "scientific_source_pixel_mutation_count": 0})
+    write_json(registry_dir / "paper_publication_figure_asset_registry.json", {**common, "status": "PASS", "assets": artifacts, "required_publication_pdfs_present": all((publication / name).exists() for name in ["figure2_method.pdf", "figure3_geometry_causal.pdf", "figure4_dual_support.pdf", "figure5_hard_lookup_relation.pdf", "figure6_endpoint_limits.pdf"])})
 
 
 def main() -> int:
