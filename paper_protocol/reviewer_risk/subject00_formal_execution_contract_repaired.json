@@ -44,6 +44,13 @@
     "must_pass_before_attempt_creation": true,
     "insufficient_storage_may_not_change_training_contract": true
   },
+  "live_preflight": {
+    "status": "FAIL_PRE_ATTEMPT_STORAGE_GATE",
+    "observed_free_bytes": 14756466688,
+    "required_free_bytes": 32212254720,
+    "shortfall_bytes": 17455788032,
+    "prior_live_gates_passed": true
+  },
   "immutable_sources": {
     "formal_protocol_mutation": 0,
     "prepared_experiment_mutation": 0,
@@ -54,5 +61,7 @@
   "execution_head": null,
   "result_head": null,
   "final_reporting_head": null,
+  "classification": "SUBJECT00_FORMAL_OUTPUT_ROOT_REPAIRED_EXECUTION_INVALID",
+  "next_task": "PROVISION_SUBJECT00_FORMAL_CANONICAL_OUTPUT_STORAGE_AND_RERUN_PREFLIGHT",
   "paper_final": false
 }

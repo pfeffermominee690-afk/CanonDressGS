@@ -1,0 +1,52 @@
+{
+  "schema_version": "canondressgs.subject00.formal_output_root_repair_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-OUTPUT-ROOT-REPAIR-AND-RUN-001",
+  "static_test_commit": "6cd61af9b722718c040bffb653b744040f33a4f3",
+  "cloud_test_environment": {
+    "python": "3.10",
+    "pytest": "9.1.1",
+    "torch": "2.4.1+cu121",
+    "cuda_runtime": "12.1",
+    "gsplat": "AVAILABLE",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "580.76.05"
+  },
+  "checks": [
+    {"id": 1, "name": "strict_json_parse", "status": "PASS"},
+    {"id": 2, "name": "duplicate_key_rejection", "status": "PASS"},
+    {"id": 3, "name": "yaml_safe_load", "status": "PASS"},
+    {"id": 4, "name": "py_compile", "status": "PASS"},
+    {"id": 5, "name": "git_diff_check", "status": "PASS"},
+    {"id": 6, "name": "credential_scan", "status": "PASS"},
+    {"id": 7, "name": "runner_unit_tests", "status": "PASS"},
+    {"id": 8, "name": "formal_contract_tests", "status": "PASS"},
+    {"id": 9, "name": "output_root_tests", "status": "PASS"},
+    {"id": 10, "name": "checkpoint_roundtrip_contract_tests", "status": "PASS_STATIC_CONTRACT"},
+    {"id": 11, "name": "evaluator_tests", "status": "PASS_STATIC_CONTRACT"},
+    {"id": 12, "name": "split_disjointness_tests", "status": "PASS"},
+    {"id": 13, "name": "surface_lbs_tests", "status": "PASS_STATIC_CONTRACT"},
+    {"id": 14, "name": "protected_region_tests", "status": "PASS_STATIC_CONTRACT"},
+    {"id": 15, "name": "deterministic_initialization_test", "status": "PASS"},
+    {"id": 16, "name": "storage_forecast_and_live_gate", "status": "FAIL_LIVE_FREE_SPACE"},
+    {"id": 17, "name": "output_root_writeability", "status": "PASS"},
+    {"id": 18, "name": "gpu_exclusivity", "status": "PASS"},
+    {"id": 19, "name": "python_torch_cuda_gsplat_environment", "status": "PASS"},
+    {"id": 20, "name": "source_artifact_fingerprint_audit", "status": "PASS"}
+  ],
+  "pytest_before_extended_static_checks": {
+    "passed": 12,
+    "failed": 0,
+    "seconds": 9.66
+  },
+  "live_preflight": {
+    "status": "FAIL_PRE_ATTEMPT_STORAGE_GATE",
+    "observed_free_bytes": 14756466688,
+    "required_free_bytes": 32212254720,
+    "shortfall_bytes": 17455788032,
+    "failure_occurs_after_prior_live_gates": true
+  },
+  "attempt_created": false,
+  "optimizer_steps": 0,
+  "classification": "SUBJECT00_FORMAL_OUTPUT_ROOT_REPAIRED_EXECUTION_INVALID",
+  "paper_final": false
+}
