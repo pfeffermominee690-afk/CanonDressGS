@@ -29,6 +29,12 @@ def test_frozen_contract_is_exact() -> None:
     assert tuple(config["teacher"]["checkpoint_steps"]) == runner.CHECKPOINT_STEPS
     assert tuple(config["targets"]["slots"]) == runner.SLOTS
     assert tuple(config["targets"]["camera_ids"]) == runner.CAMERAS
+    assert (
+        config["registration_binding"]["method"]
+        == "prediction_only_inverse_grid_sample_from_exact_source_to_target_similarity"
+    )
+    assert config["registration_binding"]["target_assets_mutated"] is False
+    assert config["registration_binding"]["target_resize_pad_or_reencode"] is False
     assert config["paper_eligible"] is False
 
 
@@ -72,3 +78,21 @@ def test_boundary_is_binary_and_nonempty() -> None:
     assert boundary.shape == mask.shape
     assert set(torch.unique(boundary).tolist()).issubset({0.0, 1.0})
     assert torch.count_nonzero(boundary) > 0
+
+
+def test_prediction_registration_warp_is_exact_for_integer_translation() -> None:
+    source = torch.zeros(3, 4, 1)
+    source[1, 2, 0] = 1
+    source_to_target = torch.tensor(
+        [[1.0, 0.0, 1.0], [0.0, 1.0, 2.0]]
+    )
+    target = runner.warp_prediction_to_target(
+        source,
+        source_to_target,
+        target_width=6,
+        target_height=6,
+        background=0.0,
+    )
+    assert target.shape == (6, 6, 1)
+    assert torch.isclose(target[3, 3, 0], torch.tensor(1.0))
+    assert torch.count_nonzero(target > 1e-6) == 1

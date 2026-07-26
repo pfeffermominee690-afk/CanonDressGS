@@ -65,6 +65,37 @@
     "strict_split_role": "STRICT_TRAIN",
     "asset_layout": "inputs/targets/{slot}/{accepted_raw.png,person_mask.png,garment_mask.png}"
   },
+  "registration_binding": {
+    "method": "prediction_only_inverse_grid_sample_from_exact_source_to_target_similarity",
+    "source_camera_resolution": {
+      "width": 1330,
+      "height": 1150
+    },
+    "align_corners": true,
+    "target_assets_mutated": false,
+    "target_resize_pad_or_reencode": false,
+    "evidence_layout": "inputs/registration_evidence/{filename}",
+    "evidence_files": {
+      "attempt_001": {
+        "filename": "attempt001_background_registration_metrics.json",
+        "bytes": 315131,
+        "sha256": "6fe0763dde93893713585c70f5d9878574262441ffbff9df454713df9791bc85",
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001_native_landscape_registration_audit\\02_registration_metrics\\attempt001_background_registration_metrics.json"
+      },
+      "attempt_004_o03_hood_removal_targeted_canary": {
+        "filename": "corrected_registration_results_attempt004.json",
+        "bytes": 30699,
+        "sha256": "3f2d3bebb8261716b5b66460f9c053ab6abffc7e6d36a77c6ac5b3311fdc4205",
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\08_technical_validation\\corrected_registration_results.json"
+      },
+      "attempt_005_subject00_remaining_six_cell_generation": {
+        "filename": "registration_results_attempt005.json",
+        "bytes": 42009,
+        "sha256": "abe75a3c7bb104f74322919d1bd408463789c1c9d4a87aee540fc3b5ac7e541e",
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_005_subject00_remaining_six_cell_generation\\06_audit\\registration_results.json"
+      }
+    }
+  },
   "teacher": {
     "protocol": "representation_triage_rung2_direct_shared_canonical",
     "loss_name": "CAPACITY_ORACLE_LOSS_V1",

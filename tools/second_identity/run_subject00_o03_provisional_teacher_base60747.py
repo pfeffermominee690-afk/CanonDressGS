@@ -179,6 +179,23 @@ def load_config(path: Path) -> dict[str, Any]:
         or tuple(config["targets"]["directions"]) != DIRECTIONS
     ):
         raise RuntimeError("O03 target mapping changed")
+    registration = config["registration_binding"]
+    if (
+        registration["method"]
+        != "prediction_only_inverse_grid_sample_from_exact_source_to_target_similarity"
+        or registration["source_camera_resolution"]
+        != {"width": 1330, "height": 1150}
+        or registration["align_corners"] is not True
+        or registration["target_assets_mutated"] is not False
+        or registration["target_resize_pad_or_reencode"] is not False
+        or set(registration["evidence_files"])
+        != {
+            "attempt_001",
+            "attempt_004_o03_hood_removal_targeted_canary",
+            "attempt_005_subject00_remaining_six_cell_generation",
+        }
+    ):
+        raise RuntimeError("target pixel-registration contract changed")
     return config
 
 
@@ -319,6 +336,34 @@ def build_target_registry(
     draft_rows = {
         (row["garment"], row["slot"]): row for row in draft["records"]
     }
+    registration_config = config["registration_binding"]
+    registration_rows: dict[str, tuple[Mapping[str, Any], Mapping[str, Any]]] = {}
+    for evidence_id, binding in registration_config["evidence_files"].items():
+        evidence_path = (
+            run_root
+            / "inputs"
+            / "registration_evidence"
+            / binding["filename"]
+        )
+        verified_evidence = verify_file(
+            evidence_path, binding["sha256"], int(binding["bytes"])
+        )
+        payload = read_json(evidence_path)
+        for row in payload["records"]:
+            request_id = row["request_id"]
+            if request_id in registration_rows:
+                raise RuntimeError(
+                    f"duplicate request_id in registration evidence: {request_id}"
+                )
+            registration_rows[request_id] = (
+                row,
+                {
+                    "evidence_id": evidence_id,
+                    "original_path": binding["original_path"],
+                    "staged_path": str(evidence_path),
+                    **verified_evidence,
+                },
+            )
     records: list[dict[str, Any]] = []
     loaded: list[dict[str, Any]] = []
     for index, (slot, camera, direction) in enumerate(
@@ -344,6 +389,29 @@ def build_target_registry(
             or source["mask_pair_human_decision"] != "PASS"
         ):
             raise RuntimeError(f"mask acceptance changed: {slot}")
+        request_id = source["request_id"]
+        if request_id not in registration_rows:
+            raise RuntimeError(
+                f"accepted target has no sealed registration evidence: {request_id}"
+            )
+        registration, registration_evidence = registration_rows[request_id]
+        similarity = registration.get("similarity", {})
+        matrix = similarity.get("matrix")
+        if (
+            similarity.get("status") != "PASS_COMPUTED"
+            or not isinstance(matrix, list)
+            or len(matrix) != 2
+            or any(not isinstance(row, list) or len(row) != 3 for row in matrix)
+            or not np.isfinite(np.asarray(matrix, dtype=np.float64)).all()
+        ):
+            raise RuntimeError(
+                f"registration similarity is incomplete: {request_id}"
+            )
+        machine_classification = source["machine_registration_classification"]
+        if registration["primary_classification"] != machine_classification:
+            raise RuntimeError(
+                f"registration classification changed: {request_id}"
+            )
         width = int(source["native_resolution"]["width"])
         height = int(source["native_resolution"]["height"])
         asset_root = run_root / "inputs" / "targets" / slot
@@ -404,6 +472,33 @@ def build_target_registry(
             "human_override_status": source["human_override_status"],
             "mask_acceptance_status": source["mask_acceptance_status"],
             "request_id": source["request_id"],
+            "pixel_registration": {
+                "mapping": "formal_source_pixels_to_accepted_target_pixels",
+                "method": "similarity",
+                "matrix_2x3": matrix,
+                "source_resolution": registration_config[
+                    "source_camera_resolution"
+                ],
+                "target_resolution": {"width": width, "height": height},
+                "machine_classification": machine_classification,
+                "registration_confidence": registration.get(
+                    "registration_confidence"
+                ),
+                "median_reprojection_error_px": registration.get(
+                    "median_reprojection_error_px"
+                ),
+                "p95_reprojection_error_px": registration.get(
+                    "p95_reprojection_error_px"
+                ),
+                "maximum_reprojection_error_px": registration.get(
+                    "maximum_reprojection_error_px"
+                ),
+                "evidence": registration_evidence,
+                "application": (
+                    "inverse differentiable warp of prediction only; accepted "
+                    "target RGB/masks remain byte-identical"
+                ),
+            },
             "derived_loss_masks": {
                 "target_foreground": "person_mask",
                 "target_clothing": "garment_mask",
@@ -465,6 +560,7 @@ def build_target_registry(
             "source": "formal Subject00 calibration/SMPL-X strict-train frame 0",
             "camera_ids": list(CAMERAS),
             "pose_frame_id": 0,
+            "pixel_registration": config["registration_binding"],
         },
         "provisional_base": config["base"],
         "paper_eligible": False,
@@ -716,18 +812,69 @@ def build_camera_items(
         if (0, camera) not in mapping:
             raise RuntimeError(f"camera binding unavailable in formal dataset: {camera}")
         item = core.prepare_item(dataset[mapping[(0, camera)]])
-        expected = target["record"]["native_resolution"]
+        expected = target["record"]["pixel_registration"]["source_resolution"]
         if (
             int(item["width"]) != int(expected["width"])
             or int(item["height"]) != int(expected["height"])
         ):
             raise RuntimeError(
-                f"native target/formal camera dimensions disagree: {target['record']['slot']}"
+                f"formal source camera dimensions changed: {target['record']['slot']}"
             )
         target["item"] = item
+        target["pixel_registration"] = torch.tensor(
+            target["record"]["pixel_registration"]["matrix_2x3"],
+            dtype=torch.float32,
+            device="cuda",
+        )
         for name in ("raw", "person", "garment", "protected"):
             target[name] = target[name].cuda(non_blocking=False)
         target["boundary"] = mask_boundary(target["garment"])
+
+
+def warp_prediction_to_target(
+    value: torch.Tensor,
+    source_to_target: torch.Tensor,
+    target_width: int,
+    target_height: int,
+    *,
+    background: float,
+) -> torch.Tensor:
+    """Map a source-camera render into accepted-target pixels without touching target."""
+    if value.ndim != 3:
+        raise RuntimeError(f"prediction must be HWC, got {tuple(value.shape)}")
+    source_height, source_width, channels = value.shape
+    homogeneous = torch.eye(
+        3, dtype=value.dtype, device=value.device
+    )
+    homogeneous[:2] = source_to_target.to(dtype=value.dtype, device=value.device)
+    target_to_source = torch.linalg.inv(homogeneous)
+    ys, xs = torch.meshgrid(
+        torch.arange(target_height, dtype=value.dtype, device=value.device),
+        torch.arange(target_width, dtype=value.dtype, device=value.device),
+        indexing="ij",
+    )
+    target_pixels = torch.stack(
+        (xs, ys, torch.ones_like(xs)), dim=-1
+    )
+    source_pixels = target_pixels @ target_to_source.T
+    if source_width <= 1 or source_height <= 1:
+        raise RuntimeError("source render is too small for registered sampling")
+    grid = torch.stack(
+        (
+            2 * source_pixels[..., 0] / (source_width - 1) - 1,
+            2 * source_pixels[..., 1] / (source_height - 1) - 1,
+        ),
+        dim=-1,
+    )[None]
+    nchw = (value - background).permute(2, 0, 1)[None]
+    warped = F.grid_sample(
+        nchw,
+        grid,
+        mode="bilinear",
+        padding_mode="zeros",
+        align_corners=True,
+    )
+    return warped[0].permute(1, 2, 0) + background
 
 
 def render(
@@ -744,6 +891,22 @@ def render(
         background=background,
         canonical_overrides=None if field is None else field.overrides(base),
     )
+    if "pixel_registration" in target:
+        resolution = target["record"]["native_resolution"]
+        rgb = warp_prediction_to_target(
+            rgb,
+            target["pixel_registration"],
+            int(resolution["width"]),
+            int(resolution["height"]),
+            background=1.0,
+        )
+        alpha = warp_prediction_to_target(
+            alpha,
+            target["pixel_registration"],
+            int(resolution["width"]),
+            int(resolution["height"]),
+            background=0.0,
+        )
     torch.cuda.synchronize()
     elapsed = time.perf_counter() - started
     return rgb.clamp(0, 1), alpha.clamp(0, 1), elapsed
@@ -1112,6 +1275,11 @@ def run(args: argparse.Namespace) -> int:
         ).resolve() for slot in SLOTS for name in (
             "accepted_raw.png", "person_mask.png", "garment_mask.png"
         )),
+        *((
+            run_root / "inputs" / "registration_evidence" / binding["filename"]
+        ).resolve() for binding in config["registration_binding"][
+            "evidence_files"
+        ].values()),
     }
     for path in required_input_paths:
         if not path.is_file() or run_root.resolve() not in path.parents:
