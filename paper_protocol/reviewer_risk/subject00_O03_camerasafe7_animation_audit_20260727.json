@@ -1,0 +1,46 @@
+{
+  "animation_compatibility": {
+    "criterion": "frozen deformation/LBS path produced a finite different-pose Teacher render",
+    "status": "PASS"
+  },
+  "artifact_generation_head": "227512761695861079f64cf1b74283d97b41aa2a",
+  "audit_execution_head": "4a57c16363004b1a12afce231f3693022e5a5718",
+  "collapse_status": "NONE",
+  "deformation_status": "PASS_FINITE",
+  "different_camera": {
+    "base_render_seconds": 0.0024302899837493896,
+    "camera_id": 1,
+    "height": 1150,
+    "pose_id": 0,
+    "status": "PASS_FINITE_RENDER",
+    "teacher_render_seconds": 0.0035391636192798615,
+    "width": 1330
+  },
+  "different_pose": {
+    "base_render_seconds": 0.0025335364043712616,
+    "camera_id": 1,
+    "height": 1150,
+    "pose_id": 673,
+    "status": "PASS_FINITE_RENDER",
+    "teacher_render_seconds": 0.004134688526391983,
+    "width": 1330
+  },
+  "geometry_health": {
+    "abnormal_gaussian_count": 2,
+    "abnormal_gaussian_fraction_of_trainable": 1.1637650459306315e-05,
+    "max_opacity": 0.9976332187652588,
+    "max_scale_ratio": 3.6756038665771484,
+    "max_xyz_displacement_m": 0.2552593946456909,
+    "min_opacity": 0.22603392601013184,
+    "outside_base_radius_count": 0,
+    "trainable_support_count": 171856
+  },
+  "interpretation_boundary": "Finite-render and LBS compatibility audit only; not a strict novel-view or novel-pose generalization claim.",
+  "lbs_status": "PASS",
+  "paper_eligible": false,
+  "paper_final": false,
+  "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001",
+  "schema_version": "canondressgs.subject00.o03_camerasafe7_animation.v1",
+  "severe_artifact_count": 0,
+  "task_id": "AAAI27-SUBJECT00-O03-PROVISIONAL-TEACHER-CAMERA-SAFE-7VIEW-RERUN-001"
+}

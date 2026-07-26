@@ -1,0 +1,47 @@
+{
+  "artifact_generation_head": "227512761695861079f64cf1b74283d97b41aa2a",
+  "attempt_002_created": false,
+  "audit_execution_head": "4a57c16363004b1a12afce231f3693022e5a5718",
+  "automatic_retry": false,
+  "checkpoint_events": [
+    "step_000000.pth",
+    "step_000300.pth",
+    "step_000600.pth",
+    "step_000900.pth",
+    "step_001200.pth"
+  ],
+  "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+  "loss_final": 0.6644622683525085,
+  "loss_initial": 1.1473382711410522,
+  "loss_weights": {
+    "alpha_foreground": 0.5,
+    "boundary_rgb": 0.25,
+    "garment_rgb": 1.0,
+    "new_silhouette_alpha": 1.0,
+    "protected_alpha": 5.0,
+    "protected_rgb": 10.0,
+    "stability": 0.0001
+  },
+  "nan_inf_status": "NONE",
+  "oom_status": "NONE",
+  "optimizer": {
+    "appearance_lr": 0.002,
+    "class": "Adam",
+    "geometry_lr": 0.001,
+    "gradient_clip_norm": 1.0
+  },
+  "optimizer_steps_completed": 1200,
+  "paper_eligible": false,
+  "paper_final": false,
+  "peak_vram_bytes": 5579300352,
+  "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001",
+  "scheduler": null,
+  "schema_version": "canondressgs.subject00.o03_camerasafe7.training.v1",
+  "seed": 20260718,
+  "state_record_count": 1200,
+  "state_records_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/training/state_records.jsonl",
+  "state_records_sha256": "047d572baef305581793231b144adc0b26f0ce5b0390f9e824c6efdb07c17987",
+  "task_id": "AAAI27-SUBJECT00-O03-PROVISIONAL-TEACHER-CAMERA-SAFE-7VIEW-RERUN-001",
+  "training_steps": 1200,
+  "wall_seconds": 86.19709212332964
+}
