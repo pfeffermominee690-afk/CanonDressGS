@@ -1,0 +1,146 @@
+{
+  "check_count": 27,
+  "checks": [
+    {
+      "detail": "source branch and HEAD are exact",
+      "name": "source_branch_head",
+      "passed": true
+    },
+    {
+      "detail": "source worktree is clean",
+      "name": "source_worktree_clean",
+      "passed": true
+    },
+    {
+      "detail": "new branch is exact",
+      "name": "target_branch",
+      "passed": true
+    },
+    {
+      "detail": "new branch descends from source HEAD",
+      "name": "source_ancestor",
+      "passed": true
+    },
+    {
+      "detail": "task IDs match",
+      "name": "task_id",
+      "passed": true
+    },
+    {
+      "detail": "archive bytes and SHA inherit unchanged evidence",
+      "name": "archive_facts_unchanged",
+      "passed": true
+    },
+    {
+      "detail": "prior 7z integrity result is preserved",
+      "name": "archive_integrity",
+      "passed": true
+    },
+    {
+      "detail": "allowlist remains exactly 1602 members",
+      "name": "allowlist_1602",
+      "passed": true
+    },
+    {
+      "detail": "extraction calls remain zero",
+      "name": "extraction_calls_zero",
+      "passed": true
+    },
+    {
+      "detail": "attempt_001 staging was not created",
+      "name": "staging_not_created",
+      "passed": true
+    },
+    {
+      "detail": "locale and Utf16 mismatch is exact",
+      "name": "locale_mismatch_exact",
+      "passed": true
+    },
+    {
+      "detail": "difference is banner-only with no member change",
+      "name": "banner_only_difference",
+      "passed": true
+    },
+    {
+      "detail": "original report and classification are unchanged",
+      "name": "original_classification_preserved",
+      "passed": true
+    },
+    {
+      "detail": "additive correction overlay exists",
+      "name": "correction_overlay",
+      "passed": true
+    },
+    {
+      "detail": "attempt_002 is not authorized",
+      "name": "attempt_002_not_authorized",
+      "passed": true
+    },
+    {
+      "detail": "Plan B is deferred for Subject00",
+      "name": "deferred_status",
+      "passed": true
+    },
+    {
+      "detail": "Windows mirror exists and is byte-exact",
+      "name": "windows_mirror_preserved",
+      "passed": true
+    },
+    {
+      "detail": "this task did not delete the cloud archive",
+      "name": "no_archive_deletion",
+      "passed": true
+    },
+    {
+      "detail": "no extraction or staging creation",
+      "name": "no_extraction",
+      "passed": true
+    },
+    {
+      "detail": "no preprocessing",
+      "name": "no_preprocessing",
+      "passed": true
+    },
+    {
+      "detail": "no training or GPU work",
+      "name": "no_training",
+      "passed": true
+    },
+    {
+      "detail": "no generation",
+      "name": "no_generation",
+      "passed": true
+    },
+    {
+      "detail": "no paper modification",
+      "name": "no_paper_modification",
+      "passed": true
+    },
+    {
+      "detail": "only seal audit paths changed",
+      "name": "changed_path_scope",
+      "passed": true
+    },
+    {
+      "detail": "future policy is recorded but not implemented",
+      "name": "future_policy_design_only",
+      "passed": true
+    },
+    {
+      "detail": "final classification is exact",
+      "name": "final_classification",
+      "passed": true
+    },
+    {
+      "detail": "one exact next task is recorded",
+      "name": "next_task_unique",
+      "passed": true
+    }
+  ],
+  "content_sha256": "95555275f6c9d9da12afb3b40b3bbff82b556deb369cd7382846c90354abe9b2",
+  "failed_checks": [],
+  "paper_final": false,
+  "result": "PASS_LOCALE_BLOCK_DEFER_SEAL",
+  "schema_version": "avatarrex_lbn1.plan_b.locale_block_defer_tests.v1",
+  "task_id": "AAAI27-AVATARREX-PLAN-B-LOCALE-BLOCK-DEFER-SEAL-001"
+}

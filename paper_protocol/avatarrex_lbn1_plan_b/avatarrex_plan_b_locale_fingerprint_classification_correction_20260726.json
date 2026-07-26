@@ -1,0 +1,31 @@
+{
+  "archive_contract_status": "PASS",
+  "archive_integrity_status": "PASS_7ZIP_16_02_EVERYTHING_IS_OK",
+  "archive_member_difference_count": 0,
+  "attempt_002_authorized": false,
+  "corrected_classification": "AVATARREX_PLAN_B_PREFLIGHT_BLOCKED_BY_LOCALE_SENSITIVE_LISTING_FINGERPRINT",
+  "correction_reason": [
+    "The archive byte count, SHA256, and 7z integrity test passed.",
+    "The exact 1602-member allowlist, camera set, and frame set passed.",
+    "Extraction never started and the attempt_001 staging root was never created.",
+    "The whole-stdout fingerprint changed only because the p7zip banner was rendered under a different locale and Utf16 mode.",
+    "The event is not an archive-content failure, allowlist failure, or extraction-output failure."
+  ],
+  "frozen_environment": {
+    "locale": "C",
+    "utf16": "off"
+  },
+  "new_branch": "research/avatarrex-plan-b-locale-block-defer-seal-20260726",
+  "observed_environment": {
+    "locale": "C.UTF-8",
+    "utf16": "on"
+  },
+  "original_classification": "AVATARREX_PLAN_B_EXTRACTION_CONTRACT_FAIL",
+  "previous_report_modified": false,
+  "previous_report_path": "paper_protocol/avatarrex_lbn1_plan_b/AVATARREX_LBN1_PLAN_B_CLOUD_RECOVERY_FINAL_REPORT_20260726.md",
+  "previous_task_id": "AAAI27-AVATARREX-LBN1-PLAN-B-CLOUD-ACCESS-RECOVERY-AND-EXECUTION-001",
+  "schema_version": "avatarrex_lbn1.plan_b.locale_fingerprint_classification_correction.v1",
+  "source_branch": "research/avatarrex-lbn1-plan-b-cloud-recovery-execution-20260726",
+  "source_head": "914efe09f286d3cd16a5d5f283c7a2e74c65ea54",
+  "task_id": "AAAI27-AVATARREX-PLAN-B-LOCALE-BLOCK-DEFER-SEAL-001"
+}
