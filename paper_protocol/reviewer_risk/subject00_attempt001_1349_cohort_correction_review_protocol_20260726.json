@@ -1,0 +1,99 @@
+{
+  "schema_version": "canondressgs.subject00.attempt001_1349_cohort_correction_review_protocol.v1",
+  "task_id": "AAAI27-SUBJECT00-1349x1166-COHORT-CORRECTION-HUMAN-REVIEW-PREP-001",
+  "source_branch": "research/subject00-attempt001-native-landscape-registration-audit-20260726",
+  "source_head": "e8af4f852fb08021d4dd7ae070bf196c7bedc589",
+  "target_branch": "research/subject00-1349-cohort-correction-human-review-prep-20260726",
+  "frozen_before_review_pack_generation": true,
+  "evidence_priority": [
+    "actual PNG signature and IHDR dimensions",
+    "actual PNG SHA-256",
+    "frozen request and provenance binding",
+    "registration metrics primary classification",
+    "derived registries and contact-sheet labels"
+  ],
+  "review_candidate_gate": {
+    "actual_resolution": "1349x1166",
+    "primary_machine_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+    "provenance_binding": "PASS",
+    "png_parse": "PASS",
+    "hidden_postprocessing_replacement_detected": false,
+    "duplicate_status": "UNIQUE",
+    "postprocessing_count_policy": "Preserve NOT_RECORDED; require provenance output SHA to equal actual file SHA and no derivative replacement evidence."
+  },
+  "source_mask": {
+    "authority": "frozen official Subject00 mask from subject00.7z",
+    "foreground_threshold": 128,
+    "output_transform_interpolation": "NEAREST",
+    "background_exclusion_dilation_px": 23
+  },
+  "crop_protocol": {
+    "coordinate_authority": "frozen source person bbox mapped by the audited source-to-output similarity transform",
+    "full_body": [-0.15, -0.08, 1.15, 1.08],
+    "face_head": [0.25, -0.08, 0.75, 0.28],
+    "left_hand_image_side": [-0.18, 0.22, 0.32, 0.62],
+    "right_hand_image_side": [0.68, 0.22, 1.18, 0.62],
+    "feet": [-0.10, 0.70, 1.10, 1.10],
+    "upper_garment_boundary": [-0.08, 0.12, 1.08, 0.52],
+    "lower_garment_boundary": [-0.08, 0.42, 1.08, 0.78],
+    "pixel_policy": "Original pixels only; no generative super-resolution or model download."
+  },
+  "required_candidate_panels": [
+    "original_condition_full_frame",
+    "generated_output_full_frame",
+    "similarity_aligned_overlay",
+    "background_edge_overlay",
+    "full_body_source_output_pair",
+    "face_head_source_output_pair",
+    "left_hand_source_output_pair",
+    "right_hand_source_output_pair",
+    "feet_source_output_pair",
+    "upper_garment_boundary_pair",
+    "lower_garment_boundary_pair",
+    "official_source_mask_and_transformed_expected_silhouette",
+    "high_error_background_regions",
+    "metadata_panel"
+  ],
+  "pdf_layout": {
+    "garment_page_policy": "exactly one garment-slot cell per page; all eight slots represented",
+    "dual_candidate_policy": "cand00 and cand01 appear side by side on the same cell page",
+    "missing_cell_policy": "text-only NO_1349_PASS_CANDIDATE page; no image placeholder",
+    "page_size_inches": [36, 24]
+  },
+  "risk_ranking": {
+    "method": "weighted descending ordinal ranks; ranking is review priority only",
+    "signals_and_weights": [
+      ["absolute_uniform_scale_minus_one", 7],
+      ["translation_norm_px", 6],
+      ["p95_reprojection_error_px", 5],
+      ["inverse_ransac_inlier_ratio", 4],
+      ["face_head_aligned_mae", 3],
+      ["hands_feet_aligned_mae", 2],
+      ["garment_boundary_aligned_mae", 1]
+    ],
+    "automatic_pass_fail": false,
+    "automatic_candidate_selection": false
+  },
+  "human_review_state": {
+    "all_decision_fields": null,
+    "accepted": false,
+    "teacher_target": false
+  },
+  "prohibited_actions": [
+    "new image generation",
+    "Managed Image Edit or ImageGen",
+    "external API calls",
+    "model download",
+    "automatic visual pass/fail",
+    "automatic cand00/cand01 selection",
+    "attempt_001/002/003 mutation",
+    "generated-output mutation",
+    "targeted rerun",
+    "Formal Base or Teacher optimization",
+    "paper modification",
+    "old evidence deletion or overwrite",
+    "image, mask, crop, contact-sheet pixel, or PDF commit to Git"
+  ],
+  "paper_final": false,
+  "next_task_on_success": "USER_REVIEW_CORRECTED_1349x1166_DOMINANT_COHORT"
+}
