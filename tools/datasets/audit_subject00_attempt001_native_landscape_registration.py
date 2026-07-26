@@ -30,6 +30,7 @@ ATTEMPT_003 = ATTEMPTS_ROOT / "attempt_003_portrait_canary_v2_registered_outpain
 AUDIT_ROOT = ATTEMPTS_ROOT / "attempt_001_native_landscape_registration_audit"
 ARCHIVE = Path(r"E:\data_pre\thuman4_second_identity_staging\downloads\subject00.7z")
 CLOUD_DATA_MANIFEST = Path(r"E:\data_pre\thuman4_second_identity_staging\reports\SUBJECT00_CLOUD_DATA_MANIFEST.json")
+LOCAL_CALIBRATION = ATTEMPT_003 / "00_source_evidence" / "calibration.json"
 
 TASK_ID = "AAAI27-SUBJECT00-ATTEMPT001-NATIVE-LANDSCAPE-REGISTRATION-AUDIT-001"
 SOURCE_BRANCH = "research/subject00-v2-visual-fail-valid-region-audit-20260726"
@@ -808,7 +809,7 @@ def main() -> int:
     write_json(AUDIT_ROOT / "00_provenance" / "attempt_immutability_baseline.json", baseline)
     write_json(AUDIT_ROOT / "00_provenance" / "registration_audit_protocol.json", {**protocol, "protocol_file_sha256": protocol_sha})
 
-    calibration_bytes = archive_bytes("subject00/calibration.json")
+    calibration_bytes = LOCAL_CALIBRATION.read_bytes()
     calibration = json.loads(calibration_bytes.decode("utf-8"))
     request_paths = sorted((ATTEMPT_001 / "03_generation_requests" / "requests").glob("*.json"))
     provenance_paths = sorted((ATTEMPT_001 / "11_provenance" / "requests").glob("*.json"))
@@ -1013,6 +1014,7 @@ def main() -> int:
                 "request_id": request_id,
                 "source_calibration_archive": str(ARCHIVE),
                 "source_calibration_member": "subject00/calibration.json",
+                "source_calibration_resolved_local_path": str(LOCAL_CALIBRATION),
                 "source_calibration_sha256": bytes_sha256(calibration_bytes),
                 "camera": record["camera"],
                 "source_intrinsics": {"fx": source_k[0, 0], "fy": source_k[1, 1], "cx": source_k[0, 2], "cy": source_k[1, 2]},
