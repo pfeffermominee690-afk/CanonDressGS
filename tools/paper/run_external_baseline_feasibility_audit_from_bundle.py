@@ -12,14 +12,14 @@ from typing import Any
 TASK_ID = "AAAI27-CANONDRESSGS-EXTERNAL-BASELINE-FEASIBILITY-FROM-BUNDLE-001"
 SOURCE_BRANCH = "research/external-baseline-multi-source-evidence-freeze-20260726"
 SOURCE_HEAD = "397a72df68bdfd1f1a1cc67d02ca8648586133b7"
-NEW_BRANCH = "research/external-baseline-feasibility-from-bundle-20260726"
+NEW_BRANCH = "research/external-baseline-feasibility-from-bundle-rerun-20260726"
 BUNDLE_SHA256 = "f12e5bb8ce2c36e12bdb911fdae41cd7e3e2ca0e9d2520dc2c57d2263ffd9e61"
 FINAL_CLASSIFICATION = "EXTERNAL_BASELINE_PROTOCOL_READY_FOR_USER_EXECUTION_SELECTION"
 NEXT_TASK = "USER_AUTHORIZE_FULL_AVATAR_FINETUNE_OR_GSVTON_CANARY"
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "paper_protocol" / "external_baselines"
 BUNDLE = OUT / "source_bundle" / "canondressgs_external_baseline_multi_source_evidence_bundle.json"
-REPORT = ROOT / "docs" / "PAPER" / "EXTERNAL_BASELINE_FEASIBILITY_AUDIT_REPORT_20260726.md"
+REPORT = OUT / "EXTERNAL_BASELINE_FEASIBILITY_AUDIT_REPORT_20260726.md"
 HANDOFF = ROOT / "project_control_handoff" / "external_baseline_feasibility_from_bundle_handoff.json"
 
 
@@ -113,10 +113,10 @@ OFFICIAL_SOURCES = {
             "GS_VTON",
             "GS-VTON: Controllable 3D Virtual Try-on with Gaussian Splatting",
             ["Yukang Cao", "Masoud Hadi", "Liang Pan", "Ziwei Liu"],
-            "PREPRINT",
-            "arXiv 2024; submitted to ICLR 2025, with no official acceptance evidence found",
-            2024,
-            "https://arxiv.org/abs/2410.05259",
+            "PUBLISHED",
+            "International Journal of Computer Vision 2026, volume 134, article 215",
+            2026,
+            "https://link.springer.com/article/10.1007/s11263-026-02805-3",
             "https://yukangcao.github.io/GS-VTON/",
             "https://github.com/yukangcao/GS-VTON",
             "OFFICIAL_CODE_AVAILABLE",
@@ -133,10 +133,10 @@ OFFICIAL_SOURCES = {
             "NO",
             "YES_SCENE_EDITING_AND_LORA",
             [
+                source("https://link.springer.com/article/10.1007/s11263-026-02805-3", "official publisher page", "Published online 7 April 2026 in IJCV, volume 134, article 215"),
                 source("https://arxiv.org/abs/2410.05259", "official arXiv", "Image-prompted 3D VTON from multi-view human images and a garment image"),
-                source("https://yukangcao.github.io/GS-VTON/", "author project page", "Links the paper and official repository"),
+                source("https://yukangcao.github.io/GS-VTON/", "author project page", "Identifies IJCV 2026 publication and links the official repository"),
                 source("https://github.com/yukangcao/GS-VTON", "author repository", "Official implementation and custom-data instructions"),
-                source("https://openreview.net/forum?id=8eenzfwKqU", "official submission page", "Submitted to ICLR 2025; not evidence of acceptance"),
             ],
         ),
         method(
@@ -574,7 +574,7 @@ def main() -> None:
         "internal_evidence_freeze_status": "PASS",
         "internal_evidence": INTERNAL_EVIDENCE,
         "method_decisions": {row["method_id"]: row["classification"] for row in COMPATIBILITY["methods"]},
-        "gs_vton": {"publication_status": "PREPRINT", "official_code_status": "OFFICIAL_CODE_AVAILABLE", "pinned_commit": PINS["pins"][0]["commit"], "license": "NO_ROOT_LICENSE_DETECTED", "task_compatibility": "DIFFERENT_ASSUMPTIONS_EXECUTABLE", "data_compatibility": "CONDITIONAL_SUBJECT02_CONVERSION_REQUIRED", "canary_status": "CONTRACT_READY_WITH_LICENSE_AND_DATA_PREFLIGHT_GATES"},
+        "gs_vton": {"publication_status": "PUBLISHED", "venue": "International Journal of Computer Vision 2026", "doi": "10.1007/s11263-026-02805-3", "official_code_status": "OFFICIAL_CODE_AVAILABLE", "pinned_commit": PINS["pins"][0]["commit"], "license": "NO_ROOT_LICENSE_DETECTED", "task_compatibility": "DIFFERENT_ASSUMPTIONS_EXECUTABLE", "data_compatibility": "CONDITIONAL_SUBJECT02_CONVERSION_REQUIRED", "canary_status": "CONTRACT_READY_WITH_LICENSE_AND_DATA_PREFLIGHT_GATES"},
         "gaussianvton": {"publication_status": "PREPRINT", "code_status": "PARTIAL_CODE_ONLY", "task_compatibility": "BLOCKED_BY_CODE"},
         "full_avatar": {"status": "READY_FOR_USER_AUTHORIZED_MICRO_PILOT", "equal_step_status": "READY_BOUND_TO_N_TEACHER_PER_GARMENT", "equal_wall_time_status": "READY_BOUND_TO_T_TEACHER_PER_GARMENT"},
         "equal_reference_protocol_status": "SUPPORTED_FOR_GS_VTON_WITH_CANONDRESSGS_ONE_REFERENCE_TOP1_0.95",
@@ -613,7 +613,7 @@ Task: `{TASK_ID}`
 
 The frozen bundle passed every source, hash, classification, numeric, boundary, conflict, and export-integrity gate. CanonDressGS remains a fixed-subject02, five-seen-garment, closed-wardrobe, view-transductive result. No paper or scientific result was modified.
 
-The primary same-backbone control is Full Avatar Fine-tuning under equal-step and equal-wall-time budgets. The external micro-canary candidate is GS-VTON at official commit `96964b0a6528089123cc27a3ff3e3eb46505cf6e`. It accepts one garment image and has a runnable official pipeline, but it is a static 3DGS editing method with different inputs. It requires license clearance, subject02 conversion, a vanilla 3DGS initialization, and a dependency-weight manifest before execution.
+The primary same-backbone control is Full Avatar Fine-tuning under equal-step and equal-wall-time budgets. The external micro-canary candidate is the IJCV 2026 method GS-VTON at official commit `96964b0a6528089123cc27a3ff3e3eb46505cf6e`. It accepts one garment image and has a runnable official pipeline, but it is a static 3DGS editing method with different inputs. It requires license clearance, subject02 conversion, a vanilla 3DGS initialization, and a dependency-weight manifest before execution.
 
 GaussianVTON is blocked by its official partial-code status. Gaussian Wardrobe and DAMA are blocked by dynamic layered or 4D-DRESS-specific acquisition requirements. LayGA has no official code link. SemanticGarment is a published open generation/editing method and is Related Work only for the current endpoint experiment.
 

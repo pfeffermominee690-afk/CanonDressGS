@@ -8,7 +8,7 @@ Task: `AAAI27-CANONDRESSGS-EXTERNAL-BASELINE-FEASIBILITY-FROM-BUNDLE-001`
 
 The frozen bundle passed every source, hash, classification, numeric, boundary, conflict, and export-integrity gate. CanonDressGS remains a fixed-subject02, five-seen-garment, closed-wardrobe, view-transductive result. No paper or scientific result was modified.
 
-The primary same-backbone control is Full Avatar Fine-tuning under equal-step and equal-wall-time budgets. The external micro-canary candidate is GS-VTON at official commit `96964b0a6528089123cc27a3ff3e3eb46505cf6e`. It accepts one garment image and has a runnable official pipeline, but it is a static 3DGS editing method with different inputs. It requires license clearance, subject02 conversion, a vanilla 3DGS initialization, and a dependency-weight manifest before execution.
+The primary same-backbone control is Full Avatar Fine-tuning under equal-step and equal-wall-time budgets. The external micro-canary candidate is the IJCV 2026 method GS-VTON at official commit `96964b0a6528089123cc27a3ff3e3eb46505cf6e`. It accepts one garment image and has a runnable official pipeline, but it is a static 3DGS editing method with different inputs. It requires license clearance, subject02 conversion, a vanilla 3DGS initialization, and a dependency-weight manifest before execution.
 
 GaussianVTON is blocked by its official partial-code status. Gaussian Wardrobe and DAMA are blocked by dynamic layered or 4D-DRESS-specific acquisition requirements. LayGA has no official code link. SemanticGarment is a published open generation/editing method and is Related Work only for the current endpoint experiment.
 

@@ -32,7 +32,7 @@ GSVTON_PATH = OUT / "gsvton_canary_contract.md"
 TABLE_PATH = OUT / "external_baseline_table_plan.md"
 PRIORITY_PATH = OUT / "external_baseline_execution_priority.md"
 TEST_REPORT_PATH = OUT / "external_baseline_feasibility_tests.json"
-REPORT_PATH = ROOT / "docs" / "PAPER" / "EXTERNAL_BASELINE_FEASIBILITY_AUDIT_REPORT_20260726.md"
+REPORT_PATH = OUT / "EXTERNAL_BASELINE_FEASIBILITY_AUDIT_REPORT_20260726.md"
 HANDOFF_PATH = ROOT / "project_control_handoff" / "external_baseline_feasibility_from_bundle_handoff.json"
 SOURCE_WORKTREE = Path(r"E:\model_train\canondressgs_external_baseline_multi_source_evidence_freeze")
 EXTERNAL_ROOT = Path(r"E:\model_train\_external_baseline_source_audit_20260726")
@@ -91,14 +91,16 @@ class FeasibilityAuditTests(unittest.TestCase):
         self.assertTrue(self.sources["official_source_only"])
 
     def test_08_official_source_only(self):
-        allowed = {"official arXiv", "author project page", "author repository", "official submission page", "official 3DV publication page", "official lab repository", "author supplement", "ACM DOI", "frozen local contract"}
+        allowed = {"official arXiv", "official publisher page", "author project page", "author repository", "official submission page", "official 3DV publication page", "official lab repository", "author supplement", "ACM DOI", "frozen local contract"}
         for method in self.sources["methods"]:
             for row in method["official_source_evidence"]:
                 self.assertIn(row["kind"], allowed)
 
     def test_09_publication_status_evidence(self):
         rows = {m["method_id"]: m for m in self.sources["methods"]}
-        self.assertEqual(rows["GS_VTON"]["current_publication_status"], "PREPRINT")
+        self.assertEqual(rows["GS_VTON"]["current_publication_status"], "PUBLISHED")
+        self.assertEqual(rows["GS_VTON"]["venue"], "International Journal of Computer Vision 2026, volume 134, article 215")
+        self.assertEqual(rows["GS_VTON"]["official_paper_url"], "https://link.springer.com/article/10.1007/s11263-026-02805-3")
         self.assertEqual(rows["GAUSSIANVTON"]["current_publication_status"], "PREPRINT")
         self.assertEqual(rows["GAUSSIAN_WARDROBE"]["venue"], "3DV 2026 Poster")
         self.assertEqual(rows["SEMANTICGARMENT"]["venue"], "ACM Multimedia 2025")
