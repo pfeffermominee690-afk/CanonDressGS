@@ -1,0 +1,31 @@
+{
+  "schema_version": "canondressgs.project_control.avatarrex_lbn1_plan_b_handoff.v1",
+  "task_id": "AAAI27-AVATARREX-LBN1-TARGETED-EXTRACTION-PLAN-B-001",
+  "branch": "research/avatarrex-lbn1-targeted-extraction-plan-b-20260726",
+  "base_branch": "research/external-baseline-feasibility-from-bundle-rerun-20260726",
+  "base_head": "572637f08aef21fde35dcd7f8879ff74549c2afc",
+  "summary": "paper_protocol/avatarrex_lbn1_plan_b/avatarrex_lbn1_plan_b_blocked_summary.json",
+  "report": "paper_protocol/avatarrex_lbn1_plan_b/AVATARREX_LBN1_PLAN_B_TARGETED_EXTRACTION_REPORT_20260726.md",
+  "runner": "tools/execute_avatarrex_lbn1_plan_b.py",
+  "allowlist_txt": "paper_protocol/avatarrex_lbn1_plan_b/manifests/avatarrex_lbn1_plan_b_allowlist.txt",
+  "allowlist_json": "paper_protocol/avatarrex_lbn1_plan_b/manifests/avatarrex_lbn1_plan_b_allowlist.json",
+  "classification": "AVATARREX_PLAN_B_EXTRACTION_CONTRACT_FAIL",
+  "failure_kind": "ARCHIVE_SOURCE_UNREACHABLE",
+  "next_task": "USER_RESTORE_CLOUD_ACCESS_AND_RERUN_AVATARREX_PLAN_B_PREFLIGHT",
+  "next_task_started": false,
+  "paper_final": false,
+  "operations": {
+    "archive_mutations": 0,
+    "formal_data_root_status": "NONE",
+    "extraction_calls": 0,
+    "preprocessing_steps": 0,
+    "training_steps": 0,
+    "generation_calls": 0,
+    "paper_modifications": 0
+  },
+  "blocked_evidence": {
+    "wsl_archive_check": "WSL_ARCHIVE_MISSING",
+    "ssh_autodl_check": "FAILED_COULD_NOT_RESOLVE_HOSTNAME_AUTODL",
+    "windows_mirror_sha256_status": "PASS_READ_ONLY_MIRROR_NOT_USED_FOR_EXTRACTION"
+  }
+}
