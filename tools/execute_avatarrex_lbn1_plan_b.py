@@ -829,7 +829,13 @@ def run_loader_smoke(staging_root: Path) -> dict[str, Any]:
     }
 
 
-def verify_extraction(staging_root: Path, members: list[Member], audit_root: Path) -> dict[str, Any]:
+def verify_extraction(
+    staging_root: Path,
+    members: list[Member],
+    audit_root: Path,
+    *,
+    run_loader_check: bool = True,
+) -> dict[str, Any]:
     if not staging_root.exists():
         raise PlanBFailure(
             f"Staging root does not exist: {staging_root}",
@@ -933,7 +939,11 @@ def verify_extraction(staging_root: Path, members: list[Member], audit_root: Pat
         )
     calibration_status = verify_calibration(staging_root)
     body_parameter_status = verify_smpl_params(staging_root)
-    loader_status = run_loader_smoke(staging_root)
+    loader_status = (
+        run_loader_smoke(staging_root)
+        if run_loader_check
+        else {"status": "NOT_RUN_PENDING_USER_AUTHORIZATION"}
+    )
 
     inventory_path = audit_root / "avatarrex_lbn1_plan_b_inventory.json"
     sha_registry_path = audit_root / "avatarrex_lbn1_plan_b_sha_registry.json"
@@ -965,23 +975,25 @@ def verify_extraction(staging_root: Path, members: list[Member], audit_root: Pat
             ],
         },
     )
-    write_json(
-        loader_canary_path,
-        {
-            "schema_version": "avatarrex_lbn1.plan_b.loader_canary_manifest.v1",
-            "task_id": TASK_ID,
-            "plan_id": PLAN_ID,
-            "attempt_id": ATTEMPT_ID,
-            "camera_ids": CAMERA_IDS,
-            "frame_ids": FRAME_IDS,
-            "loader_status": loader_status,
-        },
-    )
+    if run_loader_check:
+        write_json(
+            loader_canary_path,
+            {
+                "schema_version": "avatarrex_lbn1.plan_b.loader_canary_manifest.v1",
+                "task_id": TASK_ID,
+                "plan_id": PLAN_ID,
+                "attempt_id": ATTEMPT_ID,
+                "camera_ids": CAMERA_IDS,
+                "frame_ids": FRAME_IDS,
+                "loader_status": loader_status,
+            },
+        )
     return {
         "extracted_file_count": len(inventory),
         "extracted_total_bytes": total_bytes,
         "rgb_count": len(rgb_pairs),
         "pha_count": len(pha_pairs),
+        "metadata_count": 2,
         "rgb_pha_pairing_status": "PASS_EXACT_800_PAIRS",
         "calibration_status": calibration_status,
         "body_parameter_status": body_parameter_status,
@@ -989,10 +1001,15 @@ def verify_extraction(staging_root: Path, members: list[Member], audit_root: Pat
         "missing_file_count": 0,
         "unexpected_file_count": 0,
         "empty_file_count": 0,
+        "duplicate_relative_path_count": 0,
         "image_parse_count": image_parse_count,
         "inventory_path": str(inventory_path),
         "sha_registry_path": str(sha_registry_path),
-        "loader_canary_manifest_path": str(loader_canary_path),
+        "loader_canary_manifest_path": (
+            str(loader_canary_path)
+            if run_loader_check
+            else "NOT_CREATED_PENDING_USER_AUTHORIZATION"
+        ),
     }
 
 
