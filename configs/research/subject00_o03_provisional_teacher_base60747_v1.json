@@ -1,0 +1,111 @@
+{
+  "schema_version": "canondressgs.subject00.o03_provisional_teacher_base60747.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-O03-PROVISIONAL-TEACHER-MICROPILOT-001",
+  "classification": "PROVISIONAL_BASE60747_RESULT",
+  "paper_eligible": false,
+  "subject": "Subject00",
+  "garment": "O03",
+  "base": {
+    "class": "PROVISIONAL_INTERMEDIATE_BASE",
+    "formal_final": false,
+    "step": 60747,
+    "checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "checkpoint_bytes": 724584413,
+    "checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "sidecar_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.sidecar.json"
+  },
+  "source_git": {
+    "launch_branch": "research/subject00-formal-base-101245-execution-20260726",
+    "launch_head": "9a434899bd09cdcdc1e648d69ce32d7dfe2f6e3c",
+    "execution_branch": "research/subject00-base60747-o03-provisional-teacher-micropilot-20260727",
+    "mask_promotion_branch": "research/subject00-24-cell-mask-human-review-promotion-20260727",
+    "mask_promotion_head": "4ed89d9ac5076d13fef1c2cad8fcf28e3d236ac0"
+  },
+  "source_evidence": {
+    "mask_accepted_registry_sha256": "c84cbd9b54016b18160671a9e2e70b242b87305e2956dbb4b10048c53b7533de",
+    "teacher_target_preflight_draft_sha256": "408debe2b85f3a9de6f26c42ac827ab6255693e3a501926668ff0f206b2c6ede",
+    "mask_promotion_final_classification": "SUBJECT00_24_OF_24_MASKS_ACCEPTED_TEACHER_TARGET_PREFLIGHT_PENDING",
+    "mask_accepted_count": 24,
+    "teacher_target_count_before_preflight": 0
+  },
+  "teacher_contract_evidence": {
+    "source_branch": "research/full-avatar-finetuning-o03-equal-step-micropilot-20260726",
+    "source_head": "efe576f599b6bee45aad00bd10cb079a403dac05",
+    "subject02_config_path": "configs/research/subject02_multi_outfit_explicit_basis_v1.yaml",
+    "subject02_config_sha256": "0a91704a8f933cedc1f698965e75ee0f7c07bdf7017d2b90c492209cd416561c",
+    "teacher_runner_path": "tools/run_multi_outfit_explicit_basis.py",
+    "teacher_runner_sha256": "aa495762810bb4095e12d508eb1a951bdec469e1ac8700f690bbc3651e7e70ce",
+    "capacity_loss_path": "scene/representation_capacity_oracle.py",
+    "capacity_loss_sha256": "1fad8f7185766fedf85c9bc2e60238ad69c6ef7ac96f28263a320733c14e187c"
+  },
+  "targets": {
+    "count": 8,
+    "slots": [
+      "slot_00",
+      "slot_01",
+      "slot_02",
+      "slot_03",
+      "slot_04",
+      "slot_05",
+      "slot_06",
+      "slot_07"
+    ],
+    "camera_ids": [17, 21, 14, 23, 11, 2, 9, 5],
+    "directions": [
+      "front",
+      "front-left",
+      "front-right",
+      "left",
+      "right",
+      "back-left",
+      "back-right",
+      "back"
+    ],
+    "pose_frame_id": 0,
+    "strict_split_role": "STRICT_TRAIN",
+    "asset_layout": "inputs/targets/{slot}/{accepted_raw.png,person_mask.png,garment_mask.png}"
+  },
+  "teacher": {
+    "protocol": "representation_triage_rung2_direct_shared_canonical",
+    "loss_name": "CAPACITY_ORACLE_LOSS_V1",
+    "steps": 1200,
+    "seed": 20260718,
+    "view_schedule": "deterministic_round_robin_slot_00_to_slot_07",
+    "optimizer": {
+      "class": "Adam",
+      "geometry_lr": 0.001,
+      "appearance_lr": 0.002,
+      "gradient_clip_norm": 1.0
+    },
+    "scheduler": {
+      "class": "NONE",
+      "learning_rate_policy": "constant"
+    },
+    "loss_weights": {
+      "garment_rgb": 1.0,
+      "alpha_foreground": 0.5,
+      "new_silhouette_alpha": 1.0,
+      "boundary_rgb": 0.25,
+      "protected_rgb": 10.0,
+      "protected_alpha": 5.0,
+      "stability": 0.0001
+    },
+    "checkpoint_steps": [0, 300, 600, 900, 1200],
+    "initial_stability_step": 200
+  },
+  "runtime": {
+    "data_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "assets_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+    "availability_manifest": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001",
+    "attempt": "attempt_001",
+    "minimum_free_bytes": 32212254720,
+    "gpu_name": "NVIDIA GeForce RTX 4090"
+  },
+  "mutations": {
+    "formal_base_checkpoint_mutations_allowed": false,
+    "source_data_mutations_allowed": false,
+    "paper_modifications_allowed": false,
+    "output_only_in_provisional_run_root": true
+  }
+}
