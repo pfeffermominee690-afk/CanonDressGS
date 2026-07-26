@@ -1,0 +1,144 @@
+{
+  "acceptance_gates": [
+    "exact_resolution",
+    "similarity_registration",
+    "complete_hood_removal",
+    "correct_O03_suit",
+    "identity_consistency",
+    "pose_camera_preservation",
+    "hands_feet_completeness",
+    "background_geometry",
+    "garment_boundary",
+    "single_person"
+  ],
+  "all_four_requests_must_pass": true,
+  "api_key_read_allowed": false,
+  "attempt_namespace": "attempt_004_o03_hood_removal_targeted_canary",
+  "automatic_acceptance": false,
+  "canary_name": "SUBJECT00_O03_HOOD_REMOVAL_TARGETED_CANARY",
+  "cloud_image_write_allowed": false,
+  "content_sha256": "720e0b9e53752ba11304cd6c456c7aa63e0e4db01a746fb439b49da84d77c4b0",
+  "expected_output_format": "PNG",
+  "expected_resolution": {
+    "height": 1166,
+    "orientation": "landscape",
+    "width": 1349
+  },
+  "external_api_allowed": false,
+  "generation_authorized": false,
+  "generation_call_count": 0,
+  "native_resolution_required": true,
+  "paper_final": false,
+  "png_parse_required": true,
+  "postprocessing_policy": {
+    "background_outpainting": false,
+    "crop": false,
+    "padding": false,
+    "person_scaling": false,
+    "portrait_canvas": false,
+    "re_encoding_repair": false,
+    "resize": false
+  },
+  "prompt_contract": [
+    "Replace the entire source hoodie with a complete formal suit.",
+    "Remove the original blue-and-white hoodie completely.",
+    "Remove the source hood from the head and neck region.",
+    "The final outfit must contain no hood.",
+    "The head, hair, face, ears, and neck must remain naturally visible according to the source identity and camera direction.",
+    "Preserve identity, face structure, skin tone, body proportions, pose, hands, feet, camera, framing, lighting, and background.",
+    "Generate one person only.",
+    "Do not retain blue hoodie fabric around the head, neck, shoulders, torso, sleeves, or waist.",
+    "Do not add a coat hood, sweatshirt hood, scarf-like hood, or head covering.",
+    "Produce a complete suit jacket, shirt, trousers, and formal styling under the frozen O03 garment contract."
+  ],
+  "request_count": 4,
+  "requests": [
+    {
+      "camera": "cam17",
+      "expected_resolution": {
+        "height": 1166,
+        "orientation": "landscape",
+        "width": 1349
+      },
+      "garment": "O03",
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam17_frame00000000.jpg",
+      "orientation": "front",
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam17/00000000.jpg",
+      "source_condition_sha256": "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam17/00000000.jpg",
+      "source_mask_sha256": "c54df74796fb9fdb500f264ebf6c9d534200a9051e8ce80eb2f2c985c153e234",
+      "source_request_id": "subject00_O03_slot00_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O03_slot00_cand00.json",
+      "source_request_sha256": "bd95ad5c20e41169e20a83f828e6a4d9c86f440aa97467ecc72075f45d2c7237"
+    },
+    {
+      "camera": "cam11",
+      "expected_resolution": {
+        "height": 1166,
+        "orientation": "landscape",
+        "width": 1349
+      },
+      "garment": "O03",
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam11_frame00000000.jpg",
+      "orientation": "right",
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "slot": "slot_04",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam11/00000000.jpg",
+      "source_condition_sha256": "7b990d29fc29d2b96756db898fd01dc35f20f7995523ef2c9a56b885d32568b8",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam11/00000000.jpg",
+      "source_mask_sha256": "47078237433af5e8a291f54fb8cdf7dc8abeec09ad9caa039fe8cc4c0f9e7069",
+      "source_request_id": "subject00_O03_slot04_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O03_slot04_cand00.json",
+      "source_request_sha256": "38b014211d7472f1bace0d0c8a20d7eca64046502872128977367f872e0eac71"
+    },
+    {
+      "camera": "cam02",
+      "expected_resolution": {
+        "height": 1166,
+        "orientation": "landscape",
+        "width": 1349
+      },
+      "garment": "O03",
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam02_frame00000000.jpg",
+      "orientation": "back-left",
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam02/00000000.jpg",
+      "source_condition_sha256": "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam02/00000000.jpg",
+      "source_mask_sha256": "0e579c3fad7366c00438a429629d6aaf36497e880d113936d1c9d61ad5298150",
+      "source_request_id": "subject00_O03_slot05_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O03_slot05_cand00.json",
+      "source_request_sha256": "d0bfa8c39672545469b461ed10d81605ecba35e483fbff0788ead2b9d3d9db05"
+    },
+    {
+      "camera": "cam05",
+      "expected_resolution": {
+        "height": 1166,
+        "orientation": "landscape",
+        "width": 1349
+      },
+      "garment": "O03",
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam05_frame00000000.jpg",
+      "orientation": "back",
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam05/00000000.jpg",
+      "source_condition_sha256": "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam05/00000000.jpg",
+      "source_mask_sha256": "1c6f0cb0edd14096cf862e861ba3156905aabc1d6f4a13ce729c060475efb809",
+      "source_request_id": "subject00_O03_slot07_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O03_slot07_cand00.json",
+      "source_request_sha256": "8dcf39aefefbc63825097157c66a9145e8614f7cf25559f601cb6c224b35f4db"
+    }
+  ],
+  "retry_policy": {
+    "automatic_retry": false,
+    "candidate_count_per_cell": 1,
+    "retry_count": 0
+  },
+  "schema_version": "canondressgs.subject00.o03_hood_removal_canary_manifest_draft.v1",
+  "task_id": "AAAI27-SUBJECT00-1349-HUMAN-SELECTION-AND-O03-CANARY-PREP-001"
+}
