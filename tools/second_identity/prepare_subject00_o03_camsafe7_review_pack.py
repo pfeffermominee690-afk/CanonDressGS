@@ -1212,6 +1212,7 @@ Human fields remain null. The unique next task is:
         "review_index": index_record,
         "review_readme": file_record(readme_path, role="review_readme"),
         "human_fields": dict(HUMAN_FIELDS),
+        "optimizer_steps": 0,
         "immutability": {
             "source_file_count": len(immutable_before),
             "before_equals_after": True,
