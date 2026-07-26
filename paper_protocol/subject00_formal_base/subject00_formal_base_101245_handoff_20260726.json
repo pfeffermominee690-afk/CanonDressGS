@@ -1,0 +1,40 @@
+{
+  "schema_version": "canondressgs.subject00.formal_base_101245_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-BASE-EXECUTION-PREFLIGHT-001",
+  "source_branch": "research/subject00-storage-reclamation-execution-20260725",
+  "source_head": "d541e46a7963502d1e6613cbdfa477fdb4e82d6c",
+  "preflight_branch": "research/subject00-formal-base-execution-preflight-20260726",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_formal_base_execution_preflight",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_formal_base_execution_preflight",
+  "subject": "THuman4.0 Subject00",
+  "identity": "subject00",
+  "training_authorized": false,
+  "optimizer_steps": 0,
+  "output_root_created": false,
+  "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001",
+  "attempt_id": "attempt_001",
+  "status": "READY_PENDING_USER_AUTHORIZATION",
+  "final_classification": "SUBJECT00_FORMAL_BASE_EXECUTION_CONTRACT_READY_PENDING_USER_AUTHORIZATION",
+  "next_task": "USER_AUTHORIZE_SUBJECT00_FORMAL_BASE_101245_STEP_EXECUTION",
+  "authorization_required_before_training": true,
+  "must_not_do_without_user_authorization": [
+    "create output root",
+    "create attempt_001",
+    "run training forward/backward",
+    "call optimizer.step",
+    "write checkpoint",
+    "run formal evaluation render"
+  ],
+  "allowed_next_gate_after_authorization": [
+    "recheck df -B1 /root/autodl-tmp",
+    "recheck nvidia-smi",
+    "recheck output root absent",
+    "launch exactly from Subject00 short-canary step0 checkpoint",
+    "write only under the frozen output root and attempt_001"
+  ],
+  "notes": [
+    "The formal output root in this preflight is the requested SUBJECT00-FORMAL-BASE-101245-001 root.",
+    "Prior formal protocol evidence used SUBJECT00-MMLPHUMAN-FORMAL-STRICT-SPLIT-001; that alias history is documented and not silently substituted.",
+    "Conservative peak-write projection is tight against the 32,212,254,720-byte gate, but the formal pre-attempt live-free gate passes."
+  ]
+}

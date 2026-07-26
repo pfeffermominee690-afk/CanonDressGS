@@ -1,0 +1,168 @@
+{
+  "schema_version": "canondressgs.subject00.formal_base_101245_execution_manifest_draft.v1",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-BASE-EXECUTION-PREFLIGHT-001",
+  "subject": "THuman4.0 Subject00",
+  "identity": "subject00",
+  "source": {
+    "branch": "research/subject00-storage-reclamation-execution-20260725",
+    "head": "d541e46a7963502d1e6613cbdfa477fdb4e82d6c",
+    "history_classification": "PASS_WITH_AUDITED_GATE_CORRECTION"
+  },
+  "execution_branch": "research/subject00-formal-base-execution-preflight-20260726",
+  "training_authorized": false,
+  "optimizer_steps_executed_by_preflight": 0,
+  "output_root_created_by_preflight": false,
+  "data_mutations": 0,
+  "checkpoint_mutations": 0,
+  "paper_modifications": 0,
+  "data": {
+    "raw_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "processed_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+    "data_manifest_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_CLOUD_DATA_MANIFEST.json",
+    "data_manifest_sha256": "e61ca6061f0a85be9c5c6e1d9163341c10749bc1a4ff1b14d27f64b5705aa99e",
+    "data_tree_sha256": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "availability_manifest_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+    "availability_manifest_file_sha256": "da9cbce12b6d0fa9a1fddced662eefa9d2f4f331011fbbf3a9944fc878011c7a",
+    "availability_manifest_canonical_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+    "frame_count": 2500,
+    "camera_count": 24,
+    "rgb_count": 59704,
+    "mask_count": 59704,
+    "rgb_mask_pairing_status": "PASS",
+    "resolution_width_height": [1330, 1150],
+    "calibration": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7"
+    },
+    "body_parameters": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "status": "PASS"
+    },
+    "template": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00/template/template_smplx_body_surface.ply",
+      "sha256": "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031",
+      "vertices": 10475,
+      "faces": 20908
+    },
+    "lbs": {
+      "mode": "surface_attachment_cached",
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00/surface_lbs/lbs_weights.npy",
+      "file_sha256": "56aa68a9d4baade67621fa2bfac462ac88074eeaf7c9bfdbe86f2360b91261a1",
+      "array_sha256": "5176b447e1213e9275e08633589ef32ba4841825a05957d77b2f2c4ce18dc899",
+      "shape": [200000, 55],
+      "manifest_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00/surface_lbs/surface_attachment_manifest.json",
+      "manifest_sha256": "de6cd51fe3f81e29139b45494860b186038b75a378b101e7428252b3b66c1af8"
+    }
+  },
+  "initialization": {
+    "policy": "SUBJECT00_SHORT_CANARY_STEP0_ONLY",
+    "checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+    "checkpoint_file_name": "step_000000.pth",
+    "checkpoint_step": 0,
+    "checkpoint_bytes": 701938720,
+    "checkpoint_sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a",
+    "forbidden_initializations": [
+      "Subject02 checkpoint",
+      "Subject00 short-canary non-step0 checkpoint",
+      "optimizer-step checkpoint",
+      "garment-specific checkpoint",
+      "Full Avatar checkpoint",
+      "Teacher Endpoint",
+      "CanonDressGS endpoint",
+      "historical or unsealed checkpoint"
+    ]
+  },
+  "formal_training": {
+    "config_path": "config/subject00_surface_lbs_formal_strict_split.yaml",
+    "config_sha256": "be28dacbea5a3e4b35336556f752b1548ebb8c3c0b355be8348e405df49bd356",
+    "total_optimizer_steps": 101245,
+    "record_manifest_path": "paper_protocol/second_identity/subject00_formal_train_record_manifest.json",
+    "record_manifest_sha256": "68a65728c4301b3787029a00b592289fd5058711cd5c77f5df42018af533f854",
+    "schedule_path": "paper_protocol/second_identity/subject00_formal_training_schedule.json",
+    "schedule_sha256": "8c46fbdd29699950c3f7d4510d2491b575494a315a7bfec0be3ae7d8b8cd4792",
+    "pass_count": 5,
+    "valid_records_per_pass": 20249,
+    "checkpoint_steps": [0, 20249, 40498, 60747, 80996, 100000, 101245],
+    "checkpoint_new_write_count": 6,
+    "step0_pointer_only": true,
+    "evaluation_cadence": "fixed96 trajectory at milestones; full four-quadrant streaming at step 101245",
+    "precision": "DISABLED_NO_AUTOCAST_OR_GRADSCALER",
+    "renderer": "gsplat.rasterization via scene.gaussian_model.GaussianModel.render"
+  },
+  "optimizer": {
+    "common_adam": {"betas": [0.9, 0.999], "eps": 1e-15, "weight_decay": 0.0},
+    "groups": {
+      "dxyz": {"type": "Adam", "parameter": "dxyz_vt", "lr": "0.00016 * scene_scale"},
+      "scales": {"type": "Adam", "parameter": "_scaling", "lr": 0.0005},
+      "quats": {"type": "Adam", "parameter": "_rotation", "lr": 0.0005},
+      "opacities": {"type": "Adam", "parameter": "_opacity", "lr": 0.0005},
+      "sh0": {"type": "Adam", "parameter": "_sh0", "lr": 0.0005},
+      "shN": {"type": "Adam", "parameter": "_shN", "lr": 0.000025},
+      "dxyz_bs": {"type": "Adam", "parameter": "dxyz_bs", "lr": "0.00016 * scene_scale / 10"},
+      "dscales_bs": {"type": "Adam", "parameter": "scaling_bs", "lr": 0.0001},
+      "dquats_bs": {"type": "Adam", "parameter": "rotation_bs", "lr": 0.0001},
+      "dopacities_bs": {"type": "Adam", "parameter": "opacity_bs", "lr": 0.0001},
+      "dsh0_bs": {"type": "Adam", "parameter": "sh0_bs", "lr": 0.0001},
+      "dshN_bs": {"type": "Adam", "parameter": "shN_bs", "lr": 0.0000025},
+      "encoder_feat_params": {"type": "AdamW", "parameter": "encoder_feat_params.values()", "lr": 0.0005, "weight_decay": 0.001},
+      "xyz_offset": {"type": "Adam", "parameter": "xyz_offset", "lr": 0.001}
+    },
+    "scheduler": {
+      "type": "ExponentialLR",
+      "horizon_steps": 800000,
+      "step_timing": "after_every_optimizer_step",
+      "unscheduled_groups": ["dscales_bs", "dquats_bs", "dopacities_bs", "dsh0_bs", "dshN_bs"]
+    },
+    "seed": 0
+  },
+  "resume": {
+    "resume_from": "NEAREST_COMPLETE_CHECKPOINT",
+    "same_attempt_required": true,
+    "restore_exactly": ["model state", "optimizer states", "scheduler states", "Python RNG", "NumPy RNG", "Torch RNG", "CUDA RNG states", "data-order position"],
+    "forbidden": ["restart from step 0 after any optimizer step", "silent retry", "attempt overwrite", "checkpoint substitution"]
+  },
+  "output": {
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001",
+    "attempt_id": "attempt_001",
+    "preflight_checked_absent": true,
+    "created_by_preflight": false
+  },
+  "storage": {
+    "live_total_bytes": 268435456000,
+    "live_used_bytes": 222268727296,
+    "live_free_bytes": 46166728704,
+    "filesystem": "/dev/md0",
+    "filesystem_type": "xfs",
+    "mount": "/root/autodl-tmp",
+    "projected_steady_state_bytes": 12280653758,
+    "projected_peak_write_bytes": 14231374378,
+    "projected_final_free_bytes": 33886074946,
+    "projected_minimum_free_bytes": 31935354326,
+    "formal_storage_gate_bytes": 32212254720,
+    "gate_status": "PASS_LIVE_FREE_BYTES_EXCEED_FORMAL_PRE_ATTEMPT_GATE_WITH_TIGHT_CONSERVATIVE_PEAK_MARGIN"
+  },
+  "gpu": {
+    "model": "NVIDIA GeForce RTX 4090",
+    "count": 1,
+    "free_vram_mib": 24081,
+    "utilization_percent": 0,
+    "active_compute_processes": "NONE",
+    "driver": "580.76.05",
+    "cuda_driver": "13.0"
+  },
+  "environment": {
+    "python": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python 3.10.20",
+    "torch": "2.4.1+cu121",
+    "torch_cuda": "12.1",
+    "gsplat": "1.5.3+pt24cu121",
+    "pytorch3d": "0.7.8",
+    "cv2": "5.0.0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "open3d": "0.19.0",
+    "status": "PASS"
+  },
+  "final_classification": "SUBJECT00_FORMAL_BASE_EXECUTION_CONTRACT_READY_PENDING_USER_AUTHORIZATION",
+  "next_task": "USER_AUTHORIZE_SUBJECT00_FORMAL_BASE_101245_STEP_EXECUTION"
+}
