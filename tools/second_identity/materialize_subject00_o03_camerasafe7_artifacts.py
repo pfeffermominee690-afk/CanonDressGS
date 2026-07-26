@@ -247,7 +247,7 @@ remain the primary provisional review evidence.
 ## Review boundary
 
 - Review package: `{master["review"]["review_package_path"]}`
-- Manifest: `{master["review"]["manifest_path"]}`
+- Manifest: `{master["final_fields"]["REVIEW_MANIFEST_PATH"]}`
 - Different-camera check: `{master["animation"]["different_camera"]["status"]}`
 - Different-pose check: `{master["animation"]["different_pose"]["status"]}`
 
@@ -827,6 +827,8 @@ def materialize(args: argparse.Namespace) -> None:
     human_review = {
         **review,
         **common,
+        "source_review_manifest_path": str(paths["review"]),
+        "source_review_manifest_sha256": sha256_file(paths["review"]),
         "run_root_only_image_policy": True,
         "git_image_count": 0,
     }
