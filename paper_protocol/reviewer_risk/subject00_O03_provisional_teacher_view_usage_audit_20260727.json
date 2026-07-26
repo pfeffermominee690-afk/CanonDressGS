@@ -1,0 +1,623 @@
+{
+  "artifact_generation_head": "9a8a5d3be075b8fdb3dd01f16cd8d3b1315e1eeb",
+  "audit_execution_head": "4027357fc0990da1405006735a931656c7993521",
+  "conclusion": "PASS_EXACT_1200_STEP_ROUND_ROBIN_150_SAMPLES_PER_VIEW; SLOT04_INCLUDED_IN_OPTIMIZER_LOSS_DENOMINATOR_AND_FINAL_METRICS",
+  "optimizer_steps_by_this_task": 0,
+  "paper_final": false,
+  "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001",
+  "sampling": {
+    "round_robin_camera_sequence_exact": true,
+    "round_robin_slot_sequence_exact": true,
+    "sample_count_sum": 1200,
+    "slot04_included_in_final_metrics": true,
+    "slot04_included_in_loss_denominator": true,
+    "slot04_included_in_optimizer": true,
+    "step_sequence_exact_1_to_1200": true,
+    "structured_training_record_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/training/state_records.jsonl",
+    "structured_training_record_sha256": "47c35ed4423e4aedd0d61e72d6e6be4476a778b3588a6b8d737db3938ea11740",
+    "training_code_schedule_evidence": {
+      "expression": "target = targets[(step - 1) % 8]",
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_o03_provisional_teacher_camera_metric_review/tools/second_identity/run_subject00_o03_provisional_teacher_base60747.py",
+      "per_step_behavior": "One selected target is rendered, contributes every configured loss term, then exactly one optimizer step is executed."
+    },
+    "training_step_count": 1200,
+    "view_denominator_values": [
+      8
+    ],
+    "view_sample_counts": {
+      "slot_00": 150,
+      "slot_01": 150,
+      "slot_02": 150,
+      "slot_03": 150,
+      "slot_04": 150,
+      "slot_05": 150,
+      "slot_06": 150,
+      "slot_07": 150
+    }
+  },
+  "schema_version": "canondressgs.subject00.o03_provisional_teacher_view_usage_audit.v1",
+  "source_audit_sidecar_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/evaluations/subject00_O03_provisional_teacher_camera_metric_review_20260727.json",
+  "source_audit_sidecar_sha256": "2ffae7346a22fde67f56e9851f085410036f6fcffe22d129ee687055ab7f8b3c",
+  "target_camera_ids": [
+    17,
+    21,
+    14,
+    23,
+    11,
+    2,
+    9,
+    5
+  ],
+  "target_cell_count": 8,
+  "target_inventory": [
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam17",
+      "camera_K": [
+        [
+          1129.202880859375,
+          0.0,
+          669.2590942382812
+        ],
+        [
+          0.0,
+          1129.5264892578125,
+          567.3696899414062
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 17,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "front",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 3384,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot00_canary_attempt004_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_00/garment_mask.png",
+        "sha256": "12a0b7f6375969b2e8112746daf3a8414ad62b37b2dd7324a25179c0b3b01703",
+        "status": "PASS"
+      },
+      "height": 1165,
+      "human_override": null,
+      "limitation_codes": [
+        "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED",
+        "RAW_RETAINED_IN_TECHNICAL_FAILURE_PATH_AFTER_RESOLUTION_FAMILY_CORRECTION"
+      ],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3886,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot00_canary_attempt004_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_00/person_mask.png",
+        "sha256": "c22ed332c668e1780ab43f895c1a2fbe9df91048ef8b45927f4366e08fa762f7",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2121116,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\technical_failures\\subject00_O03_slot00_canary_attempt004_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_00/accepted_raw.png",
+        "sha256": "f5197d9646ccf60ddffe3184e295e2afed2f04ff3ccbe95b5908974f6652e9e1",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.019943552359851,
+          0.0002695117808666926,
+          -0.14430855500952763
+        ],
+        [
+          -0.0002695117808666926,
+          1.019943552359851,
+          1.265576419859527
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "sampler_index": 0,
+      "slot": "slot_00",
+      "width": 1350
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam21",
+      "camera_K": [
+        [
+          1136.0640869140625,
+          0.0,
+          662.0599975585938
+        ],
+        [
+          0.0,
+          1136.3563232421875,
+          563.8951416015625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 21,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "front-left",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 3338,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot01_remaining_attempt005_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_01/garment_mask.png",
+        "sha256": "9d9701b32b4ccf39e5cc9e0ed1e03f4ba2b161f5ffdd04eecf08346aa75272b7",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": null,
+      "limitation_codes": [],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3835,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot01_remaining_attempt005_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_01/person_mask.png",
+        "sha256": "bda7ba50815513704f4e6fef1cbcd9c6a4254b66c2a43569d7651b7042f4d595",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2092249,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_005_subject00_remaining_six_cell_generation\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot01_remaining_attempt005_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_01/accepted_raw.png",
+        "sha256": "917d7d74d0b9dba42919cd75a27cdf04c160d8a8084bd8b66a204eb15e089b3f",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0239549442515063,
+          0.00011542970476091074,
+          -1.4493846607765777
+        ],
+        [
+          -0.00011542970476091074,
+          1.0239549442515063,
+          0.33486778644522713
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "sampler_index": 1,
+      "slot": "slot_01",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam14",
+      "camera_K": [
+        [
+          1138.29443359375,
+          0.0,
+          660.090576171875
+        ],
+        [
+          0.0,
+          1138.34423828125,
+          567.7401733398438
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 14,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "front-right",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 3089,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot02_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_02/garment_mask.png",
+        "sha256": "1e1292850e66880c69c44bc7a1955ab72c16da7f4f56f43a62f1291255bc704d",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": null,
+      "limitation_codes": [],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3551,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot02_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_02/person_mask.png",
+        "sha256": "0d6885d32955e95457a4796187a5c793e05fc45242109743eba90885de52aca6",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2094338,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot02_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_02/accepted_raw.png",
+        "sha256": "cc48b0e48fc9e09e5a6c9d5cba8f56b818e9deea3b1468251c94f6cccfdc9196",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0266454449640348,
+          2.9239205267308382e-05,
+          -0.5033108357466869
+        ],
+        [
+          -2.9239205267308382e-05,
+          1.0266454449640348,
+          0.4150153935753502
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot02_cand00",
+      "sampler_index": 2,
+      "slot": "slot_02",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam23",
+      "camera_K": [
+        [
+          1120.84716796875,
+          0.0,
+          674.9315185546875
+        ],
+        [
+          0.0,
+          1121.910888671875,
+          577.9261474609375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 23,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "left",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 2925,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot03_cand01_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_03/garment_mask.png",
+        "sha256": "35da2afb3718b269737e18fe955f3558d8e41720bc1e206a490d942dbecd326e",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": null,
+      "limitation_codes": [],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3211,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot03_cand01_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_03/person_mask.png",
+        "sha256": "d428a86495d7d3fdd492be35697c08ada501412f9c83aa83196fb180ff15aef7",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2117651,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot03_cand01.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_03/accepted_raw.png",
+        "sha256": "47601e3cde68fdac9461f1fc74c4f47f7db47611e323778fc22cef476944754f",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0275258434063523,
+          9.500344438327829e-05,
+          -0.7513391705310312
+        ],
+        [
+          -9.500344438327829e-05,
+          1.0275258434063523,
+          0.8918651722043339
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot03_cand01",
+      "sampler_index": 3,
+      "slot": "slot_03",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam11",
+      "camera_K": [
+        [
+          1129.52783203125,
+          0.0,
+          674.9684448242188
+        ],
+        [
+          0.0,
+          1128.371826171875,
+          547.0431518554688
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 11,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "right",
+      "formal_camera_eligible_flag": false,
+      "garment_mask": {
+        "bytes": 2856,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot04_canary_attempt004_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_04/garment_mask.png",
+        "sha256": "6f95b563b5a809bb53cea605f656c9cc7f284d2a28188d3e445704599643b8d9",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": "PASS_VISUALLY_ACCEPTABLE_ALIGNMENT",
+      "limitation_codes": [
+        "MACHINE_REGISTRATION_FAIL_WITH_DOCUMENTED_HUMAN_OVERRIDE",
+        "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+      ],
+      "machine_registration": "AFFINE_OR_PROJECTIVE_RECOMPOSITION_FAIL",
+      "person_mask": {
+        "bytes": 3265,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot04_canary_attempt004_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_04/person_mask.png",
+        "sha256": "85a894318a2b8cf585c85df99dca777ef691b8fa5cc0cf0c4149d9379e5b2c6c",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2201351,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot04_canary_attempt004_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_04/accepted_raw.png",
+        "sha256": "fa73168d85d2e58d48172954bc85740db82f131f61aaaf42a09d731107d0e30c",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0274323687693416,
+          -0.0006143592356051084,
+          -1.0020963644478351
+        ],
+        [
+          0.0006143592356051084,
+          1.0274323687693416,
+          2.4235322177671605
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "sampler_index": 4,
+      "slot": "slot_04",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam02",
+      "camera_K": [
+        [
+          1122.50390625,
+          0.0,
+          663.93408203125
+        ],
+        [
+          0.0,
+          1122.2940673828125,
+          565.6901245117188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 2,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "back-left",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 3273,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot05_canary_attempt004_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_05/garment_mask.png",
+        "sha256": "8c955ee53837b69d320dfd7eb4645403a78dec0ef473d40eb6107ae477e7f87d",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": null,
+      "limitation_codes": [
+        "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+        "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+      ],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3629,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot05_canary_attempt004_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_05/person_mask.png",
+        "sha256": "190d8943391bbff1d0a822ecf89201f2f27258f573f186cab62f227f15357b72",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2031707,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot05_canary_attempt004_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_05/accepted_raw.png",
+        "sha256": "379562123b1d918d68171b9224068dbe905d2d5e108900408b5da82c49128aa1",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0263530897046271,
+          3.534186647295479e-06,
+          -0.3896067080263618
+        ],
+        [
+          -3.534186647295479e-06,
+          1.0263530897046271,
+          0.3828137853691785
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "sampler_index": 5,
+      "slot": "slot_05",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam09",
+      "camera_K": [
+        [
+          1130.19921875,
+          0.0,
+          661.3673706054688
+        ],
+        [
+          0.0,
+          1129.7362060546875,
+          556.1578979492188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 9,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "back-right",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 3239,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot06_remaining_attempt005_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_06/garment_mask.png",
+        "sha256": "700767e5145cf1b6be32fac716a764ba484bb2b69c568226189c7664281b75fc",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": null,
+      "limitation_codes": [
+        "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+      ],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3704,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot06_remaining_attempt005_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_06/person_mask.png",
+        "sha256": "ec9eb189d59a13dbc3c17ff3f73910295b8c3c93a63974e614724f6f57f31653",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 1934751,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_005_subject00_remaining_six_cell_generation\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot06_remaining_attempt005_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_06/accepted_raw.png",
+        "sha256": "8f843334c5ecda1003f70fe67482dff5e983387dc7281e336e2546194e2fff14",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0159180563376666,
+          0.0001476816516905541,
+          -1.985204281725633
+        ],
+        [
+          -0.0001476816516905541,
+          1.0159180563376666,
+          -0.031540810475466356
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "sampler_index": 6,
+      "slot": "slot_06",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "actual_training_eligible_flag": true,
+      "camera": "cam05",
+      "camera_K": [
+        [
+          1116.182861328125,
+          0.0,
+          671.1694946289062
+        ],
+        [
+          0.0,
+          1115.817138671875,
+          564.6517333984375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 5,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "back",
+      "formal_camera_eligible_flag": true,
+      "garment_mask": {
+        "bytes": 3468,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\04_garment_masks\\O03\\subject00_O03_slot07_canary_attempt004_cand00_garment_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_07/garment_mask.png",
+        "sha256": "4ea3e7462d74911a7cb7da8edb7ee5c121cedcb9b3abc280f49504487b646f14",
+        "status": "PASS"
+      },
+      "height": 1166,
+      "human_override": null,
+      "limitation_codes": [
+        "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+        "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+      ],
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "person_mask": {
+        "bytes": 3933,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot07_canary_attempt004_cand00_person_mask.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_07/person_mask.png",
+        "sha256": "6e6c152e234dfe363c18bcbc273f84fa7b62872fac4cebec83ba98d0c62590db",
+        "status": "PASS"
+      },
+      "raw": {
+        "bytes": 2068400,
+        "original_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot07_canary_attempt004_cand00.png",
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/targets/slot_07/accepted_raw.png",
+        "sha256": "9300293c0b028f5f7f194f5de6d56426404938a84ff61ec37d6ce56afab84441",
+        "status": "PASS"
+      },
+      "registration_transform": [
+        [
+          1.0257389354252888,
+          0.00034293950484165807,
+          -1.0059366915480346
+        ],
+        [
+          -0.00034293950484165807,
+          1.0257389354252888,
+          1.6468395439598023
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "sampler_index": 7,
+      "slot": "slot_07",
+      "width": 1349
+    }
+  ],
+  "target_request_ids": [
+    "subject00_O03_slot00_canary_attempt004_cand00",
+    "subject00_O03_slot01_remaining_attempt005_cand00",
+    "subject00_O03_slot02_cand00",
+    "subject00_O03_slot03_cand01",
+    "subject00_O03_slot04_canary_attempt004_cand00",
+    "subject00_O03_slot05_canary_attempt004_cand00",
+    "subject00_O03_slot06_remaining_attempt005_cand00",
+    "subject00_O03_slot07_canary_attempt004_cand00"
+  ],
+  "task_id": "AAAI27-SUBJECT00-O03-PROVISIONAL-TEACHER-CAMERA-METRIC-REVIEW-001"
+}

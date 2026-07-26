@@ -1,0 +1,1739 @@
+{
+  "artifact_generation_head": "9a8a5d3be075b8fdb3dd01f16cd8d3b1315e1eeb",
+  "audit_execution_head": "4027357fc0990da1405006735a931656c7993521",
+  "camera_contract": {
+    "camera_contamination_status": "NONUNIQUE_SLOT04_CAMERA_USED_150_OF_1200_TRAINING_STEPS_AND_INCLUDED_IN_FINAL_METRICS",
+    "formal_camera_binding_status": "BLOCKED_22_OF_24_UNIQUE_SIMILARITY_BINDINGS_2_OF_24_HUMAN_OVERRIDE_CAMERA_MODELS_NONUNIQUE",
+    "formal_camera_registry_git_path": "git:762fb6a6621e461000b909f749c72a244d55feb2:paper_protocol/reviewer_risk/subject00_24_cell_teacher_target_camera_registry_20260727.json",
+    "formal_decision": "Similarity left-multiplication yields unique per-record pixel intrinsics for 22 machine-pass cells. The two human overrides have materially competing similarity/projective explanations. H@K is not a unique physical pinhole K, and visual acceptance cannot recover missing physical camera evidence.",
+    "formal_preflight_branch": "research/subject00-24-cell-teacher-target-creation-preflight-20260727",
+    "formal_preflight_head": "762fb6a6621e461000b909f749c72a244d55feb2",
+    "latest_camera_blocker_resolution": {
+      "branch": "research/subject00-teacher-target-camera-blocker-resolution-20260727",
+      "camera_quarantine_count": 2,
+      "camera_salvaged_count": 0,
+      "checks": {
+        "branch_exact": true,
+        "final_classification_exact": true,
+        "o03_camera_safe_count_7": true,
+        "o03_quarantine_count_1": true,
+        "slot04_evaluation_ineligible": true,
+        "slot04_quarantined": true,
+        "slot04_review_only": true,
+        "slot04_training_ineligible": true,
+        "slot04_unresolved": true,
+        "source_head_exact": true,
+        "structured_tests_pass": true,
+        "task_id_exact": true
+      },
+      "created_at": "2026-07-26T21:57:29.878368+00:00",
+      "decision_basis": "The latest sealed successor resolves the global materialization blocker by quarantine, not by uniquely salvaging slot04. slot04 remains an unresolved human override and is ineligible for training and evaluation.",
+      "eligibility_registry_git_path": "git:a434ae7a78fe898be2658180f20bbcd4391a64c0:paper_protocol/reviewer_risk/subject00_teacher_target_camera_eligibility_registry_20260727.json",
+      "final_classification": "SUBJECT00_TEACHER_TARGET_CAMERA_BLOCKER_RESOLVED_WITH_QUARANTINE_READY_FOR_MATERIALIZATION",
+      "final_summary_git_path": "git:a434ae7a78fe898be2658180f20bbcd4391a64c0:paper_protocol/reviewer_risk/subject00_teacher_target_camera_blocker_resolution_final_summary_20260727.json",
+      "final_summary_sha256": "379ba72377e66c9f8e969e4c3d243b15fc81e101b795f5732d9ee9fd8f8e9949",
+      "head": "a434ae7a78fe898be2658180f20bbcd4391a64c0",
+      "o03_camera_safe_view_count": 7,
+      "o03_quarantined_view_count": 1,
+      "quarantine_registry_git_path": "git:a434ae7a78fe898be2658180f20bbcd4391a64c0:paper_protocol/reviewer_risk/subject00_teacher_target_quarantine_registry_20260727.json",
+      "slot04": {
+        "camera_status": "UNRESOLVED_HUMAN_OVERRIDE",
+        "evaluation_eligible": false,
+        "quarantine_reason": "NO_ALLOWED_MODEL_SURVIVES_FORBIDDEN_MODEL_AMBIGUITY_GATE",
+        "review_only": true,
+        "selected_model": null,
+        "target_record_status": "REVIEW_ONLY_CAMERA_QUARANTINED",
+        "training_eligible": false
+      },
+      "source_head": "762fb6a6621e461000b909f749c72a244d55feb2",
+      "status": "SEALED_RESOLUTION_WITH_QUARANTINE_SLOT04_REMAINS_UNRESOLVED_REVIEW_ONLY",
+      "task_id": "AAAI27-SUBJECT00-TEACHER-TARGET-CAMERA-RESOLUTION-BLOCKER-RESOLUTION-001"
+    },
+    "per_view": {
+      "slot_00": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0192886369607825,
+            0.00024222065263621948,
+            0.22543771692436823
+          ],
+          [
+            -0.00011849103918432716,
+            1.0206517836628595,
+            0.5014436266957396
+          ],
+          [
+            2.6797606095375423e-08,
+            -3.0383334851135576e-07,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.019943552359851,
+            0.0002695117808666926,
+            -0.14430855500952763
+          ],
+          [
+            -0.0002695117808666926,
+            1.019943552359851,
+            1.265576419859527
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1151.7231976386886,
+            0.3044206956559762,
+            682.6151022870653
+          ],
+          [
+            -0.3043334793802099,
+            1152.0532599381643,
+            579.7702602696552
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.019943552359851,
+            0.0002695117808666926,
+            -0.14430855500952763
+          ],
+          [
+            -0.0002695117808666926,
+            1.019943552359851,
+            1.265576419859527
+          ]
+        ],
+        "source_c2w": [
+          [
+            -0.12675398056536707,
+            -0.1657034706282594,
+            0.97799567805719,
+            -2.0868402686653393
+          ],
+          [
+            -0.5666807269119349,
+            -0.7971195909947577,
+            -0.20850240022196834,
+            1.4607965641019
+          ],
+          [
+            0.8141290928530035,
+            -0.580639888791641,
+            0.007136827226573148,
+            -0.6890450025557671
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1129.202880859375,
+            0.0,
+            669.2590942382812
+          ],
+          [
+            0.0,
+            1129.5264892578125,
+            567.3696899414062
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            -0.12675374746322632,
+            -0.5666808485984802,
+            0.8141292929649353,
+            1.1242623329162598
+          ],
+          [
+            -0.16570360958576202,
+            -0.7971195578575134,
+            -0.5806399583816528,
+            0.4185454845428467
+          ],
+          [
+            0.9779959321022034,
+            -0.20850248634815216,
+            0.007137119770050049,
+            2.35041880607605
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1165,
+          "width": 1350
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "f9028d2b22131f87f83871de8c28628e9198250237cda59d7487648c5151b768",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/corrected_registration_results_attempt004.json",
+        "transform_source_sha256": "3f2d3bebb8261716b5b66460f9c053ab6abffc7e6d36a77c6ac5b3311fdc4205"
+      },
+      "slot_01": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0230896734406878,
+            0.000287825864013516,
+            -1.2639926868754816
+          ],
+          [
+            -0.0002088185220734898,
+            1.024120291963298,
+            0.07133789671552833
+          ],
+          [
+            -2.971476976972561e-07,
+            -2.234166884954803e-07,
+            0.9999999999999999
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.0239549442515063,
+            0.00011542970476091074,
+            -1.4493846607765777
+          ],
+          [
+            -0.00011542970476091074,
+            1.0239549442515063,
+            0.33486778644522713
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1163.2784387822273,
+            0.13116927489503977,
+            676.5353134801969
+          ],
+          [
+            -0.13113554214196388,
+            1163.577675615301,
+            577.6616646787162
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.0239549442515063,
+            0.00011542970476091074,
+            -1.4493846607765777
+          ],
+          [
+            -0.00011542970476091074,
+            1.0239549442515063,
+            0.33486778644522713
+          ]
+        ],
+        "source_c2w": [
+          [
+            0.8080048595725603,
+            -0.14966668526471721,
+            0.5698492443594481,
+            -0.7111057515741044
+          ],
+          [
+            -0.42864617450150927,
+            -0.8128956817647538,
+            0.39428809389862374,
+            -0.524001404867074
+          ],
+          [
+            0.40421617637705515,
+            -0.5628503463393053,
+            -0.7209776298178908,
+            1.7108503698164037
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1136.0640869140625,
+            0.0,
+            662.0599975585938
+          ],
+          [
+            0.0,
+            1136.3563232421875,
+            563.8951416015625
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            0.8080047369003296,
+            -0.42864614725112915,
+            0.4042161703109741,
+            -0.34158775210380554
+          ],
+          [
+            -0.1496666669845581,
+            -0.812895655632019,
+            -0.5628503561019897,
+            0.4305654466152191
+          ],
+          [
+            0.5698491930961609,
+            0.3942880928516388,
+            -0.7209776639938354,
+            1.8453154563903809
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "4f3709a48a51aa731237f443d2045273280e5bbfaedef5cd76554792e97a3601",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/registration_results_attempt005.json",
+        "transform_source_sha256": "abe75a3c7bb104f74322919d1bd408463789c1c9d4a87aee540fc3b5ac7e541e"
+      },
+      "slot_02": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.025363349563322,
+            -0.0008223704101586898,
+            0.3059257246361791
+          ],
+          [
+            -0.0001175593244857769,
+            1.02621203855495,
+            0.10435895703747188
+          ],
+          [
+            -1.2063722432690185e-07,
+            -1.1480064459585046e-06,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.0266454449640348,
+            2.9239205267308382e-05,
+            -0.5033108357466869
+          ],
+          [
+            -2.9239205267308382e-05,
+            1.0266454449640348,
+            0.4150153935753502
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1168.6247952769395,
+            0.033284280847963275,
+            677.1922727262609
+          ],
+          [
+            -0.03328282459848218,
+            1168.6759270324992,
+            583.2635777521657
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.0266454449640348,
+            2.9239205267308382e-05,
+            -0.5033108357466869
+          ],
+          [
+            -2.9239205267308382e-05,
+            1.0266454449640348,
+            0.4150153935753502
+          ]
+        ],
+        "source_c2w": [
+          [
+            -0.7954661383932742,
+            -0.15045095131276276,
+            0.587024831229472,
+            -0.7535508754021244
+          ],
+          [
+            -0.26211235525572024,
+            -0.787970275703256,
+            -0.5571355808015238,
+            2.6650712031520194
+          ],
+          [
+            0.5463796482003067,
+            -0.5970489159188583,
+            0.5873685347521952,
+            -2.7008536234524203
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1138.29443359375,
+            0.0,
+            660.090576171875
+          ],
+          [
+            0.0,
+            1138.34423828125,
+            567.7401733398438
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            -0.7954661250114441,
+            -0.2621123790740967,
+            0.5463796854019165,
+            1.5748155117034912
+          ],
+          [
+            -0.15045098960399628,
+            -0.7879701852798462,
+            -0.5970489382743835,
+            0.37408238649368286
+          ],
+          [
+            0.5870248079299927,
+            -0.5571355223655701,
+            0.5873686075210571,
+            3.5135555267333984
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "99ce4c59729d0beb457fa222309404049e46185375167911486070099f4c7317",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/attempt001_background_registration_metrics.json",
+        "transform_source_sha256": "6fe0763dde93893713585c70f5d9878574262441ffbff9df454713df9791bc85"
+      },
+      "slot_03": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0252730291646104,
+            -0.0005842833674551584,
+            0.3429588114766535
+          ],
+          [
+            -0.00040268152691044285,
+            1.0264596089068185,
+            0.7492267533047431
+          ],
+          [
+            -6.102510348286732e-07,
+            -1.2569739345581294e-06,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.0275258434063523,
+            9.500344438327829e-05,
+            -0.7513391705310312
+          ],
+          [
+            -9.500344438327829e-05,
+            1.0275258434063523,
+            0.8918651722043339
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1151.6994315967113,
+            0.10658539871493279,
+            692.8131436485122
+          ],
+          [
+            -0.10648434158427411,
+            1152.7924321093385,
+            594.6617964496025
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.0275258434063523,
+            9.500344438327829e-05,
+            -0.7513391705310312
+          ],
+          [
+            -9.500344438327829e-05,
+            1.0275258434063523,
+            0.8918651722043339
+          ]
+        ],
+        "source_c2w": [
+          [
+            0.9835854391677183,
+            -0.1369630691978632,
+            0.11747665246912875,
+            0.8164259753776488
+          ],
+          [
+            -0.17903157631384722,
+            -0.8220079579346753,
+            0.5406020816936223,
+            -1.079483186024381
+          ],
+          [
+            0.022524225336556868,
+            -0.5527603976867222,
+            -0.8330358057677897,
+            2.135317986896698
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1120.84716796875,
+            0.0,
+            674.9315185546875
+          ],
+          [
+            0.0,
+            1121.910888671875,
+            577.9261474609375
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            0.9835854768753052,
+            -0.1790315806865692,
+            0.02252422273159027,
+            -1.0443826913833618
+          ],
+          [
+            -0.13696306943893433,
+            -0.822007954120636,
+            -0.5527603626251221,
+            0.4047955870628357
+          ],
+          [
+            0.11747665703296661,
+            0.5406020879745483,
+            -0.8330357670783997,
+            2.266456127166748
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "8cea9b90d66a498045195f68549ed9e061338aedaff0d2c2c0d3ea265320ecbd",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/attempt001_background_registration_metrics.json",
+        "transform_source_sha256": "6fe0763dde93893713585c70f5d9878574262441ffbff9df454713df9791bc85"
+      },
+      "slot_04": {
+        "camera_contract_status": "NONUNIQUE_CAMERA_USED_IN_TRAINING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": true,
+        "formal_preflight_binding_status": "BLOCKED_HUMAN_OVERRIDE_DOES_NOT_SELECT_UNIQUE_PHYSICAL_CAMERA",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0260056101065813,
+            0.00024440285395338414,
+            -0.3549562284603542
+          ],
+          [
+            -5.796409795418979e-05,
+            1.0318162312337198,
+            0.46871347703516425
+          ],
+          [
+            -4.085594029717902e-07,
+            1.0125242756352863e-06,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": null,
+        "formal_preflight_target_K": null,
+        "pixel_transform": [
+          [
+            1.0274323687693416,
+            -0.0006143592356051084,
+            -1.0020963644478351
+          ],
+          [
+            0.0006143592356051084,
+            1.0274323687693416,
+            2.4235322177671605
+          ]
+        ],
+        "source_c2w": [
+          [
+            -0.976097756529975,
+            -0.14507494627836226,
+            -0.1618223910958626,
+            1.7197179643752822
+          ],
+          [
+            0.2120619450310778,
+            -0.7987494092184824,
+            -0.5630534759117468,
+            2.675103383217939
+          ],
+          [
+            -0.04757059705758971,
+            -0.5839115276891521,
+            0.8104226336497692,
+            -3.342045312451561
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1129.52783203125,
+            0.0,
+            674.9684448242188
+          ],
+          [
+            0.0,
+            1128.371826171875,
+            547.0431518554688
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            -0.9760977029800415,
+            0.21206191182136536,
+            -0.047570571303367615,
+            0.9523422122001648
+          ],
+          [
+            -0.1450749635696411,
+            -0.7987494468688965,
+            -0.5839114189147949,
+            0.434766948223114
+          ],
+          [
+            -0.1618223488330841,
+            -0.5630532503128052,
+            0.8104221224784851,
+            4.492981910705566
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "f7f5119b3cd7dc42cdabf22042f2844d5daa12e965464ac6927d3da5f2ecb22d",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/corrected_registration_results_attempt004.json",
+        "transform_source_sha256": "3f2d3bebb8261716b5b66460f9c053ab6abffc7e6d36a77c6ac5b3311fdc4205"
+      },
+      "slot_05": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0249435322921978,
+            -0.0004685664939032131,
+            0.3017926902275714
+          ],
+          [
+            6.253557343359822e-05,
+            1.0261610843420736,
+            -0.15762231345301647
+          ],
+          [
+            1.1844512306206734e-08,
+            -1.2358143781080454e-06,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.0263530897046271,
+            3.534186647295479e-06,
+            -0.3896067080263618
+          ],
+          [
+            -3.534186647295479e-06,
+            1.0263530897046271,
+            0.3828137853691785
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1152.0853523852006,
+            0.003966396707283268,
+            681.043188999437
+          ],
+          [
+            -0.003967138317005766,
+            1151.8699836155226,
+            580.9782744263995
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.0263530897046271,
+            3.534186647295479e-06,
+            -0.3896067080263618
+          ],
+          [
+            -3.534186647295479e-06,
+            1.0263530897046271,
+            0.3828137853691785
+          ]
+        ],
+        "source_c2w": [
+          [
+            0.7729431537049387,
+            -0.13760617754174168,
+            -0.6193735619451322,
+            3.2995626433433545
+          ],
+          [
+            0.2676664848952972,
+            -0.8143545291298234,
+            0.5149576723120962,
+            -0.9353470360521994
+          ],
+          [
+            -0.5752510371358347,
+            -0.563818511444803,
+            -0.5926171062865335,
+            1.3078160933302436
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1122.50390625,
+            0.0,
+            663.93408203125
+          ],
+          [
+            0.0,
+            1122.2940673828125,
+            565.6901245117188
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            0.7729429602622986,
+            0.26766645908355713,
+            -0.5752509236335754,
+            -1.5476902723312378
+          ],
+          [
+            -0.1376061737537384,
+            -0.8143544793128967,
+            -0.5638184547424316,
+            0.42970699071884155
+          ],
+          [
+            -0.6193735003471375,
+            0.5149576663970947,
+            -0.5926170945167542,
+            3.3003599643707275
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "96e10f9f30498c2066871bdd2f2eadfb2d1a853e52e787fd76e77b2e9909519a",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/corrected_registration_results_attempt004.json",
+        "transform_source_sha256": "3f2d3bebb8261716b5b66460f9c053ab6abffc7e6d36a77c6ac5b3311fdc4205"
+      },
+      "slot_06": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0155976931983173,
+            -2.8982236068836352e-05,
+            -1.734317783283961
+          ],
+          [
+            0.0001967789309382738,
+            1.0162014299666202,
+            -0.5904106145884604
+          ],
+          [
+            2.7579976554078333e-07,
+            -5.856558675292833e-07,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.0159180563376666,
+            0.0001476816516905541,
+            -1.985204281725633
+          ],
+          [
+            -0.0001476816516905541,
+            1.0159180563376666,
+            -0.031540810475466356
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1148.1897935868494,
+            0.1668413088847764,
+            669.9919837059053
+          ],
+          [
+            -0.16690968736437387,
+            1147.7194106293678,
+            564.881638065272
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.0159180563376666,
+            0.0001476816516905541,
+            -1.985204281725633
+          ],
+          [
+            -0.0001476816516905541,
+            1.0159180563376666,
+            -0.031540810475466356
+          ]
+        ],
+        "source_c2w": [
+          [
+            -0.8032007106754292,
+            -0.13492070593833366,
+            -0.5802283814532376,
+            3.19170374832132
+          ],
+          [
+            0.43009752855647876,
+            -0.8052619183909439,
+            -0.408129148750293,
+            2.2013196079097472
+          ],
+          [
+            -0.4121707365486984,
+            -0.577364443444881,
+            0.7048159224363425,
+            -3.06013549154169
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1130.19921875,
+            0.0,
+            661.3673706054688
+          ],
+          [
+            0.0,
+            1129.7362060546875,
+            556.1578979492188
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            -0.8032007217407227,
+            0.4300975203514099,
+            -0.41217076778411865,
+            0.3554982542991638
+          ],
+          [
+            -0.13492070138454437,
+            -0.8052618503570557,
+            -0.577364444732666,
+            0.436452180147171
+          ],
+          [
+            -0.5802284479141235,
+            -0.40812918543815613,
+            0.7048160433769226,
+            4.907172679901123
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "1f1fd556d50558001edfd170bbd7153cff09c1ca4835ef5beac79f83d511e920",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/registration_results_attempt005.json",
+        "transform_source_sha256": "abe75a3c7bb104f74322919d1bd408463789c1c9d4a87aee540fc3b5ac7e541e"
+      },
+      "slot_07": {
+        "camera_contract_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+        "conflicts_with_formal_preflight_blocker": false,
+        "formal_preflight_binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+        "formal_preflight_homography_diagnostic": [
+          [
+            1.0247949829134027,
+            0.0004235184863429906,
+            -0.43027054057980374
+          ],
+          [
+            -8.957687014961955e-05,
+            1.0277673442775126,
+            0.14817568772911713
+          ],
+          [
+            -1.6437051332640345e-07,
+            9.812554147314154e-08,
+            1.0
+          ]
+        ],
+        "formal_preflight_registered_source_to_target_similarity": [
+          [
+            1.0257389354252888,
+            0.00034293950484165807,
+            -1.0059366915480346
+          ],
+          [
+            -0.00034293950484165807,
+            1.0257389354252888,
+            1.6468395439598023
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "formal_preflight_target_K": [
+          [
+            1144.9122199186638,
+            0.3826577770299685,
+            687.632387604895
+          ],
+          [
+            -0.3827831977766123,
+            1144.5370839505808,
+            580.6019369119642
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pixel_transform": [
+          [
+            1.0257389354252888,
+            0.00034293950484165807,
+            -1.0059366915480346
+          ],
+          [
+            -0.00034293950484165807,
+            1.0257389354252888,
+            1.6468395439598023
+          ]
+        ],
+        "source_c2w": [
+          [
+            0.15005042302748137,
+            -0.13638285190972685,
+            -0.979226532282629,
+            4.5100640984435545
+          ],
+          [
+            0.5310118211434806,
+            -0.824342117292046,
+            0.1961799824580773,
+            0.16779729886945877
+          ],
+          [
+            -0.8339732460420685,
+            -0.5494176988263254,
+            -0.05127190760382277,
+            -0.5503680546832791
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_calibration_K": [
+          [
+            1116.182861328125,
+            0.0,
+            671.1694946289062
+          ],
+          [
+            0.0,
+            1115.817138671875,
+            564.6517333984375
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "source_resolution": {
+          "height": 1150,
+          "width": 1330
+        },
+        "source_w2c": [
+          [
+            0.1500503420829773,
+            0.5310117602348328,
+            -0.833973228931427,
+            -1.224831223487854
+          ],
+          [
+            -0.13638286292552948,
+            -0.8243420720100403,
+            -0.5494177341461182,
+            0.45103585720062256
+          ],
+          [
+            -0.9792265295982361,
+            0.19618000090122223,
+            -0.05127197504043579,
+            4.3552374839782715
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "target_resolution": {
+          "height": 1166,
+          "width": 1349
+        },
+        "training_target_K": null,
+        "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+        "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+        "transform_matrix_sha256": "0f91a1b870f235113308b8b075fd35869cfdf7c6913fb1c8b5a1e37d82e68bc0",
+        "transform_model": "SIMILARITY",
+        "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/corrected_registration_results_attempt004.json",
+        "transform_source_sha256": "3f2d3bebb8261716b5b66460f9c053ab6abffc7e6d36a77c6ac5b3311fdc4205"
+      }
+    },
+    "slot04": {
+      "camera_contract_status": "NONUNIQUE_CAMERA_USED_IN_TRAINING",
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "camera_record_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "conflicts_with_formal_preflight_blocker": true,
+      "formal_preflight_binding_status": "BLOCKED_HUMAN_OVERRIDE_DOES_NOT_SELECT_UNIQUE_PHYSICAL_CAMERA",
+      "formal_preflight_homography_diagnostic": [
+        [
+          1.0260056101065813,
+          0.00024440285395338414,
+          -0.3549562284603542
+        ],
+        [
+          -5.796409795418979e-05,
+          1.0318162312337198,
+          0.46871347703516425
+        ],
+        [
+          -4.085594029717902e-07,
+          1.0125242756352863e-06,
+          1.0
+        ]
+      ],
+      "formal_preflight_registered_source_to_target_similarity": null,
+      "formal_preflight_target_K": null,
+      "pixel_transform": [
+        [
+          1.0274323687693416,
+          -0.0006143592356051084,
+          -1.0020963644478351
+        ],
+        [
+          0.0006143592356051084,
+          1.0274323687693416,
+          2.4235322177671605
+        ]
+      ],
+      "source_c2w": [
+        [
+          -0.976097756529975,
+          -0.14507494627836226,
+          -0.1618223910958626,
+          1.7197179643752822
+        ],
+        [
+          0.2120619450310778,
+          -0.7987494092184824,
+          -0.5630534759117468,
+          2.675103383217939
+        ],
+        [
+          -0.04757059705758971,
+          -0.5839115276891521,
+          0.8104226336497692,
+          -3.342045312451561
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_calibration_K": [
+        [
+          1129.52783203125,
+          0.0,
+          674.9684448242188
+        ],
+        [
+          0.0,
+          1128.371826171875,
+          547.0431518554688
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_resolution": {
+        "height": 1150,
+        "width": 1330
+      },
+      "source_w2c": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615,
+          0.9523422122001648
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949,
+          0.434766948223114
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851,
+          4.492981910705566
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_resolution": {
+        "height": 1166,
+        "width": 1349
+      },
+      "training_target_K": null,
+      "training_target_K_reason": "The executed runner rendered with source calibration K at 1330x1150 and then applied the recorded prediction-only raster similarity; it did not materialize or consume a target_K.",
+      "transform_application": "inverse differentiable warp of prediction only; accepted target RGB/masks remain byte-identical",
+      "transform_matrix_sha256": "f7f5119b3cd7dc42cdabf22042f2844d5daa12e965464ac6927d3da5f2ecb22d",
+      "transform_model": "SIMILARITY",
+      "transform_source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/inputs/registration_evidence/corrected_registration_results_attempt004.json",
+      "transform_source_sha256": "3f2d3bebb8261716b5b66460f9c053ab6abffc7e6d36a77c6ac5b3311fdc4205"
+    },
+    "slot04_camera_scientific_status": "NONUNIQUE_CAMERA_USED_IN_TRAINING"
+  },
+  "conclusion": "NONUNIQUE_CAMERA_USED_IN_TRAINING",
+  "paper_final": false,
+  "schema_version": "canondressgs.subject00.o03_provisional_teacher_camera_contract_audit.v1",
+  "scientific_8view_valid": false,
+  "source_audit_sidecar_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/evaluations/subject00_O03_provisional_teacher_camera_metric_review_20260727.json",
+  "source_audit_sidecar_sha256": "2ffae7346a22fde67f56e9851f085410036f6fcffe22d129ee687055ab7f8b3c",
+  "target_inventory_camera_fields": [
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam17",
+      "camera_K": [
+        [
+          1129.202880859375,
+          0.0,
+          669.2590942382812
+        ],
+        [
+          0.0,
+          1129.5264892578125,
+          567.3696899414062
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 17,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "front",
+      "formal_camera_eligible_flag": true,
+      "height": 1165,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.019943552359851,
+          0.0002695117808666926,
+          -0.14430855500952763
+        ],
+        [
+          -0.0002695117808666926,
+          1.019943552359851,
+          1.265576419859527
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "width": 1350
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam21",
+      "camera_K": [
+        [
+          1136.0640869140625,
+          0.0,
+          662.0599975585938
+        ],
+        [
+          0.0,
+          1136.3563232421875,
+          563.8951416015625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 21,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "front-left",
+      "formal_camera_eligible_flag": true,
+      "height": 1166,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.0239549442515063,
+          0.00011542970476091074,
+          -1.4493846607765777
+        ],
+        [
+          -0.00011542970476091074,
+          1.0239549442515063,
+          0.33486778644522713
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam14",
+      "camera_K": [
+        [
+          1138.29443359375,
+          0.0,
+          660.090576171875
+        ],
+        [
+          0.0,
+          1138.34423828125,
+          567.7401733398438
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 14,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "front-right",
+      "formal_camera_eligible_flag": true,
+      "height": 1166,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.0266454449640348,
+          2.9239205267308382e-05,
+          -0.5033108357466869
+        ],
+        [
+          -2.9239205267308382e-05,
+          1.0266454449640348,
+          0.4150153935753502
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam23",
+      "camera_K": [
+        [
+          1120.84716796875,
+          0.0,
+          674.9315185546875
+        ],
+        [
+          0.0,
+          1121.910888671875,
+          577.9261474609375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 23,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "left",
+      "formal_camera_eligible_flag": true,
+      "height": 1166,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.0275258434063523,
+          9.500344438327829e-05,
+          -0.7513391705310312
+        ],
+        [
+          -9.500344438327829e-05,
+          1.0275258434063523,
+          0.8918651722043339
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam11",
+      "camera_K": [
+        [
+          1129.52783203125,
+          0.0,
+          674.9684448242188
+        ],
+        [
+          0.0,
+          1128.371826171875,
+          547.0431518554688
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 11,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "right",
+      "formal_camera_eligible_flag": false,
+      "height": 1166,
+      "human_override": "PASS_VISUALLY_ACCEPTABLE_ALIGNMENT",
+      "machine_registration": "AFFINE_OR_PROJECTIVE_RECOMPOSITION_FAIL",
+      "registration_transform": [
+        [
+          1.0274323687693416,
+          -0.0006143592356051084,
+          -1.0020963644478351
+        ],
+        [
+          0.0006143592356051084,
+          1.0274323687693416,
+          2.4235322177671605
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "slot": "slot_04",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam02",
+      "camera_K": [
+        [
+          1122.50390625,
+          0.0,
+          663.93408203125
+        ],
+        [
+          0.0,
+          1122.2940673828125,
+          565.6901245117188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 2,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "back-left",
+      "formal_camera_eligible_flag": true,
+      "height": 1166,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.0263530897046271,
+          3.534186647295479e-06,
+          -0.3896067080263618
+        ],
+        [
+          -3.534186647295479e-06,
+          1.0263530897046271,
+          0.3828137853691785
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam09",
+      "camera_K": [
+        [
+          1130.19921875,
+          0.0,
+          661.3673706054688
+        ],
+        [
+          0.0,
+          1129.7362060546875,
+          556.1578979492188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 9,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "back-right",
+      "formal_camera_eligible_flag": true,
+      "height": 1166,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.0159180563376666,
+          0.0001476816516905541,
+          -1.985204281725633
+        ],
+        [
+          -0.0001476816516905541,
+          1.0159180563376666,
+          -0.031540810475466356
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "width": 1349
+    },
+    {
+      "actual_sampled_count": 150,
+      "camera": "cam05",
+      "camera_K": [
+        [
+          1116.182861328125,
+          0.0,
+          671.1694946289062
+        ],
+        [
+          0.0,
+          1115.817138671875,
+          564.6517333984375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_id": 5,
+      "camera_record_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "direction": "back",
+      "formal_camera_eligible_flag": true,
+      "height": 1166,
+      "human_override": null,
+      "machine_registration": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "registration_transform": [
+        [
+          1.0257389354252888,
+          0.00034293950484165807,
+          -1.0059366915480346
+        ],
+        [
+          -0.00034293950484165807,
+          1.0257389354252888,
+          1.6468395439598023
+        ]
+      ],
+      "registration_transform_model": "SIMILARITY",
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "width": 1349
+    }
+  ],
+  "task_id": "AAAI27-SUBJECT00-O03-PROVISIONAL-TEACHER-CAMERA-METRIC-REVIEW-001"
+}

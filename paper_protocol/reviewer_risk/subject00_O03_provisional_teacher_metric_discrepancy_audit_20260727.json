@@ -1,0 +1,124 @@
+{
+  "artifact_generation_head": "9a8a5d3be075b8fdb3dd01f16cd8d3b1315e1eeb",
+  "audit_execution_head": "4027357fc0990da1405006735a931656c7993521",
+  "background_share_of_full_absolute_error_mean": 0.9946929684987679,
+  "correction_overlay_required": false,
+  "explanation": "The large full-image LPIPS is reproducible and is not caused by view permutation, camera mismatch, channel order, value-range, resize, crop, or target-base/edit mixup. It measures the entire accepted generated canvas against a white-background avatar render; garment/protected LPIPS first composite non-selected pixels to white, so their substantially smaller values answer a different regional question.",
+  "final_status": "PASS_REPRODUCED_FULL_CANVAS_BACKGROUND_SENSITIVE_METRIC_NO_PAIRING_OR_IMPLEMENTATION_ERROR",
+  "foreground_composited_lpips_diagnostic_mean": 0.0273412826936692,
+  "full_image_lpips_original": 0.7719147130846977,
+  "full_image_lpips_recomputed": 0.7719147130846977,
+  "garment_region_lpips_original": 0.020961973117664456,
+  "garment_region_lpips_recomputed": 0.020961973117664456,
+  "metric_contract_issue": false,
+  "metric_implementation_status": "PASS_ORIGINAL_CONTRACT_REPRODUCED_WITH_CORRECT_RGB_RANGE_AND_PAIRING",
+  "pairing_checks": {
+    "background_normalization": "NONE_WHITE_RENDER_BACKGROUND",
+    "batch_view_order": [
+      "slot_00",
+      "slot_01",
+      "slot_02",
+      "slot_03",
+      "slot_04",
+      "slot_05",
+      "slot_06",
+      "slot_07"
+    ],
+    "blank_black_or_misaligned_border_diagnostic": "Prediction-only inverse warp pads RGB with white. Accepted targets retain generated full-canvas backgrounds; those backgrounds are intentionally compared by full-image LPIPS.",
+    "camera_id_correspondence": true,
+    "crop_policy_full_image": "NONE",
+    "denominator": "MACRO_MEAN_OF_8_PER_VIEW_VALUES",
+    "different_camera_comparison": false,
+    "foreground_compositing_full_image": "NONE",
+    "gamma_color_space": "PIL-decoded sRGB code values; no linearization in either original or recomputation.",
+    "input_value_range": "[0,1]",
+    "lpips_internal_normalization": "torchmetrics LearnedPerceptualImagePatchSimilarity(net_type='vgg', normalize=True) maps [0,1] inputs to the network's expected range.",
+    "lpips_network": "VGG",
+    "resize_policy": "NONE_NATIVE_RESOLUTION",
+    "rgb_channel_order": "RGB",
+    "slot04_dominance": "NOT_DOMINANT",
+    "slot_correspondence": true,
+    "target_base_rgb_edit_rgb_mixup": false,
+    "target_render_one_to_one": true,
+    "width_height_exact_native": true
+  },
+  "paper_final": false,
+  "per_view_pairing_status": {
+    "slot_00": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_01": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_02": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_03": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_04": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_05": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_06": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION",
+    "slot_07": "PASS_SAME_SLOT_SAME_CAMERA_SAME_NATIVE_TARGET_RESOLUTION"
+  },
+  "protected_region_lpips_original": 0.009790473792236298,
+  "protected_region_lpips_recomputed": 0.009790473792236298,
+  "recompute_comparisons": {
+    "boundary_f": {
+      "absolute_difference": 0.0,
+      "original": 0.419524857151542,
+      "recomputed": 0.419524857151542,
+      "within_tolerance": true
+    },
+    "full_image_lpips": {
+      "absolute_difference": 0.0,
+      "original": 0.7719147130846977,
+      "recomputed": 0.7719147130846977,
+      "within_tolerance": true
+    },
+    "garment_region_lpips": {
+      "absolute_difference": 0.0,
+      "original": 0.020961973117664456,
+      "recomputed": 0.020961973117664456,
+      "within_tolerance": true
+    },
+    "garment_region_psnr": {
+      "absolute_difference": 0.0,
+      "original": 18.701857805252075,
+      "recomputed": 18.701857805252075,
+      "within_tolerance": true
+    },
+    "garment_region_ssim": {
+      "absolute_difference": 0.0,
+      "original": 0.9858503863215446,
+      "recomputed": 0.9858503863215446,
+      "within_tolerance": true
+    },
+    "protected_region_lpips": {
+      "absolute_difference": 0.0,
+      "original": 0.009790473792236298,
+      "recomputed": 0.009790473792236298,
+      "within_tolerance": true
+    },
+    "protected_region_rgb_mae": {
+      "absolute_difference": 0.0,
+      "original": 0.2245277278125286,
+      "recomputed": 0.2245277278125286,
+      "within_tolerance": true
+    },
+    "psnr": {
+      "absolute_difference": 0.0,
+      "original": 2.903228461742401,
+      "recomputed": 2.903228461742401,
+      "within_tolerance": true
+    },
+    "silhouette_iou": {
+      "absolute_difference": 0.0,
+      "original": 0.8215580065827556,
+      "recomputed": 0.8215580065827556,
+      "within_tolerance": true
+    },
+    "ssim": {
+      "absolute_difference": 0.0,
+      "original": 0.38074811175465584,
+      "recomputed": 0.38074811175465584,
+      "within_tolerance": true
+    }
+  },
+  "schema_version": "canondressgs.subject00.o03_provisional_teacher_metric_discrepancy_audit.v1",
+  "source_audit_sidecar_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/evaluations/subject00_O03_provisional_teacher_camera_metric_review_20260727.json",
+  "source_audit_sidecar_sha256": "2ffae7346a22fde67f56e9851f085410036f6fcffe22d129ee687055ab7f8b3c",
+  "task_id": "AAAI27-SUBJECT00-O03-PROVISIONAL-TEACHER-CAMERA-METRIC-REVIEW-001"
+}
