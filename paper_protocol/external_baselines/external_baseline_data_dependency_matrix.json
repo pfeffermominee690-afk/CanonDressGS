@@ -1,0 +1,100 @@
+{
+  "schema_version": "canondressgs.external_baseline.data_dependency_matrix.v1",
+  "task_id": "AAAI27-CANONDRESSGS-EXTERNAL-BASELINE-FEASIBILITY-FROM-BUNDLE-001",
+  "subject02_frozen_scope": {
+    "identity": "subject02",
+    "garments": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "scope": "fixed identity; seen garments; closed wardrobe; view-transductive",
+    "positive_subject00": false,
+    "positive_actorshq": false
+  },
+  "methods": [
+    {
+      "method_id": "FULL_AVATAR_FINETUNING",
+      "available": [
+        "formal Base Avatar initialization",
+        "registered multi-view garment targets",
+        "frozen train/calibration/test split"
+      ],
+      "missing": [],
+      "decision": "READY"
+    },
+    {
+      "method_id": "GS_VTON",
+      "available": [
+        "one garment reference can be selected",
+        "registered target RGB/masks and cameras are expected by the CanonDressGS protocol"
+      ],
+      "missing": [
+        "official-format video/multi-view conversion",
+        "vanilla static 3DGS initialization",
+        "resolved public dependency weights",
+        "license clearance"
+      ],
+      "decision": "CONDITIONAL_CANARY_READY"
+    },
+    {
+      "method_id": "GAUSSIANVTON",
+      "available": [
+        "conceptual garment image and 3DGS inputs"
+      ],
+      "missing": [
+        "complete official code",
+        "complete custom-data documentation",
+        "license"
+      ],
+      "decision": "BLOCKED_BY_CODE"
+    },
+    {
+      "method_id": "GAUSSIAN_WARDROBE",
+      "available": [
+        "five garment endpoints exist in the CanonDressGS study"
+      ],
+      "missing": [
+        "4D-DRESS/ActorsHQ-style dynamic multi-view videos",
+        "SMPL-X registration",
+        "layer semantics"
+      ],
+      "decision": "BLOCKED_BY_DATA"
+    },
+    {
+      "method_id": "LAYGA",
+      "available": [],
+      "missing": [
+        "official code",
+        "layered multi-view videos for donor and target",
+        "executable preprocessing contract"
+      ],
+      "decision": "BLOCKED_BY_CODE"
+    },
+    {
+      "method_id": "DAMA",
+      "available": [
+        "multi-view target imagery exists conceptually"
+      ],
+      "missing": [
+        "4D-DRESS raw scans",
+        "SMPL-X mesh and texture",
+        "semantic garment masks in official format"
+      ],
+      "decision": "BLOCKED_BY_DATA"
+    },
+    {
+      "method_id": "SEMANTICGARMENT",
+      "available": [
+        "garment images could be used as prompts"
+      ],
+      "missing": [
+        "official code",
+        "matched fixed-identity avatar output contract"
+      ],
+      "decision": "RELATED_WORK_ONLY"
+    }
+  ]
+}
