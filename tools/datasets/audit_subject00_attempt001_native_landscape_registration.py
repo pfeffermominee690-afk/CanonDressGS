@@ -29,6 +29,7 @@ ATTEMPT_002 = ATTEMPTS_ROOT / "attempt_002_portrait_canary"
 ATTEMPT_003 = ATTEMPTS_ROOT / "attempt_003_portrait_canary_v2_registered_outpaint"
 AUDIT_ROOT = ATTEMPTS_ROOT / "attempt_001_native_landscape_registration_audit"
 ARCHIVE = Path(r"E:\data_pre\thuman4_second_identity_staging\downloads\subject00.7z")
+CLOUD_DATA_MANIFEST = Path(r"E:\data_pre\thuman4_second_identity_staging\reports\SUBJECT00_CLOUD_DATA_MANIFEST.json")
 
 TASK_ID = "AAAI27-SUBJECT00-ATTEMPT001-NATIVE-LANDSCAPE-REGISTRATION-AUDIT-001"
 SOURCE_BRANCH = "research/subject00-v2-visual-fail-valid-region-audit-20260726"
@@ -109,6 +110,24 @@ def archive_bytes(member: str) -> bytes:
     return subprocess.run(
         ["tar", "-xOf", str(ARCHIVE), member], check=True, capture_output=True
     ).stdout
+
+
+def archive_member_batch(members: list[str], sizes: dict[str, int]) -> dict[str, bytes]:
+    """Read solid-archive members in one scan and split using frozen manifest sizes."""
+    ordered = sorted(members)
+    payload = subprocess.run(
+        ["tar", "-xOf", str(ARCHIVE), *ordered], check=True, capture_output=True
+    ).stdout
+    expected_bytes = sum(sizes[member] for member in ordered)
+    if len(payload) != expected_bytes:
+        raise RuntimeError(f"archive batch byte count mismatch: {len(payload)} != {expected_bytes}")
+    result: dict[str, bytes] = {}
+    offset = 0
+    for member in ordered:
+        size = sizes[member]
+        result[member] = payload[offset:offset + size]
+        offset += size
+    return result
 
 
 def inventory(root: Path) -> dict[str, Any]:
@@ -799,6 +818,14 @@ def main() -> int:
     if sorted(requests) != sorted(expected) or sorted(provenance) != sorted(expected):
         raise RuntimeError("48-request manifest/provenance set mismatch")
 
+    cloud_manifest = load_json(CLOUD_DATA_MANIFEST)
+    archive_sizes = {
+        f"subject00/{item['relative_path']}": int(item["size_bytes"])
+        for item in cloud_manifest["files"]
+    }
+    mask_members = [f"subject00/masks/{binding['camera']}/00000000.jpg" for binding in SLOTS.values()]
+    mask_payloads = archive_member_batch(mask_members, archive_sizes)
+
     source_cache: dict[str, dict[str, Any]] = {}
     for slot, binding in SLOTS.items():
         request = requests[f"subject00_O01_slot{slot[-2:]}_cand00"]
@@ -806,7 +833,7 @@ def main() -> int:
         if file_sha256(source_path) != request["source_input_sha256"]["identity_condition_rgb"]:
             raise RuntimeError(f"source RGB SHA mismatch: {slot}")
         mask_member = f"subject00/masks/{binding['camera']}/00000000.jpg"
-        mask_bytes = archive_bytes(mask_member)
+        mask_bytes = mask_payloads[mask_member]
         if bytes_sha256(mask_bytes) != request["source_input_sha256"]["identity_condition_mask"]:
             raise RuntimeError(f"source mask SHA mismatch: {slot}")
         image = cv2.imread(str(source_path), cv2.IMREAD_COLOR)
