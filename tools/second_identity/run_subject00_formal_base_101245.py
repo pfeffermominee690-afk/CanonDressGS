@@ -13,6 +13,10 @@ import json
 import sys
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from tools.second_identity import run_subject00_formal_strict_split as formal
 
 
@@ -24,7 +28,7 @@ FORMAL_BASE_OUTPUT_ROOT = Path(
 )
 FORMAL_BASE_ATTEMPT_ROOT = FORMAL_BASE_OUTPUT_ROOT / "attempt_001"
 DELETION_EXECUTION_RECORD = (
-    Path(__file__).resolve().parents[2]
+    REPO_ROOT
     / "paper_protocol"
     / "storage"
     / "avatarrex_cloud_duplicate_deletion_execution_20260726.json"

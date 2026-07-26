@@ -97,6 +97,7 @@ def main() -> None:
         require(not Path(EXPECTED_OUTPUT_ROOT).exists(), "output root exists before launch")
 
     wrapper_source = WRAPPER.read_text(encoding="utf-8")
+    require("sys.path.insert(0, str(REPO_ROOT))" in wrapper_source, "wrapper script path bootstrap missing")
     require("run_subject00_formal_strict_split as formal" in wrapper_source, "wrapper must import formal runner")
     require("medium.train_step" not in wrapper_source, "wrapper must not copy train step")
     require("optimizer.step" not in wrapper_source, "wrapper must not own optimizer stepping")
