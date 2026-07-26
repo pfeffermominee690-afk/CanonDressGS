@@ -80,6 +80,14 @@ def test_boundary_is_binary_and_nonempty() -> None:
     assert torch.count_nonzero(boundary) > 0
 
 
+def test_masked_gaussian_preserves_one_dimensional_opacity_shape() -> None:
+    opacity = torch.arange(4, dtype=torch.float32)
+    support = torch.tensor([[True], [False], [True], [False]])
+    masked = runner.masked_gaussian(opacity, support)
+    assert masked.shape == (4,)
+    assert torch.equal(masked, torch.tensor([0.0, 0.0, 2.0, 0.0]))
+
+
 def test_prediction_registration_warp_is_exact_for_integer_translation() -> None:
     source = torch.zeros(3, 4, 1)
     source[1, 2, 0] = 1

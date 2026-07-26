@@ -631,9 +631,17 @@ def garment_trainable_mask(base_model: Any) -> torch.Tensor:
 
 
 def masked_gaussian(value: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
-    expanded = mask
-    while expanded.ndim < value.ndim:
-        expanded = expanded.unsqueeze(-1)
+    if value.ndim < 1 or mask.shape[0] != value.shape[0]:
+        raise RuntimeError(
+            f"Gaussian mask/value leading dimensions differ: "
+            f"{tuple(mask.shape)} vs {tuple(value.shape)}"
+        )
+    flattened = mask.reshape(mask.shape[0], -1)
+    if flattened.shape[1] != 1:
+        raise RuntimeError(f"Gaussian mask is not one value per point: {mask.shape}")
+    expanded = flattened[:, 0].reshape(
+        value.shape[0], *((1,) * (value.ndim - 1))
+    )
     return value * expanded.to(value)
 
 
