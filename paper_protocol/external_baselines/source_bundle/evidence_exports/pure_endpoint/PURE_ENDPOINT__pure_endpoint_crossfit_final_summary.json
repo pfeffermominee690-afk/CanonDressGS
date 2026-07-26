@@ -1,0 +1,94 @@
+{
+  "claim_boundary": "fixed subject02; closed five-garment wardrobe; pure-reference condition-fold cross-fit; seen garment references; discrete endpoint control only",
+  "core_protocol_gate_status": "PASS",
+  "counts": {
+    "backward_calls": 7200,
+    "checkpoint_writes": 144,
+    "direct_v7_runs": 0,
+    "formal_methods": 7,
+    "formal_pure_inferences": 420,
+    "formal_pure_sheets": 60,
+    "forward_training_batches": 7200,
+    "independent_trainable_families": 2,
+    "logical_renders": 4620,
+    "main_sheets": 60,
+    "new_perturbation_f2_inferences": 180,
+    "optimizer_creations": 24,
+    "optimizer_steps": 7200,
+    "paper_final_count": 0,
+    "perturbation_inferences": 2520,
+    "primary_test_inferences": 1680,
+    "render_cache_reuses": 3160,
+    "scheduler_steps": 7200,
+    "training_runs": 24,
+    "unique_physical_renders": 1460
+  },
+  "direct_v7_execution_count": 0,
+  "endpoint_parity_status": "PASS",
+  "execution_head": "195fb887f2cac8a72920b499c44bb66700a97e25",
+  "final_reporting_head": "1fc5c2de97cb86858c7c070ad80f3dcef9095b5c",
+  "hard_lookup_relation": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY",
+  "historical_classifications_preserved": [
+    "PURE_ENDPOINT_PROTOCOL_HASH_MISMATCH",
+    "PURE_ENDPOINT_DIRECT_DECODER_CONTRACT_BLOCKED"
+  ],
+  "identity_safety_status": "PASS",
+  "next_task": "RUN_RENDER_REFINED_COEFFICIENT_HEADROOM_EXPERIMENT",
+  "next_task_source": "research/render-refined-coefficient-headroom-protocol-20260724@2a42143f7942752aead16e7d53d1b7376fc5a143",
+  "next_task_started": false,
+  "overall_formal_classification": "PURE_ENDPOINT_CORE_METHOD_SUPPORTED",
+  "paper_final": false,
+  "paper_final_count": 0,
+  "perturbation_robustness_status": "EVALUATED_DESCRIPTIVE_ONLY",
+  "run_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+  "schema_version": "canondressgs.paper.pure_endpoint_crossfit_final_summary.v1",
+  "source_branch": "research/pure-endpoint-direct-decoder-adjudication-20260724",
+  "source_head": "69cded463e3a88cecc83e8a4c5a7a89b93ee4b20",
+  "status": "SEALED",
+  "success_gates": {
+    "endpoint_parity": {
+      "pass": true,
+      "required": "PASS",
+      "value": "PASS"
+    },
+    "every_garment_recall": {
+      "pass": true,
+      "threshold": 0.75,
+      "values": {
+        "O01": 1.0,
+        "O02": 1.0,
+        "O03": 1.0,
+        "O04": 1.0,
+        "O08": 1.0
+      }
+    },
+    "every_rotation_top1": {
+      "pass": true,
+      "threshold": 0.8,
+      "values": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0
+      }
+    },
+    "identity_contamination": {
+      "pass": true,
+      "threshold": 0,
+      "value": 0
+    },
+    "macro_5way_top1": {
+      "pass": true,
+      "threshold": 0.9,
+      "value": 1.0
+    },
+    "severe_wrong_outfit_rate": {
+      "pass": true,
+      "threshold": 0.05,
+      "value": 0.0
+    }
+  },
+  "task_id": "AAAI27-PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001",
+  "teacher_is_upper_bound_claimed": false,
+  "teacher_name": "Teacher Endpoint"
+}

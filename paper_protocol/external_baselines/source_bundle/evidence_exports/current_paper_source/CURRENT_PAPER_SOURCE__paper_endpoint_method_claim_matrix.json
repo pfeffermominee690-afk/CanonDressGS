@@ -1,0 +1,141 @@
+{
+  "schema_version": "paper_endpoint_method_claim_matrix.v1",
+  "task_id": "AAAI27-CANONDRESSGS-PAPER-ENDPOINT-METHOD-RESTRUCTURE-001",
+  "status": "PASS",
+  "unsupported_positive_claim_count": 0,
+  "claims": [
+    {
+      "claim_id": "C01_FIXED_IDENTITY",
+      "section": "Abstract; Experiments; Limitations",
+      "exact_sentence": "The current evidence is therefore limited to one identity, seen-garment references, and closed-wardrobe endpoint realization.",
+      "evidence_source": "git:ce110887a942cf8db082ba688c8d36d2433bfdbe:paper_protocol/reviewer_risk/pure_endpoint_crossfit_final_summary.json",
+      "metric_source_artifact": "claim_boundary",
+      "assessment": "supported",
+      "allowed_wording": "fixed identity; subject02 only",
+      "forbidden_stronger_wording": "cross-identity generalization",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C02_FIVE_SEEN_GARMENTS",
+      "section": "Abstract; Experiments",
+      "exact_sentence": "We evaluate subject02 with the closed garment bank O01, O02, O03, O04, and O08.",
+      "evidence_source": "git:ce110887a942cf8db082ba688c8d36d2433bfdbe:paper_protocol/reviewer_risk/pure_endpoint_model_contract.json",
+      "metric_source_artifact": "endpoint_selection.candidate_order",
+      "assessment": "supported",
+      "allowed_wording": "five seen garments in a closed bank",
+      "forbidden_stronger_wording": "unseen garments",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C03_GEOMETRY_MAIN_EFFECT",
+      "section": "Abstract; Introduction; Experiments",
+      "exact_sentence": "Geometry has a global main-effect magnitude of 0.995941 and satisfies the registered sufficiency and necessity criteria in 10/10 pairs.",
+      "evidence_source": "git:8c43524b7ca0ee8b3c795dbe349466f30b29354f:paper_protocol/reviewer_risk/factor_causal_profiles.json",
+      "metric_source_artifact": "global_main_effect_magnitudes.G; pair_pass_counts",
+      "assessment": "supported",
+      "allowed_wording": "dominant under the registered causal decomposition",
+      "forbidden_stronger_wording": "universal cause for all avatars",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C04_ENDPOINT_SELECTION",
+      "section": "Abstract; Experiments; Table 1",
+      "exact_sentence": "CanonDressGS selects all 60 endpoints correctly across four rotations.",
+      "evidence_source": "git:ce110887a942cf8db082ba688c8d36d2433bfdbe:paper_protocol/reviewer_risk/pure_endpoint_crossfit_metric_summary.json",
+      "metric_source_artifact": "identification_unique_query.CanonDressGS-Endpoint",
+      "assessment": "supported",
+      "allowed_wording": "1.0 clean top-1 and exact match",
+      "forbidden_stronger_wording": "general endpoint recognition",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C05_HARD_LOOKUP_EQUIVALENCE",
+      "section": "Abstract; Experiments; Limitations",
+      "exact_sentence": "This hard-lookup relation is a disclosed functional equivalence rather than a superiority claim.",
+      "evidence_source": "git:ce110887a942cf8db082ba688c8d36d2433bfdbe:paper_protocol/reviewer_risk/pure_endpoint_hard_lookup_analysis.json",
+      "metric_source_artifact": "relation",
+      "assessment": "supported",
+      "allowed_wording": "clean functional equivalence",
+      "forbidden_stronger_wording": "superior to hard lookup",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C06_IDENTITY_SAFETY",
+      "section": "Abstract; Experiments; Conclusion",
+      "exact_sentence": "No identity or component contamination and no severe wrong outfit are observed.",
+      "evidence_source": "git:ce110887a942cf8db082ba688c8d36d2433bfdbe:paper_protocol/reviewer_risk/pure_endpoint_crossfit_final_summary.json",
+      "metric_source_artifact": "success_gates.identity_contamination; success_gates.severe_wrong_outfit_rate",
+      "assessment": "supported",
+      "allowed_wording": "zero observed in the registered subject02 evaluation",
+      "forbidden_stronger_wording": "guaranteed identity preservation for arbitrary identities",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C07_DUAL_SUPPORT",
+      "section": "Abstract; Experiments; Table 2",
+      "exact_sentence": "Relative to full residual interpolation, Dual-Support improves pair-average LPIPS from 0.085303 to 0.056985.",
+      "evidence_source": "git:d802f427f1e9c23595e1bdb4f10135f7de2c3f08:paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json",
+      "metric_source_artifact": "decision.gates; all-pair aggregate",
+      "assessment": "supported",
+      "allowed_wording": "improves all-pair aggregate metrics with residual failures disclosed",
+      "forbidden_stronger_wording": "artifact-free automatic controller",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C08_HEADROOM_NULL",
+      "section": "Abstract; Experiments; Table 3",
+      "exact_sentence": "Test-time coefficient refinement provides no additional headroom.",
+      "evidence_source": "git:674e6092e21eeddeb22e963536247a3385c4e200:paper_protocol/reviewer_risk/coefficient_headroom_attempt002_final_summary.json",
+      "metric_source_artifact": "classification; gains.TEACHER_HEADROOM_GAIN",
+      "assessment": "supported",
+      "allowed_wording": "no registered gain; 0/5 garments improve",
+      "forbidden_stronger_wording": "global optimum proof",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C09_LOO_CAPACITY",
+      "section": "Abstract; Experiments; Table 3; Limitations",
+      "exact_sentence": "Offline oracle projection fails its capacity criterion in all five folds.",
+      "evidence_source": "git:4472e1815287b1866da6d3ed83b2984e0d43611d:paper_protocol/reviewer_risk/loo_attempt003_metric_summary.json",
+      "metric_source_artifact": "capacity_failure_count; capacity_limited",
+      "assessment": "supported",
+      "allowed_wording": "four-garment rank-3 basis is capacity-limited",
+      "forbidden_stronger_wording": "all low-dimensional garment spaces fail",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C10_NO_UNSEEN_GARMENT",
+      "section": "Method; Limitations",
+      "exact_sentence": "The task does not include unseen-garment synthesis, cross-person transfer, or arbitrary interpolation.",
+      "evidence_source": "paper_protocol/reviewer_risk/loo_method_scope_adjudication.json",
+      "metric_source_artifact": "adaptation_space_role",
+      "assessment": "supported",
+      "allowed_wording": "unsupported and outside scope",
+      "forbidden_stronger_wording": "unseen-garment capability",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C11_NO_SECOND_IDENTITY",
+      "section": "Introduction; Limitations",
+      "exact_sentence": "It does not test a second identity or unseen garments.",
+      "evidence_source": "git:9da04d923c7c6c03c6a6f7c732d8d9c58d59c88d:project_control_handoff/subject00_minimal_second_identity_dataset_contract_handoff.json",
+      "metric_source_artifact": "status",
+      "assessment": "supported",
+      "allowed_wording": "second identity not evaluated",
+      "forbidden_stronger_wording": "two-identity validation",
+      "current_wording_correct": true
+    },
+    {
+      "claim_id": "C12_NO_AUTOMATIC_MIXED_CONTROLLER",
+      "section": "Method; Experiments; Limitations",
+      "exact_sentence": "Predicting the pair or weight from mixed references is unresolved and is not part of the default single-endpoint path.",
+      "evidence_source": "paper_protocol/reviewer_risk/canondressgs_main_method_freeze.json",
+      "metric_source_artifact": "dual_support_role; excluded_from_main_pipeline",
+      "assessment": "supported",
+      "allowed_wording": "oracle- or user-specified extension",
+      "forbidden_stronger_wording": "successful automatic routing",
+      "current_wording_correct": true
+    }
+  ],
+  "paper_final": false
+}

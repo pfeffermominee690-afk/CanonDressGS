@@ -1,0 +1,88 @@
+{
+  "created_at": "2026-07-25T00:00:00+08:00",
+  "figures": [
+    {
+      "caption": "CanonDressGS method overview for the fixed subject02 identity and five-seen-garment closed wardrobe. Offline, per-garment multi-view optimization constructs canonical Teacher Endpoints and an explicit endpoint coordinate system for a frozen animatable Gaussian avatar. At inference, frozen reference features are aggregated by mean and max, and a small normalized linear head predicts a raw coefficient. The raw coefficient is not rendered directly: nearest-valid-endpoint snapping realizes a registered Teacher Endpoint before frozen deformation, LBS, and rendering.",
+      "figure": 2,
+      "label": "fig:method",
+      "prohibited_term_hits": [],
+      "required_markers": [
+        "subject02",
+        "five-seen-garment closed wardrobe",
+        "raw coefficient",
+        "snapping",
+        "frozen"
+      ],
+      "status": "PASS"
+    },
+    {
+      "caption": "Geometry interpolation causal attribution over all 10 subject02 garment pairs under the frozen geometry/visibility/appearance decomposition, fixed identity, and closed wardrobe. (A) A registered O01-to-O02 visual decomposition; this fixed first pair is illustrative rather than quality-selected. (B) Geometry has global main-effect magnitude 0.995941, compared with 0.0129 for visibility and 0.0324 for appearance. (C) Geometry is sufficient and necessary in 10/10 pairs. (D) Scope of the registered protocol.",
+      "figure": 3,
+      "label": "fig:geometry-causal",
+      "prohibited_term_hits": [],
+      "required_markers": [
+        "10 subject02 garment pairs",
+        "0.995941",
+        "fixed identity",
+        "closed wardrobe"
+      ],
+      "status": "PASS"
+    },
+    {
+      "caption": "Dual-Support all-pair evaluation in the fixed-identity subject02 five-seen-garment closed wardrobe, using an oracle- or user-specified endpoint pair and weight. (A) LPIPS for all 10 unordered garment pairs. (B) Aggregate LPIPS improves from 0.085303 to 0.056985, silhouette IoU from 0.710052 to 0.725290, and Boundary F from 0.300263 to 0.379103. (C) Severe artifacts improve in 10/10 pairs with zero identity contamination. (D) The extension uses approximately twice the active Gaussians and 1.626 times the render time. Pair and weight are specified externally; no routing predictor is evaluated.",
+      "figure": 4,
+      "label": "fig:dual-support",
+      "prohibited_term_hits": [],
+      "required_markers": [
+        "subject02",
+        "five-seen-garment closed wardrobe",
+        "10 unordered garment pairs",
+        "0.085303",
+        "oracle- or user-specified"
+      ],
+      "status": "PASS"
+    },
+    {
+      "caption": "Hard-lookup relation in the registered clean fixed-identity subject02, five-seen-garment closed-wardrobe protocol (60 unique queries). The raw continuous coefficient can produce an unsupported render, whereas CanonDressGS snapping, Reference Classifier Lookup, and Nearest-Centroid Lookup realize the same registered endpoint and match the Teacher Endpoint. The clean equivalence supports a unified reference-to-endpoint interface and geometry-safe realization; it does not establish superiority over hard lookup.",
+      "figure": 5,
+      "label": "fig:hard-lookup",
+      "prohibited_term_hits": [],
+      "required_markers": [
+        "fixed-identity subject02",
+        "five-seen-garment closed-wardrobe",
+        "60 unique queries",
+        "same registered endpoint",
+        "does not establish superiority"
+      ],
+      "status": "PASS"
+    },
+    {
+      "caption": "Endpoint-space analysis boundaries under the fixed-identity subject02, five-seen-garment closed-wardrobe protocol. (A) Test-time coefficient refinement does not improve Teacher Endpoint LPIPS (0.038982 versus 0.038768; 0/5 garments improve). (B) In leave-one-garment-out analysis, a four-garment rank-3 basis is capacity-limited for the held-out fifth garment and does not improve over hard lookup (0.113551 versus 0.113437 LPIPS). (C) Endpoint prediction is sensitive to mild blur and single-reference input, while complete reference dropout safely returns the Base Avatar in 80/80 cases. These are analysis boundaries, not deployment capabilities beyond the registered wardrobe.",
+      "figure": 6,
+      "label": "fig:endpoint-limits",
+      "prohibited_term_hits": [],
+      "required_markers": [
+        "fixed-identity subject02",
+        "five-seen-garment closed-wardrobe",
+        "0/5 garments",
+        "rank-3 basis",
+        "80/80",
+        "analysis boundaries"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "paper_final": false,
+  "prohibited_terms": [
+    "unseen-garment",
+    "generalizable garment manifold",
+    "automatic mixed controller",
+    "multiple identities",
+    "perfect",
+    "seamless"
+  ],
+  "schema_version": "paper_publication_figure_caption_audit.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-CANONDRESSGS-FIGURE-P0-CLOSURE-PREP-001",
+  "unsupported_claim_count": 0
+}

@@ -1,0 +1,2530 @@
+{
+  "garment_results": {
+    "O01": {
+      "hard_lookup_outperformance_pass": false,
+      "mean_deltas": {
+        "boundary_f_delta": -0.00038105306724456334,
+        "identity_delta": 2.1149287931621075e-05,
+        "lpips_reduction": -0.00021066144108772278,
+        "rgb_mae_reduction": 0.0005610212683677673,
+        "silhouette_iou_delta": 0.00020748914041629485
+      },
+      "required_rotations": 3,
+      "successful_rotations": 0
+    },
+    "O02": {
+      "hard_lookup_outperformance_pass": false,
+      "mean_deltas": {
+        "boundary_f_delta": 0.004293432971168808,
+        "identity_delta": -3.878888674080372e-05,
+        "lpips_reduction": -7.811002433300018e-05,
+        "rgb_mae_reduction": 1.4372169971466064e-05,
+        "silhouette_iou_delta": 0.0006313621776025957
+      },
+      "required_rotations": 3,
+      "successful_rotations": 0
+    },
+    "O03": {
+      "hard_lookup_outperformance_pass": false,
+      "mean_deltas": {
+        "boundary_f_delta": 0.0020896204720503436,
+        "identity_delta": -4.450557753443718e-06,
+        "lpips_reduction": -0.0003311634063720703,
+        "rgb_mae_reduction": -5.322694778442383e-05,
+        "silhouette_iou_delta": 0.0003761416019263941
+      },
+      "required_rotations": 3,
+      "successful_rotations": 0
+    },
+    "O04": {
+      "hard_lookup_outperformance_pass": false,
+      "mean_deltas": {
+        "boundary_f_delta": 0.0009884493087518945,
+        "identity_delta": -5.519948899745941e-06,
+        "lpips_reduction": -8.571147918701172e-05,
+        "rgb_mae_reduction": 0.0002732016146183014,
+        "silhouette_iou_delta": -6.82029776316595e-06
+      },
+      "required_rotations": 3,
+      "successful_rotations": 0
+    },
+    "O08": {
+      "hard_lookup_outperformance_pass": false,
+      "mean_deltas": {
+        "boundary_f_delta": 0.0040839018574115385,
+        "identity_delta": -8.144648745656013e-06,
+        "lpips_reduction": 0.00013340450823307037,
+        "rgb_mae_reduction": 0.0006076693534851074,
+        "silhouette_iou_delta": 0.0004366437686026403
+      },
+      "required_rotations": 3,
+      "successful_rotations": 0
+    }
+  },
+  "lookup_registry": {
+    "K_shared_cache_contract": {
+      "actual_pair_count": 20,
+      "actual_static_cache_hits": 115,
+      "divergent_endpoint_pair_count": 5,
+      "expected_divergent_endpoint_pair_count": 5,
+      "expected_matching_endpoint_pair_count": 15,
+      "expected_pair_count": 20,
+      "expected_static_cache_hits": 115,
+      "matching_endpoint_pair_count": 15,
+      "mismatch_identities_exact": true,
+      "pairs": [
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O02",
+          "held_out_garment": "O01",
+          "rotation": "R0",
+          "same_endpoint": false
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O02",
+          "held_out_garment": "O01",
+          "rotation": "R1",
+          "same_endpoint": false
+        },
+        {
+          "K1_selected_known_endpoint": "O02",
+          "K2_selected_known_endpoint": "O02",
+          "held_out_garment": "O01",
+          "rotation": "R2",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O04",
+          "held_out_garment": "O01",
+          "rotation": "R3",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O01",
+          "K2_selected_known_endpoint": "O01",
+          "held_out_garment": "O02",
+          "rotation": "R0",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O01",
+          "K2_selected_known_endpoint": "O01",
+          "held_out_garment": "O02",
+          "rotation": "R1",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O08",
+          "K2_selected_known_endpoint": "O01",
+          "held_out_garment": "O02",
+          "rotation": "R2",
+          "same_endpoint": false
+        },
+        {
+          "K1_selected_known_endpoint": "O01",
+          "K2_selected_known_endpoint": "O01",
+          "held_out_garment": "O02",
+          "rotation": "R3",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O04",
+          "held_out_garment": "O03",
+          "rotation": "R0",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O04",
+          "held_out_garment": "O03",
+          "rotation": "R1",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O04",
+          "held_out_garment": "O03",
+          "rotation": "R2",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O04",
+          "held_out_garment": "O03",
+          "rotation": "R3",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O03",
+          "K2_selected_known_endpoint": "O01",
+          "held_out_garment": "O04",
+          "rotation": "R0",
+          "same_endpoint": false
+        },
+        {
+          "K1_selected_known_endpoint": "O03",
+          "K2_selected_known_endpoint": "O03",
+          "held_out_garment": "O04",
+          "rotation": "R1",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O03",
+          "K2_selected_known_endpoint": "O03",
+          "held_out_garment": "O04",
+          "rotation": "R2",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O03",
+          "K2_selected_known_endpoint": "O03",
+          "held_out_garment": "O04",
+          "rotation": "R3",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O01",
+          "K2_selected_known_endpoint": "O01",
+          "held_out_garment": "O08",
+          "rotation": "R0",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O04",
+          "K2_selected_known_endpoint": "O04",
+          "held_out_garment": "O08",
+          "rotation": "R1",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O02",
+          "K2_selected_known_endpoint": "O02",
+          "held_out_garment": "O08",
+          "rotation": "R2",
+          "same_endpoint": true
+        },
+        {
+          "K1_selected_known_endpoint": "O01",
+          "K2_selected_known_endpoint": "O02",
+          "held_out_garment": "O08",
+          "rotation": "R3",
+          "same_endpoint": false
+        }
+      ],
+      "status": "PASS"
+    },
+    "held_out_teacher_use_in_deployable_adaptation": 0,
+    "row_count": 40,
+    "rows": [
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "5c85f62a7890bfa7f29b6e70438a4d422976dda2d06bca011eb18802ceaa0cac",
+        "feature_scale_sha256": "d2d20364456dcbf37b60b96009f03c34fa2f42a3b9409e4959ca018eebc78f50",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "adfd33e4f87b01d705805a65a8e698e5ea7b97c4e98aa0567ee8c2800926dfc8",
+        "raw_centroid_sha256": {
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          -490.31938821598914,
+          322.3759414982821,
+          -368.5258720167719
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O02": 1052.01806640625,
+          "O03": 1177.6121826171875,
+          "O04": 568.998779296875,
+          "O08": 993.1884155273438
+        },
+        "standardized_centroid_sha256": {
+          "O02": "4268ee2c0a166c50b76bd9f08ed18037f6919eb573697622945d9fbec207bc3a",
+          "O03": "333da9a6fe589e48310e0ae8051644da58a14ee4bca7c3a964dd67c84058f04d",
+          "O04": "495f8b803bc6a6af87715e03e15da4ac2ae58e75fc1476052f2111852c8068e5",
+          "O08": "98422d87c6f49fa79d1f330326090639fbbf89d3c48fc6cfbf3ae6cad1a60a91"
+        },
+        "task_id": "LOO-O01-R0-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "5c85f62a7890bfa7f29b6e70438a4d422976dda2d06bca011eb18802ceaa0cac",
+        "feature_scale_sha256": "d2d20364456dcbf37b60b96009f03c34fa2f42a3b9409e4959ca018eebc78f50",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "790e24e7a490b818dbbc056388d9855176b34e0e496e950e3f8108b7c1d83c70",
+        "raw_centroid_sha256": {
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          607.4983092660285,
+          -210.0591589058457,
+          -315.6037921261805
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O02": 682.5379638671875,
+          "O03": 1385.70263671875,
+          "O04": 692.5910034179688,
+          "O08": 1036.111083984375
+        },
+        "standardized_centroid_sha256": {
+          "O02": "4268ee2c0a166c50b76bd9f08ed18037f6919eb573697622945d9fbec207bc3a",
+          "O03": "333da9a6fe589e48310e0ae8051644da58a14ee4bca7c3a964dd67c84058f04d",
+          "O04": "495f8b803bc6a6af87715e03e15da4ac2ae58e75fc1476052f2111852c8068e5",
+          "O08": "98422d87c6f49fa79d1f330326090639fbbf89d3c48fc6cfbf3ae6cad1a60a91"
+        },
+        "task_id": "LOO-O01-R0-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "69064d9737d0600a8e2df927af723f3f8a06613d17a8d93f6df4cd166006eb37",
+        "feature_scale_sha256": "77cb23e544312e7c583a6eef5fb566095f3a92b72dc31678ec9a9587df0cb208",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "7e075135b3e09a2176a962060d90e70d4ba77afde4a09737f860537a1eddfcd1",
+        "raw_centroid_sha256": {
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          -490.31938821598914,
+          322.3759414982821,
+          -368.5258720167719
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O02": 974.9171142578125,
+          "O03": 1254.861328125,
+          "O04": 873.61865234375,
+          "O08": 1519.451904296875
+        },
+        "standardized_centroid_sha256": {
+          "O02": "d099ed8952c22fa8b2f38c1bf22ca84e6d5189ecf0edab940520aa907f7786ef",
+          "O03": "bc44b23a824fc652ffb90e73708adab5e682028a4d9bb731ef1423feca5a468b",
+          "O04": "b805f8c7c1e73373656043eaddc9bc8284518089049be461d0c14e4fc1b0768d",
+          "O08": "ab58ae606ce9a118192ffbed0bcd6302eadeb87cfe1bf7393b46561b2e8bfaef"
+        },
+        "task_id": "LOO-O01-R1-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "69064d9737d0600a8e2df927af723f3f8a06613d17a8d93f6df4cd166006eb37",
+        "feature_scale_sha256": "77cb23e544312e7c583a6eef5fb566095f3a92b72dc31678ec9a9587df0cb208",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "3ba2b79516cd7005d2a5f42a042d6f5cc10aa538785401a97dc9ac7f875ac982",
+        "raw_centroid_sha256": {
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          607.4983092660285,
+          -210.0591589058457,
+          -315.6037921261805
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O02": 630.6043090820312,
+          "O03": 1438.77392578125,
+          "O04": 1016.1748046875,
+          "O08": 1582.06640625
+        },
+        "standardized_centroid_sha256": {
+          "O02": "d099ed8952c22fa8b2f38c1bf22ca84e6d5189ecf0edab940520aa907f7786ef",
+          "O03": "bc44b23a824fc652ffb90e73708adab5e682028a4d9bb731ef1423feca5a468b",
+          "O04": "b805f8c7c1e73373656043eaddc9bc8284518089049be461d0c14e4fc1b0768d",
+          "O08": "ab58ae606ce9a118192ffbed0bcd6302eadeb87cfe1bf7393b46561b2e8bfaef"
+        },
+        "task_id": "LOO-O01-R1-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "9d5f9bf874d15a41a7e4ea7f2556e9e9456ddb52b330cbe72641fd8220370b48",
+        "feature_scale_sha256": "6c514bb9426b280dcfa16fc2f6e11ff8b70dd4310ac2a7bc47d5dcc8ad8d318c",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "ce69d6bbd7849f4bbef02a9eed5860c857f0eda398568f8da1c86771e9ba729b",
+        "raw_centroid_sha256": {
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          607.4983092660285,
+          -210.0591589058457,
+          -315.6037921261805
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O02": 907.0355224609375,
+          "O03": 1548.918212890625,
+          "O04": 1248.294189453125,
+          "O08": 1206.440185546875
+        },
+        "standardized_centroid_sha256": {
+          "O02": "80d74a03834227d57f5a9c66b5d42455f62aaaafaf8ffdfc8d6c11263d1b3a5b",
+          "O03": "af7c7884bc8ee38054c78a5c072de55d2194b4ec3461d81a5bbbbc060ad0789f",
+          "O04": "9d332185620d2b06bfc6b5c71a57afc757bda227d01ec9c2a5ee259a6b0bbdd8",
+          "O08": "abb81b65f426648b2e6b42bcd03b8eee441bb40d3fe58b9b21595357e4bf3372"
+        },
+        "task_id": "LOO-O01-R2-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "9d5f9bf874d15a41a7e4ea7f2556e9e9456ddb52b330cbe72641fd8220370b48",
+        "feature_scale_sha256": "6c514bb9426b280dcfa16fc2f6e11ff8b70dd4310ac2a7bc47d5dcc8ad8d318c",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "0b3aa24e2d183d218dbab913c007953d30018c886699d18a41ba8928750acbb6",
+        "raw_centroid_sha256": {
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          607.4983092660285,
+          -210.0591589058457,
+          -315.6037921261805
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O02": 813.9168701171875,
+          "O03": 1184.2637939453125,
+          "O04": 960.1968383789062,
+          "O08": 1263.0841064453125
+        },
+        "standardized_centroid_sha256": {
+          "O02": "80d74a03834227d57f5a9c66b5d42455f62aaaafaf8ffdfc8d6c11263d1b3a5b",
+          "O03": "af7c7884bc8ee38054c78a5c072de55d2194b4ec3461d81a5bbbbc060ad0789f",
+          "O04": "9d332185620d2b06bfc6b5c71a57afc757bda227d01ec9c2a5ee259a6b0bbdd8",
+          "O08": "abb81b65f426648b2e6b42bcd03b8eee441bb40d3fe58b9b21595357e4bf3372"
+        },
+        "task_id": "LOO-O01-R2-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "91c8b5462d0262e54ef08b9ce47f7116f8dfb04d9248c958f567d50a561772b8",
+        "feature_scale_sha256": "9c823c4e0aad35347d2463808f5d4814be3f53ece88e573f8e39ebbb0b2a30ff",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "adfd33e4f87b01d705805a65a8e698e5ea7b97c4e98aa0567ee8c2800926dfc8",
+        "raw_centroid_sha256": {
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          -490.31938821598914,
+          322.3759414982821,
+          -368.5258720167719
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O02": 970.4637451171875,
+          "O03": 1231.83349609375,
+          "O04": 733.6866455078125,
+          "O08": 774.9305419921875
+        },
+        "standardized_centroid_sha256": {
+          "O02": "401f4ce4d226f8397df7045eb025fbf46401d5abce56fe7428cfbfbf7c09bb89",
+          "O03": "e42a7ffffac0c2b18661e882f5537fd069b35cbbcaaa3ab25f0289b3e568a72f",
+          "O04": "d699e0f625b0b1306410d2b4938fab43a4d65a1e9cc4b98c39345758397f7336",
+          "O08": "dd79c0ef4d58c2d2e2405be09b69c008a38bed3bb483ec7857d83ffe1d939831"
+        },
+        "task_id": "LOO-O01-R3-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "01618af79c518de15372aa2d2d176f4f94258df8a61bc84ec4d1bce25c2db7eb",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "91c8b5462d0262e54ef08b9ce47f7116f8dfb04d9248c958f567d50a561772b8",
+        "feature_scale_sha256": "9c823c4e0aad35347d2463808f5d4814be3f53ece88e573f8e39ebbb0b2a30ff",
+        "hard_lookup_bank": [
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O01",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "95df91c2e817e8774e971e5aafbf2626ea1590736b3762be08cbbfbefe02630e",
+        "query_feature_sha256": "b72c8655b74fe25d7017bd6654f970fe0f4533c0ebcb05e783963f5eca3e800f",
+        "raw_centroid_sha256": {
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          -490.31938821598914,
+          322.3759414982821,
+          -368.5258720167719
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O02": 1120.156982421875,
+          "O03": 1486.854736328125,
+          "O04": 931.4551391601562,
+          "O08": 1078.698486328125
+        },
+        "standardized_centroid_sha256": {
+          "O02": "401f4ce4d226f8397df7045eb025fbf46401d5abce56fe7428cfbfbf7c09bb89",
+          "O03": "e42a7ffffac0c2b18661e882f5537fd069b35cbbcaaa3ab25f0289b3e568a72f",
+          "O04": "d699e0f625b0b1306410d2b4938fab43a4d65a1e9cc4b98c39345758397f7336",
+          "O08": "dd79c0ef4d58c2d2e2405be09b69c008a38bed3bb483ec7857d83ffe1d939831"
+        },
+        "task_id": "LOO-O01-R3-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "3b86b8b02a9ae21b8776fcc86c21bff18fbe9041daf00f0c333e5b3e84dc8a63",
+        "feature_scale_sha256": "c9a48c7262f220ded74e0a67955c370d6593d3fcbc2a2bf178ea750d90681d21",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "3717e6673f1e853e3d9b5390becc428dde69282b04f66665478dadd58bb6a8a0",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 669.3006591796875,
+          "O03": 3480.87255859375,
+          "O04": 1645.4949951171875,
+          "O08": 1224.0235595703125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "f7551fd9a6953599ed81df4909544247afd571a42e26c2ffa65110a86eacd728",
+          "O03": "c93f7aec79afe56b7e2b4b9f29bb66b71270fc8037860d5b2b742071169ad342",
+          "O04": "8b09941828235042a2742dfb0b043fecfc26d0d2080e23d433f2ad6909079a47",
+          "O08": "a2892fad3de37e21d65ea8af59382b9ceaa9d83838da3ff4cbb1944665c82390"
+        },
+        "task_id": "LOO-O02-R0-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "3b86b8b02a9ae21b8776fcc86c21bff18fbe9041daf00f0c333e5b3e84dc8a63",
+        "feature_scale_sha256": "c9a48c7262f220ded74e0a67955c370d6593d3fcbc2a2bf178ea750d90681d21",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "ece7447d303fd0a565165d6fb5737bb09f9bebd5640a6774686217629ac4a117",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 1006.4820556640625,
+          "O03": 4151.2431640625,
+          "O04": 2100.5693359375,
+          "O08": 1653.172119140625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "f7551fd9a6953599ed81df4909544247afd571a42e26c2ffa65110a86eacd728",
+          "O03": "c93f7aec79afe56b7e2b4b9f29bb66b71270fc8037860d5b2b742071169ad342",
+          "O04": "8b09941828235042a2742dfb0b043fecfc26d0d2080e23d433f2ad6909079a47",
+          "O08": "a2892fad3de37e21d65ea8af59382b9ceaa9d83838da3ff4cbb1944665c82390"
+        },
+        "task_id": "LOO-O02-R0-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "9fa61b08ef541c0d027c9fa3a029ca4301c877390af89432dbe6d0c5621f5f9a",
+        "feature_scale_sha256": "39127e15548c864d151710a05aaa4509beabc55bd6302f224c8c55e2dcaf415e",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "25ee5b9add406b2034f75b9b0d5be7c95da7a9424430d5b09ff04b93fc627bc8",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 805.84521484375,
+          "O03": 2234.27783203125,
+          "O04": 1553.041748046875,
+          "O08": 1748.81201171875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "1385c6d7052f2c7dbd67a59edefae28389c05e6e4ff455852480c8aa9c3fb34f",
+          "O03": "3cd7a30f5157afdc09c61cf0a4a5515260e2947854e9c3f21d3ff6183164deba",
+          "O04": "76f594a8c66bf72fdb5e88dd54d484533008ff41e788103f729e8ea5aa19ac7d",
+          "O08": "ad895dc1d276dc5fdc7a5bce1f880b08c23bff1b25fe639b6bb80940af02a4ad"
+        },
+        "task_id": "LOO-O02-R1-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "9fa61b08ef541c0d027c9fa3a029ca4301c877390af89432dbe6d0c5621f5f9a",
+        "feature_scale_sha256": "39127e15548c864d151710a05aaa4509beabc55bd6302f224c8c55e2dcaf415e",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "6ac430d024dec4a56a0ca8957872b0f70fab2beb30b08db33f313bf50b3585fb",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 1082.1412353515625,
+          "O03": 3104.522705078125,
+          "O04": 2263.0830078125,
+          "O08": 2111.70556640625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "1385c6d7052f2c7dbd67a59edefae28389c05e6e4ff455852480c8aa9c3fb34f",
+          "O03": "3cd7a30f5157afdc09c61cf0a4a5515260e2947854e9c3f21d3ff6183164deba",
+          "O04": "76f594a8c66bf72fdb5e88dd54d484533008ff41e788103f729e8ea5aa19ac7d",
+          "O08": "ad895dc1d276dc5fdc7a5bce1f880b08c23bff1b25fe639b6bb80940af02a4ad"
+        },
+        "task_id": "LOO-O02-R1-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "fef5aab812910bbffbb49d59c047e2207ad1f8230e37f408ac2ebeb17011658f",
+        "feature_scale_sha256": "c87c5fc4b6a34871d6d6c6a0decbf7f019f6192b232369bb4233417dfa435e99",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "8c2002a061f906d042fe8ef2f4fdb2731c9036f73db9d05fe2dc6aa384cc04c0",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          246.92383810541958,
+          480.22403948046343,
+          -380.380632046973
+        ],
+        "selected_known_endpoint": "O08",
+        "squared_distances": {
+          "O01": 1461.299560546875,
+          "O03": 4192.21533203125,
+          "O04": 3354.85498046875,
+          "O08": 1418.6943359375
+        },
+        "standardized_centroid_sha256": {
+          "O01": "1eee3fce7fc2a7b8dd6622859707866667dab88df8084b2b29ca830da1b8f622",
+          "O03": "dad4952fd05919c8b59c105c2210ea098ae886855e7ca1f6102e21c5e80521ec",
+          "O04": "1e9ec1247f15ba9cb57db183be855a1ba9d1d9faf51958b767d1ff7909ac1d50",
+          "O08": "cc6fef4ae045a8d56339a76cad047081ae1753188d90ead217d57b8893fc7ae4"
+        },
+        "task_id": "LOO-O02-R2-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "fef5aab812910bbffbb49d59c047e2207ad1f8230e37f408ac2ebeb17011658f",
+        "feature_scale_sha256": "c87c5fc4b6a34871d6d6c6a0decbf7f019f6192b232369bb4233417dfa435e99",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "396d7ab279d7e73a0ca886a6f2be730ba98b08e38ae2a53c552cf249ebd6838b",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 1097.388671875,
+          "O03": 3279.2548828125,
+          "O04": 2499.747314453125,
+          "O08": 1761.6572265625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "1eee3fce7fc2a7b8dd6622859707866667dab88df8084b2b29ca830da1b8f622",
+          "O03": "dad4952fd05919c8b59c105c2210ea098ae886855e7ca1f6102e21c5e80521ec",
+          "O04": "1e9ec1247f15ba9cb57db183be855a1ba9d1d9faf51958b767d1ff7909ac1d50",
+          "O08": "cc6fef4ae045a8d56339a76cad047081ae1753188d90ead217d57b8893fc7ae4"
+        },
+        "task_id": "LOO-O02-R2-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "bfe3e921b2d1a8f68077008211d00e84395e3f59962e0e6defb5db7d569057ab",
+        "feature_scale_sha256": "e7bd82027f3acdb0a84d6e5ea49210663e65804e2a46f108a936478b00394fb2",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "3717e6673f1e853e3d9b5390becc428dde69282b04f66665478dadd58bb6a8a0",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 1322.812744140625,
+          "O03": 4289.37890625,
+          "O04": 2682.3662109375,
+          "O08": 1663.78173828125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "9c9075b048d45175b60d63bc5bb1bef7ac09fb881c5db01003a31606ec483382",
+          "O03": "e8e852c2cac79f407aa8e30f3d539ea982d009da6eeeae078636e05210769595",
+          "O04": "e263214cf6e3866484a43943e9ae1030a99629059af74df2a5895788862c42b5",
+          "O08": "5ed05cecd7e2a55ac386367f17c570480d675edcb2ac02db2397475655e0dddc"
+        },
+        "task_id": "LOO-O02-R3-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "4e0a00882d0f5a845c002673cf9c95727e2622f11826ae1a61df5e621294a309",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "bfe3e921b2d1a8f68077008211d00e84395e3f59962e0e6defb5db7d569057ab",
+        "feature_scale_sha256": "e7bd82027f3acdb0a84d6e5ea49210663e65804e2a46f108a936478b00394fb2",
+        "hard_lookup_bank": [
+          "O01",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O02",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "4b2bcd911c193638212685f3c1b0bea5f57406bee0742961aaf3ca2f110c6aea",
+        "query_feature_sha256": "18ea6e928cd9f49b6570de96892ab7a3195318d54de4692c1a890ac36754ba5d",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          539.6540151668877,
+          -177.6625194053235,
+          367.8170753904964
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 1427.0377197265625,
+          "O03": 4574.47265625,
+          "O04": 2847.7275390625,
+          "O08": 1566.259033203125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "9c9075b048d45175b60d63bc5bb1bef7ac09fb881c5db01003a31606ec483382",
+          "O03": "e8e852c2cac79f407aa8e30f3d539ea982d009da6eeeae078636e05210769595",
+          "O04": "e263214cf6e3866484a43943e9ae1030a99629059af74df2a5895788862c42b5",
+          "O08": "5ed05cecd7e2a55ac386367f17c570480d675edcb2ac02db2397475655e0dddc"
+        },
+        "task_id": "LOO-O02-R3-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "9e06933687a01b89e40ad0754c102035795fb63dc08c09d869a7b6c23cdd7079",
+        "feature_scale_sha256": "23ee963b49fcb34644be9fc702f78e6d1b906a6b76762a9991cbc5973a688a53",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "7c3bad86663a4d6cd0d8f1d6bd8920e1ab4f05b56948b4dacb48dcce7105ad37",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 4857.81103515625,
+          "O02": 8378.845703125,
+          "O04": 3734.798828125,
+          "O08": 7802.794921875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "3c9324aed443bc80aac2aad722c1f076d70eb8b51e5c5fb4df47fb979afe7c52",
+          "O02": "fb0c5689262567a07fee91aeaac9968028664f077b45cbb24895172ca4c1f1d7",
+          "O04": "16c89d48e2c6afddfe8627bdbedb07f357575148c03dd084b8eb7553e195149c",
+          "O08": "0a131b32ae2d861f9e8e767633a29ab4c3dd521dc5abf2d416e9033590be9a5a"
+        },
+        "task_id": "LOO-O03-R0-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "9e06933687a01b89e40ad0754c102035795fb63dc08c09d869a7b6c23cdd7079",
+        "feature_scale_sha256": "23ee963b49fcb34644be9fc702f78e6d1b906a6b76762a9991cbc5973a688a53",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "c090b4bedc0f4ce45f2e48bdb0a473fd924e4d10a8de35d39e76d6c9374f1afa",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 4141.888671875,
+          "O02": 7258.5205078125,
+          "O04": 2918.9072265625,
+          "O08": 6731.1953125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "3c9324aed443bc80aac2aad722c1f076d70eb8b51e5c5fb4df47fb979afe7c52",
+          "O02": "fb0c5689262567a07fee91aeaac9968028664f077b45cbb24895172ca4c1f1d7",
+          "O04": "16c89d48e2c6afddfe8627bdbedb07f357575148c03dd084b8eb7553e195149c",
+          "O08": "0a131b32ae2d861f9e8e767633a29ab4c3dd521dc5abf2d416e9033590be9a5a"
+        },
+        "task_id": "LOO-O03-R0-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "79e2337ca6743f643125e89ed2ae1c5343eff7df055ddd27b4e6ea8cb3b0e763",
+        "feature_scale_sha256": "769d6ec47985c9fdd7fa50f31c099e0f4174de7c43ed2e7005fd83983e7d3440",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "d6a46c2ea091a724a17a764b8dd400ba7f74061ebe0404febd6cc967ea748e87",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 3040.997802734375,
+          "O02": 4858.986328125,
+          "O04": 1776.6748046875,
+          "O08": 4714.89404296875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "e8a9dd504b63a2fb86a57f06ed159d83cf9efc22cf5e2822f2a143d669a86a36",
+          "O02": "dbd6e23ea15ab3e6254ff1d218b91a29d09e6f088692f3c7c4aa16664ce0e45b",
+          "O04": "7223a41b531bc3ddf5ad1e18dbd28ce32a7a0774033e253edf2075f75d43fec5",
+          "O08": "cba66cd679de5ad1ba6b854cd4a0b18dfda036fe26a04854b50607154b2dae24"
+        },
+        "task_id": "LOO-O03-R1-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "79e2337ca6743f643125e89ed2ae1c5343eff7df055ddd27b4e6ea8cb3b0e763",
+        "feature_scale_sha256": "769d6ec47985c9fdd7fa50f31c099e0f4174de7c43ed2e7005fd83983e7d3440",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "a09570f4808e50ae693a7cd854af4f56211d711c3a5b0ce1e43e945fe9297ff1",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 3462.56005859375,
+          "O02": 4981.8349609375,
+          "O04": 1849.113037109375,
+          "O08": 5529.0673828125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "e8a9dd504b63a2fb86a57f06ed159d83cf9efc22cf5e2822f2a143d669a86a36",
+          "O02": "dbd6e23ea15ab3e6254ff1d218b91a29d09e6f088692f3c7c4aa16664ce0e45b",
+          "O04": "7223a41b531bc3ddf5ad1e18dbd28ce32a7a0774033e253edf2075f75d43fec5",
+          "O08": "cba66cd679de5ad1ba6b854cd4a0b18dfda036fe26a04854b50607154b2dae24"
+        },
+        "task_id": "LOO-O03-R1-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "d3beb9e99a6fade8f463b933c769af60c8dbe720b9ea6bbc254ea3249095d2b1",
+        "feature_scale_sha256": "94257a9fdddcb58e17ce7c23abc5e87c7b19aac4ff36ca62847312b266af7953",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "9ca3566135b22c0ec801b638f22de548974baca9fd51d1b368fde97b1894b65d",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 2665.064453125,
+          "O02": 4333.9208984375,
+          "O04": 1246.7266845703125,
+          "O08": 4541.29248046875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "65a4192c59c55b29e3141735b51c33eafd1f3f57bcec26db9ee7c0e35f5c45c2",
+          "O02": "69c6db43a50a02af2ac11a01d4b75923ea376ff511b496254a7e708604cd2da7",
+          "O04": "7ff12583b2cea797e99dc73051b46f3c40ad75392a833a3940dccd5512b8f934",
+          "O08": "f1a8e5f992848bb54230ea120832d41211663a94304ad108221ed43d332fe987"
+        },
+        "task_id": "LOO-O03-R2-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "d3beb9e99a6fade8f463b933c769af60c8dbe720b9ea6bbc254ea3249095d2b1",
+        "feature_scale_sha256": "94257a9fdddcb58e17ce7c23abc5e87c7b19aac4ff36ca62847312b266af7953",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "7ea038fb82c78ba69f519db7720c471c47dd38f9b521980f0ab08bd7add3aff5",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 2385.06689453125,
+          "O02": 3987.4150390625,
+          "O04": 993.7720947265625,
+          "O08": 4230.09130859375
+        },
+        "standardized_centroid_sha256": {
+          "O01": "65a4192c59c55b29e3141735b51c33eafd1f3f57bcec26db9ee7c0e35f5c45c2",
+          "O02": "69c6db43a50a02af2ac11a01d4b75923ea376ff511b496254a7e708604cd2da7",
+          "O04": "7ff12583b2cea797e99dc73051b46f3c40ad75392a833a3940dccd5512b8f934",
+          "O08": "f1a8e5f992848bb54230ea120832d41211663a94304ad108221ed43d332fe987"
+        },
+        "task_id": "LOO-O03-R2-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "35e5b78aa596c4b824e42f2e72ac4037750262b3dd16d23f7cb929232038c2a0",
+        "feature_scale_sha256": "aad14b720594802327ab2efd33de0ecb9c9057e4d3eb99cd90a413aebc6d904e",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "7c3bad86663a4d6cd0d8f1d6bd8920e1ab4f05b56948b4dacb48dcce7105ad37",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 4166.2978515625,
+          "O02": 6812.5693359375,
+          "O04": 2469.89453125,
+          "O08": 6407.04638671875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "926bfa52244e6191d1fca49bc9066704676bda56c3c693e55bb19154713185ec",
+          "O02": "1e2796717f15c2fdb0087a34feaf6f0f9d0e9d4f101f30588727b7e5f30846f7",
+          "O04": "79e89459cb372f0be1895cd49a2c9f6bccb7902a686ac7c9d306ee8bd9552ee9",
+          "O08": "80f10df6975340ab7201ec483a79cf7b2afe348be2a814025e1f7e22354794b5"
+        },
+        "task_id": "LOO-O03-R3-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "78344c84e3e740ff821bab323c005925870f6c5b5ce2e6a48b08172e6ab54e15",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "35e5b78aa596c4b824e42f2e72ac4037750262b3dd16d23f7cb929232038c2a0",
+        "feature_scale_sha256": "aad14b720594802327ab2efd33de0ecb9c9057e4d3eb99cd90a413aebc6d904e",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "held_out_garment": "O03",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "b6ebab74e5dcc2c952345f7c7c9437f5c29b7c3937f76d26842441647bd5c4a0",
+        "query_feature_sha256": "eb387a568141e710eb7490712f778a22803bc7447144e12cf7021bb9ad8a88f7",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          694.8017182379707,
+          -290.12001135222016,
+          -0.6269509941418345
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 3478.734130859375,
+          "O02": 6016.74658203125,
+          "O04": 1857.399169921875,
+          "O08": 5604.001953125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "926bfa52244e6191d1fca49bc9066704676bda56c3c693e55bb19154713185ec",
+          "O02": "1e2796717f15c2fdb0087a34feaf6f0f9d0e9d4f101f30588727b7e5f30846f7",
+          "O04": "79e89459cb372f0be1895cd49a2c9f6bccb7902a686ac7c9d306ee8bd9552ee9",
+          "O08": "80f10df6975340ab7201ec483a79cf7b2afe348be2a814025e1f7e22354794b5"
+        },
+        "task_id": "LOO-O03-R3-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "ac73fd9a0a80de5490474fdeae90d22dad532e2294799202164c1be8e4cda1cb",
+        "feature_scale_sha256": "da993f4fe601e42ea3d316f2efc375abb4e495a35f5c1efb87354297b497981c",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "fc5d14a65d3032b4a3cd53556aa1f19e51c6c2fb7669573b7e423ee8c83cc644",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 871.4728393554688,
+          "O02": 1553.998779296875,
+          "O03": 731.688232421875,
+          "O08": 1574.215576171875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "df4631c903598792fa4e324b8f8d6cbb5544dfc5f06c8ad3e208b19ca9d3631f",
+          "O02": "ea4d5d2d8579f0ff2a4c26ce7379b61dfda69f47feed9e38dce6a3af13b5e83d",
+          "O03": "5fd8b56cc9e9b9be8ebb1c586bb204a116962e58d4092c8ed31a58c6157f1372",
+          "O08": "b723877eddb68bda928301ab00aa3cafbb0b7229d915df2da6b976e637356d38"
+        },
+        "task_id": "LOO-O04-R0-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "ac73fd9a0a80de5490474fdeae90d22dad532e2294799202164c1be8e4cda1cb",
+        "feature_scale_sha256": "da993f4fe601e42ea3d316f2efc375abb4e495a35f5c1efb87354297b497981c",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "d202101e39d4546c1adbd47048e13f7590f06c6b3e16061edb1f9a2eea2c9a3c",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O08": "93d976a6c607ccf4bd840efcfaaa2f89274029fa7c809da144e8c5ce586a64bc"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          117.25904720116479,
+          -234.5962028384941,
+          538.9438728363451
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 822.2810668945312,
+          "O02": 1373.5135498046875,
+          "O03": 910.60986328125,
+          "O08": 1334.783447265625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "df4631c903598792fa4e324b8f8d6cbb5544dfc5f06c8ad3e208b19ca9d3631f",
+          "O02": "ea4d5d2d8579f0ff2a4c26ce7379b61dfda69f47feed9e38dce6a3af13b5e83d",
+          "O03": "5fd8b56cc9e9b9be8ebb1c586bb204a116962e58d4092c8ed31a58c6157f1372",
+          "O08": "b723877eddb68bda928301ab00aa3cafbb0b7229d915df2da6b976e637356d38"
+        },
+        "task_id": "LOO-O04-R0-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "e2c35b732806ece1661c08ee172cf65446c2c754bbb46d86eff980d73d856e66",
+        "feature_scale_sha256": "a2e9af5c097be132414016b43141d71734871621c889b1e1ab86a9ab343616e2",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "a8c0a95348958bddd379b8278716d7904d18ea5b35a4173fc169d94b95812e9e",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 1326.2156982421875,
+          "O02": 2201.8134765625,
+          "O03": 911.5938110351562,
+          "O08": 2162.97119140625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "999a49f5aedaf73a7bed887c1ac7a4922028d5bacafbc678294bec0b24f06938",
+          "O02": "1f6a6bf7837731c9a0c0cdd7c422499d69d9cf30ab74a3ac663ddec0a3486b58",
+          "O03": "b2c369254c37e3b12f0d4ae0e98f92e5f15bedc8d01cb8dc990a68c7acb2ff8a",
+          "O08": "bb5171f127e3e38e11d2b0429c964e025dbee11fd38d73740f6ce3c50aee4314"
+        },
+        "task_id": "LOO-O04-R1-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "e2c35b732806ece1661c08ee172cf65446c2c754bbb46d86eff980d73d856e66",
+        "feature_scale_sha256": "a2e9af5c097be132414016b43141d71734871621c889b1e1ab86a9ab343616e2",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "c8852841d03dd89d89d72380148bb97b358fc5500bb8eccd4370f7df5eeba5ec",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O08": "cbdd413293a6b41aee96667581429dbd5634ac644be9f41b0d431858e0c55d64"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 1304.188232421875,
+          "O02": 1798.40234375,
+          "O03": 1021.8828125,
+          "O08": 1983.401611328125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "999a49f5aedaf73a7bed887c1ac7a4922028d5bacafbc678294bec0b24f06938",
+          "O02": "1f6a6bf7837731c9a0c0cdd7c422499d69d9cf30ab74a3ac663ddec0a3486b58",
+          "O03": "b2c369254c37e3b12f0d4ae0e98f92e5f15bedc8d01cb8dc990a68c7acb2ff8a",
+          "O08": "bb5171f127e3e38e11d2b0429c964e025dbee11fd38d73740f6ce3c50aee4314"
+        },
+        "task_id": "LOO-O04-R1-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "0c70565fdab2f4664dd2b03c31d8ff56785074eab9fc0c9ec80541852b7937ca",
+        "feature_scale_sha256": "52e1184251f0464b6c045c75c66806fdfaeafca5a2ae69840d7037ab078a5e07",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "16432c3f10190eed5abc93dc4afd37490eb0fa37449e8c5e43bdeb74bb53c8f6",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 2285.830810546875,
+          "O02": 3189.870849609375,
+          "O03": 1299.767822265625,
+          "O08": 3943.80322265625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "b27916f00c55ab555c5c2cba82ced56be16d8833799bd262ec58acd56cdc93d6",
+          "O02": "a5bfd041b47261e832ad5c68fba9b3d18633608dde73b2a850d97fa61c3b25ad",
+          "O03": "0eff8fa36afdb2183866241321289d905fb051ee8deb9a0e9000ee1b41d94e94",
+          "O08": "e2f8cb146b5ba2cadf44d0410b03982f50c365c9a4e4316c633cf52d46584393"
+        },
+        "task_id": "LOO-O04-R2-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "0c70565fdab2f4664dd2b03c31d8ff56785074eab9fc0c9ec80541852b7937ca",
+        "feature_scale_sha256": "52e1184251f0464b6c045c75c66806fdfaeafca5a2ae69840d7037ab078a5e07",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "6d6a6bf75601ee5648f22c2d6304221e810c6d1711f29920f5d9b43fa4e37c1e",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O08": "cdca1c92c8c7941d3b064071d0050fb40f5fe5de561b9add98330f9f12db5756"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 1981.44580078125,
+          "O02": 3012.95849609375,
+          "O03": 1178.933349609375,
+          "O08": 3617.880859375
+        },
+        "standardized_centroid_sha256": {
+          "O01": "b27916f00c55ab555c5c2cba82ced56be16d8833799bd262ec58acd56cdc93d6",
+          "O02": "a5bfd041b47261e832ad5c68fba9b3d18633608dde73b2a850d97fa61c3b25ad",
+          "O03": "0eff8fa36afdb2183866241321289d905fb051ee8deb9a0e9000ee1b41d94e94",
+          "O08": "e2f8cb146b5ba2cadf44d0410b03982f50c365c9a4e4316c633cf52d46584393"
+        },
+        "task_id": "LOO-O04-R2-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "d1ece9f4f43bd4d1a2e1d8e6b4a5333f81143847692880cbc1913610721c1d32",
+        "feature_scale_sha256": "58b5b00b6195ea79cfb9701ea5069fc3a67f7a148279246c0813e543f950b2d2",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "fc5d14a65d3032b4a3cd53556aa1f19e51c6c2fb7669573b7e423ee8c83cc644",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 900.3970336914062,
+          "O02": 1808.859375,
+          "O03": 821.001708984375,
+          "O08": 1627.84814453125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "39d3b6895926490dca8ee23e73ad8fae5151c3c93493e2ba396b5ad5d2eaa417",
+          "O02": "669a1160cf28c47c669c9a33b83a736c30ab7d91626d641396072e3154e67ae0",
+          "O03": "a4188a2f9d2af04a118b73a595168e7894df5a75cb5e29bb204ae718b8e33e36",
+          "O08": "363a83464978fe9b9cfa3f1971c54a7320eed66d44ff4e8c2ad30dd9ab7c6174"
+        },
+        "task_id": "LOO-O04-R3-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "c27684a8727e95e0990cc954fabc4718986215bbbe0aa37f1fa103e0d71185ba",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "d1ece9f4f43bd4d1a2e1d8e6b4a5333f81143847692880cbc1913610721c1d32",
+        "feature_scale_sha256": "58b5b00b6195ea79cfb9701ea5069fc3a67f7a148279246c0813e543f950b2d2",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O08"
+        ],
+        "held_out_garment": "O04",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "6d10b1a131ef2751db4ed8d11c91816eb6b85dab853f7e47dce9d1355f7c0911",
+        "query_feature_sha256": "f78477054e18fc9ceccae3758b4cbd2f59894e60209e29a6ecf269c60d003633",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O08": "4bfb6c091135da598118f8405fc76f2fa73ab7a533b32b1540f4f50e55a8e2b5"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          -716.6818163873484,
+          19.043453591024544,
+          -104.73764866214685
+        ],
+        "selected_known_endpoint": "O03",
+        "squared_distances": {
+          "O01": 1300.251953125,
+          "O02": 2310.13330078125,
+          "O03": 753.978759765625,
+          "O08": 2463.5205078125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "39d3b6895926490dca8ee23e73ad8fae5151c3c93493e2ba396b5ad5d2eaa417",
+          "O02": "669a1160cf28c47c669c9a33b83a736c30ab7d91626d641396072e3154e67ae0",
+          "O03": "a4188a2f9d2af04a118b73a595168e7894df5a75cb5e29bb204ae718b8e33e36",
+          "O08": "363a83464978fe9b9cfa3f1971c54a7320eed66d44ff4e8c2ad30dd9ab7c6174"
+        },
+        "task_id": "LOO-O04-R3-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "678085636a01e4eaa29be695af3375821734ea7555d7f641007b00ea7b2b4d2f",
+        "feature_scale_sha256": "55ca3f06b752db3911f8bbcc2deb1fa111ccafe2c0036b25a997e02a05e4641c",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "9939d90f42dd0907118c395efaa964c1dba66408a825c84ebc43f2332179b72c",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          385.12117458075346,
+          -59.06891263820222,
+          508.90939755593917
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 1549.281005859375,
+          "O02": 1980.888427734375,
+          "O03": 3752.09765625,
+          "O04": 1752.75634765625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "a958a31695796dda3fdfc173133bb4fcf25176a042324c29e4b81ceeba41f95f",
+          "O02": "566dfbb03fe351c30eb332f57cf2adc360ca12026c82c4e3f5fe0d7890440e64",
+          "O03": "69c603ca2c49978801bd0211af3bd7461de48f24af32c5238d3ae4b2b35cd88f",
+          "O04": "e34546a5b5e392bd8dc9802f08d4bd0001fa5056606f251eea3a2653a095088b"
+        },
+        "task_id": "LOO-O08-R0-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "feature_mean_sha256": "678085636a01e4eaa29be695af3375821734ea7555d7f641007b00ea7b2b4d2f",
+        "feature_scale_sha256": "55ca3f06b752db3911f8bbcc2deb1fa111ccafe2c0036b25a997e02a05e4641c",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "794ed64cdc07669e4b171655e34088e9da77759c61c53c4bac92a18a9c66fd7f",
+        "raw_centroid_sha256": {
+          "O01": "e3b88345f397d732e962b96a34482137e5615a245ecf1ff1835af5c99dba0649",
+          "O02": "7cca404857fed4e1ea96dd5abc66d810d51a8ae2d04611bd32b1d9a4abff58bb",
+          "O03": "01620ff97fdc2b3da9c6ca995452a779d1af6bd8150e76354a2c9349849c7596",
+          "O04": "485ef8bb62b94a526c23898f1bae4d3b669233bc73ddf7177a73187e60a7e1d3"
+        },
+        "rotation": "R0",
+        "selected_coefficient": [
+          385.12117458075346,
+          -59.06891263820222,
+          508.90939755593917
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 2015.729248046875,
+          "O02": 2100.519287109375,
+          "O03": 4630.607421875,
+          "O04": 2141.36328125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "a958a31695796dda3fdfc173133bb4fcf25176a042324c29e4b81ceeba41f95f",
+          "O02": "566dfbb03fe351c30eb332f57cf2adc360ca12026c82c4e3f5fe0d7890440e64",
+          "O03": "69c603ca2c49978801bd0211af3bd7461de48f24af32c5238d3ae4b2b35cd88f",
+          "O04": "e34546a5b5e392bd8dc9802f08d4bd0001fa5056606f251eea3a2653a095088b"
+        },
+        "task_id": "LOO-O08-R0-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "87f5228478da31da8276a721d8f0ad64011c3b7f08bbe12b8cea31647c56a894",
+        "feature_scale_sha256": "bd1d2599d2b18699413a4ca645de54e0eb14f43f09e1d505a68bafcf4d8f6c99",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "d06b7603faf796d712cea570f7f73cca47188f5cfbcaf57d507f6d9d525f8530",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          -608.5773593415136,
+          420.0399190676523,
+          61.55770010640059
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 6238.3798828125,
+          "O02": 6464.6220703125,
+          "O03": 7972.626953125,
+          "O04": 5313.4189453125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "9c6c5da7f6d2b48099434bd9acc9318540b47ecd4dbc5a8234679f7347049de8",
+          "O02": "e2992b0421f9257469568515b3b1ee5aaf76436d46ee61b14778480dea2b417e",
+          "O03": "49d5b8787359cc3ad83e851ff000160852cce18177bb20f2487d7362ecfd284c",
+          "O04": "d2e1a29e6568e9f42f41ca661686523e0c8449a8c9418a0095947d8232e3ff0a"
+        },
+        "task_id": "LOO-O08-R1-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "feature_mean_sha256": "87f5228478da31da8276a721d8f0ad64011c3b7f08bbe12b8cea31647c56a894",
+        "feature_scale_sha256": "bd1d2599d2b18699413a4ca645de54e0eb14f43f09e1d505a68bafcf4d8f6c99",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "bcf187db22ad0ddaff5dbf1885c3c0dd7077721e0e8daee7f12407177fe0d3e1",
+        "raw_centroid_sha256": {
+          "O01": "431f5ef1d28688bccff453db0e5977f220f44761e76cba3059613cbc641dcbc5",
+          "O02": "1e94c59f6418a440a000f93674a4e1fed07765b2f637eb76a38e9a5b443f8fed",
+          "O03": "be6bc27f067f1195edfa3394d24db19448f8b043e299fa229f98c28f9191eb28",
+          "O04": "b2eb7bdb7aa4492b38f0e563c893a781e31a12653e17b452011bc7ac0fd4eb97"
+        },
+        "rotation": "R1",
+        "selected_coefficient": [
+          -608.5773593415136,
+          420.0399190676523,
+          61.55770010640059
+        ],
+        "selected_known_endpoint": "O04",
+        "squared_distances": {
+          "O01": 5545.169921875,
+          "O02": 5316.19677734375,
+          "O03": 7146.71923828125,
+          "O04": 4580.1943359375
+        },
+        "standardized_centroid_sha256": {
+          "O01": "9c6c5da7f6d2b48099434bd9acc9318540b47ecd4dbc5a8234679f7347049de8",
+          "O02": "e2992b0421f9257469568515b3b1ee5aaf76436d46ee61b14778480dea2b417e",
+          "O03": "49d5b8787359cc3ad83e851ff000160852cce18177bb20f2487d7362ecfd284c",
+          "O04": "d2e1a29e6568e9f42f41ca661686523e0c8449a8c9418a0095947d8232e3ff0a"
+        },
+        "task_id": "LOO-O08-R1-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "5021ba41f41b9064e6c46f76a2fcb60600dc80413512c46113b2c27dd2401110",
+        "feature_scale_sha256": "da07fc464e1c525568804d6540c30387671bc825dff75d539bf81951425b9cf9",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "b9aef6394e14d53139504ebadda2a85fdb8b8dc9557afef2631214925fd0c31e",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          502.8228258747874,
+          226.96830329145854,
+          -406.4215292080621
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O01": 8811.435546875,
+          "O02": 8300.353515625,
+          "O03": 11445.841796875,
+          "O04": 10664.98046875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "0184b068ae8eaf3b22b08f8339431e8aab441bde3df0209d6146d0f355a56dac",
+          "O02": "0dd75e2079ac93663907ba36e8d4df8682aa0b53ef352f924babd7978a604697",
+          "O03": "1bff845b9cb0af7a8fe28d127e39199b307719ac9d44a4825445a541f636d511",
+          "O04": "bbf01a79f6560b9cf7efc4c27619c125b69c27df69d56cd6743e95b50c46d868"
+        },
+        "task_id": "LOO-O08-R2-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "feature_mean_sha256": "5021ba41f41b9064e6c46f76a2fcb60600dc80413512c46113b2c27dd2401110",
+        "feature_scale_sha256": "da07fc464e1c525568804d6540c30387671bc825dff75d539bf81951425b9cf9",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "7d608a9d2afa8bcc37a958d618205f4c152f6e04bb24a7bad9e6cab80771072b",
+        "raw_centroid_sha256": {
+          "O01": "5a32df9bf6b5ec4051f67eff9753a7cdf355929c0d954d90f68766055f35180b",
+          "O02": "5d78f4781564ea69b17689492834e2c6a03bbaa0bbdfaee33e9c9c273da0843c",
+          "O03": "6b3767d6e9f3d5b2748c3e9a891233434d819ccf879ebb7f3efa52b1280e241a",
+          "O04": "e1fa66d4fd0925391075038e554c4e8156293dc120e162d9056f75ce55b43676"
+        },
+        "rotation": "R2",
+        "selected_coefficient": [
+          502.8228258747874,
+          226.96830329145854,
+          -406.4215292080621
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O01": 5429.71875,
+          "O02": 5170.0849609375,
+          "O03": 7717.9443359375,
+          "O04": 6981.71142578125
+        },
+        "standardized_centroid_sha256": {
+          "O01": "0184b068ae8eaf3b22b08f8339431e8aab441bde3df0209d6146d0f355a56dac",
+          "O02": "0dd75e2079ac93663907ba36e8d4df8682aa0b53ef352f924babd7978a604697",
+          "O03": "1bff845b9cb0af7a8fe28d127e39199b307719ac9d44a4825445a541f636d511",
+          "O04": "bbf01a79f6560b9cf7efc4c27619c125b69c27df69d56cd6743e95b50c46d868"
+        },
+        "task_id": "LOO-O08-R2-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 1,
+        "adaptation_conditions": [
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "4cf49eb1817278cccd887e32bb1ea9ab7ebbceb9cd0ea62f9bfe1c34f3630a76",
+        "feature_scale_sha256": "3108f8e5d71487303d68b33254b6972c0c6d18bb6a714fe8c20d4443949f9429",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "9939d90f42dd0907118c395efaa964c1dba66408a825c84ebc43f2332179b72c",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          385.12117458075346,
+          -59.06891263820222,
+          508.90939755593917
+        ],
+        "selected_known_endpoint": "O01",
+        "squared_distances": {
+          "O01": 2884.07763671875,
+          "O02": 3155.49072265625,
+          "O03": 5284.80224609375,
+          "O04": 4200.24169921875
+        },
+        "standardized_centroid_sha256": {
+          "O01": "feae37c1f591d8fba2f9e99166d9aa7df356df99f052fd6cd555a753cb57ba9e",
+          "O02": "407f2cca92b6a7a0ce193272b3ec007ed29688db0ba8232ac8085182524f65d1",
+          "O03": "4876757337064fb25fd3b06987658a6de4bde023d9b1354c8126a14e8922d8d5",
+          "O04": "a9fe185a75f43ff72c0aaf5b4b713c27634c570857c7783debadd594bb2fb102"
+        },
+        "task_id": "LOO-O08-R3-K1",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      },
+      {
+        "K": 2,
+        "adaptation_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "bank_contains_held_out": false,
+        "basis_artifact_sha256": "ad6ecd1a946b228f3b12ca704a59556750853c746fd6db5735dc9c7657531548",
+        "centroid_train_conditions": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "feature_mean_sha256": "4cf49eb1817278cccd887e32bb1ea9ab7ebbceb9cd0ea62f9bfe1c34f3630a76",
+        "feature_scale_sha256": "3108f8e5d71487303d68b33254b6972c0c6d18bb6a714fe8c20d4443949f9429",
+        "hard_lookup_bank": [
+          "O01",
+          "O02",
+          "O03",
+          "O04"
+        ],
+        "held_out_garment": "O08",
+        "held_out_teacher_used": false,
+        "normalization_sha256": "a9e4fd3b78eb7b6975a86c4faf3006b9272c161d169b72f76b52a536f0e52f49",
+        "query_feature_sha256": "33326467be937fc1c8766ede20b42fe52ca74f2291251e4676031371d6da2963",
+        "raw_centroid_sha256": {
+          "O01": "8d54f0a64213e5b5ae3f27e2cbe30fdcad9e7e707dee5050c003014348e9ee56",
+          "O02": "07d2956c7f722b881fb708fabe02a393681dbfaed40230a80d9bb84e165434a7",
+          "O03": "b05ef0fdd653757a274db2494fd54314b52597009a6f6dc1dc01e141c60f706a",
+          "O04": "93f25827fd04415a552c16221e6f8e724ac1a40022ff628714e046f680c1e426"
+        },
+        "rotation": "R3",
+        "selected_coefficient": [
+          502.8228258747874,
+          226.96830329145854,
+          -406.4215292080621
+        ],
+        "selected_known_endpoint": "O02",
+        "squared_distances": {
+          "O01": 2709.3984375,
+          "O02": 2667.976318359375,
+          "O03": 5335.90625,
+          "O04": 4104.681640625
+        },
+        "standardized_centroid_sha256": {
+          "O01": "feae37c1f591d8fba2f9e99166d9aa7df356df99f052fd6cd555a753cb57ba9e",
+          "O02": "407f2cca92b6a7a0ce193272b3ec007ed29688db0ba8232ac8085182524f65d1",
+          "O03": "4876757337064fb25fd3b06987658a6de4bde023d9b1354c8126a14e8922d8d5",
+          "O04": "a9fe185a75f43ff72c0aaf5b4b713c27634c570857c7783debadd594bb2fb102"
+        },
+        "task_id": "LOO-O08-R3-K2",
+        "test_observation_used": false,
+        "tie_break": "minimum standardized squared L2 then lexical outfit id"
+      }
+    ],
+    "schema_version": "canondressgs.paper.loo_hard_lookup_registry.v1",
+    "status": "PASS",
+    "task_id": "AAAI27-LOO-BASIS-ADAPTATION-ATTEMPT-003"
+  },
+  "rotation_results": [
+    {
+      "boundary_f_delta": 0.00045633182319099186,
+      "held_out_garment": "O01",
+      "identity_delta": -8.746981620788574e-06,
+      "lpips_reduction": -0.0003607720136642456,
+      "rgb_mae_reduction": 0.0008251667022705078,
+      "rotation": "R0",
+      "silhouette_iou_delta": 0.00040119464855381537,
+      "success": false
+    },
+    {
+      "boundary_f_delta": -0.0006920026667284751,
+      "held_out_garment": "O01",
+      "identity_delta": 1.3169832527637482e-05,
+      "lpips_reduction": -0.0004780888557434082,
+      "rgb_mae_reduction": 0.00033548474311828613,
+      "rotation": "R1",
+      "silhouette_iou_delta": -8.170280559571808e-05,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0009246218672713802,
+      "held_out_garment": "O01",
+      "identity_delta": 5.5709388107061386e-05,
+      "lpips_reduction": 0.0001789182424545288,
+      "rgb_mae_reduction": 0.000585705041885376,
+      "rotation": "R2",
+      "silhouette_iou_delta": 7.765317104080349e-05,
+      "success": false
+    },
+    {
+      "boundary_f_delta": -0.0022131632927121503,
+      "held_out_garment": "O01",
+      "identity_delta": 2.4464912712574005e-05,
+      "lpips_reduction": -0.0001827031373977661,
+      "rgb_mae_reduction": 0.0004977285861968994,
+      "rotation": "R3",
+      "silhouette_iou_delta": 0.0004328115476662786,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0033282994134962024,
+      "held_out_garment": "O02",
+      "identity_delta": -9.071268141269684e-05,
+      "lpips_reduction": -0.0002074316143989563,
+      "rgb_mae_reduction": -5.161762237548828e-05,
+      "rotation": "R0",
+      "silhouette_iou_delta": -6.996236403711276e-05,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.005467306162702579,
+      "held_out_garment": "O02",
+      "identity_delta": -0.00010844413191080093,
+      "lpips_reduction": 0.00022912770509719849,
+      "rgb_mae_reduction": 3.814697265625e-05,
+      "rotation": "R1",
+      "silhouette_iou_delta": 0.0008168574278435425,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.005002034784622744,
+      "held_out_garment": "O02",
+      "identity_delta": 2.63359397649765e-05,
+      "lpips_reduction": -0.0010605156421661377,
+      "rgb_mae_reduction": 4.470348358154297e-08,
+      "rotation": "R2",
+      "silhouette_iou_delta": 0.0008032722309362361,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.003376091523853708,
+      "held_out_garment": "O02",
+      "identity_delta": 1.7665326595306396e-05,
+      "lpips_reduction": 0.0007263794541358948,
+      "rgb_mae_reduction": 7.0914626121521e-05,
+      "rotation": "R3",
+      "silhouette_iou_delta": 0.000975281415667717,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0059466093802340025,
+      "held_out_garment": "O03",
+      "identity_delta": -1.8718186765909195e-05,
+      "lpips_reduction": -0.0004328489303588867,
+      "rgb_mae_reduction": 0.0004124194383621216,
+      "rotation": "R0",
+      "silhouette_iou_delta": 0.00044341719808194124,
+      "success": false
+    },
+    {
+      "boundary_f_delta": -0.0013616297111663234,
+      "held_out_garment": "O03",
+      "identity_delta": -3.055250272154808e-05,
+      "lpips_reduction": -0.00043235719203948975,
+      "rgb_mae_reduction": 1.7151236534118652e-05,
+      "rotation": "R1",
+      "silhouette_iou_delta": 0.0002993855353153885,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0005155710544900716,
+      "held_out_garment": "O03",
+      "identity_delta": 1.5245750546455383e-05,
+      "lpips_reduction": -0.00016774237155914307,
+      "rgb_mae_reduction": -0.0005888044834136963,
+      "rotation": "R2",
+      "silhouette_iou_delta": 8.629050161101937e-05,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0032579311646436238,
+      "held_out_garment": "O03",
+      "identity_delta": 1.622270792722702e-05,
+      "lpips_reduction": -0.0002917051315307617,
+      "rgb_mae_reduction": -5.367398262023926e-05,
+      "rotation": "R3",
+      "silhouette_iou_delta": 0.0006754731726972274,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.00023137499472616896,
+      "held_out_garment": "O04",
+      "identity_delta": -8.452869951725006e-05,
+      "lpips_reduction": -0.0006079152226448059,
+      "rgb_mae_reduction": 0.00021967291831970215,
+      "rotation": "R0",
+      "silhouette_iou_delta": -0.0005154446485930997,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0025411336675673635,
+      "held_out_garment": "O04",
+      "identity_delta": 4.4228509068489075e-05,
+      "lpips_reduction": -1.5079975128173828e-05,
+      "rgb_mae_reduction": 0.0004238337278366089,
+      "rotation": "R1",
+      "silhouette_iou_delta": 0.00020099363896164402,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.00158424375649463,
+      "held_out_garment": "O04",
+      "identity_delta": 6.990507245063782e-06,
+      "lpips_reduction": 0.0004858672618865967,
+      "rgb_mae_reduction": 0.000368654727935791,
+      "rotation": "R2",
+      "silhouette_iou_delta": 0.00030992633469206776,
+      "success": false
+    },
+    {
+      "boundary_f_delta": -0.0004029551837805845,
+      "held_out_garment": "O04",
+      "identity_delta": 1.122988760471344e-05,
+      "lpips_reduction": -0.00020571798086166382,
+      "rgb_mae_reduction": 8.064508438110352e-05,
+      "rotation": "R3",
+      "silhouette_iou_delta": -2.2756516113275893e-05,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.009886408907465283,
+      "held_out_garment": "O08",
+      "identity_delta": -6.772205233573914e-05,
+      "lpips_reduction": 0.00020234286785125732,
+      "rgb_mae_reduction": 0.0004988908767700195,
+      "rotation": "R0",
+      "silhouette_iou_delta": 0.0006238098485673582,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.0012104753021255354,
+      "held_out_garment": "O08",
+      "identity_delta": 9.950250387191772e-06,
+      "lpips_reduction": -0.0003852248191833496,
+      "rgb_mae_reduction": 0.0005387365818023682,
+      "rotation": "R1",
+      "silhouette_iou_delta": 0.00027580573360230787,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 0.005142050780433061,
+      "held_out_garment": "O08",
+      "identity_delta": 1.5866011381149292e-05,
+      "lpips_reduction": 0.0007006824016571045,
+      "rgb_mae_reduction": 0.0007466673851013184,
+      "rotation": "R2",
+      "silhouette_iou_delta": 0.0005430259527868797,
+      "success": false
+    },
+    {
+      "boundary_f_delta": 9.667243962227512e-05,
+      "held_out_garment": "O08",
+      "identity_delta": 9.327195584774017e-06,
+      "lpips_reduction": 1.5817582607269287e-05,
+      "rgb_mae_reduction": 0.0006463825702667236,
+      "rotation": "R3",
+      "silhouette_iou_delta": 0.00030393353945401547,
+      "success": false
+    }
+  ],
+  "status": "PASS"
+}

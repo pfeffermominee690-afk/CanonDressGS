@@ -1,0 +1,23 @@
+{
+  "experiment_static_tests": {
+    "command": "python -m unittest tests.test_coefficient_headroom_experiment -v"
+  },
+  "paper_final": false,
+  "protocol_static_tests": {
+    "command": "python -m unittest tests.test_coefficient_headroom_protocol -v",
+    "expected_count": 10
+  },
+  "runtime_checks": {
+    "checkpoint_roundtrip_failures": 0,
+    "count_verification": "PASS",
+    "frozen_gradient_violation_count": 0,
+    "nan_inf_count": 0,
+    "optimizer_steps_repeated": 0,
+    "pure_output_mutation_count": 0,
+    "teacher_svd_parity": "PASS",
+    "visual_review": "PASS"
+  },
+  "schema_version": "canondressgs.paper.coefficient_headroom_tests.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-RENDER-REFINED-COEFFICIENT-HEADROOM-ATTEMPT-002"
+}

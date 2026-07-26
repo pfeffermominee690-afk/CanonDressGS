@@ -1,0 +1,289 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[submission]{aaai2027}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\usepackage{natbib}
+\usepackage{caption}
+\frenchspacing
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+
+\pdfinfo{/TemplateVersion (2027.1)}
+\graphicspath{{figures/}}
+
+\newcommand{\method}{CanonDressGS}
+\newcommand{\dual}{Dual-Support}
+\newcommand{\figureplaceholder}[3]{%
+    \fbox{\parbox[c][#1][c]{0.96\linewidth}{\centering
+    \textbf{#2}\\[1.5mm]\small #3}}}
+\newif\iffinalpaperfigures
+\finalpaperfiguresfalse
+\newif\ifsubjectzeroresults
+\subjectzeroresultsfalse
+
+\title{\method: Geometry-Safe Reference-Controlled Garment Editing in Canonical Gaussian Space}
+\author{Anonymous Submission}
+\affiliations{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Animatable Gaussian avatars usually entangle identity with the clothing observed during reconstruction, limiting post-hoc redressing. We present \method{}, a reference-controlled garment editing framework for a frozen animatable Gaussian avatar. Direct interpolation of garment-dependent Gaussian geometry moves centers, scales, and rotations through unsupported configurations, producing invalid silhouettes and scattered boundaries. We instead optimize a canonical Teacher Endpoint for each garment, organize the full garment residuals in an explicit low-dimensional coordinate system, and map clothing-masked reference images to endpoint coordinates with a lightweight set predictor. The automatic single-garment path snaps the prediction to its nearest verified endpoint; snapping is a realization constraint, while the coordinates retain the spatial structure needed for analysis and composition. On a five-garment subject02 wardrobe, 12 cross-fit runs correctly route all 60 clean queries, attain exact endpoint realization, and show zero identity contamination and no severe wrong-outfit failures. Raw predictions obtain zero exact matches and 0.0679 endpoint LPIPS, whereas snapping reduces parity error below $10^{-6}$. Causal intervention attributes 0.9959 of the interpolation artifact effect to geometry. For mixed states, \dual{} improves LPIPS from 0.0853 to 0.0570, IoU from 0.7101 to 0.7253, and Boundary F from 0.3003 to 0.3791. Claims are limited to fixed identities, seen garments, and oracle/user-specified mixed-state controls.
+\end{abstract}
+
+\section{Introduction}
+
+Animatable 3D Gaussian avatars combine explicit primitives, fast rendering, and pose-driven deformation, but the reconstructed representation normally binds identity to the garment present during capture. Replacing that garment is not a texture transfer: positions, scales, rotations, opacity, and appearance must change coherently while identity and the animation interface remain fixed. A practical controller must also infer the desired state from a small, unordered set of garment images rather than privileged garment labels. These requirements rule out simply training a new avatar for every outfit, because doing so changes the identity model, incurs full reconstruction cost, and provides no shared control interface. They also distinguish canonical redressing from per-frame image editing: one edited state must remain reusable across the poses and cameras already supported by the avatar. We study this problem after avatar training, asking how references can control a frozen canonical Gaussian representation without rebuilding its deformation or renderer.
+
+\begin{figure*}[t]
+    \centering
+    \iffinalpaperfigures
+      \IfFileExists{figures/figure1_canondressgs_teaser.pdf}{
+          \includegraphics[width=\textwidth]{figures/figure1_canondressgs_teaser.pdf}
+      }{
+          \figureplaceholder{0.18\textheight}{Figure 1 Placeholder: Task and Results}
+          {Five subject02 garments with reference inputs, Base Avatar, \method{}, and Teacher Endpoint under matched target poses and cameras.}
+      }
+    \else
+        \figureplaceholder{0.18\textheight}{Figure 1 Placeholder: Task and Results}
+        {Five subject02 garments with reference inputs, Base Avatar, \method{}, and Teacher Endpoint under matched target poses and cameras.}
+    \fi
+    \caption{\textbf{Reference-controlled canonical garment editing.} Clothing-masked references select a garment state for the same frozen animatable identity. \method{} realizes the corresponding valid Teacher Endpoint; the shown subject02 wardrobe contains five garments evaluated under matched poses and cameras.}
+    \label{fig:teaser}
+\end{figure*}
+
+A direct reference-to-residual network would need to generate a localized field over roughly two hundred thousand irregular Gaussians. The output is not only high dimensional but highly nonuniform: sleeve boundaries, torso visibility, and cloth appearance require different changes at different primitives, whereas the references provide only sparse image evidence. Our diagnostics instead reveal a representation--conditioning mismatch. The frozen support can express each seen garment when its canonical residual is optimized from registered views, yet unconstrained prediction does not reliably reconstruct the same high-dimensional state. We therefore preserve the spatial field in optimized \emph{Teacher Endpoints} and predict only coordinates in their joint residual space. SVD is used here to parameterize the variation already present in complete residual fields, not to replace garments by identifiers. Each basis direction remains a field over all Gaussian attributes, and a coefficient vector specifies how those spatial fields combine. The coordinates are therefore not arbitrary class codes: they expose distances, directions, and composition operators even when the robust deployed path ultimately realizes a discrete endpoint.
+
+Continuous coordinates alone do not make every affine combination valid. Interpolating two garment endpoints moves Gaussian geometry between separately optimized supports and creates cloud-like regions, edge scatter, and silhouette discontinuities. This is a validity problem rather than evidence that the coordinate representation has collapsed to lookup: a coordinate can organize endpoints correctly while an unconstrained decoded point lies outside the set of renderable garments. Endpoint-anchored interventions show that geometry accounts for 0.9959 of the measured artifact effect and is both sufficient and necessary in all ten unordered garment pairs. This diagnosis leads to two complementary realization rules. For automatic single-garment editing, \method{} projects a raw reference prediction onto the nearest verified endpoint, making the output validity contract explicit. For controlled mixed states, \dual{} preserves both endpoint geometries and weights their effective contributions instead of interpolating centers, scales, or rotations. Separating prediction, realization, and composition lets each mechanism be tested against the failure it is meant to solve.
+
+The resulting evaluation is deliberately mechanism-specific. Endpoint metrics test whether a reference reaches and reproduces a verified state; causal interventions test why affine decoding fails; mixed-state metrics test whether preserving support improves composition. This prevents saturated clean classification from being mistaken for the paper's whole contribution and keeps the distinction between structured coordinates and their deployment policy visible. Our contributions are threefold:
+\begin{itemize}
+    \item We formulate frozen-avatar redressing through canonical Teacher Endpoints and an explicit coordinate system of full garment-dependent Gaussian residuals. The resulting basis preserves correlated spatial variation, while a lightweight set predictor maps references to coordinates and endpoint projection supplies a clear validity contract.
+    \item We causally identify geometry interpolation as the dominant failure source through matched geometry, visibility, and appearance interventions. This evidence motivates \dual{}, which composes two immutable endpoint supports and improves perceptual and boundary quality without moving primitives between garments.
+    \item We provide a controlled five-garment, 12-run evaluation that separates coordinate prediction, endpoint realization, and retrieval baselines. It reports exact parity, perturbation behavior, identity safety, all-pair composition quality, and resource cost while bounding the evidence to fixed identities and closed seen-garment wardrobes.
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Animatable Gaussian avatars.}
+Recent human-avatar systems represent a canonical person with deformable Gaussian primitives, combining real-time rasterization with pose-dependent appearance or Gaussian maps \citep{Li_2024_CVPR,Qian_2024_CVPR,Kocabas_2024_CVPR}. Their primary goal is faithful animation of the captured subject, so clothing remains part of the reconstructed identity state. We instead treat a trained avatar as a frozen backbone and edit garment-dependent canonical attributes without changing its deformation contract. This post-hoc setting makes preservation measurable: the same identity, target pose, camera, and renderer are shared across the Base Avatar, edited state, and garment-specific Teacher.
+Unlike avatar retraining, this isolates garment control from improvements to reconstruction quality and permits endpoint-level parity tests under one renderer.
+
+\paragraph{Garment editing and redressing.}
+Image virtual try-on synthesizes a dressed person in one view \citep{Neuberger_2020_CVPR}, whereas explicit 3D clothing models commonly rely on templates, garment meshes, simulation, or learned pose--style deformation \citep{Ma_2020_CVPR,Patel_2020_CVPR}. Layered avatar reconstruction can separate reusable assets but assumes a different acquisition and representation pipeline \citep{Kim_2024_CVPR}. Our target is narrower: onboard a closed wardrobe to an existing animatable Gaussian identity, then select reusable canonical states from garment references. We do not claim open-set garment synthesis or topology-changing cloth simulation.
+The benefit of this narrower contract is that every controlled state can be audited against an optimized canonical endpoint instead of an ambiguous image-only target.
+
+\paragraph{Structured Gaussian control.}
+Compact Gaussian controllers separate high-dimensional spatial attributes from low-dimensional features or codes. Our endpoint basis follows this principle but exposes an important validity constraint: two optimized Gaussian states can both render correctly while their direct geometric interpolation does not. Thus \method{} uses the basis as a structured coordinate system rather than assuming it is a generative garment manifold. The reference head predicts a location in this space; nearest-endpoint projection certifies the automatic output, and \dual{} offers a separate geometry-preserving operator for user-specified composition.
+This division also differentiates our approach from a classifier-only controller: the predicted object is a metric coordinate over spatial residual fields, while the final projection is an explicit deployment decision supported by the causal diagnosis.
+
+\section{Method}
+
+\subsection{Overview and Setting}
+
+Figure~\ref{fig:pipeline} separates offline representation construction from inference. Let the frozen canonical avatar be
+\begin{equation}
+\mathcal{G}^{0}=\{(\mathbf{x}_{i},\mathbf{s}_{i},\mathbf{q}_{i},o_i,\mathbf{h}_{i})\}_{i=1}^{N},
+\label{eq:base}
+\end{equation}
+with position, scale, rotation, opacity logit, and spherical-harmonic appearance. Its deformation $\mathcal{D}$ and renderer $\mathcal{R}$ remain fixed. Given clothing-masked references $\mathcal{S}=\{(I_k,M_k)\}_{k=1}^{K}$, the controller selects a canonical garment state; target pose and camera enter only $\mathcal{D}$ and $\mathcal{R}$. Target images, masks, poses, cameras, garment IDs, and Teacher residuals never enter the predictor.
+
+\begin{figure*}[t]
+    \centering
+    \iffinalpaperfigures
+      \IfFileExists{figures/figure2_canondressgs_pipeline.pdf}{
+          \includegraphics[width=\textwidth]{figures/figure2_canondressgs_pipeline.pdf}
+      }{
+          \figureplaceholder{0.29\textheight}{Figure 2 Placeholder: \method{} Pipeline}
+          {Offline Teacher optimization and endpoint coordinates; inference-time frozen features, set aggregation, coefficient prediction, snapping, and frozen rendering.}
+      }
+    \else
+        \figureplaceholder{0.29\textheight}{Figure 2 Placeholder: \method{} Pipeline}
+        {Offline Teacher optimization and endpoint coordinates; inference-time frozen features, set aggregation, coefficient prediction, snapping, and frozen rendering.}
+    \fi
+    \caption{\textbf{\method{} pipeline.} Offline optimization constructs garment-specific canonical Teacher Endpoints and their coordinate system. At inference, frozen image features are pooled over the reference set, a 3,076-parameter head predicts coordinates, and nearest-endpoint snapping realizes a verified state before frozen deformation and rendering.}
+    \label{fig:pipeline}
+\end{figure*}
+
+\subsection{Teacher Endpoints and Coordinates}
+
+For each garment $g$, a shared canonical residual $\Delta\mathcal{G}_g$ changes geometry, visibility, and appearance over all registered views $\mathcal{V}_g$. Its Teacher Endpoint is
+\begin{equation}
+\begin{aligned}
+\widehat I_{g,v}&=\mathcal R\!\left(
+\mathcal D(\mathcal G^0\!\oplus\!\Delta\mathcal G_g,\boldsymbol\theta_{g,v}),
+\mathcal C_{g,v}\right),\\
+\Delta\mathcal G_g^*&=\arg\min_{\Delta\mathcal G_g}
+\sum_{v\in\mathcal V_g}\big[
+\mathcal L_{\mathrm{img}}(\widehat I_{g,v},I_{g,v},M_{g,v})\\[-1mm]
+&\hspace{31mm}+\lambda_{\mathrm{reg}}
+\mathcal L_{\mathrm{reg}}(\Delta\mathcal G_g)\big].
+\end{aligned}
+\label{eq:teacher}
+\end{equation}
+This optimized field is a valid state under the frozen avatar, not a ground-truth garment mesh. For $G$ endpoints, we construct their centered affine coordinates in one joint residual vector space:
+\begin{align}
+\boldsymbol{\mu}&=G^{-1}\textstyle\sum_g\Delta\mathcal G_g^*,\qquad
+\mathbf H=[\Delta\mathcal G_1^*-\boldsymbol\mu,\ldots,\Delta\mathcal G_G^*-\boldsymbol\mu],\nonumber\\
+\mathbf H&=\mathbf U\boldsymbol\Sigma\mathbf V^\top,\qquad
+\mathbf B=\mathbf U_{[:,1:r]},\nonumber\\
+\mathbf c_g&=\mathbf B^\top(\Delta\mathcal G_g^*-\boldsymbol\mu).
+\label{eq:basis}
+\end{align}
+For subject02, $G=5$ and $r=4$. Because $\mathbf{B}$ consists of spatial residual fields, $\mathbf{c}_g$ organizes coupled garment structure rather than replacing it with a class code. Affine-span membership, however, does not guarantee a valid intermediate render.
+
+\subsection{Reference Prediction and Realization}
+
+A frozen image backbone extracts $\mathbf{f}_k\in\mathbb{R}^{256}$ from each masked reference. Permutation-invariant mean/max pooling retains stable and salient evidence:
+\begin{equation}
+\mathbf{z}_{\mathcal S}=[\operatorname{Mean}_{k}(\mathbf f_k);\operatorname{Max}_{k}(\mathbf f_k)]\in\mathbb{R}^{512}.
+\label{eq:aggregation}
+\end{equation}
+A lightweight head predicts standardized coordinates,
+\begin{equation}
+\widehat{\widetilde{\mathbf c}}=\mathbf W\operatorname{LN}(\mathbf z_{\mathcal S})+\mathbf b.
+\label{eq:predictor}
+\end{equation}
+The head uses coefficient SmoothL1 supervision only. It has 3,076 trainable parameters and is optimized for 300 Adam steps at learning rate 0.02; the feature backbone, basis, avatar, deformation, and renderer are frozen. Standardization and optimizer details are in the supplementary material.
+
+Raw coordinates need not themselves reconstruct a valid garment. The automatic path selects and reconstructs the nearest Teacher state:
+\begin{align}
+\widehat g&=\arg\min_g\|\widehat{\widetilde{\mathbf c}}-\widetilde{\mathbf c}_g\|_2, &
+\mathbf c_{\mathrm{realized}}&=\mathbf c_{\widehat g},\nonumber\\
+\Delta\mathcal G_{\mathrm{realized}}&=\boldsymbol{\mu}+\mathbf B\mathbf c_{\mathrm{realized}}.
+\label{eq:snap}
+\end{align}
+This distinction is central: the predictor estimates a structured residual-space location, while snapping projects that estimate onto verified states. In a closed wardrobe it only needs to enter the correct endpoint region; coefficient distances and basis structure remain available for diagnostics and composition.
+
+\subsection{Geometry-Safe Dual Support}
+
+Linear interpolation moves, rescales, and rotates primitives between valid endpoints. \dual{} instead keeps endpoint geometries $a$ and $b$ immutable and, for oracle or user-specified weights, scales only their effective opacity before rendering the union:
+\begin{align}
+\widetilde{\alpha}_{g,i}&=w_g\,\sigma(o_{g,i}),\quad g\in\{a,b\}, &
+\mathcal G_{\mathrm{DS}}&=\mathcal G_a^{w_a}\cup\mathcal G_b^{w_b}.
+\label{eq:dual}
+\end{align}
+Appearance remains attached to its endpoint geometry; no interpolation is applied to $\mathbf{x}$, $\mathbf{s}$, or $\mathbf{q}$. Automatic pair or weight prediction is outside the claimed system.
+
+\section{Experiments}
+
+We evaluate endpoint construction and realization, geometry causality, safe composition, and second-identity replication.
+
+\subsection{Protocol and Baselines}
+
+The primary benchmark uses THuman4.0 subject02 with five seen garments. Twelve cross-fit controller runs produce 60 clean queries; endpoint parity uses matched frozen rendering, and failure review measures identity contamination and severe wrong-outfit artifacts. Blur and single-reference tests probe conditioning rather than open-set generalization. Subject00 reserves garments O01/O03/O04, a rank-$\leq2$ basis, and the same Teacher/controller protocol solely for second-identity replication.
+
+% SUBJECT00_RESULT_INSERTION_BEGIN
+% Add subject00 rows to Table 1 here after sealing.
+% Add one subject00 qualitative row to Figure 1.
+% SUBJECT00_RESULT_INSERTION_END
+
+We compare the unedited Base Avatar; optimized Teacher Endpoints; an outfit-ID Oracle; the unsnapped Linear Coefficient Predictor; Reference Classifier and Nearest-Centroid lookup; and snapped \method{}. Intermediate-state controls are Linear Geometry, one-endpoint Hard Geometry, and \dual{}. The oracle uses privileged garment identity; reference methods do not. Complete contracts, split construction, and fallback rules are supplied in the supplementary material.
+
+\subsection{Reference-Controlled Endpoint Realization}
+
+Table~\ref{tab:endpoint} separates selecting an endpoint region from reproducing its residual. All reference methods saturate clean top-1, so the informative differences are exact realization and perturbation behavior. The raw coefficient predictor reaches the correct region for every clean query but has zero exact matches and 0.0679 LPIPS. Snapping yields exact Teacher realization below $10^{-6}$ LPIPS, zero identity contamination, and no severe wrong-outfit failures. Classifier and centroid retrieval are equally strong when they select the same endpoint, while blur exposes a remaining conditioning weakness.
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4.3pt}
+\caption{Closed-wardrobe endpoint selection and realization on subject02. Daggered rows use privileged garment identity; reference-only rows use no target-side signal. Near-zero parity is shown at the reporting threshold.}
+\label{tab:endpoint}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Method & Clean Top-1$\uparrow$ & Exact Endpoint$\uparrow$ & Endpoint LPIPS$\downarrow$ & Blur Top-1$\uparrow$ & 1-Ref Top-1$\uparrow$ & Params.\\
+\midrule
+Base Avatar & -- & -- & 0.1212 & -- & -- & 0\\
+Teacher Endpoint$^\dagger$ & -- & -- & 0 & -- & -- & 0\\
+Outfit-ID Oracle$^\dagger$ & 1.00 & 1.00 & 0 & -- & -- & 0\\
+Reference Classifier Lookup & 1.00 & 1.00 & $<10^{-6}$ & 0.5167 & 1.00 & 3,589\\
+Nearest-Centroid Lookup & 1.00 & 1.00 & $<10^{-6}$ & 0.3000 & 0.9000 & 0\\
+Linear Coefficient Predictor & 1.00 & 0 & 0.0679 & 0.3500 & 0.9500 & 3,076\\
+\method{} & \textbf{1.00} & \textbf{1.00} & $\mathbf{<10^{-6}}$ & 0.3500 & 0.9500 & 3,076\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Geometry Causality}
+
+Endpoint-anchored geometry, visibility, and appearance interventions attribute a 0.9959 main effect to geometry. Geometry alone reproduces the failure and restoring valid geometry removes it in 10/10 garment pairs, establishing both sufficiency and necessity. Figure~\ref{fig:geometry_causal} connects these aggregate tests to the observed clouds, mottling, edge scatter, and silhouette breaks.
+
+\begin{figure*}[t]
+    \centering
+    \iffinalpaperfigures
+      \IfFileExists{figures/figure3_geometry_causal_analysis.pdf}{
+          \includegraphics[width=\textwidth]{figures/figure3_geometry_causal_analysis.pdf}
+      }{
+          \figureplaceholder{0.38\textheight}{Figure 3 Placeholder: Geometry-Causal Analysis}
+          {Linear intermediate failures; geometry, visibility, and appearance interventions; aggregate main effects and sufficient/necessary counts.}
+      }
+    \else
+        \figureplaceholder{0.38\textheight}{Figure 3 Placeholder: Geometry-Causal Analysis}
+        {Linear intermediate failures; geometry, visibility, and appearance interventions; aggregate main effects and sufficient/necessary counts.}
+    \fi
+    \caption{\textbf{Causal diagnosis of interpolation failure.} Geometry explains 0.9959 of the measured artifact effect and is sufficient and necessary in all 10/10 pairs. The intervention results motivate preserving optimized endpoint supports rather than moving Gaussian geometry through unsupported intermediate configurations.}
+    \label{fig:geometry_causal}
+\end{figure*}
+
+\subsection{Geometry-Safe Intermediate States}
+
+Table~\ref{tab:dual} compares direct support interpolation, discrete one-endpoint selection, and two-support composition. \dual{} improves all three aggregate quality measures over Linear Geometry and removes severe artifacts for all ten pairs with zero identity contamination. Hard Geometry has the lowest LPIPS but switches support instead of composing it. \dual{} uses approximately twice the active Gaussians and 1.626$\times$ rendering time.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\caption{All-pair subject02 intermediate-state comparison.}
+\label{tab:dual}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & LPIPS$\downarrow$ & IoU$\uparrow$ & Boundary F$\uparrow$\\
+\midrule
+Linear Geometry & 0.0853 & 0.7101 & 0.3003\\
+Hard Geometry & \textbf{0.0318} & 0.7120 & 0.3689\\
+\dual{} & 0.0570 & \textbf{0.7253} & \textbf{0.3791}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure*}[t]
+    \centering
+    \iffinalpaperfigures
+      \IfFileExists{figures/figure4_dual_support_all_pair.pdf}{
+          \includegraphics[width=\textwidth]{figures/figure4_dual_support_all_pair.pdf}
+      }{
+          \figureplaceholder{0.36\textheight}{Figure 4 Placeholder: Geometry-Safe Intermediate States}
+          {Matched linear, hard, and \dual{} rows over all garment pairs, with aggregate quality and resource cost.}
+      }
+    \else
+        \figureplaceholder{0.36\textheight}{Figure 4 Placeholder: Geometry-Safe Intermediate States}
+        {Matched linear, hard, and \dual{} rows over all garment pairs, with aggregate quality and resource cost.}
+    \fi
+    \caption{\textbf{Geometry-safe intermediate states.} Linear interpolation moves primitives through unsupported geometry; Hard Geometry chooses one endpoint; \dual{} retains and weights two valid supports. The all-pair comparison shows cleaner boundaries while making the additional active-Gaussian and runtime cost explicit.}
+    \label{fig:dual_support}
+\end{figure*}
+
+\section{Limitations}
+
+The verified setting is a fixed identity and closed wardrobe. Onboarding a garment requires registered multi-view Teacher optimization, rebuilding the endpoint coordinates, and potentially retraining the small head. A second identity follows the same protocol, but no result is claimed until its sealed measurements are inserted; we make no unseen-garment, cross-dataset, strict novel-view, or strict novel-pose claim.
+
+Clean endpoint selection is saturated by classifier and centroid retrieval. The raw regressor is useful as a structured spatial coordinate predictor, not because it exceeds every lookup baseline, and nearest-endpoint projection remains necessary for exact realization. Mild blur can flip endpoints, a four-garment leave-one-out span does not reliably represent the fifth, and automatic mixed-reference pair/weight prediction is unresolved. The current basis is therefore an endpoint coordinate system, not an open-set garment manifold.
+
+Finally, \dual{} assumes oracle or user-specified pairs and weights, doubles active support, and costs 1.626$\times$ rendering time. The frozen avatar also limits topology, thickness, and independently moving cloth; garments outside its support may require a separate layer, adaptive primitives, or simulation.
+Teacher-space refinement does not improve the sealed endpoints, so additional optimization is not presented as a remedy for these limits.
+
+\section{Conclusion}
+
+\method{} organizes garment-dependent canonical Gaussian fields as optimized Teacher Endpoints and predicts their structured coordinates from reference sets. Nearest-valid-endpoint snapping converts approximate coordinates into exact closed-wardrobe realization without redefining the predictor as a class lookup: the basis still carries joint spatial changes in geometry, visibility, and appearance. On subject02, all 60 clean queries reach the correct endpoint, with exact Teacher parity, zero identity contamination, and no severe wrong-outfit failures.
+
+The same representation exposes why naive continuous control fails. Geometry accounts for nearly the entire interpolation artifact effect and is sufficient and necessary across all garment pairs. \dual{} consequently composes immutable endpoint supports and improves perceptual, silhouette, and boundary measures over direct geometry interpolation. The result is not a universal garment generator, but a tested separation between structured prediction and validity-preserving realization. These findings establish a geometry-safe interface for fixed-identity, seen-garment editing; open-set garments and automatic mixed-reference control remain outside the current evidence.
+
+\bibliography{references}
+\end{document}
