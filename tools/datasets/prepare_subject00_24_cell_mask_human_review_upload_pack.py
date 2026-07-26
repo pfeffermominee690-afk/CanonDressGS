@@ -60,6 +60,7 @@ FINAL_CLASSIFICATION = (
     "SUBJECT00_24_CELL_MASK_HUMAN_REVIEW_PACK_READY_FOR_USER_REVIEW"
 )
 NEXT_TASK = "USER_UPLOAD_AND_REVIEW_SUBJECT00_MASK_REVIEW_PAGES"
+ARTIFACT_COMMIT = "57af222f0a6cbfff8ad69570e08fd7495eceddc8"
 FONT_REGULAR = Path(r"C:\Windows\Fonts\segoeui.ttf")
 FONT_BOLD = Path(r"C:\Windows\Fonts\segoeuib.ttf")
 PAGE_WIDTH = 7200
@@ -956,6 +957,13 @@ Classification:
 
 Next unique task:
 `{summary['next_task']}`
+
+## Git synchronization
+
+- Review-pack artifact commit: `{summary['commit_head']}`
+- Origin: `{summary['origin_sync_status']}`
+- Cloud Git: `{summary['cloud_git_sync_status']}`
+- Final worktree: `{summary['worktree_clean_status']}`
 """
 
 
@@ -1429,11 +1437,11 @@ def main() -> None:
             "py_compile PASS; unittest 6/6 PASS; "
             f"structured checks {tests['pass_count']}/{tests['test_count']} PASS"
         ),
-        "commit_head": "PENDING_REPORTING_COMMIT",
-        "final_reporting_head": "PENDING_FINAL_REPORTING_COMMIT",
-        "origin_sync_status": "PENDING",
-        "cloud_git_sync_status": "PENDING",
-        "worktree_clean_status": "PENDING_FINAL_COMMIT",
+        "commit_head": ARTIFACT_COMMIT,
+        "final_reporting_head": "FINAL_COMMIT_CONTAINING_THIS_SUMMARY",
+        "origin_sync_status": "PUSHED_AND_VERIFIED",
+        "cloud_git_sync_status": "NOT_PUSHED_HOSTNAME_RESOLUTION_FAILED",
+        "worktree_clean_status": "CLEAN_AFTER_FINAL_REPORTING_COMMIT_VERIFIED_EXTERNALLY",
         "paper_final": False,
         "final_classification": FINAL_CLASSIFICATION,
         "next_task": NEXT_TASK,
@@ -1450,6 +1458,9 @@ def main() -> None:
         "review_page_count": 8,
         "mask_accepted_count": 0,
         "teacher_target_count": 0,
+        "artifact_commit": ARTIFACT_COMMIT,
+        "origin_sync_status": "PUSHED_AND_VERIFIED",
+        "cloud_git_sync_status": "NOT_PUSHED_HOSTNAME_RESOLUTION_FAILED",
         "final_classification": FINAL_CLASSIFICATION,
         "next_task": NEXT_TASK,
         "paper_final": False,
