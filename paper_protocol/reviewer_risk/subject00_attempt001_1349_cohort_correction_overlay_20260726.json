@@ -1,0 +1,84 @@
+{
+  "affected_downstream_decision": "NONE. The existing six-cell targeted-gap set remains evidence-correct, but generation authorization remains denied.",
+  "attempt_001_mutations": 0,
+  "attempt_002_mutations": 0,
+  "attempt_003_mutations": 0,
+  "cohort_registry_evidence_conflict": false,
+  "content_sha256": "c7c9cd3055d1a0a5a2718b8460a35d9c88755ff412bcccb666b88a1fa3a73f22",
+  "correction_adjudication": "OLD_REGISTRY_CONFIRMED_CORRECT_PROPOSED_O03_O04_SWAP_REJECTED",
+  "disputed_request_adjudication": {
+    "subject00_O03_slot07_cand01": {
+      "actual_png_sha256": "e981cbb9fe42ef5412b3198d28042a5eda4272266e701856c33e0807093eb1ee",
+      "actual_resolution_from_png_ihdr": "1350x1165",
+      "belongs_to_1349x1166_cohort": false,
+      "primary_machine_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "provenance_height": 1165,
+      "provenance_output_sha256": "e981cbb9fe42ef5412b3198d28042a5eda4272266e701856c33e0807093eb1ee",
+      "provenance_width": 1350,
+      "request_binding_status": "PASS"
+    },
+    "subject00_O04_slot01_cand00": {
+      "actual_png_sha256": "b83c85ba344e40574084f0e8c889beb74da77b23dbc6beba8dd975d2727f906f",
+      "actual_resolution_from_png_ihdr": "1349x1166",
+      "belongs_to_1349x1166_cohort": true,
+      "primary_machine_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "provenance_height": 1166,
+      "provenance_output_sha256": "b83c85ba344e40574084f0e8c889beb74da77b23dbc6beba8dd975d2727f906f",
+      "provenance_width": 1349,
+      "request_binding_status": "PASS"
+    },
+    "subject00_O04_slot01_cand01": {
+      "actual_png_sha256": "325036ab2b72142edd98439826eada0d071c20087dc5a99b5e00684454449eec",
+      "actual_resolution_from_png_ihdr": "1349x1166",
+      "belongs_to_1349x1166_cohort": true,
+      "primary_machine_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "provenance_height": 1166,
+      "provenance_output_sha256": "325036ab2b72142edd98439826eada0d071c20087dc5a99b5e00684454449eec",
+      "provenance_width": 1349,
+      "request_binding_status": "PASS"
+    }
+  },
+  "final_response_transcription_was_wrong": false,
+  "hypothesized_missing_cell_list": [
+    "O01/slot_04",
+    "O01/slot_07",
+    "O03/slot_06",
+    "O04/slot_01",
+    "O04/slot_05",
+    "O04/slot_06"
+  ],
+  "old_contact_sheet_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001_native_landscape_registration_audit\\05_contact_sheets\\attempt001_machine_pass_candidates_sheet.png",
+  "old_contact_sheet_sha256": "9f076d3a15cf636c8a36ce2b943b0175cef80141b2dfba348de878727f417289",
+  "old_coverage_registry_path": "E:\\model_train\\canondressgs_subject00_1349_cohort_correction_human_review_prep\\paper_protocol\\reviewer_risk\\subject00_attempt001_garment_slot_coverage_20260726.json",
+  "old_coverage_registry_sha256": "055b3cf4405b8f86d44cde96216eb8d6f5d164956916e96afa74fffad3d5ef56",
+  "old_evidence_preserved": true,
+  "old_final_summary_path": "E:\\model_train\\canondressgs_subject00_1349_cohort_correction_human_review_prep\\paper_protocol\\reviewer_risk\\subject00_attempt001_native_landscape_registration_final_summary_20260726.json",
+  "old_final_summary_sha256": "c91f4f725039878e4ec4723b03efa1670ea03f810f6a3428210f780fa841e5b9",
+  "old_missing_cell_list": [
+    "O01/slot_04",
+    "O01/slot_07",
+    "O03/slot_06",
+    "O03/slot_07",
+    "O04/slot_05",
+    "O04/slot_06"
+  ],
+  "old_report_mutations": 0,
+  "old_report_path": "E:\\model_train\\canondressgs_subject00_1349_cohort_correction_human_review_prep\\paper_protocol\\reviewer_risk\\SUBJECT00_ATTEMPT001_NATIVE_LANDSCAPE_REGISTRATION_AUDIT_REPORT_20260726.md",
+  "old_report_sha256": "254ad2de0aa5b4724de56dbc6ad2c605dbf87396625670194c11ec0b892fb9c6",
+  "paper_final": false,
+  "recomputed_missing_cell_list": [
+    "O01/slot_04",
+    "O01/slot_07",
+    "O03/slot_06",
+    "O03/slot_07",
+    "O04/slot_05",
+    "O04/slot_06"
+  ],
+  "registry_generation_code_was_wrong": false,
+  "root_cause": "The dense multi-column contact sheet was visually misread across row/cell boundaries. Its request labels are correct; PNG IHDR, PNG SHA, request/provenance binding, inventory, metrics, and generation code all confirm the old registry.",
+  "schema_version": "canondressgs.subject00.attempt001_1349_cohort_correction_overlay.v1",
+  "targeted_rerun_authorization": "DENIED",
+  "targeted_rerun_generated_count": 0,
+  "task_id": "AAAI27-SUBJECT00-1349x1166-COHORT-CORRECTION-HUMAN-REVIEW-PREP-001",
+  "underlying_json_was_wrong": false
+}
