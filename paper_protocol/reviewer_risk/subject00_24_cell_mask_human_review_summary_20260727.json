@@ -1,0 +1,115 @@
+{
+  "schema_version": "canondressgs.subject00.mask_human_review_summary.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-MASK-HUMAN-REVIEW-PROMOTION-001",
+  "source_branch": "research/subject00-24-cell-mask-human-review-pack-20260726",
+  "source_head": "e6ba0e5750feb1d78ed3fadc7b53886c7bab2140",
+  "new_branch": "research/subject00-24-cell-mask-human-review-promotion-20260727",
+  "worktree": "E:\\model_train\\canondressgs_subject00_24_cell_mask_human_review_promotion",
+  "reviewer": "USER_AND_GPT_MANUAL_REVIEW",
+  "review_evidence": {
+    "reviewer": "USER_AND_GPT_MANUAL_REVIEW",
+    "pdf": {
+      "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\05_indexes\\subject00_24_cell_mask_human_review_pages_20260726.pdf",
+      "bytes": 100056298,
+      "sha256": "7f9da88729be097265b0a8e8843ef10c46105ca68c4474785bc88cc4fc4f0c7b",
+      "page_count": 8
+    },
+    "upload_manifest": {
+      "path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_human_review_promotion\\paper_protocol\\reviewer_risk\\subject00_24_cell_mask_human_review_upload_manifest_20260726.json",
+      "sha256": "a0a8e62ac2d8f29182b1bb2915d567f0fc5efd92ca84241659dc749d1b71ae27"
+    },
+    "upload_index": {
+      "path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_human_review_promotion\\paper_protocol\\reviewer_risk\\subject00_mask_upload_pack_index_20260726.json",
+      "sha256": "18b0f37a585aa66a9c13b362c86d53bb9858b41445e00c1f20e7dbbbc42e262c"
+    },
+    "page_order": [
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\00_master\\subject00_masks_master_24cell_overview.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\01_O01\\subject00_O01_masks_slots00_03_review.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\01_O01\\subject00_O01_masks_slots04_07_review.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\02_O03\\subject00_O03_masks_slots00_03_review.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\02_O03\\subject00_O03_masks_slots04_07_review.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\03_O04\\subject00_O04_masks_slots00_03_review.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\03_O04\\subject00_O04_masks_slots04_07_review.png",
+      "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\upload_pack_20260726\\04_risk_and_limitations\\subject00_masks_risk_and_limitations_review.png"
+    ]
+  },
+  "reviewed_cell_count": 24,
+  "person_mask_human_pass_count": 24,
+  "person_mask_human_fail_count": 0,
+  "garment_mask_human_pass_count": 24,
+  "garment_mask_human_fail_count": 0,
+  "mask_pair_human_pass_count": 24,
+  "mask_pair_human_fail_count": 0,
+  "mask_human_blocked_count": 0,
+  "raw_accepted_cell_count": 24,
+  "person_mask_generated_count": 24,
+  "garment_mask_generated_count": 24,
+  "total_mask_generated_count": 48,
+  "previous_mask_accepted_count": 0,
+  "newly_mask_accepted_count": 24,
+  "total_mask_accepted_count": 24,
+  "mask_pair_accepted_count": 24,
+  "mask_accepted_without_limitation_count": 15,
+  "mask_accepted_with_disclosed_limitation_count": 9,
+  "mask_missing_count": 0,
+  "mask_blocked_count": 0,
+  "coverage": {
+    "O01": 8,
+    "O03": 8,
+    "O04": 8
+  },
+  "limitation_request_ids": [
+    "subject00_O01_slot04_remaining_attempt005_cand00",
+    "subject00_O01_slot07_remaining_attempt005_cand00",
+    "subject00_O03_slot00_canary_attempt004_cand00",
+    "subject00_O03_slot04_canary_attempt004_cand00",
+    "subject00_O03_slot05_canary_attempt004_cand00",
+    "subject00_O03_slot06_remaining_attempt005_cand00",
+    "subject00_O03_slot07_canary_attempt004_cand00",
+    "subject00_O04_slot05_remaining_attempt005_cand00",
+    "subject00_O04_slot06_remaining_attempt005_cand00"
+  ],
+  "limitation_codes": [
+    "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED",
+    "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+    "MACHINE_REGISTRATION_FAIL_WITH_DOCUMENTED_HUMAN_OVERRIDE",
+    "RAW_RETAINED_IN_TECHNICAL_FAILURE_PATH_AFTER_RESOLUTION_FAMILY_CORRECTION"
+  ],
+  "machine_registration_pass_count": 22,
+  "machine_registration_fail_count": 2,
+  "human_override_count": 2,
+  "human_override_request_ids": [
+    "subject00_O03_slot04_canary_attempt004_cand00",
+    "subject00_O01_slot04_remaining_attempt005_cand00"
+  ],
+  "teacher_target_count": 0,
+  "teacher_target_creation_authorized": false,
+  "teacher_endpoint_optimization_authorized": false,
+  "teacher_target_preflight_base_avatar_status": "PENDING_SUBJECT00_FORMAL_BASE_FINALIZATION",
+  "person_mask_mutations": 0,
+  "garment_mask_mutations": 0,
+  "accepted_raw_mutations": 0,
+  "attempt_mutations": {
+    "attempt_001": 0,
+    "attempt_002": 0,
+    "attempt_003": 0,
+    "attempt_004": 0,
+    "attempt_005": 0
+  },
+  "frozen_baseline_checked_file_count": 368,
+  "segmentation_inference_calls": 0,
+  "model_forward_calls": 0,
+  "image_generation_calls": 0,
+  "data_mutations": 0,
+  "paper_modifications": 0,
+  "subject00_multi_garment_data_status": "RAW_AND_MASK_ACCEPTED_24_OF_24_TEACHER_TARGET_PREFLIGHT_PENDING",
+  "test_result": "PENDING_POST_GENERATION_VALIDATION",
+  "commit_head": "PENDING_SUBSTANTIVE_COMMIT",
+  "final_reporting_head": "PENDING_FINAL_REPORTING_COMMIT",
+  "origin_sync_status": "PENDING",
+  "cloud_git_sync_status": "PENDING_BEST_EFFORT",
+  "worktree_clean_status": "PENDING",
+  "paper_final": false,
+  "final_classification": "SUBJECT00_24_OF_24_MASKS_ACCEPTED_TEACHER_TARGET_PREFLIGHT_PENDING",
+  "next_task": "PREFLIGHT_AND_FREEZE_SUBJECT00_24_CELL_TEACHER_TARGET_CREATION_CONTRACT"
+}
