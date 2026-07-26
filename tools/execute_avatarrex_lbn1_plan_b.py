@@ -50,6 +50,8 @@ ARCHIVE_LISTING_SLT_SHA256 = "d33cb311687a1034c37e795d26966f1a93b16bc5e7de3e96cc
 
 ALLOWLIST_TXT_SHA256 = "a8e2825294fc2cf02422669a5c9e9ec2f660e9ec48cda61dafb7ff804c20ab70"
 ALLOWLIST_JSON_SHA256 = "943e1e98ff8b7082150d4007d17c5ef34e0503f99ac5d75b555b44c2596599ea"
+ALLOWLIST_TXT_GIT_LF_SHA256 = "5e2cd9ae7361b1051456e778a574c3626bee246cde32205704ae750c404dfc32"
+ALLOWLIST_JSON_GIT_LF_SHA256 = "7213a8831aee62c21362ae1499bf17c0d048ebde45885843984d46529044baae"
 ALLOWLIST_COUNT = 1602
 EXPECTED_UNCOMPRESSED_BYTES = 501_198_133
 
@@ -219,6 +221,38 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def normalized_lf_sha256(path: Path) -> str:
+    raw = path.read_bytes().replace(b"\r\n", b"\n")
+    if b"\r" in raw:
+        raise PlanBFailure(
+            f"Manifest contains unsupported lone CR bytes: {path}",
+            FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
+            "ALLOWLIST_LINE_ENDING_MISMATCH",
+        )
+    return hashlib.sha256(raw).hexdigest()
+
+
+def assert_portable_manifest_hash(
+    path: Path,
+    crlf_sha256: str,
+    git_lf_sha256: str,
+) -> str:
+    byte_sha = sha256_file(path)
+    if byte_sha not in {crlf_sha256, git_lf_sha256}:
+        raise PlanBFailure(
+            f"Manifest byte hash is neither the frozen CRLF artifact nor Git LF blob: {path}",
+            FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
+            "ALLOWLIST_BYTE_HASH_MISMATCH",
+        )
+    if normalized_lf_sha256(path) != git_lf_sha256:
+        raise PlanBFailure(
+            f"Manifest normalized content differs from the frozen Git blob: {path}",
+            FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
+            "ALLOWLIST_NORMALIZED_HASH_MISMATCH",
+        )
+    return byte_sha
+
+
 def hash_and_crc32(path: Path) -> tuple[str, str, int]:
     sha = hashlib.sha256()
     crc = 0
@@ -277,18 +311,16 @@ def assert_safe_archive_member(path_text: str) -> None:
 
 
 def load_members() -> list[Member]:
-    if sha256_file(ALLOWLIST_TXT) != ALLOWLIST_TXT_SHA256:
-        raise PlanBFailure(
-            "Copied allowlist text hash does not match the frozen contract.",
-            FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
-            "ALLOWLIST_TXT_HASH_MISMATCH",
-        )
-    if sha256_file(ALLOWLIST_JSON) != ALLOWLIST_JSON_SHA256:
-        raise PlanBFailure(
-            "Copied allowlist JSON hash does not match the frozen contract.",
-            FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
-            "ALLOWLIST_JSON_HASH_MISMATCH",
-        )
+    assert_portable_manifest_hash(
+        ALLOWLIST_TXT,
+        ALLOWLIST_TXT_SHA256,
+        ALLOWLIST_TXT_GIT_LF_SHA256,
+    )
+    assert_portable_manifest_hash(
+        ALLOWLIST_JSON,
+        ALLOWLIST_JSON_SHA256,
+        ALLOWLIST_JSON_GIT_LF_SHA256,
+    )
 
     payload = json.loads(ALLOWLIST_JSON.read_text(encoding="utf-8"))
     raw_members = payload.get("members")
@@ -485,12 +517,8 @@ def copy_attempt_manifests(audit_root: Path) -> dict[str, str]:
         str(copied_txt): sha256_file(copied_txt),
         str(copied_json): sha256_file(copied_json),
     }
-    if hashes[str(copied_txt)] != ALLOWLIST_TXT_SHA256 or hashes[str(copied_json)] != ALLOWLIST_JSON_SHA256:
-        raise PlanBFailure(
-            "Attempt manifest copy hash mismatch.",
-            FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
-            "ATTEMPT_MANIFEST_COPY_HASH_MISMATCH",
-        )
+    assert_portable_manifest_hash(copied_txt, ALLOWLIST_TXT_SHA256, ALLOWLIST_TXT_GIT_LF_SHA256)
+    assert_portable_manifest_hash(copied_json, ALLOWLIST_JSON_SHA256, ALLOWLIST_JSON_GIT_LF_SHA256)
     return hashes
 
 
@@ -589,7 +617,7 @@ def write_7z_listfile(members: list[Member], audit_root: Path) -> Path:
     text = "".join(f"{member.path}\n" for member in members)
     with listfile.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(text)
-    if sha256_file(listfile) != ALLOWLIST_TXT_SHA256:
+    if sha256_file(listfile) != ALLOWLIST_TXT_GIT_LF_SHA256:
         raise PlanBFailure(
             "Generated 7z listfile differs from the frozen allowlist text.",
             FINAL_CLASSIFICATION_ALLOWLIST_BLOCKED,
@@ -1177,6 +1205,8 @@ def manifest_check(args: argparse.Namespace) -> dict[str, Any]:
         "allowlist_json": str(ALLOWLIST_JSON),
         "allowlist_txt_sha256": sha256_file(ALLOWLIST_TXT),
         "allowlist_json_sha256": sha256_file(ALLOWLIST_JSON),
+        "allowlist_txt_normalized_lf_sha256": normalized_lf_sha256(ALLOWLIST_TXT),
+        "allowlist_json_normalized_lf_sha256": normalized_lf_sha256(ALLOWLIST_JSON),
         **payload,
     }
     if args.output_json:

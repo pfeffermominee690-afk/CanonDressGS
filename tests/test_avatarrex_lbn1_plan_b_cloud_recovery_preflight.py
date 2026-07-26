@@ -109,6 +109,16 @@ class AvatarReXCloudRecoveryPreflightTests(unittest.TestCase):
             "USER_REVIEW_AVATARREX_PLAN_B_EXTRACTION_AND_AUTHORIZE_LOADER_CANARY",
         )
 
+    def test_14_cross_platform_allowlist_hashes_are_exact(self):
+        self.assertEqual(
+            base.ALLOWLIST_TXT_GIT_LF_SHA256,
+            "5e2cd9ae7361b1051456e778a574c3626bee246cde32205704ae750c404dfc32",
+        )
+        self.assertEqual(
+            base.ALLOWLIST_JSON_GIT_LF_SHA256,
+            "7213a8831aee62c21362ae1499bf17c0d048ebde45885843984d46529044baae",
+        )
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

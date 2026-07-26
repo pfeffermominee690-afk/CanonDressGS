@@ -55,8 +55,16 @@ class AvatarReXPlanBExtractionContractTests(unittest.TestCase):
         self.assertEqual(plan_b.ARCHIVE_SHA256, "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1")
 
     def test_03_allowlist_hashes(self):
-        self.assertEqual(sha256(ALLOWLIST_TXT), plan_b.ALLOWLIST_TXT_SHA256)
-        self.assertEqual(sha256(ALLOWLIST_JSON), plan_b.ALLOWLIST_JSON_SHA256)
+        self.assertIn(
+            sha256(ALLOWLIST_TXT),
+            {plan_b.ALLOWLIST_TXT_SHA256, plan_b.ALLOWLIST_TXT_GIT_LF_SHA256},
+        )
+        self.assertIn(
+            sha256(ALLOWLIST_JSON),
+            {plan_b.ALLOWLIST_JSON_SHA256, plan_b.ALLOWLIST_JSON_GIT_LF_SHA256},
+        )
+        self.assertEqual(plan_b.normalized_lf_sha256(ALLOWLIST_TXT), plan_b.ALLOWLIST_TXT_GIT_LF_SHA256)
+        self.assertEqual(plan_b.normalized_lf_sha256(ALLOWLIST_JSON), plan_b.ALLOWLIST_JSON_GIT_LF_SHA256)
 
     def test_04_allowlist_count_and_bytes(self):
         self.assertEqual(len(self.members), 1602)
