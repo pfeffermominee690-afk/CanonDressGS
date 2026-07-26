@@ -1,0 +1,168 @@
+{
+  "schema_version": "canondressgs.subject00.formal_base_101245_execution_manifest.v1",
+  "generated_at": "2026-07-26T18:20:04+08:00",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-BASE-ARCHIVE-RECLAIM-AND-EXECUTION-001",
+  "execution_branch": "research/subject00-formal-base-101245-execution-20260726",
+  "execution_head_at_manifest_commit": "SELF_ON_COMMIT",
+  "authorized_source_branch": "research/subject00-formal-base-execution-preflight-20260726",
+  "authorized_source_head": "e5c98482160b2625a9ac6e8af388bc5350eced46",
+  "preflight_classification": "SUBJECT00_FORMAL_BASE_EXECUTION_CONTRACT_READY_PENDING_USER_AUTHORIZATION",
+  "user_authorization": "AUTHORIZE_DELETE_VERIFIED_CLOUD_AVATARREX_ARCHIVE_AND_START_SUBJECT00_FORMAL_BASE_101245",
+  "training_authorized": true,
+  "optimizer_steps_at_manifest_commit": 0,
+  "output_root_created_at_manifest_commit": false,
+  "avatarrex_cloud_duplicate_deletion": {
+    "authorization_record": "paper_protocol/storage/avatarrex_cloud_duplicate_deletion_authorization_20260726.json",
+    "execution_record": "paper_protocol/storage/avatarrex_cloud_duplicate_deletion_execution_20260726.json",
+    "deleted_path": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "deleted_bytes": 12569755256,
+    "deleted_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "delete_command": "rm -- /root/autodl-tmp/avatarrex_lbn1.7z",
+    "exists_after_delete": false,
+    "windows_mirror_preserved": true,
+    "status": "PASS_DELETED_ONLY_VERIFIED_CLOUD_DUPLICATE"
+  },
+  "subject": {
+    "subject": "THuman4.0 Subject00",
+    "identity": "subject00",
+    "raw_data_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "processed_data_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+    "frame_count": 2500,
+    "camera_count": 24,
+    "availability_entries": 60000,
+    "valid_rgb_mask_pairs": 59704,
+    "missing_pairs": 296,
+    "denominator": 59704,
+    "rgb_mask_pairing_status": "PASS_59704_VALID_PAIRS_296_IDENTICAL_MISSING_IMAGE_MASK_ENTRIES"
+  },
+  "immutable_inputs": {
+    "data_manifest": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_CLOUD_DATA_MANIFEST.json",
+      "bytes": 24843526,
+      "sha256": "e61ca6061f0a85be9c5c6e1d9163341c10749bc1a4ff1b14d27f64b5705aa99e"
+    },
+    "availability_manifest": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+      "bytes": 22816442,
+      "file_sha256": "da9cbce12b6d0fa9a1fddced662eefa9d2f4f331011fbbf3a9944fc878011c7a",
+      "canonical_entries_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e"
+    },
+    "calibration": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "bytes": 22835,
+      "sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7"
+    },
+    "smpl": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "bytes": 1722078,
+      "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2"
+    },
+    "template": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00/template/template_smplx_body_surface.ply",
+      "bytes": 758242,
+      "sha256": "f10a3b516e2b3a2ad38dc4924a3692b2f3e72a6cc9e66f3c0063c4e9cd210031"
+    },
+    "surface_lbs_weights": {
+      "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00/surface_lbs/lbs_weights.npy",
+      "bytes": 44000128,
+      "file_sha256": "56aa68a9d4baade67621fa2bfac462ac88074eeaf7c9bfdbe86f2360b91261a1",
+      "array_sha256": "5176b447e1213e9275e08633589ef32ba4841825a05957d77b2f2c4ce18dc899",
+      "shape": [200000, 55]
+    },
+    "initialization_checkpoint": {
+      "policy": "SUBJECT00_SHORT_CANARY_STEP0_ONLY",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-MMLPHUMAN-SHORT-CANARY-001/attempt_001/checkpoints/step_000000.pth",
+      "step": 0,
+      "bytes": 701938720,
+      "sha256": "29d0edb11474f4384b6d409141d17f5da91c98824bd070196d50804cd7cb480a"
+    },
+    "config": {
+      "path": "config/subject00_surface_lbs_formal_strict_split.yaml",
+      "windows_crlf_contract_sha256": "be28dacbea5a3e4b35336556f752b1548ebb8c3c0b355be8348e405df49bd356",
+      "git_blob_and_cloud_lf_sha256": "7ffd81771c3e25e8f4fdef4a7e7e628539642a8107f71c77ce0f748303a572d5",
+      "cloud_bytes": 4699,
+      "windows_crlf_bytes": 4818,
+      "status": "PASS_LINE_ENDING_COMPATIBILITY_RECORDED"
+    }
+  },
+  "formal_training": {
+    "runner_wrapper": "tools/second_identity/run_subject00_formal_base_101245.py",
+    "imported_algorithm_runner": "tools/second_identity/run_subject00_formal_strict_split.py",
+    "launch_script": "tools/second_identity/launch_subject00_formal_base_101245.sh",
+    "config_path": "config/subject00_surface_lbs_formal_strict_split.yaml",
+    "total_optimizer_steps": 101245,
+    "attempt_id": "attempt_001",
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001",
+    "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001",
+    "checkpoint_cadence": [0, 20249, 40498, 60747, 80996, 100000, 101245],
+    "loss": "l1 1.0 + lpips 0.1 after step > 6000 + dxyz_smooth 0.1 + gaussian_scaling 1.0 threshold 0.01",
+    "optimizer": "Adam/AdamW betas=(0.9,0.999) eps=1e-15",
+    "scheduler": "ExponentialLR horizon 800000",
+    "seed": 0,
+    "precision": "DISABLED_NO_AUTOCAST_OR_GRADSCALER",
+    "algorithm_modifications": 0,
+    "wrapper_binding_only": true
+  },
+  "output_root_gate": {
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001",
+    "attempt_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001",
+    "output_root_exists_before_launch": false,
+    "attempt_root_exists_before_launch": false,
+    "matching_output_paths_before_launch": [],
+    "status": "PASS_ABSENT"
+  },
+  "storage_gate": {
+    "filesystem": "/dev/md0",
+    "filesystem_type": "xfs",
+    "mount": "/root/autodl-tmp",
+    "total_bytes": 268435456000,
+    "used_bytes": 209993961472,
+    "free_bytes": 58441494528,
+    "projected_peak_write_bytes": 14231374378,
+    "formal_storage_gate_bytes": 32212254720,
+    "operational_margin_bytes": 2147483648,
+    "required_projected_minimum_free_bytes_after_deletion": 34359738368,
+    "projected_minimum_free_bytes_after_deletion": 44210120150,
+    "status": "PASS"
+  },
+  "gpu_gate": {
+    "gpu_count": 1,
+    "gpu_model": "NVIDIA GeForce RTX 4090",
+    "driver": "580.76.05",
+    "cuda_driver": "13.0",
+    "memory_total_mib": 24564,
+    "memory_free_mib": 24081,
+    "utilization_percent": 0,
+    "active_compute_processes": [],
+    "status": "PASS_EXCLUSIVE"
+  },
+  "environment": {
+    "python": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python 3.10.20",
+    "torch": "2.4.1+cu121",
+    "torch_cuda": "12.1",
+    "gsplat": "1.5.3+pt24cu121",
+    "pytorch3d": "0.7.8",
+    "status": "PASS_MMLPHUMAN_ENV_IMPORTS"
+  },
+  "launch": {
+    "session_name": "subject00_formal_base_101245_001",
+    "preferred_launcher": "tmux",
+    "fallback_launcher": "nohup",
+    "working_directory": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_formal_base_101245_execution",
+    "python": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python",
+    "exact_command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python tools/second_identity/run_subject00_formal_base_101245.py --phase train --attempt-root /root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001",
+    "stdout_log": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/logs/stdout.log",
+    "stderr_log": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/logs/stderr.log",
+    "structured_progress_log": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/logs/progress_step_records.jsonl",
+    "session_metadata": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/logs/session_metadata.json",
+    "env_snapshot": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/logs/env_snapshot.txt",
+    "command_file": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/logs/exact_command.txt"
+  },
+  "pre_run_tests": [
+    "python tools/second_identity/validate_subject00_formal_base_launch_gate.py",
+    "python -m pytest tests/test_subject00_formal_base_launch_gate.py",
+    "python tools/second_identity/run_subject00_formal_base_101245.py --phase preflight --attempt-root /root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001"
+  ],
+  "final_classification": "SUBJECT00_FORMAL_BASE_101245_LAUNCH_GATE_READY",
+  "next_task": "LAUNCH_AND_MONITOR_SUBJECT00_FORMAL_BASE_101245_TO_STEP_200"
+}

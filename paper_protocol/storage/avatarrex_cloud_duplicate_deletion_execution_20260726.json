@@ -1,0 +1,92 @@
+{
+  "schema_version": "canondressgs.storage.avatarrex_cloud_duplicate_deletion_execution.v1",
+  "generated_at": "2026-07-26T18:20:04+08:00",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-BASE-ARCHIVE-RECLAIM-AND-EXECUTION-001",
+  "authorization_token": "AUTHORIZE_DELETE_VERIFIED_CLOUD_AVATARREX_ARCHIVE_AND_START_SUBJECT00_FORMAL_BASE_101245",
+  "authorization_record": "paper_protocol/storage/avatarrex_cloud_duplicate_deletion_authorization_20260726.json",
+  "authorization_commit": "29d00f839ccdf383debcabb19ecfbf5b72af012d",
+  "cloud_duplicate": {
+    "target_path": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "realpath_before_delete": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "bytes_before_delete": 12569755256,
+    "sha256_before_delete": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "process_scan_before_delete": "PASS_EMPTY",
+    "delete_command_executed": "rm -- /root/autodl-tmp/avatarrex_lbn1.7z",
+    "delete_exit_status": 0,
+    "exists_after_delete": false,
+    "verification": "PASS_TARGET_ABSENT"
+  },
+  "windows_mirror_preserved": {
+    "primary_mirror_path": "E:\\canondressgs_archive\\cloud_datasets\\AvatarReX\\payload\\root\\autodl-tmp\\datasets\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "primary_mirror_bytes": 12569755256,
+    "primary_mirror_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "secondary_local_copy_path": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "secondary_local_copy_bytes": 12569755256,
+    "secondary_local_copy_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "status": "PRESERVED_NOT_DELETED"
+  },
+  "storage": {
+    "filesystem": "/dev/md0",
+    "filesystem_type": "xfs",
+    "mount": "/root/autodl-tmp",
+    "before_delete_total_bytes": 268435456000,
+    "before_delete_used_bytes": 222563667968,
+    "before_delete_free_bytes": 45871788032,
+    "after_delete_total_bytes": 268435456000,
+    "after_delete_used_bytes": 209993904128,
+    "after_delete_free_bytes": 58441551872,
+    "launch_recheck_used_bytes": 209993961472,
+    "launch_recheck_free_bytes": 58441494528,
+    "reclaimed_bytes_observed": 12569736160,
+    "projected_peak_write_bytes": 14231374378,
+    "formal_storage_gate_bytes": 32212254720,
+    "operational_margin_bytes": 2147483648,
+    "required_projected_minimum_free_bytes_after_deletion": 34359738368,
+    "projected_minimum_free_bytes_after_deletion": 44210120150,
+    "status": "PASS_AFTER_DELETION_STORAGE_RECHECK"
+  },
+  "staging_after_delete": [
+    {
+      "path": "/root/autodl-tmp/datasets/avatarrex_lbn1_staging",
+      "exists": true,
+      "file_count": 12,
+      "logical_bytes": 10467169,
+      "latest_mtime": "1785059424.4095249560 /root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001/attempt_001_audit/avatarrex_lbn1_plan_b_cloud_recovery_final_summary.json",
+      "status": "UNCHANGED"
+    },
+    {
+      "path": "/root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001",
+      "exists": true,
+      "file_count": 12,
+      "logical_bytes": 10467130,
+      "latest_mtime": "1785059424.4095249560 /root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001/attempt_001_audit/avatarrex_lbn1_plan_b_cloud_recovery_final_summary.json",
+      "status": "UNCHANGED"
+    },
+    {
+      "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging",
+      "exists": true,
+      "file_count": 1,
+      "logical_bytes": 1310046,
+      "latest_mtime": "1785018224.4142372660 /root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/smpl_params.npz",
+      "status": "UNCHANGED"
+    }
+  ],
+  "forbidden_actions": {
+    "windows_mirror_deleted": false,
+    "staging_deleted": false,
+    "other_cloud_files_deleted": false,
+    "avatarrex_extracted": false,
+    "full_avatar_o03": false,
+    "gs_vton": false,
+    "teacher_endpoint": false,
+    "paper_modified": false,
+    "process_killed": false
+  },
+  "deletion_authorized": true,
+  "deletion_executed": true,
+  "training_authorized_by_user": true,
+  "optimizer_steps_at_deletion_report": 0,
+  "output_root_created_at_deletion_report": false,
+  "final_classification": "SUBJECT00_AVATARREX_CLOUD_DUPLICATE_DELETED_STORAGE_GATE_PASS",
+  "next_task": "START_SUBJECT00_FORMAL_BASE_101245_ATTEMPT_001"
+}

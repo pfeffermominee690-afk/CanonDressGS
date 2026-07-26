@@ -93,3 +93,24 @@ Avatar O03, GS-VTON, Teacher Endpoint, or process termination.
 
 Final classification:
 `SUBJECT00_AVATARREX_CLOUD_DUPLICATE_DELETION_AUTHORIZED_PENDING_EXECUTION`
+
+## Execution Update
+
+- Authorization commit: `29d00f839ccdf383debcabb19ecfbf5b72af012d`
+- Final realpath before delete: `/root/autodl-tmp/avatarrex_lbn1.7z`
+- Final bytes before delete: `12569755256`
+- Final SHA-256 before delete: `531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1`
+- Immediate process scan before delete: empty
+- Executed command: `rm -- /root/autodl-tmp/avatarrex_lbn1.7z`
+- Delete exit status: `0`
+- Post-delete target check: absent
+- Free bytes immediately before delete: `45871788032`
+- Free bytes immediately after delete: `58441551872`
+- Launch storage recheck free bytes: `58441494528`
+- Projected minimum free bytes after deletion and peak write: `44210120150`
+- Required projected minimum free bytes after deletion: `34359738368`
+- Storage result: `PASS_AFTER_DELETION_STORAGE_RECHECK`
+- Staging result: unchanged
+
+Updated final classification:
+`SUBJECT00_AVATARREX_CLOUD_DUPLICATE_DELETED_STORAGE_GATE_PASS`
