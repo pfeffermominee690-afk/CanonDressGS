@@ -271,6 +271,9 @@ def main() -> None:
         / "scene"
         / "support_aware_region_trusted_objective_v6_1.py"
     )
+    support_semantics = (
+        materialization_repo / "scene" / "trusted_silhouette_semantics_v6_1.py"
+    )
     legacy_runner = (
         source_repo
         / "tools"
@@ -289,6 +292,7 @@ def main() -> None:
         capacity_adapter,
         objective_adapter,
         support_objective,
+        support_semantics,
         legacy_runner,
         legacy_loss,
     ):
@@ -493,13 +497,16 @@ def main() -> None:
     capacity_source = capacity_oracle.read_text(encoding="utf-8")
     legacy_source = legacy_loss.read_text(encoding="utf-8")
     support_source = support_objective.read_text(encoding="utf-8")
+    support_semantics_source = support_semantics.read_text(encoding="utf-8")
     require('CAPACITY_LOSS_NAME = "CAPACITY_ORACLE_LOSS_V1"' in capacity_source, "loss name changed")
     require(
         not any(field in legacy_source for field in MISMATCH_FIELDS),
         "legacy source loss unexpectedly consumes a mismatch field",
     )
     require(
-        "SUPPORT_AWARE_REGION_TRUSTED_OBJECTIVE_V6_1" in support_source,
+        "V6_1_OBJECTIVE_NAME" in support_source
+        and 'V6_1_OBJECTIVE_NAME = "SUPPORT_AWARE_REGION_TRUSTED_OBJECTIVE_V6_1"'
+        in support_semantics_source,
         "support-aware objective identity changed",
     )
 
@@ -648,6 +655,8 @@ def main() -> None:
             "legacy_loss_names": sorted(names_in_function(legacy_loss, "capacity_loss")),
             "support_objective_path": str(support_objective),
             "support_objective_sha256": sha256_file(support_objective),
+            "support_semantics_path": str(support_semantics),
+            "support_semantics_sha256": sha256_file(support_semantics),
             "support_objective_contract": (
                 "SUPPORT_AWARE_REGION_TRUSTED_OBJECTIVE_V6_1"
             ),
