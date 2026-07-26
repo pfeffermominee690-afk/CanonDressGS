@@ -1,0 +1,417 @@
+{
+  "schema_version": "canondressgs.external_baseline.official_source_registry.v1",
+  "task_id": "AAAI27-CANONDRESSGS-EXTERNAL-BASELINE-FEASIBILITY-FROM-BUNDLE-001",
+  "official_source_only": true,
+  "methods": [
+    {
+      "method_id": "FULL_AVATAR_FINETUNING",
+      "title": "Full Avatar Fine-tuning",
+      "authors": [],
+      "current_publication_status": "NOT_APPLICABLE_INTERNAL_CONTROL",
+      "venue": "Same-backbone strong control",
+      "year": null,
+      "official_paper_url": null,
+      "official_project_url": null,
+      "official_repository_url": null,
+      "official_code_status": "INTERNAL_CONTROL_NO_EXTERNAL_CODE",
+      "readme_status": "Contract defined by this audit",
+      "custom_data_documentation": "Uses the existing subject02 registered target contract",
+      "pretrained_checkpoint_availability": "Uses the formal Base Avatar initialization; no external checkpoint",
+      "checkpoint_size": "Bound at execution from the formal Base Avatar checkpoint",
+      "required_dataset": [
+        "subject02 O01/O02/O03/O04/O08 registered multi-view targets"
+      ],
+      "environment": {
+        "python": "CanonDressGS formal environment",
+        "pytorch": "CanonDressGS formal environment",
+        "cuda": "CanonDressGS formal environment"
+      },
+      "additional_model_weights": [],
+      "expected_vram": "Same as formal CanonDressGS training environment; measure peak VRAM",
+      "estimated_storage": "Five independent avatar checkpoints plus optimizer states; measure bytes",
+      "estimated_runtime": "Two preregistered budgets: equal-step and equal-wall-time",
+      "inference_only_possibility": "NO",
+      "full_training_requirement": "YES_PER_GARMENT",
+      "official_source_evidence": [
+        {
+          "url": "paper_protocol\\external_baselines\\source_bundle\\canondressgs_external_baseline_multi_source_evidence_bundle.json",
+          "kind": "frozen local contract",
+          "observation": "Only frozen bundle facts may define CanonDressGS numbers and scope",
+          "accessed": "2026-07-26"
+        }
+      ]
+    },
+    {
+      "method_id": "GS_VTON",
+      "title": "GS-VTON: Controllable 3D Virtual Try-on with Gaussian Splatting",
+      "authors": [
+        "Yukang Cao",
+        "Masoud Hadi",
+        "Liang Pan",
+        "Ziwei Liu"
+      ],
+      "current_publication_status": "PREPRINT",
+      "venue": "arXiv 2024; submitted to ICLR 2025, with no official acceptance evidence found",
+      "year": 2024,
+      "official_paper_url": "https://arxiv.org/abs/2410.05259",
+      "official_project_url": "https://yukangcao.github.io/GS-VTON/",
+      "official_repository_url": "https://github.com/yukangcao/GS-VTON",
+      "official_code_status": "OFFICIAL_CODE_AVAILABLE",
+      "readme_status": "Runnable main.py, custom-data pointer, dependency-weight instructions, and fixed YAML config are present",
+      "custom_data_documentation": "Uses official Nerfstudio custom-data and 3DGS initialization instructions; no subject02 adapter is supplied",
+      "pretrained_checkpoint_availability": "No GS-VTON method checkpoint; public third-party preprocessing and diffusion weights are required",
+      "checkpoint_size": "Aggregate bytes not published by authors; must be resolved by a download manifest before execution",
+      "required_dataset": [
+        "target-subject video or posed multi-view images",
+        "initialized static 3DGS PLY",
+        "one garment image",
+        "calibrated cameras"
+      ],
+      "environment": {
+        "python": "3.8",
+        "pytorch": "2.2.1",
+        "cuda": "11.8",
+        "xformers": "0.0.25"
+      },
+      "additional_model_weights": [
+        "IDM-VTON dependencies",
+        "DensePose",
+        "OpenPose",
+        "human parsing",
+        "self-correction parsing",
+        "Stable Diffusion dependencies"
+      ],
+      "expected_vram": "Not published; use a 24 GB-class preflight recommendation, explicitly not an author claim",
+      "estimated_storage": "Audit estimate 15-30 GB including environment, public weights, one 3DGS, and outputs",
+      "estimated_runtime": "Author runtime not published; config fixes stage-2 max_steps=10000, plus preprocessing, LoRA, and 3DGS initialization",
+      "inference_only_possibility": "NO",
+      "full_training_requirement": "YES_SCENE_EDITING_AND_LORA",
+      "official_source_evidence": [
+        {
+          "url": "https://arxiv.org/abs/2410.05259",
+          "kind": "official arXiv",
+          "observation": "Image-prompted 3D VTON from multi-view human images and a garment image",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://yukangcao.github.io/GS-VTON/",
+          "kind": "author project page",
+          "observation": "Links the paper and official repository",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://github.com/yukangcao/GS-VTON",
+          "kind": "author repository",
+          "observation": "Official implementation and custom-data instructions",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://openreview.net/forum?id=8eenzfwKqU",
+          "kind": "official submission page",
+          "observation": "Submitted to ICLR 2025; not evidence of acceptance",
+          "accessed": "2026-07-26"
+        }
+      ]
+    },
+    {
+      "method_id": "GAUSSIANVTON",
+      "title": "GaussianVTON: 3D Human Virtual Try-ON via Multi-Stage Gaussian Splatting Editing with Image Prompting",
+      "authors": [
+        "Haodong Chen",
+        "Yongle Huang",
+        "Haojian Huang",
+        "Xiangsheng Ge",
+        "Dian Shao"
+      ],
+      "current_publication_status": "PREPRINT",
+      "venue": "arXiv technical report",
+      "year": 2024,
+      "official_paper_url": "https://arxiv.org/abs/2405.07472",
+      "official_project_url": "https://haroldchen19.github.io/gsvton/",
+      "official_repository_url": "https://github.com/HaroldChen19/GaussianVTON",
+      "official_code_status": "PARTIAL_CODE_ONLY",
+      "readme_status": "README states partial code was released and full code is coming soon",
+      "custom_data_documentation": "No complete official custom-data execution path",
+      "pretrained_checkpoint_availability": "No complete method checkpoint contract",
+      "checkpoint_size": "NOT_PUBLISHED",
+      "required_dataset": [
+        "existing 3DGS scene",
+        "multi-view images",
+        "garment image"
+      ],
+      "environment": {
+        "python": "3.8",
+        "pytorch": "2.1.0",
+        "cuda": "11.8"
+      },
+      "additional_model_weights": [
+        "Ladi-VTON",
+        "GaussianEditor",
+        "diffusion and segmentation dependencies"
+      ],
+      "expected_vram": "NOT_PUBLISHED",
+      "estimated_storage": "NOT_RELIABLY_ESTIMABLE_FROM_PARTIAL_CODE",
+      "estimated_runtime": "NOT_RELIABLY_ESTIMABLE_FROM_PARTIAL_CODE",
+      "inference_only_possibility": "NO",
+      "full_training_requirement": "BLOCKED_BY_INCOMPLETE_CODE",
+      "official_source_evidence": [
+        {
+          "url": "https://arxiv.org/abs/2405.07472",
+          "kind": "official arXiv",
+          "observation": "Image-prompted multi-stage 3DGS editing",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://haroldchen19.github.io/gsvton/",
+          "kind": "author project page",
+          "observation": "Links paper, code, and data",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://github.com/HaroldChen19/GaussianVTON",
+          "kind": "author repository",
+          "observation": "README explicitly marks code as partial",
+          "accessed": "2026-07-26"
+        }
+      ]
+    },
+    {
+      "method_id": "GAUSSIAN_WARDROBE",
+      "title": "Gaussian Wardrobe: Compositional 3D Gaussian Avatars for Free-Form Virtual Try-On",
+      "authors": [
+        "Zhiyi Chen",
+        "Hsuan-I Ho",
+        "Tianjian Jiang",
+        "Jie Song",
+        "Manuel Kaufmann",
+        "Chen Guo"
+      ],
+      "current_publication_status": "PUBLISHED",
+      "venue": "3DV 2026 Poster",
+      "year": 2026,
+      "official_paper_url": "https://openreview.net/forum?id=sncanvgvUn",
+      "official_project_url": "https://eth-ait.github.io/GaussianWardrobe/",
+      "official_repository_url": "https://github.com/eth-ait/GaussianWardrobe",
+      "official_code_status": "OFFICIAL_CODE_AVAILABLE",
+      "readme_status": "Training, animation, transfer, evaluation, and checkpoint instructions are present",
+      "custom_data_documentation": "GEN_DATA.md targets 4D-DRESS and ActorsHQ acquisition contracts",
+      "pretrained_checkpoint_availability": "Selected 4D-DRESS checkpoints are linked",
+      "checkpoint_size": "Official aggregate checkpoint bytes not stated",
+      "required_dataset": [
+        "4D-DRESS or ActorsHQ dynamic multi-view video",
+        "SMPL-X registration",
+        "layer labels and masks"
+      ],
+      "environment": {
+        "python": "NOT_PINNED",
+        "pytorch": "NOT_PINNED",
+        "cuda": "NOT_PINNED"
+      },
+      "additional_model_weights": [
+        "SMPL-X",
+        "LPIPS weights",
+        "PyTorch3D"
+      ],
+      "expected_vram": "NOT_PUBLISHED",
+      "estimated_storage": "Audit estimate 20-60 GB excluding licensed datasets",
+      "estimated_runtime": "Full avatar and garment-layer training required; author runtime not published",
+      "inference_only_possibility": "ONLY_WITH_MATCHED_PRETRAINED_4D_DRESS_SUBJECTS",
+      "full_training_requirement": "YES_FOR_CUSTOM_SUBJECTS",
+      "official_source_evidence": [
+        {
+          "url": "https://openreview.net/forum?id=sncanvgvUn",
+          "kind": "official 3DV publication page",
+          "observation": "3DV 2026 Poster",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://eth-ait.github.io/GaussianWardrobe/",
+          "kind": "author project page",
+          "observation": "Dynamic multi-view layered avatar acquisition",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://github.com/eth-ait/GaussianWardrobe",
+          "kind": "official lab repository",
+          "observation": "MIT code and 4D-DRESS/ActorsHQ preparation",
+          "accessed": "2026-07-26"
+        }
+      ]
+    },
+    {
+      "method_id": "LAYGA",
+      "title": "LayGA: Layered Gaussian Avatars for Animatable Clothing Transfer",
+      "authors": [
+        "Siyou Lin",
+        "Zhe Li",
+        "Zhaoqi Su",
+        "Zerong Zheng",
+        "Hongwen Zhang",
+        "Yebin Liu"
+      ],
+      "current_publication_status": "PUBLISHED",
+      "venue": "SIGGRAPH 2024 Conference Papers",
+      "year": 2024,
+      "official_paper_url": "https://arxiv.org/abs/2405.07319",
+      "official_project_url": "https://jsnln.github.io/layga/index.html",
+      "official_repository_url": null,
+      "official_code_status": "OFFICIAL_CODE_NOT_FOUND",
+      "readme_status": "Project page links paper and supplement but no code repository",
+      "custom_data_documentation": "Paper/supplement describe data, not an executable custom-data pipeline",
+      "pretrained_checkpoint_availability": "NOT_FOUND",
+      "checkpoint_size": "NOT_APPLICABLE_WITHOUT_CODE",
+      "required_dataset": [
+        "multi-view videos",
+        "body/clothing segmentation",
+        "source and target layered avatars"
+      ],
+      "environment": {
+        "python": "NOT_AVAILABLE",
+        "pytorch": "NOT_AVAILABLE",
+        "cuda": "NOT_AVAILABLE"
+      },
+      "additional_model_weights": [],
+      "expected_vram": "NOT_AVAILABLE",
+      "estimated_storage": "NOT_ESTIMABLE_WITHOUT_CODE",
+      "estimated_runtime": "Supplement reports 200k single-layer and 550k multi-layer iterations",
+      "inference_only_possibility": "NO",
+      "full_training_requirement": "YES_BUT_CODE_UNAVAILABLE",
+      "official_source_evidence": [
+        {
+          "url": "https://arxiv.org/abs/2405.07319",
+          "kind": "official arXiv",
+          "observation": "Layered Gaussian avatars from multi-view videos",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://jsnln.github.io/layga/index.html",
+          "kind": "author project page",
+          "observation": "Paper and supplement links; no code link",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://jsnln.github.io/layga/assets/supp.pdf",
+          "kind": "author supplement",
+          "observation": "Reports 200k and 550k training stages",
+          "accessed": "2026-07-26"
+        }
+      ]
+    },
+    {
+      "method_id": "DAMA",
+      "title": "DAMA: Disentangled Body-Anchored Gaussians for Controllable Multi-Layered Avatars",
+      "authors": [
+        "Daniel Eskandar",
+        "Berna Kabadayi",
+        "Garvita Tiwari",
+        "Gerard Pons-Moll"
+      ],
+      "current_publication_status": "PUBLISHED",
+      "venue": "PhysHuman Workshop at CVPR 2026 (Oral)",
+      "year": 2026,
+      "official_paper_url": "https://arxiv.org/abs/2605.21001",
+      "official_project_url": "https://danieleskandar.github.io/dama/",
+      "official_repository_url": "https://github.com/danieleskandar/DAMA-code",
+      "official_code_status": "OFFICIAL_CODE_AVAILABLE",
+      "readme_status": "Complete 4D-DRESS preprocessing, three-stage training, evaluation, and applications are documented",
+      "custom_data_documentation": "Official pipeline is specific to 4D-DRESS scans, SMPL-X, semantic masks, and Blender rendering",
+      "pretrained_checkpoint_availability": "No pretrained avatar checkpoints documented",
+      "checkpoint_size": "SMPL-X v1.1 is documented as 830 MB; no method checkpoint size published",
+      "required_dataset": [
+        "4D-DRESS scan and SMPL-X meshes",
+        "multi-view RGB and semantic masks",
+        "camera parameters"
+      ],
+      "environment": {
+        "python": "3.9",
+        "pytorch": "2.7.1",
+        "cuda": "11.8",
+        "blender": "3.6.2"
+      },
+      "additional_model_weights": [
+        "SMPL-X v1.1 (830 MB)",
+        "Blender 3.6.2"
+      ],
+      "expected_vram": "Tested by authors on RTX 2080 Ti with 11 GB VRAM",
+      "estimated_storage": "Audit estimate 10-30 GB excluding 4D-DRESS",
+      "estimated_runtime": "Full three-stage reconstruction is required; runtime not published",
+      "inference_only_possibility": "NO_FOR_NEW_SUBJECT",
+      "full_training_requirement": "YES",
+      "official_source_evidence": [
+        {
+          "url": "https://arxiv.org/abs/2605.21001",
+          "kind": "official arXiv",
+          "observation": "Body-anchored layered Gaussian reconstruction",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://danieleskandar.github.io/dama/",
+          "kind": "author project page",
+          "observation": "CVPR 2026 workshop oral and official code link",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://github.com/danieleskandar/DAMA-code",
+          "kind": "author repository",
+          "observation": "MIT code and tested environment",
+          "accessed": "2026-07-26"
+        }
+      ]
+    },
+    {
+      "method_id": "SEMANTICGARMENT",
+      "title": "SemanticGarment: Semantic-Controlled Generation and Editing of 3D Gaussian Garments",
+      "authors": [
+        "Ruiyan Wang",
+        "Zhengxue Cheng",
+        "Zonghao Lin",
+        "Jun Ling",
+        "Yuzhou Liu",
+        "Yanru An",
+        "Rong Xie",
+        "Li Song"
+      ],
+      "current_publication_status": "PUBLISHED",
+      "venue": "ACM Multimedia 2025",
+      "year": 2025,
+      "official_paper_url": "https://doi.org/10.1145/3746027.3755136",
+      "official_project_url": null,
+      "official_repository_url": null,
+      "official_code_status": "OFFICIAL_CODE_NOT_FOUND",
+      "readme_status": "No author project or official repository was located from the paper metadata",
+      "custom_data_documentation": "NOT_FOUND",
+      "pretrained_checkpoint_availability": "NOT_FOUND",
+      "checkpoint_size": "NOT_APPLICABLE_WITHOUT_CODE",
+      "required_dataset": [
+        "text or image prompt",
+        "3D semantic clothing model",
+        "structural human prior"
+      ],
+      "environment": {
+        "python": "NOT_AVAILABLE",
+        "pytorch": "NOT_AVAILABLE",
+        "cuda": "NOT_AVAILABLE"
+      },
+      "additional_model_weights": [],
+      "expected_vram": "NOT_AVAILABLE",
+      "estimated_storage": "NOT_ESTIMABLE_WITHOUT_CODE",
+      "estimated_runtime": "NOT_ESTIMABLE_WITHOUT_CODE",
+      "inference_only_possibility": "UNKNOWN",
+      "full_training_requirement": "UNKNOWN",
+      "official_source_evidence": [
+        {
+          "url": "https://arxiv.org/abs/2509.16960",
+          "kind": "official arXiv",
+          "observation": "Text/image prompted 3D garment generation and semantic editing",
+          "accessed": "2026-07-26"
+        },
+        {
+          "url": "https://doi.org/10.1145/3746027.3755136",
+          "kind": "ACM DOI",
+          "observation": "Proceedings article in ACM Multimedia 2025, pages 9793-9802",
+          "accessed": "2026-07-26"
+        }
+      ]
+    }
+  ]
+}

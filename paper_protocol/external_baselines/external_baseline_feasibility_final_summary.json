@@ -1,0 +1,156 @@
+{
+  "schema_version": "canondressgs.external_baseline.feasibility_final_summary.v1",
+  "task_id": "AAAI27-CANONDRESSGS-EXTERNAL-BASELINE-FEASIBILITY-FROM-BUNDLE-001",
+  "source_branch": "research/external-baseline-multi-source-evidence-freeze-20260726",
+  "source_head": "397a72df68bdfd1f1a1cc67d02ca8648586133b7",
+  "new_branch": "research/external-baseline-feasibility-from-bundle-20260726",
+  "bundle_path": "paper_protocol/external_baselines/source_bundle/canondressgs_external_baseline_multi_source_evidence_bundle.json",
+  "bundle_sha256": "f12e5bb8ce2c36e12bdb911fdae41cd7e3e2ca0e9d2520dc2c57d2263ffd9e61",
+  "bundle_gate_status": "PASS",
+  "source_contract_status": "PASS",
+  "internal_evidence_freeze_status": "PASS",
+  "internal_evidence": {
+    "pure_endpoint": {
+      "classification": "PURE_ENDPOINT_CORE_METHOD_SUPPORTED",
+      "training_runs": 24,
+      "optimizer_steps": 7200,
+      "checkpoints": 144,
+      "clean_top1": 1.0,
+      "canon_exact_endpoint": 1.0,
+      "linear_exact_endpoint": 0.0,
+      "linear_lpips": 0.067913006991148,
+      "canon_blur_top1": 0.35,
+      "canon_one_reference_top1": 0.95,
+      "hard_lookup": "CLEAN_FUNCTIONAL_EQUIVALENCE",
+      "identity_contamination": 0,
+      "severe_wrong_outfit_failure": 0
+    },
+    "geometry": {
+      "classification": "GEOMETRY_MAIN_EFFECT",
+      "main_effect": 0.9959405426885113,
+      "sufficient": "10/10",
+      "necessary": "10/10"
+    },
+    "dual_support": {
+      "classification": "DUAL_SUPPORT_ALL_PAIR_PASS",
+      "pair_weight_source": "EXTERNALLY_SPECIFIED",
+      "linear": {
+        "lpips": 0.085303,
+        "iou": 0.710052,
+        "boundary_f": 0.300263
+      },
+      "dual": {
+        "lpips": 0.056985,
+        "iou": 0.72529,
+        "boundary_f": 0.379103
+      },
+      "hard_lpips": 0.0318124,
+      "artifacts_improved": "10/10",
+      "automatic_controller": false
+    },
+    "headroom": {
+      "classification": "TEACHER_SPAN_AT_LOCAL_OPTIMUM",
+      "improved_garments": "0/5"
+    },
+    "loo": {
+      "classification": "LOO_BASIS_CAPACITY_LIMITED",
+      "capacity_pass": "0/5",
+      "unseen_garment_adaptation": false
+    }
+  },
+  "method_decisions": {
+    "FULL_AVATAR_FINETUNING": "MATCHED_EXECUTABLE",
+    "GS_VTON": "DIFFERENT_ASSUMPTIONS_EXECUTABLE",
+    "GAUSSIANVTON": "BLOCKED_BY_CODE",
+    "GAUSSIAN_WARDROBE": "BLOCKED_BY_DATA",
+    "LAYGA": "BLOCKED_BY_CODE",
+    "DAMA": "BLOCKED_BY_DATA",
+    "SEMANTICGARMENT": "RELATED_WORK_ONLY"
+  },
+  "gs_vton": {
+    "publication_status": "PREPRINT",
+    "official_code_status": "OFFICIAL_CODE_AVAILABLE",
+    "pinned_commit": "96964b0a6528089123cc27a3ff3e3eb46505cf6e",
+    "license": "NO_ROOT_LICENSE_DETECTED",
+    "task_compatibility": "DIFFERENT_ASSUMPTIONS_EXECUTABLE",
+    "data_compatibility": "CONDITIONAL_SUBJECT02_CONVERSION_REQUIRED",
+    "canary_status": "CONTRACT_READY_WITH_LICENSE_AND_DATA_PREFLIGHT_GATES"
+  },
+  "gaussianvton": {
+    "publication_status": "PREPRINT",
+    "code_status": "PARTIAL_CODE_ONLY",
+    "task_compatibility": "BLOCKED_BY_CODE"
+  },
+  "full_avatar": {
+    "status": "READY_FOR_USER_AUTHORIZED_MICRO_PILOT",
+    "equal_step_status": "READY_BOUND_TO_N_TEACHER_PER_GARMENT",
+    "equal_wall_time_status": "READY_BOUND_TO_T_TEACHER_PER_GARMENT"
+  },
+  "equal_reference_protocol_status": "SUPPORTED_FOR_GS_VTON_WITH_CANONDRESSGS_ONE_REFERENCE_TOP1_0.95",
+  "native_input_protocol_status": "NATIVE_INPUT_DIFFERENT_ASSUMPTIONS_COMPARISON",
+  "target_space_metric_protocol_status": "FROZEN",
+  "face_id_protocol_status": "NOT_USED_DUE_TO_UNVALIDATED_FACE_ID_PROTOCOL",
+  "direct_dense_predictor_status": "HISTORICAL_DIAGNOSTIC_ONLY",
+  "composition_mixedness_metric_status": "SUPPORT_CONTRIBUTION_ONLY_REUSE_FROZEN_DUAL_SUPPORT_NO_NEW_RENDER",
+  "table_a_plan": [
+    "Base Avatar",
+    "Full Avatar Fine-tuning",
+    "GS-VTON",
+    "CanonDressGS"
+  ],
+  "table_b_plan": [
+    "Outfit-ID Oracle",
+    "Reference Classifier",
+    "Nearest Centroid",
+    "Linear Coefficient Predictor",
+    "CanonDressGS"
+  ],
+  "table_c_plan": [
+    "Linear Geometry",
+    "Hard Geometry",
+    "Dual-Support"
+  ],
+  "immediate_execution_candidates": [
+    "FULL_AVATAR_FINETUNING_MICRO_PILOT",
+    "GS_VTON_MICRO_CANARY_AFTER_PREFLIGHT_GATES"
+  ],
+  "blocked_methods": {
+    "GAUSSIANVTON": "BLOCKED_BY_CODE",
+    "GAUSSIAN_WARDROBE": "BLOCKED_BY_DATA",
+    "LAYGA": "BLOCKED_BY_CODE",
+    "DAMA": "BLOCKED_BY_DATA",
+    "SEMANTICGARMENT": "RELATED_WORK_ONLY"
+  },
+  "required_data": {
+    "full_avatar": "existing subject02 registered targets",
+    "gs_vton": "official-format target views, cameras, one garment image, initialized static 3DGS"
+  },
+  "required_checkpoints": {
+    "full_avatar": "formal Base Avatar",
+    "gs_vton": "third-party preprocessing and diffusion weights; no method checkpoint"
+  },
+  "estimated_storage": {
+    "full_avatar": "measure five checkpoints plus optimizer states",
+    "gs_vton": "15-30 GB audit estimate"
+  },
+  "estimated_compute": {
+    "full_avatar": "equal-step and equal-wall-time budgets",
+    "gs_vton": "10k stage-2 steps plus preprocessing, LoRA, and 3DGS initialization; official runtime not published"
+  },
+  "cloud_sync_recheck": "FAILED_NON_BLOCKING",
+  "operations": {
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "bundle_mutations": 0
+  },
+  "official_sources_only": true,
+  "external_repositories_modified": false,
+  "paper_final": false,
+  "final_classification": "EXTERNAL_BASELINE_PROTOCOL_READY_FOR_USER_EXECUTION_SELECTION",
+  "next_task": "USER_AUTHORIZE_FULL_AVATAR_FINETUNE_OR_GSVTON_CANARY",
+  "frozen_bundle_export_count": 53
+}
