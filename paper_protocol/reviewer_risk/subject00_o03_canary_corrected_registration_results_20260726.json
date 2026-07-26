@@ -1,0 +1,870 @@
+{
+  "attempt_namespace": "attempt_004_o03_hood_removal_targeted_canary",
+  "audit_count": 4,
+  "classification_counts": {
+    "AFFINE_OR_PROJECTIVE_RECOMPOSITION_FAIL": 1,
+    "REGISTERED_SIMILARITY_PASS_CANDIDATE": 3
+  },
+  "content_sha256": "48e550860c605923c02649c48a9afd695bc09c4bb0176f01ce0df71479a463de",
+  "machine_registration_pass_count": 3,
+  "paper_final": false,
+  "records": [
+    {
+      "affine": {
+        "errors": {
+          "maximum_px": 3.533894515420921,
+          "median_px": 0.5979571920384318,
+          "p95_px": 1.8482459646972556
+        },
+        "inlier_count": 515,
+        "inlier_ratio": 0.8470394736842105,
+        "matrix": [
+          [
+            1.0195506111628228,
+            0.0007050169993998564,
+            -0.08612528568638139
+          ],
+          [
+            -0.0002756522535797806,
+            1.0205942014164524,
+            0.8412100884016954
+          ]
+        ],
+        "normalized_shear": 0.0004204241758369287,
+        "rotation_degrees": -0.015490854682092428,
+        "scale_x": 1.0195506484263792,
+        "scale_y": 1.0205944449260222,
+        "status": "PASS_COMPUTED"
+      },
+      "affine_residual": {
+        "maximum_px": 3.533894515420921,
+        "median_px": 0.5979571920384318,
+        "p95_px": 1.8482459646972556
+      },
+      "axis_scale_translation": {
+        "errors_on_similarity_inliers": {
+          "maximum_px": 3.065416809942062,
+          "median_px": 0.6304576500014081,
+          "p95_px": 1.9163079776966414
+        },
+        "matrix": [
+          [
+            1.0196441993935352,
+            0.0,
+            0.24174160572683595
+          ],
+          [
+            0.0,
+            1.020652022614613,
+            0.6119311694782007
+          ]
+        ],
+        "scale_x": 1.0196441993935352,
+        "scale_y": 1.020652022614613,
+        "status": "PASS_COMPUTED",
+        "translation_x": 0.24174160572683595,
+        "translation_y": 0.6119311694782007
+      },
+      "background_feature_count": 4042,
+      "camera": "cam17",
+      "estimated_scale_x": 1.0196441993935352,
+      "estimated_scale_y": 1.020652022614613,
+      "failure_tags": [],
+      "garment": "O03",
+      "gate_results": {
+        "background_structure": true,
+        "camera_direction_manifest_consistent": true,
+        "feature_evidence": true,
+        "homography_diagnostic": true,
+        "reprojection": true,
+        "rotation": true,
+        "scale_anisotropy": true,
+        "shear": true,
+        "similarity_stable": true,
+        "transformed_source_person_bounds": true
+      },
+      "homography": {
+        "errors": {
+          "maximum_px": 3.1961773055240625,
+          "median_px": 0.6033745404262341,
+          "p95_px": 2.0207571892567944
+        },
+        "inlier_count": 475,
+        "inlier_ratio": 0.78125,
+        "matrix": [
+          [
+            1.0192886369607825,
+            0.00024222065263621948,
+            0.22543771692436823
+          ],
+          [
+            -0.00011849103918432716,
+            1.0206517836628595,
+            0.5014436266957396
+          ],
+          [
+            2.6797606095375423e-08,
+            -3.0383334851135576e-07,
+            1.0
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "homography_relative_similarity_error_improvement": 0.040294940778176594,
+      "homography_residual": {
+        "maximum_px": 3.1961773055240625,
+        "median_px": 0.6033745404262341,
+        "p95_px": 2.0207571892567944
+      },
+      "human_visual_decision": null,
+      "match_count": 608,
+      "maximum_reprojection_error_px": 3.003648565499162,
+      "median_reprojection_error_px": 0.6406059690767366,
+      "normalized_shear": 0.0004204241758369287,
+      "orientation": "front",
+      "output_feature_count": 5000,
+      "output_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\technical_failures\\subject00_O03_slot00_canary_attempt004_cand00.png",
+      "output_sha256": "f5197d9646ccf60ddffe3184e295e2afed2f04ff3ccbe95b5908974f6652e9e1",
+      "p95_reprojection_error_px": 1.935917773109669,
+      "person_pose_metrics": {
+        "feet_position_displacement": "NOT_AVAILABLE",
+        "hand_position_displacement": "NOT_AVAILABLE",
+        "non_garment_keypoint_drift": "NOT_AVAILABLE",
+        "person_bbox_output": "NOT_AVAILABLE",
+        "person_bbox_source": [
+          461,
+          296,
+          879,
+          882
+        ],
+        "person_height_ratio": "NOT_AVAILABLE",
+        "person_width_ratio": "NOT_AVAILABLE",
+        "reason": "No frozen output person/keypoint model is available; no new model was downloaded.",
+        "subject_center_displacement": "NOT_AVAILABLE"
+      },
+      "photometric": {
+        "edge_alignment_f1": 0.7431149788338757,
+        "edge_precision": 0.5951316554159775,
+        "edge_recall": 0.9890481879729192,
+        "masked_ssim": 0.9052000988173902,
+        "psnr_db": 35.07656233853307,
+        "rgb_mae": 3.0526678562164307,
+        "status": "PASS_COMPUTED",
+        "structural_difference_area_fraction": 0.0017544100904635796,
+        "valid_background_fraction": 0.8785000794786203,
+        "valid_background_pixel_count": 1381661
+      },
+      "primary_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "protocol_sha256_recorded": "f8bda763ee845d7e3fd6ece32d7b4a7e8150308cd69df0aa80f15cd69aa53e76",
+      "registration_confidence": "HIGH",
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "rotation_degrees": -0.015139942968005075,
+      "similarity": {
+        "errors": {
+          "maximum_px": 3.003648565499162,
+          "median_px": 0.6406059690767366,
+          "p95_px": 1.935917773109669
+        },
+        "inlier_count": 522,
+        "inlier_ratio": 0.8585526315789473,
+        "matrix": [
+          [
+            1.019943552359851,
+            0.0002695117808666926,
+            -0.14430855500952763
+          ],
+          [
+            -0.0002695117808666926,
+            1.019943552359851,
+            1.265576419859527
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "slot": "slot_00",
+      "transformed_source_person_bounds": {
+        "minimum_margin_px": 5,
+        "pass": true,
+        "transformed_bbox": [
+          470.12944457001834,
+          302.93196706299364,
+          896.6237833600239,
+          900.7315446702686
+        ]
+      },
+      "translation_x": -0.14430855500952763,
+      "translation_y": 1.265576419859527,
+      "uniform_scale": 1.0199435879679974,
+      "uniform_scale_translation": {
+        "errors": {
+          "maximum_px": 2.925996183879854,
+          "median_px": 0.6409311744150684,
+          "p95_px": 2.053798372150717
+        },
+        "inlier_count": 526,
+        "inlier_ratio": 0.8651315789473685,
+        "matrix": [
+          [
+            1.0198937853487697,
+            0.0,
+            0.07411010539685559
+          ],
+          [
+            0.0,
+            1.0198937853487697,
+            1.105202747085079
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      }
+    },
+    {
+      "affine": {
+        "errors": {
+          "maximum_px": 3.2133844181206395,
+          "median_px": 0.5758248219269614,
+          "p95_px": 1.8699174260109928
+        },
+        "inlier_count": 470,
+        "inlier_ratio": 0.8639705882352942,
+        "matrix": [
+          [
+            1.0261188185005086,
+            -0.0001688999476046406,
+            -0.3096564085078901
+          ],
+          [
+            0.00025078418145035305,
+            1.0310521903962404,
+            0.5004274004760065
+          ]
+        ],
+        "normalized_shear": 8.05875305663094e-05,
+        "rotation_degrees": 0.014003129677178447,
+        "scale_x": 1.026118849146426,
+        "scale_y": 1.03105220423026,
+        "status": "PASS_COMPUTED"
+      },
+      "affine_residual": {
+        "maximum_px": 3.2133844181206395,
+        "median_px": 0.5758248219269614,
+        "p95_px": 1.8699174260109928
+      },
+      "axis_scale_translation": {
+        "errors_on_similarity_inliers": {
+          "maximum_px": 3.187174701890838,
+          "median_px": 0.5675735149022477,
+          "p95_px": 1.8106063790987998
+        },
+        "matrix": [
+          [
+            1.0263349149713457,
+            0.0,
+            -0.5709164925638328
+          ],
+          [
+            0.0,
+            1.030820081114691,
+            0.8035467873468028
+          ]
+        ],
+        "scale_x": 1.0263349149713457,
+        "scale_y": 1.030820081114691,
+        "status": "PASS_COMPUTED",
+        "translation_x": -0.5709164925638328,
+        "translation_y": 0.8035467873468028
+      },
+      "background_feature_count": 4329,
+      "camera": "cam11",
+      "estimated_scale_x": 1.0263349149713457,
+      "estimated_scale_y": 1.030820081114691,
+      "failure_tags": [
+        "HOMOGRAPHY_IMPROVEMENT_EXCEEDS_GATE"
+      ],
+      "garment": "O03",
+      "gate_results": {
+        "background_structure": true,
+        "camera_direction_manifest_consistent": true,
+        "feature_evidence": true,
+        "homography_diagnostic": false,
+        "reprojection": true,
+        "rotation": true,
+        "scale_anisotropy": true,
+        "shear": true,
+        "similarity_stable": true,
+        "transformed_source_person_bounds": true
+      },
+      "homography": {
+        "errors": {
+          "maximum_px": 3.7927345173940057,
+          "median_px": 0.554762136086729,
+          "p95_px": 1.7801527368350851
+        },
+        "inlier_count": 450,
+        "inlier_ratio": 0.8272058823529411,
+        "matrix": [
+          [
+            1.0260056101065813,
+            0.00024440285395338414,
+            -0.3549562284603542
+          ],
+          [
+            -5.796409795418979e-05,
+            1.0318162312337198,
+            0.46871347703516425
+          ],
+          [
+            -4.085594029717902e-07,
+            1.0125242756352863e-06,
+            1.0
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "homography_relative_similarity_error_improvement": 0.4367341543855251,
+      "homography_residual": {
+        "maximum_px": 3.7927345173940057,
+        "median_px": 0.554762136086729,
+        "p95_px": 1.7801527368350851
+      },
+      "human_visual_decision": null,
+      "match_count": 544,
+      "maximum_reprojection_error_px": 2.7480036226540188,
+      "median_reprojection_error_px": 0.9680970473764291,
+      "normalized_shear": 8.05875305663094e-05,
+      "orientation": "right",
+      "output_feature_count": 5000,
+      "output_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot04_canary_attempt004_cand00.png",
+      "output_sha256": "fa73168d85d2e58d48172954bc85740db82f131f61aaaf42a09d731107d0e30c",
+      "p95_reprojection_error_px": 2.018455061110282,
+      "person_pose_metrics": {
+        "feet_position_displacement": "NOT_AVAILABLE",
+        "hand_position_displacement": "NOT_AVAILABLE",
+        "non_garment_keypoint_drift": "NOT_AVAILABLE",
+        "person_bbox_output": "NOT_AVAILABLE",
+        "person_bbox_source": [
+          559,
+          288,
+          748,
+          902
+        ],
+        "person_height_ratio": "NOT_AVAILABLE",
+        "person_width_ratio": "NOT_AVAILABLE",
+        "reason": "No frozen output person/keypoint model is available; no new model was downloaded.",
+        "subject_center_displacement": "NOT_AVAILABLE"
+      },
+      "photometric": {
+        "edge_alignment_f1": 0.653947385423916,
+        "edge_precision": 0.48704892084565454,
+        "edge_recall": 0.9948583927506178,
+        "masked_ssim": 0.8106089472714585,
+        "psnr_db": 28.679886003173433,
+        "rgb_mae": 4.862878322601318,
+        "status": "PASS_COMPUTED",
+        "structural_difference_area_fraction": 0.08352554678743022,
+        "valid_background_fraction": 0.9029596918878987,
+        "valid_background_pixel_count": 1420296
+      },
+      "primary_classification": "AFFINE_OR_PROJECTIVE_RECOMPOSITION_FAIL",
+      "protocol_sha256_recorded": "f8bda763ee845d7e3fd6ece32d7b4a7e8150308cd69df0aa80f15cd69aa53e76",
+      "registration_confidence": "FAIL",
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "rotation_degrees": 0.034260344699796656,
+      "similarity": {
+        "errors": {
+          "maximum_px": 2.7480036226540188,
+          "median_px": 0.9680970473764291,
+          "p95_px": 2.018455061110282
+        },
+        "inlier_count": 422,
+        "inlier_ratio": 0.7757352941176471,
+        "matrix": [
+          [
+            1.0274323687693416,
+            -0.0006143592356051084,
+            -1.0020963644478351
+          ],
+          [
+            0.0006143592356051084,
+            1.0274323687693416,
+            2.4235322177671605
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "slot": "slot_04",
+      "transformed_source_person_bounds": {
+        "minimum_margin_px": 5,
+        "pass": true,
+        "transformed_bbox": [
+          572.7784457470983,
+          298.6674812360408,
+          767.3403800151655,
+          929.6270695559459
+        ]
+      },
+      "translation_x": -1.0020963644478351,
+      "translation_y": 2.4235322177671605,
+      "uniform_scale": 1.0274325524491867,
+      "uniform_scale_translation": {
+        "errors": {
+          "maximum_px": 2.992770967506715,
+          "median_px": 0.9974069579832495,
+          "p95_px": 2.299752882640098
+        },
+        "inlier_count": 471,
+        "inlier_ratio": 0.8658088235294118,
+        "matrix": [
+          [
+            1.0273413570119334,
+            0.0,
+            -1.2884971180919311
+          ],
+          [
+            0.0,
+            1.0273413570119334,
+            2.9548071353637386
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      }
+    },
+    {
+      "affine": {
+        "errors": {
+          "maximum_px": 3.6295981119553526,
+          "median_px": 0.5643508527340966,
+          "p95_px": 1.9119315423907401
+        },
+        "inlier_count": 564,
+        "inlier_ratio": 0.8980891719745223,
+        "matrix": [
+          [
+            1.0257786248430893,
+            0.00025912614018761384,
+            -0.20806577562650697
+          ],
+          [
+            2.7596467016184877e-05,
+            1.0280529498844613,
+            -0.8067631586717876
+          ]
+        ],
+        "normalized_shear": 0.0002789581840762302,
+        "rotation_degrees": 0.0015414252654755588,
+        "scale_x": 1.0257786252143026,
+        "scale_y": 1.0280529825415123,
+        "status": "PASS_COMPUTED"
+      },
+      "affine_residual": {
+        "maximum_px": 3.6295981119553526,
+        "median_px": 0.5643508527340966,
+        "p95_px": 1.9119315423907401
+      },
+      "axis_scale_translation": {
+        "errors_on_similarity_inliers": {
+          "maximum_px": 3.030564842212421,
+          "median_px": 0.5617118084647379,
+          "p95_px": 1.8583057168163348
+        },
+        "matrix": [
+          [
+            1.0258100467817028,
+            0.0,
+            -0.06322923803853925
+          ],
+          [
+            0.0,
+            1.02770993943619,
+            -0.5312822803237627
+          ]
+        ],
+        "scale_x": 1.0258100467817028,
+        "scale_y": 1.02770993943619,
+        "status": "PASS_COMPUTED",
+        "translation_x": -0.06322923803853925,
+        "translation_y": -0.5312822803237627
+      },
+      "background_feature_count": 4082,
+      "camera": "cam02",
+      "estimated_scale_x": 1.0258100467817028,
+      "estimated_scale_y": 1.02770993943619,
+      "failure_tags": [],
+      "garment": "O03",
+      "gate_results": {
+        "background_structure": true,
+        "camera_direction_manifest_consistent": true,
+        "feature_evidence": true,
+        "homography_diagnostic": true,
+        "reprojection": true,
+        "rotation": true,
+        "scale_anisotropy": true,
+        "shear": true,
+        "similarity_stable": true,
+        "transformed_source_person_bounds": true
+      },
+      "homography": {
+        "errors": {
+          "maximum_px": 3.6179273093988065,
+          "median_px": 0.5625239764062847,
+          "p95_px": 1.756518123517719
+        },
+        "inlier_count": 565,
+        "inlier_ratio": 0.8996815286624203,
+        "matrix": [
+          [
+            1.0249435322921978,
+            -0.0004685664939032131,
+            0.3017926902275714
+          ],
+          [
+            6.253557343359822e-05,
+            1.0261610843420736,
+            -0.15762231345301647
+          ],
+          [
+            1.1844512306206734e-08,
+            -1.2358143781080454e-06,
+            1.0
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "homography_relative_similarity_error_improvement": 0.16981787900833922,
+      "homography_residual": {
+        "maximum_px": 3.6179273093988065,
+        "median_px": 0.5625239764062847,
+        "p95_px": 1.756518123517719
+      },
+      "human_visual_decision": null,
+      "match_count": 628,
+      "maximum_reprojection_error_px": 3.05521145978028,
+      "median_reprojection_error_px": 0.685741633213587,
+      "normalized_shear": 0.0002789581840762302,
+      "orientation": "back-left",
+      "output_feature_count": 5000,
+      "output_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot05_canary_attempt004_cand00.png",
+      "output_sha256": "379562123b1d918d68171b9224068dbe905d2d5e108900408b5da82c49128aa1",
+      "p95_reprojection_error_px": 1.9519312414023453,
+      "person_pose_metrics": {
+        "feet_position_displacement": "NOT_AVAILABLE",
+        "hand_position_displacement": "NOT_AVAILABLE",
+        "non_garment_keypoint_drift": "NOT_AVAILABLE",
+        "person_bbox_output": "NOT_AVAILABLE",
+        "person_bbox_source": [
+          509,
+          297,
+          761,
+          923
+        ],
+        "person_height_ratio": "NOT_AVAILABLE",
+        "person_width_ratio": "NOT_AVAILABLE",
+        "reason": "No frozen output person/keypoint model is available; no new model was downloaded.",
+        "subject_center_displacement": "NOT_AVAILABLE"
+      },
+      "photometric": {
+        "edge_alignment_f1": 0.802657356845551,
+        "edge_precision": 0.6809031406413288,
+        "edge_recall": 0.9774353329664281,
+        "masked_ssim": 0.9120850543152018,
+        "psnr_db": 34.934609003918,
+        "rgb_mae": 3.133591413497925,
+        "status": "PASS_COMPUTED",
+        "structural_difference_area_fraction": 0.004515049328972724,
+        "valid_background_fraction": 0.8877937662991582,
+        "valid_background_pixel_count": 1396441
+      },
+      "primary_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "protocol_sha256_recorded": "f8bda763ee845d7e3fd6ece32d7b4a7e8150308cd69df0aa80f15cd69aa53e76",
+      "registration_confidence": "HIGH",
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "rotation_degrees": -0.0001972946551551733,
+      "similarity": {
+        "errors": {
+          "maximum_px": 3.05521145978028,
+          "median_px": 0.685741633213587,
+          "p95_px": 1.9519312414023453
+        },
+        "inlier_count": 577,
+        "inlier_ratio": 0.9187898089171974,
+        "matrix": [
+          [
+            1.0263530897046271,
+            3.534186647295479e-06,
+            -0.3896067080263618
+          ],
+          [
+            -3.534186647295479e-06,
+            1.0263530897046271,
+            0.3828137853691785
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "slot": "slot_05",
+      "transformed_source_person_bounds": {
+        "minimum_margin_px": 5,
+        "pass": true,
+        "transformed_bbox": [
+          522.0251656050632,
+          305.20699191160486,
+          780.6683566114704,
+          947.7049166817366
+        ]
+      },
+      "translation_x": -0.3896067080263618,
+      "translation_y": 0.3828137853691785,
+      "uniform_scale": 1.026353089710712,
+      "uniform_scale_translation": {
+        "errors": {
+          "maximum_px": 2.8719405368259063,
+          "median_px": 0.6838887005551891,
+          "p95_px": 1.951476368100958
+        },
+        "inlier_count": 576,
+        "inlier_ratio": 0.9171974522292994,
+        "matrix": [
+          [
+            1.0263561707842719,
+            0.0,
+            -0.38737952116740776
+          ],
+          [
+            0.0,
+            1.0263561707842719,
+            0.38366434009235206
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      }
+    },
+    {
+      "affine": {
+        "errors": {
+          "maximum_px": 3.5182323379626577,
+          "median_px": 0.5765865375203074,
+          "p95_px": 2.0469795622933016
+        },
+        "inlier_count": 524,
+        "inlier_ratio": 0.9144851657940664,
+        "matrix": [
+          [
+            1.0249673540330624,
+            0.0004035221183776918,
+            -0.5070014432980481
+          ],
+          [
+            -8.630858972351689e-05,
+            1.027855314654649,
+            0.15895155892641588
+          ]
+        ],
+        "normalized_shear": 0.0003083802889774454,
+        "rotation_degrees": -0.004824658947172776,
+        "scale_x": 1.0249673576669207,
+        "scale_y": 1.0278553938633137,
+        "status": "PASS_COMPUTED"
+      },
+      "affine_residual": {
+        "maximum_px": 3.5182323379626577,
+        "median_px": 0.5765865375203074,
+        "p95_px": 2.0469795622933016
+      },
+      "axis_scale_translation": {
+        "errors_on_similarity_inliers": {
+          "maximum_px": 2.938911740313349,
+          "median_px": 0.5809283411613495,
+          "p95_px": 2.0044610942805257
+        },
+        "matrix": [
+          [
+            1.0249490659677345,
+            0.0,
+            -0.2290521299739715
+          ],
+          [
+            0.0,
+            1.0276410273961853,
+            0.17913647955889356
+          ]
+        ],
+        "scale_x": 1.0249490659677345,
+        "scale_y": 1.0276410273961853,
+        "status": "PASS_COMPUTED",
+        "translation_x": -0.2290521299739715,
+        "translation_y": 0.17913647955889356
+      },
+      "background_feature_count": 4021,
+      "camera": "cam05",
+      "estimated_scale_x": 1.0249490659677345,
+      "estimated_scale_y": 1.0276410273961853,
+      "failure_tags": [],
+      "garment": "O03",
+      "gate_results": {
+        "background_structure": true,
+        "camera_direction_manifest_consistent": true,
+        "feature_evidence": true,
+        "homography_diagnostic": true,
+        "reprojection": true,
+        "rotation": true,
+        "scale_anisotropy": true,
+        "shear": true,
+        "similarity_stable": true,
+        "transformed_source_person_bounds": true
+      },
+      "homography": {
+        "errors": {
+          "maximum_px": 3.153680235653283,
+          "median_px": 0.5855838184455078,
+          "p95_px": 2.1500705477370716
+        },
+        "inlier_count": 531,
+        "inlier_ratio": 0.9267015706806283,
+        "matrix": [
+          [
+            1.0247949829134027,
+            0.0004235184863429906,
+            -0.43027054057980374
+          ],
+          [
+            -8.957687014961955e-05,
+            1.0277673442775126,
+            0.14817568772911713
+          ],
+          [
+            -1.6437051332640345e-07,
+            9.812554147314154e-08,
+            1.0
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "homography_relative_similarity_error_improvement": 0.28641735015247366,
+      "homography_residual": {
+        "maximum_px": 3.153680235653283,
+        "median_px": 0.5855838184455078,
+        "p95_px": 2.1500705477370716
+      },
+      "human_visual_decision": null,
+      "match_count": 573,
+      "maximum_reprojection_error_px": 3.088231486028252,
+      "median_reprojection_error_px": 0.8060660478957054,
+      "normalized_shear": 0.0003083802889774454,
+      "orientation": "back",
+      "output_feature_count": 5000,
+      "output_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\codex_managed_candidates\\O03\\subject00_O03_slot07_canary_attempt004_cand00.png",
+      "output_sha256": "9300293c0b028f5f7f194f5de6d56426404938a84ff61ec37d6ce56afab84441",
+      "p95_reprojection_error_px": 2.150158029278198,
+      "person_pose_metrics": {
+        "feet_position_displacement": "NOT_AVAILABLE",
+        "hand_position_displacement": "NOT_AVAILABLE",
+        "non_garment_keypoint_drift": "NOT_AVAILABLE",
+        "person_bbox_output": "NOT_AVAILABLE",
+        "person_bbox_source": [
+          407,
+          301,
+          833,
+          915
+        ],
+        "person_height_ratio": "NOT_AVAILABLE",
+        "person_width_ratio": "NOT_AVAILABLE",
+        "reason": "No frozen output person/keypoint model is available; no new model was downloaded.",
+        "subject_center_displacement": "NOT_AVAILABLE"
+      },
+      "photometric": {
+        "edge_alignment_f1": 0.8278866607012941,
+        "edge_precision": 0.7147492957746479,
+        "edge_recall": 0.9835765838011227,
+        "masked_ssim": 0.8813349808200125,
+        "psnr_db": 31.997823824130993,
+        "rgb_mae": 3.382563352584839,
+        "status": "PASS_COMPUTED",
+        "structural_difference_area_fraction": 0.0202567889812905,
+        "valid_background_fraction": 0.8686047857062026,
+        "valid_background_pixel_count": 1366258
+      },
+      "primary_classification": "REGISTERED_SIMILARITY_PASS_CANDIDATE",
+      "protocol_sha256_recorded": "f8bda763ee845d7e3fd6ece32d7b4a7e8150308cd69df0aa80f15cd69aa53e76",
+      "registration_confidence": "HIGH",
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "rotation_degrees": -0.01915593222116496,
+      "similarity": {
+        "errors": {
+          "maximum_px": 3.088231486028252,
+          "median_px": 0.8060660478957054,
+          "p95_px": 2.150158029278198
+        },
+        "inlier_count": 527,
+        "inlier_ratio": 0.9197207678883071,
+        "matrix": [
+          [
+            1.0257389354252888,
+            0.00034293950484165807,
+            -1.0059366915480346
+          ],
+          [
+            -0.00034293950484165807,
+            1.0257389354252888,
+            1.6468395439598023
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      },
+      "slot": "slot_07",
+      "transformed_source_person_bounds": {
+        "minimum_margin_px": 5,
+        "pass": true,
+        "transformed_bbox": [
+          416.5730348175018,
+          310.10859049943866,
+          853.7483861646476,
+          940.0583890796286
+        ]
+      },
+      "translation_x": -1.0059366915480346,
+      "translation_y": 1.6468395439598023,
+      "uniform_scale": 1.0257389927534728,
+      "uniform_scale_translation": {
+        "errors": {
+          "maximum_px": 2.96669986240523,
+          "median_px": 0.8027643115174744,
+          "p95_px": 2.173162003087434
+        },
+        "inlier_count": 527,
+        "inlier_ratio": 0.9197207678883071,
+        "matrix": [
+          [
+            1.0257620018178493,
+            0.0,
+            -0.7904891993320926
+          ],
+          [
+            0.0,
+            1.0257620018178493,
+            1.3939071079889693
+          ]
+        ],
+        "status": "PASS_COMPUTED"
+      }
+    }
+  ],
+  "registration_contract": {
+    "attempt001_checker_path": "E:\\model_train\\canondressgs_subject00_attempt001_native_landscape_registration_audit\\tools\\datasets\\check_subject00_attempt001_native_landscape_registration.py",
+    "attempt001_checker_sha256": "a5c0c5b0da7b77a3ff132beee77ae8265a40a19c529c95e276be90374a0f7988",
+    "attempt001_worktree_implementation_path": "E:\\model_train\\canondressgs_subject00_attempt001_native_landscape_registration_audit\\tools\\datasets\\audit_subject00_attempt001_native_landscape_registration.py",
+    "attempt001_worktree_implementation_sha256": "731673af4efa43b8514c4033dc57675a7aa63dbfcf418572d572d113991effde",
+    "handoff_path": "E:\\model_train\\canondressgs_subject00_o03_canary_resolution_correction_continuation\\project_control_handoff\\subject00_attempt001_native_landscape_registration_audit_handoff_20260726.json",
+    "handoff_sha256": "1e10c43389b4b2d131dc27a7eaea86f074213977359ec67c23a5e317bb294397",
+    "implementation_path_used": "E:\\model_train\\canondressgs_subject00_o03_canary_resolution_correction_continuation\\tools\\datasets\\audit_subject00_attempt001_native_landscape_registration.py",
+    "implementation_sha256_used": "00569e6975209802913464b3e448a656149e2f1f6364c604913fc40f159bc446",
+    "protocol_actual_file_sha256": "7cc5ee9046e9db267df73d8fb9643f902bbc90489d40b7184dce564269cb5f9f",
+    "protocol_file_sha256_recorded": "f8bda763ee845d7e3fd6ece32d7b4a7e8150308cd69df0aa80f15cd69aa53e76",
+    "protocol_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001_native_landscape_registration_audit\\00_provenance\\registration_audit_protocol.json",
+    "runtime_python": "D:\\miniconda3\\envs\\garment-mask-v3a\\python.exe",
+    "status": "RECOVERED_UNIQUELY",
+    "tests_actual_file_sha256": "ee6359933c1de6ce9e758796aac7bbb8b021b7a670b84dce367812552bf225aa",
+    "tests_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001_native_landscape_registration_audit\\07_final_summary\\attempt001_native_landscape_registration_tests.json"
+  },
+  "schema_version": "canondressgs.subject00.o03_canary.corrected_registration_results.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-CANARY-RESOLUTION-CORRECTION-AND-CONTINUATION-001"
+}

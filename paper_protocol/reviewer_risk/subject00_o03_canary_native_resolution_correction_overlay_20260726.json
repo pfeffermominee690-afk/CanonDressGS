@@ -1,0 +1,91 @@
+{
+  "attempt_namespace": "attempt_004_o03_hood_removal_targeted_canary",
+  "authorization_scope": "O03_FROZEN_TARGETED_CANARY_4_REQUESTS_ONLY",
+  "content_sha256": "150e77962303d6ce9b7055d6874e866ff5bbe6e49fd7be896a0f7a1fc078d805",
+  "corrected_raw_native_landscape_resolution_accepted_set": [
+    {
+      "height": 1167,
+      "width": 1348,
+      "width_plus_height": 2515
+    },
+    {
+      "height": 1166,
+      "width": 1349,
+      "width_plus_height": 2515
+    },
+    {
+      "height": 1165,
+      "width": 1350,
+      "width_plus_height": 2515
+    }
+  ],
+  "corrected_raw_native_landscape_resolution_family_name": "SUBJECT00_NATIVE_LANDSCAPE_2515_FAMILY",
+  "correction_reason": "PLATFORM_MANAGED_IMAGE_GENERATION_DOES_NOT_GUARANTEE_EXACT_SINGLE_PIXEL_DIMENSIONS",
+  "first_raw_artifact_preservation": {
+    "must_not_move_rename_overwrite_or_regenerate": true,
+    "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_004_o03_hood_removal_targeted_canary\\04_generation_responses\\technical_failures\\subject00_O03_slot00_canary_attempt004_cand00.png",
+    "resolution": "1350x1165",
+    "sha256": "f5197d9646ccf60ddffe3184e295e2afed2f04ff3ccbe95b5908974f6652e9e1"
+  },
+  "forbidden_expansions": [
+    "portrait_resolution",
+    "arbitrary_width_height",
+    "resized_result",
+    "outpaint_result",
+    "padded_canvas",
+    "cropped_result"
+  ],
+  "new_branch": "research/subject00-o03-canary-resolution-correction-continuation-20260726",
+  "original_exact_raw_resolution_required": {
+    "height": 1166,
+    "width": 1349
+  },
+  "paper_final": false,
+  "prior_task_id": "AAAI27-SUBJECT00-O03-FROZEN-CONTRACT-CANARY-EXECUTION-001",
+  "registration_contract": {
+    "attempt001_checker_path": "E:\\model_train\\canondressgs_subject00_attempt001_native_landscape_registration_audit\\tools\\datasets\\check_subject00_attempt001_native_landscape_registration.py",
+    "attempt001_checker_sha256": "a5c0c5b0da7b77a3ff132beee77ae8265a40a19c529c95e276be90374a0f7988",
+    "attempt001_worktree_implementation_path": "E:\\model_train\\canondressgs_subject00_attempt001_native_landscape_registration_audit\\tools\\datasets\\audit_subject00_attempt001_native_landscape_registration.py",
+    "attempt001_worktree_implementation_sha256": "731673af4efa43b8514c4033dc57675a7aa63dbfcf418572d572d113991effde",
+    "handoff_path": "E:\\model_train\\canondressgs_subject00_o03_canary_resolution_correction_continuation\\project_control_handoff\\subject00_attempt001_native_landscape_registration_audit_handoff_20260726.json",
+    "handoff_sha256": "1e10c43389b4b2d131dc27a7eaea86f074213977359ec67c23a5e317bb294397",
+    "implementation_path_used": "E:\\model_train\\canondressgs_subject00_o03_canary_resolution_correction_continuation\\tools\\datasets\\audit_subject00_attempt001_native_landscape_registration.py",
+    "implementation_sha256_used": "00569e6975209802913464b3e448a656149e2f1f6364c604913fc40f159bc446",
+    "protocol_actual_file_sha256": "7cc5ee9046e9db267df73d8fb9643f902bbc90489d40b7184dce564269cb5f9f",
+    "protocol_file_sha256_recorded": "f8bda763ee845d7e3fd6ece32d7b4a7e8150308cd69df0aa80f15cd69aa53e76",
+    "protocol_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001_native_landscape_registration_audit\\00_provenance\\registration_audit_protocol.json",
+    "runtime_python": "D:\\miniconda3\\envs\\garment-mask-v3a\\python.exe",
+    "status": "RECOVERED_UNIQUELY",
+    "tests_actual_file_sha256": "ee6359933c1de6ce9e758796aac7bbb8b021b7a670b84dce367812552bf225aa",
+    "tests_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001_native_landscape_registration_audit\\07_final_summary\\attempt001_native_landscape_registration_tests.json"
+  },
+  "schema_version": "canondressgs.subject00.o03_canary.native_resolution_correction_overlay.v1",
+  "scope_limited_to_raw_size_acceptance": true,
+  "source_branch": "research/subject00-o03-frozen-contract-canary-execution-20260726",
+  "source_condition_paths": [
+    "E:\\model_train\\_subject00_identity_audit_tmp\\cam17_frame00000000.jpg",
+    "E:\\model_train\\_subject00_identity_audit_tmp\\cam11_frame00000000.jpg",
+    "E:\\model_train\\_subject00_identity_audit_tmp\\cam02_frame00000000.jpg",
+    "E:\\model_train\\_subject00_identity_audit_tmp\\cam05_frame00000000.jpg"
+  ],
+  "source_condition_sha256": [
+    "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf",
+    "7b990d29fc29d2b96756db898fd01dc35f20f7995523ef2c9a56b885d32568b8",
+    "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9",
+    "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294"
+  ],
+  "source_head": "ba1043e8eeba1690ccf64c8f96b47c58425acbb9",
+  "task_id": "AAAI27-SUBJECT00-O03-CANARY-RESOLUTION-CORRECTION-AND-CONTINUATION-001",
+  "unchanged_contract_surfaces": [
+    "request_ids",
+    "source_conditions",
+    "prompt",
+    "generation_method",
+    "candidate_count",
+    "retry_policy",
+    "postprocessing_policy",
+    "human_review_required",
+    "accepted_false",
+    "teacher_target_false"
+  ]
+}
