@@ -392,6 +392,29 @@ def optimizer_state_summary(payload: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def optimizer_state_device_summary(payload: dict[str, Any]) -> dict[str, Any]:
+    states = payload.get("optimizer_states", {})
+    by_group: dict[str, Any] = {}
+    all_devices = set()
+    for group, state_dict in states.items():
+        devices = set()
+        dtypes = set()
+        for values in state_dict.get("state", {}).values():
+            for value in values.values():
+                if hasattr(value, "device"):
+                    devices.add(str(value.device))
+                    dtypes.add(str(value.dtype))
+                    all_devices.add(str(value.device))
+        by_group[group] = {
+            "devices": sorted(devices),
+            "dtypes": sorted(dtypes),
+        }
+    return {
+        "all_optimizer_state_devices": sorted(all_devices),
+        "by_group": by_group,
+    }
+
+
 def checkpoint_audit(run_root: Path) -> dict[str, Any]:
     import torch
 
@@ -459,17 +482,21 @@ def checkpoint_audit(run_root: Path) -> dict[str, Any]:
     }
     trainable_count = sum(group_count(payload0, group) for group in TRAINABLE_GROUPS)
     device_registry = {}
+    optimizer_device_registry = {}
     if payload_final is not None:
+        payload_final_saved_device = load_checkpoint(paths[101245], map_location=None)
         for group in TRAINABLE_GROUPS:
             device_registry[group] = [
                 {
                     "name": name,
                     "shape": list(tensor.shape),
                     "dtype": str(tensor.dtype),
-                    "device_in_audit_load": str(tensor.device),
+                    "device_in_saved_checkpoint": str(tensor.device),
                 }
-                for name, tensor in flatten_group(payload_final, group)
+                for name, tensor in flatten_group(payload_final_saved_device, group)
             ]
+        optimizer_device_registry = optimizer_state_device_summary(payload_final_saved_device)
+        del payload_final_saved_device
     return {
         "checkpoint_count_including_step0_pointer": len(records),
         "checkpoint_steps": list(CHECKPOINT_STEPS),
@@ -489,6 +516,7 @@ def checkpoint_audit(run_root: Path) -> dict[str, Any]:
         "frozen_tensor_audit": frozen,
         "frozen_parameter_mutations": frozen_mutations,
         "optimizer_state": optimizer,
+        "optimizer_state_device_registry": optimizer_device_registry,
         "scheduler_state": scheduler_summary,
         "rng_state_status": "PASS" if all(row.get("has_rng_states") for row in records if row["step"]) else "FAIL",
         "resume_state_status": "PASS_SAME_ATTEMPT_CHECKPOINTS_INCLUDE_OPTIMIZER_SCHEDULER_RNG_DATA_ORDER" if parse_ok else "FAIL",
@@ -701,9 +729,12 @@ def run_final_audit(args: argparse.Namespace) -> None:
     stderr_text = (args.run_root / "logs/stderr.log").read_text(errors="replace") if (args.run_root / "logs/stderr.log").is_file() else ""
     train_result_path = args.run_root / "training_logs/training_result.json"
     training_result = read_json(train_result_path) if train_result_path.is_file() else None
+    stdout_text = (args.run_root / "logs/stdout.log").read_text(errors="replace") if (args.run_root / "logs/stdout.log").is_file() else ""
     training_exit_status = (
         "EXITED_ZERO_OR_TMUX_SESSION_ENDED_AFTER_PASS"
         if training_result and training_result.get("status") == "TRAINING_COMPLETE_PENDING_ROUNDTRIP_FULL_EVALUATION_AND_REVIEW"
+        and '"phase": "train"' in stdout_text
+        and '"status": "PASS"' in stdout_text
         else "RUNNING_OR_INCOMPLETE"
     )
     audit = {
