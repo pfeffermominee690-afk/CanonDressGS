@@ -1,0 +1,79 @@
+{
+  "schema_version": "canondressgs.gsvton_execution_decision.v1",
+  "task_id": "AAAI27-GSVTON-PREFLIGHT-NO-GO-SEAL-001",
+  "based_on_task_id": "AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001",
+  "source_branch": "research/gsvton-license-data-conversion-preflight-20260726",
+  "source_head": "257a4930254950942cf3621cfb6ac90021d65c79",
+  "worktree": "E:\\model_train\\canondressgs_gsvton_license_data_conversion_preflight",
+  "preflight_artifacts": {
+    "license_audit": "artifacts/gsvton_preflight/AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001/gsvton_license_audit.json",
+    "required_weights_manifest": "artifacts/gsvton_preflight/AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001/gsvton_required_weights_manifest.json",
+    "conversion_manifest_draft": "artifacts/gsvton_preflight/AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001/gsvton_subject02_conversion_manifest_draft.json",
+    "risk_report": "artifacts/gsvton_preflight/AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001/GSVTON_LICENSE_AND_USAGE_RISK_REPORT_20260726.md"
+  },
+  "fixed_preflight_facts": {
+    "license_status": "LICENSE_NOT_SPECIFIED",
+    "execution_authorized_by_license": false,
+    "required_weight_bytes_lower_bound": 51622353397,
+    "environment_estimated_bytes": 20937965568,
+    "estimated_total_storage_lower_bound": 93791543234,
+    "mmlphuman_initialization_compatibility": "RETRAIN_STATIC_3DGS_REQUIRED",
+    "subject02_conversion_status": "DRAFT_FIELD_MAPPING_COMPLETE_NO_DATA_MUTATION",
+    "mask_semantics_status": "SPECIFIED_FOREGROUND_NOT_HUMAN_PARSE_LABELS",
+    "final_classification": "GSVTON_MICRO_CANARY_PREFLIGHT_MULTIPLE_BLOCKERS"
+  },
+  "static_3dgs_requirement": "vanilla static 3DGS initialized point_cloud/iteration_30000/point_cloud.ply plus COLMAP/Nerfstudio DATA root",
+  "decision": {
+    "gs_vton_execution_authorized": false,
+    "gs_vton_micro_canary": "DEFERRED",
+    "gs_vton_numeric_baseline": "NOT_EXECUTED",
+    "gs_vton_paper_role": "RELATED_WORK_AND_DIFFERENT_ASSUMPTIONS_DISCUSSION_ONLY",
+    "not_negative_method_quality_judgment": true,
+    "canon_dress_gs_numerical_superiority_claim_over_gsvton_allowed": false,
+    "forged_or_paper_reported_gsvton_values_allowed": false,
+    "future_re_evaluation_allowed_after_permission_and_resources": true
+  },
+  "primary_reasons": [
+    "official code license not specified",
+    "author permission not obtained",
+    "required storage exceeds current project budget",
+    "vanilla static 3DGS retraining required",
+    "subject02 preprocessing and mask contracts differ",
+    "deadline and engineering cost are disproportionate"
+  ],
+  "current_baseline_decision": {
+    "immediate_baseline_execution_selection": "FULL_AVATAR_FINETUNING_ONLY",
+    "full_avatar_finetuning_type": "SAME_BACKBONE_STRONG_CONTROL",
+    "external_numeric_baseline_currently_executed": "NONE",
+    "table_a_current_candidates": [
+      "Base Avatar",
+      "Full Avatar Fine-tuning",
+      "CanonDressGS"
+    ],
+    "gs_vton_enters_numeric_table": false,
+    "gs_vton_numeric_table_entry_condition": "future formal authorized execution"
+  },
+  "forbidden_modifications": {
+    "frozen_multi_source_bundle": false,
+    "subject02_data": false,
+    "gsvton_official_source_temp_copy": false,
+    "preflight_original_report": false,
+    "preflight_summary": false,
+    "paper_files": false,
+    "main_tex": false
+  },
+  "operations": {
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "environment_creation": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  },
+  "final_classification": "GSVTON_PREFLIGHT_NO_GO_DECISION_SEALED_FULL_AVATAR_SELECTED",
+  "next_task": "CONTINUE_FULL_AVATAR_O03_PREFLIGHT_RESOLUTION",
+  "paper_final": false
+}
+

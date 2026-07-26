@@ -1,0 +1,60 @@
+{
+  "schema_version": "canondressgs.gsvton_no_go_seal_tests.v1",
+  "task_id": "AAAI27-GSVTON-PREFLIGHT-NO-GO-SEAL-001",
+  "status": "PASS",
+  "test_count": 9,
+  "pass_count": 9,
+  "failure_count": 0,
+  "error_count": 0,
+  "contract_checks": [
+    {
+      "name": "test_01_source_head",
+      "status": "PASS"
+    },
+    {
+      "name": "test_02_preflight_facts_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "test_03_execution_authorized_false",
+      "status": "PASS"
+    },
+    {
+      "name": "test_04_numeric_baseline_not_executed",
+      "status": "PASS"
+    },
+    {
+      "name": "test_05_checkpoint_download_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_06_training_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_07_paper_modification_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_08_full_avatar_selected",
+      "status": "PASS"
+    },
+    {
+      "name": "test_09_next_task_uniqueness",
+      "status": "PASS"
+    }
+  ],
+  "operations": {
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "environment_creation": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  },
+  "final_classification": "GSVTON_PREFLIGHT_NO_GO_DECISION_SEALED_FULL_AVATAR_SELECTED",
+  "next_task": "CONTINUE_FULL_AVATAR_O03_PREFLIGHT_RESOLUTION",
+  "paper_final": false
+}
