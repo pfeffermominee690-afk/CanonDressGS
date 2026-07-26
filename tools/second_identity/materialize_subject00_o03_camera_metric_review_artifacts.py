@@ -276,7 +276,6 @@ def materialize(args: argparse.Namespace) -> None:
         "source_audit_sidecar_sha256": source_sha,
         "audit_execution_head": master["source"]["audit_execution_head"],
         "artifact_generation_head": head,
-        "paper_final": False,
     }
     view_usage = {
         "schema_version": (
@@ -294,6 +293,7 @@ def materialize(args: argparse.Namespace) -> None:
             "SLOT04_INCLUDED_IN_OPTIMIZER_LOSS_DENOMINATOR_AND_FINAL_METRICS"
         ),
         "optimizer_steps_by_this_task": 0,
+        "paper_final": False,
     }
     camera_contract = {
         "schema_version": (
@@ -326,6 +326,7 @@ def materialize(args: argparse.Namespace) -> None:
         ],
         "conclusion": "NONUNIQUE_CAMERA_USED_IN_TRAINING",
         "scientific_8view_valid": False,
+        "paper_final": False,
     }
     per_view_metrics = {
         "schema_version": (
@@ -336,6 +337,7 @@ def materialize(args: argparse.Namespace) -> None:
         "human_visual_decision": None,
         "scientific_pass": None,
         "paper_eligible": False,
+        "paper_final": False,
     }
     discrepancy = {
         "schema_version": (
@@ -347,6 +349,7 @@ def materialize(args: argparse.Namespace) -> None:
             "PASS_REPRODUCED_FULL_CANVAS_BACKGROUND_SENSITIVE_METRIC_"
             "NO_PAIRING_OR_IMPLEMENTATION_ERROR"
         ),
+        "paper_final": False,
     }
     seven_view = {
         "schema_version": (
@@ -368,12 +371,14 @@ def materialize(args: argparse.Namespace) -> None:
         "human_visual_decision": None,
         "scientific_pass": None,
         "paper_eligible": False,
+        "paper_final": False,
     }
     review_manifest = {
         **master["review"],
         **common,
         "run_root_only_image_policy": True,
         "git_image_count": 0,
+        "paper_final": False,
     }
     tests = {
         "schema_version": (
@@ -386,6 +391,7 @@ def materialize(args: argparse.Namespace) -> None:
         "task_scoped_pytest": args.pytest_result,
         "required_check_count": 37,
         "required_checks_passed": 37,
+        "paper_final": False,
         "result": (
             "PASS_RUNTIME_37_OF_37"
             if args.pytest_result == "NOT_RUN_YET"
@@ -521,7 +527,7 @@ def materialize(args: argparse.Namespace) -> None:
             "canondressgs.subject00.o03_provisional_teacher_"
             "camera_metric_review_final_summary.v1"
         ),
-        **common,
+        **{key: value for key, value in common.items() if key != "task_id"},
         **final_fields,
         "latest_camera_resolution": master["camera_contract"][
             "latest_camera_blocker_resolution"
