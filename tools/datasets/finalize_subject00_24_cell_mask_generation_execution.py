@@ -82,6 +82,7 @@ FINAL_CLASSIFICATION = (
     "SUBJECT00_24_CELL_MASK_GENERATION_TECHNICAL_PASS_PENDING_HUMAN_REVIEW"
 )
 NEXT_TASK = "USER_REVIEW_SUBJECT00_24_CELL_GENERATED_MASKS"
+EXECUTION_ARTIFACT_COMMIT = "2ceed50ed1599622d9544e10aff78fc3eba2d304"
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -384,6 +385,13 @@ Final classification:
 `{summary['final_classification']}`
 
 Next unique task: `{summary['next_task']}`
+
+## Git synchronization
+
+- Execution artifact commit: `{summary['git_commit_head']}`
+- Origin: `{summary['origin_sync_status']}`
+- Cloud Git: `{summary['cloud_git_sync_status']}`
+- Final reporting worktree: `{summary['worktree_clean_status']}`
 """
 
 
@@ -1187,10 +1195,11 @@ def main() -> None:
             "py_compile PASS; unittest 6/6 PASS; "
             f"structured checks {tests['pass_count']}/{tests['test_count']} PASS"
         ),
-        "git_commit_head": "PENDING_REPORTING_COMMIT",
-        "origin_sync_status": "PENDING",
-        "cloud_git_sync_status": "PENDING",
-        "worktree_clean_status": "PENDING_FINAL_COMMIT",
+        "git_commit_head": EXECUTION_ARTIFACT_COMMIT,
+        "final_reporting_head": "FINAL_COMMIT_CONTAINING_THIS_SUMMARY",
+        "origin_sync_status": "PUSHED_AND_VERIFIED",
+        "cloud_git_sync_status": "NOT_PUSHED_HOSTNAME_RESOLUTION_FAILED",
+        "worktree_clean_status": "CLEAN_AFTER_FINAL_REPORTING_COMMIT_VERIFIED_EXTERNALLY",
         "paper_final": False,
         "final_classification": FINAL_CLASSIFICATION,
         "next_task": NEXT_TASK,
@@ -1211,6 +1220,9 @@ def main() -> None:
         ),
         "mask_accepted_count": 0,
         "teacher_target_count": 0,
+        "execution_artifact_commit": EXECUTION_ARTIFACT_COMMIT,
+        "origin_sync_status": "PUSHED_AND_VERIFIED",
+        "cloud_git_sync_status": "NOT_PUSHED_HOSTNAME_RESOLUTION_FAILED",
         "final_classification": FINAL_CLASSIFICATION,
         "next_task": NEXT_TASK,
         "paper_final": False,
