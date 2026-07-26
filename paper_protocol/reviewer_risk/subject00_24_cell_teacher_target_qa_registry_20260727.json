@@ -1,0 +1,151 @@
+{
+  "schema_version": "canondressgs.subject00.teacher_target_qa_registry.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-TEACHER-TARGET-CREATION-PREFLIGHT-001",
+  "created_at": "2026-07-26T21:13:17.142237+00:00",
+  "qa_gate_count": 25,
+  "gates": [
+    {
+      "gate": "record_count_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "garment_counts_8_8_8",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "raw_exists_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "person_mask_exists_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "garment_mask_exists_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "raw_sha_match_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "person_mask_sha_match_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "garment_mask_sha_match_24",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "raw_mask_shape_match",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "strict_binary_mask_values",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "garment_subset_person",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "camera_id_slot_mapping",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "camera_calibration_parse",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "camera_model_unique_per_record",
+      "preflight_status": "BLOCKED_22_PASS_2_NONUNIQUE",
+      "execution_required": true
+    },
+    {
+      "gate": "direction_slot_consistency",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "native_resolution_preserved",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "limitation_propagation_9_of_9",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "human_override_propagation_2_of_2",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "duplicate_output_path_absent",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "duplicate_record_absent",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "missing_record_absent",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "extra_record_absent",
+      "preflight_status": "PASS_SOURCE_OR_CONTRACT_CHECK",
+      "execution_required": true
+    },
+    {
+      "gate": "derived_target_parse",
+      "preflight_status": "PREPARED_NOT_RUN_NO_TARGETS_EXIST",
+      "execution_required": true
+    },
+    {
+      "gate": "formal_endpoint_loader_zero_optimizer_smoke",
+      "preflight_status": "PREPARED_NOT_RUN_NO_TARGETS_EXIST",
+      "execution_required": true
+    },
+    {
+      "gate": "source_sha_immutable_after_materialization",
+      "preflight_status": "PREPARED_NOT_RUN_NO_TARGETS_EXIST",
+      "execution_required": true
+    }
+  ],
+  "zero_optimizer_step_smoke": {
+    "status": "PREPARED_NOT_RUN_BLOCKED_PENDING_CAMERA_SCHEMA_REFREEZE",
+    "command": "python tools/check_full_dressable_dataset.py --manifest <10_final_registry/subject00_24_cell_full_dataset_v1.json> --reference-count 1 --regression --report <08_quality_audit/full_dataset_loader_zero_step.json>",
+    "required_loader": "scene/full_dressable_dataset.py::FullDressableTrainingDataset",
+    "gpu_forward_allowed": false,
+    "optimizer_steps": 0,
+    "blocker": "The shared-condition Subject02 checker contract cannot represent the per-garment camera/resolution bindings without a scoped re-freeze."
+  },
+  "source_integrity_snapshot": {
+    "mask_registry_sha256": "c84cbd9b54016b18160671a9e2e70b242b87305e2956dbb4b10048c53b7533de",
+    "raw_registry_sha256": "f37cf50eae29bf3dd6c5cde0a4b891f6ea08641a03af8ad0f01ff8821d798445",
+    "raw_count": 24,
+    "raw_sha_match_count": 24,
+    "person_mask_count": 24,
+    "person_mask_sha_match_count": 24,
+    "garment_mask_count": 24,
+    "garment_mask_sha_match_count": 24
+  }
+}
