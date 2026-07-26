@@ -1,0 +1,671 @@
+{
+  "schema_version": "canondressgs.full_avatar_o03_equalstep.execution_manifest_draft.v1",
+  "task_id": "AAAI27-FULL-AVATAR-O03-MICROPILOT-PREFLIGHT-RESOLUTION-001",
+  "status": "FROZEN_STORAGE_RESOLUTION_PENDING",
+  "source": {
+    "branch": "research/full-avatar-finetuning-o03-equal-step-micropilot-20260726",
+    "head": "efe576f599b6bee45aad00bd10cb079a403dac05",
+    "new_branch": "research/full-avatar-o03-micropilot-preflight-resolution-20260726"
+  },
+  "base": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt100000.pth",
+    "sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+    "step": 100000,
+    "config_path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/config.yaml",
+    "config_sha256": "538dc4feb5c66ad85274ac6b0cb11a2819d6ba67e06ee8bdccbd1c01c2c7aec6",
+    "subject": "THuman4.0 subject02",
+    "canonical_gaussian_count": 200000,
+    "control_anchor_count": 10000,
+    "pose_feature_count": 300,
+    "architecture": "MMLP-Human GaussianModel checkpoint v2 with SMPL-X/LBS deformation and gsplat renderer",
+    "binding": "checkpoint embeds Gaussian state, LBS/deformation state, optimizer/scheduler state, and RNG state",
+    "sealed_status": "PASS_FROZEN_ASSET_REGISTRY_AND_LIVE_SHA_MATCH",
+    "visual_status": "REAL_VERIFIED_BY_FORMAL_BACKBONE_ACCEPTANCE"
+  },
+  "target": {
+    "subject": "THuman4.0 subject02",
+    "garment": "O03",
+    "manifest_path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json",
+    "manifest_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+    "conditions": {
+      "cond_000000": {
+        "assets": {
+          "target_base_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000000.png",
+            "sha256": "09955b8ad995aaf824a478b62e6bc7e7d97e69b1689a9762ee799ea29274a5eb"
+          },
+          "target_base_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000000.png",
+            "sha256": "f05effa5ee2e79eef1f68b5fb6bb6b58869a36929c46aaa2126ab5d756a91d2b"
+          },
+          "target_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000000.png",
+            "sha256": "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6"
+          },
+          "target_clothing_mask_raw": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask_raw/O03/cond_000000.png",
+            "sha256": "14f3996c05834388813f6656d0b32f1f7348f5c6b3aa050939b73f23959a2341"
+          },
+          "target_edit_core_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000000.png",
+            "sha256": "4bcfe33212e7a9ba763450f52e4ea3c9f337d527dad9a6ed7e84d16b5b31a664"
+          },
+          "target_edit_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000000.png",
+            "sha256": "a41ca7325085a28885df039b1431b8af9025aab2eb6103024978890f9b4b07f9"
+          },
+          "target_edit_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000000.png",
+            "sha256": "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117"
+          },
+          "target_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000000.png",
+            "sha256": "82f7dd71f6ba9fb37e07c02649f3900a3f6f6e08ee08d3d94925548de4458f10"
+          },
+          "target_old_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000000.png",
+            "sha256": "54b60eda3ba9d3b66f8ec2a435ae464bae33a6257f4fd3fa21257befb2c11c0a"
+          },
+          "target_preserve_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_preserve_mask/O03/cond_000000.png",
+            "sha256": "23f7f2b46d95f1ec10145fb3f534854c67011a79e4a6421d51b045c9a7b732f0"
+          },
+          "target_protected_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000000.png",
+            "sha256": "c78c4e5cb8b16800ea6bdf339d34e03311f5f3422323c7c1ca2d71c42e910a17"
+          },
+          "target_revealed_skin_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_revealed_skin_mask/O03/cond_000000.png",
+            "sha256": "e66e4b081edf6111beb8caf60edadf38dfa9a4aa49e6469dea0abdcb1a0956d7"
+          },
+          "target_transition_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000000.png",
+            "sha256": "0830ef251e895102e6348c5d15f254ed3e2bef725722bc5fbb9ac5ad609eae37"
+          }
+        },
+        "camera": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000000].camera",
+          "sha256": "21607b527da70cd1fe1ce5ff8448806188745c916f59d4ff9e5e0e74ff0e84c0"
+        },
+        "pose": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000000].pose",
+          "sha256": "36489b2e1ff768d9c0f7ebab540e811c80f3b6b49f2c5e2a8404c0afdb8a4222"
+        }
+      },
+      "cond_000318": {
+        "assets": {
+          "target_base_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000318.png",
+            "sha256": "d3760119347e3cb7403c6d3a7b990b15dd602d0dde1d7b30f17bd55bead46649"
+          },
+          "target_base_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000318.png",
+            "sha256": "99e220dbe08d6ee9cdbad5f9645c110dba499acf17b1c37c3ed806319eb7eda3"
+          },
+          "target_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000318.png",
+            "sha256": "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897"
+          },
+          "target_clothing_mask_raw": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask_raw/O03/cond_000318.png",
+            "sha256": "6b752cd3d26843aae28079094bd014401a8ff6df0ff730b9a74762c455577cef"
+          },
+          "target_edit_core_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000318.png",
+            "sha256": "d6f4a847f4b318c26834ef123fadc6ea4fcd64e6549233c3ffbaf7380fa4e803"
+          },
+          "target_edit_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000318.png",
+            "sha256": "6b1d2eb972e5cc70329fc13443095b95879d3e33cd45342d28eac7dd0ba5cf34"
+          },
+          "target_edit_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000318.png",
+            "sha256": "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a"
+          },
+          "target_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000318.png",
+            "sha256": "8b21f3060feb2ff306b04bb048fed323b8c23fcf577976e7c3cef024b6065340"
+          },
+          "target_old_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000318.png",
+            "sha256": "6c00d7377c9ae79ed204feff34f3cf1e4f1986896f98ec886ddb202183dea03a"
+          },
+          "target_preserve_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_preserve_mask/O03/cond_000318.png",
+            "sha256": "f5e4aca7c2f3d564811b9a17ce9979791a83c4d49dcae1a424b55808e4b1b895"
+          },
+          "target_protected_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000318.png",
+            "sha256": "df256a0d252cdb354491251fed6d0dcdc4faccdc0e27d71bb603f7108d4564be"
+          },
+          "target_revealed_skin_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_revealed_skin_mask/O03/cond_000318.png",
+            "sha256": "fc3beef814664f2934174815a3f1540a7fa22645c9f6403cb97c4d30559743fe"
+          },
+          "target_transition_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000318.png",
+            "sha256": "88a188d337f6caa94f121b1d9c4f6a076e6c5a8c686cbd8c480a3599fe79bedc"
+          }
+        },
+        "camera": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000318].camera",
+          "sha256": "6a7af5a1502b7bcb34f52dd190cd42a21833bdc8274a84c8dbf8e84275616278"
+        },
+        "pose": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000318].pose",
+          "sha256": "538812c7b333cc0134a81ba95abdd6f81eb234a4fcabc0489f831b188a063447"
+        }
+      },
+      "cond_000017": {
+        "assets": {
+          "target_base_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000017.png",
+            "sha256": "0d69beb1d02ef653160613be8e8272575d535af82025db961a3f9805f62e1385"
+          },
+          "target_base_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000017.png",
+            "sha256": "8c5bae54c1cb34e2db0434b5e2e85b2861a2bbf69f92fd00c36b2e6c8e2ff312"
+          },
+          "target_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000017.png",
+            "sha256": "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9"
+          },
+          "target_clothing_mask_raw": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask_raw/O03/cond_000017.png",
+            "sha256": "4c28bba223329ffd814a2aeca3559fe561e366e876232297d5b39046e80d0275"
+          },
+          "target_edit_core_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000017.png",
+            "sha256": "8976f9d4e4720bf336ee2d8cd20f5bc1c15200f6308ce2efe7b38e302534cc04"
+          },
+          "target_edit_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000017.png",
+            "sha256": "c426b1414e977b46d9ebe7fcec2147928ca6158b8746b9a3fb46826a51cc89df"
+          },
+          "target_edit_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000017.png",
+            "sha256": "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9"
+          },
+          "target_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000017.png",
+            "sha256": "56b2f4ef9178d0ac1e9e9d65da862f44253a81cce924f7b764f2fc38d4fbe185"
+          },
+          "target_old_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000017.png",
+            "sha256": "18f70e61996955080f62b7daf0adf3c8bc89b16ba4a2b00becfb7901e3167cd2"
+          },
+          "target_preserve_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_preserve_mask/O03/cond_000017.png",
+            "sha256": "c599d473ee6952b1c8438092e8fa0abe072387a0e8dac672483154301e00bd8a"
+          },
+          "target_protected_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000017.png",
+            "sha256": "b0adbf657e4260bd4403ae0ca0fd4f334f311b29a04b54d2a2ac52719158a874"
+          },
+          "target_revealed_skin_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_revealed_skin_mask/O03/cond_000017.png",
+            "sha256": "fc3beef814664f2934174815a3f1540a7fa22645c9f6403cb97c4d30559743fe"
+          },
+          "target_transition_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000017.png",
+            "sha256": "c503e4c3c0941aa28d2462fee4d85c9b369d06911ce27aa5fe5fe9ed288729a0"
+          }
+        },
+        "camera": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000017].camera",
+          "sha256": "8f11a271d6bd72edd813579516d07b86c4f9d2e60e25502877e537c80e91bfed"
+        },
+        "pose": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000017].pose",
+          "sha256": "55566abdf8025c657e6d10ef338e81f809d892ba8fa963d5689525647e1eabd5"
+        }
+      },
+      "cond_000347": {
+        "assets": {
+          "target_base_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_base_foreground_mask/O03/cond_000347.png",
+            "sha256": "b94a239c7a7cfa1d48cb8c72e0044b493f91d82d68a9264ddd0c51b1af69f888"
+          },
+          "target_base_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/data/subject02_dual_target_v5_2/rgb/base/cond_000347.png",
+            "sha256": "43f28c9f03f19c4e93f3c489cf467bff8fea7d6f0c7cf57d2fb69d61e988a305"
+          },
+          "target_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask/O03/cond_000347.png",
+            "sha256": "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd"
+          },
+          "target_clothing_mask_raw": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_clothing_mask_raw/O03/cond_000347.png",
+            "sha256": "79c156c01554499eaee3c21e575e49750ac9917e1c90e63868161502f4ea207b"
+          },
+          "target_edit_core_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_core_mask/O03/cond_000347.png",
+            "sha256": "41cb52e9ae07dc57d9f0a3e21e6de989a06da4bc2fe6c5abc7d47cdda98f6cc2"
+          },
+          "target_edit_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_edit_mask/O03/cond_000347.png",
+            "sha256": "3a65eb73065af04c878158427282e2b323ac57c54dfe0315b96a99b25c4dcdc7"
+          },
+          "target_edit_rgb": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/rgb/edit/O03/cond_000347.png",
+            "sha256": "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6"
+          },
+          "target_foreground_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_foreground_mask/O03/cond_000347.png",
+            "sha256": "7957e74d8e494ac3819d7f35c07fb27dc85f6c05fbe89765f6a2e6edda561a6b"
+          },
+          "target_old_clothing_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_old_clothing_mask/O03/cond_000347.png",
+            "sha256": "c74a97ec0e0cfaca0d87b8f1e221d1de372e5035325f61f564b31c28cedd1e22"
+          },
+          "target_preserve_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_preserve_mask/O03/cond_000347.png",
+            "sha256": "12bd46db4c254a5cdea9fc70c7efad57a9cbee187815254267b1f8b671209b3d"
+          },
+          "target_protected_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_protected_mask/O03/cond_000347.png",
+            "sha256": "5a6c2395ee490a1f0805bfc996622481e0a445c25f16a36009040a50090a87dc"
+          },
+          "target_revealed_skin_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_revealed_skin_mask/O03/cond_000347.png",
+            "sha256": "fc3beef814664f2934174815a3f1540a7fa22645c9f6403cb97c4d30559743fe"
+          },
+          "target_transition_mask": {
+            "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/masks/target_transition_mask/O03/cond_000347.png",
+            "sha256": "74da18e4837267e2e67ba2e501cb54d357d4785b3891e18ca80c27ddca229106"
+          }
+        },
+        "camera": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000347].camera",
+          "sha256": "f3cbe09fe8650081aa1e4c6ab2bb02d955dd5901457625cf0cc5958806705305"
+        },
+        "pose": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json#conditions[cond_000347].pose",
+          "sha256": "7c5d8844474c8902b7b87f55ea5125710f9b593dcc2d100d80db1bf46d4b054f"
+        }
+      }
+    }
+  },
+  "view_protocol": {
+    "name": "VIEW_TRANSDUCTIVE_MATCHED_ADAPTATION",
+    "optimization_view_count": 4,
+    "target_space_evaluation_view_count": 4,
+    "optimization_evaluation_view_overlap": "4/4",
+    "target_leakage_disclosure": "INTENTIONAL_PRIVILEGED_ADAPTATION_ON_REGISTERED_TARGET_VIEWS_DISCLOSED",
+    "method_role": "PRIVILEGED_PER_GARMENT_ADAPTATION_CONTROL",
+    "different_pose_camera_role": "ANIMATION_COMPATIBILITY_REVIEW_ONLY_NO_TARGET_SPACE_AVERAGE"
+  },
+  "loss": {
+    "contract": "EXACT_O03_TEACHER_OBJECTIVE_MATCH",
+    "name": "CAPACITY_ORACLE_LOSS_V1",
+    "weights": {
+      "garment_rgb": 1.0,
+      "alpha_foreground": 0.5,
+      "new_silhouette_alpha": 1.0,
+      "boundary_rgb": 0.25,
+      "protected_rgb": 10.0,
+      "protected_alpha": 5.0,
+      "stability": 0.0001
+    },
+    "ssim_component": "ABSENT_IN_FORMAL_O03_TEACHER_OBJECTIVE",
+    "perceptual_component": "ABSENT_IN_FORMAL_O03_TEACHER_OBJECTIVE",
+    "mask_semantics": {
+      "garment": "max(edit_mask, clothing_mask, old_clothing_mask) * (1-protected_mask)",
+      "foreground": "target_foreground",
+      "new_silhouette": "target_foreground * (1-base_foreground)",
+      "boundary": "transition_mask * (1-protected_mask)",
+      "protected": "protected_mask"
+    },
+    "denominator": "sum(abs_error * expanded_mask) / max(sum(expanded_mask), 1); alpha_foreground uses an all-pixel mask",
+    "stability": "direct_stability: sum of mean squared trainable-support values over raw_xyz, raw_log_scaling, raw_rotvec, raw_opacity, raw_sh0",
+    "implementation": "scene/representation_capacity_oracle.py::capacity_oracle_loss_v1 and direct_stability; tools/run_multi_outfit_explicit_basis.py::run_teacher",
+    "implementation_sha256": {
+      "scene/representation_capacity_oracle.py": "1fad8f7185766fedf85c9bc2e60238ad69c6ef7ac96f28263a320733c14e187c",
+      "tools/run_multi_outfit_explicit_basis.py": "aa495762810bb4095e12d508eb1a951bdec469e1ac8700f690bbc3651e7e70ce"
+    },
+    "resolved_teacher_config_path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/contract/config_resolved.yaml",
+    "resolved_teacher_config_sha256": "f0c4c8d3c63b935575c43a00c44ca9a1bd472fbed87329c019ff0d87a8d2c60f"
+  },
+  "parameters": {
+    "policy": "ALL_FORMAL_BASE_OPTIMIZER_GROUPS",
+    "trainable_groups": {
+      "dxyz": 30000,
+      "scales": 600000,
+      "quats": 800000,
+      "opacities": 200000,
+      "sh0": 600000,
+      "shN": 1800000,
+      "dxyz_bs": 450000,
+      "dscales_bs": 9000000,
+      "dquats_bs": 12000000,
+      "dopacities_bs": 3000000,
+      "dsh0_bs": 9000000,
+      "dshN_bs": 27000000,
+      "encoder_feat_params": 91017000,
+      "xyz_offset": 600000
+    },
+    "trainable_tensor_count": 23,
+    "trainable_parameter_count": 156097000,
+    "trainable_parameter_bytes_float32": 624388000,
+    "frozen_parameter_count_within_adaptation_model": 0,
+    "frozen_checkpoint_state_value_count": 14166176,
+    "frozen_checkpoint_state_note": "Immutable tensors/buffers are state, not nn.Parameter values, and are excluded from frozen_parameter_count.",
+    "forbidden_initialization": [
+      "CanonDressGS endpoint coefficients",
+      "Teacher residuals",
+      "garment residuals",
+      "snapped endpoint",
+      "O03 Teacher checkpoint"
+    ]
+  },
+  "optimizer": {
+    "state_policy": "FRESH_RESET_NO_BASE_MOMENTUM_RESTORE",
+    "groups": {
+      "dxyz": {
+        "class": "torch.optim.Adam",
+        "lr": 0.00016487699756168338,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "scales": {
+        "class": "torch.optim.Adam",
+        "lr": 0.00037494710466721114,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "quats": {
+        "class": "torch.optim.Adam",
+        "lr": 0.00037494710466721114,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "opacities": {
+        "class": "torch.optim.Adam",
+        "lr": 0.00037494710466721114,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "sh0": {
+        "class": "torch.optim.Adam",
+        "lr": 0.00037494710466721114,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "shN": {
+        "class": "torch.optim.Adam",
+        "lr": 1.8747355233360707e-05,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "dxyz_bs": {
+        "class": "torch.optim.Adam",
+        "lr": 2.198670099195661e-05,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "dscales_bs": {
+        "class": "torch.optim.Adam",
+        "lr": 0.0001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "dquats_bs": {
+        "class": "torch.optim.Adam",
+        "lr": 0.0001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "dopacities_bs": {
+        "class": "torch.optim.Adam",
+        "lr": 0.0001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "dsh0_bs": {
+        "class": "torch.optim.Adam",
+        "lr": 0.0001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "dshN_bs": {
+        "class": "torch.optim.Adam",
+        "lr": 2.5e-06,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      },
+      "encoder_feat_params": {
+        "class": "torch.optim.AdamW",
+        "lr": 0.00037494710466721114,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.001
+      },
+      "xyz_offset": {
+        "class": "torch.optim.Adam",
+        "lr": 0.0007498942093344223,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-15,
+        "weight_decay": 0.0
+      }
+    },
+    "gradient_clip": "NONE_AS_IN_FORMAL_BASE_TRAINER",
+    "source_registry": "scene/gaussian_model.py::GaussianModel.training_setup",
+    "source_sha256": "131eb92881a483b71d8e4f27efb585c0bd794615f4c7a0cf39af6bf6f09538b5"
+  },
+  "scheduler": {
+    "policy": "FRESH_LOCAL_1200_STEP_SCHEDULE_ANCHORED_AT_BASE_STEP100000_EFFECTIVE_LR",
+    "groups": {
+      "dxyz": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.00016487699756168338,
+        "gamma": 0.9961697125149411,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 1.6487699756168338e-06
+      },
+      "scales": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.00037494710466721114,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 3.7494710466721116e-05
+      },
+      "quats": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.00037494710466721114,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 3.7494710466721116e-05
+      },
+      "opacities": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.00037494710466721114,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 3.7494710466721116e-05
+      },
+      "sh0": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.00037494710466721114,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 3.7494710466721116e-05
+      },
+      "shN": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 1.8747355233360707e-05,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 1.8747355233360707e-06
+      },
+      "dxyz_bs": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 2.198670099195661e-05,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 2.198670099195661e-06
+      },
+      "encoder_feat_params": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.00037494710466721114,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 3.7494710466721116e-05
+      },
+      "xyz_offset": {
+        "family": "torch.optim.lr_scheduler.ExponentialLR",
+        "initial_lr": 0.0007498942093344223,
+        "gamma": 0.9980830188491041,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 7.498942093344223e-05
+      },
+      "dscales_bs": {
+        "family": "constant_no_scheduler_as_in_formal_base_trainer",
+        "initial_lr": 0.0001,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 0.0001
+      },
+      "dquats_bs": {
+        "family": "constant_no_scheduler_as_in_formal_base_trainer",
+        "initial_lr": 0.0001,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 0.0001
+      },
+      "dopacities_bs": {
+        "family": "constant_no_scheduler_as_in_formal_base_trainer",
+        "initial_lr": 0.0001,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 0.0001
+      },
+      "dsh0_bs": {
+        "family": "constant_no_scheduler_as_in_formal_base_trainer",
+        "initial_lr": 0.0001,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 0.0001
+      },
+      "dshN_bs": {
+        "family": "constant_no_scheduler_as_in_formal_base_trainer",
+        "initial_lr": 2.5e-06,
+        "local_steps": 1200,
+        "final_lr_after_1200_steps": 2.5e-06
+      }
+    },
+    "base_moments_restored": false,
+    "base_scheduler_state_restored": false
+  },
+  "determinism": {
+    "seed": 0,
+    "covered": [
+      "Python",
+      "NumPy",
+      "PyTorch CPU",
+      "PyTorch CUDA",
+      "data-loader generator",
+      "sampling order"
+    ],
+    "sampling_order": [
+      "cond_000000",
+      "cond_000318",
+      "cond_000017",
+      "cond_000347"
+    ]
+  },
+  "execution": {
+    "steps": 1200,
+    "checkpoint_milestones": [
+      0,
+      300,
+      600,
+      900,
+      1200
+    ],
+    "gpu": "single NVIDIA GeForce RTX 4090",
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/FULL-AVATAR-FINETUNE-O03-EQUALSTEP-MICROPILOT-001",
+    "attempt_id": "attempt_001",
+    "resume_rule": "After any optimizer step, resume only from the latest complete atomic checkpoint; restart from zero is forbidden.",
+    "generation_authorized": false,
+    "training_authorized": false
+  },
+  "storage": {
+    "live_free_bytes": 46450196480,
+    "checkpoint_count": 5,
+    "per_checkpoint_reservation_bytes": 1706610302,
+    "checkpoint_reservation_basis": "Exact formal Base checkpoint including mature optimizer state; conservative for fresh step-0.",
+    "optimizer_state_tensor_bytes_per_mature_checkpoint": 1018376084,
+    "auxiliary_reservation_bytes": {
+      "logs": 268435456,
+      "metrics": 134217728,
+      "review_renders": 1610612736,
+      "runtime_temporary_non_checkpoint": 67108864,
+      "git_and_report": 67108864
+    },
+    "steady_state_storage_bytes": 10680535158,
+    "atomic_temporary_checkpoint_bytes": 1706610302,
+    "peak_write_storage_bytes": 12387145460,
+    "projected_final_free_bytes": 35769661322,
+    "projected_minimum_free_bytes": 34063051020,
+    "formal_safety_gate_bytes": 40802189312,
+    "recommended_operational_margin_bytes": 2147483648,
+    "recommended_final_free_bytes": 42949672960,
+    "formal_safety_shortfall_bytes": 6739138292,
+    "gate": "FAIL_BELOW_SAFETY_GATE",
+    "resolution": "PLAN_A_PENDING_AVATARREX_PLAN_B_COMPLETION"
+  },
+  "authorization": {
+    "training_authorized": false,
+    "generation_authorized": false
+  }
+}

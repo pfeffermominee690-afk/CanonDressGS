@@ -1,0 +1,404 @@
+{
+  "schema_version": "canondressgs.full_avatar_o03.preflight_resolution_audit.v1",
+  "task_id": "AAAI27-FULL-AVATAR-O03-MICROPILOT-PREFLIGHT-RESOLUTION-001",
+  "correction": {
+    "schema_version": "canondressgs.full_avatar_o03.preflight_correction_overlay.v1",
+    "task_id": "AAAI27-FULL-AVATAR-O03-MICROPILOT-PREFLIGHT-RESOLUTION-001",
+    "original_preflight": "paper_protocol/external_baselines/full_avatar_o03_equal_step_micropilot/full_avatar_o03_equal_step_micropilot_preflight.json",
+    "original_preflight_sha256": "4788e9503999e30faf9c4e325068d02d38001e8bcfefd0fa558c57df0bf1bdc4",
+    "original_report_preserved": true,
+    "original_storage_classification": "PASS",
+    "corrected_storage_classification": "FAIL_BELOW_SAFETY_GATE",
+    "cloud_free_bytes_before": 46450372608,
+    "projected_consumption_bytes": 10680535158,
+    "projected_final_free_bytes": 35769837450,
+    "formal_safety_gate_bytes": 40802189312,
+    "safety_shortfall_bytes": 5032351862,
+    "correction_kind": "APPEND_ONLY_OVERLAY_NO_ORIGINAL_MUTATION"
+  },
+  "scientific_contract": {
+    "view": {
+      "name": "VIEW_TRANSDUCTIVE_MATCHED_ADAPTATION",
+      "optimization_view_count": 4,
+      "target_space_evaluation_view_count": 4,
+      "optimization_evaluation_view_overlap": "4/4",
+      "target_leakage_disclosure": "INTENTIONAL_PRIVILEGED_ADAPTATION_ON_REGISTERED_TARGET_VIEWS_DISCLOSED",
+      "method_role": "PRIVILEGED_PER_GARMENT_ADAPTATION_CONTROL",
+      "different_pose_camera_role": "ANIMATION_COMPATIBILITY_REVIEW_ONLY_NO_TARGET_SPACE_AVERAGE"
+    },
+    "loss": {
+      "contract": "EXACT_O03_TEACHER_OBJECTIVE_MATCH",
+      "name": "CAPACITY_ORACLE_LOSS_V1",
+      "weights": {
+        "garment_rgb": 1.0,
+        "alpha_foreground": 0.5,
+        "new_silhouette_alpha": 1.0,
+        "boundary_rgb": 0.25,
+        "protected_rgb": 10.0,
+        "protected_alpha": 5.0,
+        "stability": 0.0001
+      },
+      "ssim_component": "ABSENT_IN_FORMAL_O03_TEACHER_OBJECTIVE",
+      "perceptual_component": "ABSENT_IN_FORMAL_O03_TEACHER_OBJECTIVE",
+      "mask_semantics": {
+        "garment": "max(edit_mask, clothing_mask, old_clothing_mask) * (1-protected_mask)",
+        "foreground": "target_foreground",
+        "new_silhouette": "target_foreground * (1-base_foreground)",
+        "boundary": "transition_mask * (1-protected_mask)",
+        "protected": "protected_mask"
+      },
+      "denominator": "sum(abs_error * expanded_mask) / max(sum(expanded_mask), 1); alpha_foreground uses an all-pixel mask",
+      "stability": "direct_stability: sum of mean squared trainable-support values over raw_xyz, raw_log_scaling, raw_rotvec, raw_opacity, raw_sh0",
+      "implementation": "scene/representation_capacity_oracle.py::capacity_oracle_loss_v1 and direct_stability; tools/run_multi_outfit_explicit_basis.py::run_teacher",
+      "implementation_sha256": {
+        "scene/representation_capacity_oracle.py": "1fad8f7185766fedf85c9bc2e60238ad69c6ef7ac96f28263a320733c14e187c",
+        "tools/run_multi_outfit_explicit_basis.py": "aa495762810bb4095e12d508eb1a951bdec469e1ac8700f690bbc3651e7e70ce"
+      },
+      "resolved_teacher_config_path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/contract/config_resolved.yaml",
+      "resolved_teacher_config_sha256": "f0c4c8d3c63b935575c43a00c44ca9a1bd472fbed87329c019ff0d87a8d2c60f"
+    },
+    "parameters": {
+      "policy": "ALL_FORMAL_BASE_OPTIMIZER_GROUPS",
+      "trainable_groups": {
+        "dxyz": 30000,
+        "scales": 600000,
+        "quats": 800000,
+        "opacities": 200000,
+        "sh0": 600000,
+        "shN": 1800000,
+        "dxyz_bs": 450000,
+        "dscales_bs": 9000000,
+        "dquats_bs": 12000000,
+        "dopacities_bs": 3000000,
+        "dsh0_bs": 9000000,
+        "dshN_bs": 27000000,
+        "encoder_feat_params": 91017000,
+        "xyz_offset": 600000
+      },
+      "trainable_tensor_count": 23,
+      "trainable_parameter_count": 156097000,
+      "trainable_parameter_bytes_float32": 624388000,
+      "frozen_parameter_count_within_adaptation_model": 0,
+      "frozen_checkpoint_state_value_count": 14166176,
+      "frozen_checkpoint_state_note": "Immutable tensors/buffers are state, not nn.Parameter values, and are excluded from frozen_parameter_count.",
+      "forbidden_initialization": [
+        "CanonDressGS endpoint coefficients",
+        "Teacher residuals",
+        "garment residuals",
+        "snapped endpoint",
+        "O03 Teacher checkpoint"
+      ]
+    },
+    "optimizer": {
+      "state_policy": "FRESH_RESET_NO_BASE_MOMENTUM_RESTORE",
+      "groups": {
+        "dxyz": {
+          "class": "torch.optim.Adam",
+          "lr": 0.00016487699756168338,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "scales": {
+          "class": "torch.optim.Adam",
+          "lr": 0.00037494710466721114,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "quats": {
+          "class": "torch.optim.Adam",
+          "lr": 0.00037494710466721114,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "opacities": {
+          "class": "torch.optim.Adam",
+          "lr": 0.00037494710466721114,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "sh0": {
+          "class": "torch.optim.Adam",
+          "lr": 0.00037494710466721114,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "shN": {
+          "class": "torch.optim.Adam",
+          "lr": 1.8747355233360707e-05,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "dxyz_bs": {
+          "class": "torch.optim.Adam",
+          "lr": 2.198670099195661e-05,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "dscales_bs": {
+          "class": "torch.optim.Adam",
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "dquats_bs": {
+          "class": "torch.optim.Adam",
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "dopacities_bs": {
+          "class": "torch.optim.Adam",
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "dsh0_bs": {
+          "class": "torch.optim.Adam",
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "dshN_bs": {
+          "class": "torch.optim.Adam",
+          "lr": 2.5e-06,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        },
+        "encoder_feat_params": {
+          "class": "torch.optim.AdamW",
+          "lr": 0.00037494710466721114,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.001
+        },
+        "xyz_offset": {
+          "class": "torch.optim.Adam",
+          "lr": 0.0007498942093344223,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-15,
+          "weight_decay": 0.0
+        }
+      },
+      "gradient_clip": "NONE_AS_IN_FORMAL_BASE_TRAINER",
+      "source_registry": "scene/gaussian_model.py::GaussianModel.training_setup",
+      "source_sha256": "131eb92881a483b71d8e4f27efb585c0bd794615f4c7a0cf39af6bf6f09538b5"
+    },
+    "scheduler": {
+      "policy": "FRESH_LOCAL_1200_STEP_SCHEDULE_ANCHORED_AT_BASE_STEP100000_EFFECTIVE_LR",
+      "groups": {
+        "dxyz": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.00016487699756168338,
+          "gamma": 0.9961697125149411,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 1.6487699756168338e-06
+        },
+        "scales": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.00037494710466721114,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 3.7494710466721116e-05
+        },
+        "quats": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.00037494710466721114,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 3.7494710466721116e-05
+        },
+        "opacities": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.00037494710466721114,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 3.7494710466721116e-05
+        },
+        "sh0": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.00037494710466721114,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 3.7494710466721116e-05
+        },
+        "shN": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 1.8747355233360707e-05,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 1.8747355233360707e-06
+        },
+        "dxyz_bs": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 2.198670099195661e-05,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 2.198670099195661e-06
+        },
+        "encoder_feat_params": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.00037494710466721114,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 3.7494710466721116e-05
+        },
+        "xyz_offset": {
+          "family": "torch.optim.lr_scheduler.ExponentialLR",
+          "initial_lr": 0.0007498942093344223,
+          "gamma": 0.9980830188491041,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 7.498942093344223e-05
+        },
+        "dscales_bs": {
+          "family": "constant_no_scheduler_as_in_formal_base_trainer",
+          "initial_lr": 0.0001,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 0.0001
+        },
+        "dquats_bs": {
+          "family": "constant_no_scheduler_as_in_formal_base_trainer",
+          "initial_lr": 0.0001,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 0.0001
+        },
+        "dopacities_bs": {
+          "family": "constant_no_scheduler_as_in_formal_base_trainer",
+          "initial_lr": 0.0001,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 0.0001
+        },
+        "dsh0_bs": {
+          "family": "constant_no_scheduler_as_in_formal_base_trainer",
+          "initial_lr": 0.0001,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 0.0001
+        },
+        "dshN_bs": {
+          "family": "constant_no_scheduler_as_in_formal_base_trainer",
+          "initial_lr": 2.5e-06,
+          "local_steps": 1200,
+          "final_lr_after_1200_steps": 2.5e-06
+        }
+      },
+      "base_moments_restored": false,
+      "base_scheduler_state_restored": false
+    },
+    "seed": 0,
+    "steps": 1200
+  },
+  "storage": {
+    "live_free_bytes": 46450196480,
+    "checkpoint_count": 5,
+    "per_checkpoint_reservation_bytes": 1706610302,
+    "checkpoint_reservation_basis": "Exact formal Base checkpoint including mature optimizer state; conservative for fresh step-0.",
+    "optimizer_state_tensor_bytes_per_mature_checkpoint": 1018376084,
+    "auxiliary_reservation_bytes": {
+      "logs": 268435456,
+      "metrics": 134217728,
+      "review_renders": 1610612736,
+      "runtime_temporary_non_checkpoint": 67108864,
+      "git_and_report": 67108864
+    },
+    "steady_state_storage_bytes": 10680535158,
+    "atomic_temporary_checkpoint_bytes": 1706610302,
+    "peak_write_storage_bytes": 12387145460,
+    "projected_final_free_bytes": 35769661322,
+    "projected_minimum_free_bytes": 34063051020,
+    "formal_safety_gate_bytes": 40802189312,
+    "recommended_operational_margin_bytes": 2147483648,
+    "recommended_final_free_bytes": 42949672960,
+    "formal_safety_shortfall_bytes": 6739138292,
+    "gate": "FAIL_BELOW_SAFETY_GATE",
+    "resolution": "PLAN_A_PENDING_AVATARREX_PLAN_B_COMPLETION"
+  },
+  "avatarrex": {
+    "windows_archive_path": "E:\\canondressgs_archive\\cloud_datasets\\AvatarReX\\payload\\root\\autodl-tmp\\datasets\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "windows_archive_status": "PASS_BYTE_AND_SHA_MATCH",
+    "windows_archive_bytes": 12569755256,
+    "windows_archive_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "windows_extracted_copy_status": "PASS_60834_FILES_FULL_SCAN_VERIFIED",
+    "cloud_archive_path": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "cloud_archive_status": "PASS_BYTE_AND_SHA_MATCH_NOT_DELETED",
+    "cloud_archive_bytes": 12569755256,
+    "cloud_archive_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "cloud_is_unique_copy": false,
+    "cloud_plan_b_staging_status": "INCOMPLETE_ONLY_SMPL_PARAMS_NPZ_PRESENT",
+    "cloud_plan_b_staging_file_count": 1,
+    "historical_complete_extraction_file_count": 60834,
+    "reupload_source_exists": true,
+    "recommended_plan": "PLAN_A_PENDING_AVATARREX_PLAN_B_COMPLETION",
+    "future_plan_after_plan_b": "USER_AUTHORIZED_DELETE_VERIFIED_CLOUD_DUPLICATE_AVATARREX_ARCHIVE",
+    "expected_release_bytes": 12569755256,
+    "projected_final_free_after_release_and_training": 48339416578,
+    "projected_minimum_free_after_release_and_atomic_write": 46632806276,
+    "deleted_by_this_task": false
+  },
+  "operations": {
+    "optimizer_steps": 0,
+    "forward_backward_scientific_runs": 0,
+    "renderer_inferences": 0,
+    "checkpoint_writes": 0,
+    "output_root_creations": 0,
+    "avatarrex_deletions": 0,
+    "data_modifications": 0,
+    "paper_modifications": 0
+  },
+  "training_authorized": false,
+  "paper_final": false,
+  "final_classification": "FULL_AVATAR_O03_EXECUTION_CONTRACT_FROZEN_STORAGE_RESOLUTION_PENDING",
+  "next_task": "USER_AUTHORIZE_AVATARREX_CLOUD_DUPLICATE_DELETION_FOR_FULL_AVATAR_MICROPILOT"
+}
