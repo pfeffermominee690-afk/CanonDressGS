@@ -1,0 +1,1126 @@
+{
+  "execution_head": "c085a3bc89a904038e2a6d59bd8920221dee39ab",
+  "execution_tests": {
+    "fail_count": 0,
+    "paper_final": false,
+    "pass_count": 36,
+    "result": "PASS_36_OF_36",
+    "schema_version": "canondressgs.subject00.o03_camsafe7.review_pack_tests.v1",
+    "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-PROVISIONAL-TEACHER-REVIEW-PACK-001",
+    "test_count": 36,
+    "tests": [
+      {
+        "evidence": "research/subject00-o03-camerasafe7-provisional-teacher-review-pack-20260727",
+        "name": "source_branch",
+        "passed": true
+      },
+      {
+        "evidence": "c085a3bc89a904038e2a6d59bd8920221dee39ab",
+        "name": "source_head",
+        "passed": true
+      },
+      {
+        "evidence": true,
+        "name": "source_clean",
+        "passed": true
+      },
+      {
+        "evidence": "2bf582771a6d9fcc4e4f0a40f1de7aa7fafb1b69ead348d9b7dd527d2739e212",
+        "name": "final_checkpoint_sha",
+        "passed": true
+      },
+      {
+        "evidence": 7,
+        "name": "target_count_7",
+        "passed": true
+      },
+      {
+        "evidence": [
+          "subject00_O03_slot00_canary_attempt004_cand00",
+          "subject00_O03_slot01_remaining_attempt005_cand00",
+          "subject00_O03_slot02_cand00",
+          "subject00_O03_slot03_cand01",
+          "subject00_O03_slot05_canary_attempt004_cand00",
+          "subject00_O03_slot06_remaining_attempt005_cand00",
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "name": "exact_seven_request_ids",
+        "passed": true
+      },
+      {
+        "evidence": "subject00_O03_slot04_canary_attempt004_cand00",
+        "name": "slot04_excluded",
+        "passed": true
+      },
+      {
+        "evidence": 11,
+        "name": "eleven_png_pages",
+        "passed": true
+      },
+      {
+        "evidence": 11,
+        "name": "pdf_page_count_11",
+        "passed": true
+      },
+      {
+        "evidence": [
+          "seven safe views",
+          "target/Base60747/clean/difference/person mask/garment mask",
+          "camera-safe7 aggregate metrics"
+        ],
+        "name": "master_contains_7_views",
+        "passed": true
+      },
+      {
+        "evidence": "7/7",
+        "name": "each_view_target_base_clean_contaminated",
+        "passed": true
+      },
+      {
+        "evidence": "7/7",
+        "name": "each_view_masks",
+        "passed": true
+      },
+      {
+        "evidence": "7/7",
+        "name": "each_view_region_crops",
+        "passed": true
+      },
+      {
+        "evidence": 7,
+        "name": "per_view_metrics",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "alpha_foreground_error": 0.009338095118956906,
+          "boundary_f": 0.4478637471045254,
+          "full_image_lpips": 0.770451945917947,
+          "garment_region_lpips": 0.020944335098777498,
+          "garment_region_psnr": 18.963176727294922,
+          "garment_region_ssim": 0.9867025358336312,
+          "protected_region_lpips": 0.010014975044344152,
+          "protected_region_rgb_mae": 0.21775432995387486,
+          "psnr": 2.982220002583095,
+          "severe_artifact_count": 0,
+          "silhouette_iou": 0.8366723592986284,
+          "ssim": 0.3947490964617048
+        },
+        "name": "aggregate_metrics",
+        "passed": true
+      },
+      {
+        "evidence": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/03_clean_vs_contaminated/subject00_O03_clean7_vs_contaminated8_comparison.png",
+        "name": "clean_vs_contaminated_page",
+        "passed": true
+      },
+      {
+        "evidence": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/05_excluded_slot04/subject00_O03_camsafe7_animation_and_slot04_quarantine.png",
+        "name": "animation_page",
+        "passed": true
+      },
+      {
+        "evidence": 11,
+        "name": "slot04_quarantine_page",
+        "passed": true
+      },
+      {
+        "evidence": [
+          2755572,
+          4820611,
+          5199814,
+          4380378,
+          4044075,
+          4763621,
+          4836032,
+          4702115,
+          5825400,
+          2493275,
+          4055421
+        ],
+        "name": "page_parse",
+        "passed": true
+      },
+      {
+        "evidence": [
+          {
+            "height": 4000,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4800,
+            "width": 6400
+          },
+          {
+            "height": 4000,
+            "width": 6400
+          },
+          {
+            "height": 4000,
+            "width": 6400
+          },
+          {
+            "height": 4000,
+            "width": 6400
+          }
+        ],
+        "name": "page_resolution",
+        "passed": true
+      },
+      {
+        "evidence": [
+          "029ba195316a1ea2f4bb26b176b797a93069eeb22079f3b93e5341409a198f5a",
+          "64b3b258d0b607a9e33bc1c5cb49b1adc742419436891b75199fc4553557663a",
+          "89c51afaa32c583044ce77975802be98c6baeb45f6b1f22ecebe6838d21e210d",
+          "43120e478e047262404617c6e7f05bdc4c26a10cb3f1a6d2f9f1b8272eb7cea8",
+          "2cf0a72ed02832ff7ba9bffc651ca97e05f19d965655ae045813dbdbfbcb9d36",
+          "ead22aaf61c3b5ea94900faa4958df5a9222a580e961c9d2cf317db558f8d1a8",
+          "30fb09cb4a2e702a61bd60bf59e5ea42e51a6dcade9d7f3584c41f7628367a75",
+          "52f85ad029766755621687d11bac7bd19b9ed2b689cd8ce800e48098f8ea2a59",
+          "61f62dfb6813a2a439fa15dce848fd85afbb95c85231c8e033cf75d805a016ad",
+          "8775425f802a43d41fc4bc72ac495a7aa6213aabdc42e168527a7f7d48fe5294",
+          "1903dcd0e76442dd6193f2bcc01441f6ae34316c8de0510920075e84c457335e"
+        ],
+        "name": "page_sha_registry",
+        "passed": true
+      },
+      {
+        "evidence": "canondressgs.subject00.o03_camsafe7.review_pack_index.v1",
+        "name": "manifest_schema",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "name": "human_fields_null",
+        "passed": true
+      },
+      {
+        "evidence": null,
+        "name": "scientific_pass_null",
+        "passed": true
+      },
+      {
+        "evidence": false,
+        "name": "paper_eligible_false",
+        "passed": true
+      },
+      {
+        "evidence": 0,
+        "name": "no_optimizer_step",
+        "passed": true
+      },
+      {
+        "evidence": true,
+        "name": "no_render_mutation",
+        "passed": true
+      },
+      {
+        "evidence": true,
+        "name": "no_checkpoint_mutation",
+        "passed": true
+      },
+      {
+        "evidence": true,
+        "name": "no_target_mutation",
+        "passed": true
+      },
+      {
+        "evidence": true,
+        "name": "no_mask_mutation",
+        "passed": true
+      },
+      {
+        "evidence": "USER_AUTHORIZED_PAUSED",
+        "name": "formal_base_paused",
+        "passed": true
+      },
+      {
+        "evidence": 0,
+        "name": "paper_modification_zero",
+        "passed": true
+      },
+      {
+        "evidence": "SUBJECT00_O03_CAMSAFE7_PROVISIONAL_TEACHER_REVIEW_PACK_READY_FOR_USER_REVIEW",
+        "name": "final_classification",
+        "passed": true
+      },
+      {
+        "evidence": "USER_UPLOAD_AND_REVIEW_SUBJECT00_O03_CAMSAFE7_REVIEW_PAGES",
+        "name": "next_task_uniqueness",
+        "passed": true
+      },
+      {
+        "evidence": "PASS_POPPLER_RENDER_11_OF_11",
+        "name": "pdf_poppler_render",
+        "passed": true
+      },
+      {
+        "evidence": {
+          "slot_00": {
+            "camera_id": 17,
+            "direction": "front",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 2,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot00_camsafe7_review.png",
+            "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+            "sample_count": 172
+          },
+          "slot_01": {
+            "camera_id": 21,
+            "direction": "front-left",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 3,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot01_camsafe7_review.png",
+            "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+            "sample_count": 172
+          },
+          "slot_02": {
+            "camera_id": 14,
+            "direction": "front-right",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 4,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot02_camsafe7_review.png",
+            "request_id": "subject00_O03_slot02_cand00",
+            "sample_count": 172
+          },
+          "slot_03": {
+            "camera_id": 23,
+            "direction": "left",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 5,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot03_camsafe7_review.png",
+            "request_id": "subject00_O03_slot03_cand01",
+            "sample_count": 171
+          },
+          "slot_05": {
+            "camera_id": 2,
+            "direction": "back-left",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 6,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot05_camsafe7_review.png",
+            "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+            "sample_count": 171
+          },
+          "slot_06": {
+            "camera_id": 9,
+            "direction": "back-right",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 7,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot06_camsafe7_review.png",
+            "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+            "sample_count": 171
+          },
+          "slot_07": {
+            "camera_id": 5,
+            "direction": "back",
+            "human_fields": {
+              "animation_visual_pass": null,
+              "boundary_visual_pass": null,
+              "camera_pose_visual_pass": null,
+              "final_human_visual_decision": null,
+              "garment_visual_pass": null,
+              "hands_feet_visual_pass": null,
+              "identity_visual_pass": null,
+              "paper_eligible": false,
+              "protected_region_visual_pass": null,
+              "scientific_pass": null,
+              "silhouette_visual_pass": null
+            },
+            "page_number": 8,
+            "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot07_camsafe7_review.png",
+            "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+            "sample_count": 171
+          }
+        },
+        "name": "view_page_mapping_7",
+        "passed": true
+      }
+    ]
+  },
+  "final_classification": "SUBJECT00_O03_CAMSAFE7_PROVISIONAL_TEACHER_REVIEW_PACK_READY_FOR_USER_REVIEW",
+  "final_fields": {
+    "ANIMATION_QUARANTINE_PAGE_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/05_excluded_slot04/subject00_O03_camsafe7_animation_and_slot04_quarantine.png",
+    "BASE_CHECKPOINT_MUTATIONS": 0,
+    "CLEAN_CONTAMINATED_PAGE_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/03_clean_vs_contaminated/subject00_O03_clean7_vs_contaminated8_comparison.png",
+    "CLEAN_TEACHER_CHECKPOINT_MUTATIONS": 0,
+    "CLOUD_GIT_SYNC_STATUS": "PENDING_FINAL_COMMIT",
+    "COMMIT_HEAD": "c085a3bc89a904038e2a6d59bd8920221dee39ab",
+    "CONTAMINATED_RUN_MUTATIONS": 0,
+    "EXCLUDED_REQUEST_IDS": [
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "EXCLUDED_VIEW_COUNT": 1,
+    "FINAL_CLASSIFICATION": "SUBJECT00_O03_CAMSAFE7_PROVISIONAL_TEACHER_REVIEW_PACK_READY_FOR_USER_REVIEW",
+    "FINAL_REPORTING_HEAD": "c085a3bc89a904038e2a6d59bd8920221dee39ab",
+    "FORMAL_BASE_RUN_MUTATIONS": 0,
+    "HUMAN_VISUAL_DECISION": null,
+    "MASK_MUTATIONS": 0,
+    "MASTER_PAGE_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/00_master/subject00_O03_camsafe7_teacher_master_overview.png",
+    "METRIC_COVERAGE_STATUS": "PASS_PER_VIEW_7_OF_7_AND_AGGREGATE",
+    "NEW_BRANCH": "research/subject00-o03-camerasafe7-provisional-teacher-review-pack-20260727",
+    "NEXT_TASK": "USER_UPLOAD_AND_REVIEW_SUBJECT00_O03_CAMSAFE7_REVIEW_PAGES",
+    "OPTIMIZER_STEPS": 0,
+    "ORIGIN_SYNC_STATUS": "PENDING_FINAL_COMMIT",
+    "PAPER_ELIGIBLE": false,
+    "PAPER_FINAL": false,
+    "PAPER_MODIFICATIONS": 0,
+    "PER_VIEW_PAGE_PATHS": [
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot00_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot01_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot02_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot03_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot05_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot06_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot07_camsafe7_review.png"
+    ],
+    "REGION_CROP_COVERAGE_STATUS": "PASS_7_OF_7_ALL_REQUIRED_REGIONS",
+    "REGION_RISK_PAGE_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/02_region_details/subject00_O03_camsafe7_region_risk_summary.png",
+    "REVIEW_INDEX_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/subject00_O03_camsafe7_review_pack_index.json",
+    "REVIEW_MANIFEST_PATH": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_o03_camerasafe7_provisional_teacher_review_pack/paper_protocol/reviewer_risk/subject00_O03_camsafe7_human_review_upload_manifest_20260727.json",
+    "REVIEW_PACK_ROOT": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727",
+    "REVIEW_PDF_BYTES": 78217803,
+    "REVIEW_PDF_PAGE_COUNT": 11,
+    "REVIEW_PDF_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/subject00_O03_camsafe7_provisional_teacher_human_review_pages_20260727.pdf",
+    "REVIEW_PDF_SHA256": "f24b1010426343401a9552875898158a8cf91f3b0220e9fb4da92e8bc97f8c8f",
+    "REVIEW_PNG_BYTES": [
+      2755572,
+      4820611,
+      5199814,
+      4380378,
+      4044075,
+      4763621,
+      4836032,
+      4702115,
+      5825400,
+      2493275,
+      4055421
+    ],
+    "REVIEW_PNG_COUNT": 11,
+    "REVIEW_PNG_PATHS": [
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/00_master/subject00_O03_camsafe7_teacher_master_overview.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot00_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot01_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot02_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot03_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot05_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot06_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot07_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/02_region_details/subject00_O03_camsafe7_region_risk_summary.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/03_clean_vs_contaminated/subject00_O03_clean7_vs_contaminated8_comparison.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/05_excluded_slot04/subject00_O03_camsafe7_animation_and_slot04_quarantine.png"
+    ],
+    "REVIEW_PNG_RESOLUTIONS": [
+      {
+        "height": 4000,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4800,
+        "width": 6400
+      },
+      {
+        "height": 4000,
+        "width": 6400
+      },
+      {
+        "height": 4000,
+        "width": 6400
+      },
+      {
+        "height": 4000,
+        "width": 6400
+      }
+    ],
+    "REVIEW_PNG_SHA256": [
+      "029ba195316a1ea2f4bb26b176b797a93069eeb22079f3b93e5341409a198f5a",
+      "64b3b258d0b607a9e33bc1c5cb49b1adc742419436891b75199fc4553557663a",
+      "89c51afaa32c583044ce77975802be98c6baeb45f6b1f22ecebe6838d21e210d",
+      "43120e478e047262404617c6e7f05bdc4c26a10cb3f1a6d2f9f1b8272eb7cea8",
+      "2cf0a72ed02832ff7ba9bffc651ca97e05f19d965655ae045813dbdbfbcb9d36",
+      "ead22aaf61c3b5ea94900faa4958df5a9222a580e961c9d2cf317db558f8d1a8",
+      "30fb09cb4a2e702a61bd60bf59e5ea42e51a6dcade9d7f3584c41f7628367a75",
+      "52f85ad029766755621687d11bac7bd19b9ed2b689cd8ce800e48098f8ea2a59",
+      "61f62dfb6813a2a439fa15dce848fd85afbb95c85231c8e033cf75d805a016ad",
+      "8775425f802a43d41fc4bc72ac495a7aa6213aabdc42e168527a7f7d48fe5294",
+      "1903dcd0e76442dd6193f2bcc01441f6ae34316c8de0510920075e84c457335e"
+    ],
+    "REVIEW_README_PATH": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/SUBJECT00_O03_CAMSAFE7_REVIEW_PACK_README.md",
+    "RUN_ROOT": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001",
+    "SCIENTIFIC_PASS": null,
+    "SLOT04_QUARANTINE_COVERAGE_STATUS": "PASS_PAGE11_ONLY_SAMPLE_COUNT_0",
+    "SOURCE_BRANCH": "research/subject00-o03-provisional-teacher-camerasafe7-rerun-20260727",
+    "SOURCE_HEAD": "a0461084021e62f0a02e4e1a1f601556a8b4017e",
+    "TARGET_MUTATIONS": 0,
+    "TARGET_VIEW_COUNT": 7,
+    "TASK_ID": "AAAI27-SUBJECT00-O03-CAMSAFE7-PROVISIONAL-TEACHER-REVIEW-PACK-001",
+    "TEST_RESULT": "PASS_36_OF_36",
+    "VIEW_COVERAGE_STATUS": "PASS_7_OF_7",
+    "WORKTREE": "E:\\model_train\\canondressgs_subject00_o03_camerasafe7_provisional_teacher_review_pack",
+    "WORKTREE_CLEAN_STATUS": "PASS_AT_EXECUTION_START"
+  },
+  "human_fields": {
+    "animation_visual_pass": null,
+    "boundary_visual_pass": null,
+    "camera_pose_visual_pass": null,
+    "final_human_visual_decision": null,
+    "garment_visual_pass": null,
+    "hands_feet_visual_pass": null,
+    "identity_visual_pass": null,
+    "paper_eligible": false,
+    "protected_region_visual_pass": null,
+    "scientific_pass": null,
+    "silhouette_visual_pass": null
+  },
+  "new_branch": "research/subject00-o03-camerasafe7-provisional-teacher-review-pack-20260727",
+  "next_task": "USER_UPLOAD_AND_REVIEW_SUBJECT00_O03_CAMSAFE7_REVIEW_PAGES",
+  "paper_eligible": false,
+  "paper_final": false,
+  "review_pack_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727",
+  "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001",
+  "schema_version": "canondressgs.subject00.o03_camsafe7.review_pack_handoff.v1",
+  "source_branch": "research/subject00-o03-provisional-teacher-camerasafe7-rerun-20260727",
+  "source_head": "a0461084021e62f0a02e4e1a1f601556a8b4017e",
+  "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-PROVISIONAL-TEACHER-REVIEW-PACK-001",
+  "upload_manifest": {
+    "classification": "SUBJECT00_O03_CAMSAFE7_PROVISIONAL_TEACHER_REVIEW_PACK_READY_FOR_USER_REVIEW",
+    "cloud_git_sync_status": "PENDING_FINAL_COMMIT",
+    "excluded_request_ids": [
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "excluded_slot04_page_number": 11,
+    "excluded_view_count": 1,
+    "execution_head": "c085a3bc89a904038e2a6d59bd8920221dee39ab",
+    "final_classification": "SUBJECT00_O03_CAMSAFE7_PROVISIONAL_TEACHER_REVIEW_PACK_READY_FOR_USER_REVIEW",
+    "human_fields": {
+      "animation_visual_pass": null,
+      "boundary_visual_pass": null,
+      "camera_pose_visual_pass": null,
+      "final_human_visual_decision": null,
+      "garment_visual_pass": null,
+      "hands_feet_visual_pass": null,
+      "identity_visual_pass": null,
+      "paper_eligible": false,
+      "protected_region_visual_pass": null,
+      "scientific_pass": null,
+      "silhouette_visual_pass": null
+    },
+    "immutability": {
+      "base_checkpoint_mutations": 0,
+      "before_equals_after": true,
+      "clean_teacher_checkpoint_mutations": 0,
+      "contaminated_run_mutations": 0,
+      "formal_base_run_mutations": 0,
+      "mask_mutations": 0,
+      "paper_modifications": 0,
+      "source_file_count": 44,
+      "target_mutations": 0
+    },
+    "new_branch": "research/subject00-o03-camerasafe7-provisional-teacher-review-pack-20260727",
+    "next_task": "USER_UPLOAD_AND_REVIEW_SUBJECT00_O03_CAMSAFE7_REVIEW_PAGES",
+    "origin_sync_status": "PENDING_FINAL_COMMIT",
+    "paper_eligible": false,
+    "paper_final": false,
+    "pdf": {
+      "bytes": 78217803,
+      "page_count": 11,
+      "page_order": [
+        "subject00_O03_camsafe7_teacher_master_overview.png",
+        "subject00_O03_slot00_camsafe7_review.png",
+        "subject00_O03_slot01_camsafe7_review.png",
+        "subject00_O03_slot02_camsafe7_review.png",
+        "subject00_O03_slot03_camsafe7_review.png",
+        "subject00_O03_slot05_camsafe7_review.png",
+        "subject00_O03_slot06_camsafe7_review.png",
+        "subject00_O03_slot07_camsafe7_review.png",
+        "subject00_O03_camsafe7_region_risk_summary.png",
+        "subject00_O03_clean7_vs_contaminated8_comparison.png",
+        "subject00_O03_camsafe7_animation_and_slot04_quarantine.png"
+      ],
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/subject00_O03_camsafe7_provisional_teacher_human_review_pages_20260727.pdf",
+      "role": "upload_pdf",
+      "sha256": "f24b1010426343401a9552875898158a8cf91f3b0220e9fb4da92e8bc97f8c8f"
+    },
+    "review_index": {
+      "bytes": 26442,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/subject00_O03_camsafe7_review_pack_index.json",
+      "role": "review_pack_index",
+      "sha256": "ad18d7c6f9791c0d094d3e12f0daa31f594a912993b604f816fb20a7b71b3464"
+    },
+    "review_pack_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727",
+    "review_pages": [
+      {
+        "bytes": 2755572,
+        "page_number": 1,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/00_master/subject00_O03_camsafe7_teacher_master_overview.png",
+        "required_content": [
+          "seven safe views",
+          "target/Base60747/clean/difference/person mask/garment mask",
+          "camera-safe7 aggregate metrics"
+        ],
+        "resolution": {
+          "height": 4000,
+          "width": 6400
+        },
+        "role": "master_overview",
+        "sha256": "029ba195316a1ea2f4bb26b176b797a93069eeb22079f3b93e5341409a198f5a"
+      },
+      {
+        "bytes": 4820611,
+        "page_number": 2,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot00_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_00",
+        "sha256": "64b3b258d0b607a9e33bc1c5cb49b1adc742419436891b75199fc4553557663a"
+      },
+      {
+        "bytes": 5199814,
+        "page_number": 3,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot01_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_01",
+        "sha256": "89c51afaa32c583044ce77975802be98c6baeb45f6b1f22ecebe6838d21e210d"
+      },
+      {
+        "bytes": 4380378,
+        "page_number": 4,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot02_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_02",
+        "sha256": "43120e478e047262404617c6e7f05bdc4c26a10cb3f1a6d2f9f1b8272eb7cea8"
+      },
+      {
+        "bytes": 4044075,
+        "page_number": 5,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot03_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_03",
+        "sha256": "2cf0a72ed02832ff7ba9bffc651ca97e05f19d965655ae045813dbdbfbcb9d36"
+      },
+      {
+        "bytes": 4763621,
+        "page_number": 6,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot05_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_05",
+        "sha256": "ead22aaf61c3b5ea94900faa4958df5a9222a580e961c9d2cf317db558f8d1a8"
+      },
+      {
+        "bytes": 4836032,
+        "page_number": 7,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot06_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_06",
+        "sha256": "30fb09cb4a2e702a61bd60bf59e5ea42e51a6dcade9d7f3584c41f7628367a75"
+      },
+      {
+        "bytes": 4702115,
+        "page_number": 8,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot07_camsafe7_review.png",
+        "required_content": [
+          "target raw",
+          "person mask",
+          "garment mask",
+          "Base60747 render",
+          "clean Teacher7 render",
+          "historical contaminated Teacher render",
+          "target-clean difference",
+          "garment crop",
+          "protected crop",
+          "silhouette/boundary overlay",
+          "face/head crop",
+          "hands crop",
+          "feet crop",
+          "per-view metrics"
+        ],
+        "resolution": {
+          "height": 4800,
+          "width": 6400
+        },
+        "role": "slot_07",
+        "sha256": "52f85ad029766755621687d11bac7bd19b9ed2b689cd8ce800e48098f8ea2a59"
+      },
+      {
+        "bytes": 5825400,
+        "page_number": 9,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/02_region_details/subject00_O03_camsafe7_region_risk_summary.png",
+        "required_content": [
+          "seven garment/boundary crops",
+          "face/head",
+          "hands",
+          "feet",
+          "protected regions",
+          "metric-risk pointers",
+          "severe artifact evidence"
+        ],
+        "resolution": {
+          "height": 4000,
+          "width": 6400
+        },
+        "role": "region_risk_summary",
+        "sha256": "61f62dfb6813a2a439fa15dce848fd85afbb95c85231c8e033cf75d805a016ad"
+      },
+      {
+        "bytes": 2493275,
+        "page_number": 10,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/03_clean_vs_contaminated/subject00_O03_clean7_vs_contaminated8_comparison.png",
+        "required_content": [
+          "safe7 target",
+          "Base60747",
+          "historical contaminated8",
+          "clean Teacher7",
+          "historical diagnostic disclosure"
+        ],
+        "resolution": {
+          "height": 4000,
+          "width": 6400
+        },
+        "role": "clean_vs_contaminated",
+        "sha256": "8775425f802a43d41fc4bc72ac495a7aa6213aabdc42e168527a7f7d48fe5294"
+      },
+      {
+        "bytes": 4055421,
+        "page_number": 11,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/05_excluded_slot04/subject00_O03_camsafe7_animation_and_slot04_quarantine.png",
+        "required_content": [
+          "different-camera",
+          "different-pose",
+          "deformation/LBS evidence",
+          "slot04 original target",
+          "slot04 camera blocker",
+          "slot04 quarantine reason",
+          "slot04 sample_count=0",
+          "slot04 denominator exclusion"
+        ],
+        "resolution": {
+          "height": 4000,
+          "width": 6400
+        },
+        "role": "animation_and_quarantine",
+        "sha256": "1903dcd0e76442dd6193f2bcc01441f6ae34316c8de0510920075e84c457335e"
+      }
+    ],
+    "review_png_count": 11,
+    "review_readme": {
+      "bytes": 1019,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/SUBJECT00_O03_CAMSAFE7_REVIEW_PACK_README.md",
+      "role": "review_readme",
+      "sha256": "44cac0634658e7d381c12af913f1cb42a6807dc09c59d89d9f2c4b3e909128cb"
+    },
+    "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001",
+    "schema_version": "canondressgs.subject00.o03_camsafe7.human_review_upload_manifest.v1",
+    "source_branch": "research/subject00-o03-provisional-teacher-camerasafe7-rerun-20260727",
+    "source_head": "a0461084021e62f0a02e4e1a1f601556a8b4017e",
+    "target_view_count": 7,
+    "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-PROVISIONAL-TEACHER-REVIEW-PACK-001",
+    "test_result": "PASS_36_OF_36",
+    "upload_order": [
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/06_indexes/subject00_O03_camsafe7_provisional_teacher_human_review_pages_20260727.pdf",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/00_master/subject00_O03_camsafe7_teacher_master_overview.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot00_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot01_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot02_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot03_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot05_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot06_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot07_camsafe7_review.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/02_region_details/subject00_O03_camsafe7_region_risk_summary.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/03_clean_vs_contaminated/subject00_O03_clean7_vs_contaminated8_comparison.png",
+      "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/05_excluded_slot04/subject00_O03_camsafe7_animation_and_slot04_quarantine.png"
+    ],
+    "view_page_mapping": {
+      "slot_00": {
+        "camera_id": 17,
+        "direction": "front",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 2,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot00_camsafe7_review.png",
+        "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+        "sample_count": 172
+      },
+      "slot_01": {
+        "camera_id": 21,
+        "direction": "front-left",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 3,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot01_camsafe7_review.png",
+        "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+        "sample_count": 172
+      },
+      "slot_02": {
+        "camera_id": 14,
+        "direction": "front-right",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 4,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot02_camsafe7_review.png",
+        "request_id": "subject00_O03_slot02_cand00",
+        "sample_count": 172
+      },
+      "slot_03": {
+        "camera_id": 23,
+        "direction": "left",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 5,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot03_camsafe7_review.png",
+        "request_id": "subject00_O03_slot03_cand01",
+        "sample_count": 171
+      },
+      "slot_05": {
+        "camera_id": 2,
+        "direction": "back-left",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 6,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot05_camsafe7_review.png",
+        "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+        "sample_count": 171
+      },
+      "slot_06": {
+        "camera_id": 9,
+        "direction": "back-right",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 7,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot06_camsafe7_review.png",
+        "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+        "sample_count": 171
+      },
+      "slot_07": {
+        "camera_id": 5,
+        "direction": "back",
+        "human_fields": {
+          "animation_visual_pass": null,
+          "boundary_visual_pass": null,
+          "camera_pose_visual_pass": null,
+          "final_human_visual_decision": null,
+          "garment_visual_pass": null,
+          "hands_feet_visual_pass": null,
+          "identity_visual_pass": null,
+          "paper_eligible": false,
+          "protected_region_visual_pass": null,
+          "scientific_pass": null,
+          "silhouette_visual_pass": null
+        },
+        "page_number": 8,
+        "page_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001/attempt_001/review/human_review_upload_pack_20260727/01_safe7_views/subject00_O03_slot07_camsafe7_review.png",
+        "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+        "sample_count": 171
+      }
+    }
+  }
+}
