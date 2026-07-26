@@ -1,0 +1,71 @@
+{
+  "schema_version": "canondressgs.subject00.endpoint_construction_contract.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "FROZEN_NOT_AUTHORIZED_PENDING_FORMAL_BASE_AND_DATA",
+  "identity": "subject00",
+  "garment_order": ["O01", "O03", "O04"],
+  "formal_base": {
+    "required_step": 101245,
+    "checkpoint_path": "PENDING_FORMAL_BASE",
+    "checkpoint_sha256": "PENDING_FORMAL_BASE",
+    "dependency": "PENDING"
+  },
+  "teacher_endpoints": {
+    "independent_run_per_garment": true,
+    "run_count": 3,
+    "accepted_targets_per_garment": 8,
+    "initialization": "EXACT_ZERO_ALL_RESIDUAL_CHANNELS",
+    "residual_channels": ["dxyz", "dsh0", "dshN", "dscale", "drotation", "dopacity"],
+    "support": "same frozen 200000 Gaussian support as Subject00 formal base",
+    "template_lbs_mode": "surface_attachment_cached",
+    "optimizer": {
+      "class": "Adam",
+      "geometry_learning_rate": 0.001,
+      "appearance_learning_rate": 0.002,
+      "gradient_clip_norm": 1.0,
+      "steps": 1200,
+      "sweep_allowed": false
+    },
+    "checkpoint_steps": [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200],
+    "topology_mutation_allowed": false,
+    "identity_protected_region_residual": "EXACT_ZERO",
+    "identity_protected_loss_required": true
+  },
+  "basis": {
+    "scientific_role": "ENDPOINT_COORDINATE_SYSTEM",
+    "input": "three accepted Subject00 Teacher Endpoint residual vectors on identical support",
+    "dtype_for_mean_center_svd_projection_reconstruction": "float64",
+    "mean": "mu=(T_O01+T_O03+T_O04)/3 computed in float64",
+    "centering": "X_g=T_g-mu",
+    "strict_zero_sum_closure": "after float64 centering set the final centered endpoint to the negative sum of the first two and require exact aggregate zero before SVD",
+    "svd": "deterministic full-matrices-false SVD over centered endpoint rows with a recorded sign convention",
+    "rank_rule": "r=min(numerical_rank,2)",
+    "maximum_rank": 2,
+    "projection": "c_g=X_g V_r",
+    "reconstruction": "T_hat_g=mu+c_g V_r^T",
+    "required_gates": [
+      "finite float64 mean, singular values, coefficients, and reconstructions",
+      "strict zero-sum closure",
+      "all three endpoint coefficients present",
+      "basis reconstruction error reported per garment and channel",
+      "renderer parity for every reconstructed endpoint",
+      "identity contamination count equals zero",
+      "component contamination count equals zero"
+    ],
+    "forbidden_claims": ["LOO adaptation", "continuous garment manifold"]
+  },
+  "renderer_parity_gate": {
+    "comparison": "full Teacher Endpoint versus basis reconstruction at identical pose/camera",
+    "required": true,
+    "thresholds": "MUST_BE_FROZEN_BEFORE_ENDPOINT_TRAINING; not inferred by this task",
+    "pass_required_before_controller_training": true
+  },
+  "execution_counts": {
+    "teacher_training_runs": 0,
+    "optimizer_steps": 0,
+    "basis_constructions": 0,
+    "renderer_runs": 0,
+    "checkpoint_writes": 0
+  },
+  "paper_final": false
+}

@@ -1,0 +1,106 @@
+{
+  "condition_slot_count": 8,
+  "content_sha256": "78a61b520958e2fd67a54d0f45298d5a718905e7a8464472515a24f86320569e",
+  "deterministic_identity_matching": {
+    "candidate_gate": [
+      "valid source frame",
+      "full body",
+      "feet complete",
+      "hands visible",
+      "no temporal buffer frame"
+    ],
+    "same_raw_frame_id_across_identities_required": false,
+    "score_order": [
+      "absolute wrapped yaw error",
+      "hand visibility penalty",
+      "foot visibility penalty",
+      "crop-margin penalty",
+      "pose-neutrality distance",
+      "frame_id",
+      "canonical_camera_id"
+    ],
+    "tie_break": "lexicographic score order"
+  },
+  "endpoint_count_per_garment": 8,
+  "identity_assignments": {
+    "avatarrex_lbn1": "PENDING_BASE_AVATAR_AND_CONDITION_PROTOCOL_PASS",
+    "subject00": "PENDING_FORMAL_FINAL_CHECKPOINT"
+  },
+  "image_contract": {
+    "background": [
+      "light gray",
+      "white"
+    ],
+    "camera_framing": "fixed full-body portrait with identical identity-specific camera intrinsics and subject scale",
+    "close_up_forbidden": true,
+    "feet_complete": true,
+    "full_body": true,
+    "hands_visible": true,
+    "lighting": "fixed per identity and reused for all garments and slots",
+    "numbers_forbidden": true,
+    "resolution_height": 1536,
+    "resolution_width": 1024
+  },
+  "paper_final": 0,
+  "reference_slot_count_per_garment": 4,
+  "reference_slots": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "schema_version": "multi_identity.shared_condition_pose_view_protocol.v1",
+  "slots": [
+    {
+      "required": true,
+      "semantic_pose_slot": "front",
+      "target_body_yaw_degrees": 0,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "front_left_three_quarter",
+      "target_body_yaw_degrees": 45,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "left",
+      "target_body_yaw_degrees": 90,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "back_left_three_quarter",
+      "target_body_yaw_degrees": 135,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "back",
+      "target_body_yaw_degrees": 180,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "back_right_three_quarter",
+      "target_body_yaw_degrees": 225,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "right",
+      "target_body_yaw_degrees": 270,
+      "yaw_tolerance_degrees": 22.5
+    },
+    {
+      "required": true,
+      "semantic_pose_slot": "front_right_three_quarter",
+      "target_body_yaw_degrees": 315,
+      "yaw_tolerance_degrees": 22.5
+    }
+  ],
+  "status": "FROZEN_PROSPECTIVE_PROTOCOL",
+  "task_id": "AAAI27-MULTI-IDENTITY-GARMENT-DATA-PREPARATION-001",
+  "unit": "SEMANTIC_POSE_SLOT"
+}

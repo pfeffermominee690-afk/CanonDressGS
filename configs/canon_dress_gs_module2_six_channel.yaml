@@ -1,0 +1,16 @@
+base_config: configs/canon_dress_gs_gate4c_overfit100.yaml
+
+dressable_channels:
+  xyz: {enabled: true, max_abs: 0.05}
+  log_scaling: {enabled: true, max_abs: 0.35}
+  rotation: {enabled: true, max_angle_rad: 0.2617993878}
+  opacity_logit: {enabled: true, max_abs: 2.0}
+  sh0: {enabled: true, max_abs: 0.25}
+  shN: {enabled: true, max_abs: 0.10, sh_degree: 1}
+
+module2:
+  decoder_version: 2
+  gate_contract_version: 1
+  gate_source: temporary_precomputed_reference_only
+  seed: 20260716
+  output_dir: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/GATE5-SIX-CHANNEL-DECODER-001

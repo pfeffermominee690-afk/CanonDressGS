@@ -1,0 +1,147 @@
+schema_version: canondressgs.residual_decoder_capacity_v7.v1
+task_id: SUBJECT02-RESIDUAL-DECODER-CAPACITY-V7-001
+branch: research/residual-decoder-capacity-v7-20260720
+source_head: b1dcc16f0d2a57f56ed04778792db8f11f92e081
+outfits: [O01, O08]
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+
+inputs:
+  source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  source_manifest_sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  stable_protected_attribution: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+  stable_protected_attribution_sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+  stable_protected_count: 30894
+  o01_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-IMAGE-CONDITIONED-OVERFIT-O01-001/attempt_004
+  diagnosis_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-IMAGE-CONDITIONED-FAILURE-DIAGNOSIS-001/attempt_002
+  diagnosis_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-IMAGE-CONDITIONED-FAILURE-DIAGNOSIS-001/attempt_002/probe_D_decoder_capacity/checkpoint_step_000300.pth
+  diagnosis_checkpoint_sha256: 047f41cca06bfa9aae31f581213bce07e04cbd1a4c158d693625b2e503f48f60
+  oracle_o01_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth
+  oracle_o01_checkpoint_sha256: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+  oracle_o08_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth
+  oracle_o08_checkpoint_sha256: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  historical_checkpoint_sha256_warning: 64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  gaussian_count: 200000
+  anchor_count: 10000
+  frozen: true
+
+model:
+  offset_mode: anchor_film
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+  image_feature_dim: 128
+  embedding_dim: 64
+  local_feature_dim: 64
+  freeze_image_backbone: true
+  online_completion: {graph_k: 8, hidden_dim: 128, blocks: 4}
+  decoder:
+    type: support_conditioned_dual_branch_v7
+    hidden_dim: 128
+    num_blocks: 4
+    support_fourier_frequencies: 8
+    chunk_size: 16384
+    gate_mode: fixed_one_capacity_probe
+  dressable_channels:
+    xyz: {enabled: true, max_abs: 0.05}
+    log_scaling: {enabled: true, max_abs: 0.35}
+    rotation: {enabled: true, max_angle_rad: 0.2617993878}
+    opacity_logit: {enabled: true, max_abs: 2.0}
+    sh0: {enabled: true, max_abs: 0.25}
+    shN: {enabled: true, max_abs: 0.10, sh_degree: 1}
+
+stage_a:
+  diagnostic_latent_only: true
+  diagnostic_latent_dim: 64
+  target_images_in_forward: false
+  oracle_residual_usage: loss_and_offline_evaluation_only
+  gate_mode: fixed_one_capacity_probe
+  max_steps: 1000
+  milestones: [0, 100, 300, 600, 1000]
+  training_chunk_size: 8192
+  evaluation_chunk_size: 16384
+  latent_learning_rate: 0.005
+  decoder_learning_rate: 0.002
+  gradient_clip_norm: 5.0
+  seed: 20260720
+  outfit_balance: strict_alternating_1_to_1
+  loss: bound_normalized_smooth_l1
+  image_space_loss: false
+  acceptance:
+    first_100_to_final_loss_drop_fraction_min: 0.80
+    mean_bound_normalized_rmse_max: 0.15
+    mean_direction_cosine_min: 0.65
+    mean_top_10pct_overlap_min: 0.40
+    outfit_separation_ratio_min: 0.50
+    per_outfit_render_garment_mae_max: 0.08
+    require_both_visual_oracle_structure: true
+    require_no_cloud_or_mottle: true
+    require_base_mmlp_bitwise_frozen: true
+
+stage_b:
+  run_only_if_stage_a_pass: true
+  diagnostic_latent_input: false
+  target_images_in_forward: false
+  outfit_id_input: false
+  oracle_residual_usage: loss_and_offline_evaluation_only
+  max_steps: 1000
+  milestones: [0, 100, 300, 600, 1000]
+  episode_count: 8
+  outfit_balance: strict_alternating_1_to_1
+  view_balance: strict_round_robin
+  training_chunk_size: 8192
+  evaluation_chunk_size: 16384
+  gradient_clip_norm: 5.0
+  optimizer:
+    encoder_lr: 0.0001
+    aggregator_lr: 0.0001
+    completer_lr: 0.001
+    residual_decoder_v7_lr: 0.001
+    weight_decay: 0.0
+  acceptance:
+    mean_bound_normalized_rmse_max: 0.18
+    mean_direction_cosine_min: 0.55
+    mean_top_10pct_overlap_min: 0.30
+    correct_vs_swapped_residual_margin_min: 0.0
+    correct_vs_swapped_render_margin_min: 0.0
+    correct_episode_wins_min: 7
+    require_distinct_outfit_renders: true
+    require_reference_zero_or_base_change: true
+    require_no_target_leakage: true
+    require_base_mmlp_bitwise_frozen: true
+
+legacy_baseline:
+  mean_bound_normalized_rmse: 0.312990
+  outfit_separation_ratio: 0.220043
+  mean_oracle_render_garment_mae: 0.156142
+
+render:
+  background: [1.0, 1.0, 1.0]
+  sh_degree: 1
+  protected_support_alpha_threshold: 0.0001
+
+output:
+  task_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-RESIDUAL-DECODER-CAPACITY-V7-001
+  attempt: attempt_001
+
+permissions:
+  modify_o01_attempt: false
+  modify_diagnosis_attempt: false
+  modify_oracle_outputs: false
+  modify_two_outfit_prep: false
+  modify_renderer: false
+  modify_residual_bounds: false
+  image_space_training: false
+  formal_long_training: false

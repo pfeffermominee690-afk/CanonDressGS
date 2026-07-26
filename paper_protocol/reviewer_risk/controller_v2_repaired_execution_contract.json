@@ -1,0 +1,121 @@
+{
+  "attempt": "attempt_002",
+  "attempt_001_preservation": {
+    "content_and_metadata_fingerprint_sha256": "95ea354e4da7af9dd50f30d6cfd9e2d99ba968dbe33283d32437440d85b38129",
+    "file_count": 4,
+    "preserved_read_only": true,
+    "total_bytes": 21558
+  },
+  "cloud_environment": {
+    "cuda_available": true,
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "free_bytes_before_worktree_creation": 41187147776,
+    "free_bytes_pre_snapshot": 41121366016,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_free_mib": 24081,
+    "gpu_total_bytes": 25250627584,
+    "gpu_total_mib": 24564,
+    "gpu_used_mib": 0,
+    "gpu_utilization_percent": 0,
+    "platform": "Linux-5.15.0-88-generic-x86_64-with-glibc2.35",
+    "python": "3.10.20",
+    "torch": "2.4.1+cu121"
+  },
+  "contract_hashes": {
+    "batch_schedule_archive_content_sha256": "3d50420ed45b893cbde1851d44d2d892bbb3bb1e0590e4774dfa447b529bc446",
+    "global_contract_sha256": "e5b720ccedfb4b0b39892011123010b6522ece7dd1d534032ec2e2e26f7863f7",
+    "historical_300_step_order_scientific_sha256": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+    "historical_cycle_scientific_sha256": "f60b0ee64ff5ce2b6693f53dd7eb665cc6aee5aa310f314175d2932307d57c77",
+    "perturbation_archive_content_sha256": "3e876051dfa119c0b10b1d1cf726efdd4f6aa7dc9c9a70827a06952e5a60d57a",
+    "repaired_protocol_sha256_lf": "44ef0c53f7a5ec4fe19733371ffefb1be14d5b6902e7f4060707edd4660d9f49",
+    "rotation_manifest_archive_content_sha256": "4886439bb682349e8aa3e47238f9ef288fcedf140e2f590b2fc4fc5f975fd1cb",
+    "source_manifest_sha256_lf": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3",
+    "visual_representatives_archive_content_sha256": "45454dcd3ad73aa641a1d83c22ca4e4e5b3e334f7071e003a695b44bfa69d4e3"
+  },
+  "counts_before_training": {
+    "backward": 0,
+    "checkpoint_write": 0,
+    "inference": 0,
+    "optimizer_created": 0,
+    "optimizer_step": 0,
+    "paper_final": 0,
+    "render": 0,
+    "scheduler_step": 0,
+    "training": 0
+  },
+  "expected_counts": {
+    "backward": 3600,
+    "checkpoint_write": 144,
+    "inference": 6240,
+    "logical_render": 5280,
+    "matched_v1_clean_forward_batches": 1800,
+    "optimizer_created": 24,
+    "optimizer_step": 3600,
+    "scheduler_step": 3600,
+    "v2_augmented_forward_batches": 1800,
+    "v2_clean_forward_batches": 1800
+  },
+  "frozen_information_boundary": {
+    "compatibility_lookup_key": "PREDICTED_PAIR",
+    "ground_truth_pair_in_inference": false,
+    "target_inputs_in_controller_forward": false,
+    "target_render_in_training": false
+  },
+  "frozen_mutations": {
+    "backbone": 0,
+    "checkpoint": 0,
+    "compatibility_manifest": 0,
+    "dataset": 0,
+    "endpoint": 0,
+    "evaluation_threshold": 0,
+    "f2": 0,
+    "paper_final": 0,
+    "renderer": 0,
+    "source_model": 0,
+    "split": 0
+  },
+  "historical_attempt_sha256": {
+    "contract": "67b8c51e122428f4ebadc2ae1919c722df1c2fc485df1170d3419b0307d9da27",
+    "contract_completeness": "1b51a82f8aa7391aefe332acff0770a6f1de3f2de6ffffc1485310b591b14459",
+    "final_summary": "81f6f87a83e203331367ec108b7ae5b44ef9dd1c7b8c20033125f6027fa455f0",
+    "resource_gate": "7ca2aa656661d6bc9b87f23b98d9731969caf7908453c0db33ffc4c8a1aeab19"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "resource_gate": {
+    "concurrent_gpu_or_heavy_io_processes": 0,
+    "free_bytes_minimum": 26843545600,
+    "free_inodes": 700476664,
+    "status": "PASS",
+    "subject00_processes": 0
+  },
+  "rotation_hashes": {
+    "0": {
+      "cycle": "e32dc5c98494f51673ef0d42cc03e71ead26d993da93521291b315ebc33d41fd",
+      "schedule": "d6221272b531e01e848563b8c7bb5e924209e0b341f45cfc3a9e816c17f8fa36"
+    },
+    "1": {
+      "cycle": "93a8f5873a7ac3f8d01492c01cd4a2b39068db3c988fce6aca14d58bf4b094bb",
+      "schedule": "f2305c089e843a78045cd43200bbfd7c9ba7e967cecb89395422253f7776530a"
+    },
+    "2": {
+      "cycle": "9e03c9fffc1eefcd9abaeae6e2140fec7b8018a022fc6d606fd1ebbfa0cdd849",
+      "schedule": "e6c87095797384f46142cb93c1e5a407d808287fdc83d7b1df99aa3e9309dfa9"
+    },
+    "3": {
+      "cycle": "01fb6be48611fb5fb5e63b0205053337e8ab48d5c50325ba1c0ff44c2bb4ac2a",
+      "schedule": "0b45485d601ae49991195e66947457370f9d2b08474bd85e3d8bd5182b828ebd"
+    }
+  },
+  "run_branch": "research/controller-v2-crossfit-micro-pilot-from-repaired-contract-20260723",
+  "runtime_determinism": {
+    "cublas_workspace_config": ":4096:8",
+    "torch_deterministic_algorithms": true
+  },
+  "schema_version": "canondressgs.research.controller_v2_repaired_execution_contract.v1",
+  "source_branch": "research/controller-v2-micro-pilot-contract-repair-20260723",
+  "source_head": "1a2059301e3a0ec7fa0f73591b69b7b428e986c4",
+  "task_id": "AAAI27-CONTROLLER-V2-CROSSFIT-MICRO-PILOT-REPAIRED-001",
+  "training_executor": "tools/paper/run_controller_v2_repaired_training.py"
+}

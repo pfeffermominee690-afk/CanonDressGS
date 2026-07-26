@@ -1,0 +1,200 @@
+{
+  "additional_training": 0,
+  "archive_head_resolution": "GIT_COMMIT_CONTAINING_THIS_SUMMARY; exact final HEAD is in final handoff/chat verification",
+  "classification": "REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_PARTIAL",
+  "classification_reason": "Pure endpoint safety, top-2 pair accuracy, and AAB/ABB ordering pass, and active dual-support outputs are sometimes useful. However activation is only about 50.8%, every seed is below the 70% floor, weight calibration is weak, fallback is excessive, and perturbations are fragile.",
+  "contract_hashes": {
+    "cycle": "f60b0ee64ff5ce2b6693f53dd7eb665cc6aee5aa310f314175d2932307d57c77",
+    "manifest": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3",
+    "protocol": "44ef0c53f7a5ec4fe19733371ffefb1be14d5b6902e7f4060707edd4660d9f49",
+    "schedule": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf"
+  },
+  "controller_render_macro": {
+    "boundary_fscore": 0.3547568228951361,
+    "garment_lpips": 0.031219448297524793,
+    "garment_rgb_mae": 0.05242907386173859,
+    "identity_metric": 0.006668376094603446,
+    "outside_garment_opacity": 0.049874795065261414,
+    "protected_lpips": 0.0009870844539515626,
+    "silhouette_iou": 0.7133543427424495
+  },
+  "failed_preregistered_gates": [
+    "activation_macro_ge_0_80",
+    "activation_worst_ge_0_70",
+    "controller_vs_full_linear_render_gate",
+    "controller_vs_full_linear_severe_reduction_gate"
+  ],
+  "frozen_mutation": 0,
+  "geometry_interpolation": 0,
+  "ground_truth_id_pair_alpha_inference_use": 0,
+  "mixed_protocol_weighted_macro": {
+    "brier_score": 0.06369830679547446,
+    "cross_entropy": 0.6771161413213268,
+    "dominant_top1_accuracy": 0.9229166666666666,
+    "dual_support_activation_rate": 0.5083333333333333,
+    "ece": 0.11491765137761832,
+    "entropy": 0.5366027001792597,
+    "low_secondary_weight_rate": 0.33194444444444443,
+    "low_top2_mass_rate": 0.1597222222222222,
+    "mixed_record_count": 240.0,
+    "ordering_accuracy": 0.8972222222222221,
+    "record_count": 320.0,
+    "single_endpoint_rate": 0.4916666666666667,
+    "top2_mass": 0.9526004399939363,
+    "top2_pair_accuracy": 0.9625,
+    "weight_mae": 0.18760394627962138,
+    "weight_rmse": 0.21270225241736315
+  },
+  "mixed_unique_query_macro": {
+    "brier_score": 0.07809103780202924,
+    "cross_entropy": 0.8277367186084658,
+    "dominant_top1_accuracy": 0.9051282051282051,
+    "dual_support_activation_rate": 0.5083333333333333,
+    "ece": 0.13591657097523027,
+    "entropy": 0.6299103900924156,
+    "low_secondary_weight_rate": 0.33194444444444443,
+    "low_top2_mass_rate": 0.1597222222222222,
+    "mixed_record_count": 240.0,
+    "ordering_accuracy": 0.8972222222222221,
+    "record_count": 260.0,
+    "single_endpoint_rate": 0.4916666666666667,
+    "top2_mass": 0.9445442498888439,
+    "top2_pair_accuracy": 0.9625,
+    "weight_mae": 0.18760394627962138,
+    "weight_rmse": 0.21270225241736315
+  },
+  "next_task": "DIAGNOSE_CONTROLLER_FALLBACK_CALIBRATION_AND_RESIDUAL_GHOSTING",
+  "next_task_started": false,
+  "output_root": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002",
+  "baseline_registry": {
+    "all_reused_or_formal_controller_registered": true,
+    "count": 9,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002/attempt_004/baselines/baseline_registry.json"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "perturbation_conclusion": "PERTURBATION_ROBUSTNESS_FAIL",
+  "pure": {
+    "endpoint_parity": "PASS",
+    "single_endpoint_rate": "100% each seed",
+    "swaps": "240/240",
+    "top1": "20/20 each seed"
+  },
+  "result_driven_rerun": 0,
+  "run_branch": "research/reference-conditioned-dual-support-controller-formal-20260723",
+  "schema_version": "canondressgs.research.dual_support_controller_final_summary.v1",
+  "seed_aggregation_gates": {
+    "activation_macro_ge_0_80": false,
+    "activation_worst_ge_0_70": false,
+    "controller_vs_full_linear_render_gate": false,
+    "controller_vs_full_linear_severe_reduction_gate": false,
+    "frozen_mutation_eq_0": true,
+    "geometry_interpolation_eq_0": true,
+    "ground_truth_id_pair_alpha_inference_use_eq_0": true,
+    "identity_manual_maximum_eq_0": true,
+    "no_result_driven_rerun_or_threshold_change": true,
+    "ordering_macro_ge_0_85": true,
+    "ordering_two_seeds_ge_0_85": true,
+    "ordering_worst_ge_0_75": true,
+    "pure_safety_all_seeds": true,
+    "target_forward_leakage_eq_0": true,
+    "top2_macro_ge_0_90": true,
+    "top2_two_seeds_ge_0_90": true,
+    "top2_worst_ge_0_80": true,
+    "worst_seed_grade3_ghosting_pairs_le_1": true
+  },
+  "seed_selection": 0,
+  "source_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a",
+  "target_forward_leakage": 0,
+  "task_id": "AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002",
+  "threshold_changes": 0,
+  "training_totals": {
+    "backward_calls": 900,
+    "checkpoint_writes": 18,
+    "forward_training_batches": 900,
+    "optimizer_steps": 900,
+    "scheduler_steps": 900,
+    "training_steps": 900
+  },
+  "validation": {
+    "git_diff_check": "PASS",
+    "json_parse": "PASS",
+    "markdown_nonempty": "PASS",
+    "py_compile": "PASS",
+    "yaml_parse": "PASS"
+  },
+  "visual_review": {
+    "category_summary": {
+      "cloud": {
+        "affected_pair_count": 10,
+        "maximum_grade": 3,
+        "mean_grade": 1.16,
+        "severe_sheet_count": 12
+      },
+      "double_outline": {
+        "affected_pair_count": 0,
+        "maximum_grade": 0,
+        "mean_grade": 0.0,
+        "severe_sheet_count": 0
+      },
+      "edge_scatter": {
+        "affected_pair_count": 10,
+        "maximum_grade": 2,
+        "mean_grade": 1.2,
+        "severe_sheet_count": 0
+      },
+      "endpoint_mismatch": {
+        "affected_pair_count": 10,
+        "maximum_grade": 3,
+        "mean_grade": 1.72,
+        "severe_sheet_count": 27
+      },
+      "full_body_contamination": {
+        "affected_pair_count": 10,
+        "maximum_grade": 3,
+        "mean_grade": 1.16,
+        "severe_sheet_count": 12
+      },
+      "ghosting": {
+        "affected_pair_count": 4,
+        "maximum_grade": 1,
+        "mean_grade": 0.32,
+        "severe_sheet_count": 0
+      },
+      "identity_contamination": {
+        "affected_pair_count": 0,
+        "maximum_grade": 0,
+        "mean_grade": 0.0,
+        "severe_sheet_count": 0
+      },
+      "mottle": {
+        "affected_pair_count": 10,
+        "maximum_grade": 3,
+        "mean_grade": 1.16,
+        "severe_sheet_count": 12
+      },
+      "patch": {
+        "affected_pair_count": 10,
+        "maximum_grade": 3,
+        "mean_grade": 1.16,
+        "severe_sheet_count": 12
+      },
+      "silhouette_discontinuity": {
+        "affected_pair_count": 10,
+        "maximum_grade": 2,
+        "mean_grade": 1.2,
+        "severe_sheet_count": 0
+      },
+      "wrong_garment_mixture": {
+        "affected_pair_count": 10,
+        "maximum_grade": 3,
+        "mean_grade": 1.72,
+        "severe_sheet_count": 27
+      }
+    },
+    "expected": 88,
+    "identity_contamination_maximum_grade": 0,
+    "opened": 88,
+    "worst_seed_grade3_ghosting_pair_count": 0
+  }
+}

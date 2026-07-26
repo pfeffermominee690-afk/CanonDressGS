@@ -1,0 +1,169 @@
+{
+  "branch": "research/subject00-three-garment-canary-protocol-20260724",
+  "claim_boundary": {
+    "allowed": "identity-conditioned synthetic closed-wardrobe garment endpoint benchmark",
+    "canary_pass_supports_only": "subject00 can carry synthetic closed-wardrobe endpoints",
+    "forbidden": [
+      "captured multi-outfit subject00",
+      "real garment-transfer ground truth",
+      "real cross-identity garment data",
+      "original THuman4.0 multi-garment sequence"
+    ]
+  },
+  "classification": "SUBJECT00_THREE_GARMENT_PROTOCOL_READY_PENDING_FORMAL_BASE",
+  "content_sha256": "3682669e0d1150e5cf6e0395ed41d847d958a10a42d892a8898b6aff37764842",
+  "endpoint_condition_count": 24,
+  "execution_counts": {
+    "accepted_endpoints": 0,
+    "candidate_files": 0,
+    "checkpoint_writes": 0,
+    "formal_base_checkpoint_available": 0,
+    "formal_base_mutation": 0,
+    "formal_condition_renders": 0,
+    "generated_images": 0,
+    "image_api_calls": 0,
+    "optimizer_created": 0,
+    "paper_final": 0,
+    "preview_renders": 0,
+    "raw_mutation": 0,
+    "teacher_training_runs": 0
+  },
+  "formal_base": {
+    "checkpoint_available": false,
+    "medium_may_be_promoted_to_formal": false,
+    "medium_use": "PREVIEW_ONLY",
+    "required_step": 101245,
+    "status": "PENDING_FORMAL_BASE"
+  },
+  "formal_render_contract": {
+    "append_only": true,
+    "authorization": "FUTURE_TASK_ONLY_AFTER_FORMAL_BASE_EXISTS",
+    "camera_and_pose": {
+      "camera_path_and_sha_required": true,
+      "pose_path_and_sha_required": true,
+      "selection_contract": "condition_manifest.pose_camera_mapping",
+      "strict_train_only": true
+    },
+    "checkpoint_path": "PENDING_FORMAL_BASE",
+    "checkpoint_sha256": "PENDING_FORMAL_BASE",
+    "formal_protocol_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+    "image_contract": {
+      "background": [
+        "light gray",
+        "white"
+      ],
+      "close_up_forbidden": true,
+      "feet_complete": true,
+      "framing": "fixed full-body portrait with identical identity-specific camera intrinsics and subject scale",
+      "full_body": true,
+      "hands_visible": true,
+      "lighting": "fixed per identity and reused for all garments and slots",
+      "numbering_forbidden": true,
+      "resolution_height": 1536,
+      "resolution_width": 1024
+    },
+    "only_checkpoint_step": 101245,
+    "overwrite_allowed": false,
+    "render_count_in_this_task": 0,
+    "renderer": {
+      "backend": "gsplat.rasterization",
+      "code_sha256": "PENDING_FORMAL_BASE",
+      "config_path": "config/subject00_surface_lbs_formal_strict_split.yaml",
+      "config_sha256": "PENDING_FORMAL_BASE",
+      "entrypoint": "scene.gaussian_model.GaussianModel.render",
+      "image_scaling": 1,
+      "rgb_clamp": [
+        0.0,
+        1.0
+      ],
+      "scaling_modifier": 1.0
+    },
+    "required_outputs": [
+      "RGB",
+      "alpha",
+      "depth",
+      "source_pose",
+      "source_camera",
+      "checkpoint_sha256",
+      "renderer_sha256",
+      "output_sha256"
+    ]
+  },
+  "paper_final": 0,
+  "reference_count": 12,
+  "reference_slots": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "schema_version": "subject00.three_garment.canary_protocol.v1",
+  "selected_garments": [
+    "O01",
+    "O03",
+    "O04"
+  ],
+  "semantic_slots": [
+    "front",
+    "front_left_three_quarter",
+    "front_right_three_quarter",
+    "left",
+    "right",
+    "back_left_three_quarter",
+    "back_right_three_quarter",
+    "back"
+  ],
+  "source": {
+    "branch": "research/multi-identity-garment-benchmark-foundations-20260724",
+    "formal_protocol_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+    "head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2",
+    "medium_head": "2d0913eb1b163a79e81c1804c216f91b0a737b44"
+  },
+  "source_objects": {
+    "formal_availability": {
+      "commit": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+      "entries_sha256": "cd00ad0a1549bc99d956e26eea300945adfaa10a20a438e931e640977475564e",
+      "git_blob": "f9a40af69fb13723d8c1ff0c67ccec355bd66a91",
+      "path": "paper_protocol/second_identity/subject00_formal_evaluation_manifests.json",
+      "raw_file_sha256": "da9cbce12b6d0fa9a1fddced662eefa9d2f4f331011fbbf3a9944fc878011c7a"
+    },
+    "formal_camera_split": {
+      "commit": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+      "git_blob": "2fd37f4fa77385b79c8c1d7e157e75a2cb0c374d",
+      "path": "paper_protocol/second_identity/subject00_novel_view_split_v2.json",
+      "scientific_sha256": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44"
+    },
+    "formal_pose_split": {
+      "commit": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+      "git_blob": "e2a5472a887bf1f5b31be808ea68ef36db10df5e",
+      "path": "paper_protocol/second_identity/subject00_novel_pose_split_v2.json",
+      "scientific_sha256": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06"
+    },
+    "formal_training_contract": {
+      "commit": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+      "final_step": 101245,
+      "git_blob": "20773064786f434c08879189381cd79f930677ee",
+      "path": "paper_protocol/second_identity/subject00_formal_training_contract.json"
+    },
+    "medium_final_summary": {
+      "commit": "2d0913eb1b163a79e81c1804c216f91b0a737b44",
+      "formal_promotion_allowed": false,
+      "git_blob": "5a1eb194b67c0da829fc1932eae68e1ebb4794ae",
+      "path": "paper_protocol/second_identity/subject00_medium_pilot_final_summary.json",
+      "use": "PREVIEW_ONLY"
+    },
+    "shared_condition_pose_view_protocol": {
+      "commit": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2",
+      "content_sha256": "78a61b520958e2fd67a54d0f45298d5a718905e7a8464472515a24f86320569e",
+      "git_blob": "5cee5d0b5b08b71089ef62deb64521f5c471b249",
+      "path": "paper_protocol/datasets/shared_condition_pose_view_protocol.json"
+    },
+    "shared_five_garment_wardrobe": {
+      "commit": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2",
+      "content_sha256": "6da35b17759e95cdb515e7a1df95a170a0d7040067a0f1fa892fce76e73d21c0",
+      "git_blob": "c826eef0fd28065bc44008bcbac740a69a9e2c84",
+      "path": "paper_protocol/datasets/shared_five_garment_wardrobe.json"
+    }
+  },
+  "task_id": "AAAI27-SUBJECT00-THREE-GARMENT-CANARY-PROTOCOL-001"
+}

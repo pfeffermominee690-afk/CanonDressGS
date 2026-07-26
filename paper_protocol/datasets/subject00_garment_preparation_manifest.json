@@ -1,0 +1,57 @@
+{
+  "condition_source_contract": {
+    "formal": "subject00 formal final checkpoint at step 101245 only",
+    "identity_reference_assignment": "PENDING_FORMAL_FINAL_CHECKPOINT",
+    "medium": "PREVIEW_ONLY",
+    "medium_preview_may_be_promoted_to_formal": false,
+    "semantic_protocol": "paper_protocol/datasets/shared_condition_pose_view_protocol.json"
+  },
+  "content_sha256": "438ab8dc5530fecc2c4bbbe6d3f579fd8751fc39bbcd9ced4f013ddc989788d0",
+  "counts": {
+    "accepted_endpoints": 0,
+    "avatar_training_runs": 0,
+    "formal_condition_images": 0,
+    "generated_candidates": 0,
+    "preview_images": 0,
+    "renderer_formal_runs": 0,
+    "teacher_training_runs": 0
+  },
+  "evidence": {
+    "formal_final_checkpoint_exists": false,
+    "formal_final_step": 101245,
+    "formal_protocol": "SUBJECT00_FORMAL_STRICT_SPLIT_PROTOCOL_READY",
+    "formal_source_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+    "formal_training_run_count": 0,
+    "medium_pilot": "SUBJECT00_MMLPHUMAN_MEDIUM_PILOT_PASS",
+    "medium_source_head": "2d0913eb1b163a79e81c1804c216f91b0a737b44",
+    "short_canary": "PASS",
+    "surface_attached_lbs_runtime": "PASS"
+  },
+  "generation_adapter": {
+    "mode": "RECORD_PREPARATION_AND_VALIDATION_ONLY",
+    "path": "tools/datasets/identity_garment_generation_record_adapter.py",
+    "preview_command_template_not_executed": "python tools/datasets/identity_garment_generation_record_adapter.py --record <future_preview_record.json> --output <validated_record.json>",
+    "submits_requests": false
+  },
+  "identity_id": "subject00",
+  "paper_final": 0,
+  "readiness": "SUBJECT00_GARMENT_BANK_PREPARATION_READY_PENDING_FORMAL_BASE",
+  "schema_version": "multi_identity.subject00_garment_preparation_manifest.v1",
+  "task_id": "AAAI27-MULTI-IDENTITY-GARMENT-DATA-PREPARATION-001",
+  "teacher_input_contract": {
+    "accepted_endpoints_required": 40,
+    "garment_teacher_optimizer_steps_per_garment": 1200,
+    "training_authorized_by_this_manifest": false
+  },
+  "wardrobe": {
+    "garment_ids": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "manifest": "paper_protocol/datasets/shared_five_garment_wardrobe.json",
+    "prompt_count": 5
+  }
+}

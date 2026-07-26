@@ -1,0 +1,4344 @@
+{
+  "schema_version": "canondressgs.subject00.teacher_target_camera_registry.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-TEACHER-TARGET-CREATION-PREFLIGHT-001",
+  "created_at": "2026-07-26T21:13:17.142237+00:00",
+  "calibration_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+  "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+  "calibration_bytes": 22835,
+  "camera_count_in_calibration": 24,
+  "record_count": 24,
+  "unique_camera_binding_count": 22,
+  "blocked_camera_binding_count": 2,
+  "camera_binding_status": "BLOCKED_22_OF_24_UNIQUE_SIMILARITY_BINDINGS_2_OF_24_HUMAN_OVERRIDE_CAMERA_MODELS_NONUNIQUE",
+  "decision": "Similarity left-multiplication yields unique per-record pixel intrinsics for 22 machine-pass cells. The two human overrides have materially competing similarity/projective explanations. H@K is not a unique physical pinhole K, and visual acceptance cannot recover missing physical camera evidence.",
+  "records": [
+    {
+      "sequence_index": 1,
+      "request_id": "subject00_O01_slot00_cand01",
+      "garment": "O01",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "direction": "front",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1129.202880859375,
+          0.0,
+          669.2590942382812
+        ],
+        [
+          0.0,
+          1129.5264892578125,
+          567.3696899414062
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353
+        ],
+        [
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528
+        ],
+        [
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049
+        ]
+      ],
+      "calibration_T": [
+        1.1242623329162598,
+        0.4185454845428467,
+        2.35041880607605
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353,
+          1.1242623329162598
+        ],
+        [
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528,
+          0.4185454845428467
+        ],
+        [
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049,
+          2.35041880607605
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.12675374746322632,
+          -0.16570360958576202,
+          0.9779959321022034,
+          -2.0868410696854376
+        ],
+        [
+          -0.5666808485984802,
+          -0.7971195578575134,
+          -0.20850248634815216,
+          1.4607968894726575
+        ],
+        [
+          0.8141292929649353,
+          -0.5806399583816528,
+          0.007137119770050049,
+          -0.6890458860071789
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.02703115137443,
+          8.013191380368571e-05,
+          -0.633947184695007
+        ],
+        [
+          -8.013191380368571e-05,
+          1.02703115137443,
+          0.2172578175002461
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1159.726534864327,
+          0.09051111927618677,
+          686.7614553577442
+        ],
+        [
+          -0.09048518791589702,
+          1160.0588907703689,
+          582.8699747209241
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0258552861773182,
+          -0.0003226220385095653,
+          -0.1683585184491753
+        ],
+        [
+          -0.0003225511518782567,
+          1.0263400958436755,
+          0.2781899738058128
+        ],
+        [
+          -4.0499508547114614e-07,
+          -8.096711695470146e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 2,
+      "request_id": "subject00_O01_slot01_cand01",
+      "garment": "O01",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "direction": "front-left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1136.0640869140625,
+          0.0,
+          662.0599975585938
+        ],
+        [
+          0.0,
+          1136.3563232421875,
+          563.8951416015625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.8080047369003296,
+          -0.42864614725112915,
+          0.4042161703109741
+        ],
+        [
+          -0.1496666669845581,
+          -0.812895655632019,
+          -0.5628503561019897
+        ],
+        [
+          0.5698491930961609,
+          0.3942880928516388,
+          -0.7209776639938354
+        ]
+      ],
+      "calibration_T": [
+        -0.34158775210380554,
+        0.4305654466152191,
+        1.8453154563903809
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.8080047369003296,
+          -0.42864614725112915,
+          0.4042161703109741,
+          -0.34158775210380554
+        ],
+        [
+          -0.1496666669845581,
+          -0.812895655632019,
+          -0.5628503561019897,
+          0.4305654466152191
+        ],
+        [
+          0.5698491930961609,
+          0.3942880928516388,
+          -0.7209776639938354,
+          1.8453154563903809
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.8080047369003296,
+          -0.1496666669845581,
+          0.5698491930961609,
+          -0.7111057067513045
+        ],
+        [
+          -0.42864614725112915,
+          -0.812895655632019,
+          0.3942880928516388,
+          -0.5240014048785131
+        ],
+        [
+          0.4042161703109741,
+          -0.5628503561019897,
+          -0.7209776639938354,
+          1.7108504350131781
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.029782217037471,
+          7.477894982642779e-05,
+          -0.2949683011306825
+        ],
+        [
+          -7.477894982642779e-05,
+          1.029782217037471,
+          0.4125314673474573
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1169.8985941190135,
+          0.0849755324806715,
+          681.5248112830818
+        ],
+        [
+          -0.08495367935495318,
+          1170.199533892889,
+          581.0522124111236
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0296432144469916,
+          3.060537656330959e-05,
+          -0.24850003316492889
+        ],
+        [
+          1.9536859342915573e-05,
+          1.0296246922469892,
+          0.378607264365699
+        ],
+        [
+          -2.3380933841848415e-08,
+          -1.2461962386578564e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 3,
+      "request_id": "subject00_O01_slot02_cand01",
+      "garment": "O01",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "direction": "front-right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1138.29443359375,
+          0.0,
+          660.090576171875
+        ],
+        [
+          0.0,
+          1138.34423828125,
+          567.7401733398438
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165
+        ],
+        [
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835
+        ],
+        [
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571
+        ]
+      ],
+      "calibration_T": [
+        1.5748155117034912,
+        0.37408238649368286,
+        3.5135555267333984
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165,
+          1.5748155117034912
+        ],
+        [
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835,
+          0.37408238649368286
+        ],
+        [
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571,
+          3.5135555267333984
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.7954661250114441,
+          -0.15045098960399628,
+          0.5870248079299927,
+          -0.7535508002879476
+        ],
+        [
+          -0.2621123790740967,
+          -0.7879701852798462,
+          -0.5571355223655701,
+          2.665071001517795
+        ],
+        [
+          0.5463796854019165,
+          -0.5970489382743835,
+          0.5873686075210571,
+          -2.7008539293527214
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.016754885482674,
+          -5.091665599962853e-05,
+          -0.07460654148126766
+        ],
+        [
+          5.091665599962853e-05,
+          1.016754885482674,
+          -0.24108440099882136
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1157.3664264741785,
+          -0.05796068198972558,
+          671.0468042112427
+        ],
+        [
+          0.05795814610158497,
+          1157.417065633514,
+          577.045120131863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.014086114105817,
+          -0.0015783565766251582,
+          1.5639541342886665
+        ],
+        [
+          -0.0003066769711882319,
+          1.015163693538793,
+          -0.1218213099559431
+        ],
+        [
+          -6.838858742002095e-07,
+          -1.6998270246977186e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 4,
+      "request_id": "subject00_O01_slot03_cand01",
+      "garment": "O01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "direction": "left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1120.84716796875,
+          0.0,
+          674.9315185546875
+        ],
+        [
+          0.0,
+          1121.910888671875,
+          577.9261474609375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027
+        ],
+        [
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221
+        ],
+        [
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997
+        ]
+      ],
+      "calibration_T": [
+        -1.0443826913833618,
+        0.4047955870628357,
+        2.266456127166748
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027,
+          -1.0443826913833618
+        ],
+        [
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221,
+          0.4047955870628357
+        ],
+        [
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997,
+          2.266456127166748
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.9835854768753052,
+          -0.13696306943893433,
+          0.11747665703296661,
+          0.8164260045126461
+        ],
+        [
+          -0.1790315806865692,
+          -0.822007954120636,
+          0.5406020879745483,
+          -1.0794832063705257
+        ],
+        [
+          0.02252422273159027,
+          -0.5527603626251221,
+          -0.8330357670783997,
+          2.1353178822955297
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0267327727070334,
+          0.00010054307581884112,
+          -0.7944265224253114
+        ],
+        [
+          -0.00010054307581884112,
+          1.0267327727070334,
+          0.26111734129269354
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1150.8105205493807,
+          0.11280037154171975,
+          692.2379893830595
+        ],
+        [
+          -0.11269342179041537,
+          1151.902677456286,
+          593.5689734529122
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0251424333819088,
+          -0.00108802249580271,
+          0.3437077154774869
+        ],
+        [
+          -0.00024553525850270775,
+          1.0254848990950516,
+          0.3573714859124231
+        ],
+        [
+          -3.320624774024614e-07,
+          -1.2008744355801171e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 5,
+      "request_id": "subject00_O01_slot04_remaining_attempt005_cand00",
+      "garment": "O01",
+      "slot": "slot_04",
+      "camera_id": "cam11",
+      "direction": "right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1129.52783203125,
+          0.0,
+          674.9684448242188
+        ],
+        [
+          0.0,
+          1128.371826171875,
+          547.0431518554688
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851
+        ]
+      ],
+      "calibration_T": [
+        0.9523422122001648,
+        0.434766948223114,
+        4.492981910705566
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615,
+          0.9523422122001648
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949,
+          0.434766948223114
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851,
+          4.492981910705566
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.9760977029800415,
+          -0.1450749635696411,
+          -0.1618223488330841,
+          1.7197177310091973
+        ],
+        [
+          0.21206191182136536,
+          -0.7987494468688965,
+          -0.5630532503128052,
+          2.675102417602142
+        ],
+        [
+          -0.047570571303367615,
+          -0.5839114189147949,
+          0.8104221224784851,
+          -3.342043087586556
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": null,
+      "target_K": null,
+      "registration_homography_diagnostic": [
+        [
+          1.0366475795011176,
+          0.0002505762114936384,
+          -0.20756324949946617
+        ],
+        [
+          -0.0004858726870372838,
+          1.0423939448252861,
+          -0.8964295490865074
+        ],
+        [
+          -7.569470295809887e-07,
+          5.813659153239166e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "BLOCKED_HUMAN_OVERRIDE_DOES_NOT_SELECT_UNIQUE_PHYSICAL_CAMERA",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 6,
+      "request_id": "subject00_O01_slot05_cand00",
+      "garment": "O01",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "direction": "back-left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1122.50390625,
+          0.0,
+          663.93408203125
+        ],
+        [
+          0.0,
+          1122.2940673828125,
+          565.6901245117188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.7729429602622986,
+          0.26766645908355713,
+          -0.5752509236335754
+        ],
+        [
+          -0.1376061737537384,
+          -0.8143544793128967,
+          -0.5638184547424316
+        ],
+        [
+          -0.6193735003471375,
+          0.5149576663970947,
+          -0.5926170945167542
+        ]
+      ],
+      "calibration_T": [
+        -1.5476902723312378,
+        0.42970699071884155,
+        3.3003599643707275
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.7729429602622986,
+          0.26766645908355713,
+          -0.5752509236335754,
+          -1.5476902723312378
+        ],
+        [
+          -0.1376061737537384,
+          -0.8143544793128967,
+          -0.5638184547424316,
+          0.42970699071884155
+        ],
+        [
+          -0.6193735003471375,
+          0.5149576663970947,
+          -0.5926170945167542,
+          3.3003599643707275
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.7729429602622986,
+          -0.1376061737537384,
+          -0.6193735003471375,
+          3.2995621390307743
+        ],
+        [
+          0.26766645908355713,
+          -0.8143544793128967,
+          0.5149576663970947,
+          -0.9353470778858259
+        ],
+        [
+          -0.5752509236335754,
+          -0.5638184547424316,
+          -0.5926170945167542,
+          1.307816205786672
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.026692171686308,
+          7.189651570453167e-05,
+          -0.13649717673736067
+        ],
+        [
+          -7.189651570453167e-05,
+          1.026692171686308,
+          -0.06597521848506457
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1152.4659732341763,
+          0.0806890330406911,
+          681.5600985094029
+        ],
+        [
+          -0.08070411972410127,
+          1152.2505333119195,
+          580.6759126707939
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0252030480684375,
+          -0.00023380136725095914,
+          0.31250789307923776
+        ],
+        [
+          -0.00020354023485884994,
+          1.0254095636968168,
+          0.08431734637882574
+        ],
+        [
+          -2.49733854752654e-07,
+          -1.339921319713084e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 7,
+      "request_id": "subject00_O01_slot06_cand01",
+      "garment": "O01",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "direction": "back-right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1130.19921875,
+          0.0,
+          661.3673706054688
+        ],
+        [
+          0.0,
+          1129.7362060546875,
+          556.1578979492188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865
+        ],
+        [
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666
+        ],
+        [
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226
+        ]
+      ],
+      "calibration_T": [
+        0.3554982542991638,
+        0.436452180147171,
+        4.907172679901123
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865,
+          0.3554982542991638
+        ],
+        [
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666,
+          0.436452180147171
+        ],
+        [
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226,
+          4.907172679901123
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.8032007217407227,
+          -0.13492070138454437,
+          -0.5802284479141235,
+          3.191704076402544
+        ],
+        [
+          0.4300975203514099,
+          -0.8052618503570557,
+          -0.40812918543815613,
+          2.2013197611667756
+        ],
+        [
+          -0.41217076778411865,
+          -0.577364444732666,
+          0.7048160433769226,
+          -3.0601360733518064
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.022346658922006,
+          0.0003523145639576148,
+          -1.2404353129339563
+        ],
+        [
+          -0.0003523145639576148,
+          1.022346658922006,
+          1.3237758752681206
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1155.4553952053238,
+          0.3980225188232873,
+          675.1022288729067
+        ],
+        [
+          -0.39818564493914316,
+          1154.9820357232327,
+          569.6769353199472
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.021173240245936,
+          0.0007399026534985215,
+          -0.8977667175955574
+        ],
+        [
+          -0.0006305480857611296,
+          1.0236008296462058,
+          0.7067075602683167
+        ],
+        [
+          -9.189282451698651e-07,
+          8.672450994677512e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 8,
+      "request_id": "subject00_O01_slot07_remaining_attempt005_cand00",
+      "garment": "O01",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "direction": "back",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1116.182861328125,
+          0.0,
+          671.1694946289062
+        ],
+        [
+          0.0,
+          1115.817138671875,
+          564.6517333984375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.1500503420829773,
+          0.5310117602348328,
+          -0.833973228931427
+        ],
+        [
+          -0.13638286292552948,
+          -0.8243420720100403,
+          -0.5494177341461182
+        ],
+        [
+          -0.9792265295982361,
+          0.19618000090122223,
+          -0.05127197504043579
+        ]
+      ],
+      "calibration_T": [
+        -1.224831223487854,
+        0.45103585720062256,
+        4.3552374839782715
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.1500503420829773,
+          0.5310117602348328,
+          -0.833973228931427,
+          -1.224831223487854
+        ],
+        [
+          -0.13638286292552948,
+          -0.8243420720100403,
+          -0.5494177341461182,
+          0.45103585720062256
+        ],
+        [
+          -0.9792265295982361,
+          0.19618000090122223,
+          -0.05127197504043579,
+          4.3552374839782715
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.1500503420829773,
+          -0.13638286292552948,
+          -0.9792265295982361,
+          4.510063992577551
+        ],
+        [
+          0.5310117602348328,
+          -0.8243420720100403,
+          0.19618000090122223,
+          0.1677971235185609
+        ],
+        [
+          -0.833973228931427,
+          -0.5494177341461182,
+          -0.05127197504043579,
+          -0.5503677240926734
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.00959351370608,
+          0.0004910012471127087,
+          -1.9550958107190288
+        ],
+        [
+          -0.0004910012471127087,
+          1.00959351370608,
+          4.026214426821863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1126.890976906768,
+          0.5478676066376248,
+          675.9305172692955
+        ],
+        [
+          -0.5480471769179409,
+          1126.5217456852026,
+          573.7653969098924
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.008366638384904,
+          0.002671285192927887,
+          -2.3853664247704125
+        ],
+        [
+          -0.0013800894412205962,
+          1.0151630717641842,
+          1.5219750610864078
+        ],
+        [
+          -1.752113341815906e-06,
+          2.7781531073037894e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 9,
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "direction": "front",
+      "source_frame_id": "00000000",
+      "target_width": 1350,
+      "target_height": 1165,
+      "calibration_K": [
+        [
+          1129.202880859375,
+          0.0,
+          669.2590942382812
+        ],
+        [
+          0.0,
+          1129.5264892578125,
+          567.3696899414062
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353
+        ],
+        [
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528
+        ],
+        [
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049
+        ]
+      ],
+      "calibration_T": [
+        1.1242623329162598,
+        0.4185454845428467,
+        2.35041880607605
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353,
+          1.1242623329162598
+        ],
+        [
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528,
+          0.4185454845428467
+        ],
+        [
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049,
+          2.35041880607605
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.12675374746322632,
+          -0.16570360958576202,
+          0.9779959321022034,
+          -2.0868410696854376
+        ],
+        [
+          -0.5666808485984802,
+          -0.7971195578575134,
+          -0.20850248634815216,
+          1.4607968894726575
+        ],
+        [
+          0.8141292929649353,
+          -0.5806399583816528,
+          0.007137119770050049,
+          -0.6890458860071789
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.019943552359851,
+          0.0002695117808666926,
+          -0.14430855500952763
+        ],
+        [
+          -0.0002695117808666926,
+          1.019943552359851,
+          1.265576419859527
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1151.7231976386886,
+          0.3044206956559762,
+          682.6151022870653
+        ],
+        [
+          -0.3043334793802099,
+          1152.0532599381643,
+          579.7702602696552
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0192886369607825,
+          0.00024222065263621948,
+          0.22543771692436823
+        ],
+        [
+          -0.00011849103918432716,
+          1.0206517836628595,
+          0.5014436266957396
+        ],
+        [
+          2.6797606095375423e-08,
+          -3.0383334851135576e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 10,
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "garment": "O03",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "direction": "front-left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1136.0640869140625,
+          0.0,
+          662.0599975585938
+        ],
+        [
+          0.0,
+          1136.3563232421875,
+          563.8951416015625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.8080047369003296,
+          -0.42864614725112915,
+          0.4042161703109741
+        ],
+        [
+          -0.1496666669845581,
+          -0.812895655632019,
+          -0.5628503561019897
+        ],
+        [
+          0.5698491930961609,
+          0.3942880928516388,
+          -0.7209776639938354
+        ]
+      ],
+      "calibration_T": [
+        -0.34158775210380554,
+        0.4305654466152191,
+        1.8453154563903809
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.8080047369003296,
+          -0.42864614725112915,
+          0.4042161703109741,
+          -0.34158775210380554
+        ],
+        [
+          -0.1496666669845581,
+          -0.812895655632019,
+          -0.5628503561019897,
+          0.4305654466152191
+        ],
+        [
+          0.5698491930961609,
+          0.3942880928516388,
+          -0.7209776639938354,
+          1.8453154563903809
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.8080047369003296,
+          -0.1496666669845581,
+          0.5698491930961609,
+          -0.7111057067513045
+        ],
+        [
+          -0.42864614725112915,
+          -0.812895655632019,
+          0.3942880928516388,
+          -0.5240014048785131
+        ],
+        [
+          0.4042161703109741,
+          -0.5628503561019897,
+          -0.7209776639938354,
+          1.7108504350131781
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0239549442515063,
+          0.00011542970476091074,
+          -1.4493846607765777
+        ],
+        [
+          -0.00011542970476091074,
+          1.0239549442515063,
+          0.33486778644522713
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1163.2784387822273,
+          0.13116927489503977,
+          676.5353134801969
+        ],
+        [
+          -0.13113554214196388,
+          1163.577675615301,
+          577.6616646787162
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0230896734406878,
+          0.000287825864013516,
+          -1.2639926868754816
+        ],
+        [
+          -0.0002088185220734898,
+          1.024120291963298,
+          0.07133789671552833
+        ],
+        [
+          -2.971476976972561e-07,
+          -2.234166884954803e-07,
+          0.9999999999999999
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 11,
+      "request_id": "subject00_O03_slot02_cand00",
+      "garment": "O03",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "direction": "front-right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1138.29443359375,
+          0.0,
+          660.090576171875
+        ],
+        [
+          0.0,
+          1138.34423828125,
+          567.7401733398438
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165
+        ],
+        [
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835
+        ],
+        [
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571
+        ]
+      ],
+      "calibration_T": [
+        1.5748155117034912,
+        0.37408238649368286,
+        3.5135555267333984
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165,
+          1.5748155117034912
+        ],
+        [
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835,
+          0.37408238649368286
+        ],
+        [
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571,
+          3.5135555267333984
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.7954661250114441,
+          -0.15045098960399628,
+          0.5870248079299927,
+          -0.7535508002879476
+        ],
+        [
+          -0.2621123790740967,
+          -0.7879701852798462,
+          -0.5571355223655701,
+          2.665071001517795
+        ],
+        [
+          0.5463796854019165,
+          -0.5970489382743835,
+          0.5873686075210571,
+          -2.7008539293527214
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0266454449640348,
+          2.9239205267308382e-05,
+          -0.5033108357466869
+        ],
+        [
+          -2.9239205267308382e-05,
+          1.0266454449640348,
+          0.4150153935753502
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1168.6247952769395,
+          0.033284280847963275,
+          677.1922727262609
+        ],
+        [
+          -0.03328282459848218,
+          1168.6759270324992,
+          583.2635777521657
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.025363349563322,
+          -0.0008223704101586898,
+          0.3059257246361791
+        ],
+        [
+          -0.0001175593244857769,
+          1.02621203855495,
+          0.10435895703747188
+        ],
+        [
+          -1.2063722432690185e-07,
+          -1.1480064459585046e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 12,
+      "request_id": "subject00_O03_slot03_cand01",
+      "garment": "O03",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "direction": "left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1120.84716796875,
+          0.0,
+          674.9315185546875
+        ],
+        [
+          0.0,
+          1121.910888671875,
+          577.9261474609375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027
+        ],
+        [
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221
+        ],
+        [
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997
+        ]
+      ],
+      "calibration_T": [
+        -1.0443826913833618,
+        0.4047955870628357,
+        2.266456127166748
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027,
+          -1.0443826913833618
+        ],
+        [
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221,
+          0.4047955870628357
+        ],
+        [
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997,
+          2.266456127166748
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.9835854768753052,
+          -0.13696306943893433,
+          0.11747665703296661,
+          0.8164260045126461
+        ],
+        [
+          -0.1790315806865692,
+          -0.822007954120636,
+          0.5406020879745483,
+          -1.0794832063705257
+        ],
+        [
+          0.02252422273159027,
+          -0.5527603626251221,
+          -0.8330357670783997,
+          2.1353178822955297
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0275258434063523,
+          9.500344438327829e-05,
+          -0.7513391705310312
+        ],
+        [
+          -9.500344438327829e-05,
+          1.0275258434063523,
+          0.8918651722043339
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1151.6994315967113,
+          0.10658539871493279,
+          692.8131436485122
+        ],
+        [
+          -0.10648434158427411,
+          1152.7924321093385,
+          594.6617964496025
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0252730291646104,
+          -0.0005842833674551584,
+          0.3429588114766535
+        ],
+        [
+          -0.00040268152691044285,
+          1.0264596089068185,
+          0.7492267533047431
+        ],
+        [
+          -6.102510348286732e-07,
+          -1.2569739345581294e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 13,
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_04",
+      "camera_id": "cam11",
+      "direction": "right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1129.52783203125,
+          0.0,
+          674.9684448242188
+        ],
+        [
+          0.0,
+          1128.371826171875,
+          547.0431518554688
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851
+        ]
+      ],
+      "calibration_T": [
+        0.9523422122001648,
+        0.434766948223114,
+        4.492981910705566
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615,
+          0.9523422122001648
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949,
+          0.434766948223114
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851,
+          4.492981910705566
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.9760977029800415,
+          -0.1450749635696411,
+          -0.1618223488330841,
+          1.7197177310091973
+        ],
+        [
+          0.21206191182136536,
+          -0.7987494468688965,
+          -0.5630532503128052,
+          2.675102417602142
+        ],
+        [
+          -0.047570571303367615,
+          -0.5839114189147949,
+          0.8104221224784851,
+          -3.342043087586556
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": null,
+      "target_K": null,
+      "registration_homography_diagnostic": [
+        [
+          1.0260056101065813,
+          0.00024440285395338414,
+          -0.3549562284603542
+        ],
+        [
+          -5.796409795418979e-05,
+          1.0318162312337198,
+          0.46871347703516425
+        ],
+        [
+          -4.085594029717902e-07,
+          1.0125242756352863e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "BLOCKED_HUMAN_OVERRIDE_DOES_NOT_SELECT_UNIQUE_PHYSICAL_CAMERA",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 14,
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "direction": "back-left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1122.50390625,
+          0.0,
+          663.93408203125
+        ],
+        [
+          0.0,
+          1122.2940673828125,
+          565.6901245117188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.7729429602622986,
+          0.26766645908355713,
+          -0.5752509236335754
+        ],
+        [
+          -0.1376061737537384,
+          -0.8143544793128967,
+          -0.5638184547424316
+        ],
+        [
+          -0.6193735003471375,
+          0.5149576663970947,
+          -0.5926170945167542
+        ]
+      ],
+      "calibration_T": [
+        -1.5476902723312378,
+        0.42970699071884155,
+        3.3003599643707275
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.7729429602622986,
+          0.26766645908355713,
+          -0.5752509236335754,
+          -1.5476902723312378
+        ],
+        [
+          -0.1376061737537384,
+          -0.8143544793128967,
+          -0.5638184547424316,
+          0.42970699071884155
+        ],
+        [
+          -0.6193735003471375,
+          0.5149576663970947,
+          -0.5926170945167542,
+          3.3003599643707275
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.7729429602622986,
+          -0.1376061737537384,
+          -0.6193735003471375,
+          3.2995621390307743
+        ],
+        [
+          0.26766645908355713,
+          -0.8143544793128967,
+          0.5149576663970947,
+          -0.9353470778858259
+        ],
+        [
+          -0.5752509236335754,
+          -0.5638184547424316,
+          -0.5926170945167542,
+          1.307816205786672
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0263530897046271,
+          3.534186647295479e-06,
+          -0.3896067080263618
+        ],
+        [
+          -3.534186647295479e-06,
+          1.0263530897046271,
+          0.3828137853691785
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1152.0853523852006,
+          0.003966396707283268,
+          681.043188999437
+        ],
+        [
+          -0.003967138317005766,
+          1151.8699836155226,
+          580.9782744263995
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0249435322921978,
+          -0.0004685664939032131,
+          0.3017926902275714
+        ],
+        [
+          6.253557343359822e-05,
+          1.0261610843420736,
+          -0.15762231345301647
+        ],
+        [
+          1.1844512306206734e-08,
+          -1.2358143781080454e-06,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 15,
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "garment": "O03",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "direction": "back-right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1130.19921875,
+          0.0,
+          661.3673706054688
+        ],
+        [
+          0.0,
+          1129.7362060546875,
+          556.1578979492188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865
+        ],
+        [
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666
+        ],
+        [
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226
+        ]
+      ],
+      "calibration_T": [
+        0.3554982542991638,
+        0.436452180147171,
+        4.907172679901123
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865,
+          0.3554982542991638
+        ],
+        [
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666,
+          0.436452180147171
+        ],
+        [
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226,
+          4.907172679901123
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.8032007217407227,
+          -0.13492070138454437,
+          -0.5802284479141235,
+          3.191704076402544
+        ],
+        [
+          0.4300975203514099,
+          -0.8052618503570557,
+          -0.40812918543815613,
+          2.2013197611667756
+        ],
+        [
+          -0.41217076778411865,
+          -0.577364444732666,
+          0.7048160433769226,
+          -3.0601360733518064
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0159180563376666,
+          0.0001476816516905541,
+          -1.985204281725633
+        ],
+        [
+          -0.0001476816516905541,
+          1.0159180563376666,
+          -0.031540810475466356
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1148.1897935868494,
+          0.1668413088847764,
+          669.9919837059053
+        ],
+        [
+          -0.16690968736437387,
+          1147.7194106293678,
+          564.881638065272
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0155976931983173,
+          -2.8982236068836352e-05,
+          -1.734317783283961
+        ],
+        [
+          0.0001967789309382738,
+          1.0162014299666202,
+          -0.5904106145884604
+        ],
+        [
+          2.7579976554078333e-07,
+          -5.856558675292833e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 16,
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "direction": "back",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1116.182861328125,
+          0.0,
+          671.1694946289062
+        ],
+        [
+          0.0,
+          1115.817138671875,
+          564.6517333984375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.1500503420829773,
+          0.5310117602348328,
+          -0.833973228931427
+        ],
+        [
+          -0.13638286292552948,
+          -0.8243420720100403,
+          -0.5494177341461182
+        ],
+        [
+          -0.9792265295982361,
+          0.19618000090122223,
+          -0.05127197504043579
+        ]
+      ],
+      "calibration_T": [
+        -1.224831223487854,
+        0.45103585720062256,
+        4.3552374839782715
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.1500503420829773,
+          0.5310117602348328,
+          -0.833973228931427,
+          -1.224831223487854
+        ],
+        [
+          -0.13638286292552948,
+          -0.8243420720100403,
+          -0.5494177341461182,
+          0.45103585720062256
+        ],
+        [
+          -0.9792265295982361,
+          0.19618000090122223,
+          -0.05127197504043579,
+          4.3552374839782715
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.1500503420829773,
+          -0.13638286292552948,
+          -0.9792265295982361,
+          4.510063992577551
+        ],
+        [
+          0.5310117602348328,
+          -0.8243420720100403,
+          0.19618000090122223,
+          0.1677971235185609
+        ],
+        [
+          -0.833973228931427,
+          -0.5494177341461182,
+          -0.05127197504043579,
+          -0.5503677240926734
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0257389354252888,
+          0.00034293950484165807,
+          -1.0059366915480346
+        ],
+        [
+          -0.00034293950484165807,
+          1.0257389354252888,
+          1.6468395439598023
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1144.9122199186638,
+          0.3826577770299685,
+          687.632387604895
+        ],
+        [
+          -0.3827831977766123,
+          1144.5370839505808,
+          580.6019369119642
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0247949829134027,
+          0.0004235184863429906,
+          -0.43027054057980374
+        ],
+        [
+          -8.957687014961955e-05,
+          1.0277673442775126,
+          0.14817568772911713
+        ],
+        [
+          -1.6437051332640345e-07,
+          9.812554147314154e-08,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 17,
+      "request_id": "subject00_O04_slot00_cand01",
+      "garment": "O04",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "direction": "front",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1129.202880859375,
+          0.0,
+          669.2590942382812
+        ],
+        [
+          0.0,
+          1129.5264892578125,
+          567.3696899414062
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353
+        ],
+        [
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528
+        ],
+        [
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049
+        ]
+      ],
+      "calibration_T": [
+        1.1242623329162598,
+        0.4185454845428467,
+        2.35041880607605
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353,
+          1.1242623329162598
+        ],
+        [
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528,
+          0.4185454845428467
+        ],
+        [
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049,
+          2.35041880607605
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.12675374746322632,
+          -0.16570360958576202,
+          0.9779959321022034,
+          -2.0868410696854376
+        ],
+        [
+          -0.5666808485984802,
+          -0.7971195578575134,
+          -0.20850248634815216,
+          1.4607968894726575
+        ],
+        [
+          0.8141292929649353,
+          -0.5806399583816528,
+          0.007137119770050049,
+          -0.6890458860071789
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0228506827409056,
+          4.452751927571817e-05,
+          -0.152474155421779
+        ],
+        [
+          -4.452751927571817e-05,
+          1.0228506827409056,
+          0.750306234933654
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1155.0059376400093,
+          0.05029501252286152,
+          684.4249108815695
+        ],
+        [
+          -0.05028060304366231,
+          1155.3369407112916,
+          581.0549805107778
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.023101751162314,
+          -0.00031987778462869013,
+          -0.058260522161119335
+        ],
+        [
+          0.00014107597641217383,
+          1.0227655167276715,
+          0.6486248482738894
+        ],
+        [
+          3.508498776533422e-07,
+          -4.0606125837669046e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 18,
+      "request_id": "subject00_O04_slot01_cand01",
+      "garment": "O04",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "direction": "front-left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1136.0640869140625,
+          0.0,
+          662.0599975585938
+        ],
+        [
+          0.0,
+          1136.3563232421875,
+          563.8951416015625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.8080047369003296,
+          -0.42864614725112915,
+          0.4042161703109741
+        ],
+        [
+          -0.1496666669845581,
+          -0.812895655632019,
+          -0.5628503561019897
+        ],
+        [
+          0.5698491930961609,
+          0.3942880928516388,
+          -0.7209776639938354
+        ]
+      ],
+      "calibration_T": [
+        -0.34158775210380554,
+        0.4305654466152191,
+        1.8453154563903809
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.8080047369003296,
+          -0.42864614725112915,
+          0.4042161703109741,
+          -0.34158775210380554
+        ],
+        [
+          -0.1496666669845581,
+          -0.812895655632019,
+          -0.5628503561019897,
+          0.4305654466152191
+        ],
+        [
+          0.5698491930961609,
+          0.3942880928516388,
+          -0.7209776639938354,
+          1.8453154563903809
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.8080047369003296,
+          -0.1496666669845581,
+          0.5698491930961609,
+          -0.7111057067513045
+        ],
+        [
+          -0.42864614725112915,
+          -0.812895655632019,
+          0.3942880928516388,
+          -0.5240014048785131
+        ],
+        [
+          0.4042161703109741,
+          -0.5628503561019897,
+          -0.7209776639938354,
+          1.7108504350131781
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0292274164954742,
+          0.0002415580799821941,
+          -0.638790715149753
+        ],
+        [
+          -0.0002415580799821941,
+          1.0292274164954742,
+          0.7286823473669294
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1169.2683051478505,
+          0.27449605161800833,
+          680.9077235647983
+        ],
+        [
+          -0.2744254595716854,
+          1169.5690827888527,
+          580.9450961704493
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.028218889162324,
+          0.0003240109687162011,
+          -0.3447783803637043
+        ],
+        [
+          -0.0005898945129732901,
+          1.0294732033684966,
+          0.5522520295396157
+        ],
+        [
+          -5.324360241820902e-07,
+          4.14231606302422e-08,
+          0.9999999999999999
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 19,
+      "request_id": "subject00_O04_slot02_cand00",
+      "garment": "O04",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "direction": "front-right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1138.29443359375,
+          0.0,
+          660.090576171875
+        ],
+        [
+          0.0,
+          1138.34423828125,
+          567.7401733398438
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165
+        ],
+        [
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835
+        ],
+        [
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571
+        ]
+      ],
+      "calibration_T": [
+        1.5748155117034912,
+        0.37408238649368286,
+        3.5135555267333984
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165,
+          1.5748155117034912
+        ],
+        [
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835,
+          0.37408238649368286
+        ],
+        [
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571,
+          3.5135555267333984
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.7954661250114441,
+          -0.15045098960399628,
+          0.5870248079299927,
+          -0.7535508002879476
+        ],
+        [
+          -0.2621123790740967,
+          -0.7879701852798462,
+          -0.5571355223655701,
+          2.665071001517795
+        ],
+        [
+          0.5463796854019165,
+          -0.5970489382743835,
+          0.5873686075210571,
+          -2.7008539293527214
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0256256046122942,
+          6.236700778482502e-05,
+          -0.2184107320568908
+        ],
+        [
+          -6.236700778482502e-05,
+          1.0256256046122942,
+          0.29506746676672013
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1167.4639166813988,
+          0.07099512397069743,
+          676.8227938089105
+        ],
+        [
+          -0.0709920178013644,
+          1167.5149976441285,
+          582.5427581370299
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0221067714332863,
+          -0.0013380232420214645,
+          1.2432013362774668
+        ],
+        [
+          -0.0011322516973487535,
+          1.0228469361444361,
+          1.2810254523235527
+        ],
+        [
+          -1.8314428048192363e-06,
+          -1.6659878313191894e-06,
+          0.9999999999999999
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 20,
+      "request_id": "subject00_O04_slot03_cand01",
+      "garment": "O04",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "direction": "left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1120.84716796875,
+          0.0,
+          674.9315185546875
+        ],
+        [
+          0.0,
+          1121.910888671875,
+          577.9261474609375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027
+        ],
+        [
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221
+        ],
+        [
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997
+        ]
+      ],
+      "calibration_T": [
+        -1.0443826913833618,
+        0.4047955870628357,
+        2.266456127166748
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027,
+          -1.0443826913833618
+        ],
+        [
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221,
+          0.4047955870628357
+        ],
+        [
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997,
+          2.266456127166748
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.9835854768753052,
+          -0.13696306943893433,
+          0.11747665703296661,
+          0.8164260045126461
+        ],
+        [
+          -0.1790315806865692,
+          -0.822007954120636,
+          0.5406020879745483,
+          -1.0794832063705257
+        ],
+        [
+          0.02252422273159027,
+          -0.5527603626251221,
+          -0.8330357670783997,
+          2.1353178822955297
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.024057124865022,
+          -6.384506624385369e-05,
+          -0.09810840981911081
+        ],
+        [
+          6.384506624385369e-05,
+          1.024057124865022,
+          -0.05771175622299862
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1147.8115282431806,
+          -0.07162847500695661,
+          691.0334242289089
+        ],
+        [
+          0.07156056168820064,
+          1148.9008390080821,
+          591.8147682444558
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0233168438685436,
+          -0.0010741277809110073,
+          0.8144929998156618
+        ],
+        [
+          -0.00015325236637605326,
+          1.0233717049910123,
+          0.19461454546707682
+        ],
+        [
+          -1.20790141132517e-07,
+          -4.94955253201534e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 21,
+      "request_id": "subject00_O04_slot04_cand01",
+      "garment": "O04",
+      "slot": "slot_04",
+      "camera_id": "cam11",
+      "direction": "right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1129.52783203125,
+          0.0,
+          674.9684448242188
+        ],
+        [
+          0.0,
+          1128.371826171875,
+          547.0431518554688
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851
+        ]
+      ],
+      "calibration_T": [
+        0.9523422122001648,
+        0.434766948223114,
+        4.492981910705566
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.9760977029800415,
+          0.21206191182136536,
+          -0.047570571303367615,
+          0.9523422122001648
+        ],
+        [
+          -0.1450749635696411,
+          -0.7987494468688965,
+          -0.5839114189147949,
+          0.434766948223114
+        ],
+        [
+          -0.1618223488330841,
+          -0.5630532503128052,
+          0.8104221224784851,
+          4.492981910705566
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.9760977029800415,
+          -0.1450749635696411,
+          -0.1618223488330841,
+          1.7197177310091973
+        ],
+        [
+          0.21206191182136536,
+          -0.7987494468688965,
+          -0.5630532503128052,
+          2.675102417602142
+        ],
+        [
+          -0.047570571303367615,
+          -0.5839114189147949,
+          0.8104221224784851,
+          -3.342043087586556
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.020986401975889,
+          0.0001852403202658821,
+          -0.7669462572668178
+        ],
+        [
+          -0.0001852403202658821,
+          1.020986401975889,
+          1.4828350321172181
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1153.232557157212,
+          0.20901995845907637,
+          688.4679921197226
+        ],
+        [
+          -0.20923409735469622,
+          1152.052290894186,
+          559.8814229996935
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0193680392061857,
+          -0.00034344554971597066,
+          -0.01600554353030604
+        ],
+        [
+          -0.0004773433202543064,
+          1.020682528833468,
+          1.2774255568717612
+        ],
+        [
+          -6.186498278388301e-07,
+          -7.325608678737674e-07,
+          0.9999999999999999
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 22,
+      "request_id": "subject00_O04_slot05_remaining_attempt005_cand00",
+      "garment": "O04",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "direction": "back-left",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1122.50390625,
+          0.0,
+          663.93408203125
+        ],
+        [
+          0.0,
+          1122.2940673828125,
+          565.6901245117188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.7729429602622986,
+          0.26766645908355713,
+          -0.5752509236335754
+        ],
+        [
+          -0.1376061737537384,
+          -0.8143544793128967,
+          -0.5638184547424316
+        ],
+        [
+          -0.6193735003471375,
+          0.5149576663970947,
+          -0.5926170945167542
+        ]
+      ],
+      "calibration_T": [
+        -1.5476902723312378,
+        0.42970699071884155,
+        3.3003599643707275
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.7729429602622986,
+          0.26766645908355713,
+          -0.5752509236335754,
+          -1.5476902723312378
+        ],
+        [
+          -0.1376061737537384,
+          -0.8143544793128967,
+          -0.5638184547424316,
+          0.42970699071884155
+        ],
+        [
+          -0.6193735003471375,
+          0.5149576663970947,
+          -0.5926170945167542,
+          3.3003599643707275
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.7729429602622986,
+          -0.1376061737537384,
+          -0.6193735003471375,
+          3.2995621390307743
+        ],
+        [
+          0.26766645908355713,
+          -0.8143544793128967,
+          0.5149576663970947,
+          -0.9353470778858259
+        ],
+        [
+          -0.5752509236335754,
+          -0.5638184547424316,
+          -0.5926170945167542,
+          1.307816205786672
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0176846939266642,
+          -0.0002720820500489908,
+          0.6334466850928118
+        ],
+        [
+          0.0002720820500489908,
+          1.0176846939266642,
+          1.2376614156131243
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1142.3550442635162,
+          -0.30535607061133585,
+          676.1550856157766
+        ],
+        [
+          0.30541316400050017,
+          1142.1414944601886,
+          577.1124871827947
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0174033531335327,
+          -0.0002795667929347117,
+          0.858497802796015
+        ],
+        [
+          0.0001683846219159471,
+          1.0196832815378027,
+          0.1690828569182496
+        ],
+        [
+          7.570292723222442e-08,
+          2.415825487645121e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 23,
+      "request_id": "subject00_O04_slot06_remaining_attempt005_cand00",
+      "garment": "O04",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "direction": "back-right",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1130.19921875,
+          0.0,
+          661.3673706054688
+        ],
+        [
+          0.0,
+          1129.7362060546875,
+          556.1578979492188
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865
+        ],
+        [
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666
+        ],
+        [
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226
+        ]
+      ],
+      "calibration_T": [
+        0.3554982542991638,
+        0.436452180147171,
+        4.907172679901123
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865,
+          0.3554982542991638
+        ],
+        [
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666,
+          0.436452180147171
+        ],
+        [
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226,
+          4.907172679901123
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          -0.8032007217407227,
+          -0.13492070138454437,
+          -0.5802284479141235,
+          3.191704076402544
+        ],
+        [
+          0.4300975203514099,
+          -0.8052618503570557,
+          -0.40812918543815613,
+          2.2013197611667756
+        ],
+        [
+          -0.41217076778411865,
+          -0.577364444732666,
+          0.7048160433769226,
+          -3.0601360733518064
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0296527329297769,
+          1.556382279483825e-05,
+          -0.6612264703427652
+        ],
+        [
+          -1.556382279483825e-05,
+          1.0296527329297769,
+          1.1392310791656544
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1163.7127143410362,
+          0.017583014115948026,
+          680.3261500871284
+        ],
+        [
+          -0.01759022036348963,
+          1163.2359720539266,
+          573.7784372385004
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.027424990562433,
+          -9.119207597326477e-05,
+          0.1584539561877282
+        ],
+        [
+          -0.0008246817930440155,
+          1.0299254477734265,
+          0.9047043821578028
+        ],
+        [
+          -1.0060216886379061e-06,
+          -3.8082296455252266e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    },
+    {
+      "sequence_index": 24,
+      "request_id": "subject00_O04_slot07_cand01",
+      "garment": "O04",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "direction": "back",
+      "source_frame_id": "00000000",
+      "target_width": 1349,
+      "target_height": 1166,
+      "calibration_K": [
+        [
+          1116.182861328125,
+          0.0,
+          671.1694946289062
+        ],
+        [
+          0.0,
+          1115.817138671875,
+          564.6517333984375
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "calibration_R": [
+        [
+          0.1500503420829773,
+          0.5310117602348328,
+          -0.833973228931427
+        ],
+        [
+          -0.13638286292552948,
+          -0.8243420720100403,
+          -0.5494177341461182
+        ],
+        [
+          -0.9792265295982361,
+          0.19618000090122223,
+          -0.05127197504043579
+        ]
+      ],
+      "calibration_T": [
+        -1.224831223487854,
+        0.45103585720062256,
+        4.3552374839782715
+      ],
+      "distortion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "calibration_image_width": 1330,
+      "calibration_image_height": 1150,
+      "rectify_alpha": 0.0,
+      "w2c": [
+        [
+          0.1500503420829773,
+          0.5310117602348328,
+          -0.833973228931427,
+          -1.224831223487854
+        ],
+        [
+          -0.13638286292552948,
+          -0.8243420720100403,
+          -0.5494177341461182,
+          0.45103585720062256
+        ],
+        [
+          -0.9792265295982361,
+          0.19618000090122223,
+          -0.05127197504043579,
+          4.3552374839782715
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c2w": [
+        [
+          0.1500503420829773,
+          -0.13638286292552948,
+          -0.9792265295982361,
+          4.510063992577551
+        ],
+        [
+          0.5310117602348328,
+          -0.8243420720100403,
+          0.19618000090122223,
+          0.1677971235185609
+        ],
+        [
+          -0.833973228931427,
+          -0.5494177341461182,
+          -0.05127197504043579,
+          -0.5503677240926734
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registered_source_to_target_similarity": [
+        [
+          1.0325067824690441,
+          0.0002008088438162632,
+          -0.5129943137711144
+        ],
+        [
+          -0.0002008088438162632,
+          1.0325067824690441,
+          0.46145767209729993
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_K": [
+        [
+          1152.4663747969937,
+          0.22406594952707024,
+          692.587448138638
+        ],
+        [
+          -0.2241393898708292,
+          1152.0887636739128,
+          583.3334253686653
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "registration_homography_diagnostic": [
+        [
+          1.0314771983318771,
+          -0.00025116760822572977,
+          -0.03461081665420004
+        ],
+        [
+          -0.00044078795443575845,
+          1.0311598435939051,
+          0.9689555781292222
+        ],
+        [
+          -4.1904979783941144e-07,
+          -6.274177134880095e-07,
+          1.0
+        ]
+      ],
+      "binding_status": "PASS_UNIQUE_SIMILARITY_PIXEL_BINDING",
+      "conventions": {
+        "extrinsic": "w2c=[R|T]; c2w=inverse(w2c)",
+        "pixel_projection": "OpenCV positive-z: u=fx*x/z+cx; v=fy*y/z+cy",
+        "renderer": "build_mmlphuman_camera consumes per-record K,w2c,width,height; no axis flip",
+        "body_transform": "x_world=R_global@x_posed+Th",
+        "distortion_policy": "all five frozen coefficients are zero",
+        "registration_policy": "PER_RECORD_REGISTERED_SOURCE_TO_TARGET_SIMILARITY_LEFT_MULTIPLY_K; NO_RESIZE; BLOCK_ON_HUMAN_OVERRIDE_NONUNIQUENESS"
+      },
+      "pose_binding": {
+        "path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+        "sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+        "frame_index": 0,
+        "required_runtime_fields": [
+          "pose",
+          "Rh_raw",
+          "R_global",
+          "Th"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "base_contract": {
+    "checkpoint_sha256": "PENDING_FORMAL_BASE",
+    "checkpoint_status": "PENDING_FORMAL_BASE",
+    "checkpoint_step": 101245,
+    "surface_attachment_source": "subject00 formal base checkpoint provenance",
+    "template_lbs_mode": "surface_attachment_cached"
+  },
+  "checkpoint_cadence": [
+    0,
+    40,
+    80,
+    160,
+    240,
+    400,
+    600,
+    800,
+    1000,
+    1200
+  ],
+  "checkpoint_writes_in_this_task": 0,
+  "content_sha256": "aa7ed59f8127fe436c2567ab113802654966e36bfc4e942122d885b83a97c747",
+  "evaluation": {
+    "average_may_hide_single_garment_failure": false,
+    "component_contamination_required": 0,
+    "endpoint_parity_required": true,
+    "identity_contamination_required": 0,
+    "numerical_stability_required": true,
+    "per_garment_reporting_required": true
+  },
+  "garment_ids": [
+    "O01",
+    "O03",
+    "O04"
+  ],
+  "initialization": {
+    "all_residual_channels": "EXACT_ZERO",
+    "medium_checkpoint_load": false,
+    "pretrained_subject02_teacher_load": false,
+    "seed": 20260718
+  },
+  "input_contract": {
+    "accepted_endpoint_count_per_garment": 8,
+    "accepted_generated_rgb_required": true,
+    "endpoint_slot_required": true,
+    "garment_id_required": true,
+    "identity_protected_regions_required": true,
+    "rejected_generated_rgb_forbidden": true,
+    "source_alpha_or_mask_required": true,
+    "source_pose_and_camera_required": true,
+    "strict_heldout_pose_or_camera_target_forbidden": true
+  },
+  "optimizer": {
+    "appearance_learning_rate": 0.002,
+    "class": "Adam",
+    "geometry_learning_rate": 0.001,
+    "gradient_clip_norm": 1.0,
+    "optimizer_steps": 1200,
+    "sweep_allowed": false
+  },
+  "optimizer_created_in_this_task": 0,
+  "paper_final": 0,
+  "runs": 3,
+  "schema_version": "subject00.three_garment.teacher_contract.v1",
+  "status": "FROZEN_NOT_AUTHORIZED_FOR_TRAINING",
+  "target_residual_schema": {
+    "channels": [
+      "dxyz",
+      "dsh0",
+      "dshN",
+      "dscale",
+      "drotation",
+      "dopacity"
+    ],
+    "identity_protected_regions": "zero residual and protected loss",
+    "space": "shared_canonical_per_gaussian_residual",
+    "support": "same frozen 200000 Gaussian support as formal base"
+  },
+  "task_id": "AAAI27-SUBJECT00-THREE-GARMENT-CANARY-PROTOCOL-001",
+  "teacher_training_runs_in_this_task": 0,
+  "topology_and_lbs_invariants": {
+    "cached_surface_attachment_mutation": 0,
+    "clone_calls": 0,
+    "densification_calls": 0,
+    "off_surface_rebind_calls": 0,
+    "split_calls": 0,
+    "topology_changing_prune_calls": 0
+  }
+}

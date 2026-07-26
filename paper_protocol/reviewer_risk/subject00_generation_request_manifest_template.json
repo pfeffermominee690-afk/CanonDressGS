@@ -1,0 +1,65 @@
+{
+  "schema_version": "canondressgs.subject00.generation_request.v1",
+  "mode": "DRY_RUN_ONLY",
+  "status": "BLOCKED_BACKEND_SELECTION_AND_FORMAL_BASE",
+  "request_id": null,
+  "parent_request_id": null,
+  "attempt_index": 0,
+  "candidate_index": 0,
+  "identity_id": "subject00",
+  "garment_id": null,
+  "semantic_pose_slot": null,
+  "condition_id": null,
+  "source_inputs": {
+    "condition_rgb": {"path": null, "sha256": null, "status": "FORMAL_BASE_PENDING"},
+    "condition_alpha_mask": {"path": null, "sha256": null, "status": "FORMAL_BASE_PENDING"},
+    "camera": {"path": null, "sha256": null, "status": "FORMAL_BASE_PENDING"},
+    "pose_smplx": {"path": null, "sha256": null, "status": "FORMAL_BASE_PENDING"},
+    "identity_manifest": {"path": null, "sha256": null, "status": "FORMAL_BASE_PENDING"}
+  },
+  "prompt": {"text": null, "sha256": null, "frozen_before_request": false},
+  "negative_prompt": {"text": null, "sha256": null, "frozen_before_request": false},
+  "backend": {
+    "provider": null,
+    "model_id_and_revision": null,
+    "base_url_identifier": null,
+    "endpoint": null,
+    "selection_status": "BACKEND_SELECTION_REQUIRED"
+  },
+  "request_parameters": {
+    "input_image_format": "PNG",
+    "output_format": "PNG",
+    "output_width": 1024,
+    "output_height": 1536,
+    "wire_size": null,
+    "quality": null,
+    "background": "LIGHT_GRAY_OR_WHITE",
+    "n": 1,
+    "seed": null,
+    "seed_policy": "uint32 big-endian first four bytes of sha256(identity_id|garment_id|semantic_pose_slot|attempt_index)",
+    "timeout_seconds": null,
+    "moderation": null
+  },
+  "response_metadata": {
+    "request_timestamp": null,
+    "response_timestamp": null,
+    "http_status": null,
+    "provider_request_id": null,
+    "output_path": null,
+    "output_sha256": null,
+    "error_class": null,
+    "moderation_state": null,
+    "billing_known": false,
+    "raw_safe_metadata_path": null
+  },
+  "credential_env_name": "MULTI_IDENTITY_GENERATION_API_KEY",
+  "credential_value_persisted": false,
+  "record_policy": {
+    "append_only": true,
+    "retry_creates_new_record": true,
+    "failed_and_moderated_outputs_retained": true,
+    "overwrite_allowed": false
+  },
+  "network_call_performed": false,
+  "paper_final": false
+}

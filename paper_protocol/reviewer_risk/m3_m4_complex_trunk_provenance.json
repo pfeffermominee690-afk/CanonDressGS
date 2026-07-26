@@ -1,0 +1,71 @@
+{
+  "schema_version": "canondressgs.paper.m3_m4_complex_trunk_provenance.v1",
+  "task_id": "AAAI27-P0-FORMAL-CANDIDATE-RUNS-001",
+  "status": "PASS",
+  "classification": "PREREGISTERED_P0_COMPLEX_TRUNK",
+  "source_head": "d75c4fa5a426fe90314eba08e94509940ecafb23",
+  "implementation": {
+    "path": "scene/p0_candidate_initialization_protocol.py",
+    "class": "ProtocolComplexTrunk",
+    "introducing_commit": "41dc2654",
+    "sha256": "6f4bbd98a6dee280b5a066cbe25646ad37314b51442beae51a498a5eaa57eddb",
+    "raw_reference_dimension": 519,
+    "hidden_dimension": 128,
+    "topology": [
+      "shared LayerNorm(519)-Linear(256)-SiLU-Linear(128)-LayerNorm token adapter",
+      "shared per-reference Linear(128)-SiLU-LayerNorm MLP",
+      "validity-aware set mean",
+      "validity-aware set max",
+      "one shared learned attention scorer",
+      "LayerNorm(384)-Linear(128)-SiLU pooled projection",
+      "one zero-initialized Linear(128,4) coefficient head"
+    ]
+  },
+  "preregistration_evidence": [
+    {
+      "path": "docs/PAPER/AAAI27_FAIR_BASELINE_AND_COUNTERFACTUAL_PROTOCOL_20260721.md",
+      "sha256": "72e57a8c899346851911f1e726f9b5f79b8b2717dcfb7ed700cd5a4a6f229180",
+      "matched_fields": ["RF-F raw tokens", "token adapter", "per-reference MLP", "set mean/max", "learned attention", "coefficient head"]
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/deterministic_initialization_contract.json",
+      "sha256": "02d81616fd48dba201ddd9cefb78662f528191f0607d428bc3bb62bb2ecdae55",
+      "matched_fields": ["paired factory", "same-seed shared trunk", "cross-seed variation", "zero output heads", "M3 identity", "M4 tanh"]
+    },
+    {
+      "path": "scene/p0_candidate_adapters.py",
+      "introducing_commit": "27562aba",
+      "sha256": "6d96c5d783f7e80257aa9638d178fa9a61b7139c0ab1f7601afe4f646647fb99",
+      "evidence": "formal candidate adapter and paired factory were frozen before any run in the current task"
+    }
+  ],
+  "parameter_breakdown": {
+    "token_adapter": 167310,
+    "reference_mlp": 16768,
+    "attention_score": 129,
+    "pooled_projection": 50048,
+    "shared_trunk_total": 234255,
+    "zero_initialized_vector_head": 516,
+    "candidate_total": 234771
+  },
+  "historical_b5_comparison": {
+    "implementation": "tools/paper/formal_batch_runtime.py::LegacyRFFRank4",
+    "historical_total": 435606,
+    "token_adapter": 167310,
+    "four_independent_fusion_heads": 268296,
+    "current_minus_historical": -200835,
+    "structural_difference": "B5 owns four independent scalar fusion modules. The preregistered P0 trunk shares the per-reference MLP, attention, and pooled representation, then uses one four-dimensional head.",
+    "historical_b5_role": "OFF_MATRIX_HISTORICAL_EVIDENCE",
+    "historical_b5_modified": false
+  },
+  "legacy_phrase_resolution": {
+    "issue": "The early matrix prose called the complex endpoint four tanh scalar heads, which cannot describe the corrected unconstrained M3 cell.",
+    "resolution_before_formal_training": "The later deterministic-initialization and candidate-adapter contracts freeze a shared vector head with identity for M3 and tanh for M4. This resolves the endpoint wording without changing the preregistered complex trunk topology.",
+    "result_observed_before_resolution": false
+  },
+  "same_seed_m3_m4_trunk_required": "BITWISE_EQUAL_BEFORE_TRAINING",
+  "cross_seed_unique_trunks_required": true,
+  "post_hoc_simplification": false,
+  "result_dependent_architecture_change_allowed": false,
+  "formal_training_authorized": true
+}

@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://canondressgs.local/schemas/aaai27_sprint_preflight_v1.schema.json",
+  "title": "CanonDressGS AAAI-27 Sprint Preflight Artifacts v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "aaai27_sprint_preflight_v1"
+    },
+    "artifact_type": {
+      "enum": [
+        "candidate_outfit_audit",
+        "condition_selection_32",
+        "target_generation_gate_28_manifest",
+        "target_generation_full_192_manifest",
+        "experiment_registry",
+        "paper_figure_registry",
+        "paper_table_registry"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "artifact_type": {
+            "const": "candidate_outfit_audit"
+          }
+        }
+      },
+      "then": {
+        "required": ["decision", "records"],
+        "properties": {
+          "records": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "$ref": "#/$defs/outfitAuditRecord"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": {
+            "const": "condition_selection_32"
+          }
+        }
+      },
+      "then": {
+        "required": ["selection_policy", "counts", "records"],
+        "properties": {
+          "records": {
+            "type": "array",
+            "minItems": 32,
+            "maxItems": 32,
+            "items": {
+              "$ref": "#/$defs/conditionRecord"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": {
+            "enum": [
+              "target_generation_gate_28_manifest",
+              "target_generation_full_192_manifest"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "record_count",
+          "network_requests",
+          "images_generated",
+          "records"
+        ],
+        "properties": {
+          "network_requests": {
+            "const": 0
+          },
+          "images_generated": {
+            "const": 0
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/generationRecord"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": {
+            "enum": [
+              "experiment_registry",
+              "paper_figure_registry",
+              "paper_table_registry"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": ["entries"],
+        "properties": {
+          "entries": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "outfitAuditRecord": {
+      "type": "object",
+      "required": [
+        "outfit_id",
+        "definition_en",
+        "mapping_status",
+        "reference_image_count",
+        "reference_view_coverage",
+        "source_file_hash_matches",
+        "exposed_skin_required",
+        "large_exterior_silhouette_required",
+        "support_risk",
+        "existing_subject02_target_count",
+        "gate_status"
+      ],
+      "properties": {
+        "outfit_id": {
+          "pattern": "^O[0-9]{2}$"
+        },
+        "reference_image_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "conditionRecord": {
+      "type": "object",
+      "required": [
+        "condition_id",
+        "view",
+        "difficulty",
+        "condition_split",
+        "source_frame",
+        "source_camera",
+        "source_condition_sha256",
+        "full_body_uncropped",
+        "hand_screening_status"
+      ],
+      "properties": {
+        "condition_id": {
+          "pattern": "^cond_[0-9]{6}$"
+        },
+        "view": {
+          "enum": ["front", "back", "left", "right"]
+        },
+        "difficulty": {
+          "enum": ["easy", "medium", "hard"]
+        },
+        "condition_split": {
+          "enum": ["train", "validation", "novel_pose_test"]
+        },
+        "full_body_uncropped": {
+          "const": true
+        }
+      }
+    },
+    "generationRecord": {
+      "type": "object",
+      "required": [
+        "record_id",
+        "outfit_id",
+        "condition_id",
+        "subject02_base_condition",
+        "donor_references",
+        "model_conditioning_fields",
+        "target_dependency",
+        "generated_target_used_as_input",
+        "teacher_used",
+        "target_rgb_mask_inference_input",
+        "status"
+      ],
+      "properties": {
+        "target_dependency": {
+          "const": false
+        },
+        "generated_target_used_as_input": {
+          "const": false
+        },
+        "teacher_used": {
+          "const": false
+        },
+        "target_rgb_mask_inference_input": {
+          "const": false
+        },
+        "status": {
+          "const": "PLANNED_NOT_GENERATED"
+        }
+      }
+    }
+  }
+}

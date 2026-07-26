@@ -1,0 +1,44 @@
+{
+  "api_calls": 0,
+  "authorization": false,
+  "budget_relationship": "TWO_EXISTING_ENTRIES_FROM_THE_FROZEN_48; NO_REQUEST_49",
+  "content_sha256": "f0d70549c53f44e494adb6601703a19922a4eef74ad6f871b77ac9d57115c5a8",
+  "failure_stop_rule": "STOP_AFTER_ANY_NONRETRYABLE_ERROR_OR_ANY_HARD_SCIENTIFIC_REJECTION; DO_NOT_START_REMAINING_46",
+  "formal_base_dependency": "PENDING",
+  "generated_images": 0,
+  "paper_final": false,
+  "remaining_46_policy": "REQUIRE_BOTH_CANARY_REQUESTS_TO_PASS_ALL_GATES_THEN_REQUIRE_NEW_EXPLICIT_USER_AUTHORIZATION",
+  "request_count": 2,
+  "request_ids": [
+    "subject00_O01_slot00_cand00",
+    "subject00_O03_slot03_cand00"
+  ],
+  "required_after_eligible_backend_selection": true,
+  "retry_policy": {
+    "backoff_seconds": [
+      3,
+      9
+    ],
+    "maximum_retries_after_initial_attempt": 2,
+    "scientific_quality_retry_allowed": false,
+    "technical_errors_only": true
+  },
+  "schema_version": "canondressgs.subject00.backend_minimal_canary_contract.v1",
+  "selection_basis": [
+    "O01 front",
+    "O03 left side",
+    "two garments and two camera orientations"
+  ],
+  "started": false,
+  "status": "DESIGNED_NOT_AUTHORIZED_BACKEND_SELECTION_AND_FORMAL_BASE_PENDING",
+  "success_gates": [
+    "request and raw-response records are retained and hash-linked",
+    "one valid normalized PNG at exactly 1024x1536 for each request",
+    "two independent human reviewers accept identity preservation",
+    "two independent human reviewers accept garment fidelity",
+    "two independent human reviewers accept pose and camera preservation",
+    "single full body, complete hands and feet, no text, label, number, watermark, crop, or duplicate person",
+    "zero hard reject taxonomy events"
+  ],
+  "task_id": "AAAI27-SUBJECT00-GENERATION-BACKEND-ADJUDICATION-001"
+}

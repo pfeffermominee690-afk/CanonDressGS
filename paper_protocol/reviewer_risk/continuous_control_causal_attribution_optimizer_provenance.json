@@ -1,0 +1,118 @@
+{
+  "backward_count": 0,
+  "checkpoint_write_count": 0,
+  "diagnostic_optimizer": {
+    "created": false,
+    "parameter_count": 0,
+    "state_saved": false,
+    "step_count": 0,
+    "zero_grad_count": 0
+  },
+  "frozen_parameter_change": 0,
+  "in_memory_torch_save_count": 120,
+  "legacy_context_optimizer": {
+    "class": [
+      "torch.optim.adam.Adam"
+    ],
+    "created": true,
+    "creation_count": 1,
+    "diagnostic_overlap_count": 0,
+    "discarded": true,
+    "frozen_context_parameter_overlap_count": 37,
+    "group_count": 5,
+    "instances": [
+      {
+        "class": "torch.optim.adam.Adam",
+        "creation_stack": [
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/run_continuous_control_causal_attribution.py\", line 1636, in <module>\n    main()\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/run_continuous_control_causal_attribution.py\", line 1604, in main\n    runtime_value = runtime(attempt, args.asset_root.resolve(), frozen_protocol)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/run_continuous_control_causal_attribution.py\", line 1577, in runtime\n    return previous.runtime(attempt, asset_root, frozen_protocol)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/run_continuous_control_artifact_root_cause.py\", line 743, in runtime\n    value = sealed.EvaluationRuntime(attempt, asset_root, frozen_protocol)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/run_p0_color_spatial_soft_control_evaluations.py\", line 246, in __init__\n    self.context = core._legacy_context(attempt)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/formal_runtime.py\", line 147, in _legacy_context\n    return multi.build_context(\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/run_multi_outfit_explicit_basis.py\", line 293, in build_context\n    cs_context = _build_cs_context(config)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/run_multi_outfit_explicit_basis.py\", line 247, in _build_cs_context\n    return calibration.build_context(\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/run_reference_coefficient_supervision_calibration.py\", line 162, in build_context\n    context = _build_previous_context(config, output_dir)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/run_reference_coefficient_supervision_calibration.py\", line 130, in _build_previous_context\n    return previous.build_context(config, output_dir, create=False)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/run_reference_basis_coefficient_fusion.py\", line 280, in build_context\n    legacy_model, graph = legacy.construct_reference_model(base, old_config, device)\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/run_explicit_gaussian_residual_basis.py\", line 162, in construct_reference_model\n    model, _, _, _ = training.create_image_conditioned_components(\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/train_dressable.py\", line 1064, in create_image_conditioned_components\n    optimizer = build_image_conditioned_optimizer(model, config[\"optimizer\"])\n",
+          "  File \"/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_continuous_control_causal_attribution/tools/paper/run_continuous_control_artifact_root_cause.py\", line 207, in tracked_builder\n    \"creation_stack\": traceback.format_stack(limit=16),\n"
+        ],
+        "diagnostic_overlap_count": 0,
+        "discarded": true,
+        "frozen_baseline_captured": true,
+        "frozen_context_parameter_overlap_count": 37,
+        "group_count": 5,
+        "groups": [
+          {
+            "index": 0,
+            "learning_rate": 0.0001,
+            "name": "encoder",
+            "parameter_count": 8384,
+            "parameter_name_fingerprint": "398be03488dfd1e551d040c8dffac4cfb64574033cc65aaf710e95de3ba9626c",
+            "parameter_tensor_count": 4
+          },
+          {
+            "index": 1,
+            "learning_rate": 0.0001,
+            "name": "aggregator",
+            "parameter_count": 12480,
+            "parameter_name_fingerprint": "8dfa85d46f9d1e9a8b9e062af48026a4f5f71faf80c3210cc247c182b41e2f38",
+            "parameter_tensor_count": 5
+          },
+          {
+            "index": 2,
+            "learning_rate": 0.0001,
+            "name": "hypernetwork",
+            "parameter_count": 74368,
+            "parameter_name_fingerprint": "ddf4571ebc0104a5631480fd162a9271ece315224f262d243f126320785eb2f3",
+            "parameter_tensor_count": 10
+          },
+          {
+            "index": 3,
+            "learning_rate": 0.0001,
+            "name": "anchor_mlp",
+            "parameter_count": 31642,
+            "parameter_name_fingerprint": "5ce6762828b670e57494ebe0780ccd5e4bcbc242b795b21e6564c842dbd83823",
+            "parameter_tensor_count": 16
+          },
+          {
+            "index": 4,
+            "learning_rate": 0.0001,
+            "name": "local_adapter",
+            "parameter_count": 1755,
+            "parameter_name_fingerprint": "469393441bbb7471cc988e74bc06dcef0f058a218b94d773bd4b773635e3a675",
+            "parameter_tensor_count": 2
+          }
+        ],
+        "lifecycle": "CREATED_BY_LEGACY_CONTEXT_HELPER_AND_DISCARDED_BY_CALLER",
+        "parameter_change": 0,
+        "parameter_count": 128629,
+        "parameter_fingerprint_after": "8bd03f722097e3fe533d6b04d7164f20bfe3ab6fd2c438af511b841c9c0fa046",
+        "parameter_fingerprint_at_legacy_creation": "a7d3bec07498ce454ecb003802deadbdb5b863c89d158cbe7ad464e54fbb5eee",
+        "parameter_fingerprint_before": "8bd03f722097e3fe533d6b04d7164f20bfe3ab6fd2c438af511b841c9c0fa046",
+        "parameter_name_fingerprint": "d6b471bfbdb50ef6b16ae31ae51bf43a169693e1703217c12bff17f57c4dace1",
+        "parameter_tensor_count": 37,
+        "scheduler_step_count": 0,
+        "state_dict_call_count": 0,
+        "state_saved": false,
+        "step_count": 0,
+        "zero_grad_count": 0
+      }
+    ],
+    "parameter_count": 128629,
+    "scheduler_step_count": 0,
+    "state_saved": false,
+    "step_count": 0,
+    "zero_grad_count": 0
+  },
+  "paper_final": false,
+  "phase_audits": [
+    "/root/autodl-tmp/canondressgs_work/outputs/CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001/attempt_002/audits/optimizer_provenance_render.json"
+  ],
+  "root_cause_no_training_gate": "PASS",
+  "schema_version": "canondressgs.research.continuous_control_optimizer_provenance_aggregate.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001"
+}

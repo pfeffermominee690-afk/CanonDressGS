@@ -1,0 +1,40 @@
+{
+  "api_calls": 0,
+  "base_url": null,
+  "candidate_dispositions": {
+    "BACKEND-A": "INTERACTIVE_ONLY_NOT_FORMAL_BACKEND",
+    "BACKEND-B": "HISTORICAL_SUCCESS_BUT_MODEL_REVISION_LICENSE_RESOLUTION_AND_SAFE_RAW_RETENTION_UNRESOLVED",
+    "BACKEND-C": "NO_REAL_IMAGE_EDIT_SUCCESS"
+  },
+  "classification": "SUBJECT00_GENERATION_BACKEND_SELECTION_REQUIRED",
+  "content_sha256": "38e1eeeb37837578f5e945ab08094fdba526d8e0b19c24b8d53fc6add378dfce",
+  "decision_reason": "No candidate passes G1-G15, and every candidate has non-realtime mandatory evidence gaps.",
+  "fallback": null,
+  "generation_authorized": false,
+  "generation_started": false,
+  "materialized_images": 0,
+  "minimal_canary_required_after_eligible_selection": true,
+  "model": null,
+  "next_task": "USER_SELECT_SUBJECT00_GENERATION_PROVIDER_AND_COMPLETE_MANDATORY_BACKEND_EVIDENCE",
+  "next_task_authorized": false,
+  "paper_final": false,
+  "primary": null,
+  "provider": null,
+  "revision": null,
+  "revision_or_alias_status": "UNSELECTED",
+  "schema_version": "canondressgs.subject00.backend_selection_decision.v1",
+  "selection_preconditions": [
+    "one provider and exact model/revision or explicit alias policy",
+    "verified 1024x1536 portrait image-edit support",
+    "safe per-request raw-response retention",
+    "research-use and data-processing boundary",
+    "deterministic 48-request adapter",
+    "price and rate-limit evidence or explicit acceptance of unknown status"
+  ],
+  "source": {
+    "branch": "research/subject00-data-preparation-generation-ready-20260725",
+    "head": "4e5e76a2a19ffdb94385660ec1d8ea4ce4c5d6b3"
+  },
+  "status": "BACKEND_SELECTION_REQUIRED",
+  "task_id": "AAAI27-SUBJECT00-GENERATION-BACKEND-ADJUDICATION-001"
+}

@@ -1,0 +1,57 @@
+{
+  "capacity_failure_classification": "SUBJECT00_THREE_GARMENT_CANARY_REPRESENTATION_LIMITED",
+  "content_sha256": "a317711866010aea708bb6cd9e277e308ccd33635ac62084286c51a190b72ab3",
+  "data_gates": {
+    "cross_view_consistency": "PASS",
+    "endpoint_slots_valid": "24/24",
+    "garments_complete": "3/3",
+    "identity_preservation": "PASS",
+    "references_valid": "12/12"
+  },
+  "paper_final": 0,
+  "per_garment_gates": {
+    "O01": {
+      "component_contamination": 0,
+      "endpoint_parity_pass": true,
+      "endpoint_slots_valid": 8,
+      "identity_contamination": 0,
+      "reference_slots_valid": 4,
+      "severe_body_conforming_collapse": 0,
+      "severe_missing_garment_volume": 0,
+      "severe_silhouette_failure": 0,
+      "teacher_numerically_stable": true
+    },
+    "O03": {
+      "component_contamination": 0,
+      "endpoint_parity_pass": true,
+      "endpoint_slots_valid": 8,
+      "identity_contamination": 0,
+      "reference_slots_valid": 4,
+      "severe_body_conforming_collapse": 0,
+      "severe_missing_garment_volume": 0,
+      "severe_silhouette_failure": 0,
+      "teacher_numerically_stable": true
+    },
+    "O04": {
+      "component_contamination": 0,
+      "endpoint_parity_pass": true,
+      "endpoint_slots_valid": 8,
+      "identity_contamination": 0,
+      "reference_slots_valid": 4,
+      "severe_body_conforming_collapse": 0,
+      "severe_missing_garment_volume": 0,
+      "severe_silhouette_failure": 0,
+      "teacher_numerically_stable": true
+    }
+  },
+  "schema_version": "subject00.three_garment.success_gates.v1",
+  "single_garment_failure_may_be_hidden_by_average": false,
+  "status": "FROZEN_FUTURE_GATES",
+  "task_id": "AAAI27-SUBJECT00-THREE-GARMENT-CANARY-PROTOCOL-001",
+  "teacher_gates": {
+    "component_contamination": 0,
+    "endpoint_parity": "PASS",
+    "identity_contamination": 0,
+    "stable_runs": "3/3"
+  }
+}

@@ -1,0 +1,402 @@
+{
+  "baseline_comparability": {
+    "historical_formal_v1_may_substitute": false,
+    "reason": "The common record sequence, exposure budget, optimizer schedule, and exact final-checkpoint rule are not frozen.",
+    "status": "INCOMPLETE"
+  },
+  "classification": "CONTROLLER_V2_MICRO_PILOT_CONTRACT_INCOMPLETE",
+  "contract_check_count": 30,
+  "contract_checks": [
+    {
+      "evidence": "Cross-fit archive freezes fold indices but no exact record IDs.",
+      "field": "rotation_record_ids",
+      "id": 1,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No per-rotation record denominators are present.",
+      "field": "train_calibration_test_counts",
+      "id": 2,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "controller_v2_crossfit_splits.json freezes four disjoint rotations.",
+      "field": "fold_membership",
+      "id": 3,
+      "status": "PASS"
+    },
+    {
+      "evidence": "No duplicate identity/count or preservation rule is materialized.",
+      "field": "duplicate_preservation",
+      "id": 4,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No batch size is frozen in the design artifacts.",
+      "field": "batch_size",
+      "id": 5,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No records-per-step or exposure count is frozen.",
+      "field": "per_step_record_exposure",
+      "id": 6,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No shuffle/permutation algorithm or schedule hash rule is frozen.",
+      "field": "data_order_algorithm",
+      "id": 7,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "Optimizer plan states no optimizer was created but names no future type.",
+      "field": "optimizer_type",
+      "id": 8,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No learning rate is present.",
+      "field": "learning_rate",
+      "id": 9,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No weight decay is present.",
+      "field": "weight_decay",
+      "id": 10,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No future optimizer-step budget is present.",
+      "field": "total_optimizer_steps",
+      "id": 11,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No step-indexed checkpoint cadence is present.",
+      "field": "checkpoint_cadence",
+      "id": 12,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "Best-selection is forbidden, but the exact final-step rule is absent.",
+      "field": "final_checkpoint_rule",
+      "id": 13,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "The loss formula names lambda_mix without a numeric value.",
+      "field": "lambda_mix",
+      "id": 14,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "The loss formula names lambda_weight without a numeric value.",
+      "field": "lambda_weight",
+      "id": 15,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "The loss formula names lambda_cons without a numeric value.",
+      "field": "lambda_cons",
+      "id": 16,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "Blur, mask erosion/dilation, and assignment permutation are frozen.",
+      "field": "nuisance_augmentation_types",
+      "id": 17,
+      "status": "PASS"
+    },
+    {
+      "evidence": "Mild is named but no numerical severity is frozen.",
+      "field": "augmentation_severity",
+      "id": 18,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No frequency, ordering, or step schedule is frozen.",
+      "field": "augmentation_exposure_schedule",
+      "id": 19,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "Safe-fallback semantics exist but no training records/exposure are frozen.",
+      "field": "information_ablation_training_contract",
+      "id": 20,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "0.10 through 0.90 in 0.10 increments is frozen.",
+      "field": "mixedness_threshold_grid",
+      "id": 21,
+      "status": "PASS"
+    },
+    {
+      "evidence": "TOP2_VS_TOP3_PROBABILITY_MARGIN is frozen.",
+      "field": "pair_confidence_scalar_definition",
+      "id": 22,
+      "status": "PASS"
+    },
+    {
+      "evidence": "The nine-value pair-confidence grid is frozen.",
+      "field": "pair_confidence_threshold_grid",
+      "id": 23,
+      "status": "PASS"
+    },
+    {
+      "evidence": "The three-level lexicographic objective is frozen.",
+      "field": "calibration_objective",
+      "id": 24,
+      "status": "PASS"
+    },
+    {
+      "evidence": "No deterministic threshold tie-break is specified.",
+      "field": "calibration_tie_break",
+      "id": 25,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "Seeds 0, 1, and 2 are frozen.",
+      "field": "seed_list",
+      "id": 26,
+      "status": "PASS"
+    },
+    {
+      "evidence": "Metric families are listed but exact query denominators are absent.",
+      "field": "final_evaluator_denominators",
+      "id": 27,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "Perturbation classes exist but representative record IDs are absent.",
+      "field": "perturbation_representative_ids",
+      "id": 28,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "No complete category-by-grade rubric is frozen for this pilot.",
+      "field": "visual_grade_schema",
+      "id": 29,
+      "status": "MISSING"
+    },
+    {
+      "evidence": "The design report freezes pair, routing, weight, visual, and ablation gates.",
+      "field": "success_gates",
+      "id": 30,
+      "status": "PASS"
+    }
+  ],
+  "contract_missing_count": 22,
+  "contract_pass_count": 8,
+  "design_artifacts": [
+    {
+      "path": "docs/PAPER/AAAI27_COMPATIBILITY_GATED_CONTROLLER_V2_DESIGN_20260723.md",
+      "sha256": "cad8ef69adeecc59cc91a3d23562ba97c298e7d071f73345ab34903ca6d38b3d"
+    },
+    {
+      "path": "docs/PAPER/AAAI27_TRI_MODE_GARMENT_COMPOSITION_20260723.md",
+      "sha256": "3edc8d643ac8ad7105e04f1b68a4cf5dcd7c81d4a0f7534b7a33a7d4caca1a11"
+    },
+    {
+      "path": "docs/PAPER/AAAI27_CONTROLLER_V2_CROSSFIT_PROTOCOL_20260723.md",
+      "sha256": "66eff019559111e079a3c1ab2acab0062f033176c006cccc8913c0325eb3ced0"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_design_protocol.yaml",
+      "sha256": "0f9c15f907c4ccb843ece8aeecf0cebe74652ca9a8811d496a6052ad3d5499d2"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_crossfit_splits.json",
+      "sha256": "8d201b5aff26426cb155acb3210e053ef033fdb7d66d2ad586f209144082a586"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_compatibility_manifests.json",
+      "sha256": "69f7c64b2a9ff962b4e2dc8a638b924149a6c3722153d735c80a3af7ecfeecd1"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_forward_boundary.json",
+      "sha256": "4e577f1a9afea658eaabd2adf02613f8462f934d951e708cac817ac051562d70"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_optimizer_training_plan.json",
+      "sha256": "7d822a5d7e243d6efb6d8100678bcd99bc435eea6051cbd1c03111b7692f41cc"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_evaluator_contract.json",
+      "sha256": "b166be276b6eb0145977d16f64040d6c86256d986cf63769ca5ab109a4f1bb43"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/controller_v2_dry_run_summary.json",
+      "sha256": "2b0d2029fe069c7bff90472684ea9b7ad25985f8afacfc8910ecdf261070edad"
+    }
+  ],
+  "execution_counts": {
+    "backward_calls": 0,
+    "calibration_runs": 0,
+    "checkpoint_loads": 0,
+    "checkpoint_writes": 0,
+    "inference_runs": 0,
+    "logical_renders": 0,
+    "matched_v1_training_runs": 0,
+    "metric_aggregations": 0,
+    "new_renders": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "paper_final": 0,
+    "renderer_calls": 0,
+    "reused_renders": 0,
+    "scheduler_steps": 0,
+    "test_prediction_runs": 0,
+    "training_forward_batches": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "v2_training_runs": 0,
+    "visual_sheets_generated": 0,
+    "visual_sheets_opened": 0
+  },
+  "missing_fields": [
+    "rotation_record_ids",
+    "train_calibration_test_counts",
+    "duplicate_preservation",
+    "batch_size",
+    "per_step_record_exposure",
+    "data_order_algorithm",
+    "optimizer_type",
+    "learning_rate",
+    "weight_decay",
+    "total_optimizer_steps",
+    "checkpoint_cadence",
+    "final_checkpoint_rule",
+    "lambda_mix",
+    "lambda_weight",
+    "lambda_cons",
+    "augmentation_severity",
+    "augmentation_exposure_schedule",
+    "information_ablation_training_contract",
+    "calibration_tie_break",
+    "final_evaluator_denominators",
+    "perturbation_representative_ids",
+    "visual_grade_schema"
+  ],
+  "model_families": {
+    "MATCHED_V1": {
+      "authorized_run_count": 0,
+      "planned_run_count": 12,
+      "status": "NOT_ESTABLISHED_CONTRACT_INCOMPLETE"
+    },
+    "V2": {
+      "authorized_run_count": 0,
+      "planned_run_count": 12,
+      "status": "NOT_AUTHORIZED_CONTRACT_INCOMPLETE"
+    }
+  },
+  "paper_final": 0,
+  "resource_io_gate": {
+    "activity": {
+      "avatarex_extraction_active": false,
+      "avatarex_full_jpeg_audit_active": false,
+      "cpu_or_disk_heavy_task_active": false,
+      "only_idle_services_observed": [
+        "tensorboard",
+        "jupyter-lab",
+        "autopanel"
+      ],
+      "other_formal_render_active": false,
+      "subject00_runtime_active": false
+    },
+    "gpu": {
+      "compute_process_count": 0,
+      "index": 0,
+      "memory_free_mib": 24081,
+      "memory_total_mib": 24564,
+      "memory_used_mib": 0,
+      "name": "NVIDIA GeForce RTX 4090",
+      "utilization_percent": 0
+    },
+    "host": "autodl-container-ef19489c10-464381bb",
+    "observed_at": "2026-07-23T19:30:31+08:00",
+    "status": "PASS",
+    "storage": {
+      "free_bytes": 48504643584,
+      "free_inodes": 704915826,
+      "free_space_gate": "PASS",
+      "minimum_required_bytes": 26843545600,
+      "mount": "/root/autodl-tmp",
+      "total_bytes": 268435456000,
+      "total_inodes": 730799040,
+      "used_bytes": 219930812416,
+      "used_inodes": 25883214
+    }
+  },
+  "rotation_contracts": [
+    {
+      "aab_coverage": null,
+      "abb_coverage": null,
+      "calibration_record_count": null,
+      "duplicate_count": null,
+      "exact_record_ids": null,
+      "mixed_count": null,
+      "pair_coverage": null,
+      "pure_count": null,
+      "record_manifest_sha256": null,
+      "rotation": 0,
+      "status": "UNRESOLVED_CONTRACT_INCOMPLETE",
+      "test_record_count": null,
+      "train_record_count": null
+    },
+    {
+      "aab_coverage": null,
+      "abb_coverage": null,
+      "calibration_record_count": null,
+      "duplicate_count": null,
+      "exact_record_ids": null,
+      "mixed_count": null,
+      "pair_coverage": null,
+      "pure_count": null,
+      "record_manifest_sha256": null,
+      "rotation": 1,
+      "status": "UNRESOLVED_CONTRACT_INCOMPLETE",
+      "test_record_count": null,
+      "train_record_count": null
+    },
+    {
+      "aab_coverage": null,
+      "abb_coverage": null,
+      "calibration_record_count": null,
+      "duplicate_count": null,
+      "exact_record_ids": null,
+      "mixed_count": null,
+      "pair_coverage": null,
+      "pure_count": null,
+      "record_manifest_sha256": null,
+      "rotation": 2,
+      "status": "UNRESOLVED_CONTRACT_INCOMPLETE",
+      "test_record_count": null,
+      "train_record_count": null
+    },
+    {
+      "aab_coverage": null,
+      "abb_coverage": null,
+      "calibration_record_count": null,
+      "duplicate_count": null,
+      "exact_record_ids": null,
+      "mixed_count": null,
+      "pair_coverage": null,
+      "pure_count": null,
+      "record_manifest_sha256": null,
+      "rotation": 3,
+      "status": "UNRESOLVED_CONTRACT_INCOMPLETE",
+      "test_record_count": null,
+      "train_record_count": null
+    }
+  ],
+  "run_branch": "research/compatibility-gated-controller-v2-crossfit-micro-pilot-20260723",
+  "schema_version": "canondressgs.research.controller_v2_micro_pilot_training_contract.v1",
+  "source_branch": "research/compatibility-gated-controller-v2-design-20260723",
+  "source_head": "4f8c94405e68932e791f69c59ae129c863b1280d",
+  "status": "CONTRACT_INCOMPLETE",
+  "task_id": "AAAI27-CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001",
+  "training_authorized": false
+}

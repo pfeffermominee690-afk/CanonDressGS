@@ -1,0 +1,221 @@
+{
+  "check_count": 42,
+  "checks": [
+    {
+      "detail": "source branch and HEAD exactly match the frozen contract",
+      "name": "source_branch_and_head",
+      "passed": true
+    },
+    {
+      "detail": "source worktree has no tracked or untracked changes",
+      "name": "source_worktree_clean",
+      "passed": true
+    },
+    {
+      "detail": "target branch is correct and descends from the frozen source HEAD",
+      "name": "target_branch_and_ancestry",
+      "passed": true
+    },
+    {
+      "detail": "attempt_001, attempt_002, and attempt_003 exactly match their frozen inventories",
+      "name": "attempt_immutability",
+      "passed": true
+    },
+    {
+      "detail": "external evidence SHA, repo-copy SHA, and equal canonical content are recorded",
+      "name": "old_review_manifest_sha",
+      "passed": true
+    },
+    {
+      "detail": "all generated non-test JSON content hashes verify",
+      "name": "generated_json_content_hashes",
+      "passed": true
+    },
+    {
+      "detail": "31 high-resolution review candidates are bound",
+      "name": "candidate_count_31",
+      "passed": true
+    },
+    {
+      "detail": "23 candidates pass the final visual review",
+      "name": "pass_count_23",
+      "passed": true
+    },
+    {
+      "detail": "the exact eight O03 hood-residual candidates fail",
+      "name": "fail_count_8",
+      "passed": true
+    },
+    {
+      "detail": "no candidate is uncertain",
+      "name": "uncertain_count_zero",
+      "passed": true
+    },
+    {
+      "detail": "the preliminary pass is explicitly revised to final fail",
+      "name": "revised_o03_slot02_cand01",
+      "passed": true
+    },
+    {
+      "detail": "the exact 14 preferred requests are selected",
+      "name": "selected_count_14",
+      "passed": true
+    },
+    {
+      "detail": "each selected request belongs to a unique garment-slot cell",
+      "name": "unique_selection_per_cell",
+      "passed": true
+    },
+    {
+      "detail": "the six frozen O01 selections match exactly",
+      "name": "o01_selection_complete",
+      "passed": true
+    },
+    {
+      "detail": "the two frozen O03 selections match exactly",
+      "name": "o03_selection_complete",
+      "passed": true
+    },
+    {
+      "detail": "the six frozen O04 selections match exactly",
+      "name": "o04_selection_complete",
+      "passed": true
+    },
+    {
+      "detail": "ten cells remain missing",
+      "name": "missing_count_10",
+      "passed": true
+    },
+    {
+      "detail": "the missing-cell set exactly matches the user decision",
+      "name": "missing_list_exact",
+      "passed": true
+    },
+    {
+      "detail": "all missing cells require rerun and none is authorized",
+      "name": "missing_rerun_state",
+      "passed": true
+    },
+    {
+      "detail": "failed request IDs and failure tags match exactly",
+      "name": "failed_candidates_exact",
+      "passed": true
+    },
+    {
+      "detail": "nine visually passing alternatives remain unselected without being mislabeled as failures",
+      "name": "pass_not_selected_semantics",
+      "passed": true
+    },
+    {
+      "detail": "accepted promotion count is zero",
+      "name": "accepted_zero",
+      "passed": true
+    },
+    {
+      "detail": "Teacher-target promotion count is zero",
+      "name": "teacher_target_zero",
+      "passed": true
+    },
+    {
+      "detail": "the draft contains exactly four new request IDs",
+      "name": "canary_request_count_and_ids",
+      "passed": true
+    },
+    {
+      "detail": "front, right, back-left, and back fixed cells match exactly",
+      "name": "canary_cells_exact",
+      "passed": true
+    },
+    {
+      "detail": "every canary request is bound to an existing original request and registered condition SHA",
+      "name": "canary_source_bindings",
+      "passed": true
+    },
+    {
+      "detail": "all draft outputs require parseable native 1349x1166 landscape PNG",
+      "name": "canary_native_resolution",
+      "passed": true
+    },
+    {
+      "detail": "the complete hood-removal and preservation prompt contract is frozen",
+      "name": "canary_prompt_contract",
+      "passed": true
+    },
+    {
+      "detail": "one candidate per cell, zero retries, and no postprocessing",
+      "name": "canary_retry_and_postprocessing",
+      "passed": true
+    },
+    {
+      "detail": "all ten human gates require 4/4 passage with no automatic acceptance",
+      "name": "canary_acceptance_gates",
+      "passed": true
+    },
+    {
+      "detail": "canary execution remains unauthorized",
+      "name": "generation_not_authorized",
+      "passed": true
+    },
+    {
+      "detail": "no image generation or targeted rerun occurred",
+      "name": "no_generation_calls",
+      "passed": true
+    },
+    {
+      "detail": "no external API, API-key read, or cloud image write is allowed or recorded",
+      "name": "no_external_api_or_key_read",
+      "passed": true
+    },
+    {
+      "detail": "all target-branch changes are restricted to approved sidecars, scripts, tests, report, and handoff",
+      "name": "allowed_git_paths_only",
+      "passed": true
+    },
+    {
+      "detail": "no image or PDF path is changed",
+      "name": "no_images_or_pdfs_in_git",
+      "passed": true
+    },
+    {
+      "detail": "no paper or training-code path is changed",
+      "name": "no_paper_or_training_modification",
+      "passed": true
+    },
+    {
+      "detail": "overlay is a separate, manually reviewed, non-accepting sidecar",
+      "name": "overlay_schema",
+      "passed": true
+    },
+    {
+      "detail": "O03 finding is limited to the existing image-generation candidate set",
+      "name": "failure_interpretation_boundary",
+      "passed": true
+    },
+    {
+      "detail": "Formal Base remains pending and no positive paper claim is made",
+      "name": "formal_base_pending",
+      "passed": true
+    },
+    {
+      "detail": "success classification matches the contract",
+      "name": "final_classification",
+      "passed": true
+    },
+    {
+      "detail": "the only next task is explicit user authorization of four canary requests",
+      "name": "next_task_unique",
+      "passed": true
+    },
+    {
+      "detail": "PAPER_FINAL remains false in every applicable registry",
+      "name": "paper_final_false",
+      "passed": true
+    }
+  ],
+  "content_sha256": "28e11d8d1d7932895c8489892f9c64bdab5072b11b7cd38fd7665e8f2d76cd90",
+  "failed_checks": [],
+  "paper_final": false,
+  "result": "PASS",
+  "schema_version": "canondressgs.subject00.1349_human_selection_o03_canary_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-1349-HUMAN-SELECTION-AND-O03-CANARY-PREP-001"
+}

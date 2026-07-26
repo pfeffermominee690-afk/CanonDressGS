@@ -1,0 +1,102 @@
+{
+  "content_sha256": "68688ae8d667f320d5ecc6b9a9d5214c0890078e4469853adc3dd4fa40c0ce83",
+  "hard_rejects": [
+    {
+      "code": "IDENTITY_FACE_MISMATCH",
+      "decision": "REJECT",
+      "definition": "face or identity differs from Subject00"
+    },
+    {
+      "code": "HAIR_OR_HAIRLINE_DRIFT",
+      "decision": "REJECT",
+      "definition": "visible hairline or hair appearance changes or is invented"
+    },
+    {
+      "code": "SKIN_TONE_DRIFT",
+      "decision": "REJECT",
+      "definition": "skin tone changes beyond source-lighting variation"
+    },
+    {
+      "code": "BODY_PROPORTION_DRIFT",
+      "decision": "REJECT",
+      "definition": "height, build, or body proportions change"
+    },
+    {
+      "code": "POSE_MISMATCH",
+      "decision": "REJECT",
+      "definition": "frozen pose or limb configuration changes"
+    },
+    {
+      "code": "CAMERA_OR_VIEW_MISMATCH",
+      "decision": "REJECT",
+      "definition": "camera, framing, orientation, or perspective changes"
+    },
+    {
+      "code": "FACE_OCCLUDED",
+      "decision": "REJECT",
+      "definition": "face is covered by garment or artifact"
+    },
+    {
+      "code": "HANDS_OR_FEET_MISSING",
+      "decision": "REJECT",
+      "definition": "one or more hands or feet disappear or are cropped"
+    },
+    {
+      "code": "ANATOMY_FAILURE",
+      "decision": "REJECT",
+      "definition": "extra, duplicated, fused, or malformed body parts"
+    },
+    {
+      "code": "GARMENT_SEMANTIC_MISMATCH",
+      "decision": "REJECT",
+      "definition": "wrong category, color, cut, sleeve length, or upper/lower structure"
+    },
+    {
+      "code": "GARMENT_BODY_FUSION",
+      "decision": "REJECT",
+      "definition": "garment merges into body without a coherent boundary"
+    },
+    {
+      "code": "GARMENT_BACKGROUND_ERASURE",
+      "decision": "REJECT",
+      "definition": "background replaces a garment region"
+    },
+    {
+      "code": "BACKGROUND_OR_LIGHTING_DRIFT",
+      "decision": "REJECT",
+      "definition": "source background or lighting is materially altered"
+    },
+    {
+      "code": "EXTRA_PERSON_OR_OBJECT",
+      "decision": "REJECT",
+      "definition": "extra person or unrequested object appears"
+    },
+    {
+      "code": "TEXT_NUMBER_LOGO_WATERMARK",
+      "decision": "REJECT",
+      "definition": "new text, numbering, logo, watermark, border, or collage appears"
+    },
+    {
+      "code": "FULL_BODY_CROP_FAILURE",
+      "decision": "REJECT",
+      "definition": "camera crop breaks full-body completeness"
+    },
+    {
+      "code": "SEVERE_EDGE_OR_MASK_FAILURE",
+      "decision": "REJECT",
+      "definition": "edge/mask defects make the asset unusable"
+    }
+  ],
+  "paper_final": false,
+  "quality_grades": {
+    "A": "no visible artifact at inspection scale",
+    "B": "minor non-scientific artifact outside identity and garment boundaries",
+    "C": "material artifact requiring adjudication",
+    "D": "hard failure and reject"
+  },
+  "quality_retry_policy": "scientific quality rejection is retained and is not an automatic retry reason",
+  "schema_version": "canondressgs.subject00.garment_reject_taxonomy.v1",
+  "status": "FROZEN",
+  "task_id": "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001",
+  "vlm_final_decision_allowed": false
+}

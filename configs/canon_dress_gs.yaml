@@ -1,0 +1,88 @@
+model:
+  offset_mode: anchor_film
+  embedding_dim: 64
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+
+data:
+  target_glob: ""
+  batch_size: 1
+  num_workers: 0
+
+loss:
+  xyz_weight: 1.0
+  scaling_weight: 0.5
+  opacity_weight: 0.2
+  smooth_weight: 0.05
+  noncloth_weight: 0.1
+  magnitude_weight: 0.001
+  fallback_weight: 0.5
+  anchor_weight: 1.0
+  rgb_weight: 1.0
+  mask_weight: 0.5
+  lpips_weight: 0.1
+  ssim_weight: 0.2
+  latent_consistency_weight: 0.1
+  anchor_feature_consistency_weight: 0.1
+  offset_consistency_weight: 0.1
+
+optimizer:
+  type: adam
+  lr: 0.001
+  weight_decay: 0.0
+  encoder_lr: 0.0001
+  aggregator_lr: 0.0001
+  hypernetwork_lr: 0.0001
+  anchor_mlp_lr: 0.0001
+  local_adapter_lr: 0.0001
+
+train:
+  mode: image_anchor_only
+  steps: 5000
+  batch_size: 1
+  freeze_base: true
+  seed: 42
+  log_every: 20
+  save_every: 500
+  eval_every: 200
+  grad_clip: 1.0
+  mixed_precision: false
+  reference_count: 4
+  reference_count_min: 1
+  reference_count_max: 8
+  dual_reference_consistency: true
+  consistency_every: 1
+  anchor_pretrain_checkpoint: null
+  output_dir: outputs/canon_dress_gs_image
+  resume: null
+
+base:
+  model_dir: null
+  checkpoint_path: null
+  fingerprint_required: true
+
+render_data:
+  samples_json: null
+  anchor_target_root: null
+  image_height: null
+  image_width: null
+
+render:
+  background: [1.0, 1.0, 1.0]
+
+image_conditioning:
+  manifest_path: null
+  split: train
+  allow_clothing_mask_fallback: true
+  feature_dim: 128
+  embedding_dim: 64
+  local_feature_dim: 64
+  use_projection_confidence: true
+  use_view_angle_confidence: false
+  unknown_anchor_mode: learned
+  allow_identity_deformation: false
+  image_height: null
+  image_width: null

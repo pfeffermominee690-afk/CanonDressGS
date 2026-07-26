@@ -1,0 +1,89 @@
+{
+  "best_rotation_selection": false,
+  "condition_order": [
+    "cond_000000",
+    "cond_000318",
+    "cond_000017",
+    "cond_000347"
+  ],
+  "held_out_test_aggregation": "ALL_FOUR_ROTATIONS",
+  "paper_final": false,
+  "paper_final_count": 0,
+  "rotations": [
+    {
+      "calibration_condition": "cond_000017",
+      "calibration_fold_index": 2,
+      "rotation": 0,
+      "test_condition": "cond_000347",
+      "test_fold_excluded_from_calibration": true,
+      "test_fold_excluded_from_training": true,
+      "test_fold_index": 3,
+      "train_conditions": [
+        "cond_000000",
+        "cond_000318"
+      ],
+      "train_fold_indices": [
+        0,
+        1
+      ]
+    },
+    {
+      "calibration_condition": "cond_000347",
+      "calibration_fold_index": 3,
+      "rotation": 1,
+      "test_condition": "cond_000000",
+      "test_fold_excluded_from_calibration": true,
+      "test_fold_excluded_from_training": true,
+      "test_fold_index": 0,
+      "train_conditions": [
+        "cond_000318",
+        "cond_000017"
+      ],
+      "train_fold_indices": [
+        1,
+        2
+      ]
+    },
+    {
+      "calibration_condition": "cond_000000",
+      "calibration_fold_index": 0,
+      "rotation": 2,
+      "test_condition": "cond_000318",
+      "test_fold_excluded_from_calibration": true,
+      "test_fold_excluded_from_training": true,
+      "test_fold_index": 1,
+      "train_conditions": [
+        "cond_000017",
+        "cond_000347"
+      ],
+      "train_fold_indices": [
+        2,
+        3
+      ]
+    },
+    {
+      "calibration_condition": "cond_000318",
+      "calibration_fold_index": 1,
+      "rotation": 3,
+      "test_condition": "cond_000017",
+      "test_fold_excluded_from_calibration": true,
+      "test_fold_excluded_from_training": true,
+      "test_fold_index": 2,
+      "train_conditions": [
+        "cond_000347",
+        "cond_000000"
+      ],
+      "train_fold_indices": [
+        3,
+        0
+      ]
+    }
+  ],
+  "schema_version": "canondressgs.research.controller_v2_crossfit_splits.v1",
+  "scientific_name": "CONDITION-FOLD CROSS-FIT EVALUATION",
+  "status": "FROZEN",
+  "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+  "test_fold_threshold_selection": false,
+  "test_fold_used_for_compatibility": false,
+  "test_fold_used_for_training": false
+}

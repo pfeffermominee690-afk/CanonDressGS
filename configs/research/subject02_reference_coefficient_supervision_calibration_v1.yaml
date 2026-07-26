@@ -1,0 +1,167 @@
+schema_version: canondressgs.reference_coefficient_supervision_calibration.v1
+task_id: SUBJECT02-REFERENCE-COEFFICIENT-SUPERVISION-CALIBRATION-001
+branch: research/reference-coefficient-supervision-calibration-20260720
+source_head: fbb162ad58fa7810f78a222f7c669d696b00fefd
+outfits: [O01, O08]
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+
+inputs:
+  source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  source_manifest_sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  stable_protected_attribution: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+  stable_protected_attribution_sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+  stable_protected_count: 30894
+  explicit_basis_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001
+  explicit_basis_artifact: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_a/basis/explicit_basis.pt
+  explicit_basis_artifact_sha256: 984d7f5b77034244c967d4f39bd79d120fb16a696982157139a2e65a710bacb9
+  legacy_stage_c_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth
+  legacy_stage_c_checkpoint_sha256: 3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371
+  p1_predictions: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-RESIDUAL-FIELD-PARAMETERIZATION-001/attempt_002/p1/milestones/step_001000/predicted_residuals.pt
+  p1_predictions_sha256: e4a5efaee9c8af9d2e245512112db7ab3d0acf8f11bd1592b827e8b28fc99cb4
+  oracle_o01_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth
+  oracle_o01_checkpoint_sha256: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+  oracle_o08_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O08/checkpoints/step_001200.pth
+  oracle_o08_checkpoint_sha256: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  previous_fusion_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REFERENCE-TO-BASIS-COEFFICIENT-FUSION-001/attempt_001
+  previous_fusion_final_adjudication: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REFERENCE-TO-BASIS-COEFFICIENT-FUSION-001/attempt_001/final_adjudication/final_adjudication.json
+  previous_fusion_final_adjudication_sha256: 7a7c21e4bc3b51f362d22fbf5784ff79b16ac77119ce1927c0a2fe729fb8aac4
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  historical_checkpoint_sha256_warning: 64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  gaussian_count: 200000
+  anchor_count: 10000
+  frozen: true
+
+legacy_reference_model:
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+  image_feature_dim: 128
+  embedding_dim: 64
+  local_feature_dim: 64
+  freeze_image_backbone: true
+  online_completion: {graph_k: 8, hidden_dim: 128, blocks: 4}
+  dressable_channels:
+    xyz: {enabled: true, max_abs: 0.05}
+    log_scaling: {enabled: true, max_abs: 0.35}
+    rotation: {enabled: true, max_angle_rad: 0.2617993878}
+    opacity_logit: {enabled: true, max_abs: 2.0}
+    sh0: {enabled: true, max_abs: 0.25}
+    shN: {enabled: true, max_abs: 0.10, sh_degree: 1}
+
+stage_0:
+  optimizer_created: false
+  endpoint_raw_logit_magnitude: 10.0
+  finite_difference_epsilon: 0.0001
+  states:
+    - [-1.0, -1.0]
+    - [0.0, 0.0]
+    - [1.0, 1.0]
+    - [-1.0, 1.0]
+    - [1.0, -1.0]
+  old_loss:
+    coefficient_weight: 1.0
+    sign_weight: 0.25
+    pair_weight: 0.10
+    sign_margin: 0.8
+    pair_margin: 1.5
+
+stage_1:
+  parity_atol: 1.0e-7
+  parity_rtol: 1.0e-6
+  offline_feature: exact_previous_f2_extraction
+  online_feature: frozen_f2_reference_feature_extractor
+
+stage_2:
+  max_steps: 100
+  milestones: [0, 20, 50, 100]
+  seed: 20260726
+  learning_rate: 0.02
+  weight_decay: 0.0
+  gradient_clip_norm: 5.0
+  paired_batch_order: [O01, O08]
+  class_labels: {O01: 0.0, O08: 1.0}
+  coefficient_targets: {O01: -1.0, O08: 1.0}
+  loss:
+    classification_weight: 1.0
+    coefficient_weight: 0.25
+    signed_rank_weight: 0.25
+    signed_rank_margin: 2.0
+  acceptance:
+    coefficient_mae_max: 0.10
+    o01_mean_max: -0.80
+    o08_mean_min: 0.80
+    separation_min: 1.60
+    correct_sign_count_min: 8
+    signed_raw_logit_margin_min_exclusive: 0.0
+
+stage_3:
+  variants:
+    - correct
+    - swapped
+    - permutation
+    - single_reference
+    - dropout_0
+    - dropout_1
+    - dropout_2
+    - zero_rgb
+    - base_rgb
+    - zero_clothing_mask
+    - rgb_only
+    - mask_only
+  modality_discrimination_separation_min: 0.20
+  combined_reference_sensitivity_min_exclusive: 0.0
+  acceptance:
+    swapped_coefficient_margin_min: 1.20
+    correct_episode_wins_min: 8
+    permutation_max_abs_diff_max: 1.0e-5
+
+basis:
+  rank: 1
+  chunk_size: 16384
+  frozen: true
+
+render:
+  background: [1.0, 1.0, 1.0]
+  sh_degree: 1
+  protected_support_alpha_threshold: 0.0001
+
+training:
+  seed: 20260726
+
+output:
+  task_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REFERENCE-COEFFICIENT-SUPERVISION-CALIBRATION-001
+  attempt: attempt_002
+  supersedes_zero_optimizer_step_attempt: attempt_001
+  superseded_attempt_failure: missing legacy offline-probe static pooling compatibility methods
+
+permissions:
+  modify_previous_fusion_attempt: false
+  modify_explicit_basis_attempt: false
+  modify_basis: false
+  modify_base: false
+  modify_mmlp: false
+  modify_renderer: false
+  modify_residual_bounds: false
+  modify_dataset: false
+  finetune_backbone: false
+  train_attention: false
+  use_projection: false
+  use_completion: false
+  use_target_image_loss: false
+  per_gaussian_trainable_parameters: false
+  outfit_id_in_model: false
+  target_image_in_prediction_forward: false
+  teacher_coefficient_in_prediction_forward: false
+  expand_to_multi_outfit: false

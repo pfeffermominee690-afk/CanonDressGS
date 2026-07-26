@@ -1,0 +1,143 @@
+{
+  "accepted_endpoints_in_this_task": 0,
+  "content_sha256": "0b571828384ac83c48a2f820a24cddd08e83b6016be2020dfc08ab15bda43e70",
+  "decision_policy": {
+    "automated_checks_must_pass": true,
+    "automatic_acceptance_allowed": false,
+    "disagreement_record_required": true,
+    "disagreement_resolution": "third independent human reviewer; majority with reasons retained",
+    "minimum_independent_human_reviewers": 2,
+    "reviewers_work_independently": true,
+    "two_accept_votes_required": true,
+    "vlm_only_acceptance_allowed": false
+  },
+  "dimensions": [
+    {
+      "hard_reject_on_fail": true,
+      "name": "identity_preservation",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "garment_semantic_match",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "full_body",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "hands",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "feet",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "anatomy",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "background",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "blur",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "text_or_watermark",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "view_consistency",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "cross_view_garment_consistency",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "body_conforming_bias",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "garment_volume",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "silhouette",
+      "required": true
+    }
+  ],
+  "garment_specific_geometry_metrics": {
+    "O01": [
+      "torso_bulk",
+      "hood_presence",
+      "sleeve_looseness",
+      "hem_offset",
+      "body_conforming_bias"
+    ],
+    "O03": [
+      "lapel_and_upper_torso_structure",
+      "shoulder_line",
+      "jacket_hem",
+      "trouser_silhouette",
+      "structural_symmetry"
+    ],
+    "O04": [
+      "outer_layer_thickness",
+      "collar_and_jacket_opening",
+      "sleeve_thickness",
+      "waist_and_hem_offset",
+      "jeans_silhouette"
+    ]
+  },
+  "generation_budget_dependency": {
+    "candidate_generation_count_per_garment": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+    "minimum_acceptable_count_per_garment": "GENERATION_BACKEND_DEPENDENCY_PENDING"
+  },
+  "geometry_metrics_may_change_prompt": false,
+  "paper_final": 0,
+  "record_policy": {
+    "candidate_records_append_only": true,
+    "failed_and_rejected_records_retained": true,
+    "rejected_candidate_as_teacher_input_allowed": false,
+    "review_records_append_only": true
+  },
+  "rejection_reason_taxonomy": [
+    "IDENTITY_DRIFT",
+    "GARMENT_SEMANTIC_MISMATCH",
+    "BODY_CROPPED",
+    "HAND_MISSING_OR_INVALID",
+    "FOOT_MISSING_OR_INVALID",
+    "ANATOMY_FAILURE",
+    "BACKGROUND_FAILURE",
+    "BLUR",
+    "TEXT_OR_WATERMARK",
+    "VIEW_INCONSISTENT",
+    "CROSS_VIEW_GARMENT_INCONSISTENT",
+    "BODY_CONFORMING_COLLAPSE",
+    "GARMENT_VOLUME_MISSING",
+    "SILHOUETTE_FAILURE",
+    "GARMENT_SPECIFIC_GEOMETRY_FAILURE"
+  ],
+  "replacement_rule": "A rejected or missing slot is replaced only by a new append-only attempt for the same garment and slot under the same frozen backend contract.",
+  "schema_version": "subject00.three_garment.screening_contract.v1",
+  "screened_candidates_in_this_task": 0,
+  "status": "FROZEN_PENDING_CANDIDATES",
+  "task_id": "AAAI27-SUBJECT00-THREE-GARMENT-CANARY-PROTOCOL-001"
+}

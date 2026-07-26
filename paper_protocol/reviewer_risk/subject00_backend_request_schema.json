@@ -1,0 +1,138 @@
+{
+  "$id": "canondressgs.subject00.backend_request.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "content_sha256": "ec7fb97cee179e988002b065b477c24a1f26062481616c8500ab522262bb9dd8",
+  "paper_final": false,
+  "properties": {
+    "authorization": {
+      "const": false
+    },
+    "backend": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "base_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "candidate_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "condition_image": {
+      "type": "object"
+    },
+    "condition_mask": {
+      "type": "object"
+    },
+    "error_taxonomy": {
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "executed": {
+      "const": false
+    },
+    "identity_source": {
+      "type": "object"
+    },
+    "input_shas": {
+      "type": "object"
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "negative_constraint_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "normalized_png_path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "output_count": {
+      "const": 1
+    },
+    "prompt_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "provenance_path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "provider": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_response_path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "request_id": {
+      "pattern": "^subject00_O(?:01|03|04)_slot0[0-7]_cand0[01]$",
+      "type": "string"
+    },
+    "response_format": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "retry_policy": {
+      "type": "object"
+    },
+    "revision_or_alias_status": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "target_resolution": {
+      "const": {
+        "height": 1536,
+        "orientation": "portrait",
+        "width": 1024
+      }
+    },
+    "timeout_seconds": {
+      "const": 300
+    }
+  },
+  "required": [
+    "request_id",
+    "backend",
+    "provider",
+    "base_url",
+    "model",
+    "revision_or_alias_status",
+    "identity_source",
+    "condition_image",
+    "condition_mask",
+    "input_shas",
+    "prompt_id",
+    "negative_constraint_id",
+    "output_count",
+    "candidate_id",
+    "target_resolution",
+    "response_format",
+    "raw_response_path",
+    "normalized_png_path",
+    "provenance_path",
+    "timeout_seconds",
+    "retry_policy",
+    "error_taxonomy",
+    "authorization",
+    "executed"
+  ],
+  "title": "Subject00 frozen backend request envelope",
+  "type": "object",
+  "x_secret_policy": "only credential environment-variable name may be persisted; values and fingerprints are forbidden",
+  "x_selection_constraint": "backend/provider/model/base_url become non-null only after a supported selection commit"
+}

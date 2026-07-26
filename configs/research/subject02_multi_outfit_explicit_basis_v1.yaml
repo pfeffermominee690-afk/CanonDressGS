@@ -1,0 +1,160 @@
+schema_version: canondressgs.multi_outfit_explicit_basis.v1
+task_id: SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001
+branch: research/multi-outfit-explicit-basis-20260720
+source_head: 28f2b3358f28b64c3cb35b64f130013ee519129a
+train_outfits: [O01, O02, O03, O04, O08]
+held_out_outfit: O07
+reserve_outfit: O06
+conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+views:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+
+inputs:
+  source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  source_manifest_sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  stable_protected_attribution: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+  stable_protected_attribution_sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+  stable_protected_count: 30894
+  cs_pass_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REFERENCE-COEFFICIENT-SUPERVISION-CALIBRATION-001/attempt_002
+  cs_pass_final_sha256: cb29aa115374a1cbd7659f920a8a4af0175fc1781d3ffbfe5c05d70a6a2b867b
+  prior_explicit_basis_attempt: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001
+  prior_explicit_basis_artifact_sha256: 984d7f5b77034244c967d4f39bd79d120fb16a696982157139a2e65a710bacb9
+  existing_teacher_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support
+  oracle_o01_checkpoint_sha256: af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56
+  oracle_o08_checkpoint_sha256: 4b0d113cf2e42904ec4f96833e5440fa4f6e6ab013e090be514ef3d8d3dd354e
+  legacy_stage_c_checkpoint: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth
+  legacy_stage_c_checkpoint_sha256: 3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  historical_checkpoint_sha256_warning: 64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  gaussian_count: 200000
+  frozen: true
+
+teacher:
+  protocol: representation_triage_rung2_direct_shared_canonical
+  max_steps: 1200
+  ceiling_steps: 1500
+  seed: 20260718
+  record_steps: [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200]
+  render_steps: [0, 40, 80, 160, 240, 400, 600, 800, 1000, 1200]
+  optimizer:
+    class: Adam
+    geometry_lr: 0.001
+    appearance_lr: 0.002
+    gradient_clip_norm: 1.0
+  capacity_loss:
+    name: CAPACITY_ORACLE_LOSS_V1
+    garment_rgb: 1.0
+    alpha_foreground: 0.5
+    new_silhouette_alpha: 1.0
+    boundary_rgb: 0.25
+    protected_rgb: 10.0
+    protected_alpha: 5.0
+    stability: 0.0001
+    preserve_old_garment: false
+  abnormal_gaussian:
+    xyz_displacement_m: 0.25
+    scale_ratio_max: 8.0
+    opacity_saturation_low: 0.005
+    opacity_saturation_high: 0.995
+    outside_base_radius_multiplier: 1.5
+  acceptance:
+    minimum_forming_views: 3
+    require_loss_finite: true
+    require_shared_canonical: true
+    forbid_old_garment_dominance: true
+    forbid_severe_cloud_mottle: true
+
+model:
+  image_feature_dim: 128
+  freeze_image_backbone: true
+  coefficient_input: frozen_per_reference_f2_set_mean_max
+
+basis:
+  candidate_ranks: [1, 2, 3, 4]
+  maximum_rank: 4
+  method: deterministic_centered_svd
+  space: bound_normalized_six_channel_gaussian_residual
+  chunk_size: 16384
+  channel_bounds:
+    xyz: 0.05
+    log_scaling: 0.35
+    rotation: 0.2617993878
+    opacity_logit: 2.0
+    sh0: 0.25
+    shN: 0.10
+  acceptance:
+    normalized_rmse_max: 0.02
+    cosine_min: 0.98
+    top_10_overlap_min: 0.90
+    garment_mae_max: 0.01
+
+ridge:
+  lambda: 0.0001
+  folds: leave_one_target_view_out
+
+coefficient_training:
+  max_steps: 300
+  milestones: [0, 20, 50, 100, 200, 300]
+  seed: 20260727
+  learning_rate: 0.02
+  weight_decay: 0.0
+  gradient_clip_norm: 5.0
+  pairwise_geometry_weight: 0.10
+  balanced_batch_order: [O01, O02, O03, O04, O08]
+  acceptance:
+    standardized_rmse_max: 0.15
+    nearest_teacher_correct_count: 20
+    correct_rank_one_count: 20
+    swapped_pairwise_wins: 80
+    permutation_max_abs_diff: 0.00001
+    single_dropout_correct_min: 36
+    single_dropout_total: 40
+
+held_out:
+  outfit: O07
+  basis_acceptance:
+    normalized_rmse_max: 0.15
+    cosine_min: 0.70
+    garment_mae_max: 0.08
+  reference_acceptance:
+    coefficient_rmse_max: 0.20
+    garment_mae_max: 0.10
+    permutation_max_abs_diff: 0.00001
+
+render:
+  background: [1.0, 1.0, 1.0]
+  protected_support_alpha_threshold: 0.0001
+
+output:
+  task_root: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001
+  attempt: attempt_003
+  supersedes_zero_optimizer_step_attempts: [attempt_001, attempt_002]
+  superseded_attempt_failures:
+    attempt_001: initial teacher evidence helper mixed CUDA render with CUDA sample under a CPU-only persistence boundary
+    attempt_002: multi-outfit loader omitted immutable Rung-2 edit-core/preserve field aliases required before the first optimizer step
+
+permissions:
+  modify_cs_pass_attempt: false
+  modify_prior_explicit_basis: false
+  modify_existing_teachers: false
+  modify_base: false
+  modify_mmlp: false
+  modify_renderer: false
+  modify_image_backbone: false
+  modify_dataset: false
+  use_attention: false
+  use_projection: false
+  use_completion: false
+  use_per_gaussian_residual_decoder: false
+  outfit_id_in_model: false
+  target_image_in_prediction_forward: false
+  train_on_o07: false
+  substitute_o06_for_o07: false

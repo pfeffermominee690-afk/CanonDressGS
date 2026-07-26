@@ -1,0 +1,15 @@
+{
+  "marker": "SYNTHETIC_TEST_ONLY",
+  "outfits": ["O01", "O02", "O03", "O04", "O08"],
+  "views": ["cond_000000", "cond_000318", "cond_000017", "cond_000347"],
+  "seeds": [0, 1, 2],
+  "seen_episode_count": 20,
+  "swap_count": 80,
+  "held_out": {"outfit_id": "O07", "status": "Held-out Diagnostic — FAIL"},
+  "baseline_semantics": {
+    "B0": "Base Avatar — no residual and no training",
+    "B1": "Optimization Upper Bound — not an inference method",
+    "B2": "Seen-only Lookup — forbidden for O07"
+  },
+  "cases": ["complete", "missing_metric", "asset_mismatch"]
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "canondressgs.subject00.second_identity_cost_storage_forecast.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "COUNT_FORECAST_READY_PRICE_AND_RUNTIME_PENDING",
+  "basis": {
+    "garments": 3,
+    "slots_per_garment": 8,
+    "required_accepted_endpoint_images": 24,
+    "planning_candidates_per_slot": 2,
+    "planning_acceptance_yield": 0.5,
+    "acceptance_yield_status": "PLANNING_ASSUMPTION_NOT_MEASURED",
+    "image_resolution": {"width": 1024, "height": 1536}
+  },
+  "generation": {
+    "planned_valid_candidate_images": 48,
+    "planned_generation_calls_at_n_equals_1": 48,
+    "retry_calls": "NOT_FORECAST_WITHOUT_BACKEND_FAILURE_RATE",
+    "automatic_budget_expansion_allowed": false,
+    "additional_generation_requires_user_authorization": true,
+    "api_price": "PRICE_NOT_VERIFIED",
+    "total_api_cost": "PRICE_NOT_VERIFIED"
+  },
+  "human_review": {
+    "candidate_reviews": 48,
+    "minimum_independent_initial_reviews_per_candidate": 2,
+    "minimum_initial_review_decisions": 96,
+    "adjudication_reviews": "0_TO_48_DEPENDING_ON_DISAGREEMENT",
+    "garment_group_reviews": 3,
+    "group_review_reviewer_count": "NOT_FROZEN_BY_SOURCE_CONTRACT"
+  },
+  "decoded_storage_lower_bounds": {
+    "rgb_bytes_per_image_uint8": 4718592,
+    "candidate_rgb_bytes_for_48": 226492416,
+    "candidate_rgb_mib_for_48": 216,
+    "mask_bytes_per_image_uint8": 1572864,
+    "accepted_mask_bytes_for_24": 37748736,
+    "accepted_mask_mib_for_24": 36,
+    "candidate_mask_bytes_for_48_if_all_retained": 75497472,
+    "candidate_mask_mib_for_48_if_all_retained": 72,
+    "note": "These are decoded uint8 array sizes, not PNG file-size promises. PNG compression, raw provider responses, metadata, thumbnails, checkpoints, and duplicate-copy policy remain unmeasured."
+  },
+  "training_and_evaluation": {
+    "teacher_runs": 3,
+    "teacher_steps_per_run": 1200,
+    "teacher_optimizer_steps_total": 3600,
+    "controller_rotations": 4,
+    "controller_replicates_per_rotation": 3,
+    "controller_runs": 12,
+    "controller_steps_per_run": 300,
+    "controller_optimizer_steps_total": 3600,
+    "reference_classifier_runs": 12,
+    "reference_classifier_optimizer_steps_total": 3600,
+    "nearest_centroid_training_runs": 0,
+    "outfit_id_oracle_training_runs": 0,
+    "teacher_endpoint_baseline_training_runs_beyond_teacher_bank": 0,
+    "renderer_evaluation_count": "PENDING_EXACT_TEST_AND_VISUALIZATION_CONDITION_MANIFEST",
+    "teacher_gpu_hours": "NOT_BENCHMARKED",
+    "controller_gpu_hours": "NOT_BENCHMARKED",
+    "render_evaluation_gpu_hours": "NOT_BENCHMARKED",
+    "total_gpu_hours": "NOT_BENCHMARKED"
+  },
+  "execution_in_this_task": {
+    "generation_calls": 0,
+    "candidate_images": 0,
+    "review_events": 0,
+    "teacher_runs": 0,
+    "controller_runs": 0,
+    "renderer_runs": 0,
+    "gpu_hours": 0
+  },
+  "paper_final": false
+}

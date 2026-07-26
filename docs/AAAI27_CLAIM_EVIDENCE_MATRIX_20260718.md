@@ -1,0 +1,203 @@
+# AAAI-27 CanonDressGS Claim–Evidence Matrix — 2026-07-18
+
+Status: **FROZEN PREFLIGHT MATRIX**
+
+Rule: no claim with status other than `SUPPORTED` may enter the abstract or conclusion as an achieved result. `PARTIAL`, `PLANNED`, and `BLOCKED` claims must use their fallback wording or be omitted. Artifact paths must point to immutable, registered outputs rather than recollection.
+
+## C1 — Reference-conditioned canonical prediction
+
+- **Claim:** CanonDressGS predicts a shared canonical Gaussian clothing residual from donor/reference images rather than using `cloth_id` as primary conditioning.
+- **Required experiment:** M5 interface/forward/inference trace; changed-reference sensitivity; no-forbidden-field audit.
+- **Baseline:** M2 Outfit-ID and M0 Base Avatar.
+- **Metric:** reference sensitivity, forbidden-input count, output shapes/finite ratio, unseen-outfit quality after training.
+- **Qualitative figure:** Figure 1 pipeline and Figure 5 canonical evidence.
+- **Artifact/output path:** Module 2 `GATE5-SIX-CHANNEL-DECODER-001`; Module 3 `GATE6-ONLINE-COMPLETION-001`; future M2/M5 registry outputs.
+- **Current status:** PARTIAL — interface, sensitivity, and inference boundary supported; compact-benchmark performance not yet run.
+- **Owner:** CanonDressGS sprint owner.
+- **Deadline:** AAAI sprint M5 checkpoint freeze.
+- **Risk:** reference features may not dominate trained residuals on unseen outfits.
+- **Fallback wording:** “We implement a reference-conditioned canonical residual interface and evaluate its behavior on the registered compact benchmark.”
+
+## C2 — Unseen-outfit wardrobe expansion (priority claim)
+
+- **Claim:** One trained model transfers completely unseen outfits without per-outfit fine-tuning.
+- **Required experiment:** Train only O01/O02/O04/O06; evaluate O03/O08 across all 32 held-out outfit conditions; verify no unseen-outfit records in training.
+- **Baseline:** M0 Base, M1 Per-Outfit Optimization, M2 Outfit-ID, M4 Projection Only.
+- **Metric:** edit/clothing MAE/PSNR, foreground IoU, new-silhouette recall, protected MAE, masked SSIM/LPIPS when stable.
+- **Qualitative figure:** Figure 3 unseen-outfit results and Figure 4 method comparison.
+- **Artifact/output path:** planned `artifacts/aaai27_sprint/target_generation_full_192_manifest.json` plus future M5 unseen-outfit Run IDs.
+- **Current status:** PLANNED — no performance evidence yet.
+- **Owner:** Model/evaluation owner.
+- **Deadline:** Before paper result-table freeze.
+- **Risk:** unseen outfits may not outperform Base or may require support outside the target shell.
+- **Fallback wording:** “We study reference-conditioned transfer on seen support-compatible outfits; unseen-outfit generalization remains limited.”
+
+## C3 — No per-outfit 3D capture or optimization (priority claim)
+
+- **Claim:** M5 inference requires donor images and target pose/camera but no target-outfit 3D capture or per-outfit optimization.
+- **Required experiment:** independent inference from a shared checkpoint on unseen outfits; trace all inputs; report M5 latency against M1 optimization time.
+- **Baseline:** M1 Per-Outfit Gaussian Optimization.
+- **Metric:** per-outfit optimizer steps/time (M5 must be zero), inference time, quality gap to M1.
+- **Qualitative figure:** Figure 3/4 and method diagram.
+- **Artifact/output path:** future M1 and M5 registered inference artifacts; Module 3 inference-boundary evidence.
+- **Current status:** PARTIAL — inference boundary is supported; shared multi-outfit checkpoint is not yet trained.
+- **Owner:** Training/inference owner.
+- **Deadline:** Before abstract freeze.
+- **Risk:** model may need outfit-specific adaptation to reach visible quality.
+- **Fallback wording:** “The architecture supports direct reference-conditioned inference; we report the remaining quality gap to per-outfit optimization.”
+
+## C4 — Local camera-aware evidence is necessary
+
+- **Claim:** Camera-aware anchor projection improves over globally pooled reference conditioning.
+- **Required experiment:** M3 Global Reference versus M5 with matched capacity/training.
+- **Baseline:** M3 Global Reference.
+- **Metric:** regional image metrics, anchor coverage, unseen-pose/outfit quality.
+- **Qualitative figure:** Figure 4 and projected-anchor visualization in Figure 5.
+- **Artifact/output path:** future M3/M5 registered outputs.
+- **Current status:** PLANNED.
+- **Owner:** Ablation owner.
+- **Deadline:** Ablation-table freeze.
+- **Risk:** global features may perform similarly on the compact dataset.
+- **Fallback wording:** “CanonDressGS uses camera-aware local projection; observed gains are reported without claiming necessity.”
+
+## C5 — Canonical graph completion (priority claim)
+
+- **Claim:** Graph completion recovers unobserved canonical outfit evidence and improves rendering over projection-only evidence.
+- **Required experiment:** M4/A1 versus M5; observed/unobserved anchor analysis; feature holdout.
+- **Baseline:** observed-only Projection Only and registered diffusion completion.
+- **Metric:** unobserved active recall, gate IoU, holdout feature error, regional render metrics.
+- **Qualitative figure:** Figure 5 observed/completed anchors and gates.
+- **Artifact/output path:** `GATE6-ONLINE-COMPLETION-001`; future compact M4/M5 outputs.
+- **Current status:** PARTIAL — Module 3 strongly supports completion on its registered fixture (recall 0.959842; holdout error reduction 92.5006%); compact-benchmark reproduction is pending.
+- **Owner:** Completion/ablation owner.
+- **Deadline:** Main ablation freeze.
+- **Risk:** prior teacher-evaluated anchor gains may not yield strong image gains across outfits.
+- **Fallback wording:** “Graph completion improves canonical anchor coverage on the validated fixture; image-space gains on the compact benchmark are reported separately.”
+
+## C6 — Dual geometry/appearance gates
+
+- **Claim:** Separating geometry and appearance gates improves garment adaptation and limits channel leakage.
+- **Required experiment:** A2 single gate and A3 appearance-only versus M5.
+- **Baseline:** single gate; appearance-only.
+- **Metric:** edit/clothing metrics, silhouette recall, inactive residual/gate leakage, protected MAE.
+- **Qualitative figure:** Figure 5 gate maps and residual magnitudes.
+- **Artifact/output path:** future A2/A3/M5 outputs; Module 3 leakage audit for mechanism evidence.
+- **Current status:** PLANNED for performance; interface and leakage diagnostics exist.
+- **Owner:** Ablation owner.
+- **Deadline:** Ablation-table freeze.
+- **Risk:** dual gates may add complexity without measurable gain.
+- **Fallback wording:** “We use separate geometry/appearance gates and analyze their channel-specific behavior.”
+
+## C7 — Six-attribute canonical Gaussian adaptation
+
+- **Claim:** CanonDressGS predicts differentiable xyz, scaling, rotation, opacity, SH0, and SHN residuals in a common canonical field.
+- **Required experiment:** six-head shape/gradient/freeze tests, zero-state identity, real render, checkpoint roundtrip, residual visualizations.
+- **Baseline:** geometry-only/appearance-only when included.
+- **Metric:** finite ratios, gradient norms, channel update magnitudes, render metrics.
+- **Qualitative figure:** Figure 1 and Figure 5.
+- **Artifact/output path:** Module 1 `GATE5-FULL-ATTRIBUTE-CONTRACT-001`; Module 2 `GATE5-SIX-CHANNEL-DECODER-001`; R2 `SUBJECT02-ROTATION-AUTOGRAD-R2-001`.
+- **Current status:** SUPPORTED for the implemented differentiable interface; not a claim that all channels already improve full-benchmark quality.
+- **Owner:** Infrastructure owner.
+- **Deadline:** Already evidenced; recheck at final commit.
+- **Risk:** weak scaling/opacity/SH effects in short training.
+- **Fallback wording:** “The model exposes and differentiates all six Gaussian attributes; the contribution of each channel is evaluated empirically.”
+
+## C8 — Region-trusted supervision (priority claim)
+
+- **Claim:** Region-trusted dual-target supervision suppresses donor/generator identity contamination while preserving garment learning.
+- **Required experiment:** A4 single-target and A5 V5.2 objective versus V5.3/M5 across selected outfits.
+- **Baseline:** raw-edit-only single target; V5.2 static alpha/transition objective.
+- **Metric:** edit/clothing trend, protected MAE, face/hair/hand/shoe RGB difference, boundary alpha error, background leakage.
+- **Qualitative figure:** Figure 6 with face/hand/shoe/boundary crops.
+- **Artifact/output path:** `SUBJECT02-DUAL-TARGET-V5-2-001/attempt_001`; `SUBJECT02-DUAL-TARGET-V5-3-001/attempt_002`; future A4/A5 outputs.
+- **Current status:** PARTIAL — V5.3 fixed-episode closure is supported; benchmark-wide advantage remains pending.
+- **Owner:** Data/loss owner.
+- **Deadline:** Main ablation freeze.
+- **Risk:** target-generation artifacts may differ by outfit/view and overwhelm region masks.
+- **Fallback wording:** “The V5.3 objective preserves protected regions on the registered fixed episode; broader results are reported without universal contamination claims.”
+
+## C9 — Target identity preservation (priority claim)
+
+- **Claim:** The transferred outfit preserves the personalized target’s face, hair, hands, shoes, protected body, and background.
+- **Required experiment:** per-region metrics and actual crop inspection for every method/outfit/view group; base/backbone freeze proof.
+- **Baseline:** A4 single-target, M1, M2, and Base.
+- **Metric:** protected MAE, identity-region RGB difference, region-specific face/hair/hand/shoe error, background leakage.
+- **Qualitative figure:** Figure 2/3 and Figure 6 crops.
+- **Artifact/output path:** V5.1/V5.3 protected-region evidence; future 28/192 target and M5 evaluation outputs.
+- **Current status:** PARTIAL — protected-shoe and fixed-episode evidence exists; benchmark-wide identity preservation is pending.
+- **Owner:** Visual/evaluation owner.
+- **Deadline:** Qualitative-result freeze.
+- **Risk:** pseudo-target identity/skin drift outside trusted masks.
+- **Fallback wording:** “Region-trusted losses reduce protected-region drift on the evaluated subject02 benchmark.”
+
+## C10 — Novel-pose animation
+
+- **Claim:** A predicted canonical residual transfers through frozen MMLP-Human deformation to novel target poses and views.
+- **Required experiment:** 4 novel-pose test conditions per outfit, all four views, independent inference.
+- **Baseline:** M0/M2/M4 and M1.
+- **Metric:** clothing/edit metrics, foreground IoU, view/difficulty breakdown, render finite ratio.
+- **Qualitative figure:** Figure 2 and Figure 3.
+- **Artifact/output path:** future compact benchmark evaluation; existing Module 1/2 render-contract evidence.
+- **Current status:** PARTIAL — deformation/render interface is supported; benchmark performance is pending.
+- **Owner:** Evaluation owner.
+- **Deadline:** Main-results freeze.
+- **Risk:** canonical prediction may overfit training poses.
+- **Fallback wording:** “We evaluate canonical residual rendering on registered held-out poses and views.”
+
+## C11 — Few-reference behavior
+
+- **Claim:** CanonDressGS improves as reference coverage increases from one to four views and remains usable with few references.
+- **Required experiment:** A6 exactly matched 1/2/4-reference inference.
+- **Baseline:** one reference and Projection Only.
+- **Metric:** regional metrics, anchor coverage, completion time, inference time.
+- **Qualitative figure:** Figure 7.
+- **Artifact/output path:** future A6 registry outputs.
+- **Current status:** PLANNED.
+- **Owner:** Reference-ablation owner.
+- **Deadline:** Ablation freeze.
+- **Risk:** back-view coverage is limited in historical donor assets.
+- **Fallback wording:** “We analyze sensitivity to reference count; conclusions are limited to the available view coverage.”
+
+## C12 — Applicability boundary
+
+- **Claim:** The current compact method targets support-compatible garments and does not solve exposed-skin or large exterior-topology clothing.
+- **Required experiment:** O00/O05 preserved failure evidence and the seven-outfit four-view data/capacity gate.
+- **Baseline:** fixed-open Oracle diagnostics.
+- **Metric:** support coverage/leakage, new-silhouette recall, objective trends, visual status.
+- **Qualitative figure:** Figure 8 O00/O05 boundary.
+- **Artifact/output path:** Module 4B, R3, R3-CLEAN, GEOMCAM, and O00 arm-support closure outputs; future 28-image gate.
+- **Current status:** SUPPORTED as a limitation by formal negative results.
+- **Owner:** Paper lead.
+- **Deadline:** Introduction/limitations freeze.
+- **Risk:** reviewers may view the boundary as too restrictive.
+- **Fallback wording:** “The current implementation assumes garment support compatible with the pre-captured target shell; exposed-skin and large-topology transfer remain future work.”
+
+## Abstract and conclusion release gate
+
+The following priority claims are blocked from achieved-result wording until their rows become `SUPPORTED`: unseen outfit (C2), no per-outfit optimization (C3), graph completion on the compact benchmark (C5), region-trusted supervision across outfits (C8), and identity preservation across the benchmark (C9). The paper may describe the method design, the registered evaluation plan, and already-supported subsystem contracts, but may not predeclare the final result.
+
+## 28-image gate evidence update (2026-07-18)
+
+- Artifact: `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_001`
+- Formal run commit: `054ceb18ec2c57398d2b2ea1fb6eca359b28e01c`
+- Status: **BLOCKED_GENERATION_MODEL_CONTRACT** before any API call, generated image, mask build, or optimizer step.
+- Supported evidence from this attempt: exact seven-outfit/four-condition contract, frozen Jay four-view reference sets, O01 provenance audit, local/cloud input integrity, and deterministic benchmark-selection tests.
+- Unsupported evidence: Generation Data Gate results, support-risk metrics, per-outfit numeric/visual Oracle capacity, final train/unseen outfits, and a 192/160 target count.
+
+Consequently C2, C3, C5, C8, C9, and the seven-outfit portion of C12 receive no positive benchmark evidence from this attempt. No abstract, conclusion, table, or figure may describe the capacity gate as completed or call any candidate PASS/FAIL. The existing O00/O05 limitation evidence remains unchanged. Recovery requires an explicitly verifiable `gpt-image-2` `images.edit` route; silently substituting an unexposed image model is forbidden.
+
+## Codex-native generation and final capacity-gate evidence update (2026-07-18)
+
+This append-only entry supersedes only the pending state of the historical update above; it does not rewrite `attempt_001`. Explicit authorization replaced the external-provider requirement with the platform-managed Codex image-generation skill. The backend model was not exposed and is not inferred. The generation evidence is 28/28 immutable raw targets, 21 PASS / 7 WARN / 0 FAIL at the actual visual hard gate, zero technical retries, complete input/prompt hashes, no external API, no API key, and a verified cloud handoff.
+
+The final capacity artifact is `/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003` at commit `c19e0f6795d6942433f31860ae219a603c03a3c8`. `attempt_002` is preserved separately as a zero-optimizer-step tool-interface failure. `attempt_003` passed the 28-sample V5.3 dataset checker and fixed-open infrastructure smoke; all seven 480-step runs were finite, the base remained bitwise exact, and protected MAE stayed below the absolute 0.005 ceiling.
+
+The scientific result is nevertheless **NO_GO**. O01 alone met the numeric acceptance rule (edit/clothing reductions 56.9059%/61.7803%), while O02/O03/O04/O06/O07/O08 failed the full numeric rule because preserve-relative acceptance did not hold. Actual inspection of every milestone and final four-view sheet assigned all seven `CAPACITY_VISUAL_FAIL`: no target garment was formed, the original lavender hoodie remained visible, and mottled residual artifacts appeared. O02 also has a formal missing-body-support failure.
+
+Claim consequences:
+
+- C2 and C3 remain unsupported: there is no selected unseen outfit and no full-model amortized-inference result.
+- C5 remains limited to the earlier registered Module 3 fixture; no compact-benchmark graph-completion claim is released.
+- C8 and C9 retain subsystem evidence only. The V5.3 checker, frozen-base proof, and localized protected errors are valid, but benchmark-wide garment learning and identity-preserving transfer are not demonstrated.
+- C12 is strengthened as a limitation: even candidates provisionally judged support-compatible do not visually close under the current fixed-open 200,000-Gaussian representation; the short-sleeve O02 additionally confirms the hidden-arm support boundary.
+- No main table or abstract may claim a successful 160/192 benchmark, unseen-outfit transfer, or formal image-conditioned training. No complete benchmark has been selected, remaining target generation is denied, and formal training is denied.

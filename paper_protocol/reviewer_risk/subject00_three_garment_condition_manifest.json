@@ -1,0 +1,111 @@
+{
+  "schema_version": "canondressgs.subject00.three_garment_condition_manifest.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "SUBJECT00_CONDITION_RESOURCE_GAP",
+  "formal_base_dependency": "PENDING",
+  "counts": {
+    "garments": 3,
+    "semantic_slots": 8,
+    "planned_teacher_targets": 24,
+    "planned_garment_references": 12,
+    "materialized_teacher_targets": 0,
+    "materialized_garment_references": 0,
+    "materialized_controller_references": 0,
+    "materialized_calibration_conditions": 0,
+    "materialized_test_conditions": 0,
+    "materialized_visual_only_assets": 0
+  },
+  "semantic_slot_contract": [
+    {"slot": "front", "ordinal": 0, "target_body_yaw_degrees": 0, "reference_role": true},
+    {"slot": "front_left_three_quarter", "ordinal": 1, "target_body_yaw_degrees": 45, "reference_role": false},
+    {"slot": "front_right_three_quarter", "ordinal": 2, "target_body_yaw_degrees": 315, "reference_role": false},
+    {"slot": "left", "ordinal": 3, "target_body_yaw_degrees": 90, "reference_role": true},
+    {"slot": "right", "ordinal": 4, "target_body_yaw_degrees": 270, "reference_role": true},
+    {"slot": "back_left_three_quarter", "ordinal": 5, "target_body_yaw_degrees": 135, "reference_role": false},
+    {"slot": "back_right_three_quarter", "ordinal": 6, "target_body_yaw_degrees": 225, "reference_role": false},
+    {"slot": "back", "ordinal": 7, "target_body_yaw_degrees": 180, "reference_role": true}
+  ],
+  "records": [
+    {"condition_id": "subject00/O01/front", "garment_id": "O01", "semantic_pose_slot": "front", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/front_left_three_quarter", "garment_id": "O01", "semantic_pose_slot": "front_left_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/front_right_three_quarter", "garment_id": "O01", "semantic_pose_slot": "front_right_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/left", "garment_id": "O01", "semantic_pose_slot": "left", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/right", "garment_id": "O01", "semantic_pose_slot": "right", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/back_left_three_quarter", "garment_id": "O01", "semantic_pose_slot": "back_left_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/back_right_three_quarter", "garment_id": "O01", "semantic_pose_slot": "back_right_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O01/back", "garment_id": "O01", "semantic_pose_slot": "back", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/front", "garment_id": "O03", "semantic_pose_slot": "front", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/front_left_three_quarter", "garment_id": "O03", "semantic_pose_slot": "front_left_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/front_right_three_quarter", "garment_id": "O03", "semantic_pose_slot": "front_right_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/left", "garment_id": "O03", "semantic_pose_slot": "left", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/right", "garment_id": "O03", "semantic_pose_slot": "right", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/back_left_three_quarter", "garment_id": "O03", "semantic_pose_slot": "back_left_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/back_right_three_quarter", "garment_id": "O03", "semantic_pose_slot": "back_right_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O03/back", "garment_id": "O03", "semantic_pose_slot": "back", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/front", "garment_id": "O04", "semantic_pose_slot": "front", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/front_left_three_quarter", "garment_id": "O04", "semantic_pose_slot": "front_left_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/front_right_three_quarter", "garment_id": "O04", "semantic_pose_slot": "front_right_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/left", "garment_id": "O04", "semantic_pose_slot": "left", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/right", "garment_id": "O04", "semantic_pose_slot": "right", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/back_left_three_quarter", "garment_id": "O04", "semantic_pose_slot": "back_left_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/back_right_three_quarter", "garment_id": "O04", "semantic_pose_slot": "back_right_three_quarter", "roles": ["TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"},
+    {"condition_id": "subject00/O04/back", "garment_id": "O04", "semantic_pose_slot": "back", "roles": ["GARMENT_REFERENCE", "TEACHER_TARGET"], "materialization_status": "PENDING_FORMAL_BASE"}
+  ],
+  "pending_binding_for_every_record": {
+    "formal_checkpoint_step": 101245,
+    "formal_checkpoint_path": "PENDING_FORMAL_BASE",
+    "formal_checkpoint_sha256": "PENDING_FORMAL_BASE",
+    "selected_pose_id": "PENDING_FORMAL_BASE",
+    "selected_camera_id": "PENDING_FORMAL_BASE",
+    "source_rgb_path_and_sha256": "PENDING_FORMAL_BASE",
+    "source_mask_path_and_sha256": "PENDING_FORMAL_BASE",
+    "source_camera_path_and_sha256": "PENDING_FORMAL_BASE",
+    "source_pose_smplx_path_and_sha256": "PENDING_FORMAL_BASE",
+    "generated_output_path_and_sha256": "PENDING_BACKEND_AND_FORMAL_BASE",
+    "human_review": "PENDING_CANDIDATE",
+    "provenance": "PENDING_MATERIALIZATION"
+  },
+  "formal_strict_split": {
+    "train_camera_ids": [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 21, 22, 23],
+    "heldout_camera_ids": [0, 4, 8, 12, 16, 20],
+    "train_camera_count": 18,
+    "heldout_camera_count": 6,
+    "camera_split_sha256": "8827cdc05a08cb7068e1f5e89ab7ba5384bf83b89686e8c9f80024b78d49cf44",
+    "train_pose_count": 1130,
+    "heldout_pose_count": 125,
+    "buffer_excluded_pose_count": 1245,
+    "pose_split_sha256": "c12e5eec87c737d3740b6e6199d657c859df7ce1ec9d371ea8d4a987ef62bf06",
+    "teacher_target_pose_camera_semantics": "STRICT_TRAIN_ONLY",
+    "heldout_pose_or_camera_as_teacher_target": false
+  },
+  "controller_condition_fold_principle": {
+    "precedent": {
+      "branch": "research/pure-endpoint-core-method-protocol-20260724",
+      "head": "9ca0f44bdd5480a429e8cd5705df1341746d4381",
+      "role": "Subject02 method-structure precedent only; not Subject00 evidence"
+    },
+    "rotation_structure": [
+      {"rotation": 0, "train_folds": [0, 1], "calibration_fold": 2, "test_fold": 3},
+      {"rotation": 1, "train_folds": [1, 2], "calibration_fold": 3, "test_fold": 0},
+      {"rotation": 2, "train_folds": [2, 3], "calibration_fold": 0, "test_fold": 1},
+      {"rotation": 3, "train_folds": [3, 0], "calibration_fold": 1, "test_fold": 2}
+    ],
+    "required_reference_count_per_query": 3,
+    "same_asset_sha_in_train_and_test_allowed": false,
+    "same_asset_sha_in_calibration_and_test_allowed": false,
+    "post_hoc_split_movement_allowed": false,
+    "garment_specific_protocols_allowed": false,
+    "subject02_condition_ids_reused_as_subject00_results": false,
+    "exact_fold_condition_ids": "PENDING_CONDITION_RESOURCE",
+    "status": "SUBJECT00_CONDITION_RESOURCE_GAP"
+  },
+  "resource_gaps": [
+    "All 24 planned endpoint records lack selected pose IDs, camera IDs, paths, and SHA-256 values.",
+    "The 12 cardinal references are an overlapping subset of endpoint assets and do not provide sealed, SHA-disjoint train/calibration/test pools.",
+    "No formal CONTROLLER_REFERENCE records are materialized.",
+    "No formal CALIBRATION_CONDITION records are materialized.",
+    "No formal TEST_CONDITION records are materialized.",
+    "No formal VISUAL_ONLY_ASSET condition IDs are sealed."
+  ],
+  "paper_final": false
+}

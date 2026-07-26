@@ -1,0 +1,28 @@
+\section{Method}
+
+\subsection{Overview}
+TODO: Add the full pipeline figure and describe the canonical dressing then pose-driven rendering order.
+
+\subsection{White-body Pose-condition Dataset Construction}
+TODO: Describe THuman/SMPL-X white-body rendering, PyTorch3D rendering, VLM hand-strict filtering, and GPT-image-2 multi-cloth generation.
+
+\subsection{Base Naked Gaussian Avatar}
+TODO: Describe base\_gs initialization from canonical naked SMPL-X/THuman body.
+
+\subsection{LHM-assisted Clothed Gaussian Prior}
+TODO: Describe offline LHM prior generation for each outfit.
+
+\subsection{SMPL-X Surface-aware Anchor Alignment}
+TODO: Describe how LHM prior and base\_gs are projected or aggregated to canonical SMPL-X anchors to produce anchor-level clothing offset targets.
+
+\subsection{Clothing-conditioned HyperNetwork}
+TODO: Describe cloth id embedding, lightweight HyperNetwork, FiLM/low-rank modulation, and shared clothing offset MLPs.
+
+\subsection{Canonical Dressed Gaussian Composition}
+TODO: Describe how base Gaussian parameters and predicted clothing offsets are composed.
+
+\subsection{Pose-driven Rendering with MMLPHuman}
+TODO: Describe reuse of MMLPHuman deformation, control points, LBS, and Gaussian rasterization.
+
+\subsection{Training Objectives}
+TODO: Add RGB, mask, LHM anchor offset, smoothness, non-clothing regularization, and scale regularization losses.

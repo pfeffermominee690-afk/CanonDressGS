@@ -1,0 +1,13 @@
+# Efficiency
+
+> SMOKE ONLY — NOT PAPER RESULTS
+
+| method | trainable_parameter_count | basis_storage_bytes | peak_vram_bytes | training_time_seconds | inference_time_seconds |
+|---|---|---|---|---|---|
+| Base Avatar | 0 | 1280 | 0 | 1.05053e-06 | 0.000137092 |
+| B1 — Optimization Upper Bound | 0 | 1280 | 0 | 3.76254e-07 | 0.00011089 |
+| B2 — Seen-only Lookup | 0 | 1280 | 0 | 4.91738e-07 | 0.000112699 |
+| Global Reference Feature | 52 | 1280 | 0 | 0.745224 | 0.000145556 |
+| Clothing Mean Only | 52 | 1280 | 0 | 0.00864641 | 0.000146094 |
+| Legacy Complex Fusion | 52 | 1280 | 0 | 0.0103808 | 0.000139133 |
+| Ours | 52 | 1280 | 0 | 0.0531737 | 0.000143374 |

@@ -1,0 +1,683 @@
+{
+  "attempt_001_preservation": {
+    "attempt_002_created": false,
+    "cloud_path": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-V2-CROSSFIT-MICRO-PILOT-001/attempt_001",
+    "file_sha256": {
+      "audits/contract_completeness.json": "1b51a82f8aa7391aefe332acff0770a6f1de3f2de6ffffc1485310b591b14459",
+      "audits/final_summary.json": "81f6f87a83e203331367ec108b7ae5b44ef9dd1c7b8c20033125f6027fa455f0",
+      "audits/resource_io_gate.json": "7ca2aa656661d6bc9b87f23b98d9731969caf7908453c0db33ffc4c8a1aeab19",
+      "contract/controller_v2_micro_pilot_training_contract.json": "67b8c51e122428f4ebadc2ae1919c722df1c2fc485df1170d3419b0307d9da27"
+    },
+    "mutation_count": 0
+  },
+  "classification": "CONTROLLER_V2_MICRO_PILOT_TRAINING_CONTRACT_REPAIRED",
+  "component_hashes": {
+    "controller_v2_micro_pilot_batch_schedules.json": "32d1330f76561a1da59105d74a8cf1d78d3bbb720da289ba4a8c8713b164197b",
+    "controller_v2_micro_pilot_calibration_contract.json": "f3bd80bac024ef2ac2ad069a5db6e86231e7d1ceca5613ffd5f207b3c9e5738f",
+    "controller_v2_micro_pilot_evaluator_denominators.json": "272b53ea778d23c3291c5a86c002fbf9f1c3d29eff8aa2501ea85ff6cfbc179a",
+    "controller_v2_micro_pilot_loss_contract.json": "15a9a8a31df75c6bb2c7296ce666feed340aa25dc7e89c2087a1828c6664f5ad",
+    "controller_v2_micro_pilot_optimizer_contract.json": "86c27a759550d77fd7ad93b537dfc959b36949d2b9c1198e9ca3a2e375b4dab5",
+    "controller_v2_micro_pilot_perturbation_representatives.json": "44f45ea3d23e6bd5840c16178658bc23886b3c6c9dde114a53168853d3b5401d",
+    "controller_v2_micro_pilot_rotation_manifests.json": "01c9b2ba69f901f53f6e27652b8338f49e9a28adf290c6ebe1e76c589888c77f",
+    "controller_v2_micro_pilot_visual_representatives.json": "67c63460f7173a131a82976ab9a6cb823581e3b99fd9e8a0c82e6eb857beef28"
+  },
+  "contract_checks": [
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "controller_v2_micro_pilot_rotation_manifests.json",
+      "field": "rotation_record_ids",
+      "final_state": "PASS",
+      "id": 1,
+      "previous_evidence": "Cross-fit archive freezes fold indices but no exact record IDs.",
+      "previous_state": "MISSING",
+      "repaired_value": "EXACT_IDS_FOR_TRAIN_CALIBRATION_TEST_ALL_4_ROTATIONS",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "controller_v2_micro_pilot_rotation_manifests.json",
+      "field": "train_calibration_test_counts",
+      "final_state": "PASS",
+      "id": 2,
+      "previous_evidence": "No per-rotation record denominators are present.",
+      "previous_state": "MISSING",
+      "repaired_value": "160/80/80_EACH_ROTATION",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "controller_v2_crossfit_splits.json + rotation manifests",
+      "field": "fold_membership",
+      "final_state": "PASS",
+      "id": 3,
+      "previous_evidence": "controller_v2_crossfit_splits.json freezes four disjoint rotations.",
+      "previous_state": "PASS",
+      "repaired_value": "FOUR_FROZEN_DISJOINT_ROTATIONS",
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "rotation manifests + batch schedules",
+      "field": "duplicate_preservation",
+      "final_state": "PASS",
+      "id": 4,
+      "previous_evidence": "No duplicate identity/count or preservation rule is materialized.",
+      "previous_state": "MISSING",
+      "repaired_value": "CONSISTENT_DUPLICATES_RETAINED_NO_DEDUP_OR_EXTRA_WEIGHT",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "controller_v2_micro_pilot_batch_schedules.json",
+      "field": "batch_size",
+      "final_state": "PASS",
+      "id": 5,
+      "previous_evidence": "No batch size is frozen in the design artifacts.",
+      "previous_state": "MISSING",
+      "repaired_value": 5,
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "controller_v2_micro_pilot_batch_schedules.json",
+      "field": "per_step_record_exposure",
+      "final_state": "PASS",
+      "id": 6,
+      "previous_evidence": "No records-per-step or exposure count is frozen.",
+      "previous_state": "MISSING",
+      "repaired_value": "5_CLEAN_RECORDS;_V2_ALSO_5_AUGMENTED_VIEWS",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "historical cycle + batch schedules",
+      "field": "data_order_algorithm",
+      "final_state": "PASS",
+      "id": 7,
+      "previous_evidence": "No shuffle/permutation algorithm or schedule hash rule is frozen.",
+      "previous_state": "MISSING",
+      "repaired_value": "FILTER_HISTORICAL_CYCLE_BY_TRAIN_FOLDS_PRESERVING_ORDER_THEN_WRAP",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "formal source + final checkpoint optimizer state",
+      "field": "optimizer_type",
+      "final_state": "PASS",
+      "id": 8,
+      "previous_evidence": "Optimizer plan states no optimizer was created but names no future type.",
+      "previous_state": "MISSING",
+      "repaired_value": "torch.optim.Adam",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "formal source + final checkpoint optimizer state",
+      "field": "learning_rate",
+      "final_state": "PASS",
+      "id": 9,
+      "previous_evidence": "No learning rate is present.",
+      "previous_state": "MISSING",
+      "repaired_value": 0.02,
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "formal source + final checkpoint optimizer state",
+      "field": "weight_decay",
+      "final_state": "PASS",
+      "id": 10,
+      "previous_evidence": "No weight decay is present.",
+      "previous_state": "MISSING",
+      "repaired_value": 0.0,
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "exposure-density formula + batch schedules",
+      "field": "total_optimizer_steps",
+      "final_state": "PASS",
+      "id": 11,
+      "previous_evidence": "No future optimizer-step budget is present.",
+      "previous_state": "MISSING",
+      "repaired_value": 150,
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "batch schedules + optimizer contract",
+      "field": "checkpoint_cadence",
+      "final_state": "PASS",
+      "id": 12,
+      "previous_evidence": "No step-indexed checkpoint cadence is present.",
+      "previous_state": "MISSING",
+      "repaired_value": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150
+      ],
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "batch schedules + optimizer contract",
+      "field": "final_checkpoint_rule",
+      "final_state": "PASS",
+      "id": 13,
+      "previous_evidence": "Best-selection is forbidden, but the exact final-step rule is absent.",
+      "previous_state": "MISSING",
+      "repaired_value": "STEP_150_ONLY",
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "prospective V2 loss contract",
+      "field": "lambda_mix",
+      "final_state": "PASS",
+      "id": 14,
+      "previous_evidence": "The loss formula names lambda_mix without a numeric value.",
+      "previous_state": "MISSING",
+      "repaired_value": 1.0,
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "prospective V2 loss contract",
+      "field": "lambda_weight",
+      "final_state": "PASS",
+      "id": 15,
+      "previous_evidence": "The loss formula names lambda_weight without a numeric value.",
+      "previous_state": "MISSING",
+      "repaired_value": 1.0,
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "prospective V2 loss contract",
+      "field": "lambda_cons",
+      "final_state": "PASS",
+      "id": 16,
+      "previous_evidence": "The loss formula names lambda_cons without a numeric value.",
+      "previous_state": "MISSING",
+      "repaired_value": 0.1,
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "design protocol + loss contract",
+      "field": "nuisance_augmentation_types",
+      "final_state": "PASS",
+      "id": 17,
+      "previous_evidence": "Blur, mask erosion/dilation, and assignment permutation are frozen.",
+      "previous_state": "PASS",
+      "repaired_value": [
+        "blur",
+        "mask_erosion",
+        "mask_dilation",
+        "assignment_permutation"
+      ],
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "formal diagnostic evaluator source",
+      "field": "augmentation_severity",
+      "final_state": "PASS",
+      "id": 18,
+      "previous_evidence": "Mild is named but no numerical severity is frozen.",
+      "previous_state": "MISSING",
+      "repaired_value": {
+        "assignment_permutation": {
+          "implementation_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py:804-805",
+          "implementation_source_sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720",
+          "rule": "REFERENCE_ROW_AND_VALIDITY_INDEX_ORDER_[2,0,1]"
+        },
+        "blur": {
+          "implementation_source": "tools/paper/p0_evaluation_protocol.py:c5_gaussian_blur",
+          "implementation_source_sha256_lf": "881724a70cbe5bb63bee3bd8decf532ab537efacd00c19fa599ed176e8be7ec4",
+          "kernel": "SEPARABLE_GAUSSIAN_REFLECT_PADDING",
+          "kernel_size": 11,
+          "mask_operation": "BLUR_ALREADY_RESIZED_RGB_THEN_RESTORE_ALL_PIXELS_OUTSIDE_CLOTHING_MASK",
+          "radius": 5,
+          "sigma": 3.0
+        },
+        "mask_dilation": {
+          "implementation_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py",
+          "implementation_source_sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720",
+          "iterations": 3,
+          "operation": "scipy.ndimage.binary_dilation",
+          "structure": "SCIPY_DEFAULT_CROSS_CONNECTIVITY_1"
+        },
+        "mask_erosion": {
+          "implementation_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py",
+          "implementation_source_sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720",
+          "iterations": 3,
+          "operation": "scipy.ndimage.binary_erosion",
+          "structure": "SCIPY_DEFAULT_CROSS_CONNECTIVITY_1"
+        }
+      },
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "batch schedules + loss contract",
+      "field": "augmentation_exposure_schedule",
+      "final_state": "PASS",
+      "id": 19,
+      "previous_evidence": "No frequency, ordering, or step schedule is frozen.",
+      "previous_state": "MISSING",
+      "repaired_value": "ZERO_BASED_STEP_MOD_4_FIXED_ROUND_ROBIN",
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "loss + calibration contracts",
+      "field": "information_ablation_training_contract",
+      "final_state": "PASS",
+      "id": 20,
+      "previous_evidence": "Safe-fallback semantics exist but no training records/exposure are frozen.",
+      "previous_state": "MISSING",
+      "repaired_value": "EVALUATION_ONLY_ZERO_TRAIN_CALIBRATION_CONSISTENCY_EXPOSURE",
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "design protocol + calibration contract",
+      "field": "mixedness_threshold_grid",
+      "final_state": "PASS",
+      "id": 21,
+      "previous_evidence": "0.10 through 0.90 in 0.10 increments is frozen.",
+      "previous_state": "PASS",
+      "repaired_value": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "design protocol + calibration contract",
+      "field": "pair_confidence_scalar_definition",
+      "final_state": "PASS",
+      "id": 22,
+      "previous_evidence": "TOP2_VS_TOP3_PROBABILITY_MARGIN is frozen.",
+      "previous_state": "PASS",
+      "repaired_value": "TOP2_VS_TOP3_PROBABILITY_MARGIN",
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "design protocol + calibration contract",
+      "field": "pair_confidence_threshold_grid",
+      "final_state": "PASS",
+      "id": 23,
+      "previous_evidence": "The nine-value pair-confidence grid is frozen.",
+      "previous_state": "PASS",
+      "repaired_value": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "calibration contract",
+      "field": "calibration_objective",
+      "final_state": "PASS",
+      "id": 24,
+      "previous_evidence": "The three-level lexicographic objective is frozen.",
+      "previous_state": "PASS",
+      "repaired_value": [
+        "MINIMIZE_PURE_FALSE_MIXED_RATE",
+        "MINIMIZE_WRONG_PAIR_DUAL_RATE",
+        "MINIMIZE_INCOMPATIBLE_PAIR_DUAL_RATE",
+        "MAXIMIZE_CORRECT_COMPATIBLE_DUAL_RATE",
+        "MAXIMIZE_CORRECT_INCOMPATIBLE_HARD_GEOMETRY_SOFT_VA_RATE",
+        "MINIMIZE_MIXED_FALSE_SINGLE_RATE"
+      ],
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "calibration contract",
+      "field": "calibration_tie_break",
+      "final_state": "PASS",
+      "id": 25,
+      "previous_evidence": "No deterministic threshold tie-break is specified.",
+      "previous_state": "MISSING",
+      "repaired_value": [
+        "CHOOSE_LARGER_TAU_PAIR",
+        "CHOOSE_LARGER_TAU_MIX",
+        "CHOOSE_LEXICOGRAPHICALLY_LARGER_(TAU_PAIR,TAU_MIX)",
+        "REMAINING_NON_UNIQUENESS_IS_CONTRACT_ERROR"
+      ],
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "design protocol + batch schedules",
+      "field": "seed_list",
+      "final_state": "PASS",
+      "id": 26,
+      "previous_evidence": "Seeds 0, 1, and 2 are frozen.",
+      "previous_state": "PASS",
+      "repaired_value": [
+        0,
+        1,
+        2
+      ],
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "evaluator denominators",
+      "field": "final_evaluator_denominators",
+      "final_state": "PASS",
+      "id": 27,
+      "previous_evidence": "Metric families are listed but exact query denominators are absent.",
+      "previous_state": "MISSING",
+      "repaired_value": "PROTOCOL_WEIGHTED_MACRO_PRIMARY_AND_UNIQUE_QUERY_MACRO_MANDATORY",
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "perturbation representatives",
+      "field": "perturbation_representative_ids",
+      "final_state": "PASS",
+      "id": 28,
+      "previous_evidence": "Perturbation classes exist but representative record IDs are absent.",
+      "previous_state": "MISSING",
+      "repaired_value": "20_PRE_RESULT_IDS_PER_ROTATION",
+      "value_provenance": "TASK_DIRECTIVE_PROSPECTIVELY_FROZEN"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "frozen historical visual schema + visual representatives",
+      "field": "visual_grade_schema",
+      "final_state": "PASS",
+      "id": 29,
+      "previous_evidence": "No complete category-by-grade rubric is frozen for this pilot.",
+      "previous_state": "MISSING",
+      "repaired_value": {
+        "categories": [
+          "patch",
+          "cloud",
+          "mottle",
+          "edge_scatter",
+          "silhouette_discontinuity",
+          "full_body_contamination",
+          "identity_contamination",
+          "double_outline",
+          "ghosting",
+          "endpoint_mismatch",
+          "wrong_garment_mixture"
+        ],
+        "categories_or_levels_changed": false,
+        "scale": {
+          "0": "NONE",
+          "1": "MINOR",
+          "2": "MODERATE",
+          "3": "SEVERE"
+        },
+        "source": "paper_protocol/reviewer_risk/dual_support_controller_visual_review.json"
+      },
+      "value_provenance": "HISTORICAL_RECOVERY"
+    },
+    {
+      "deterministic_derivation": true,
+      "evidence_source": "design protocol retained unchanged",
+      "field": "success_gates",
+      "final_state": "PASS",
+      "id": 30,
+      "previous_evidence": "The design report freezes pair, routing, weight, visual, and ablation gates.",
+      "previous_state": "PASS",
+      "repaired_value": "FROZEN_DESIGN_GATES_RETAINED_UNCHANGED",
+      "value_provenance": "FROZEN_DESIGN_RETAINED"
+    }
+  ],
+  "current_execution_counts": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "controller_inference": 0,
+    "metric_aggregations": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "renderer_runs": 0,
+    "scheduler_steps": 0,
+    "threshold_selections": 0,
+    "training_forward_batches": 0,
+    "training_runs": 0,
+    "training_steps": 0,
+    "visual_sheets": 0
+  },
+  "design_head": "4f8c94405e68932e791f69c59ae129c863b1280d",
+  "diagnostic_head": "25318857b4cc4ee11011cd852c5cfc237a8b3cee",
+  "expected_future_counts": {
+    "counting_notes": {
+      "formal_pure": "EACH_FAMILY_ROTATION_SEED_MODEL_IS_AUDITED_SEPARATELY",
+      "logical_render": "ONE_CONTROLLER_OUTPUT_RGB_ALPHA_PAIR",
+      "target_oracle_endpoint_assets": "REUSED_FROZEN_ASSETS_NOT_COUNTED_AS_CONTROLLER_RENDERER_CALLS"
+    },
+    "global": {
+      "V2_augmented_view_exposures": 9000,
+      "V2_training_runs": 12,
+      "backward_calls_total": 3600,
+      "calibration_prediction_queries_V2": 960,
+      "checkpoint_writes_total": 144,
+      "clean_record_exposures_V2": 9000,
+      "clean_record_exposures_matched_V1": 9000,
+      "clean_record_exposures_total": 18000,
+      "formal_pure_secondary_inference": 480,
+      "formal_pure_secondary_logical_renders": 480,
+      "main_visual_sheets": 240,
+      "matched_V1_training_runs": 12,
+      "optimizer_steps_V2": 1800,
+      "optimizer_steps_matched_V1": 1800,
+      "optimizer_steps_total": 3600,
+      "perturbation_inference": 2880,
+      "perturbation_logical_renders": 2880,
+      "primary_test_inference": 1920,
+      "primary_test_logical_renders": 1920,
+      "scheduler_steps_total": 3600,
+      "total_future_evaluation_inference_including_calibration": 6240,
+      "total_future_logical_renders": 5280,
+      "total_training_runs": 24,
+      "training_forward_batches_V2": 3600,
+      "training_forward_batches_matched_V1": 1800,
+      "training_forward_batches_total": 5400
+    },
+    "per_rotation": {
+      "0": {
+        "batches_per_cycle": 32,
+        "checkpoints_per_run": 6,
+        "clean_exposures_per_run": 750,
+        "main_visual_sheets": 60,
+        "matched_v1_runs": 3,
+        "n_calibration": 80,
+        "n_test": 80,
+        "n_train": 160,
+        "optimizer_steps_per_run": 150,
+        "perturbation_inference": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "perturbation_logical_renders": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "primary_test_inference": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "primary_test_logical_renders": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "v2_augmented_view_exposures_per_run": 750,
+        "v2_runs": 3
+      },
+      "1": {
+        "batches_per_cycle": 32,
+        "checkpoints_per_run": 6,
+        "clean_exposures_per_run": 750,
+        "main_visual_sheets": 60,
+        "matched_v1_runs": 3,
+        "n_calibration": 80,
+        "n_test": 80,
+        "n_train": 160,
+        "optimizer_steps_per_run": 150,
+        "perturbation_inference": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "perturbation_logical_renders": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "primary_test_inference": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "primary_test_logical_renders": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "v2_augmented_view_exposures_per_run": 750,
+        "v2_runs": 3
+      },
+      "2": {
+        "batches_per_cycle": 32,
+        "checkpoints_per_run": 6,
+        "clean_exposures_per_run": 750,
+        "main_visual_sheets": 60,
+        "matched_v1_runs": 3,
+        "n_calibration": 80,
+        "n_test": 80,
+        "n_train": 160,
+        "optimizer_steps_per_run": 150,
+        "perturbation_inference": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "perturbation_logical_renders": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "primary_test_inference": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "primary_test_logical_renders": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "v2_augmented_view_exposures_per_run": 750,
+        "v2_runs": 3
+      },
+      "3": {
+        "batches_per_cycle": 32,
+        "checkpoints_per_run": 6,
+        "clean_exposures_per_run": 750,
+        "main_visual_sheets": 60,
+        "matched_v1_runs": 3,
+        "n_calibration": 80,
+        "n_test": 80,
+        "n_train": 160,
+        "optimizer_steps_per_run": 150,
+        "perturbation_inference": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "perturbation_logical_renders": {
+          "MATCHED_V1": 360,
+          "V2": 360,
+          "both": 720
+        },
+        "primary_test_inference": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "primary_test_logical_renders": {
+          "MATCHED_V1": 240,
+          "V2": 240,
+          "both": 480
+        },
+        "v2_augmented_view_exposures_per_run": 750,
+        "v2_runs": 3
+      }
+    }
+  },
+  "formal_v1_head": "f45a518f330fb407942055756373e83f65717853",
+  "frozen_mutations": {
+    "F2": 0,
+    "compatibility_manifests": 0,
+    "design_artifacts": 0,
+    "diagnostic_archive": 0,
+    "formal_v1": 0,
+    "garment_bank": 0,
+    "micro_pilot_attempt_001": 0,
+    "renderer": 0,
+    "teacher": 0
+  },
+  "frozen_upstream_hashes": {
+    "historical_300_step_scientific_sha256": "63902a2f36ccf864bfe6028654be0b162417c3adc6b99e1455b30fdab8a2bacf",
+    "historical_full_cycle_scientific_sha256": "f60b0ee64ff5ce2b6693f53dd7eb665cc6aee5aa310f314175d2932307d57c77",
+    "repaired_protocol_sha256_lf": "44ef0c53f7a5ec4fe19733371ffefb1be14d5b6902e7f4060707edd4660d9f49",
+    "training_manifest_sha256_lf": "a0dbfe98a25b7f82f198405cf41c1b8625b6faa63499396a78683d5d326ce8e3"
+  },
+  "global_contract_sha256": "e5b720ccedfb4b0b39892011123010b6522ece7dd1d534032ec2e2e26f7863f7",
+  "next_task": "TRAIN_AND_EVALUATE_COMPATIBILITY_GATED_CONTROLLER_V2_FROM_REPAIRED_CONTRACT",
+  "next_task_started": false,
+  "original_audit": {
+    "ambiguous": 0,
+    "missing": 22,
+    "pass": 8,
+    "total": 30
+  },
+  "original_classification": "CONTROLLER_V2_MICRO_PILOT_CONTRACT_INCOMPLETE",
+  "paper_final": false,
+  "paper_final_count": 0,
+  "repair_branch": "research/controller-v2-micro-pilot-contract-repair-20260723",
+  "repaired_audit": {
+    "ambiguous": 0,
+    "missing": 0,
+    "pass": 30,
+    "total": 30
+  },
+  "schema_version": "canondressgs.research.controller_v2_micro_pilot_contract_repaired.v1",
+  "source_branch": "research/compatibility-gated-controller-v2-crossfit-micro-pilot-20260723",
+  "source_head": "b15f26e51958820d361b8992fab5ddec0e592fb5",
+  "task_id": "AAAI27-CONTROLLER-V2-MICRO-PILOT-CONTRACT-REPAIR-001",
+  "upstream_training_contract_head": "1d4b416929617d09bf65122ff5d6dbf23dfe564a"
+}

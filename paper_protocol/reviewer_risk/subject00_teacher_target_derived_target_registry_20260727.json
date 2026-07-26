@@ -1,0 +1,4063 @@
+{
+  "schema_version": "canondressgs.subject00.teacher_target.materialization.v1",
+  "task_id": "AAAI27-SUBJECT00-TEACHER-TARGET-MATERIALIZATION-WITH-QUARANTINE-001",
+  "created_at": "2026-07-27T00:00:00Z",
+  "source_branch": "research/subject00-teacher-target-camera-blocker-resolution-20260727",
+  "source_head": "a434ae7a78fe898be2658180f20bbcd4391a64c0",
+  "new_branch": "research/subject00-teacher-target-materialization-quarantine-20260727",
+  "paper_final": false,
+  "derived_target_record_count": 22,
+  "quarantine_derived_target_count": 0,
+  "morphology_radius_pixels": 5,
+  "revealed_skin_policy": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+  "records": [
+    {
+      "request_id": "subject00_O01_slot00_cand01",
+      "garment": "O01",
+      "slot": "slot_00",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "5ba5569c355d7607fc0dcc2c8aed4d0e3a39b18d9d8f07ab80fbd99eef953984",
+        "person_mask": "a1df279dd858260fedfffe95288101b45152c855b9b72924596ac967c6092218",
+        "garment_mask": "346d20988c33e623aceba27dad445c530b3c628384ff4fc33213447f66d97966",
+        "source_condition": "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf",
+        "source_person_mask": "96e305a74467688b428affdb464ffe97218ecd620d84b35da44343f6e6a86582"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 1693446,
+          "sha256": "e63e6d23dce8eea976adf5057901fc41e7da0f45c0e25bc95e06c2f8374b0e4e"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 6552,
+          "sha256": "889635b10ae423c9262a0b7def708589699d2e235c98f98fc6807bce39e905b8",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 4465,
+          "sha256": "89b3c3cc29f572463598b7f56686230b132bb3bf7569c1c428c6d20e748bc576",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 7730,
+          "sha256": "94bcb02648a16cb29375e4db7478b02c6a3fb51b7af4846922e0c38425329214",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 7338,
+          "sha256": "1de52ece90066e4c738b294e7965ca45d57af8c58dd994f795bcacb9736312a5",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 5254,
+          "sha256": "ecafc5429147e9fd183e726ed2fd897429d65210481820af7595644d58ab273f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 5186,
+          "sha256": "69f3c0fbc88ec8de2f8247c82e31fc3f457fc500200a89f58e2382eedf381577",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 5551,
+          "sha256": "c15259bcddfdec3d694ed90dd244509ddcde72b9aaf2bd9408ea73bb89f4cfe0",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot00_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O01_slot01_cand01",
+      "garment": "O01",
+      "slot": "slot_01",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "4ff6826152eee81d8d93ae8cb54e55ec362acf97b0bc720646b982f3e8bed90c",
+        "person_mask": "dfb52ee8fad4c85f0e765671b456e0cfe7e48f25c14f8c5080a1b2a170ea5a61",
+        "garment_mask": "d53f152621bd18b35038167d91b854c4d8ad8c4d2332747afa36bb652d54953e",
+        "source_condition": "24123ce6df43b4b00fe6d06aae74e69fc8eb08552e86945a864340a431cf52ed",
+        "source_person_mask": "dcc39319fd30013e65163443cf42d3b833aaad3673e15206bb5ad374a8dc8f54"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 1774846,
+          "sha256": "c1f8060fefe17a201609fb8762645068716249b820858da62eaf53350a628c32"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 6739,
+          "sha256": "081e5ec311ef0d728b68d2a46191e012fd151d617cfebe4a1c1a61cc2aed7c0e",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 4717,
+          "sha256": "c5efc272f40a492cdcbf2a1aa0c02657470d9c5151dd15fbbb5ebf1d67372307",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 7783,
+          "sha256": "a578d580b066dc57b53cc558c95901fd60ceeb143e5378cf854037d08474361b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 7593,
+          "sha256": "075d3143097aa2d526d2398a28d75a3372cc88025eeeffbc3edfa85701d0686a",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 5176,
+          "sha256": "a80f59699022e6f17327afcf38c556e82e5d15d7d16f4200cfaefed84ab6933b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 5186,
+          "sha256": "8fce74f92a89930f3ffe994531f3f48cb6e2d41d6b7a2a6b10dee77b9aeca9ee",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 5693,
+          "sha256": "40a74025cb884b3657ac64374af024bd79f3b8118fed68b58ad65575c14e7a4b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot01_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O01_slot02_cand01",
+      "garment": "O01",
+      "slot": "slot_02",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "dcfaa2469509d0a8883b829a9726975bcb1ca4fe329c42d6581646a66853df5e",
+        "person_mask": "b48b1cb763a3730481140387215737f8743e345ed131c15cef82eb07951bd45c",
+        "garment_mask": "92060baf230ece7463472fb6b850568e5bf738b498c39972d5ff395801d57ed9",
+        "source_condition": "575d04d79c3b89e1f94171ab42c80591fa843429ee815fef823bdd13c24fba33",
+        "source_person_mask": "5dfba91bbeb1dba65317c730813f65976993ae29a4dc25fcf218805926b3fb56"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 1723895,
+          "sha256": "5f6c24e737326d548b00591dc04eae0ec7b6e7a1ebaaf48419ee2a1cfdff3e0e"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 5938,
+          "sha256": "1e3d6c96efdd9b829e8c34dcdff578675c57f423cc1cd31c7e7bdf0734ddae81",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 4140,
+          "sha256": "0fac7b1aa225db2e572309596d701103e4fbd63eeeb8a2997faea2ec04068e9f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 7099,
+          "sha256": "150eb25e247d46e4b36da1c94df9810669f0831c5c9275cef4b900c7e0ce983c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 6634,
+          "sha256": "6741ebfb74bbc554bfd9e881c730a9aa78a1fc394bfe3a76fb5b13541aeee343",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 4587,
+          "sha256": "c54abb437b8f11b77de8cb86a9fdb319d28d7679cb7af6c1f881eee6941cb1f7",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 4799,
+          "sha256": "e0f0ae4732553908e3be49d0261389e65842c0a6cedb5311b5b08f3728a05b19",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 5163,
+          "sha256": "8fa03e9c91c6f7e7a0481d36c0c75df3c2d127c6155e66cf9d0cf89d9175659a",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot02_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O01_slot03_cand01",
+      "garment": "O01",
+      "slot": "slot_03",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "155a6d6823c121060e97ba16991f612dee3df211ea473356c2aa254923025487",
+        "person_mask": "45301a88b7a3404287d955aa416987c77144970095cd15b8ee5c3e3fd3914e84",
+        "garment_mask": "91cc5fcf5c19fa7bcf29a9e2ba29881deeb688af5d0b19c242f7c1c2330a9398",
+        "source_condition": "a0c34bd8bee414ef2aa06b8457ef661790ff9956aa9b1b16079e15dc6fb1a23b",
+        "source_person_mask": "a6c7ec73576d25eec3d3decf7f3faf46c063c3fed85d6a362d11306bc8d9db10"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 1708265,
+          "sha256": "3fa372d0092a65dc4fba040f1220938ce728f34b0e9381f5a66e67764590d3a3"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 5162,
+          "sha256": "94e71475ad93d752cae9a7fa11835541dd7000682c047b7d1af6066df74cc24e",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 3876,
+          "sha256": "0f5d9624c958b0e9a50daad6b3f6af17428299abbc719dc2269f2f61018d01cd",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 6266,
+          "sha256": "ce53b83ac658a8b4e1e77d5b0df1473969deeda4d9aa25aa4d17ae85d353e281",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 5637,
+          "sha256": "e8c3a7d961cc386454e8cd36b5e57d8aa3432a63a3e88bd19e264e8db30a7bfc",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 4210,
+          "sha256": "0e1ddb32e963a1de84b62f7501af9496932d8fa6dc5c844b45cd7e82e0d738ea",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 4395,
+          "sha256": "966c3657cc033b14d0b202b9802fd663e411f624e5fb374e2faabaf35a9096f6",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 4634,
+          "sha256": "1bc7f9d3aae9f21dab745a39e5f7f64c3cb8717718c15e11e90c43e81e775e34",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot03_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O01_slot05_cand00",
+      "garment": "O01",
+      "slot": "slot_05",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "0a91c891b85d136f087be54e011b61a25a37eb771d31b12c8952bb50eb102b76",
+        "person_mask": "c27ea28fa39fa1626564fd8a81e55b98ad06ca08c7d09996f816ce7fe0a7a42c",
+        "garment_mask": "23d7abe7e4432987162d821663b5c48ea71b5d96f58e5c84ade1e098c65cce9a",
+        "source_condition": "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9",
+        "source_person_mask": "3851b6c06506dba6141e04f804a683dda7369a0dd90cc3983fb3f3bd5ae5c1b2"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 1595611,
+          "sha256": "6ea14384d23cf9e8fe298c94f3bd6d73dd462be3a2cc93af17006de92089a71e"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 6267,
+          "sha256": "efacaf743a8e74693b68f2144c2a76859e9d0226196d2bc1b9524157ae341b56",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 4502,
+          "sha256": "25373502314f9cce80e7b251da7622017760e5ada4ba01906da3190015ff616a",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 7321,
+          "sha256": "9ed06bf867f7ac4772f23c6b33b0fa4e19fcb87aafebacdf2457a8268b0f1e27",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 7088,
+          "sha256": "8b926f396f3b9cad6f8444d7694fddde6bed504e5d4c8724dda04cc7129d1516",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 4887,
+          "sha256": "2fc51118aa0fd572f2a520d1f27f9e4095a8c36186efa9964167112c7ae457b5",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 4874,
+          "sha256": "0ef425e2ddbe952b71972bbce347d98e31b344b2ee000ccdc76da6bfcc1ce436",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 5401,
+          "sha256": "e86655f7189c0867cda71af95e7ec3bc1e88160aa1c864ad04cc9f0ca62c02f8",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot05_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O01_slot06_cand01",
+      "garment": "O01",
+      "slot": "slot_06",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "78991c40c1659dfd9b6da0b92d4ecf487f6961773a8e13311e1727240ae39f4c",
+        "person_mask": "d80085ce7b059737aa4bdf97a7190c0d0b92e8a0d6c7a643098f9abb2323f075",
+        "garment_mask": "9f610347b2a35880a05b5d06f7619113d90e4b2008ad5c1441d626d67933c5cc",
+        "source_condition": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373",
+        "source_person_mask": "dc9b5543e032b69b0faeda782db060bc7d119400b67bf1de44b32aaeec243bdd"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 1481437,
+          "sha256": "6956728a34881e65ead06b744b547e26e64a0731af8e3e9482669ad172a992ea"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 6298,
+          "sha256": "145474fbcd5215d0324ded136763114c0b2210e76ac250e63f8018b17b8e6025",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 4442,
+          "sha256": "13a492661c6902c151cdcf7996a69813daa64d0fb4ff54fa5c0d1cd1c140c45e",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 7368,
+          "sha256": "be81086be998f04ea1d0a1c76d5d2b6ec6c2e4c5cb127804819901b3117f6fab",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 7055,
+          "sha256": "8e146bbbb4db3c2c3a2520802ce97af76ff86e8e7e6aacf2b3a77d3658056619",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 4782,
+          "sha256": "53d345480cd2c612836cd5a017aee4f5a52af45a2e43a4748a6f9b90acfcb00d",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 4901,
+          "sha256": "d8e4cb3c1afcad8de4bdb4620313ff2065265181ef35ac6a864bd5a246b6086c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 5308,
+          "sha256": "b341a200f1e2189240408b8e52833f39f4ca3c9839509b13eb89f574f0372806",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot06_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O01_slot07_remaining_attempt005_cand00",
+      "garment": "O01",
+      "slot": "slot_07",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "b82fa9e3fe0a2b6579c5bed1fa3cf718c3c775ec9c99564ffbd775de28de9464",
+        "person_mask": "bd01517eba6acfbd93b99679925ebe96ea5f047771c7a08f98a2d3ed8905fefe",
+        "garment_mask": "1d02e35d35b6ad1db08354be8367bf07a5eaf8d9978be038df78942533ea942a",
+        "source_condition": "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294",
+        "source_person_mask": "7fc9e63f964ed98d703a165f4b5710d36e8c9946b938346eb62ed04a2162844f"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 1634923,
+          "sha256": "fb4732931d5af9b4d045416ca40dec607d0fc80a9e5444db85cc58e948c11da2"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 6846,
+          "sha256": "6858aeaa8903dc59436a8904dc66a341c147253db0c846ef547ffb11ecdc9f01",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 4839,
+          "sha256": "54a93664c8103abeb2065a89dae3e938e62342db611c9ab5679163aa1dd58f41",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 7991,
+          "sha256": "e7748bcbb56426a1741b21d0812e67cd3645941962e0ab39c3977dbdd47cedd5",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 7827,
+          "sha256": "1885859eb8982ac864fe519a0589c690a960d0f4df0f9e6c045915731a26d10b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 5154,
+          "sha256": "3a2c1e61a5823d14cb828889cc6dcb08b1beeb785ae47086a12c328d1f042edd",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 5210,
+          "sha256": "16875a2197ceb24d375dc25270ec86c9e86a2d25a91a2887170dc23703be51fa",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 5853,
+          "sha256": "6f8e7e74cc592fb2ea1a94fd5b1c107a4384ae5158d69d99e2fce45bd591bbdc",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O01/subject00_O01_slot07_remaining_attempt005_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_00",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "f5197d9646ccf60ddffe3184e295e2afed2f04ff3ccbe95b5908974f6652e9e1",
+        "person_mask": "c22ed332c668e1780ab43f895c1a2fbe9df91048ef8b45927f4366e08fa762f7",
+        "garment_mask": "12a0b7f6375969b2e8112746daf3a8414ad62b37b2dd7324a25179c0b3b01703",
+        "source_condition": "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf",
+        "source_person_mask": "96e305a74467688b428affdb464ffe97218ecd620d84b35da44343f6e6a86582"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 1697887,
+          "sha256": "991d1ba96fecb13f83de43f557238bdcc1916b2a8e59e313a18a71a4c4e161ee"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 6668,
+          "sha256": "8ff5815c785c6211e9d434af15ba033f3151249aa45000bbbf9ff9ac69d0d2b7",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 4497,
+          "sha256": "a3642ffaa5fcf6772230f6ab44933798967f8cb93ba46aa67f47fffa1c85c39f",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 7837,
+          "sha256": "99d5a518e6433eea7632895707989bc55c77f06f70c1fd96ca6c7ee70bc4151a",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 7518,
+          "sha256": "c9b920558f3dec5dafcd75e369b1baf65bdbfe37ac611c3627b252238cf5d0f6",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 5222,
+          "sha256": "400d1ea5f199ae3e896280f2c52f98670e48f9307f9d8ef5e74a83d1036f094f",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 5136,
+          "sha256": "9467ead6d03e7f79d1f59d03f76b5943cb19501754c0cfa0c1439033ff0ca5a9",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 6035,
+          "sha256": "65bd53c28e6d92f2f7daebb3457eb9b72015681246f43e888eb7138cdc069cb1",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+          "bytes": 1605,
+          "sha256": "6df954d4ff8f8d6c4388e1ca04ecb94e8dc643a81e1b70aa1a92149cc44db4ab",
+          "dtype": "uint8",
+          "shape": [
+            1165,
+            1350
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "garment": "O03",
+      "slot": "slot_01",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "917d7d74d0b9dba42919cd75a27cdf04c160d8a8084bd8b66a204eb15e089b3f",
+        "person_mask": "bda7ba50815513704f4e6fef1cbcd9c6a4254b66c2a43569d7651b7042f4d595",
+        "garment_mask": "9d9701b32b4ccf39e5cc9e0ed1e03f4ba2b161f5ffdd04eecf08346aa75272b7",
+        "source_condition": "24123ce6df43b4b00fe6d06aae74e69fc8eb08552e86945a864340a431cf52ed",
+        "source_person_mask": "dcc39319fd30013e65163443cf42d3b833aaad3673e15206bb5ad374a8dc8f54"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 1781516,
+          "sha256": "b63bad5224a90e207554afe6b6c3f0474b6ff521390b092395f322bd291eb3c7"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 6551,
+          "sha256": "7ac5685115d4b5058e34d1d20dd380bf3aa1912c43c73a0eb7362b4ccd06ab6d",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 4493,
+          "sha256": "48d0d32a7d7626480e041d5f83726be8fb8755240476589c938a6a45a39f7859",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 7640,
+          "sha256": "0930fba73d13d3886654b69517872f56ed20c9f38c47ec8ed2e00a9f29628134",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 7301,
+          "sha256": "e6b30932131238f0868e442612d17da6ecaef725536d574443ecd4b639f119f5",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 5149,
+          "sha256": "a38da224d4c5c5ff971ede5a3791bcc16aa1565359535d4cdcc0f2f826f28340",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 5158,
+          "sha256": "15c246134fb491219273b3f72755874800ce551930e06fffb42625e9a5b808ed",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 5939,
+          "sha256": "7edce17b616f401159787be35ce1b738aea539cdb9adc6339934f357e1fae777",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "garment": "O03",
+      "slot": "slot_02",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "cc48b0e48fc9e09e5a6c9d5cba8f56b818e9deea3b1468251c94f6cccfdc9196",
+        "person_mask": "0d6885d32955e95457a4796187a5c793e05fc45242109743eba90885de52aca6",
+        "garment_mask": "1e1292850e66880c69c44bc7a1955ab72c16da7f4f56f43a62f1291255bc704d",
+        "source_condition": "575d04d79c3b89e1f94171ab42c80591fa843429ee815fef823bdd13c24fba33",
+        "source_person_mask": "5dfba91bbeb1dba65317c730813f65976993ae29a4dc25fcf218805926b3fb56"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 1714725,
+          "sha256": "aea5c26213bcaff497b682416d8c4eeda93241d09b6ea313d25d6d4631ad106f"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 5943,
+          "sha256": "8a2518fc1416285a279b793a922886f1fdda969c339099c83d38f5bf601c7204",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 3906,
+          "sha256": "6751145dc7f1378668a8fba0c5b5ffbbdc12d85a40ba80be5afb13c8c6562d30",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 7106,
+          "sha256": "430121be847d5b65abd6ade1978ea0799b8921ace471443fc11940d3c336683e",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 6575,
+          "sha256": "9dab28e93090c46e0229f9100c8fbdb7686665f403e5d1f4e879b387231ced2a",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 4711,
+          "sha256": "ba1117f32d7624337545e40f693129e98afc62e835907ecb86ff6d0e89494169",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 4839,
+          "sha256": "24c2b0af5e0c33aacd1c7d63097477d72ce40a5852cab62f5c946f956df2d577",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 5161,
+          "sha256": "e891cfe6e4ca18968909e43ed2b2065e0f36c6eadc3623fd27641f97e8b6350b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot02_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "garment": "O03",
+      "slot": "slot_03",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "47601e3cde68fdac9461f1fc74c4f47f7db47611e323778fc22cef476944754f",
+        "person_mask": "d428a86495d7d3fdd492be35697c08ada501412f9c83aa83196fb180ff15aef7",
+        "garment_mask": "35da2afb3718b269737e18fe955f3558d8e41720bc1e206a490d942dbecd326e",
+        "source_condition": "a0c34bd8bee414ef2aa06b8457ef661790ff9956aa9b1b16079e15dc6fb1a23b",
+        "source_person_mask": "a6c7ec73576d25eec3d3decf7f3faf46c063c3fed85d6a362d11306bc8d9db10"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 1705401,
+          "sha256": "127ca452ea48d3cda321e5ba4b1bdf2f8f1873e2c4dc2f85c35ec8078aaa9bfa"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 5173,
+          "sha256": "6c2c90d5a08b9c83167ebb67a7636002f8bdcef1f73e326003f66411fc6d5fc3",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 3885,
+          "sha256": "a91e16ce7496f243aa550f9a243148a9430d5ca09ca301e131f9cb40d5750981",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 6274,
+          "sha256": "410d4d6378d411d03a822b9e776ab9def0b6949a8d8407ec14f5a5f2ebc1073d",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 5684,
+          "sha256": "500ebd85cfdf3227b6e8571aa45600037d9a3b3b3d7e10f63b0f891387e3f465",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 4389,
+          "sha256": "1a0f92096f48f55523df19721b8370a576ec91e0f268aa0732980ec3884416b5",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 4383,
+          "sha256": "02c1d44edc05df0e28f4552ba27aae1d092b33372f132d15f70b1acd69e32f14",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 4933,
+          "sha256": "d746dbbd0146c775393ab4ba6597ae03d20d301efaa9662f5b66aa7a51374a55",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot03_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_05",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "379562123b1d918d68171b9224068dbe905d2d5e108900408b5da82c49128aa1",
+        "person_mask": "190d8943391bbff1d0a822ecf89201f2f27258f573f186cab62f227f15357b72",
+        "garment_mask": "8c955ee53837b69d320dfd7eb4645403a78dec0ef473d40eb6107ae477e7f87d",
+        "source_condition": "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9",
+        "source_person_mask": "3851b6c06506dba6141e04f804a683dda7369a0dd90cc3983fb3f3bd5ae5c1b2"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 1595476,
+          "sha256": "d37d9ba5693f2f51742e597e5256a583845778cbc540b53b56b8204c9e5daad1"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 6001,
+          "sha256": "c78250d35e36e209c7e1a341b72ea772ea32daff98fa6270f6ce77de87346620",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 4253,
+          "sha256": "5bca3db086da10f498c29f8ab57c4de5ad9fbf631fd360979e2c331283ff7225",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 7123,
+          "sha256": "e77072423ab2c6bc8acf97572722ba05053c8ed932ea04816b463b2019712bc4",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 6803,
+          "sha256": "8b1cdfa1f1605052f24fe283a98a9b5663910094c552c5915cdf15f207ad780f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 4996,
+          "sha256": "fe18abcdb04058ddad85ceb1b2550d68fe02e25d3330418584523af97c53e3e3",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 4854,
+          "sha256": "9e7f379469d826f5805158da14b91bdd99e7f24c50725542228a867eb2b425ae",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 5192,
+          "sha256": "c0546ebbc823bdf2ef89a9d83f277c15c3699f7e2a21072084c75fb1409eccb4",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "garment": "O03",
+      "slot": "slot_06",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "8f843334c5ecda1003f70fe67482dff5e983387dc7281e336e2546194e2fff14",
+        "person_mask": "ec9eb189d59a13dbc3c17ff3f73910295b8c3c93a63974e614724f6f57f31653",
+        "garment_mask": "700767e5145cf1b6be32fac716a764ba484bb2b69c568226189c7664281b75fc",
+        "source_condition": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373",
+        "source_person_mask": "dc9b5543e032b69b0faeda782db060bc7d119400b67bf1de44b32aaeec243bdd"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 1486911,
+          "sha256": "b67be4b303153903eb3e2155ec2978972b0e11b4c5eaccdc611ad2882b6c1b58"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 6164,
+          "sha256": "c66327c7ddd9e25077a4ecbfaf09eca5e053535e750cb7dd26f723eb9c173ae2",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 4114,
+          "sha256": "c1c3be656b0b03ec46f9a1b790a95a87a8ba8bdbade6d3866a83a5d9070739eb",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 7279,
+          "sha256": "661f0cfbfab6202c023a647a89b93e262426b93cb8186467095b55ed1987733d",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 6805,
+          "sha256": "9a8b74a29a4b45a25540c5c8c062efdb356df8e71be9eefb7d1084612ef6aaa2",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 4892,
+          "sha256": "dfb984d65433a12eef6813cabc9adfdc9e34c9be81f5a302d68367e76ca53387",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 4874,
+          "sha256": "412b8ecc23764d577ffe40b9e3499c14fed7428c193ba814b309cb5874525127",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 5358,
+          "sha256": "96acc01497ff9fa4946dfc59cfa01eb37c035eaa6cf0ca80a7e991a5979b6fb3",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "garment": "O03",
+      "slot": "slot_07",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "9300293c0b028f5f7f194f5de6d56426404938a84ff61ec37d6ce56afab84441",
+        "person_mask": "6e6c152e234dfe363c18bcbc273f84fa7b62872fac4cebec83ba98d0c62590db",
+        "garment_mask": "4ea3e7462d74911a7cb7da8edb7ee5c121cedcb9b3abc280f49504487b646f14",
+        "source_condition": "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294",
+        "source_person_mask": "7fc9e63f964ed98d703a165f4b5710d36e8c9946b938346eb62ed04a2162844f"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 1629645,
+          "sha256": "476b774d0295347c4f64f92d2d4bf3c8d083ab2baee0b10fb95766a5b4e7b60d"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 6819,
+          "sha256": "7d59787b646ace01e4877c70602629efbef4544d4966aafe46c3ad5e4f1c6efb",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 4600,
+          "sha256": "2b843b96a320d3beef340b119e37377ac62b439070d960393b515d35dabb4c35",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 7964,
+          "sha256": "f974d7ecec20ce5d9b13b1dcba8c46d297b3de3dd42ef62c0970a09b6ca43dbd",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 7742,
+          "sha256": "2b57a4b8fbbaff88b63b4c536d5dd7911368ce1780416157e19a5678e0cbeeef",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 5291,
+          "sha256": "84d958e73c855ed754dffdc0150775b26616062620dfcafaae252ce315ef2795",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 5255,
+          "sha256": "b01d933c408921a80e6c78404e0323e7e9883580c599854bb2a69eaa581f04c2",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 6005,
+          "sha256": "69a6b09a194c3acd537904b5219c652d2c3141078772ce51557c5483227b5c0c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot00_cand01",
+      "garment": "O04",
+      "slot": "slot_00",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "86c0f19257e6ec1140694655b5e1c1019db4ed4dfe2591277dc06eb88e7095f0",
+        "person_mask": "7d0adc4ec485480ae284a4bee523c82d59ea9868f61d8876c0a0f2f513620b31",
+        "garment_mask": "3425394eadfb6b8239d7e242170c5114d88312360da723f705a4164103119b37",
+        "source_condition": "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf",
+        "source_person_mask": "96e305a74467688b428affdb464ffe97218ecd620d84b35da44343f6e6a86582"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 1695736,
+          "sha256": "22735be7882c42e0878e66115253bf22185da37678f9b1f4aa49f473fc893e82"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 6413,
+          "sha256": "8ee262b75f85d2a566a90e31477c3334af3e3d52c7b815d8aba36be4ec20261a",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 4379,
+          "sha256": "0c5e99f23c798b0a9c10742086df1d29ba2273d013baa7597a9ea0d42dbdde79",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 7606,
+          "sha256": "d07cfbef0d0979fe30c4e1eba1310a4518acfd43846ef795e251091d13f64f00",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 7232,
+          "sha256": "e44fdd93d75e8f584f032a66bc857edc275ed8119c254434ff1a3bcceee886f3",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 5264,
+          "sha256": "dd7ee7845d75341f794e75231664c281c4a994cf31d434555bb7c37525261c04",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 5174,
+          "sha256": "633aba05cd4f34cf917268f46ced5181fe0a478e071cf92ba82b202a8bc5fe8b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 5547,
+          "sha256": "69eab3b342e6217c3ea3e682c61160b97cf7fbf3fc3fb8d5d0981fc35fe0e242",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot00_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot01_cand01",
+      "garment": "O04",
+      "slot": "slot_01",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "325036ab2b72142edd98439826eada0d071c20087dc5a99b5e00684454449eec",
+        "person_mask": "ff9077b790f7978a91a46e7cb2bbb9a6346e8f9f6b3aeac8cc9ba12d94dc8ea6",
+        "garment_mask": "0d127670bce21a357ff432eee8484251919237f876f17053ceb206d14e27e7ad",
+        "source_condition": "24123ce6df43b4b00fe6d06aae74e69fc8eb08552e86945a864340a431cf52ed",
+        "source_person_mask": "dcc39319fd30013e65163443cf42d3b833aaad3673e15206bb5ad374a8dc8f54"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 1775174,
+          "sha256": "6ba46fd59692083beb9e87a8a0304a896f76859fe1c2c86912cb1a95665b6246"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 6241,
+          "sha256": "58a2f151e823919b0f7713e4afecea3267662e1cf7b3c180ac4c47f9b18ed881",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 4204,
+          "sha256": "437f726bd54f4612fc8693ae279b1c9c140495a524e24bea578ed884a3de3370",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 7376,
+          "sha256": "19cde75d4cb3e55b9f0769b6e7122a17250f258cca81825b3088c38ddb1c37be",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 6942,
+          "sha256": "7c7b76e251513f8131298fbb73e663eebf4c2e4ee4c6a5c9a38a889c01e361fc",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 5198,
+          "sha256": "c7712d680534a7b93b852e96add2eda1e292074984c4e2d5d0d1bfa295d4364e",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 5178,
+          "sha256": "3360c5a614dbde15f3308604bdb55763b14c6c1a177a46cdd09911ce7bd23f3c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 5321,
+          "sha256": "7ac870a7341abf8e60e285ae9a87924791a2003cd44f4e62acf086c35bcf8c00",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot01_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot02_cand00",
+      "garment": "O04",
+      "slot": "slot_02",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "404caa400cb1d6d8ee91f57e9e89c5c173fd40d79173683a2b884eff3868c4c7",
+        "person_mask": "9f2256adc8c55f80a63554533a342aa47131e64803ac4a19287d8fc47350c33a",
+        "garment_mask": "6ece0c8c3f3c756795a602867ba78156e45f6075ea93d6823d23b41b96e28305",
+        "source_condition": "575d04d79c3b89e1f94171ab42c80591fa843429ee815fef823bdd13c24fba33",
+        "source_person_mask": "5dfba91bbeb1dba65317c730813f65976993ae29a4dc25fcf218805926b3fb56"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 1716379,
+          "sha256": "fb629080a3ce52c7e03c34928a5d199d4a3ee79c80462e0dc90ec214352f7ad1"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 5751,
+          "sha256": "08e2d4d0247af78366fd4deeee82cec8a383b4bea580a6fedd4f57b9adaffde1",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 3803,
+          "sha256": "9d7fe34af2a26cf525b6fb16f99c4341b5c6bec6559edfb0a588844112e09aaf",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 6903,
+          "sha256": "2d64db91d9b3a95732a5b84e7c5cab911efdf152f3c10d07a2f7575cc88522e5",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 6356,
+          "sha256": "93c3e0aa0600cf2969c2ffe5f4faebe856a49b4a07e298e8683afecf06cb1274",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 4623,
+          "sha256": "891341c55620bdf2fb0188a8c79f66724a0b60c2ac0b076bd3d3f603bdd5a336",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 4807,
+          "sha256": "2a15b57c0d16767819d63d809c8d38ca6498a5207ffc80f11170b03ad1101022",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 5283,
+          "sha256": "2cfda067ca85ed908d27a4a774677403bd9aca9f74ee010482681009bd55f195",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot02_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot03_cand01",
+      "garment": "O04",
+      "slot": "slot_03",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "0c42c53e87dd4b0c016ce4a3242d923a4b57eb26958c5e19fdab0450c17f576a",
+        "person_mask": "7dc51560e06c1ff2bfa8239c866c1386758a4d19239f5ccb149a559a8acd00ac",
+        "garment_mask": "2045ba5828edfd6851092652c3bee690fca62d2e41bd89e71735fe0fb0d6acb6",
+        "source_condition": "a0c34bd8bee414ef2aa06b8457ef661790ff9956aa9b1b16079e15dc6fb1a23b",
+        "source_person_mask": "a6c7ec73576d25eec3d3decf7f3faf46c063c3fed85d6a362d11306bc8d9db10"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 1709634,
+          "sha256": "bfb2027a219bfa371b18f746b8635fd81d3783f475cc4cba98648fabcd539f92"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 5192,
+          "sha256": "03643ceaa43f9823447c7948670249750ad929a8786c68fee39e9d1bd33998f7",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 3922,
+          "sha256": "1370ac4792d90978b14f118d4c4d23b2df145fcf727d7284c45f89b5d8d210bb",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 6247,
+          "sha256": "2deb5a3afa36498a4b08fa7f1ea7cf21d25863ca611a399df1e458ab91558a03",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 5797,
+          "sha256": "42c1fd383638c99d4adf26989c7b633671a103f5973537c7c4defdf02254f53f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 4376,
+          "sha256": "6766a0ddaed97bc2e5964c6b97d9c4df747b68de46009acb2056630a0845122c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 4365,
+          "sha256": "74996c300c1219356eb2a1ea405ad5f651af094a494b7916becd712bce8beeb7",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 4884,
+          "sha256": "13646e2cc9849f8e4cbcdb2b5dca4b91d8c8e0a4a18ed0464ba437ec661a4df3",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot03_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot04_cand01",
+      "garment": "O04",
+      "slot": "slot_04",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "4124c243eba04d87ac5b563fc5a6b7ece56348fac9d29cfae6531cc492d360f7",
+        "person_mask": "b1b03b12d950f2f93cdeddedee0524d742291fa88f8c3eee3c9940815a893e2d",
+        "garment_mask": "9b88a3e127b1a680f9271e6c28ac5168e2ea4f9626198dfd6befcd481e5c488b",
+        "source_condition": "7b990d29fc29d2b96756db898fd01dc35f20f7995523ef2c9a56b885d32568b8",
+        "source_person_mask": "34d144c12c4cc083476d8f95967e011e6142ece0a4dc5ba5d91fda5ebceb069f"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 1621263,
+          "sha256": "61ea35fbc829dfd099a8a183d57f594be2f840ba847eb3aa28c82e8526805594"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 5358,
+          "sha256": "a26b5138002c4aeb62d98d0ff3bbff6dee08ac0806164a5f6b7e640741d1d002",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 3910,
+          "sha256": "ac1061f824f6275a266f7cbef8bcf37e716d4c30cc68108d0a72421f6cd25ac4",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 6462,
+          "sha256": "abebe090f58c4d54e57e1ed87737123c87cf595be79b432edfee528e6fe8aaf7",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 5857,
+          "sha256": "561c1060ad95bda0b400670a0179642bcc5a4e0dd38b1bcee13d455824ff26e2",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 4276,
+          "sha256": "d67312493f91624104eeeb7d5bf78b95ea0b37d0b774f8d7c097b585916a731c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 4335,
+          "sha256": "12c8a13b0483279829cf59024165bb89c63d080e29c919dc6c4506250cd17a65",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 4793,
+          "sha256": "7bc781ca97f9cae909e298e13b06d7794b9a5411e1db21797ffe6e58c03bbb24",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot04_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot05_remaining_attempt005_cand00",
+      "garment": "O04",
+      "slot": "slot_05",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "db0fb86ba8d28df6cdbcd9365dc7b4dde4a151a24ff3ac469a82fe281697ef7b",
+        "person_mask": "d795bd2afd40287ec4e94155c95705a1789dd04cbac7217bf48545736ea9c25f",
+        "garment_mask": "f2a450de72d7290d01260e92bae7596daa6c46457cf0de82670d7274d9d37a6f",
+        "source_condition": "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9",
+        "source_person_mask": "3851b6c06506dba6141e04f804a683dda7369a0dd90cc3983fb3f3bd5ae5c1b2"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 1601822,
+          "sha256": "b34bbb4d8919b1c7795d1d4953bfe67b2315ff60cfcaa0289c2c8c73bd04dbee"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 6022,
+          "sha256": "08c8e1b69a6f9da28ef5948a6c5b6fea172ffa129ce3f1040b18c82bde3a9bd4",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 4526,
+          "sha256": "5b42874eae1e91087efff81e3abb432fc299ecea9cec339417744872af4287c7",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 7071,
+          "sha256": "0959ac26af553c15b6fecc4a65e4b5edd0c2dbc7ef48965bf2ccedbe4bc320d1",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 6916,
+          "sha256": "d54201d92638dbd236702b5bf8690744f61478214fa38b066b27bea4f83a9b05",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 4700,
+          "sha256": "a7afee2ffaf28afd6e2a63455ae07f8bf5d731e886efd4e919ba0488d679091a",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 4832,
+          "sha256": "f7363c54ddc6a1f8874229cc0cb6085c7da13e17779c92fdb9c4174446a4834d",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 5363,
+          "sha256": "94ee47c060680c159803fc6177f50c6b14ab1f845353a0aad9f6dfd5481e00a8",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot05_remaining_attempt005_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot06_remaining_attempt005_cand00",
+      "garment": "O04",
+      "slot": "slot_06",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "dab434462464ba48fcf5d384fd3237998bbe2ec870d806938e7fd6b19f62eaa1",
+        "person_mask": "007cdfaa9824806bb003bce85dad032ff5526a587928d7d0877a62d7a02342ed",
+        "garment_mask": "6740f67681bef921e2388b46ec7f491a808003a79e0777f12a9f3e863f82745e",
+        "source_condition": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373",
+        "source_person_mask": "dc9b5543e032b69b0faeda782db060bc7d119400b67bf1de44b32aaeec243bdd"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 1474288,
+          "sha256": "5f80f2424c5b0c99386ef1f5266f8bfc627a4f2d0b1ef339063127bfe98baa93"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 6379,
+          "sha256": "bb729ba80c5917e8ebf4062ce5fed0c589eb0603f2eaa4cdee495245b1bb4607",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 4280,
+          "sha256": "f608ea42512109849096dd4f408fafcf7f4bbbca8054295a66556f29af8f37ce",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 7499,
+          "sha256": "59e6a0a76784c40093607f39b2e6d592b709f98b3667b8936fdf49da25f7db09",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 7207,
+          "sha256": "ec70c4fb5f52b81c80951b27add91ac6020339db59f856524162e51461d11e20",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 4886,
+          "sha256": "7a6e0ec9684ff57a7d4e97fbeae51286e7c7780d9e962a96816935512af8aab7",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 4933,
+          "sha256": "1b33128920f961d1b01ab472a6328b83395d13d9e71abbb436525c5a13d315af",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 5400,
+          "sha256": "2e95a12565abda55e24408d33fc8b953c4bdf677e91c69e2356d4563fce8dc9f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot06_remaining_attempt005_cand00.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    },
+    {
+      "request_id": "subject00_O04_slot07_cand01",
+      "garment": "O04",
+      "slot": "slot_07",
+      "implementation_path": "tools/second_identity/materialize_subject00_teacher_targets_with_quarantine.py",
+      "implementation_sha256": "0f0e574cf547fc3331f38313a25d9995cb6a84317d1b2bcd429d2f8df40e61d3",
+      "frozen_precedent_path": "tools/aaai27/build_data_capacity_fixture.py",
+      "frozen_precedent_sha256": "de930f6a154231bec4881a8071a323d8794db3f1f24c5ccdee5090d12f639b72",
+      "deterministic_seed": 0,
+      "morphology_radius_pixels": 5,
+      "target_base_construction": "FROZEN_SOURCE_RGB_AND_PERSON_MASK_WARPED_BY_T_PIXEL; RGB_LINEAR; MASK_NEAREST; NO_RESIZE_CROP_PAD",
+      "protected_construction": "ACCEPTED_TARGET_PERSON_MINUS_ACCEPTED_TARGET_GARMENT",
+      "old_clothing_construction": "CONSERVATIVE_WARPED_BASE_FOREGROUND_MINUS_FROZEN_TARGET_PROTECTED",
+      "revealed_skin_status": "CONSERVATIVE_EMPTY_NO_UNAUTHORIZED_SKIN_INFERENCE",
+      "input_sha256": {
+        "raw": "40984595127b8e66ad8a90a45a01d562dbf2480a3ca586d657e7ddc4b144f668",
+        "person_mask": "4e7b10c2a7d7392f8f254d83406de1795664c42e79a56a15a2235d341131aeda",
+        "garment_mask": "39e1ddc4a35ac716270052d5b0b8acd81a9d7288b35b59c5afde79ab33bf549c",
+        "source_condition": "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294",
+        "source_person_mask": "7fc9e63f964ed98d703a165f4b5710d36e8c9946b938346eb62ed04a2162844f"
+      },
+      "outputs": {
+        "target_base_rgb": {
+          "path": "07_derived_targets/r/base/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 1624317,
+          "sha256": "c72ed06bb0f3b9a75019760d5e214de313c7e699ac1330c83cc2e81d8cabbad6"
+        },
+        "target_edit_mask": {
+          "path": "07_derived_targets/m/edit/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 6861,
+          "sha256": "2828b5ab276b2b951079ad397b00f7e1a2b3545abed658d5c7a02f3c169be1b1",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_edit_core_mask": {
+          "path": "07_derived_targets/m/core/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 4883,
+          "sha256": "2ccff082ee075533b05530797eb4183877faf86a414b101a077cd0954d6ab54f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_preserve_mask": {
+          "path": "07_derived_targets/m/preserve/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 7971,
+          "sha256": "5fa9eee5dc2b159cee0ce68444177443a2b7912bd558ad490d3492be71589b94",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_transition_mask": {
+          "path": "07_derived_targets/m/transition/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 7867,
+          "sha256": "8e3cec8460e390ba9d1646505082779ebe43b00ee4e9a71b4881d41035f3e684",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_protected_mask": {
+          "path": "07_derived_targets/m/protected/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 5155,
+          "sha256": "4ea6e932131fc59a809e2033035568cd9dc875dde97e3457235ec5bb683ebf3f",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_base_foreground_mask": {
+          "path": "07_derived_targets/m/base_fg/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 5280,
+          "sha256": "0888154e24dbf439471f54eb4e2e7981c77cf2a45e7731051a20053e3ea3d54b",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_old_clothing_mask": {
+          "path": "07_derived_targets/m/old_clothing/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 5759,
+          "sha256": "2c20d536dd29c388289a5f6cdb690fc849d5b16bd3eccac9b40aad13b2445f8d",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        },
+        "target_revealed_skin_mask": {
+          "path": "07_derived_targets/m/revealed_skin/O04/subject00_O04_slot07_cand01.png",
+          "bytes": 1605,
+          "sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+          "dtype": "uint8",
+          "shape": [
+            1166,
+            1349
+          ],
+          "value_range": [
+            0,
+            255
+          ],
+          "allowed_values": [
+            0,
+            255
+          ]
+        }
+      },
+      "checks": {
+        "edit_protected_overlap": 0,
+        "protected_outside_preserve": 0,
+        "edit_preserve_overlap": 0,
+        "edit_preserve_uncovered": 0,
+        "core_outside_edit": 0,
+        "transition_outside_edit": 0,
+        "clothing_protected_overlap": 0,
+        "clothing_outside_foreground": 0
+      },
+      "qa_status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+schema_version: canondressgs.r3_clean_body_asset_pilot.v1
+status: PREREGISTERED_DIAGNOSTIC_ONLY
+seed: 20260718
+condition_protocol:
+  ids:
+    - cond_000000
+    - cond_000104
+    - cond_000318
+    - cond_000714
+    - cond_000017
+    - cond_000101
+    - cond_000347
+    - cond_000379
+    - cond_000108
+    - cond_000113
+    - cond_000598
+    - cond_000439
+  required_view_counts: {front: 3, back: 3, left: 3, right: 3}
+support:
+  densities: {medium: 60000, high: 120000}
+  inward_offset_m: 0.006
+  medium_opacity: 0.24
+  tangent_scale_multiplier: 1.12
+  normal_scale_m: 0.0015
+  sh_degree: 0
+  included_body_parts: [0, 1, 2, 3, 4, 5, 6, 9, 12, 13, 14, 16, 17, 18, 19]
+  excluded_body_parts: [7, 8, 10, 11, 15, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+shell:
+  old_shell_opacity_multiplier: 0.0001
+  body_near_distance_m: 0.02
+  outer_shell_distance_m: 0.03
+  skin_rgb_distance_max: 0.15
+skin:
+  provenance_codes: {observed: 0, mirrored: 1, geodesic: 2, regional_prior: 3}
+  maximum_geodesic_distance_m: 0.35
+  boundary_erosion_pixels: 2
+acceptance:
+  support_visible_fraction_max: 0.01
+  old_garment_residual_fraction_max: 0.01
+  background_leakage_max: 0.01
+  protected_identity_rgb_diff_max: 0.0
+  abnormal_gaussian_fraction_max: 0.0
+  base_bitwise_exact_required: true
+  optimizer_steps_max: 20
+  optimizer_scope_if_needed: global_opacity_scalar_only
+scope:
+  formal_checkpoint_write: false
+  formal_model_mutation: false
+  module4b_rerun: false
+  o00_oracle: false
+  image_conditioned_training: false
+  garment_gaussian_layer: false

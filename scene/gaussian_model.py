@@ -942,7 +942,6 @@ class GaussianModel:
         if key not in canonical_overrides:
             raise KeyError(f"canonical_overrides is missing required key: {key}")
         return canonical_overrides[key]
-
     def _validate_canonical_overrides(self, canonical_overrides):
         if canonical_overrides is None:
             return

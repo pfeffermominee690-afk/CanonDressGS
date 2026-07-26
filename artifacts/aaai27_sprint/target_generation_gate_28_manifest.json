@@ -1,0 +1,1175 @@
+{
+  "schema_version": "aaai27_sprint_preflight_v1",
+  "created_at": "2026-07-18T00:00:00+08:00",
+  "status": "PLANNED_NOT_GENERATED",
+  "network_requests": 0,
+  "images_generated": 0,
+  "gate_required_before_execution": true,
+  "artifact_type": "target_generation_gate_28_manifest",
+  "candidate_outfits": [
+    "O01",
+    "O02",
+    "O03",
+    "O04",
+    "O06",
+    "O07",
+    "O08"
+  ],
+  "canonical_conditions": {
+    "front": "cond_000000",
+    "back": "cond_000318",
+    "left": "cond_000017",
+    "right": "cond_000347"
+  },
+  "record_count": 28,
+  "records": [
+    {
+      "record_id": "cond_000000_O01",
+      "phase": "gate_28",
+      "outfit_id": "O01",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000000_sheet01.png",
+          "sheet_sha256": "fff577c8a7f508261290ad0aaaa4d557e2d7eeb1d13b03cd85a1f2ce0f287567",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O01\\cond_000000_O01.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O01",
+      "phase": "gate_28",
+      "outfit_id": "O01",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000318_sheet01.png",
+          "sheet_sha256": "68a1ba89e2b2f91a87d2c1341661ebaf04632e8a8d7316a670c4ac0d4126dce6",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O01\\cond_000318_O01.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O01",
+      "phase": "gate_28",
+      "outfit_id": "O01",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000017_sheet01.png",
+          "sheet_sha256": "889a07746d8f7ab32060ff47716e783fbb0bdc20a46b3e460cc2505005f3f30a",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O01\\cond_000017_O01.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O01",
+      "phase": "gate_28",
+      "outfit_id": "O01",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000347_sheet01.png",
+          "sheet_sha256": "bae5c132c59c5bd87e64116b30a9d153f9287f379b45f2beb5649bfb39e6c01e",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O01\\cond_000347_O01.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000000_O02",
+      "phase": "gate_28",
+      "outfit_id": "O02",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000000_sheet01.png",
+          "sheet_sha256": "fff577c8a7f508261290ad0aaaa4d557e2d7eeb1d13b03cd85a1f2ce0f287567",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O02\\cond_000000_O02.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O02",
+      "phase": "gate_28",
+      "outfit_id": "O02",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000318_sheet01.png",
+          "sheet_sha256": "68a1ba89e2b2f91a87d2c1341661ebaf04632e8a8d7316a670c4ac0d4126dce6",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O02\\cond_000318_O02.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O02",
+      "phase": "gate_28",
+      "outfit_id": "O02",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000017_sheet01.png",
+          "sheet_sha256": "889a07746d8f7ab32060ff47716e783fbb0bdc20a46b3e460cc2505005f3f30a",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O02\\cond_000017_O02.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O02",
+      "phase": "gate_28",
+      "outfit_id": "O02",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000347_sheet01.png",
+          "sheet_sha256": "bae5c132c59c5bd87e64116b30a9d153f9287f379b45f2beb5649bfb39e6c01e",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O02\\cond_000347_O02.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000000_O03",
+      "phase": "gate_28",
+      "outfit_id": "O03",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000000_sheet01.png",
+          "sheet_sha256": "fff577c8a7f508261290ad0aaaa4d557e2d7eeb1d13b03cd85a1f2ce0f287567",
+          "outfit_crop_box_xyxy": [
+            0,
+            512,
+            512,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O03\\cond_000000_O03.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O03",
+      "phase": "gate_28",
+      "outfit_id": "O03",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000318_sheet01.png",
+          "sheet_sha256": "68a1ba89e2b2f91a87d2c1341661ebaf04632e8a8d7316a670c4ac0d4126dce6",
+          "outfit_crop_box_xyxy": [
+            0,
+            512,
+            512,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O03\\cond_000318_O03.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O03",
+      "phase": "gate_28",
+      "outfit_id": "O03",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000017_sheet01.png",
+          "sheet_sha256": "889a07746d8f7ab32060ff47716e783fbb0bdc20a46b3e460cc2505005f3f30a",
+          "outfit_crop_box_xyxy": [
+            0,
+            512,
+            512,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O03\\cond_000017_O03.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O03",
+      "phase": "gate_28",
+      "outfit_id": "O03",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000347_sheet01.png",
+          "sheet_sha256": "bae5c132c59c5bd87e64116b30a9d153f9287f379b45f2beb5649bfb39e6c01e",
+          "outfit_crop_box_xyxy": [
+            0,
+            512,
+            512,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O03\\cond_000347_O03.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000000_O04",
+      "phase": "gate_28",
+      "outfit_id": "O04",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000000_sheet01.png",
+          "sheet_sha256": "fff577c8a7f508261290ad0aaaa4d557e2d7eeb1d13b03cd85a1f2ce0f287567",
+          "outfit_crop_box_xyxy": [
+            512,
+            512,
+            1024,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O04\\cond_000000_O04.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O04",
+      "phase": "gate_28",
+      "outfit_id": "O04",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000318_sheet01.png",
+          "sheet_sha256": "68a1ba89e2b2f91a87d2c1341661ebaf04632e8a8d7316a670c4ac0d4126dce6",
+          "outfit_crop_box_xyxy": [
+            512,
+            512,
+            1024,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O04\\cond_000318_O04.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O04",
+      "phase": "gate_28",
+      "outfit_id": "O04",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_01\\pose_000017_sheet01.png",
+          "sheet_sha256": "889a07746d8f7ab32060ff47716e783fbb0bdc20a46b3e460cc2505005f3f30a",
+          "outfit_crop_box_xyxy": [
+            512,
+            512,
+            1024,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O04\\cond_000017_O04.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O04",
+      "phase": "gate_28",
+      "outfit_id": "O04",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_01",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_01\\pose_000347_sheet01.png",
+          "sheet_sha256": "bae5c132c59c5bd87e64116b30a9d153f9287f379b45f2beb5649bfb39e6c01e",
+          "outfit_crop_box_xyxy": [
+            512,
+            512,
+            1024,
+            1024
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O04\\cond_000347_O04.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000000_O06",
+      "phase": "gate_28",
+      "outfit_id": "O06",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000000_sheet02.png",
+          "sheet_sha256": "5e6ece299ba9a9eacf2dfba60976532ba3d1a0375cefb9d236a8b690ce1ec9a7",
+          "outfit_crop_box_xyxy": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O06\\cond_000000_O06.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O06",
+      "phase": "gate_28",
+      "outfit_id": "O06",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000318_sheet02.png",
+          "sheet_sha256": "cfe7dc04f48cbc8477965b12ec5222db278aa613e40d2be3ba4f003810d97e98",
+          "outfit_crop_box_xyxy": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O06\\cond_000318_O06.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O06",
+      "phase": "gate_28",
+      "outfit_id": "O06",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000017_sheet02.png",
+          "sheet_sha256": "e137ac36fff3422be2c659cf2dedfb0c2550314ac235d00c899ce166cc17b739",
+          "outfit_crop_box_xyxy": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O06\\cond_000017_O06.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O06",
+      "phase": "gate_28",
+      "outfit_id": "O06",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000347_sheet02.png",
+          "sheet_sha256": "9df2f7d08a2bd8b6c7c7d0afc6c2edbc089cbd4df0612419081c31e74235991f",
+          "outfit_crop_box_xyxy": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O06\\cond_000347_O06.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000000_O07",
+      "phase": "gate_28",
+      "outfit_id": "O07",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000000_sheet02.png",
+          "sheet_sha256": "5e6ece299ba9a9eacf2dfba60976532ba3d1a0375cefb9d236a8b690ce1ec9a7",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O07\\cond_000000_O07.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O07",
+      "phase": "gate_28",
+      "outfit_id": "O07",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000318_sheet02.png",
+          "sheet_sha256": "cfe7dc04f48cbc8477965b12ec5222db278aa613e40d2be3ba4f003810d97e98",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O07\\cond_000318_O07.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O07",
+      "phase": "gate_28",
+      "outfit_id": "O07",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000017_sheet02.png",
+          "sheet_sha256": "e137ac36fff3422be2c659cf2dedfb0c2550314ac235d00c899ce166cc17b739",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O07\\cond_000017_O07.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O07",
+      "phase": "gate_28",
+      "outfit_id": "O07",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000347_sheet02.png",
+          "sheet_sha256": "9df2f7d08a2bd8b6c7c7d0afc6c2edbc089cbd4df0612419081c31e74235991f",
+          "outfit_crop_box_xyxy": [
+            512,
+            0,
+            1024,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O07\\cond_000347_O07.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000000_O08",
+      "phase": "gate_28",
+      "outfit_id": "O08",
+      "condition_id": "cond_000000",
+      "view": "front",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000000.png",
+        "sha256": "e91b65b03b5c327f68592633c391821bbff788646ba9af380ebbf6617ad85f6c",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000000",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000000_sheet02.png",
+          "sheet_sha256": "5e6ece299ba9a9eacf2dfba60976532ba3d1a0375cefb9d236a8b690ce1ec9a7",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O08\\cond_000000_O08.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000318_O08",
+      "phase": "gate_28",
+      "outfit_id": "O08",
+      "condition_id": "cond_000318",
+      "view": "back",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000318.png",
+        "sha256": "2c06541861ff5bed8352e570f4a15d0df6562de106b468bcc26b2754f9d12665",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000318",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000318_sheet02.png",
+          "sheet_sha256": "cfe7dc04f48cbc8477965b12ec5222db278aa613e40d2be3ba4f003810d97e98",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O08\\cond_000318_O08.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000017_O08",
+      "phase": "gate_28",
+      "outfit_id": "O08",
+      "condition_id": "cond_000017",
+      "view": "left",
+      "difficulty": "hard",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000017.png",
+        "sha256": "049e98f013a85d812d0d36b74441c34afa900cb3c0c445d03ab8819ae9f220d7",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000017",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay\\sheet_02\\pose_000017_sheet02.png",
+          "sheet_sha256": "e137ac36fff3422be2c659cf2dedfb0c2550314ac235d00c899ce166cc17b739",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O08\\cond_000017_O08.png",
+      "status": "PLANNED_NOT_GENERATED"
+    },
+    {
+      "record_id": "cond_000347_O08",
+      "phase": "gate_28",
+      "outfit_id": "O08",
+      "condition_id": "cond_000347",
+      "view": "right",
+      "difficulty": "easy",
+      "split": "capacity_gate",
+      "subject02_base_condition": {
+        "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+        "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+        "role": "target_identity_pose_camera_source_not_dressed_target"
+      },
+      "donor_references": [
+        {
+          "donor_identity": "Jay",
+          "condition_id": "cond_000347",
+          "sheet_id": "sheet_02",
+          "sheet_path": "E:\\data_pre\\outputs\\gpt_image2_pose_outfit_sheets\\Jay_coverage_supplement_codex_imagegen_v1\\sheet_02\\pose_000347_sheet02.png",
+          "sheet_sha256": "9df2f7d08a2bd8b6c7c7d0afc6c2edbc089cbd4df0612419081c31e74235991f",
+          "outfit_crop_box_xyxy": [
+            1024,
+            0,
+            1536,
+            512
+          ],
+          "mapping_contract": "outfit_mapping_v2"
+        }
+      ],
+      "model_conditioning_fields": [
+        "donor_references",
+        "target_pose",
+        "target_camera"
+      ],
+      "target_dependency": false,
+      "generated_target_used_as_input": false,
+      "teacher_used": false,
+      "target_rgb_mask_inference_input": false,
+      "planned_output_path": "E:\\data_pre\\outputs\\aaai27_subject02_targets\\gate_28\\O08\\cond_000347_O08.png",
+      "status": "PLANNED_NOT_GENERATED"
+    }
+  ]
+}

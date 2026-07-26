@@ -1,0 +1,383 @@
+{
+  "schema_version": "canondressgs.subject00.camera_blocker_resolution_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-TEACHER-TARGET-CAMERA-RESOLUTION-BLOCKER-RESOLUTION-001",
+  "created_at": "2026-07-26T21:57:29.878368+00:00",
+  "source_branch": "research/subject00-24-cell-teacher-target-creation-preflight-20260727",
+  "source_head": "762fb6a6621e461000b909f749c72a244d55feb2",
+  "new_branch": "research/subject00-teacher-target-camera-blocker-resolution-20260727",
+  "worktree": "E:\\model_train\\canondressgs_subject00_teacher_target_camera_blocker_resolution",
+  "previous_blocker": "BLOCKED_22_OF_24_UNIQUE_SIMILARITY_BINDINGS_2_OF_24_HUMAN_OVERRIDE_CAMERA_MODELS_NONUNIQUE",
+  "formal_protocol": "paper_protocol\\reviewer_risk\\subject00_attempt001_native_landscape_registration_protocol_20260726.json",
+  "formal_protocol_sha256": "81a9aca5faa63990c002af20eabf66350bde94b5db6e680bc20426fe037947ca",
+  "registration_adjudicator": "tools\\second_identity\\adjudicate_subject00_teacher_target_camera_salvage.py",
+  "registration_adjudicator_sha256": "de22ef18ef8d9d45dc97f7aac1ec8bde208659bdfbca701067d5fe0169ea64ae",
+  "formal_registration_implementation": "tools\\datasets\\audit_subject00_attempt001_native_landscape_registration.py",
+  "formal_registration_implementation_sha256": "00569e6975209802913464b3e448a656149e2f1f6364c604913fc40f159bc446",
+  "allowed_models": [
+    "MODEL_A_IDENTITY",
+    "MODEL_B_RESOLUTION_SCALE_ONLY",
+    "MODEL_C_ISOTROPIC_SIMILARITY",
+    "MODEL_D_RESOLUTION_SCALE_THEN_ISOTROPIC_SIMILARITY"
+  ],
+  "forbidden_diagnostic_only_models": [
+    "ANISOTROPIC_AFFINE",
+    "GENERAL_AFFINE",
+    "PROJECTIVE_HOMOGRAPHY"
+  ],
+  "background_region_definition": "NOT(dilated source person mask) AND NOT(dilated accepted target person mask under candidate target coordinates), restricted to valid overlap and the frozen 8-pixel border.",
+  "threshold_adjustment_policy": "ZERO_POST_RESULT_ADJUSTMENT; empirical envelope frozen from the 22 machine-safe cells before the two problem-cell decisions.",
+  "paper_final": false,
+  "check_count": 46,
+  "pass_count": 46,
+  "fail_count": 0,
+  "checks": [
+    {
+      "name": "01_source_branch_head",
+      "status": "PASS",
+      "evidence": {
+        "branch": "research/subject00-24-cell-teacher-target-creation-preflight-20260727",
+        "head": "762fb6a6621e461000b909f749c72a244d55feb2"
+      }
+    },
+    {
+      "name": "02_source_clean",
+      "status": "PASS",
+      "evidence": "CLEAN"
+    },
+    {
+      "name": "03_previous_blocker_exact",
+      "status": "PASS",
+      "evidence": "BLOCKED_22_OF_24_UNIQUE_SIMILARITY_BINDINGS_2_OF_24_HUMAN_OVERRIDE_CAMERA_MODELS_NONUNIQUE"
+    },
+    {
+      "name": "04_exact_two_problem_cells",
+      "status": "PASS",
+      "evidence": [
+        "subject00_O03_slot04_canary_attempt004_cand00",
+        "subject00_O01_slot04_remaining_attempt005_cand00"
+      ]
+    },
+    {
+      "name": "05_reference_cells_22",
+      "status": "PASS",
+      "evidence": 22
+    },
+    {
+      "name": "06_reference_transforms_parse",
+      "status": "PASS",
+      "evidence": 22
+    },
+    {
+      "name": "07_reference_distribution_complete",
+      "status": "PASS",
+      "evidence": 21
+    },
+    {
+      "name": "08_accepted_model_set",
+      "status": "PASS",
+      "evidence": [
+        "MODEL_A_IDENTITY",
+        "MODEL_B_RESOLUTION_SCALE_ONLY",
+        "MODEL_C_ISOTROPIC_SIMILARITY",
+        "MODEL_D_RESOLUTION_SCALE_THEN_ISOTROPIC_SIMILARITY"
+      ]
+    },
+    {
+      "name": "09_forbidden_model_set",
+      "status": "PASS",
+      "evidence": [
+        "ANISOTROPIC_AFFINE",
+        "GENERAL_AFFINE",
+        "PROJECTIVE_HOMOGRAPHY"
+      ]
+    },
+    {
+      "name": "10_background_mask_construction",
+      "status": "PASS",
+      "evidence": "NOT(dilated source person mask) AND NOT(dilated accepted target person mask under candidate target coordinates), restricted to valid overlap and the frozen 8-pixel border."
+    },
+    {
+      "name": "11_implementation_determinism",
+      "status": "PASS",
+      "evidence": {
+        "source_background_feature_count": 4329,
+        "target_background_feature_count": 4557,
+        "lowe_ratio_match_count_before_unique_target": 590,
+        "match_count": 545
+      }
+    },
+    {
+      "name": "12_empirical_threshold_derivation",
+      "status": "PASS",
+      "evidence": {
+        "derivation": "Inclusive extrema of the 22 frozen machine-safe reference cells, intersected with the preregistered formal floors/ceilings where one exists. No problem-cell value and no post-result tuning enters the envelope.",
+        "match_count_minimum": 464,
+        "inlier_count_minimum": 406,
+        "inlier_ratio_minimum": 0.8633540372670807,
+        "reprojection_rmse_px_maximum": 1.2828827264190787,
+        "median_reprojection_error_px_maximum": 0.875358920951671,
+        "p95_reprojection_error_px_maximum": 2.5338877140993237,
+        "uniform_scale_interval": [
+          1.009660503557563,
+          1.032348387452687
+        ],
+        "rotation_degrees_interval": [
+          -0.030731400147816442,
+          0.010069012910654394
+        ],
+        "translation_x_interval": [
+          -2.039736287298435,
+          0.5208661832176384
+        ],
+        "translation_y_interval": [
+          -0.25934026858077125,
+          4.030060624501296
+        ],
+        "background_rgb_mae_maximum": 4.657583713531494,
+        "person_region_mask_symmetric_difference_ratio_maximum": 0.23306785600509716,
+        "determinant_interval": [
+          1.0194143324441118,
+          1.0657431930761632
+        ],
+        "structure_score_minimum": 0.8537257274998661,
+        "masked_ssim_minimum": 0.8548855012205427,
+        "edge_alignment_f1_minimum": 0.6692691390385903,
+        "structural_difference_area_fraction_maximum": 0.03523301833808419,
+        "homography_relative_improvement_maximum": 0.28641735015247366,
+        "minimum_relative_model_margin": 0.9685045963976873,
+        "model_margin_derivation": "The p90 absolute relative separation between the frozen direct-similarity model and the deterministic resolution-only baseline across the 22 safe references."
+      }
+    },
+    {
+      "name": "13_problem_cell_feature_matches",
+      "status": "PASS",
+      "evidence": {
+        "subject00_O03_slot04_canary_attempt004_cand00": 545,
+        "subject00_O01_slot04_remaining_attempt005_cand00": 719
+      }
+    },
+    {
+      "name": "14_candidate_model_fitting",
+      "status": "PASS",
+      "evidence": [
+        [
+          "MODEL_A_IDENTITY",
+          "MODEL_B_RESOLUTION_SCALE_ONLY",
+          "MODEL_C_ISOTROPIC_SIMILARITY",
+          "MODEL_D_RESOLUTION_SCALE_THEN_ISOTROPIC_SIMILARITY"
+        ],
+        [
+          "MODEL_A_IDENTITY",
+          "MODEL_B_RESOLUTION_SCALE_ONLY",
+          "MODEL_C_ISOTROPIC_SIMILARITY",
+          "MODEL_D_RESOLUTION_SCALE_THEN_ISOTROPIC_SIMILARITY"
+        ]
+      ]
+    },
+    {
+      "name": "15_model_validation",
+      "status": "PASS",
+      "evidence": "ALL_CANDIDATES_HAVE_NONEMPTY_GATES"
+    },
+    {
+      "name": "16_uniqueness_margin",
+      "status": "PASS",
+      "evidence": {
+        "subject00_O03_slot04_canary_attempt004_cand00": {
+          "observed": 0.012505067862450932,
+          "required": 0.9685045963976873
+        },
+        "subject00_O01_slot04_remaining_attempt005_cand00": {
+          "observed": 0.04088560301557428,
+          "required": 0.9685045963976873
+        }
+      }
+    },
+    {
+      "name": "17_no_arbitrary_affine_acceptance",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "name": "18_no_homography_acceptance",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "name": "19_source_K_binding",
+      "status": "PASS",
+      "evidence": 24
+    },
+    {
+      "name": "20_target_K_computation",
+      "status": "PASS",
+      "evidence": 22
+    },
+    {
+      "name": "21_extrinsics_unchanged",
+      "status": "PASS",
+      "evidence": 24
+    },
+    {
+      "name": "22_resolution_handling",
+      "status": "PASS",
+      "evidence": {
+        "1349x1166": 23,
+        "1350x1165": 1
+      }
+    },
+    {
+      "name": "23_salvage_count",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "24_quarantine_count",
+      "status": "PASS",
+      "evidence": 2
+    },
+    {
+      "name": "25_total_provenance_count",
+      "status": "PASS",
+      "evidence": 24
+    },
+    {
+      "name": "26_training_record_count",
+      "status": "PASS",
+      "evidence": 22
+    },
+    {
+      "name": "27_review_only_count",
+      "status": "PASS",
+      "evidence": 2
+    },
+    {
+      "name": "28_o03_safe_view_count",
+      "status": "PASS",
+      "evidence": 7
+    },
+    {
+      "name": "29_o03_excluded_set",
+      "status": "PASS",
+      "evidence": "subject00_O03_slot04_canary_attempt004_cand00"
+    },
+    {
+      "name": "30_o01_safe_view_count",
+      "status": "PASS",
+      "evidence": {
+        "eligible": 7,
+        "review_only": 1
+      }
+    },
+    {
+      "name": "31_limitation_propagation",
+      "status": "PASS",
+      "evidence": [
+        "subject00_O01_slot04_remaining_attempt005_cand00",
+        "subject00_O01_slot07_remaining_attempt005_cand00",
+        "subject00_O03_slot00_canary_attempt004_cand00",
+        "subject00_O03_slot04_canary_attempt004_cand00",
+        "subject00_O03_slot05_canary_attempt004_cand00",
+        "subject00_O03_slot06_remaining_attempt005_cand00",
+        "subject00_O03_slot07_canary_attempt004_cand00",
+        "subject00_O04_slot05_remaining_attempt005_cand00",
+        "subject00_O04_slot06_remaining_attempt005_cand00"
+      ]
+    },
+    {
+      "name": "32_human_override_propagation",
+      "status": "PASS",
+      "evidence": [
+        "subject00_O03_slot04_canary_attempt004_cand00",
+        "subject00_O01_slot04_remaining_attempt005_cand00"
+      ]
+    },
+    {
+      "name": "33_target_root_absent",
+      "status": "PASS",
+      "evidence": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001"
+    },
+    {
+      "name": "34_teacher_target_count_zero",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "35_no_data_copy",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "36_no_upload",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "37_no_derived_target_generation",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "38_no_optimizer_step",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "39_formal_base_state_unchanged",
+      "status": "PASS",
+      "evidence": {
+        "verification_mode": "READ_ONLY_SSH_AND_FROZEN_CONTROL_CONTRACT",
+        "verified_at": "2026-07-26T21:57:29.878368+00:00",
+        "status": "USER_AUTHORIZED_PAUSED",
+        "latest_log_step_from_frozen_status_contract": 64673,
+        "durable_resume_step": 60747,
+        "resume_authorized": false,
+        "live_formal_process_count": 0,
+        "cloud_teacher_target_root_exists": false,
+        "checkpoint_sha256_live": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7"
+      }
+    },
+    {
+      "name": "40_raw_immutable",
+      "status": "PASS",
+      "evidence": 24
+    },
+    {
+      "name": "41_masks_immutable",
+      "status": "PASS",
+      "evidence": 48
+    },
+    {
+      "name": "42_attempts_immutable",
+      "status": "PASS",
+      "evidence": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "43_data_mutation_zero",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "44_paper_modification_zero",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "name": "45_final_classification",
+      "status": "PASS",
+      "evidence": "SUBJECT00_TEACHER_TARGET_CAMERA_BLOCKER_RESOLVED_WITH_QUARANTINE_READY_FOR_MATERIALIZATION"
+    },
+    {
+      "name": "46_next_task_unique",
+      "status": "PASS",
+      "evidence": "EXECUTE_SUBJECT00_TEACHER_TARGET_MATERIALIZATION_WITH_CAMERA_QUARANTINE_POLICY"
+    }
+  ],
+  "result": "PASS_46_OF_46"
+}

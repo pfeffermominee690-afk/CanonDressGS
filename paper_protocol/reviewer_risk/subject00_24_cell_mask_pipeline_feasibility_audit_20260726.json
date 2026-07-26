@@ -1,0 +1,159 @@
+{
+  "schema_version": "canondressgs.subject00.mask_pipeline_feasibility.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-MASK-GENERATION-PREFLIGHT-001",
+  "audit_scope": [
+    "Subject02 formal masks and garment targets",
+    "Teacher Endpoint target pipeline",
+    "attempt_001 through attempt_005 assets",
+    "THuman4 source masks",
+    "MMLP-Human and CanonDressGS loaders",
+    "loss/evaluator consumers",
+    "local segmentation environments and weights",
+    "sealed external-baseline mask semantics"
+  ],
+  "candidate_count": 8,
+  "candidates": [
+    {
+      "pipeline_id": "SUBJECT02_SEGFORMER_V3A_STRATEGY_C_SUBJECT00_SPECIALIZATION_V1",
+      "implementation_path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_generation_preflight\\tools\\datasets\\execute_subject00_24_cell_masks_from_frozen_contract.py",
+      "implementation_sha256": "b602df821f30046941bd98956d5afc552f36c7c72f1fe4af5c58621713a36693",
+      "method": "HUMAN_PARSING_WITH_GARMENT_LABEL_MAPPING",
+      "weights_path": "E:\\data_pre\\audit_subject02_layered_composite_v3\\mask_backend_closure_v3a\\m\\model.safetensors",
+      "weights_sha256": "8f86fd90c567afd4370b3cc3a7e81ed767a632b2832a738331af660acc0c4c68",
+      "license": "NVIDIA SegFormer non-commercial research/evaluation; research-only",
+      "environment": "D:\\miniconda3\\envs\\garment-mask-v3a\\python.exe",
+      "gpu_cpu": "CUDA GPU, batch size 1",
+      "input": "accepted RGB at native resolution",
+      "output": "one person L/PNG and one garment L/PNG per accepted raw",
+      "person_capability": true,
+      "garment_capability": true,
+      "subject00_identity_garment_fit": "PASS_WITH_MANDATORY_HUMAN_REVIEW",
+      "subject02_validated": true,
+      "failure_modes": [
+        "parser boundary miss",
+        "small hand mislabeled as clothing",
+        "tie/scarf confusion",
+        "hood/neck boundary confusion"
+      ],
+      "automatic_execution_allowed": true,
+      "selected": true
+    },
+    {
+      "pipeline_id": "SUBJECT02_V3A_REFERENCE_IMPLEMENTATION",
+      "implementation_path": "E:\\data_pre\\scripts\\run_segformer_garment_masks_v3a.py",
+      "implementation_sha256": "2926f7f434534ed4da5f159104dc78b75a2da1deac8191fe5a2fbc12ba89695b",
+      "method": "SegFormer Strategy C with diagnostic candidate outputs",
+      "person_capability": true,
+      "garment_capability": true,
+      "subject02_validated": true,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "reference implementation writes extra candidate masks and does not implement the frozen Subject00 output namespace"
+    },
+    {
+      "pipeline_id": "THUMAN_PHA_SOURCE_MASK",
+      "implementation_path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_generation_preflight\\scene\\dataset.py",
+      "implementation_sha256": "7b84b24cba08a36f23551ef8fc7bd43a7aa84b980db370e18890ef2f7b7eb423",
+      "method": "existing source person/PHA mask",
+      "person_capability": true,
+      "garment_capability": false,
+      "subject02_validated": false,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "source-only person mask cannot define changed garment pixels"
+    },
+    {
+      "pipeline_id": "SOURCE_MASK_REGISTRATION_PROPAGATION",
+      "method": "affine/projective source-mask propagation",
+      "person_capability": "RISKY",
+      "garment_capability": false,
+      "subject02_validated": false,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "changed garment silhouette plus two documented registration failures prevents use as the generation method"
+    },
+    {
+      "pipeline_id": "DRESSABLE_CLOTHING_MASK_FALLBACK",
+      "implementation_path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_generation_preflight\\scene\\dressable_dataset.py",
+      "implementation_sha256": "2955a559df03315d9a13c6e064410fb766c0a310e57e939d9119fdea458cd769",
+      "method": "copy person foreground as clothing mask",
+      "person_capability": true,
+      "garment_capability": false,
+      "subject02_validated": false,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "formal contract forbids treating person mask as garment mask"
+    },
+    {
+      "pipeline_id": "SAM_SAM2_GROUNDED_SAM",
+      "method": "generic promptable segmentation",
+      "person_capability": "UNVERIFIED",
+      "garment_capability": "UNVERIFIED",
+      "subject02_validated": false,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "no frozen local project validation or approved weights"
+    },
+    {
+      "pipeline_id": "SCHP_MASK2FORMER_DETECTRON_CLIPSEG_RMBG",
+      "method": "alternative parsing/segmentation",
+      "person_capability": "UNVERIFIED",
+      "garment_capability": "UNVERIFIED",
+      "subject02_validated": false,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "not the existing validated Subject02 formal pipeline"
+    },
+    {
+      "pipeline_id": "MANUAL_OR_EXTERNAL_API",
+      "method": "manual polygon/Photoshop/online API/external VLM",
+      "person_capability": "POSSIBLE",
+      "garment_capability": "POSSIBLE",
+      "subject02_validated": false,
+      "automatic_execution_allowed": false,
+      "selected": false,
+      "rejection": "forbidden by task and not deterministic"
+    }
+  ],
+  "selected_pipeline_id": "SUBJECT02_SEGFORMER_V3A_STRATEGY_C_SUBJECT00_SPECIALIZATION_V1",
+  "selected_method": "HUMAN_PARSING_WITH_GARMENT_LABEL_MAPPING",
+  "person_mask_method_status": "READY",
+  "garment_mask_method_status": "READY_WITH_MANDATORY_HUMAN_REVIEW",
+  "model": {
+    "name": "mattmdjaga/segformer_b2_clothes",
+    "revision": "584abc1e1d260e23c0fc627c5217a09b2b461046",
+    "local_path": "E:\\data_pre\\audit_subject02_layered_composite_v3\\mask_backend_closure_v3a\\m",
+    "weights_path": "E:\\data_pre\\audit_subject02_layered_composite_v3\\mask_backend_closure_v3a\\m\\model.safetensors",
+    "weights_sha256": "8f86fd90c567afd4370b3cc3a7e81ed767a632b2832a738331af660acc0c4c68",
+    "weights_bytes": 109493236,
+    "config_sha256": "4b5127ca00fe61187b6cc6c232c9e19326ed228683f8f5c221790be9cc196a6e",
+    "preprocessor_sha256": "a608e3a47dcfba8dc052a766babb4b6c963285ab4f176bc6c1eb2b257fd3ad93",
+    "model_card_sha256": "fca39e62db301b5113f14ef71679da395d8c638a069176483373c74048563856",
+    "license_provenance": {
+      "path": "E:\\data_pre\\audit_subject02_layered_composite_v3\\mask_backend_closure_v3a\\model_provenance_v3a.json",
+      "exists": true,
+      "bytes": 3632,
+      "sha256": "1cf07f7b1f26130250a5113c16d7936ce4b85333577eacf29c48dbde34845b47"
+    },
+    "license_status": "RESEARCH_ONLY_NONCOMMERCIAL_ALLOWED_FOR_THIS_AAAI_RESEARCH_PREPROCESSING",
+    "redistribution_allowed": false,
+    "download_required": false,
+    "network_required": false
+  },
+  "environment": {
+    "python_executable": "D:\\miniconda3\\envs\\garment-mask-v3a\\python.exe",
+    "python": "3.11.15",
+    "torch": "2.5.1+cu121",
+    "cuda_runtime": "12.1",
+    "transformers": "4.48.3",
+    "opencv": "4.11.0",
+    "scipy": "1.15.1",
+    "pillow": "11.1.0",
+    "numpy": "2.1.3",
+    "dependency_status": "READY_NO_INSTALL_REQUIRED",
+    "gpu_required": true,
+    "minimum_vram_bytes": 4294967296,
+    "estimated_runtime": "10-20 minutes for 24 cells plus review assets"
+  },
+  "paper_final": false
+}

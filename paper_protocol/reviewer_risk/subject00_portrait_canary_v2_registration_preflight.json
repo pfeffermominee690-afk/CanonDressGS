@@ -1,0 +1,532 @@
+{
+  "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+  "camera_binding_status": "PASS",
+  "camera_count": 4,
+  "camera_intrinsics_status": "PASS",
+  "content_sha256": "de46673155150a7f9a302aef40c5ffe0bc7f939f0d620c6ecacd1e2a303ae742",
+  "phase_0_status": "REGISTRATION_PREFLIGHT_PASS",
+  "records": [
+    {
+      "bottom_extension": 193,
+      "calibration_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\calibration.json",
+      "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "camera_binding": {
+        "camera": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "garment_reference": null,
+        "identity_condition_mask": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam17/00000000.jpg",
+        "identity_condition_rgb": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam17/00000000.jpg",
+        "pose_smplx": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz"
+      },
+      "camera_id": 17,
+      "camera_intrinsics": {
+        "cx": 669.2590942382812,
+        "cy": 567.3696899414062,
+        "fx": 1129.202880859375,
+        "fy": 1129.5264892578125
+      },
+      "camera_name": "cam17",
+      "crop_garment_intersection_pixels": 0,
+      "crop_hands_feet_intersection_pixels": 0,
+      "crop_person_intersection_pixels": 0,
+      "crop_window": {
+        "x_left": 157,
+        "x_right": 1181,
+        "y_bottom": 1150,
+        "y_top": 0
+      },
+      "derived_canvas_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\03_derived_edit_canvases\\subject00_O01_slot00_cand00_registered_outpaint_canvas.png",
+      "derived_canvas_sha256": "6587e31cf1388106b5dd946f27679849c433a47049ced5286b9fc4f849758681",
+      "distortion_contract": {
+        "distCoeff": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rectifyAlpha": 0.0
+      },
+      "edit_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\04_edit_masks\\subject00_O01_slot00_cand00_edit_regions.png",
+      "edit_mask_sha256": "9223623c41602197b49dc2814f870743f3f16dbb6ff0dae280d8d37426dfbbfd",
+      "expected_subject_height_ratio": 1.0,
+      "extrinsics": {
+        "provenance": "scene/dataset.py constructs w2c = [[R,T],[0,0,0,1]]",
+        "world_to_camera_rotation_R": [
+          -0.12675374746322632,
+          -0.5666808485984802,
+          0.8141292929649353,
+          -0.16570360958576202,
+          -0.7971195578575134,
+          -0.5806399583816528,
+          0.9779959321022034,
+          -0.20850248634815216,
+          0.007137119770050049
+        ],
+        "world_to_camera_translation_T": [
+          1.1242623329162598,
+          0.4185454845428467,
+          2.35041880607605
+        ]
+      },
+      "garment_bbox_contract": {
+        "bbox": [
+          461,
+          296,
+          879,
+          882
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "garment_id": "O01",
+      "hands_feet_bbox_contract": {
+        "bbox": [
+          461,
+          296,
+          879,
+          882
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "orientation": "front",
+      "person_bbox_derived_canvas": [
+        304,
+        489,
+        722,
+        1075
+      ],
+      "person_bbox_registered_crop": [
+        304,
+        296,
+        722,
+        882
+      ],
+      "person_bbox_source": [
+        461,
+        296,
+        879,
+        882
+      ],
+      "registered_crop_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\02_registered_crops\\subject00_O01_slot00_cand00_registered_crop.png",
+      "registered_crop_sha256": "300109405d5f3b283b2a46829897ddba7190e53eeaf1803f50242c456cbbd299",
+      "registration_decision": "REGISTRATION_PREFLIGHT_PASS",
+      "request_id": "subject00_O01_slot00_cand00",
+      "seed_contract": "REFLECTED_SCENE_EDGE_SEED_REPLACED_BY_MASKED_OUTPAINT",
+      "slot_id": "slot_00",
+      "source_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\cam17_mask_00000000.jpg",
+      "source_mask_sha256": "c54df74796fb9fdb500f264ebf6c9d534200a9051e8ce80eb2f2c985c153e234",
+      "source_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam17_frame00000000.jpg",
+      "source_region_destination": {
+        "x_left": 0,
+        "x_right": 1024,
+        "y_bottom": 1343,
+        "y_top": 193
+      },
+      "source_region_scale_x": 1.0,
+      "source_region_scale_y": 1.0,
+      "source_sha256": "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf",
+      "source_size": {
+        "height": 1150,
+        "width": 1330
+      },
+      "top_extension": 193,
+      "updated_intrinsics": {
+        "cx": 512.2590942382812,
+        "cy": 760.3696899414062,
+        "fx": 1129.202880859375,
+        "fy": 1129.5264892578125
+      }
+    },
+    {
+      "bottom_extension": 193,
+      "calibration_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\calibration.json",
+      "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "camera_binding": {
+        "camera": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "garment_reference": null,
+        "identity_condition_mask": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam23/00000000.jpg",
+        "identity_condition_rgb": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam23/00000000.jpg",
+        "pose_smplx": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz"
+      },
+      "camera_id": 23,
+      "camera_intrinsics": {
+        "cx": 674.9315185546875,
+        "cy": 577.9261474609375,
+        "fx": 1120.84716796875,
+        "fy": 1121.910888671875
+      },
+      "camera_name": "cam23",
+      "crop_garment_intersection_pixels": 0,
+      "crop_hands_feet_intersection_pixels": 0,
+      "crop_person_intersection_pixels": 0,
+      "crop_window": {
+        "x_left": 163,
+        "x_right": 1187,
+        "y_bottom": 1150,
+        "y_top": 0
+      },
+      "derived_canvas_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\03_derived_edit_canvases\\subject00_O03_slot03_cand00_registered_outpaint_canvas.png",
+      "derived_canvas_sha256": "b52a8c04c4e666738ee3734e44513c547a1aa28e118582ce0ed0239f67f31cf2",
+      "distortion_contract": {
+        "distCoeff": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rectifyAlpha": 0.0
+      },
+      "edit_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\04_edit_masks\\subject00_O03_slot03_cand00_edit_regions.png",
+      "edit_mask_sha256": "9358f783526ce327a198682e149fc6e1221a559efde18e480164fb991b922313",
+      "expected_subject_height_ratio": 1.0,
+      "extrinsics": {
+        "provenance": "scene/dataset.py constructs w2c = [[R,T],[0,0,0,1]]",
+        "world_to_camera_rotation_R": [
+          0.9835854768753052,
+          -0.1790315806865692,
+          0.02252422273159027,
+          -0.13696306943893433,
+          -0.822007954120636,
+          -0.5527603626251221,
+          0.11747665703296661,
+          0.5406020879745483,
+          -0.8330357670783997
+        ],
+        "world_to_camera_translation_T": [
+          -1.0443826913833618,
+          0.4047955870628357,
+          2.266456127166748
+        ]
+      },
+      "garment_bbox_contract": {
+        "bbox": [
+          620,
+          299,
+          781,
+          914
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "garment_id": "O03",
+      "hands_feet_bbox_contract": {
+        "bbox": [
+          620,
+          299,
+          781,
+          914
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "orientation": "left",
+      "person_bbox_derived_canvas": [
+        457,
+        492,
+        618,
+        1107
+      ],
+      "person_bbox_registered_crop": [
+        457,
+        299,
+        618,
+        914
+      ],
+      "person_bbox_source": [
+        620,
+        299,
+        781,
+        914
+      ],
+      "registered_crop_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\02_registered_crops\\subject00_O03_slot03_cand00_registered_crop.png",
+      "registered_crop_sha256": "50ae199c69d0bfeb2f92528be3db8cb7529917099f725befae534278e7db1402",
+      "registration_decision": "REGISTRATION_PREFLIGHT_PASS",
+      "request_id": "subject00_O03_slot03_cand00",
+      "seed_contract": "REFLECTED_SCENE_EDGE_SEED_REPLACED_BY_MASKED_OUTPAINT",
+      "slot_id": "slot_03",
+      "source_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\cam23_mask_00000000.jpg",
+      "source_mask_sha256": "65d115eb03bdf718ac37159aa47919343fbca202d94071a4308cd6943ca3ef1d",
+      "source_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam23_frame00000000.jpg",
+      "source_region_destination": {
+        "x_left": 0,
+        "x_right": 1024,
+        "y_bottom": 1343,
+        "y_top": 193
+      },
+      "source_region_scale_x": 1.0,
+      "source_region_scale_y": 1.0,
+      "source_sha256": "a0c34bd8bee414ef2aa06b8457ef661790ff9956aa9b1b16079e15dc6fb1a23b",
+      "source_size": {
+        "height": 1150,
+        "width": 1330
+      },
+      "top_extension": 193,
+      "updated_intrinsics": {
+        "cx": 511.9315185546875,
+        "cy": 770.9261474609375,
+        "fx": 1120.84716796875,
+        "fy": 1121.910888671875
+      }
+    },
+    {
+      "bottom_extension": 193,
+      "calibration_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\calibration.json",
+      "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "camera_binding": {
+        "camera": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "garment_reference": null,
+        "identity_condition_mask": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam14/00000000.jpg",
+        "identity_condition_rgb": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam14/00000000.jpg",
+        "pose_smplx": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz"
+      },
+      "camera_id": 14,
+      "camera_intrinsics": {
+        "cx": 660.090576171875,
+        "cy": 567.7401733398438,
+        "fx": 1138.29443359375,
+        "fy": 1138.34423828125
+      },
+      "camera_name": "cam14",
+      "crop_garment_intersection_pixels": 0,
+      "crop_hands_feet_intersection_pixels": 0,
+      "crop_person_intersection_pixels": 0,
+      "crop_window": {
+        "x_left": 148,
+        "x_right": 1172,
+        "y_bottom": 1150,
+        "y_top": 0
+      },
+      "derived_canvas_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\03_derived_edit_canvases\\subject00_O04_slot02_cand00_registered_outpaint_canvas.png",
+      "derived_canvas_sha256": "c1be0ce991220aff743c9136f83c8c147bbd5fbb53b2d23962aeede635007a36",
+      "distortion_contract": {
+        "distCoeff": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rectifyAlpha": 0.0
+      },
+      "edit_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\04_edit_masks\\subject00_O04_slot02_cand00_edit_regions.png",
+      "edit_mask_sha256": "2a84da4eb2a73f092f7f2e1cff291ccd27debf663a07ab60d427b141e1d03701",
+      "expected_subject_height_ratio": 1.0,
+      "extrinsics": {
+        "provenance": "scene/dataset.py constructs w2c = [[R,T],[0,0,0,1]]",
+        "world_to_camera_rotation_R": [
+          -0.7954661250114441,
+          -0.2621123790740967,
+          0.5463796854019165,
+          -0.15045098960399628,
+          -0.7879701852798462,
+          -0.5970489382743835,
+          0.5870248079299927,
+          -0.5571355223655701,
+          0.5873686075210571
+        ],
+        "world_to_camera_translation_T": [
+          1.5748155117034912,
+          0.37408238649368286,
+          3.5135555267333984
+        ]
+      },
+      "garment_bbox_contract": {
+        "bbox": [
+          546,
+          296,
+          771,
+          892
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "garment_id": "O04",
+      "hands_feet_bbox_contract": {
+        "bbox": [
+          546,
+          296,
+          771,
+          892
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "orientation": "front-right",
+      "person_bbox_derived_canvas": [
+        398,
+        489,
+        623,
+        1085
+      ],
+      "person_bbox_registered_crop": [
+        398,
+        296,
+        623,
+        892
+      ],
+      "person_bbox_source": [
+        546,
+        296,
+        771,
+        892
+      ],
+      "registered_crop_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\02_registered_crops\\subject00_O04_slot02_cand00_registered_crop.png",
+      "registered_crop_sha256": "afedea2827e9bf217da3393ac38d477bc25b7388be83803831e510e1b92bea95",
+      "registration_decision": "REGISTRATION_PREFLIGHT_PASS",
+      "request_id": "subject00_O04_slot02_cand00",
+      "seed_contract": "REFLECTED_SCENE_EDGE_SEED_REPLACED_BY_MASKED_OUTPAINT",
+      "slot_id": "slot_02",
+      "source_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\cam14_mask_00000000.jpg",
+      "source_mask_sha256": "7acb6949e6743ce978fa520f3ec76d9495224789d64e9f75e7ef9fb209fdb71e",
+      "source_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam14_frame00000000.jpg",
+      "source_region_destination": {
+        "x_left": 0,
+        "x_right": 1024,
+        "y_bottom": 1343,
+        "y_top": 193
+      },
+      "source_region_scale_x": 1.0,
+      "source_region_scale_y": 1.0,
+      "source_sha256": "575d04d79c3b89e1f94171ab42c80591fa843429ee815fef823bdd13c24fba33",
+      "source_size": {
+        "height": 1150,
+        "width": 1330
+      },
+      "top_extension": 193,
+      "updated_intrinsics": {
+        "cx": 512.090576171875,
+        "cy": 760.7401733398438,
+        "fx": 1138.29443359375,
+        "fy": 1138.34423828125
+      }
+    },
+    {
+      "bottom_extension": 193,
+      "calibration_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\calibration.json",
+      "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "camera_binding": {
+        "camera": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+        "garment_reference": null,
+        "identity_condition_mask": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam09/00000000.jpg",
+        "identity_condition_rgb": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam09/00000000.jpg",
+        "pose_smplx": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz"
+      },
+      "camera_id": 9,
+      "camera_intrinsics": {
+        "cx": 661.3673706054688,
+        "cy": 556.1578979492188,
+        "fx": 1130.19921875,
+        "fy": 1129.7362060546875
+      },
+      "camera_name": "cam09",
+      "crop_garment_intersection_pixels": 0,
+      "crop_hands_feet_intersection_pixels": 0,
+      "crop_person_intersection_pixels": 0,
+      "crop_window": {
+        "x_left": 149,
+        "x_right": 1173,
+        "y_bottom": 1150,
+        "y_top": 0
+      },
+      "derived_canvas_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\03_derived_edit_canvases\\subject00_O01_slot06_cand00_registered_outpaint_canvas.png",
+      "derived_canvas_sha256": "245d39610664048a78d4bdb6662dca40a1821bc511a163895076b2c192bc0dfb",
+      "distortion_contract": {
+        "distCoeff": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rectifyAlpha": 0.0
+      },
+      "edit_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\04_edit_masks\\subject00_O01_slot06_cand00_edit_regions.png",
+      "edit_mask_sha256": "67e78ff84b02a970b02379f178723c6fea3bedc1d65e3b016ff1d881cea9d3c5",
+      "expected_subject_height_ratio": 1.0,
+      "extrinsics": {
+        "provenance": "scene/dataset.py constructs w2c = [[R,T],[0,0,0,1]]",
+        "world_to_camera_rotation_R": [
+          -0.8032007217407227,
+          0.4300975203514099,
+          -0.41217076778411865,
+          -0.13492070138454437,
+          -0.8052618503570557,
+          -0.577364444732666,
+          -0.5802284479141235,
+          -0.40812918543815613,
+          0.7048160433769226
+        ],
+        "world_to_camera_translation_T": [
+          0.3554982542991638,
+          0.436452180147171,
+          4.907172679901123
+        ]
+      },
+      "garment_bbox_contract": {
+        "bbox": [
+          505,
+          305,
+          818,
+          910
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "garment_id": "O01",
+      "hands_feet_bbox_contract": {
+        "bbox": [
+          505,
+          305,
+          818,
+          910
+        ],
+        "status": "CONSERVATIVE_PERSON_ENVELOPE"
+      },
+      "orientation": "back-right",
+      "person_bbox_derived_canvas": [
+        356,
+        498,
+        669,
+        1103
+      ],
+      "person_bbox_registered_crop": [
+        356,
+        305,
+        669,
+        910
+      ],
+      "person_bbox_source": [
+        505,
+        305,
+        818,
+        910
+      ],
+      "registered_crop_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\02_registered_crops\\subject00_O01_slot06_cand00_registered_crop.png",
+      "registered_crop_sha256": "6903b5d41f5d554ee82bf75e5c2c09282e32234c285444b1a737f7f6dec79b39",
+      "registration_decision": "REGISTRATION_PREFLIGHT_PASS",
+      "request_id": "subject00_O01_slot06_cand00",
+      "seed_contract": "REFLECTED_SCENE_EDGE_SEED_REPLACED_BY_MASKED_OUTPAINT",
+      "slot_id": "slot_06",
+      "source_mask_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_003_portrait_canary_v2_registered_outpaint\\00_source_evidence\\cam09_mask_00000000.jpg",
+      "source_mask_sha256": "cd48ea97b973f503caaf71f266c3216740b510cac6943e281e09d63d3b10a2ec",
+      "source_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam09_frame00000000.jpg",
+      "source_region_destination": {
+        "x_left": 0,
+        "x_right": 1024,
+        "y_bottom": 1343,
+        "y_top": 193
+      },
+      "source_region_scale_x": 1.0,
+      "source_region_scale_y": 1.0,
+      "source_sha256": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373",
+      "source_size": {
+        "height": 1150,
+        "width": 1330
+      },
+      "top_extension": 193,
+      "updated_intrinsics": {
+        "cx": 512.3673706054688,
+        "cy": 749.1578979492188,
+        "fx": 1130.19921875,
+        "fy": 1129.7362060546875
+      }
+    }
+  ],
+  "schema_version": "canondressgs.subject00.v2.camera_binding_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-PORTRAIT-CANARY-V2-REGISTERED-OUTPAINT-001"
+}

@@ -1,0 +1,288 @@
+{
+  "content_sha256": "d6429a3920ad83103fdc5810230a4f187d83f3fb0433add5c3d3c92d678f2236",
+  "fold_assignment_rule": "slot ordinal modulo 4 with the frozen paired-slot table",
+  "folds": {
+    "fold_0": [
+      "slot_00",
+      "slot_04"
+    ],
+    "fold_1": [
+      "slot_01",
+      "slot_05"
+    ],
+    "fold_2": [
+      "slot_02",
+      "slot_06"
+    ],
+    "fold_3": [
+      "slot_03",
+      "slot_07"
+    ]
+  },
+  "invariants": {
+    "pixel_identical_derived_files_are_same_source": true,
+    "planned_ids_claimed_as_materialized": false,
+    "quality_based_post_hoc_movement_allowed": false,
+    "same_image_sha_across_calibration_test_allowed": false,
+    "same_image_sha_across_train_test_allowed": false,
+    "same_rule_across_garments": true,
+    "teacher_test_metrics_for_controller_selection_allowed": false
+  },
+  "logical_overlap_count": 0,
+  "materialized_sha_overlap_audit": "PENDING_GENERATION_AND_ACCEPTANCE",
+  "paper_final": false,
+  "rotations": [
+    {
+      "calibration_fold": 2,
+      "calibration_references": {
+        "logical_ids": [
+          "subject00/O01/slot_02/accepted_teacher_target",
+          "subject00/O01/slot_06/accepted_teacher_target",
+          "subject00/O03/slot_02/accepted_teacher_target",
+          "subject00/O03/slot_06/accepted_teacher_target",
+          "subject00/O04/slot_02/accepted_teacher_target",
+          "subject00/O04/slot_06/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "logical_overlap": {
+        "calibration_test": [],
+        "train_calibration": [],
+        "train_test": []
+      },
+      "rotation": 0,
+      "test_fold": 3,
+      "test_references": {
+        "logical_ids": [
+          "subject00/O01/slot_03/accepted_teacher_target",
+          "subject00/O01/slot_07/accepted_teacher_target",
+          "subject00/O03/slot_03/accepted_teacher_target",
+          "subject00/O03/slot_07/accepted_teacher_target",
+          "subject00/O04/slot_03/accepted_teacher_target",
+          "subject00/O04/slot_07/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "train_folds": [
+        0,
+        1
+      ],
+      "training_references": {
+        "logical_ids": [
+          "subject00/O01/slot_00/accepted_teacher_target",
+          "subject00/O01/slot_04/accepted_teacher_target",
+          "subject00/O01/slot_01/accepted_teacher_target",
+          "subject00/O01/slot_05/accepted_teacher_target",
+          "subject00/O03/slot_00/accepted_teacher_target",
+          "subject00/O03/slot_04/accepted_teacher_target",
+          "subject00/O03/slot_01/accepted_teacher_target",
+          "subject00/O03/slot_05/accepted_teacher_target",
+          "subject00/O04/slot_00/accepted_teacher_target",
+          "subject00/O04/slot_04/accepted_teacher_target",
+          "subject00/O04/slot_01/accepted_teacher_target",
+          "subject00/O04/slot_05/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "visual_only_references": {
+        "logical_ids": [
+          "subject00/O01/rotation_0/visual_only_planned",
+          "subject00/O03/rotation_0/visual_only_planned",
+          "subject00/O04/rotation_0/visual_only_planned"
+        ],
+        "materialization_authorized": false,
+        "status": "MATERIALIZATION_PENDING_NOT_IN_48_CANDIDATE_BUDGET"
+      }
+    },
+    {
+      "calibration_fold": 3,
+      "calibration_references": {
+        "logical_ids": [
+          "subject00/O01/slot_03/accepted_teacher_target",
+          "subject00/O01/slot_07/accepted_teacher_target",
+          "subject00/O03/slot_03/accepted_teacher_target",
+          "subject00/O03/slot_07/accepted_teacher_target",
+          "subject00/O04/slot_03/accepted_teacher_target",
+          "subject00/O04/slot_07/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "logical_overlap": {
+        "calibration_test": [],
+        "train_calibration": [],
+        "train_test": []
+      },
+      "rotation": 1,
+      "test_fold": 0,
+      "test_references": {
+        "logical_ids": [
+          "subject00/O01/slot_00/accepted_teacher_target",
+          "subject00/O01/slot_04/accepted_teacher_target",
+          "subject00/O03/slot_00/accepted_teacher_target",
+          "subject00/O03/slot_04/accepted_teacher_target",
+          "subject00/O04/slot_00/accepted_teacher_target",
+          "subject00/O04/slot_04/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "train_folds": [
+        1,
+        2
+      ],
+      "training_references": {
+        "logical_ids": [
+          "subject00/O01/slot_01/accepted_teacher_target",
+          "subject00/O01/slot_05/accepted_teacher_target",
+          "subject00/O01/slot_02/accepted_teacher_target",
+          "subject00/O01/slot_06/accepted_teacher_target",
+          "subject00/O03/slot_01/accepted_teacher_target",
+          "subject00/O03/slot_05/accepted_teacher_target",
+          "subject00/O03/slot_02/accepted_teacher_target",
+          "subject00/O03/slot_06/accepted_teacher_target",
+          "subject00/O04/slot_01/accepted_teacher_target",
+          "subject00/O04/slot_05/accepted_teacher_target",
+          "subject00/O04/slot_02/accepted_teacher_target",
+          "subject00/O04/slot_06/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "visual_only_references": {
+        "logical_ids": [
+          "subject00/O01/rotation_1/visual_only_planned",
+          "subject00/O03/rotation_1/visual_only_planned",
+          "subject00/O04/rotation_1/visual_only_planned"
+        ],
+        "materialization_authorized": false,
+        "status": "MATERIALIZATION_PENDING_NOT_IN_48_CANDIDATE_BUDGET"
+      }
+    },
+    {
+      "calibration_fold": 0,
+      "calibration_references": {
+        "logical_ids": [
+          "subject00/O01/slot_00/accepted_teacher_target",
+          "subject00/O01/slot_04/accepted_teacher_target",
+          "subject00/O03/slot_00/accepted_teacher_target",
+          "subject00/O03/slot_04/accepted_teacher_target",
+          "subject00/O04/slot_00/accepted_teacher_target",
+          "subject00/O04/slot_04/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "logical_overlap": {
+        "calibration_test": [],
+        "train_calibration": [],
+        "train_test": []
+      },
+      "rotation": 2,
+      "test_fold": 1,
+      "test_references": {
+        "logical_ids": [
+          "subject00/O01/slot_01/accepted_teacher_target",
+          "subject00/O01/slot_05/accepted_teacher_target",
+          "subject00/O03/slot_01/accepted_teacher_target",
+          "subject00/O03/slot_05/accepted_teacher_target",
+          "subject00/O04/slot_01/accepted_teacher_target",
+          "subject00/O04/slot_05/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "train_folds": [
+        2,
+        3
+      ],
+      "training_references": {
+        "logical_ids": [
+          "subject00/O01/slot_02/accepted_teacher_target",
+          "subject00/O01/slot_06/accepted_teacher_target",
+          "subject00/O01/slot_03/accepted_teacher_target",
+          "subject00/O01/slot_07/accepted_teacher_target",
+          "subject00/O03/slot_02/accepted_teacher_target",
+          "subject00/O03/slot_06/accepted_teacher_target",
+          "subject00/O03/slot_03/accepted_teacher_target",
+          "subject00/O03/slot_07/accepted_teacher_target",
+          "subject00/O04/slot_02/accepted_teacher_target",
+          "subject00/O04/slot_06/accepted_teacher_target",
+          "subject00/O04/slot_03/accepted_teacher_target",
+          "subject00/O04/slot_07/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "visual_only_references": {
+        "logical_ids": [
+          "subject00/O01/rotation_2/visual_only_planned",
+          "subject00/O03/rotation_2/visual_only_planned",
+          "subject00/O04/rotation_2/visual_only_planned"
+        ],
+        "materialization_authorized": false,
+        "status": "MATERIALIZATION_PENDING_NOT_IN_48_CANDIDATE_BUDGET"
+      }
+    },
+    {
+      "calibration_fold": 1,
+      "calibration_references": {
+        "logical_ids": [
+          "subject00/O01/slot_01/accepted_teacher_target",
+          "subject00/O01/slot_05/accepted_teacher_target",
+          "subject00/O03/slot_01/accepted_teacher_target",
+          "subject00/O03/slot_05/accepted_teacher_target",
+          "subject00/O04/slot_01/accepted_teacher_target",
+          "subject00/O04/slot_05/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "logical_overlap": {
+        "calibration_test": [],
+        "train_calibration": [],
+        "train_test": []
+      },
+      "rotation": 3,
+      "test_fold": 2,
+      "test_references": {
+        "logical_ids": [
+          "subject00/O01/slot_02/accepted_teacher_target",
+          "subject00/O01/slot_06/accepted_teacher_target",
+          "subject00/O03/slot_02/accepted_teacher_target",
+          "subject00/O03/slot_06/accepted_teacher_target",
+          "subject00/O04/slot_02/accepted_teacher_target",
+          "subject00/O04/slot_06/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "train_folds": [
+        3,
+        0
+      ],
+      "training_references": {
+        "logical_ids": [
+          "subject00/O01/slot_03/accepted_teacher_target",
+          "subject00/O01/slot_07/accepted_teacher_target",
+          "subject00/O01/slot_00/accepted_teacher_target",
+          "subject00/O01/slot_04/accepted_teacher_target",
+          "subject00/O03/slot_03/accepted_teacher_target",
+          "subject00/O03/slot_07/accepted_teacher_target",
+          "subject00/O03/slot_00/accepted_teacher_target",
+          "subject00/O03/slot_04/accepted_teacher_target",
+          "subject00/O04/slot_03/accepted_teacher_target",
+          "subject00/O04/slot_07/accepted_teacher_target",
+          "subject00/O04/slot_00/accepted_teacher_target",
+          "subject00/O04/slot_04/accepted_teacher_target"
+        ],
+        "status": "MATERIALIZATION_PENDING"
+      },
+      "visual_only_references": {
+        "logical_ids": [
+          "subject00/O01/rotation_3/visual_only_planned",
+          "subject00/O03/rotation_3/visual_only_planned",
+          "subject00/O04/rotation_3/visual_only_planned"
+        ],
+        "materialization_authorized": false,
+        "status": "MATERIALIZATION_PENDING_NOT_IN_48_CANDIDATE_BUDGET"
+      }
+    }
+  ],
+  "schema_version": "canondressgs.subject00.controller_split_blueprint.v1",
+  "status": "FROZEN_BLUEPRINT_MATERIALIZATION_PENDING",
+  "task_id": "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001",
+  "unit": "ACCEPTED_TEACHER_TARGET_LOGICAL_ID"
+}

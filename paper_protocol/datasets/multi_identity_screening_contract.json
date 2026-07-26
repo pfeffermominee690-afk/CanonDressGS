@@ -1,0 +1,91 @@
+{
+  "accepted_endpoint_budget": {
+    "garment_count": 5,
+    "per_garment": 8,
+    "per_identity": 40,
+    "semantic_pose_slot_count": 8
+  },
+  "content_sha256": "944c495badb40ec7cef9fa880a377d5af2ccf5eef07b4fe38c78b3e72da6d440",
+  "decision_policy": {
+    "acceptance_requires": [
+      "all hard gates pass",
+      "both human reviewers accept",
+      "identity and garment semantics pass per view",
+      "cross-view consistency passes for all eight slots"
+    ],
+    "automatic_acceptance_allowed": false,
+    "automatic_hard_rejection_allowed": true,
+    "disagreement_resolution": "third human reviewer; majority decision with reasons retained",
+    "minimum_independent_human_reviewers": 2,
+    "single_score_automatic_acceptance": false,
+    "vlm_only_automatic_acceptance": false
+  },
+  "dimensions": [
+    {
+      "hard_reject_on_fail": true,
+      "name": "identity_preservation",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "garment_semantic_match",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "full_body_completeness",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "hands_and_feet_completeness",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "background_compliance",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "blur",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "anatomy",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "multi_person",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "text_or_watermark",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "view_consistency",
+      "required": true
+    },
+    {
+      "hard_reject_on_fail": true,
+      "name": "cross_view_garment_consistency",
+      "required": true
+    }
+  ],
+  "paper_final": 0,
+  "record_policy": {
+    "candidate_records_append_only": true,
+    "failed_screening_records_retained": true,
+    "rejected_output_may_become_teacher_input": false,
+    "review_history_append_only": true
+  },
+  "schema_version": "multi_identity.screening_contract.v1",
+  "screened_candidates_in_this_task": 0,
+  "status": "FROZEN_PROSPECTIVE_PROTOCOL",
+  "task_id": "AAAI27-MULTI-IDENTITY-GARMENT-DATA-PREPARATION-001"
+}

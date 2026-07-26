@@ -1,0 +1,274 @@
+schema_version: canondressgs.paper.p0_formal_candidate_run_registry.v1
+task_id: AAAI27-P0-FORMAL-CANDIDATE-RUNS-001
+source_branch: paper/aaai27-p0-candidate-adapters-runner-20260721
+source_head: d75c4fa5a426fe90314eba08e94509940ecafb23
+run_branch: paper/aaai27-p0-formal-candidate-runs-20260721
+candidate_runtime_manifest: paper_protocol/reviewer_risk/p0_candidate_runtime_manifest.yaml
+candidate_runtime_manifest_sha256_linux_lf: 0501168192c9707fa0ea4f49d3872b979b5106b183f54e4542daa1c6341eee82
+formal_output_root: ${CANONDRESSGS_P0_FORMAL_OUTPUT_ROOT}
+paper_final: false
+allowed_statuses:
+- AUTHORIZED_NOT_RUN
+- RUNNING
+- TRAINED
+- EVALUATED
+- MANUAL_REVIEW_REQUIRED
+- FAILED
+- INTERRUPTED_RESUMABLE
+forbidden_statuses:
+- PAPER_FINAL
+global_contract:
+  optimizer:
+    class: torch.optim.Adam
+    learning_rate: 0.02
+    weight_decay: 0.0
+    betas:
+    - 0.9
+    - 0.999
+    epsilon: 1.0e-08
+  scheduler:
+    class: torch.optim.lr_scheduler.LambdaLR
+    multiplier: 1.0
+  batch_size: 5
+  outfit_order:
+  - O01
+  - O02
+  - O03
+  - O04
+  - O08
+  condition_round_robin:
+  - cond_000000
+  - cond_000318
+  - cond_000017
+  - cond_000347
+  gradient_clip_norm: 5.0
+  loss_reduction: mean
+  milestone_steps:
+  - 0
+  - 20
+  - 50
+  - 100
+  - 200
+  - 300
+  exact_resume_required: true
+  best_seed_selection: false
+  evaluator_metric_count: 27
+  correct_episode_count: 20
+  swap_tuple_count: 80
+runs:
+- formal_run_id: P0-FORMAL-OURS-V2-R0
+  source_runtime_id: P0-OURS-V2-R0
+  method: Ours-v2
+  replicate_index: 0
+  seed: 0
+  initialization_policy: DETERMINISTIC_ZERO_INITIALIZATION
+  optimizer_contract: global_contract
+  loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+  expected_steps: 300
+  output_subdir: ours_v2/replicate_0
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_0/attempt_002
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_0/attempt_002/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_0/attempt_002/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_0/attempt_002/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-OURS-V2-R1
+  source_runtime_id: P0-OURS-V2-R1
+  method: Ours-v2
+  replicate_index: 1
+  seed: 1
+  initialization_policy: DETERMINISTIC_ZERO_INITIALIZATION
+  optimizer_contract: global_contract
+  loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+  expected_steps: 300
+  output_subdir: ours_v2/replicate_1
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_1/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_1/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_1/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-OURS-V2-R2
+  source_runtime_id: P0-OURS-V2-R2
+  method: Ours-v2
+  replicate_index: 2
+  seed: 2
+  initialization_policy: DETERMINISTIC_ZERO_INITIALIZATION
+  optimizer_contract: global_contract
+  loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+  expected_steps: 300
+  output_subdir: ours_v2/replicate_2
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_2/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_2/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/ours_v2/replicate_2/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-B6-S0
+  source_runtime_id: P0-B6-S0
+  method: B6
+  replicate_index: null
+  seed: 0
+  initialization_policy: RANDOM_SEEDED_INITIALIZATION
+  optimizer_contract: global_contract
+  loss_contract: CROSS_ENTROPY_ONLY
+  expected_steps: 300
+  output_subdir: b6/seed_0
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_0/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_0/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_0/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-B6-S1
+  source_runtime_id: P0-B6-S1
+  method: B6
+  replicate_index: null
+  seed: 1
+  initialization_policy: RANDOM_SEEDED_INITIALIZATION
+  optimizer_contract: global_contract
+  loss_contract: CROSS_ENTROPY_ONLY
+  expected_steps: 300
+  output_subdir: b6/seed_1
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_1/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_1/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_1/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-B6-S2
+  source_runtime_id: P0-B6-S2
+  method: B6
+  replicate_index: null
+  seed: 2
+  initialization_policy: RANDOM_SEEDED_INITIALIZATION
+  optimizer_contract: global_contract
+  loss_contract: CROSS_ENTROPY_ONLY
+  expected_steps: 300
+  output_subdir: b6/seed_2
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_2/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_2/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b6/seed_2/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-B7-FIXED
+  source_runtime_id: P0-B7-FIXED
+  method: B7
+  replicate_index: null
+  seed: null
+  initialization_policy: FIXED_NON_TRAINABLE
+  optimizer_contract: NONE
+  loss_contract: NONE
+  expected_steps: 0
+  output_subdir: b7/fixed
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b7/fixed/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: null
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b7/fixed/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/b7/fixed/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-M3-S0
+  source_runtime_id: P0-M3-S0
+  method: M3
+  replicate_index: null
+  seed: 0
+  initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+  optimizer_contract: global_contract
+  loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+  expected_steps: 300
+  paired_initialization_group: P0-COMPLEX-SEED-0
+  output_subdir: m3/seed_0
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_0/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_0/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_0/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-M3-S1
+  source_runtime_id: P0-M3-S1
+  method: M3
+  replicate_index: null
+  seed: 1
+  initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+  optimizer_contract: global_contract
+  loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+  expected_steps: 300
+  paired_initialization_group: P0-COMPLEX-SEED-1
+  output_subdir: m3/seed_1
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_1/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_1/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_1/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-M3-S2
+  source_runtime_id: P0-M3-S2
+  method: M3
+  replicate_index: null
+  seed: 2
+  initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+  optimizer_contract: global_contract
+  loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+  expected_steps: 300
+  paired_initialization_group: P0-COMPLEX-SEED-2
+  output_subdir: m3/seed_2
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_2/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_2/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m3/seed_2/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-M4-S0
+  source_runtime_id: P0-M4-S0
+  method: M4
+  replicate_index: null
+  seed: 0
+  initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+  optimizer_contract: global_contract
+  loss_contract: A5_LEGACY_ENDPOINT_SUPERVISION
+  expected_steps: 300
+  paired_initialization_group: P0-COMPLEX-SEED-0
+  output_subdir: m4/seed_0
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_0/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_0/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_0/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-M4-S1
+  source_runtime_id: P0-M4-S1
+  method: M4
+  replicate_index: null
+  seed: 1
+  initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+  optimizer_contract: global_contract
+  loss_contract: A5_LEGACY_ENDPOINT_SUPERVISION
+  expected_steps: 300
+  paired_initialization_group: P0-COMPLEX-SEED-1
+  output_subdir: m4/seed_1
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_1/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_1/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_1/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+- formal_run_id: P0-FORMAL-M4-S2
+  source_runtime_id: P0-M4-S2
+  method: M4
+  replicate_index: null
+  seed: 2
+  initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+  optimizer_contract: global_contract
+  loss_contract: A5_LEGACY_ENDPOINT_SUPERVISION
+  expected_steps: 300
+  paired_initialization_group: P0-COMPLEX-SEED-2
+  output_subdir: m4/seed_2
+  attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_2/attempt_001
+  status: MANUAL_REVIEW_REQUIRED
+  checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  evaluation: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_2/attempt_001/metrics/evaluated_metrics.json
+  provenance: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-P0-FORMAL-CANDIDATE-RUNS/formal_runs/m4/seed_2/attempt_001/provenance/executor_result.json
+  formal_run_authorized: true
+runtime_registry_created_at_unix: 1784655653.9200103
+runtime_registry_updated_at_unix: 1784658270.2906966

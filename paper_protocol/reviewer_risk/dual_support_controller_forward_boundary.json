@@ -1,0 +1,48 @@
+{
+  "allowed": [
+    "reference_rgb",
+    "reference_clothing_masks",
+    "frozen_F2_features",
+    "reference_validity",
+    "fixed_normalization"
+  ],
+  "declared_forward_arguments": [
+    "reference_f2",
+    "reference_valid"
+  ],
+  "downstream_render_only": [
+    "target_pose",
+    "target_camera"
+  ],
+  "forbidden": [
+    "target_rgb",
+    "target_mask",
+    "target_pose",
+    "target_camera",
+    "garment_id",
+    "outfit_id",
+    "teacher_endpoint_id",
+    "teacher_residual",
+    "ground_truth_mixture_weight",
+    "target_render",
+    "loss_target"
+  ],
+  "forbidden_argument_overlap": [],
+  "ground_truth_outfit_id_in_forward": false,
+  "label": "RESEARCH METHOD CANDIDATE — NOT PAPER FINAL",
+  "loss_target_only": [
+    "garment_labels",
+    "soft_distribution"
+  ],
+  "paper_final": false,
+  "paper_final_count": 0,
+  "prediction_forward_arguments": [
+    "reference_f2",
+    "reference_valid"
+  ],
+  "schema_version": "canondressgs.research.dual_support_controller_forward_boundary.v1",
+  "status": "PASS",
+  "target_forward_leakage": 0,
+  "target_pose_camera_in_controller": false,
+  "teacher_endpoint_id_in_forward": false
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "canondressgs.paper.p0_candidate_forward_boundary.v1",
+  "task_id": "AAAI27-P0-CANDIDATE-ADAPTERS-RUNNER-001",
+  "status": "PASS",
+  "prediction_branch_allowed_inputs": [
+    "reference_rgb",
+    "reference_clothing_mask",
+    "reference_foreground_mask",
+    "frozen_reference_features",
+    "reference_validity",
+    "fixed_normalization"
+  ],
+  "prediction_branch_forbidden_inputs": [
+    "target_rgb",
+    "target_mask",
+    "target_pose",
+    "target_camera",
+    "ground_truth_coefficient",
+    "teacher_residual",
+    "outfit_id",
+    "target_loss",
+    "predicted_target_render"
+  ],
+  "downstream_boundary": {
+    "target_pose_camera_allowed_after_garment_prediction": true,
+    "allowed_consumers": ["frozen_MMLP_Human", "frozen_renderer"],
+    "classified_as_prediction_leakage": false
+  },
+  "candidates": {
+    "Ours-v2": {
+      "implementation": "scene.p0_candidate_adapters.OursV2CandidateAdapter",
+      "forward_parameters": ["reference_f2", "reference_valid"],
+      "target_forward_input_used": false,
+      "outfit_id_in_prediction_forward": false,
+      "teacher_standardized_coefficient_role": "LOSS_ONLY"
+    },
+    "B6": {
+      "implementation": "scene.p0_candidate_adapters.B6ReferenceClassifierHardLookupAdapter",
+      "forward_parameters": ["reference_f2", "reference_valid"],
+      "target_forward_input_used": false,
+      "outfit_id_in_prediction_forward": false,
+      "outfit_label_role": "CROSS_ENTROPY_LOSS_TARGET_ONLY",
+      "lookup_key": "PREDICTED_CLASS_ONLY"
+    },
+    "B7": {
+      "implementation": "scene.p0_candidate_adapters.B7F2NearestCentroidHardLookupAdapter",
+      "forward_parameters": ["reference_f2", "reference_valid"],
+      "target_forward_input_used": false,
+      "outfit_id_in_prediction_forward": false,
+      "outfit_label_role": "OFFLINE_CENTROID_GROUPING_ONLY",
+      "lookup_key": "NEAREST_CENTROID_ONLY"
+    },
+    "M3": {
+      "implementation": "scene.p0_candidate_adapters.P0ComplexCandidateAdapter",
+      "forward_parameters": ["reference_tokens", "reference_valid"],
+      "target_forward_input_used": false,
+      "outfit_id_in_prediction_forward": false,
+      "teacher_standardized_coefficient_role": "LOSS_ONLY"
+    },
+    "M4": {
+      "implementation": "scene.p0_candidate_adapters.P0ComplexCandidateAdapter",
+      "forward_parameters": ["reference_tokens", "reference_valid"],
+      "target_forward_input_used": false,
+      "outfit_id_in_prediction_forward": false,
+      "teacher_standardized_coefficient_role": "LOSS_ONLY"
+    }
+  },
+  "historical_renderer_inputs_modified": false,
+  "formal_registry_modified": false
+}

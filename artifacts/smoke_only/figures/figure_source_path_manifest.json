@@ -1,0 +1,264 @@
+{
+  "marker": "SMOKE_ONLY",
+  "paper_numbers_status": "NOT_FOR_PAPER_NUMBERS",
+  "fixed_outfit_order": [
+    "O01",
+    "O02",
+    "O03",
+    "O04",
+    "O08"
+  ],
+  "fixed_view_order": [
+    "cond_000000",
+    "cond_000318",
+    "cond_000017",
+    "cond_000347"
+  ],
+  "strongest_baseline": "B5",
+  "selection_rule": "fixed_not_metric_selected",
+  "allowed_operations": [
+    "concatenate",
+    "aspect_preserving_crop",
+    "label",
+    "uniform_crop"
+  ],
+  "forbidden_operations": [
+    "retouch",
+    "artifact_removal",
+    "color_change",
+    "successful_region_selection"
+  ],
+  "crop_definitions": {
+    "cond_000000": "uniform_full_frame",
+    "cond_000318": "uniform_full_frame",
+    "cond_000017": "uniform_full_frame",
+    "cond_000347": "uniform_full_frame"
+  },
+  "figures": {
+    "figure_1": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/figures/figure_1.png",
+      "layout": {
+        "rows": [
+          "method"
+        ],
+        "columns": [
+          "reference-only prediction",
+          "target supervision/evaluation"
+        ]
+      },
+      "source_paths": [
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/S-OURS_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/Ours_reference_swap.png"
+      ]
+    },
+    "figure_2": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/figures/figure_2.png",
+      "layout": {
+        "rows": [
+          "O01",
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ],
+        "views": [
+          "cond_000000",
+          "cond_000318",
+          "cond_000017",
+          "cond_000347"
+        ],
+        "columns": [
+          "base",
+          "target",
+          "teacher",
+          "ours",
+          "B5"
+        ]
+      },
+      "source_paths": [
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000000_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000000_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000000_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O01_cond_000000_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000318_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000318_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000318_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000318_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O01_cond_000318_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000017_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000017_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000017_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000017_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O01_cond_000017_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000347_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000347_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000347_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000347_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O01_cond_000347_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000000_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000000_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000000_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O02_cond_000000_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000318_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000318_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000318_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000318_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O02_cond_000318_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000017_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000017_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000017_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000017_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O02_cond_000017_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000347_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000347_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000347_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000347_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O02_cond_000347_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000000_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000000_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000000_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O03_cond_000000_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000318_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000318_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000318_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000318_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O03_cond_000318_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000017_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000017_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000017_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000017_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O03_cond_000017_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000347_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000347_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000347_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000347_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O03_cond_000347_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000000_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000000_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000000_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O04_cond_000000_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000318_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000318_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000318_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000318_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O04_cond_000318_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000017_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000017_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000017_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000017_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O04_cond_000017_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000347_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000347_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000347_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000347_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O04_cond_000347_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000000_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000000_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000000_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O08_cond_000000_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000318_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000318_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000318_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000318_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O08_cond_000318_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000017_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000017_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000017_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000017_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O08_cond_000017_prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000347_base.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000347_target.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000347_teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000347_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-B5/seed_0/attempt_001/visuals/episodes/O08_cond_000347_prediction.png"
+      ]
+    },
+    "figure_3": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/figures/figure_3.png",
+      "layout": {
+        "rows": [
+          "fixed target"
+        ],
+        "columns": [
+          "O01",
+          "O02",
+          "O03",
+          "O04",
+          "O08"
+        ]
+      },
+      "source_paths": [
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O01_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O02_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O03_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O04_cond_000000_ours.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/source_panels/O08_cond_000000_ours.png"
+      ]
+    },
+    "figure_4": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/figures/figure_4.png",
+      "layout": {
+        "rows": [
+          "basis rank"
+        ],
+        "columns": [
+          "K=1",
+          "K=2",
+          "K=3",
+          "K=4"
+        ]
+      },
+      "source_paths": [
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A1/seed_0/attempt_001/visuals/S-A1_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A1/seed_0/attempt_001/visuals/S-A1_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A1/seed_0/attempt_001/visuals/S-A1_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A1/seed_0/attempt_001/visuals/S-A1_five_outfit_four_view_contact_sheet.png"
+      ]
+    },
+    "figure_5": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/figures/figure_5.png",
+      "layout": {
+        "rows": [
+          "supervision"
+        ],
+        "columns": [
+          "old collapse",
+          "old gradient",
+          "signed raw-logit",
+          "CS-PASS"
+        ]
+      },
+      "source_paths": [
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A5/seed_0/attempt_001/visuals/S-A5_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A5/seed_0/attempt_001/visuals/S-A5_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A5/seed_0/attempt_001/visuals/S-A5_five_outfit_four_view_contact_sheet.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-A5/seed_0/attempt_001/visuals/S-A5_five_outfit_four_view_contact_sheet.png"
+      ]
+    },
+    "figure_6": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/figures/figure_6.png",
+      "layout": {
+        "rows": [
+          "O07"
+        ],
+        "columns": [
+          "teacher",
+          "projection",
+          "prediction",
+          "O03 endpoint"
+        ]
+      },
+      "source_paths": [
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/O07/teacher.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/O07/projection.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/O07/prediction.png",
+        "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/S-OURS/seed_0/attempt_001/visuals/O07/O03_endpoint.png"
+      ]
+    }
+  }
+}

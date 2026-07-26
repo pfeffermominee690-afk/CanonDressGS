@@ -1,0 +1,201 @@
+{
+  "classifications": {
+    "CONTROLLER_ADAPTER": "PASS",
+    "DUAL_SUPPORT_RUNTIME_INTERFACE": "PASS",
+    "FORWARD_BOUNDARY": "PASS",
+    "NO_FORMAL_TRAINING_GATE": "PASS",
+    "SINGLE_ENDPOINT_FALLBACK": "PASS",
+    "SOFT_TARGET_DATASET": "PASS",
+    "TOP2_SELECTION": "PASS"
+  },
+  "controller": {
+    "initialization_policy": "RANDOM_SEEDED_INITIALIZATION",
+    "input_dim": 512,
+    "logit_count": 5,
+    "parameter_count": 3589,
+    "path": "scene/reference_conditioned_dual_support_controller.py",
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "counts": {
+    "backward": 0,
+    "candidate_optimizer_step": 0,
+    "checkpoint_write": 0,
+    "formal_metrics": 0,
+    "formal_render": 0,
+    "formal_training": 0,
+    "legacy_optimizer_step": 0,
+    "scheduler_step": 0
+  },
+  "cross_seed_initialization_hashes_unique": true,
+  "cross_seed_unique_initialization_count": 3,
+  "dataset_counts": {
+    "duplicate_records": 80,
+    "pair_count": 10,
+    "pair_fold_mixed_query_sets": 240,
+    "pair_fold_pure_query_sets": 80,
+    "pair_fold_query_sets": 320,
+    "retained_formal_pure_endpoint_episodes": 20,
+    "sets_per_pair_fold": 8,
+    "target_view_folds": 4,
+    "total_manifest_records": 340,
+    "unique_logical_inputs": 260
+  },
+  "dry_run_cases_per_fresh_process": {
+    "AAB": 3,
+    "ABB": 3,
+    "low_secondary_weight_guard": 1,
+    "low_top2_mass_guard": 1,
+    "pure": 5,
+    "tie_guard": 1
+  },
+  "execution_head": "ba809a942af41d89c45c317c68ea1cbe8da7bf08",
+  "frozen_after": {
+    "dual_support_all_pair_output_tree": {
+      "bytes": 801624663,
+      "file_count": 3288,
+      "metadata_sha256_ns": "50f03111afefd9a18ce4e1145e0c9c5bd0151f575f5a392ce31f323263d2cff9"
+    },
+    "formal_output_tree": {
+      "bytes": 964043888,
+      "file_count": 4127,
+      "metadata_sha256_ns": "2205acdcf3a7a6f8019a584f4e4b9ac0f50a8cdd3f2b342642a949b9791b22cc"
+    },
+    "repository_archive": {
+      "dual_support_all_pair_final_summary": {
+        "actual_sha256": "3c6aa16a1f4d5324aeaaf426ffef83ba3a008d95308e21f09963a3c50525c5b2",
+        "expected_sha256": "3c6aa16a1f4d5324aeaaf426ffef83ba3a008d95308e21f09963a3c50525c5b2",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json"
+      },
+      "dual_support_all_pair_protocol": {
+        "actual_sha256": "34f7e7cd45f3a9d5cb49323f9981936104e11e2b23b1a9f88461524d9b0a8d2e",
+        "expected_sha256": "34f7e7cd45f3a9d5cb49323f9981936104e11e2b23b1a9f88461524d9b0a8d2e",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_protocol.yaml"
+      },
+      "dual_support_all_pair_report": {
+        "actual_sha256": "984906f93299f980996255510f107a654584437f7add42babab4944835f775a2",
+        "expected_sha256": "984906f93299f980996255510f107a654584437f7add42babab4944835f775a2",
+        "pass": true,
+        "path": "docs/PAPER/AAAI27_DUAL_SUPPORT_ALL_PAIR_EVALUATION_20260722.md"
+      },
+      "dual_support_all_pair_results": {
+        "actual_sha256": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+        "expected_sha256": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_results.json"
+      },
+      "dual_support_all_pair_visual_review": {
+        "actual_sha256": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa",
+        "expected_sha256": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_visual_review.json"
+      },
+      "dual_support_interface_report": {
+        "actual_sha256": "51e77c53b6f2af6b0aad5201bdc31efbff18e22c927dfc2cda606a50d6490a3a",
+        "expected_sha256": "51e77c53b6f2af6b0aad5201bdc31efbff18e22c927dfc2cda606a50d6490a3a",
+        "pass": true,
+        "path": "docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_INTERFACE_20260722.md"
+      }
+    },
+    "repository_archive_pass": true
+  },
+  "frozen_before": {
+    "dual_support_all_pair_output_tree": {
+      "bytes": 801624663,
+      "file_count": 3288,
+      "metadata_sha256_ns": "50f03111afefd9a18ce4e1145e0c9c5bd0151f575f5a392ce31f323263d2cff9"
+    },
+    "formal_output_tree": {
+      "bytes": 964043888,
+      "file_count": 4127,
+      "metadata_sha256_ns": "2205acdcf3a7a6f8019a584f4e4b9ac0f50a8cdd3f2b342642a949b9791b22cc"
+    },
+    "repository_archive": {
+      "dual_support_all_pair_final_summary": {
+        "actual_sha256": "3c6aa16a1f4d5324aeaaf426ffef83ba3a008d95308e21f09963a3c50525c5b2",
+        "expected_sha256": "3c6aa16a1f4d5324aeaaf426ffef83ba3a008d95308e21f09963a3c50525c5b2",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_final_summary.json"
+      },
+      "dual_support_all_pair_protocol": {
+        "actual_sha256": "34f7e7cd45f3a9d5cb49323f9981936104e11e2b23b1a9f88461524d9b0a8d2e",
+        "expected_sha256": "34f7e7cd45f3a9d5cb49323f9981936104e11e2b23b1a9f88461524d9b0a8d2e",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_protocol.yaml"
+      },
+      "dual_support_all_pair_report": {
+        "actual_sha256": "984906f93299f980996255510f107a654584437f7add42babab4944835f775a2",
+        "expected_sha256": "984906f93299f980996255510f107a654584437f7add42babab4944835f775a2",
+        "pass": true,
+        "path": "docs/PAPER/AAAI27_DUAL_SUPPORT_ALL_PAIR_EVALUATION_20260722.md"
+      },
+      "dual_support_all_pair_results": {
+        "actual_sha256": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+        "expected_sha256": "294e5dd0618cbb2cd7b497ae0e8b1a789b776e0db2b215fb42729929469d3b14",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_results.json"
+      },
+      "dual_support_all_pair_visual_review": {
+        "actual_sha256": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa",
+        "expected_sha256": "ef1544012754e633c9e24eba7ee60dfbe9e95f36c7a405f835ebd9cf0a9f42fa",
+        "pass": true,
+        "path": "paper_protocol/reviewer_risk/dual_support_all_pair_visual_review.json"
+      },
+      "dual_support_interface_report": {
+        "actual_sha256": "51e77c53b6f2af6b0aad5201bdc31efbff18e22c927dfc2cda606a50d6490a3a",
+        "expected_sha256": "51e77c53b6f2af6b0aad5201bdc31efbff18e22c927dfc2cda606a50d6490a3a",
+        "pass": true,
+        "path": "docs/PAPER/AAAI27_REFERENCE_CONDITIONED_DUAL_SUPPORT_INTERFACE_20260722.md"
+      }
+    },
+    "repository_archive_pass": true
+  },
+  "frozen_unchanged": true,
+  "label": "RESEARCH METHOD CANDIDATE — NOT PAPER FINAL",
+  "next_task": "TRAIN_AND_EVALUATE_REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER",
+  "next_task_started": false,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "same_seed_fresh_process_exact": true,
+  "schema_version": "canondressgs.research.dual_support_controller_dry_run_summary.v1",
+  "seed_audits": [
+    {
+      "distribution_bitwise_exact": true,
+      "fixed_batch_logits_bitwise_exact": true,
+      "initialization_bitwise_exact": true,
+      "initialization_sha256": "01c17453f10b4f4bda23b764edb5d04ad5444188dd5307e6a66c660d4306a440",
+      "same_seed_fresh_process_exact": true,
+      "seed": 0,
+      "status": "PASS",
+      "top2_choice_exact": true
+    },
+    {
+      "distribution_bitwise_exact": true,
+      "fixed_batch_logits_bitwise_exact": true,
+      "initialization_bitwise_exact": true,
+      "initialization_sha256": "685e9a2a448c103e2781092bba9e779e42a5366c33ba5e78886a2296847f6db8",
+      "same_seed_fresh_process_exact": true,
+      "seed": 1,
+      "status": "PASS",
+      "top2_choice_exact": true
+    },
+    {
+      "distribution_bitwise_exact": true,
+      "fixed_batch_logits_bitwise_exact": true,
+      "initialization_bitwise_exact": true,
+      "initialization_sha256": "5119973f683bb871d646a5f880b9d8f8c9a11fbc181296921f6cc3c0724140fc",
+      "same_seed_fresh_process_exact": true,
+      "seed": 2,
+      "status": "PASS",
+      "top2_choice_exact": true
+    }
+  ],
+  "source_head": "d802f427f1e9c23595e1bdb4f10135f7de2c3f08",
+  "status": "PASS",
+  "task_id": "AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-001"
+}

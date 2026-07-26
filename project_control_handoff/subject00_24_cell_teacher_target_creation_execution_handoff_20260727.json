@@ -1,0 +1,25 @@
+{
+  "schema_version": "canondressgs.project_control.teacher_target_creation_execution_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-TEACHER-TARGET-CREATION-PREFLIGHT-001",
+  "created_at": "2026-07-26T21:13:17.142237+00:00",
+  "status": "BLOCKED_DO_NOT_EXECUTE",
+  "reason": "BLOCKED_22_OF_24_UNIQUE_SIMILARITY_BINDINGS_2_OF_24_HUMAN_OVERRIDE_CAMERA_MODELS_NONUNIQUE",
+  "execution_contract": "paper_protocol/reviewer_risk/SUBJECT00_24_CELL_TEACHER_TARGET_CREATION_EXECUTION_CONTRACT_20260727.md",
+  "execution_manifest": "paper_protocol/reviewer_risk/subject00_24_cell_teacher_target_creation_execution_manifest_20260727.json",
+  "authorizations": {
+    "teacher_target_creation": false,
+    "teacher_endpoint_optimization": false
+  },
+  "resume_only_after": [
+    "Both human-override camera models are uniquely resolved and recorded.",
+    "Camera registry and resolution contract are re-frozen.",
+    "User provides a new explicit creation authorization."
+  ],
+  "immutable_inputs": {
+    "mask_accepted_registry": "E:\\model_train\\canondressgs_subject00_24_cell_teacher_target_creation_preflight\\paper_protocol\\reviewer_risk\\subject00_global_mask_accepted_registry_24of24_20260727.json",
+    "mask_accepted_registry_sha256": "c84cbd9b54016b18160671a9e2e70b242b87305e2956dbb4b10048c53b7533de",
+    "calibration_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+    "calibration_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7"
+  },
+  "next_task": "RESOLVE_SUBJECT00_TEACHER_TARGET_CAMERA_RESOLUTION_BLOCKER"
+}

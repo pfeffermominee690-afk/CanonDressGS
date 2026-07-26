@@ -1,0 +1,96 @@
+model:
+  offset_mode: anchor_film
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+  enable_delta_xyz: true
+  enable_delta_scaling: false
+  enable_delta_opacity: false
+
+data:
+  num_workers: 0
+
+train:
+  mode: image_rendering_finetune
+  batch_size: 1
+  steps: 10
+  reference_count: 2
+  mixed_precision: false
+  dual_reference_consistency: false
+  seed: 42
+  freeze_base: true
+  grad_clip: 1.0
+  log_every: 1
+  save_every: 5
+  eval_every: 10
+  output_dir: /root/autodl-tmp/canondressgs_work/outputs/pipeline_mvp/GATE4-REAL-SMOKE10-001
+  resume: null
+
+image_conditioning:
+  manifest_path: /root/autodl-tmp/canondressgs_work/data_dressable/gate3b_synthetic_hoodie_expand_018.json
+  split: train
+  allow_clothing_mask_fallback: false
+  allow_missing_rh_th: false
+  allow_identity_deformation: false
+  require_depth_visibility: true
+  depth_abs_tolerance: 0.02
+  depth_rel_tolerance: 0.01
+  depth_alpha_threshold: 0.0001
+  feature_dim: 128
+  freeze_backbone: true
+  embedding_dim: 64
+  local_feature_dim: 64
+  use_projection_confidence: true
+  use_view_angle_confidence: false
+  unknown_anchor_mode: learned
+  reference_region_path: /root/autodl-tmp/canondressgs_work/outputs/gates/gate_3b/GATE-MULTIVIEW-CLOTH-VOTES-001/anchor_clothing_region_reference_only_f000_c018_f1000_c000.pt
+  reference_region_sha256: 20ed6dbc95664b16b6fedac0acf046ea7368a35490dfb440b2d3bfa2eccdc126
+  reference_gate_threshold: 0.4
+  reference_views: [f000_c018, f1000_c000]
+  target_view_used: false
+  fixed_protocol:
+    condition_a_references:
+      - {frame_id: "0", camera_id: cam18}
+      - {frame_id: "1000", camera_id: cam00}
+    condition_b_references:
+      - {frame_id: "0", camera_id: cam18}
+    target: {frame_id: "2000", camera_id: cam09}
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  expected_fingerprint: 64ac7f2dd1dd705307258620f76967fdc93c66869d3ff5c7f32e1f70055635c4
+  require_real_base: true
+  fingerprint_required: true
+
+optimizer:
+  type: adam
+  lr: 0.0001
+  encoder_lr: 0.0001
+  aggregator_lr: 0.0001
+  hypernetwork_lr: 0.0001
+  anchor_mlp_lr: 0.0001
+  local_adapter_lr: 0.0001
+  weight_decay: 0.0
+
+loss:
+  anchor_weight: 0.0
+  xyz_weight: 1.0
+  scaling_weight: 0.0
+  opacity_weight: 0.0
+  smooth_weight: 0.01
+  noncloth_weight: 0.01
+  magnitude_weight: 0.0001
+  rgb_weight: 1.0
+  mask_weight: 0.5
+  ssim_weight: 0.2
+  lpips_weight: 0.0
+  latent_consistency_weight: 0.0
+  anchor_feature_consistency_weight: 0.0
+  offset_consistency_weight: 0.0
+
+render:
+  background: [1.0, 1.0, 1.0]
