@@ -1,0 +1,2321 @@
+{
+  "schema_version": "canondressgs.subject00.o03_camsafe7.loader_equivalence.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-FORMAL-TARGET-EQUIVALENCE-AUDIT-001",
+  "created_at": "2026-07-27T00:00:00Z",
+  "rerun_loader": {
+    "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_o03_provisional_teacher_camerasafe7_rerun/tools/second_identity/run_subject00_o03_provisional_teacher_camerasafe7.py",
+    "implementation_sha256": "fe8228466bbecb9ef811dc167691219fde4194de3c1db2c6d0f26924761249e3",
+    "schema_label": "canondressgs.full_dataset.v1",
+    "batch_size": 1,
+    "normalization": "PIL RGB float32 [0,1], native resolution",
+    "mask_conversion": "PIL L exact binary {0,255}, native resolution",
+    "records": [
+      {
+        "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1165,
+              1350,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "e1c92fda9caea2a8bff2304263d44b0db34f7c5739752d7d0ba40139c5224f61",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1479153.0,
+            "nonzero_count": 4718163
+          },
+          "person": {
+            "shape": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "68757f8d1a6ed1f34a44ff70fd430364dd8a2011bf85bd11420a7615f850349b",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 69923.0,
+            "nonzero_count": 69923
+          },
+          "garment": {
+            "shape": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "749c522f7fd9b61ffdc8262408203064aff4a2514d03f3b6fc1fc2f35081d693",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 58659.0,
+            "nonzero_count": 58659
+          },
+          "protected": {
+            "shape": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "0be983682f1849e2a6ee1134a02a79cae05eb59ddcb373fcf5f0a869b135fd5d",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 11264.0,
+            "nonzero_count": 11264
+          },
+          "boundary": {
+            "shape": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "1a5e195a80e1f38ddb6b66fac4c2ac1e186109e7bb35e07a9e2d196408757d5b",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 4854.0,
+            "nonzero_count": 4854
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1165,
+              1350,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "6099a33920fc6137084359797195e8ae6435ad37b829708ba542ab8e85cd028b",
+            "min": 0.0,
+            "max": 0.8666666746139526,
+            "sum": 23778.783203125,
+            "nonzero_count": 175977
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "c2934d624b62efb9deaa55d6d3aa2ee18d8edfaa8562e73d72ec35bd7aaf4f3c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1646528.625,
+            "nonzero_count": 4718640
+          },
+          "person": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "2d0542eeba4ae738bbc49deac6a74fab25151a5e4d814ee7ac7f7187488f7bc5",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 71813.0,
+            "nonzero_count": 71813
+          },
+          "garment": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "f5db0e5a3062776173c3376e1de00b134110858014e1d6a82074c3690ea049c7",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 59735.0,
+            "nonzero_count": 59735
+          },
+          "protected": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "50d8f70b1313813a6cda9e20d5628f87274a067c4f2b29529c594f8210651994",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 12078.0,
+            "nonzero_count": 12078
+          },
+          "boundary": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "21e76047463f79bb7d09d1d7212db1d4e38917409ba4c6dce291e68e3ff99623",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 4682.0,
+            "nonzero_count": 4682
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "f8c27b793e083594e4733da479ab134ee0f867517449254414bd3acc3a10329f",
+            "min": 0.0,
+            "max": 0.9882352948188782,
+            "sum": 21484.6640625,
+            "nonzero_count": 179205
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot02_cand00",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "608f40f17aef167029f2d1d4da9d3b5c0364172fb89f1780bec7f42207d6b34c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1331083.875,
+            "nonzero_count": 4718665
+          },
+          "person": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "90f0b74109ac149aa28e76ecb1d260a949934137cf204785a2387e5241c0c643",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 64409.0,
+            "nonzero_count": 64409
+          },
+          "garment": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "8b96b53c2eee7c575323fdddd20ebf85d76f3f9d0a98c6b1fb34cd323f5b7d16",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 53284.0,
+            "nonzero_count": 53284
+          },
+          "protected": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "396be1c081ba5c52cc2910da4bfae8cdbe852649d6bbdc98d87138215006ba24",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 11125.0,
+            "nonzero_count": 11125
+          },
+          "boundary": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "417093dbae20825d75715713f53f17886f09601e7dc93bdd2ce52ad075171759",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 3653.0,
+            "nonzero_count": 3653
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "544e249e205d5b441c1120aa72329a86e256ff9a144872fd4f2cd05a0451785c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 17075.59375,
+            "nonzero_count": 159823
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot03_cand01",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "bb87050cf87b4099c780fbca0c6532b23977d54783d8967be3249b85421601d9",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1527699.875,
+            "nonzero_count": 4718728
+          },
+          "person": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "12f93d04f4818a11c3318c47e736db613f9eb685fa13ec666ca353952d7dda5e",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 57151.0,
+            "nonzero_count": 57151
+          },
+          "garment": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "2fbe418c3fbf9506fd88d627e9fb1831211ea38f8898456593484d5c37f001f4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 46072.0,
+            "nonzero_count": 46072
+          },
+          "protected": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "771d2a37fe319aebbc089f4cc38e0ad2771ea8a56f8a07298574276c87fa86ed",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 11079.0,
+            "nonzero_count": 11079
+          },
+          "boundary": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "8ef1c4752527cfd27b29d50520b2c0524031b07fc078f1fc4dd89a51b6f7edc6",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 3064.0,
+            "nonzero_count": 3064
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "72368be3337446b361ac126603208e7525545f936deaae5fdb6a5bae196bf9e5",
+            "min": 0.0,
+            "max": 0.9960784316062927,
+            "sum": 16283.1650390625,
+            "nonzero_count": 138211
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "4344edfcb3f4fd6388f6013514af580b8aea4148e3e68e0354c32a4a478349d4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1289219.375,
+            "nonzero_count": 4718790
+          },
+          "person": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "3b69eb8e47f7e5473691b4c2f3438736c678cb2a26ca2ebe6ee35bbb31e1e049",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 74596.0,
+            "nonzero_count": 74596
+          },
+          "garment": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "8ceb7f24188a90b1a97c930993abd68180db174824df8cf0a3d744f703ed2c8a",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 62239.0,
+            "nonzero_count": 62239
+          },
+          "protected": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "dc04048b09503df18a4aaec30b07f355a6112e6794bd5461f72778e35fc3bfc0",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 12357.0,
+            "nonzero_count": 12357
+          },
+          "boundary": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "4ef949424390d1a455e726e44bcba51defe8a497acde24a3a73f56c474a6a81c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 4199.0,
+            "nonzero_count": 4199
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "9f69d7b4034b0a779ad6ce7e54214a99a22eff8baf8ce3042c2d68f8512ee728",
+            "min": 0.0,
+            "max": 0.9411764740943909,
+            "sum": 22079.8046875,
+            "nonzero_count": 186717
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "ca83e04a20a0051bb4344760c8bd50325497fae7a40a2d67fa0e8579fe1d9751",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 944196.9375,
+            "nonzero_count": 4718752
+          },
+          "person": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "127f17cae2359999f7e2246904ce6253f391e31f9edd3d41ca12b4ecb7d729ff",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 72705.0,
+            "nonzero_count": 72705
+          },
+          "garment": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "741ba0be15e0fec5e9e06240c381b65b937e2b5fcddf48f0260966d6ad600f3a",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 62427.0,
+            "nonzero_count": 62427
+          },
+          "protected": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "dacfb22b3f6c9d51a9319a0dbafc98b72104ace1aabe2ef634a9b6941947ca3f",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 10278.0,
+            "nonzero_count": 10278
+          },
+          "boundary": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "67d7ab7cb21f2326a73abf77d488e82c23d9b6a1940e403ba872b92da79d1aa4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 4256.0,
+            "nonzero_count": 4256
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "07652c3928a06888a56da36d7d1938310eeb634fce7492de90d01b41e76e2fc3",
+            "min": 0.0,
+            "max": 0.8941176533699036,
+            "sum": 18348.173828125,
+            "nonzero_count": 187266
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+        "field_keys": [
+          "boundary",
+          "garment",
+          "garment_rgb_masked_target",
+          "person",
+          "protected",
+          "raw"
+        ],
+        "fields": {
+          "raw": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "91aebcf388aff568646d00964a7c5abe4c584a66149957bb882e0feae86a68bb",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 998663.5,
+            "nonzero_count": 4718712
+          },
+          "person": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "358746a85d80d47961581794ba0d568aef385d2d3755b06e4ffde5f167073f50",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 87765.0,
+            "nonzero_count": 87765
+          },
+          "garment": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "5a59f762e194a87e631face59715faa487d03eaee59e8ebc182c0d97b98c346e",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 77527.0,
+            "nonzero_count": 77527
+          },
+          "protected": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "688e7c889ca50abf46cf56062dfb3098c9341b86da728de9411ae0228c54bba7",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 10238.0,
+            "nonzero_count": 10238
+          },
+          "boundary": {
+            "shape": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256": "05f02008e56324709585649ff4b59f75f9ea14adc7aecbe0b0cf83d2319bb798",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 5275.0,
+            "nonzero_count": 5275
+          },
+          "garment_rgb_masked_target": {
+            "shape": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256": "d0b237079864862d6246be386edb1b12f8b5cb2f6f98ef994a3a8483c609488e",
+            "min": 0.0,
+            "max": 0.9686274528503418,
+            "sum": 21200.41015625,
+            "nonzero_count": 232581
+          }
+        }
+      }
+    ]
+  },
+  "formal_loader": {
+    "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+    "implementation_sha256": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+    "schema_label": "canondressgs.full_dataset.v1",
+    "batch_size": 1,
+    "dataset_length_all_training": 22,
+    "O03_subset_length": 7,
+    "records": [
+      {
+        "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "e1c92fda9caea2a8bff2304263d44b0db34f7c5739752d7d0ba40139c5224f61",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1479153.0,
+            "nonzero_count": 4718163
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "68757f8d1a6ed1f34a44ff70fd430364dd8a2011bf85bd11420a7615f850349b",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 69923.0,
+            "nonzero_count": 69923
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "749c522f7fd9b61ffdc8262408203064aff4a2514d03f3b6fc1fc2f35081d693",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 58659.0,
+            "nonzero_count": 58659
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "a95878cf35e8af1a02dd6f3e8b2c4c03ea151f5b203d44424048fe27cdae7f22",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1496011.5,
+            "nonzero_count": 4713939
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "0b7d0a7c4c0817462dd65b64ccee732e5fe59cc824d9a8321d11e4f715db94b8",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 76111.0,
+            "nonzero_count": 76111
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "38f89e13b576ba4e0f1a16271fcf8b03b9a50ea6f2855e9abae0f888ca618680",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 49741.0,
+            "nonzero_count": 49741
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "c8a693d63c6305e2e65a59947ab411c803fd16e21f25a33f97e2cd9210459e43",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1496639.0,
+            "nonzero_count": 1496639
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "fcb5709c8e396224e5e5fcf1d5a1f8e4a2aed243abe3184c76b2921e4fc7eb55",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 26370.0,
+            "nonzero_count": 26370
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "0be983682f1849e2a6ee1134a02a79cae05eb59ddcb373fcf5f0a869b135fd5d",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 11264.0,
+            "nonzero_count": 11264
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "ab4a4004fd3007855b7163b7158437370dcf151fd1a25634e2603945c5238844",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 73191.0,
+            "nonzero_count": 73191
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "b2b639451951eaede4bd8563d5b7147f0099abe6366b83394bef9e40641122e8",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 63178.0,
+            "nonzero_count": 63178
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1165,
+              1350
+            ],
+            "shape_normalized_hwc": [
+              1165,
+              1350,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "fae20d8fe3a4a417acdc9491cae4d2e67a8e37a450ffbb459d8c2a0ef529ef29",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "c2934d624b62efb9deaa55d6d3aa2ee18d8edfaa8562e73d72ec35bd7aaf4f3c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1646528.625,
+            "nonzero_count": 4718640
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "2d0542eeba4ae738bbc49deac6a74fab25151a5e4d814ee7ac7f7187488f7bc5",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 71813.0,
+            "nonzero_count": 71813
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f5db0e5a3062776173c3376e1de00b134110858014e1d6a82074c3690ea049c7",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 59735.0,
+            "nonzero_count": 59735
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "9b2a603dbd71949485d5be04736684c5908f3d19661c6d326459be0633d32630",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1683415.375,
+            "nonzero_count": 4718582
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "50381c66b0fcfdf1f75401eaa4735dfa8f8ee247747fe0ac415539b83043110b",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 77442.0,
+            "nonzero_count": 77442
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "a10bc30c8206fcf1d4222ceaeff495718f4772e1419ae9f6d0960d0e6f4e9e53",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 51003.0,
+            "nonzero_count": 51003
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "49523ee3d60f5e11a7244d10e1eb3604a1bd5afec7767203dd6290789de0f798",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1495492.0,
+            "nonzero_count": 1495492
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f6982080bdd52f316515057ad882a5d029046d3d0f9cee274f2f2ebb5a9e1c2d",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 26439.0,
+            "nonzero_count": 26439
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "50d8f70b1313813a6cda9e20d5628f87274a067c4f2b29529c594f8210651994",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 12078.0,
+            "nonzero_count": 12078
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "82eba494400e5be3ae51b30032c700fe4db34d2a0d97712ce5e7c32657a51246",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 73527.0,
+            "nonzero_count": 73527
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "6d98ff89df6048d6e1dbdcf7f29cbfd8697d7f14a8e503558c4f8755c899789c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 63275.0,
+            "nonzero_count": 63275
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot02_cand00",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "608f40f17aef167029f2d1d4da9d3b5c0364172fb89f1780bec7f42207d6b34c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1331083.875,
+            "nonzero_count": 4718665
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "90f0b74109ac149aa28e76ecb1d260a949934137cf204785a2387e5241c0c643",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 64409.0,
+            "nonzero_count": 64409
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "8b96b53c2eee7c575323fdddd20ebf85d76f3f9d0a98c6b1fb34cd323f5b7d16",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 53284.0,
+            "nonzero_count": 53284
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "27dbc10c5b19253ca9853531b205f2f4af92346a37b84a47688e2264f980ea02",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1363313.875,
+            "nonzero_count": 4718607
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "0d2280655a99c54fd1e947fe03b547374adefff0572fa24397ed7da7d73a9df8",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 64391.0,
+            "nonzero_count": 64391
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "c169fccb873d4fc4f4cd0023c5dccc662f0b425d3aceb242ec2fe0492a00a3c4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 46191.0,
+            "nonzero_count": 46191
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "5aaa7e3c825133a18ebb66fc747f558601803a34b6ca5616eb202b69e3deb3de",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1508543.0,
+            "nonzero_count": 1508543
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "e359355caf73ee0c770a6024a0674b5814d4bd5d61c23c96e60af8d8900cb996",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 18200.0,
+            "nonzero_count": 18200
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "396be1c081ba5c52cc2910da4bfae8cdbe852649d6bbdc98d87138215006ba24",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 11125.0,
+            "nonzero_count": 11125
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "5b8b8d58810a5a23a9e2649cf60379ea68eed6257237525516fe7623a893c2ff",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 61704.0,
+            "nonzero_count": 61704
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "ddc53ced1186d78997ead79cb731fde07f091b970ec3bcba6372ef5f8f2766bf",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 51891.0,
+            "nonzero_count": 51891
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot03_cand01",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "bb87050cf87b4099c780fbca0c6532b23977d54783d8967be3249b85421601d9",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1527699.875,
+            "nonzero_count": 4718728
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "12f93d04f4818a11c3318c47e736db613f9eb685fa13ec666ca353952d7dda5e",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 57151.0,
+            "nonzero_count": 57151
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "2fbe418c3fbf9506fd88d627e9fb1831211ea38f8898456593484d5c37f001f4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 46072.0,
+            "nonzero_count": 46072
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "3e1ca0deb2f4d5f55f0ef09364d81ffa4b14ae14f9fa43dcede53bb8c649c3fe",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1546857.625,
+            "nonzero_count": 4714629
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "e0029658691a85631b3c16a737c12d4f30ed340c63e87f23b3810f3720a48a16",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 58021.0,
+            "nonzero_count": 58021
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "4199d321dac8c742433684b016319064a092e9dc6d2d94f07cf328a32f1df522",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 40435.0,
+            "nonzero_count": 40435
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "20f7eb3a0e69e7b8f175314909d7d10e2d48754b321a038a61a55a7cf68f1623",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1514913.0,
+            "nonzero_count": 1514913
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "79eee7d901c1c8388c0e64d96638ba38a16d4f1819109e029fb5273d86a8a4d6",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 17586.0,
+            "nonzero_count": 17586
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "771d2a37fe319aebbc089f4cc38e0ad2771ea8a56f8a07298574276c87fa86ed",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 11079.0,
+            "nonzero_count": 11079
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "7256f7f2033bc2230822ec021594580cb0753e8267f8628cace39678be1f1b0d",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 53594.0,
+            "nonzero_count": 53594
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "9152ff5f0192e7baf0cb64640037b6fb486f944753d37c8fe794380b82e681eb",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 44067.0,
+            "nonzero_count": 44067
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "4344edfcb3f4fd6388f6013514af580b8aea4148e3e68e0354c32a4a478349d4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1289219.375,
+            "nonzero_count": 4718790
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "3b69eb8e47f7e5473691b4c2f3438736c678cb2a26ca2ebe6ee35bbb31e1e049",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 74596.0,
+            "nonzero_count": 74596
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "8ceb7f24188a90b1a97c930993abd68180db174824df8cf0a3d744f703ed2c8a",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 62239.0,
+            "nonzero_count": 62239
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "5e011a488468d619317506425b423f8771b9e769f6a9b6487989678dd14338df",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1353434.75,
+            "nonzero_count": 4718744
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "3eef7f6a1a4ea33021e3e2c8bf619f08c10886d22b2c1add170628380bd70f77",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 73219.0,
+            "nonzero_count": 73219
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "bf0cbf7db3474b289d5d10d4cbeac9eecce035d69052f0bc28071b0b4cd62fbc",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 53968.0,
+            "nonzero_count": 53968
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "68628fe110655b90bc0faeb727423c07a60069b8b5ba44b4bb1b53805e45f534",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1499715.0,
+            "nonzero_count": 1499715
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "be4c578eac12d5881010b2689f15d342357b295e7a47f363fbe1cec76a8c72af",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 19251.0,
+            "nonzero_count": 19251
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "dc04048b09503df18a4aaec30b07f355a6112e6794bd5461f72778e35fc3bfc0",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 12357.0,
+            "nonzero_count": 12357
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f80b5f51c2c701aee389d18d8694447f394af8bf4d90847174013af015bcf4b8",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 70786.0,
+            "nonzero_count": 70786
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "2a7f910cd02867af91ea64668986032ce26bfa26e4e78eb314946c9bc49422ed",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 59795.0,
+            "nonzero_count": 59795
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "ca83e04a20a0051bb4344760c8bd50325497fae7a40a2d67fa0e8579fe1d9751",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 944196.9375,
+            "nonzero_count": 4718752
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "127f17cae2359999f7e2246904ce6253f391e31f9edd3d41ca12b4ecb7d729ff",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 72705.0,
+            "nonzero_count": 72705
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "741ba0be15e0fec5e9e06240c381b65b937e2b5fcddf48f0260966d6ad600f3a",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 62427.0,
+            "nonzero_count": 62427
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "4a3f3376dd3bf98e5ad3f34c9b407b207b9becc4c621d8b786b7cfb95cab6700",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1020693.0625,
+            "nonzero_count": 4718677
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "6f9270b88b0ce55a12550591679d0c309ec6a22818fca90f74e9fbc3ba69cd19",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 74264.0,
+            "nonzero_count": 74264
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "6f012626ee8b8fe530967617544d54dc6844880bac5537e8d9124778457bdf88",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 53933.0,
+            "nonzero_count": 53933
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "9ae28f99a64dff6918b336362592f95c7ed0ca4de955bb2d66b334f96443b8c6",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1498670.0,
+            "nonzero_count": 1498670
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "192533676f9263eb45431644a1c450305cbf7f35344f392cdd78a3182f8da506",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 20331.0,
+            "nonzero_count": 20331
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "dacfb22b3f6c9d51a9319a0dbafc98b72104ace1aabe2ef634a9b6941947ca3f",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 10278.0,
+            "nonzero_count": 10278
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "eddf5bae90bf1032ee737b85ed4ff6fb6708c75331da2bda9d4cb6d0f2e8d946",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 69163.0,
+            "nonzero_count": 69163
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "2f7d61d03913f217f3a9d52f29676954d12b166f4c948fbc2a977e9fcd6380ae",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 60244.0,
+            "nonzero_count": 60244
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      },
+      {
+        "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+        "field_keys": [
+          "target_base_foreground_mask",
+          "target_base_rgb",
+          "target_clothing_mask",
+          "target_edit_core_mask",
+          "target_edit_mask",
+          "target_edit_rgb",
+          "target_foreground_mask",
+          "target_old_clothing_mask",
+          "target_preserve_mask",
+          "target_protected_mask",
+          "target_revealed_skin_mask",
+          "target_transition_mask"
+        ],
+        "fields": {
+          "target_edit_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "91aebcf388aff568646d00964a7c5abe4c584a66149957bb882e0feae86a68bb",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 998663.5,
+            "nonzero_count": 4718712
+          },
+          "target_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "358746a85d80d47961581794ba0d568aef385d2d3755b06e4ffde5f167073f50",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 87765.0,
+            "nonzero_count": 87765
+          },
+          "target_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "5a59f762e194a87e631face59715faa487d03eaee59e8ebc182c0d97b98c346e",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 77527.0,
+            "nonzero_count": 77527
+          },
+          "target_base_rgb": {
+            "shape_chw": [
+              3,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              3
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "60df776e9ebe258f85e1b62ea2157bd71a2ebcb7b66cf59eab319f70c5cf1305",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1057887.125,
+            "nonzero_count": 4713323
+          },
+          "target_edit_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "aa3393cbcc9a1471c7cbacac8018d6704a64be4437320a548d19525295f221e4",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 94168.0,
+            "nonzero_count": 94168
+          },
+          "target_edit_core_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "143e1851af15dc6191ddb2767050f7ec05e9c7dd8e19c7cf2e3d0df9c444b61c",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 67322.0,
+            "nonzero_count": 67322
+          },
+          "target_preserve_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "47b912e06771e57f025979831ef4feeea78a17bd2d906d9a757ca9b6058c5ef1",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 1478766.0,
+            "nonzero_count": 1478766
+          },
+          "target_transition_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "03bb3903b42ce2d1d80f2ccfabb0ffd41a3991d9a2b47b6cc2fb689d35e642fa",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 26846.0,
+            "nonzero_count": 26846
+          },
+          "target_protected_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "688e7c889ca50abf46cf56062dfb3098c9341b86da728de9411ae0228c54bba7",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 10238.0,
+            "nonzero_count": 10238
+          },
+          "target_base_foreground_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "dabb73880c906e7b2023455448eda90cfa224cc218e4b9f40fca2402e0ebca0d",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 83242.0,
+            "nonzero_count": 83242
+          },
+          "target_old_clothing_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f01aba6773e233422b5f255f89ae1b256f8ceaad08ad03c389ab19d4a198bdc1",
+            "min": 0.0,
+            "max": 1.0,
+            "sum": 74558.0,
+            "nonzero_count": 74558
+          },
+          "target_revealed_skin_mask": {
+            "shape_chw": [
+              1,
+              1166,
+              1349
+            ],
+            "shape_normalized_hwc": [
+              1166,
+              1349,
+              1
+            ],
+            "dtype": "float32",
+            "value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+            "min": 0.0,
+            "max": 0.0,
+            "sum": 0.0,
+            "nonzero_count": 0
+          }
+        }
+      }
+    ]
+  },
+  "implementation_status": "DIFFERENT_IMPLEMENTATIONS_AND_CONTRACTS",
+  "field_set_status": "FAIL_SCIENTIFIC_FIELD_SET_MISMATCH_8_FIELDS",
+  "shared_shape_status": "PASS_7_OF_7_SHARED_FIELDS",
+  "shared_value_hash_status": "PASS_7_OF_7_SHARED_FIELDS",
+  "full_value_hash_status": "FAIL_FORMAL_FIELDS_ABSENT_OR_DIFFERENTLY_BOUND_IN_RERUN",
+  "request_order_status": "EXACT",
+  "camera_order_status": "EXACT",
+  "optimizer_steps": 0,
+  "gpu_forward_calls": 0,
+  "schema_equivalence_status": "FAIL_SAME_SCHEMA_LABEL_DIFFERENT_REQUIRED_FIELD_CONTRACT",
+  "scientific_conclusion": "The four shared source tensors are exact, but the complete formal supervision field set and target_base bindings are not the rerun loader/loss contract.",
+  "formal_loader_windows_contract_sha256": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+  "formal_loader_cloud_runtime_sha256": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+  "formal_loader_container_note": "Windows CRLF and cloud LF containers differ; the executed Python semantics are the same. This non-scientific encoding difference does not affect the class-D target-field mismatch."
+}

@@ -1,0 +1,1509 @@
+{
+  "schema_version": "canondressgs.subject00.o03_camsafe7.derived_equivalence.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-FORMAL-TARGET-EQUIVALENCE-AUDIT-001",
+  "created_at": "2026-07-27T00:00:00Z",
+  "field_inventory": [
+    "target_edit_rgb",
+    "target_foreground_mask",
+    "target_clothing_mask",
+    "target_protected_mask",
+    "boundary_target",
+    "garment_rgb_masked_target",
+    "target_base_rgb",
+    "target_edit_mask",
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_transition_mask",
+    "target_base_foreground_mask",
+    "target_old_clothing_mask",
+    "target_revealed_skin_mask"
+  ],
+  "derived_field_count": 14,
+  "derived_byte_exact_count": 3,
+  "derived_tensor_exact_count": 1,
+  "derived_runtime_equivalent_count": 2,
+  "derived_mismatch_count": 8,
+  "scientific_mismatch_fields": [
+    "target_base_rgb",
+    "target_edit_mask",
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_transition_mask",
+    "target_base_foreground_mask",
+    "target_old_clothing_mask",
+    "target_revealed_skin_mask"
+  ],
+  "protected_exact_count": 7,
+  "boundary_runtime_exact_count": 7,
+  "garment_rgb_runtime_exact_count": 7,
+  "formal_transition_equals_rerun_boundary_count": 0,
+  "records": [
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1165,
+            1350,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            3
+          ],
+          "rerun_value_sha256": "e1c92fda9caea2a8bff2304263d44b0db34f7c5739752d7d0ba40139c5224f61",
+          "formal_value_sha256_normalized_hwc": "e1c92fda9caea2a8bff2304263d44b0db34f7c5739752d7d0ba40139c5224f61"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "rerun_value_sha256": "68757f8d1a6ed1f34a44ff70fd430364dd8a2011bf85bd11420a7615f850349b",
+          "formal_value_sha256_normalized_hwc": "68757f8d1a6ed1f34a44ff70fd430364dd8a2011bf85bd11420a7615f850349b"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "rerun_value_sha256": "749c522f7fd9b61ffdc8262408203064aff4a2514d03f3b6fc1fc2f35081d693",
+          "formal_value_sha256_normalized_hwc": "749c522f7fd9b61ffdc8262408203064aff4a2514d03f3b6fc1fc2f35081d693"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "rerun_value_sha256": "0be983682f1849e2a6ee1134a02a79cae05eb59ddcb373fcf5f0a869b135fd5d",
+          "formal_value_sha256_normalized_hwc": "0be983682f1849e2a6ee1134a02a79cae05eb59ddcb373fcf5f0a869b135fd5d"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "1a5e195a80e1f38ddb6b66fac4c2ac1e186109e7bb35e07a9e2d196408757d5b",
+        "formal_runtime_value_sha256": "1a5e195a80e1f38ddb6b66fac4c2ac1e186109e7bb35e07a9e2d196408757d5b"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "6099a33920fc6137084359797195e8ae6435ad37b829708ba542ab8e85cd028b",
+        "formal_runtime_value_sha256": "6099a33920fc6137084359797195e8ae6435ad37b829708ba542ab8e85cd028b"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 25306,
+        "formal_value_sha256": "fcb5709c8e396224e5e5fcf1d5a1f8e4a2aed243abe3184c76b2921e4fc7eb55",
+        "rerun_value_sha256": "1a5e195a80e1f38ddb6b66fac4c2ac1e186109e7bb35e07a9e2d196408757d5b"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "a95878cf35e8af1a02dd6f3e8b2c4c03ea151f5b203d44424048fe27cdae7f22",
+          "formal_nonzero_count": 4713939,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "0b7d0a7c4c0817462dd65b64ccee732e5fe59cc824d9a8321d11e4f715db94b8",
+          "formal_nonzero_count": 76111,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "38f89e13b576ba4e0f1a16271fcf8b03b9a50ea6f2855e9abae0f888ca618680",
+          "formal_nonzero_count": 49741,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "c8a693d63c6305e2e65a59947ab411c803fd16e21f25a33f97e2cd9210459e43",
+          "formal_nonzero_count": 1496639,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "fcb5709c8e396224e5e5fcf1d5a1f8e4a2aed243abe3184c76b2921e4fc7eb55",
+          "formal_nonzero_count": 26370,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "ab4a4004fd3007855b7163b7158437370dcf151fd1a25634e2603945c5238844",
+          "formal_nonzero_count": 73191,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "b2b639451951eaede4bd8563d5b7147f0099abe6366b83394bef9e40641122e8",
+          "formal_nonzero_count": 63178,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1165,
+            1350,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "fae20d8fe3a4a417acdc9491cae4d2e67a8e37a450ffbb459d8c2a0ef529ef29",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "rerun_value_sha256": "c2934d624b62efb9deaa55d6d3aa2ee18d8edfaa8562e73d72ec35bd7aaf4f3c",
+          "formal_value_sha256_normalized_hwc": "c2934d624b62efb9deaa55d6d3aa2ee18d8edfaa8562e73d72ec35bd7aaf4f3c"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "2d0542eeba4ae738bbc49deac6a74fab25151a5e4d814ee7ac7f7187488f7bc5",
+          "formal_value_sha256_normalized_hwc": "2d0542eeba4ae738bbc49deac6a74fab25151a5e4d814ee7ac7f7187488f7bc5"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "f5db0e5a3062776173c3376e1de00b134110858014e1d6a82074c3690ea049c7",
+          "formal_value_sha256_normalized_hwc": "f5db0e5a3062776173c3376e1de00b134110858014e1d6a82074c3690ea049c7"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "50d8f70b1313813a6cda9e20d5628f87274a067c4f2b29529c594f8210651994",
+          "formal_value_sha256_normalized_hwc": "50d8f70b1313813a6cda9e20d5628f87274a067c4f2b29529c594f8210651994"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "21e76047463f79bb7d09d1d7212db1d4e38917409ba4c6dce291e68e3ff99623",
+        "formal_runtime_value_sha256": "21e76047463f79bb7d09d1d7212db1d4e38917409ba4c6dce291e68e3ff99623"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "f8c27b793e083594e4733da479ab134ee0f867517449254414bd3acc3a10329f",
+        "formal_runtime_value_sha256": "f8c27b793e083594e4733da479ab134ee0f867517449254414bd3acc3a10329f"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 25409,
+        "formal_value_sha256": "f6982080bdd52f316515057ad882a5d029046d3d0f9cee274f2f2ebb5a9e1c2d",
+        "rerun_value_sha256": "21e76047463f79bb7d09d1d7212db1d4e38917409ba4c6dce291e68e3ff99623"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "9b2a603dbd71949485d5be04736684c5908f3d19661c6d326459be0633d32630",
+          "formal_nonzero_count": 4718582,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "50381c66b0fcfdf1f75401eaa4735dfa8f8ee247747fe0ac415539b83043110b",
+          "formal_nonzero_count": 77442,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "a10bc30c8206fcf1d4222ceaeff495718f4772e1419ae9f6d0960d0e6f4e9e53",
+          "formal_nonzero_count": 51003,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "49523ee3d60f5e11a7244d10e1eb3604a1bd5afec7767203dd6290789de0f798",
+          "formal_nonzero_count": 1495492,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f6982080bdd52f316515057ad882a5d029046d3d0f9cee274f2f2ebb5a9e1c2d",
+          "formal_nonzero_count": 26439,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "82eba494400e5be3ae51b30032c700fe4db34d2a0d97712ce5e7c32657a51246",
+          "formal_nonzero_count": 73527,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "6d98ff89df6048d6e1dbdcf7f29cbfd8697d7f14a8e503558c4f8755c899789c",
+          "formal_nonzero_count": 63275,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "rerun_value_sha256": "608f40f17aef167029f2d1d4da9d3b5c0364172fb89f1780bec7f42207d6b34c",
+          "formal_value_sha256_normalized_hwc": "608f40f17aef167029f2d1d4da9d3b5c0364172fb89f1780bec7f42207d6b34c"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "90f0b74109ac149aa28e76ecb1d260a949934137cf204785a2387e5241c0c643",
+          "formal_value_sha256_normalized_hwc": "90f0b74109ac149aa28e76ecb1d260a949934137cf204785a2387e5241c0c643"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "8b96b53c2eee7c575323fdddd20ebf85d76f3f9d0a98c6b1fb34cd323f5b7d16",
+          "formal_value_sha256_normalized_hwc": "8b96b53c2eee7c575323fdddd20ebf85d76f3f9d0a98c6b1fb34cd323f5b7d16"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "396be1c081ba5c52cc2910da4bfae8cdbe852649d6bbdc98d87138215006ba24",
+          "formal_value_sha256_normalized_hwc": "396be1c081ba5c52cc2910da4bfae8cdbe852649d6bbdc98d87138215006ba24"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "417093dbae20825d75715713f53f17886f09601e7dc93bdd2ce52ad075171759",
+        "formal_runtime_value_sha256": "417093dbae20825d75715713f53f17886f09601e7dc93bdd2ce52ad075171759"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "544e249e205d5b441c1120aa72329a86e256ff9a144872fd4f2cd05a0451785c",
+        "formal_runtime_value_sha256": "544e249e205d5b441c1120aa72329a86e256ff9a144872fd4f2cd05a0451785c"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 17439,
+        "formal_value_sha256": "e359355caf73ee0c770a6024a0674b5814d4bd5d61c23c96e60af8d8900cb996",
+        "rerun_value_sha256": "417093dbae20825d75715713f53f17886f09601e7dc93bdd2ce52ad075171759"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "27dbc10c5b19253ca9853531b205f2f4af92346a37b84a47688e2264f980ea02",
+          "formal_nonzero_count": 4718607,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "0d2280655a99c54fd1e947fe03b547374adefff0572fa24397ed7da7d73a9df8",
+          "formal_nonzero_count": 64391,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "c169fccb873d4fc4f4cd0023c5dccc662f0b425d3aceb242ec2fe0492a00a3c4",
+          "formal_nonzero_count": 46191,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "5aaa7e3c825133a18ebb66fc747f558601803a34b6ca5616eb202b69e3deb3de",
+          "formal_nonzero_count": 1508543,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "e359355caf73ee0c770a6024a0674b5814d4bd5d61c23c96e60af8d8900cb996",
+          "formal_nonzero_count": 18200,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "5b8b8d58810a5a23a9e2649cf60379ea68eed6257237525516fe7623a893c2ff",
+          "formal_nonzero_count": 61704,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "ddc53ced1186d78997ead79cb731fde07f091b970ec3bcba6372ef5f8f2766bf",
+          "formal_nonzero_count": 51891,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "rerun_value_sha256": "bb87050cf87b4099c780fbca0c6532b23977d54783d8967be3249b85421601d9",
+          "formal_value_sha256_normalized_hwc": "bb87050cf87b4099c780fbca0c6532b23977d54783d8967be3249b85421601d9"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "12f93d04f4818a11c3318c47e736db613f9eb685fa13ec666ca353952d7dda5e",
+          "formal_value_sha256_normalized_hwc": "12f93d04f4818a11c3318c47e736db613f9eb685fa13ec666ca353952d7dda5e"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "2fbe418c3fbf9506fd88d627e9fb1831211ea38f8898456593484d5c37f001f4",
+          "formal_value_sha256_normalized_hwc": "2fbe418c3fbf9506fd88d627e9fb1831211ea38f8898456593484d5c37f001f4"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "771d2a37fe319aebbc089f4cc38e0ad2771ea8a56f8a07298574276c87fa86ed",
+          "formal_value_sha256_normalized_hwc": "771d2a37fe319aebbc089f4cc38e0ad2771ea8a56f8a07298574276c87fa86ed"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "8ef1c4752527cfd27b29d50520b2c0524031b07fc078f1fc4dd89a51b6f7edc6",
+        "formal_runtime_value_sha256": "8ef1c4752527cfd27b29d50520b2c0524031b07fc078f1fc4dd89a51b6f7edc6"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "72368be3337446b361ac126603208e7525545f936deaae5fdb6a5bae196bf9e5",
+        "formal_runtime_value_sha256": "72368be3337446b361ac126603208e7525545f936deaae5fdb6a5bae196bf9e5"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 17140,
+        "formal_value_sha256": "79eee7d901c1c8388c0e64d96638ba38a16d4f1819109e029fb5273d86a8a4d6",
+        "rerun_value_sha256": "8ef1c4752527cfd27b29d50520b2c0524031b07fc078f1fc4dd89a51b6f7edc6"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "3e1ca0deb2f4d5f55f0ef09364d81ffa4b14ae14f9fa43dcede53bb8c649c3fe",
+          "formal_nonzero_count": 4714629,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "e0029658691a85631b3c16a737c12d4f30ed340c63e87f23b3810f3720a48a16",
+          "formal_nonzero_count": 58021,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "4199d321dac8c742433684b016319064a092e9dc6d2d94f07cf328a32f1df522",
+          "formal_nonzero_count": 40435,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "20f7eb3a0e69e7b8f175314909d7d10e2d48754b321a038a61a55a7cf68f1623",
+          "formal_nonzero_count": 1514913,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "79eee7d901c1c8388c0e64d96638ba38a16d4f1819109e029fb5273d86a8a4d6",
+          "formal_nonzero_count": 17586,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "7256f7f2033bc2230822ec021594580cb0753e8267f8628cace39678be1f1b0d",
+          "formal_nonzero_count": 53594,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "9152ff5f0192e7baf0cb64640037b6fb486f944753d37c8fe794380b82e681eb",
+          "formal_nonzero_count": 44067,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "rerun_value_sha256": "4344edfcb3f4fd6388f6013514af580b8aea4148e3e68e0354c32a4a478349d4",
+          "formal_value_sha256_normalized_hwc": "4344edfcb3f4fd6388f6013514af580b8aea4148e3e68e0354c32a4a478349d4"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "3b69eb8e47f7e5473691b4c2f3438736c678cb2a26ca2ebe6ee35bbb31e1e049",
+          "formal_value_sha256_normalized_hwc": "3b69eb8e47f7e5473691b4c2f3438736c678cb2a26ca2ebe6ee35bbb31e1e049"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "8ceb7f24188a90b1a97c930993abd68180db174824df8cf0a3d744f703ed2c8a",
+          "formal_value_sha256_normalized_hwc": "8ceb7f24188a90b1a97c930993abd68180db174824df8cf0a3d744f703ed2c8a"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "dc04048b09503df18a4aaec30b07f355a6112e6794bd5461f72778e35fc3bfc0",
+          "formal_value_sha256_normalized_hwc": "dc04048b09503df18a4aaec30b07f355a6112e6794bd5461f72778e35fc3bfc0"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "4ef949424390d1a455e726e44bcba51defe8a497acde24a3a73f56c474a6a81c",
+        "formal_runtime_value_sha256": "4ef949424390d1a455e726e44bcba51defe8a497acde24a3a73f56c474a6a81c"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "9f69d7b4034b0a779ad6ce7e54214a99a22eff8baf8ce3042c2d68f8512ee728",
+        "formal_runtime_value_sha256": "9f69d7b4034b0a779ad6ce7e54214a99a22eff8baf8ce3042c2d68f8512ee728"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 18382,
+        "formal_value_sha256": "be4c578eac12d5881010b2689f15d342357b295e7a47f363fbe1cec76a8c72af",
+        "rerun_value_sha256": "4ef949424390d1a455e726e44bcba51defe8a497acde24a3a73f56c474a6a81c"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "5e011a488468d619317506425b423f8771b9e769f6a9b6487989678dd14338df",
+          "formal_nonzero_count": 4718744,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "3eef7f6a1a4ea33021e3e2c8bf619f08c10886d22b2c1add170628380bd70f77",
+          "formal_nonzero_count": 73219,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "bf0cbf7db3474b289d5d10d4cbeac9eecce035d69052f0bc28071b0b4cd62fbc",
+          "formal_nonzero_count": 53968,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "68628fe110655b90bc0faeb727423c07a60069b8b5ba44b4bb1b53805e45f534",
+          "formal_nonzero_count": 1499715,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "be4c578eac12d5881010b2689f15d342357b295e7a47f363fbe1cec76a8c72af",
+          "formal_nonzero_count": 19251,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f80b5f51c2c701aee389d18d8694447f394af8bf4d90847174013af015bcf4b8",
+          "formal_nonzero_count": 70786,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "2a7f910cd02867af91ea64668986032ce26bfa26e4e78eb314946c9bc49422ed",
+          "formal_nonzero_count": 59795,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "rerun_value_sha256": "ca83e04a20a0051bb4344760c8bd50325497fae7a40a2d67fa0e8579fe1d9751",
+          "formal_value_sha256_normalized_hwc": "ca83e04a20a0051bb4344760c8bd50325497fae7a40a2d67fa0e8579fe1d9751"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "127f17cae2359999f7e2246904ce6253f391e31f9edd3d41ca12b4ecb7d729ff",
+          "formal_value_sha256_normalized_hwc": "127f17cae2359999f7e2246904ce6253f391e31f9edd3d41ca12b4ecb7d729ff"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "741ba0be15e0fec5e9e06240c381b65b937e2b5fcddf48f0260966d6ad600f3a",
+          "formal_value_sha256_normalized_hwc": "741ba0be15e0fec5e9e06240c381b65b937e2b5fcddf48f0260966d6ad600f3a"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "dacfb22b3f6c9d51a9319a0dbafc98b72104ace1aabe2ef634a9b6941947ca3f",
+          "formal_value_sha256_normalized_hwc": "dacfb22b3f6c9d51a9319a0dbafc98b72104ace1aabe2ef634a9b6941947ca3f"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "67d7ab7cb21f2326a73abf77d488e82c23d9b6a1940e403ba872b92da79d1aa4",
+        "formal_runtime_value_sha256": "67d7ab7cb21f2326a73abf77d488e82c23d9b6a1940e403ba872b92da79d1aa4"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "07652c3928a06888a56da36d7d1938310eeb634fce7492de90d01b41e76e2fc3",
+        "formal_runtime_value_sha256": "07652c3928a06888a56da36d7d1938310eeb634fce7492de90d01b41e76e2fc3"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 19451,
+        "formal_value_sha256": "192533676f9263eb45431644a1c450305cbf7f35344f392cdd78a3182f8da506",
+        "rerun_value_sha256": "67d7ab7cb21f2326a73abf77d488e82c23d9b6a1940e403ba872b92da79d1aa4"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "4a3f3376dd3bf98e5ad3f34c9b407b207b9becc4c621d8b786b7cfb95cab6700",
+          "formal_nonzero_count": 4718677,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "6f9270b88b0ce55a12550591679d0c309ec6a22818fca90f74e9fbc3ba69cd19",
+          "formal_nonzero_count": 74264,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "6f012626ee8b8fe530967617544d54dc6844880bac5537e8d9124778457bdf88",
+          "formal_nonzero_count": 53933,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "9ae28f99a64dff6918b336362592f95c7ed0ca4de955bb2d66b334f96443b8c6",
+          "formal_nonzero_count": 1498670,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "192533676f9263eb45431644a1c450305cbf7f35344f392cdd78a3182f8da506",
+          "formal_nonzero_count": 20331,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "eddf5bae90bf1032ee737b85ed4ff6fb6708c75331da2bda9d4cb6d0f2e8d946",
+          "formal_nonzero_count": 69163,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "2f7d61d03913f217f3a9d52f29676954d12b166f4c948fbc2a977e9fcd6380ae",
+          "formal_nonzero_count": 60244,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "shared_field_comparisons": {
+        "raw_to_target_edit_rgb": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "rerun_value_sha256": "91aebcf388aff568646d00964a7c5abe4c584a66149957bb882e0feae86a68bb",
+          "formal_value_sha256_normalized_hwc": "91aebcf388aff568646d00964a7c5abe4c584a66149957bb882e0feae86a68bb"
+        },
+        "person_to_target_foreground_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "358746a85d80d47961581794ba0d568aef385d2d3755b06e4ffde5f167073f50",
+          "formal_value_sha256_normalized_hwc": "358746a85d80d47961581794ba0d568aef385d2d3755b06e4ffde5f167073f50"
+        },
+        "garment_to_target_clothing_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "5a59f762e194a87e631face59715faa487d03eaee59e8ebc182c0d97b98c346e",
+          "formal_value_sha256_normalized_hwc": "5a59f762e194a87e631face59715faa487d03eaee59e8ebc182c0d97b98c346e"
+        },
+        "protected_to_target_protected_mask": {
+          "shape_exact": true,
+          "value_exact": true,
+          "rerun_shape": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "rerun_value_sha256": "688e7c889ca50abf46cf56062dfb3098c9341b86da728de9411ae0228c54bba7",
+          "formal_value_sha256_normalized_hwc": "688e7c889ca50abf46cf56062dfb3098c9341b86da728de9411ae0228c54bba7"
+        }
+      },
+      "boundary_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "3x3 square morphological gradient of garment mask",
+        "formal_runtime_source": "target_clothing_mask",
+        "formal_persisted_equivalent_field": null,
+        "value_exact": true,
+        "rerun_value_sha256": "05f02008e56324709585649ff4b59f75f9ea14adc7aecbe0b0cf83d2319bb798",
+        "formal_runtime_value_sha256": "05f02008e56324709585649ff4b59f75f9ea14adc7aecbe0b0cf83d2319bb798"
+      },
+      "garment_rgb_masked_target": {
+        "classification": "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION",
+        "rerun_definition": "raw * garment",
+        "formal_runtime_definition": "target_edit_rgb * target_clothing_mask",
+        "value_exact": true,
+        "rerun_value_sha256": "d0b237079864862d6246be386edb1b12f8b5cb2f6f98ef994a3a8483c609488e",
+        "formal_runtime_value_sha256": "d0b237079864862d6246be386edb1b12f8b5cb2f6f98ef994a3a8483c609488e"
+      },
+      "formal_transition_vs_rerun_boundary": {
+        "value_exact": false,
+        "different_pixel_count": 25711,
+        "formal_value_sha256": "03bb3903b42ce2d1d80f2ccfabb0ffd41a3991d9a2b47b6cc2fb689d35e642fa",
+        "rerun_value_sha256": "05f02008e56324709585649ff4b59f75f9ea14adc7aecbe0b0cf83d2319bb798"
+      },
+      "scientific_mismatch_fields": {
+        "target_base_rgb": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            3
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "60df776e9ebe258f85e1b62ea2157bd71a2ebcb7b66cf59eab319f70c5cf1305",
+          "formal_nonzero_count": 4713323,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_edit_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "aa3393cbcc9a1471c7cbacac8018d6704a64be4437320a548d19525295f221e4",
+          "formal_nonzero_count": 94168,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_edit_core_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "143e1851af15dc6191ddb2767050f7ec05e9c7dd8e19c7cf2e3d0df9c444b61c",
+          "formal_nonzero_count": 67322,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_preserve_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "47b912e06771e57f025979831ef4feeea78a17bd2d906d9a757ca9b6058c5ef1",
+          "formal_nonzero_count": 1478766,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_transition_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "03bb3903b42ce2d1d80f2ccfabb0ffd41a3991d9a2b47b6cc2fb689d35e642fa",
+          "formal_nonzero_count": 26846,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_base_foreground_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "dabb73880c906e7b2023455448eda90cfa224cc218e4b9f40fca2402e0ebca0d",
+          "formal_nonzero_count": 83242,
+          "reason": "rerun binds a live Base60747 render/alpha instead of the formal precomputed base target"
+        },
+        "target_old_clothing_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f01aba6773e233422b5f255f89ae1b256f8ceaad08ad03c389ab19d4a198bdc1",
+          "formal_nonzero_count": 74558,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        },
+        "target_revealed_skin_mask": {
+          "classification": "SCIENTIFIC_FIELD_MISMATCH",
+          "formal_present": true,
+          "rerun_loader_present": false,
+          "formal_shape_normalized_hwc": [
+            1166,
+            1349,
+            1
+          ],
+          "formal_dtype": "float32",
+          "formal_value_sha256_normalized_hwc": "f9e02f767769eb00605562cf7afcc36ed4aefb6c9e2835795bdf2f9218994908",
+          "formal_nonzero_count": 0,
+          "reason": "field is required by the formal loader but absent from the rerun loader and Teacher loss contract"
+        }
+      }
+    }
+  ],
+  "field_level_summary": {
+    "BYTE_EXACT": [
+      "target_edit_rgb",
+      "target_foreground_mask",
+      "target_clothing_mask"
+    ],
+    "PIXEL_OR_TENSOR_EXACT_DIFFERENT_CONTAINER_ENCODING": [
+      "target_protected_mask"
+    ],
+    "SEMANTICALLY_EQUIVALENT_RUNTIME_DERIVATION": [
+      "boundary_target",
+      "garment_rgb_masked_target"
+    ],
+    "SCIENTIFIC_FIELD_MISMATCH": [
+      "target_base_rgb",
+      "target_edit_mask",
+      "target_edit_core_mask",
+      "target_preserve_mask",
+      "target_transition_mask",
+      "target_base_foreground_mask",
+      "target_old_clothing_mask",
+      "target_revealed_skin_mask"
+    ]
+  },
+  "classification": "D_FORMAL_TARGET_SCIENTIFIC_FIELD_MISMATCH"
+}

@@ -1,0 +1,582 @@
+{
+  "schema_version": "canondressgs.subject00.o03_camsafe7.camera_equivalence.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-FORMAL-TARGET-EQUIVALENCE-AUDIT-001",
+  "created_at": "2026-07-27T00:00:00Z",
+  "camera_record_count": 7,
+  "camera_byte_exact_count": 0,
+  "camera_canonical_exact_count": 7,
+  "camera_numerical_max_abs_diff": 0.0,
+  "camera_numerical_max_rel_diff": 0.0,
+  "records": [
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "direction": "front",
+      "camera_id": 17,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "4033c4f409edaa764412b06436decff722b1e29b87df64f3d92be3a1f844a95e",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot00_canary_attempt004_cand00_camera.json",
+      "formal_camera_sha256": "a8d67b325611ebe9d5cade6bbeca4434228debde01dc9b3b60f7beb1b832b54c",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1350,
+      "height": 1165,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "2e4b919e0d7736a267f569dd05a62f31cc9d702b2598a4ee61ab757ce91dca40",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam17_frame00000000.jpg",
+        "sha256": "b5e790c6e978fa0ecbf7bcad3fe64aa64382f67f22ff3f1b0bb3d0d33764abdf"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot00_canary_attempt004_cand00.png",
+        "sha256": "f5197d9646ccf60ddffe3184e295e2afed2f04ff3ccbe95b5908974f6652e9e1"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "direction": "front-left",
+      "camera_id": 21,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "76b4d262d2ef63e1882bafacf4e0ff1ef4e9a7f7200eccad8e8300eaf7f28ced",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot01_remaining_attempt005_cand00_camera.json",
+      "formal_camera_sha256": "6769067cfb950df239c4cb4f57354012e77707519697f3323f696de1229b89d6",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1349,
+      "height": 1166,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "d8a6bd423b52a842ec1e450a502e7e4fb917e0c2abac30999ae9c4620c396554",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam21_frame00000000.jpg",
+        "sha256": "24123ce6df43b4b00fe6d06aae74e69fc8eb08552e86945a864340a431cf52ed"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot01_remaining_attempt005_cand00.png",
+        "sha256": "917d7d74d0b9dba42919cd75a27cdf04c160d8a8084bd8b66a204eb15e089b3f"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "direction": "front-right",
+      "camera_id": 14,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "7dcb1c4334f022ddaa781abdcbe7e61e36a5797e1be197b4541b495a58a748d1",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot02_cand00_camera.json",
+      "formal_camera_sha256": "e531b88949e19c89708bef6ae0dc0956406d783bd6777e26eb8a5208207985a5",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1349,
+      "height": 1166,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "557d3c8851364513c78a574c1bbf63f30797435d7e739e41456653156322124b",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam14_frame00000000.jpg",
+        "sha256": "575d04d79c3b89e1f94171ab42c80591fa843429ee815fef823bdd13c24fba33"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot02_cand00.png",
+        "sha256": "cc48b0e48fc9e09e5a6c9d5cba8f56b818e9deea3b1468251c94f6cccfdc9196"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "direction": "left",
+      "camera_id": 23,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "ed085ca3d2371b3aaffa19b07bfd2e46e05bb89c2662dabd5342af97d5600f99",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot03_cand01_camera.json",
+      "formal_camera_sha256": "859317d7fb1d3400558d596991f0559dcf18ff16148cf62d8e739ef62811d71c",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1349,
+      "height": 1166,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "ceb7f46fb0eefe5c334fa9be7336773b6572332ab15a4cfd1c414c675416757d",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam23_frame00000000.jpg",
+        "sha256": "a0c34bd8bee414ef2aa06b8457ef661790ff9956aa9b1b16079e15dc6fb1a23b"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot03_cand01.png",
+        "sha256": "47601e3cde68fdac9461f1fc74c4f47f7db47611e323778fc22cef476944754f"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "direction": "back-left",
+      "camera_id": 2,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "40d5bac57c6ad1a7942673814703d5a9f6dcbea154d2cb5b59fa1535acfebf95",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot05_canary_attempt004_cand00_camera.json",
+      "formal_camera_sha256": "afa8d17a143e82813249305bdd6de2f31e76f215001dbee2368838dcbae40b31",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1349,
+      "height": 1166,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "7b592959c1816f6ffb3baca44433ac60b3024e42bdac190dbd8645b7c1fc5122",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam02_frame00000000.jpg",
+        "sha256": "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot05_canary_attempt004_cand00.png",
+        "sha256": "379562123b1d918d68171b9224068dbe905d2d5e108900408b5da82c49128aa1"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "direction": "back-right",
+      "camera_id": 9,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "aaaaa6488bf16002c4e57c040a08389b5d9a164a98cd593300dffd80f7149f3c",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot06_remaining_attempt005_cand00_camera.json",
+      "formal_camera_sha256": "00c133d2fad7f546d76bdde7b76e470766ec14e70c90ea9ff5ccecc03d3b97ad",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1349,
+      "height": 1166,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "db42d3ea4d4b1b69263b594fe58f62d29060eec2e9440d227c0c406209948f7f",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam09_frame00000000.jpg",
+        "sha256": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot06_remaining_attempt005_cand00.png",
+        "sha256": "8f843334c5ecda1003f70fe67482dff5e983387dc7281e336e2546194e2fff14"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "direction": "back",
+      "camera_id": 5,
+      "rerun_camera_container": "embedded manifest camera_record plus pixel_registration",
+      "rerun_camera_record_sha256": "2f40bc6bad66cbee99a52d777cf6d4614291be3781cebb716c5a08a602462531",
+      "formal_camera_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera/subject00_O03_slot07_canary_attempt004_cand00_camera.json",
+      "formal_camera_sha256": "480fe16f8b081628bcff47105caeb1685dc25478a3633a8f380b988a5b2f254c",
+      "camera_byte_exact": false,
+      "camera_canonical_exact": true,
+      "canonical_comparison": {
+        "K_source": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "T_pixel": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "K_target": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "w2c": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        },
+        "c2w": {
+          "shape": [
+            4,
+            4
+          ],
+          "dtype": "float64_canonical",
+          "raw_serialized_value_exact": true,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0
+        }
+      },
+      "width": 1349,
+      "height": 1166,
+      "transform_model": "ISOTROPIC_SIMILARITY_LEFT_MULTIPLY_K",
+      "transform_sha256": "d02e3e642625413dbef3226127ba7c0090906b95fa63957b126c4edc6d9c6b1f",
+      "source_checksum": {
+        "path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam05_frame00000000.jpg",
+        "sha256": "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294"
+      },
+      "target_checksum": {
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\.staging\\03_raw\\O03\\subject00_O03_slot07_canary_attempt004_cand00.png",
+        "sha256": "9300293c0b028f5f7f194f5de6d56426404938a84ff61ec37d6ce56afab84441"
+      },
+      "conventions": {
+        "intrinsic_update": "K_target = T_pixel @ K_source",
+        "extrinsic_update": "w2c_target = w2c_source; c2w_target = c2w_source",
+        "pixel_coordinates": "OpenCV u-right v-down homogeneous column vectors"
+      }
+    }
+  ],
+  "canonical_rule": "scientific numeric arrays compared after exact shape normalization; no tolerance was needed",
+  "classification": "CANONICAL_EXACT_7_OF_7_DIFFERENT_CONTAINER",
+  "camera_record_mutations": 0
+}

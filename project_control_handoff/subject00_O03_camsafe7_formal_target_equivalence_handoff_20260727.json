@@ -1,0 +1,28 @@
+{
+  "schema_version": "canondressgs.project_control_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-CAMSAFE7-FORMAL-TARGET-EQUIVALENCE-AUDIT-001",
+  "created_at": "2026-07-27T00:00:00Z",
+  "status": "COMPLETE_CLASS_D_NO_BINDING_CREATED",
+  "source_branch": "research/subject00-o03-camsafe7-formal-target-equivalence-audit-20260727",
+  "source_head": "RECORDED_IN_FINAL_TASK_RESPONSE_AFTER_REPORTING_COMMIT",
+  "target_equivalence_class": "D",
+  "scientific_field_mismatch_count": 8,
+  "mismatch_fields": [
+    "target_base_rgb",
+    "target_edit_mask",
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_transition_mask",
+    "target_base_foreground_mask",
+    "target_old_clothing_mask",
+    "target_revealed_skin_mask"
+  ],
+  "final_classification": "SUBJECT00_O03_CAMSAFE7_RERUN_TARGET_MISMATCH_REQUIRES_CLEAN_FORMAL_TARGET_RERUN",
+  "next_unique_task": "RUN_SUBJECT00_O03_PROVISIONAL_TEACHER_FROM_FORMAL_MATERIALIZED_7VIEW_TARGETS",
+  "instructions": [
+    "Use the exact seven-record formal O03 index in its recorded order.",
+    "Keep slot04/cam11 excluded and denominator fixed at seven.",
+    "Start a clean run; do not mutate or resume the rejected rerun.",
+    "Preserve Formal Base60747 as USER_AUTHORIZED_PAUSED until a new user authorization explicitly permits the clean formal-target rerun."
+  ]
+}
