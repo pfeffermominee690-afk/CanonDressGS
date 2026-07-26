@@ -98,8 +98,25 @@ def main() -> None:
         raise FileExistsError("attempt root must be absent during pre-execution capture")
     branch = git("branch", "--show-current")
     head = git("rev-parse", "HEAD")
-    if branch != EXPECTED_BRANCH or head != EXPECTED_SOURCE_HEAD:
-        raise RuntimeError(f"unexpected execution branch/head: {branch} {head}")
+    source_is_ancestor = (
+        subprocess.run(
+            [
+                "git",
+                "-C",
+                str(ROOT),
+                "merge-base",
+                "--is-ancestor",
+                EXPECTED_SOURCE_HEAD,
+                head,
+            ],
+            check=False,
+        ).returncode
+        == 0
+    )
+    if branch != EXPECTED_BRANCH or not source_is_ancestor:
+        raise RuntimeError(
+            f"unexpected execution branch/source ancestry: {branch} {head}"
+        )
     if git("status", "--porcelain=v2"):
         raise RuntimeError("execution worktree must be clean before baseline capture")
 
@@ -176,6 +193,7 @@ def main() -> None:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "source_branch": EXPECTED_BRANCH,
         "source_head": EXPECTED_SOURCE_HEAD,
+        "capture_head": head,
         "source_worktree_clean": True,
         "attempt_root": str(attempt_root),
         "attempt_root_preexisted": False,
