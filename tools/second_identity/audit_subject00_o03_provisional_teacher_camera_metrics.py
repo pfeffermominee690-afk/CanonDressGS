@@ -817,10 +817,13 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     formal_pause = read_json(formal_pause_path)
     formal_resume = read_json(formal_resume_path)
     if (
-        formal_pause["status"] != "USER_AUTHORIZED_PAUSED"
-        or int(formal_resume["resume_checkpoint_step"]) != 60747
-        or formal_resume["resume_ready"] is not True
-        or formal_resume["resume_authorized"] is not False
+        formal_pause["formal_base_final_status"] != "INCOMPLETE"
+        or formal_pause["formal_base_completed"] is not False
+        or formal_pause["formal_base_resumable"] is not True
+        or int(formal_pause["latest_complete_checkpoint_step"]) != 60747
+        or int(formal_resume["RESUME_CHECKPOINT_STEP"]) != 60747
+        or formal_resume["FORMAL_BASE_RESUME_READY"] is not True
+        or formal_resume["FORMAL_BASE_RESUME_AUTHORIZED"] is not False
     ):
         raise RuntimeError("Formal Base pause/resume contract changed")
     checkpoint_hashes_before = {
