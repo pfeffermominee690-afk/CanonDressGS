@@ -724,9 +724,22 @@ def thumbnail_sheet(title: str, records: list[dict[str, Any]], destination: Path
         thumb = fit_image(image, tile_width - 8, tile_height - 30)
         row, column = divmod(index, columns)
         x, y = column * tile_width + 4, 55 + row * tile_height
-        canvas[y:y + thumb.shape[0], x:x + thumb.shape[1]] = thumb
-        label = f"{record['request_id']} {record['output_width']}x{record['output_height']} {record['primary_classification']}"
-        cv2.putText(canvas, label[:58], (x + 4, y + tile_height - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.36, (230, 230, 230), 1, cv2.LINE_AA)
+        tile = np.full((tile_height, tile_width - 8, 3), 20, dtype=np.uint8)
+        tile[:thumb.shape[0], :thumb.shape[1]] = thumb
+        class_label = {
+            "REGISTERED_SIMILARITY_PASS_CANDIDATE": "SIMILARITY_PASS_PENDING_HUMAN",
+            "REGISTRATION_EVIDENCE_INSUFFICIENT": "EVIDENCE_INSUFFICIENT",
+            "AFFINE_OR_PROJECTIVE_RECOMPOSITION_FAIL": "AFFINE_PROJECTIVE_FAIL",
+            "BACKGROUND_GEOMETRY_CHANGED_FAIL": "BACKGROUND_GEOMETRY_FAIL",
+            "PERSON_OR_POSE_REGISTRATION_FAIL": "PERSON_POSE_FAIL",
+            "GARMENT_OR_HUMAN_VISUAL_FAIL": "VISUAL_REVIEW_FAIL",
+        }[record["primary_classification"]]
+        cv2.putText(tile, record["request_id"], (4, tile_height - 18), cv2.FONT_HERSHEY_SIMPLEX, 0.34, (235, 235, 235), 1, cv2.LINE_AA)
+        cv2.putText(
+            tile, f"{record['output_width']}x{record['output_height']} | {class_label}",
+            (4, tile_height - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.31, (190, 210, 225), 1, cv2.LINE_AA,
+        )
+        canvas[y:y + tile_height, x:x + tile.shape[1]] = tile
     cv2.imwrite(str(destination), canvas)
 
 
