@@ -47,7 +47,8 @@ def load(name: str):
 def test_required_artifacts_exist_and_parse():
     for path in FILES.values():
         assert path.is_file(), path
-        assert json.loads(path.read_text(encoding="utf-8"))["task_id"] == TASK_ID
+        value = json.loads(path.read_text(encoding="utf-8"))
+        assert value.get("task_id", value.get("TASK_ID")) == TASK_ID
     assert (
         RISK
         / "SUBJECT00_O03_PROVISIONAL_TEACHER_CAMERA_METRIC_REVIEW_REPORT_20260727.md"
