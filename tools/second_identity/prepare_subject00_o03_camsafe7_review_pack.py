@@ -613,7 +613,9 @@ def panel_sources(
     return panels, overlay
 
 
-def generate_pages(sources: Mapping[str, Any]) -> list[Path]:
+def generate_pages(
+    sources: Mapping[str, Any], *, resume_missing_only: bool = False
+) -> list[Path]:
     for directory in (
         "00_master",
         "01_safe7_views",
@@ -623,25 +625,41 @@ def generate_pages(sources: Mapping[str, Any]) -> list[Path]:
         "05_excluded_slot04",
         "06_indexes",
     ):
-        (PACK_ROOT / directory).mkdir(parents=True, exist_ok=False)
+        (PACK_ROOT / directory).mkdir(
+            parents=True, exist_ok=resume_missing_only
+        )
     records = sources["records"]
     metrics = sources["metric_rows"]
     page_paths = [PACK_ROOT / directory / filename for directory, filename, _ in PAGE_SPECS]
 
     master_panels: list[tuple[str, Image.Image]] = []
-    for slot in SAFE_SLOTS:
-        record = records[slot]
-        old_page = RUN_ROOT / "review" / f"{slot}_clean7_high_resolution_review.png"
-        master_panels.extend(
-            [
-                (f"{slot} target", Image.open(record["accepted_raw"]["path"]).convert("RGB")),
-                (f"{slot} Base60747", extract_panel(old_page, 3)),
-                (f"{slot} clean Teacher7", extract_panel(old_page, 5)),
-                (f"{slot} target-clean diff", extract_panel(old_page, 6)),
-                (f"{slot} person mask", mask_rgb(Path(record["person_mask"]["path"]))),
-                (f"{slot} garment mask", mask_rgb(Path(record["garment_mask"]["path"]))),
-            ]
-        )
+    if not page_paths[0].exists():
+        for slot in SAFE_SLOTS:
+            record = records[slot]
+            old_page = (
+                RUN_ROOT
+                / "review"
+                / f"{slot}_clean7_high_resolution_review.png"
+            )
+            master_panels.extend(
+                [
+                    (
+                        f"{slot} target",
+                        Image.open(record["accepted_raw"]["path"]).convert("RGB"),
+                    ),
+                    (f"{slot} Base60747", extract_panel(old_page, 3)),
+                    (f"{slot} clean Teacher7", extract_panel(old_page, 5)),
+                    (f"{slot} target-clean diff", extract_panel(old_page, 6)),
+                    (
+                        f"{slot} person mask",
+                        mask_rgb(Path(record["person_mask"]["path"])),
+                    ),
+                    (
+                        f"{slot} garment mask",
+                        mask_rgb(Path(record["garment_mask"]["path"])),
+                    ),
+                ]
+            )
     aggregate_lines = [
         (
             "Aggregate safe7: full LPIPS=0.770452 (background-sensitive; never "
@@ -660,21 +678,24 @@ def generate_pages(sources: Mapping[str, Any]) -> list[Path]:
             "this overview and every aggregate denominator."
         ),
     ]
-    draw_grid_page(
-        page_paths[0],
-        size=(6400, 4000),
-        title="Subject00 O03 camera-safe7 Teacher - master overview",
-        annotations=[
-            "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
-            *aggregate_lines,
-        ],
-        panels=master_panels,
-        columns=6,
-        header_height=760,
-        page_number=1,
-    )
+    if not page_paths[0].exists():
+        draw_grid_page(
+            page_paths[0],
+            size=(6400, 4000),
+            title="Subject00 O03 camera-safe7 Teacher - master overview",
+            annotations=[
+                "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
+                *aggregate_lines,
+            ],
+            panels=master_panels,
+            columns=6,
+            header_height=760,
+            page_number=1,
+        )
 
     for offset, slot in enumerate(SAFE_SLOTS, start=1):
+        if page_paths[offset].exists():
+            continue
         record = records[slot]
         metric = metrics[slot]
         panels, overlay = panel_sources(slot, record)
@@ -717,17 +738,24 @@ def generate_pages(sources: Mapping[str, Any]) -> list[Path]:
         )
 
     region_panels: list[tuple[str, Image.Image]] = []
-    for slot in SAFE_SLOTS:
-        old_page = RUN_ROOT / "review" / f"{slot}_clean7_high_resolution_review.png"
-        for index, label in (
-            (7, "garment"),
-            (8, "protected"),
-            (9, "boundary"),
-            (10, "face/head"),
-            (11, "hands"),
-            (12, "feet"),
-        ):
-            region_panels.append((f"{slot} {label}", extract_panel(old_page, index)))
+    if not page_paths[8].exists():
+        for slot in SAFE_SLOTS:
+            old_page = (
+                RUN_ROOT
+                / "review"
+                / f"{slot}_clean7_high_resolution_review.png"
+            )
+            for index, label in (
+                (7, "garment"),
+                (8, "protected"),
+                (9, "boundary"),
+                (10, "face/head"),
+                (11, "hands"),
+                (12, "feet"),
+            ):
+                region_panels.append(
+                    (f"{slot} {label}", extract_panel(old_page, index))
+                )
     metric_rows = list(metrics.values())
     worst = {
         "highest_garment_lpips": max(
@@ -743,111 +771,140 @@ def generate_pages(sources: Mapping[str, Any]) -> list[Path]:
             metric_rows, key=lambda row: row["protected_region_rgb_mae"]
         )["slot"],
     }
-    draw_grid_page(
-        page_paths[8],
-        size=(6400, 4000),
-        title="Subject00 O03 camera-safe7 - region risk summary",
-        annotations=[
-            "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
-            (
-                "Rows cover garment/boundary, protected region, face/head, "
-                "hands, and feet for all seven safe views."
-            ),
-            f"Metric-risk pointers: {json.dumps(worst, sort_keys=True)}",
-            "Machine severe_artifact_count=0; every visual pass field remains null for user review.",
-        ],
-        panels=region_panels,
-        columns=6,
-        header_height=660,
-        page_number=9,
-    )
+    if not page_paths[8].exists():
+        draw_grid_page(
+            page_paths[8],
+            size=(6400, 4000),
+            title="Subject00 O03 camera-safe7 - region risk summary",
+            annotations=[
+                "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
+                (
+                    "Rows cover garment/boundary, protected region, face/head, "
+                    "hands, and feet for all seven safe views."
+                ),
+                f"Metric-risk pointers: {json.dumps(worst, sort_keys=True)}",
+                "Machine severe_artifact_count=0; every visual pass field remains null for user review.",
+            ],
+            panels=region_panels,
+            columns=6,
+            header_height=660,
+            page_number=9,
+        )
 
     comparison_panels: list[tuple[str, Image.Image]] = []
-    for slot in SAFE_SLOTS:
-        record = records[slot]
-        old_page = RUN_ROOT / "review" / f"{slot}_clean7_high_resolution_review.png"
-        comparison_panels.extend(
-            [
-                (f"{slot} target", Image.open(record["accepted_raw"]["path"]).convert("RGB")),
-                (f"{slot} Base60747", extract_panel(old_page, 3)),
-                (f"{slot} contaminated8", extract_panel(old_page, 4)),
-                (f"{slot} clean Teacher7", extract_panel(old_page, 5)),
-            ]
+    if not page_paths[9].exists():
+        for slot in SAFE_SLOTS:
+            record = records[slot]
+            old_page = (
+                RUN_ROOT
+                / "review"
+                / f"{slot}_clean7_high_resolution_review.png"
+            )
+            comparison_panels.extend(
+                [
+                    (
+                        f"{slot} target",
+                        Image.open(record["accepted_raw"]["path"]).convert("RGB"),
+                    ),
+                    (f"{slot} Base60747", extract_panel(old_page, 3)),
+                    (f"{slot} contaminated8", extract_panel(old_page, 4)),
+                    (f"{slot} clean Teacher7", extract_panel(old_page, 5)),
+                ]
+            )
+        draw_grid_page(
+            page_paths[9],
+            size=(6400, 4000),
+            title="Subject00 O03 - clean Teacher7 vs historical contaminated8",
+            annotations=[
+                "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
+                "Every row uses the same safe view, native target aspect, and display cell size.",
+                (
+                    "The contaminated run is historical diagnostic evidence only; "
+                    "it is not a scientifically valid result and was not initialization."
+                ),
+                "slot04 is absent from this safe7 comparison and every metric denominator.",
+            ],
+            panels=comparison_panels,
+            columns=4,
+            header_height=660,
+            page_number=10,
         )
-    draw_grid_page(
-        page_paths[9],
-        size=(6400, 4000),
-        title="Subject00 O03 - clean Teacher7 vs historical contaminated8",
-        annotations=[
-            "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
-            "Every row uses the same safe view, native target aspect, and display cell size.",
-            (
-                "The contaminated run is historical diagnostic evidence only; "
-                "it is not a scientifically valid result and was not initialization."
-            ),
-            "slot04 is absent from this safe7 comparison and every metric denominator.",
-        ],
-        panels=comparison_panels,
-        columns=4,
-        header_height=660,
-        page_number=10,
-    )
 
-    animation_panels = [
-        (
-            f"different camera - {name}",
-            Image.open(RUN_ROOT / "review" / "different_camera" / f"{name}.png").convert("RGB"),
-        )
-        for name in ("base", "teacher", "comparison")
-    ]
-    animation_panels.extend(
-        [
+    if not page_paths[10].exists():
+        animation_panels = [
             (
-                f"different pose - {name}",
-                Image.open(RUN_ROOT / "review" / "different_pose" / f"{name}.png").convert("RGB"),
+                f"different camera - {name}",
+                Image.open(
+                    RUN_ROOT
+                    / "review"
+                    / "different_camera"
+                    / f"{name}.png"
+                ).convert("RGB"),
             )
             for name in ("base", "teacher", "comparison")
         ]
-    )
-    animation_panels.extend(
-        [
-            (
-                "slot04 quarantined target - disclosure only",
-                Image.open(sources["slot04"]["accepted_raw"]["path"]).convert("RGB"),
-            ),
-            (
-                "slot04 camera blocker / quarantine evidence",
-                Image.open(
-                    RUN_ROOT / "review" / "slot04_excluded_quarantine_explanation.png"
-                ).convert("RGB"),
-            ),
-        ]
-    )
-    draw_grid_page(
-        page_paths[10],
-        size=(6400, 4000),
-        title="Subject00 O03 - animation checks and slot04 quarantine",
-        annotations=[
-            "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
-            (
-                "different_camera=PASS_FINITE_RENDER | different_pose=PASS_FINITE_RENDER | "
-                "deformation=PASS_FINITE | LBS=PASS"
-            ),
-            (
-                "Finite-render/LBS evidence only; not strict novel-view or "
-                "novel-pose generalization."
-            ),
-            (
-                f"slot04 request={EXCLUDED_REQUEST} | camera_status=UNRESOLVED_HUMAN_OVERRIDE | "
-                "selected_model=null | review-only quarantine"
-            ),
-            "slot04 sample_count=0 and slot04 is absent from target, sampler, loss, evaluation, and metric denominators.",
-        ],
-        panels=animation_panels,
-        columns=4,
-        header_height=900,
-        page_number=11,
-    )
+        animation_panels.extend(
+            [
+                (
+                    f"different pose - {name}",
+                    Image.open(
+                        RUN_ROOT
+                        / "review"
+                        / "different_pose"
+                        / f"{name}.png"
+                    ).convert("RGB"),
+                )
+                for name in ("base", "teacher", "comparison")
+            ]
+        )
+        animation_panels.extend(
+            [
+                (
+                    "slot04 quarantined target - disclosure only",
+                    Image.open(sources["slot04"]["accepted_raw"]["path"]).convert(
+                        "RGB"
+                    ),
+                ),
+                (
+                    "slot04 camera blocker / quarantine evidence",
+                    Image.open(
+                        RUN_ROOT
+                        / "review"
+                        / "slot04_excluded_quarantine_explanation.png"
+                    ).convert("RGB"),
+                ),
+            ]
+        )
+        draw_grid_page(
+            page_paths[10],
+            size=(6400, 4000),
+            title="Subject00 O03 - animation checks and slot04 quarantine",
+            annotations=[
+                "DISPLAY_ONLY_PROVISIONAL_TEACHER_REVIEW",
+                (
+                    "different_camera=PASS_FINITE_RENDER | "
+                    "different_pose=PASS_FINITE_RENDER | "
+                    "deformation=PASS_FINITE | LBS=PASS"
+                ),
+                (
+                    "Finite-render/LBS evidence only; not strict novel-view or "
+                    "novel-pose generalization."
+                ),
+                (
+                    f"slot04 request={EXCLUDED_REQUEST} | "
+                    "camera_status=UNRESOLVED_HUMAN_OVERRIDE | "
+                    "selected_model=null | review-only quarantine"
+                ),
+                (
+                    "slot04 sample_count=0 and slot04 is absent from target, "
+                    "sampler, loss, evaluation, and metric denominators."
+                ),
+            ],
+            panels=animation_panels,
+            columns=4,
+            header_height=900,
+            page_number=11,
+        )
     return page_paths
 
 
@@ -1358,6 +1415,62 @@ def phase_pages() -> dict[str, Any]:
     }
 
 
+def phase_pages_resume() -> dict[str, Any]:
+    gate_record = gate(expect_pack=True)
+    sources = load_sources()
+    before_path = PACK_ROOT / "06_indexes" / "source_immutability_before.json"
+    if not before_path.is_file():
+        raise RuntimeError("partial pack lacks its sealed pre-generation registry")
+    before_payload = read_json(before_path)
+    immutable_now = immutable_registry(sources)
+    if before_payload["source_files"] != immutable_now:
+        raise RuntimeError("sealed source changed before missing-page completion")
+    expected_paths = [
+        PACK_ROOT / directory / filename
+        for directory, filename, _ in PAGE_SPECS
+    ]
+    existing_flags = [path.is_file() for path in expected_paths]
+    existing_count = sum(existing_flags)
+    if (
+        existing_count == 0
+        or existing_count == 11
+        or existing_flags
+        != [index < existing_count for index in range(len(expected_paths))]
+        or (PACK_ROOT / "06_indexes" / PDF_NAME).exists()
+        or (
+            PACK_ROOT
+            / "06_indexes"
+            / "subject00_O03_camsafe7_review_pack_index.json"
+        ).exists()
+    ):
+        raise RuntimeError(
+            f"partial pack is not a safe ordered prefix: {existing_flags}"
+        )
+    for index, path in enumerate(expected_paths[:existing_count]):
+        with Image.open(path) as image:
+            image.verify()
+        with Image.open(path) as image:
+            expected_size = (6400, 4000) if index == 0 else (6400, 4800)
+            if image.size != expected_size:
+                raise RuntimeError(
+                    f"existing partial page resolution changed: {path} {image.size}"
+                )
+    page_paths = generate_pages(sources, resume_missing_only=True)
+    if not all(path.is_file() for path in page_paths):
+        raise RuntimeError("missing-page completion did not create all 11 pages")
+    if before_payload["source_files"] != immutable_registry(sources):
+        raise RuntimeError("sealed source changed during missing-page completion")
+    return {
+        "task_id": TASK_ID,
+        "status": "PASS_MISSING_PAGES_COMPLETED_WITHOUT_OVERWRITE",
+        "preserved_existing_page_count": existing_count,
+        "new_page_count": 11 - existing_count,
+        "page_paths": [str(path) for path in page_paths],
+        "execution_head": gate_record["head"],
+        "optimizer_steps": 0,
+    }
+
+
 def phase_finalize() -> dict[str, Any]:
     gate_record = gate(expect_pack=True)
     sources = load_sources()
@@ -1370,7 +1483,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--phase",
-        choices=("preflight", "pages", "finalize"),
+        choices=("preflight", "pages", "pages-resume", "finalize"),
         required=True,
     )
     return parser.parse_args()
@@ -1382,6 +1495,8 @@ if __name__ == "__main__":
         result = phase_preflight()
     elif args.phase == "pages":
         result = phase_pages()
+    elif args.phase == "pages-resume":
+        result = phase_pages_resume()
     else:
         result = phase_finalize()
     print(json.dumps(result, sort_keys=True))
