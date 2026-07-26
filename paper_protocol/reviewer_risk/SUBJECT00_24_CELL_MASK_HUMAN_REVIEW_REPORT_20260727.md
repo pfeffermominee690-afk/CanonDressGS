@@ -39,3 +39,11 @@ is `PENDING_SUBJECT00_FORMAL_BASE_FINALIZATION`.
 Final classification: `SUBJECT00_24_OF_24_MASKS_ACCEPTED_TEACHER_TARGET_PREFLIGHT_PENDING`.
 
 Next task: `PREFLIGHT_AND_FREEZE_SUBJECT00_24_CELL_TEACHER_TARGET_CREATION_CONTRACT`.
+
+## Validation and Git
+
+`py_compile` passed, the targeted test set reported `13 passed`, all 47
+structured checks passed, and `git diff --check` passed. The substantive
+promotion commit is `535bf7c082cdd2a63e763e6fdf11e47d7b09933d`.
+The branch was pushed to `origin`. The best-effort Cloud Git push could not
+start because hostname `canondress-cloud` did not resolve.
