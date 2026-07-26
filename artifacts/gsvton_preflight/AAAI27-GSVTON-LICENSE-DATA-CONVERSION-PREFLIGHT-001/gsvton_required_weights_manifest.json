@@ -1,0 +1,227 @@
+{
+  "schema_version": "canondressgs.gsvton_required_weights_manifest.v1",
+  "task_id": "AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001",
+  "status": "METADATA_ONLY_NO_WEIGHTS_DOWNLOADED",
+  "official_repository": "https://github.com/yukangcao/GS-VTON",
+  "pinned_commit": "96964b0a6528089123cc27a3ff3e3eb46505cf6e",
+  "required_weight_count": 10,
+  "checkpoint_download_bytes": 0,
+  "dataset_download_bytes": 0,
+  "known_public_lower_bound_bytes": 51622353397,
+  "known_public_lfs_bytes": 51622028284,
+  "known_public_metadata_and_tokenizer_bytes": 325113,
+  "unresolved_bytes": [
+    "stabilityai/stable-diffusion-2-inpainting returned 401/unauthorized metadata without credentials",
+    "stabilityai/stable-diffusion-2-1-base returned 401/unauthorized metadata without credentials",
+    "Self_Correction_Human_Parsing/logits.pt SharePoint size/checksum unresolved"
+  ],
+  "entries": [
+    {
+      "id": "idm_vton_core_and_preprocess_bundle",
+      "name": "yisol/IDM-VTON",
+      "official_url": "https://huggingface.co/yisol/IDM-VTON",
+      "usage": "Stage1 2D virtual try-on pipeline; includes IDM-VTON model and mirrored densepose/openpose/humanparsing assets.",
+      "estimated_bytes": 29368581213,
+      "bytes_counted_in_total": true,
+      "checksum_public": false,
+      "license": "MODEL_CARD_LICENSE_NOT_AUDITED_BY_THIS_PREFLIGHT",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0,
+      "component_files": [
+        {
+          "path": "densepose/model_final_162be9.pkl",
+          "bytes": 255757821
+        },
+        {
+          "path": "humanparsing/parsing_atr.onnx",
+          "bytes": 266859305
+        },
+        {
+          "path": "humanparsing/parsing_lip.onnx",
+          "bytes": 266863411
+        },
+        {
+          "path": "openpose/ckpts/body_pose_model.pth",
+          "bytes": 209267595
+        },
+        {
+          "path": "image_encoder/model.safetensors",
+          "bytes": 2528373448
+        },
+        {
+          "path": "text_encoder/model.safetensors",
+          "bytes": 492265879
+        },
+        {
+          "path": "text_encoder_2/model.safetensors",
+          "bytes": 2778702976
+        },
+        {
+          "path": "unet/diffusion_pytorch_model.bin",
+          "bytes": 11965769774
+        },
+        {
+          "path": "unet_encoder/diffusion_pytorch_model.safetensors",
+          "bytes": 10270077736
+        },
+        {
+          "path": "vae/diffusion_pytorch_model.safetensors",
+          "bytes": 334643268
+        }
+      ]
+    },
+    {
+      "id": "blip2_captioner",
+      "name": "Salesforce/blip2-opt-2.7b",
+      "official_url": "https://huggingface.co/Salesforce/blip2-opt-2.7b",
+      "usage": "main.py image captioning before VTON/editing.",
+      "estimated_bytes": 14979207136,
+      "bytes_counted_in_total": true,
+      "checksum_public": false,
+      "license": "MODEL_CARD_LICENSE_NOT_AUDITED_BY_THIS_PREFLIGHT",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "stable_diffusion_v1_5",
+      "name": "runwayml/stable-diffusion-v1-5",
+      "official_url": "https://huggingface.co/runwayml/stable-diffusion-v1-5",
+      "usage": "stage2/configs/gsvton.yaml prompt processor.",
+      "estimated_bytes": 5482643101,
+      "bytes_counted_in_total": true,
+      "checksum_public": false,
+      "license": "CREATIVE_ML_OPENRAIL_M_MODEL_LICENSE_REQUIRES_SEPARATE_REVIEW",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "stable_diffusion_2_inpainting",
+      "name": "stabilityai/stable-diffusion-2-inpainting",
+      "official_url": "https://huggingface.co/stabilityai/stable-diffusion-2-inpainting",
+      "usage": "stage1/train_lora.py and main.py RealFill LoRA inpainting base.",
+      "estimated_bytes": null,
+      "bytes_counted_in_total": false,
+      "checksum_public": false,
+      "license": "GATED_OR_UNRESOLVED_NO_AUTH_USED",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "stable_diffusion_2_1_base",
+      "name": "stabilityai/stable-diffusion-2-1-base",
+      "official_url": "https://huggingface.co/stabilityai/stable-diffusion-2-1-base",
+      "usage": "stage2/configs/gsvton.yaml DDS source prompt processor.",
+      "estimated_bytes": null,
+      "bytes_counted_in_total": false,
+      "checksum_public": false,
+      "license": "GATED_OR_UNRESOLVED_NO_AUTH_USED",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "edit_anything_controlnet",
+      "name": "shgao/edit-anything-v0-3",
+      "official_url": "https://huggingface.co/shgao/edit-anything-v0-3",
+      "usage": "GaussianEditor ControlNet/EditAnything guidance.",
+      "estimated_bytes": 1456953558,
+      "bytes_counted_in_total": true,
+      "checksum_public": false,
+      "license": "MODEL_CARD_LICENSE_NOT_AUDITED_BY_THIS_PREFLIGHT",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "sd_vae_ft_mse",
+      "name": "stabilityai/sd-vae-ft-mse",
+      "official_url": "https://huggingface.co/stabilityai/sd-vae-ft-mse",
+      "usage": "VAE dependency used by diffusion guidance paths.",
+      "estimated_bytes": 334643276,
+      "bytes_counted_in_total": true,
+      "checksum_public": false,
+      "license": "MODEL_CARD_LICENSE_NOT_AUDITED_BY_THIS_PREFLIGHT",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "self_correction_human_parsing_logits",
+      "name": "Self_Correction_Human_Parsing/logits.pt",
+      "official_url": "README SharePoint link for Self_Correction_Human_Parsing",
+      "usage": "stage2 human parsing preprocessing.",
+      "estimated_bytes": null,
+      "bytes_counted_in_total": false,
+      "checksum_public": false,
+      "license": "UNRESOLVED_SHAREPOINT_ASSET",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "lllyasviel_openpose_body_mirror",
+      "name": "lllyasviel/Annotators body_pose_model.pth",
+      "official_url": "https://huggingface.co/lllyasviel/Annotators",
+      "usage": "OpenPose body model URL embedded in vendored OpenPose annotator; duplicate of the yisol/IDM-VTON body model for accounting.",
+      "estimated_bytes": 209267595,
+      "bytes_counted_in_total": false,
+      "checksum_public": false,
+      "license": "OPENPOSE_UPSTREAM_LICENSE_RESTRICTIVE",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    },
+    {
+      "id": "openai_clip_weights_via_clip_package",
+      "name": "OpenAI CLIP model cache",
+      "official_url": "https://github.com/openai/CLIP",
+      "usage": "CLIP package is installed by requirements and may create a runtime model cache depending on code path.",
+      "estimated_bytes": null,
+      "bytes_counted_in_total": false,
+      "checksum_public": false,
+      "license": "RUNTIME_MODEL_SELECTION_NOT_RESOLVED",
+      "required": true,
+      "optional": false,
+      "offline_cache_allowed_after_permission": true,
+      "download_bytes_this_task": 0
+    }
+  ],
+  "storage_estimate": {
+    "checkpoint_known_public_lower_bound_bytes": 51622353397,
+    "environment_estimated_bytes": 20937965568,
+    "converted_subject02_logical_referenced_bytes": 374573,
+    "static_3dgs_initialized_subject_root_lower_bound_bytes": 8589934592,
+    "gs_vton_stage1_stage2_outputs_lower_bound_bytes": 8589934592,
+    "compiled_extensions_source_and_build_cache_lower_bound_bytes": 2147483648,
+    "safety_reserve_bytes": 1903496864,
+    "estimated_total_storage_bytes": 93791543234,
+    "unresolved_additional_bytes": [
+      "stable-diffusion-2-inpainting",
+      "stable-diffusion-2-1-base",
+      "Self_Correction_Human_Parsing/logits.pt",
+      "runtime CLIP model cache"
+    ]
+  },
+  "operations": {
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "canondressgs.gsvton_license_audit.v1",
+  "task_id": "AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001",
+  "audit_date": "2026-07-26",
+  "source_branch": "research/external-baseline-feasibility-from-bundle-rerun-20260726",
+  "source_head": "572637f08aef21fde35dcd7f8879ff74549c2afc",
+  "new_branch": "research/gsvton-license-data-conversion-preflight-20260726",
+  "worktree": "E:\\model_train\\canondressgs_gsvton_license_data_conversion_preflight",
+  "official_repository": "https://github.com/yukangcao/GS-VTON",
+  "official_source_temp_root": "E:\\model_train\\_gsvton_official_source_preflight",
+  "pinned_commit": "96964b0a6528089123cc27a3ff3e3eb46505cf6e",
+  "pinned_commit_metadata": {
+    "author": "Cao Yukang <49137418+yukangcao@users.noreply.github.com>",
+    "author_date": "2026-03-27T11:05:44+08:00",
+    "subject": "update accepted ijcv"
+  },
+  "official_source_policy": {
+    "shallow_checkout_used": true,
+    "checked_out_exact_commit": true,
+    "official_source_only": true,
+    "non_official_forks_used": false,
+    "external_source_modified": false,
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0
+  },
+  "operations": {
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  },
+  "license_search_checklist": {
+    "root_LICENSE": true,
+    "root_COPYING": true,
+    "root_NOTICE": true,
+    "README_license_statement": true,
+    "nested_license_files": true,
+    "project_page_license_statement": true,
+    "github_repository_license_metadata": true,
+    "paper_or_supplement_code_usage_statement": true,
+    "gitmodules": true
+  },
+  "root_license_files": [
+    {
+      "path": "LICENSE",
+      "found": false
+    },
+    {
+      "path": "LICENSE.md",
+      "found": false
+    },
+    {
+      "path": "COPYING",
+      "found": false
+    },
+    {
+      "path": "NOTICE",
+      "found": false
+    }
+  ],
+  "root_files_observed": [
+    "README.md",
+    "main.py",
+    "requirements.txt",
+    "docs/",
+    "stage1/",
+    "stage2/"
+  ],
+  "readme_license_statement": {
+    "status": "ABSENT",
+    "evidence": "README contains install, weight preparation, data preparation, usage, acknowledgements, and citation material, but no explicit code license grant."
+  },
+  "project_page_license_statement": {
+    "url": "https://yukangcao.github.io/GS-VTON/",
+    "status": "ABSENT",
+    "evidence": "Project page links paper and code and lists IJCV 2026, but no code license statement was found."
+  },
+  "github_repository_license_metadata": {
+    "status": "NO_LICENSE_DETECTED",
+    "license": null,
+    "repository_public": true,
+    "repository_fork": false
+  },
+  "paper_or_supplement_code_usage_statement": {
+    "arxiv_url": "https://arxiv.org/abs/2410.05259",
+    "status": "NO_CODE_LICENSE_STATEMENT_FOUND",
+    "note": "The arXiv paper page documents the paper, not an explicit software usage license."
+  },
+  "gitmodules": {
+    "path": ".gitmodules",
+    "found": false,
+    "submodule_status_empty": true
+  },
+  "nested_license_files": [
+    {
+      "path": "stage2/gaussiansplatting/LICENSE.md",
+      "classification": "RESTRICTIVE_UPSTREAM_COMPONENT_LICENSE",
+      "summary": "Original 3D Gaussian Splatting research/evaluation non-commercial license."
+    },
+    {
+      "path": "stage2/gaussiansplatting/submodules/diff-gaussian-rasterization/LICENSE.md",
+      "classification": "RESTRICTIVE_UPSTREAM_COMPONENT_LICENSE",
+      "summary": "Diff Gaussian rasterization license inherited from Gaussian Splatting."
+    },
+    {
+      "path": "stage1/preprocess/openpose/annotator/openpose/LICENSE",
+      "classification": "RESTRICTIVE_UPSTREAM_COMPONENT_LICENSE",
+      "summary": "OpenPose academic and non-profit research license."
+    },
+    {
+      "path": "stage2/threestudio/preprocess/openpose/annotator/openpose/LICENSE",
+      "classification": "RESTRICTIVE_UPSTREAM_COMPONENT_LICENSE",
+      "summary": "Second vendored OpenPose license copy."
+    },
+    {
+      "path": "stage2/threestudio/systems/inference_HumanParsing/Human_Parsing/LICENSE",
+      "classification": "PERMISSIVE_UPSTREAM_COMPONENT_LICENSE",
+      "summary": "MIT license for vendored Human Parsing component."
+    },
+    {
+      "path": "stage2/gaussiansplatting/submodules/diff-gaussian-rasterization/third_party/glm/copying.txt",
+      "classification": "UPSTREAM_THIRD_PARTY_NOTICE",
+      "summary": "GLM third-party notice."
+    }
+  ],
+  "official_code_license_decision": {
+    "license_status": "LICENSE_NOT_SPECIFIED",
+    "execution_authorized_by_license": false,
+    "permission_required": true,
+    "decision_rationale": "No root license, no README license grant, no GitHub license metadata, no project-page code license, and no paper/supplement code-use grant were found. Nested licenses do not license the GS-VTON repository as a whole and include restrictive upstream terms."
+  },
+  "final_classification": "GSVTON_MICRO_CANARY_PREFLIGHT_MULTIPLE_BLOCKERS",
+  "next_task": "USER_OBTAIN_GSVTON_AUTHOR_PERMISSION_OR_SELECT_FULL_AVATAR_ONLY",
+  "paper_final": false
+}

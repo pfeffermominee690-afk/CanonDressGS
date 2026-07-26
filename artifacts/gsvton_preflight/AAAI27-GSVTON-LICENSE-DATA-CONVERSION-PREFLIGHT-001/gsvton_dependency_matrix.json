@@ -1,0 +1,141 @@
+{
+  "schema_version": "canondressgs.gsvton_dependency_matrix.v1",
+  "task_id": "AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001",
+  "dependency_status": "PARSED_DRAFT_ONLY_ENV_NOT_CREATED",
+  "official_repository": "https://github.com/yukangcao/GS-VTON",
+  "pinned_commit": "96964b0a6528089123cc27a3ff3e3eb46505cf6e",
+  "python_requirement": "3.8",
+  "pytorch_requirement": "2.2.1 (+ torchvision 0.17.1, torchaudio 2.2.1 cu118)",
+  "cuda_requirement": "11.8",
+  "xformers_requirement": "0.0.25",
+  "official_source_evidence": [
+    {
+      "path": "README.md",
+      "lines": "29-41",
+      "evidence": "Install block pins Python 3.8, CUDA 11.8, PyTorch 2.2.1, xformers 0.0.25, IP-Adapter, BasicSR, detectron2, and requirements.txt."
+    },
+    {
+      "path": "requirements.txt",
+      "lines": "1-55",
+      "evidence": "Diffusers, onnxruntime, peft, pytorch_lightning, nerfacc, nvdiffrast, tiny-cuda-nn, libigl, xatlas, rembg, CLIP, and local 3DGS submodules."
+    },
+    {
+      "path": "stage2/configs/gsvton.yaml",
+      "lines": "34-82",
+      "evidence": "Stable Diffusion 1.5 prompt processor, Stable Diffusion 2.1 base DDS source prompt processor, and trainer max_steps 10000."
+    },
+    {
+      "path": "main.py",
+      "lines": "104-167",
+      "evidence": "RealFill LoRA uses stabilityai/stable-diffusion-2-inpainting; Gaussian editing launch overrides trainer.max_steps=4000 and passes system.gs_source."
+    },
+    {
+      "path": "stage1/run_2d_tryon.py",
+      "lines": "61-69",
+      "evidence": "Stage1 uses yisol/IDM-VTON plus parsing and OpenPose preprocessors."
+    }
+  ],
+  "dependency_groups": [
+    {
+      "group": "base_runtime",
+      "items": [
+        "python==3.8",
+        "cuda-toolkit==11.8",
+        "torch==2.2.1+cu118",
+        "torchvision==0.17.1+cu118",
+        "torchaudio==2.2.1+cu118",
+        "xformers==0.0.25+cu118"
+      ]
+    },
+    {
+      "group": "diffusion_lora_and_vton",
+      "items": [
+        "diffusers==0.25.0",
+        "peft",
+        "accelerate",
+        "huggingface_hub==0.25.0",
+        "safetensors",
+        "bitsandbytes==0.38.1",
+        "IP-Adapter",
+        "BasicSR@8d56e3a045f9fb3e1d8872f92ee4a4f07f886b0a",
+        "openai/CLIP"
+      ]
+    },
+    {
+      "group": "detectron_segmentation_and_preprocess",
+      "items": [
+        "detectron2",
+        "onnxruntime",
+        "mediapipe",
+        "opencv-python",
+        "albumentations==0.5.2",
+        "Pillow==9.5.0",
+        "rembg",
+        "controlnet_aux"
+      ]
+    },
+    {
+      "group": "3dgs_and_cuda_extensions",
+      "items": [
+        "stage2/gaussiansplatting/submodules/diff-gaussian-rasterization",
+        "stage2/gaussiansplatting/submodules/simple-knn",
+        "git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch",
+        "git+https://github.com/NVlabs/nvdiffrast.git",
+        "nerfacc==0.3.3",
+        "ninja",
+        "plyfile"
+      ]
+    },
+    {
+      "group": "geometry_rendering_and_io",
+      "items": [
+        "pyrender==0.1.45",
+        "trimesh[easy]",
+        "libigl",
+        "xatlas",
+        "pysdf",
+        "PyMCubes",
+        "imageio>=2.28.0",
+        "imageio[ffmpeg]",
+        "ffmpeg",
+        "viser"
+      ]
+    },
+    {
+      "group": "logging_training_framework",
+      "items": [
+        "pytorch_lightning",
+        "tensorboard",
+        "wandb",
+        "torchmetrics",
+        "matplotlib",
+        "gradio",
+        "webdataset"
+      ]
+    }
+  ],
+  "model_references_parsed_from_code": [
+    "yisol/IDM-VTON",
+    "Salesforce/blip2-opt-2.7b",
+    "stabilityai/stable-diffusion-2-inpainting",
+    "runwayml/stable-diffusion-v1-5",
+    "stabilityai/stable-diffusion-2-1-base",
+    "shgao/edit-anything-v0-3",
+    "stabilityai/sd-vae-ft-mse",
+    "lllyasviel/Annotators",
+    "Self_Correction_Human_Parsing/logits.pt"
+  ],
+  "environment_estimated_bytes": 20937965568,
+  "operations": {
+    "conda_environment_created": false,
+    "pip_install_executed": false,
+    "gpu_used": false,
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  }
+}

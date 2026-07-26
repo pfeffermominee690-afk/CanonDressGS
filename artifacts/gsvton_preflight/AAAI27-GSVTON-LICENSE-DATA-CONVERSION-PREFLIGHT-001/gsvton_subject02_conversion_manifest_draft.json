@@ -1,0 +1,253 @@
+{
+  "schema_version": "canondressgs.gsvton_subject02_conversion_manifest_draft.v1",
+  "task_id": "AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001",
+  "status": "DRAFT_FIELD_MAPPING_COMPLETE_NO_DATA_MUTATION",
+  "source_branch": "research/external-baseline-feasibility-from-bundle-rerun-20260726",
+  "source_head": "572637f08aef21fde35dcd7f8879ff74549c2afc",
+  "new_branch": "research/gsvton-license-data-conversion-preflight-20260726",
+  "worktree": "E:\\model_train\\canondressgs_gsvton_license_data_conversion_preflight",
+  "official_repository": "https://github.com/yukangcao/GS-VTON",
+  "pinned_commit": "96964b0a6528089123cc27a3ff3e3eb46505cf6e",
+  "subject": {
+    "id": "subject02",
+    "config": "config/subject02.yaml",
+    "train_cameras": "0-23",
+    "num_train_frame": 2115,
+    "begin_frame": 385,
+    "formal_actor_config": "config/actor02.yaml",
+    "formal_actor_num_train_frame": 1920,
+    "formal_actor_begin_frame": 237
+  },
+  "base_avatar": {
+    "model_dir": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k",
+    "checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt100000.pth",
+    "checkpoint_sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+    "lbs_grid_path": "/root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz",
+    "gaussian_count": 200000,
+    "anchor_count": 10000,
+    "frozen": true,
+    "compatibility_decision": "RETRAIN_STATIC_3DGS_REQUIRED",
+    "compatibility_note": "MMLP-Human Base Avatar is a dynamic/avatar checkpoint plus LBS grid and anchors, not a vanilla static 3DGS point_cloud.ply with COLMAP/Nerfstudio DATA root."
+  },
+  "micro_canary_protocol": {
+    "garment": "O03",
+    "garment_definition": "business suit",
+    "generator_outfit_id": "cloth_03",
+    "reference_count": 1,
+    "reference_top1": 0.95,
+    "target_condition_id": "cond_000347",
+    "fixed_source_views": [
+      "right"
+    ],
+    "fixed_camera": "camera_000347",
+    "fixed_output_root": "outputs/gsvton_subject02_o03_micro_canary_draft",
+    "hyperparameter_sweep": false,
+    "endpoint_lpips_forbidden": true,
+    "face_id_protocol_status": "NOT_USED_DUE_TO_UNVALIDATED_FACE_ID_PROTOCOL"
+  },
+  "source_assets": {
+    "garment_reference": {
+      "role": "GS-VTON cloth_path",
+      "path": "E:\\data_pre\\audit_aaai27_data_capacity_gate_001\\attempt_001\\reference_sets\\cells\\O03\\cond_000347.png",
+      "sha256": "7e0af7d546894dad0e1bdc7c250abf0b896b7eea199331f4ebecd2ed8ea58425",
+      "bytes": 242747,
+      "resolution": [
+        512,
+        512
+      ],
+      "split": "unseen_test",
+      "leakage_role": "garment_reference_only"
+    },
+    "target_rgb": {
+      "role": "target/evaluation RGB only",
+      "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+      "sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+      "bytes": 119978,
+      "resolution": [
+        1024,
+        1536
+      ],
+      "view": "right",
+      "condition_split": "train",
+      "leakage_role": "target_space_metric_only"
+    },
+    "target_mask": {
+      "role": "target/evaluation foreground mask only",
+      "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000347.png",
+      "sha256": "a733bb9e6241a9a5cba43f4d71fa7b69efc6478b72ffb0d8588ab2da0d5f2f66",
+      "bytes": 7637,
+      "resolution": [
+        1024,
+        1536
+      ],
+      "mask_semantics": "foreground alpha/binary mask, not GS-VTON human parsing labels",
+      "leakage_role": "target_space_metric_only"
+    },
+    "pose": {
+      "role": "target pose binding",
+      "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000347.npz",
+      "sha256": "7c5d8844474c8902b7b87f55ea5125710f9b593dcc2d100d80db1bf46d4b054f",
+      "bytes": 3588,
+      "pose_index": 86,
+      "pose_fingerprint": "c5d07e42559da9e4ba0197d32a90337e61bc0cd3f46b0d4c4614534a4c1d1838"
+    },
+    "camera": {
+      "role": "target camera binding",
+      "path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000347.json",
+      "sha256": "f3cbe09fe8650081aa1e4c6ab2bb02d955dd5901457625cf0cc5958806705305",
+      "bytes": 623,
+      "view_name": "right",
+      "azimuth_degrees": 270.0,
+      "elevation_degrees": 3.0,
+      "distance": 5.288110414601521,
+      "fov_degrees": 28.0,
+      "width": 1024,
+      "height": 1536,
+      "render_width": 3072,
+      "render_height": 4608,
+      "renderer": "pytorch3d_FoVPerspectiveCameras"
+    }
+  },
+  "field_mappings": [
+    {
+      "gsvton_required_field": "cloth_path",
+      "subject02_source_path": "E:\\data_pre\\audit_aaai27_data_capacity_gate_001\\attempt_001\\reference_sets\\cells\\O03\\cond_000347.png",
+      "source_sha256": "7e0af7d546894dad0e1bdc7c250abf0b896b7eea199331f4ebecd2ed8ea58425",
+      "conversion_operation": "would pass as --cloth_path or read-only symlink after license authorization; not executed",
+      "output_relative_path": "garments/O03/cond_000347_reference.png",
+      "resolution": [
+        512,
+        512
+      ],
+      "camera_conversion": "not_applicable",
+      "mask_semantics": "not_applicable",
+      "expected_bytes": 242747,
+      "leakage_risk": "LOW_GARMENT_REFERENCE_NOT_TARGET_RGB_OR_MASK",
+      "compatibility_decision": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "gsvton_required_field": "DATA/images target view",
+      "subject02_source_path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\images\\cond_000347.png",
+      "source_sha256": "7a897df8d7bb0e26274abbc9c03754ba2c1986bfcf20eb2d7b46beb3a2481499",
+      "conversion_operation": "would stage target/evaluation RGB only after authorization; not used as garment reference; not executed",
+      "output_relative_path": "DATA/images/cond_000347.png",
+      "resolution": [
+        1024,
+        1536
+      ],
+      "camera_conversion": "paired with camera_000347",
+      "mask_semantics": "not_applicable",
+      "expected_bytes": 119978,
+      "leakage_risk": "PASS_TARGET_RGB_NOT_USED_AS_GARMENT_REFERENCE",
+      "compatibility_decision": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "gsvton_required_field": "target foreground mask for target-space metrics",
+      "subject02_source_path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\masks\\cond_000347.png",
+      "source_sha256": "a733bb9e6241a9a5cba43f4d71fa7b69efc6478b72ffb0d8588ab2da0d5f2f66",
+      "conversion_operation": "would read for frozen target-space garment/protected metrics only; not executed",
+      "output_relative_path": "metrics/masks/cond_000347_foreground.png",
+      "resolution": [
+        1024,
+        1536
+      ],
+      "camera_conversion": "not_applicable",
+      "mask_semantics": "foreground alpha/binary; not DensePose/OpenPose/SCHP human parse labels",
+      "expected_bytes": 7637,
+      "leakage_risk": "PASS_TARGET_MASK_NOT_USED_AS_GARMENT_REFERENCE",
+      "compatibility_decision": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "gsvton_required_field": "DATA camera/cameras.json",
+      "subject02_source_path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\cameras\\camera_000347.json",
+      "source_sha256": "f3cbe09fe8650081aa1e4c6ab2bb02d955dd5901457625cf0cc5958806705305",
+      "conversion_operation": "would convert FoVPerspective camera into GS-VTON/Nerfstudio/COLMAP camera records; not executed",
+      "output_relative_path": "DATA/cameras.json and DATA/sparse/0/cameras.txt",
+      "resolution": [
+        1024,
+        1536
+      ],
+      "camera_conversion": "SPECIFIED_FOV_28_AZIMUTH_270_ELEVATION_3_DISTANCE_5_288110414601521",
+      "mask_semantics": "not_applicable",
+      "expected_bytes": 623,
+      "leakage_risk": "LOW_METADATA_ONLY",
+      "compatibility_decision": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "gsvton_required_field": "DATA pose/images.txt binding",
+      "subject02_source_path": "E:\\data_pre\\conditions_300_hand_strict_candidates\\poses\\pose_000347.npz",
+      "source_sha256": "7c5d8844474c8902b7b87f55ea5125710f9b593dcc2d100d80db1bf46d4b054f",
+      "conversion_operation": "would bind pose index/fingerprint to camera/image records for traceability; not executed",
+      "output_relative_path": "DATA/poses/pose_000347.npz and DATA/sparse/0/images.txt",
+      "resolution": null,
+      "camera_conversion": "paired with camera_000347",
+      "mask_semantics": "not_applicable",
+      "expected_bytes": 3588,
+      "leakage_risk": "LOW_METADATA_ONLY",
+      "compatibility_decision": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "gsvton_required_field": "gs_source",
+      "subject02_source_path": null,
+      "source_sha256": null,
+      "conversion_operation": "blocked; would require building an initialized vanilla static 3DGS point_cloud.ply from subject02 data; not executed",
+      "output_relative_path": "DATA/point_cloud/iteration_30000/point_cloud.ply",
+      "resolution": null,
+      "camera_conversion": "requires complete static 3DGS data root with COLMAP/Nerfstudio cameras",
+      "mask_semantics": "not_applicable",
+      "expected_bytes": 0,
+      "leakage_risk": "NOT_APPLICABLE_STATIC_INITIALIZATION_BLOCKER",
+      "compatibility_decision": "RETRAIN_STATIC_3DGS_REQUIRED"
+    }
+  ],
+  "camera_conversion_status": "SPECIFIED_NOT_EXECUTED",
+  "mask_semantics_status": "SPECIFIED_FOREGROUND_NOT_HUMAN_PARSE_LABELS",
+  "target_leakage_status": "PASS_NO_TARGET_RGB_OR_MASK_USED_AS_GARMENT_REFERENCE",
+  "static_3dgs_initialization_requirement": {
+    "required_format": "vanilla static 3DGS initialized point_cloud/iteration_30000/point_cloud.ply plus COLMAP/Nerfstudio DATA root",
+    "official_readme_evidence": "README data preparation requires Nerfstudio video processing and 3D Gaussian Splatting initialized 3DGS; usage passes --gs_source DATA/point_cloud/iteration_30000/point_cloud.ply.",
+    "ply_fields_expected_by_loader": [
+      "x",
+      "y",
+      "z",
+      "opacity",
+      "f_dc_*",
+      "f_rest_*",
+      "scale_*",
+      "rot_*"
+    ],
+    "mmlphuman_initialization_compatibility": "RETRAIN_STATIC_3DGS_REQUIRED",
+    "required_adapter": "NO_DIRECT_ADAPTER_EXECUTED; field mapping alone insufficient"
+  },
+  "estimated_converted_data_bytes": 374573,
+  "estimated_converted_data_note": "Logical referenced bytes only: garment reference + target RGB + target mask + pose + camera. New converted bytes are zero.",
+  "output_bytes_created": 0,
+  "operations": {
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  },
+  "target_space_metrics": {
+    "status": "FROZEN_TARGET_SPACE_METRICS",
+    "metrics": [
+      "full-image LPIPS/PSNR/SSIM",
+      "garment-region LPIPS/PSNR/SSIM",
+      "silhouette IoU",
+      "Boundary F",
+      "protected-region LPIPS/RGB MAE",
+      "artifact review",
+      "cost",
+      "storage",
+      "render time"
+    ],
+    "endpoint_lpips_forbidden": true,
+    "face_id_protocol_status": "NOT_USED_DUE_TO_UNVALIDATED_FACE_ID_PROTOCOL"
+  },
+  "final_classification": "GSVTON_MICRO_CANARY_PREFLIGHT_MULTIPLE_BLOCKERS",
+  "next_task": "USER_OBTAIN_GSVTON_AUTHOR_PERMISSION_OR_SELECT_FULL_AVATAR_ONLY",
+  "paper_final": false
+}

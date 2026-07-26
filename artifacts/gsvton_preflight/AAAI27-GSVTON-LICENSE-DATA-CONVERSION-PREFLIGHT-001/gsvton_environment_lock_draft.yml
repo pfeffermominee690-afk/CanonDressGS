@@ -1,0 +1,108 @@
+schema_version: canondressgs.gsvton_environment_lock_draft.v1
+task_id: AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001
+status: DRAFT_ONLY_ENV_NOT_CREATED
+official_repository: https://github.com/yukangcao/GS-VTON
+pinned_commit: 96964b0a6528089123cc27a3ff3e3eb46505cf6e
+
+requirements:
+  python: "3.8"
+  cuda_toolkit: "11.8"
+  torch: "2.2.1+cu118"
+  torchvision: "0.17.1+cu118"
+  torchaudio: "2.2.1+cu118"
+  xformers: "0.0.25+cu118"
+
+conda_channels:
+  - nvidia/label/cuda-11.8.0
+  - pytorch
+  - conda-forge
+
+official_readme_install_commands:
+  - conda create -n gsvton python=3.8 -y
+  - conda install -c "nvidia/label/cuda-11.8.0" cuda-toolkit
+  - pip install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu118
+  - pip install xformers==0.0.25 --no-deps --index-url https://download.pytorch.org/whl/cu118
+  - pip install git+https://github.com/tencent-ailab/IP-Adapter.git
+  - pip install git+https://github.com/XPixelGroup/BasicSR@8d56e3a045f9fb3e1d8872f92ee4a4f07f886b0a
+  - python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+  - pip install -r requirements.txt
+
+pip_requirements_from_requirements_txt:
+  - diffusers==0.25.0
+  - av
+  - onnxruntime
+  - peft
+  - pytorch_lightning
+  - ruamel.yaml<0.18.0
+  - mediapipe
+  - ffmpeg
+  - omegaconf==2.3.0
+  - jaxtyping
+  - typeguard
+  - nerfacc==0.3.3
+  - pyrender
+  - git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
+  - accelerate
+  - opencv-python
+  - tensorboard
+  - matplotlib
+  - imageio>=2.28.0
+  - imageio[ffmpeg]
+  - git+https://github.com/NVlabs/nvdiffrast.git
+  - libigl
+  - xatlas
+  - trimesh[easy]
+  - networkx
+  - pysdf
+  - PyMCubes
+  - wandb
+  - gradio
+  - git+https://github.com/ashawkey/envlight.git
+  - torchmetrics
+  - bitsandbytes==0.38.1
+  - sentencepiece
+  - safetensors
+  - huggingface_hub==0.25.0
+  - einops
+  - kornia==0.7.0
+  - taming-transformers-rom1504
+  - git+https://github.com/openai/CLIP.git
+  - controlnet_aux
+  - torch_efficient_distloss
+  - mediapy
+  - plyfile
+  - rembg
+  - git+https://github.com/ashawkey/kiuikit
+  - scikit-learn
+  - scipy
+  - viser
+  - ninja
+  - easydict
+  - albumentations==0.5.2
+  - webdataset
+  - pyrender==0.1.45
+  - Pillow==9.5.0
+  - stage2/gaussiansplatting/submodules/diff-gaussian-rasterization
+  - stage2/gaussiansplatting/submodules/simple-knn
+
+estimated_environment_bytes: 20937965568
+estimated_environment_byte_breakdown:
+  torch_cuda118_wheels: 5368709120
+  cuda_toolkit_conda: 5368709120
+  diffusion_and_cv_python_wheels: 4294967296
+  cuda_extension_sources_and_build_cache: 3221225472
+  auxiliary_python_packages_and_metadata: 2147483648
+  resolver_and_cache_overhead: 536870912
+
+operations:
+  conda_environment_created: false
+  pip_install_executed: false
+  gpu_used: false
+  checkpoint_download_bytes: 0
+  dataset_download_bytes: 0
+  training_steps: 0
+  renderer_inferences: 0
+  data_mutations: 0
+  paper_modifications: 0
+  paper_final: false
+

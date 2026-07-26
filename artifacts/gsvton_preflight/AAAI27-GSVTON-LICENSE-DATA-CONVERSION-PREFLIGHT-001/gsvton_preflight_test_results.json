@@ -1,0 +1,111 @@
+{
+  "schema_version": "canondressgs.gsvton_preflight_test_results.v1",
+  "task_id": "AAAI27-GSVTON-LICENSE-DATA-CONVERSION-PREFLIGHT-001",
+  "status": "PASS",
+  "test_count": 22,
+  "pass_count": 22,
+  "failure_count": 0,
+  "error_count": 0,
+  "contract_checks": [
+    {
+      "name": "test_01_source_branch_head",
+      "status": "PASS"
+    },
+    {
+      "name": "test_02_official_repo",
+      "status": "PASS"
+    },
+    {
+      "name": "test_03_pinned_commit",
+      "status": "PASS"
+    },
+    {
+      "name": "test_04_official_source_only",
+      "status": "PASS"
+    },
+    {
+      "name": "test_05_license_search_completeness",
+      "status": "PASS"
+    },
+    {
+      "name": "test_06_dependency_parse",
+      "status": "PASS"
+    },
+    {
+      "name": "test_07_required_weight_manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "test_08_zero_download_bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "test_09_subject02_field_mapping_completeness",
+      "status": "PASS"
+    },
+    {
+      "name": "test_10_no_target_leakage",
+      "status": "PASS"
+    },
+    {
+      "name": "test_11_camera_conversion_specification",
+      "status": "PASS"
+    },
+    {
+      "name": "test_12_mask_semantics",
+      "status": "PASS"
+    },
+    {
+      "name": "test_13_static_3dgs_initialization_decision",
+      "status": "PASS"
+    },
+    {
+      "name": "test_14_storage_estimate_completeness",
+      "status": "PASS"
+    },
+    {
+      "name": "test_15_one_reference_protocol",
+      "status": "PASS"
+    },
+    {
+      "name": "test_16_no_endpoint_lpips",
+      "status": "PASS"
+    },
+    {
+      "name": "test_17_training_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_18_inference_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_19_data_mutation_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_20_paper_modification_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "test_21_final_classification",
+      "status": "PASS"
+    },
+    {
+      "name": "test_22_next_task_uniqueness",
+      "status": "PASS"
+    }
+  ],
+  "operations": {
+    "checkpoint_download_bytes": 0,
+    "dataset_download_bytes": 0,
+    "training_steps": 0,
+    "renderer_inferences": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0,
+    "paper_final": false
+  },
+  "final_classification": "GSVTON_MICRO_CANARY_PREFLIGHT_MULTIPLE_BLOCKERS",
+  "next_task": "USER_OBTAIN_GSVTON_AUTHOR_PERMISSION_OR_SELECT_FULL_AVATAR_ONLY",
+  "paper_final": false
+}
