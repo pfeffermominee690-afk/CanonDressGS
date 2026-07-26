@@ -146,13 +146,15 @@ def tensor_sha(value: torch.Tensor) -> str:
     return digest.hexdigest()
 
 
-def model_fingerprint(model: nn.Module) -> dict[str, str]:
+def model_fingerprint(model: Any) -> dict[str, str]:
     result: dict[str, str] = {}
-    for name, parameter in model.named_parameters():
-        result[f"parameter:{name}"] = tensor_sha(parameter)
-    for name in MODEL_KEYS:
-        value = getattr(model, name)
-        result[f"canonical:{name}"] = tensor_sha(value)
+    for name in BASE_PARAMETER_ATTRIBUTES:
+        result[f"parameter:{name}"] = tensor_sha(getattr(model, name))
+    encoder = model.encoder_feat_params
+    if not isinstance(encoder, Mapping) or not encoder:
+        raise RuntimeError("Base encoder parameter mapping is absent")
+    for name, parameter in sorted(encoder.items()):
+        result[f"parameter:encoder_feat_params.{name}"] = tensor_sha(parameter)
     result["lbs_weights"] = tensor_sha(model.get_weights)
     return result
 
@@ -1330,18 +1332,41 @@ def prepare_zero_step_preoptimizer_recovery(run_root: Path) -> dict[str, Any]:
             f"{sorted(actual_entries)}"
         )
     status_path = run_root / "RUN_STATUS.json"
-    failure_path = run_root / "audits" / "failure.json"
     registry_path = run_root / "contract" / "target_registry.json"
     status = read_json(status_path)
+    stage_contracts = {
+        (
+            "AttributeError: 'GaussianModel' object has no attribute "
+            "'parameters'"
+        ): {
+            "sequence": 1,
+            "failure_name": "failure.json",
+            "audit_files": {"failure.json"},
+            "recovery_audit_name": "zero_step_preoptimizer_recovery.json",
+        },
+        (
+            "AttributeError: 'GaussianModel' object has no attribute "
+            "'named_parameters'"
+        ): {
+            "sequence": 2,
+            "failure_name": "failure_recovery.json",
+            "audit_files": {
+                "failure.json",
+                "failure_recovery.json",
+                "zero_step_preoptimizer_recovery.json",
+            },
+            "recovery_audit_name": "zero_step_preoptimizer_recovery_02.json",
+        },
+    }
+    stage = stage_contracts.get(status.get("exception"))
+    if stage is None:
+        raise RuntimeError("prior failure is not an authorized zero-step stage")
+    failure_path = run_root / "audits" / stage["failure_name"]
     failure = read_json(failure_path)
-    expected_exception = (
-        "AttributeError: 'GaussianModel' object has no attribute 'parameters'"
-    )
     if (
         status != failure
         or status.get("task_id") != TASK_ID
         or status.get("status") != "FAIL"
-        or status.get("exception") != expected_exception
         or status.get("paper_eligible") is not False
     ):
         raise RuntimeError("prior zero-step failure evidence is not exact")
@@ -1367,7 +1392,7 @@ def prepare_zero_step_preoptimizer_recovery(run_root: Path) -> dict[str, Any]:
         for path in (run_root / "contract").iterdir()
         if path.is_file()
     }
-    if audit_files != {"failure.json"} or contract_files != {
+    if audit_files != stage["audit_files"] or contract_files != {
         "target_registry.json"
     }:
         raise RuntimeError(
@@ -1380,6 +1405,8 @@ def prepare_zero_step_preoptimizer_recovery(run_root: Path) -> dict[str, Any]:
         "task_id": TASK_ID,
         "status": "AUTHORIZED_IN_ATTEMPT_ZERO_STEP_RECOVERY",
         "attempt": "attempt_001",
+        "recovery_sequence": stage["sequence"],
+        "recovery_audit_name": stage["recovery_audit_name"],
         "prior_process_reached_optimizer": False,
         "prior_optimizer_steps": 0,
         "prior_checkpoint_count": 0,
@@ -1399,6 +1426,14 @@ def prepare_zero_step_preoptimizer_recovery(run_root: Path) -> dict[str, Any]:
         "paper_eligible": False,
         "created_at_unix": time.time(),
     }
+    if int(stage["sequence"]) > 1:
+        previous_recovery_path = (
+            run_root / "audits" / "zero_step_preoptimizer_recovery.json"
+        )
+        recovery["previous_recovery_audit_path"] = str(previous_recovery_path)
+        recovery["previous_recovery_audit_sha256"] = sha256_file(
+            previous_recovery_path
+        )
     return recovery
 
 
@@ -1472,7 +1507,7 @@ def run(args: argparse.Namespace) -> int:
             )
         if recovery is not None:
             atomic_json(
-                run_root / "audits" / "zero_step_preoptimizer_recovery.json",
+                run_root / "audits" / recovery["recovery_audit_name"],
                 recovery,
             )
         target_registry_sha = sha256_file(target_registry_path)
@@ -1895,8 +1930,12 @@ def run(args: argparse.Namespace) -> int:
         }
         atomic_json(run_root / "RUN_STATUS.json", failure)
         failure_name = (
-            "failure_recovery.json"
-            if args.resume_zero_step_preoptimizer_failure
+            (
+                "failure_recovery.json"
+                if int(recovery["recovery_sequence"]) == 1
+                else f"failure_recovery_{int(recovery['recovery_sequence']):02d}.json"
+            )
+            if recovery is not None
             else "failure.json"
         )
         atomic_json(run_root / "audits" / failure_name, failure)

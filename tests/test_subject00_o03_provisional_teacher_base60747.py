@@ -116,6 +116,7 @@ def test_explicit_non_module_base_freeze_covers_all_parameter_groups() -> None:
             "layer.weight": torch.nn.Parameter(torch.ones(1)),
             "layer.bias": torch.nn.Parameter(torch.ones(1)),
         },
+        get_weights=torch.ones(1, 55),
     )
     summary = runner.freeze_explicit_base_parameters(model)
     assert summary["status"] == "PASS_EXPLICIT_NON_MODULE_FREEZE"
@@ -130,3 +131,7 @@ def test_explicit_non_module_base_freeze_covers_all_parameter_groups() -> None:
         parameter.requires_grad is False
         for parameter in model.encoder_feat_params.values()
     )
+    fingerprint = runner.model_fingerprint(model)
+    assert "parameter:_xyz" in fingerprint
+    assert "parameter:encoder_feat_params.layer.weight" in fingerprint
+    assert "lbs_weights" in fingerprint
