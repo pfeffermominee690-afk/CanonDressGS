@@ -1,0 +1,138 @@
+{
+  "schema_version": "canondressgs.subject00.o03_provisional_teacher_camerasafe7.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-PROVISIONAL-TEACHER-CAMERA-SAFE-7VIEW-RERUN-001",
+  "classification": "PROVISIONAL_BASE60747_CAMERA_SAFE_7VIEW_RESULT",
+  "paper_eligible": false,
+  "subject": "Subject00",
+  "garment": "O03",
+  "source_git": {
+    "branch": "research/subject00-o03-provisional-teacher-camera-metric-review-20260727",
+    "head": "d541edce4b7b1da7ce6d055275993c1faf10e45a",
+    "execution_branch": "research/subject00-o03-provisional-teacher-camerasafe7-rerun-20260727"
+  },
+  "evidence": {
+    "camera_resolution_branch": "research/subject00-teacher-target-camera-blocker-resolution-20260727",
+    "camera_resolution_head": "a434ae7a78fe898be2658180f20bbcd4391a64c0",
+    "camera_resolution_classification": "SUBJECT00_TEACHER_TARGET_CAMERA_BLOCKER_RESOLVED_WITH_QUARANTINE_READY_FOR_MATERIALIZATION",
+    "mask_acceptance_branch": "research/subject00-24-cell-mask-human-review-promotion-20260727",
+    "mask_acceptance_head": "4ed89d9ac5076d13fef1c2cad8fcf28e3d236ac0",
+    "historical_run_class": "HISTORICAL_TECHNICAL_RUN_WITH_CAMERA_CONTAMINATION"
+  },
+  "base": {
+    "class": "PROVISIONAL_INTERMEDIATE_BASE",
+    "step": 60747,
+    "checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "checkpoint_bytes": 724584413,
+    "checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "sidecar_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.sidecar.json"
+  },
+  "historical_contaminated_run": {
+    "run_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001",
+    "checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001/checkpoints/step_001200.pth",
+    "checkpoint_bytes": 31422468,
+    "checkpoint_sha256": "41755ab9925b91b5ed98e86b62e07fdb36b5ab31421dcbcd6d72347302000c21",
+    "initialization_allowed": false,
+    "comparison_only": true
+  },
+  "targets": {
+    "schema": "canondressgs.full_dataset.v1",
+    "data_class": "RUN_LOCAL_PROVISIONAL_CAMERA_SAFE_7VIEW_SNAPSHOT",
+    "count": 7,
+    "slots": [
+      "slot_00",
+      "slot_01",
+      "slot_02",
+      "slot_03",
+      "slot_05",
+      "slot_06",
+      "slot_07"
+    ],
+    "camera_ids": [17, 21, 14, 23, 2, 9, 5],
+    "directions": [
+      "front",
+      "front-left",
+      "front-right",
+      "left",
+      "back-left",
+      "back-right",
+      "back"
+    ],
+    "request_ids": [
+      "subject00_O03_slot00_canary_attempt004_cand00",
+      "subject00_O03_slot01_remaining_attempt005_cand00",
+      "subject00_O03_slot02_cand00",
+      "subject00_O03_slot03_cand01",
+      "subject00_O03_slot05_canary_attempt004_cand00",
+      "subject00_O03_slot06_remaining_attempt005_cand00",
+      "subject00_O03_slot07_canary_attempt004_cand00"
+    ],
+    "excluded": {
+      "count": 1,
+      "slot": "slot_04",
+      "camera_id": 11,
+      "direction": "right",
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "reason": "REVIEW_ONLY_CAMERA_QUARANTINED"
+    },
+    "pose_frame_id": 0,
+    "strict_split_role": "STRICT_TRAIN",
+    "batch_size": 1,
+    "denominator": 7
+  },
+  "teacher": {
+    "protocol": "representation_triage_rung2_direct_shared_canonical",
+    "loss_name": "CAPACITY_ORACLE_LOSS_V1",
+    "steps": 1200,
+    "seed": 20260718,
+    "view_schedule": "deterministic_round_robin_camera_safe_slot_00_01_02_03_05_06_07",
+    "expected_view_sample_counts": {
+      "slot_00": 172,
+      "slot_01": 172,
+      "slot_02": 172,
+      "slot_03": 171,
+      "slot_05": 171,
+      "slot_06": 171,
+      "slot_07": 171
+    },
+    "optimizer": {
+      "class": "Adam",
+      "geometry_lr": 0.001,
+      "appearance_lr": 0.002,
+      "gradient_clip_norm": 1.0
+    },
+    "scheduler": null,
+    "loss_weights": {
+      "garment_rgb": 1.0,
+      "alpha_foreground": 0.5,
+      "new_silhouette_alpha": 1.0,
+      "boundary_rgb": 0.25,
+      "protected_rgb": 10.0,
+      "protected_alpha": 5.0,
+      "stability": 0.0001
+    },
+    "checkpoint_steps": [0, 300, 600, 900, 1200]
+  },
+  "runtime": {
+    "data_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "assets_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+    "availability_manifest": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-CAMSAFE7-001",
+    "attempt": "attempt_001",
+    "minimum_free_bytes": 32212254720,
+    "gpu_name": "NVIDIA GeForce RTX 4090"
+  },
+  "execution": {
+    "run_count": 1,
+    "automatic_retry": false,
+    "multi_seed": false,
+    "hyperparameter_sweep": false,
+    "early_stop": false
+  },
+  "mutations": {
+    "formal_base_resume_allowed": false,
+    "source_data_mutations_allowed": false,
+    "historical_run_mutations_allowed": false,
+    "paper_modifications_allowed": false,
+    "attempt_002_allowed": false
+  }
+}
