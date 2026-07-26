@@ -242,7 +242,7 @@ def checkpoint_audit(run_root: Path, config: Mapping[str, Any]) -> tuple[dict[st
                 payload["target_registry_sha256"] == expected_registry_sha
             ),
             "initialization_sha_exact": (
-                payload["base_checkpoint"]["sha256"]
+                payload["base_checkpoint"]["checkpoint_sha256"]
                 == config["base"]["checkpoint_sha256"]
             ),
             "target_count_exact": int(payload["target_count"]) == 8,
