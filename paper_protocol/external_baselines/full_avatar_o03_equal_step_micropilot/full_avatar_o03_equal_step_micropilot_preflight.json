@@ -1,0 +1,243 @@
+{
+  "schema_version": "canondressgs.full_avatar_o03_equal_step.preflight.v1",
+  "task_id": "AAAI27-FULL-AVATAR-FINETUNING-O03-EQUAL-STEP-MICRO-PILOT-001",
+  "source": {
+    "branch": "research/external-baseline-feasibility-from-bundle-rerun-20260726",
+    "head": "572637f08aef21fde35dcd7f8879ff74549c2afc",
+    "bundle_sha256": "f12e5bb8ce2c36e12bdb911fdae41cd7e3e2ca0e9d2520dc2c57d2263ffd9e61",
+    "source_tests": "45/45 PASS"
+  },
+  "execution": {
+    "new_branch": "research/full-avatar-finetuning-o03-equal-step-micropilot-20260726",
+    "windows_worktree": "E:\\model_train\\canondressgs_full_avatar_finetuning_o03_equal_step_micropilot",
+    "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_full_avatar_finetuning_o03_equal_step_micropilot",
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/FULL-AVATAR-FINETUNE-O03-EQUALSTEP-MICROPILOT-001",
+    "output_root_created": false,
+    "attempt_id": "attempt_001_PLANNED_NOT_CREATED"
+  },
+  "base_avatar": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt100000.pth",
+    "sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70",
+    "step": 100000,
+    "config_path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/config.yaml",
+    "config_sha256": "538dc4feb5c66ad85274ac6b0cb11a2819d6ba67e06ee8bdccbd1c01c2c7aec6",
+    "subject": "THuman4.0 subject02",
+    "canonical_gaussian_count": 200000,
+    "control_anchor_count": 10000,
+    "pose_feature_count": 300,
+    "architecture": "MMLP-Human GaussianModel checkpoint v2 with SMPL-X/LBS deformation and gsplat renderer",
+    "binding": "checkpoint embeds Gaussian state, LBS/deformation state, optimizer/scheduler state, and RNG state",
+    "sealed_status": "PASS_FROZEN_ASSET_REGISTRY_AND_LIVE_SHA_MATCH",
+    "visual_status": "REAL_VERIFIED_BY_FORMAL_BACKBONE_ACCEPTANCE"
+  },
+  "target_contract": {
+    "garment": "O03",
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset",
+    "manifest": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json",
+    "manifest_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf",
+    "rgb_count": 4,
+    "primary_mask_count": 8,
+    "all_unique_mask_file_count": 44,
+    "camera_count": 4,
+    "registry": {
+      "condition_order": [
+        "cond_000000",
+        "cond_000318",
+        "cond_000017",
+        "cond_000347"
+      ],
+      "rgb_sha256": {
+        "cond_000000": "b11e0feb45b747cffe74613b4fb7d6cf9e290e08f2251317ffa49ee64c512117",
+        "cond_000318": "2884331627d856c774de8368aad9af043dac5d4b0957accd85a8afab5f7b954a",
+        "cond_000017": "32c70a455396ea33848d49b73520f7c7995dfa04dfde20b8158b2ff7b6d65bb9",
+        "cond_000347": "0fa201528e834029cdcaa887d8ec76b855c8dc6680bd5ad79ba9228fa559b7d6"
+      },
+      "foreground_mask_sha256": {
+        "cond_000000": "82f7dd71f6ba9fb37e07c02649f3900a3f6f6e08ee08d3d94925548de4458f10",
+        "cond_000318": "8b21f3060feb2ff306b04bb048fed323b8c23fcf577976e7c3cef024b6065340",
+        "cond_000017": "56b2f4ef9178d0ac1e9e9d65da862f44253a81cce924f7b764f2fc38d4fbe185",
+        "cond_000347": "7957e74d8e494ac3819d7f35c07fb27dc85f6c05fbe89765f6a2e6edda561a6b"
+      },
+      "garment_mask_sha256": {
+        "cond_000000": "a25b9f0e7586fbfe3ce5e6c6035cd5df2fb5cae540a0a46c27be4027d0a222c6",
+        "cond_000318": "fccc2d7523792ad2adf66772e3068815026e9cb13f877e83a1a2a0235ef05897",
+        "cond_000017": "bdfdc73a9f66657cabcd5fab0ddc88a82fddb703b64a6468184323cf185794b9",
+        "cond_000347": "4123167a1bf3aff44d130e3d03a4d49cc606321f31891b4939e77e92be5189fd"
+      },
+      "camera_sha256": {
+        "cond_000000": "21607b527da70cd1fe1ce5ff8448806188745c916f59d4ff9e5e0e74ff0e84c0",
+        "cond_000318": "6a7af5a1502b7bcb34f52dd190cd42a21833bdc8274a84c8dbf8e84275616278",
+        "cond_000017": "8f11a271d6bd72edd813579516d07b86c4f9d2e60e25502877e537c80e91bfed",
+        "cond_000347": "f3cbe09fe8650081aa1e4c6ab2bb02d955dd5901457625cf0cc5958806705305"
+      },
+      "pose_sha256": {
+        "cond_000000": "36489b2e1ff768d9c0f7ebab540e811c80f3b6b49f2c5e2a8404c0afdb8a4222",
+        "cond_000318": "538812c7b333cc0134a81ba95abdd6f81eb234a4fcabc0489f831b188a063447",
+        "cond_000017": "55566abdf8025c657e6d10ef338e81f809d892ba8fa963d5689525647e1eabd5",
+        "cond_000347": "7c5d8844474c8902b7b87f55ea5125710f9b593dcc2d100d80db1bf46d4b054f"
+      }
+    },
+    "identity_audit": {
+      "cond_000000": "PASS",
+      "cond_000318": "PASS",
+      "cond_000017": "PASS",
+      "cond_000347": "WARN"
+    },
+    "candidate_rotations": [
+      {
+        "rotation": 0,
+        "train": [
+          "cond_000000",
+          "cond_000318"
+        ],
+        "calibration": "cond_000017",
+        "test": "cond_000347",
+        "logical_disjointness_pass": true,
+        "manifest_sha256": "13aa4d9466432b01344fe1dc0073ad59cd75c0cf2efc83fffa58836ba81c1b75"
+      },
+      {
+        "rotation": 1,
+        "train": [
+          "cond_000318",
+          "cond_000017"
+        ],
+        "calibration": "cond_000347",
+        "test": "cond_000000",
+        "logical_disjointness_pass": true,
+        "manifest_sha256": "6cf5417db7eb3005a77e8c835ee991f493ad89cf6de82ea6baff022c5b76315b"
+      },
+      {
+        "rotation": 2,
+        "train": [
+          "cond_000017",
+          "cond_000347"
+        ],
+        "calibration": "cond_000000",
+        "test": "cond_000318",
+        "logical_disjointness_pass": true,
+        "manifest_sha256": "d068616b29f4bc650638200f494cff6bd88855ea81a0c03e922e1a910b24ab70"
+      },
+      {
+        "rotation": 3,
+        "train": [
+          "cond_000347",
+          "cond_000000"
+        ],
+        "calibration": "cond_000318",
+        "test": "cond_000017",
+        "logical_disjointness_pass": true,
+        "manifest_sha256": "af6c51cfa8a3b301d395b6076e0ff8f5c82cc2d9026102fa12ce86c018dd1be9"
+      }
+    ],
+    "selected_rotation": null,
+    "overlap_audit": "ALL_ROTATIONS_LOGICALLY_DISJOINT; EXPECTED_CLOSED_WARDROBE_REFERENCE_ASSET_OVERLAP",
+    "target_leakage_status": "NOT_EVALUABLE_UNTIL_ONE_SPLIT_OR_VIEW_TRANSDUCTIVE_CONTRACT_IS_SELECTED",
+    "teacher_used_conditions": [
+      "cond_000000",
+      "cond_000318",
+      "cond_000017",
+      "cond_000347"
+    ]
+  },
+  "equal_step": {
+    "teacher_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+    "teacher_checkpoint_sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93",
+    "n_teacher_per_garment": 1200,
+    "full_avatar_finetune_steps": 1200,
+    "status": "PASS_UNIQUE_BUDGET_FROM_SEALED_O03_TEACHER_METADATA"
+  },
+  "parameter_provenance": {
+    "candidate_base_optimizer_groups": {
+      "dxyz": 30000,
+      "scales": 600000,
+      "quats": 800000,
+      "opacities": 200000,
+      "sh0": 600000,
+      "shN": 1800000,
+      "dxyz_bs": 450000,
+      "dscales_bs": 9000000,
+      "dquats_bs": 12000000,
+      "dopacities_bs": 3000000,
+      "dsh0_bs": 9000000,
+      "dshN_bs": 27000000,
+      "encoder_feat_params": 91017000,
+      "xyz_offset": 600000
+    },
+    "candidate_trainable_parameter_count": 156097000,
+    "candidate_trainable_tensor_count": 23,
+    "candidate_frozen_checkpoint_tensor_values": 14166176,
+    "approved_trainable_groups": null,
+    "approved_trainable_parameter_count": null,
+    "approved_frozen_groups": null,
+    "approved_frozen_parameter_count": null,
+    "reason": "Optimizer initialization and loss contract are not frozen for Full Avatar fine-tuning."
+  },
+  "checkpoint_provenance": {
+    "base_checkpoint_file_bytes": 1706610302,
+    "model_and_buffer_tensor_bytes": 686237756,
+    "optimizer_state_tensor_bytes": 1018376084,
+    "serialization_and_non_tensor_bytes": 1996462,
+    "required_milestones": [
+      0,
+      300,
+      600,
+      900,
+      1200
+    ],
+    "estimated_total_milestone_bytes": 8533051510
+  },
+  "storage": {
+    "free_bytes_before_output_creation": 46450372608,
+    "minimum_remaining_bytes": 26843545600,
+    "estimated_auxiliary_bytes": 2147483648,
+    "estimated_remaining_bytes": 35769837450,
+    "status": "PASS"
+  },
+  "gpu": {
+    "model": "NVIDIA GeForce RTX 4090",
+    "count": 1,
+    "free_vram_bytes": 24837292032,
+    "driver": "580.76.05",
+    "pytorch": "2.4.1+cu121",
+    "cuda_runtime": "12.1",
+    "renderer": "gsplat 1.5.3+pt24cu121 IMPORT_PASS",
+    "status": "PASS_SINGLE_GPU"
+  },
+  "blockers": [
+    {
+      "id": "SPLIT_ROTATION_NOT_SELECTED",
+      "evidence": "Four frozen, logically disjoint rotations exist; neither the feasibility contract nor the authorized task selects one for this single run.",
+      "required_resolution": "Freeze one rotation id, or explicitly authorize all-view view-transductive adaptation and revise the no-target-test-RGB clause."
+    },
+    {
+      "id": "LOSS_CONTRACT_NOT_SELECTED",
+      "evidence": "Base provenance defines full-image L1/LPIPS/smoothness/scaling losses, while Teacher provenance defines CAPACITY_ORACLE_LOSS_V1 with region masks. The Full Avatar contract does not select either objective or define a mapping.",
+      "required_resolution": "Freeze one exact loss expression, weights, mask roles, crop, and reduction denominator."
+    },
+    {
+      "id": "OPTIMIZER_INITIALIZATION_NOT_SELECTED",
+      "evidence": "The Base checkpoint contains 14 optimizer states and 9 scheduler states, but the Full Avatar contract does not say whether to restore them or create fresh optimizers, nor how Teacher geometry/appearance rates map to backbone groups.",
+      "required_resolution": "Freeze restore-versus-reset, optimizer classes, every group learning rate, scheduler state, and gradient clipping policy."
+    },
+    {
+      "id": "SEED_NOT_UNIQUE",
+      "evidence": "Base config freezes seed 0 and Teacher construction freezes seed 20260718; the Full Avatar contract requests preregistered seeds but contains no Full Avatar seed value.",
+      "required_resolution": "Freeze one exact seed for this one-run micro-pilot."
+    }
+  ],
+  "operations": {
+    "optimizer_steps_completed": 0,
+    "training_runs": 0,
+    "backward_calls": 0,
+    "checkpoint_count": 0,
+    "render_inferences": 0,
+    "generated_images": 0,
+    "data_mutations": 0,
+    "paper_modifications": 0
+  },
+  "preflight_status": "BLOCKED_BEFORE_OUTPUT_CREATION_AND_OPTIMIZER_STEP",
+  "paper_final": false,
+  "final_classification": "FULL_AVATAR_O03_EQUALSTEP_MICROPILOT_PREFLIGHT_BLOCKED",
+  "next_task": "USER_RESOLVE_FULL_AVATAR_MICROPILOT_PREFLIGHT_BLOCKER",
+  "frozen_bundle_export_count": 53
+}
