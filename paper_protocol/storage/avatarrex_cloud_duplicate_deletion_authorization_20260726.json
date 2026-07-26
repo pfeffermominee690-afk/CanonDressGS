@@ -1,0 +1,146 @@
+{
+  "schema_version": "canondressgs.storage.avatarrex_cloud_duplicate_deletion_authorization.v1",
+  "generated_at": "2026-07-26T18:11:31+08:00",
+  "task_id": "AAAI27-SUBJECT00-FORMAL-BASE-ARCHIVE-RECLAIM-AND-EXECUTION-001",
+  "authorization_token": "AUTHORIZE_DELETE_VERIFIED_CLOUD_AVATARREX_ARCHIVE_AND_START_SUBJECT00_FORMAL_BASE_101245",
+  "source_gate": {
+    "required_source_branch": "research/subject00-formal-base-execution-preflight-20260726",
+    "required_source_head": "e5c98482160b2625a9ac6e8af388bc5350eced46",
+    "source_worktree_clean": true,
+    "origin_synced": true,
+    "cloud_bare_synced": true,
+    "cloud_preflight_worktree_synced": true,
+    "preflight_classification": "SUBJECT00_FORMAL_BASE_EXECUTION_CONTRACT_READY_PENDING_USER_AUTHORIZATION",
+    "training_authorized_before_this_task": false,
+    "optimizer_steps_before_this_task": 0,
+    "output_root_created_before_this_task": false,
+    "status": "PASS"
+  },
+  "execution_branch": {
+    "branch": "research/subject00-formal-base-101245-execution-20260726",
+    "windows_worktree": "E:\\model_train\\canondressgs_subject00_formal_base_101245_execution",
+    "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_formal_base_101245_execution",
+    "created_from": "e5c98482160b2625a9ac6e8af388bc5350eced46"
+  },
+  "windows_mirror_verification": {
+    "primary_mirror_path": "E:\\canondressgs_archive\\cloud_datasets\\AvatarReX\\payload\\root\\autodl-tmp\\datasets\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "primary_manifest_path": "E:\\canondressgs_archive\\cloud_datasets\\AvatarReX\\metadata\\root\\autodl-tmp\\datasets\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z.archive\\source_manifest.json",
+    "secondary_local_copy_path": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "expected_bytes": 12569755256,
+    "expected_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "primary_mirror_exists": true,
+    "primary_mirror_bytes": 12569755256,
+    "primary_mirror_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "secondary_local_copy_exists": true,
+    "secondary_local_copy_bytes": 12569755256,
+    "secondary_local_copy_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "status": "PASS_BYTE_EXACT_WINDOWS_MIRROR_CONFIRMED"
+  },
+  "cloud_duplicate_verification": {
+    "connection_method": "ssh alias canondress-cloud",
+    "host": "autodl-container-ef19489c10-464381bb",
+    "container": "autodl-container-ef19489c10-464381bb",
+    "user": "root",
+    "target_path": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "realpath": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "expected_bytes": 12569755256,
+    "actual_bytes": 12569755256,
+    "expected_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "actual_sha256": "531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+    "mode": "755",
+    "mtime": "2026-07-26 10:48:50.202351197 +0800",
+    "integrity_command": "7z t -- /root/autodl-tmp/avatarrex_lbn1.7z",
+    "integrity_result": "PASS_EVERYTHING_IS_OK",
+    "archive_type": "7z",
+    "archive_folders": 48,
+    "archive_files": 60834,
+    "archive_uncompressed_size_bytes": 19135049684,
+    "status": "PASS_BYTE_EXACT_CLOUD_DUPLICATE_CONFIRMED"
+  },
+  "storage_before_deletion": {
+    "filesystem": "/dev/md0",
+    "filesystem_type": "xfs",
+    "mount": "/root/autodl-tmp",
+    "total_bytes": 268435456000,
+    "used_bytes": 222563491840,
+    "free_bytes": 45871964160,
+    "archive_duplicate_bytes": 12569755256,
+    "projected_free_bytes_after_deletion": 58441719416,
+    "projected_peak_write_bytes": 14231374378,
+    "formal_storage_gate_bytes": 32212254720,
+    "operational_margin_bytes": 2147483648,
+    "required_projected_minimum_free_bytes_after_deletion": 34359738368,
+    "projected_minimum_free_bytes_after_deletion": 44210345038,
+    "status": "PASS_PROJECTED_AFTER_DELETION_EXCEEDS_REQUIRED_GATE"
+  },
+  "active_use_gate": {
+    "process_scan_command": "ps -ef | grep -Ei 'avatarrex|avatarrex_lbn1|PLAN_B_CANARY_001|7z|7za' | grep -v grep",
+    "process_scan_result": "PASS_EMPTY",
+    "lsof_available": false,
+    "fuser_available": false,
+    "staging_observation_window_seconds": 120,
+    "staging_paths": [
+      {
+        "path": "/root/autodl-tmp/datasets/avatarrex_lbn1_staging",
+        "exists": true,
+        "file_count_before": 12,
+        "file_count_after": 12,
+        "logical_bytes_before": 10467169,
+        "logical_bytes_after": 10467169,
+        "latest_mtime_before": "1785059424.4095249560 /root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001/attempt_001_audit/avatarrex_lbn1_plan_b_cloud_recovery_final_summary.json",
+        "latest_mtime_after": "1785059424.4095249560 /root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001/attempt_001_audit/avatarrex_lbn1_plan_b_cloud_recovery_final_summary.json"
+      },
+      {
+        "path": "/root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001",
+        "exists": true,
+        "file_count_before": 12,
+        "file_count_after": 12,
+        "logical_bytes_before": 10467130,
+        "logical_bytes_after": 10467130,
+        "latest_mtime_before": "1785059424.4095249560 /root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001/attempt_001_audit/avatarrex_lbn1_plan_b_cloud_recovery_final_summary.json",
+        "latest_mtime_after": "1785059424.4095249560 /root/autodl-tmp/datasets/avatarrex_lbn1_staging/PLAN_B_CANARY_001/attempt_001_audit/avatarrex_lbn1_plan_b_cloud_recovery_final_summary.json"
+      },
+      {
+        "path": "/root/autodl-tmp/datasets/avatarrex_second_dataset_staging",
+        "exists": true,
+        "file_count_before": 1,
+        "file_count_after": 1,
+        "logical_bytes_before": 1310046,
+        "logical_bytes_after": 1310046,
+        "latest_mtime_before": "1785018224.4142372660 /root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/smpl_params.npz",
+        "latest_mtime_after": "1785018224.4142372660 /root/autodl-tmp/datasets/avatarrex_second_dataset_staging/avatarrex_lbn1/smpl_params.npz"
+      }
+    ],
+    "status": "PASS_NO_ACTIVE_PROCESS_AND_STAGING_IMMUTABLE"
+  },
+  "deletion_policy": {
+    "allowed_delete_path": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "deletion_command_draft": "rm -- /root/autodl-tmp/avatarrex_lbn1.7z",
+    "delete_windows_mirror": false,
+    "delete_staging": false,
+    "delete_other_cloud_files": false,
+    "extract_avatarrex": false,
+    "full_avatar_o03": false,
+    "gs_vton": false,
+    "teacher_endpoint": false,
+    "paper_modifications": false,
+    "kill_processes": false
+  },
+  "restore_source": {
+    "primary_restore_source": "E:\\canondressgs_archive\\cloud_datasets\\AvatarReX\\payload\\root\\autodl-tmp\\datasets\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "secondary_restore_source": "E:\\data_pre\\avatarrex_second_dataset_staging\\downloads\\avatarrex_lbn1.7z",
+    "target_restore_path": "/root/autodl-tmp/avatarrex_lbn1.7z",
+    "restore_after_upload_required_checks": [
+      "stat -c '%s' -- /root/autodl-tmp/avatarrex_lbn1.7z == 12569755256",
+      "sha256sum -- /root/autodl-tmp/avatarrex_lbn1.7z == 531bd1c71ad9b35f6ae0e2595ee531aa7ba1f83c242f18f2d0505b2dcd5fbcc1",
+      "7z t -- /root/autodl-tmp/avatarrex_lbn1.7z"
+    ]
+  },
+  "deletion_authorized": true,
+  "deletion_executed": false,
+  "training_authorized": false,
+  "optimizer_steps": 0,
+  "output_root_created": false,
+  "final_classification": "SUBJECT00_AVATARREX_CLOUD_DUPLICATE_DELETION_AUTHORIZED_PENDING_EXECUTION",
+  "next_task": "COMMIT_SYNC_THEN_DELETE_ONLY_ROOT_AUTODL_TMP_AVATARREX_LBN1_7Z"
+}
