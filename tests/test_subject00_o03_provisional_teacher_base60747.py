@@ -96,3 +96,29 @@ def test_prediction_registration_warp_is_exact_for_integer_translation() -> None
     assert target.shape == (6, 6, 1)
     assert torch.isclose(target[3, 3, 0], torch.tensor(1.0))
     assert torch.count_nonzero(target > 1e-6) == 1
+
+
+def test_explicit_non_module_base_freeze_covers_all_parameter_groups() -> None:
+    attributes = {
+        name: torch.nn.Parameter(torch.ones(1)) for name in runner.BASE_PARAMETER_ATTRIBUTES
+    }
+    model = SimpleNamespace(
+        **attributes,
+        encoder_feat_params={
+            "layer.weight": torch.nn.Parameter(torch.ones(1)),
+            "layer.bias": torch.nn.Parameter(torch.ones(1)),
+        },
+    )
+    summary = runner.freeze_explicit_base_parameters(model)
+    assert summary["status"] == "PASS_EXPLICIT_NON_MODULE_FREEZE"
+    assert summary["explicit_attribute_count"] == len(
+        runner.BASE_PARAMETER_ATTRIBUTES
+    )
+    assert summary["encoder_parameter_count"] == 2
+    for name in runner.BASE_PARAMETER_ATTRIBUTES:
+        assert getattr(model, name).requires_grad is False
+        assert getattr(model, name).grad is None
+    assert all(
+        parameter.requires_grad is False
+        for parameter in model.encoder_feat_params.values()
+    )

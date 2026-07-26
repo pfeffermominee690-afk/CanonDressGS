@@ -73,6 +73,22 @@ GARMENT_BODY_PARTS = frozenset(
 PROTECTED_BODY_PARTS = frozenset({10, 11, 15, 20, 21, *range(22, 55)})
 FORMAL_LBS_JOINT_COUNT = 55
 MODEL_KEYS = ("_xyz", "_scaling", "_rotation", "_opacity", "_sh0", "_shN")
+BASE_PARAMETER_ATTRIBUTES = (
+    "_xyz",
+    "xyz_offset",
+    "_rotation",
+    "_opacity",
+    "_scaling",
+    "_sh0",
+    "_shN",
+    "dxyz_vt",
+    "dxyz_bs",
+    "sh0_bs",
+    "shN_bs",
+    "scaling_bs",
+    "rotation_bs",
+    "opacity_bs",
+)
 
 
 def read_json(path: Path) -> Any:
@@ -744,6 +760,41 @@ def capacity_loss(
     return parts
 
 
+def freeze_explicit_base_parameters(model: Any) -> dict[str, Any]:
+    """Freeze the non-nn.Module GaussianModel through its explicit parameter set."""
+    named: list[tuple[str, torch.Tensor]] = []
+    for name in BASE_PARAMETER_ATTRIBUTES:
+        value = getattr(model, name)
+        if not isinstance(value, torch.Tensor):
+            raise RuntimeError(f"Base parameter is not a tensor: {name}")
+        named.append((name, value))
+    encoder = model.encoder_feat_params
+    if not isinstance(encoder, Mapping) or not encoder:
+        raise RuntimeError("Base encoder parameter mapping is absent")
+    for name, value in sorted(encoder.items()):
+        if not isinstance(value, torch.Tensor):
+            raise RuntimeError(f"Base encoder parameter is not a tensor: {name}")
+        named.append((f"encoder_feat_params.{name}", value))
+    identities: set[int] = set()
+    for name, parameter in named:
+        if id(parameter) in identities:
+            raise RuntimeError(f"duplicate Base parameter binding: {name}")
+        identities.add(id(parameter))
+        parameter.requires_grad_(False)
+        parameter.grad = None
+    still_trainable = [name for name, value in named if value.requires_grad]
+    if still_trainable:
+        raise RuntimeError(f"Base parameters remain trainable: {still_trainable}")
+    return {
+        "status": "PASS_EXPLICIT_NON_MODULE_FREEZE",
+        "explicit_attribute_count": len(BASE_PARAMETER_ATTRIBUTES),
+        "encoder_parameter_count": len(encoder),
+        "tensor_count": len(named),
+        "all_requires_grad_false": True,
+        "all_gradients_cleared": True,
+    }
+
+
 def restore_base(
     config: Mapping[str, Any], data_root: Path, assets_root: Path, availability: Path
 ) -> tuple[Any, dict[str, Any], dict[str, Any]]:
@@ -764,9 +815,7 @@ def restore_base(
         or int(sidecar["bytes"]) != int(config["base"]["checkpoint_bytes"])
     ):
         raise RuntimeError("restored Base60747 binding changed")
-    for parameter in model.parameters():
-        parameter.requires_grad_(False)
-        parameter.grad = None
+    freeze_summary = freeze_explicit_base_parameters(model)
     model.optimizers = {}
     model.schedulers = []
     restore_summary = {
@@ -785,6 +834,7 @@ def restore_base(
                 "cuda_rng_states",
             )
         ),
+        "base_freeze": freeze_summary,
     }
     del payload
     torch.cuda.empty_cache()
@@ -1254,6 +1304,96 @@ def render_novel_queries(
     return results
 
 
+def prepare_zero_step_preoptimizer_recovery(run_root: Path) -> dict[str, Any]:
+    expected_entries = {
+        "RUN_STATUS.json",
+        "audits",
+        "checkpoints",
+        "contract",
+        "evaluations",
+        "inputs",
+        "review",
+        "training",
+    }
+    actual_entries = {path.name for path in run_root.iterdir()}
+    if actual_entries != expected_entries:
+        raise RuntimeError(
+            "zero-step recovery root differs from the sealed failure layout: "
+            f"{sorted(actual_entries)}"
+        )
+    status_path = run_root / "RUN_STATUS.json"
+    failure_path = run_root / "audits" / "failure.json"
+    registry_path = run_root / "contract" / "target_registry.json"
+    status = read_json(status_path)
+    failure = read_json(failure_path)
+    expected_exception = (
+        "AttributeError: 'GaussianModel' object has no attribute 'parameters'"
+    )
+    if (
+        status != failure
+        or status.get("task_id") != TASK_ID
+        or status.get("status") != "FAIL"
+        or status.get("exception") != expected_exception
+        or status.get("paper_eligible") is not False
+    ):
+        raise RuntimeError("prior zero-step failure evidence is not exact")
+    if not registry_path.is_file():
+        raise RuntimeError("prior target registry is absent")
+    forbidden_files = [
+        path
+        for folder in ("checkpoints", "evaluations", "review", "training")
+        for path in (run_root / folder).rglob("*")
+        if path.is_file()
+    ]
+    if forbidden_files:
+        raise RuntimeError(
+            f"zero-step recovery found downstream artifacts: {forbidden_files}"
+        )
+    audit_files = {
+        path.name
+        for path in (run_root / "audits").iterdir()
+        if path.is_file()
+    }
+    contract_files = {
+        path.name
+        for path in (run_root / "contract").iterdir()
+        if path.is_file()
+    }
+    if audit_files != {"failure.json"} or contract_files != {
+        "target_registry.json"
+    }:
+        raise RuntimeError(
+            "zero-step recovery found unexpected audit/contract artifacts"
+        )
+    recovery = {
+        "schema_version": (
+            "canondressgs.subject00.o03_zero_step_preoptimizer_recovery.v1"
+        ),
+        "task_id": TASK_ID,
+        "status": "AUTHORIZED_IN_ATTEMPT_ZERO_STEP_RECOVERY",
+        "attempt": "attempt_001",
+        "prior_process_reached_optimizer": False,
+        "prior_optimizer_steps": 0,
+        "prior_checkpoint_count": 0,
+        "prior_training_record_count": 0,
+        "prior_failure_path": str(failure_path),
+        "prior_failure_sha256": sha256_file(failure_path),
+        "prior_run_status_sha256": sha256_file(status_path),
+        "prior_target_registry_path": str(registry_path),
+        "prior_target_registry_sha256": sha256_file(registry_path),
+        "repair": (
+            "replace invalid GaussianModel.parameters() call with an exact "
+            "explicit freeze over all Base parameter tensors"
+        ),
+        "attempt_002_created": False,
+        "prior_evidence_deleted": False,
+        "target_or_base_mutations": 0,
+        "paper_eligible": False,
+        "created_at_unix": time.time(),
+    }
+    return recovery
+
+
 def run(args: argparse.Namespace) -> int:
     config = load_config(args.config)
     run_root = args.output_root / config["runtime"]["attempt"]
@@ -1263,10 +1403,16 @@ def run(args: argparse.Namespace) -> int:
         raise RuntimeError("attempt id differs from frozen contract")
     if not args.output_root.is_dir() or not run_root.is_dir():
         raise RuntimeError("prepared provisional output/attempt root is missing")
-    permitted_initial = {"inputs"}
-    unexpected = {path.name for path in run_root.iterdir()} - permitted_initial
-    if unexpected:
-        raise RuntimeError(f"provisional run root is not fresh: {sorted(unexpected)}")
+    recovery: dict[str, Any] | None = None
+    if args.resume_zero_step_preoptimizer_failure:
+        recovery = prepare_zero_step_preoptimizer_recovery(run_root)
+    else:
+        permitted_initial = {"inputs"}
+        unexpected = {path.name for path in run_root.iterdir()} - permitted_initial
+        if unexpected:
+            raise RuntimeError(
+                f"provisional run root is not fresh: {sorted(unexpected)}"
+            )
     required_input_paths = {
         args.mask_registry.resolve(),
         args.preflight_draft.resolve(),
@@ -1289,15 +1435,16 @@ def run(args: argparse.Namespace) -> int:
         args.output_root, int(config["runtime"]["minimum_free_bytes"])
     )
     gpu = require_gpu(config)
-    for name in (
-        "audits",
-        "checkpoints",
-        "contract",
-        "evaluations",
-        "review",
-        "training",
-    ):
-        (run_root / name).mkdir(exist_ok=False)
+    if recovery is None:
+        for name in (
+            "audits",
+            "checkpoints",
+            "contract",
+            "evaluations",
+            "review",
+            "training",
+        ):
+            (run_root / name).mkdir(exist_ok=False)
     started = time.perf_counter()
     torch.cuda.reset_peak_memory_stats()
     random.seed(int(config["teacher"]["seed"]))
@@ -1309,7 +1456,17 @@ def run(args: argparse.Namespace) -> int:
             config, run_root, args.mask_registry, args.preflight_draft
         )
         target_registry_path = run_root / "contract" / "target_registry.json"
-        atomic_json(target_registry_path, registry)
+        if recovery is None:
+            atomic_json(target_registry_path, registry)
+        elif read_json(target_registry_path) != registry:
+            raise RuntimeError(
+                "recomputed target registry differs during zero-step recovery"
+            )
+        if recovery is not None:
+            atomic_json(
+                run_root / "audits" / "zero_step_preoptimizer_recovery.json",
+                recovery,
+            )
         target_registry_sha = sha256_file(target_registry_path)
         checkpoint_audit = verify_file(
             Path(config["base"]["checkpoint_path"]),
@@ -1350,6 +1507,7 @@ def run(args: argparse.Namespace) -> int:
             "config_sha256": sha256_file(args.config),
             "target_registry_path": str(target_registry_path),
             "target_registry_sha256": target_registry_sha,
+            "zero_step_preoptimizer_recovery": recovery,
             "checkpoint_audit": checkpoint_audit,
             "checkpoint_sidecar": sidecar,
             "storage_gate": storage,
@@ -1728,7 +1886,12 @@ def run(args: argparse.Namespace) -> int:
             "paper_eligible": False,
         }
         atomic_json(run_root / "RUN_STATUS.json", failure)
-        atomic_json(run_root / "audits" / "failure.json", failure)
+        failure_name = (
+            "failure_recovery.json"
+            if args.resume_zero_step_preoptimizer_failure
+            else "failure.json"
+        )
+        atomic_json(run_root / "audits" / failure_name, failure)
         raise
 
 
@@ -1783,6 +1946,14 @@ def parse_args() -> argparse.Namespace:
             "/root/autodl-tmp/datasets/"
             "thuman4_second_identity_staging/reports/"
             "SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json"
+        ),
+    )
+    parser.add_argument(
+        "--resume-zero-step-preoptimizer-failure",
+        action="store_true",
+        help=(
+            "Continue the exact attempt_001 only when the sealed prior process "
+            "failed before optimizer creation with zero training steps."
         ),
     )
     return parser.parse_args()
