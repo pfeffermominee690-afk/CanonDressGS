@@ -52,6 +52,18 @@ CAMERA_RESOLUTION_TASK_ID = (
 CAMERA_RESOLUTION_BRANCH = (
     "research/subject00-teacher-target-camera-blocker-resolution-20260727"
 )
+CAMERA_RESOLUTION_SUMMARY_PATH = (
+    "paper_protocol/reviewer_risk/"
+    "subject00_teacher_target_camera_blocker_resolution_final_summary_20260727.json"
+)
+CAMERA_ELIGIBILITY_PATH = (
+    "paper_protocol/reviewer_risk/"
+    "subject00_teacher_target_camera_eligibility_registry_20260727.json"
+)
+CAMERA_QUARANTINE_PATH = (
+    "paper_protocol/reviewer_risk/"
+    "subject00_teacher_target_quarantine_registry_20260727.json"
+)
 RUN_ROOT = Path(
     "/root/autodl-tmp/canondressgs_work/outputs/"
     "SUBJECT00-O03-TEACHER-PROVISIONAL-BASE60747-001/attempt_001"
@@ -124,6 +136,104 @@ def git_output(*arguments: str, check: bool = True) -> str:
 
 def git_json(commit: str, path: str) -> Any:
     return json.loads(git_output("show", f"{commit}:{path}"))
+
+
+def git_blob_sha256(commit: str, path: str) -> str:
+    payload = subprocess.check_output(
+        ["git", "-C", str(REPO_ROOT), "show", f"{commit}:{path}"]
+    )
+    return hashlib.sha256(payload).hexdigest()
+
+
+def sealed_camera_resolution_evidence() -> dict[str, Any]:
+    resolution_head = git_output("rev-parse", "--verify", CAMERA_RESOLUTION_BRANCH)
+    final_summary = git_json(resolution_head, CAMERA_RESOLUTION_SUMMARY_PATH)
+    eligibility = git_json(resolution_head, CAMERA_ELIGIBILITY_PATH)
+    quarantine = git_json(resolution_head, CAMERA_QUARANTINE_PATH)
+    eligible_slot04 = next(
+        row
+        for row in eligibility["records"]
+        if row["request_id"]
+        == "subject00_O03_slot04_canary_attempt004_cand00"
+    )
+    quarantine_slot04 = next(
+        row
+        for row in quarantine["records"]
+        if row["request_id"]
+        == "subject00_O03_slot04_canary_attempt004_cand00"
+    )
+    checks = {
+        "task_id_exact": final_summary["task_id"] == CAMERA_RESOLUTION_TASK_ID,
+        "source_head_exact": final_summary["source_head"] == CAMERA_PREFLIGHT_HEAD,
+        "branch_exact": final_summary["new_branch"] == CAMERA_RESOLUTION_BRANCH,
+        "final_classification_exact": final_summary["final_classification"]
+        == (
+            "SUBJECT00_TEACHER_TARGET_CAMERA_BLOCKER_RESOLVED_WITH_"
+            "QUARANTINE_READY_FOR_MATERIALIZATION"
+        ),
+        "structured_tests_pass": final_summary["structured_test_result"]
+        == "PASS_46_OF_46",
+        "o03_camera_safe_count_7": int(final_summary["o03_camera_safe_view_count"])
+        == 7,
+        "o03_quarantine_count_1": int(final_summary["o03_quarantined_view_count"])
+        == 1,
+        "slot04_training_ineligible": eligible_slot04["training_eligible"] is False,
+        "slot04_evaluation_ineligible": eligible_slot04["evaluation_eligible"]
+        is False,
+        "slot04_review_only": eligible_slot04["review_only"] is True,
+        "slot04_unresolved": eligible_slot04["camera_status"]
+        == "UNRESOLVED_HUMAN_OVERRIDE",
+        "slot04_quarantined": quarantine_slot04["target_record_status"]
+        == "REVIEW_ONLY_CAMERA_QUARANTINED",
+    }
+    if not all(checks.values()):
+        raise RuntimeError(f"sealed camera resolution evidence failed: {checks}")
+    return {
+        "task_id": CAMERA_RESOLUTION_TASK_ID,
+        "branch": CAMERA_RESOLUTION_BRANCH,
+        "head": resolution_head,
+        "source_head": final_summary["source_head"],
+        "created_at": final_summary["created_at"],
+        "final_summary_git_path": (
+            f"git:{resolution_head}:{CAMERA_RESOLUTION_SUMMARY_PATH}"
+        ),
+        "final_summary_sha256": git_blob_sha256(
+            resolution_head, CAMERA_RESOLUTION_SUMMARY_PATH
+        ),
+        "eligibility_registry_git_path": (
+            f"git:{resolution_head}:{CAMERA_ELIGIBILITY_PATH}"
+        ),
+        "quarantine_registry_git_path": (
+            f"git:{resolution_head}:{CAMERA_QUARANTINE_PATH}"
+        ),
+        "final_classification": final_summary["final_classification"],
+        "status": (
+            "SEALED_RESOLUTION_WITH_QUARANTINE_SLOT04_REMAINS_"
+            "UNRESOLVED_REVIEW_ONLY"
+        ),
+        "camera_salvaged_count": int(final_summary["camera_salvaged_count"]),
+        "camera_quarantine_count": int(final_summary["camera_quarantine_count"]),
+        "o03_camera_safe_view_count": int(final_summary["o03_camera_safe_view_count"]),
+        "o03_quarantined_view_count": int(
+            final_summary["o03_quarantined_view_count"]
+        ),
+        "slot04": {
+            "camera_status": eligible_slot04["camera_status"],
+            "training_eligible": eligible_slot04["training_eligible"],
+            "evaluation_eligible": eligible_slot04["evaluation_eligible"],
+            "review_only": eligible_slot04["review_only"],
+            "selected_model": eligible_slot04["selected_model"],
+            "target_record_status": eligible_slot04["target_record_status"],
+            "quarantine_reason": quarantine_slot04["reason"],
+        },
+        "checks": checks,
+        "decision_basis": (
+            "The latest sealed successor resolves the global materialization "
+            "blocker by quarantine, not by uniquely salvaging slot04. slot04 "
+            "remains an unresolved human override and is ineligible for training "
+            "and evaluation."
+        ),
+    }
 
 
 def to_matrix(values: Iterable[float], rows: int, columns: int) -> list[list[float]]:
@@ -899,37 +1009,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         or sampling["view_sample_counts"]["slot_04"] != 150
     ):
         raise RuntimeError("slot04 contamination evidence is incomplete")
-    local_resolution_tip = git_output(
-        "rev-parse", "--verify", CAMERA_RESOLUTION_BRANCH, check=False
-    )
-    origin_resolution_tip = git_output(
-        "ls-remote", "--heads", "origin", CAMERA_RESOLUTION_BRANCH, check=False
-    )
-    resolution_task_search = git_output(
-        "log",
-        "--all",
-        "--fixed-strings",
-        "-S",
-        CAMERA_RESOLUTION_TASK_ID,
-        "--format=%H",
-        "--",
-        check=False,
-    )
-    latest_resolution = {
-        "task_id": CAMERA_RESOLUTION_TASK_ID,
-        "branch": CAMERA_RESOLUTION_BRANCH,
-        "local_branch_tip": local_resolution_tip or None,
-        "origin_branch_search": origin_resolution_tip or None,
-        "task_id_commit_search": resolution_task_search.splitlines()
-        if resolution_task_search
-        else [],
-        "status": "UNRESOLVED_NO_SEALED_SUCCESSOR_RESULT_FOUND",
-        "decision_basis": (
-            "No origin resolution branch and no commit containing the requested "
-            "resolution task ID were found. A local name without a successor "
-            "commit/report is not a sealed resolution."
-        ),
-    }
+    latest_resolution = sealed_camera_resolution_evidence()
     registry, targets = teacher.build_target_registry(
         config,
         args.run_root,
@@ -1325,8 +1405,11 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
             "formal_preflight_binding_status"
         ]
         == "BLOCKED_HUMAN_OVERRIDE_DOES_NOT_SELECT_UNIQUE_PHYSICAL_CAMERA",
-        "latest_resolution_unresolved": latest_resolution["status"]
-        == "UNRESOLVED_NO_SEALED_SUCCESSOR_RESULT_FOUND",
+        "latest_resolution_sealed_quarantine": latest_resolution["status"]
+        == (
+            "SEALED_RESOLUTION_WITH_QUARANTINE_SLOT04_REMAINS_"
+            "UNRESOLVED_REVIEW_ONLY"
+        ),
         "metric_view_count_8": len(rows) == 8,
         "full_aggregate_count_8": full_8view["view_count"] == 8,
         "safe_aggregate_count_7": safe_7view["view_count"] == 7,
@@ -1447,11 +1530,57 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=RUN_ROOT / "review" / "camera_metric_review_20260727",
     )
+    parser.add_argument(
+        "--refresh-camera-resolution-only",
+        action="store_true",
+        help=(
+            "Refresh only the latest sealed camera-resolution successor evidence "
+            "inside this task's sidecar after a concurrently completed successor."
+        ),
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    if args.refresh_camera_resolution_only:
+        value = read_json(args.output_json)
+        if value["task_id"] != TASK_ID:
+            raise RuntimeError("refusing to refresh a foreign sidecar")
+        latest_resolution = sealed_camera_resolution_evidence()
+        value["camera_contract"][
+            "latest_camera_blocker_resolution"
+        ] = latest_resolution
+        checks = value["runtime_tests"]["checks"]
+        checks.pop("latest_resolution_unresolved", None)
+        checks["latest_resolution_sealed_quarantine"] = latest_resolution[
+            "status"
+        ] == (
+            "SEALED_RESOLUTION_WITH_QUARANTINE_SLOT04_REMAINS_"
+            "UNRESOLVED_REVIEW_ONLY"
+        )
+        value["runtime_tests"]["test_count"] = len(checks)
+        value["runtime_tests"]["pass_count"] = sum(checks.values())
+        value["runtime_tests"]["fail_count"] = len(checks) - sum(checks.values())
+        value["runtime_tests"]["result"] = (
+            "PASS" if all(checks.values()) else "FAIL"
+        )
+        if not all(checks.values()):
+            raise RuntimeError("runtime checks fail after camera evidence refresh")
+        atomic_json(args.output_json, value)
+        print(
+            json.dumps(
+                {
+                    "task_id": TASK_ID,
+                    "refresh": "camera_resolution_only",
+                    "latest_camera_resolution_head": latest_resolution["head"],
+                    "latest_camera_resolution_status": latest_resolution["status"],
+                    "runtime_tests": value["runtime_tests"]["result"],
+                },
+                sort_keys=True,
+            )
+        )
+        return 0
     audit(args)
     return 0
 
