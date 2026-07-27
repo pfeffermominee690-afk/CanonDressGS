@@ -1,0 +1,278 @@
+{
+  "base": {
+    "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "class": "ACCELERATED_FIXED_BASE60747",
+    "formal_status": "USER_AUTHORIZED_PAUSED",
+    "paper_disclosure_required": true,
+    "resume_authorized": false,
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "step": 60747
+  },
+  "basis": {
+    "channel_bounds": {
+      "log_scaling": 0.35,
+      "opacity_logit": 2.0,
+      "rotation": 0.2617993878,
+      "sh0": 0.25,
+      "shN": 0.1,
+      "xyz": 0.05
+    },
+    "coefficient_standard_deviation": "population_unbiased_false",
+    "frozen": true,
+    "method": "deterministic_centered_svd",
+    "rank": 2
+  },
+  "controller": {
+    "architecture": "LayerNorm(512) -> Linear(512,2); no activation",
+    "frozen_parameter_groups": [
+      "Base60747",
+      "three Teacher endpoints",
+      "explicit rank2 basis",
+      "F2 spatial backbone",
+      "MMLP-Human",
+      "renderer"
+    ],
+    "initialization": {
+      "layer_norm_bias": 0.0,
+      "layer_norm_weight": 1.0,
+      "linear_bias": 0.0,
+      "linear_weight": 0.0
+    },
+    "parameter_count": 2050,
+    "trainable_parameter_groups": [
+      "normalization.weight",
+      "normalization.bias",
+      "linear.weight",
+      "linear.bias"
+    ]
+  },
+  "disclosure": {
+    "contract_name": "SUBJECT00_COMMONSAFE4_CARDINAL_PROXY_V1",
+    "cross_identity_direct_numeric_comparison_requires_matched_protocol": true,
+    "original_cardinal_right_replaced": true,
+    "paper_disclosure_required": true,
+    "quarantine_policy_unchanged": true,
+    "replacement_selection_outcome_independent": true,
+    "subject02_original_protocol_identical": false
+  },
+  "execution_branch": "research/subject00-base60747-commonsafe4-contract-runner-preflight-20260727",
+  "final_evaluation": {
+    "checkpoint": 300,
+    "continuous_prediction_rendered": false,
+    "human_visual_status": null,
+    "metrics": [
+      "standardized coefficient RMSE",
+      "nearest endpoint accuracy",
+      "finite prediction count"
+    ],
+    "scientific_pass": null
+  },
+  "frozen_f2": {
+    "backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+    "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth",
+    "checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+    "controller_input_dimension": 512,
+    "feature_channel_dimension": 128,
+    "per_reference_dimension": 256,
+    "set_aggregation": "mean_concat_max",
+    "trainable": false
+  },
+  "limitations": [
+    "The original slot04/cardinal-right anchor lacks common three-garment coverage after permanent quarantine and is replaced by an outcome-independent camera-geometry proxy.",
+    "The CommonSafe4 contract is not numerically comparable to the unmatched original Subject02 protocol.",
+    "Base60747 is accelerated and is not Base101245.",
+    "Human visual and scientific review remain pending."
+  ],
+  "method_contract": {
+    "canonical_implementation_lf_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "canonical_implementation_path": "tools/paper/formal_batch_runtime.py",
+    "continuous_prediction_rendered": false,
+    "controller_implementation_path": "scene/multi_outfit_linear_coefficient_control.py",
+    "dual_support_policy": "DISABLED_EXCLUDED_FROM_PURE_ENDPOINT_PROTOCOL",
+    "identity": "CanonDressGS-Endpoint",
+    "precedent_branch": "research/pure-endpoint-core-method-protocol-20260724",
+    "precedent_head": "9ca0f44bdd5480a429e8cd5705df1341746d4381",
+    "rotation_contract": "SUBJECT00_COMMONSAFE4_CARDINAL_PROXY_V1",
+    "runner_path": "tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+    "selected_replacement_camera": "cam09",
+    "selected_replacement_direction": "back-right",
+    "selected_replacement_slot": 6,
+    "status": "UNIQUE_RECOVERED_FROM_PASSED_SUBJECT02_MAINLINE",
+    "subject00_contract_path": "paper_protocol/reviewer_risk/subject00_endpoint_controller_contract.json"
+  },
+  "optimization": {
+    "amsgrad": false,
+    "best_checkpoint_selection": false,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "early_stopping": false,
+    "epsilon": 1e-08,
+    "evaluation_step": 300,
+    "gradient_clip_norm": 5.0,
+    "initial_stability_step": 200,
+    "learning_rate": 0.02,
+    "loss": {
+      "classification_weight": 0.0,
+      "coefficient_smooth_l1_beta": 1.0,
+      "coefficient_weight": 1.0,
+      "pairwise_geometry_weight": 0.0,
+      "render_weight": 0.0
+    },
+    "optimizer": "torch.optim.Adam",
+    "scheduler": "constant LambdaLR multiplier 1.0",
+    "steps_per_run": 300,
+    "weight_decay": 0.0
+  },
+  "output": {
+    "attempt": "attempt_001",
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001"
+  },
+  "paper_eligible": false,
+  "paper_final": false,
+  "protocol": {
+    "common_safe_anchors": [
+      0,
+      7,
+      3,
+      6
+    ],
+    "condition_order": "deterministic round-robin over the two training folds",
+    "condition_rotations": [
+      {
+        "calibration_slot": 3,
+        "rotation": 0,
+        "test_slot": 6,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "calibration_slot": 6,
+        "rotation": 1,
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "calibration_slot": 0,
+        "rotation": 2,
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          6
+        ]
+      },
+      {
+        "calibration_slot": 7,
+        "rotation": 3,
+        "test_slot": 3,
+        "train_slots": [
+          6,
+          0
+        ]
+      }
+    ],
+    "endpoint_selection_objective": "argmin squared L2 to standardized rank2 endpoint; ties use candidate order",
+    "fold_denominators": {
+      "calibration": 3,
+      "test": 3,
+      "train": 6
+    },
+    "garment_batch_order": [
+      "O01",
+      "O03",
+      "O04"
+    ],
+    "initial_execution": {
+      "both_train_slots_available_for_all_garments": true,
+      "rotation": 0,
+      "seed": 0,
+      "test_slot": 6,
+      "train_slots": [
+        0,
+        7
+      ]
+    },
+    "name": "SUBJECT00_COMMONSAFE4_CARDINAL_PROXY_V1",
+    "planned_optimizer_steps": 3600,
+    "planned_runs": 12,
+    "replicate_seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "provenance": {
+    "blocker_source_branch": "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727",
+    "blocker_source_head": "9d89439963b75e6dd93d20a17e41189926111d14",
+    "replacement_selected_before_optimizer_step": 0,
+    "replacement_selection_artifact": "paper_protocol/reviewer_risk/subject00_commonsafe_slot04_replacement_selection_20260727.json",
+    "scientific_provenance_branch": "research/subject00-o03-loss-binding-concurrent-provenance-20260727",
+    "scientific_provenance_head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6"
+  },
+  "run_name": "SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+  "schema_version": "canondressgs.subject00.canondressgs_endpoint_method_base60747.v1",
+  "subject": "Subject00",
+  "targets": {
+    "manifest": "10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "native_resolution_policy": "PER_REFERENCE_K1_F2_EXTRACTION_THEN_EXACT_MEAN_MAX_SET_AGGREGATION",
+    "normal_reference_count": 3,
+    "quarantine_count": 2,
+    "quarantine_exclusions": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "reference_sampling": "FullDressableTrainingDataset._references; seed + dataset_index*1000003; target excluded",
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "training_record_count": 22
+  },
+  "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-CONTRACT-RUNNER-PREFLIGHT-001",
+  "teachers": {
+    "candidate_order": [
+      "O01",
+      "O03",
+      "O04"
+    ],
+    "checkpoints": {
+      "O01": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892"
+      },
+      "O03": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+      },
+      "O04": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    },
+    "registry": "paper_protocol/reviewer_risk/subject00_base60747_three_garment_teacher_registry_20260727.json"
+  },
+  "validation_gates": [
+    "Base60747 exact SHA and immutable state audit",
+    "formal manifest exact SHA and 22-record denominator",
+    "two quarantine request IDs absent from sampler and denominator",
+    "three Teacher final checkpoint exact SHA and technical PASS registry",
+    "frozen F2 exact checkpoint SHA and backbone fingerprint",
+    "rank2 basis finite and exact teacher binding",
+    "optimizer step monotonic",
+    "loss and gradients finite",
+    "no OOM",
+    "Base/target/mask/Teacher mutation count zero"
+  ]
+}

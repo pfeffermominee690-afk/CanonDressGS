@@ -20,18 +20,17 @@ import sys
 from pathlib import Path
 from typing import Any, Iterable
 
-import torch
-
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
-TASK_ID = "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001"
-SOURCE_BRANCH = "research/subject00-o03-loss-binding-concurrent-provenance-20260727"
-SOURCE_HEAD = "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6"
-BLOCKER_BRANCH = "research/subject00-base60747-method-matrix-fair-baselines-20260727"
-BLOCKER_HEAD = "d3a6500344c8d1fe6a52edf6cfbcc7aea219f864"
-BRANCH = "research/subject00-base60747-commonsafe4-method-matrix-20260727"
+TASK_ID = "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-CONTRACT-RUNNER-PREFLIGHT-001"
+SOURCE_BRANCH = (
+    "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727"
+)
+SOURCE_HEAD = "9d89439963b75e6dd93d20a17e41189926111d14"
+PROVENANCE_BRANCH = "research/subject00-o03-loss-binding-concurrent-provenance-20260727"
+PROVENANCE_HEAD = "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6"
+BRANCH = "research/subject00-base60747-commonsafe4-contract-runner-preflight-20260727"
 CONTRACT_NAME = "SUBJECT00_COMMONSAFE4_CARDINAL_PROXY_V1"
 
 TARGET_ROOT = Path(
@@ -161,14 +160,14 @@ def git_state() -> dict[str, Any]:
         "head": run("rev-parse", "HEAD"),
         "porcelain_v2": run("status", "--porcelain=v2"),
         "source_merge_base": run("merge-base", "HEAD", SOURCE_HEAD),
-        "blocker_merge_base": run("merge-base", "HEAD", BLOCKER_HEAD),
+        "provenance_merge_base": run("merge-base", "HEAD", PROVENANCE_HEAD),
     }
     if state["branch"] != BRANCH or state["porcelain_v2"]:
         raise RuntimeError(f"contract preparation requires clean {BRANCH}")
     if state["source_merge_base"] != SOURCE_HEAD:
         raise RuntimeError("scientific provenance HEAD is not an ancestor")
-    if state["blocker_merge_base"] != BLOCKER_HEAD:
-        raise RuntimeError("blocker evidence HEAD is not an ancestor")
+    if state["provenance_merge_base"] != PROVENANCE_HEAD:
+        raise RuntimeError("scientific provenance HEAD is not an ancestor")
     return state
 
 
@@ -220,6 +219,8 @@ def limitation_severity(limitations: Iterable[Any]) -> tuple[int, list[dict[str,
 
 
 def immutable_gate() -> dict[str, Any]:
+    import torch
+
     manifest = TARGET_ROOT / MANIFEST_RELATIVE
     required = {
         "base": (BASE_PATH, BASE_SHA),
@@ -338,6 +339,8 @@ def recover_slots() -> tuple[dict[int, Any], list[int], dict[str, Any]]:
             "slot": slot,
             "camera_id": camera.get("source_camera_id"),
             "direction": metrics.get("direction"),
+            "source_resolution": camera.get("source_resolution"),
+            "target_resolution": camera.get("target_resolution"),
             "training_eligible": camera.get("training_eligible") is True,
             "evaluation_eligible": camera.get("evaluation_eligible") is True,
             "camera_binding_status": camera.get("camera_binding_status"),
@@ -512,15 +515,25 @@ def build_config(
     config["method_contract"]["selected_replacement_direction"] = selected_record[
         "direction"
     ]
+    config["method_contract"]["runner_path"] = (
+        "tools/second_identity/"
+        "run_subject00_base60747_commonsafe4_matrix.py"
+    )
+    config["protocol"]["name"] = CONTRACT_NAME
     config["protocol"]["condition_rotations"] = rotations
     config["protocol"]["common_safe_anchors"] = [0, 7, 3, selected]
+    config["protocol"]["fold_denominators"] = {
+        "train": 6,
+        "calibration": 3,
+        "test": 3,
+    }
     config["protocol"]["initial_execution"]["test_slot"] = selected
-    config["output"]["root"] = str(OUTPUT_ROOT)
+    config["output"]["root"] = OUTPUT_ROOT.as_posix()
     config["provenance"] = {
-        "scientific_source_branch": SOURCE_BRANCH,
-        "scientific_source_head": SOURCE_HEAD,
-        "blocker_evidence_branch": BLOCKER_BRANCH,
-        "blocker_evidence_head": BLOCKER_HEAD,
+        "blocker_source_branch": SOURCE_BRANCH,
+        "blocker_source_head": SOURCE_HEAD,
+        "scientific_provenance_branch": PROVENANCE_BRANCH,
+        "scientific_provenance_head": PROVENANCE_HEAD,
         "replacement_selection_artifact": (
             "paper_protocol/reviewer_risk/"
             "subject00_commonsafe_slot04_replacement_selection_20260727.json"
@@ -587,8 +600,11 @@ def allowed_config_diff(
             "execution_branch",
             "method_contract.rotation_contract",
             "method_contract.selected_replacement_*",
+            "method_contract.runner_path",
+            "protocol.name",
             "protocol.condition_rotations",
             "protocol.common_safe_anchors",
+            "protocol.fold_denominators",
             "protocol.initial_execution.test_slot",
             "output.root",
             "provenance",
@@ -718,22 +734,53 @@ def main() -> int:
             payload,
         )
         atomic_json(
-            risk / "subject00_base60747_original_rotation_matrix_blocker_correction_20260727.json",
+            risk / "subject00_original_rotation_runner_blocker_correction_overlay_20260727.json",
             {
                 "schema_version": "canondressgs.subject00.original_matrix_blocker.correction.v1",
                 "task_id": TASK_ID,
-                "original_matrix_engineering_status": "TRAINER_AND_GPU_HEALTHY",
-                "original_matrix_scientific_status": (
-                    "BLOCKED_BY_MISSING_COMMON_GARMENT_COVERAGE_AT_SLOT04"
+                "previous_final_classification": (
+                    "SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAIL"
+                ),
+                "corrected_engineering_status": (
+                    "TRAINER_GPU_CHECKPOINT_AND_COMPLETED_RUN_HEALTHY"
+                ),
+                "corrected_protocol_status": (
+                    "BLOCKED_BY_SLOT04_COMMON_GARMENT_COVERAGE_FAILURE"
+                ),
+                "corrected_runner_status": (
+                    "BLOCKED_BY_RUNNER_SUPPORTING_ONLY_ROTATION0_SEED0"
                 ),
                 "old_method_r0_s0_training_authentic": True,
                 "old_method_r0_s0_formal_matrix_eligible": False,
                 "old_method_r0_s0_formal_test_completed": False,
                 "old_method_r0_s0_reuse_in_new_matrix": False,
                 "old_output_tree": immutable["old_output_tree"],
-                "blocker_evidence_branch": BLOCKER_BRANCH,
-                "blocker_evidence_head": BLOCKER_HEAD,
+                "blocker_source_branch": SOURCE_BRANCH,
+                "blocker_source_head": SOURCE_HEAD,
+                "scientific_provenance_branch": PROVENANCE_BRANCH,
+                "scientific_provenance_head": PROVENANCE_HEAD,
                 "overlay_only": True,
+            },
+        )
+        atomic_json(
+            risk / "subject00_three_garment_slot_eligibility_registry_20260727.json",
+            {
+                "schema_version": (
+                    "canondressgs.subject00.three_garment_slot_eligibility.v1"
+                ),
+                "task_id": TASK_ID,
+                "formal_target_root": str(TARGET_ROOT),
+                "formal_manifest": str(MANIFEST_RELATIVE),
+                "formal_manifest_sha256": MANIFEST_SHA,
+                "training_eligible_record_count": 22,
+                "evaluation_eligible_record_count": 22,
+                "quarantine_request_ids": list(QUARANTINE),
+                "slot_registry": payload["slot_registry"],
+                "common_safe_slot_set": [
+                    f"slot{slot:02d}" for slot in common_safe
+                ],
+                "coverage_shape": [8, 3],
+                "status": "PASS_COMPLETE_8_BY_3",
             },
         )
         atomic_json(
@@ -783,13 +830,60 @@ def main() -> int:
                 "test_slot": rotation["test_slot"],
                 "expected_optimizer_steps": 300,
                 "expected_checkpoints": [0, 20, 50, 100, 200, 300],
-                "status": "PENDING_NOT_STARTED",
+                "train_request_ids": [
+                    slots[slot]["garments"][garment]["request_id"]
+                    for slot in rotation["train_slots"]
+                    for garment in GARMENTS
+                ],
+                "calibration_request_ids": [
+                    slots[rotation["calibration_slot"]]["garments"][garment][
+                        "request_id"
+                    ]
+                    for garment in GARMENTS
+                ],
+                "test_request_ids": [
+                    slots[rotation["test_slot"]]["garments"][garment]["request_id"]
+                    for garment in GARMENTS
+                ],
+                "train_count": 6,
+                "calibration_count": 3,
+                "test_count": 3,
+                "output_path": str(
+                    OUTPUT_ROOT
+                    / "attempt_001"
+                    / "cells"
+                    / f"COMMONSAFE4-METHOD-R{rotation['rotation']}-S{seed}"
+                ),
+                "checkpoint_paths": [
+                    str(
+                        OUTPUT_ROOT
+                        / "attempt_001"
+                        / "cells"
+                        / f"COMMONSAFE4-METHOD-R{rotation['rotation']}-S{seed}"
+                        / "checkpoints"
+                        / f"step_{step:06d}.pth"
+                    )
+                    for step in (0, 20, 50, 100, 200, 300)
+                ],
+                "expected_metrics_path": str(
+                    OUTPUT_ROOT
+                    / "attempt_001"
+                    / "cells"
+                    / f"COMMONSAFE4-METHOD-R{rotation['rotation']}-S{seed}"
+                    / "evaluation"
+                    / "formal_metrics.json"
+                ),
+                "base_sha256": BASE_SHA,
+                "teacher_sha256": TEACHER_SHA,
+                "target_registry_sha256": MANIFEST_SHA,
+                "quarantine_request_ids_excluded": list(QUARANTINE),
+                "status": "PLANNED_NOT_RUN",
             }
             for rotation in rotations
             for seed in SEEDS
         ]
         atomic_json(
-            risk / "subject00_commonsafe4_method_12run_execution_registry_20260727.json",
+            risk / "subject00_commonsafe4_method_12run_execution_plan_20260727.json",
             {
                 "schema_version": "canondressgs.subject00.commonsafe4.method_matrix_registry.v1",
                 "task_id": TASK_ID,
