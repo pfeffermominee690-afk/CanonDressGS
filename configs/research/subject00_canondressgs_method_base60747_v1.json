@@ -1,0 +1,242 @@
+{
+  "schema_version": "canondressgs.subject00.canondressgs_endpoint_method_base60747.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+  "run_name": "SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001",
+  "subject": "Subject00",
+  "execution_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+  "method_contract": {
+    "status": "UNIQUE_RECOVERED_FROM_PASSED_SUBJECT02_MAINLINE",
+    "identity": "CanonDressGS-Endpoint",
+    "precedent_branch": "research/pure-endpoint-core-method-protocol-20260724",
+    "precedent_head": "9ca0f44bdd5480a429e8cd5705df1341746d4381",
+    "canonical_implementation_path": "tools/paper/formal_batch_runtime.py",
+    "canonical_implementation_lf_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "subject00_contract_path": "paper_protocol/reviewer_risk/subject00_endpoint_controller_contract.json",
+    "controller_implementation_path": "scene/multi_outfit_linear_coefficient_control.py",
+    "dual_support_policy": "DISABLED_EXCLUDED_FROM_PURE_ENDPOINT_PROTOCOL",
+    "continuous_prediction_rendered": false
+  },
+  "base": {
+    "class": "ACCELERATED_FIXED_BASE60747",
+    "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "step": 60747,
+    "formal_status": "USER_AUTHORIZED_PAUSED",
+    "resume_authorized": false,
+    "paper_disclosure_required": true
+  },
+  "targets": {
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "manifest": "10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "training_record_count": 22,
+    "quarantine_count": 2,
+    "quarantine_exclusions": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "normal_reference_count": 3,
+    "reference_sampling": "FullDressableTrainingDataset._references; seed + dataset_index*1000003; target excluded",
+    "native_resolution_policy": "PER_REFERENCE_K1_F2_EXTRACTION_THEN_EXACT_MEAN_MAX_SET_AGGREGATION"
+  },
+  "teachers": {
+    "registry": "paper_protocol/reviewer_risk/subject00_base60747_three_garment_teacher_registry_20260727.json",
+    "candidate_order": [
+      "O01",
+      "O03",
+      "O04"
+    ],
+    "checkpoints": {
+      "O01": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892"
+      },
+      "O03": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+      },
+      "O04": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    }
+  },
+  "frozen_f2": {
+    "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth",
+    "checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+    "backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+    "feature_channel_dimension": 128,
+    "per_reference_dimension": 256,
+    "set_aggregation": "mean_concat_max",
+    "controller_input_dimension": 512,
+    "trainable": false
+  },
+  "basis": {
+    "method": "deterministic_centered_svd",
+    "rank": 2,
+    "coefficient_standard_deviation": "population_unbiased_false",
+    "channel_bounds": {
+      "xyz": 0.05,
+      "log_scaling": 0.35,
+      "rotation": 0.2617993878,
+      "opacity_logit": 2.0,
+      "sh0": 0.25,
+      "shN": 0.1
+    },
+    "frozen": true
+  },
+  "controller": {
+    "architecture": "LayerNorm(512) -> Linear(512,2); no activation",
+    "parameter_count": 2050,
+    "initialization": {
+      "layer_norm_weight": 1.0,
+      "layer_norm_bias": 0.0,
+      "linear_weight": 0.0,
+      "linear_bias": 0.0
+    },
+    "trainable_parameter_groups": [
+      "normalization.weight",
+      "normalization.bias",
+      "linear.weight",
+      "linear.bias"
+    ],
+    "frozen_parameter_groups": [
+      "Base60747",
+      "three Teacher endpoints",
+      "explicit rank2 basis",
+      "F2 spatial backbone",
+      "MMLP-Human",
+      "renderer"
+    ]
+  },
+  "optimization": {
+    "optimizer": "torch.optim.Adam",
+    "learning_rate": 0.02,
+    "weight_decay": 0.0,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epsilon": 1e-08,
+    "amsgrad": false,
+    "scheduler": "constant LambdaLR multiplier 1.0",
+    "gradient_clip_norm": 5.0,
+    "steps_per_run": 300,
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "evaluation_step": 300,
+    "initial_stability_step": 200,
+    "early_stopping": false,
+    "best_checkpoint_selection": false,
+    "loss": {
+      "coefficient_smooth_l1_beta": 1.0,
+      "coefficient_weight": 1.0,
+      "classification_weight": 0.0,
+      "pairwise_geometry_weight": 0.0,
+      "render_weight": 0.0
+    }
+  },
+  "protocol": {
+    "replicate_seeds": [
+      0,
+      1,
+      2
+    ],
+    "condition_rotations": [
+      {
+        "rotation": 0,
+        "train_slots": [
+          0,
+          7
+        ],
+        "calibration_slot": 3,
+        "test_slot": 4
+      },
+      {
+        "rotation": 1,
+        "train_slots": [
+          7,
+          3
+        ],
+        "calibration_slot": 4,
+        "test_slot": 0
+      },
+      {
+        "rotation": 2,
+        "train_slots": [
+          3,
+          4
+        ],
+        "calibration_slot": 0,
+        "test_slot": 7
+      },
+      {
+        "rotation": 3,
+        "train_slots": [
+          4,
+          0
+        ],
+        "calibration_slot": 7,
+        "test_slot": 3
+      }
+    ],
+    "planned_runs": 12,
+    "planned_optimizer_steps": 3600,
+    "initial_execution": {
+      "rotation": 0,
+      "seed": 0,
+      "train_slots": [
+        0,
+        7
+      ],
+      "both_train_slots_available_for_all_garments": true
+    },
+    "garment_batch_order": [
+      "O01",
+      "O03",
+      "O04"
+    ],
+    "condition_order": "deterministic round-robin over the two training folds",
+    "endpoint_selection_objective": "argmin squared L2 to standardized rank2 endpoint; ties use candidate order"
+  },
+  "validation_gates": [
+    "Base60747 exact SHA and immutable state audit",
+    "formal manifest exact SHA and 22-record denominator",
+    "two quarantine request IDs absent from sampler and denominator",
+    "three Teacher final checkpoint exact SHA and technical PASS registry",
+    "frozen F2 exact checkpoint SHA and backbone fingerprint",
+    "rank2 basis finite and exact teacher binding",
+    "optimizer step monotonic",
+    "loss and gradients finite",
+    "no OOM",
+    "Base/target/mask/Teacher mutation count zero"
+  ],
+  "final_evaluation": {
+    "checkpoint": 300,
+    "metrics": [
+      "standardized coefficient RMSE",
+      "nearest endpoint accuracy",
+      "finite prediction count"
+    ],
+    "continuous_prediction_rendered": false,
+    "human_visual_status": null,
+    "scientific_pass": null
+  },
+  "limitations": [
+    "The formal Subject00 data lacks the quarantined O01/O03 slot04 right-view cells; rotation0 training is complete and unaffected, while the full four-rotation evaluation remains pending a protocol-conforming treatment of those held-out cells.",
+    "Base60747 is an accelerated deadline-constrained base and is not Base101245.",
+    "Human visual review is pending."
+  ],
+  "output": {
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001",
+    "attempt": "attempt_001"
+  },
+  "paper_eligible": false,
+  "paper_final": false
+}
