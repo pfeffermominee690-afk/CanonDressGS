@@ -464,15 +464,35 @@ def novel_render_checks(
 
 
 def preflight(
-    config: Mapping[str, Any], garment: str
+    config: Mapping[str, Any], garment: str, *, recover_preoptimizer: bool = False
 ) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[str, str], Path, Path]:
     git = git_state()
     gpu = require_idle_gpu()
     checkpoint = cpu_checkpoint_audit(config)
     samples, index, hashes, manifest_path, index_path = load_samples(config, garment)
     output_root = Path(config["garments"][garment]["output_root"])
+    recovery: dict[str, Any] | None = None
     if output_root.exists():
-        raise FileExistsError(f"formal Teacher output root already exists: {output_root}")
+        run_root = output_root / config["runtime"]["attempt"]
+        status_path = run_root / "RUN_STATUS.json"
+        status = read_json(status_path) if status_path.is_file() else {}
+        checkpoints = list((run_root / "checkpoints").glob("*.pth")) if (run_root / "checkpoints").is_dir() else []
+        state_records = run_root / "training/state_records.jsonl"
+        if (
+            not recover_preoptimizer
+            or status.get("status") != "FAILED"
+            or checkpoints
+            or state_records.exists()
+        ):
+            raise FileExistsError(f"formal Teacher output root already exists: {output_root}")
+        recovery = {
+            "status": "AUTHORIZED_SAME_ATTEMPT_PREOPTIMIZER_RECOVERY",
+            "prior_status_sha256": sha256_file(status_path),
+            "prior_exception": status.get("exception"),
+            "prior_optimizer_steps": 0,
+            "prior_checkpoint_count": 0,
+            "scientific_run_count_consumed": 0,
+        }
     free = shutil.disk_usage(output_root.parent).free
     minimum = int(config["runtime"]["minimum_free_bytes"])
     if free < minimum:
@@ -492,6 +512,7 @@ def preflight(
         "formal_training_record_count": 22,
         "quarantine_count": 2,
         "excluded_request_count_in_samples": 0,
+        "recovery": recovery,
     }
     return evidence, samples, index, hashes, manifest_path, index_path
 
@@ -500,13 +521,19 @@ def run(args: argparse.Namespace) -> int:
     config = load_config(args.config.resolve())
     if args.garment not in GARMENTS:
         raise RuntimeError("garment is outside the frozen three-garment contract")
-    evidence, cpu_samples, index, asset_hashes, manifest_path, index_path = preflight(config, args.garment)
+    evidence, cpu_samples, index, asset_hashes, manifest_path, index_path = preflight(
+        config, args.garment, recover_preoptimizer=args.recover_preoptimizer
+    )
     if args.preflight_only:
         print(json.dumps(evidence, indent=2))
         return 0
     contract = config["garments"][args.garment]
     run_root = Path(contract["output_root"]) / config["runtime"]["attempt"]
-    run_root.mkdir(parents=True, exist_ok=False)
+    if args.recover_preoptimizer:
+        prior_status = read_json(run_root / "RUN_STATUS.json")
+        atomic_json(run_root / "audits/preoptimizer_failure_recovery_01.json", prior_status)
+    else:
+        run_root.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
     try:
         atomic_json(run_root / "audits/preflight.json", evidence)
@@ -772,6 +799,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, default=CONFIG_PATH)
     parser.add_argument("--garment", required=True, choices=GARMENTS)
     parser.add_argument("--preflight-only", action="store_true")
+    parser.add_argument("--recover-preoptimizer", action="store_true")
     return parser.parse_args()
 
 
