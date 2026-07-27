@@ -3,7 +3,7 @@
 - Task: `AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001`
 - Source: `research/subject00-commonsafe4-final-head-seal-review-20260727@245977f029b4023798ba55b4f78020e12cdb976e`
 - New branch: `research/subject00-review-freeze-subject02-commonsafe4-matched-20260727`
-- Git content commit: `PENDING_FIRST_CONTENT_COMMIT`
+- Git content commit: `b975cfaa28ec302259e7c9574dfecfbb3a6744fe`
 - Final classification: `SUBJECT00_REVIEW_FROZEN_SUBJECT02_MATCHED_BLOCKED_BY_ASSET_CONTRACT`
 
 ## Outcome
