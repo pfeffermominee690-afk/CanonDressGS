@@ -1527,7 +1527,7 @@ def static_core_audit(
     required_calls = {
         "legacy.build_f2_extractor",
         "legacy.aggregate_native_references",
-        "legacy.build_basis",
+        "legacy.save_basis",
         "legacy.rng_state",
     }
     prohibited_tokens = (
