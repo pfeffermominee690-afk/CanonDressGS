@@ -1,0 +1,2008 @@
+{
+  "base": {
+    "bytes": 724584413,
+    "internal_step": 60747,
+    "missing_fields": [],
+    "partial_or_tmp_count": 0,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "required_field_count": 27,
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7"
+  },
+  "baselines": {
+    "contract_source": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_second_identity_evaluator_contract.json",
+    "contract_source_sha256": "abb731b07e0666ae1836900c4b59d114edca50f9b3d183b8275c3d73a008548c",
+    "contract_status": "FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+    "exact_names": [
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Outfit-ID Oracle",
+      "Teacher Endpoint"
+    ],
+    "execution_authorized": false,
+    "execution_blocker": "METHOD_MATRIX_NOT_12_OF_12",
+    "source_names": [
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Outfit-ID Oracle",
+      "Teacher Endpoint"
+    ],
+    "unique_set_recovered": true
+  },
+  "completed_rotation0_seed0": {
+    "authentic_training_run": true,
+    "checkpoints": [
+      {
+        "bindings": {
+          "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+          "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+          "basis_artifact_sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33",
+          "f2_backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "f2_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "feature_artifact_sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117",
+          "git": {
+            "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+            "clean": true,
+            "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+          },
+          "quarantine_count": 0,
+          "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+          "teacher_checkpoint_sha256": {
+            "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+            "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+            "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+          }
+        },
+        "bytes": 25762,
+        "global_step": 0,
+        "history_count": 0,
+        "history_step_set": [],
+        "loss_finite": true,
+        "loss_first": null,
+        "loss_last": null,
+        "model_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ],
+        "optimizer_state_count": 0,
+        "optimizer_step": 0,
+        "paper_eligible": false,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000000.pth",
+        "rotation": 0,
+        "scheduler_last_epoch": 0,
+        "schema_version": "canondressgs.subject00.canondressgs_endpoint_checkpoint.v1",
+        "seed": 0,
+        "sha256": "eec0d475c19d6abcdefacd95720f5e9d74523baa8aa158f9983c9f2b6df16abc"
+      },
+      {
+        "bindings": {
+          "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+          "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+          "basis_artifact_sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33",
+          "f2_backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "f2_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "feature_artifact_sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117",
+          "git": {
+            "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+            "clean": true,
+            "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+          },
+          "quarantine_count": 0,
+          "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+          "teacher_checkpoint_sha256": {
+            "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+            "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+            "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+          }
+        },
+        "bytes": 46438,
+        "global_step": 20,
+        "history_count": 20,
+        "history_step_set": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "loss_finite": true,
+        "loss_first": 0.4773719310760498,
+        "loss_last": 0.2206534445285797,
+        "model_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ],
+        "optimizer_state_count": 4,
+        "optimizer_step": 20,
+        "paper_eligible": false,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000020.pth",
+        "rotation": 0,
+        "scheduler_last_epoch": 20,
+        "schema_version": "canondressgs.subject00.canondressgs_endpoint_checkpoint.v1",
+        "seed": 0,
+        "sha256": "668a5b8357144a3f41a421dabfbe74d0b8e3ecd5aa2c57ddd727a0f76bdef1b1"
+      },
+      {
+        "bindings": {
+          "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+          "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+          "basis_artifact_sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33",
+          "f2_backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "f2_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "feature_artifact_sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117",
+          "git": {
+            "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+            "clean": true,
+            "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+          },
+          "quarantine_count": 0,
+          "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+          "teacher_checkpoint_sha256": {
+            "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+            "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+            "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+          }
+        },
+        "bytes": 47910,
+        "global_step": 50,
+        "history_count": 50,
+        "history_step_set": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "loss_finite": true,
+        "loss_first": 0.4773719310760498,
+        "loss_last": 0.002418422605842352,
+        "model_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ],
+        "optimizer_state_count": 4,
+        "optimizer_step": 50,
+        "paper_eligible": false,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000050.pth",
+        "rotation": 0,
+        "scheduler_last_epoch": 50,
+        "schema_version": "canondressgs.subject00.canondressgs_endpoint_checkpoint.v1",
+        "seed": 0,
+        "sha256": "f71f413aaf46ac371050428a1e4009e631203f187998b5ddbb4b3dfa94422241"
+      },
+      {
+        "bindings": {
+          "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+          "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+          "basis_artifact_sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33",
+          "f2_backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "f2_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "feature_artifact_sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117",
+          "git": {
+            "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+            "clean": true,
+            "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+          },
+          "quarantine_count": 0,
+          "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+          "teacher_checkpoint_sha256": {
+            "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+            "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+            "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+          }
+        },
+        "bytes": 50342,
+        "global_step": 100,
+        "history_count": 100,
+        "history_step_set": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ],
+        "loss_finite": true,
+        "loss_first": 0.4773719310760498,
+        "loss_last": 4.603880370268598e-05,
+        "model_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ],
+        "optimizer_state_count": 4,
+        "optimizer_step": 100,
+        "paper_eligible": false,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000100.pth",
+        "rotation": 0,
+        "scheduler_last_epoch": 100,
+        "schema_version": "canondressgs.subject00.canondressgs_endpoint_checkpoint.v1",
+        "seed": 0,
+        "sha256": "85991cff541969a9391ade1ec97b88e234e4b397231d313df3ef60b91b0a2cfc"
+      },
+      {
+        "bindings": {
+          "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+          "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+          "basis_artifact_sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33",
+          "f2_backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "f2_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "feature_artifact_sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117",
+          "git": {
+            "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+            "clean": true,
+            "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+          },
+          "quarantine_count": 0,
+          "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+          "teacher_checkpoint_sha256": {
+            "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+            "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+            "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+          }
+        },
+        "bytes": 55206,
+        "global_step": 200,
+        "history_count": 200,
+        "history_step_set": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200
+        ],
+        "loss_finite": true,
+        "loss_first": 0.4773719310760498,
+        "loss_last": 2.990407033109932e-09,
+        "model_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ],
+        "optimizer_state_count": 4,
+        "optimizer_step": 200,
+        "paper_eligible": false,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000200.pth",
+        "rotation": 0,
+        "scheduler_last_epoch": 200,
+        "schema_version": "canondressgs.subject00.canondressgs_endpoint_checkpoint.v1",
+        "seed": 0,
+        "sha256": "7eb1e45df60b9572edbcfba5a934b2186d16252bdbab41ae3496cacd1733289b"
+      },
+      {
+        "bindings": {
+          "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+          "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+          "basis_artifact_sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33",
+          "f2_backbone_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+          "f2_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+          "feature_artifact_sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117",
+          "git": {
+            "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+            "clean": true,
+            "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+          },
+          "quarantine_count": 0,
+          "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+          "teacher_checkpoint_sha256": {
+            "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+            "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+            "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+          }
+        },
+        "bytes": 60198,
+        "global_step": 300,
+        "history_count": 300,
+        "history_step_set": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          276,
+          277,
+          278,
+          279,
+          280,
+          281,
+          282,
+          283,
+          284,
+          285,
+          286,
+          287,
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          294,
+          295,
+          296,
+          297,
+          298,
+          299,
+          300
+        ],
+        "loss_finite": true,
+        "loss_first": 0.4773719310760498,
+        "loss_last": 0.019882379099726677,
+        "model_keys": [
+          "linear.bias",
+          "linear.weight",
+          "normalization.bias",
+          "normalization.weight"
+        ],
+        "optimizer_state_count": 4,
+        "optimizer_step": 300,
+        "paper_eligible": false,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000300.pth",
+        "rotation": 0,
+        "scheduler_last_epoch": 300,
+        "schema_version": "canondressgs.subject00.canondressgs_endpoint_checkpoint.v1",
+        "seed": 0,
+        "sha256": "6f79082ea32bf4cccffc98ab56da17a0051ab1700715bb9bc9c46d737a0294bf"
+      }
+    ],
+    "checks": {
+      "base_binding_exact": true,
+      "checkpoint_internal_rotation_seed_exact": true,
+      "checkpoint_steps_exact": true,
+      "formal_test_fold_complete": false,
+      "formal_test_fold_evaluation_present": false,
+      "loss_finite": true,
+      "nan_inf_none": true,
+      "oom_none": true,
+      "optimizer_steps_exact": true,
+      "parameter_changes_recorded": true,
+      "quarantine_count_zero": true,
+      "step200_stability_pass": true,
+      "step300_history_exact": true,
+      "target_manifest_binding_exact": true,
+      "teacher_bindings_exact": true,
+      "training_fold_evaluation_present": true
+    },
+    "evaluation": {
+      "checkpoint_step": 300,
+      "continuous_prediction_rendered": false,
+      "episode_count": 6,
+      "finite_prediction_count": 6,
+      "human_visual_status": null,
+      "nearest_endpoint_accuracy": 1.0,
+      "nearest_endpoint_correct": 6,
+      "nearest_endpoint_total": 6,
+      "paper_eligible": false,
+      "rotation": 0,
+      "rows": [
+        {
+          "correct": true,
+          "garment": "O01",
+          "prediction": [
+            1.4579768180847168,
+            -0.46646344661712646
+          ],
+          "selected_endpoint": "O01",
+          "slot": 0,
+          "squared_distances": {
+            "O01": 0.11622894555330276,
+            "O03": 7.269075393676758,
+            "O04": 5.6445488929748535
+          },
+          "target": [
+            1.4083175659179688,
+            -0.12917587161064148
+          ]
+        },
+        {
+          "correct": true,
+          "garment": "O03",
+          "prediction": [
+            -0.5467946529388428,
+            0.9181491136550903
+          ],
+          "selected_endpoint": "O03",
+          "slot": 0,
+          "squared_distances": {
+            "O01": 4.919353485107422,
+            "O03": 0.13608621060848236,
+            "O04": 4.370506763458252
+          },
+          "target": [
+            -0.5924397706985474,
+            1.2842129468917847
+          ]
+        },
+        {
+          "correct": true,
+          "garment": "O04",
+          "prediction": [
+            -0.6727288961410522,
+            -1.3267184495925903
+          ],
+          "selected_endpoint": "O04",
+          "slot": 0,
+          "squared_distances": {
+            "O01": 5.764863014221191,
+            "O03": 6.823409080505371,
+            "O04": 0.049966126680374146
+          },
+          "target": [
+            -0.8158778548240662,
+            -1.1550370454788208
+          ]
+        },
+        {
+          "correct": true,
+          "garment": "O01",
+          "prediction": [
+            1.4155694246292114,
+            -0.46923431754112244
+          ],
+          "selected_endpoint": "O01",
+          "slot": 7,
+          "squared_distances": {
+            "O01": 0.11569233238697052,
+            "O03": 7.106678485870361,
+            "O04": 5.449682235717773
+          },
+          "target": [
+            1.4083175659179688,
+            -0.12917587161064148
+          ]
+        },
+        {
+          "correct": true,
+          "garment": "O03",
+          "prediction": [
+            -0.5660185217857361,
+            0.9141862392425537
+          ],
+          "selected_endpoint": "O03",
+          "slot": 7,
+          "squared_distances": {
+            "O01": 4.986608028411865,
+            "O03": 0.13761785626411438,
+            "O04": 4.344115257263184
+          },
+          "target": [
+            -0.5924397706985474,
+            1.2842129468917847
+          ]
+        },
+        {
+          "correct": true,
+          "garment": "O04",
+          "prediction": [
+            -0.7623865008354187,
+            -1.409063458442688
+          ],
+          "selected_endpoint": "O04",
+          "slot": 7,
+          "squared_distances": {
+            "O01": 6.35006856918335,
+            "O03": 7.282619953155518,
+            "O04": 0.06739074736833572
+          },
+          "target": [
+            -0.8158778548240662,
+            -1.1550370454788208
+          ]
+        }
+      ],
+      "scientific_pass": null,
+      "seed": 0,
+      "standardized_coefficient_rmse": 0.22784903870582207,
+      "status": "PASS_FINITE"
+    },
+    "final_report": {
+      "base_checkpoint_mutations": 0,
+      "classification": "SUBJECT00_BASE60747_THREE_GARMENT_TEACHERS_PASS_METHOD_TRAINING_RUNNING_INITIAL_STABILITY_PASS",
+      "current_step": 300,
+      "evaluation": {
+        "nearest_endpoint_accuracy": 1.0,
+        "nearest_endpoint_correct": 6,
+        "nearest_endpoint_total": 6,
+        "standardized_coefficient_rmse": 0.22784903870582207
+      },
+      "initial_run": {
+        "base_checkpoint_mutations": 0,
+        "current_step": 300,
+        "evaluation": {
+          "nearest_endpoint_accuracy": 1.0,
+          "nearest_endpoint_correct": 6,
+          "nearest_endpoint_total": 6,
+          "standardized_coefficient_rmse": 0.22784903870582207
+        },
+        "gradients_finite": true,
+        "initial_stability_status": "PASS",
+        "loss_final": 0.019882379099726677,
+        "loss_finite": true,
+        "loss_initial": 0.4773719310760498,
+        "loss_minimum": 1.2688591496945456e-11,
+        "mask_mutations": 0,
+        "method_training_authorized": true,
+        "nan_inf_status": "NONE",
+        "oom_status": "NONE",
+        "optimizer_step_monotonic": true,
+        "optimizer_steps_completed": 300,
+        "paper_eligible": false,
+        "peak_vram_bytes": 18142208,
+        "planned_optimizer_steps": 3600,
+        "quarantine_count": 0,
+        "rotation": 0,
+        "seed": 0,
+        "status": "COMPLETE_INITIAL_ROTATION_SEED",
+        "target_mutations": 0,
+        "teacher_checkpoint_mutations": 0,
+        "trainable_parameter_changes": {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        }
+      },
+      "initial_stability_status": "PASS",
+      "mask_mutations": 0,
+      "method_contract_status": "UNIQUE_RECOVERED_FROM_PASSED_SUBJECT02_MAINLINE",
+      "method_training_authorized": true,
+      "nan_inf_status": "NONE",
+      "next_task": "Execute remaining preregistered rotations/seeds and fair Base60747 baselines; do not alter the paper before human visual/scientific adjudication.",
+      "oom_status": "NONE",
+      "optimizer_steps_completed": 300,
+      "paper_eligible": false,
+      "paper_final": false,
+      "paper_modifications": 0,
+      "peak_vram_bytes": 18142208,
+      "planned_optimizer_steps": 3600,
+      "status": "METHOD_TRAINING_RUNNING_INITIAL_ROTATION_COMPLETE",
+      "storage_gate_status": "PASS",
+      "target_mutations": 0,
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    "formal_matrix_cell_valid": false,
+    "formal_matrix_invalid_reason": "ROTATION0_FORMAL_TEST_SLOT04_HAS_ONLY_O04; RUNNER_EVALUATED_TRAIN_FOLDS_6_OF_6, NOT THE FROZEN TEST FOLD",
+    "initial_run_summary": {
+      "base_checkpoint_mutations": 0,
+      "current_step": 300,
+      "evaluation": {
+        "nearest_endpoint_accuracy": 1.0,
+        "nearest_endpoint_correct": 6,
+        "nearest_endpoint_total": 6,
+        "standardized_coefficient_rmse": 0.22784903870582207
+      },
+      "gradients_finite": true,
+      "initial_stability_status": "PASS",
+      "loss_final": 0.019882379099726677,
+      "loss_finite": true,
+      "loss_initial": 0.4773719310760498,
+      "loss_minimum": 1.2688591496945456e-11,
+      "mask_mutations": 0,
+      "method_training_authorized": true,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "optimizer_step_monotonic": true,
+      "optimizer_steps_completed": 300,
+      "paper_eligible": false,
+      "peak_vram_bytes": 18142208,
+      "planned_optimizer_steps": 3600,
+      "quarantine_count": 0,
+      "rotation": 0,
+      "seed": 0,
+      "status": "COMPLETE_INITIAL_ROTATION_SEED",
+      "target_mutations": 0,
+      "teacher_checkpoint_mutations": 0,
+      "trainable_parameter_changes": {
+        "linear.bias": true,
+        "linear.weight": true,
+        "normalization.bias": true,
+        "normalization.weight": true
+      }
+    },
+    "initial_stability": {
+      "base_checkpoint_mutations": 0,
+      "gradients_finite": true,
+      "initial_stability_step": 200,
+      "loss_finite": true,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "optimizer_step_monotonic": true,
+      "output_root_isolated": true,
+      "quarantine_count": 0,
+      "status": "PASS",
+      "target_teacher_binding": "PASS"
+    },
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001",
+    "tree_fingerprint": {
+      "bytes": 53138437,
+      "file_count": 19,
+      "files": [
+        {
+          "bytes": 2276,
+          "path": "FINAL_REPORT.json",
+          "sha256": "41b9ec8ed827ceec116f0d2e69e1298a3eb2309069196c947682a626b5d31cee"
+        },
+        {
+          "bytes": 343,
+          "path": "RUN_STATUS.json",
+          "sha256": "2d62745edd5e95532fecb62f85266204bd2b91e1b58aca49577d37853754aa20"
+        },
+        {
+          "bytes": 3284,
+          "path": "basis/basis_audit.json",
+          "sha256": "db58820e13fa4f95f3b3e669ba6af1fcab55b3485b2cb2601ca051b9636006da"
+        },
+        {
+          "bytes": 52808974,
+          "path": "basis/subject00_base60747_rank2_endpoint_basis.pt",
+          "sha256": "d146a6a9b2eb0b0cddd3808dbac0ccfe7173044c03f24f6d8d6c15c00acc1a33"
+        },
+        {
+          "bytes": 25762,
+          "path": "checkpoints/rotation_00_seed_000/step_000000.pth",
+          "sha256": "eec0d475c19d6abcdefacd95720f5e9d74523baa8aa158f9983c9f2b6df16abc"
+        },
+        {
+          "bytes": 46438,
+          "path": "checkpoints/rotation_00_seed_000/step_000020.pth",
+          "sha256": "668a5b8357144a3f41a421dabfbe74d0b8e3ecd5aa2c57ddd727a0f76bdef1b1"
+        },
+        {
+          "bytes": 47910,
+          "path": "checkpoints/rotation_00_seed_000/step_000050.pth",
+          "sha256": "f71f413aaf46ac371050428a1e4009e631203f187998b5ddbb4b3dfa94422241"
+        },
+        {
+          "bytes": 50342,
+          "path": "checkpoints/rotation_00_seed_000/step_000100.pth",
+          "sha256": "85991cff541969a9391ade1ec97b88e234e4b397231d313df3ef60b91b0a2cfc"
+        },
+        {
+          "bytes": 55206,
+          "path": "checkpoints/rotation_00_seed_000/step_000200.pth",
+          "sha256": "7eb1e45df60b9572edbcfba5a934b2186d16252bdbab41ae3496cacd1733289b"
+        },
+        {
+          "bytes": 60198,
+          "path": "checkpoints/rotation_00_seed_000/step_000300.pth",
+          "sha256": "6f79082ea32bf4cccffc98ab56da17a0051ab1700715bb9bc9c46d737a0294bf"
+        },
+        {
+          "bytes": 8195,
+          "path": "contract/config_resolved.json",
+          "sha256": "32ef5e22097ccab27bb40c4ebe8a9c12e382b3e68408754edf6a9ffd36732125"
+        },
+        {
+          "bytes": 2974,
+          "path": "evaluation/rotation00_seed000_step300.json",
+          "sha256": "b9e5f7a0bdc36156fdf24476f1a1a7b4701dc7627ac7713073e556515b92ab19"
+        },
+        {
+          "bytes": 4958,
+          "path": "features/feature_audit.json",
+          "sha256": "32b8eaef0a1afa6de110e4456a43f2ed12d156e51896d41bb66a59c3b1484f61"
+        },
+        {
+          "bytes": 17356,
+          "path": "features/rotation00_train_native_k3_f2.pt",
+          "sha256": "4f1538c8c82fca61351b43153c1323f6fa72324f45d07a1ff0f233f2c0993117"
+        },
+        {
+          "bytes": 715,
+          "path": "input_audit/immutable_post_audit.json",
+          "sha256": "c975a2873c166a6d6f02e04784d4b6275aabe287bc631d4bceca74e8bb96cfe8"
+        },
+        {
+          "bytes": 1817,
+          "path": "input_audit/preflight.json",
+          "sha256": "004983b7aa7908237c62dab5bc9e87c22f693d0f08a8207f451c0791573a8973"
+        },
+        {
+          "bytes": 1051,
+          "path": "training/initial_run_summary.json",
+          "sha256": "4446a877ce9519072414e435c8bf69d6cc60554eb3caa7f6f5c42ff8e9e65c09"
+        },
+        {
+          "bytes": 322,
+          "path": "training/initial_stability_step200.json",
+          "sha256": "87e19018bf4f9caf082c6a9355cf9d3308e0e038d6337ea6d6709a4808cc3d77"
+        },
+        {
+          "bytes": 316,
+          "path": "training/latest.json",
+          "sha256": "8a783613d387a92863582a4c166217a840ee4ce240886545756c02c913b7c38b"
+        }
+      ],
+      "sha256": "ce281935d12e20c6bab2e3e8fc3256b512594fd8388c3ed299f71199072ec363"
+    },
+    "wall_time_seconds_by_file_mtime": 46.43093943595886
+  },
+  "critical_checks": {
+    "base_no_partial_tmp": true,
+    "base_sha_exact": true,
+    "base_state_complete": true,
+    "base_step_exact": true,
+    "baseline_execution_forbidden": true,
+    "branch_exact": true,
+    "completed_formal_cell_rejected": true,
+    "completed_training_authentic": true,
+    "completed_tree_immutable": true,
+    "correction_overlay_valid": true,
+    "dependency_audit_valid": true,
+    "dual_support_disabled": true,
+    "formal_base_paused": true,
+    "formal_base_resume_unauthorized": true,
+    "manifest_sha_exact": true,
+    "new_execution_forbidden": true,
+    "o03_seal_valid": true,
+    "quarantine_absent": true,
+    "slot04_gap_exact": true,
+    "source_classification_ready": true,
+    "source_is_merge_base": true,
+    "source_matrix_continuation_authorized": true,
+    "source_method_cell_valid": true,
+    "source_scientific_contract_pass": true,
+    "target_checksum_bindings_exact": true,
+    "target_count_exact": true,
+    "teacher_quarantine_zero": true,
+    "teacher_sha_exact": true,
+    "teacher_technical_pass": true,
+    "worktree_clean": true
+  },
+  "dual_support_enabled": false,
+  "execution_decision": {
+    "attempt_002_allowed": false,
+    "automatic_retry": false,
+    "baseline_runs_authorized": false,
+    "gpu_initialized": false,
+    "new_method_runs_authorized": false,
+    "optimizer_created": false,
+    "optimizer_steps": 0,
+    "reason": "FROZEN_ROTATION_FOLDS_CANNOT_BE_INSTANTIATED_WITH_22_RECORD_QUARANTINE_POLICY; O03_PROVENANCE_IS_RESOLVED_BUT_DOES_NOT_RESTORE_O01_O03_SLOT04"
+  },
+  "formal_base": {
+    "resume_authorized": false,
+    "status": "USER_AUTHORIZED_PAUSED"
+  },
+  "git": {
+    "branch": "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727",
+    "head": "fea0fd420536ad1d3355674fe0612b199cf7075e",
+    "merge_base_with_source": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6",
+    "porcelain_v2": ""
+  },
+  "human_visual_decision": null,
+  "matrix": {
+    "blockers": [
+      {
+        "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+        "role": "test",
+        "rotation": 0
+      },
+      {
+        "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+        "role": "calibration",
+        "rotation": 1
+      },
+      {
+        "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+        "role": "train",
+        "rotation": 2
+      },
+      {
+        "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+        "role": "train",
+        "rotation": 3
+      }
+    ],
+    "cells": [
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 3,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 0,
+        "run_id": "METHOD-R0-S0",
+        "seed": 0,
+        "status": "COMPLETED_TRAINING_ONLY_FORMAL_TEST_BLOCKED",
+        "test_slot": 4,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 3,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 0,
+        "run_id": "METHOD-R0-S1",
+        "seed": 1,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 4,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 3,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 0,
+        "run_id": "METHOD-R0-S2",
+        "seed": 2,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 4,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 4,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 1,
+        "run_id": "METHOD-R1-S0",
+        "seed": 0,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 4,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 1,
+        "run_id": "METHOD-R1-S1",
+        "seed": 1,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 4,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 1,
+        "run_id": "METHOD-R1-S2",
+        "seed": 2,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 0,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 2,
+        "run_id": "METHOD-R2-S0",
+        "seed": 0,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          4
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 0,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 2,
+        "run_id": "METHOD-R2-S1",
+        "seed": 1,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          4
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 0,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 2,
+        "run_id": "METHOD-R2-S2",
+        "seed": 2,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          4
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 7,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 3,
+        "run_id": "METHOD-R3-S0",
+        "seed": 0,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 3,
+        "train_slots": [
+          4,
+          0
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 7,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 3,
+        "run_id": "METHOD-R3-S1",
+        "seed": 1,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 3,
+        "train_slots": [
+          4,
+          0
+        ]
+      },
+      {
+        "attempt_id": "attempt_001",
+        "calibration_slot": 7,
+        "expected_checkpoints": [
+          0,
+          20,
+          50,
+          100,
+          200,
+          300
+        ],
+        "rotation": 3,
+        "run_id": "METHOD-R3-S2",
+        "seed": 2,
+        "status": "BLOCKED_NOT_RUN",
+        "test_slot": 3,
+        "train_slots": [
+          4,
+          0
+        ]
+      }
+    ],
+    "expected_optimizer_steps": 3600,
+    "expected_run_count": 12,
+    "rotation_coverage": {
+      "0": {
+        "calibration_complete": true,
+        "calibration_counts": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "contract": {
+          "calibration_slot": 3,
+          "test_slot": 4,
+          "train_slots": [
+            0,
+            7
+          ]
+        },
+        "test_complete": false,
+        "test_counts": {
+          "O01": 0,
+          "O03": 0,
+          "O04": 1
+        },
+        "train_complete": true,
+        "train_counts": {
+          "0": {
+            "O01": 1,
+            "O03": 1,
+            "O04": 1
+          },
+          "7": {
+            "O01": 1,
+            "O03": 1,
+            "O04": 1
+          }
+        }
+      },
+      "1": {
+        "calibration_complete": false,
+        "calibration_counts": {
+          "O01": 0,
+          "O03": 0,
+          "O04": 1
+        },
+        "contract": {
+          "calibration_slot": 4,
+          "test_slot": 0,
+          "train_slots": [
+            7,
+            3
+          ]
+        },
+        "test_complete": true,
+        "test_counts": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "train_complete": true,
+        "train_counts": {
+          "3": {
+            "O01": 1,
+            "O03": 1,
+            "O04": 1
+          },
+          "7": {
+            "O01": 1,
+            "O03": 1,
+            "O04": 1
+          }
+        }
+      },
+      "2": {
+        "calibration_complete": true,
+        "calibration_counts": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "contract": {
+          "calibration_slot": 0,
+          "test_slot": 7,
+          "train_slots": [
+            3,
+            4
+          ]
+        },
+        "test_complete": true,
+        "test_counts": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "train_complete": false,
+        "train_counts": {
+          "3": {
+            "O01": 1,
+            "O03": 1,
+            "O04": 1
+          },
+          "4": {
+            "O01": 0,
+            "O03": 0,
+            "O04": 1
+          }
+        }
+      },
+      "3": {
+        "calibration_complete": true,
+        "calibration_counts": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "contract": {
+          "calibration_slot": 7,
+          "test_slot": 3,
+          "train_slots": [
+            4,
+            0
+          ]
+        },
+        "test_complete": true,
+        "test_counts": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "train_complete": false,
+        "train_counts": {
+          "0": {
+            "O01": 1,
+            "O03": 1,
+            "O04": 1
+          },
+          "4": {
+            "O01": 0,
+            "O03": 0,
+            "O04": 1
+          }
+        }
+      }
+    },
+    "rotations": {
+      "0": {
+        "calibration_slot": 3,
+        "test_slot": 4,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      "1": {
+        "calibration_slot": 4,
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      "2": {
+        "calibration_slot": 0,
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          4
+        ]
+      },
+      "3": {
+        "calibration_slot": 7,
+        "test_slot": 3,
+        "train_slots": [
+          4,
+          0
+        ]
+      }
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "method_contract": "PURE_ENDPOINT",
+  "method_files": {
+    "config": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/configs/research/subject00_canondressgs_method_base60747_v1.json",
+      "sha256": "dbe0fd49402767124a42d047e51c25d3c3abe5baf621ee21d8e9298d2ce2c6a1",
+      "sha256_lf": "dbe0fd49402767124a42d047e51c25d3c3abe5baf621ee21d8e9298d2ce2c6a1"
+    },
+    "implementation": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/tools/paper/formal_batch_runtime.py",
+      "sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+      "sha256_lf": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6"
+    },
+    "method_dependency_audit": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_method_step300_teacher_dependency_audit_20260727.json",
+      "sha256": "83a6648b7cef6a2665e3567d20defe439a4535e6b95f27eb9f3a3c311450a456"
+    },
+    "o03_provenance_seal": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_O03_concurrent_formal_teacher_provenance_seal_20260727.json",
+      "sha256": "51827eaf1fcb48e22ef41e3f469c816ecba84c9ef8e1b34dd58e348206164e6e"
+    },
+    "runner": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/tools/second_identity/run_subject00_base60747_method.py",
+      "sha256": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9",
+      "sha256_lf": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9"
+    },
+    "source_summary": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_O03_loss_binding_concurrent_provenance_final_summary_20260727.json",
+      "sha256": "51e8e15c97be0d1d80d9c3b6514629fdc5b5b21ebf8ac00e72a72a9e15fd3684"
+    },
+    "teacher_registry": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_base60747_three_garment_teacher_registry_20260727.json",
+      "sha256": "fde287b23817900fdc2f4cf559986cc9f95922701e2c4da1a443d35db29ca701",
+      "sha256_lf": "fde287b23817900fdc2f4cf559986cc9f95922701e2c4da1a443d35db29ca701"
+    },
+    "teacher_registry_correction_overlay": {
+      "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_base60747_three_garment_teacher_registry_correction_overlay_20260727.json",
+      "sha256": "dc431f4fa6fb02658d5c236f432e4c4bfdf928ff3e690b515568cf0145446262"
+    }
+  },
+  "paper_eligible": false,
+  "paper_final": false,
+  "schema_version": "canondressgs.subject00.base60747_matrix_preflight.v1",
+  "scientific_pass": null,
+  "source_head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6",
+  "targets": {
+    "cardinal_slot_coverage": {
+      "0": {
+        "O01": [
+          "subject00_O01_slot00_cand01"
+        ],
+        "O03": [
+          "subject00_O03_slot00_canary_attempt004_cand00"
+        ],
+        "O04": [
+          "subject00_O04_slot00_cand01"
+        ]
+      },
+      "3": {
+        "O01": [
+          "subject00_O01_slot03_cand01"
+        ],
+        "O03": [
+          "subject00_O03_slot03_cand01"
+        ],
+        "O04": [
+          "subject00_O04_slot03_cand01"
+        ]
+      },
+      "4": {
+        "O01": [],
+        "O03": [],
+        "O04": [
+          "subject00_O04_slot04_cand01"
+        ]
+      },
+      "7": {
+        "O01": [
+          "subject00_O01_slot07_remaining_attempt005_cand00"
+        ],
+        "O03": [
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "O04": [
+          "subject00_O04_slot07_cand01"
+        ]
+      }
+    },
+    "checksum_binding_count": 330,
+    "checksum_mismatch_count": 0,
+    "checksum_mismatches": [],
+    "evaluation_count": 22,
+    "manifest": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "quarantine_count": 2,
+    "quarantine_ids": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "quarantine_in_manifest": [],
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "training_count": 22
+  },
+  "task_id": "AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001",
+  "teachers": {
+    "O01": {
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "bytes": 38622894,
+      "global_step": 1200,
+      "human_status": null,
+      "optimizer_step": 1200,
+      "paper_eligible": false,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+      "quarantine_count_in_optimizer": 0,
+      "registry_sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "scientific_pass": null,
+      "sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "technical_status": "TECHNICAL_PASS"
+    },
+    "O03": {
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "bytes": 38622958,
+      "global_step": 1200,
+      "human_status": null,
+      "optimizer_step": 1200,
+      "paper_eligible": false,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+      "quarantine_count_in_optimizer": 0,
+      "registry_sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "scientific_pass": null,
+      "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "technical_status": "TECHNICAL_PASS"
+    },
+    "O04": {
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "bytes": 38622958,
+      "global_step": 1200,
+      "human_status": null,
+      "optimizer_step": 1200,
+      "paper_eligible": false,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+      "quarantine_count_in_optimizer": 0,
+      "registry_sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1",
+      "scientific_pass": null,
+      "sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1",
+      "technical_status": "TECHNICAL_PASS"
+    }
+  }
+}
