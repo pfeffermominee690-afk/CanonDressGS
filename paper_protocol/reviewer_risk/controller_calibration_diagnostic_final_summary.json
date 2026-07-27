@@ -1,0 +1,214 @@
+{
+  "archive_head_resolution": "GIT_COMMIT_CONTAINING_THIS_SUMMARY; verified after push in the final chat handoff",
+  "compatibility_gate_implemented": false,
+  "controller_repaired": false,
+  "counterfactual_numerical_attribution": {
+    "FALLBACK_REMOVAL_GAIN": {
+      "lpips_improved_fraction": 0.5597222222222222,
+      "metric_improvement_means": {
+        "boundary_fscore": 0.003750736518010588,
+        "garment_lpips": 0.01876452074375386,
+        "garment_rgb_mae": 0.020392326036593054,
+        "identity_metric": -0.0027892725595544715,
+        "outside_garment_opacity": -0.00042850950525866616,
+        "protected_lpips": -0.00030296263588777743,
+        "silhouette_iou": 0.00357856270731361
+      },
+      "record_count": 720
+    },
+    "FULL_ORACLE_GAIN": {
+      "lpips_improved_fraction": 1.0,
+      "metric_improvement_means": {
+        "boundary_fscore": 0.036239913225818834,
+        "garment_lpips": 0.04162593106336639,
+        "garment_rgb_mae": 0.06990543181565145,
+        "identity_metric": -0.0016432218195404857,
+        "outside_garment_opacity": -0.00042632832191884517,
+        "protected_lpips": 7.534334547219462e-05,
+        "silhouette_iou": 0.011407320224781851
+      },
+      "record_count": 720
+    },
+    "PAIR_FIX_GAIN": {
+      "lpips_improved_fraction": 0.31805555555555554,
+      "metric_improvement_means": {
+        "boundary_fscore": -0.0006211728081077109,
+        "garment_lpips": 0.0003498627314557881,
+        "garment_rgb_mae": 0.00069031407409865,
+        "identity_metric": 3.147982837011417e-06,
+        "outside_garment_opacity": 4.128012806177139e-05,
+        "protected_lpips": -9.1166386684765e-07,
+        "silhouette_iou": -0.00014658717596091286
+      },
+      "record_count": 720
+    },
+    "WEIGHT_FIX_GAIN": {
+      "lpips_improved_fraction": 0.9971139971139971,
+      "metric_improvement_means": {
+        "boundary_fscore": 0.030310786350969714,
+        "garment_lpips": 0.021878163103528966,
+        "garment_rgb_mae": 0.04696038991604592,
+        "identity_metric": -0.0006487427155378383,
+        "outside_garment_opacity": -1.2573419195232969e-05,
+        "protected_lpips": 5.638526244161284e-05,
+        "silhouette_iou": 0.007454659280017167
+      },
+      "record_count": 693
+    }
+  },
+  "diagnostic_classification": "MULTIPLE_FACTORS",
+  "fallback": {
+    "counts": {
+      "DUAL_SUPPORT": 366,
+      "LOW_SECONDARY_WEIGHT": 239,
+      "LOW_TOP2_MASS": 115,
+      "both_conditions_logical_hit": 1
+    },
+    "rates": {
+      "DUAL_SUPPORT": 0.5083333333333333,
+      "LOW_SECONDARY_WEIGHT": 0.33194444444444443,
+      "LOW_TOP2_MASS": 0.1597222222222222
+    },
+    "special_counts": {
+      "correct_pair_correct_ordering_fallback": 306,
+      "correct_pair_fallback": 330,
+      "wrong_ordering_dual_active": 50,
+      "wrong_pair_dual_active": 3
+    }
+  },
+  "formal_classification": "REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_PARTIAL",
+  "formal_threshold_unchanged": {
+    "secondary_weight": 0.1,
+    "top2_mass": 0.9
+  },
+  "immutability": {
+    "controller_checkpoint_mutation": 0,
+    "formal_output_mutation": 0,
+    "formal_output_unchanged": true,
+    "frozen_assets_unchanged": true,
+    "renderer_mutation": 0,
+    "teacher_mutation": 0
+  },
+  "information_boundary": {
+    "cross_identity_claim": false,
+    "ground_truth_used_in_actual_controller_forward": false,
+    "ground_truth_used_only_for_named_diagnostic_counterfactuals": true,
+    "novel_pose_claim": false,
+    "novel_view_claim": false,
+    "unseen_garment_claim": false,
+    "unseen_reference_claim": false
+  },
+  "next_task": "DESIGN_CONTROLLER_V2_FROM_CAUSAL_FAILURE_DECOMPOSITION",
+  "next_task_started": false,
+  "no_training_gate": {
+    "backward_calls": 0,
+    "checkpoint_writes": 0,
+    "optimizer_created": 0,
+    "optimizer_steps": 0,
+    "scheduler_steps": 0,
+    "training_forward_batches": 0,
+    "training_steps": 0
+  },
+  "oracle_residual_failures": {
+    "categories": [
+      "patch",
+      "cloud",
+      "mottle",
+      "edge_scatter",
+      "silhouette_discontinuity",
+      "full_body_contamination"
+    ],
+    "double_outline_maximum_grade": 0,
+    "focus_pairs": [
+      "O01_O03",
+      "O02_O03"
+    ],
+    "ghosting_maximum_grade": 1,
+    "historical_severe_count_per_pair": {
+      "O01_O03": 8,
+      "O02_O03": 8
+    },
+    "identity_contamination_maximum_grade": 0,
+    "maximum_grade": 3
+  },
+  "output_root": "/root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-CALIBRATION-COMPATIBILITY-DIAGNOSTIC-001/attempt_001",
+  "pair_blacklist_implemented": false,
+  "pair_selection_contribution": "SMALL_AGGREGATE_NONZERO",
+  "paper_final": false,
+  "paper_final_count": 0,
+  "perturbation_primary_stages": {
+    "assignment_permutation": "FEATURE_EXTRACTION",
+    "blur": "MULTIPLE_STAGES",
+    "grayscale": "FALLBACK_GATE",
+    "hue": "RENDER_ONLY",
+    "mask_dilation": "MULTIPLE_STAGES",
+    "mask_erosion": "MULTIPLE_STAGES",
+    "reference_dropout": "FALLBACK_GATE",
+    "single_reference": "MULTIPLE_STAGES"
+  },
+  "primary_failure_source": "DUAL_SUPPORT_COMPATIBILITY_DOMINANT",
+  "render_accounting": {
+    "actual_reused": 720,
+    "new_counterfactual_renders": 2853,
+    "new_perturbation_renders": 0,
+    "oracle_reused": 720,
+    "perturbation_reused": 480
+  },
+  "run_branch": "research/controller-calibration-compatibility-diagnostic-20260723",
+  "schema_version": "canondressgs.research.controller_calibration_diagnostic_final_summary.v1",
+  "scientific_rerun_after_failure": false,
+  "secondary_failure_sources": [
+    "WEIGHT_CALIBRATION_DOMINANT",
+    "FALLBACK_CALIBRATION_DOMINANT",
+    "REFERENCE_ROBUSTNESS_DOMINANT"
+  ],
+  "simple_gate_status": "SIMPLE_GATE_NOT_SEPARABLE",
+  "source_branch": "research/reference-conditioned-dual-support-controller-formal-20260723",
+  "source_head": "f45a518f330fb407942055756373e83f65717853",
+  "status": "COMPLETE",
+  "task_id": "AAAI27-CONTROLLER-CALIBRATION-COMPATIBILITY-DIAGNOSTIC-001",
+  "threshold_selected": false,
+  "validation_test_count": 34,
+  "validation_tests": [
+    "exact_source_head",
+    "three_formal_checkpoint_hashes",
+    "formal_summary_reaggregation",
+    "mixed_720_total",
+    "fallback_reason_completeness",
+    "activation_denominator_240_per_seed",
+    "pair_correct_fallback_counts",
+    "pure_mixed_separability",
+    "fixed_threshold_grid_no_selection",
+    "simple_gate_status",
+    "weight_correct_pair_subset",
+    "counterfactual_variant_definitions",
+    "actual_render_reuse",
+    "oracle_render_reuse",
+    "no_ground_truth_in_actual_forward",
+    "causal_attribution_completeness",
+    "pair_compatibility_completeness",
+    "perturbation_chain_completeness",
+    "perturbation_render_reuse",
+    "visual_manifest_completeness",
+    "visual_files_present_71",
+    "no_training_optimizer_checkpoint_preflight",
+    "no_training_gate_six_processes",
+    "no_training_gate_23",
+    "no_training_gate_24",
+    "no_training_gate_25",
+    "no_training_gate_26",
+    "no_training_gate_27",
+    "no_training_gate_28",
+    "frozen_archive_immutability",
+    "paper_final_zero",
+    "manual_review_71_of_71",
+    "manual_review_paths_opened",
+    "no_scientific_rerun"
+  ],
+  "visual_review": {
+    "actual_opened_count": 71,
+    "causal_main": 60,
+    "diagnostics": 11,
+    "status": "COMPLETE"
+  }
+}

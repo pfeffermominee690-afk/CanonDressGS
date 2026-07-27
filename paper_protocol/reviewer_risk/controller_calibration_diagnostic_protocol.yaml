@@ -1,0 +1,100 @@
+schema_version: canondressgs.research.controller_calibration_compatibility_diagnostic.v1
+label: "DIAGNOSTIC ONLY - NOT PAPER FINAL"
+task_id: AAAI27-CONTROLLER-CALIBRATION-COMPATIBILITY-DIAGNOSTIC-001
+frozen_at: 2026-07-23T00:00:00+08:00
+source:
+  branch: research/reference-conditioned-dual-support-controller-formal-20260723
+  head: f45a518f330fb407942055756373e83f65717853
+  classification: REFERENCE_CONDITIONED_DUAL_SUPPORT_CONTROLLER_PARTIAL
+  output_root: /root/autodl-tmp/canondressgs_work/outputs/REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002
+run:
+  branch: research/controller-calibration-compatibility-diagnostic-20260723
+  windows_worktree: 'E:\model_train\canondressgs_controller_calibration_compatibility_diagnostic'
+  cloud_worktree: /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_controller_calibration_compatibility_diagnostic
+  output_root: /root/autodl-tmp/canondressgs_work/outputs/CONTROLLER-CALIBRATION-COMPATIBILITY-DIAGNOSTIC-001
+  attempt: attempt_001
+  output_policy: APPEND_ONLY
+frozen_inputs:
+  controller_checkpoints:
+    - attempt_001/seed_0/checkpoints/final_step_300.pt
+    - attempt_001/seed_1/checkpoints/final_step_300.pt
+    - attempt_001/seed_2/checkpoints/final_step_300.pt
+  controller_formal_outputs: READ_ONLY
+  oracle_dual_support_outputs: READ_ONLY
+  all_pair_dual_support_archive: READ_ONLY
+  teacher_endpoints: READ_ONLY
+  frozen_F2: READ_ONLY
+  renderer: READ_ONLY
+  garment_bank: READ_ONLY
+  causal_archive: READ_ONLY
+no_training_gate:
+  training_steps: 0
+  training_forward_batches: 0
+  backward_calls: 0
+  optimizer_created: 0
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  legacy_optimizer_builder_policy: BYPASS_DISCARDED_OBJECT_AND_FAIL_ON_ANY_OPTIMIZER_INIT
+  teacher_mutation: 0
+  controller_checkpoint_mutation: 0
+  formal_output_mutation: 0
+  renderer_mutation: 0
+formal_reaggregation:
+  seeds: [0, 1, 2]
+  pure_records_per_seed: 20
+  mixed_records_per_seed: 240
+  protocol_records_per_seed: 320
+  mixed_seed_record_queries: 720
+  assignment_positions: [0, 1, 2]
+  target_view_folds: [cond_000000, cond_000017, cond_000318, cond_000347]
+  unordered_pair_count: 10
+  compositions: [AAB, ABB]
+frozen_gate:
+  top2_mass_threshold: 0.90
+  secondary_weight_threshold: 0.10
+  priority: [LOW_TOP2_MASS, LOW_SECONDARY_WEIGHT, DUAL_SUPPORT]
+threshold_grid:
+  diagnostic_only: true
+  selection_forbidden: true
+  top2_mass: [0.50, 0.60, 0.70, 0.80, 0.85, 0.90, 0.95]
+  secondary_weight: [0.00, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30]
+simple_gate_separable:
+  pure_single_macro_min: 0.95
+  mixed_dual_macro_min: 0.80
+  wrong_pair_dual_rate_max: 0.10
+  pure_single_each_seed_min: 0.90
+  mixed_dual_each_seed_min: 0.70
+counterfactual_variants:
+  - ACTUAL_CONTROLLER
+  - FORCE_DUAL_PRED_PAIR_PRED_WEIGHT
+  - ORACLE_PAIR_PREDICTED_PROBABILITY_WEIGHT
+  - CORRECT_PAIR_SUBSET_PRED_PAIR_ORACLE_WEIGHT
+  - ORACLE_PAIR_ORACLE_WEIGHT
+  - TOP1_SINGLE
+reuse_required:
+  - ACTUAL_CONTROLLER
+  - ORACLE_PAIR_ORACLE_WEIGHT
+  - historical_FULL_HARD_Oracle
+visual_review:
+  causal_main_sheet_count: 60
+  causal_main_policy: 10_pairs_x_2_compositions_x_3_seeds
+  all_main_must_be_opened: true
+  all_required_diagnostics_must_be_opened: true
+  grade_scale: {0: NONE, 1: MINOR, 2: MODERATE, 3: SEVERE}
+forbidden:
+  - training
+  - backward
+  - optimizer_creation
+  - checkpoint_write
+  - threshold_change
+  - temperature_change_or_fit
+  - controller_change
+  - dual_support_change
+  - compatibility_gate_implementation
+  - pair_blacklist
+  - result_selection
+  - formal_result_rewrite
+paper_final: false
+paper_final_count: 0
+next_task_started: false

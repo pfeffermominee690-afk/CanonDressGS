@@ -1,0 +1,294 @@
+{
+  "schema_version": "canondressgs.paper.p0_formal_candidate_final_summary.v1",
+  "task_id": "AAAI27-P0-FORMAL-CANDIDATE-RUNS-001",
+  "archive_status": "SEALED_RAW_RESULTS_AND_MANUAL_REVIEW",
+  "source_branch": "paper/aaai27-p0-candidate-adapters-runner-20260721",
+  "source_head": "d75c4fa5a426fe90314eba08e94509940ecafb23",
+  "run_branch": "paper/aaai27-p0-formal-candidate-runs-20260721",
+  "execution_head": "9adc6b9092ea01a15070cba0470afffa8758b15a",
+  "final_head": "commit containing this summary",
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "580.76.05",
+    "cuda": "12.1",
+    "pytorch": "2.4.1+cu121",
+    "python": "3.10.20",
+    "cuda_smoke_count": 13
+  },
+  "asset_fingerprints": {
+    "frozen_formal_output": {
+      "before_after_equal": true,
+      "file_count": 4127,
+      "bytes": 964043888,
+      "sha256": "7b9449e03d53e29cff11ded1fdc95e633640d38754cf152f2ab07a935d89d6bc"
+    },
+    "reviewer_closure": {
+      "file_count": 1,
+      "bytes": 31115,
+      "sha256": "fd27cb70fc1d3168a74f888e37379e8ec66cadf46c99f76ecdacb77a1b1e3a3c"
+    },
+    "deterministic_protocol": {
+      "file_count": 12,
+      "bytes": 306862,
+      "sha256": "642cd8fa42b5879ae6a212941272ea24aec8ed6eb7e80ba5d8d2f74d4cf10960"
+    },
+    "candidate_smoke": {
+      "file_count": 16,
+      "bytes": 151001,
+      "sha256": "79f2cb3c8a3b7c8a3869c179a402404798069b53181f33a1b7fb438c611f7117"
+    },
+    "new_p0_output_before_visual_audit": {
+      "file_count": 911,
+      "bytes": 339118385,
+      "sha256": "96bdc50a165850df5ed59ab10fa2d20c0f1c92e67c4c97e41b1b26cc50b36362"
+    }
+  },
+  "optimizer_contract": {
+    "audit": "PASS",
+    "classification": "OPTIMIZER_CONTRACT_UNAMBIGUOUS",
+    "optimizer": "torch.optim.Adam",
+    "learning_rate": 0.02,
+    "weight_decay": 0.0,
+    "betas": [0.9, 0.999],
+    "epsilon": 1e-08,
+    "amsgrad": false,
+    "scheduler": "torch.optim.lr_scheduler.LambdaLR",
+    "scheduler_multiplier": 1.0,
+    "batch_size": 5,
+    "steps_per_trainable_run": 300,
+    "gradient_clip_norm": 5.0,
+    "loss_reduction": "mean",
+    "fixed_outfit_and_condition_order": true,
+    "tuning": false,
+    "early_stopping": false,
+    "best_seed_selection": false,
+    "b7_optimizer": null,
+    "b7_steps": 0
+  },
+  "complex_trunk_provenance": {
+    "audit": "PASS",
+    "classification": "PREREGISTERED_P0_COMPLEX_TRUNK",
+    "raw_dimension": 519,
+    "hidden_dimension": 128,
+    "token_adapter_parameters": 167310,
+    "reference_mlp_parameters": 16768,
+    "attention_parameters": 129,
+    "pooled_projection_parameters": 50048,
+    "trunk_parameters": 234255,
+    "head_parameters": 516,
+    "total_parameters": 234771,
+    "same_seed_trunks_bitwise_equal_before_training": true,
+    "cross_seed_trunks_unique": true,
+    "historical_b5_parameters": 435606,
+    "parameter_difference_from_historical_b5": -200835,
+    "difference_is_preregistered_structural_change": true
+  },
+  "run_count": 13,
+  "run_status_13": [
+    {"formal_run_id": "P0-FORMAL-OURS-V2-R0", "method": "Ours-v2", "replicate_index": 0, "seed": 0, "attempt": "attempt_002", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-OURS-V2-R1", "method": "Ours-v2", "replicate_index": 1, "seed": 1, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-OURS-V2-R2", "method": "Ours-v2", "replicate_index": 2, "seed": 2, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-B6-S0", "method": "B6", "seed": 0, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-B6-S1", "method": "B6", "seed": 1, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-B6-S2", "method": "B6", "seed": 2, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-B7-FIXED", "method": "B7", "seed": null, "attempt": "attempt_001", "optimizer_steps": 0, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-M3-S0", "method": "M3", "seed": 0, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-M3-S1", "method": "M3", "seed": 1, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-M3-S2", "method": "M3", "seed": 2, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-M4-S0", "method": "M4", "seed": 0, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-M4-S1", "method": "M4", "seed": 1, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"},
+    {"formal_run_id": "P0-FORMAL-M4-S2", "method": "M4", "seed": 2, "attempt": "attempt_001", "optimizer_steps": 300, "status": "MANUAL_REVIEW_REQUIRED"}
+  ],
+  "optimizer_steps_total": 3600,
+  "OURS_V2_CONFIRMED": true,
+  "OURS_V2_REPLICATE_POLICY": "DETERMINISTIC_PROTOCOL_REPLICATES",
+  "ours_v2_results": [
+    {"formal_run_id": "P0-FORMAL-OURS-V2-R0", "standardized_coefficient_rmse": 0.0221219336207, "restored_coefficient_rmse": 7.87491088879, "nearest_teacher_accuracy": 1.0, "correct_vs_swapped_wins": 80, "normalized_residual_rmse": 0.00638777923693, "garment_rgb_mae": 0.00620556089561, "garment_alpha_mae": 0.0024447495467, "edit_reduction": 0.897108049735, "saturation_abs_ge_0_99": 0.35, "endpoint_collapse": false},
+    {"formal_run_id": "P0-FORMAL-OURS-V2-R1", "standardized_coefficient_rmse": 0.0221219336207, "restored_coefficient_rmse": 7.87491088879, "nearest_teacher_accuracy": 1.0, "correct_vs_swapped_wins": 80, "normalized_residual_rmse": 0.00638777923693, "garment_rgb_mae": 0.00620556089561, "garment_alpha_mae": 0.0024447495467, "edit_reduction": 0.897108049735, "saturation_abs_ge_0_99": 0.35, "endpoint_collapse": false},
+    {"formal_run_id": "P0-FORMAL-OURS-V2-R2", "standardized_coefficient_rmse": 0.0221219336207, "restored_coefficient_rmse": 7.87491088879, "nearest_teacher_accuracy": 1.0, "correct_vs_swapped_wins": 80, "normalized_residual_rmse": 0.00638777923693, "garment_rgb_mae": 0.00620556089561, "garment_alpha_mae": 0.0024447495467, "edit_reduction": 0.897108049735, "saturation_abs_ge_0_99": 0.35, "endpoint_collapse": false}
+  ],
+  "ours_v2_reproducibility": {
+    "confirmed": true,
+    "replicate_policy": "DETERMINISTIC_PROTOCOL_REPLICATES",
+    "observed_classification": "SHARED_INIT_WITH_RUNTIME_DIVERGENCE",
+    "checkpoint_max_abs_difference": 0.0,
+    "trajectory_max_abs_difference": 0.0,
+    "all_milestone_hashes_identical": true,
+    "states_trajectories_renders_and_scientific_metrics_exact": true,
+    "timing_and_vram_only_differ": true,
+    "peak_vram_max_spread_bytes": 1163776,
+    "final_model_sha256": "a7f4b5e2eeaa50a386890e0cc2c5df48a93ebbb578e53000941d7bc149f621b5",
+    "trajectory_sha256": "f75a0744e9c9efe789db184a49c2b6ade5775925186cbd06eaaf02a4c06f8cc7",
+    "sample_standard_deviation_applicable": false
+  },
+  "b6_results": [
+    {"formal_run_id": "P0-FORMAL-B6-S0", "seed": 0, "standardized_coefficient_rmse": 0.0, "nearest_teacher_accuracy": 1.0, "correct_vs_swapped_wins": 80, "edit_reduction": 0.903994249364},
+    {"formal_run_id": "P0-FORMAL-B6-S1", "seed": 1, "standardized_coefficient_rmse": 0.0, "nearest_teacher_accuracy": 1.0, "correct_vs_swapped_wins": 80, "edit_reduction": 0.903994249364},
+    {"formal_run_id": "P0-FORMAL-B6-S2", "seed": 2, "standardized_coefficient_rmse": 0.0, "nearest_teacher_accuracy": 1.0, "correct_vs_swapped_wins": 80, "edit_reduction": 0.903994249364}
+  ],
+  "b6_confusion": {
+    "per_seed": [[4, 0, 0, 0, 0], [0, 4, 0, 0, 0], [0, 0, 4, 0, 0], [0, 0, 0, 4, 0], [0, 0, 0, 0, 4]],
+    "accuracy": 1.0,
+    "per_outfit_accuracy": 1.0,
+    "predicted_class_drives_lookup": true,
+    "target_input_used": false,
+    "manual_correction_used": false
+  },
+  "b7_results": {
+    "formal_run_id": "P0-FORMAL-B7-FIXED",
+    "optimizer_steps": 0,
+    "standardized_coefficient_rmse": 0.0,
+    "nearest_teacher_accuracy": 1.0,
+    "correct_vs_swapped_wins": 80,
+    "edit_reduction": 0.903994249364,
+    "single_reference_accuracy": 0.95
+  },
+  "b7_centroid_contract": {
+    "fold_count": 4,
+    "centroids_per_fold": 5,
+    "query_count": 20,
+    "target_condition_excluded": true,
+    "distance": "squared_l2",
+    "confusion": "diagonal",
+    "accuracy": 1.0,
+    "per_outfit_accuracy": 1.0
+  },
+  "M3_SCIENTIFIC_STATUS": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+  "m3_results": [
+    {"formal_run_id": "P0-FORMAL-M3-S0", "seed": 0, "standardized_coefficient_rmse": 1.00386991343, "restored_coefficient_rmse": 350.375064461, "nearest_teacher_accuracy": 0.2, "correct_vs_swapped_wins": 12, "normalized_residual_rmse": 0.28485215834, "garment_rgb_mae": 0.192510564625, "garment_alpha_mae": 0.0771198993549, "edit_reduction": 0.172941459819, "saturation_abs_ge_0_99": 0.0, "collapsed_outfit": "O08", "collapse_count": 20},
+    {"formal_run_id": "P0-FORMAL-M3-S1", "seed": 1, "standardized_coefficient_rmse": 1.0041884731, "restored_coefficient_rmse": 350.445831589, "nearest_teacher_accuracy": 0.2, "correct_vs_swapped_wins": 45, "normalized_residual_rmse": 0.284913482517, "garment_rgb_mae": 0.192520336062, "garment_alpha_mae": 0.0771972920746, "edit_reduction": 0.173483330979, "saturation_abs_ge_0_99": 0.0, "collapsed_outfit": "O08", "collapse_count": 20},
+    {"formal_run_id": "P0-FORMAL-M3-S2", "seed": 2, "standardized_coefficient_rmse": 1.00139112236, "restored_coefficient_rmse": 350.1283111, "nearest_teacher_accuracy": 0.2, "correct_vs_swapped_wins": 54, "normalized_residual_rmse": 0.284575187787, "garment_rgb_mae": 0.192698345333, "garment_alpha_mae": 0.0754435248673, "edit_reduction": 0.164455457524, "saturation_abs_ge_0_99": 0.0, "collapsed_outfit": "O03", "collapse_count": 20}
+  ],
+  "m3_scientific_status": {
+    "status": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+    "endpoint_collapse": true,
+    "collapse_by_seed": {"0": "O08", "1": "O08", "2": "O03"},
+    "cloud_mottle": "SEVERE_FULL_BODY",
+    "edge_scatter": "SEVERE",
+    "tuning_or_rerun_performed": false
+  },
+  "M4_SCIENTIFIC_STATUS": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+  "m4_results": [
+    {"formal_run_id": "P0-FORMAL-M4-S0", "seed": 0, "standardized_coefficient_rmse": 1.3422919378, "restored_coefficient_rmse": 469.208426448, "nearest_teacher_accuracy": 0.2, "correct_vs_swapped_wins": 0, "normalized_residual_rmse": 0.381966083621, "garment_rgb_mae": 0.209309212491, "garment_alpha_mae": 0.0831884728745, "edit_reduction": 0.115563625421, "saturation_abs_ge_0_99": 1.0, "collapsed_outfit": "O08", "collapse_count": 20},
+    {"formal_run_id": "P0-FORMAL-M4-S1", "seed": 1, "standardized_coefficient_rmse": 1.32250495893, "restored_coefficient_rmse": 464.322436262, "nearest_teacher_accuracy": 0.2, "correct_vs_swapped_wins": 0, "normalized_residual_rmse": 0.377149476856, "garment_rgb_mae": 0.213526878506, "garment_alpha_mae": 0.0725339076482, "edit_reduction": -0.00144379575166, "saturation_abs_ge_0_99": 1.0, "collapsed_outfit": "O04", "collapse_count": 20},
+    {"formal_run_id": "P0-FORMAL-M4-S2", "seed": 2, "standardized_coefficient_rmse": 1.36726692137, "restored_coefficient_rmse": 478.15241492, "nearest_teacher_accuracy": 0.2, "correct_vs_swapped_wins": 0, "normalized_residual_rmse": 0.388044617325, "garment_rgb_mae": 0.222510948032, "garment_alpha_mae": 0.0713468931615, "edit_reduction": -0.033455347269, "saturation_abs_ge_0_99": 1.0, "collapsed_outfit": "O03", "collapse_count": 20}
+  ],
+  "m4_scientific_status": {
+    "status": "ENGINEERING_PASS_SCIENTIFIC_FAIL",
+    "endpoint_collapse": true,
+    "collapse_by_seed": {"0": "O08", "1": "O04", "2": "O03"},
+    "cloud_mottle": "SEVERE_FULL_BODY",
+    "edge_scatter": "SEVERE",
+    "tuning_or_rerun_performed": false
+  },
+  "m1_m4_raw_matrix": {
+    "metric_order": ["standardized_coefficient_rmse", "normalized_residual_rmse", "garment_rgb_mae", "nearest_teacher_accuracy"],
+    "M1_Ours_v2": [[0.0221219336207, 0.0221219336207, 0.0221219336207], [0.00638777923693, 0.00638777923693, 0.00638777923693], [0.00620556089561, 0.00620556089561, 0.00620556089561], [1.0, 1.0, 1.0]],
+    "M2_historical_A5": [[1.3422919378, 1.3422919378, 1.3422919378], [0.381966083621, 0.381966083621, 0.381966083621], [0.209309212491, 0.209309212491, 0.209309212491], [0.2, 0.2, 0.2]],
+    "M3_complex_corrected": [[1.00386991343, 1.0041884731, 1.00139112236], [0.28485215834, 0.284913482517, 0.284575187787], [0.192510564625, 0.192520336062, 0.192698345333], [0.2, 0.2, 0.2]],
+    "M4_complex_legacy": [[1.3422919378, 1.32250495893, 1.36726692137], [0.381966083621, 0.377149476856, 0.388044617325], [0.209309212491, 0.213526878506, 0.222510948032], [0.2, 0.2, 0.2]],
+    "b5_in_matrix": false,
+    "best_seed_selected": false
+  },
+  "correct_episode_count": {
+    "per_run": 20,
+    "total": 260,
+    "outfits": ["O01", "O02", "O03", "O04", "O08"],
+    "views_per_outfit": 4,
+    "excluded_outfit": "O07"
+  },
+  "swap_count": {
+    "per_run": 80,
+    "total": 1040,
+    "full_seen_outfit_and_view_coverage": true
+  },
+  "robustness_results": {
+    "per_run_counts": {"permutation": 20, "single_reference": 20, "two_reference_dropout": 20, "replacement": 20},
+    "ours_v2": {"single_reference_accuracy": 1.0, "two_reference_dropout_accuracy": 1.0, "permutation_max_difference": 3.57627868652e-7},
+    "b6": {"single_reference_accuracy": 1.0, "two_reference_dropout_accuracy": 1.0, "permutation_max_difference": 0.0},
+    "b7": {"single_reference_accuracy": 0.95, "two_reference_dropout_accuracy": 1.0, "permutation_max_difference": 0.0},
+    "m3": {"single_reference_accuracy": 0.2, "two_reference_dropout_accuracy": 0.2, "permutation_max_difference_upper_bound": 7.45058059692e-9, "replacement_sensitivity": "near_zero"},
+    "m4": {"single_reference_accuracy": 0.2, "two_reference_dropout_accuracy": 0.2, "permutation_max_difference": 0.0, "replacement_sensitivity": 0.0}
+  },
+  "evaluator_metrics": {
+    "registered_metric_count": 27,
+    "all_metrics_present": true,
+    "ours_reporting": "R0/R1/R2_RAW",
+    "randomized_method_reporting": "MEAN_PLUS_MINUS_SAMPLE_STD",
+    "b7_reporting": "FIXED",
+    "metric_names": [
+      "background_rgb_mae",
+      "base_replacement_sensitivity",
+      "basis_storage_bytes",
+      "correct_outfit_rank",
+      "correct_vs_swapped_wins",
+      "cosine_similarity",
+      "edit_reduction",
+      "garment_alpha_mae",
+      "garment_rgb_mae",
+      "inference_time_seconds",
+      "nearest_teacher_accuracy",
+      "normalized_residual_rmse",
+      "pairwise_coefficient_margin",
+      "peak_vram_bytes",
+      "permutation_max_difference",
+      "protected_rgb_mae",
+      "render_time_seconds",
+      "restored_coefficient_rmse",
+      "single_reference_accuracy",
+      "standardized_coefficient_rmse",
+      "target_closer_fraction",
+      "top_10_support_overlap",
+      "top_20_support_overlap",
+      "trainable_parameter_count",
+      "training_time_seconds",
+      "two_reference_dropout_accuracy",
+      "zero_replacement_sensitivity"
+    ],
+    "raw_result_index": "paper_protocol/reviewer_risk/p0_formal_raw_result_index.json",
+    "report_table_section": 22
+  },
+  "visual_review": {
+    "expected_count": 13,
+    "reviewed_count": 13,
+    "all_sheets_actual_opened": true,
+    "formal_attempts_modified_by_review": false,
+    "hyperparameter_changes_after_review": false,
+    "image_corruption_count": 0,
+    "identity_contamination_count": 0,
+    "ours_v2_b6_b7_seen_garment_mapping_correct": true,
+    "m3_collapsed_outfits_by_seed": {"0": "O08", "1": "O08", "2": "O03"},
+    "m4_collapsed_outfits_by_seed": {"0": "O08", "1": "O04", "2": "O03"},
+    "source": "paper_protocol/reviewer_risk/p0_formal_visual_review.json"
+  },
+  "target_forward_leakage": {
+    "count": 0,
+    "all_runs_false": true,
+    "outfit_id_in_prediction_forward": false
+  },
+  "frozen_asset_changes": {
+    "count": 0,
+    "before_after_hash_equal_all_runs": true,
+    "maximum_change": 0.0,
+    "frozen_gradient_count": 0,
+    "formal_51_run_outputs_unchanged": true
+  },
+  "checkpoint_count": 84,
+  "render_count": 520,
+  "metrics_count": 128,
+  "test_results": {
+    "pre_training_relevant_suite": {"total": 284, "passed": 282, "known_stale_lifecycle_assertions": 2, "unexpected_failures": 0},
+    "legacy_autograd_tests": {"total": 4, "passed": 4},
+    "final_focused_suite": {"total": 24, "passed": 24},
+    "coverage": ["exact_resume", "milestones", "optimizer_membership", "frozen_and_leakage", "m3_m4_pairing", "m4_a5_parity", "20_80_27_contract", "render_path", "asset_root_bridge", "post_training_resume_evidence"]
+  },
+  "paper_final_count": 0,
+  "paper_final": false,
+  "scientific_boundary": {
+    "final_scientific_method_decision_written": false,
+    "raw_results_status": "MANUAL_REVIEW_REQUIRED",
+    "hard_lookup_fusion_supervision_paper_adjudication_written": false
+  },
+  "next_task": "RUN_P0_COLOR_EXTENDED_SPATIAL_AND_SOFT_CONTROL_EVALUATIONS",
+  "next_task_started": false
+}

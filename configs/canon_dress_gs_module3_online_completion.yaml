@@ -1,0 +1,25 @@
+base_config: configs/canon_dress_gs_module2_six_channel.yaml
+online_completion:
+  gate_source: online_reference_mask_completion
+  graph_k: 8
+  hidden_dim: 128
+  blocks: 4
+  max_steps: 100
+  min_steps: 30
+  learning_rate: 0.001
+  feature_holdout_fraction: 0.30
+  seed: 20260716
+  output_dir: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/GATE6-ONLINE-COMPLETION-001
+  loss_weights:
+    geometry_gate_bce: 1.0
+    geometry_gate_dice: 1.0
+    appearance_gate_bce: 1.0
+    appearance_gate_dice: 1.0
+    observed_reprojection: 0.5
+    feature_reconstruction: 50.0
+    gate_graph_smoothness: 0.01
+    feature_graph_smoothness: 0.001
+    subset_feature_consistency: 0.1
+    subset_geometry_gate_consistency: 0.1
+    subset_appearance_gate_consistency: 0.1
+    gate_sparsity: 5.0

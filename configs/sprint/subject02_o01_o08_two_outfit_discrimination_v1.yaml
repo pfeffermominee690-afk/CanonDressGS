@@ -1,0 +1,238 @@
+schema_version: canondressgs.multi_outfit_discrimination.v1
+task_id: SUBJECT02-TWO-OUTFIT-DISCRIMINATION-PREP-001
+branch: sprint/aaai27-two-outfit-prep-20260720
+source_head: 2024a895d3d13e5004ebfeaf9615034fb3430b7c
+status: PREPARED_NOT_STARTED
+
+current_o01_guard:
+  task_id: SUBJECT02-IMAGE-CONDITIONED-OVERFIT-O01-001
+  attempt: attempt_004
+  branch: sprint/aaai27-minimal-image-overfit-20260719
+  head: 2024a895d3d13e5004ebfeaf9615034fb3430b7c
+  remote_worktree: /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_image_overfit_o01
+  remote_pid: 29075
+  output_path: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-IMAGE-CONDITIONED-OVERFIT-O01-001/attempt_004
+  mutation_allowed: false
+
+inputs:
+  source_manifest: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+  source_manifest_sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  generated_manifest: manifests/subject02_o01_o08_two_outfit_leave_one_out_v1.json
+  generated_manifest_committed: false
+  generated_manifest_embeds_absolute_paths: false
+  stable_protected_attribution: /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+  stable_protected_attribution_sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+
+base:
+  model_dir: /root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k
+  checkpoint_path: chkpnt100000.pth
+  checkpoint_sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+  lbs_grid_path: /root/autodl-tmp/canondressgs_work/data/subject02/gaussian/lbs_weights_grid.npz
+  gaussian_count: 200000
+  anchor_count: 10000
+  frozen: true
+
+manifest:
+  outfits: [O01, O08]
+  conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+  views:
+    cond_000000: front
+    cond_000318: back
+    cond_000017: left
+    cond_000347: right
+  reference_counts:
+    O01: 3
+    O08: 3
+  splits:
+    seen: [O01, O08]
+    validation: []
+    unseen: []
+    held_out: []
+  expected_episode_count: 8
+  require_zero_reference_target_overlap: true
+  require_identical_episode_schema: true
+  require_no_missing_or_duplicate_assets: true
+  require_consistent_camera_resolution_contract: true
+
+model:
+  architecture_contract: SAME_AS_O01_V6_1_IMAGE_CONDITIONED
+  offset_mode: anchor_film
+  hidden_dim: 128
+  num_layers: 3
+  hyper_hidden_dim: 128
+  anchor_num_frequencies: 4
+  anchor_graph_k: 4
+  image_feature_dim: 128
+  embedding_dim: 64
+  local_feature_dim: 64
+  outfit_id_input: false
+  target_image_input: false
+  base_mmlp_frozen: true
+  image_backbone_frozen: true
+  renderer_modification: false
+  residual_bound_modification: false
+  objective_modification: false
+  support_module:
+    status: WAIT_FOR_RESPONSIBLE_OWNER_FREEZE
+    enabled: null
+  dressable_channels:
+    xyz: {enabled: true, max_abs: 0.05}
+    log_scaling: {enabled: true, max_abs: 0.35}
+    rotation: {enabled: true, max_angle_rad: 0.2617993878}
+    opacity_logit: {enabled: true, max_abs: 2.0}
+    sh0: {enabled: true, max_abs: 0.25}
+    shN: {enabled: true, max_abs: 0.10, sh_degree: 1}
+
+guard:
+  name: PROTECTED_FULL_RESIDUAL_GUARD_V1
+  version: 1
+  membership_source: base_derived_stable_protected
+  application_point: after_anchor_to_gaussian_interpolation_before_canonical_composition
+  target_independent: true
+  outfit_independent: true
+  cloud_region_independent: true
+  channels: [delta_xyz, delta_log_scaling, delta_rotvec, delta_opacity_logit, delta_sh0, delta_shN]
+
+v6_1:
+  objective_name: SUPPORT_AWARE_REGION_TRUSTED_OBJECTIVE_V6_1
+  progress_margin: 0.02
+  change_epsilon: 0.01
+  support_diagonal_ratio: 0.002708497051881002
+  minimum_radius_pixels: 1
+  weights:
+    edit_rgb: 1.0
+    target_progress: 1.0
+    trusted_underfill: 0.5
+    trusted_removal: 0.5
+    transition_alpha: 0.25
+    identity: 2.0
+    background: 1.0
+    neutral_preserve: 0.5
+    residual: 0.0001
+    stability: 0.0001
+  regional_regularization:
+    garment_weight: 0.25
+    protected_weight: 1.0
+
+render:
+  background: [1.0, 1.0, 1.0]
+  sh_degree: 1
+  protected_support_alpha_threshold: 0.0001
+
+initialization:
+  residual: zero
+  o01_checkpoint_warm_start: false
+  oracle_checkpoint: false
+  teacher_residual: false
+  target_conditioned_initialization: false
+
+training:
+  enabled: false
+  batch_size: 1
+  seed: 20260720
+  outfit_balance: strict_equal_optimizer_updates
+  episode_schedule:
+    - O01__target_cond_000000
+    - O08__target_cond_000000
+    - O01__target_cond_000318
+    - O08__target_cond_000318
+    - O01__target_cond_000017
+    - O08__target_cond_000017
+    - O01__target_cond_000347
+    - O08__target_cond_000347
+  resume_restarts_schedule: false
+  smoke_steps: 20
+  discrimination_milestones: [200, 400]
+  max_steps:
+    status: WAIT_FOR_O01_FINAL_ADJUDICATION
+    value: null
+  per_outfit_update_budget:
+    status: WAIT_FOR_O01_FINAL_ADJUDICATION
+    value: null
+
+optimizer_template:
+  status: DECLARATION_ONLY_NOT_CONSTRUCTED_BY_PREP
+  class: Adam
+  weight_decay: 0.0
+  encoder_lr: 0.0001
+  aggregator_lr: 0.0001
+  completer_lr: 0.001
+  hypernetwork_lr: 0.0001
+  anchor_mlp_lr: 0.0001
+  local_adapter_lr: 0.0001
+
+checkpoint:
+  exact_resume_required: true
+  fields:
+    - model_state
+    - optimizer_state
+    - scheduler_state
+    - amp_state
+    - training_state.global_step
+    - random_state
+    - training_state.balanced_episode_scheduler
+    - training_state.per_outfit_update_counts
+    - training_state.per_view_update_counts
+    - training_state.current_cycle_position
+    - method_state.config
+    - data_state.manifest_sha256
+    - data_state.base_fingerprint
+    - method_state.trainable_fingerprint
+
+evaluation:
+  unified_entrypoint: tools/sprint/evaluate_two_outfit_discrimination.py
+  reference_swap:
+    correct: true
+    swapped: true
+    permutation: reverse
+    dropout: leave_one_reference_out
+  regions: [garment_region, protected_region, full_foreground]
+  modalities: [rgb, alpha, silhouette]
+  lpips: use_if_environment_already_provides_it
+  collapse_thresholds:
+    status: UNCALIBRATED_REPORT_ONLY
+    values: null
+  final_states:
+    - TWO_OUTFIT_DISCRIMINATION_PASS
+    - CONDITIONING_COLLAPSE
+    - OUTFIT_AVERAGING
+    - REFERENCE_IGNORED
+    - ONE_OUTFIT_DOMINATES
+    - ENGINEERING_FAILURE
+
+debug_export:
+  enabled: false
+  full_tensors: false
+  summary_fields:
+    - global_clothing_embedding
+    - local_anchor_features
+    - observed_probability
+    - completed_probability
+    - geometry_gate
+    - appearance_gate
+    - anchor_residual
+    - gaussian_residual
+    - final_rgb
+    - final_alpha
+  metadata: [outfit_id, episode_id, step, commit, config_hash]
+  target_image_features: false
+
+multi_outfit_extension:
+  dynamic_outfit_count: true
+  per_outfit_reference_count: true
+  splits: [seen, validation, unseen, held_out]
+  per_outfit_metrics: true
+  reference_swap: true
+  model_logic_may_branch_on_outfit_literal: false
+
+permissions:
+  start_training: false
+  create_optimizer_during_prep: false
+  use_gpu: false
+  generate_targets: false
+  modify_renderer: false
+  modify_v6_or_v6_1: false
+  modify_residual_bounds: false
+  rerun_oracle_audit: false
+  modify_current_o01_attempt: false
+  use_o01_checkpoint_as_formal_initialization: false

@@ -1,0 +1,159 @@
+{
+  "$id": "canondressgs.multi_identity_generation_provenance.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "api_base": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "attempt_index": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "condition_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "REQUEST_PREPARED",
+        "REQUEST_SUCCEEDED",
+        "REQUEST_FAILED",
+        "REQUEST_MODERATED"
+      ]
+    },
+    "garment_id": {
+      "enum": [
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O08"
+      ]
+    },
+    "identity_id": {
+      "enum": [
+        "subject00",
+        "avatarrex_lbn1"
+      ]
+    },
+    "image_parameters": {
+      "minProperties": 1,
+      "type": "object"
+    },
+    "model_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "moderation_or_error_state": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "negative_prompt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "output_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prompt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "provider": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "record_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "request_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "response_metadata": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "retry_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "multi_identity.generation_event.v1"
+    },
+    "seed": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "semantic_pose_slot": {
+      "enum": [
+        "front",
+        "front_left_three_quarter",
+        "left",
+        "back_left_three_quarter",
+        "back",
+        "back_right_three_quarter",
+        "right",
+        "front_right_three_quarter"
+      ]
+    },
+    "source_image_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_mask_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_id",
+    "event_type",
+    "attempt_index",
+    "identity_id",
+    "garment_id",
+    "condition_id",
+    "semantic_pose_slot",
+    "source_image_sha256",
+    "source_mask_sha256",
+    "prompt_sha256",
+    "negative_prompt_sha256",
+    "provider",
+    "model_id",
+    "api_base",
+    "seed",
+    "image_parameters",
+    "request_timestamp",
+    "response_metadata",
+    "output_sha256",
+    "retry_reason",
+    "moderation_or_error_state"
+  ],
+  "title": "Append-only multi-identity garment generation event",
+  "type": "object",
+  "x_append_only_policy": {
+    "failure_records_must_be_retained": true,
+    "records_may_be_updated_in_place": false,
+    "retry_creates_new_attempt_index": true,
+    "successful_output_is_immutable": true
+  },
+  "x_execution_count_in_this_task": 0,
+  "x_paper_final": 0
+}

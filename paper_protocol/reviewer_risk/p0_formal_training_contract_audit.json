@@ -1,0 +1,96 @@
+{
+  "schema_version": "canondressgs.paper.p0_formal_training_contract_audit.v1",
+  "task_id": "AAAI27-P0-FORMAL-CANDIDATE-RUNS-001",
+  "status": "PASS",
+  "classification": "OPTIMIZER_CONTRACT_UNAMBIGUOUS",
+  "source_head": "d75c4fa5a426fe90314eba08e94509940ecafb23",
+  "authoritative_evidence": [
+    {
+      "path": "configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml",
+      "sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+      "evidence": "Adam, 300 steps, learning rate 0.02, weight decay 0, gradient clipping 5, balanced outfit order, target-view round-robin"
+    },
+    {
+      "path": "tools/paper/formal_batch_runtime.py",
+      "sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+      "evidence": "single frozen optimizer factory, constant LambdaLR, mean-reduced losses, exact data order, zero_grad/backward/clip/optimizer/scheduler ordering"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/seed_propagation_audit.json",
+      "sha256_linux_lf": "0b2e068203031b34e0004725923d452e185f319f3e9088843ecbc42ba5307f14",
+      "evidence": "all trainable candidate families share the fixed five-outfit batch, four-condition schedule, 300-step budget, and constant scheduler"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/p0_candidate_optimizer_provenance.json",
+      "evidence": "readiness construction independently confirms Adam lr 0.02, weight decay 0, and all-and-only candidate parameter membership"
+    },
+    {
+      "path": "paper_protocol/reviewer_risk/deterministic_initialization_contract.json",
+      "sha256": "02d81616fd48dba201ddd9cefb78662f528191f0607d428bc3bb62bb2ecdae55",
+      "evidence": "method-specific initialization and M3/M4 pairing contract"
+    }
+  ],
+  "shared_optimizer_contract": {
+    "class": "torch.optim.Adam",
+    "learning_rate": 0.02,
+    "weight_decay": 0.0,
+    "betas": [0.9, 0.999],
+    "epsilon": 1e-08,
+    "amsgrad": false,
+    "betas_epsilon_origin": "Pinned torch 2.4.1 Adam defaults used by the frozen formal runtime factory",
+    "scheduler": "torch.optim.lr_scheduler.LambdaLR(lambda _: 1.0)",
+    "scheduler_order": "optimizer.step then scheduler.step",
+    "batch_size": 5,
+    "batch_semantics": "one episode for each of O01,O02,O03,O04,O08",
+    "training_steps": 300,
+    "gradient_clip": {
+      "function": "torch.nn.utils.clip_grad_norm_",
+      "max_norm": 5.0,
+      "error_if_nonfinite": true
+    },
+    "loss_reduction": "mean",
+    "outfit_order": ["O01", "O02", "O03", "O04", "O08"],
+    "condition_round_robin": ["cond_000000", "cond_000318", "cond_000017", "cond_000347"],
+    "early_stop": false,
+    "best_seed_selection": false,
+    "exact_resume_required": true,
+    "optimizer_parameter_scope": "all and only requires_grad parameters owned by the candidate adapter"
+  },
+  "methods": {
+    "Ours-v2": {
+      "parameter_count": 3076,
+      "optimizer": "shared_optimizer_contract",
+      "loss": "SmoothL1 standardized coefficient only",
+      "initialization": "DETERMINISTIC_ZERO_INITIALIZATION",
+      "identity": "deterministic protocol replicate"
+    },
+    "B6": {
+      "parameter_count": 3589,
+      "optimizer": "shared_optimizer_contract",
+      "loss": "five-class cross entropy only",
+      "initialization": "RANDOM_SEEDED_INITIALIZATION",
+      "label_role": "loss target only"
+    },
+    "M3": {
+      "parameter_count": 234771,
+      "optimizer": "shared_optimizer_contract",
+      "loss": "SmoothL1 standardized coefficient only",
+      "initialization": "PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD"
+    },
+    "M4": {
+      "parameter_count": 234771,
+      "optimizer": "shared_optimizer_contract",
+      "loss": "A5 legacy endpoint supervision",
+      "initialization": "PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD"
+    },
+    "B7": {
+      "parameter_count": 0,
+      "optimizer": null,
+      "training_steps": 0,
+      "classification": "FIXED_NON_TRAINABLE"
+    }
+  },
+  "method_specific_optimizer_difference_found": false,
+  "result_dependent_tuning_allowed": false,
+  "formal_optimizer_creation_authorized_after_this_audit": true
+}

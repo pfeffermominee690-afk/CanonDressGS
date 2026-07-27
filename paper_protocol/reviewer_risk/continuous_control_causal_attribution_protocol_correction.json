@@ -1,0 +1,61 @@
+{
+  "schema_version": "canondressgs.research.continuous_control_causal_attribution_protocol_correction.v1",
+  "status": "FROZEN_BEFORE_CAUSAL_RESULTS",
+  "label": "RESEARCH DIAGNOSTIC — NOT PAPER FINAL",
+  "task_id": "AAAI27-CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-ALPHA-REPAIR-001",
+  "causal_task_id": "AAAI27-CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001",
+  "source_head": "0ebaa9503b4b9bd8b9e88e8c98ca2709584cae27",
+  "previous_failed_attempt": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/CONTINUOUS-CONTROL-CAUSAL-ATTRIBUTION-001/attempt_001",
+    "status": "FAILED_PRE_RESULT_ALPHA_GRID_ASSET_MISMATCH",
+    "preserved": true,
+    "new_render_count": 0,
+    "metric_count": 0,
+    "evaluation_count": 0,
+    "training_count": 0,
+    "backward_count": 0,
+    "optimizer_step_count": 0,
+    "checkpoint_write_count": 0,
+    "frozen_mutation_count": 0,
+    "paper_final_count": 0
+  },
+  "original_alpha_values": [0.25, 0.5, 0.75],
+  "corrected_alpha_values": [0.2, 0.5, 0.8],
+  "mismatch_reason": "The sealed FULL interpolation manifest has a 0.10 grid and contains no alpha=0.25 or alpha=0.75 entries; FULL regeneration is forbidden.",
+  "correction_before_results": true,
+  "previous_new_render_count": 0,
+  "previous_metric_count": 0,
+  "sealed_archive_unchanged": true,
+  "previous_root_cause_archive_unchanged": true,
+  "rationale": "Use the sealed, symmetric low/mid/high grid 0.20/0.50/0.80 without generating any FULL reference render or changing any other causal diagnostic contract.",
+  "full_reuse_contract": {
+    "logical_entries": 240,
+    "unique_sealed_files": 120,
+    "regenerated_files": 0,
+    "reverse_mapping": {
+      "0.20": 0.8,
+      "0.50": 0.5,
+      "0.80": 0.2
+    }
+  },
+  "protocol_path": "paper_protocol/reviewer_risk/continuous_control_causal_attribution_protocol.yaml",
+  "new_protocol_sha256_lf": "aa5cc2bc0f5deb1f9a4dacde26178fb1c322ed2fd314dfca308b00f6b98d21c4",
+  "only_scientific_field_changed": "design.alpha",
+  "unchanged_contracts": [
+    "garment_pair_order",
+    "direction_order",
+    "factor_definitions",
+    "subset_enumeration",
+    "source_endpoint_anchoring",
+    "target_views",
+    "metrics",
+    "visual_grading",
+    "factorial_contrasts",
+    "sufficiency_and_necessity_rules",
+    "root_cause_classification",
+    "stable_and_unstable_labels",
+    "output_paths",
+    "no_training_gate"
+  ],
+  "paper_final": false
+}

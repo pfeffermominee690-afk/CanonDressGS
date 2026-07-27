@@ -1,0 +1,2740 @@
+schema_version: canondressgs.paper_experiment_registry.v1
+status_schema_version: canondressgs.paper_registry_status.v2
+task_id: AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001
+next_unique_task: RUN_UNIFIED_PAPER_SMOKE_AND_EVALUATOR_ACCEPTANCE
+method_config_name: seen_outfit_explicit_basis_v1
+frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+frozen_asset_manifest_sha256: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+paper_status_values:
+- NOT_RUN
+- PREFLIGHT_PASS
+- RUNNING
+- TRAINED
+- EVALUATED
+- MANUAL_REVIEW_REQUIRED
+- PAPER_FINAL
+- FAILED
+- HISTORICAL_EVIDENCE
+historical_evidence_label: HISTORICAL_EVIDENCE
+paper_final_label: PAPER_FINAL
+defaults:
+  executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: &id001
+  - standardized_coefficient_rmse
+  - restored_coefficient_rmse
+  - nearest_teacher_accuracy
+  - correct_outfit_rank
+  - pairwise_coefficient_margin
+  - normalized_residual_rmse
+  - cosine_similarity
+  - top_10_support_overlap
+  - top_20_support_overlap
+  - garment_rgb_mae
+  - garment_alpha_mae
+  - edit_reduction
+  - target_closer_fraction
+  - protected_rgb_mae
+  - background_rgb_mae
+  - correct_vs_swapped_wins
+  - permutation_max_difference
+  - single_reference_accuracy
+  - two_reference_dropout_accuracy
+  - zero_replacement_sensitivity
+  - base_replacement_sensitivity
+  - trainable_parameter_count
+  - basis_storage_bytes
+  - peak_vram_bytes
+  - training_time_seconds
+  - inference_time_seconds
+  - render_time_seconds
+  required_figures: &id002
+  - figure_2
+  - figure_3
+  status: NOT_RUN
+  final_adjudication: null
+experiments:
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B0-FIXED
+  method: B0_Base_Avatar
+  baseline_or_ablation: baseline
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B0/fixed
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:34:51.608107+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B0-FIXED/seed_fixed/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: EVALUATED
+    timestamp: '2026-07-20T16:34:51.792757+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B0-FIXED/seed_fixed/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:19.610843+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B1-FIXED
+  method: B1_Direct_Optimization_Teacher
+  baseline_or_ablation: baseline
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B1/fixed
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:35:44.417497+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B1-FIXED/seed_fixed/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: EVALUATED
+    timestamp: '2026-07-20T16:35:44.689932+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B1-FIXED/seed_fixed/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:20.044813+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B2-FIXED
+  method: B2_Outfit_ID_Coefficient_Lookup
+  baseline_or_ablation: baseline_seen_only
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B2/fixed
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:36:30.107564+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B2-FIXED/seed_fixed/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: EVALUATED
+    timestamp: '2026-07-20T16:36:30.289244+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B2-FIXED/seed_fixed/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:20.479221+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B3-S0
+  method: B3_Global_Reference_Feature
+  baseline_or_ablation: baseline
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B3/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:37:15.329553+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:37:15.519398+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:37:15.712969+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:37:15.901706+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:20.917801+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B3-S1
+  method: B3_Global_Reference_Feature
+  baseline_or_ablation: baseline
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B3/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:38:01.478722+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:38:01.669460+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:38:01.842753+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:38:02.017210+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:21.359465+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B3-S2
+  method: B3_Global_Reference_Feature
+  baseline_or_ablation: baseline
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B3/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:38:47.268725+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:38:47.445878+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:38:47.621712+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:38:47.810215+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:21.802305+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B4-S0
+  method: B4_Clothing_Mean_Only
+  baseline_or_ablation: baseline
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B4/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:39:32.966273+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:39:33.156615+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:39:33.336818+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:39:33.522455+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:22.263005+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B4-S1
+  method: B4_Clothing_Mean_Only
+  baseline_or_ablation: baseline
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B4/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:40:19.426375+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:40:19.992958+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:40:20.234206+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:40:20.448646+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:22.702324+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B4-S2
+  method: B4_Clothing_Mean_Only
+  baseline_or_ablation: baseline
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B4/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:41:05.983394+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:41:06.206069+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:41:06.409842+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:41:06.616202+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B4-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:23.164310+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B5-S0
+  method: B5_Legacy_Complex_Fusion_RF_F
+  baseline_or_ablation: baseline
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B5/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:42:06.350556+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:42:06.564258+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:42:06.765725+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:42:06.977126+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:23.658026+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B5-S1
+  method: B5_Legacy_Complex_Fusion_RF_F
+  baseline_or_ablation: baseline
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B5/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:43:07.919285+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:43:08.153992+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:43:08.382844+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:43:08.622937+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:24.090736+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-B5-S2
+  method: B5_Legacy_Complex_Fusion_RF_F
+  baseline_or_ablation: baseline
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/B5/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:44:11.167902+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:44:11.386875+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:44:11.602500+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:44:11.826174+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-B5-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:24.561823+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-OURS-S0
+  method: Ours_Seen_Outfit_Explicit_Basis_V1
+  baseline_or_ablation: ours
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/Ours/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: FAILED
+    timestamp: '2026-07-20T15:32:26.330341+00:00'
+    evidence: {}
+  - from: FAILED
+    to: NOT_RUN
+    timestamp: '2026-07-20T15:35:44.473428+00:00'
+    evidence:
+      model_failure: false
+      failure_stage: checkpoint_rng_map_location
+      optimizer_steps: 300
+      checkpoint_sha256: a54c1b4431d2bf74b965ecb22a5e6a4ed68910cea6b587be2c0e7e632974f78b
+      attempt: attempt_001
+    recovery_transition: true
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T15:42:05.607293+00:00'
+    evidence: {}
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T15:42:05.857209+00:00'
+    evidence: {}
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T15:42:06.105172+00:00'
+    evidence: {}
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T15:42:32.442992+00:00'
+    evidence: {}
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T16:04:50.956103+00:00'
+    evidence:
+      evaluator_pass: true
+      artifacts_complete: true
+      manual_adjudication_present: true
+      visual_canary_status: PASS_WITH_MINOR_EDGE_ARTIFACTS
+      paper_final: false
+      attempt: seed_0/attempt_001
+      manual_review: final_adjudication/manual_visual_review.json
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-OURS-S1
+  method: Ours_Seen_Outfit_Explicit_Basis_V1
+  baseline_or_ablation: ours
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/Ours/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:33:15.256176+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:33:15.435869+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:33:15.615367+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:33:15.787235+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:25.000830+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-OURS-S2
+  method: Ours_Seen_Outfit_Explicit_Basis_V1
+  baseline_or_ablation: ours
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/Ours/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T16:34:06.635152+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T16:34:06.804149+00:00'
+    evidence:
+      commit: 4e796ab1189d44bc0ab5e7136ff8fc27b05c8194
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T16:34:06.967047+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T16:34:07.138574+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:25.474452+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K1-S0
+  method: A1_Basis_Rank_1
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K1/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:00:29.435376+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S0/seed_0/attempt_002
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:00:29.793437+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S0/seed_0/attempt_002
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:00:30.077944+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S0/seed_0/attempt_002/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:00:30.339292+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S0/seed_0/attempt_002/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:25.935769+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K1-S1
+  method: A1_Basis_Rank_1
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K1/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:01:20.637319+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:01:20.859229+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:01:21.091753+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:01:21.323816+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:26.415732+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K1-S2
+  method: A1_Basis_Rank_1
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K1/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:02:11.173005+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:02:11.954863+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:02:12.337535+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:02:12.722733+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K1-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:26.883718+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K2-S0
+  method: A1_Basis_Rank_2
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K2/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:03:04.544784+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:03:04.834646+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:03:05.129396+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:03:05.397099+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:27.348477+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K2-S1
+  method: A1_Basis_Rank_2
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K2/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:03:55.658180+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:03:55.899751+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:03:56.140026+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:03:56.644206+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:27.835916+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K2-S2
+  method: A1_Basis_Rank_2
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K2/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:04:45.003740+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:04:45.300537+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:04:45.582796+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:04:45.849345+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K2-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:28.317755+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K3-S0
+  method: A1_Basis_Rank_3
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K3/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:05:35.523647+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:05:35.800345+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:05:36.060743+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:05:36.327983+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:28.809962+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K3-S1
+  method: A1_Basis_Rank_3
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K3/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:06:23.098687+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:06:23.365412+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:06:23.631734+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:06:23.893040+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:29.270139+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K3-S2
+  method: A1_Basis_Rank_3
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K3/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:07:09.524606+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:07:09.790126+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:07:10.051974+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:07:10.337890+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:29.738162+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K4-S0
+  method: A1_Basis_Rank_4
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K4/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:07:56.189163+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:07:56.725876+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:07:57.026424+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:07:57.310370+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:30.229758+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K4-S1
+  method: A1_Basis_Rank_4
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K4/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:08:46.553875+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:08:46.851496+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:08:47.152209+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:08:47.444415+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:30.718124+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A1-K4-S2
+  method: A1_Basis_Rank_4
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A1/K4/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:09:38.181652+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:09:38.483229+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:09:39.152101+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:09:39.444129+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A1-K4-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:31.243787+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A2-S0
+  method: A2_No_Clothing_Mask
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A2/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:10:27.720470+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:10:28.053234+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:10:28.355110+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:10:28.653004+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:31.723498+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A2-S1
+  method: A2_No_Clothing_Mask
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A2/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:11:17.673209+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:11:17.963510+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:11:18.279650+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:11:18.841449+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:32.199931+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A2-S2
+  method: A2_No_Clothing_Mask
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A2/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:12:06.169239+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:12:06.463373+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:12:06.751796+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:12:07.051245+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A2-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:32.679503+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A3-S0
+  method: A3_Mean_Only
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A3/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:12:54.068806+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:12:54.382338+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:12:54.934701+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:12:55.283364+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:33.177272+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A3-S1
+  method: A3_Mean_Only
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A3/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:13:42.165854+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:13:42.524724+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:13:42.874924+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:13:43.220357+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:33.702796+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A3-S2
+  method: A3_Mean_Only
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A3/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:14:30.011177+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:14:30.522671+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:14:30.975044+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:14:31.305195+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:34.190892+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A4-S0
+  method: A4_No_Coefficient_Standardization
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A4/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:15:16.381729+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:15:16.684929+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:15:16.987621+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:15:17.304578+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:34.719529+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A4-S1
+  method: A4_No_Coefficient_Standardization
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A4/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:16:03.594619+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:16:03.956112+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:16:04.314639+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:16:04.664180+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:35.217790+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A4-S2
+  method: A4_No_Coefficient_Standardization
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A4/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:16:50.849533+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:16:51.214077+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:16:51.800768+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:16:52.145109+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A4-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:35.728183+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A5-S0
+  method: A5_Legacy_Endpoint_Supervision
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A5/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:17:38.581859+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:17:38.930718+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:17:39.259326+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:17:39.587610+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:36.223829+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A5-S1
+  method: A5_Legacy_Endpoint_Supervision
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A5/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:18:26.719125+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:18:27.080224+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:18:27.444617+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:18:27.831636+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:36.723537+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A5-S2
+  method: A5_Legacy_Endpoint_Supervision
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A5/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:19:15.322655+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:19:15.696351+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:19:16.066332+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:19:16.639462+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A5-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:37.265655+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A6-S0
+  method: A6_No_Pairwise_Coefficient_Geometry
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A6/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:20:03.549922+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:20:03.899523+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:20:04.248970+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:20:04.614525+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:37.809835+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A6-S1
+  method: A6_No_Pairwise_Coefficient_Geometry
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A6/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:20:52.053389+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:20:52.407669+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:20:52.757482+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:20:53.105670+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:38.347340+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A6-S2
+  method: A6_No_Pairwise_Coefficient_Geometry
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A6/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:21:40.925571+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:21:41.319938+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:21:41.958770+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:21:42.360443+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:38.846916+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF1-S0
+  method: A7_Reference_Count_1
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref1/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:22:28.329075+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:22:28.709018+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:22:29.090188+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:22:29.489051+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:39.355784+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF1-S1
+  method: A7_Reference_Count_1
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref1/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:23:16.459025+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:23:16.855048+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:23:17.279090+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:23:17.674926+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:39.898498+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF1-S2
+  method: A7_Reference_Count_1
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref1/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:24:04.955931+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:24:05.597770+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:24:05.994499+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:24:06.389528+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF1-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:40.454768+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF2-S0
+  method: A7_Reference_Count_2
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref2/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:24:54.422776+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:24:54.825000+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:24:55.277815+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:24:55.871337+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:40.972989+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF2-S1
+  method: A7_Reference_Count_2
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref2/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:25:43.426501+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:25:43.847857+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:25:44.236513+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:25:44.630868+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:41.480018+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF2-S2
+  method: A7_Reference_Count_2
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref2/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:26:31.333955+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:26:31.737254+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:26:32.152109+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:26:32.577651+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF2-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:42.030988+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF3-S0
+  method: A7_Reference_Count_3
+  baseline_or_ablation: ablation
+  seed: 0
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref3/seed_0
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:27:20.694936+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S0/seed_0/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:27:21.340473+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S0/seed_0/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:27:21.773714+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S0/seed_0/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:27:22.186873+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S0/seed_0/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:42.565530+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF3-S1
+  method: A7_Reference_Count_3
+  baseline_or_ablation: ablation
+  seed: 1
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref3/seed_1
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:28:08.762140+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S1/seed_1/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:28:09.181854+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S1/seed_1/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:28:09.827915+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S1/seed_1/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:28:10.271630+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S1/seed_1/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:43.124405+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: true
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: MANUAL_REVIEW_REQUIRED
+  final_adjudication: null
+  experiment_id: PAPER-A7-KREF3-S2
+  method: A7_Reference_Count_3
+  baseline_or_ablation: ablation
+  seed: 2
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A7/Kref3/seed_2
+  status_history:
+  - from: NOT_RUN
+    to: PREFLIGHT_PASS
+    timestamp: '2026-07-20T17:28:56.253635+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S2/seed_2/attempt_001
+      asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  - from: PREFLIGHT_PASS
+    to: RUNNING
+    timestamp: '2026-07-20T17:28:56.655533+00:00'
+    evidence:
+      commit: 144c6d58f10b2c81aa9fff50fb6c8265c02cd0d7
+      attempt: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S2/seed_2/attempt_001
+  - from: RUNNING
+    to: TRAINED
+    timestamp: '2026-07-20T17:28:57.313729+00:00'
+    evidence:
+      optimizer_steps: 300
+      checkpoint: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S2/seed_2/attempt_001/checkpoints/checkpoint_step_000300.pth
+  - from: TRAINED
+    to: EVALUATED
+    timestamp: '2026-07-20T17:28:57.703108+00:00'
+    evidence:
+      evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+      metric_count: 27
+      evaluated_output: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A7-KREF3-S2/seed_2/attempt_001/evaluated_metrics/evaluated_metrics.json
+      manual_review_pending: true
+  - from: EVALUATED
+    to: MANUAL_REVIEW_REQUIRED
+    timestamp: '2026-07-20T17:51:43.680007+00:00'
+    evidence:
+      engineering_audit: /root/autodl-tmp/canondressgs_work/outputs/AAAI27-SEEN-OUTFIT-PAPER/audits/formal_experiment_contract_audit.json
+      evaluator_pass: true
+      artifacts_complete: true
+      paper_candidate_generated: true
+      paper_final: false
+      manual_freeze_pending: true
+- executable: false
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: HISTORICAL_EVIDENCE
+  final_adjudication: null
+  experiment_id: PAPER-A8-LEGACY-DECODER
+  method: A8_Legacy_Decoder
+  baseline_or_ablation: historical_diagnostic
+  evidence_class: HISTORICAL_EVIDENCE
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/legacy_decoder
+- executable: false
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: HISTORICAL_EVIDENCE
+  final_adjudication: null
+  experiment_id: PAPER-A8-V7
+  method: A8_Residual_Decoder_V7
+  baseline_or_ablation: historical_diagnostic
+  evidence_class: HISTORICAL_EVIDENCE
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/V7
+- executable: false
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: HISTORICAL_EVIDENCE
+  final_adjudication: null
+  experiment_id: PAPER-A8-P1
+  method: A8_Gaussian_Token_P1
+  baseline_or_ablation: historical_diagnostic
+  evidence_class: HISTORICAL_EVIDENCE
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/P1
+- executable: false
+  expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/{experiment_id}/seed_{seed}/attempt_{NNN}
+  config: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+  frozen_asset_fingerprint: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  evaluator_version: 1d4cfbbb566828a0b2ea202105f2a327a35fdbab
+  required_metrics: *id001
+  required_figures: *id002
+  status: HISTORICAL_EVIDENCE
+  final_adjudication: null
+  experiment_id: PAPER-A8-EXPLICIT
+  method: A8_Explicit_Basis_Historical
+  baseline_or_ablation: historical_diagnostic
+  evidence_class: HISTORICAL_EVIDENCE
+  seed: null
+  legacy_expected_output_root: ${CANONDRESSGS_OUTPUT_ROOT}/paper/AAAI27-SEEN-OUTFIT-PAPER-PROTOCOL-001/A8/explicit_basis

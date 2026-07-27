@@ -1,0 +1,49 @@
+schema_version: canondressgs.o00_arm_support_closure.v1
+status: PREREGISTERED_CLOSURE
+seed: 20260718
+conditions:
+  cond_000000: front
+  cond_000318: back
+  cond_000017: left
+  cond_000347: right
+support:
+  count: 12000
+  arm_part_indices: [16, 17, 18, 19]
+  hand_part_indices: [20, 21, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+  skin_regions: [left_upper_arm, left_lower_arm, right_upper_arm, right_lower_arm, shoulder_transition, wrist_transition]
+  subject02_observed_pixel_count: 63445
+  tangent_scale_multiplier: 1.15
+  normal_scale_m: 0.0025
+  density_reference_opacity: 0.65
+  density_reference_count: 12000
+  old_sleeve_opacity_multiplier: 0.0001
+  sh_degree: 0
+calibration:
+  inward_offsets_m: [0.004, 0.007, 0.010]
+  opacity_scales: [0.25, 0.45, 0.65]
+  maximum_combinations: 9
+  selection_priority:
+    - covered_support_visibility
+    - hole_repair_recall
+    - background_leakage
+    - anatomical_envelope_outside
+  target_rgb_used_for_calibration: false
+acceptance:
+  hole_repair_recall_per_view_min: 0.90
+  hole_repair_recall_mean_min: 0.95
+  background_leakage_per_view_max: 0.05
+  background_leakage_mean_max: 0.03
+  covered_support_visibility_per_view_max: 0.01
+  anatomical_envelope_outside_max: 0.02
+  shoulder_visual_min: WARN
+  wrist_visual_min: WARN
+  base_bitwise_exact_required: true
+  finite_four_views_required: true
+constraints:
+  only_medium_density: true
+  support_trainable: false
+  formal_lbs_required: true
+  subject02_skin_only: true
+  target_rgb_forbidden_during_calibration: true
+  base_mutation_forbidden: true
+

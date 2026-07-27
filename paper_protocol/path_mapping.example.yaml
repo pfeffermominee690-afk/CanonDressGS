@@ -1,0 +1,14 @@
+schema_version: canondressgs.paper.path_mapping.v1
+environment:
+  CANONDRESSGS_REPO_ROOT: /path/to/clean/repository
+  CANONDRESSGS_ASSET_ROOT: /path/to/frozen/external/assets
+  CANONDRESSGS_OUTPUT_ROOT: /path/to/paper/outputs
+windows_example:
+  CANONDRESSGS_REPO_ROOT: 'X:\path\to\clean\repository'
+  CANONDRESSGS_ASSET_ROOT: 'X:\path\to\frozen\external\assets'
+  CANONDRESSGS_OUTPUT_ROOT: 'X:\path\to\paper\outputs'
+linux_example:
+  CANONDRESSGS_REPO_ROOT: /mnt/project/repository
+  CANONDRESSGS_ASSET_ROOT: /mnt/project/frozen-assets
+  CANONDRESSGS_OUTPUT_ROOT: /mnt/project/paper-outputs
+precedence: [cli_explicit_override, environment, protocol_relative]

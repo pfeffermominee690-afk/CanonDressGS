@@ -1,0 +1,254 @@
+{
+  "claim_boundary": {
+    "allowed": "identity-conditioned synthetic closed-wardrobe garment endpoint benchmark",
+    "canary_pass_supports_only": "subject00 can carry synthetic closed-wardrobe endpoints",
+    "forbidden": [
+      "captured multi-outfit subject00",
+      "real garment-transfer ground truth",
+      "real cross-identity garment data",
+      "original THuman4.0 multi-garment sequence"
+    ]
+  },
+  "classification": "SUBJECT00_THREE_GARMENT_PROTOCOL_READY_PENDING_FORMAL_BASE",
+  "condition_mapping_status": "PENDING_FORMAL_BASE",
+  "content_sha256": "fe43de14840a8141ab8684f9ed9c53c0f51e3e378556e842d2402288ff11f81b",
+  "counts": {
+    "accepted_endpoints": 0,
+    "candidate_files": 0,
+    "checkpoint_writes": 0,
+    "formal_base_checkpoint_available": 0,
+    "formal_base_mutation": 0,
+    "formal_condition_renders": 0,
+    "generated_images": 0,
+    "image_api_calls": 0,
+    "optimizer_created": 0,
+    "paper_final": 0,
+    "preview_renders": 0,
+    "raw_mutation": 0,
+    "teacher_training_runs": 0
+  },
+  "formal_base_dependency": {
+    "checkpoint_available": false,
+    "medium_may_be_promoted_to_formal": false,
+    "medium_use": "PREVIEW_ONLY",
+    "required_step": 101245,
+    "status": "PENDING_FORMAL_BASE"
+  },
+  "formal_protocol_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+  "generation_dependency": "GENERATION_BACKEND_DEPENDENCY_PENDING",
+  "immutability": {
+    "formal_base_mutation": 0,
+    "formal_split_mutation": 0,
+    "medium_output_mutation": 0,
+    "shared_slot_protocol_mutation": 0,
+    "shared_wardrobe_mutation": 0,
+    "subject00_raw_mutation": 0
+  },
+  "medium_head": "2d0913eb1b163a79e81c1804c216f91b0a737b44",
+  "next_task": "RUN_SUBJECT00_FORMAL_BASE_THEN_FREEZE_THREE_GARMENT_CONDITIONS",
+  "next_task_started": false,
+  "paper_final": 0,
+  "schema_version": "subject00.three_garment.protocol_final_summary.v1",
+  "screening_status": "FROZEN_PENDING_CANDIDATES",
+  "selected_garment_semantics": [
+    {
+      "attribute_evidence": "VISUAL_APPEARANCE_AUDIT_ONLY; FIBER_CONTENT_NOT_VERIFIED",
+      "colors": {
+        "lower": "black",
+        "upper": "light heather gray"
+      },
+      "fit": {
+        "lower": "regular straight",
+        "upper": "regular-to-relaxed"
+      },
+      "forbidden_attributes": [
+        "zip-front hoodie",
+        "short sleeves",
+        "blue trousers",
+        "double hood",
+        "retained old cuffs"
+      ],
+      "garment_id": "O01",
+      "hem": "ribbed waist-length hoodie hem; full-length trouser hems",
+      "historical_generation": {
+        "generation_mode": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+        "generation_parameters": {
+          "known": {
+            "expected_height": 1536,
+            "expected_width": 1024
+          },
+          "unknown": [
+            "backend_model_revision",
+            "sampler_or_scheduler",
+            "steps",
+            "guidance",
+            "provider_side_image_edit_parameters"
+          ]
+        },
+        "generation_source": "CODEX_IMAGE_GENERATION_SKILL",
+        "model_id": null,
+        "model_status": "NOT_EXPOSED_BY_PLATFORM",
+        "provenance_completeness": "LIMITED_GARMENT_GENERATION_PROVENANCE",
+        "seed": null,
+        "seed_status": "NOT_RECORDED"
+      },
+      "lower_garment_type": "full-length straight trousers",
+      "material_appearance": {
+        "lower": "matte woven appearance",
+        "upper": "sweatshirt knit or fleece appearance"
+      },
+      "negative_prompt": "different identity, copied donor face, copied donor body shape, changed pose, changed camera, changed hands, changed feet, cropped body, close-up, extra person, duplicate limb, missing limb, text, number, logo, watermark, collage, border, non-neutral background, inconsistent garment across views, zip-front hoodie, short sleeves, blue trousers, double hood, retained old cuffs",
+      "prospective_generation": {
+        "parameters": "MUST_BE_COMPLETE_AND_IMMUTABLE_BEFORE_FIRST_REQUEST",
+        "prompt_template": "identity-preserving full-body clothing edit using reference_prompt and the shared condition protocol",
+        "provider_model_and_revision": "MUST_BE_PINNED_BEFORE_FIRST_REQUEST",
+        "seed_policy": "derive uint32 from sha256(identity_id|garment_id|semantic_pose_slot|attempt_index)"
+      },
+      "reference_prompt": "A light heather-gray pullover hoodie with hood, drawstrings, long sleeves, ribbed cuffs and waist hem, paired with black full-length straight trousers.",
+      "screening_rule_set": "multi_identity_screening_contract.v1",
+      "semantic_description": "Light heather-gray pullover hoodie with black full-length straight trousers.",
+      "sleeve_length": "long",
+      "upper_garment_type": "pullover hooded sweatshirt"
+    },
+    {
+      "attribute_evidence": "VISUAL_APPEARANCE_AUDIT_ONLY; FIBER_CONTENT_NOT_VERIFIED",
+      "colors": {
+        "jacket_and_trousers": "dark navy",
+        "shirt": "white",
+        "tie": "dark navy"
+      },
+      "fit": {
+        "lower": "tailored straight",
+        "upper": "tailored"
+      },
+      "forbidden_attributes": [
+        "casual jacket",
+        "missing tie",
+        "mismatched trousers",
+        "open bare chest",
+        "short sleeves"
+      ],
+      "garment_id": "O03",
+      "hem": "hip-length suit jacket; full-length matching trousers",
+      "historical_generation": {
+        "generation_mode": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+        "generation_parameters": {
+          "known": {
+            "expected_height": 1536,
+            "expected_width": 1024
+          },
+          "unknown": [
+            "backend_model_revision",
+            "sampler_or_scheduler",
+            "steps",
+            "guidance",
+            "provider_side_image_edit_parameters"
+          ]
+        },
+        "generation_source": "CODEX_IMAGE_GENERATION_SKILL",
+        "model_id": null,
+        "model_status": "NOT_EXPOSED_BY_PLATFORM",
+        "provenance_completeness": "LIMITED_GARMENT_GENERATION_PROVENANCE",
+        "seed": null,
+        "seed_status": "NOT_RECORDED"
+      },
+      "lower_garment_type": "matching tailored suit trousers",
+      "material_appearance": {
+        "jacket_and_trousers": "smooth suiting appearance",
+        "shirt": "smooth woven appearance"
+      },
+      "negative_prompt": "different identity, copied donor face, copied donor body shape, changed pose, changed camera, changed hands, changed feet, cropped body, close-up, extra person, duplicate limb, missing limb, text, number, logo, watermark, collage, border, non-neutral background, inconsistent garment across views, casual jacket, missing tie, mismatched trousers, open bare chest, short sleeves",
+      "prospective_generation": {
+        "parameters": "MUST_BE_COMPLETE_AND_IMMUTABLE_BEFORE_FIRST_REQUEST",
+        "prompt_template": "identity-preserving full-body clothing edit using reference_prompt and the shared condition protocol",
+        "provider_model_and_revision": "MUST_BE_PINNED_BEFORE_FIRST_REQUEST",
+        "seed_policy": "derive uint32 from sha256(identity_id|garment_id|semantic_pose_slot|attempt_index)"
+      },
+      "reference_prompt": "A dark navy tailored single-breasted two-button business suit with matching full-length trousers, a white dress shirt, and a dark navy tie.",
+      "screening_rule_set": "multi_identity_screening_contract.v1",
+      "semantic_description": "Dark navy single-breasted business suit with matching trousers, white dress shirt, and dark navy tie.",
+      "sleeve_length": "long",
+      "upper_garment_type": "single-breasted two-button suit jacket over dress shirt and tie"
+    },
+    {
+      "attribute_evidence": "VISUAL_APPEARANCE_AUDIT_ONLY; FIBER_CONTENT_NOT_VERIFIED",
+      "colors": {
+        "inner_shirt": "light gray",
+        "jacket": "black",
+        "lower": "medium blue"
+      },
+      "fit": {
+        "lower": "regular straight",
+        "upper": "regular waist-length"
+      },
+      "forbidden_attributes": [
+        "hood",
+        "long coat",
+        "black trousers",
+        "formal blazer",
+        "distressed or torn jeans"
+      ],
+      "garment_id": "O04",
+      "hem": "waist-length jacket hem; full-length jean hems",
+      "historical_generation": {
+        "generation_mode": "CODEX_PLATFORM_MANAGED_DIRECT_IMAGE_EDIT",
+        "generation_parameters": {
+          "known": {
+            "expected_height": 1536,
+            "expected_width": 1024
+          },
+          "unknown": [
+            "backend_model_revision",
+            "sampler_or_scheduler",
+            "steps",
+            "guidance",
+            "provider_side_image_edit_parameters"
+          ]
+        },
+        "generation_source": "CODEX_IMAGE_GENERATION_SKILL",
+        "model_id": null,
+        "model_status": "NOT_EXPOSED_BY_PLATFORM",
+        "provenance_completeness": "LIMITED_GARMENT_GENERATION_PROVENANCE",
+        "seed": null,
+        "seed_status": "NOT_RECORDED"
+      },
+      "lower_garment_type": "full-length denim jeans",
+      "material_appearance": {
+        "jacket": "matte lightweight woven appearance",
+        "lower": "denim appearance"
+      },
+      "negative_prompt": "different identity, copied donor face, copied donor body shape, changed pose, changed camera, changed hands, changed feet, cropped body, close-up, extra person, duplicate limb, missing limb, text, number, logo, watermark, collage, border, non-neutral background, inconsistent garment across views, hood, long coat, black trousers, formal blazer, distressed or torn jeans",
+      "prospective_generation": {
+        "parameters": "MUST_BE_COMPLETE_AND_IMMUTABLE_BEFORE_FIRST_REQUEST",
+        "prompt_template": "identity-preserving full-body clothing edit using reference_prompt and the shared condition protocol",
+        "provider_model_and_revision": "MUST_BE_PINNED_BEFORE_FIRST_REQUEST",
+        "seed_policy": "derive uint32 from sha256(identity_id|garment_id|semantic_pose_slot|attempt_index)"
+      },
+      "reference_prompt": "A black waist-length zip-front bomber jacket with long sleeves over a light-gray crew-neck shirt, paired with medium-blue full-length straight denim jeans.",
+      "screening_rule_set": "multi_identity_screening_contract.v1",
+      "semantic_description": "Black waist-length zip-front bomber jacket over a light-gray crew-neck shirt with medium-blue denim jeans.",
+      "sleeve_length": "long jacket sleeves",
+      "upper_garment_type": "zip-front bomber jacket over crew-neck shirt"
+    }
+  ],
+  "selected_garments": [
+    "O01",
+    "O03",
+    "O04"
+  ],
+  "shared_slot_hashes": {
+    "content_sha256": "78a61b520958e2fd67a54d0f45298d5a718905e7a8464472515a24f86320569e",
+    "file_sha256": "67ad6dcae36cb344eec6cc12cd24ee480f068c458764e467ca84a28c73a18f59",
+    "git_blob": "5cee5d0b5b08b71089ef62deb64521f5c471b249"
+  },
+  "shared_wardrobe_hashes": {
+    "content_sha256": "6da35b17759e95cdb515e7a1df95a170a0d7040067a0f1fa892fce76e73d21c0",
+    "file_sha256": "44f31746a7975597b73aa1c4484bcf08d0c7850f4657cc13240ad50807790cf1",
+    "git_blob": "c826eef0fd28065bc44008bcbac740a69a9e2c84"
+  },
+  "source_head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2",
+  "status": "PASS",
+  "success_gate_status": "FROZEN_FUTURE_GATES",
+  "task_id": "AAAI27-SUBJECT00-THREE-GARMENT-CANARY-PROTOCOL-001",
+  "teacher_status": "FROZEN_NOT_AUTHORIZED_FOR_TRAINING"
+}

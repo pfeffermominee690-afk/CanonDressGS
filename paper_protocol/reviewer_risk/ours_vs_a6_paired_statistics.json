@@ -1,0 +1,695 @@
+{
+  "schema_version": "canondressgs.paper.ours_a6_paired_statistics.v1",
+  "task_id": "AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001",
+  "source_contract": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "outfits": [
+      "O01",
+      "O02",
+      "O03",
+      "O04",
+      "O08"
+    ],
+    "views": [
+      "cond_000000",
+      "cond_000017",
+      "cond_000318",
+      "cond_000347"
+    ],
+    "paired_episode_count": 60,
+    "selective_exclusion": false,
+    "seed_replicates_numerically_identical_within_each_method": true,
+    "inferential_caveat": "All three seed outputs are numerically identical. Requested 60-pair tests are reported, but p-values must not be presented as evidence for 60 independent stochastic outcomes; there are 20 unique outfit/view trajectories repeated across seeds.",
+    "raw_sources": {
+      "ours": [
+        {
+          "seed": 0,
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S0/seed_0/attempt_001/raw_metrics/raw_episode_outputs.jsonl",
+          "sha256": "7fc2cb2c140d0561a64b2a47ead69a03f24a2499d94d5864659e46d5fd539329",
+          "episode_count": 20,
+          "swap_record_count": 80,
+          "swap_correct_count": 80,
+          "target_forward_input_used": false
+        },
+        {
+          "seed": 1,
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S1/seed_1/attempt_001/raw_metrics/raw_episode_outputs.jsonl",
+          "sha256": "9a6d058b40bde1a5aaf3e4c4e2e7f671779fde72500681afae3ec81673286fe0",
+          "episode_count": 20,
+          "swap_record_count": 80,
+          "swap_correct_count": 80,
+          "target_forward_input_used": false
+        },
+        {
+          "seed": 2,
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-OURS-S2/seed_2/attempt_001/raw_metrics/raw_episode_outputs.jsonl",
+          "sha256": "492cbf25f3ebee4b93800e46656306b3f69499f8af7049c842d587c2ea71f77b",
+          "episode_count": 20,
+          "swap_record_count": 80,
+          "swap_correct_count": 80,
+          "target_forward_input_used": false
+        }
+      ],
+      "a6": [
+        {
+          "seed": 0,
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S0/seed_0/attempt_001/raw_metrics/raw_episode_outputs.jsonl",
+          "sha256": "8ff4136dff392b899e2e83f89cc0a75887c250c480c6686b9e0ac6d6503cb3bc",
+          "episode_count": 20,
+          "swap_record_count": 80,
+          "swap_correct_count": 80,
+          "target_forward_input_used": false
+        },
+        {
+          "seed": 1,
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S1/seed_1/attempt_001/raw_metrics/raw_episode_outputs.jsonl",
+          "sha256": "8b999a139c08f74e56fca295e36f92586bbaf787302700f954b616e9b60ad4e1",
+          "episode_count": 20,
+          "swap_record_count": 80,
+          "swap_correct_count": 80,
+          "target_forward_input_used": false
+        },
+        {
+          "seed": 2,
+          "path": "${CANONDRESSGS_OUTPUT_ROOT}/AAAI27-SEEN-OUTFIT-PAPER/PAPER-A6-S2/seed_2/attempt_001/raw_metrics/raw_episode_outputs.jsonl",
+          "sha256": "a30dfe7412e3f700e460a73522811bd5fc03fb9a2571d16a61a5e722cbb34f89",
+          "episode_count": 20,
+          "swap_record_count": 80,
+          "swap_correct_count": 80,
+          "target_forward_input_used": false
+        }
+      ]
+    },
+    "method_config_snapshots": [
+      {
+        "seed": 0,
+        "ours_sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+        "a6_sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+        "byte_identical": true
+      },
+      {
+        "seed": 1,
+        "ours_sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+        "a6_sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+        "byte_identical": true
+      },
+      {
+        "seed": 2,
+        "ours_sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+        "a6_sha256": "8c9d24451e508bd82175f728c16178978231e0b03e9d2c6005f459c2fc0879b0",
+        "byte_identical": true
+      }
+    ],
+    "execution_difference": "formal_batch_runtime._training_loss uses pairwise_geometry weight 0.10 for Ours and 0.0 for A6; model factory, F2 features, rank-4 basis, seeds/data schedule, evaluator, and shared YAML are otherwise the same.",
+    "swap_margin_definition": "nearest non-target teacher L2 distance minus target teacher L2 distance in standardized coefficient space, reconstructed from raw episode vectors"
+  },
+  "statistics_protocol": {
+    "delta": "Ours - A6",
+    "bootstrap": {
+      "paired_resamples": 100000,
+      "seed": 20260721,
+      "interval": "percentile_95"
+    },
+    "wilcoxon": {
+      "alternative": "two-sided",
+      "zero_method": "pratt"
+    },
+    "tie_tolerance": 1e-12
+  },
+  "metrics": {
+    "coefficient_rmse": {
+      "direction": "lower",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.0407073171424404,
+      "a6_mean": 0.022121933620713467,
+      "mean_delta_ours_minus_a6": 0.018585383521726933,
+      "median_delta_ours_minus_a6": 0.012451342206702588,
+      "paired_bootstrap_95_ci": [
+        0.013537569726914155,
+        0.023745755703028892
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 183.0,
+        "p_two_sided": 7.039727469951481e-08,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 6,
+        "tie": 0,
+        "loss": 54
+      },
+      "per_seed_mean_delta": {
+        "0": 0.018585383521726936,
+        "1": 0.018585383521726936,
+        "2": 0.018585383521726936
+      },
+      "per_outfit_mean_delta": {
+        "O01": 0.005617159308757378,
+        "O02": 0.009034043529754737,
+        "O03": 0.03929538003623211,
+        "O04": 0.034381191632613224,
+        "O08": 0.004599143101277246
+      },
+      "per_view_mean_delta": {
+        "cond_000000": 0.025467857715814037,
+        "cond_000017": 0.017252998665339334,
+        "cond_000318": 0.02112553710941349,
+        "cond_000347": 0.010495140596340904
+      }
+    },
+    "residual_rmse": {
+      "direction": "lower",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.012294684246444374,
+      "a6_mean": 0.006387779236926387,
+      "mean_delta_ours_minus_a6": 0.005906905009517991,
+      "median_delta_ours_minus_a6": 0.0037650884866404044,
+      "paired_bootstrap_95_ci": [
+        0.004298379544961789,
+        0.007561579477347147
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 183.0,
+        "p_two_sided": 7.039727469951481e-08,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 6,
+        "tie": 0,
+        "loss": 54
+      },
+      "per_seed_mean_delta": {
+        "0": 0.00590690500951799,
+        "1": 0.00590690500951799,
+        "2": 0.00590690500951799
+      },
+      "per_outfit_mean_delta": {
+        "O01": 0.0014833748900855432,
+        "O02": 0.0031434898070680597,
+        "O03": 0.01300143242891257,
+        "O04": 0.010862455877941102,
+        "O08": 0.0010437720435826732
+      },
+      "per_view_mean_delta": {
+        "cond_000000": 0.008405473075496656,
+        "cond_000017": 0.005821655049415617,
+        "cond_000318": 0.005979983574555567,
+        "cond_000347": 0.0034205083386041214
+      }
+    },
+    "garment_rgb_mae": {
+      "direction": "lower",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.012570877780672163,
+      "a6_mean": 0.006205560895614326,
+      "mean_delta_ours_minus_a6": 0.006365316885057837,
+      "median_delta_ours_minus_a6": 0.004166069207713008,
+      "paired_bootstrap_95_ci": [
+        0.004703318907413632,
+        0.008104606566388005
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 120.0,
+        "p_two_sided": 4.797129678075907e-09,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 6,
+        "tie": 0,
+        "loss": 54
+      },
+      "per_seed_mean_delta": {
+        "0": 0.006365316885057837,
+        "1": 0.006365316885057837,
+        "2": 0.006365316885057837
+      },
+      "per_outfit_mean_delta": {
+        "O01": 0.0014832572196610272,
+        "O02": 0.0029316176660358906,
+        "O03": 0.01354333502240479,
+        "O04": 0.01203734497539699,
+        "O08": 0.0018310295417904854
+      },
+      "per_view_mean_delta": {
+        "cond_000000": 0.008761131158098578,
+        "cond_000017": 0.006816365895792842,
+        "cond_000318": 0.005586632853373885,
+        "cond_000347": 0.004297137632966042
+      }
+    },
+    "edit_reduction": {
+      "direction": "higher",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.8830091512316894,
+      "a6_mean": 0.8971080497354244,
+      "mean_delta_ours_minus_a6": -0.01409889850373498,
+      "median_delta_ours_minus_a6": -0.008442638576754646,
+      "paired_bootstrap_95_ci": [
+        -0.01833474662379743,
+        -0.010100938973721203
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 174.0,
+        "p_two_sided": 4.858121503332849e-08,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 6,
+        "tie": 0,
+        "loss": 54
+      },
+      "per_seed_mean_delta": {
+        "0": -0.01409889850373498,
+        "1": -0.01409889850373498,
+        "2": -0.01409889850373498
+      },
+      "per_outfit_mean_delta": {
+        "O01": -0.005060024450507378,
+        "O02": -0.00520157384713596,
+        "O03": -0.032260389521016286,
+        "O04": -0.02480753171274505,
+        "O08": -0.003164972987270226
+      },
+      "per_view_mean_delta": {
+        "cond_000000": -0.016235674154200307,
+        "cond_000017": -0.01740659106690836,
+        "cond_000318": -0.011749937068446625,
+        "cond_000347": -0.011003391725384625
+      }
+    },
+    "target_closer": {
+      "direction": "higher",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.8613866478204727,
+      "a6_mean": 0.8647581100463867,
+      "mean_delta_ours_minus_a6": -0.0033714622259140015,
+      "median_delta_ours_minus_a6": -0.0032411813735961914,
+      "paired_bootstrap_95_ci": [
+        -0.0041848737498124434,
+        -0.0025846320390701294
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 75.0,
+        "p_two_sided": 6.193624528898763e-10,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 6,
+        "tie": 0,
+        "loss": 54
+      },
+      "per_seed_mean_delta": {
+        "0": -0.0033714622259140015,
+        "1": -0.0033714622259140015,
+        "2": -0.0033714622259140015
+      },
+      "per_outfit_mean_delta": {
+        "O01": -0.0018132179975509644,
+        "O02": -0.001813635230064392,
+        "O03": -0.006022319197654724,
+        "O04": -0.004868954420089722,
+        "O08": -0.002339184284210205
+      },
+      "per_view_mean_delta": {
+        "cond_000000": -0.005666399002075195,
+        "cond_000017": -0.002866220474243164,
+        "cond_000318": -0.0026788949966430665,
+        "cond_000347": -0.00227433443069458
+      }
+    },
+    "protected_rgb_mae": {
+      "direction": "lower",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.010641994583420456,
+      "a6_mean": 0.010526646580547094,
+      "mean_delta_ours_minus_a6": 0.00011534800287336112,
+      "median_delta_ours_minus_a6": 6.23434316366911e-05,
+      "paired_bootstrap_95_ci": [
+        7.450102576209853e-05,
+        0.0001580923269890869
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 318.0,
+        "p_two_sided": 1.1022924303455167e-05,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 15,
+        "tie": 0,
+        "loss": 45
+      },
+      "per_seed_mean_delta": {
+        "0": 0.00011534800287336112,
+        "1": 0.00011534800287336112,
+        "2": 0.00011534800287336112
+      },
+      "per_outfit_mean_delta": {
+        "O01": 8.766050450503826e-05,
+        "O02": 1.9970117136836052e-05,
+        "O03": 0.0002973258960992098,
+        "O04": 0.00021448044572025537,
+        "O08": -4.269694909453392e-05
+      },
+      "per_view_mean_delta": {
+        "cond_000000": 0.00010827993974089622,
+        "cond_000017": 9.777918457984925e-05,
+        "cond_000318": 0.00013314131647348403,
+        "cond_000347": 0.00012219157069921495
+      }
+    },
+    "background_rgb_mae": {
+      "direction": "lower",
+      "n_paired_episodes": 60,
+      "ours_mean": 0.013523726596031339,
+      "a6_mean": 0.013614350487478078,
+      "mean_delta_ours_minus_a6": -9.062389144673944e-05,
+      "median_delta_ours_minus_a6": -7.33453780412674e-05,
+      "paired_bootstrap_95_ci": [
+        -0.0001303191401530057,
+        -5.635322546974446e-05
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 273.0,
+        "p_two_sided": 2.2737910622777244e-06,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 45,
+        "tie": 0,
+        "loss": 15
+      },
+      "per_seed_mean_delta": {
+        "0": -9.062389144673944e-05,
+        "1": -9.062389144673944e-05,
+        "2": -9.062389144673944e-05
+      },
+      "per_outfit_mean_delta": {
+        "O01": -4.514871397987008e-05,
+        "O02": 3.291759639978409e-06,
+        "O03": -0.0002783298259600997,
+        "O04": -9.711750317364931e-05,
+        "O08": -3.5815173760056496e-05
+      },
+      "per_view_mean_delta": {
+        "cond_000000": -0.0001774214208126068,
+        "cond_000017": -6.639217026531697e-05,
+        "cond_000318": -7.15469941496849e-05,
+        "cond_000347": -4.713498055934906e-05
+      }
+    },
+    "swap_margin": {
+      "direction": "higher",
+      "n_paired_episodes": 60,
+      "ours_mean": 3.02924845261787,
+      "a6_mean": 3.09658826870251,
+      "mean_delta_ours_minus_a6": -0.06733981608464097,
+      "median_delta_ours_minus_a6": -0.037608234448633926,
+      "paired_bootstrap_95_ci": [
+        -0.08481567644980649,
+        -0.05020330932266672
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": 105.0,
+        "p_two_sided": 2.453619838621659e-09,
+        "all_zero_not_applicable": false
+      },
+      "ours_win_tie_loss": {
+        "win": 3,
+        "tie": 0,
+        "loss": 57
+      },
+      "per_seed_mean_delta": {
+        "0": -0.06733981608464097,
+        "1": -0.06733981608464097,
+        "2": -0.06733981608464097
+      },
+      "per_outfit_mean_delta": {
+        "O01": 0.001431566422785857,
+        "O02": -0.036419379764565774,
+        "O03": -0.1615777218873724,
+        "O04": -0.1096816433772404,
+        "O08": -0.03045190181681212
+      },
+      "per_view_mean_delta": {
+        "cond_000000": -0.09275223316815281,
+        "cond_000017": -0.06746865143990854,
+        "cond_000318": -0.05794940119050525,
+        "cond_000347": -0.051188978539997265
+      }
+    },
+    "single_reference_accuracy": {
+      "direction": "higher",
+      "n_paired_episodes": 60,
+      "ours_mean": 1.0,
+      "a6_mean": 1.0,
+      "mean_delta_ours_minus_a6": 0.0,
+      "median_delta_ours_minus_a6": 0.0,
+      "paired_bootstrap_95_ci": [
+        0.0,
+        0.0
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": null,
+        "p_two_sided": null,
+        "all_zero_not_applicable": true
+      },
+      "ours_win_tie_loss": {
+        "win": 0,
+        "tie": 60,
+        "loss": 0
+      },
+      "per_seed_mean_delta": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0
+      },
+      "per_outfit_mean_delta": {
+        "O01": 0.0,
+        "O02": 0.0,
+        "O03": 0.0,
+        "O04": 0.0,
+        "O08": 0.0
+      },
+      "per_view_mean_delta": {
+        "cond_000000": 0.0,
+        "cond_000017": 0.0,
+        "cond_000318": 0.0,
+        "cond_000347": 0.0
+      }
+    },
+    "dropout_accuracy": {
+      "direction": "higher",
+      "n_paired_episodes": 60,
+      "ours_mean": 1.0,
+      "a6_mean": 1.0,
+      "mean_delta_ours_minus_a6": 0.0,
+      "median_delta_ours_minus_a6": 0.0,
+      "paired_bootstrap_95_ci": [
+        0.0,
+        0.0
+      ],
+      "wilcoxon_signed_rank": {
+        "statistic": null,
+        "p_two_sided": null,
+        "all_zero_not_applicable": true
+      },
+      "ours_win_tie_loss": {
+        "win": 0,
+        "tie": 60,
+        "loss": 0
+      },
+      "per_seed_mean_delta": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0
+      },
+      "per_outfit_mean_delta": {
+        "O01": 0.0,
+        "O02": 0.0,
+        "O03": 0.0,
+        "O04": 0.0,
+        "O08": 0.0
+      },
+      "per_view_mean_delta": {
+        "cond_000000": 0.0,
+        "cond_000017": 0.0,
+        "cond_000318": 0.0,
+        "cond_000347": 0.0
+      }
+    }
+  },
+  "visual_pixel_audit": [
+    {
+      "seed": 0,
+      "main": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 173,
+        "mean_abs_u8_difference": 0.10470468458025206,
+        "changed_channel_values": 724220,
+        "total_channel_values": 25755648
+      },
+      "swap": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 112,
+        "mean_abs_u8_difference": 0.2830486245368133,
+        "changed_channel_values": 1521776,
+        "total_channel_values": 19067904
+      }
+    },
+    {
+      "seed": 1,
+      "main": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 173,
+        "mean_abs_u8_difference": 0.10470468458025206,
+        "changed_channel_values": 724220,
+        "total_channel_values": 25755648
+      },
+      "swap": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 112,
+        "mean_abs_u8_difference": 0.2830486245368133,
+        "changed_channel_values": 1521776,
+        "total_channel_values": 19067904
+      }
+    },
+    {
+      "seed": 2,
+      "main": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 173,
+        "mean_abs_u8_difference": 0.10470468458025206,
+        "changed_channel_values": 724220,
+        "total_channel_values": 25755648
+      },
+      "swap": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 112,
+        "mean_abs_u8_difference": 0.2830486245368133,
+        "changed_channel_values": 1521776,
+        "total_channel_values": 19067904
+      }
+    }
+  ],
+  "visual_adjudication": "NEAR_INDISTINGUISHABLE_AT_CONTACT_SHEET_SCALE",
+  "decision": "PAIRWISE_GEOMETRY_REJECTED",
+  "decision_basis": "A6 is significantly better on coefficient/residual RMSE, garment MAE, edit reduction, target-closer, protected MAE, and coefficient swap margin; Ours only improves background MAE by about 9.1e-5. Single/dropout accuracy tie at 1.0 and contact sheets are near-indistinguishable.",
+  "b1_b2_audit": {
+    "b1_contract": "Optimization Upper Bound: frozen shared-canonical teacher residual is rendered directly.",
+    "b2_contract": "Seen-only Outfit-ID Lookup: evaluator selects the seen outfit's frozen teacher coefficient, then renders through the rank-4 basis; this is not reference inference and is invalid for O07.",
+    "coefficient_vectors_exactly_equal": true,
+    "raw_record_identity": {
+      "swap": true,
+      "permutation": true,
+      "single_reference": true,
+      "two_reference_dropout": true,
+      "replacement": true
+    },
+    "numeric_metric_comparison": {
+      "precomputed_residual_metrics": {
+        "cosine_similarity": {
+          "max_abs_delta": 7.947285973752827e-08,
+          "mean_abs_delta": 3.9736429879866367e-08,
+          "exact_equal_count": 0,
+          "count": 20
+        },
+        "normalized_residual_rmse": {
+          "max_abs_delta": 0.0,
+          "mean_abs_delta": 0.0,
+          "exact_equal_count": 20,
+          "count": 20
+        },
+        "top_10_support_overlap": {
+          "max_abs_delta": 0.0,
+          "mean_abs_delta": 0.0,
+          "exact_equal_count": 20,
+          "count": 20
+        },
+        "top_20_support_overlap": {
+          "max_abs_delta": 0.0,
+          "mean_abs_delta": 0.0,
+          "exact_equal_count": 20,
+          "count": 20
+        }
+      },
+      "render_metrics": {
+        "background_rgb_mae": {
+          "max_abs_delta": 2.2351741790771484e-08,
+          "mean_abs_delta": 6.752088665962219e-09,
+          "exact_equal_count": 1,
+          "count": 20
+        },
+        "edit_reduction": {
+          "max_abs_delta": 9.242906047535193e-06,
+          "mean_abs_delta": 6.498259729537104e-07,
+          "exact_equal_count": 0,
+          "count": 20
+        },
+        "garment_alpha_mae": {
+          "max_abs_delta": 0.0,
+          "mean_abs_delta": 0.0,
+          "exact_equal_count": 20,
+          "count": 20
+        },
+        "garment_rgb_mae": {
+          "max_abs_delta": 0.0,
+          "mean_abs_delta": 0.0,
+          "exact_equal_count": 20,
+          "count": 20
+        },
+        "protected_rgb_mae": {
+          "max_abs_delta": 4.563480615615845e-08,
+          "mean_abs_delta": 9.685754776000977e-09,
+          "exact_equal_count": 0,
+          "count": 20
+        },
+        "target_closer_fraction": {
+          "max_abs_delta": 3.516674041748047e-06,
+          "mean_abs_delta": 4.3511390686035155e-07,
+          "exact_equal_count": 17,
+          "count": 20
+        }
+      }
+    },
+    "decoded_visual_comparison": {
+      "main_contact_sheet": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 3,
+        "mean_abs_u8_difference": 2.8809214972964378e-05,
+        "changed_channel_values": 700,
+        "total_channel_values": 25755648
+      },
+      "swap_contact_sheet": {
+        "decoded_bitwise_equal": false,
+        "max_abs_u8_difference": 1,
+        "mean_abs_u8_difference": 4.9087723537941034e-05,
+        "changed_channel_values": 936,
+        "total_channel_values": 19067904
+      },
+      "episode_files": {
+        "_prediction.png": {
+          "file_count": 20,
+          "all_decoded_bitwise_equal": false,
+          "max_abs_u8_difference": 6,
+          "changed_channel_values": 4024,
+          "total_channel_values": 94371840
+        },
+        "_alpha.png": {
+          "file_count": 20,
+          "all_decoded_bitwise_equal": false,
+          "max_abs_u8_difference": 1,
+          "changed_channel_values": 608,
+          "total_channel_values": 31457280
+        }
+      }
+    },
+    "aggregate_table_values_equal_at_reported_precision": true,
+    "bitwise_identical": false,
+    "numerically_completely_identical": false,
+    "conclusion": "NOT_BITWISE_IDENTICAL_NUMERICALLY_NEAR_IDENTICAL"
+  }
+}

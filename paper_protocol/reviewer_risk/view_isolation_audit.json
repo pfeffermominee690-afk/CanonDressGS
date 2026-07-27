@@ -1,0 +1,63 @@
+{
+  "schema_version": "canondressgs.paper.view_isolation_audit.v1",
+  "task_id": "AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001",
+  "classification": "VIEW-TRANSDUCTIVE",
+  "classification_is_explicit_and_unique": true,
+  "reasoning": {
+    "prediction_forward_reads_target_rgb_or_mask": false,
+    "target_reference_overlap_per_episode": 0,
+    "predictor_training_cycles_all_four_views": true,
+    "same_outfit_target_image_can_appear_as_reference_in_another_episode": true,
+    "teacher_bank_uses_all_four_views": true,
+    "rank4_basis_is_constructed_from_full_view_teachers": true,
+    "direct_prediction_forward_leakage": false,
+    "conclusion": "The per-episode forward is reference-only, but teachers, basis, and predictor training are learned transductively from the four seen views. This is not strict leave-one-view-out and is not direct target-forward leakage."
+  },
+  "evidence": [
+    "configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml fixes four target views, round-robin target scheduling, three references, and target/reference overlap zero",
+    "configs/research/subject02_multi_outfit_explicit_basis_v1.yaml trains 1,200-step per-outfit teachers before constructing the shared basis",
+    "paper_protocol/frozen_asset_manifest.json freezes the five seen teacher checkpoints, selected rank-4 basis, predictor, and 20-episode manifest",
+    "all six Ours/A6 raw metadata records set target_forward_input_used=false"
+  ],
+  "paper_claim_boundary": {
+    "forbidden": [
+      "novel-view generalization",
+      "strict end-to-end leave-one-view-out",
+      "view-unseen teacher or basis"
+    ],
+    "allowed": [
+      "reference-subset prediction under a transductively learned seen-garment basis",
+      "reference-only prediction forward on fixed seen outfits and views"
+    ]
+  },
+  "strict_view_one_fold_canary": {
+    "status": "BLOCKED_PENDING_AUTHORIZATION",
+    "auto_execute": false,
+    "proposed_held_target_view": "cond_000318_back",
+    "training_views": [
+      "cond_000000_front",
+      "cond_000017_left",
+      "cond_000347_right"
+    ],
+    "teacher_count": 5,
+    "teacher_optimizer_steps_each": 1200,
+    "predictor_optimizer_steps": 300,
+    "total_optimizer_steps": 6300,
+    "basis_construction_optimizer_steps": 0,
+    "estimated_gpu_time": "0.5 RTX-4090 GPU-hours (five historical-style teachers are about 170-179 seconds each; includes conservative basis/predictor/render overhead)",
+    "estimated_evaluation_time": "5-10 minutes",
+    "estimated_storage": "1.5 GiB",
+    "evaluation": "Build fold-specific teachers and basis using only the other three views, train a fold-specific coefficient predictor, and evaluate only cond_000318 for all five seen outfits.",
+    "risks": [
+      "three-view teacher quality may degrade independently of reference inference",
+      "fold-specific support/basis may change the residual problem",
+      "one fold cannot justify a four-fold strict-view claim",
+      "existing transductive paper-candidate numbers cannot be mixed with canary numbers"
+    ]
+  },
+  "execution_guards": {
+    "optimizer_created_in_this_task": false,
+    "cuda_initialized_in_this_task": false,
+    "canary_run_in_this_task": false
+  }
+}

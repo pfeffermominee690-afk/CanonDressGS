@@ -1,0 +1,213 @@
+{
+  "audit_basis": "EXISTING_LOCAL_AND_GIT_EVIDENCE_ONLY",
+  "content_sha256": "48d2eb20faff7b8f448a33c76f64c7ca6b08d3ac63132b76fc8805c837c4a972",
+  "distinctions": {
+    "CONNECTIVITY_ONLY": [
+      "E-SUBLYX-CONNECTIVITY",
+      "E-78-MODELS",
+      "E-78-PROBE"
+    ],
+    "FORMAL_DATASET_GENERATION_SUCCESS": [
+      "E-SUBLYX-UNION",
+      "E-CODEX-SUPPLEMENT"
+    ],
+    "IMAGE_EDIT_SUCCESS": [
+      "E-CODEX-DIRECT"
+    ],
+    "SUBJECT02_FORMAL_TARGET_SUCCESS": []
+  },
+  "evidence_count": 13,
+  "network_or_connectivity_probe_performed": false,
+  "paper_final": false,
+  "records": [
+    {
+      "backend_id": "BACKEND-B",
+      "bytes": 41220,
+      "claims_supported": [
+        "base URL https://api.sublyx.org/",
+        "model alias gpt-image-2",
+        "/v1/images/edits",
+        "multipart image conditioning",
+        "timeout 300",
+        "two retries",
+        "optional raw JSON"
+      ],
+      "evidence_class": "IMPLEMENTATION",
+      "evidence_id": "E-SUBLYX-SCRIPT",
+      "path": "E:/data_pre/scripts/run_gpt_image2_pose_outfit_sheets.py",
+      "secret_material_read": false,
+      "sha256": "2a431927e591e60a31ff796d8a5a774b415b58b0f31c0b8b3096c4c26ea6ae04"
+    },
+    {
+      "backend_id": "BACKEND-B",
+      "bytes": 399993,
+      "claims_supported": [
+        "915 rows",
+        "494 success",
+        "178 failed",
+        "243 skipped existing"
+      ],
+      "evidence_class": "HISTORICAL_EXECUTION_MANIFEST",
+      "evidence_id": "E-SUBLYX-JAY",
+      "path": "E:/data_pre/outputs/gpt_image2_pose_outfit_sheets/Jay/generation_manifest.csv",
+      "secret_material_read": false,
+      "sha256": "31d6c4f50331e2bcc90b0d8fa308e2ffbc95c3d7d2b67bbc432edc988c45639d"
+    },
+    {
+      "backend_id": "BACKEND-B",
+      "bytes": 438472,
+      "claims_supported": [
+        "246 historical Sublyx accepted records",
+        "all pose/camera traceable",
+        "not Subject02 target generation"
+      ],
+      "evidence_class": "FORMAL_DATASET_DONOR_MANIFEST",
+      "evidence_id": "E-SUBLYX-UNION",
+      "path": "E:/data_pre/audit_jay_coverage_supplement_v1/jay_production_union_manifest_v2.json",
+      "secret_material_read": false,
+      "sha256": "16ca8a9bff6a0f0f9f2408dea7b579a7f93e6e5ae3f1a9c5046031b7c4af2ff8"
+    },
+    {
+      "backend_id": "BACKEND-B",
+      "bytes": 1303,
+      "claims_supported": [
+        "latest Sublyx connectivity was not executed because credential was absent",
+        "no current availability proof"
+      ],
+      "evidence_class": "CONNECTIVITY_ONLY",
+      "evidence_id": "E-SUBLYX-CONNECTIVITY",
+      "path": "E:/data_pre/audit_jay_coverage_supplement_v1/JAY_TARGETED_COVERAGE_COMPLETION_V1_STATUS.json",
+      "secret_material_read": false,
+      "sha256": "0c6511ff15dccd5fcb639f5590ab99a87c43052a7c58d4600a6137a919cdac9c"
+    },
+    {
+      "backend_id": "BACKEND-A",
+      "bytes": 47381,
+      "claims_supported": [
+        "12 of 12 direct edits succeeded",
+        "native 1024x1536",
+        "three-image conditioning",
+        "model unexposed"
+      ],
+      "evidence_class": "IMAGE_EDIT_SUCCESS",
+      "evidence_id": "E-CODEX-DIRECT",
+      "path": "E:/data_pre/audit_subject02_direct_edit_v4/direct_edit_raw_manifest_v4.json",
+      "secret_material_read": false,
+      "sha256": "30602bfbc80d52ed15ab90a3cd1d8d602f8db665028a5ad12d6937416b7f1cee"
+    },
+    {
+      "backend_id": "BACKEND-A",
+      "bytes": 2773,
+      "claims_supported": [
+        "12 calls and 12 generated",
+        "12 of 12 final visual composites failed",
+        "dataset expansion blocked"
+      ],
+      "evidence_class": "FORMAL_GATE_FAILURE",
+      "evidence_id": "E-CODEX-V4",
+      "path": "E:/data_pre/audit_subject02_direct_edit_v4/V4_FINAL_STATUS.json",
+      "secret_material_read": false,
+      "sha256": "e3c4b347c182f21baa8d606ee01b939fb7cf3aefd833d58c8463ee0ee32a03d9"
+    },
+    {
+      "backend_id": "BACKEND-A",
+      "bytes": 2753,
+      "claims_supported": [
+        "11 WARN and 1 FAIL",
+        "one protected footwear change",
+        "formal fixture failed"
+      ],
+      "evidence_class": "IDENTITY_REVIEW_FAILURE",
+      "evidence_id": "E-CODEX-V5",
+      "path": "E:/data_pre/audit_subject02_dual_target_v5/V5_FINAL_STATUS.json",
+      "secret_material_read": false,
+      "sha256": "d43448c81078bff9f295ab793095daeb884bf1ed4b505c3d3e2494cd4bf512f3"
+    },
+    {
+      "backend_id": "BACKEND-A",
+      "bytes": 21182,
+      "claims_supported": [
+        "requested model builtin_image_gen",
+        "exact model unavailable",
+        "session asset import",
+        "PNG normalization"
+      ],
+      "evidence_class": "INTERACTIVE_IMPORT_WORKFLOW",
+      "evidence_id": "E-CODEX-MANAGER",
+      "path": "E:/data_pre/scripts/manage_codex_imagegen_supplement_v1.py",
+      "secret_material_read": false,
+      "sha256": "6b2a0012ade1cac79d59c13a5689c76022370d0c27140cd08609dd5c3b86f328"
+    },
+    {
+      "backend_id": "BACKEND-A",
+      "bytes": 438472,
+      "claims_supported": [
+        "15 accepted Codex supplement records",
+        "all pose/camera traceable"
+      ],
+      "evidence_class": "FORMAL_DATASET_DONOR_MANIFEST",
+      "evidence_id": "E-CODEX-SUPPLEMENT",
+      "path": "E:/data_pre/audit_jay_coverage_supplement_v1/jay_production_union_manifest_v2.json",
+      "secret_material_read": false,
+      "sha256": "16ca8a9bff6a0f0f9f2408dea7b579a7f93e6e5ae3f1a9c5046031b7c4af2ff8"
+    },
+    {
+      "backend_id": "BACKEND-C",
+      "bytes": 22152,
+      "claims_supported": [
+        "base URL https://www.78code.cc/v1",
+        "generations and edits probes",
+        "sanitized errors"
+      ],
+      "evidence_class": "IMPLEMENTATION_AND_DIAGNOSTIC",
+      "evidence_id": "E-78-SCRIPT",
+      "path": "E:/data_pre/scripts/run_78code_403_user_agent_diagnostic.py",
+      "secret_material_read": false,
+      "sha256": "37173cf9405cad7550905d35d7a2fe7443e3efb70c2ffb6ac6096d23a5902afa"
+    },
+    {
+      "backend_id": "BACKEND-C",
+      "bytes": 1831,
+      "claims_supported": [
+        "gpt-image-2 model ID confirmed",
+        "revision not exposed"
+      ],
+      "evidence_class": "MODEL_DISCOVERY",
+      "evidence_id": "E-78-MODELS",
+      "path": "E:/data_pre/audit_jay_coverage_supplement_v1/image_model_id_audit_v1/provider_image_model_ids.json",
+      "secret_material_read": false,
+      "sha256": "3cffbc4b8c65865e3b443c7c4d96e0dcda37608075539843fcacbcd0d42b03cb"
+    },
+    {
+      "backend_id": "BACKEND-C",
+      "bytes": 1011,
+      "claims_supported": [
+        "edit probe HTTP 500",
+        "convert_request_failed",
+        "no image generated"
+      ],
+      "evidence_class": "CONNECTIVITY_ONLY",
+      "evidence_id": "E-78-PROBE",
+      "path": "E:/data_pre/audit_jay_coverage_supplement_v1/image_model_id_audit_v1/model_route_probe_edits.json",
+      "secret_material_read": false,
+      "sha256": "e9f696b07402869e835ed034d375d7927a013db7c7ae558f55ddbaf306019d8f"
+    },
+    {
+      "backend_id": "ALL",
+      "bytes": null,
+      "claims_supported": [
+        "three historical surfaces",
+        "credential policy",
+        "provider/model selection remained required"
+      ],
+      "evidence_class": "FROZEN_GIT_CONTRACT",
+      "evidence_id": "E-WORKFLOW",
+      "path": "git:e8a09525f745f373e38418c43040766d69a50d10:paper_protocol/datasets/multi_identity_generation_backend_contract.json",
+      "secret_material_read": false,
+      "sha256": null
+    }
+  ],
+  "schema_version": "canondressgs.subject00.backend_evidence_registry.v1",
+  "secret_or_credential_value_read": false,
+  "task_id": "AAAI27-SUBJECT00-GENERATION-BACKEND-ADJUDICATION-001"
+}

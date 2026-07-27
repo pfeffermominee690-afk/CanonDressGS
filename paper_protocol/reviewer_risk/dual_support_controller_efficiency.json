@@ -1,0 +1,106 @@
+{
+  "baseline_comparability_note": "Historical FULL_LINEAR/HARD/Oracle metrics use an archived alpha-grid information boundary; raw values are retained but are not a like-for-like controller protocol-fit gate.",
+  "baseline_raw_archive": {
+    "DUAL_SUPPORT_GEOMETRY_BLEND": {
+      "active_gaussian_count": 399961.9,
+      "boundary_fscore": 0.3791033717520791,
+      "displacement_p95": 0.07727816047530602,
+      "displacement_rms": 0.03412052093695844,
+      "garment_lpips": 0.05698481313108156,
+      "garment_rgb_mae": 0.05897551488596946,
+      "identity_metric": 0.010124612009773652,
+      "opacity_mass": 121420.32426219666,
+      "outside_garment_opacity": 0.05047018127515912,
+      "peak_vram_bytes": 6052786478.933332,
+      "protected_lpips": 0.0011695590231890188,
+      "render_time_seconds": 0.010735545524706442,
+      "silhouette_iou": 0.7252897968345946,
+      "target_closer_fraction": 0.4781063481234014
+    },
+    "FULL_LINEAR_BASELINE": {
+      "active_gaussian_count": 199999.25,
+      "boundary_fscore": 0.30026260538235217,
+      "displacement_p95": 0.045601008602067075,
+      "displacement_rms": 0.024126851722788258,
+      "garment_lpips": 0.0853028622145454,
+      "garment_rgb_mae": 0.07510976872096459,
+      "identity_metric": 0.00935900837551647,
+      "opacity_mass": 121468.75060801853,
+      "outside_garment_opacity": 0.04643879191329082,
+      "peak_vram_bytes": 0.0,
+      "protected_lpips": 0.001435920506992261,
+      "render_time_seconds": 0.0,
+      "silhouette_iou": 0.7100522906807027,
+      "target_closer_fraction": 0.47705788519233466
+    },
+    "HARD_GEOMETRY_SOFT_VA": {
+      "active_gaussian_count": 199999.25,
+      "boundary_fscore": 0.36887821395900855,
+      "displacement_p95": 0.04560100833573204,
+      "displacement_rms": 0.024126851732140887,
+      "garment_lpips": 0.03181238837229709,
+      "garment_rgb_mae": 0.06389339032272498,
+      "identity_metric": 0.008455831913064078,
+      "opacity_mass": 121468.75063023584,
+      "outside_garment_opacity": 0.04798086347679297,
+      "peak_vram_bytes": 6007788674.133333,
+      "protected_lpips": 0.0013326815383038592,
+      "render_time_seconds": 0.006602980615571141,
+      "silhouette_iou": 0.7120163375292344,
+      "target_closer_fraction": 0.4781133459337677
+    }
+  },
+  "branch_construction_time": "NOT_SEPARATELY_INSTRUMENTED",
+  "checkpoint_bytes": {
+    "seed_0": 285756,
+    "seed_1": 285756,
+    "seed_2": 285756
+  },
+  "checkpoint_bytes_total": 857268,
+  "checkpoint_copies": 0,
+  "controller_forward_seconds_mean": 0.0015504850111171312,
+  "controller_forward_seconds_mean_by_seed": {
+    "seed_0": 0.0014921540175290668,
+    "seed_1": 0.001574470365748686,
+    "seed_2": 0.0015848306500736405
+  },
+  "controller_parameters": 3589,
+  "effective_average_active_gaussian_count": 271746.13137254905,
+  "endpoint_selection_time": "INCLUDED_IN_CONTROLLER_FORWARD_NOT_SEPARATELY_INSTRUMENTED",
+  "f2_cached_feature_assembly_seconds_total_by_seed": {
+    "seed_0": 0.027697376906871796,
+    "seed_1": 0.027510154992341995,
+    "seed_2": 0.02678365260362625
+  },
+  "mode": {
+    "DUAL_SUPPORT": {
+      "active_gaussian_count_mean": 399949.5628415301,
+      "branch_primitive_tensor_bytes_mean": 25600000.0,
+      "peak_vram_bytes_max": 5898653696,
+      "record_count": 366,
+      "render_time_seconds_mean": 0.013540021118407693
+    },
+    "SINGLE_ENDPOINT": {
+      "active_gaussian_count_mean": 199999.25688073394,
+      "branch_primitive_tensor_bytes_mean": 12800000.0,
+      "peak_vram_bytes_max": 5852499968,
+      "record_count": 654,
+      "render_time_seconds_mean": 0.008601503583406089
+    }
+  },
+  "mode_activation_ratio_over_rendered_records": {
+    "DUAL_SUPPORT": 0.3588235294117647,
+    "SINGLE_ENDPOINT": 0.6411764705882353
+  },
+  "output_root_storage_bytes": 4024681191,
+  "paper_final": false,
+  "paper_final_count": 0,
+  "render_time_seconds_mean_by_mode": {
+    "DUAL_SUPPORT": 0.013540021118407693,
+    "SINGLE_ENDPOINT": 0.008601503583406089
+  },
+  "runtime_only_endpoint_composition": true,
+  "schema_version": "canondressgs.research.dual_support_controller_efficiency.v1",
+  "task_id": "AAAI27-REFERENCE-CONDITIONED-DUAL-SUPPORT-CONTROLLER-FORMAL-002",
+  "total_inference_time": "NOT_REPORTED_AS_SEPARATE_ATOMIC_TIMER"
+}

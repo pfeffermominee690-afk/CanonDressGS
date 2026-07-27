@@ -1,0 +1,64 @@
+{
+  "execution_in_this_task": false,
+  "formal_metrics_executed": 0,
+  "formal_renders_executed": 0,
+  "label": "RESEARCH METHOD CANDIDATE — NOT PAPER FINAL",
+  "mixed_reference_task": {
+    "checks": [
+      "top2_pair_accuracy",
+      "AAB_ABB_ordering",
+      "mixture_calibration",
+      "dual_support_activation_rate",
+      "fallback_rate",
+      "LPIPS",
+      "silhouette_IoU",
+      "boundary_F_score",
+      "ghosting",
+      "identity_contamination"
+    ],
+    "query_sets_per_seed": 320,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "total_seed_queries": 960
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "perturbations": [
+    "grayscale",
+    "hue",
+    "blur",
+    "mask_morphology",
+    "mode_switching_stability"
+  ],
+  "preregistered_success": {
+    "AAB_ABB_ordering_accuracy_min": 0.85,
+    "frozen_mutation": 0,
+    "grade3_ghosting_pairs_max": 1,
+    "ground_truth_id_or_manual_alpha": 0,
+    "identity_contamination_max": 0,
+    "macro_LPIPS": "BETTER_THAN_FULL_LINEAR",
+    "mixed_dual_support_activation_rate_min": 0.8,
+    "mixed_top2_pair_accuracy_min": 0.9,
+    "pure_single_endpoint_rate_min": 0.95,
+    "pure_top1_accuracy": "20/20",
+    "severe_artifact_reduction_vs_FULL_LINEAR_min": 0.5,
+    "silhouette_IoU": "NOT_LOWER_THAN_FULL_LINEAR"
+  },
+  "pure_endpoint_task": {
+    "checks": [
+      "endpoint_accuracy",
+      "single_reference",
+      "dropout",
+      "color_counterfactual",
+      "endpoint_parity",
+      "single_fallback_rate"
+    ],
+    "correct": 20,
+    "swaps": 80
+  },
+  "schema_version": "canondressgs.research.dual_support_controller_evaluator_contract.v1",
+  "thresholds_frozen_before_formal_results": true
+}

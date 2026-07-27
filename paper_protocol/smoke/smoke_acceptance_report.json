@@ -1,0 +1,165 @@
+{
+  "schema_version": "canondressgs.paper_smoke_acceptance_report.v1",
+  "task_id": "AAAI27-UNIFIED-PAPER-SMOKE-ACCEPTANCE-001",
+  "status": "SMOKE_ACCEPTED",
+  "artifact_class": "SMOKE ONLY — NOT PAPER RESULTS",
+  "paper_numbers_status": "NOT_FOR_PAPER_NUMBERS",
+  "paper_final_eligible": false,
+  "run_commit": "8b820ba4d05e0ca4317c0c076054cc0275b5799e",
+  "export_fix_commit": "5edc6d24d028ad128d6e7e825f58249d07e9e5af",
+  "final_head": "commit containing this report",
+  "branch": "paper/aaai27-unified-smoke-acceptance-20260720",
+  "local_worktree": "E:\\model_train\\canondressgs_aaai27_unified_smoke_acceptance",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_aaai27_unified_smoke_acceptance",
+  "cloud_output_root": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE",
+  "commands": {
+    "cloud_tests": "CUDA_VISIBLE_DEVICES=-1 /root/autodl-tmp/conda_envs/mmlphuman/bin/python <CPU contract test harness>",
+    "run": "CUDA_VISIBLE_DEVICES=-1 /root/autodl-tmp/conda_envs/mmlphuman/bin/python tools/paper/run_unified_paper_smoke_acceptance.py run-all --repo-root /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_aaai27_unified_smoke_acceptance --output-root /root/autodl-tmp/canondressgs_work/outputs/pipeline_full --asset-root /root/autodl-tmp/canondressgs_work/outputs --artifact-root /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only --expected-commit 8b820ba4d05e0ca4317c0c076054cc0275b5799e",
+    "corrected_export": "CUDA_VISIBLE_DEVICES=-1 /root/autodl-tmp/conda_envs/mmlphuman/bin/python tools/paper/run_unified_paper_smoke_acceptance.py export-only --summary /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/smoke_run_summary.json --artifact-root /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/artifacts/smoke_only/exports/attempt_002",
+    "finalize": "CUDA_VISIBLE_DEVICES=-1 /root/autodl-tmp/conda_envs/mmlphuman/bin/python tools/paper/run_unified_paper_smoke_acceptance.py finalize --summary /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/smoke_run_summary.json --review-json /root/autodl-tmp/canondressgs_work/outputs/pipeline_full/AAAI27-SEEN-OUTFIT-PAPER-SMOKE/manual_visual_review_20260720.json"
+  },
+  "environment": {
+    "python": "3.10.20",
+    "python_executable": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python3.10",
+    "torch": "2.4.1+cu121",
+    "cuda_visible_devices": "-1",
+    "torch_cuda_available": false,
+    "physical_gpu": "NVIDIA GeForce RTX 4090, driver 580.76.05, 24564 MiB",
+    "execution_device": "CPU"
+  },
+  "preflight": {
+    "status": "PASS",
+    "frozen_assets": "19/19 PASS",
+    "worktree_clean": true,
+    "commit_exact": true,
+    "seen_outfits": ["O01", "O02", "O03", "O04", "O08"],
+    "held_out_not_trained": "O07",
+    "unused_outfit": "O06",
+    "target_forward_input": false,
+    "outfit_id_in_model": false
+  },
+  "tests": {
+    "run_commit_cloud_cpu_only": {"passed": 166, "total": 166},
+    "prior_regressions": {"passed": 141, "total": 141},
+    "new_smoke_tests_at_run_commit": {"passed": 25, "total": 25},
+    "new_smoke_tests_after_export_fix": {"passed": 26, "total": 26},
+    "py_compile": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "attempts": [
+    {"id": "S-B0", "attempt": "attempt_001", "adapter": "B0BaseAvatarAdapter", "optimizer_steps": 0, "optimizer_created": false, "checkpoint_count": 0, "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 0, "swap_count": 80, "applicable_metrics": 18, "na_metrics": 9, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-B1", "attempt": "attempt_001", "adapter": "B1DirectTeacherAdapter", "role": "Optimization Upper Bound", "optimizer_steps": 0, "optimizer_created": false, "checkpoint_count": 0, "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 20, "swap_count": 80, "applicable_metrics": 27, "na_metrics": 0, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-B2", "attempt": "attempt_001", "adapter": "B2OutfitIdLookupAdapter", "role": "Seen-only Lookup", "optimizer_steps": 0, "optimizer_created": false, "checkpoint_count": 0, "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 20, "swap_count": 80, "applicable_metrics": 27, "na_metrics": 0, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-B3", "attempt": "attempt_001", "adapter": "B3GlobalReferenceAdapter", "optimizer_steps": 5, "loss_first": 0.15446350029450254, "loss_last": 0.3120430181759966, "final_checkpoint_sha256": "4efabc3bbf81846479eb27fb5cc4da33c8112418dbf74c961ee121b77fa24d62", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 4, "swap_count": 80, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-B4", "attempt": "attempt_001", "adapter": "B4ClothingMeanOnlyAdapter", "optimizer_steps": 5, "loss_first": 0.15446350029450254, "loss_last": 0.3120430181759966, "final_checkpoint_sha256": "4efabc3bbf81846479eb27fb5cc4da33c8112418dbf74c961ee121b77fa24d62", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 4, "swap_count": 80, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-B5", "attempt": "attempt_001", "adapter": "B5LegacyComplexFusionAdapter", "optimizer_steps": 5, "loss_first": 0.15446350029450254, "loss_last": 0.3120430181759966, "final_checkpoint_sha256": "4efabc3bbf81846479eb27fb5cc4da33c8112418dbf74c961ee121b77fa24d62", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 4, "swap_count": 80, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-OURS", "attempt": "attempt_001", "adapter": "OursExplicitBasisV1Adapter", "optimizer_steps": 20, "loss_first": 0.15446350029450254, "loss_last": 0.2795654148601353, "checkpoint_step_10_sha256": "fff8032198d2bdbe04b614a52cf1d3d3d299b9b6cf999b81942fa00f88aaf483", "final_checkpoint_sha256": "536fff585b3babfa6765aedd106d7d5ff2656cba808a584e24fff31caca165f2", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 14, "swap_count": 80, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-A1", "attempt": "attempt_001", "adapter": "AblationAdapter", "basis_rank": 3, "optimizer_steps": 5, "loss_first": 0.6810778050025053, "loss_last": 0.3384313339221318, "final_checkpoint_sha256": "bf72430e400ab9e77f9aff85e142e509365487a6bf5d06abf7a4f9b4b74d8e5f", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 3, "swap_count": 80, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-A5", "attempt": "attempt_001", "adapter": "AblationAdapter", "supervision": "legacy_endpoint", "optimizer_steps": 5, "loss_first": 0.07239566558539418, "loss_last": 0.19265650021286018, "final_checkpoint_sha256": "1f04227bba117e39f38d5afad23e74da2b10f7808a80787b6c83ecd7dc0b4790", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 4, "swap_count": 80, "status": "SMOKE_ACCEPTED"},
+    {"id": "S-A7", "attempt": "attempt_001", "adapter": "AblationAdapter", "reference_count": 1, "optimizer_steps": 5, "loss_first": 0.18938428442150418, "loss_last": 0.299517708837107, "final_checkpoint_sha256": "4ceb43fe07fd101eac6b251ba4d1482ee0871b83955c40a6fc23fa79d7850516", "correct_episode_contract_count": 20, "nearest_teacher_correct_count": 4, "swap_count": 80, "status": "SMOKE_ACCEPTED"}
+  ],
+  "adapter_acceptance": {
+    "registered_adapter_types": 8,
+    "real_forward_executed_for_all_types": true,
+    "trainable_parameter_gradients_nonzero_and_finite": true,
+    "optimizer_whitelist_exact": true,
+    "target_forward_leakage": false
+  },
+  "resume_acceptance": {
+    "status": "PASS",
+    "completed_steps": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "repeated_steps": false,
+    "checkpoint_schema_complete": true,
+    "max_abs_differences": {
+      "model_state": 0.0,
+      "optimizer_state": 0.0,
+      "rng": 0.0,
+      "scheduler": 0.0,
+      "global_step": 0.0,
+      "condition_position": 0.0,
+      "layernorm_linear": 0.0,
+      "fixed_reference_coefficient": 0.0,
+      "residual": 0.0,
+      "rendered_rgb": 0.0,
+      "rendered_alpha": 0.0
+    }
+  },
+  "evaluator_acceptance": {
+    "status": "PASS",
+    "experiments_evaluated": 10,
+    "episode_count_per_experiment": 20,
+    "total_episode_count": 200,
+    "swap_count_per_experiment": 80,
+    "total_swap_count": 800,
+    "registered_metric_count": 27,
+    "metric_slots": 270,
+    "finite_metric_slots": 261,
+    "legal_na_metric_slots": 9,
+    "invalid_metric_slots": 0,
+    "raw_to_aggregate_traceable": true
+  },
+  "aggregation_acceptance": {
+    "formal_mode": "MISSING_REQUIRED_PAPER_SEEDS: missing seeds 1 and 2",
+    "formal_one_seed_result_created": false,
+    "smoke_mode": "PASS",
+    "order": ["episode", "outfit_macro", "seed"],
+    "per_experiment_outfit_macro_rows": 5,
+    "per_experiment_seed_rows": 1,
+    "three_seed_statistics_generated": false,
+    "pixel_weighted_micro_average": false,
+    "ours_seed0_metrics": {
+      "standardized_coefficient_rmse": 0.5364142803231152,
+      "garment_rgb_mae": 0.0926533743622754,
+      "edit_reduction": 0.36823414717805514,
+      "target_closer_fraction": 0.8444148936170214,
+      "protected_rgb_mae": 0.0,
+      "background_rgb_mae": 0.00028940407397139444
+    }
+  },
+  "freeze_acceptance": {
+    "frozen_components": ["base_gaussians", "image_backbone", "mmlp_human", "basis", "renderer"],
+    "frozen_gradient_count_all_attempts": 0,
+    "frozen_max_change_all_attempts": 0.0,
+    "before_after_hash_equal_all_attempts": true
+  },
+  "exports": {
+    "final_export_attempt": "artifacts/smoke_only/exports/attempt_002",
+    "optimizer_steps_for_export_fix": 0,
+    "tables": {"count": 4, "formats_each": ["csv", "md", "tex", "json"], "watermarked": true},
+    "figures": {"count": 6, "fixed_layout": true, "strongest_baseline_column": "B5", "watermarked": true},
+    "attempt_001_disposition": "Preserved. Superseded only because Figure 4/5 repeated the sole executed smoke source in unrun columns.",
+    "attempt_002_correction": "Unrun Figure 4/5 columns are explicit NOT_RUN placeholders; only A1 K=3 and the executed A5 column contain run imagery."
+  },
+  "manual_visual_acceptance": {
+    "status": "PASS",
+    "images_actually_opened": true,
+    "inspection_method": "Codex view_image, original detail",
+    "categories_opened": 8,
+    "corrupted_or_all_black": 0,
+    "watermark_visible": true,
+    "fixed_outfit_view_column_order": "PASS",
+    "observations_file": "paper_protocol/smoke/manual_visual_review_20260720.json"
+  },
+  "formal_registry": {
+    "linux_before_sha256": "1a01de7db498164089e8f55a8bca90d909a219ec8afb06da4e97bb9e0cb3ab84",
+    "linux_after_sha256": "1a01de7db498164089e8f55a8bca90d909a219ec8afb06da4e97bb9e0cb3ab84",
+    "before_git_blob": "62071643367f46da1f01bf0de4e9a599552e7e4d",
+    "after_git_blob": "62071643367f46da1f01bf0de4e9a599552e7e4d",
+    "not_run_count": 51,
+    "historical_evidence_count": 4,
+    "paper_final_created": 0
+  },
+  "historical_outputs": {
+    "manifest_expected_fingerprint": "108c8f2a7e327cd76a508c16e1797cd220d169cbff44091fc9cfefbd2911c74c",
+    "preflight_actual_fingerprint": "108c8f2a7e327cd76a508c16e1797cd220d169cbff44091fc9cfefbd2911c74c",
+    "pass": true,
+    "formal_smoke_sibling_root_before": "ABSENT",
+    "formal_smoke_sibling_root_after": "ABSENT"
+  },
+  "final_decision": {
+    "status": "SMOKE PASS",
+    "formal_51_runs_authorized_by_this_result": true,
+    "scientific_claims_authorized": false,
+    "next_unique_task": "LAUNCH_FROZEN_PAPER_EXPERIMENT_BATCHES"
+  }
+}

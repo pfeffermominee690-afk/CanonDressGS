@@ -1,0 +1,73 @@
+{
+  "schema_version": "canondressgs.subject00.teacher_target_materialization_mode_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-TEACHER-TARGET-CREATION-PREFLIGHT-001",
+  "created_at": "2026-07-26T21:13:17.142237+00:00",
+  "selected_mode": "PORTABLE_ARCHIVE_AND_CLOUD_EXTRACTION",
+  "mode_audit": {
+    "REFERENCE_ONLY_REGISTRY": "Rejected: Windows paths are not cloud-portable and deletion/reorganization of source directories would break recovery.",
+    "BYTE_COPY_IMMUTABLE_BUNDLE": "Insufficient alone: immutable copies are needed, but a transfer format and cloud extraction verification are still required.",
+    "HARDLINK_IMMUTABLE_BUNDLE": "Rejected: volume-bound on Windows and cannot cross to AutoDL.",
+    "SYMLINK_REFERENCE_BUNDLE": "Rejected: Windows/cloud path semantics differ and source deletion remains a risk.",
+    "PORTABLE_ARCHIVE_AND_CLOUD_EXTRACTION": "Selected: byte copies, manifest SHA verification, portable transfer, atomic cloud extraction, and recovery are explicit."
+  },
+  "windows_project_root": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001",
+  "windows_attempt_root": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets",
+  "cloud_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+  "target_root_preexisted": false,
+  "target_root_created": false,
+  "planned_layout": [
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\01_contract_snapshot",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/01_contract_snapshot"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\02_records",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/02_records"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\03_raw",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\04_person_masks",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\05_garment_masks",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\06_camera",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/06_camera"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\07_derived_targets",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\08_quality_audit",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/08_quality_audit"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\09_review_assets",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/09_review_assets"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\10_final_registry",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry"
+    },
+    {
+      "windows": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\11_logs",
+      "cloud": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/11_logs"
+    }
+  ],
+  "archive": {
+    "format": "tar.zst",
+    "windows_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-TEACHER-TARGETS-001\\attempt_001_subject00_24_cell_teacher_targets\\10_final_registry\\subject00_24cell_teacher_targets_attempt001.tar.zst",
+    "cloud_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_24cell_teacher_targets_attempt001.tar.zst",
+    "verification": "archive SHA + per-file SHA + record-count/schema checks before atomic rename"
+  },
+  "data_copy_calls": 0,
+  "upload_calls": 0,
+  "derived_target_generation_calls": 0
+}

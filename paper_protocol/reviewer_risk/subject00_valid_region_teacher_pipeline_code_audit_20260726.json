@@ -1,0 +1,140 @@
+{
+  "audit_mode": "READ_ONLY_STATIC_CODE_AUDIT",
+  "camera_registration": {
+    "central_only_supervision_with_full_viewport": "NOT_CURRENTLY_SUPPORTED because no independent pixel validity reaches all losses and evaluation.",
+    "cx_new": "Supported only after materializing cx-x_left into consumed K.",
+    "cy_new": "Supported only after materializing cy+top_extension into consumed K for the full portrait viewport.",
+    "manifest_binding": "Possible only when the manifest is converted into the actual dataset/camera records; V2 preflight is not read automatically.",
+    "per_view_override": "YES in per-record dressable camera JSON; base calibration is per camera, not per frame.",
+    "renderer_consumes_updated_K": true,
+    "viewport_or_ndc_update": "Width/height and K define the gsplat viewport; no additional repository NDC update was found."
+  },
+  "conclusions": {
+    "arbitrary_resolution_support": "PARTIAL",
+    "camera_intrinsics_override_support": "YES_IF_MATERIALIZED_IN_CALIBRATION_OR_PER_RECORD_CAMERA_JSON",
+    "per_view_resolution_support": "PARTIAL_BASE_PIPELINE_BUT_NO_FORMAL_TEACHER_DATASET",
+    "registered_1024x1150_support": "TECHNICALLY_SUPPORTED_IF_COMMON_SIZE_AND_CORRECTED_K_ARE_MATERIALIZED; BACKEND_UNPROVEN",
+    "validity_mask_evaluation_coverage": "NONE",
+    "validity_mask_loss_coverage": "NONE_COMPLETE",
+    "validity_mask_support": "NO_INDEPENDENT_HxW_PIXEL_VALIDITY_MASK"
+  },
+  "content_sha256": "c4615ef9c55ad6a20e85028396217c76f43a3b392cf2c3eb4f0553c2b8db6168",
+  "evidence": [
+    {
+      "finding": "Subject00 uses image_scaling=1; no 1024x1536 constant is configured.",
+      "path": "config/subject00.yaml",
+      "question": "configured_resize",
+      "symbols_or_lines": [
+        "image_scaling lines 16 and 24"
+      ]
+    },
+    {
+      "finding": "At scaling=1 source HxW is preserved and sample height/width come from the loaded image. The non-unit path has a dormant NameError because line 68 references msk instead of mask.",
+      "path": "scene/dataset.py",
+      "question": "base_image_size",
+      "symbols_or_lines": [
+        "resize_image lines 63-72",
+        "ThumanDataset.__getitem__ lines 281-312"
+      ]
+    },
+    {
+      "finding": "Global image_scaling is shared, while DataLoader batch_size=1 permits varying sample HxW technically. Camera K is collected per camera rather than per frame.",
+      "path": "scene/scene.py",
+      "question": "base_batching",
+      "symbols_or_lines": [
+        "Scene.__init__ lines 31-63",
+        "camera collection lines 68-82"
+      ]
+    },
+    {
+      "finding": "A common arbitrary HxW is accepted, but line 239 rejects rendering samples that do not all share one image size.",
+      "path": "scene/dressable_dataset.py",
+      "question": "formal_teacher_size",
+      "symbols_or_lines": [
+        "RenderingDressableDataset lines 132-239"
+      ]
+    },
+    {
+      "finding": "Per-record K or intrinsics and w2c or R/T are accepted and passed with explicit H/W. Crop/outpaint formulas are not applied automatically; corrected K must be written into the consumed camera data.",
+      "path": "utils/dressable_camera_utils.py",
+      "question": "camera_override",
+      "symbols_or_lines": [
+        "validate_camera_data lines 8-35",
+        "build_mmlphuman_camera lines 38-78"
+      ]
+    },
+    {
+      "finding": "gsplat rasterization consumes cam K, width, and height directly; there is no separate repository NDC transform to update.",
+      "path": "scene/gaussian_model.py",
+      "question": "renderer_viewport",
+      "symbols_or_lines": [
+        "GaussianModel.render lines 588-610"
+      ]
+    },
+    {
+      "finding": "L1 and evaluation L1/PSNR do not accept an independent validity mask. LPIPS uses a person-mask-derived crop, not a registered central validity region.",
+      "path": "train.py",
+      "question": "base_losses_and_evaluation",
+      "symbols_or_lines": [
+        "training lines 70-87",
+        "training_report lines 140-179"
+      ]
+    },
+    {
+      "finding": "The crop is based on foreground bbox and resized to 512; exclusion of portrait bands is incidental, not a validity contract.",
+      "path": "utils/image_utils.py",
+      "question": "base_lpips_crop",
+      "symbols_or_lines": [
+        "crop_image lines 59-95"
+      ]
+    },
+    {
+      "finding": "RGB L1/SSIM use the supplied foreground mask, alpha loss covers the full image, and LPIPS is unmasked. No separate validity mask reaches every loss.",
+      "path": "utils/rendering_loss_utils.py",
+      "question": "rendering_losses",
+      "symbols_or_lines": [
+        "rgb_reconstruction_loss lines 16-47",
+        "alpha_mask_loss lines 49-66",
+        "combined_rendering_loss lines 103-135"
+      ]
+    },
+    {
+      "finding": "Existing valid_mask is per-anchor and reference_valid_mask is [K] or [K,1] per view. Neither is an HxW pixel-validity region.",
+      "path": "scene/dressable_dataset.py; scene/clothing_observation_encoder.py; train_dressable.py",
+      "question": "valid_mask_name_collision",
+      "symbols_or_lines": [
+        "dressable_dataset lines 54-61",
+        "clothing_observation_encoder lines 159-179",
+        "train_dressable lines 259-270 and 1393-1499"
+      ]
+    },
+    {
+      "finding": "Foreground/clothing masks drive losses and IoU, but no independent validity region is consumed by losses or metrics.",
+      "path": "utils/oracle_loss_utils.py; train_full_attribute_oracle.py",
+      "question": "oracle_losses_and_evaluation",
+      "symbols_or_lines": [
+        "oracle_rendering_loss lines 58-124",
+        "mask_iou lines 127-132",
+        "_evaluate lines 73-93"
+      ]
+    }
+  ],
+  "schema_version": "canondressgs.subject00.valid_region_code_path_audit.v1",
+  "task_id": "AAAI27-SUBJECT00-PORTRAIT-CANARY-V2-FAIL-AND-VALID-REGION-AUDIT-001",
+  "technical_scientific_distinction": {
+    "geometrically_registered": "Requires RGB/masks and a consumed K containing cx_new=cx-x_left and, only for a portrait canvas, cy_new=cy+top_extension.",
+    "scientifically_valid": "Requires verified scene registration and complete invalid-region exclusion from optimization and evaluation; current code does not satisfy this for portrait bands.",
+    "technically_parsable": "Base MMLP-Human can parse/render arbitrary HxW at scaling=1; formal Teacher rendering can use one common arbitrary HxW."
+  },
+  "validity_mask": {
+    "alpha_silhouette": "NO independent validity; invalid bands would still affect alpha BCE/dice/IoU.",
+    "clothing_mask_can_substitute": false,
+    "full_output_provenance": "YES; retain the full output/contact sheet for provenance while excluding invalid bands from supervision.",
+    "image_l1": "NO independent validity; base full image, dressable uses foreground mask.",
+    "independent_from_clothing_and_foreground": false,
+    "lpips": "NO independent validity; dressable full image, base person crop, oracle foreground-multiplied.",
+    "regularization": "Parameter regularizers are not pixel-local and require an explicit scientific decision rather than implicit masking.",
+    "required": "A new HxW validity_mask aligned through every transform, loss, and metric.",
+    "ssim": "NO independent validity; zeroing outside foreground can contaminate windows at boundaries."
+  }
+}

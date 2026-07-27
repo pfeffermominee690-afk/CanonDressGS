@@ -1,0 +1,60 @@
+{
+  "schema_version": "canondressgs.subject00.dataset_contract_final_summary.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "branch": "research/subject00-minimal-second-identity-dataset-contract-20260725",
+  "base_head": "b666e8168ec76d67a9e32f26fe9d2e778609cc98",
+  "seal_commit_resolution": "git rev-parse HEAD after the final local seal commit",
+  "classification": "SUBJECT00_CONDITION_RESOURCE_GAP",
+  "scientific_semantics": "SECOND_IDENTITY_REPLICATION",
+  "formal_base_dependency": "PENDING",
+  "backend_status": "BACKEND_SELECTION_REQUIRED",
+  "garments": ["O01", "O03", "O04"],
+  "counts": {
+    "garments": 3,
+    "slots": 8,
+    "planned_references": 12,
+    "planned_teacher_targets": 24,
+    "planned_standard_candidates": 48,
+    "materialized_conditions": 0,
+    "new_dataset_images": 0,
+    "teacher_endpoints": 0,
+    "controller_runs": 0
+  },
+  "contracts": {
+    "identity_review": "FROZEN",
+    "generation_request_template": "FROZEN_BLOCKED",
+    "human_review_template": "FROZEN",
+    "endpoint_construction": "FROZEN_NOT_AUTHORIZED",
+    "endpoint_basis": "FLOAT64_RANK_AT_MOST_2_ENDPOINT_COORDINATE_SYSTEM",
+    "endpoint_controller": "FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+    "evaluator": "FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+    "directory_plan": "FROZEN_NOT_CREATED",
+    "cost_storage_forecast": "COUNT_FORECAST_READY_PRICE_AND_RUNTIME_PENDING"
+  },
+  "resource_gaps": [
+    "formal step-101245 checkpoint path and SHA-256",
+    "selected strict-train pose/camera IDs for eight semantic slots",
+    "materialized source and generated RGB/mask/camera/pose paths and SHA-256 values",
+    "per-garment allowed-local-occlusion whitelist",
+    "SHA-disjoint controller train/calibration/test condition pools",
+    "visualization condition IDs",
+    "selected and verified generation backend"
+  ],
+  "tests": "PASS_27_CONTRACT_ASSERTIONS_AND_11_UPSTREAM_UNITTESTS",
+  "execution_counts": {
+    "gpu": 0,
+    "renderer": 0,
+    "training": 0,
+    "image_generation_api": 0,
+    "external_api_calls": 0,
+    "new_dataset_images": 0,
+    "teacher_endpoints": 0,
+    "controller_runs": 0,
+    "paper_final": 0
+  },
+  "paper_final": false,
+  "next_task": null,
+  "next_task_when_ready": "AUTHORIZE_AND_GENERATE_SUBJECT00_THREE_GARMENT_CANDIDATES_AFTER_BACKEND_SELECTION",
+  "next_task_authorized": false,
+  "next_task_started": false
+}

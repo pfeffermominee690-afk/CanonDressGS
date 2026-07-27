@@ -1,0 +1,76 @@
+{
+  "schema_version": "canondressgs.subject00.base60747_method_12run_matrix_contract.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
+  "status": "BLOCKED_PRE_EXECUTION_BY_FROZEN_FOLD_COVERAGE",
+  "source": {
+    "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+    "head": "ed44835f950fe369dd3eb64b5eaef8c6cc174175",
+    "new_branch": "research/subject00-base60747-method-matrix-fair-baselines-20260727"
+  },
+  "method": {
+    "contract": "PURE_ENDPOINT",
+    "dual_support_enabled": false,
+    "dual_support_authorized": false,
+    "implementation_path": "tools/paper/formal_batch_runtime.py",
+    "implementation_sha256_lf": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "runner_path": "tools/second_identity/run_subject00_base60747_method.py",
+    "runner_sha256_lf": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9",
+    "config_path": "configs/research/subject00_canondressgs_method_base60747_v1.json",
+    "config_sha256_lf": "dbe0fd49402767124a42d047e51c25d3c3abe5baf621ee21d8e9298d2ce2c6a1"
+  },
+  "immutable_bindings": {
+    "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "formal_base_status": "USER_AUTHORIZED_PAUSED",
+    "formal_base_resume_authorized": false,
+    "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "formal_target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "training_target_count": 22,
+    "evaluation_target_count": 22,
+    "quarantine_count": 2,
+    "quarantine_optimizer_usage_count": 0,
+    "teacher_registry_path": "paper_protocol/reviewer_risk/subject00_base60747_three_garment_teacher_registry_20260727.json",
+    "teacher_registry_sha256_lf": "fde287b23817900fdc2f4cf559986cc9f95922701e2c4da1a443d35db29ca701"
+  },
+  "matrix": {
+    "rotations": {
+      "0": {"train_slots": [0, 7], "calibration_slot": 3, "test_slot": 4},
+      "1": {"train_slots": [7, 3], "calibration_slot": 4, "test_slot": 0},
+      "2": {"train_slots": [3, 4], "calibration_slot": 0, "test_slot": 7},
+      "3": {"train_slots": [4, 0], "calibration_slot": 7, "test_slot": 3}
+    },
+    "seeds": [0, 1, 2],
+    "run_order": [
+      "METHOD-R0-S0", "METHOD-R0-S1", "METHOD-R0-S2",
+      "METHOD-R1-S0", "METHOD-R1-S1", "METHOD-R1-S2",
+      "METHOD-R2-S0", "METHOD-R2-S1", "METHOD-R2-S2",
+      "METHOD-R3-S0", "METHOD-R3-S1", "METHOD-R3-S2"
+    ],
+    "expected_run_count": 12,
+    "expected_total_optimizer_steps": 3600,
+    "optimizer_steps_per_run": 300,
+    "checkpoint_steps": [0, 20, 50, 100, 200, 300],
+    "aggregation": "ALL_12_RUNS_NO_CHERRY_PICKING",
+    "automatic_retry": false,
+    "attempt_002_allowed": false
+  },
+  "formal_fold_coverage": {
+    "slot00": {"O01": 1, "O03": 1, "O04": 1},
+    "slot03": {"O01": 1, "O03": 1, "O04": 1},
+    "slot04": {"O01": 0, "O03": 0, "O04": 1},
+    "slot07": {"O01": 1, "O03": 1, "O04": 1}
+  },
+  "blocking_conflicts": [
+    {"rotation": 0, "role": "test", "slot": 4, "missing_garments": ["O01", "O03"]},
+    {"rotation": 1, "role": "calibration", "slot": 4, "missing_garments": ["O01", "O03"]},
+    {"rotation": 2, "role": "train", "slot": 4, "missing_garments": ["O01", "O03"]},
+    {"rotation": 3, "role": "train", "slot": 4, "missing_garments": ["O01", "O03"]}
+  ],
+  "adjudication": {
+    "new_method_runs_authorized": false,
+    "reason": "The frozen rotation folds require O01/O03 slot04 while the same authoritative task permanently quarantines those records. Using them, imputing them, moving folds, changing denominators, or changing garment-balanced batches is forbidden.",
+    "classification": "SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAIL"
+  },
+  "paper_eligible": false,
+  "scientific_pass": null,
+  "paper_final": false
+}

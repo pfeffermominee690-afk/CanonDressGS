@@ -1,0 +1,246 @@
+schema_version: canondressgs.paper.p0_candidate_runtime_manifest.v1
+task_id: AAAI27-P0-CANDIDATE-ADAPTERS-RUNNER-001
+source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+formal_run_authorized: false
+allowed_statuses: [NOT_IMPLEMENTED, IMPLEMENTED, PREFLIGHT_READY, DRY_RUN_PASS, FAILED]
+forbidden_statuses: [RUNNING, TRAINED, EVALUATED, MANUAL_REVIEW_REQUIRED, PAPER_FINAL]
+frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+candidate_count: 13
+trainable_count: 12
+non_trainable_count: 1
+candidates:
+  - runtime_id: P0-OURS-V2-R0
+    reviewer_risk_experiment_id: RR-OURS-V2-S0
+    method: Ours-v2
+    replicate_index: 0
+    seed: 0
+    initialization_policy: DETERMINISTIC_ZERO_INITIALIZATION
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+    reference_input_contract: FROZEN_F2_CLOTHING_MEAN_MAX_THEN_SET_MEAN_MAX
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/ours_v2/replicate_0
+    output_subdir: ours_v2/replicate_0
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-OURS-V2-R1
+    reviewer_risk_experiment_id: RR-OURS-V2-S1
+    method: Ours-v2
+    replicate_index: 1
+    seed: 1
+    initialization_policy: DETERMINISTIC_ZERO_INITIALIZATION
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+    reference_input_contract: FROZEN_F2_CLOTHING_MEAN_MAX_THEN_SET_MEAN_MAX
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/ours_v2/replicate_1
+    output_subdir: ours_v2/replicate_1
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-OURS-V2-R2
+    reviewer_risk_experiment_id: RR-OURS-V2-S2
+    method: Ours-v2
+    replicate_index: 2
+    seed: 2
+    initialization_policy: DETERMINISTIC_ZERO_INITIALIZATION
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+    reference_input_contract: FROZEN_F2_CLOTHING_MEAN_MAX_THEN_SET_MEAN_MAX
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/ours_v2/replicate_2
+    output_subdir: ours_v2/replicate_2
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-B6-S0
+    reviewer_risk_experiment_id: RR-B6-REFERENCE-CLASSIFIER-S0
+    method: B6
+    replicate_index: null
+    seed: 0
+    initialization_policy: RANDOM_SEEDED_INITIALIZATION
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: CROSS_ENTROPY_ONLY
+    reference_input_contract: FROZEN_F2_CLOTHING_MEAN_MAX_THEN_SET_MEAN_MAX
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/b6/seed_0
+    output_subdir: b6/seed_0
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-B6-S1
+    reviewer_risk_experiment_id: RR-B6-REFERENCE-CLASSIFIER-S1
+    method: B6
+    replicate_index: null
+    seed: 1
+    initialization_policy: RANDOM_SEEDED_INITIALIZATION
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: CROSS_ENTROPY_ONLY
+    reference_input_contract: FROZEN_F2_CLOTHING_MEAN_MAX_THEN_SET_MEAN_MAX
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/b6/seed_1
+    output_subdir: b6/seed_1
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-B6-S2
+    reviewer_risk_experiment_id: RR-B6-REFERENCE-CLASSIFIER-S2
+    method: B6
+    replicate_index: null
+    seed: 2
+    initialization_policy: RANDOM_SEEDED_INITIALIZATION
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: CROSS_ENTROPY_ONLY
+    reference_input_contract: FROZEN_F2_CLOTHING_MEAN_MAX_THEN_SET_MEAN_MAX
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/b6/seed_2
+    output_subdir: b6/seed_2
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-B7-FIXED
+    reviewer_risk_experiment_id: RR-B7-F2-NEAREST-CENTROID-FIXED
+    method: B7
+    replicate_index: null
+    seed: null
+    initialization_policy: FIXED_NON_TRAINABLE
+    trainable: false
+    optimizer_policy: NONE
+    loss_contract: NONE
+    reference_input_contract: FOLD_LEGAL_FROZEN_F2_STANDARDIZED_SQUARED_L2
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/b7/fixed
+    output_subdir: b7/fixed
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-M3-S0
+    reviewer_risk_experiment_id: RR-M3-COMPLEX-CORRECTED-S0
+    method: M3
+    replicate_index: null
+    seed: 0
+    initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+    reference_input_contract: FROZEN_RFF_MASK_AWARE_VALIDITY_AWARE_COMPLEX_SET
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/m3/seed_0
+    output_subdir: m3/seed_0
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-M3-S1
+    reviewer_risk_experiment_id: RR-M3-COMPLEX-CORRECTED-S1
+    method: M3
+    replicate_index: null
+    seed: 1
+    initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+    reference_input_contract: FROZEN_RFF_MASK_AWARE_VALIDITY_AWARE_COMPLEX_SET
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/m3/seed_1
+    output_subdir: m3/seed_1
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-M3-S2
+    reviewer_risk_experiment_id: RR-M3-COMPLEX-CORRECTED-S2
+    method: M3
+    replicate_index: null
+    seed: 2
+    initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: SMOOTHL1_STANDARDIZED_COEFFICIENT_ONLY
+    reference_input_contract: FROZEN_RFF_MASK_AWARE_VALIDITY_AWARE_COMPLEX_SET
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/m3/seed_2
+    output_subdir: m3/seed_2
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-M4-S0
+    reviewer_risk_experiment_id: RR-M4-COMPLEX-LEGACY-ENDPOINT-S0
+    method: M4
+    replicate_index: null
+    seed: 0
+    initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: A5_LEGACY_ENDPOINT_SUPERVISION
+    reference_input_contract: FROZEN_RFF_MASK_AWARE_VALIDITY_AWARE_COMPLEX_SET
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/m4/seed_0
+    output_subdir: m4/seed_0
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-M4-S1
+    reviewer_risk_experiment_id: RR-M4-COMPLEX-LEGACY-ENDPOINT-S1
+    method: M4
+    replicate_index: null
+    seed: 1
+    initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: A5_LEGACY_ENDPOINT_SUPERVISION
+    reference_input_contract: FROZEN_RFF_MASK_AWARE_VALIDITY_AWARE_COMPLEX_SET
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/m4/seed_1
+    output_subdir: m4/seed_1
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false
+  - runtime_id: P0-M4-S2
+    reviewer_risk_experiment_id: RR-M4-COMPLEX-LEGACY-ENDPOINT-S2
+    method: M4
+    replicate_index: null
+    seed: 2
+    initialization_policy: PAIRED_RANDOM_TRUNK_WITH_ZERO_OUTPUT_HEAD
+    trainable: true
+    optimizer_policy: ADAM_LR_0.02_NO_WEIGHT_DECAY_READINESS_ONLY
+    loss_contract: A5_LEGACY_ENDPOINT_SUPERVISION
+    reference_input_contract: FROZEN_RFF_MASK_AWARE_VALIDITY_AWARE_COMPLEX_SET
+    forbidden_inputs: [target_rgb, target_mask, target_pose, target_camera, ground_truth_coefficient, teacher_residual, outfit_id]
+    output_root: ${CANONDRESSGS_P0_CANDIDATE_SMOKE_ROOT}/m4/seed_2
+    output_subdir: m4/seed_2
+    status: PREFLIGHT_READY
+    source_head: 42a28b386f6f32e23e5e16680408820efd8a65c7
+    frozen_asset_manifest: paper_protocol/frozen_asset_manifest.json
+    evaluator_contract: canondressgs.paper.seen_outfit_evaluator.v1
+    formal_run_authorized: false

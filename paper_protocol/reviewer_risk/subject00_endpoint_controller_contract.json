@@ -1,0 +1,125 @@
+{
+  "schema_version": "canondressgs.subject00.endpoint_controller_contract.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+  "scientific_role": "REFERENCE_CONTROLLED_DISCRETE_ENDPOINT_SELECTION",
+  "method_structure_precedent": {
+    "identity": "subject02",
+    "branch": "research/pure-endpoint-core-method-protocol-20260724",
+    "head": "9ca0f44bdd5480a429e8cd5705df1341746d4381",
+    "transfer_boundary": "Architecture and cross-fold principles only; no Subject02 checkpoint, endpoint, coefficient, condition ID, or result is transferred."
+  },
+  "pipeline": [
+    "reference RGB and clothing mask",
+    "frozen F2 spatial backbone",
+    "per-reference clothing-weighted mean and clothing-masked max",
+    "deterministic validity-aware reference-set mean and max",
+    "LayerNorm(512)",
+    "Linear(512,r)",
+    "nearest Subject00 endpoint in standardized coefficient space",
+    "frozen Subject00 endpoint residual",
+    "frozen Subject00 MMLP-Human and renderer"
+  ],
+  "frozen_f2": {
+    "feature_channel_dimension": 128,
+    "per_reference_output_dimension": 256,
+    "set_aggregation": "validity-aware mean concatenated with validity-aware max",
+    "predictor_input_dimension": 512,
+    "normal_reference_count": 3,
+    "trainable": false,
+    "subject02_backbone_checkpoint_reference": "${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth",
+    "subject02_backbone_checkpoint_sha256": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+    "subject02_backbone_state_fingerprint": "3ed5ec6d04d3b9444d234252b5bc5b718ff879f8ec6220ec9704499cce8e77d7",
+    "subject00_f2_asset_status": "MUST_VERIFY_OR_FREEZE_BEFORE_CONTROLLER_TRAINING"
+  },
+  "predictor": {
+    "basis_rank": "r=min(numerical_rank,2)",
+    "input_dimension": 512,
+    "output_dimension": 2,
+    "only_allowed_subject00_architecture_change": "coefficient dimension 4 to 2",
+    "architecture": "LayerNorm(512) followed by Linear(512,2); no output activation",
+    "parameter_count_when_r_is_2": 2050,
+    "parameter_breakdown_when_r_is_2": {"layer_norm_weight_bias": 1024, "linear_weight_bias": 1026},
+    "initialization": {
+      "layer_norm_weight": 1.0,
+      "layer_norm_bias": 0.0,
+      "linear_weight": 0.0,
+      "linear_bias": 0.0,
+      "semantics": "mean endpoint standardized coordinate at step zero"
+    }
+  },
+  "coefficient_target_and_snapping": {
+    "target": "standardized Subject00 endpoint coordinate from the frozen float64 rank-r basis",
+    "normalization_scope": "three Subject00 endpoint coordinates only; train partition only",
+    "test_condition_statistics_used": false,
+    "loss": "mean SmoothL1(predicted-target,beta=1), coefficient only",
+    "classification_loss": 0.0,
+    "pairwise_geometry_weight": 0.0,
+    "render_loss": 0.0,
+    "candidate_order": ["O01", "O03", "O04"],
+    "distance": "squared L2 in standardized rank-r endpoint coordinate space",
+    "rule": "argmin_g ||predicted_standardized-target_standardized[g]||_2^2",
+    "tie_break": "first garment in frozen candidate order",
+    "continuous_prediction_rendered": false
+  },
+  "training_plan": {
+    "optimizer": {
+      "class": "torch.optim.Adam",
+      "learning_rate": 0.02,
+      "weight_decay": 0.0,
+      "betas": [0.9, 0.999],
+      "epsilon": 1e-08,
+      "amsgrad": false
+    },
+    "scheduler": "constant LambdaLR multiplier 1.0",
+    "gradient_clip_norm": 5.0,
+    "steps_per_run": 300,
+    "checkpoint_steps": [0, 20, 50, 100, 200, 300],
+    "evaluate_checkpoint": 300,
+    "early_stopping": false,
+    "best_checkpoint_selection": false,
+    "replicate_seeds": [0, 1, 2],
+    "condition_rotations": 4,
+    "planned_runs": 12,
+    "planned_optimizer_steps": 3600,
+    "exact_resume_required": true,
+    "data_order_identical_across_replicates": true,
+    "garment_order": ["O01", "O03", "O04"]
+  },
+  "condition_fold_principle": {
+    "rotations": [
+      {"rotation": 0, "train": [0, 1], "calibration": 2, "test": 3},
+      {"rotation": 1, "train": [1, 2], "calibration": 3, "test": 0},
+      {"rotation": 2, "train": [2, 3], "calibration": 0, "test": 1},
+      {"rotation": 3, "train": [3, 0], "calibration": 1, "test": 2}
+    ],
+    "same_image_or_sha_in_train_and_test": false,
+    "same_image_or_sha_in_calibration_and_test": false,
+    "post_hoc_split_movement": false,
+    "garment_specific_split_protocol": false,
+    "exact_subject00_fold_manifests": "PENDING_CONDITION_RESOURCE"
+  },
+  "prediction_boundary": {
+    "allowed_inputs": ["reference_rgb", "reference_clothing_mask", "reference_foreground_mask", "reference_validity"],
+    "forbidden_inputs": ["target_rgb", "target_mask", "target_pose", "target_camera", "ground_truth_garment_id", "teacher_residual", "ground_truth_coefficient", "Subject02 condition ID"],
+    "target_pose_camera_downstream_renderer_only": true
+  },
+  "safety_fallback": {
+    "empty_reference_set": "ABSTAIN_EMPTY_REFERENCE_AND_RENDER_BASE_AVATAR",
+    "nonfinite_feature_or_prediction": "ABSTAIN_INVALID_NUMERICS_AND_RENDER_BASE_AVATAR",
+    "shape_or_asset_fingerprint_mismatch": "STOP_WITHOUT_ENDPOINT_SELECTION",
+    "selected_endpoint_parity_not_passed": "STOP_WITHOUT_ENDPOINT_SELECTION",
+    "identity_safety_gate_not_passed": "RENDER_BASE_AVATAR_AND_RECORD_REJECTION",
+    "silent_default_garment_allowed": false
+  },
+  "execution_counts": {
+    "controller_training_runs": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "feature_inferences": 0,
+    "controller_inferences": 0,
+    "renderer_runs": 0,
+    "checkpoint_writes": 0
+  },
+  "paper_final": false
+}

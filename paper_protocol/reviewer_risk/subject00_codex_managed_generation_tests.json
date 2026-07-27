@@ -1,0 +1,254 @@
+{
+  "checks": [
+    {
+      "actual": 48,
+      "expected": 48,
+      "name": "request_count",
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "O01",
+        "O03",
+        "O04"
+      ],
+      "expected": [
+        "O01",
+        "O03",
+        "O04"
+      ],
+      "name": "garment_count",
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "O01": 8,
+        "O03": 8,
+        "O04": 8
+      },
+      "expected": 8,
+      "name": "slots_per_garment",
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "O01:slot_00": 2,
+        "O01:slot_01": 2,
+        "O01:slot_02": 2,
+        "O01:slot_03": 2,
+        "O01:slot_04": 2,
+        "O01:slot_05": 2,
+        "O01:slot_06": 2,
+        "O01:slot_07": 2,
+        "O03:slot_00": 2,
+        "O03:slot_01": 2,
+        "O03:slot_02": 2,
+        "O03:slot_03": 2,
+        "O03:slot_04": 2,
+        "O03:slot_05": 2,
+        "O03:slot_06": 2,
+        "O03:slot_07": 2,
+        "O04:slot_00": 2,
+        "O04:slot_01": 2,
+        "O04:slot_02": 2,
+        "O04:slot_03": 2,
+        "O04:slot_04": 2,
+        "O04:slot_05": 2,
+        "O04:slot_06": 2,
+        "O04:slot_07": 2
+      },
+      "expected": 2,
+      "name": "candidates_per_slot",
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "name": "request_id_changes",
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "name": "source_input_sha_changes",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "external_api_calls",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "api_key_reads",
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "code_hits": [],
+        "declared": 0
+      },
+      "expected": {
+        "code_hits": [],
+        "declared": 0
+      },
+      "name": "custom_base_url_calls",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "sublyx_calls",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "code78_calls",
+      "status": "PASS"
+    },
+    {
+      "actual": 49,
+      "expected": 49,
+      "name": "codex_managed_generation_calls",
+      "status": "PASS"
+    },
+    {
+      "actual": 48,
+      "expected": 48,
+      "name": "output_file_count",
+      "status": "PASS"
+    },
+    {
+      "actual": 48,
+      "expected": 48,
+      "name": "successful_output_count",
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "errors": [],
+        "parsed": 48
+      },
+      "expected": {
+        "errors": [],
+        "parsed": 48
+      },
+      "name": "png_parse_count",
+      "status": "PASS"
+    },
+    {
+      "actual": 5,
+      "expected": 5,
+      "name": "resolution_1024x1536_count",
+      "status": "PASS"
+    },
+    {
+      "actual": {},
+      "expected": {},
+      "name": "duplicate_output_sha_groups",
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "count": 48,
+        "errors": []
+      },
+      "expected": {
+        "count": 48,
+        "errors": []
+      },
+      "name": "provenance_count",
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "name": "missing_provenance_count",
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "all_fields_null": true,
+        "pending": 48
+      },
+      "expected": {
+        "all_fields_null": true,
+        "pending": 48
+      },
+      "name": "human_review_pending_count",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "accepted_count",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "teacher_target_count",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "expected": 0,
+      "name": "cloud_image_writes",
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "name": "git_image_additions",
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "expected": [],
+      "name": "secret_scan",
+      "status": "PASS"
+    },
+    {
+      "actual": "PENDING",
+      "expected": "PENDING",
+      "name": "formal_base_dependency",
+      "status": "PASS"
+    },
+    {
+      "actual": false,
+      "expected": false,
+      "name": "paper_final",
+      "status": "PASS"
+    }
+  ],
+  "content_sha256": "eef71b9c726c54d12e69858528f29be9043c5b170e78c8d5158230c7f0ae83bd",
+  "failed": [],
+  "metrics": {
+    "resolution_mismatches": 43,
+    "resolution_pass_1024x1536": 5,
+    "successful_outputs": 48,
+    "technical_retries": 1
+  },
+  "mutation_audit": {
+    "api_key_reads": 0,
+    "candidate_files_written": 48,
+    "cloud_image_writes": 0,
+    "code78_calls": 0,
+    "custom_base_url_calls": 0,
+    "external_api_calls": 0,
+    "external_dataset_root": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001",
+    "forbidden_network_code_hits": [],
+    "git_image_additions": 0,
+    "secret_scan_hits": [],
+    "sublyx_calls": 0
+  },
+  "paper_final": false,
+  "passed": 27,
+  "schema_version": "canondressgs.subject00.codex_managed_generation_tests.v1",
+  "status": "PASS",
+  "task_id": "AAAI27-SUBJECT00-CODEX-MANAGED-GENERATION-001",
+  "total": 27
+}

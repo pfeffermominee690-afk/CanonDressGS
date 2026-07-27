@@ -1,0 +1,168 @@
+{
+  "schema_version": "canondressgs.subject00.mask_semantics.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-MASK-GENERATION-PREFLIGHT-001",
+  "semantic_authority": {
+    "loader": {
+      "path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_generation_preflight\\scene\\dressable_dataset.py",
+      "exists": true,
+      "bytes": 36562,
+      "sha256": "2955a559df03315d9a13c6e064410fb766c0a310e57e939d9119fdea458cd769"
+    },
+    "full_loader": {
+      "path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_generation_preflight\\scene\\full_dressable_dataset.py",
+      "exists": true,
+      "bytes": 9898,
+      "sha256": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508"
+    },
+    "loss": {
+      "path": "E:\\model_train\\canondressgs_subject00_24_cell_mask_generation_preflight\\utils\\oracle_loss_utils.py",
+      "exists": true,
+      "bytes": 6781,
+      "sha256": "d03073a1da61abb4916263dd52201d7504304f1e1ab46895268c008ceb89a1e7"
+    },
+    "subject02_label_contract": {
+      "path": "E:\\data_pre\\audit_subject02_layered_composite_v3\\mask_backend_closure_v3a\\segformer_label_contract_v3a.json",
+      "exists": true,
+      "bytes": 1728,
+      "sha256": "dfd0495519fa8659eae70f7a89e65664887edcf6b5b4f93246c53812d6d909c7"
+    },
+    "subject02_successful_run": {
+      "path": "E:\\data_pre\\staging_subject02_layered_composite_v3\\mask_backend_v3a\\full_run_v2\\segformer_run_manifest.json",
+      "exists": true,
+      "bytes": 196405,
+      "sha256": "fc6fcf9d98b527192bd06763247151c7e7f981be5dcf4ecc44708d92031a1d3f"
+    }
+  },
+  "person_foreground_mask": {
+    "definition": "Largest connected complete human foreground from parser labels 1-15 and 17 at native raw resolution.",
+    "includes": [
+      "complete body",
+      "hair",
+      "face",
+      "hands",
+      "feet",
+      "shoes",
+      "all worn clothing",
+      "worn hat/sunglasses/scarf when present"
+    ],
+    "excludes": [
+      "background",
+      "ground",
+      "cast shadow",
+      "bag or handheld object label 16",
+      "second person"
+    ],
+    "label_ids_included": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17
+    ],
+    "label_ids_excluded": [
+      0,
+      16
+    ],
+    "postprocessing": "largest component; one-pixel dilation; only holes <= max(64 pixels, 0.1% person area) are filled",
+    "foreground_value": 255,
+    "background_value": 0,
+    "soft_alpha_allowed": false,
+    "antialiased_edge_allowed": false,
+    "training_use": "target_foreground_mask for RGB/alpha supervision",
+    "loss_use": "normalized [0,1] BCE, Dice, silhouette/IoU and masked RGB"
+  },
+  "garment_region_mask": {
+    "definition": "Union of the current target outfit's upper/lower garment labels 4,5,6,7,8,17 after Strategy-C probability thresholding.",
+    "label_ids_included": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      17
+    ],
+    "labels": [
+      "Upper-clothes",
+      "Skirt",
+      "Pants",
+      "Dress",
+      "Belt",
+      "Scarf/tie"
+    ],
+    "excludes": [
+      "background",
+      "hat",
+      "hair",
+      "sunglasses",
+      "face",
+      "arms",
+      "legs",
+      "hands",
+      "feet",
+      "shoes",
+      "skin",
+      "bag/handheld object"
+    ],
+    "probability_threshold": 0.35,
+    "postprocessing": "intersect person; uniform 3x3 close/open once; remove components smaller than max(24 pixels, 0.05% person area); fill only small holes",
+    "garment_mask_must_be_person_subset": true,
+    "outfit_mapping": {
+      "O01": {
+        "components": "pullover hoodie + full-length trousers",
+        "hood_rule": "hood is part of the hoodie and is included when parsed as Upper-clothes",
+        "labels": [
+          4,
+          6
+        ]
+      },
+      "O03": {
+        "components": "suit jacket + dress shirt + tie + suit trousers",
+        "hood_rule": "no hood is part of O03; hood-like output is a QA failure",
+        "labels": [
+          4,
+          6,
+          17
+        ]
+      },
+      "O04": {
+        "components": "bomber jacket + crew-neck shirt + denim jeans",
+        "hood_rule": "no hood is part of O04; hood-like output is a QA failure",
+        "labels": [
+          4,
+          6
+        ]
+      }
+    },
+    "multi_layer_rule": "visible pixels from every listed layer are unioned; no hidden occluded layer is hallucinated",
+    "teacher_use": "target_clothing_mask for garment RGB/alpha losses",
+    "evaluation_use": "garment-region loss, silhouette IoU and boundary F1"
+  },
+  "loader_semantics": {
+    "format": "PNG mode L",
+    "bit_depth": 8,
+    "load_conversion": "PIL convert('L') then float32 divide by 255",
+    "tensor_shape": "[1,H,W]",
+    "value_range": "[0,1]",
+    "mask_resize_interpolation_if_explicit_resize_is_configured": "NEAREST",
+    "formal_subject00_resize": "FORBIDDEN; preserve accepted native resolution",
+    "binary_value_set": [
+      0,
+      255
+    ],
+    "compression": "PNG lossless compress_level=9",
+    "metadata": "none required"
+  },
+  "conflict_status": "NO_SEMANTIC_CONFLICT",
+  "paper_final": false
+}

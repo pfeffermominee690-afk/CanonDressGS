@@ -1,0 +1,346 @@
+schema_version: canondressgs.paper.reviewer_risk_experiment_registry.v1
+task_id: AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001
+created: '2026-07-21'
+source_head: c60d61a67a87eb35d5debca7eb111778b637c252
+next_task: REPAIR_PAPER_SEED_PROTOCOL_AND_RERUN_TRAINABLE_GROUPS
+auto_execute: false
+formal_output_mutation_allowed: false
+paper_final_transition_allowed: false
+
+p0_hard_gate:
+  status: SEED-PROPAGATION-FAIL
+  failed_family: ours_v2
+  audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+  p0_optimizer_steps: 0
+  silent_repair_permitted: false
+
+method_revision:
+  old_ours:
+    method: Ours_Seen_Outfit_Explicit_Basis_V1
+    evidence_status: HISTORICAL_EVIDENCE
+    pairwise_geometry_weight: 0.10
+  ours_v2:
+    method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
+    evidence_status: SEED_PROPAGATION_FAILED_NOT_RUN
+    pairwise_geometry_weight: 0.0
+    formal_rerun_required: true
+  old_a6:
+    method: A6_No_Pairwise_Coefficient_Geometry
+    evidence_status: HISTORICAL_EVIDENCE
+    relationship: execution-contract evidence for Ours-v2; cannot be silently relabelled
+  rerun_groups:
+    - Ours-v2 main seeds 0/1/2
+    - Ours-v2-centered A1/A2/A3/A4/A6/A7 ablations
+    - paper candidate tables and figures after evaluator completion
+
+global_guards:
+  prediction_forward_forbidden_inputs:
+    - outfit_id
+    - target_rgb
+    - target_mask
+    - target_pose
+    - target_camera
+    - teacher_residual
+    - teacher_coefficient
+  no_best_seed_selection: true
+  frozen_base_basis_backbone_renderer: true
+  unified_evaluator_required: true
+  network_download_allowed: false
+  initial_status_for_executable_new_work: NOT_RUN
+
+experiments:
+  - experiment_id: RR-OURS-V2-S0
+    priority: P0
+    method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
+    target_method_generation: ours_v2
+    seed: 0
+    status: FAILED
+    failure_reason: SEED-PROPAGATION-FAIL_IDENTICAL_INITIALIZATION
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 1
+      p0_optimizer_steps: 0
+    optimizer_steps: 300
+    estimated_gpu_time_minutes: 3
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.2
+    table_figure_target: [Table_1, Table_2, Table_3, Figure_1, Figure_2, Figure_3]
+    changes_main_method: true
+    may_change_registered_abstract: true
+  - experiment_id: RR-OURS-V2-S1
+    priority: P0
+    method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
+    target_method_generation: ours_v2
+    seed: 1
+    status: FAILED
+    failure_reason: SEED-PROPAGATION-FAIL_IDENTICAL_INITIALIZATION
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 1
+      p0_optimizer_steps: 0
+    optimizer_steps: 300
+    estimated_gpu_time_minutes: 3
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.2
+    table_figure_target: [Table_1, Table_2, Table_3, Figure_1, Figure_2, Figure_3]
+    changes_main_method: true
+    may_change_registered_abstract: true
+  - experiment_id: RR-OURS-V2-S2
+    priority: P0
+    method: Ours_V2_Frozen_F2_Linear_Explicit_Basis
+    target_method_generation: ours_v2
+    seed: 2
+    status: FAILED
+    failure_reason: SEED-PROPAGATION-FAIL_IDENTICAL_INITIALIZATION
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 1
+      p0_optimizer_steps: 0
+    optimizer_steps: 300
+    estimated_gpu_time_minutes: 3
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.2
+    table_figure_target: [Table_1, Table_2, Table_3, Figure_1, Figure_2, Figure_3]
+    changes_main_method: true
+    may_change_registered_abstract: true
+
+  - experiment_id: RR-B6-REFERENCE-CLASSIFIER-S0
+    priority: P0
+    method: B6_Reference_Classifier_Hard_Lookup
+    target_method_generation: ours_v2_comparison
+    seed: 0
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
+    optimizer_steps: 300
+    model_input: frozen_F2_reference_mean_max_only
+    outfit_id_input: false
+    output: five_class_argmax_to_frozen_teacher_residual
+    correct_episode_count: 20
+    swap_episode_count: 80
+    tests: [reference_dropout, reference_permutation]
+    estimated_gpu_time_minutes: 3
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.2
+    table_figure_target: [Table_1, Figure_3]
+    changes_main_method: false
+    may_change_registered_abstract: true
+  - experiment_id: RR-B6-REFERENCE-CLASSIFIER-S1
+    priority: P0
+    method: B6_Reference_Classifier_Hard_Lookup
+    target_method_generation: ours_v2_comparison
+    seed: 1
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
+    optimizer_steps: 300
+    model_input: frozen_F2_reference_mean_max_only
+    outfit_id_input: false
+    output: five_class_argmax_to_frozen_teacher_residual
+    correct_episode_count: 20
+    swap_episode_count: 80
+    tests: [reference_dropout, reference_permutation]
+    estimated_gpu_time_minutes: 3
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.2
+    table_figure_target: [Table_1, Figure_3]
+    changes_main_method: false
+    may_change_registered_abstract: true
+  - experiment_id: RR-B6-REFERENCE-CLASSIFIER-S2
+    priority: P0
+    method: B6_Reference_Classifier_Hard_Lookup
+    target_method_generation: ours_v2_comparison
+    seed: 2
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
+    optimizer_steps: 300
+    model_input: frozen_F2_reference_mean_max_only
+    outfit_id_input: false
+    output: five_class_argmax_to_frozen_teacher_residual
+    correct_episode_count: 20
+    swap_episode_count: 80
+    tests: [reference_dropout, reference_permutation]
+    estimated_gpu_time_minutes: 3
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.2
+    table_figure_target: [Table_1, Figure_3]
+    changes_main_method: false
+    may_change_registered_abstract: true
+
+  - experiment_id: RR-B7-F2-NEAREST-CENTROID-FIXED
+    priority: P0
+    method: B7_F2_Nearest_Centroid_Hard_Lookup
+    target_method_generation: ours_v2_comparison
+    seed: null
+    status: NOT_RUN
+    optimizer_steps: 0
+    model_input: frozen_F2_reference_mean_max_only
+    outfit_id_input: false
+    output: nearest_seen_garment_centroid_to_frozen_teacher_residual
+    correct_episode_count: 20
+    swap_episode_count: 80
+    tests: [reference_dropout, reference_permutation]
+    estimated_gpu_time_minutes: 0
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.1
+    table_figure_target: [Table_1, Figure_3]
+    changes_main_method: false
+    may_change_registered_abstract: true
+
+  - experiment_id: RR-M3-COMPLEX-CORRECTED-S0
+    priority: P0
+    method: Complex_Fusion_Corrected_Supervision
+    target_method_generation: ours_v2_comparison
+    seed: 0
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
+    historical_evidence: PAPER-B5-S0 is off-matrix because it includes pairwise geometry
+    optimizer_steps: 300
+    supervision: coefficient_SmoothL1_only
+    estimated_gpu_time_minutes: 4
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.4
+    table_figure_target: [Table_2, Figure_5]
+    changes_main_method: false
+    may_change_registered_abstract: false
+  - experiment_id: RR-M3-COMPLEX-CORRECTED-S1
+    priority: P0
+    method: Complex_Fusion_Corrected_Supervision
+    target_method_generation: ours_v2_comparison
+    seed: 1
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
+    historical_evidence: PAPER-B5-S1 is off-matrix because it includes pairwise geometry
+    optimizer_steps: 300
+    supervision: coefficient_SmoothL1_only
+    estimated_gpu_time_minutes: 4
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.4
+    table_figure_target: [Table_2, Figure_5]
+    changes_main_method: false
+    may_change_registered_abstract: false
+  - experiment_id: RR-M3-COMPLEX-CORRECTED-S2
+    priority: P0
+    method: Complex_Fusion_Corrected_Supervision
+    target_method_generation: ours_v2_comparison
+    seed: 2
+    status: PREFLIGHT_PASS
+    evidence:
+      seed_audit: paper_protocol/reviewer_risk/seed_propagation_audit.json
+      initialization_unique_count_across_seeds: 3
+      p0_optimizer_steps: 0
+    historical_evidence: PAPER-B5-S2 is off-matrix because it includes pairwise geometry
+    optimizer_steps: 300
+    supervision: coefficient_SmoothL1_only
+    estimated_gpu_time_minutes: 4
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.4
+    table_figure_target: [Table_2, Figure_5]
+    changes_main_method: false
+    may_change_registered_abstract: false
+
+  - experiment_id: RR-M4-COMPLEX-LEGACY-ENDPOINT-S0
+    priority: P0
+    method: Complex_Fusion_Legacy_Endpoint_Supervision
+    target_method_generation: ours_v2_comparison
+    seed: 0
+    status: NOT_RUN
+    optimizer_steps: 300
+    supervision: [tanh_coefficient, SmoothL1, sign_loss, absolute_pair_loss]
+    estimated_gpu_time_minutes: 4
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.4
+    table_figure_target: [Table_2, Figure_5]
+    changes_main_method: false
+    may_change_registered_abstract: false
+  - experiment_id: RR-M4-COMPLEX-LEGACY-ENDPOINT-S1
+    priority: P0
+    method: Complex_Fusion_Legacy_Endpoint_Supervision
+    target_method_generation: ours_v2_comparison
+    seed: 1
+    status: NOT_RUN
+    optimizer_steps: 300
+    supervision: [tanh_coefficient, SmoothL1, sign_loss, absolute_pair_loss]
+    estimated_gpu_time_minutes: 4
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.4
+    table_figure_target: [Table_2, Figure_5]
+    changes_main_method: false
+    may_change_registered_abstract: false
+  - experiment_id: RR-M4-COMPLEX-LEGACY-ENDPOINT-S2
+    priority: P0
+    method: Complex_Fusion_Legacy_Endpoint_Supervision
+    target_method_generation: ours_v2_comparison
+    seed: 2
+    status: NOT_RUN
+    optimizer_steps: 300
+    supervision: [tanh_coefficient, SmoothL1, sign_loss, absolute_pair_loss]
+    estimated_gpu_time_minutes: 4
+    estimated_evaluation_time_minutes: 2
+    estimated_storage_gib: 0.4
+    table_figure_target: [Table_2, Figure_5]
+    changes_main_method: false
+    may_change_registered_abstract: false
+
+  - experiment_id: RR-COLOR-COUNTERFACTUAL-SUITE
+    priority: P0
+    method: Frozen_Color_Counterfactual_Evaluation
+    target_method_generation: ours_v2
+    seed: null
+    status: NOT_RUN
+    optimizer_steps: 0
+    transformations: [C0_original, C1_grayscale, C2_deterministic_hue_shift, C3_cross_outfit_histogram_match, C4_brightness_contrast_normalization, C5_rgb_blur_mask_retained, C6_mask_boundary_average_garment_color]
+    target_pose_camera_changed: false
+    estimated_gpu_time_minutes: 2
+    estimated_evaluation_time_minutes: 5
+    estimated_storage_gib: 0.8
+    table_figure_target: [Table_2, Figure_color_counterfactual]
+    changes_main_method: false
+    may_change_registered_abstract: true
+
+  - experiment_id: RR-EXTENDED-METRICS-SUITE
+    priority: P0
+    method: Existing_Render_Extended_Metrics
+    target_method_generation: ours_v2
+    seed: null
+    status: NOT_RUN
+    optimizer_steps: 0
+    methods: [Ours-v2, B1, B2, B4, B6, B7]
+    metrics: [LPIPS, SSIM, PSNR, garment_DINO_or_CLIP_similarity, garment_silhouette_IoU, boundary_F_score, protected_LPIPS]
+    existing_renders_only: true
+    estimated_gpu_time_minutes: 0
+    estimated_evaluation_time_minutes: 10
+    estimated_storage_gib: 0.1
+    table_figure_target: [Table_extended_metrics]
+    changes_main_method: false
+    may_change_registered_abstract: false
+
+  - experiment_id: RR-STRICT-VIEW-ONE-FOLD-CANARY
+    priority: P1
+    method: Strict_View_One_Fold_Canary
+    target_method_generation: ours_v2
+    seed: null
+    status: BLOCKED_PENDING_AUTHORIZATION
+    optimizer_steps: 6300
+    teacher_count: 5
+    held_target_view: cond_000318
+    estimated_gpu_time_minutes: 30
+    estimated_evaluation_time_minutes: 10
+    estimated_storage_gib: 1.5
+    table_figure_target: [Appendix_strict_view_canary]
+    changes_main_method: false
+    may_change_registered_abstract: true
+    authorization_required: true

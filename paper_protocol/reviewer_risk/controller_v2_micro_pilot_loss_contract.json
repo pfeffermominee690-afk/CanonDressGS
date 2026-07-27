@@ -1,0 +1,144 @@
+{
+  "consistency": {
+    "applies_to": "NUISANCE_PERTURBATIONS_ONLY",
+    "formula": "L_garment_cons + L_mixedness_cons + L_pair_weight_cons",
+    "garment": {
+      "inputs": "CLEAN_AND_AUG_SOFTMAX_GARMENT_PROBABILITIES",
+      "probability_clamp_min": 1e-08,
+      "reduction": "MEAN_BATCH",
+      "type": "JENSEN_SHANNON_DIVERGENCE"
+    },
+    "information_ablation_exposure": 0,
+    "mixedness": {
+      "beta": 0.1,
+      "inputs": "CLEAN_AND_AUG_SIGMOID_MIXEDNESS_PROBABILITY",
+      "reduction": "MEAN",
+      "type": "SMOOTHL1"
+    },
+    "pair_weights": {
+      "beta": 0.1,
+      "ground_truth_pair_selection": false,
+      "inputs": "CLEAN_AND_AUG_ALL_10_SIGMOID_PAIR_WEIGHTS",
+      "reduction": "MEAN",
+      "selected_pair_only": false,
+      "type": "SMOOTHL1"
+    },
+    "target_render_exposure": 0
+  },
+  "contract_content_sha256": "770c703426364ac96b27cc311329c1ee2c4a4891a3ad966cba9878634d65503a",
+  "garment": {
+    "formula": "-mean_batch(sum_outfit(target * log_softmax(garment_logits)))",
+    "reduction": "MEAN",
+    "targets": {
+      "AAB": "2/3_AND_1/3",
+      "ABB": "1/3_AND_2/3",
+      "pure": "ONE_HOT"
+    },
+    "type": "SOFT_TARGET_CROSS_ENTROPY"
+  },
+  "information_ablation_training_boundary": {
+    "calibration_threshold_fitting_exposure": 0,
+    "consistency_loss_exposure": 0,
+    "evaluation_targets": [
+      "SAFE_SINGLE_ENDPOINT",
+      "LOW_WRONG_DUAL_EXPOSURE",
+      "IDENTITY_CONTAMINATION_GRADE_0"
+    ],
+    "reason": "TASK_INFORMATION_REMOVAL_IS_NOT_LABEL_PRESERVING_AUGMENTATION",
+    "second_garment_recovery_required": false,
+    "training_exposure": 0,
+    "use": "EVALUATION_ONLY",
+    "variants": [
+      "complete_reference_dropout",
+      "single_reference"
+    ]
+  },
+  "lambdas": {
+    "lambda_cons": 0.1,
+    "lambda_mix": 1.0,
+    "lambda_weight": 1.0
+  },
+  "matched_v1_loss": {
+    "fallback": "HISTORICAL_0.90_0.10",
+    "mixedness_supervision": false,
+    "probability_ratio_weight": true,
+    "type": "SOFT_TARGET_CROSS_ENTROPY_ONLY",
+    "v2_consistency": false,
+    "weight_supervision": false
+  },
+  "mixedness": {
+    "class_reweight": false,
+    "reduction": "MEAN",
+    "targets": {
+      "AAB": 1,
+      "ABB": 1,
+      "pure": 0
+    },
+    "type": "BINARY_CROSS_ENTROPY_WITH_LOGITS"
+  },
+  "nuisance_augmentation": {
+    "definitions": {
+      "assignment_permutation": {
+        "implementation_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py:804-805",
+        "implementation_source_sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720",
+        "rule": "REFERENCE_ROW_AND_VALIDITY_INDEX_ORDER_[2,0,1]"
+      },
+      "blur": {
+        "implementation_source": "tools/paper/p0_evaluation_protocol.py:c5_gaussian_blur",
+        "implementation_source_sha256_lf": "881724a70cbe5bb63bee3bd8decf532ab537efacd00c19fa599ed176e8be7ec4",
+        "kernel": "SEPARABLE_GAUSSIAN_REFLECT_PADDING",
+        "kernel_size": 11,
+        "mask_operation": "BLUR_ALREADY_RESIZED_RGB_THEN_RESTORE_ALL_PIXELS_OUTSIDE_CLOTHING_MASK",
+        "radius": 5,
+        "sigma": 3.0
+      },
+      "mask_dilation": {
+        "implementation_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py",
+        "implementation_source_sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720",
+        "iterations": 3,
+        "operation": "scipy.ndimage.binary_dilation",
+        "structure": "SCIPY_DEFAULT_CROSS_CONNECTIVITY_1"
+      },
+      "mask_erosion": {
+        "implementation_source": "tools/paper/run_reference_conditioned_dual_support_controller_formal_evaluation.py",
+        "implementation_source_sha256_lf": "91632363972fa63eca781c63d9f70f987a25cca251c80ce909b5c85439cf2720",
+        "iterations": 3,
+        "operation": "scipy.ndimage.binary_erosion",
+        "structure": "SCIPY_DEFAULT_CROSS_CONNECTIVITY_1"
+      }
+    },
+    "per_v2_optimizer_step": {
+      "augmented_view_exposures": 5,
+      "clean_forwards": 1,
+      "clean_record_exposures": 5,
+      "nuisance_aug_forwards": 1
+    },
+    "round_robin_zero_based_step_mod_4": {
+      "0": "blur",
+      "1": "mask_erosion",
+      "2": "mask_dilation",
+      "3": "assignment_permutation"
+    },
+    "severity_reselected": false
+  },
+  "pair_weight": {
+    "beta": 0.1,
+    "inference_ground_truth_pair_use": false,
+    "pair_orientation": "EARLIER_FROZEN_OUTFIT_WEIGHT",
+    "records": "MIXED_ONLY",
+    "reduction": "MEAN",
+    "supervised_output": "GROUND_TRUTH_UNORDERED_PAIR_SCALAR_TRAINING_INDEX_ONLY",
+    "target": {
+      "AAB": "2/3",
+      "ABB": "1/3"
+    },
+    "type": "SMOOTHL1"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "schema_version": "canondressgs.research.controller_v2_loss_contract.v1",
+  "status": "PROSPECTIVELY_FROZEN_BEFORE_ANY_V2_TRAINING",
+  "supervised_losses_on_clean_forward_only": true,
+  "task_id": "AAAI27-CONTROLLER-V2-MICRO-PILOT-CONTRACT-REPAIR-001",
+  "total": "L_garment + 1.0*L_mixedness + 1.0*L_weight + 0.1*L_consistency"
+}

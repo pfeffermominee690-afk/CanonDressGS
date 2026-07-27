@@ -1,0 +1,384 @@
+schema_version: canondressgs.paper.p0_color_spatial_soft_control_protocol.v1
+task_id: AAAI27-P0-EVALUATION-PROTOCOL-REPAIR-001
+protocol_status: FROZEN_BEFORE_EVALUATION
+source_branch: paper/aaai27-p0-formal-candidate-runs-20260721
+source_head: 32e6058ea64078f5ccded6f86e8bffe3cb81b30e
+protocol_branch: paper/aaai27-p0-evaluation-protocol-repair-20260721
+created_at: '2026-07-22T05:24:24+08:00'
+paper_final: false
+
+governance:
+  evaluation_started: false
+  render_count: 0
+  metric_count: 0
+  training_count: 0
+  backward_count: 0
+  optimizer_count: 0
+  checkpoint_write_count: 0
+  adaptive_parameter_selection: forbidden
+  result_conditioned_protocol_change: forbidden
+  formal_outputs: read_only
+  historical_attempts: read_only
+  next_task_started: false
+
+sources:
+  color_source:
+    path: docs/PAPER/AAAI27_FAIR_BASELINE_AND_COUNTERFACTUAL_PROTOCOL_20260721.md
+    section: C0-C6 color-dependence counterfactual
+  paper_method_config:
+    path: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml
+    source_commit: 4baf319843f2e8f4faf08043dcd40a590a61d992
+  frozen_asset_manifest:
+    path: paper_protocol/frozen_asset_manifest.json
+    sha256: ff90540e56c9c2db3fd6a1e45c31a1d1eb5a8a32effabde71158584d9be538bb
+  target_reference_manifest:
+    path: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json
+    sha256: 49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf
+  base_checkpoint:
+    path: ${CANONDRESSGS_OUTPUT_ROOT}/subject02_formal_800k/chkpnt100000.pth
+    sha256: abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70
+    base_gaussian_state_fingerprint: de312ccbcabaa37cde63cd318d087b69e830ed5148779ca40456784b964f80d9
+  rank4_basis:
+    path: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_b_basis/selected/selected_basis.pt
+    sha256: a29b3dc3c6f0ac1a79755e036eb4196dc9e4d116f3e2b35a7ed4e2bd5286f430
+  stable_protected_attribution:
+    path: ${CANONDRESSGS_OUTPUT_ROOT}/pipeline_full/SUBJECT02-EDITABLE-POOL-SPECIFICITY-001/attempt_007/full_gaussian_attribution/full_gaussian_attribution.parquet
+    sha256: 4b6267aad721bbe1a690d631d8479a69859f02058b0b507399fcef448333271d
+    row_count: 200000
+    stable_protected_count: 30894
+    membership_sha256_uint8_c: 57683c55a1934b0610ffbc6254da98424863b77316dd80fc2ef9f1d5b6cb5761
+
+dataset:
+  seen_outfit_order: [O01, O02, O03, O04, O08]
+  target_condition_order: [cond_000000, cond_000318, cond_000017, cond_000347]
+  target_view_names:
+    cond_000000: front
+    cond_000318: back
+    cond_000017: left
+    cond_000347: right
+  fixed_episode_count: 20
+  legal_references_per_episode: 3
+  reference_rule: all three non-target conditions in target_condition_order
+  reference_target_overlap: 0
+  methods_color_and_mixed_reference: [Ours-v2, B6, B7]
+  methods_extended: [Ours-v2, B1, B2, B4, B6, B7, M3, M4]
+  methods_spatial: [B1, historical_old_Ours, historical_A6, Ours-v2, M3, M4]
+
+common_reference_preprocessing:
+  encoded_color_space: sRGB numeric RGB; do not linearize gamma
+  input_range: float32 [0,1]
+  channel_order: RGB
+  resize_resolution: exact H,W of frozen F2 reference tensor from target_reference_manifest
+  resize_method: bilinear RGB with align_corners=false; nearest binary mask
+  transform_position_default: after resize and before frozen F2 normalization
+  normalization_position: after every reference transform
+  target_rgb_mutable: false
+  target_mask_mutable: false
+  target_pose_camera_mutable: false
+  reference_pose_camera_mutable: false
+  basis_teacher_checkpoint_renderer_mutable: false
+  output_hash_policy:
+    algorithm: sha256
+    rgb_bytes: contiguous little-endian float32 C-order after transform
+    mask_bytes: contiguous uint8 C-order
+    immutable_companions: hash target RGB/mask/pose/camera and reference mask before and after
+
+color_transforms:
+  C0:
+    transform_name: ORIGINAL_REFERENCE_RGB
+    exact_formula: output = input
+    parameter_values: {}
+    rgb_color_space: sRGB numeric RGB [0,1]
+    operation_order: resize -> identity -> F2 normalization
+    resize_position: before transform
+    dtype: float32
+    clipping: none
+    rounding: none
+    mask_treatment: frozen mask unchanged; RGB unchanged inside and outside
+    target_immutability: all target fields bitwise unchanged
+    deterministic_seed: null; no random operation
+    output_hash_policy: sha256 of float32 RGB and uint8 mask bytes
+  C1:
+    transform_name: FIXED_LUMINANCE_GRAYSCALE
+    exact_formula: Y=0.299*R+0.587*G+0.114*B; output=(Y,Y,Y)
+    parameter_values: {red: 0.299, green: 0.587, blue: 0.114}
+    rgb_color_space: sRGB numeric RGB [0,1]; no gamma linearization
+    operation_order: resize -> grayscale all reference RGB pixels -> F2 normalization
+    resize_position: before transform
+    dtype: float32 input/output; float64 weighted accumulation
+    clipping: clip transformed values to [0,1]
+    rounding: none; no quantization
+    mask_treatment: RGB transform applies to the whole reference image; binary clothing mask remains bitwise unchanged
+    target_immutability: all target fields bitwise unchanged
+    deterministic_seed: null; no random operation
+    output_hash_policy: sha256 of float32 RGB and uint8 mask bytes
+  C2:
+    transform_name: DETERMINISTIC_HUE_SHIFT
+    exact_formula: RGB->HSV; H_out=(H_in+1/3) mod 1; S,V unchanged; HSV->RGB
+    parameter_values: {hue_fraction: 0.3333333333333333, hue_degrees: 120}
+    rgb_color_space: sRGB numeric RGB converted to standard HSV with H in [0,1)
+    operation_order: resize -> whole-image RGB-to-HSV -> hue wrap -> HSV-to-RGB -> F2 normalization
+    resize_position: before transform
+    dtype: float32 input/output; float64 color conversion
+    clipping: clip output RGB to [0,1]
+    rounding: none; no quantization
+    mask_treatment: RGB transform applies to the whole reference image; binary clothing mask remains bitwise unchanged
+    target_immutability: all target fields bitwise unchanged
+    deterministic_seed: null; no random operation
+    output_hash_policy: sha256 of float32 RGB and uint8 mask bytes
+  C3:
+    transform_name: CROSS_OUTFIT_HISTOGRAM_MATCHING
+    exact_formula: per channel Qs(q_i),Qd(q_i), then piecewise-linear Qd(Qs^-1(x)); q_i=i/255
+    parameter_values:
+      quantile_count: 256
+      quantile_grid: q_i=i/255 for i=0,...,255 including both endpoints
+      quantile_method: linear
+      interpolation: piecewise linear
+      repeated_source_knot_rule: collapse exact-equal Qs knots and use arithmetic mean of their Qd ordinates
+      donor_cycle: {O01: O02, O02: O03, O03: O04, O04: O08, O08: O01}
+    rgb_color_space: sRGB numeric RGB [0,1], channels independent
+    operation_order: resize -> masked source/donor quantiles -> interpolate -> clip -> half-up quantize -> float32 -> restore exterior -> F2 normalization
+    resize_position: before quantiles and mapping
+    dtype: float32 input; float64 quantiles/interpolation; float32 output
+    clipping: clip interpolation result to [0,1] before rounding
+    rounding: round_half_up_8bit=floor(255*x+0.5)/255; Python round forbidden
+    mask_treatment: source statistics use source frozen clothing mask; donor statistics use donor frozen clothing mask; only source mask-interior RGB changes; source exterior and both masks unchanged
+    target_immutability: target/pose/camera/alpha/basis/checkpoint bitwise unchanged; donor supplies color distribution only
+    deterministic_seed: null; donor cycle and quantile grid are fixed
+    output_hash_policy: sha256 of float32 RGB and uint8 source/donor mask bytes
+  C4:
+    transform_name: BRIGHTNESS_CONTRAST_NORMALIZATION
+    exact_formula: y=((x-mu_source)/max(std_source,epsilon))*std_target+mu_target per channel; if std_source<epsilon then y=mu_target
+    parameter_values:
+      epsilon: 1.0e-6
+      variance: population variance ddof=0
+      target_statistics: pooled mask-interior pixels from every unique (seen outfit, frozen condition) training-reference image, each unique image once
+      target_statistics_order: seen_outfit_order then target_condition_order then row-major mask pixels
+    rgb_color_space: sRGB numeric RGB [0,1], channels independent
+    operation_order: resize -> masked float64 statistics -> affine map/degenerate rule -> clip -> float32 -> restore exterior -> F2 normalization
+    resize_position: before source and frozen-global statistics
+    dtype: float32 input/output; float64 mean/variance/affine accumulation
+    clipping: clip mapped RGB to [0,1]
+    rounding: none; no 8-bit quantization
+    mask_treatment: only mask-interior RGB changes; exterior RGB and binary mask bitwise unchanged
+    target_immutability: all target fields bitwise unchanged
+    deterministic_seed: null; corpus and traversal order are fixed
+    output_hash_policy: sha256 of target-stat float64 bytes, output float32 RGB, and uint8 mask
+  C5:
+    transform_name: RGB_GAUSSIAN_BLUR_MASK_RETAINED
+    exact_formula: separable convolution with normalized G[k]=exp(-k^2/(2*sigma^2))/sum(G), k=-5,...,5
+    parameter_values: {kernel_size: 11, sigma_pixels: 3.0, padding: reflect, channels: independent}
+    rgb_color_space: sRGB numeric RGB [0,1]
+    operation_order: resize -> separable vertical/horizontal blur -> clip -> restore exterior -> F2 normalization
+    resize_position: transform is after resize at frozen F2 input resolution and before normalization
+    dtype: float32 input/kernel/convolution/output
+    clipping: clip blurred output to [0,1]
+    rounding: none; no quantization
+    mask_treatment: RGB changes only inside frozen mask; exterior RGB restored; mask bitwise unchanged and never blurred
+    target_immutability: do not blur target, target alpha, pose/camera, reference pose/camera, basis, or checkpoint
+    deterministic_seed: null; no random operation
+    output_hash_policy: sha256 of float32 RGB and uint8 mask bytes
+  C6:
+    transform_name: MASK_BOUNDARY_AVERAGE_GARMENT_COLOR
+    exact_formula: mask-interior output RGB equals per-channel arithmetic mean of that reference's mask-interior RGB
+    parameter_values: {mean_accumulation: float64, mean_scope: current reference clothing-mask pixels}
+    rgb_color_space: sRGB numeric RGB [0,1], channels independent
+    operation_order: resize -> masked mean -> fill interior -> restore exterior -> F2 normalization
+    resize_position: before masked mean and fill
+    dtype: float32 input/output; float64 mean accumulation
+    clipping: clip fill value to [0,1]
+    rounding: none; no quantization
+    mask_treatment: retain exact binary boundary; exterior RGB and mask bitwise unchanged
+    target_immutability: all target fields bitwise unchanged
+    deterministic_seed: null; no random operation
+    output_hash_policy: sha256 of float32 RGB and uint8 mask bytes
+
+mixed_reference:
+  pair_order: combinations of [O01,O02,O03,O04,O08] in frozen order
+  pair_count: 10
+  target_views: 4
+  reference_position_order: legal non-target conditions in target_condition_order
+  assignments:
+    - {id: AAA, values: [A,A,A], macro: AAA}
+    - {id: AAB_B_POSITION_0, values: [B,A,A], macro: AAB}
+    - {id: AAB_B_POSITION_1, values: [A,B,A], macro: AAB}
+    - {id: AAB_B_POSITION_2, values: [A,A,B], macro: AAB}
+    - {id: ABB_A_POSITION_0, values: [A,B,B], macro: ABB}
+    - {id: ABB_A_POSITION_1, values: [B,A,B], macro: ABB}
+    - {id: ABB_A_POSITION_2, values: [B,B,A], macro: ABB}
+    - {id: BBB, values: [B,B,B], macro: BBB}
+  sets_per_pair_view: 8
+  query_sets_per_method: 320
+  methods: [Ours-v2, B6, B7]
+  total_method_queries: 960
+  aggregation: assignment macro within AAB/ABB -> pair macro -> outfit macro -> method
+  permutation_invariance: use deterministic set mean/max; evaluate all permutations only as a parity check
+  cherry_pick_assignment: forbidden
+
+perturbation_ladders:
+  common_position: after resize at frozen F2 input resolution and before normalization
+  grayscale:
+    values: [0.0, 0.25, 0.5, 0.75, 1.0]
+    formula: I_lambda=(1-lambda)*I+lambda*Gray(I)
+    gray_weights: [0.299, 0.587, 0.114]
+    scope: whole reference RGB; clothing mask unchanged
+  hue:
+    values_degrees: [0, 15, 30, 45, 60]
+    formula: RGB->HSV; H=(H+delta/360) mod 1; S,V unchanged; HSV->RGB
+    dtype_range: float32 [0,1]
+    scope: whole reference RGB; clothing mask unchanged
+  blur:
+    values_sigma_pixels: [0, 1, 2, 3, 4]
+    sigma_zero: identity
+    positive_kernel_size: 2*ceil(3*sigma)+1
+    padding: reflect
+    c5_endpoint: sigma=3 intensity; C5 keeps its independently fixed kernel_size=11 while the ladder formula yields 19
+    scope: whole reference RGB; clothing mask unchanged
+  mask_morphology:
+    values_radius_pixels: [-8, -4, 0, 4, 8]
+    negative: binary erosion
+    positive: binary dilation
+    zero: unchanged
+    structuring_element: disk; include integer offsets dx,dy satisfying dx^2+dy^2<=radius^2
+    mask_resize: nearest neighbor binary
+    reference_rgb: unchanged
+    target_mask: unchanged
+
+extended_metrics:
+  immutable_sources: saved prediction/teacher RGB, alpha, garment mask, protected mask
+  source_render_identity: identical source render manifest across methods
+  psnr: {range: 1.0, domains: [garment_pixels, foreground_pixels], zero_mse: positive_infinity}
+  ssim:
+    domain: tight garment bounding crop with mask-exterior RGB zero
+    data_range: 1.0
+    channels: RGB mean
+    window: {kernel_size: 11, sigma: 1.5, padding: reflect}
+    constants: {K1: 0.01, K2: 0.03}
+  lpips:
+    domains: [garment_crop, protected_crop]
+    crop: tight mask bounding box, expand by 5 percent of max side, clip to image
+    resize: bilinear aspect-preserving fit then zero-pad to 256x256; align_corners=false
+    normalization: RGB [0,1] to [-1,1]
+    network: vgg16
+    implementation_sha256: 827e820a40047b3d93f24d06c4f1f59892eb064006a5f39a1fbd169bfa031ba7
+    calibration_sha256: a78928a0af1e5f0fcb1f3b9e8f8c3a2a5a3de244d830ad5c1feddc79b8432868
+    trunk_sha256: 397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0
+  silhouette_iou: {prediction_alpha_threshold: 0.5, target: frozen garment mask, comparison: greater_than_or_equal}
+  boundary_fscore: {tolerance_formula: 'max(1,floor(0.005*min(H,W)+0.5))', resolution: evaluator source render H,W, same_for_all_methods: true}
+  dino_clip: {status: BLOCKED_RESOURCE_MISSING, value: null, replacement_or_download: forbidden}
+  aggregation: episode -> outfit macro -> replicate_or_seed -> method
+
+spatial_metrics:
+  base_support:
+    element_count: 200000
+    indexing: row index of frozen base checkpoint _xyz; all residual tensors must have identical leading dimension/order
+    mutation: forbidden
+  normal_contract:
+    source_fields: [_scaling, _rotation]
+    scaling_semantics: raw log scale; argmin is identical before/after exp
+    local_axis: e_argmin(_scaling); exact unique minimum required per Gaussian, ties are a hard protocol error
+    quaternion: normalize frozen _rotation in wxyz order
+    world_normal_formula: n_i=R(normalize(q_i))*e_argmin(_scaling_i)
+    classification: exact intrinsic shortest covariance principal axis; no mesh/KNN/finite-difference approximation
+    audited_exact_min_tie_count: 0
+    audited_float32_normal_sha256_c: 0719ced1c3bc8cd97a957152d099fcc98f692b8f8697b3761e3b86fcb0fc06df
+    decomposition:
+      signed_normal_scalar: dot(delta_xyz,n)
+      normal_magnitude: abs(dot(delta_xyz,n))
+      tangential_vector: delta_xyz-dot(delta_xyz,n)*n
+      tangential_magnitude: l2(tangential_vector)
+      tangential_fraction: tangential_magnitude/l2(delta_xyz); define 0 when l2(delta_xyz)=0
+  garment_mapping:
+    source: persisted model.trainable_support from each frozen teacher checkpoint
+    construction_source: scene/representation_capacity_oracle.py::garment_trainable_mask
+    lbs_rule: argmax over first 55 normalized weights; joints [0,1,2,3,4,5,6,7,8,9,12,13,14,16,17,18,19]
+    count: 170547
+    all_five_seen_teachers_bitwise_equal: true
+    membership_sha256_uint8_c: 4fa5bd87cc234a90578ea06c7d1cac18e13e482e548e6af8492964ea8fcfc043
+  protected_mapping:
+    source: stable_protected_attribution
+    rule: base_projection_region == stable_protected indexed by gaussian_index
+    count: 30894
+    target_outfit_cloud_independent: true
+    membership_sha256_uint8_c: 57683c55a1934b0610ffbc6254da98424863b77316dd80fc2ef9f1d5b6cb5761
+  garment_exterior_mapping: logical NOT garment_mapping over the same 200000 base indices
+  displacement_statistics: [mean, P50, P95, P99, max]
+  percentile_method: linear
+  trust_radius:
+    b_xyz: 0.05
+    source: configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml#basis.channel_bounds.xyz
+    scalar_formula: {tau_1: b_xyz, tau_half: 0.5*b_xyz}
+    vector_formula: {tau_1: l2_norm(b_xyz), tau_half: 0.5*l2_norm(b_xyz)}
+    observed_percentile_thresholding: forbidden
+    report: [exceedance_fraction_at_tau_half, exceedance_fraction_at_tau_1]
+  active_displacement:
+    epsilon: 0.0
+    rule: displaced means exact L2 > 0 in stored float32 residual
+  protected_metrics: [displaced_gaussian_count, displacement_P95, displacement_P99, opacity_activation]
+  opacity_activation: sigmoid(base_opacity_logit+delta_opacity_logit)-sigmoid(base_opacity_logit); report positive count/mean/max
+  garment_exterior_metrics: [positive_opacity_activation_count, positive_opacity_activation_mean, spatial_outlier_count]
+  spatial_outlier_definition: garment-exterior Gaussian with delta_xyz L2 > tau_1
+  shared_teacher_rule: B6/B7 cite B1 teacher endpoint residual and never duplicate it as independent residual evidence
+
+direct_interpolation:
+  outfit_pair_order: combinations of [O01,O02,O03,O04,O08] in frozen order
+  pair_count: 10
+  alpha_grid: [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+  target_views: [cond_000000, cond_000318, cond_000017, cond_000347]
+  grid_size: 440
+  coefficient_source: selected_basis.pt::teacher_coefficients
+  coefficient_space: raw frozen teacher coefficient space; not standardized
+  formula: c(alpha)=(1-alpha)*c_A+alpha*c_B
+  endpoint_mapping: alpha=0 is A; alpha=1 is B
+  reconstruction: mean_normalized + sum_k(c_k*basis_normalized_k), then apply frozen channel bounds
+  target_pose_camera: fixed within each view sequence
+  reference_predictor_used: false
+  endpoint_parity:
+    coefficient_and_residual: bitwise equality against the same frozen teacher reconstruction path
+    render: max_abs<=1.0e-6 with rtol=0 if renderer is not bitwise deterministic; record which rule fired
+
+visual_review:
+  grade_scale: {0: NONE, 1: MINOR, 2: MODERATE, 3: SEVERE}
+  separate_categories: [cloud, mottle, edge_scatter, full_body_contamination, identity_contamination, silhouette_discontinuity]
+  aggregate_score: forbidden
+  source_image_paths_required: true
+  all_pairs_views_required: true
+
+stage_classification_rules:
+  color:
+    COLOR_ROBUST: every C1-C6 outfit-macro correct-class accuracy >=0.8 and every drop from C0 <=0.2
+    COLOR_SENSITIVE_BUT_USABLE: not robust, but every C1-C6 method accuracy >0.4 and no transform collapses at least 3 of 5 outfits to one class
+    COLOR_DOMINATED: otherwise
+  basis_continuity:
+    confirmed: endpoint parity passes, every adjacent LPIPS <= corresponding endpoint LPIPS, and no intermediate visual category is SEVERE
+    numeric_only: coefficient/residual adjacency is continuous but confirmed rule fails
+    not_confirmed: endpoint parity or finite/ordered grid fails
+  reference_soft_control:
+    stable_non_endpoint_pair: at least 3 of 4 views have both AAB and ABB assignment-macro median t strictly in (0.05,0.95), AAB<ABB, and orthogonal_distance<=0.10*endpoint_distance
+    confirmed: at least 6 of 10 stable_non_endpoint_pair and no SEVERE intermediate artifact
+    partial: at least 1 stable_non_endpoint_pair or coefficient continuity without visual continuity
+    not_confirmed: otherwise
+  perturbation_continuity:
+    smoother: Ours-v2 median pairwise max adjacent render LPIPS and coefficient total variation are each below both B6 and B7, with no SEVERE artifact
+    hard_lookup_equally_stable: neither hard lookup has a class switch and Ours-v2 has no strict advantage under the smoother rule
+    inconclusive: otherwise
+  spatial:
+    bounded: exceedance_at_tau_1=0, protected displaced count=0, garment-exterior outlier count=0, and no visual grade above MINOR
+    present_but_usable: exceedance_at_tau_1<=0.01 and no visual category is SEVERE
+    severe: otherwise
+  final_paper_hard_lookup_fusion_supervision_adjudication: forbidden_in_this_task
+
+no_evaluation_gate:
+  training: 0
+  backward: 0
+  optimizer: 0
+  checkpoint_write: 0
+  evaluation: 0
+  render_write: 0
+  metric_write: 0
+  formal_asset_change: 0
+  paper_final_count: 0
+  status: PASS
+
+next_task: RUN_P0_COLOR_EXTENDED_SPATIAL_AND_SOFT_CONTROL_EVALUATIONS
+next_task_started: false

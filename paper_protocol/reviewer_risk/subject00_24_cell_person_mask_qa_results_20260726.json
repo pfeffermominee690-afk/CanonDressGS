@@ -1,0 +1,1771 @@
+{
+  "schema_version": "canondressgs.subject00.person_mask_qa.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-MASK-GENERATION-EXECUTION-001",
+  "pass_count": 24,
+  "fail_count": 0,
+  "records": [
+    {
+      "sequence_index": 1,
+      "garment": "O01",
+      "slot": "slot_00",
+      "direction": "front",
+      "request_id": "subject00_O01_slot00_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot00_cand01_person_mask.png",
+        "bytes": 3884,
+        "sha256": "a1df279dd858260fedfffe95288101b45152c855b9b72924596ac967c6092218"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 79007,
+        "area_ratio": 0.0502290623764252,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          472,
+          303,
+          904,
+          897
+        ],
+        "bbox_coverage": 0.1631397121557548,
+        "boundary_to_area_ratio": 0.02851646056678522
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4399,
+        "torso_garment_pixels": 44825,
+        "hands_arm_proxy_pixels": 1482,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2989,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 2,
+      "garment": "O01",
+      "slot": "slot_01",
+      "direction": "front-left",
+      "request_id": "subject00_O01_slot01_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot01_cand01_person_mask.png",
+        "bytes": 3810,
+        "sha256": "dfb52ee8fad4c85f0e765671b456e0cfe7e48f25c14f8c5080a1b2a170ea5a61"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 78783,
+        "area_ratio": 0.050086653349727325,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          552,
+          294,
+          906,
+          931
+        ],
+        "bbox_coverage": 0.14336138706392004,
+        "boundary_to_area_ratio": 0.0270870619296041
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 2135,
+        "torso_garment_pixels": 43370,
+        "hands_arm_proxy_pixels": 1790,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2906,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 3,
+      "garment": "O01",
+      "slot": "slot_02",
+      "direction": "front-right",
+      "request_id": "subject00_O01_slot02_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot02_cand01_person_mask.png",
+        "bytes": 3508,
+        "sha256": "b48b1cb763a3730481140387215737f8743e345ed131c15cef82eb07951bd45c"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 63038,
+        "area_ratio": 0.04007669743295014,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          551,
+          298,
+          783,
+          903
+        ],
+        "bbox_coverage": 0.0892345133362239,
+        "boundary_to_area_ratio": 0.027031314445255243
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 34740,
+        "hands_arm_proxy_pixels": 1119,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3747,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 4,
+      "garment": "O01",
+      "slot": "slot_03",
+      "direction": "left",
+      "request_id": "subject00_O01_slot03_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot03_cand01_person_mask.png",
+        "bytes": 3280,
+        "sha256": "45301a88b7a3404287d955aa416987c77144970095cd15b8ee5c3e3fd3914e84"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 58001,
+        "area_ratio": 0.03687440159599831,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          636,
+          310,
+          804,
+          935
+        ],
+        "bbox_coverage": 0.0667542312646303,
+        "boundary_to_area_ratio": 0.025309908449854313
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 30891,
+        "hands_arm_proxy_pixels": 1322,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3951,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 5,
+      "garment": "O01",
+      "slot": "slot_04",
+      "direction": "right",
+      "request_id": "subject00_O01_slot04_remaining_attempt005_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot04_remaining_attempt005_cand00_person_mask.png",
+        "bytes": 3230,
+        "sha256": "45a4da1b76624f965fe5c969098685b7d47bbf9112a5cc7206d171083c3f8c94"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 56657,
+        "area_ratio": 0.03601994743581104,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          583,
+          298,
+          768,
+          933
+        ],
+        "bbox_coverage": 0.07468526969345185,
+        "boundary_to_area_ratio": 0.025910302345694265
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 30527,
+        "hands_arm_proxy_pixels": 118,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2765,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION",
+        "REGISTRATION_OVERRIDE_SPECIAL_REVIEW"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 6,
+      "garment": "O01",
+      "slot": "slot_05",
+      "direction": "back-left",
+      "request_id": "subject00_O01_slot05_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot05_cand00_person_mask.png",
+        "bytes": 3673,
+        "sha256": "c27ea28fa39fa1626564fd8a81e55b98ad06ca08c7d09996f816ce7fe0a7a42c"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 75193,
+        "area_ratio": 0.04780429439506044,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          527,
+          304,
+          782,
+          943
+        ],
+        "bbox_coverage": 0.10359303060395414,
+        "boundary_to_area_ratio": 0.026451930365858523
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 41263,
+        "hands_arm_proxy_pixels": 576,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 4086,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 7,
+      "garment": "O01",
+      "slot": "slot_06",
+      "direction": "back-right",
+      "request_id": "subject00_O01_slot06_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot06_cand01_person_mask.png",
+        "bytes": 3699,
+        "sha256": "d80085ce7b059737aa4bdf97a7190c0d0b92e8a0d6c7a643098f9abb2323f075"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 73226,
+        "area_ratio": 0.0465537651293697,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          515,
+          311,
+          834,
+          923
+        ],
+        "bbox_coverage": 0.12411709582220233,
+        "boundary_to_area_ratio": 0.027012263403709064
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 40286,
+        "hands_arm_proxy_pixels": 1024,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2813,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 8,
+      "garment": "O01",
+      "slot": "slot_07",
+      "direction": "back",
+      "request_id": "subject00_O01_slot07_remaining_attempt005_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O01\\subject00_O01_slot07_remaining_attempt005_cand00_person_mask.png",
+        "bytes": 3860,
+        "sha256": "bd01517eba6acfbd93b99679925ebe96ea5f047771c7a08f98a2d3ed8905fefe"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 83300,
+        "area_ratio": 0.052958356803273376,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          412,
+          309,
+          834,
+          913
+        ],
+        "bbox_coverage": 0.1620462142721818,
+        "boundary_to_area_ratio": 0.02750300120048019
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 52672,
+        "hands_arm_proxy_pixels": 578,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2580,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 9,
+      "garment": "O03",
+      "slot": "slot_00",
+      "direction": "front",
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot00_canary_attempt004_cand00_person_mask.png",
+        "bytes": 3886,
+        "sha256": "c22ed332c668e1780ab43f895c1a2fbe9df91048ef8b45927f4366e08fa762f7"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1350,
+        1165
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 69923,
+        "area_ratio": 0.04445906851057066,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          468,
+          314,
+          898,
+          891
+        ],
+        "bbox_coverage": 0.15775552376410745,
+        "boundary_to_area_ratio": 0.03229266478841011
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4071,
+        "torso_garment_pixels": 39857,
+        "hands_arm_proxy_pixels": 2034,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2885,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 10,
+      "garment": "O03",
+      "slot": "slot_01",
+      "direction": "front-left",
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot01_remaining_attempt005_cand00_person_mask.png",
+        "bytes": 3835,
+        "sha256": "bda7ba50815513704f4e6fef1cbcd9c6a4254b66c2a43569d7651b7042f4d595"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 71813,
+        "area_ratio": 0.04565544390292282,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          544,
+          302,
+          893,
+          928
+        ],
+        "bbox_coverage": 0.13889584686960801,
+        "boundary_to_area_ratio": 0.030941472992355144
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4614,
+        "torso_garment_pixels": 35233,
+        "hands_arm_proxy_pixels": 2063,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3147,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 11,
+      "garment": "O03",
+      "slot": "slot_02",
+      "direction": "front-right",
+      "request_id": "subject00_O03_slot02_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot02_cand00_person_mask.png",
+        "bytes": 3551,
+        "sha256": "0d6885d32955e95457a4796187a5c793e05fc45242109743eba90885de52aca6"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 64409,
+        "area_ratio": 0.04094831696689117,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          555,
+          300,
+          778,
+          912
+        ],
+        "bbox_coverage": 0.08676524253401605,
+        "boundary_to_area_ratio": 0.027387476905401418
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 5173,
+        "torso_garment_pixels": 30297,
+        "hands_arm_proxy_pixels": 1287,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2854,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 12,
+      "garment": "O03",
+      "slot": "slot_03",
+      "direction": "left",
+      "request_id": "subject00_O03_slot03_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot03_cand01_person_mask.png",
+        "bytes": 3211,
+        "sha256": "d428a86495d7d3fdd492be35697c08ada501412f9c83aa83196fb180ff15aef7"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 57151,
+        "area_ratio": 0.036334010200046535,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          655,
+          311,
+          800,
+          936
+        ],
+        "bbox_coverage": 0.057615259127210675,
+        "boundary_to_area_ratio": 0.025161414498433975
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 5104,
+        "torso_garment_pixels": 23468,
+        "hands_arm_proxy_pixels": 1352,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3166,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 13,
+      "garment": "O03",
+      "slot": "slot_04",
+      "direction": "right",
+      "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot04_canary_attempt004_cand00_person_mask.png",
+        "bytes": 3265,
+        "sha256": "85a894318a2b8cf585c85df99dca777ef691b8fa5cc0cf0c4149d9379e5b2c6c"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 54037,
+        "area_ratio": 0.03435427042711264,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          575,
+          292,
+          766,
+          926
+        ],
+        "bbox_coverage": 0.07698606553103944,
+        "boundary_to_area_ratio": 0.0283694505616522
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 6181,
+        "torso_garment_pixels": 23683,
+        "hands_arm_proxy_pixels": 925,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2506,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION",
+        "REGISTRATION_OVERRIDE_SPECIAL_REVIEW"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 14,
+      "garment": "O03",
+      "slot": "slot_05",
+      "direction": "back-left",
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot05_canary_attempt004_cand00_person_mask.png",
+        "bytes": 3629,
+        "sha256": "190d8943391bbff1d0a822ecf89201f2f27258f573f186cab62f227f15357b72"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 74596,
+        "area_ratio": 0.047424748908727256,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          526,
+          304,
+          783,
+          943
+        ],
+        "bbox_coverage": 0.1044055249616322,
+        "boundary_to_area_ratio": 0.02591291758271221
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 5091,
+        "torso_garment_pixels": 35889,
+        "hands_arm_proxy_pixels": 654,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 4468,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 15,
+      "garment": "O03",
+      "slot": "slot_06",
+      "direction": "back-right",
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot06_remaining_attempt005_cand00_person_mask.png",
+        "bytes": 3704,
+        "sha256": "ec9eb189d59a13dbc3c17ff3f73910295b8c3c93a63974e614724f6f57f31653"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 72705,
+        "area_ratio": 0.04622253699138044,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          513,
+          309,
+          831,
+          918
+        ],
+        "bbox_coverage": 0.12312150414448413,
+        "boundary_to_area_ratio": 0.027907296609586685
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4031,
+        "torso_garment_pixels": 35796,
+        "hands_arm_proxy_pixels": 1428,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2758,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 16,
+      "garment": "O03",
+      "slot": "slot_07",
+      "direction": "back",
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O03\\subject00_O03_slot07_canary_attempt004_cand00_person_mask.png",
+        "bytes": 3933,
+        "sha256": "6e6c152e234dfe363c18bcbc273f84fa7b62872fac4cebec83ba98d0c62590db"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 87765,
+        "area_ratio": 0.05579700101847884,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          417,
+          313,
+          849,
+          927
+        ],
+        "bbox_coverage": 0.16863263175695864,
+        "boundary_to_area_ratio": 0.027573634136614823
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 3888,
+        "torso_garment_pixels": 50922,
+        "hands_arm_proxy_pixels": 752,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3092,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 17,
+      "garment": "O04",
+      "slot": "slot_00",
+      "direction": "front",
+      "request_id": "subject00_O04_slot00_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot00_cand01_person_mask.png",
+        "bytes": 3861,
+        "sha256": "7d0adc4ec485480ae284a4bee523c82d59ea9868f61d8876c0a0f2f513620b31"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 76483,
+        "area_ratio": 0.04862441780774018,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          470,
+          311,
+          903,
+          896
+        ],
+        "bbox_coverage": 0.16103981476654455,
+        "boundary_to_area_ratio": 0.029313703698861184
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4565,
+        "torso_garment_pixels": 38553,
+        "hands_arm_proxy_pixels": 1822,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3048,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 18,
+      "garment": "O04",
+      "slot": "slot_01",
+      "direction": "front-left",
+      "request_id": "subject00_O04_slot01_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot01_cand01_person_mask.png",
+        "bytes": 3820,
+        "sha256": "ff9077b790f7978a91a46e7cb2bbb9a6346e8f9f6b3aeac8cc9ba12d94dc8ea6"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 81019,
+        "area_ratio": 0.05150820059837222,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          541,
+          292,
+          906,
+          929
+        ],
+        "bbox_coverage": 0.14781611943031303,
+        "boundary_to_area_ratio": 0.02659869907058838
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 6664,
+        "torso_garment_pixels": 38495,
+        "hands_arm_proxy_pixels": 2231,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3201,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 19,
+      "garment": "O04",
+      "slot": "slot_02",
+      "direction": "front-right",
+      "request_id": "subject00_O04_slot02_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot02_cand00_person_mask.png",
+        "bytes": 3444,
+        "sha256": "9f2256adc8c55f80a63554533a342aa47131e64803ac4a19287d8fc47350c33a"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 65644,
+        "area_ratio": 0.04173347387747992,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          554,
+          307,
+          788,
+          909
+        ],
+        "bbox_coverage": 0.08955747666462802,
+        "boundary_to_area_ratio": 0.024693802937054414
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4995,
+        "torso_garment_pixels": 27613,
+        "hands_arm_proxy_pixels": 1482,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2683,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 20,
+      "garment": "O04",
+      "slot": "slot_03",
+      "direction": "left",
+      "request_id": "subject00_O04_slot03_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot03_cand01_person_mask.png",
+        "bytes": 3203,
+        "sha256": "7dc51560e06c1ff2bfa8239c866c1386758a4d19239f5ccb149a559a8acd00ac"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 57718,
+        "area_ratio": 0.03669448304887554,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          635,
+          316,
+          810,
+          937
+        ],
+        "bbox_coverage": 0.06909062935889236,
+        "boundary_to_area_ratio": 0.024203887868602517
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 5108,
+        "torso_garment_pixels": 23054,
+        "hands_arm_proxy_pixels": 1430,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3590,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 21,
+      "garment": "O04",
+      "slot": "slot_04",
+      "direction": "right",
+      "request_id": "subject00_O04_slot04_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot04_cand01_person_mask.png",
+        "bytes": 3334,
+        "sha256": "b1b03b12d950f2f93cdeddedee0524d742291fa88f8c3eee3c9940815a893e2d"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 52404,
+        "area_ratio": 0.033316083192301775,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          573,
+          298,
+          757,
+          916
+        ],
+        "bbox_coverage": 0.0722929251958442,
+        "boundary_to_area_ratio": 0.02932982215098084
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 27383,
+        "hands_arm_proxy_pixels": 976,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 2957,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 22,
+      "garment": "O04",
+      "slot": "slot_05",
+      "direction": "back-left",
+      "request_id": "subject00_O04_slot05_remaining_attempt005_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot05_remaining_attempt005_cand00_person_mask.png",
+        "bytes": 3548,
+        "sha256": "d795bd2afd40287ec4e94155c95705a1789dd04cbac7217bf48545736ea9c25f"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 74611,
+        "area_ratio": 0.04743428522747935,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          524,
+          303,
+          781,
+          936
+        ],
+        "bbox_coverage": 0.10342519139391736,
+        "boundary_to_area_ratio": 0.02385707201351007
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 36395,
+        "hands_arm_proxy_pixels": 591,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 4033,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 23,
+      "garment": "O04",
+      "slot": "slot_06",
+      "direction": "back-right",
+      "request_id": "subject00_O04_slot06_remaining_attempt005_cand00",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot06_remaining_attempt005_cand00_person_mask.png",
+        "bytes": 3706,
+        "sha256": "007cdfaa9824806bb003bce85dad032ff5526a587928d7d0877a62d7a02342ed"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 73764,
+        "area_ratio": 0.046895801095277995,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          519,
+          315,
+          841,
+          928
+        ],
+        "bbox_coverage": 0.12548905421333634,
+        "boundary_to_area_ratio": 0.026706794642372973
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 4420,
+        "torso_garment_pixels": 35853,
+        "hands_arm_proxy_pixels": 752,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3079,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_BBOX_OUTSIDE_SUBJECT02_RANGE",
+        "ACCEPTED_WITH_DISCLOSED_LIMITATION"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    },
+    {
+      "sequence_index": 24,
+      "garment": "O04",
+      "slot": "slot_07",
+      "direction": "back",
+      "request_id": "subject00_O04_slot07_cand01",
+      "mask": {
+        "role": "formal_person_mask",
+        "path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\03_person_masks\\O04\\subject00_O04_slot07_cand01_person_mask.png",
+        "bytes": 3863,
+        "sha256": "4e7b10c2a7d7392f8f254d83406de1795664c42e79a56a15a2235d341131aeda"
+      },
+      "mode": "L",
+      "resolution_wh": [
+        1349,
+        1166
+      ],
+      "value_set": [
+        0,
+        255
+      ],
+      "metrics": {
+        "nonzero_pixels": 96290,
+        "area_ratio": 0.06121680884258335,
+        "connected_components": 1,
+        "largest_component_ratio": 1.0,
+        "bbox_xyxy": [
+          421,
+          313,
+          852,
+          936
+        ],
+        "bbox_coverage": 0.1707083704719969,
+        "boundary_to_area_ratio": 0.023148821269082978
+      },
+      "coverage_proxies": {
+        "head_hair_face_pixels": 0,
+        "torso_garment_pixels": 60405,
+        "hands_arm_proxy_pixels": 444,
+        "feet_leg_proxy_pixels": 0,
+        "shoe_pixels": 3174,
+        "bag_or_handheld_pixels_excluded": 0
+      },
+      "checks": {
+        "file_exists": true,
+        "png_parse": true,
+        "mode_l": true,
+        "native_resolution": true,
+        "strict_binary_values": true,
+        "non_empty": true,
+        "area_ratio_recorded": true,
+        "components_recorded": true,
+        "largest_component_recorded": true,
+        "bbox_recorded": true,
+        "boundary_recorded": true,
+        "coverage_proxies_recorded": true,
+        "raw_sha_unchanged": true
+      },
+      "risk_flags": [
+        "PERSON_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "GARMENT_AREA_OUTSIDE_SUBJECT02_RANGE",
+        "PERSON_BBOX_OUTSIDE_SUBJECT02_RANGE"
+      ],
+      "manual_only_checks": [
+        "background_ground_shadow_leakage",
+        "full_body_completeness",
+        "second_person_leakage",
+        "head_hands_feet_shoe_boundary_visual_quality"
+      ],
+      "technical_status": "PASS_PENDING_HUMAN_REVIEW",
+      "human_decision": null
+    }
+  ],
+  "human_decision": null,
+  "status": "PASS_24_OF_24_PENDING_HUMAN_REVIEW"
+}

@@ -1,0 +1,91 @@
+{
+  "attempt_001_landscape_reuse": {
+    "classification": "CONDITIONAL_AUDIT_REQUIRED",
+    "dimension_distribution": {
+      "1166x1349": 1,
+      "1168x1346": 1,
+      "1168x1347": 1,
+      "1173x1341": 1,
+      "1179x1334": 1,
+      "1348x1167": 1,
+      "1349x1166": 34,
+      "1350x1165": 3
+    },
+    "framing_observation": "Reviewed examples often retain subject scale/framing better than V1 portrait outputs, but no frozen all-43 quantitative registration audit exists.",
+    "incompatible_portrait_count": 5,
+    "intrinsics_update_feasibility": "Only if each native output is proven to be a registered viewport transform. A changed size alone is insufficient to derive K.",
+    "landscape_count": 38,
+    "near_original_1330x1150": "YES for the 38 landscape outputs, especially dominant 1349x1166, as dimensions only.",
+    "non_exact_output_count": 43,
+    "recomposition_risk": "HIGH; existing generated outputs can change camera composition and background geometry rather than only image dimensions.",
+    "reliable_registered_subset": "NOT_ESTABLISHED",
+    "required_next_evidence": "Per-image camera, framing, pose, subject-scale, and background-registration audit for all 43; no image may be accepted by this audit."
+  },
+  "candidates": {
+    "A": {
+      "classification": "BLOCKED_BY_MISSING_END_TO_END_PIXEL_VALIDITY_SUPPORT",
+      "current_code_direct_support": false,
+      "name": "REGISTERED_VALID_REGION_PORTRAIT",
+      "recommendation_level": "CONDITIONAL_PREFERRED_RESEARCH_DIRECTION",
+      "required_code_changes": [
+        "Add a dedicated HxW validity_mask path to dataset schemas/manifests and load it aligned with RGB and foreground masks.",
+        "Apply every resize, crop, and augmentation identically to validity_mask using nearest-neighbor interpolation.",
+        "Carry validity_mask through samples, episodes, and camera bindings without reusing anchor/view valid_mask fields.",
+        "Mask full-scene RGB/L1 by validity and define SSIM on valid crops or validity-aware windows without zero-boundary contamination.",
+        "Compute LPIPS on the registered valid crop rather than the full portrait canvas.",
+        "Mask alpha BCE/dice, silhouette losses, and IoU by validity.",
+        "Apply the same validity contract to evaluation L1, PSNR, SSIM, LPIPS, and IoU.",
+        "Add tests that perturb invalid bands and prove unchanged losses/metrics plus zero invalid-region gradients.",
+        "Materialize crop-updated K, including cx_new and any cy_new, in calibration/per-record camera JSON and test raster alignment."
+      ],
+      "scientific_contract": "Potentially valid only after all optimization and evaluation paths ignore top/bottom invalid bands."
+    },
+    "B": {
+      "classification": "CONDITIONAL_AUDIT_REQUIRED_HOLD",
+      "name": "NATIVE_REGISTERED_LANDSCAPE",
+      "pipeline_support": "Base path partial; formal Teacher dataset rejects per-view HxW.",
+      "recommendation_level": "BACKUP_ONLY_AFTER_REGISTRATION_AUDIT",
+      "scientific_contract": "Dimensions do not establish registration; every image needs camera/framing/pose/background audit."
+    },
+    "C": {
+      "classification": "PIPELINE_TECHNICALLY_SUPPORTED_GENERATION_BACKEND_UNPROVEN_HOLD",
+      "name": "REGISTERED_CROP_NATIVE_1024x1150",
+      "pipeline_support": "A common 1024x1150 dataset with corrected K is technically parsable/renderable.",
+      "recommendation_level": "CONDITIONAL_ON_NATIVE_BACKEND_PROOF",
+      "scientific_contract": "Strong if output is truly native registered 1024x1150 with no recomposition; managed backend capability is not established."
+    },
+    "D": {
+      "classification": "REJECT",
+      "evidence": "V2 is 0/4 visual pass with systematic scene-geometry failure.",
+      "name": "CONTINUE_VERTICAL_OUTPAINT",
+      "recommendation_level": "REJECT",
+      "scientific_contract": "Invalid; prompt tuning or candidate selection cannot hide a systematic registration failure."
+    }
+  },
+  "content_sha256": "1aeed9ec0390a2227bc3f56d108d2e876dbbe4c084d9956c56901b63aad8ddd6",
+  "engineering_preference": "Candidate A only after complete validity-mask implementation and tests; Candidate C if exact native 1024x1150 backend support is proven; Candidate B only after per-image registration audit; Candidate D rejected.",
+  "execution_authorized": false,
+  "next_task": "USER_SELECT_SUBJECT00_VALID_REGION_OR_NATIVE_LANDSCAPE_PROTOCOL",
+  "paper_final": false,
+  "recommended_protocol": "NO_EXECUTABLE_PROTOCOL_CURRENTLY",
+  "required_code_changes": [
+    "Add a dedicated HxW validity_mask path to dataset schemas/manifests and load it aligned with RGB and foreground masks.",
+    "Apply every resize, crop, and augmentation identically to validity_mask using nearest-neighbor interpolation.",
+    "Carry validity_mask through samples, episodes, and camera bindings without reusing anchor/view valid_mask fields.",
+    "Mask full-scene RGB/L1 by validity and define SSIM on valid crops or validity-aware windows without zero-boundary contamination.",
+    "Compute LPIPS on the registered valid crop rather than the full portrait canvas.",
+    "Mask alpha BCE/dice, silhouette losses, and IoU by validity.",
+    "Apply the same validity contract to evaluation L1, PSNR, SSIM, LPIPS, and IoU.",
+    "Add tests that perturb invalid bands and prove unchanged losses/metrics plus zero invalid-region gradients.",
+    "Materialize crop-updated K, including cx_new and any cy_new, in calibration/per-record camera JSON and test raster alignment."
+  ],
+  "schema_version": "canondressgs.subject00.next_data_protocol_audit.v1",
+  "scientific_risks": [
+    "Generated top/bottom pixels can inject mutually inconsistent multiview scene geometry.",
+    "Foreground or clothing masks cannot represent whether background pixels are registered observations.",
+    "Unmasked alpha, silhouette, LPIPS, and evaluation metrics can optimize or reward invalid bands.",
+    "Per-view native dimensions do not imply a known camera transform when the generator recomposes framing.",
+    "A dormant non-unit resize NameError and one-size Teacher constraint limit claimed arbitrary-resolution support."
+  ],
+  "task_id": "AAAI27-SUBJECT00-PORTRAIT-CANARY-V2-FAIL-AND-VALID-REGION-AUDIT-001"
+}

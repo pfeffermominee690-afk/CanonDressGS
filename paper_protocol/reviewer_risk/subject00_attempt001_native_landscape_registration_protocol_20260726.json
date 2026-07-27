@@ -1,0 +1,91 @@
+{
+  "schema_version": "canondressgs.subject00.attempt001_native_landscape_registration_protocol.v1",
+  "task_id": "AAAI27-SUBJECT00-ATTEMPT001-NATIVE-LANDSCAPE-REGISTRATION-AUDIT-001",
+  "source_branch": "research/subject00-v2-visual-fail-valid-region-audit-20260726",
+  "source_head": "34231cd3a203732b426f4f88701f22908cd26a56",
+  "audit_branch": "research/subject00-attempt001-native-landscape-registration-audit-20260726",
+  "preregistered_at": "2026-07-26T09:54:20+08:00",
+  "execution_scope": "READ_ONLY_48_OUTPUT_MACHINE_REGISTRATION_AUDIT",
+  "threshold_adjustment_policy": "NO_PER_IMAGE_OR_POST_RESULT_THRESHOLD_ADJUSTMENT",
+  "condition_binding": {
+    "request_manifest_required": true,
+    "provenance_required": true,
+    "condition_rgb_sha256_required": true,
+    "condition_mask_sha256_required": true,
+    "calibration_sha256_required": true,
+    "archive_member_read_mode": "tar -xOf; no source extraction or mutation"
+  },
+  "background_mask": {
+    "source": "frozen official Subject00 person mask",
+    "foreground_threshold": 128,
+    "person_dilation_rule": "max(20 px, round(0.02 * source_short_edge))",
+    "person_dilation_radius_px_for_1330x1150": 23,
+    "image_border_exclusion_px": 8,
+    "interpolation": "NEAREST"
+  },
+  "feature_matching": {
+    "detector": "OpenCV SIFT",
+    "nfeatures": 5000,
+    "contrast_threshold": 0.01,
+    "edge_threshold": 10,
+    "matcher": "BFMatcher L2",
+    "lowe_ratio": 0.75,
+    "duplicate_train_match_policy": "lowest-distance unique trainIdx",
+    "minimum_source_background_features": 100,
+    "minimum_output_features": 100,
+    "minimum_ratio_matches": 30
+  },
+  "models": {
+    "uniform_scale_translation": "deterministic 2-point RANSAC plus least-squares refinement",
+    "similarity": "cv2.estimateAffinePartial2D RANSAC",
+    "affine": "cv2.estimateAffine2D RANSAC",
+    "homography": "cv2.findHomography RANSAC; diagnostic only",
+    "ransac_reprojection_threshold_px": 3.0,
+    "ransac_max_iterations": 5000,
+    "ransac_confidence": 0.999,
+    "minimum_similarity_inliers": 20
+  },
+  "machine_similarity_gate": {
+    "minimum_inlier_ratio": 0.65,
+    "maximum_median_reprojection_error_px": 2.0,
+    "maximum_p95_reprojection_error_px": 5.0,
+    "maximum_abs_scale_ratio_minus_one": 0.005,
+    "maximum_abs_rotation_degrees": 0.25,
+    "maximum_abs_normalized_shear": 0.003,
+    "maximum_homography_relative_median_error_improvement": 0.35,
+    "minimum_transformed_person_margin_px": 5
+  },
+  "background_structure_gate": {
+    "minimum_masked_ssim": 0.55,
+    "minimum_edge_alignment_f1": 0.55,
+    "maximum_structural_difference_area_fraction": 0.25,
+    "canny_low": 50,
+    "canny_high": 150,
+    "edge_tolerance_px": 2,
+    "ssim_difference_threshold": 0.50,
+    "note": "Photometric thresholds diagnose structural redraw after similarity alignment; RGB MAE alone never decides failure."
+  },
+  "classification_priority": [
+    "REGISTRATION_EVIDENCE_INSUFFICIENT",
+    "PERSON_OR_POSE_REGISTRATION_FAIL",
+    "AFFINE_OR_PROJECTIVE_RECOMPOSITION_FAIL",
+    "BACKGROUND_GEOMETRY_CHANGED_FAIL",
+    "REGISTERED_SIMILARITY_PASS_CANDIDATE"
+  ],
+  "human_visual_policy": {
+    "machine_pass_is_visual_pass": false,
+    "final_human_decisions_must_remain_null": true,
+    "accepted_writes_allowed": false,
+    "teacher_target_writes_allowed": false
+  },
+  "prohibited_actions": [
+    "new image generation",
+    "external API or VLM calls",
+    "API key reads",
+    "attempt_001/002/003 mutation",
+    "output resize/crop/pad/rotate/warp/re-encode",
+    "calibration materialization",
+    "training code or paper modification"
+  ],
+  "paper_final": false
+}

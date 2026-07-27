@@ -1,0 +1,49 @@
+{
+  "schema_version": "canondressgs.subject00.dataset_contract_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "PASS",
+  "test_commands": [
+    "PowerShell inline cross-file contract assertions",
+    "C:/Users/\u53d1\u5982\u96ea/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe tests/test_subject00_three_garment_canary_protocol.py -v"
+  ],
+  "runner_note": "The upstream test module is a standard-library unittest suite. It was executed directly because the available bundled Python runtime does not include pytest.",
+  "checks": [
+    {"name": "artifact_set_19", "status": "PASS"},
+    {"name": "json_parse_14", "status": "PASS"},
+    {"name": "source_heads_exact", "status": "PASS"},
+    {"name": "branch_and_base", "status": "PASS"},
+    {"name": "garments_exact", "status": "PASS"},
+    {"name": "slot_decomposition", "status": "PASS"},
+    {"name": "reference_endpoint_counts", "status": "PASS"},
+    {"name": "role_enum", "status": "PASS"},
+    {"name": "formal_base_pending", "status": "PASS"},
+    {"name": "strict_split_exact", "status": "PASS"},
+    {"name": "condition_gap_explicit", "status": "PASS"},
+    {"name": "identity_review_fields", "status": "PASS"},
+    {"name": "backend_unselected", "status": "PASS"},
+    {"name": "teacher_basis_contract", "status": "PASS"},
+    {"name": "controller_dimensions", "status": "PASS"},
+    {"name": "controller_training", "status": "PASS"},
+    {"name": "controller_safety", "status": "PASS"},
+    {"name": "evaluator_metrics", "status": "PASS"},
+    {"name": "baseline_set", "status": "PASS"},
+    {"name": "hard_lookup_neutral", "status": "PASS"},
+    {"name": "forecast_counts", "status": "PASS"},
+    {"name": "directory_plan", "status": "PASS"},
+    {"name": "artifact_extensions_only", "status": "PASS"},
+    {"name": "no_new_images", "status": "PASS"},
+    {"name": "execution_boundary_zero", "status": "PASS"},
+    {"name": "classification_allowed", "status": "PASS"},
+    {"name": "paper_next_gate", "status": "PASS"}
+  ],
+  "upstream_unittest": {
+    "module": "tests/test_subject00_three_garment_canary_protocol.py",
+    "status": "PASS",
+    "tests_run": 11,
+    "failures": 0,
+    "errors": 0
+  },
+  "summary": {"contract_assertions_passed": 27, "upstream_tests_passed": 11, "failed": 0},
+  "execution_boundary_verified": true,
+  "paper_final": false
+}

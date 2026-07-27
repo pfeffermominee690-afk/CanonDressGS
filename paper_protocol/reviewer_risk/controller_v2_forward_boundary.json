@@ -1,0 +1,23 @@
+{
+  "allowed_inputs": [
+    "reference_rgb",
+    "reference_mask",
+    "frozen_F2_spatial_features"
+  ],
+  "ground_truth_pair_in_prediction_forward": false,
+  "ground_truth_weight_in_prediction_forward": false,
+  "pair_confidence_definition": "TOP2_VS_TOP3_PROBABILITY_MARGIN",
+  "pair_selection_source": "PREDICTED_UNORDERED_TOP2_GARMENTS",
+  "prediction_forward_arguments": [
+    "reference_f2",
+    "reference_valid"
+  ],
+  "schema_version": "canondressgs.research.controller_v2_forward_boundary.v1",
+  "status": "PASS",
+  "target_forward_leakage": 0,
+  "target_pose_camera_boundary": "RENDERER_ONLY_AFTER_CONTROLLER_DECISION",
+  "task_id": "AAAI27-COMPATIBILITY-GATED-CONTROLLER-V2-DESIGN-001",
+  "tie_handling": "FROZEN_OUTFIT_ORDER",
+  "v1_probability_ratio_as_final_weight": "FORBIDDEN",
+  "weight_selection_source": "PREDICTED_PAIR_INDEX_IN_ALL_TEN_LOGITS"
+}

@@ -1,0 +1,232 @@
+{
+  "schema_version": "canondressgs.subject00.mask_quality_gates.v1",
+  "task_id": "AAAI27-SUBJECT00-24-CELL-MASK-GENERATION-PREFLIGHT-001",
+  "subject02_reference_distribution": {
+    "source": {
+      "path": "E:\\data_pre\\staging_subject02_layered_composite_v3\\mask_backend_v3a\\full_run_v2\\segformer_run_manifest.json",
+      "exists": true,
+      "bytes": 196405,
+      "sha256": "fc6fcf9d98b527192bd06763247151c7e7f981be5dcf4ecc44708d92031a1d3f"
+    },
+    "record_count": 16,
+    "person_area_ratio": {
+      "min": 0.12445068359375,
+      "max": 0.22896703084309897,
+      "mean": 0.16898218790690103
+    },
+    "garment_area_ratio": {
+      "min": 0.08933639526367188,
+      "max": 0.18974939982096353,
+      "mean": 0.1350243091583252
+    },
+    "person_connected_components": {
+      "min": 1,
+      "max": 1
+    },
+    "garment_connected_components": {
+      "min": 1,
+      "max": 7
+    },
+    "person_largest_component_ratio": {
+      "min": 1.0,
+      "max": 1.0
+    },
+    "garment_largest_component_ratio": {
+      "min": 0.9999381073219038,
+      "max": 1.0
+    },
+    "person_bbox_coverage": {
+      "min": 0.2443389892578125,
+      "max": 0.6248931884765625
+    },
+    "garment_bbox_coverage": {
+      "min": 0.14860153198242188,
+      "max": 0.4534950256347656
+    },
+    "person_boundary_to_area_ratio": {
+      "min": 0.013245069890651813,
+      "max": 0.045677323050130614
+    },
+    "garment_boundary_to_area_ratio": {
+      "min": 0.012273412631931647,
+      "max": 0.039938433776503995
+    },
+    "policy": "Observed Subject02 ranges trigger review escalation, not silent acceptance or automatic threshold retuning on the 24 Subject00 raws."
+  },
+  "person_mask_qa_gates": [
+    "PNG parse succeeds and mode is L",
+    "shape exactly equals accepted raw HxW",
+    "value set exactly {0,255}",
+    "mask is non-empty",
+    "foreground area ratio is recorded and compared with Subject02 reference",
+    "component count and largest-component ratio are recorded",
+    "head/torso/hands/feet/shoes label coverage is recorded",
+    "background/ground/shadow leakage is manually reviewed",
+    "holes and boundary complexity are recorded",
+    "complete single person is mandatory",
+    "second person and large wall/floor regions are forbidden"
+  ],
+  "garment_mask_qa_gates": [
+    "PNG parse succeeds and mode is L",
+    "shape exactly equals accepted raw HxW",
+    "value set exactly {0,255}",
+    "mask is non-empty",
+    "garment is a strict subset of person",
+    "garment/person overlap ratio equals 1.0",
+    "garment area/components/boundary are recorded",
+    "collar/shoulder/sleeve/torso/trouser-leg coverage is reviewed",
+    "face/hair/hand/skin/shoe/background leakage is forbidden",
+    "O01 hoodie hood is included; O03/O04 hood-like residual is forbidden",
+    "visible multi-layer upper garments and lower garment are included"
+  ],
+  "mask_pair_qa_gates": [
+    "shape equality",
+    "garment outside person pixel count equals 0",
+    "person minus garment protected region is non-empty",
+    "mask value sets are identical {0,255}",
+    "raw image remains byte exact"
+  ],
+  "cross_view_qa_gates": [
+    "O01/O03/O04 each have 8/8 person silhouettes",
+    "garment coverage is structurally continuous across eight views",
+    "front/side/back area changes are plausible",
+    "garment label mapping is constant within each garment",
+    "no view drops the upper or lower garment unexpectedly",
+    "O01 hood coverage is cross-view consistent",
+    "O03 suit and O04 bomber/jeans definitions remain distinct"
+  ],
+  "cross_view_matrix_shape": {
+    "garments": 3,
+    "views_per_garment": 8,
+    "cells": 24
+  },
+  "limitation_propagation": {
+    "expected_count": 9,
+    "records": [
+      {
+        "request_id": "subject00_O01_slot04_remaining_attempt005_cand00",
+        "codes": [
+          "MACHINE_REGISTRATION_FAIL_WITH_DOCUMENTED_HUMAN_OVERRIDE"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O01_slot07_remaining_attempt005_cand00",
+        "codes": [
+          "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+        "codes": [
+          "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED",
+          "RAW_RETAINED_IN_TECHNICAL_FAILURE_PATH_AFTER_RESOLUTION_FAMILY_CORRECTION"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+        "codes": [
+          "MACHINE_REGISTRATION_FAIL_WITH_DOCUMENTED_HUMAN_OVERRIDE",
+          "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+        "codes": [
+          "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+          "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+        "codes": [
+          "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+        "codes": [
+          "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+          "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O04_slot05_remaining_attempt005_cand00",
+        "codes": [
+          "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      },
+      {
+        "request_id": "subject00_O04_slot06_remaining_attempt005_cand00",
+        "codes": [
+          "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+        ],
+        "person_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; NATIVE_RAW_MANUAL_REVIEW_REQUIRED",
+        "garment_mask_impact": "DIRECT_PARSER_DOES_NOT_DEPEND_ON_SOURCE_REGISTRATION; GARMENT_BOUNDARY_MANUAL_REVIEW_REQUIRED",
+        "automatic_qa_impact": "STRUCTURAL_GATES_UNCHANGED; STATISTICAL_OUTLIER_ESCALATION_REQUIRED",
+        "manual_review": "MANDATORY",
+        "registration_override_used_for_generation": false
+      }
+    ],
+    "status": "COMPLETE_9_OF_9"
+  },
+  "review_package_schema": {
+    "raw_person_overlays": 24,
+    "raw_garment_overlays": 24,
+    "person_vs_garment_composites": 24,
+    "garment_contact_sheets": {
+      "O01": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\O01_8view_contact_sheet.png",
+      "O03": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\O03_8view_contact_sheet.png",
+      "O04": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\O04_8view_contact_sheet.png"
+    },
+    "high_risk_page": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\high_risk_cells.png",
+    "registration_override_page": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\registration_override_cells.png",
+    "decision_matrix": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-MASKS-001\\attempt_001_subject00_24_cell_person_garment_masks\\07_review_assets\\mask_decision_matrix.json",
+    "human_fields": {
+      "person_mask_human_decision": null,
+      "garment_mask_human_decision": null,
+      "mask_pair_human_decision": null,
+      "mask_accepted": false
+    }
+  },
+  "paper_final": false
+}

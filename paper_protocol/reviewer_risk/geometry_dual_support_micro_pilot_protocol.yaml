@@ -1,0 +1,165 @@
+schema_version: canondressgs.research.geometry_dual_support_micro_pilot_protocol.v1
+status: FROZEN_BEFORE_EXECUTION
+label: RESEARCH MICRO-PILOT — NOT PAPER FINAL
+task_id: AAAI27-GEOMETRY-DUAL-SUPPORT-MICRO-PILOT-001
+source:
+  branch: research/continuous-control-causal-attribution-20260722
+  head: 8c43524b7ca0ee8b3c795dbe349466f30b29354f
+  primary_failure_source: GEOMETRY_MAIN_EFFECT
+  secondary_failure_sources: []
+governance:
+  run_branch: research/geometry-dual-support-micro-pilot-20260722
+  windows_worktree: E:/model_train/canondressgs_geometry_dual_support_micro_pilot
+  cloud_worktree: /root/autodl-tmp/canondressgs_work/worktrees/canondressgs_geometry_dual_support_micro_pilot
+  output_root: /root/autodl-tmp/canondressgs_work/outputs/GEOMETRY-DUAL-SUPPORT-MICRO-PILOT-001
+  append_only_attempts: true
+  historical_outputs_read_only: true
+selection:
+  outfit_order: [O01, O02, O03, O04, O08]
+  frozen_stable_pairs: [O01_O02, O01_O04, O03_O04]
+  frozen_unstable_pairs: [O01_O03, O01_O08, O02_O03, O02_O04, O02_O08, O03_O08, O04_O08]
+  rule:
+    stable: first stable pair in frozen outfit-combination order
+    unstable: first two unstable pairs in frozen outfit-combination order
+  selected_stable_pairs: [O01_O02]
+  selected_unstable_pairs: [O01_O03, O01_O08]
+  selected_pairs: [O01_O02, O01_O03, O01_O08]
+design:
+  directions: [A_TO_B, B_TO_A]
+  alpha_values: [0.20, 0.50, 0.80]
+  target_conditions: [cond_000000, cond_000318, cond_000017, cond_000347]
+  render_target_rule: frozen left-pair target pose and camera for both directions
+  variants: [FULL_LINEAR_BASELINE, HARD_GEOMETRY_SOFT_VA, DUAL_SUPPORT_GEOMETRY_BLEND]
+factor_channels:
+  geometry: [delta_xyz, delta_log_scaling, delta_rotvec]
+  visibility: [delta_opacity_logit]
+  appearance: [delta_sh0, delta_shN]
+variants:
+  FULL_LINEAR_BASELINE:
+    implementation: reuse sealed direct interpolation only
+    new_renders: 0
+  HARD_GEOMETRY_SOFT_VA:
+    geometry_rule:
+      alpha_below_0_5: source endpoint geometry
+      alpha_above_0_5: target endpoint geometry
+      alpha_equal_0_5: earlier garment in frozen outfit order
+    visibility_rule: linear endpoint interpolation
+    appearance_rule: linear endpoint interpolation
+    geometry_interpolation: false
+  DUAL_SUPPORT_GEOMETRY_BLEND:
+    geometry_rule: immutable union of the two endpoint Gaussian geometries
+    branch_A_appearance: endpoint A
+    branch_B_appearance: endpoint B
+    effective_opacity_A: (1-alpha) * sigmoid(endpoint_A_opacity_logit)
+    effective_opacity_B: alpha * sigmoid(endpoint_B_opacity_logit)
+    stable_inverse_sigmoid_required_for_logit_interfaces: true
+    geometry_interpolation: false
+    geometry_averaging: false
+endpoint_parity:
+  alpha_values: [0.0, 1.0]
+  variants: [HARD_GEOMETRY_SOFT_VA, DUAL_SUPPORT_GEOMETRY_BLEND]
+  render_max_abs_tolerance: 1.0e-6
+  failure_status: MICRO-PILOT-ENDPOINT-PARITY-FAIL
+metrics:
+  - garment_rgb_mae
+  - garment_lpips
+  - silhouette_iou
+  - boundary_fscore
+  - protected_lpips
+  - identity_metric
+  - render_time_seconds
+  - peak_vram_bytes
+  - active_gaussian_count
+  - opacity_mass
+  - outside_garment_opacity
+  - displacement_rms
+  - displacement_p95
+metric_definitions:
+  active_gaussian_opacity_threshold: 0.00392156862745098
+  stable_inverse_sigmoid_epsilon: 1.0e-6
+  opacity_mass: sum of final activated Gaussian opacity
+  outside_garment_opacity: mean rendered alpha outside the frozen target garment mask
+  identity_metric: RGB MAE to the source endpoint under the frozen protected-identity mask
+visual_review:
+  grade_scale: {NONE: 0, MINOR: 1, MODERATE: 2, SEVERE: 3}
+  categories:
+    - patch
+    - cloud
+    - mottle
+    - edge_scatter
+    - silhouette_discontinuity
+    - full_body_contamination
+    - identity_contamination
+    - double_outline_ghosting
+  main_sheet_count: 6
+  required_diagnostics:
+    - opacity diagnostic sheets
+    - silhouette overlays
+    - geometry-support overlays
+success_thresholds:
+  endpoint_parity_pass: true
+  pair_count_required_for_core_grade_drop_at_alpha_0_5: 2
+  minimum_core_grade_drop: 1
+  pair_count_required_for_severe_count_drop: 2
+  minimum_severe_count_reduction_fraction: 0.50
+  identity_contamination_maximum_grade: 0
+  maximum_silhouette_iou_relative_degradation: 0.05
+  maximum_garment_lpips_relative_degradation: 0.10
+  severe_double_outline_ghosting_allowed: false
+  frozen_mutation_allowed: false
+  best_direction_or_view_selection_allowed: false
+  aggregation_rules:
+    core_artifact_categories:
+      - patch
+      - cloud
+      - mottle
+      - edge_scatter
+      - silhouette_discontinuity
+      - full_body_contamination
+    pair_alpha_0_5_core_grade: maximum over both directions, all four views, and all core categories
+    pair_severe_count: count of grade-3 core-category observations over all alphas, both directions, and all four views
+    silhouette_iou_comparison: per-pair mean over all alphas, both directions, and all four views
+    garment_lpips_comparison: per-pair mean over all alphas, both directions, and all four views
+    direction_or_view_filtering: forbidden
+classification_values:
+  - DUAL_SUPPORT_MICRO_PILOT_PASS
+  - DUAL_SUPPORT_MICRO_PILOT_PARTIAL
+  - DUAL_SUPPORT_MICRO_PILOT_FAIL
+classification_rules:
+  safety_gates:
+    - endpoint parity
+    - identity contamination maximum grade
+    - no severe double-outline or ghosting
+    - no frozen mutation
+  efficacy_gates:
+    - required pair count for alpha-0.5 core-grade reduction
+    - required pair count for severe-count reduction
+  quality_gates:
+    - per-pair silhouette IoU degradation bound
+    - per-pair garment LPIPS degradation bound
+  pass: every safety, efficacy, and quality gate passes
+  partial: every safety gate passes and at least one efficacy gate passes, but the full PASS rule does not
+  fail: any safety gate fails, or neither efficacy gate passes
+next_task_rules:
+  DUAL_SUPPORT_MICRO_PILOT_PASS: RUN_ALL_10_PAIR_DUAL_SUPPORT_EVALUATION
+  DUAL_SUPPORT_MICRO_PILOT_PARTIAL: RUN_ALL_10_PAIR_DUAL_SUPPORT_EVALUATION
+  DUAL_SUPPORT_MICRO_PILOT_FAIL: DESIGN_GEOMETRY_CORRESPONDENCE_WARP_DIAGNOSTIC
+  next_task_started: false
+no_training_gate:
+  training_steps: 0
+  backward_calls: 0
+  diagnostic_optimizer_created: false
+  optimizer_steps: 0
+  scheduler_steps: 0
+  checkpoint_writes: 0
+  teacher_mutation: 0
+  basis_mutation: 0
+  formal_output_mutation: 0
+  legacy_context_optimizer:
+    creation_allowed: true
+    zero_grad_calls: 0
+    steps: 0
+    scheduler_steps: 0
+    state_saved: false
+    discarded: true
+paper_final: false

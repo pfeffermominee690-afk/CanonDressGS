@@ -1,0 +1,235 @@
+{
+  "schema_version": "canondressgs.subject00.three_garment_dataset_contract.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "FROZEN_WITH_CONDITION_RESOURCE_GAP",
+  "classification": "SUBJECT00_CONDITION_RESOURCE_GAP",
+  "identity": {
+    "dataset": "THuman4.0",
+    "identity_id": "subject00",
+    "role": "IDENTITY_SOURCE",
+    "raw_data_mutation_allowed": false,
+    "raw_data_copy_to_git_allowed": false
+  },
+  "authoritative_sources": [
+    {
+      "role": "formal_base_protocol",
+      "branch": "research/mmlphuman-subject00-formal-strict-split-protocol-20260723",
+      "head": "4993f5c865ec19895f35811fa399fc4a1834c6a7"
+    },
+    {
+      "role": "three_garment_protocol",
+      "branch": "research/subject00-three-garment-canary-protocol-20260724",
+      "head": "b666e8168ec76d67a9e32f26fe9d2e778609cc98"
+    },
+    {
+      "role": "medium_base_preview_evidence_only",
+      "branch": "research/mmlphuman-subject00-one-pass-medium-pilot-20260723",
+      "head": "2d0913eb1b163a79e81c1804c216f91b0a737b44"
+    },
+    {
+      "role": "surface_lbs_runtime",
+      "branch": "research/mmlphuman-subject00-surface-lbs-runtime-20260723",
+      "head": "dca5df55354b45d5abf1cd493e718f294558edc6"
+    },
+    {
+      "role": "generation_workflow",
+      "branch": "research/multi-identity-generation-backend-review-workflow-20260724",
+      "head": "e8a09525f745f373e38418c43040766d69a50d10"
+    },
+    {
+      "role": "multi_identity_foundations",
+      "branch": "research/multi-identity-garment-benchmark-foundations-20260724",
+      "head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2"
+    }
+  ],
+  "formal_base": {
+    "protocol_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+    "required_checkpoint_step": 101245,
+    "checkpoint_path": "PENDING_FORMAL_BASE",
+    "checkpoint_sha256": "PENDING_FORMAL_BASE",
+    "dependency": "PENDING",
+    "medium_checkpoint_use": "PREVIEW_ONLY",
+    "medium_checkpoint_promotion_allowed": false,
+    "endpoint_training_authorized": false,
+    "final_condition_rendering_authorized": false,
+    "controller_training_authorized": false
+  },
+  "counts": {
+    "garments": 3,
+    "semantic_slots_per_garment": 8,
+    "planned_teacher_target_conditions": 24,
+    "reference_slots_per_garment": 4,
+    "planned_garment_references": 12,
+    "materialized_conditions": 0,
+    "accepted_rgb": 0,
+    "accepted_masks": 0,
+    "teacher_endpoints": 0
+  },
+  "shared_identity_invariants": {
+    "must_preserve": [
+      "face identity",
+      "hair identity",
+      "skin tone",
+      "body shape",
+      "height and proportions",
+      "pose skeleton and pose semantics",
+      "camera perspective and position",
+      "hand and foot anatomy",
+      "background convention",
+      "lighting convention"
+    ],
+    "must_not_change": [
+      "age",
+      "sex characteristics",
+      "face shape",
+      "hair style",
+      "body mass",
+      "limb count",
+      "pose semantics",
+      "camera position"
+    ],
+    "sealed_prompt_guards": [
+      "different identity",
+      "copied donor face",
+      "copied donor body shape",
+      "changed pose",
+      "changed camera",
+      "changed hands",
+      "changed feet",
+      "cropped body",
+      "extra person",
+      "duplicate limb",
+      "missing limb"
+    ]
+  },
+  "reference_material": {
+    "mapping": "E:/data_pre/audit_subject02_outfit_conversion_pilot_v1/outfit_cell_mapping_v2_normalized.json",
+    "visual_reference_front_sheet_01": "E:/data_pre/outputs/gpt_image2_pose_outfit_sheets/Jay/sheet_01/pose_000000_sheet01.png",
+    "visual_reference_front_sheet_02": "E:/data_pre/outputs/gpt_image2_pose_outfit_sheets/Jay/sheet_02/pose_000000_sheet02.png",
+    "sharing_boundary": "Garment semantics and prompts may be shared; donor face, identity pixels, body shape, target images, and raw frame IDs may not be shared.",
+    "evidence_grade": "VISUAL_APPEARANCE_AUDIT_ONLY; FIBER_CONTENT_NOT_VERIFIED"
+  },
+  "garments": [
+    {
+      "garment_id": "O01",
+      "semantic_description": "Light heather-gray pullover hoodie with black full-length straight trousers.",
+      "upper_garment_type": "pullover hooded sweatshirt",
+      "lower_garment_type": "full-length straight trousers",
+      "colors": {"upper": "light heather gray", "lower": "black"},
+      "fit": {"upper": "regular-to-relaxed", "lower": "regular straight"},
+      "sleeve_length": "long",
+      "hem": "ribbed waist-length hoodie hem; full-length trouser hems",
+      "material_appearance": {"upper": "sweatshirt knit or fleece appearance", "lower": "matte woven appearance"},
+      "forbidden_attributes": ["zip-front hoodie", "short sleeves", "blue trousers", "double hood", "retained old cuffs"],
+      "reference_prompt": "A light heather-gray pullover hoodie with hood, drawstrings, long sleeves, ribbed cuffs and waist hem, paired with black full-length straight trousers.",
+      "garment_slots": ["front", "front_left_three_quarter", "front_right_three_quarter", "left", "right", "back_left_three_quarter", "back_right_three_quarter", "back"],
+      "expected_reference_slots": ["front", "left", "back", "right"],
+      "expected_reference_count": 4,
+      "expected_endpoint_target_count": 8,
+      "allowed_local_occlusion": "NOT_SPECIFIED_BY_SEALED_PROTOCOL"
+    },
+    {
+      "garment_id": "O03",
+      "semantic_description": "Dark navy single-breasted business suit with matching trousers, white dress shirt, and dark navy tie.",
+      "upper_garment_type": "single-breasted two-button suit jacket over dress shirt and tie",
+      "lower_garment_type": "matching tailored suit trousers",
+      "colors": {"jacket_and_trousers": "dark navy", "shirt": "white", "tie": "dark navy"},
+      "fit": {"upper": "tailored", "lower": "tailored straight"},
+      "sleeve_length": "long",
+      "hem": "hip-length suit jacket; full-length matching trousers",
+      "material_appearance": {"jacket_and_trousers": "smooth suiting appearance", "shirt": "smooth woven appearance"},
+      "forbidden_attributes": ["casual jacket", "missing tie", "mismatched trousers", "open bare chest", "short sleeves"],
+      "reference_prompt": "A dark navy tailored single-breasted two-button business suit with matching full-length trousers, a white dress shirt, and a dark navy tie.",
+      "garment_slots": ["front", "front_left_three_quarter", "front_right_three_quarter", "left", "right", "back_left_three_quarter", "back_right_three_quarter", "back"],
+      "expected_reference_slots": ["front", "left", "back", "right"],
+      "expected_reference_count": 4,
+      "expected_endpoint_target_count": 8,
+      "allowed_local_occlusion": "NOT_SPECIFIED_BY_SEALED_PROTOCOL"
+    },
+    {
+      "garment_id": "O04",
+      "semantic_description": "Black waist-length zip-front bomber jacket over a light-gray crew-neck shirt with medium-blue denim jeans.",
+      "upper_garment_type": "zip-front bomber jacket over crew-neck shirt",
+      "lower_garment_type": "full-length denim jeans",
+      "colors": {"jacket": "black", "inner_shirt": "light gray", "lower": "medium blue"},
+      "fit": {"upper": "regular waist-length", "lower": "regular straight"},
+      "sleeve_length": "long jacket sleeves",
+      "hem": "waist-length jacket hem; full-length jean hems",
+      "material_appearance": {"jacket": "matte lightweight woven appearance", "lower": "denim appearance"},
+      "forbidden_attributes": ["hood", "long coat", "black trousers", "formal blazer", "distressed or torn jeans"],
+      "reference_prompt": "A black waist-length zip-front bomber jacket with long sleeves over a light-gray crew-neck shirt, paired with medium-blue full-length straight denim jeans.",
+      "garment_slots": ["front", "front_left_three_quarter", "front_right_three_quarter", "left", "right", "back_left_three_quarter", "back_right_three_quarter", "back"],
+      "expected_reference_slots": ["front", "left", "back", "right"],
+      "expected_reference_count": 4,
+      "expected_endpoint_target_count": 8,
+      "allowed_local_occlusion": "NOT_SPECIFIED_BY_SEALED_PROTOCOL"
+    }
+  ],
+  "observation_contract": {
+    "required_fields": [
+      "identity_id",
+      "garment_id",
+      "condition_id",
+      "source_reference_role",
+      "rgb_path",
+      "rgb_sha256",
+      "mask_path",
+      "mask_sha256",
+      "camera_path",
+      "camera_sha256",
+      "pose_smplx_path",
+      "pose_smplx_sha256",
+      "resolution",
+      "background",
+      "source_sha256",
+      "generation_backend_metadata",
+      "human_review",
+      "split",
+      "provenance"
+    ],
+    "role_enum": [
+      "IDENTITY_SOURCE",
+      "GARMENT_REFERENCE",
+      "TEACHER_TARGET",
+      "CONTROLLER_REFERENCE",
+      "CALIBRATION_CONDITION",
+      "TEST_CONDITION",
+      "VISUAL_ONLY_ASSET"
+    ],
+    "resolution": {"width": 1024, "height": 1536, "orientation": "portrait"},
+    "background": ["light gray", "white"],
+    "framing": "fixed full-body portrait; hands and feet complete; no close-up"
+  },
+  "directory_plan": {
+    "cloud_root": "/root/autodl-tmp/canondressgs_work/datasets/subject00_three_garment/",
+    "windows_mirror_root": "E:/model_train/canondressgs_work/datasets/subject00_three_garment/",
+    "created_in_this_task": false,
+    "subdirectories": [
+      "00_contract/",
+      "01_identity_sources/",
+      "02_garment_references/",
+      "03_generation_requests/",
+      "04_generation_responses/",
+      "05_human_review/",
+      "06_accepted_rgb/",
+      "07_accepted_masks/",
+      "08_camera_pose/",
+      "09_teacher_targets/",
+      "10_controller_splits/",
+      "11_provenance/",
+      "12_final_verification/"
+    ],
+    "git_allowed": ["manifest", "metadata", "SHA-256", "review result", "small thumbnails only when licensing permits"],
+    "git_forbidden": ["raw identity data", "raw generated images", "formal dataset image copies"]
+  },
+  "known_gaps": [
+    "formal step-101245 checkpoint path and SHA-256",
+    "eight selected strict-train pose/camera mappings",
+    "materialized RGB/mask/camera/pose paths and SHA-256 values",
+    "per-garment allowed-local-occlusion whitelist is absent from the sealed source protocol",
+    "disjoint controller train/calibration/test condition records",
+    "visualization condition records",
+    "selected generation backend contract"
+  ],
+  "paper_final": false
+}

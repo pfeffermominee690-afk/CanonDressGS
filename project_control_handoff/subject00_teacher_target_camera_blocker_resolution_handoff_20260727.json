@@ -1,0 +1,43 @@
+{
+  "schema_version": "canondressgs.subject00.camera_blocker_resolution_handoff.v1",
+  "task_id": "AAAI27-SUBJECT00-TEACHER-TARGET-CAMERA-RESOLUTION-BLOCKER-RESOLUTION-001",
+  "created_at": "2026-07-26T21:57:29.878368+00:00",
+  "source_branch": "research/subject00-24-cell-teacher-target-creation-preflight-20260727",
+  "source_head": "762fb6a6621e461000b909f749c72a244d55feb2",
+  "new_branch": "research/subject00-teacher-target-camera-blocker-resolution-20260727",
+  "worktree": "E:\\model_train\\canondressgs_subject00_teacher_target_camera_blocker_resolution",
+  "previous_blocker": "BLOCKED_22_OF_24_UNIQUE_SIMILARITY_BINDINGS_2_OF_24_HUMAN_OVERRIDE_CAMERA_MODELS_NONUNIQUE",
+  "formal_protocol": "paper_protocol\\reviewer_risk\\subject00_attempt001_native_landscape_registration_protocol_20260726.json",
+  "formal_protocol_sha256": "81a9aca5faa63990c002af20eabf66350bde94b5db6e680bc20426fe037947ca",
+  "registration_adjudicator": "tools\\second_identity\\adjudicate_subject00_teacher_target_camera_salvage.py",
+  "registration_adjudicator_sha256": "de22ef18ef8d9d45dc97f7aac1ec8bde208659bdfbca701067d5fe0169ea64ae",
+  "formal_registration_implementation": "tools\\datasets\\audit_subject00_attempt001_native_landscape_registration.py",
+  "formal_registration_implementation_sha256": "00569e6975209802913464b3e448a656149e2f1f6364c604913fc40f159bc446",
+  "allowed_models": [
+    "MODEL_A_IDENTITY",
+    "MODEL_B_RESOLUTION_SCALE_ONLY",
+    "MODEL_C_ISOTROPIC_SIMILARITY",
+    "MODEL_D_RESOLUTION_SCALE_THEN_ISOTROPIC_SIMILARITY"
+  ],
+  "forbidden_diagnostic_only_models": [
+    "ANISOTROPIC_AFFINE",
+    "GENERAL_AFFINE",
+    "PROJECTIVE_HOMOGRAPHY"
+  ],
+  "background_region_definition": "NOT(dilated source person mask) AND NOT(dilated accepted target person mask under candidate target coordinates), restricted to valid overlap and the frozen 8-pixel border.",
+  "threshold_adjustment_policy": "ZERO_POST_RESULT_ADJUSTMENT; empirical envelope frozen from the 22 machine-safe cells before the two problem-cell decisions.",
+  "paper_final": false,
+  "status": "SUBJECT00_TEACHER_TARGET_CAMERA_BLOCKER_RESOLVED_WITH_QUARANTINE_READY_FOR_MATERIALIZATION",
+  "decision": "FREEZE_22_OF_24_CAMERA_ELIGIBLE_2_OF_24_REVIEW_ONLY_QUARANTINED",
+  "eligibility_registry": "paper_protocol\\reviewer_risk\\subject00_teacher_target_camera_eligibility_registry_20260727.json",
+  "quarantine_registry": "paper_protocol\\reviewer_risk\\subject00_teacher_target_quarantine_registry_20260727.json",
+  "camera_records_draft": "paper_protocol\\reviewer_risk\\subject00_teacher_target_camera_records_draft_20260727.json",
+  "o03_provisional_manifest_draft": "paper_protocol\\reviewer_risk\\subject00_O03_provisional_camera_safe_target_manifest_draft_20260727.json",
+  "authorizations": {
+    "teacher_target_materialization": false,
+    "teacher_endpoint_optimization": false,
+    "formal_base_resume": false
+  },
+  "resume_only_after": "A separate explicit user authorization to materialize exactly the 22 camera-eligible Teacher records while enforcing the 2-record quarantine.",
+  "next_task": "EXECUTE_SUBJECT00_TEACHER_TARGET_MATERIALIZATION_WITH_CAMERA_QUARANTINE_POLICY"
+}

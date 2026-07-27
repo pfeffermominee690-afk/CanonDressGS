@@ -1,0 +1,98 @@
+{
+  "title": "Method ablation",
+  "marker": "SMOKE ONLY — NOT PAPER RESULTS",
+  "units": {
+    "peak_vram_bytes": "bytes",
+    "basis_storage_bytes": "bytes",
+    "training_time_seconds": "s",
+    "inference_time_seconds": "s",
+    "render_time_seconds": "s",
+    "trainable_parameter_count": "parameters"
+  },
+  "rows": [
+    {
+      "ablation": "S-A1",
+      "standardized_coefficient_rmse": {
+        "mean": 0.7989595324911247,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.15,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 61.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "garment_rgb_mae": {
+        "mean": 0.12881338122353045,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "ablation": "S-A5",
+      "standardized_coefficient_rmse": {
+        "mean": 0.9991004162673992,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.2,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 38.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "garment_rgb_mae": {
+        "mean": 0.1840668733964537,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    },
+    {
+      "ablation": "S-A7",
+      "standardized_coefficient_rmse": {
+        "mean": 0.9623630888334578,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "nearest_teacher_accuracy": {
+        "mean": 0.2,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "correct_vs_swapped_wins": {
+        "mean": 40.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "garment_rgb_mae": {
+        "mean": 0.18174059206543455,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      },
+      "protected_rgb_mae": {
+        "mean": 0.0,
+        "std": null,
+        "aggregation": "single_seed_smoke"
+      }
+    }
+  ]
+}

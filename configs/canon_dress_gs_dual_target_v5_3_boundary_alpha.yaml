@@ -1,0 +1,40 @@
+schema_version: canondressgs.dual_target_boundary_alpha.v5.3
+status: PREREGISTERED_SINGLE_CANDIDATE
+base_config: configs/canon_dress_gs_module3_online_completion.yaml
+fixed_episode:
+  outfit_id: O05
+  references: [cond_000318, cond_000000]
+  target: cond_000347
+  sample_index: 11
+  seed: 20260717
+  learning_rate: 0.00001
+  optimization_steps: 120
+loss:
+  edit: 1.0
+  clothing: 1.0
+  preserve: 1.0
+  protected: 1.0
+  rgb_transition: 0.25
+  alpha_global: 0.5
+  alpha_edit: 1.0
+  alpha_transition_original: 0.25
+  alpha_base: 1.0
+  residual_regularization: 0.0001
+  gate_regularization: 0.0
+transition_alpha:
+  target: distance_weighted_edit_base_alpha
+  distance_sampling: [1.0, 1.0]
+  distance_epsilon: 0.000001
+  loss: smooth_l1
+  smooth_l1_beta: 1.0
+  dice: false
+  gradient_cap:
+    reference_module: shared_decoder_trunk
+    cap_fraction_of_rgb: 0.5
+    epsilon: 1.0e-12
+    compute_at_step: 0
+    dynamic_updates: false
+constraints:
+  phase_b_weights_used: false
+  source_data_or_masks_modified: false
+  second_candidate_allowed: false

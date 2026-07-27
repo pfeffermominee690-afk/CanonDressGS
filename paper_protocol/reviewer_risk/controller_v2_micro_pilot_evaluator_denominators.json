@@ -1,0 +1,166 @@
+{
+  "consistent_duplicates": "RETAINED_AS_INDEPENDENT_PROTOCOL_RECORDS",
+  "contract_content_sha256": "368815a57ba6a1ebeb538cc1977510a8ee4bb2821d8825f1aad6e8baf9d95484",
+  "formal_pure_20": {
+    "global_crossfit_macro_use": 0,
+    "primary_denominator_use": 0,
+    "role": "SECONDARY_ENDPOINT_SAFETY_AUDIT",
+    "separate_reporting": true
+  },
+  "mandatory_secondary_aggregation": "UNIQUE_QUERY_MACRO",
+  "metric_denominators": {
+    "compatible_dual_rate": "GT_MIXED_AND_PREDICTED_PAIR_CORRECT_AND_GT_PAIR_COMPATIBLE",
+    "incompatible_dual_rate": "GT_MIXED_AND_PREDICTED_PAIR_CORRECT_AND_GT_PAIR_INCOMPATIBLE",
+    "incompatible_hard_rate": "GT_MIXED_AND_PREDICTED_PAIR_CORRECT_AND_GT_PAIR_INCOMPATIBLE",
+    "mixedness": "ALL_TEST_PURE_AND_MIXED_RECORDS",
+    "pair_accuracy": "ALL_TEST_RECORDS",
+    "pure_single_rate": "TEST_FOLD_PURE_PROTOCOL_RECORDS",
+    "weight_mae_rmse_reporting": "GT_MIXED_RECORDS",
+    "weight_primary_gate": "GT_MIXED_AND_PREDICTED_UNORDERED_PAIR_CORRECT",
+    "wrong_pair_dual_rate": "GT_MIXED_AND_PREDICTED_PAIR_INCORRECT"
+  },
+  "paper_final": false,
+  "paper_final_count": 0,
+  "primary_gate_aggregation": "PROTOCOL_WEIGHTED_MACRO",
+  "reporting_levels": [
+    "EACH_ROTATION_AND_SEED",
+    "SEED_MACRO",
+    "ROTATION_MACRO",
+    "GLOBAL_MACRO",
+    "QUERY_WEIGHTED"
+  ],
+  "result_dependent_subset_rule": "PREDICTION_CONDITIONED_DENOMINATORS_ARE_REPORTED_AS_EXACT_COUNTS_AT_RUNTIME;_THEIR_PRE_RESULT_GT_SUPERSET_IS_60_MIXED_RECORDS_PER_ROTATION",
+  "rotations": [
+    {
+      "compatible_pairs": [
+        "O01_O02",
+        "O01_O04",
+        "O01_O08",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "incompatible_pairs": [
+        "O01_O03",
+        "O02_O03"
+      ],
+      "protocol_weighted": {
+        "all_test_records": 80,
+        "compatible_mixed_test_records": 48,
+        "incompatible_mixed_test_records": 12,
+        "mixed_test_records": 60,
+        "pure_test_records": 20
+      },
+      "rotation": 0,
+      "unique_query": {
+        "all_test_queries": 65,
+        "compatible_mixed_test_queries": 48,
+        "incompatible_mixed_test_queries": 12,
+        "merge_key": "logical_input_sha256",
+        "mixed_test_queries": 60,
+        "pure_test_queries": 5
+      }
+    },
+    {
+      "compatible_pairs": [
+        "O01_O02",
+        "O01_O04",
+        "O01_O08",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "incompatible_pairs": [
+        "O01_O03",
+        "O02_O03"
+      ],
+      "protocol_weighted": {
+        "all_test_records": 80,
+        "compatible_mixed_test_records": 48,
+        "incompatible_mixed_test_records": 12,
+        "mixed_test_records": 60,
+        "pure_test_records": 20
+      },
+      "rotation": 1,
+      "unique_query": {
+        "all_test_queries": 65,
+        "compatible_mixed_test_queries": 48,
+        "incompatible_mixed_test_queries": 12,
+        "merge_key": "logical_input_sha256",
+        "mixed_test_queries": 60,
+        "pure_test_queries": 5
+      }
+    },
+    {
+      "compatible_pairs": [
+        "O01_O02",
+        "O01_O04",
+        "O01_O08",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "incompatible_pairs": [
+        "O01_O03",
+        "O02_O03"
+      ],
+      "protocol_weighted": {
+        "all_test_records": 80,
+        "compatible_mixed_test_records": 48,
+        "incompatible_mixed_test_records": 12,
+        "mixed_test_records": 60,
+        "pure_test_records": 20
+      },
+      "rotation": 2,
+      "unique_query": {
+        "all_test_queries": 65,
+        "compatible_mixed_test_queries": 48,
+        "incompatible_mixed_test_queries": 12,
+        "merge_key": "logical_input_sha256",
+        "mixed_test_queries": 60,
+        "pure_test_queries": 5
+      }
+    },
+    {
+      "compatible_pairs": [
+        "O01_O02",
+        "O01_O04",
+        "O01_O08",
+        "O02_O04",
+        "O02_O08",
+        "O03_O04",
+        "O03_O08",
+        "O04_O08"
+      ],
+      "incompatible_pairs": [
+        "O01_O03",
+        "O02_O03"
+      ],
+      "protocol_weighted": {
+        "all_test_records": 80,
+        "compatible_mixed_test_records": 48,
+        "incompatible_mixed_test_records": 12,
+        "mixed_test_records": 60,
+        "pure_test_records": 20
+      },
+      "rotation": 3,
+      "unique_query": {
+        "all_test_queries": 65,
+        "compatible_mixed_test_queries": 48,
+        "incompatible_mixed_test_queries": 12,
+        "merge_key": "logical_input_sha256",
+        "mixed_test_queries": 60,
+        "pure_test_queries": 5
+      }
+    }
+  ],
+  "schema_version": "canondressgs.research.controller_v2_evaluator_denominators.v1",
+  "task_id": "AAAI27-CONTROLLER-V2-MICRO-PILOT-CONTRACT-REPAIR-001",
+  "unique_query_weight": "ONE_PER_LOGICAL_INPUT_SHA256"
+}

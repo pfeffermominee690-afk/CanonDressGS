@@ -1,0 +1,83 @@
+{
+  "schema_version": "canondressgs.paper.b5_contract_audit.v1",
+  "task_id": "AAAI27-PAPER-CANDIDATE-REVIEWER-RISK-ADJUDICATION-001",
+  "classification": "B5_CONTRACT_AMBIGUOUS",
+  "reason_for_flag": "The checked-in B5 execution is complex fusion plus SmoothL1 and pairwise geometry, while the formal report calls it Legacy Endpoint. It is neither the Ours-v2-matched complex + SmoothL1-only cell (M3) nor complex + legacy endpoint (M4). The label-to-implementation contract is therefore ambiguous even though the executed code path is recoverable.",
+  "audited_files": [
+    {
+      "path": "tools/paper/formal_batch_runtime.py",
+      "sha256": "e42f612f0dae3b9d25d637df8303fb8bfcf74dc4cb0181d9b52da1c4ff0b779"
+    },
+    {
+      "path": "tools/paper/method_adapters/B5_legacy_complex_fusion.py",
+      "sha256": "4395d1036204eecb3e87ecd8b92fccb1f970f21c3ebd62ad31ac48da6022e382"
+    },
+    {
+      "path": "scene/reference_basis_coefficient_fusion.py",
+      "sha256": "197e70476aa2e64d00bf25600ab34cedb817b447a5f4f6089174660b94dfd90e"
+    },
+    {
+      "path": "configs/paper/aaai27_seen_outfit_explicit_basis_v1.yaml",
+      "sha256": "f2b8c5f14c97e0a721adb1299531178463d5d6fa7d4489737db372fe564df002"
+    },
+    {
+      "path": "configs/research/subject02_reference_basis_coefficient_fusion_v1.yaml",
+      "sha256": "062e68c220082c3f30c282898e9f4bb6b951e8e45e3c0c5e33f82b0ae6423749"
+    }
+  ],
+  "actual_b5_contract": {
+    "reference_feature": "Precomputed frozen-backbone RF-F raw tokens: clothing mean, clothing max, foreground mean, clothing-minus-foreground, mask area, bbox aspect, centroid, and view direction for up to three references.",
+    "fusion_architecture": "Shared LayerNorm/Linear(256)/SiLU/Linear(128)/LayerNorm token adapter followed by four independent ReferenceSetCoefficientFusionV1 scalar heads.",
+    "learned_attention": true,
+    "projection_or_completion": false,
+    "projection_completion_evidence": "Historical config explicitly sets bypass_posed_anchor_projection=true and bypass_canonical_completion=true; the formal runtime maps coefficients directly through the frozen rank-4 basis.",
+    "coefficient_output": "Four standardized scalar coefficients, concatenated as a rank-4 vector.",
+    "tanh_output": true,
+    "loss": [
+      "coefficient SmoothL1",
+      "0.10 x pairwise coefficient geometry"
+    ],
+    "legacy_sign_loss_used": false,
+    "legacy_absolute_pair_loss_used": false,
+    "changes_architecture_relative_to_linear_ours": true,
+    "changes_supervision_relative_to_old_ours": false,
+    "actual_matrix_cell": "OFF_MATRIX_COMPLEX_PLUS_PAIRWISE_GEOMETRY"
+  },
+  "code_evidence": [
+    "tools/paper/formal_batch_runtime.py:79 constructs LegacyRFFRank4 with four fusion heads",
+    "tools/paper/formal_batch_runtime.py:258 selects rff features for B5",
+    "tools/paper/formal_batch_runtime.py:338 dispatches B5 to LegacyRFFRank4",
+    "tools/paper/formal_batch_runtime.py:357 applies the A5-only legacy loss branch; B5 falls through to SmoothL1 + 0.10 pairwise geometry",
+    "scene/reference_basis_coefficient_fusion.py:233 implements mean/max/learned-attention set fusion",
+    "scene/reference_basis_coefficient_fusion.py:276 applies tanh to each scalar head",
+    "configs/research/subject02_reference_basis_coefficient_fusion_v1.yaml:72 bypasses projection and completion"
+  ],
+  "fair_2x2_matrix": {
+    "M1_linear_corrected": {
+      "evidence": "Ours-v2 proposed with coefficient SmoothL1 only",
+      "status": "PROPOSED_NOT_RUN"
+    },
+    "M2_linear_legacy_endpoint": {
+      "evidence": "A5",
+      "status": "HISTORICAL_EVIDENCE"
+    },
+    "M3_complex_corrected": {
+      "evidence": "No unified run matched to Ours-v2 SmoothL1-only supervision. B5 includes the rejected pairwise term and is off-matrix historical evidence.",
+      "status": "MISSING_NOT_RUN"
+    },
+    "M4_complex_legacy_endpoint": {
+      "evidence": "No unified five-outfit formal run. Historical two-outfit RF-F configuration is design evidence only.",
+      "status": "MISSING_NOT_RUN"
+    }
+  },
+  "formal_report_label": {
+    "label": "B5 Legacy Endpoint",
+    "explanation": "The label appears inherited from the legacy RF-F architecture/endpoint naming. It does not match the formal runtime loss branch.",
+    "safe_replacement": "B5 Complex RF-F + SmoothL1 + pairwise geometry (off-matrix historical evidence)"
+  },
+  "claim_boundary": {
+    "may_claim_complex_fusion_is_worse_from_b5_alone": false,
+    "may_claim_legacy_endpoint_supervision_is_worse_from_b5_alone": false,
+    "required_closure": "Run complex+SmoothL1-only (M3) and complex+legacy endpoint (M4) under the unified evaluator; retain A5 as linear+legacy and do not place B5 into either missing cell."
+  }
+}

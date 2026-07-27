@@ -1,0 +1,106 @@
+{
+  "authoritative_sources": [
+    {
+      "branch": "research/subject00-three-garment-canary-protocol-20260724",
+      "head": "b666e8168ec76d67a9e32f26fe9d2e778609cc98"
+    },
+    {
+      "branch": "research/multi-identity-generation-backend-review-workflow-20260724",
+      "head": "e8a09525f745f373e38418c43040766d69a50d10"
+    },
+    {
+      "branch": "research/multi-identity-garment-benchmark-foundations-20260724",
+      "head": "9e46e85cd02527b52e2f5bf0af5571de4c8988d2"
+    },
+    {
+      "branch": "research/mmlphuman-subject00-formal-strict-split-protocol-20260723",
+      "head": "4993f5c865ec19895f35811fa399fc4a1834c6a7"
+    },
+    {
+      "branch": "research/mmlphuman-subject00-storage-migration-adjudication-20260725",
+      "head": "34e91445ef45c001cebcd789a4a6a88cad7b9ad8"
+    }
+  ],
+  "content_sha256": "db0ead4754c677d3ca30e449a7616b305dcb51bb077c16a2debe7f14f7f3a5fd",
+  "execution_counts": {
+    "controller_runs": 0,
+    "formal_base_mutations": 0,
+    "image_generation_api": 0,
+    "materialized_images": 0,
+    "raw_mutations": 0,
+    "renderer": 0,
+    "task_b_source_mutations": 0,
+    "teacher_endpoints": 0,
+    "training": 0,
+    "vlm_api": 0
+  },
+  "formal_base": {
+    "branch_read": "research/mmlphuman-subject00-storage-migration-adjudication-20260725",
+    "classification": "SUBJECT00_FORMAL_OUTPUT_ROOT_REPAIRED_EXECUTION_INVALID",
+    "dependency": "PENDING",
+    "execution_head": null,
+    "formal_attempt_exists": false,
+    "head_read": "34e91445ef45c001cebcd789a4a6a88cad7b9ad8",
+    "required_manifest": "SEALED_SUBJECT00_FORMAL_BASE_FOR_THREE_GARMENT_ENDPOINTS_MANIFEST",
+    "required_manifest_exists": false,
+    "sealed_downstream_manifest": null,
+    "sealed_formal_checkpoint": null
+  },
+  "immutability_baseline": {
+    "formal_protocol_head": "4993f5c865ec19895f35811fa399fc4a1834c6a7",
+    "storage_adjudication_head": "34e91445ef45c001cebcd789a4a6a88cad7b9ad8",
+    "subject00_raw_bytes": 26459647641,
+    "subject00_raw_files": 119412,
+    "subject00_raw_fingerprint": "2c0f894f70d944fa8d6ebd48ab1188b78cb19b673f0b7c006f1922a592b1ea7b",
+    "task_b_source_head": "9da04d923c7c6c03c6a6f7c732d8d9c58d59c88d"
+  },
+  "new_branch": "research/subject00-data-preparation-generation-ready-20260725",
+  "paper_final": false,
+  "recovered_task_b": {
+    "api_calls": 0,
+    "backend_status": "BACKEND_SELECTION_REQUIRED",
+    "classification": "SUBJECT00_CONDITION_RESOURCE_GAP",
+    "controller_runs": 0,
+    "endpoint_runs": 0,
+    "formal_base_dependency": "PENDING",
+    "garments": [
+      "O01",
+      "O03",
+      "O04"
+    ],
+    "materialized_images": 0,
+    "paper_final": false,
+    "planned_candidates": 48,
+    "planned_references": 12,
+    "planned_teacher_targets": 24,
+    "scientific_semantics": "SECOND_IDENTITY_REPLICATION",
+    "slots_per_garment": 8
+  },
+  "schema_version": "canondressgs.subject00.data_preparation_recovery_audit.v1",
+  "source": {
+    "branch": "research/subject00-minimal-second-identity-dataset-contract-20260725",
+    "head": "9da04d923c7c6c03c6a6f7c732d8d9c58d59c88d"
+  },
+  "storage": {
+    "classification": "SUBJECT00_STORAGE_MIGRATION_PLAN_READY",
+    "contract_required_bytes": 32212254720,
+    "current_blocker": "STORAGE_CAPACITY",
+    "current_free_bytes_at_adjudication": 17690701824,
+    "live_free_bytes_at_recovery_audit": 17332740096,
+    "next_task_authorized": false,
+    "recommended_plan": "PLAN_C",
+    "status": "BLOCKED"
+  },
+  "task_id": "AAAI27-SUBJECT00-DATA-PREPARATION-GENERATION-READY-001",
+  "three_layer_consistency": {
+    "final_summary_classification": "SUBJECT00_CONDITION_RESOURCE_GAP",
+    "git_head": "9da04d923c7c6c03c6a6f7c732d8d9c58d59c88d",
+    "handoff_classification": "SUBJECT00_CONDITION_RESOURCE_GAP",
+    "status": "PASS",
+    "summary_handoff_counts_match": true
+  },
+  "worktrees": {
+    "cloud": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_data_preparation_generation_ready",
+    "windows": "E:/model_train/canondressgs_subject00_data_preparation_generation_ready"
+  }
+}

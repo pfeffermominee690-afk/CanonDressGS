@@ -1,0 +1,370 @@
+{
+  "accepted_promotion": false,
+  "attempt_namespace": "attempt_005_subject00_remaining_six_cell_generation",
+  "automatic_acceptance": false,
+  "candidate_count_per_cell": 1,
+  "content_sha256": "17b5878313583112fdc4661b8a8eacba240b1dcd3c6c0f7bd7ff5f2a9888d87e",
+  "external_api_allowed": false,
+  "generation_authorized": false,
+  "generation_call_count": 0,
+  "native_resolution_family": [
+    {
+      "height": 1167,
+      "width": 1348
+    },
+    {
+      "height": 1166,
+      "width": 1349
+    },
+    {
+      "height": 1165,
+      "width": 1350
+    }
+  ],
+  "no_generate_many_then_select": true,
+  "o03_hood_removal_prompt_contract": [
+    "Replace the entire source hoodie with a complete formal suit.",
+    "Remove the original blue-and-white hoodie completely.",
+    "Remove the source hood from the head and neck region.",
+    "The final outfit must contain no hood.",
+    "The head, hair, face, ears, and neck must remain naturally visible according to the source identity and camera direction.",
+    "Preserve identity, face structure, skin tone, body proportions, pose, hands, feet, camera, framing, lighting, and background.",
+    "Generate one person only.",
+    "Do not retain blue hoodie fabric around the head, neck, shoulders, torso, sleeves, or waist.",
+    "Do not add a coat hood, sweatshirt hood, scarf-like hood, or head covering.",
+    "Produce a complete suit jacket, shirt, trousers, and formal styling under the frozen O03 garment contract."
+  ],
+  "paper_final": false,
+  "postprocessing_allowed": false,
+  "request_count": 6,
+  "requests": [
+    {
+      "accepted_promotion": false,
+      "additional_prompt_clauses": [],
+      "camera": "cam11",
+      "cell_descriptor": "O01/slot04/cam11/right",
+      "cell_key": "O01/slot_04",
+      "direction": "right",
+      "expected_native_resolution_family": [
+        {
+          "height": 1167,
+          "width": 1348
+        },
+        {
+          "height": 1166,
+          "width": 1349
+        },
+        {
+          "height": 1165,
+          "width": 1350
+        }
+      ],
+      "expected_output_format": "PNG",
+      "garment": "O01",
+      "generation_authorized": false,
+      "generation_call_count": 0,
+      "index": 0,
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam11_frame00000000.jpg",
+      "negative_constraint_id": "subject00_O01_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, zip-front hoodie, short sleeves, blue trousers, double hood, retained old cuffs",
+      "negative_constraints_sha256": "a53b839b39c0f4a590f2f3af1821865cb2b7329a6cab3423841d1333092918dd",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A light heather-gray pullover hoodie with hood, drawstrings, long sleeves, ribbed cuffs and waist hem, paired with black full-length straight trousers. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_id": "subject00_O01_positive_v1",
+      "positive_prompt_sha256": "a8ab791e57a57fd2c63bff333bdd9937e07b61f8a43e40018215d7c39df085c7",
+      "request_id": "subject00_O01_slot04_remaining_attempt005_cand00",
+      "retry_authorized": false,
+      "slot": "slot_04",
+      "source_camera_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "source_camera_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam11/00000000.jpg",
+      "source_condition_sha256": "7b990d29fc29d2b96756db898fd01dc35f20f7995523ef2c9a56b885d32568b8",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam11/00000000.jpg",
+      "source_mask_sha256": "47078237433af5e8a291f54fb8cdf7dc8abeec09ad9caa039fe8cc4c0f9e7069",
+      "source_pose_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "source_pose_sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "source_request_id": "subject00_O01_slot04_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O01_slot04_cand00.json",
+      "source_request_sha256": "469cab3c3cbe7471d66952355fa510e91db45892d3149d61b000290e07e99f43",
+      "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+      "teacher_target_promotion": false
+    },
+    {
+      "accepted_promotion": false,
+      "additional_prompt_clauses": [],
+      "camera": "cam05",
+      "cell_descriptor": "O01/slot07/cam05/back",
+      "cell_key": "O01/slot_07",
+      "direction": "back",
+      "expected_native_resolution_family": [
+        {
+          "height": 1167,
+          "width": 1348
+        },
+        {
+          "height": 1166,
+          "width": 1349
+        },
+        {
+          "height": 1165,
+          "width": 1350
+        }
+      ],
+      "expected_output_format": "PNG",
+      "garment": "O01",
+      "generation_authorized": false,
+      "generation_call_count": 0,
+      "index": 1,
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam05_frame00000000.jpg",
+      "negative_constraint_id": "subject00_O01_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, zip-front hoodie, short sleeves, blue trousers, double hood, retained old cuffs",
+      "negative_constraints_sha256": "a53b839b39c0f4a590f2f3af1821865cb2b7329a6cab3423841d1333092918dd",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A light heather-gray pullover hoodie with hood, drawstrings, long sleeves, ribbed cuffs and waist hem, paired with black full-length straight trousers. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_id": "subject00_O01_positive_v1",
+      "positive_prompt_sha256": "a8ab791e57a57fd2c63bff333bdd9937e07b61f8a43e40018215d7c39df085c7",
+      "request_id": "subject00_O01_slot07_remaining_attempt005_cand00",
+      "retry_authorized": false,
+      "slot": "slot_07",
+      "source_camera_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "source_camera_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam05/00000000.jpg",
+      "source_condition_sha256": "28882ff5e36f5d740d12fff16ec9e892702e7e0c8db0151b8ca0ec72b378c294",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam05/00000000.jpg",
+      "source_mask_sha256": "1c6f0cb0edd14096cf862e861ba3156905aabc1d6f4a13ce729c060475efb809",
+      "source_pose_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "source_pose_sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "source_request_id": "subject00_O01_slot07_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O01_slot07_cand00.json",
+      "source_request_sha256": "272872c8929c3cc0e0f8f2d0b8f224f8a2ebfc7d2d86d7147a9bff6e61708748",
+      "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+      "teacher_target_promotion": false
+    },
+    {
+      "accepted_promotion": false,
+      "additional_prompt_clauses": [
+        "Replace the entire source hoodie with a complete formal suit.",
+        "Remove the original blue-and-white hoodie completely.",
+        "Remove the source hood from the head and neck region.",
+        "The final outfit must contain no hood.",
+        "The head, hair, face, ears, and neck must remain naturally visible according to the source identity and camera direction.",
+        "Preserve identity, face structure, skin tone, body proportions, pose, hands, feet, camera, framing, lighting, and background.",
+        "Generate one person only.",
+        "Do not retain blue hoodie fabric around the head, neck, shoulders, torso, sleeves, or waist.",
+        "Do not add a coat hood, sweatshirt hood, scarf-like hood, or head covering.",
+        "Produce a complete suit jacket, shirt, trousers, and formal styling under the frozen O03 garment contract."
+      ],
+      "camera": "cam21",
+      "cell_descriptor": "O03/slot01/cam21/front-left",
+      "cell_key": "O03/slot_01",
+      "direction": "front-left",
+      "expected_native_resolution_family": [
+        {
+          "height": 1167,
+          "width": 1348
+        },
+        {
+          "height": 1166,
+          "width": 1349
+        },
+        {
+          "height": 1165,
+          "width": 1350
+        }
+      ],
+      "expected_output_format": "PNG",
+      "garment": "O03",
+      "generation_authorized": false,
+      "generation_call_count": 0,
+      "index": 2,
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam21_frame00000000.jpg",
+      "negative_constraint_id": "subject00_O03_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, casual jacket, missing tie, mismatched trousers, open bare chest, short sleeves",
+      "negative_constraints_sha256": "cad4f38f47f663bbfd908d6766135f68ee2f874f39804de0510cca15ab7c092e",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A dark navy tailored single-breasted two-button business suit with matching full-length trousers, a white dress shirt, and a dark navy tie. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_id": "subject00_O03_positive_v1",
+      "positive_prompt_sha256": "d92a379a9450f2a5f1d092537c723f22f24a9c4ec01e4f9bc5a7496f02369f35",
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "retry_authorized": false,
+      "slot": "slot_01",
+      "source_camera_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "source_camera_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam21/00000000.jpg",
+      "source_condition_sha256": "24123ce6df43b4b00fe6d06aae74e69fc8eb08552e86945a864340a431cf52ed",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam21/00000000.jpg",
+      "source_mask_sha256": "1f876bcdd16dbb0b473639f3cd287f436a58ea6281c3fcaf636fb71bc7481857",
+      "source_pose_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "source_pose_sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "source_request_id": "subject00_O03_slot01_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O03_slot01_cand00.json",
+      "source_request_sha256": "de4412909e771bc6eaf464ca2df333f913f722a4fb4fd0e0defdf70ed4f275c7",
+      "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+      "teacher_target_promotion": false
+    },
+    {
+      "accepted_promotion": false,
+      "additional_prompt_clauses": [
+        "Replace the entire source hoodie with a complete formal suit.",
+        "Remove the original blue-and-white hoodie completely.",
+        "Remove the source hood from the head and neck region.",
+        "The final outfit must contain no hood.",
+        "The head, hair, face, ears, and neck must remain naturally visible according to the source identity and camera direction.",
+        "Preserve identity, face structure, skin tone, body proportions, pose, hands, feet, camera, framing, lighting, and background.",
+        "Generate one person only.",
+        "Do not retain blue hoodie fabric around the head, neck, shoulders, torso, sleeves, or waist.",
+        "Do not add a coat hood, sweatshirt hood, scarf-like hood, or head covering.",
+        "Produce a complete suit jacket, shirt, trousers, and formal styling under the frozen O03 garment contract."
+      ],
+      "camera": "cam09",
+      "cell_descriptor": "O03/slot06/cam09/back-right",
+      "cell_key": "O03/slot_06",
+      "direction": "back-right",
+      "expected_native_resolution_family": [
+        {
+          "height": 1167,
+          "width": 1348
+        },
+        {
+          "height": 1166,
+          "width": 1349
+        },
+        {
+          "height": 1165,
+          "width": 1350
+        }
+      ],
+      "expected_output_format": "PNG",
+      "garment": "O03",
+      "generation_authorized": false,
+      "generation_call_count": 0,
+      "index": 3,
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam09_frame00000000.jpg",
+      "negative_constraint_id": "subject00_O03_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, casual jacket, missing tie, mismatched trousers, open bare chest, short sleeves",
+      "negative_constraints_sha256": "cad4f38f47f663bbfd908d6766135f68ee2f874f39804de0510cca15ab7c092e",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A dark navy tailored single-breasted two-button business suit with matching full-length trousers, a white dress shirt, and a dark navy tie. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_id": "subject00_O03_positive_v1",
+      "positive_prompt_sha256": "d92a379a9450f2a5f1d092537c723f22f24a9c4ec01e4f9bc5a7496f02369f35",
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "retry_authorized": false,
+      "slot": "slot_06",
+      "source_camera_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "source_camera_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam09/00000000.jpg",
+      "source_condition_sha256": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam09/00000000.jpg",
+      "source_mask_sha256": "cd48ea97b973f503caaf71f266c3216740b510cac6943e281e09d63d3b10a2ec",
+      "source_pose_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "source_pose_sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "source_request_id": "subject00_O03_slot06_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O03_slot06_cand00.json",
+      "source_request_sha256": "b89e50b97f16f2c59443de6fe8e5f16f3bbd8bb50f7d2665dc1a0bcb1443edef",
+      "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+      "teacher_target_promotion": false
+    },
+    {
+      "accepted_promotion": false,
+      "additional_prompt_clauses": [],
+      "camera": "cam02",
+      "cell_descriptor": "O04/slot05/cam02/back-left",
+      "cell_key": "O04/slot_05",
+      "direction": "back-left",
+      "expected_native_resolution_family": [
+        {
+          "height": 1167,
+          "width": 1348
+        },
+        {
+          "height": 1166,
+          "width": 1349
+        },
+        {
+          "height": 1165,
+          "width": 1350
+        }
+      ],
+      "expected_output_format": "PNG",
+      "garment": "O04",
+      "generation_authorized": false,
+      "generation_call_count": 0,
+      "index": 4,
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam02_frame00000000.jpg",
+      "negative_constraint_id": "subject00_O04_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, hood, long coat, black trousers, formal blazer, distressed or torn jeans",
+      "negative_constraints_sha256": "408db71ea8e4d2a54b9b45a91e7934ca5cfee25e8d43d53697c4d06be99b83cf",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A black waist-length zip-front bomber jacket with long sleeves over a light-gray crew-neck shirt, paired with medium-blue full-length straight denim jeans. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_id": "subject00_O04_positive_v1",
+      "positive_prompt_sha256": "ac71757350a278dc4b28d5cb7bc6abe7417f39e9a8e2beec579fa25b9b729473",
+      "request_id": "subject00_O04_slot05_remaining_attempt005_cand00",
+      "retry_authorized": false,
+      "slot": "slot_05",
+      "source_camera_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "source_camera_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam02/00000000.jpg",
+      "source_condition_sha256": "6b86a5c2961ff3c7e87c680d950708929fc823a39c62bac39111f6f6a30f62e9",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam02/00000000.jpg",
+      "source_mask_sha256": "0e579c3fad7366c00438a429629d6aaf36497e880d113936d1c9d61ad5298150",
+      "source_pose_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "source_pose_sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "source_request_id": "subject00_O04_slot05_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O04_slot05_cand00.json",
+      "source_request_sha256": "a65d659d56a94f91a0de80ce60d81cad3286e2b1c2a80a927ddef56cbe2d4059",
+      "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+      "teacher_target_promotion": false
+    },
+    {
+      "accepted_promotion": false,
+      "additional_prompt_clauses": [],
+      "camera": "cam09",
+      "cell_descriptor": "O04/slot06/cam09/back-right",
+      "cell_key": "O04/slot_06",
+      "direction": "back-right",
+      "expected_native_resolution_family": [
+        {
+          "height": 1167,
+          "width": 1348
+        },
+        {
+          "height": 1166,
+          "width": 1349
+        },
+        {
+          "height": 1165,
+          "width": 1350
+        }
+      ],
+      "expected_output_format": "PNG",
+      "garment": "O04",
+      "generation_authorized": false,
+      "generation_call_count": 0,
+      "index": 5,
+      "local_source_condition_path": "E:\\model_train\\_subject00_identity_audit_tmp\\cam09_frame00000000.jpg",
+      "negative_constraint_id": "subject00_O04_negative_v1",
+      "negative_constraints": "different identity, changed face, invented or changed hairstyle, changed skin tone, changed body proportions, changed pose, changed camera, changed framing, cropped body, close-up, missing hand, missing foot, extra limb, fused anatomy, extra person, added scene, changed background, changed lighting, accessory drift, text, number, logo, watermark, border, collage, garment redesign, exaggerated fashion styling, hood, long coat, black trousers, formal blazer, distressed or torn jeans",
+      "negative_constraints_sha256": "408db71ea8e4d2a54b9b45a91e7934ca5cfee25e8d43d53697c4d06be99b83cf",
+      "positive_prompt": "Use the Subject00 source RGB as the only identity and pose source. Preserve the same person, face, visible hairline, skin tone, body proportions, full-body pose, camera, framing, background, and lighting. Edit clothing only. Keep both hands and both feet complete and visible. Replace the current outfit with exactly this frozen garment: A black waist-length zip-front bomber jacket with long sleeves over a light-gray crew-neck shirt, paired with medium-blue full-length straight denim jeans. Match the frozen color, cut, sleeve length, upper/lower structure, fit, and hem. Do not redesign the garment.",
+      "positive_prompt_id": "subject00_O04_positive_v1",
+      "positive_prompt_sha256": "ac71757350a278dc4b28d5cb7bc6abe7417f39e9a8e2beec579fa25b9b729473",
+      "request_id": "subject00_O04_slot06_remaining_attempt005_cand00",
+      "retry_authorized": false,
+      "slot": "slot_06",
+      "source_camera_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/calibration.json",
+      "source_camera_sha256": "4b2d98d20740da03be209040851fab7e8801e5670937ed9ad290a20264d1dde7",
+      "source_condition_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/images/cam09/00000000.jpg",
+      "source_condition_sha256": "67c2616c073c57165efe54982bf2cd18a47d0be18cd1d67576ad4020af70c373",
+      "source_mask_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/masks/cam09/00000000.jpg",
+      "source_mask_sha256": "cd48ea97b973f503caaf71f266c3216740b510cac6943e281e09d63d3b10a2ec",
+      "source_pose_path": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00/smpl_params.npz",
+      "source_pose_sha256": "ac2738c308ad1a9cc02e7b63323c75e0eab28bddc88c57bb5887e07bf8ea28d2",
+      "source_request_id": "subject00_O04_slot06_cand00",
+      "source_request_path": "E:\\canondressgs_data\\subject00_three_garment\\CODEX-MANAGED-GENERATION-001\\attempt_001\\03_generation_requests\\requests\\subject00_O04_slot06_cand00.json",
+      "source_request_sha256": "bffe6655060a07aa48f287a9e154d55959ce5399fcf77dfd5fd22a21b827257d",
+      "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+      "teacher_target_promotion": false
+    }
+  ],
+  "retry_authorized": false,
+  "retry_count": 0,
+  "schema_version": "canondressgs.subject00.remaining_six_cell_generation_manifest_draft.v1",
+  "status": "DRAFT_PENDING_USER_AUTHORIZATION",
+  "task_id": "AAAI27-SUBJECT00-O03-CANARY-HUMAN-REVIEW-FREEZE-001",
+  "teacher_target_promotion": false
+}
