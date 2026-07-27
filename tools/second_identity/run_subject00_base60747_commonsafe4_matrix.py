@@ -1049,6 +1049,7 @@ def aggregate(results: list[dict[str, Any]]) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, default=CONFIG_PATH)
+    parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args()
     if args.config.resolve() != CONFIG_PATH.resolve():
         raise RuntimeError("only the sealed CommonSafe4 config is authorized")
@@ -1057,6 +1058,26 @@ def main() -> int:
     config, config_audit = validate_config()
     registry = validate_registry(config)
     inputs = input_gate(config)
+    if args.preflight_only:
+        print(
+            json.dumps(
+                {
+                    "status": "PASS_PREFLIGHT_ONLY_NO_OUTPUT_CREATED",
+                    "task_id": TASK_ID,
+                    "git": git,
+                    "resource_gate": initial_process,
+                    "config_audit": config_audit,
+                    "teacher_registry": registry,
+                    "inputs": inputs,
+                    "output_root_absent": not OUTPUT_ROOT.exists(),
+                    "optimizer_initialized": False,
+                    "optimizer_steps": 0,
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return 0
     lock = create_lock(git)
     for directory in (
         "contract",
