@@ -1,41 +1,50 @@
 {
-  "schema_version": "canondressgs.subject00.base60747_method_matrix_aggregate.v1",
-  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
-  "status": "NOT_COMPUTABLE_MATRIX_INCOMPLETE",
   "aggregation_contract": "ALL_12_RUNS_NO_CHERRY_PICKING",
-  "expected_run_count": 12,
-  "training_complete_run_count": 1,
-  "formal_test_complete_run_count": 0,
-  "actual_optimizer_steps": 300,
-  "expected_optimizer_steps": 3600,
-  "matrix_endpoint_top1": null,
+  "blockers": [
+    {
+      "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+      "role": "test",
+      "rotation": 0
+    },
+    {
+      "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+      "role": "calibration",
+      "rotation": 1
+    },
+    {
+      "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+      "role": "train",
+      "rotation": 2
+    },
+    {
+      "reason": "QUARANTINED_SLOT04_REMOVES_O01_O03_REQUIRED_FOLD_RECORDS",
+      "role": "train",
+      "rotation": 3
+    }
+  ],
+  "checkpoint_completeness": "1_OF_12_RUNS",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines",
+  "completed_training_run_count": 1,
   "confusion_matrix": null,
-  "candidate_score_margin": {
-    "mean": null,
-    "standard_deviation": null,
-    "minimum": null,
-    "maximum": null
-  },
-  "endpoint_top1": {
-    "mean": null,
-    "standard_deviation": null,
-    "minimum": null,
-    "maximum": null
-  },
+  "execution_lock_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/control/METHOD_MATRIX_EXECUTION_LOCK_20260727.json",
+  "expected_run_count": 12,
   "failure_count": 1,
-  "failure": "FROZEN_FOLD_COVERAGE_CONFLICT",
+  "formal_valid_run_count": 0,
+  "matrix_endpoint_top1": null,
+  "matrix_mean_std": null,
   "nan_inf_count": 0,
+  "new_branch": "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727",
   "oom_count": 0,
-  "checkpoint_complete_training_run_count": 1,
-  "method_wall_time_seconds_available": 46.43093943595886,
-  "method_peak_vram_bytes_available": 18142208,
-  "base_checkpoint_mutations": 0,
-  "teacher_checkpoint_mutations": {"O01": 0, "O03": 0, "O04": 0},
-  "formal_target_mutations": 0,
-  "raw_mutations": 0,
-  "mask_mutations": 0,
-  "camera_record_mutations": 0,
-  "paper_eligible": false,
-  "scientific_pass": null,
-  "paper_final": false
+  "paper_final": false,
+  "rotation_effect": null,
+  "runtime_preflight_path": "paper_protocol/reviewer_risk/subject00_base60747_method_matrix_runtime_preflight_20260727.json",
+  "schema_version": "canondressgs.subject00.base60747.remaining_matrix_blocker.v1",
+  "seed_effect": null,
+  "source_branch": "research/subject00-o03-loss-binding-concurrent-provenance-20260727",
+  "source_head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6",
+  "status": "NOT_AGGREGATABLE_ENGINEERING_GATE_FAIL",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001",
+  "total_optimizer_steps_actual": 300,
+  "total_optimizer_steps_expected": 3600,
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines"
 }

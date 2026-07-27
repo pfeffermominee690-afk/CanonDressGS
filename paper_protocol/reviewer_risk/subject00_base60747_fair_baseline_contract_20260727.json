@@ -1,84 +1,33 @@
 {
-  "schema_version": "canondressgs.subject00.base60747_fair_baseline_contract.v1",
-  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
-  "status": "UNIQUE_SET_RECOVERED_EXECUTION_BLOCKED",
-  "source": {
-    "subject00_evaluator_contract": "paper_protocol/reviewer_risk/subject00_second_identity_evaluator_contract.json",
-    "subject00_evaluator_contract_sha256_lf": "abb731b07e0666ae1836900c4b59d114edca50f9b3d183b8275c3d73a008548c",
-    "subject00_evaluation_plan": "docs/PAPER/AAAI27_SUBJECT00_SECOND_IDENTITY_EVALUATION_PLAN_20260725.md",
-    "subject02_amended_primary_registry_commit": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
-    "subject02_amended_primary_registry_status": "PRIMARY_7_METHOD_REGISTRY_FROZEN"
-  },
-  "paper_facing_internal_fair_baselines": [
-    {
-      "name": "Reference Classifier Lookup",
-      "kind": "TRAINABLE_HARD_LOOKUP",
-      "input": "same pooled frozen-F2 512-vector",
-      "architecture": "LayerNorm(512)+Linear(512,3)",
-      "loss": "cross entropy only",
-      "optimizer": "Adam lr=0.02 weight_decay=0; constant LambdaLR",
-      "optimizer_steps_per_rotation_seed": 300,
-      "planned_run_count": 12,
-      "planned_optimizer_steps": 3600,
-      "checkpoint_steps": [0, 20, 50, 100, 200, 300]
-    },
-    {
-      "name": "Nearest-Centroid Lookup",
-      "kind": "NON_OPTIMIZER_HARD_LOOKUP",
-      "input": "same pooled frozen-F2 512-vector",
-      "fit": "train-fold-only feature mean, scale, and three garment centroids",
-      "distance": "squared L2",
-      "tie_break": ["O01", "O03", "O04"],
-      "planned_rotation_seed_evaluations": 12,
-      "optimizer_steps": 0
-    },
-    {
-      "name": "Outfit-ID Oracle",
-      "kind": "NON_DEPLOYABLE_ENDPOINT_ORACLE",
-      "input": "ground-truth garment ID",
-      "selection": "registered rank2 endpoint coordinate and frozen basis",
-      "planned_rotation_seed_evaluations": 12,
-      "optimizer_steps": 0
-    },
-    {
-      "name": "Teacher Endpoint",
-      "kind": "NON_DEPLOYABLE_OPTIMIZATION_UPPER_REFERENCE",
-      "input": "ground-truth garment ID",
-      "selection": "full independent frozen Teacher Endpoint residual",
-      "planned_rotation_seed_evaluations": 12,
-      "optimizer_steps": 0
-    }
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines",
+  "contract_source": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines/paper_protocol/reviewer_risk/subject00_second_identity_evaluator_contract.json",
+  "contract_source_sha256": "abb731b07e0666ae1836900c4b59d114edca50f9b3d183b8275c3d73a008548c",
+  "dual_support_authorized": false,
+  "execution_allowed_after_gates": false,
+  "execution_authorized_by_user": true,
+  "execution_blocker": "METHOD_MATRIX_NOT_12_OF_12_AND_BASELINE_EXECUTION_CONTRACT_INCOMPLETE",
+  "execution_lock_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/control/METHOD_MATRIX_EXECUTION_LOCK_20260727.json",
+  "external_baselines_authorized": false,
+  "full_execution_contract_gaps": [
+    "source status remains FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+    "exact calibration/test/visualization condition IDs remain blocked",
+    "per-baseline optimizer/run budget is not sealed for Subject00"
   ],
-  "diagnostic_only_excluded": [
-    "Direct Residual Decoder (Historical V7)",
-    "Dual-Support variants",
-    "blur/reference counterfactual variants"
+  "full_execution_contract_unique": false,
+  "name_set_unique": true,
+  "new_branch": "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727",
+  "paper_facing_names": [
+    "Reference Classifier Lookup",
+    "Nearest-Centroid Lookup",
+    "Outfit-ID Oracle",
+    "Teacher Endpoint"
   ],
-  "external_excluded": [
-    "GS-VTON",
-    "Full Avatar",
-    "AvatarReX",
-    "external code baselines"
-  ],
-  "shared_fairness_bindings": {
-    "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
-    "formal_target_count": 22,
-    "quarantine_count": 2,
-    "teacher_garments": ["O01", "O03", "O04"],
-    "rotations": [0, 1, 2, 3],
-    "seeds": [0, 1, 2],
-    "endpoint_candidates": ["O01", "O03", "O04"],
-    "common_evaluator_required": true,
-    "historical_subject02_metrics_reusable": false
-  },
-  "execution_gate": {
-    "method_matrix_must_complete_first": true,
-    "method_matrix_complete": false,
-    "condition_fold_instantiable": false,
-    "execution_authorized": false,
-    "reason": "METHOD_MATRIX_NOT_12_OF_12_AND_SUBJECT00_CONDITION_RESOURCE_GAP"
-  },
-  "paper_eligible": false,
-  "scientific_pass": null,
-  "paper_final": false
+  "paper_final": false,
+  "runtime_preflight_path": "paper_protocol/reviewer_risk/subject00_base60747_method_matrix_runtime_preflight_20260727.json",
+  "schema_version": "canondressgs.subject00.base60747.remaining_matrix_blocker.v1",
+  "source_branch": "research/subject00-o03-loss-binding-concurrent-provenance-20260727",
+  "source_head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6",
+  "source_status": "FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines"
 }

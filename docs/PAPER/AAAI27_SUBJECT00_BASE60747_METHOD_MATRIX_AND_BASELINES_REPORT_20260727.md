@@ -1,27 +1,39 @@
-# AAAI-27 Subject00 Base60747 Matrix/Comparators Technical Handoff
+# Subject00 Base60747 Remaining Method Matrix and Fair Baselines
 
-This is a technical protocol report, not a paper-body modification.
+Task: `AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001`
 
-The intended four-rotation pure-endpoint matrix is not executable with the
-frozen 22-record Subject00 dataset. The matrix requires the slot04 fold for
-rotation0 test, rotation1 calibration, and rotation2/3 training, while the
-only eligible slot04 record is O04. The O01/O03 slot04 records are permanently
-camera-quarantined and cannot enter training, evaluation, endpoint scores, or
-denominators.
+## Outcome
 
-The existing rotation0/seed0 controller training remains valid as a
-300-step training audit, but its 6/6 endpoint result is on its training folds.
-It has no complete formal test-fold denominator and must not be aggregated as
-a cross-fit result.
+The O03 provenance blocker is resolved and all three Teacher checkpoints are valid.
+The remaining matrix cannot be executed under the frozen contract: O01 and O03
+slot04 are quarantined, while the frozen rotations require slot04 for rotation0
+test, rotation1 calibration, and rotation2/rotation3 training. The frozen
+Subject00 runner also implements only rotation0/seed0. No optimizer was created.
 
-The formal comparator set is Reference Classifier Lookup, Nearest-Centroid
-Lookup, Outfit-ID Oracle, and Teacher Endpoint. None was executed because the
-method matrix completion gate failed. No Subject02 result was transferred.
+Final classification:
+`SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAIL`
 
-Classification:
-`SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAIL`.
+Next task:
+`USER_REVIEW_SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAILURE`
 
-Required next action:
-`USER_REVIEW_SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAILURE`.
+## Evidence
 
-No paper claims or tables may be updated from this blocked experiment.
+- Runtime critical checks: 30/30 PASS.
+- Formal target: 22 records, 2 quarantined, 330/330 payload checksums bound.
+- Existing `METHOD-R0-S0`: authentic 300-step training run; six checkpoints;
+  training-fold endpoint result 6/6; formal test fold unavailable.
+- New method optimizer steps: 0.
+- Fair baseline optimizer steps: 0.
+- Dual-Support calls: 0.
+- Base, Teacher, target, completed cell, Formal Base, and paper mutations: 0.
+- Execution lock: `/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/control/METHOD_MATRIX_EXECUTION_LOCK_20260727.json` (`CLOSED_BLOCKED_PREFLIGHT`).
+
+## Fair baseline status
+
+The paper-facing names are recovered as Reference Classifier Lookup,
+Nearest-Centroid Lookup, Outfit-ID Oracle, and Teacher Endpoint. Execution did
+not start because the method matrix is incomplete and the sealed evaluator
+contract still reports blocked condition resources without a complete
+Subject00 per-baseline execution budget.
+
+`PAPER_FINAL = false`

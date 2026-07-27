@@ -1,50 +1,35 @@
 {
-  "schema_version": "canondressgs.subject00.base60747_method_compute_budget_audit.v1",
-  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
-  "status": "PLANNED_BUDGET_RECOVERED_EXECUTION_INCOMPLETE",
-  "method": {
-    "name": "CanonDressGS-Endpoint",
-    "planned_runs": 12,
-    "planned_optimizer_steps_per_run": 300,
-    "planned_optimizer_steps": 3600,
-    "actual_training_runs": 1,
-    "actual_optimizer_steps": 300,
-    "actual_wall_time_seconds_available": 46.43093943595886,
-    "actual_controller_peak_vram_bytes": 18142208
-  },
   "baselines": {
-    "Reference Classifier Lookup": {
-      "planned_runs": 12,
-      "planned_optimizer_steps_per_run": 300,
-      "planned_optimizer_steps": 3600,
-      "trainable_parameters": "LayerNorm(512)+Linear(512,3)",
-      "actual_runs": 0,
-      "actual_optimizer_steps": 0
-    },
-    "Nearest-Centroid Lookup": {
-      "planned_evaluations": 12,
-      "optimizer_steps": 0,
-      "budget_disclosure": "Deterministic train-fold feature standardization and centroid fit; optimizer-step equality is not applicable."
-    },
-    "Outfit-ID Oracle": {
-      "planned_evaluations": 12,
-      "optimizer_steps": 0,
-      "budget_disclosure": "Ground-truth ID endpoint retrieval; non-deployable and no optimizer by definition."
-    },
-    "Teacher Endpoint": {
-      "planned_evaluations": 12,
-      "optimizer_steps": 0,
-      "budget_disclosure": "Frozen full Teacher retrieval; non-deployable and no optimizer in this task."
-    }
+    "names": [
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Outfit-ID Oracle",
+      "Teacher Endpoint"
+    ],
+    "optimizer_steps": 0,
+    "peak_vram_bytes": null,
+    "run_count": 0,
+    "wall_time_seconds": 0
   },
-  "compute_budget_fairness_status": "NOT_EVALUABLE_EXECUTION_BLOCKED",
-  "common_input_and_evaluator_fairness": "PREREGISTERED_BUT_NOT_EXECUTED",
-  "instantaneous_gpu_utilization_used_for_eta": false,
-  "eta": {
-    "remaining_method_seconds": null,
-    "baseline_seconds": null,
-    "total_seconds": null,
-    "reason": "No first new run completed; the task forbids estimating ETA from instantaneous GPU snapshots."
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines",
+  "execution_lock_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/control/METHOD_MATRIX_EXECUTION_LOCK_20260727.json",
+  "fairness_status": "NOT_EVALUABLE_EXECUTION_BLOCKED",
+  "method": {
+    "actual_optimizer_steps": 300,
+    "completed_run_peak_vram_bytes": 18142208,
+    "completed_run_wall_time_seconds": 46.43093943595886,
+    "completed_runs": 1,
+    "expected_optimizer_steps": 3600,
+    "expected_runs": 12,
+    "new_optimizer_steps_this_task": 0,
+    "trainable_parameter_count": 2050
   },
-  "paper_final": false
+  "new_branch": "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727",
+  "paper_final": false,
+  "runtime_preflight_path": "paper_protocol/reviewer_risk/subject00_base60747_method_matrix_runtime_preflight_20260727.json",
+  "schema_version": "canondressgs.subject00.base60747.remaining_matrix_blocker.v1",
+  "source_branch": "research/subject00-o03-loss-binding-concurrent-provenance-20260727",
+  "source_head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines"
 }

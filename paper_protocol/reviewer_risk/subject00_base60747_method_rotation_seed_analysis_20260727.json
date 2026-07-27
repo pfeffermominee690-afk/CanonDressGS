@@ -1,62 +1,213 @@
 {
-  "schema_version": "canondressgs.subject00.base60747_method_rotation_seed_analysis.v1",
-  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
-  "status": "NOT_COMPUTABLE_MATRIX_INCOMPLETE",
-  "rotations": {
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines",
+  "completed_cells": [
+    "METHOD-R0-S0"
+  ],
+  "execution_lock_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/control/METHOD_MATRIX_EXECUTION_LOCK_20260727.json",
+  "expected_cartesian_product_count": 12,
+  "fold_coverage": {
     "0": {
-      "train_slots": [0, 7],
-      "calibration_slot": 3,
-      "test_slot": 4,
-      "train_complete": true,
       "calibration_complete": true,
+      "calibration_counts": {
+        "O01": 1,
+        "O03": 1,
+        "O04": 1
+      },
+      "contract": {
+        "calibration_slot": 3,
+        "test_slot": 4,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
       "test_complete": false,
-      "test_counts": {"O01": 0, "O03": 0, "O04": 1},
-      "completed_training_seeds": [0],
-      "formal_test_complete_seeds": []
+      "test_counts": {
+        "O01": 0,
+        "O03": 0,
+        "O04": 1
+      },
+      "train_complete": true,
+      "train_counts": {
+        "0": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "7": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        }
+      }
     },
     "1": {
-      "train_slots": [7, 3],
-      "calibration_slot": 4,
-      "test_slot": 0,
-      "train_complete": true,
       "calibration_complete": false,
+      "calibration_counts": {
+        "O01": 0,
+        "O03": 0,
+        "O04": 1
+      },
+      "contract": {
+        "calibration_slot": 4,
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
       "test_complete": true,
-      "calibration_counts": {"O01": 0, "O03": 0, "O04": 1},
-      "completed_training_seeds": [],
-      "formal_test_complete_seeds": []
+      "test_counts": {
+        "O01": 1,
+        "O03": 1,
+        "O04": 1
+      },
+      "train_complete": true,
+      "train_counts": {
+        "3": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "7": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        }
+      }
     },
     "2": {
-      "train_slots": [3, 4],
-      "calibration_slot": 0,
-      "test_slot": 7,
-      "train_complete": false,
       "calibration_complete": true,
+      "calibration_counts": {
+        "O01": 1,
+        "O03": 1,
+        "O04": 1
+      },
+      "contract": {
+        "calibration_slot": 0,
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          4
+        ]
+      },
       "test_complete": true,
-      "slot04_train_counts": {"O01": 0, "O03": 0, "O04": 1},
-      "completed_training_seeds": [],
-      "formal_test_complete_seeds": []
+      "test_counts": {
+        "O01": 1,
+        "O03": 1,
+        "O04": 1
+      },
+      "train_complete": false,
+      "train_counts": {
+        "3": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "4": {
+          "O01": 0,
+          "O03": 0,
+          "O04": 1
+        }
+      }
     },
     "3": {
-      "train_slots": [4, 0],
-      "calibration_slot": 7,
-      "test_slot": 3,
-      "train_complete": false,
       "calibration_complete": true,
+      "calibration_counts": {
+        "O01": 1,
+        "O03": 1,
+        "O04": 1
+      },
+      "contract": {
+        "calibration_slot": 7,
+        "test_slot": 3,
+        "train_slots": [
+          4,
+          0
+        ]
+      },
       "test_complete": true,
-      "slot04_train_counts": {"O01": 0, "O03": 0, "O04": 1},
-      "completed_training_seeds": [],
-      "formal_test_complete_seeds": []
+      "test_counts": {
+        "O01": 1,
+        "O03": 1,
+        "O04": 1
+      },
+      "train_complete": false,
+      "train_counts": {
+        "0": {
+          "O01": 1,
+          "O03": 1,
+          "O04": 1
+        },
+        "4": {
+          "O01": 0,
+          "O03": 0,
+          "O04": 1
+        }
+      }
     }
   },
-  "seeds": {
-    "0": {"training_complete_rotation_count": 1, "formal_test_complete_rotation_count": 0},
-    "1": {"training_complete_rotation_count": 0, "formal_test_complete_rotation_count": 0},
-    "2": {"training_complete_rotation_count": 0, "formal_test_complete_rotation_count": 0}
-  },
+  "new_branch": "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727",
+  "paper_final": false,
+  "pending_cells": [
+    "METHOD-R0-S1",
+    "METHOD-R0-S2",
+    "METHOD-R1-S0",
+    "METHOD-R1-S1",
+    "METHOD-R1-S2",
+    "METHOD-R2-S0",
+    "METHOD-R2-S1",
+    "METHOD-R2-S2",
+    "METHOD-R3-S0",
+    "METHOD-R3-S1",
+    "METHOD-R3-S2"
+  ],
   "rotation_effect": null,
+  "rotations": {
+    "0": {
+      "calibration_slot": 3,
+      "test_slot": 4,
+      "train_slots": [
+        0,
+        7
+      ]
+    },
+    "1": {
+      "calibration_slot": 4,
+      "test_slot": 0,
+      "train_slots": [
+        7,
+        3
+      ]
+    },
+    "2": {
+      "calibration_slot": 0,
+      "test_slot": 7,
+      "train_slots": [
+        3,
+        4
+      ]
+    },
+    "3": {
+      "calibration_slot": 7,
+      "test_slot": 3,
+      "train_slots": [
+        4,
+        0
+      ]
+    }
+  },
+  "runtime_preflight_path": "paper_protocol/reviewer_risk/subject00_base60747_method_matrix_runtime_preflight_20260727.json",
+  "schema_version": "canondressgs.subject00.base60747.remaining_matrix_blocker.v1",
   "seed_effect": null,
-  "reason": "Rotation and seed effects require all 12 formal test evaluations; reporting the sole training-fold result would be cherry-picking.",
-  "paper_eligible": false,
-  "scientific_pass": null,
-  "paper_final": false
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "source_branch": "research/subject00-o03-loss-binding-concurrent-provenance-20260727",
+  "source_head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6",
+  "status": "BLOCKED_INSUFFICIENT_COMPLETE_CELLS",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_base60747_remaining_method_matrix_fair_baselines"
 }
