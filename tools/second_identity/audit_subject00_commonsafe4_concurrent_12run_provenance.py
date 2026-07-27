@@ -704,7 +704,14 @@ def build_timeline(method_tree: dict[str, Any], lock: dict[str, Any]) -> dict[st
 
 
 def audit_assets() -> dict[str, Any]:
-    base_payload = torch_load(BASE_PATH)
+    # The Base60747 archive is ~724 MB.  Memory mapping preserves a real
+    # torch parse/internal-step check without materializing every tensor into
+    # the audit process at once.
+    base_payload = torch.load(
+        BASE_PATH, map_location="cpu", weights_only=False, mmap=True
+    )
+    if not isinstance(base_payload, dict):
+        raise TypeError(f"expected dict checkpoint: {BASE_PATH}")
     base_step = int(
         base_payload.get(
             "global_step",
