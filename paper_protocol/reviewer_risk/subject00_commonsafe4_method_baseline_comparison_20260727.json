@@ -1,0 +1,57 @@
+{
+  "comparisons": [
+    {
+      "baseline": "Reference Classifier Lookup",
+      "baseline_endpoint_top1": 0.8611111111111112,
+      "baseline_optimizer_steps": 3600,
+      "method_endpoint_top1": 0.8333333333333334,
+      "method_minus_baseline": -0.02777777777777779,
+      "method_optimizer_steps": 3600,
+      "relation": "METHOD_UNDERPERFORMS",
+      "same_commonsafe4_folds_inputs_evaluator": true
+    },
+    {
+      "baseline": "Nearest-Centroid Lookup",
+      "baseline_endpoint_top1": 0.9722222222222222,
+      "baseline_optimizer_steps": 0,
+      "method_endpoint_top1": 0.8333333333333334,
+      "method_minus_baseline": -0.13888888888888884,
+      "method_optimizer_steps": 3600,
+      "relation": "METHOD_UNDERPERFORMS",
+      "same_commonsafe4_folds_inputs_evaluator": true
+    },
+    {
+      "baseline": "Outfit-ID Oracle",
+      "baseline_endpoint_top1": 1.0,
+      "baseline_optimizer_steps": 0,
+      "method_endpoint_top1": 0.8333333333333334,
+      "method_minus_baseline": -0.16666666666666663,
+      "method_optimizer_steps": 3600,
+      "relation": "METHOD_UNDERPERFORMS",
+      "same_commonsafe4_folds_inputs_evaluator": true
+    },
+    {
+      "baseline": "Teacher Endpoint",
+      "baseline_endpoint_top1": 1.0,
+      "baseline_optimizer_steps": 0,
+      "method_endpoint_top1": 0.8333333333333334,
+      "method_minus_baseline": -0.16666666666666663,
+      "method_optimizer_steps": 3600,
+      "relation": "METHOD_UNDERPERFORMS",
+      "same_commonsafe4_folds_inputs_evaluator": true
+    }
+  ],
+  "hard_lookup_relation": "HARD_LOOKUP_RELATION_DESCRIPTIVE_ONLY",
+  "human_visual_decision": null,
+  "method": "CanonDressGS-Endpoint",
+  "method_endpoint_top1": 0.8333333333333334,
+  "paper_eligible": false,
+  "paper_final": false,
+  "primary_observation": "CanonDressGS-Endpoint scored 30/36 (0.833333), below Reference Classifier Lookup at 31/36 (0.861111) and Nearest-Centroid Lookup at 35/36 (0.972222); O04-to-O03 confusion is the shared dominant failure mode.",
+  "schema_version": "canondressgs.subject00.commonsafe4.method_baseline_comparison.v1",
+  "scientific_pass": null,
+  "statistical_significance_claimed": false,
+  "status": "PASS_DESCRIPTIVE_COMPARISON_COMPLETE",
+  "superiority_assumed": false,
+  "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001"
+}

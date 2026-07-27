@@ -1,0 +1,318 @@
+{
+  "blocker_evidence": {
+    "branch": "research/subject00-base60747-method-matrix-fair-baselines-20260727",
+    "head": "d3a6500344c8d1fe6a52edf6cfbcc7aea219f864"
+  },
+  "execution": {
+    "baseline_contract_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+    "baseline_repair_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+    "branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+    "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+    "execution_head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+    "final_reporting_head": "PENDING_COMMIT",
+    "windows_worktree": "E:\\model_train\\canondressgs_subject00_base60747_commonsafe4_method_matrix"
+  },
+  "fair_baselines": {
+    "attempt_002_created": false,
+    "compute_wall_time_seconds": 14.363308899104595,
+    "contract_status": "SEALED_EXECUTION_AUTHORIZED_AFTER_METHOD_MATRIX_12_OF_12",
+    "execution_lock_elapsed_seconds": 264.03100419044495,
+    "names": [
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Outfit-ID Oracle",
+      "Teacher Endpoint"
+    ],
+    "preoptimizer_gate_continuation_count": 1,
+    "results": {
+      "Nearest-Centroid Lookup": {
+        "endpoint_top1": 0.9722222222222222,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 0,
+        "run_count": 12
+      },
+      "Outfit-ID Oracle": {
+        "endpoint_top1": 1.0,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 0,
+        "run_count": 12
+      },
+      "Reference Classifier Lookup": {
+        "endpoint_top1": 0.8611111111111112,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 3600,
+        "run_count": 12
+      },
+      "Teacher Endpoint": {
+        "endpoint_top1": 1.0,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 0,
+        "run_count": 12
+      }
+    },
+    "scientific_run_retry_count": 0
+  },
+  "final_classification": "SUBJECT00_BASE60747_COMMONSAFE4_METHOD_MATRIX_AND_BASELINES_TECHNICAL_PASS_PENDING_HUMAN_SCIENTIFIC_REVIEW",
+  "human_visual_decision": null,
+  "method": {
+    "completed_run_count_before": 0,
+    "config_lf_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+    "config_path": "configs/research/subject00_canondressgs_method_base60747_commonsafe4_v1.json",
+    "config_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+    "contract": "PURE_ENDPOINT",
+    "dual_support_enabled": false,
+    "end_to_end_wall_time_seconds": 63.0221061706543,
+    "endpoint_top1": 0.8333333333333334,
+    "executed_run_count": 12,
+    "expected_run_count": 12,
+    "formal_valid_run_count": 12,
+    "mean": 0.8333333333333331,
+    "optimizer_run_wall_time_seconds": 16.108335733413696,
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+    "peak_vram_bytes": 18134528,
+    "rotation_effect": {
+      "0": {
+        "mean_endpoint_top1": 1.0,
+        "run_count": 3
+      },
+      "1": {
+        "mean_endpoint_top1": 0.6666666666666666,
+        "run_count": 3
+      },
+      "2": {
+        "mean_endpoint_top1": 0.8888888888888888,
+        "run_count": 3
+      },
+      "3": {
+        "mean_endpoint_top1": 0.7777777777777777,
+        "run_count": 3
+      }
+    },
+    "seed_effect": {
+      "0": {
+        "mean_endpoint_top1": 0.7499999999999999,
+        "run_count": 4
+      },
+      "1": {
+        "mean_endpoint_top1": 0.8333333333333333,
+        "run_count": 4
+      },
+      "2": {
+        "mean_endpoint_top1": 0.9166666666666666,
+        "run_count": 4
+      }
+    },
+    "std_population": 0.16666666666666669,
+    "total_optimizer_steps": 3600
+  },
+  "mutations": {
+    "O01_teacher": 0,
+    "O03_teacher": 0,
+    "O04_teacher": 0,
+    "base60747": 0,
+    "camera_records": 0,
+    "formal_base_run": 0,
+    "formal_targets": 0,
+    "mask": 0,
+    "old_method_output": 0,
+    "paper": 0,
+    "raw": 0
+  },
+  "next_task": "PREPARE_SUBJECT00_COMMONSAFE4_METHOD_TEACHER_BASELINE_HUMAN_SCIENTIFIC_REVIEW_PACK",
+  "original_matrix": {
+    "blocker_evidence_branch": "research/subject00-base60747-method-matrix-fair-baselines-20260727",
+    "blocker_evidence_head": "d3a6500344c8d1fe6a52edf6cfbcc7aea219f864",
+    "old_method_output_mutations": 0,
+    "old_method_r0_s0_formal_matrix_eligible": false,
+    "old_method_r0_s0_formal_test_completed": false,
+    "old_method_r0_s0_reuse_in_new_matrix": false,
+    "old_method_r0_s0_training_authentic": true,
+    "old_output_tree": {
+      "bytes": 53138437,
+      "file_count": 19,
+      "sha256": "ce281935d12e20c6bab2e3e8fc3256b512594fd8388c3ed299f71199072ec363"
+    },
+    "original_matrix_engineering_status": "TRAINER_AND_GPU_HEALTHY",
+    "original_matrix_scientific_status": "BLOCKED_BY_MISSING_COMMON_GARMENT_COVERAGE_AT_SLOT04",
+    "overlay_only": true,
+    "schema_version": "canondressgs.subject00.original_matrix_blocker.correction.v1",
+    "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001"
+  },
+  "paper_eligible": false,
+  "paper_final": false,
+  "replacement": {
+    "anchors": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "candidate_set": [
+      "slot01",
+      "slot02",
+      "slot05",
+      "slot06"
+    ],
+    "common_safe_slot_set": [
+      "slot00",
+      "slot01",
+      "slot02",
+      "slot03",
+      "slot05",
+      "slot06",
+      "slot07"
+    ],
+    "corrected_rotations": [
+      {
+        "calibration_slot": 3,
+        "rotation": 0,
+        "test_slot": 6,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "calibration_slot": 6,
+        "rotation": 1,
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "calibration_slot": 0,
+        "rotation": 2,
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          6
+        ]
+      },
+      {
+        "calibration_slot": 7,
+        "rotation": 3,
+        "test_slot": 3,
+        "train_slots": [
+          6,
+          0
+        ]
+      }
+    ],
+    "fold_coverage_status": "PASS_UNIQUE_OUTCOME_INDEPENDENT_REPLACEMENT",
+    "ranking": [
+      {
+        "camera_id": "cam09",
+        "direction": "back-right",
+        "limitation_count": 2,
+        "limitation_severity": 2,
+        "minimum_anchor_separation_degrees": 53.53488224878765,
+        "minimum_inlier_ratio": 0.9066213921901528,
+        "slot": 6,
+        "slot04_yaw_degrees": 348.7078844075427,
+        "slot_label": "slot06",
+        "sorting_tuple": [
+          28.170253073571075,
+          -53.53488224878765,
+          0.9861065268073442,
+          -0.9066213921901528,
+          2,
+          6
+        ],
+        "target_mask_complete_3_of_3": true,
+        "worst_case_registration_rmse_px": 0.9861065268073442,
+        "yaw_degrees": 320.5376313339716,
+        "yaw_distance_degrees": 28.170253073571075
+      },
+      {
+        "camera_id": "cam14",
+        "direction": "front-right",
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_anchor_separation_degrees": 44.59865321912067,
+        "minimum_inlier_ratio": 0.8779599271402551,
+        "slot": 2,
+        "slot04_yaw_degrees": 348.7078844075427,
+        "slot_label": "slot02",
+        "sorting_tuple": [
+          56.27534245260108,
+          -44.59865321912067,
+          0.9772909805053305,
+          -0.8779599271402551,
+          0,
+          2
+        ],
+        "target_mask_complete_3_of_3": true,
+        "worst_case_registration_rmse_px": 0.9772909805053305,
+        "yaw_degrees": 44.983226860143766,
+        "yaw_distance_degrees": 56.27534245260108
+      },
+      {
+        "camera_id": "cam02",
+        "direction": "back-left",
+        "limitation_count": 3,
+        "limitation_severity": 3,
+        "minimum_anchor_separation_degrees": 40.7380691788257,
+        "minimum_inlier_ratio": 0.9098228663446055,
+        "slot": 5,
+        "slot04_yaw_degrees": 348.7078844075427,
+        "slot_label": "slot05",
+        "sorting_tuple": [
+          122.44320450118443,
+          -40.7380691788257,
+          1.0083424233147011,
+          -0.9098228663446055,
+          3,
+          5
+        ],
+        "target_mask_complete_3_of_3": true,
+        "worst_case_registration_rmse_px": 1.0083424233147011,
+        "yaw_degrees": 226.26467990635825,
+        "yaw_distance_degrees": 122.44320450118443
+      },
+      {
+        "camera_id": "cam21",
+        "direction": "front-left",
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_anchor_separation_degrees": 30.295226824138382,
+        "minimum_inlier_ratio": 0.875,
+        "slot": 1,
+        "slot04_yaw_degrees": 348.7078844075427,
+        "slot_label": "slot01",
+        "sorting_tuple": [
+          152.96983644456958,
+          -30.295226824138382,
+          0.9537711389199219,
+          -0.875,
+          0,
+          1
+        ],
+        "target_mask_complete_3_of_3": true,
+        "worst_case_registration_rmse_px": 0.9537711389199219,
+        "yaw_degrees": 141.67772085211226,
+        "yaw_distance_degrees": 152.96983644456958
+      }
+    ],
+    "selected_camera": "cam09",
+    "selected_direction": "back-right",
+    "selected_slot": "slot06"
+  },
+  "safety": {
+    "dual_support_call_count": 0,
+    "nan_inf_status": "NONE",
+    "oom_status": "NONE",
+    "quarantine_optimizer_usage_count": 0,
+    "quarantine_test_usage_count": 0
+  },
+  "schema_version": "canondressgs.subject00.commonsafe4.final_summary.v1",
+  "scientific_pass": null,
+  "source_provenance": {
+    "branch": "research/subject00-o03-loss-binding-concurrent-provenance-20260727",
+    "head": "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6"
+  },
+  "status": "COMPLETE",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+  "test_result": "PASS_44_OF_44"
+}
