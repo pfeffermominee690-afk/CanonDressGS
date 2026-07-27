@@ -1,0 +1,1293 @@
+{
+  "aggregates": {
+    "Nearest-Centroid Lookup": {
+      "endpoint_top1": 0.9722222222222222,
+      "formal_test_correct": 35,
+      "formal_test_denominator": 36,
+      "formal_valid_run_count": 12,
+      "optimizer_steps": 0,
+      "run_count": 12
+    },
+    "Outfit-ID Oracle": {
+      "endpoint_top1": 1.0,
+      "formal_test_correct": 36,
+      "formal_test_denominator": 36,
+      "formal_valid_run_count": 12,
+      "optimizer_steps": 0,
+      "run_count": 12
+    },
+    "Reference Classifier Lookup": {
+      "endpoint_top1": 0.8611111111111112,
+      "formal_test_correct": 31,
+      "formal_test_denominator": 36,
+      "formal_valid_run_count": 12,
+      "optimizer_steps": 3600,
+      "run_count": 12
+    },
+    "Teacher Endpoint": {
+      "endpoint_top1": 1.0,
+      "formal_test_correct": 36,
+      "formal_test_denominator": 36,
+      "formal_valid_run_count": 12,
+      "optimizer_steps": 0,
+      "run_count": 12
+    }
+  },
+  "baseline_names": [
+    "Reference Classifier Lookup",
+    "Nearest-Centroid Lookup",
+    "Outfit-ID Oracle",
+    "Teacher Endpoint"
+  ],
+  "continuation_audit": {
+    "attempt_002_created": false,
+    "checks": {
+      "attempt_002_absent": true,
+      "completed_cells_exactly_one": true,
+      "error_is_self_pid_gate": true,
+      "first_cell_checkpoints_6_of_6": true,
+      "first_cell_formal_valid": true,
+      "lock_status_fail": true,
+      "next_cell_preoptimizer_only": true,
+      "no_other_cell_artifacts": true,
+      "only_one_run_summary": true,
+      "optimizer_steps_exactly_300": true,
+      "same_attempt": true,
+      "same_branch": true,
+      "same_task": true,
+      "status_fail": true
+    },
+    "classification": "LAUNCHER_SELF_PID_GATE_BUG_AFTER_ONE_COMPLETE_CELL",
+    "completed_scientific_cells_preserved": 1,
+    "failed_cell_optimizer_steps": 0,
+    "failed_scientific_cell_count": 0,
+    "repair_scope": "SELF_PID_RESOURCE_GATE_AND_SAME_ATTEMPT_CONTINUATION_ONLY",
+    "same_attempt": true,
+    "scientific_run_retry_count": 0
+  },
+  "contract": {
+    "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "contract_sha256": "4f1344e228e6e319d13d38efb0867d36b86b9d37751a16a4b9c531997faa24ce",
+    "exact_baseline_order": [
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Outfit-ID Oracle",
+      "Teacher Endpoint"
+    ],
+    "fold_counts": {
+      "calibration": 3,
+      "test": 3,
+      "train": 6
+    },
+    "quarantine_exact_set": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "rotations": [
+      {
+        "calibration_slot": 3,
+        "rotation": 0,
+        "test_slot": 6,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "calibration_slot": 6,
+        "rotation": 1,
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "calibration_slot": 0,
+        "rotation": 2,
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          6
+        ]
+      },
+      {
+        "calibration_slot": 7,
+        "rotation": 3,
+        "test_slot": 3,
+        "train_slots": [
+          6,
+          0
+        ]
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "status": "SEALED_EXECUTION_AUTHORIZED_AFTER_METHOD_MATRIX_12_OF_12"
+  },
+  "formal_valid_cell_count": 48,
+  "new_optimizer_steps_by_this_audit": 0,
+  "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001",
+  "reference_classifier_checkpoint_count": 72,
+  "reference_classifier_checkpoints": [
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_0/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+      "sha256": "450cab7b6fa1e128e8e7ebf1e108803c3cff04b6cceee6b21b0f63a318d72d67",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_0/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+      "sha256": "01471ca779cadc244cd4e8ddd7326aa12d1350ac79e543bfa79c083e869c6e39",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_0/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+      "sha256": "c22c644e93ffab8c723fdc0f3a03dc7fcf24d790a461258273483a9266668c5e",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_0/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+      "sha256": "3575c2e504b092257a5544694ce67e2b1cda4a6a7297f15aa0824f0d6656f314",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_0/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+      "sha256": "5f7ae2fc65d63e23076f3d3861a279e7fbc93b660c53ac6540a9ee16de0122b7",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_0/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+      "sha256": "8bc758875588ac88cc8f8eed888819cda184b83aa8eb956c7d696543f6d072d1",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_1/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+      "sha256": "93a0706361c9c31839ee71b698aa4e0d31a92530db27590cd57d1c2f66127143",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_1/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+      "sha256": "82c9ffbdbff6a16f834ba1bce31944e3dc55b4042a108b26bd685b862df80360",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_1/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+      "sha256": "26e40a3c37844a31ba4ef217d2657b4a438274a53afda6a81ec4ca91c7855ac0",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_1/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+      "sha256": "0b09f4780cc6d7a18db83696bd91ad0c28c2630d04b801ef2374705efaa69576",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_1/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+      "sha256": "956a202429122771bd871c2334c8aba091633d3cbd8a12eac6ff5d9643f0aa5d",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_1/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+      "sha256": "231e0da4371043e60f34c7dcd8419caa70f06334b2931c86aef088b53112eb2c",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_2/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+      "sha256": "583f2fb29f831b7946a3da35439dd1240e07a791a344bef76509aea45227304f",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_2/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+      "sha256": "5aa42d18bfe7dbc55d9c2b3c36d6c983bef651ba5cedde76c62c4ca6336a58c9",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_2/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+      "sha256": "3c54695dd9bffd6672c1d19989d8cdf8a6f818413065e036b7563b4987118ec2",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_2/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+      "sha256": "a91e8cbbc51efcfd061f73b274e43f382a12bc3dbe5ac05d5c3284f6b37ade89",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_2/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+      "sha256": "6c7c1e5b1782e6178af6982b1398624be436eb88bac9267dfde03d1303fb6076",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_0/seed_2/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+      "sha256": "cf9bfe8e89eb50ffe74ca0d6ea46c8c64e79216810891983a1dfef77e6e5bbb1",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_0/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+      "sha256": "fb6c34ba86b869804710ae81b03c9248bf730aef9c228a845c0476e3a83406ab",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_0/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+      "sha256": "d88d8233fe055acbcdcbc6d22a11a635ffc2af055bf1c2ce572cf92559c122db",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_0/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+      "sha256": "74fd917792a1e4f89401f707b6743c031ae95a03ae432c666ca7350f4c613a24",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_0/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+      "sha256": "70dcbcd0dc2712d429ecede7fa8c2fd28fa132dd39b6a8e252562575615dd84b",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_0/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+      "sha256": "2b839a977e2ce051f86a9b03f4d18c5e9347c547ece0d14e5d49b712f1de38ef",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_0/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+      "sha256": "d966c110b55ebf4863342ad059f3d9ebd8d57c64966c92f76e0a728e21d5a591",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_1/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+      "sha256": "dcb8d486d724f6b79c97ffbc4a9bc5b088e55effbaa12841078bec4df11ec603",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_1/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+      "sha256": "932c25471cbf0e20000b97f3d3063b2c7c8dcbd67a9cce9f91e98644e83a0839",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_1/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+      "sha256": "86a29c0460cf230b82f2e4b52a0d920dbf84336e824b109af8fd2481abe2e86c",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_1/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+      "sha256": "6daff8e34b956db155102daf0c6a2d5cd02e5e26386eeb48c4ba3e741376b794",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_1/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+      "sha256": "39b52d03822547f5b81072356191a76c968005f4771f9cc6ef9a12cc5cfbff10",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_1/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+      "sha256": "52ad024be5e122c5169b7330061736de06f32041e7808dbec36e7e434c12ebf5",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_2/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+      "sha256": "bc942737d7973c22e905281fd87e25fccfcd27e6531f0c3d8b2a113ff1514798",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_2/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+      "sha256": "c124df96e12b6652b3e8d048d2bf7873604c3af5062aca9604db6b011e08906f",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_2/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+      "sha256": "2d5e14c8bd91e8ca58b8dd74fbe4a27ef29e5dce5044246e15e53644b526261e",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_2/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+      "sha256": "52af7b970d0b23af975fac732ccd59ae162a5ac73161a8a5a069c3c7b5e03407",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_2/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+      "sha256": "99644d09af2986e1c264c338e8776809d21ac3f5c1224272b6f00b410fa13346",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_1/seed_2/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+      "sha256": "adda2a537e3cffdd283fc3a22bd599385337af46b21f2fc05a26c06cb23979dc",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_0/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+      "sha256": "939d87865640f4cce1d0bef9d0a5c0285176b3d37ed1c5208f0c2a7652d6c916",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_0/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+      "sha256": "983e4770e0a28af7cbf4b1f60b9fe4b361942204b79bf7e5914a60d7e67b8e6e",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_0/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+      "sha256": "235f87cec237f2cc6b3f952cdaf13f9312fe86eb1a510c8963f7415fc7a175ad",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_0/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+      "sha256": "cd5e0b76fcfdd5c8404b6b6f28adadaefddafd19b82fea9a1121147a5b6ce35f",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_0/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+      "sha256": "adc5ecb165295f0c17c82faf368b558651e1c30ced19f1b0841b68e0274b9199",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_0/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+      "sha256": "bd0922facc12d434f127f7053825514c1b46e77912ec94cd4e238970b916d582",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_1/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+      "sha256": "a3b7e7a550ce0078d37cf5f95f403ce3a86b20ce2e04eee009edee2b1dc84b4e",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_1/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+      "sha256": "4f5fcbe395f5244e0ab26d45fe392dd8ab6f1c18927471ab34c057695837aade",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_1/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+      "sha256": "61453b501ddeda6d8005b137838119617a4f965c3a4e977f8c51aacc7ef6e67f",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_1/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+      "sha256": "532ae2d8560bb85693fc146f5b9b1d688dc832c722f2b7e02c386b08501a4efd",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_1/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+      "sha256": "19442b76d3966e9959f73253c96f0c666448a3e668cecd929ba8283e53cabf3d",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_1/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+      "sha256": "9d2cac468eb020487463ba62428e6a4143574a21bd1a50bdd78140ebd79a0744",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_2/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+      "sha256": "8834d297115fdd722afcf4bd3ac71b156f4d29c84625e3bf3e4bdb295e8e4795",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_2/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+      "sha256": "36f2562248807042e76781ae9f6e7b7f4b52ee3c607a66446bf5ea21466c5591",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_2/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+      "sha256": "8d05bd661b119a3766c6a7cacd1b30da253b2b4ab1fd54d8318e857692f67223",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_2/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+      "sha256": "6abfc9c7881b1c5b26fa0523e555e3ca5ef291c162eab5fdc4abc46a80cf4159",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_2/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+      "sha256": "f860eb6bce1acc88b5058752b53bc526d14f8e69b96c4b49474e7c8ae9074ca9",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_2/seed_2/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+      "sha256": "0ef52cb84399decf026e080666fb078ed5af815d441a05bb21929b38e9c95429",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_0/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+      "sha256": "f1c5aab80a958070ead27df560bedbf4fe0b0f6d89b129fc1a42e87e1fdbe5d3",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_0/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+      "sha256": "89a6398bd1310f163f7b116c5eefa190258b4fc66b027fdbe1f74947324e0baa",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_0/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+      "sha256": "7981202c65a851b6a0b4cfa76e856ed53a8a9ab64dad0deee71b95e0e946059b",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_0/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+      "sha256": "184b4364d04a242f653e9925d07517b3cb9b66bc86cc8411907547f78fd26ff7",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_0/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+      "sha256": "5680b3940433a4e3f4161961a1a45e492464a4bfe6affc53e828b99f2b0d029c",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_0/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+      "sha256": "59fc30127dd277cb35ef0b86eb12e223ad65ff1baf755969016b1d9f87088922",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_1/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+      "sha256": "1fd8bb2ef413760810d6e1c7bfe249991180c8ce4a69cacfec4fcf8e38ea7a4c",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_1/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+      "sha256": "14c32291c0619c596e03594d7e7c4207bc67fed3e54bc10cba3d2f0929e8334c",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_1/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+      "sha256": "90eb000a37ae8a43be1b5322fe45b91c8021d0965146cd026cd91d219f2a0977",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_1/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+      "sha256": "f2cab431f26bacc367bbf9d0549ca2ba0859cdcc2e50647ff09473f2bb6c916f",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_1/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+      "sha256": "3a1d29b12c67b851932ff9d4367f903f6934c07eb117ffddaddc95403f47beab",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_1/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+      "sha256": "92945e3cb260d371ef9fbbeef7f6f566711c53aff01b2626d209fae36e5f873c",
+      "step": 300,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_2/checkpoints/step_000000.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+      "sha256": "c0debf4a1d6168388a1c6901f230c40f6bc2dcbab3c87240bcdea4531c04a610",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_2/checkpoints/step_000020.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+      "sha256": "9442c43e2b81209c5b6fdb684b6bdebc9d5fdf0a5d728f0529d3d46aa3f7fe96",
+      "step": 20,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_2/checkpoints/step_000050.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+      "sha256": "7f9d6e2544264cfef19c90197bd566d65d5aa23b999f836daf37e1d7e32dad06",
+      "step": 50,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_2/checkpoints/step_000100.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+      "sha256": "41f0f07763c59ffd63e47ae0a4b96d1c377ddb87f22836e1db2dec59d4d6f86e",
+      "step": 100,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_2/checkpoints/step_000200.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+      "sha256": "481b29f16431fdde905109f37485990af2e2f760a8fe736c644a33fc2e2407e0",
+      "step": 200,
+      "valid": true
+    },
+    {
+      "baseline": "Reference Classifier Lookup",
+      "git_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/runs/reference_classifier_lookup/rotation_3/seed_2/checkpoints/step_000300.pth",
+      "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+      "sha256": "c5502d2f8d0b0c0a075472da720d50598224155ccf6b71726b5e95aecc674a2f",
+      "step": 300,
+      "valid": true
+    }
+  ],
+  "runs": {
+    "Nearest-Centroid Lookup": [
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R0-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R0-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R0-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R1-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R1-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R1-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 0.6666666666666666,
+        "formal_test_correct": 2,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R3-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R3-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R3-S2",
+        "seed": 2,
+        "valid": true
+      }
+    ],
+    "Outfit-ID Oracle": [
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R0-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R0-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R0-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R1-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R1-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R1-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R2-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R2-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R2-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R3-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R3-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R3-S2",
+        "seed": 2,
+        "valid": true
+      }
+    ],
+    "Reference Classifier Lookup": [
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 0.6666666666666666,
+        "formal_test_correct": 2,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 0.6666666666666666,
+        "formal_test_correct": 2,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 0.6666666666666666,
+        "formal_test_correct": 2,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 0.6666666666666666,
+        "formal_test_correct": 2,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 0.6666666666666666,
+        "formal_test_correct": 2,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 300,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+        "seed": 2,
+        "valid": true
+      }
+    ],
+    "Teacher Endpoint": [
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R0-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R0-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 0,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R0-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R1-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R1-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 1,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R1-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R2-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R2-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 2,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R2-S2",
+        "seed": 2,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R3-S0",
+        "seed": 0,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R3-S1",
+        "seed": 1,
+        "valid": true
+      },
+      {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 3,
+        "formal_test_denominator": 3,
+        "optimizer_steps": 0,
+        "rotation": 3,
+        "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R3-S2",
+        "seed": 2,
+        "valid": true
+      }
+    ]
+  },
+  "schema_version": "canondressgs.subject00.commonsafe4.baseline_audit.v1",
+  "status": "PASS_4_OF_4_FAIR_BASELINES_VALID",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+  "total_optimizer_steps_historical": 3600,
+  "valid_count": 4,
+  "writer": {
+    "branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+    "hostname": "autodl-container-ef19489c10-464381bb",
+    "initial_head": "a20f31639c0f5234071e4f3f06383fc06e9a60e6",
+    "initial_runner_sha256": "7d13d7dba36f392f0235678955ed3329a762c4981e9745c37777b81a4f85b34a",
+    "parent_pid": 470826,
+    "pid": 470828,
+    "repair_head": "90d709092defdb03a1d21d05e93269f26c91296b",
+    "repair_runner_sha256": "0cb768f17cab5efb24cbccf5912275d3583cf4dfb7605e6fa440deea534a2354",
+    "status": "COMPLETE",
+    "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+    "tmux": "subject00_commonsafe4_baselines_20260727"
+  }
+}

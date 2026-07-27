@@ -1,0 +1,148 @@
+{
+  "actual_rotations": [
+    {
+      "calibration_slot": 3,
+      "rotation": 0,
+      "test_slot": 6,
+      "train_slots": [
+        0,
+        7
+      ]
+    },
+    {
+      "calibration_slot": 6,
+      "rotation": 1,
+      "test_slot": 0,
+      "train_slots": [
+        7,
+        3
+      ]
+    },
+    {
+      "calibration_slot": 0,
+      "rotation": 2,
+      "test_slot": 7,
+      "train_slots": [
+        3,
+        6
+      ]
+    },
+    {
+      "calibration_slot": 7,
+      "rotation": 3,
+      "test_slot": 3,
+      "train_slots": [
+        6,
+        0
+      ]
+    }
+  ],
+  "common_safe4_anchor_set": [
+    "slot00",
+    "slot07",
+    "slot03",
+    "slot06"
+  ],
+  "folds": [
+    {
+      "calibration_garment_record_count": 3,
+      "calibration_slot": 3,
+      "calibration_slot_count": 1,
+      "per_slot_garment_coverage": {
+        "slot00": 3,
+        "slot03": 3,
+        "slot06": 3,
+        "slot07": 3
+      },
+      "rotation": 0,
+      "slot_overlap_count": 0,
+      "status": "PASS_EXACT_6_3_3",
+      "test_garment_record_count": 3,
+      "test_slot": 6,
+      "test_slot_count": 1,
+      "train_garment_record_count": 6,
+      "train_slot_count": 2,
+      "train_slots": [
+        0,
+        7
+      ]
+    },
+    {
+      "calibration_garment_record_count": 3,
+      "calibration_slot": 6,
+      "calibration_slot_count": 1,
+      "per_slot_garment_coverage": {
+        "slot00": 3,
+        "slot03": 3,
+        "slot06": 3,
+        "slot07": 3
+      },
+      "rotation": 1,
+      "slot_overlap_count": 0,
+      "status": "PASS_EXACT_6_3_3",
+      "test_garment_record_count": 3,
+      "test_slot": 0,
+      "test_slot_count": 1,
+      "train_garment_record_count": 6,
+      "train_slot_count": 2,
+      "train_slots": [
+        7,
+        3
+      ]
+    },
+    {
+      "calibration_garment_record_count": 3,
+      "calibration_slot": 0,
+      "calibration_slot_count": 1,
+      "per_slot_garment_coverage": {
+        "slot00": 3,
+        "slot03": 3,
+        "slot06": 3,
+        "slot07": 3
+      },
+      "rotation": 2,
+      "slot_overlap_count": 0,
+      "status": "PASS_EXACT_6_3_3",
+      "test_garment_record_count": 3,
+      "test_slot": 7,
+      "test_slot_count": 1,
+      "train_garment_record_count": 6,
+      "train_slot_count": 2,
+      "train_slots": [
+        3,
+        6
+      ]
+    },
+    {
+      "calibration_garment_record_count": 3,
+      "calibration_slot": 7,
+      "calibration_slot_count": 1,
+      "per_slot_garment_coverage": {
+        "slot00": 3,
+        "slot03": 3,
+        "slot06": 3,
+        "slot07": 3
+      },
+      "rotation": 3,
+      "slot_overlap_count": 0,
+      "status": "PASS_EXACT_6_3_3",
+      "test_garment_record_count": 3,
+      "test_slot": 3,
+      "test_slot_count": 1,
+      "train_garment_record_count": 6,
+      "train_slot_count": 2,
+      "train_slots": [
+        6,
+        0
+      ]
+    }
+  ],
+  "schema_version": "canondressgs.subject00.commonsafe4.actual_folds.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "status": "PASS_ALL_ROTATIONS_EXACT_6_3_3",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001"
+}

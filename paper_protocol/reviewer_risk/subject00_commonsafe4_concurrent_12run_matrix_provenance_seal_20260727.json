@@ -1,0 +1,1236 @@
+{
+  "execution": {
+    "aggregate": {
+      "aggregation": "ALL_12_RUNS_NO_CHERRY_PICKING",
+      "confusion_matrix": {
+        "O01": {
+          "O01": 12,
+          "O03": 0,
+          "O04": 0
+        },
+        "O03": {
+          "O01": 0,
+          "O03": 12,
+          "O04": 0
+        },
+        "O04": {
+          "O01": 0,
+          "O03": 6,
+          "O04": 6
+        }
+      },
+      "dual_support_call_count": 0,
+      "dual_support_enabled": false,
+      "endpoint_top1": 0.8333333333333334,
+      "failure_count": 0,
+      "formal_test_correct": 30,
+      "formal_test_episode_count": 36,
+      "formal_valid_run_count": 12,
+      "max_endpoint_top1": 1.0,
+      "mean_endpoint_top1": 0.8333333333333334,
+      "mean_score_margin": 3.7424412669174165,
+      "method_contract": "PURE_ENDPOINT",
+      "min_endpoint_top1": 0.6666666666666666,
+      "nan_inf_status": "NONE",
+      "old_method_output_included": false,
+      "oom_status": "NONE",
+      "peak_vram_bytes": 18134528,
+      "per_run_endpoint_results": {
+        "COMMONSAFE4-METHOD-R0-S0": {
+          "correct": 3,
+          "denominator": 3,
+          "top1": 1.0
+        },
+        "COMMONSAFE4-METHOD-R0-S1": {
+          "correct": 3,
+          "denominator": 3,
+          "top1": 1.0
+        },
+        "COMMONSAFE4-METHOD-R0-S2": {
+          "correct": 3,
+          "denominator": 3,
+          "top1": 1.0
+        },
+        "COMMONSAFE4-METHOD-R1-S0": {
+          "correct": 2,
+          "denominator": 3,
+          "top1": 0.6666666666666666
+        },
+        "COMMONSAFE4-METHOD-R1-S1": {
+          "correct": 2,
+          "denominator": 3,
+          "top1": 0.6666666666666666
+        },
+        "COMMONSAFE4-METHOD-R1-S2": {
+          "correct": 2,
+          "denominator": 3,
+          "top1": 0.6666666666666666
+        },
+        "COMMONSAFE4-METHOD-R2-S0": {
+          "correct": 2,
+          "denominator": 3,
+          "top1": 0.6666666666666666
+        },
+        "COMMONSAFE4-METHOD-R2-S1": {
+          "correct": 3,
+          "denominator": 3,
+          "top1": 1.0
+        },
+        "COMMONSAFE4-METHOD-R2-S2": {
+          "correct": 3,
+          "denominator": 3,
+          "top1": 1.0
+        },
+        "COMMONSAFE4-METHOD-R3-S0": {
+          "correct": 2,
+          "denominator": 3,
+          "top1": 0.6666666666666666
+        },
+        "COMMONSAFE4-METHOD-R3-S1": {
+          "correct": 2,
+          "denominator": 3,
+          "top1": 0.6666666666666666
+        },
+        "COMMONSAFE4-METHOD-R3-S2": {
+          "correct": 3,
+          "denominator": 3,
+          "top1": 1.0
+        }
+      },
+      "prediction_counts": {
+        "O01": 12,
+        "O03": 18,
+        "O04": 6
+      },
+      "rotation_effect": {
+        "0": {
+          "mean_endpoint_top1": 1.0,
+          "run_count": 3
+        },
+        "1": {
+          "mean_endpoint_top1": 0.6666666666666666,
+          "run_count": 3
+        },
+        "2": {
+          "mean_endpoint_top1": 0.8888888888888888,
+          "run_count": 3
+        },
+        "3": {
+          "mean_endpoint_top1": 0.7777777777777777,
+          "run_count": 3
+        }
+      },
+      "run_count": 12,
+      "schema_version": "canondressgs.subject00.commonsafe4.recomputed_aggregate.v1",
+      "seed_effect": {
+        "0": {
+          "mean_endpoint_top1": 0.75,
+          "run_count": 4
+        },
+        "1": {
+          "mean_endpoint_top1": 0.8333333333333333,
+          "run_count": 4
+        },
+        "2": {
+          "mean_endpoint_top1": 0.9166666666666666,
+          "run_count": 4
+        }
+      },
+      "status": "PASS_12_OF_12_FORMAL_VALID",
+      "std_endpoint_top1_population": 0.16666666666666669,
+      "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+      "total_optimizer_steps": 3600,
+      "wall_time_seconds": 16.108335733413696
+    },
+    "checkpoint_count": 72,
+    "formal_valid_run_count": 12,
+    "optimizer_steps": 3600,
+    "run_count": 12,
+    "run_ids": [
+      "COMMONSAFE4-METHOD-R0-S0",
+      "COMMONSAFE4-METHOD-R0-S1",
+      "COMMONSAFE4-METHOD-R0-S2",
+      "COMMONSAFE4-METHOD-R1-S0",
+      "COMMONSAFE4-METHOD-R1-S1",
+      "COMMONSAFE4-METHOD-R1-S2",
+      "COMMONSAFE4-METHOD-R2-S0",
+      "COMMONSAFE4-METHOD-R2-S1",
+      "COMMONSAFE4-METHOD-R2-S2",
+      "COMMONSAFE4-METHOD-R3-S0",
+      "COMMONSAFE4-METHOD-R3-S1",
+      "COMMONSAFE4-METHOD-R3-S2"
+    ]
+  },
+  "fair_baselines": {
+    "aggregates": {
+      "Nearest-Centroid Lookup": {
+        "endpoint_top1": 0.9722222222222222,
+        "formal_test_correct": 35,
+        "formal_test_denominator": 36,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 0,
+        "run_count": 12
+      },
+      "Outfit-ID Oracle": {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 36,
+        "formal_test_denominator": 36,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 0,
+        "run_count": 12
+      },
+      "Reference Classifier Lookup": {
+        "endpoint_top1": 0.8611111111111112,
+        "formal_test_correct": 31,
+        "formal_test_denominator": 36,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 3600,
+        "run_count": 12
+      },
+      "Teacher Endpoint": {
+        "endpoint_top1": 1.0,
+        "formal_test_correct": 36,
+        "formal_test_denominator": 36,
+        "formal_valid_run_count": 12,
+        "optimizer_steps": 0,
+        "run_count": 12
+      }
+    },
+    "names": [
+      "Reference Classifier Lookup",
+      "Nearest-Centroid Lookup",
+      "Outfit-ID Oracle",
+      "Teacher Endpoint"
+    ],
+    "status": "PASS_4_OF_4_FAIR_BASELINES_VALID",
+    "valid_count": 4
+  },
+  "final_classification": "SUBJECT00_BASE60747_COMMONSAFE4_MATRIX_AND_BASELINES_VALID_POSTHOC_PROVENANCE_SEALED_PENDING_HUMAN_SCIENTIFIC_REVIEW",
+  "immutable_audit": {
+    "after": {
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "baseline_output": {
+        "file_count": 238,
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001",
+        "total_bytes": 3542188,
+        "tree_sha256": "7e976d0d74c8b18452f570b8ed03a8b1245795a40d95e0ae0ac456229d66aa14"
+      },
+      "formal_base_run_metadata": {
+        "file_count": 318,
+        "metadata_sha256": "8060b62017fb24196fdfcb6e63f695b7eba13fe55fe0a40f57d8749721d41dd0",
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001",
+        "total_bytes": 3216776034
+      },
+      "formal_target": {
+        "file_count": 357,
+        "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "total_bytes": 92028256,
+        "tree_sha256": "0f23e1387134278f91d66eea3db8f7127055a19490c47e55ea0cbc1b8935407f"
+      },
+      "method": {
+        "file_count": 146,
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+        "total_bytes": 59624358,
+        "tree_sha256": "73ef66b055d926de46f0bc7aa7d8b161be3fc2b2eaaf54815954829d4e88f4d7"
+      },
+      "old_method": {
+        "file_count": 20,
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001",
+        "total_bytes": 53139632,
+        "tree_sha256": "80d4679e1fdd8b8b42b1c10919759a0fa8b85eb2d861ba9d2e1f83eb373fa793"
+      },
+      "teacher_sha256": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    },
+    "before": {
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "baseline_output": {
+        "file_count": 238,
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001",
+        "total_bytes": 3542188,
+        "tree_sha256": "7e976d0d74c8b18452f570b8ed03a8b1245795a40d95e0ae0ac456229d66aa14"
+      },
+      "formal_base_run_metadata": {
+        "file_count": 318,
+        "metadata_sha256": "8060b62017fb24196fdfcb6e63f695b7eba13fe55fe0a40f57d8749721d41dd0",
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001",
+        "total_bytes": 3216776034
+      },
+      "formal_target": {
+        "file_count": 357,
+        "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "total_bytes": 92028256,
+        "tree_sha256": "0f23e1387134278f91d66eea3db8f7127055a19490c47e55ea0cbc1b8935407f"
+      },
+      "method": {
+        "file_count": 146,
+        "total_bytes": 59624358,
+        "tree_sha256": "73ef66b055d926de46f0bc7aa7d8b161be3fc2b2eaaf54815954829d4e88f4d7"
+      },
+      "old_method": {
+        "file_count": 20,
+        "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001",
+        "total_bytes": 53139632,
+        "tree_sha256": "80d4679e1fdd8b8b42b1c10919759a0fa8b85eb2d861ba9d2e1f83eb373fa793"
+      },
+      "teacher_sha256": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    },
+    "mutations": {
+      "base60747_mutations": 0,
+      "baseline_output_mutations": 0,
+      "camera_record_mutations": 0,
+      "commonsafe4_output_mutations": 0,
+      "formal_base_run_mutations": 0,
+      "formal_target_mutations": 0,
+      "mask_mutations": 0,
+      "o01_teacher_mutations": 0,
+      "o03_teacher_mutations": 0,
+      "o04_teacher_mutations": 0,
+      "old_method_output_mutations": 0,
+      "paper_modifications": 0,
+      "raw_mutations": 0
+    }
+  },
+  "matrix_adoption_mode": "POST_HOC_PROVENANCE_AUDITED_EXISTING_OUTPUT",
+  "method_core": {
+    "dual_support_call_count": 0,
+    "dual_support_enabled": false,
+    "frozen_config_section_equality": {
+      "base": true,
+      "basis": true,
+      "controller": true,
+      "final_evaluation": true,
+      "frozen_f2": true,
+      "optimization": true,
+      "paper_eligible": true,
+      "paper_final": true,
+      "targets": true,
+      "teachers": true,
+      "validation_gates": true
+    },
+    "frozen_runtime_path": "tools/paper/formal_batch_runtime.py",
+    "frozen_runtime_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "legacy_runner_bitwise_equal": true,
+    "legacy_runner_sha256_at_actual_writer_head": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9",
+    "legacy_runner_sha256_at_old_head": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9",
+    "method_contract": "PURE_ENDPOINT",
+    "old_valid_r0s0_execution_head": "21e696a36b5df539124a01967f7867f735a8bd44",
+    "runtime_snapshot_parameter_diff": {
+      "authorized_changes": [
+        "rotation selection",
+        "seed selection",
+        "fold construction",
+        "output namespace",
+        "12-cell orchestration",
+        "slot04 to slot06 common-safe replacement",
+        "explicit calibration and formal-test persistence"
+      ],
+      "forbidden_core_changes_detected": []
+    },
+    "schema_version": "canondressgs.subject00.commonsafe4.core_equivalence.v1",
+    "static_call_graph": {
+      "controller": "MultiOutfitLinearCoefficientControl(512,2)",
+      "endpoint_selection": "nearest_endpoint(argmin squared L2; garment-order tie-break)",
+      "entrypoint": "main",
+      "matrix_orchestration": [
+        "main",
+        "train_run",
+        "evaluate_fold",
+        "save_checkpoint",
+        "aggregate"
+      ],
+      "objective": "torch.nn.functional.smooth_l1_loss",
+      "optimizer": "torch.optim.Adam",
+      "reused_legacy_calls": [
+        "legacy.aggregate_native_references",
+        "legacy.build_f2_extractor",
+        "legacy.multi.o01._state_fingerprint",
+        "legacy.rng_state",
+        "legacy.save_basis"
+      ],
+      "scheduler": "torch.optim.lr_scheduler.LambdaLR"
+    },
+    "status": "PASS_METHOD_CORE_EQUIVALENT_AUTHORIZED_ORCHESTRATION_ONLY",
+    "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001"
+  },
+  "next_task": "PREPARE_SUBJECT00_COMMONSAFE4_METHOD_TEACHER_BASELINE_HUMAN_SCIENTIFIC_REVIEW_PACK",
+  "original_preflight_full_status": "PREFLIGHT_STOPPED_BY_CONCURRENT_FORMAL_OUTPUT_ROOT_CREATION",
+  "original_preflight_status": "STOPPED_BY_CONCURRENT_OUTPUT_CREATION",
+  "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+  "output_tree": {
+    "file_count": 146,
+    "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+    "total_bytes": 59624358,
+    "tree_sha256": "73ef66b055d926de46f0bc7aa7d8b161be3fc2b2eaaf54815954829d4e88f4d7"
+  },
+  "paper_final": false,
+  "rotations": {
+    "actual_rotations": [
+      {
+        "calibration_slot": 3,
+        "rotation": 0,
+        "test_slot": 6,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "calibration_slot": 6,
+        "rotation": 1,
+        "test_slot": 0,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "calibration_slot": 0,
+        "rotation": 2,
+        "test_slot": 7,
+        "train_slots": [
+          3,
+          6
+        ]
+      },
+      {
+        "calibration_slot": 7,
+        "rotation": 3,
+        "test_slot": 3,
+        "train_slots": [
+          6,
+          0
+        ]
+      }
+    ],
+    "common_safe4_anchor_set": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "folds": [
+      {
+        "calibration_garment_record_count": 3,
+        "calibration_slot": 3,
+        "calibration_slot_count": 1,
+        "per_slot_garment_coverage": {
+          "slot00": 3,
+          "slot03": 3,
+          "slot06": 3,
+          "slot07": 3
+        },
+        "rotation": 0,
+        "slot_overlap_count": 0,
+        "status": "PASS_EXACT_6_3_3",
+        "test_garment_record_count": 3,
+        "test_slot": 6,
+        "test_slot_count": 1,
+        "train_garment_record_count": 6,
+        "train_slot_count": 2,
+        "train_slots": [
+          0,
+          7
+        ]
+      },
+      {
+        "calibration_garment_record_count": 3,
+        "calibration_slot": 6,
+        "calibration_slot_count": 1,
+        "per_slot_garment_coverage": {
+          "slot00": 3,
+          "slot03": 3,
+          "slot06": 3,
+          "slot07": 3
+        },
+        "rotation": 1,
+        "slot_overlap_count": 0,
+        "status": "PASS_EXACT_6_3_3",
+        "test_garment_record_count": 3,
+        "test_slot": 0,
+        "test_slot_count": 1,
+        "train_garment_record_count": 6,
+        "train_slot_count": 2,
+        "train_slots": [
+          7,
+          3
+        ]
+      },
+      {
+        "calibration_garment_record_count": 3,
+        "calibration_slot": 0,
+        "calibration_slot_count": 1,
+        "per_slot_garment_coverage": {
+          "slot00": 3,
+          "slot03": 3,
+          "slot06": 3,
+          "slot07": 3
+        },
+        "rotation": 2,
+        "slot_overlap_count": 0,
+        "status": "PASS_EXACT_6_3_3",
+        "test_garment_record_count": 3,
+        "test_slot": 7,
+        "test_slot_count": 1,
+        "train_garment_record_count": 6,
+        "train_slot_count": 2,
+        "train_slots": [
+          3,
+          6
+        ]
+      },
+      {
+        "calibration_garment_record_count": 3,
+        "calibration_slot": 7,
+        "calibration_slot_count": 1,
+        "per_slot_garment_coverage": {
+          "slot00": 3,
+          "slot03": 3,
+          "slot06": 3,
+          "slot07": 3
+        },
+        "rotation": 3,
+        "slot_overlap_count": 0,
+        "status": "PASS_EXACT_6_3_3",
+        "test_garment_record_count": 3,
+        "test_slot": 3,
+        "test_slot_count": 1,
+        "train_garment_record_count": 6,
+        "train_slot_count": 2,
+        "train_slots": [
+          6,
+          0
+        ]
+      }
+    ],
+    "schema_version": "canondressgs.subject00.commonsafe4.actual_folds.v1",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "status": "PASS_ALL_ROTATIONS_EXACT_6_3_3",
+    "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001"
+  },
+  "runtime": {
+    "actual_config_path": "configs/research/subject00_canondressgs_method_base60747_commonsafe4_v1.json",
+    "actual_config_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+    "actual_runner_path": "tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+    "actual_runner_sha256": "78b619155ddef4bea942d3317fe4098f9d969843bd10b2f4a818c953519714c1",
+    "actual_runtime_path": "tools/paper/formal_batch_runtime.py",
+    "actual_runtime_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "actual_writer_head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+    "output_config_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/attempt_001/contract/config_resolved.json",
+    "output_config_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+    "rotation_contract_path": "paper_protocol/reviewer_risk/subject00_commonsafe4_rotation_contract_20260727.json",
+    "rotation_contract_sha256": "971a47c9aa2e340a05e6606d9c409d2c74db0b395b855cebe2bc73bc63e0127b",
+    "runtime_version_changes_during_matrix": 0,
+    "same_runner_config_runtime_12_of_12": true,
+    "schema_version": "canondressgs.subject00.commonsafe4.actual_runtime.v1",
+    "selection_artifact_path": "paper_protocol/reviewer_risk/subject00_commonsafe_slot04_replacement_selection_20260727.json",
+    "selection_artifact_sha256": "dd76bcb8cc2518a0595d6f856323f5ab6c44a51a52f1d7755b456a7a85017e80",
+    "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001"
+  },
+  "schema_version": "canondressgs.subject00.commonsafe4.posthoc_provenance_seal.v1",
+  "selection": {
+    "camera_record_count": 24,
+    "candidate_set": [
+      "slot01",
+      "slot02",
+      "slot05",
+      "slot06"
+    ],
+    "common_safe_slots": [
+      "slot00",
+      "slot01",
+      "slot02",
+      "slot03",
+      "slot05",
+      "slot06",
+      "slot07"
+    ],
+    "first_optimizer_records_bind_selection": true,
+    "first_step0_checkpoint_time": "2026-07-27T15:03:46.631338+08:00",
+    "formal_record_count": 22,
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "outcome_dependent_selection_evidence_count": 0,
+    "output_root_creation_time": "2026-07-27T15:03:02.589639+08:00",
+    "post_training_reselection_count": 0,
+    "quarantine_in_manifest": [],
+    "ranking": [
+      {
+        "camera": "cam09",
+        "direction": "back-right",
+        "limitation_count": 2,
+        "limitation_severity": 2,
+        "minimum_anchor_separation_degrees": 53.53488224878765,
+        "minimum_inlier_ratio": 0.9066213921901528,
+        "slot": "slot06",
+        "slot04_yaw_degrees": 348.7078844075427,
+        "sorting_tuple": [
+          28.170253073571075,
+          -53.53488224878765,
+          0.9861065268073442,
+          -0.9066213921901528,
+          2,
+          6
+        ],
+        "worst_case_registration_rmse_px": 0.9861065268073442,
+        "yaw_degrees": 320.5376313339716,
+        "yaw_distance_degrees": 28.170253073571075
+      },
+      {
+        "camera": "cam14",
+        "direction": "front-right",
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_anchor_separation_degrees": 44.59865321912067,
+        "minimum_inlier_ratio": 0.8779599271402551,
+        "slot": "slot02",
+        "slot04_yaw_degrees": 348.7078844075427,
+        "sorting_tuple": [
+          56.27534245260108,
+          -44.59865321912067,
+          0.9772909805053305,
+          -0.8779599271402551,
+          0,
+          2
+        ],
+        "worst_case_registration_rmse_px": 0.9772909805053305,
+        "yaw_degrees": 44.983226860143766,
+        "yaw_distance_degrees": 56.27534245260108
+      },
+      {
+        "camera": "cam02",
+        "direction": "back-left",
+        "limitation_count": 3,
+        "limitation_severity": 3,
+        "minimum_anchor_separation_degrees": 40.7380691788257,
+        "minimum_inlier_ratio": 0.9098228663446055,
+        "slot": "slot05",
+        "slot04_yaw_degrees": 348.7078844075427,
+        "sorting_tuple": [
+          122.44320450118443,
+          -40.7380691788257,
+          1.0083424233147011,
+          -0.9098228663446055,
+          3,
+          5
+        ],
+        "worst_case_registration_rmse_px": 1.0083424233147011,
+        "yaw_degrees": 226.26467990635825,
+        "yaw_distance_degrees": 122.44320450118443
+      },
+      {
+        "camera": "cam21",
+        "direction": "front-left",
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_anchor_separation_degrees": 30.295226824138382,
+        "minimum_inlier_ratio": 0.875,
+        "slot": "slot01",
+        "slot04_yaw_degrees": 348.7078844075427,
+        "sorting_tuple": [
+          152.96983644456958,
+          -30.295226824138382,
+          0.9537711389199219,
+          -0.875,
+          0,
+          1
+        ],
+        "worst_case_registration_rmse_px": 0.9537711389199219,
+        "yaw_degrees": 141.67772085211226,
+        "yaw_distance_degrees": 152.96983644456958
+      }
+    ],
+    "ranking_rule": [
+      "minimize circular yaw distance to original slot04/cam11",
+      "maximize minimum angular separation from slot00/slot03/slot07",
+      "minimize worst-case three-garment registration RMSE",
+      "maximize minimum three-garment inlier ratio",
+      "minimize limitation severity",
+      "minimize slot ID"
+    ],
+    "reported_selected_camera": "cam09",
+    "reported_selected_direction": "back-right",
+    "reported_selected_slot": "slot06",
+    "runner_commit": {
+      "author_time": "2026-07-27T14:58:01+08:00",
+      "commit_time": "2026-07-27T14:58:01+08:00",
+      "head": "3bd2034da17a3044288e9f462b5dbb686f0acb4e",
+      "parents": [
+        "aa3860618d723905a0fcd3784cf2ec550b609c1a"
+      ],
+      "subject": "Add CommonSafe4 formal matrix runner"
+    },
+    "schema_version": "canondressgs.subject00.commonsafe4.replacement_pretraining_audit.v1",
+    "selected_camera": "cam09",
+    "selected_direction": "back-right",
+    "selected_slot": "slot06",
+    "selection_artifact_sha256": "dd76bcb8cc2518a0595d6f856323f5ab6c44a51a52f1d7755b456a7a85017e80",
+    "selection_commit": {
+      "author_time": "2026-07-27T14:51:50+08:00",
+      "commit_time": "2026-07-27T14:51:50+08:00",
+      "head": "aa3860618d723905a0fcd3784cf2ec550b609c1a",
+      "parents": [
+        "7196fcb7b2d170c036a1a912b7792598530e6cf5"
+      ],
+      "subject": "freeze_commonsafe4_slot06_contract"
+    },
+    "selection_result_frozen_before_training": true,
+    "selection_rule_preexisted_before_training": true,
+    "slot_registry": {
+      "slot00": {
+        "camera_ids": [
+          "cam17"
+        ],
+        "common_safe": true,
+        "directions": [
+          "front"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam17",
+            "camera_sha256": "e7e296032758f84813223c7f18a8cc26d61458fa0b5e3703c12803c42e2a7cac",
+            "direction": "front",
+            "eligible": true,
+            "inlier": 0.8773885350318471,
+            "limitations": [],
+            "record_sha256": "6565be8cd8d884d41ab049dd100774280d1afc1aa7cc6d92f21a7ec116b862bd",
+            "request_id": "subject00_O01_slot00_cand01",
+            "rmse": 0.9074397947808084,
+            "yaw": 89.58188007926444
+          },
+          "O03": {
+            "camera_id": "cam17",
+            "camera_sha256": "a8d67b325611ebe9d5cade6bbeca4434228debde01dc9b3b60f7beb1b832b54c",
+            "direction": "front",
+            "eligible": true,
+            "inlier": 0.8704918032786885,
+            "limitations": [
+              "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED",
+              "RAW_RETAINED_IN_TECHNICAL_FAILURE_PATH_AFTER_RESOLUTION_FAMILY_CORRECTION"
+            ],
+            "record_sha256": "02e1ef3912d9981b15bd23a55cf18f8ec8c6c0d27611ee3f322b824b5663de7c",
+            "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+            "rmse": 0.9885952582484817,
+            "yaw": 89.58188007926444
+          },
+          "O04": {
+            "camera_id": "cam17",
+            "camera_sha256": "67c9ba6118ab99e4225e2b132648e9c62aa998187ed8daeb6c9572c4e234671b",
+            "direction": "front",
+            "eligible": true,
+            "inlier": 0.8785488958990536,
+            "limitations": [],
+            "record_sha256": "f633fc0b657585fe72620cd78f4e8e357956bdb4a44b663df6d7e7f11c1d7b10",
+            "request_id": "subject00_O04_slot00_cand01",
+            "rmse": 0.888731098445514,
+            "yaw": 89.58188007926444
+          }
+        },
+        "limitation_count": 2,
+        "limitation_severity": 2,
+        "minimum_inlier_ratio": 0.8704918032786885,
+        "slot": "slot00",
+        "worst_case_registration_rmse_px": 0.9885952582484817,
+        "yaw_degrees": 89.58188007926444
+      },
+      "slot01": {
+        "camera_ids": [
+          "cam21"
+        ],
+        "common_safe": true,
+        "directions": [
+          "front-left"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam21",
+            "camera_sha256": "5394a8ad64727dc610dce651d9cea0694006cacc66f051ba81865150fbe79978",
+            "direction": "front-left",
+            "eligible": true,
+            "inlier": 0.8878504672897196,
+            "limitations": [],
+            "record_sha256": "06930b52c149916df2f9d5af10b0642f956fe9967f0d4691329238f74f26ae57",
+            "request_id": "subject00_O01_slot01_cand01",
+            "rmse": 0.9051096307991565,
+            "yaw": 141.67772085211226
+          },
+          "O03": {
+            "camera_id": "cam21",
+            "camera_sha256": "6769067cfb950df239c4cb4f57354012e77707519697f3323f696de1229b89d6",
+            "direction": "front-left",
+            "eligible": true,
+            "inlier": 0.8764044943820225,
+            "limitations": [],
+            "record_sha256": "dc057ea50b048d9b084303f70b57f0981a5bf350a3e9dbc805b783ff468c6719",
+            "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+            "rmse": 0.9537711389199219,
+            "yaw": 141.67772085211226
+          },
+          "O04": {
+            "camera_id": "cam21",
+            "camera_sha256": "18a214414496bc8c25d84dde181c5fbc445b8312555f2e0028b67e16e2fe38a4",
+            "direction": "front-left",
+            "eligible": true,
+            "inlier": 0.875,
+            "limitations": [],
+            "record_sha256": "684bcc6aa30032be55b73bd4ab0d4a70034d5f0fe00c88b91d0d0d3f1007fa24",
+            "request_id": "subject00_O04_slot01_cand01",
+            "rmse": 0.8773527699246324,
+            "yaw": 141.67772085211226
+          }
+        },
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_inlier_ratio": 0.875,
+        "slot": "slot01",
+        "worst_case_registration_rmse_px": 0.9537711389199219,
+        "yaw_degrees": 141.67772085211226
+      },
+      "slot02": {
+        "camera_ids": [
+          "cam14"
+        ],
+        "common_safe": true,
+        "directions": [
+          "front-right"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam14",
+            "camera_sha256": "b4db6ef9b6d2d0f17d275d7603973abf0c9b3db5bf3cca7ebe8d2a5ce0679476",
+            "direction": "front-right",
+            "eligible": true,
+            "inlier": 0.8779599271402551,
+            "limitations": [],
+            "record_sha256": "0c288cb418f9e07fee21073201b16f0bf59216901dce87147f8936d2975b0b7b",
+            "request_id": "subject00_O01_slot02_cand01",
+            "rmse": 0.9772909805053305,
+            "yaw": 44.983226860143766
+          },
+          "O03": {
+            "camera_id": "cam14",
+            "camera_sha256": "e531b88949e19c89708bef6ae0dc0956406d783bd6777e26eb8a5208207985a5",
+            "direction": "front-right",
+            "eligible": true,
+            "inlier": 0.8913043478260869,
+            "limitations": [],
+            "record_sha256": "80ea5b785c9cf525afb75e269be15a9c8a31f08a823cc0878162a88c158966dc",
+            "request_id": "subject00_O03_slot02_cand00",
+            "rmse": 0.9397135775784624,
+            "yaw": 44.983226860143766
+          },
+          "O04": {
+            "camera_id": "cam14",
+            "camera_sha256": "6a793d3c163719ea822ae232c929ef1a501ff7bd7abbf3487f664fcb2fa9d751",
+            "direction": "front-right",
+            "eligible": true,
+            "inlier": 0.924074074074074,
+            "limitations": [],
+            "record_sha256": "c4f578612f8703b1d7483614e17989434159788fe1c812929ef7f04739bcf2a4",
+            "request_id": "subject00_O04_slot02_cand00",
+            "rmse": 0.920923381316255,
+            "yaw": 44.983226860143766
+          }
+        },
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_inlier_ratio": 0.8779599271402551,
+        "slot": "slot02",
+        "worst_case_registration_rmse_px": 0.9772909805053305,
+        "yaw_degrees": 44.983226860143766
+      },
+      "slot03": {
+        "camera_ids": [
+          "cam23"
+        ],
+        "common_safe": true,
+        "directions": [
+          "left"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam23",
+            "camera_sha256": "9f969bb75da321502df4d8e53bed50794aa65e70e7abcac4749595798abf7a25",
+            "direction": "left",
+            "eligible": true,
+            "inlier": 0.9013657056145675,
+            "limitations": [],
+            "record_sha256": "5cdd160be6d84aff090d138695e648e4b269854c19a5bfb16f4b81353c2455a7",
+            "request_id": "subject00_O01_slot03_cand01",
+            "rmse": 1.000920116748027,
+            "yaw": 171.97294767625064
+          },
+          "O03": {
+            "camera_id": "cam23",
+            "camera_sha256": "859317d7fb1d3400558d596991f0559dcf18ff16148cf62d8e739ef62811d71c",
+            "direction": "left",
+            "eligible": true,
+            "inlier": 0.8633540372670807,
+            "limitations": [],
+            "record_sha256": "adfda931185975c3e2fd09b119644a3b2fb9d107694c184e8458c3f2bda52762",
+            "request_id": "subject00_O03_slot03_cand01",
+            "rmse": 1.03542314663003,
+            "yaw": 171.97294767625064
+          },
+          "O04": {
+            "camera_id": "cam23",
+            "camera_sha256": "689d71b9564bda29f153de8c37105411af9033bd46f306923d62d6565f1671a0",
+            "direction": "left",
+            "eligible": true,
+            "inlier": 0.8888888888888888,
+            "limitations": [],
+            "record_sha256": "3053e93dcce8ea1935eaa21f1bc8b3e84cafeab53b4d6d24c05c6c46c0bb5b9e",
+            "request_id": "subject00_O04_slot03_cand01",
+            "rmse": 0.9788240477147975,
+            "yaw": 171.97294767625064
+          }
+        },
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_inlier_ratio": 0.8633540372670807,
+        "slot": "slot03",
+        "worst_case_registration_rmse_px": 1.03542314663003,
+        "yaw_degrees": 171.97294767625064
+      },
+      "slot04": {
+        "camera_ids": [
+          "cam11"
+        ],
+        "common_safe": false,
+        "directions": [
+          "right"
+        ],
+        "garment_coverage": 1,
+        "garments": {
+          "O01": {
+            "camera_id": "cam11",
+            "camera_sha256": "ca57f0054386dc480df99ef43508a2c24014247fa5e2d22bf0cb8ee0c15d2b9f",
+            "direction": null,
+            "eligible": false,
+            "inlier": null,
+            "limitations": [
+              "MACHINE_REGISTRATION_FAIL_WITH_DOCUMENTED_HUMAN_OVERRIDE"
+            ],
+            "record_sha256": "30aa05307db5715bf0ebca77f02f98687539201fb1e8504fc41acb595b172f09",
+            "request_id": "subject00_O01_slot04_remaining_attempt005_cand00",
+            "rmse": null,
+            "yaw": null
+          },
+          "O03": {
+            "camera_id": "cam11",
+            "camera_sha256": "a985f50b10ffaed40f220e4264e8fe3c758a8c5ff090d398ca1efb48d49cb3cd",
+            "direction": null,
+            "eligible": false,
+            "inlier": null,
+            "limitations": [
+              "MACHINE_REGISTRATION_FAIL_WITH_DOCUMENTED_HUMAN_OVERRIDE",
+              "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+            ],
+            "record_sha256": "4aeaecadfee9b543224d93488234c5a65c08aec29f6ae973d8cc5e3109d253e5",
+            "request_id": "subject00_O03_slot04_canary_attempt004_cand00",
+            "rmse": null,
+            "yaw": null
+          },
+          "O04": {
+            "camera_id": "cam11",
+            "camera_sha256": "966548235a3e11fa22806c33f6feab16b6df7baa243d4c2b20ea746dd8782a5d",
+            "direction": "right",
+            "eligible": true,
+            "inlier": 0.8995983935742972,
+            "limitations": [],
+            "record_sha256": "d74ee57293b99544969aed38ea613ae8fdd4eb51f7f9feaba178ff7f452fffa4",
+            "request_id": "subject00_O04_slot04_cand01",
+            "rmse": 0.9394793651578504,
+            "yaw": 348.7078844075427
+          }
+        },
+        "limitation_count": 0,
+        "limitation_severity": 0,
+        "minimum_inlier_ratio": null,
+        "slot": "slot04",
+        "worst_case_registration_rmse_px": null,
+        "yaw_degrees": 348.7078844075427
+      },
+      "slot05": {
+        "camera_ids": [
+          "cam02"
+        ],
+        "common_safe": true,
+        "directions": [
+          "back-left"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam02",
+            "camera_sha256": "37056a22c2e628ffbbbc768620b1a16e64c96b167c53fa67f99618417a91f5fd",
+            "direction": "back-left",
+            "eligible": true,
+            "inlier": 0.9212730318257957,
+            "limitations": [],
+            "record_sha256": "85c63bac9f43c3b4bc5c854d005bbdb34165e12872538607aedea068685870af",
+            "request_id": "subject00_O01_slot05_cand00",
+            "rmse": 0.9480057876182456,
+            "yaw": 226.26467990635825
+          },
+          "O03": {
+            "camera_id": "cam02",
+            "camera_sha256": "afa8d17a143e82813249305bdd6de2f31e76f215001dbee2368838dcbae40b31",
+            "direction": "back-left",
+            "eligible": true,
+            "inlier": 0.9174603174603174,
+            "limitations": [
+              "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+              "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+            ],
+            "record_sha256": "0c30707a58aedc88ce5f75b2c866ccf2c00a041ef189047599d04b4f100641e0",
+            "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+            "rmse": 1.0083424233147011,
+            "yaw": 226.26467990635825
+          },
+          "O04": {
+            "camera_id": "cam02",
+            "camera_sha256": "22294ee5c7b49d9007bacdfca601c28b9b0ef2aa6cef22e695407d4b51732c46",
+            "direction": "back-left",
+            "eligible": true,
+            "inlier": 0.9098228663446055,
+            "limitations": [
+              "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+            ],
+            "record_sha256": "2b2e45d89a5f56d5354af8cdf4265048b35dba82a13623b191236d16428e6d23",
+            "request_id": "subject00_O04_slot05_remaining_attempt005_cand00",
+            "rmse": 0.959968182066543,
+            "yaw": 226.26467990635825
+          }
+        },
+        "limitation_count": 3,
+        "limitation_severity": 3,
+        "minimum_inlier_ratio": 0.9098228663446055,
+        "slot": "slot05",
+        "worst_case_registration_rmse_px": 1.0083424233147011,
+        "yaw_degrees": 226.26467990635825
+      },
+      "slot06": {
+        "camera_ids": [
+          "cam09"
+        ],
+        "common_safe": true,
+        "directions": [
+          "back-right"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam09",
+            "camera_sha256": "142cbab4cbbfb16d3b72419721febc441afa42ea49390b8be2230a3a80c49695",
+            "direction": "back-right",
+            "eligible": true,
+            "inlier": 0.9066213921901528,
+            "limitations": [],
+            "record_sha256": "bc4b842be7eba493c3ba4daf471d6597d92bdb67fb5798db88ed2fab5d657450",
+            "request_id": "subject00_O01_slot06_cand01",
+            "rmse": 0.9683899689317054,
+            "yaw": 320.5376313339716
+          },
+          "O03": {
+            "camera_id": "cam09",
+            "camera_sha256": "00c133d2fad7f546d76bdde7b76e470766ec14e70c90ea9ff5ccecc03d3b97ad",
+            "direction": "back-right",
+            "eligible": true,
+            "inlier": 0.9105180533751962,
+            "limitations": [
+              "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+            ],
+            "record_sha256": "1b8a2e085c359d2cf3ff0959fe5f3280415d42881d951e4518aa585f7ac49246",
+            "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+            "rmse": 0.887672100462557,
+            "yaw": 320.5376313339716
+          },
+          "O04": {
+            "camera_id": "cam09",
+            "camera_sha256": "b55fd92be08555b5bcea75aa3c5520c29d10c977dc98ecbdf394f721d36757c6",
+            "direction": "back-right",
+            "eligible": true,
+            "inlier": 0.9267515923566879,
+            "limitations": [
+              "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+            ],
+            "record_sha256": "bd60d39ce15326f0d9be012ce7beedd923a4e32e81f49028610ad85cfb6a6e38",
+            "request_id": "subject00_O04_slot06_remaining_attempt005_cand00",
+            "rmse": 0.9861065268073442,
+            "yaw": 320.5376313339716
+          }
+        },
+        "limitation_count": 2,
+        "limitation_severity": 2,
+        "minimum_inlier_ratio": 0.9066213921901528,
+        "slot": "slot06",
+        "worst_case_registration_rmse_px": 0.9861065268073442,
+        "yaw_degrees": 320.5376313339716
+      },
+      "slot07": {
+        "camera_ids": [
+          "cam05"
+        ],
+        "common_safe": true,
+        "directions": [
+          "back"
+        ],
+        "garment_coverage": 3,
+        "garments": {
+          "O01": {
+            "camera_id": "cam05",
+            "camera_sha256": "781e2ad5b2114b26d8c2c5b27bb21ef08835c8c50c8ddf4a32dcb7e87359c76b",
+            "direction": "back",
+            "eligible": true,
+            "inlier": 0.8856152512998267,
+            "limitations": [
+              "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW"
+            ],
+            "record_sha256": "730e8d1f981e4f7c98f0e5eb1c1fffa2db2ac1b0bf8fbd12c3f183ce27492f43",
+            "request_id": "subject00_O01_slot07_remaining_attempt005_cand00",
+            "rmse": 1.2828827264190787,
+            "yaw": 267.00274908518395
+          },
+          "O03": {
+            "camera_id": "cam05",
+            "camera_sha256": "480fe16f8b081628bcff47105caeb1685dc25478a3633a8f380b988a5b2f254c",
+            "direction": "back",
+            "eligible": true,
+            "inlier": 0.9106830122591943,
+            "limitations": [
+              "IDENTITY_EVIDENCE_LIMITED_BY_BACK_OR_OBLIQUE_VIEW",
+              "HISTORICAL_FACE_HEAD_CROP_OFF_TARGET; FULL_BODY_RAW_USED"
+            ],
+            "record_sha256": "31ca391170ca87c7dfee89d5e79b480cb26579a682c435ddfb5ca141eb278aa7",
+            "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+            "rmse": 1.0845626346141897,
+            "yaw": 267.00274908518395
+          },
+          "O04": {
+            "camera_id": "cam05",
+            "camera_sha256": "a6ccdb4e7e3e64f5f322799993fe61d3f1c185b0b83380bd67be97d4250875dd",
+            "direction": "back",
+            "eligible": true,
+            "inlier": 0.9064625850340136,
+            "limitations": [],
+            "record_sha256": "e502bf6ad87520d2925f0a01b8573ef46ca8ff9f881193096776a374ad8e5a2f",
+            "request_id": "subject00_O04_slot07_cand01",
+            "rmse": 0.8969003565378064,
+            "yaw": 267.00274908518395
+          }
+        },
+        "limitation_count": 3,
+        "limitation_severity": 3,
+        "minimum_inlier_ratio": 0.8856152512998267,
+        "slot": "slot07",
+        "worst_case_registration_rmse_px": 1.2828827264190787,
+        "yaw_degrees": 267.00274908518395
+      }
+    },
+    "status": "PASS_UNIQUE_OUTCOME_INDEPENDENT_PRETRAINING_SELECTION",
+    "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+    "writer_commit": {
+      "author_time": "2026-07-27T14:59:01+08:00",
+      "commit_time": "2026-07-27T14:59:01+08:00",
+      "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+      "parents": [
+        "3bd2034da17a3044288e9f462b5dbb686f0acb4e"
+      ],
+      "subject": "Add nonmutating matrix preflight gate"
+    }
+  },
+  "status": "SEALED",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+  "test_result": "PASS_61_OF_61",
+  "writer": {
+    "actual_writer_branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+    "actual_writer_head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+    "actual_writer_task": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+    "actual_writer_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+    "control_lock": {
+      "branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+      "completed_run_count": 12,
+      "formal_valid_run_count": 12,
+      "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+      "hostname": "autodl-container-ef19489c10-464381bb",
+      "metadata_finalization": true,
+      "optimizer_steps": 3600,
+      "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+      "parent_pid": 469529,
+      "pid": 469606,
+      "run_ids": [
+        "COMMONSAFE4-METHOD-R0-S0",
+        "COMMONSAFE4-METHOD-R0-S1",
+        "COMMONSAFE4-METHOD-R0-S2",
+        "COMMONSAFE4-METHOD-R1-S0",
+        "COMMONSAFE4-METHOD-R1-S1",
+        "COMMONSAFE4-METHOD-R1-S2",
+        "COMMONSAFE4-METHOD-R2-S0",
+        "COMMONSAFE4-METHOD-R2-S1",
+        "COMMONSAFE4-METHOD-R2-S2",
+        "COMMONSAFE4-METHOD-R3-S0",
+        "COMMONSAFE4-METHOD-R3-S1",
+        "COMMONSAFE4-METHOD-R3-S2"
+      ],
+      "schema_version": "canondressgs.subject00.commonsafe4.execution_lock.v1",
+      "scientific_payload_mutations": 0,
+      "selected_replacement": "slot06",
+      "start_time_unix": 1785135782.5922801,
+      "status": "COMPLETE",
+      "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+      "tmux": "subject00_commonsafe4_matrix_20260727",
+      "tmux_binding_source": "EXTERNALLY_VERIFIED_ACTIVE_SESSION_AT_COMPLETION",
+      "updated_time_unix": 1785135845.6143863
+    },
+    "cross_task_file_count": 0,
+    "end_time": "2026-07-27T15:04:05.614386+08:00",
+    "end_time_unix": 1785135845.6143863,
+    "execution_git_clean": true,
+    "execution_git_porcelain_v2": "",
+    "file_interleaving_status": "PASS_NO_FILE_INTERLEAVING",
+    "final_report_mtime": "2026-07-27T15:04:05.610398+08:00",
+    "git_reflog_evidence": "0d3d7b53 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:27:00 +0800}: commit: research: bind CommonSafe4 final reporting head\nfb106686 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:26:40 +0800}: commit: research: seal CommonSafe4 method and baseline evidence\n1ae119b6 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:25:55 +0800}: push\nb5aea0cd research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:24:58 +0800}: push\n90d70909 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:19:32 +0800}: push\na20f3163 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:14:57 +0800}: push\n1d97afaa research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:59:21 +0800}: push\n3bd2034d research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:58:28 +0800}: push\naa386061 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:51:50 +0800}: commit: freeze_commonsafe4_slot06_contract",
+    "hostname": "autodl-container-ef19489c10-464381bb",
+    "launch_command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+    "launch_command_evidence": {
+      "exact_line_recovered": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+      "execution_lock_pid_matches_checkpoint_gpu_gate": true,
+      "shell_history_path": "/root/.bash_history"
+    },
+    "parent_pid": 469529,
+    "pid": 469606,
+    "schema_version": "canondressgs.subject00.commonsafe4.writer_identity.v1",
+    "single_writer_status": "PASS_SINGLE_WRITER",
+    "start_time": "2026-07-27T15:03:02.592280+08:00",
+    "start_time_unix": 1785135782.5922801,
+    "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+    "tmux": "subject00_commonsafe4_matrix_20260727",
+    "unattributed_file_count": 0,
+    "working_directory": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+    "working_directory_recovery": "INFERRED_AND_CROSS_CHECKED_FROM_EXECUTION_BRANCH_WORKTREE_BINDING",
+    "writer_commit": {
+      "author_time": "2026-07-27T14:59:01+08:00",
+      "commit_time": "2026-07-27T14:59:01+08:00",
+      "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+      "parents": [
+        "3bd2034da17a3044288e9f462b5dbb686f0acb4e"
+      ],
+      "subject": "Add nonmutating matrix preflight gate"
+    }
+  }
+}

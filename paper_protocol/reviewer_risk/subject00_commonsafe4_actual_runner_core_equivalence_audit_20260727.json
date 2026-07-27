@@ -1,0 +1,61 @@
+{
+  "dual_support_call_count": 0,
+  "dual_support_enabled": false,
+  "frozen_config_section_equality": {
+    "base": true,
+    "basis": true,
+    "controller": true,
+    "final_evaluation": true,
+    "frozen_f2": true,
+    "optimization": true,
+    "paper_eligible": true,
+    "paper_final": true,
+    "targets": true,
+    "teachers": true,
+    "validation_gates": true
+  },
+  "frozen_runtime_path": "tools/paper/formal_batch_runtime.py",
+  "frozen_runtime_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+  "legacy_runner_bitwise_equal": true,
+  "legacy_runner_sha256_at_actual_writer_head": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9",
+  "legacy_runner_sha256_at_old_head": "c1703b209441de6521f5c5120e170090c52fa5a0e9bd78a20c62b35a45306bd9",
+  "method_contract": "PURE_ENDPOINT",
+  "old_valid_r0s0_execution_head": "21e696a36b5df539124a01967f7867f735a8bd44",
+  "runtime_snapshot_parameter_diff": {
+    "authorized_changes": [
+      "rotation selection",
+      "seed selection",
+      "fold construction",
+      "output namespace",
+      "12-cell orchestration",
+      "slot04 to slot06 common-safe replacement",
+      "explicit calibration and formal-test persistence"
+    ],
+    "forbidden_core_changes_detected": []
+  },
+  "schema_version": "canondressgs.subject00.commonsafe4.core_equivalence.v1",
+  "static_call_graph": {
+    "controller": "MultiOutfitLinearCoefficientControl(512,2)",
+    "endpoint_selection": "nearest_endpoint(argmin squared L2; garment-order tie-break)",
+    "entrypoint": "main",
+    "matrix_orchestration": [
+      "main",
+      "train_run",
+      "evaluate_fold",
+      "save_checkpoint",
+      "aggregate"
+    ],
+    "objective": "torch.nn.functional.smooth_l1_loss",
+    "optimizer": "torch.optim.Adam",
+    "reused_legacy_calls": [
+      "legacy.aggregate_native_references",
+      "legacy.build_f2_extractor",
+      "legacy.multi.o01._state_fingerprint",
+      "legacy.rng_state",
+      "legacy.save_basis"
+    ],
+    "scheduler": "torch.optim.lr_scheduler.LambdaLR"
+  },
+  "status": "PASS_METHOD_CORE_EQUIVALENT_AUTHORIZED_ORCHESTRATION_ONLY",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001"
+}

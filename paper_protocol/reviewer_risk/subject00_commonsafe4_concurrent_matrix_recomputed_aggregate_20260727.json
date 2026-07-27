@@ -1,0 +1,142 @@
+{
+  "aggregation": "ALL_12_RUNS_NO_CHERRY_PICKING",
+  "confusion_matrix": {
+    "O01": {
+      "O01": 12,
+      "O03": 0,
+      "O04": 0
+    },
+    "O03": {
+      "O01": 0,
+      "O03": 12,
+      "O04": 0
+    },
+    "O04": {
+      "O01": 0,
+      "O03": 6,
+      "O04": 6
+    }
+  },
+  "dual_support_call_count": 0,
+  "dual_support_enabled": false,
+  "endpoint_top1": 0.8333333333333334,
+  "failure_count": 0,
+  "formal_test_correct": 30,
+  "formal_test_episode_count": 36,
+  "formal_valid_run_count": 12,
+  "max_endpoint_top1": 1.0,
+  "mean_endpoint_top1": 0.8333333333333334,
+  "mean_score_margin": 3.7424412669174165,
+  "method_contract": "PURE_ENDPOINT",
+  "min_endpoint_top1": 0.6666666666666666,
+  "nan_inf_status": "NONE",
+  "old_method_output_included": false,
+  "oom_status": "NONE",
+  "peak_vram_bytes": 18134528,
+  "per_run_endpoint_results": {
+    "COMMONSAFE4-METHOD-R0-S0": {
+      "correct": 3,
+      "denominator": 3,
+      "top1": 1.0
+    },
+    "COMMONSAFE4-METHOD-R0-S1": {
+      "correct": 3,
+      "denominator": 3,
+      "top1": 1.0
+    },
+    "COMMONSAFE4-METHOD-R0-S2": {
+      "correct": 3,
+      "denominator": 3,
+      "top1": 1.0
+    },
+    "COMMONSAFE4-METHOD-R1-S0": {
+      "correct": 2,
+      "denominator": 3,
+      "top1": 0.6666666666666666
+    },
+    "COMMONSAFE4-METHOD-R1-S1": {
+      "correct": 2,
+      "denominator": 3,
+      "top1": 0.6666666666666666
+    },
+    "COMMONSAFE4-METHOD-R1-S2": {
+      "correct": 2,
+      "denominator": 3,
+      "top1": 0.6666666666666666
+    },
+    "COMMONSAFE4-METHOD-R2-S0": {
+      "correct": 2,
+      "denominator": 3,
+      "top1": 0.6666666666666666
+    },
+    "COMMONSAFE4-METHOD-R2-S1": {
+      "correct": 3,
+      "denominator": 3,
+      "top1": 1.0
+    },
+    "COMMONSAFE4-METHOD-R2-S2": {
+      "correct": 3,
+      "denominator": 3,
+      "top1": 1.0
+    },
+    "COMMONSAFE4-METHOD-R3-S0": {
+      "correct": 2,
+      "denominator": 3,
+      "top1": 0.6666666666666666
+    },
+    "COMMONSAFE4-METHOD-R3-S1": {
+      "correct": 2,
+      "denominator": 3,
+      "top1": 0.6666666666666666
+    },
+    "COMMONSAFE4-METHOD-R3-S2": {
+      "correct": 3,
+      "denominator": 3,
+      "top1": 1.0
+    }
+  },
+  "prediction_counts": {
+    "O01": 12,
+    "O03": 18,
+    "O04": 6
+  },
+  "rotation_effect": {
+    "0": {
+      "mean_endpoint_top1": 1.0,
+      "run_count": 3
+    },
+    "1": {
+      "mean_endpoint_top1": 0.6666666666666666,
+      "run_count": 3
+    },
+    "2": {
+      "mean_endpoint_top1": 0.8888888888888888,
+      "run_count": 3
+    },
+    "3": {
+      "mean_endpoint_top1": 0.7777777777777777,
+      "run_count": 3
+    }
+  },
+  "run_count": 12,
+  "schema_version": "canondressgs.subject00.commonsafe4.recomputed_aggregate.v1",
+  "seed_effect": {
+    "0": {
+      "mean_endpoint_top1": 0.75,
+      "run_count": 4
+    },
+    "1": {
+      "mean_endpoint_top1": 0.8333333333333333,
+      "run_count": 4
+    },
+    "2": {
+      "mean_endpoint_top1": 0.9166666666666666,
+      "run_count": 4
+    }
+  },
+  "status": "PASS_12_OF_12_FORMAL_VALID",
+  "std_endpoint_top1_population": 0.16666666666666669,
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+  "total_optimizer_steps": 3600,
+  "wall_time_seconds": 16.108335733413696
+}

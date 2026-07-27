@@ -1,0 +1,1275 @@
+{
+  "fail_count": 0,
+  "pass_count": 61,
+  "schema_version": "canondressgs.subject00.commonsafe4.provenance_tests.v1",
+  "status": "PASS_61_OF_61",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+  "test_count": 61,
+  "tests": [
+    {
+      "actual": [
+        "research/subject00-base60747-commonsafe4-contract-runner-preflight-20260727",
+        "5a0ac41e614ead9e42cea16bb7af38d53f16f80a"
+      ],
+      "check": "01_source_branch_head",
+      "id": 1,
+      "status": "PASS"
+    },
+    {
+      "actual": "? docs/PAPER/AAAI27_SUBJECT00_COMMONSAFE4_CONCURRENT_12RUN_PROVENANCE_AUDIT_REPORT_20260727.md\n? paper_protocol/reviewer_risk/SUBJECT00_COMMONSAFE4_CONCURRENT_12RUN_PROVENANCE_AUDIT_REPORT_20260727.md\n? paper_protocol/reviewer_risk/subject00_commonsafe4_actual_rotation_fold_registry_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_actual_runner_config_registry_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_actual_runner_core_equivalence_audit_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_12run_execution_registry_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_12run_provenance_final_summary_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_12run_provenance_tests_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_checkpoint_authenticity_registry_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_fair_baseline_discovery_audit_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_formal_test_registry_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_matrix_recomputed_aggregate_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_output_file_timeline_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_concurrent_writer_identity_registry_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_preflight_concurrent_execution_correction_overlay_20260727.json\n? paper_protocol/reviewer_risk/subject00_commonsafe4_replacement_pretraining_provenance_audit_20260727.json\n? project_control_handoff/subject00_commonsafe4_concurrent_12run_provenance_handoff_20260727.json",
+      "check": "02_source_clean",
+      "id": 2,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "active_method_process_count": 0,
+        "active_optimizer_process_count": 0,
+        "active_teacher_process_count": 0,
+        "gpu_compute_processes": [],
+        "idle_tmux_sessions": [],
+        "matching_processes": [],
+        "tmux_listing": "NO_TMUX_SERVER_OR_SESSIONS"
+      },
+      "check": "03_active_optimizer_zero",
+      "id": 3,
+      "status": "PASS"
+    },
+    {
+      "actual": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+      "check": "04_output_root_exists",
+      "id": 4,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "actual_writer_branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+        "actual_writer_head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+        "actual_writer_task": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+        "actual_writer_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+        "control_lock": {
+          "branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+          "completed_run_count": 12,
+          "formal_valid_run_count": 12,
+          "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+          "hostname": "autodl-container-ef19489c10-464381bb",
+          "metadata_finalization": true,
+          "optimizer_steps": 3600,
+          "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+          "parent_pid": 469529,
+          "pid": 469606,
+          "run_ids": [
+            "COMMONSAFE4-METHOD-R0-S0",
+            "COMMONSAFE4-METHOD-R0-S1",
+            "COMMONSAFE4-METHOD-R0-S2",
+            "COMMONSAFE4-METHOD-R1-S0",
+            "COMMONSAFE4-METHOD-R1-S1",
+            "COMMONSAFE4-METHOD-R1-S2",
+            "COMMONSAFE4-METHOD-R2-S0",
+            "COMMONSAFE4-METHOD-R2-S1",
+            "COMMONSAFE4-METHOD-R2-S2",
+            "COMMONSAFE4-METHOD-R3-S0",
+            "COMMONSAFE4-METHOD-R3-S1",
+            "COMMONSAFE4-METHOD-R3-S2"
+          ],
+          "schema_version": "canondressgs.subject00.commonsafe4.execution_lock.v1",
+          "scientific_payload_mutations": 0,
+          "selected_replacement": "slot06",
+          "start_time_unix": 1785135782.5922801,
+          "status": "COMPLETE",
+          "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+          "tmux": "subject00_commonsafe4_matrix_20260727",
+          "tmux_binding_source": "EXTERNALLY_VERIFIED_ACTIVE_SESSION_AT_COMPLETION",
+          "updated_time_unix": 1785135845.6143863
+        },
+        "cross_task_file_count": 0,
+        "end_time": "2026-07-27T15:04:05.614386+08:00",
+        "end_time_unix": 1785135845.6143863,
+        "execution_git_clean": true,
+        "execution_git_porcelain_v2": "",
+        "file_interleaving_status": "PASS_NO_FILE_INTERLEAVING",
+        "final_report_mtime": "2026-07-27T15:04:05.610398+08:00",
+        "git_reflog_evidence": "0d3d7b53 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:27:00 +0800}: commit: research: bind CommonSafe4 final reporting head\nfb106686 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:26:40 +0800}: commit: research: seal CommonSafe4 method and baseline evidence\n1ae119b6 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:25:55 +0800}: push\nb5aea0cd research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:24:58 +0800}: push\n90d70909 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:19:32 +0800}: push\na20f3163 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:14:57 +0800}: push\n1d97afaa research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:59:21 +0800}: push\n3bd2034d research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:58:28 +0800}: push\naa386061 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:51:50 +0800}: commit: freeze_commonsafe4_slot06_contract",
+        "hostname": "autodl-container-ef19489c10-464381bb",
+        "launch_command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+        "launch_command_evidence": {
+          "exact_line_recovered": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+          "execution_lock_pid_matches_checkpoint_gpu_gate": true,
+          "shell_history_path": "/root/.bash_history"
+        },
+        "parent_pid": 469529,
+        "pid": 469606,
+        "schema_version": "canondressgs.subject00.commonsafe4.writer_identity.v1",
+        "single_writer_status": "PASS_SINGLE_WRITER",
+        "start_time": "2026-07-27T15:03:02.592280+08:00",
+        "start_time_unix": 1785135782.5922801,
+        "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+        "tmux": "subject00_commonsafe4_matrix_20260727",
+        "unattributed_file_count": 0,
+        "working_directory": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+        "working_directory_recovery": "INFERRED_AND_CROSS_CHECKED_FROM_EXECUTION_BRANCH_WORKTREE_BINDING",
+        "writer_commit": {
+          "author_time": "2026-07-27T14:59:01+08:00",
+          "commit_time": "2026-07-27T14:59:01+08:00",
+          "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+          "parents": [
+            "3bd2034da17a3044288e9f462b5dbb686f0acb4e"
+          ],
+          "subject": "Add nonmutating matrix preflight gate"
+        }
+      },
+      "check": "05_writer_task",
+      "id": 5,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "actual_writer_branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+        "actual_writer_head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+        "actual_writer_task": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+        "actual_writer_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+        "control_lock": {
+          "branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+          "completed_run_count": 12,
+          "formal_valid_run_count": 12,
+          "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+          "hostname": "autodl-container-ef19489c10-464381bb",
+          "metadata_finalization": true,
+          "optimizer_steps": 3600,
+          "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001",
+          "parent_pid": 469529,
+          "pid": 469606,
+          "run_ids": [
+            "COMMONSAFE4-METHOD-R0-S0",
+            "COMMONSAFE4-METHOD-R0-S1",
+            "COMMONSAFE4-METHOD-R0-S2",
+            "COMMONSAFE4-METHOD-R1-S0",
+            "COMMONSAFE4-METHOD-R1-S1",
+            "COMMONSAFE4-METHOD-R1-S2",
+            "COMMONSAFE4-METHOD-R2-S0",
+            "COMMONSAFE4-METHOD-R2-S1",
+            "COMMONSAFE4-METHOD-R2-S2",
+            "COMMONSAFE4-METHOD-R3-S0",
+            "COMMONSAFE4-METHOD-R3-S1",
+            "COMMONSAFE4-METHOD-R3-S2"
+          ],
+          "schema_version": "canondressgs.subject00.commonsafe4.execution_lock.v1",
+          "scientific_payload_mutations": 0,
+          "selected_replacement": "slot06",
+          "start_time_unix": 1785135782.5922801,
+          "status": "COMPLETE",
+          "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+          "tmux": "subject00_commonsafe4_matrix_20260727",
+          "tmux_binding_source": "EXTERNALLY_VERIFIED_ACTIVE_SESSION_AT_COMPLETION",
+          "updated_time_unix": 1785135845.6143863
+        },
+        "cross_task_file_count": 0,
+        "end_time": "2026-07-27T15:04:05.614386+08:00",
+        "end_time_unix": 1785135845.6143863,
+        "execution_git_clean": true,
+        "execution_git_porcelain_v2": "",
+        "file_interleaving_status": "PASS_NO_FILE_INTERLEAVING",
+        "final_report_mtime": "2026-07-27T15:04:05.610398+08:00",
+        "git_reflog_evidence": "0d3d7b53 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:27:00 +0800}: commit: research: bind CommonSafe4 final reporting head\nfb106686 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:26:40 +0800}: commit: research: seal CommonSafe4 method and baseline evidence\n1ae119b6 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:25:55 +0800}: push\nb5aea0cd research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:24:58 +0800}: push\n90d70909 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:19:32 +0800}: push\na20f3163 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 15:14:57 +0800}: push\n1d97afaa research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:59:21 +0800}: push\n3bd2034d research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:58:28 +0800}: push\naa386061 research/subject00-base60747-commonsafe4-method-matrix-20260727@{2026-07-27 14:51:50 +0800}: commit: freeze_commonsafe4_slot06_contract",
+        "hostname": "autodl-container-ef19489c10-464381bb",
+        "launch_command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+        "launch_command_evidence": {
+          "exact_line_recovered": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+          "execution_lock_pid_matches_checkpoint_gpu_gate": true,
+          "shell_history_path": "/root/.bash_history"
+        },
+        "parent_pid": 469529,
+        "pid": 469606,
+        "schema_version": "canondressgs.subject00.commonsafe4.writer_identity.v1",
+        "single_writer_status": "PASS_SINGLE_WRITER",
+        "start_time": "2026-07-27T15:03:02.592280+08:00",
+        "start_time_unix": 1785135782.5922801,
+        "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+        "tmux": "subject00_commonsafe4_matrix_20260727",
+        "unattributed_file_count": 0,
+        "working_directory": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_commonsafe4_method_matrix",
+        "working_directory_recovery": "INFERRED_AND_CROSS_CHECKED_FROM_EXECUTION_BRANCH_WORKTREE_BINDING",
+        "writer_commit": {
+          "author_time": "2026-07-27T14:59:01+08:00",
+          "commit_time": "2026-07-27T14:59:01+08:00",
+          "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+          "parents": [
+            "3bd2034da17a3044288e9f462b5dbb686f0acb4e"
+          ],
+          "subject": "Add nonmutating matrix preflight gate"
+        }
+      },
+      "check": "06_writer_branch_head",
+      "id": 6,
+      "status": "PASS"
+    },
+    {
+      "actual": 146,
+      "check": "07_writer_timeline",
+      "id": 7,
+      "status": "PASS"
+    },
+    {
+      "actual": "PASS_SINGLE_WRITER",
+      "check": "08_single_writer",
+      "id": 8,
+      "status": "PASS"
+    },
+    {
+      "actual": "PASS_NO_FILE_INTERLEAVING",
+      "check": "09_no_file_interleaving",
+      "id": 9,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "10_unattributed_zero",
+      "id": 10,
+      "status": "PASS"
+    },
+    {
+      "actual": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "check": "11_base_sha",
+      "id": 11,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "check": "12_teacher_shas",
+      "id": 12,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "manifest": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+        "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+        "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001"
+      },
+      "check": "13_formal_target_root",
+      "id": 13,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "subject00_O01_slot04_remaining_attempt005_cand00",
+        "subject00_O03_slot04_canary_attempt004_cand00"
+      ],
+      "check": "14_quarantine_exact_set",
+      "id": 14,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "slot01",
+        "slot02",
+        "slot05",
+        "slot06"
+      ],
+      "check": "15_replacement_candidate_set",
+      "id": 15,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        {
+          "camera": "cam09",
+          "direction": "back-right",
+          "limitation_count": 2,
+          "limitation_severity": 2,
+          "minimum_anchor_separation_degrees": 53.53488224878765,
+          "minimum_inlier_ratio": 0.9066213921901528,
+          "slot": "slot06",
+          "slot04_yaw_degrees": 348.7078844075427,
+          "sorting_tuple": [
+            28.170253073571075,
+            -53.53488224878765,
+            0.9861065268073442,
+            -0.9066213921901528,
+            2,
+            6
+          ],
+          "worst_case_registration_rmse_px": 0.9861065268073442,
+          "yaw_degrees": 320.5376313339716,
+          "yaw_distance_degrees": 28.170253073571075
+        },
+        {
+          "camera": "cam14",
+          "direction": "front-right",
+          "limitation_count": 0,
+          "limitation_severity": 0,
+          "minimum_anchor_separation_degrees": 44.59865321912067,
+          "minimum_inlier_ratio": 0.8779599271402551,
+          "slot": "slot02",
+          "slot04_yaw_degrees": 348.7078844075427,
+          "sorting_tuple": [
+            56.27534245260108,
+            -44.59865321912067,
+            0.9772909805053305,
+            -0.8779599271402551,
+            0,
+            2
+          ],
+          "worst_case_registration_rmse_px": 0.9772909805053305,
+          "yaw_degrees": 44.983226860143766,
+          "yaw_distance_degrees": 56.27534245260108
+        },
+        {
+          "camera": "cam02",
+          "direction": "back-left",
+          "limitation_count": 3,
+          "limitation_severity": 3,
+          "minimum_anchor_separation_degrees": 40.7380691788257,
+          "minimum_inlier_ratio": 0.9098228663446055,
+          "slot": "slot05",
+          "slot04_yaw_degrees": 348.7078844075427,
+          "sorting_tuple": [
+            122.44320450118443,
+            -40.7380691788257,
+            1.0083424233147011,
+            -0.9098228663446055,
+            3,
+            5
+          ],
+          "worst_case_registration_rmse_px": 1.0083424233147011,
+          "yaw_degrees": 226.26467990635825,
+          "yaw_distance_degrees": 122.44320450118443
+        },
+        {
+          "camera": "cam21",
+          "direction": "front-left",
+          "limitation_count": 0,
+          "limitation_severity": 0,
+          "minimum_anchor_separation_degrees": 30.295226824138382,
+          "minimum_inlier_ratio": 0.875,
+          "slot": "slot01",
+          "slot04_yaw_degrees": 348.7078844075427,
+          "sorting_tuple": [
+            152.96983644456958,
+            -30.295226824138382,
+            0.9537711389199219,
+            -0.875,
+            0,
+            1
+          ],
+          "worst_case_registration_rmse_px": 0.9537711389199219,
+          "yaw_degrees": 141.67772085211226,
+          "yaw_distance_degrees": 152.96983644456958
+        }
+      ],
+      "check": "16_deterministic_ranking",
+      "id": 16,
+      "status": "PASS"
+    },
+    {
+      "actual": "slot06",
+      "check": "17_slot06_reproduced",
+      "id": 17,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "runner": {
+          "author_time": "2026-07-27T14:58:01+08:00",
+          "commit_time": "2026-07-27T14:58:01+08:00",
+          "head": "3bd2034da17a3044288e9f462b5dbb686f0acb4e",
+          "parents": [
+            "aa3860618d723905a0fcd3784cf2ec550b609c1a"
+          ],
+          "subject": "Add CommonSafe4 formal matrix runner"
+        },
+        "selection": {
+          "author_time": "2026-07-27T14:51:50+08:00",
+          "commit_time": "2026-07-27T14:51:50+08:00",
+          "head": "aa3860618d723905a0fcd3784cf2ec550b609c1a",
+          "parents": [
+            "7196fcb7b2d170c036a1a912b7792598530e6cf5"
+          ],
+          "subject": "freeze_commonsafe4_slot06_contract"
+        },
+        "writer": {
+          "author_time": "2026-07-27T14:59:01+08:00",
+          "commit_time": "2026-07-27T14:59:01+08:00",
+          "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+          "parents": [
+            "3bd2034da17a3044288e9f462b5dbb686f0acb4e"
+          ],
+          "subject": "Add nonmutating matrix preflight gate"
+        }
+      },
+      "check": "18_selection_rule_pretraining",
+      "id": 18,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "runner": {
+          "author_time": "2026-07-27T14:58:01+08:00",
+          "commit_time": "2026-07-27T14:58:01+08:00",
+          "head": "3bd2034da17a3044288e9f462b5dbb686f0acb4e",
+          "parents": [
+            "aa3860618d723905a0fcd3784cf2ec550b609c1a"
+          ],
+          "subject": "Add CommonSafe4 formal matrix runner"
+        },
+        "selection": {
+          "author_time": "2026-07-27T14:51:50+08:00",
+          "commit_time": "2026-07-27T14:51:50+08:00",
+          "head": "aa3860618d723905a0fcd3784cf2ec550b609c1a",
+          "parents": [
+            "7196fcb7b2d170c036a1a912b7792598530e6cf5"
+          ],
+          "subject": "freeze_commonsafe4_slot06_contract"
+        },
+        "writer": {
+          "author_time": "2026-07-27T14:59:01+08:00",
+          "commit_time": "2026-07-27T14:59:01+08:00",
+          "head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+          "parents": [
+            "3bd2034da17a3044288e9f462b5dbb686f0acb4e"
+          ],
+          "subject": "Add nonmutating matrix preflight gate"
+        }
+      },
+      "check": "19_selection_result_pretraining",
+      "id": 19,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "20_outcome_evidence_zero",
+      "id": 20,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        {
+          "calibration_garment_record_count": 3,
+          "calibration_slot": 3,
+          "calibration_slot_count": 1,
+          "per_slot_garment_coverage": {
+            "slot00": 3,
+            "slot03": 3,
+            "slot06": 3,
+            "slot07": 3
+          },
+          "rotation": 0,
+          "slot_overlap_count": 0,
+          "status": "PASS_EXACT_6_3_3",
+          "test_garment_record_count": 3,
+          "test_slot": 6,
+          "test_slot_count": 1,
+          "train_garment_record_count": 6,
+          "train_slot_count": 2,
+          "train_slots": [
+            0,
+            7
+          ]
+        },
+        {
+          "calibration_garment_record_count": 3,
+          "calibration_slot": 6,
+          "calibration_slot_count": 1,
+          "per_slot_garment_coverage": {
+            "slot00": 3,
+            "slot03": 3,
+            "slot06": 3,
+            "slot07": 3
+          },
+          "rotation": 1,
+          "slot_overlap_count": 0,
+          "status": "PASS_EXACT_6_3_3",
+          "test_garment_record_count": 3,
+          "test_slot": 0,
+          "test_slot_count": 1,
+          "train_garment_record_count": 6,
+          "train_slot_count": 2,
+          "train_slots": [
+            7,
+            3
+          ]
+        },
+        {
+          "calibration_garment_record_count": 3,
+          "calibration_slot": 0,
+          "calibration_slot_count": 1,
+          "per_slot_garment_coverage": {
+            "slot00": 3,
+            "slot03": 3,
+            "slot06": 3,
+            "slot07": 3
+          },
+          "rotation": 2,
+          "slot_overlap_count": 0,
+          "status": "PASS_EXACT_6_3_3",
+          "test_garment_record_count": 3,
+          "test_slot": 7,
+          "test_slot_count": 1,
+          "train_garment_record_count": 6,
+          "train_slot_count": 2,
+          "train_slots": [
+            3,
+            6
+          ]
+        },
+        {
+          "calibration_garment_record_count": 3,
+          "calibration_slot": 7,
+          "calibration_slot_count": 1,
+          "per_slot_garment_coverage": {
+            "slot00": 3,
+            "slot03": 3,
+            "slot06": 3,
+            "slot07": 3
+          },
+          "rotation": 3,
+          "slot_overlap_count": 0,
+          "status": "PASS_EXACT_6_3_3",
+          "test_garment_record_count": 3,
+          "test_slot": 3,
+          "test_slot_count": 1,
+          "train_garment_record_count": 6,
+          "train_slot_count": 2,
+          "train_slots": [
+            6,
+            0
+          ]
+        }
+      ],
+      "check": "21_anchor_coverage",
+      "id": 21,
+      "status": "PASS"
+    },
+    {
+      "actual": "78b619155ddef4bea942d3317fe4098f9d969843bd10b2f4a818c953519714c1",
+      "check": "22_actual_runner_sha",
+      "id": 22,
+      "status": "PASS"
+    },
+    {
+      "actual": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+      "check": "23_actual_config_sha",
+      "id": 23,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "actual_config_path": "configs/research/subject00_canondressgs_method_base60747_commonsafe4_v1.json",
+        "actual_config_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+        "actual_runner_path": "tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+        "actual_runner_sha256": "78b619155ddef4bea942d3317fe4098f9d969843bd10b2f4a818c953519714c1",
+        "actual_runtime_path": "tools/paper/formal_batch_runtime.py",
+        "actual_runtime_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+        "actual_writer_head": "1d97afaafff6180062b41f16ffec6beac9dfdbbf",
+        "output_config_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/attempt_001/contract/config_resolved.json",
+        "output_config_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+        "rotation_contract_path": "paper_protocol/reviewer_risk/subject00_commonsafe4_rotation_contract_20260727.json",
+        "rotation_contract_sha256": "971a47c9aa2e340a05e6606d9c409d2c74db0b395b855cebe2bc73bc63e0127b",
+        "runtime_version_changes_during_matrix": 0,
+        "same_runner_config_runtime_12_of_12": true,
+        "schema_version": "canondressgs.subject00.commonsafe4.actual_runtime.v1",
+        "selection_artifact_path": "paper_protocol/reviewer_risk/subject00_commonsafe_slot04_replacement_selection_20260727.json",
+        "selection_artifact_sha256": "dd76bcb8cc2518a0595d6f856323f5ab6c44a51a52f1d7755b456a7a85017e80",
+        "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001"
+      },
+      "check": "24_same_runner_config_12",
+      "id": 24,
+      "status": "PASS"
+    },
+    {
+      "actual": "PASS_METHOD_CORE_EQUIVALENT_AUTHORIZED_ORCHESTRATION_ONLY",
+      "check": "25_method_core_equivalence",
+      "id": 25,
+      "status": "PASS"
+    },
+    {
+      "actual": "PURE_ENDPOINT",
+      "check": "26_pure_endpoint",
+      "id": 26,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        false,
+        0
+      ],
+      "check": "27_dual_support_false",
+      "id": 27,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        {
+          "calibration_slot": 3,
+          "rotation": 0,
+          "test_slot": 6,
+          "train_slots": [
+            0,
+            7
+          ]
+        },
+        {
+          "calibration_slot": 6,
+          "rotation": 1,
+          "test_slot": 0,
+          "train_slots": [
+            7,
+            3
+          ]
+        },
+        {
+          "calibration_slot": 0,
+          "rotation": 2,
+          "test_slot": 7,
+          "train_slots": [
+            3,
+            6
+          ]
+        },
+        {
+          "calibration_slot": 7,
+          "rotation": 3,
+          "test_slot": 3,
+          "train_slots": [
+            6,
+            0
+          ]
+        }
+      ],
+      "check": "28_exact_rotations",
+      "id": 28,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        0,
+        1,
+        2
+      ],
+      "check": "29_exact_seeds",
+      "id": 29,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "COMMONSAFE4-METHOD-R0-S0",
+        "COMMONSAFE4-METHOD-R0-S1",
+        "COMMONSAFE4-METHOD-R0-S2",
+        "COMMONSAFE4-METHOD-R1-S0",
+        "COMMONSAFE4-METHOD-R1-S1",
+        "COMMONSAFE4-METHOD-R1-S2",
+        "COMMONSAFE4-METHOD-R2-S0",
+        "COMMONSAFE4-METHOD-R2-S1",
+        "COMMONSAFE4-METHOD-R2-S2",
+        "COMMONSAFE4-METHOD-R3-S0",
+        "COMMONSAFE4-METHOD-R3-S1",
+        "COMMONSAFE4-METHOD-R3-S2"
+      ],
+      "check": "30_exact_run_ids",
+      "id": 30,
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "check": "31_missing_runs_zero",
+      "id": 31,
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "check": "32_extra_runs_zero",
+      "id": 32,
+      "status": "PASS"
+    },
+    {
+      "actual": [],
+      "check": "33_duplicate_runs_zero",
+      "id": 33,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "check": "34_each_run_300",
+      "id": 34,
+      "status": "PASS"
+    },
+    {
+      "actual": 3600,
+      "check": "35_total_steps_3600",
+      "id": 35,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "check": "36_six_checkpoints_each",
+      "id": 36,
+      "status": "PASS"
+    },
+    {
+      "actual": 72,
+      "check": "37_total_checkpoints_72",
+      "id": 37,
+      "status": "PASS"
+    },
+    {
+      "actual": 72,
+      "check": "38_checkpoint_parse",
+      "id": 38,
+      "status": "PASS"
+    },
+    {
+      "actual": 72,
+      "check": "39_checkpoint_bindings",
+      "id": 39,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        },
+        {
+          "linear.bias": true,
+          "linear.weight": true,
+          "normalization.bias": true,
+          "normalization.weight": true
+        }
+      ],
+      "check": "40_trainable_changes",
+      "id": 40,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "base60747_mutations": 0,
+        "baseline_output_mutations": 0,
+        "camera_record_mutations": 0,
+        "commonsafe4_output_mutations": 0,
+        "formal_base_run_mutations": 0,
+        "formal_target_mutations": 0,
+        "mask_mutations": 0,
+        "o01_teacher_mutations": 0,
+        "o03_teacher_mutations": 0,
+        "o04_teacher_mutations": 0,
+        "old_method_output_mutations": 0,
+        "paper_modifications": 0,
+        "raw_mutations": 0
+      },
+      "check": "41_frozen_immutability",
+      "id": 41,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "NONE",
+        "NONE"
+      ],
+      "check": "42_no_nan_inf_oom",
+      "id": 42,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "calibration": 0,
+        "evaluation": 0,
+        "test": 0,
+        "train": 0
+      },
+      "check": "43_quarantine_train_zero",
+      "id": 43,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "calibration": 0,
+        "evaluation": 0,
+        "test": 0,
+        "train": 0
+      },
+      "check": "44_quarantine_cal_zero",
+      "id": 44,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "calibration": 0,
+        "evaluation": 0,
+        "test": 0,
+        "train": 0
+      },
+      "check": "45_quarantine_test_zero",
+      "id": 45,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "calibration": 0,
+        "evaluation": 0,
+        "test": 0,
+        "train": 0
+      },
+      "check": "46_quarantine_eval_zero",
+      "id": 46,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        },
+        {
+          "calibration": 3,
+          "test": 3,
+          "train": 6
+        }
+      ],
+      "check": "47_fold_6_3_3",
+      "id": 47,
+      "status": "PASS"
+    },
+    {
+      "actual": 12,
+      "check": "48_formal_test_12",
+      "id": 48,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "check": "49_formal_denominator_3",
+      "id": 49,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "aggregation": "ALL_12_RUNS_NO_CHERRY_PICKING",
+        "confusion_matrix": {
+          "O01": {
+            "O01": 12,
+            "O03": 0,
+            "O04": 0
+          },
+          "O03": {
+            "O01": 0,
+            "O03": 12,
+            "O04": 0
+          },
+          "O04": {
+            "O01": 0,
+            "O03": 6,
+            "O04": 6
+          }
+        },
+        "dual_support_call_count": 0,
+        "dual_support_enabled": false,
+        "endpoint_top1": 0.8333333333333334,
+        "failure_count": 0,
+        "formal_test_correct": 30,
+        "formal_test_episode_count": 36,
+        "formal_valid_run_count": 12,
+        "max_endpoint_top1": 1.0,
+        "mean_endpoint_top1": 0.8333333333333334,
+        "mean_score_margin": 3.7424412669174165,
+        "method_contract": "PURE_ENDPOINT",
+        "min_endpoint_top1": 0.6666666666666666,
+        "nan_inf_status": "NONE",
+        "old_method_output_included": false,
+        "oom_status": "NONE",
+        "peak_vram_bytes": 18134528,
+        "per_run_endpoint_results": {
+          "COMMONSAFE4-METHOD-R0-S0": {
+            "correct": 3,
+            "denominator": 3,
+            "top1": 1.0
+          },
+          "COMMONSAFE4-METHOD-R0-S1": {
+            "correct": 3,
+            "denominator": 3,
+            "top1": 1.0
+          },
+          "COMMONSAFE4-METHOD-R0-S2": {
+            "correct": 3,
+            "denominator": 3,
+            "top1": 1.0
+          },
+          "COMMONSAFE4-METHOD-R1-S0": {
+            "correct": 2,
+            "denominator": 3,
+            "top1": 0.6666666666666666
+          },
+          "COMMONSAFE4-METHOD-R1-S1": {
+            "correct": 2,
+            "denominator": 3,
+            "top1": 0.6666666666666666
+          },
+          "COMMONSAFE4-METHOD-R1-S2": {
+            "correct": 2,
+            "denominator": 3,
+            "top1": 0.6666666666666666
+          },
+          "COMMONSAFE4-METHOD-R2-S0": {
+            "correct": 2,
+            "denominator": 3,
+            "top1": 0.6666666666666666
+          },
+          "COMMONSAFE4-METHOD-R2-S1": {
+            "correct": 3,
+            "denominator": 3,
+            "top1": 1.0
+          },
+          "COMMONSAFE4-METHOD-R2-S2": {
+            "correct": 3,
+            "denominator": 3,
+            "top1": 1.0
+          },
+          "COMMONSAFE4-METHOD-R3-S0": {
+            "correct": 2,
+            "denominator": 3,
+            "top1": 0.6666666666666666
+          },
+          "COMMONSAFE4-METHOD-R3-S1": {
+            "correct": 2,
+            "denominator": 3,
+            "top1": 0.6666666666666666
+          },
+          "COMMONSAFE4-METHOD-R3-S2": {
+            "correct": 3,
+            "denominator": 3,
+            "top1": 1.0
+          }
+        },
+        "prediction_counts": {
+          "O01": 12,
+          "O03": 18,
+          "O04": 6
+        },
+        "rotation_effect": {
+          "0": {
+            "mean_endpoint_top1": 1.0,
+            "run_count": 3
+          },
+          "1": {
+            "mean_endpoint_top1": 0.6666666666666666,
+            "run_count": 3
+          },
+          "2": {
+            "mean_endpoint_top1": 0.8888888888888888,
+            "run_count": 3
+          },
+          "3": {
+            "mean_endpoint_top1": 0.7777777777777777,
+            "run_count": 3
+          }
+        },
+        "run_count": 12,
+        "schema_version": "canondressgs.subject00.commonsafe4.recomputed_aggregate.v1",
+        "seed_effect": {
+          "0": {
+            "mean_endpoint_top1": 0.75,
+            "run_count": 4
+          },
+          "1": {
+            "mean_endpoint_top1": 0.8333333333333333,
+            "run_count": 4
+          },
+          "2": {
+            "mean_endpoint_top1": 0.9166666666666666,
+            "run_count": 4
+          }
+        },
+        "status": "PASS_12_OF_12_FORMAL_VALID",
+        "std_endpoint_top1_population": 0.16666666666666669,
+        "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-CONCURRENT-12RUN-PROVENANCE-AUDIT-001",
+        "total_optimizer_steps": 3600,
+        "wall_time_seconds": 16.108335733413696
+      },
+      "check": "50_aggregate_recomputed",
+      "id": 50,
+      "status": "PASS"
+    },
+    {
+      "actual": "ALL_12_RUNS_NO_CHERRY_PICKING",
+      "check": "51_no_cherry_picking",
+      "id": 51,
+      "status": "PASS"
+    },
+    {
+      "actual": false,
+      "check": "52_old_run_excluded",
+      "id": 52,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "PASS_4_OF_4_FAIR_BASELINES_VALID",
+        4
+      ],
+      "check": "53_baseline_discovery",
+      "id": 53,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        0,
+        0
+      ],
+      "check": "54_no_new_optimizer",
+      "id": 54,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "base60747_mutations": 0,
+        "baseline_output_mutations": 0,
+        "camera_record_mutations": 0,
+        "commonsafe4_output_mutations": 0,
+        "formal_base_run_mutations": 0,
+        "formal_target_mutations": 0,
+        "mask_mutations": 0,
+        "o01_teacher_mutations": 0,
+        "o03_teacher_mutations": 0,
+        "o04_teacher_mutations": 0,
+        "old_method_output_mutations": 0,
+        "paper_modifications": 0,
+        "raw_mutations": 0
+      },
+      "check": "55_output_immutable",
+      "id": 55,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "base60747_mutations": 0,
+        "baseline_output_mutations": 0,
+        "camera_record_mutations": 0,
+        "commonsafe4_output_mutations": 0,
+        "formal_base_run_mutations": 0,
+        "formal_target_mutations": 0,
+        "mask_mutations": 0,
+        "o01_teacher_mutations": 0,
+        "o03_teacher_mutations": 0,
+        "o04_teacher_mutations": 0,
+        "old_method_output_mutations": 0,
+        "paper_modifications": 0,
+        "raw_mutations": 0
+      },
+      "check": "56_base_immutable",
+      "id": 56,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "base60747_mutations": 0,
+        "baseline_output_mutations": 0,
+        "camera_record_mutations": 0,
+        "commonsafe4_output_mutations": 0,
+        "formal_base_run_mutations": 0,
+        "formal_target_mutations": 0,
+        "mask_mutations": 0,
+        "o01_teacher_mutations": 0,
+        "o03_teacher_mutations": 0,
+        "o04_teacher_mutations": 0,
+        "old_method_output_mutations": 0,
+        "paper_modifications": 0,
+        "raw_mutations": 0
+      },
+      "check": "57_teachers_immutable",
+      "id": 57,
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "base60747_mutations": 0,
+        "baseline_output_mutations": 0,
+        "camera_record_mutations": 0,
+        "commonsafe4_output_mutations": 0,
+        "formal_base_run_mutations": 0,
+        "formal_target_mutations": 0,
+        "mask_mutations": 0,
+        "o01_teacher_mutations": 0,
+        "o03_teacher_mutations": 0,
+        "o04_teacher_mutations": 0,
+        "old_method_output_mutations": 0,
+        "paper_modifications": 0,
+        "raw_mutations": 0
+      },
+      "check": "58_target_immutable",
+      "id": 58,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "59_paper_modification_zero",
+      "id": 59,
+      "status": "PASS"
+    },
+    {
+      "actual": "SUBJECT00_BASE60747_COMMONSAFE4_MATRIX_AND_BASELINES_VALID_POSTHOC_PROVENANCE_SEALED_PENDING_HUMAN_SCIENTIFIC_REVIEW",
+      "check": "60_final_classification",
+      "id": 60,
+      "status": "PASS"
+    },
+    {
+      "actual": "PREPARE_SUBJECT00_COMMONSAFE4_METHOD_TEACHER_BASELINE_HUMAN_SCIENTIFIC_REVIEW_PACK",
+      "check": "61_next_task_unique",
+      "id": 61,
+      "status": "PASS"
+    }
+  ]
+}
