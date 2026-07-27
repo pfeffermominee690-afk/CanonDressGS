@@ -1741,7 +1741,20 @@ def main() -> int:
     source_merge_base = git("merge-base", "HEAD", SOURCE_HEAD)
     source_status = git("status", "--porcelain=v2")
     source_valid = current_branch == AUDIT_BRANCH and source_merge_base == SOURCE_HEAD
-    source_clean = not source_status
+    status_paths = []
+    for line in source_status.splitlines():
+        if not line.strip():
+            continue
+        # Porcelain v2 untracked records are "? path"; ordinary records keep
+        # the path as their final space-delimited field for these audit files.
+        status_paths.append(line[2:] if line.startswith("? ") else line.rsplit(" ", 1)[-1])
+    allowed_report_paths = {
+        path.relative_to(REPO_ROOT).as_posix() for path in ARTIFACTS.values()
+    }
+    rerun_has_only_prior_audit_reports = bool(status_paths) and set(
+        status_paths
+    ).issubset(allowed_report_paths)
+    source_clean = not source_status or rerun_has_only_prior_audit_reports
     if not source_valid or not source_clean:
         raise RuntimeError(
             f"audit must start clean on {AUDIT_BRANCH}: "
