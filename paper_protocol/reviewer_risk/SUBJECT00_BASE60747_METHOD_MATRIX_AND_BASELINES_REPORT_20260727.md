@@ -19,6 +19,7 @@ Next task:
 ## Evidence
 
 - Runtime critical checks: 30/30 PASS.
+- Pytest: 20 passed (matrix blocker, frozen method contract, and O03 provenance).
 - Formal target: 22 records, 2 quarantined, 330/330 payload checksums bound.
 - Existing `METHOD-R0-S0`: authentic 300-step training run; six checkpoints;
   training-fold endpoint result 6/6; formal test fold unavailable.
