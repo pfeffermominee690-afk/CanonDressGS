@@ -16,6 +16,7 @@ import json
 import math
 import os
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -23,6 +24,8 @@ import torch
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 TASK_ID = "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001"
 SOURCE_BRANCH = "research/subject00-o03-loss-binding-concurrent-provenance-20260727"
 SOURCE_HEAD = "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6"
