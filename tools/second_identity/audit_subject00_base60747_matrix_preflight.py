@@ -449,8 +449,48 @@ def main() -> int:
         "human_visual_decision": None,
         "paper_final": False,
     }
+    result["critical_checks"] = {
+        "branch_exact": result["git"]["branch"] == BRANCH,
+        "source_is_merge_base": result["git"]["merge_base_with_source"] == SOURCE_HEAD,
+        "worktree_clean": result["git"]["porcelain_v2"] == "",
+        "base_sha_exact": base_audit["sha256"] == BASE_SHA,
+        "base_step_exact": base_audit["internal_step"] == 60747,
+        "base_state_complete": not base_audit["missing_fields"],
+        "base_no_partial_tmp": base_audit["partial_or_tmp_count"] == 0,
+        "formal_base_paused": config["base"]["formal_status"] == "USER_AUTHORIZED_PAUSED",
+        "formal_base_resume_unauthorized": config["base"]["resume_authorized"] is False,
+        "teacher_sha_exact": all(
+            teacher_audits[garment]["sha256"]
+            == teacher_audits[garment]["registry_sha256"]
+            for garment in GARMENTS
+        ),
+        "teacher_technical_pass": all(
+            teacher_audits[garment]["technical_status"] == "TECHNICAL_PASS"
+            for garment in GARMENTS
+        ),
+        "teacher_quarantine_zero": all(
+            teacher_audits[garment]["quarantine_count_in_optimizer"] == 0
+            for garment in GARMENTS
+        ),
+        "manifest_sha_exact": sha256(manifest_path) == MANIFEST_SHA,
+        "target_count_exact": len(request_ids) == 22 and len(set(request_ids)) == 22,
+        "quarantine_absent": not set(QUARANTINE).intersection(request_ids),
+        "target_checksum_bindings_exact": not target_mismatches and len(target_rows) == 330,
+        "completed_tree_immutable": (
+            completed_tree["sha256"]
+            == "ce281935d12e20c6bab2e3e8fc3256b512594fd8388c3ed299f71199072ec363"
+        ),
+        "completed_training_authentic": completed_cell_authentic_training,
+        "completed_formal_cell_rejected": not completed_cell_formal_matrix_valid,
+        "slot04_gap_exact": coverage["4"] == {
+            "O01": [], "O03": [], "O04": ["subject00_O04_slot04_cand01"]
+        },
+        "new_execution_forbidden": not result["execution_decision"]["new_method_runs_authorized"],
+        "baseline_execution_forbidden": not result["execution_decision"]["baseline_runs_authorized"],
+        "dual_support_disabled": result["dual_support_enabled"] is False,
+    }
     print(json.dumps(result, indent=2, sort_keys=True))
-    return 0
+    return 0 if all(result["critical_checks"].values()) else 2
 
 
 if __name__ == "__main__":
