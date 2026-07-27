@@ -31,6 +31,11 @@ def test_final_summary_is_unique_and_zero_step() -> None:
     assert value["NEW_METHOD_OPTIMIZER_STEPS"] == 0
     assert value["PAPER_MODIFICATIONS"] == 0
     assert value["PAPER_FINAL"] is False
+    assert value["COMMIT_HEAD"] == (
+        "a29d9a697dc7ff1aa879ddd9dfe230e6a431fedc"
+    )
+    assert value["ORIGIN_SYNC_STATUS"] == "PUSHED_AND_REMOTE_REF_VERIFIED"
+    assert value["CLOUD_GIT_SYNC_STATUS"].startswith("PUSHED")
 
 
 def test_actual_loss_and_evaluation_fields_are_frozen() -> None:
