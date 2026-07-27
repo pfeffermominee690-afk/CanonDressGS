@@ -17,9 +17,9 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 
-TASK_ID = "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001"
-SOURCE_HEAD = "ed44835f950fe369dd3eb64b5eaef8c6cc174175"
-BRANCH = "research/subject00-base60747-method-matrix-fair-baselines-20260727"
+TASK_ID = "AAAI27-SUBJECT00-BASE60747-REMAINING-METHOD-MATRIX-FAIR-BASELINES-001"
+SOURCE_HEAD = "37d566dbc3ddcda70f136089b8e8e6c11abbc5a6"
+BRANCH = "research/subject00-base60747-remaining-method-matrix-fair-baselines-20260727"
 BASE_SHA = "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7"
 MANIFEST_SHA = "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1"
 CHECKPOINT_STEPS = (0, 20, 50, 100, 200, 300)
@@ -126,9 +126,33 @@ def main() -> int:
     evaluator_path = (
         root / "paper_protocol/reviewer_risk/subject00_second_identity_evaluator_contract.json"
     )
+    correction_overlay_path = (
+        root
+        / "paper_protocol/reviewer_risk/"
+        "subject00_base60747_three_garment_teacher_registry_correction_overlay_20260727.json"
+    )
+    o03_seal_path = (
+        root
+        / "paper_protocol/reviewer_risk/"
+        "subject00_O03_concurrent_formal_teacher_provenance_seal_20260727.json"
+    )
+    dependency_audit_path = (
+        root
+        / "paper_protocol/reviewer_risk/"
+        "subject00_method_step300_teacher_dependency_audit_20260727.json"
+    )
+    source_summary_path = (
+        root
+        / "paper_protocol/reviewer_risk/"
+        "subject00_O03_loss_binding_concurrent_provenance_final_summary_20260727.json"
+    )
     config = json.loads(config_path.read_text(encoding="utf-8"))
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     evaluator = json.loads(evaluator_path.read_text(encoding="utf-8"))
+    correction_overlay = json.loads(correction_overlay_path.read_text(encoding="utf-8"))
+    o03_seal = json.loads(o03_seal_path.read_text(encoding="utf-8"))
+    dependency_audit = json.loads(dependency_audit_path.read_text(encoding="utf-8"))
+    source_summary = json.loads(source_summary_path.read_text(encoding="utf-8"))
 
     base_path = Path(config["base"]["checkpoint"])
     base = torch.load(base_path, map_location="cpu", weights_only=False)
@@ -374,6 +398,22 @@ def main() -> int:
                 "sha256": sha256(registry_path),
                 "sha256_lf": lf_sha256(registry_path),
             },
+            "teacher_registry_correction_overlay": {
+                "path": str(correction_overlay_path),
+                "sha256": sha256(correction_overlay_path),
+            },
+            "o03_provenance_seal": {
+                "path": str(o03_seal_path),
+                "sha256": sha256(o03_seal_path),
+            },
+            "method_dependency_audit": {
+                "path": str(dependency_audit_path),
+                "sha256": sha256(dependency_audit_path),
+            },
+            "source_summary": {
+                "path": str(source_summary_path),
+                "sha256": sha256(source_summary_path),
+            },
         },
         "method_contract": "PURE_ENDPOINT",
         "dual_support_enabled": False,
@@ -437,7 +477,10 @@ def main() -> int:
         "execution_decision": {
             "new_method_runs_authorized": False,
             "baseline_runs_authorized": False,
-            "reason": "FROZEN_ROTATION_FOLDS_CANNOT_BE_INSTANTIATED_WITH_22_RECORD_QUARANTINE_POLICY",
+            "reason": (
+                "FROZEN_ROTATION_FOLDS_CANNOT_BE_INSTANTIATED_WITH_22_RECORD_QUARANTINE_POLICY; "
+                "O03_PROVENANCE_IS_RESOLVED_BUT_DOES_NOT_RESTORE_O01_O03_SLOT04"
+            ),
             "automatic_retry": False,
             "attempt_002_allowed": False,
             "gpu_initialized": False,
@@ -471,6 +514,34 @@ def main() -> int:
         "teacher_quarantine_zero": all(
             teacher_audits[garment]["quarantine_count_in_optimizer"] == 0
             for garment in GARMENTS
+        ),
+        "source_classification_ready": (
+            source_summary["FINAL_CLASSIFICATION"]
+            == "SUBJECT00_O03_CONCURRENT_FORMAL_TEACHER_VALID_METHOD_STEP300_VALID_MATRIX_READY_TO_CONTINUE"
+        ),
+        "source_method_cell_valid": source_summary["METHOD_ROTATION0_SEED0_VALID"] is True,
+        "source_matrix_continuation_authorized": (
+            source_summary["METHOD_MATRIX_CONTINUATION_AUTHORIZED"] is True
+        ),
+        "source_scientific_contract_pass": (
+            "UPSTREAM_SCIENTIFIC_CONTRACT_12_OF_12_PASSED"
+            in source_summary["TEST_RESULT"]
+        ),
+        "o03_seal_valid": (
+            o03_seal["validity_status"] == "VALID_FORMAL_TARGET_TEACHER"
+            and o03_seal["checkpoint_sha256"]["1200"]
+            == "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+        ),
+        "dependency_audit_valid": (
+            dependency_audit["method_rotation0_seed0_valid"] is True
+            and dependency_audit["checkpoint"]["teacher_checkpoint_sha256"]["O03"]
+            == "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+        ),
+        "correction_overlay_valid": (
+            correction_overlay["method_matrix_continuation_authorized_after_this_audit"]
+            is True
+            and correction_overlay["corrections"]["O03"]["checkpoint_sha256"]
+            == "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
         ),
         "manifest_sha_exact": sha256(manifest_path) == MANIFEST_SHA,
         "target_count_exact": len(request_ids) == 22 and len(set(request_ids)) == 22,
