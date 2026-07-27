@@ -189,7 +189,7 @@ def process_gate(*, initial: bool) -> dict[str, Any]:
             {"pid": int(pid), "process_name": name, "used_memory_mib": int(memory)}
         )
     foreign = [row for row in rows if row["pid"] != os.getpid()]
-    if foreign or (initial and rows):
+    if foreign:
         raise RuntimeError(f"GPU is not idle: {rows}")
     gpu_name = subprocess.check_output(
         ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], text=True
@@ -224,7 +224,11 @@ def process_gate(*, initial: bool) -> dict[str, Any]:
         "status": "PASS",
         "gpu_name": gpu_name,
         "gpu_processes": rows,
+        "current_process_gpu_contexts": [
+            row for row in rows if row["pid"] == os.getpid()
+        ],
         "foreign_gpu_process_count": len(foreign),
+        "initial_gate": initial,
         "formal_or_controller_conflicts": conflicts,
     }
 
@@ -552,11 +556,27 @@ def train_classifier_run(
     seed: int,
     features: Mapping[tuple[str, int], torch.Tensor],
     git: Mapping[str, Any],
+    allow_existing_empty_root: bool = False,
 ) -> dict[str, Any]:
     if run_root.exists():
-        raise FileExistsError(f"baseline partial/retry forbidden: {run_root}")
-    for directory in ("checkpoints", "training", "evaluation"):
-        (run_root / directory).mkdir(parents=True, exist_ok=False)
+        existing_files = [path for path in run_root.rglob("*") if path.is_file()]
+        expected_directories = {
+            run_root / "checkpoints",
+            run_root / "training",
+            run_root / "evaluation",
+        }
+        actual_directories = {
+            path for path in run_root.rglob("*") if path.is_dir()
+        }
+        if (
+            not allow_existing_empty_root
+            or existing_files
+            or actual_directories != expected_directories
+        ):
+            raise FileExistsError(f"baseline partial/retry forbidden: {run_root}")
+    else:
+        for directory in ("checkpoints", "training", "evaluation"):
+            (run_root / directory).mkdir(parents=True, exist_ok=False)
     process_gate(initial=True)
     seed_all(seed)
     device = torch.device("cuda")
@@ -1098,10 +1118,135 @@ def preflight() -> dict[str, Any]:
     }
 
 
+def recover_preoptimizer_gate_continuation(
+    git: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, list[dict[str, Any]]], dict[str, Any]]:
+    """Recover one completed cell after the launcher rejected its own CUDA PID."""
+    if not ATTEMPT.is_dir() or not LOCK_PATH.is_file():
+        raise RuntimeError("preoptimizer continuation requires the existing attempt_001")
+    lock = read_json(LOCK_PATH)
+    status = read_json(ATTEMPT / "RUN_STATUS.json")
+    expected_error = "GPU is not idle:"
+    checks = {
+        "lock_status_fail": lock.get("status") == "FAIL",
+        "status_fail": status.get("status") == "FAIL",
+        "completed_cells_exactly_one": (
+            lock.get("completed_baseline_cells") == 1
+            and status.get("completed_baseline_cells") == 1
+        ),
+        "optimizer_steps_exactly_300": (
+            lock.get("optimizer_steps") == 300
+            and status.get("optimizer_steps") == 300
+        ),
+        "error_is_self_pid_gate": (
+            lock.get("error_type") == "RuntimeError"
+            and expected_error in str(lock.get("error"))
+            and str(lock.get("pid")) in str(lock.get("error"))
+        ),
+        "same_task": lock.get("task_id") == TASK_ID,
+        "same_branch": lock.get("branch") == BRANCH,
+        "same_attempt": lock.get("output_root") == str(OUTPUT_ROOT),
+        "attempt_002_absent": not (OUTPUT_ROOT / "attempt_002").exists(),
+    }
+    first_root = (
+        ATTEMPT
+        / "runs/reference_classifier_lookup/rotation_0/seed_0"
+    )
+    first_summary_path = first_root / "training/run_summary.json"
+    if not first_summary_path.is_file():
+        raise RuntimeError("completed R0/S0 summary is missing")
+    first = read_json(first_summary_path)
+    first_checkpoints = sorted(
+        int(path.stem.removeprefix("step_"))
+        for path in (first_root / "checkpoints").glob("step_*.pth")
+    )
+    checks.update(
+        {
+            "first_cell_formal_valid": (
+                first.get("status") == "FORMAL_VALID_BASELINE_CELL"
+                and first.get("run_id") == "COMMONSAFE4-BASELINE-REFCLASS-R0-S0"
+                and first.get("optimizer_steps") == 300
+                and first.get("formal_test_status") == "PASS_3_OF_3"
+            ),
+            "first_cell_checkpoints_6_of_6": tuple(first_checkpoints)
+            == CHECKPOINT_STEPS,
+            "only_one_run_summary": len(
+                list((ATTEMPT / "runs").rglob("run_summary.json"))
+            )
+            == 1,
+        }
+    )
+    next_root = (
+        ATTEMPT
+        / "runs/reference_classifier_lookup/rotation_0/seed_1"
+    )
+    next_files = [path for path in next_root.rglob("*") if path.is_file()]
+    next_directories = {
+        path.relative_to(next_root).as_posix()
+        for path in next_root.rglob("*")
+        if path.is_dir()
+    }
+    checks.update(
+        {
+            "next_cell_preoptimizer_only": (
+                next_root.is_dir()
+                and not next_files
+                and next_directories == {"checkpoints", "training", "evaluation"}
+            ),
+            "no_other_cell_artifacts": not any(
+                path.is_file()
+                for path in (ATTEMPT / "runs").rglob("*")
+                if not path.is_relative_to(first_root)
+            ),
+        }
+    )
+    if not all(checks.values()):
+        raise RuntimeError(f"preoptimizer continuation state mismatch: {checks}")
+    results = {name: [] for name in BASELINE_NAMES}
+    results["Reference Classifier Lookup"].append(first)
+    evidence = {
+        "schema_version": "canondressgs.subject00.commonsafe4.preoptimizer_gate_continuation.v1",
+        "task_id": TASK_ID,
+        "status": "AUTHORIZED_SAME_ATTEMPT_CONTINUATION",
+        "classification": "LAUNCHER_SELF_PID_GATE_BUG_AFTER_ONE_COMPLETE_CELL",
+        "original_execution_head": lock["head"],
+        "repair_execution_head": git["head"],
+        "original_lock_snapshot": lock,
+        "original_status_snapshot": status,
+        "checks": checks,
+        "completed_scientific_cells_preserved": 1,
+        "completed_optimizer_steps_preserved": 300,
+        "failed_scientific_cell_count": 0,
+        "failed_cell_optimizer_initialized": False,
+        "failed_cell_optimizer_steps": 0,
+        "failed_cell_checkpoint_count": 0,
+        "scientific_run_retry_count": 0,
+        "attempt_002_created": False,
+        "automatic_retry": False,
+        "continuation_reason": (
+            "The second cell stopped before model or optimizer construction because "
+            "the launcher treated its own retained CUDA context as a foreign process. "
+            "The first completed cell is immutable and is not rerun."
+        ),
+        "created_at_utc": now_utc(),
+        "paper_eligible": False,
+    }
+    atomic_json(
+        OUTPUT_ROOT
+        / "control/PREOPTIMIZER_SELF_PID_GATE_FAILURE_CONTINUATION_20260727.json",
+        evidence,
+        replace=False,
+    )
+    return lock, results, evidence
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--preflight-only", action="store_true")
+    parser.add_argument("--resume-preoptimizer-gate-failure", action="store_true")
     args = parser.parse_args()
+    if args.preflight_only and args.resume_preoptimizer_gate_failure:
+        raise ValueError("preflight and continuation modes are mutually exclusive")
     if args.preflight_only:
         if OUTPUT_ROOT.exists():
             raise FileExistsError(OUTPUT_ROOT)
@@ -1112,41 +1257,81 @@ def main() -> int:
     resource = process_gate(initial=True)
     config, contract = validate_contract()
     inputs = input_gate(config)
-    lock = create_lock(git)
-    for directory in ("contract", "input_audit", "runs", "aggregates"):
-        (ATTEMPT / directory).mkdir(parents=True, exist_ok=False)
-    atomic_json(ATTEMPT / "contract/resolved_contract.json", read_json(CONTRACT_PATH))
-    atomic_json(
-        ATTEMPT / "input_audit/preflight.json",
-        {
-            "status": "PASS",
-            "task_id": TASK_ID,
-            "git": git,
-            "resource_gate": resource,
-            "contract_audit": contract,
-            "inputs": inputs,
-            "completed_baseline_cells_before": 0,
-            "pending_baseline_cells_before": 48,
-            "paper_eligible": False,
-        },
-    )
     status_path = ATTEMPT / "RUN_STATUS.json"
-    atomic_json(
-        status_path,
-        {
-            "task_id": TASK_ID,
-            "status": "RUNNING",
-            "stage": "REFERENCE_CLASSIFIER_LOOKUP",
-            "completed_baseline_cells": 0,
-            "formal_valid_baseline_cells": 0,
-            "optimizer_steps": 0,
-            "paper_eligible": False,
-        },
-    )
-    results: dict[str, list[dict[str, Any]]] = {
-        name: [] for name in BASELINE_NAMES
+    if args.resume_preoptimizer_gate_failure:
+        lock, results, continuation = recover_preoptimizer_gate_continuation(git)
+        completed = 1
+        atomic_json(
+            ATTEMPT / "input_audit/preoptimizer_continuation_preflight.json",
+            {
+                "status": "PASS",
+                "task_id": TASK_ID,
+                "git": git,
+                "resource_gate": resource,
+                "contract_audit": contract,
+                "inputs": inputs,
+                "continuation": continuation,
+                "completed_baseline_cells_before_continuation": 1,
+                "pending_baseline_cells_before_continuation": 47,
+                "paper_eligible": False,
+            },
+            replace=False,
+        )
+        atomic_json(
+            status_path,
+            {
+                "task_id": TASK_ID,
+                "status": "RUNNING",
+                "stage": "PREOPTIMIZER_GATE_REPAIRED_SAME_ATTEMPT_CONTINUATION",
+                "completed_baseline_cells": 1,
+                "formal_valid_baseline_cells": 1,
+                "optimizer_steps": 300,
+                "scientific_run_retry_count": 0,
+                "preoptimizer_continuation_count": 1,
+                "attempt_002_created": False,
+                "paper_eligible": False,
+            },
+        )
+    else:
+        if OUTPUT_ROOT.exists():
+            raise FileExistsError(OUTPUT_ROOT)
+        lock = create_lock(git)
+        for directory in ("contract", "input_audit", "runs", "aggregates"):
+            (ATTEMPT / directory).mkdir(parents=True, exist_ok=False)
+        atomic_json(
+            ATTEMPT / "contract/resolved_contract.json", read_json(CONTRACT_PATH)
+        )
+        atomic_json(
+            ATTEMPT / "input_audit/preflight.json",
+            {
+                "status": "PASS",
+                "task_id": TASK_ID,
+                "git": git,
+                "resource_gate": resource,
+                "contract_audit": contract,
+                "inputs": inputs,
+                "completed_baseline_cells_before": 0,
+                "pending_baseline_cells_before": 48,
+                "paper_eligible": False,
+            },
+        )
+        atomic_json(
+            status_path,
+            {
+                "task_id": TASK_ID,
+                "status": "RUNNING",
+                "stage": "REFERENCE_CLASSIFIER_LOOKUP",
+                "completed_baseline_cells": 0,
+                "formal_valid_baseline_cells": 0,
+                "optimizer_steps": 0,
+                "paper_eligible": False,
+            },
+        )
+        results = {name: [] for name in BASELINE_NAMES}
+        completed = 0
+    completed_run_ids = {
+        run["run_id"] for values in results.values() for run in values
     }
-    completed = 0
     try:
         for baseline in BASELINE_NAMES:
             baseline_token = (
@@ -1162,6 +1347,17 @@ def main() -> int:
                         / f"rotation_{rotation['rotation']}"
                         / f"seed_{seed}"
                     )
+                    expected_run_id = (
+                        f"COMMONSAFE4-BASELINE-REFCLASS-R{rotation['rotation']}-S{seed}"
+                        if baseline == "Reference Classifier Lookup"
+                        else (
+                            f"COMMONSAFE4-BASELINE-"
+                            f"{baseline.upper().replace(' ', '-').replace('_', '-')}"
+                            f"-R{rotation['rotation']}-S{seed}"
+                        )
+                    )
+                    if expected_run_id in completed_run_ids:
+                        continue
                     atomic_json(
                         status_path,
                         {
@@ -1187,6 +1383,10 @@ def main() -> int:
                             seed=seed,
                             features=features,
                             git=git,
+                            allow_existing_empty_root=(
+                                args.resume_preoptimizer_gate_failure
+                                and root.exists()
+                            ),
                         )
                     else:
                         result = run_static_cell(
@@ -1197,6 +1397,7 @@ def main() -> int:
                             features=features,
                         )
                     results[baseline].append(result)
+                    completed_run_ids.add(result["run_id"])
                     completed += 1
                     atomic_json(
                         ATTEMPT / "aggregates/live_execution_registry.json",
@@ -1235,6 +1436,11 @@ def main() -> int:
             "task_id": TASK_ID,
             "status": "COMPLETE",
             "classification": "COMMONSAFE4_FAIR_BASELINES_TECHNICAL_PASS",
+            "preoptimizer_gate_continuation_count": (
+                1 if args.resume_preoptimizer_gate_failure else 0
+            ),
+            "scientific_run_retry_count": 0,
+            "attempt_002_created": False,
             "exact_baseline_order": list(BASELINE_NAMES),
             "baseline_cell_count": 48,
             "formal_valid_baseline_cell_count": 48,
@@ -1299,6 +1505,11 @@ def main() -> int:
                 "reference_classifier_runs": 12,
                 "reference_classifier_optimizer_steps": 3600,
                 "non_optimizer_baseline_evaluations": 36,
+                "scientific_run_retry_count": 0,
+                "preoptimizer_gate_continuation_count": (
+                    1 if args.resume_preoptimizer_gate_failure else 0
+                ),
+                "attempt_002_created": False,
                 "quarantine_optimizer_usage_count": 0,
                 "quarantine_test_usage_count": 0,
                 "dual_support_call_count": 0,
@@ -1314,6 +1525,14 @@ def main() -> int:
             formal_valid_baseline_cells=48,
             optimizer_steps=3600,
             wall_time_seconds=total_wall_time,
+            repair_head=(
+                git["head"] if args.resume_preoptimizer_gate_failure else None
+            ),
+            scientific_run_retry_count=0,
+            preoptimizer_gate_continuation_count=(
+                1 if args.resume_preoptimizer_gate_failure else 0
+            ),
+            attempt_002_created=False,
         )
         print(json.dumps(final, indent=2, sort_keys=True))
         return 0
