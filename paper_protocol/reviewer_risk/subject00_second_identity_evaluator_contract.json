@@ -1,0 +1,103 @@
+{
+  "schema_version": "canondressgs.subject00.second_identity_evaluator_contract.v1",
+  "task_id": "AAAI27-SUBJECT00-MINIMAL-SECOND-IDENTITY-DATASET-CONTRACT-001",
+  "status": "FROZEN_BLOCKED_CONDITION_RESOURCE_AND_FORMAL_BASE",
+  "identity": "subject00",
+  "garments": ["O01", "O03", "O04"],
+  "evaluation_layers": {
+    "base_avatar": {
+      "reference": "Subject00 formal strict-split ground truth",
+      "metrics": ["RGB_MAE", "PSNR", "SSIM", "LPIPS", "SILHOUETTE_IOU"],
+      "quadrants": ["TRAIN_FIT_AUDIT_ONLY", "STRICT_NOVEL_VIEW", "STRICT_NOVEL_POSE", "STRICT_NOVEL_POSE_AND_VIEW"],
+      "strict_primary_quadrants": ["STRICT_NOVEL_VIEW", "STRICT_NOVEL_POSE", "STRICT_NOVEL_POSE_AND_VIEW"]
+    },
+    "teacher_endpoint": {
+      "metrics": ["GARMENT_RGB_MAE", "PSNR", "SSIM", "LPIPS", "SILHOUETTE_IOU", "BOUNDARY_F1"],
+      "required_audits": ["ENDPOINT_PARITY", "IDENTITY_SAFETY", "COMPONENT_CONTAMINATION", "VISUAL_REVIEW"],
+      "report_per_garment": true,
+      "average_may_hide_single_garment_failure": false
+    },
+    "endpoint_controller": {
+      "identification_metrics": ["CLEAN_TOP1", "PER_GARMENT_PRECISION", "PER_GARMENT_RECALL", "ENDPOINT_EXACT_MATCH"],
+      "safety_metrics": ["IDENTITY_CONTAMINATION", "COMPONENT_CONTAMINATION", "EMPTY_RENDER", "WRONG_OUTFIT_ENDPOINT"],
+      "coefficient_diagnostics": ["RAW_COEFFICIENT_MAE", "RAW_COEFFICIENT_RMSE", "SELECTED_ENDPOINT_COEFFICIENT_L2"],
+      "report_per_rotation": true,
+      "report_per_replicate": true,
+      "best_seed_or_checkpoint_selection": false
+    }
+  },
+  "metric_definitions": {
+    "clean_top1": "selected endpoint garment equals the query garment before perturbation",
+    "per_garment_precision": "TP_g/(TP_g+FP_g) over unique test queries; undefined denominators reported as NA, never zero-filled",
+    "per_garment_recall": "TP_g/true_test_queries_g over unique test queries",
+    "endpoint_exact_match": "selected immutable endpoint ID equals the registered true endpoint ID",
+    "identity_contamination": "count of unique test queries with identity-contamination grade greater than zero",
+    "component_contamination": "count of unique test queries with any protected component residual or component-contamination grade greater than zero",
+    "endpoint_parity": "ground-truth endpoint replacement makes CanonDressGS-Endpoint and Outfit-ID Oracle use identical coefficients/residuals and produce renderer parity",
+    "silhouette_iou": "binary alpha>=0.5 against target garment mask>=0.5",
+    "boundary_f1": "3x3 erosion-XOR boundary with tolerance max(1,floor(0.005*min(H,W)+0.5))",
+    "lpips": "VGG LPIPS v0.1 on garment bbox plus 5 percent, aspect-preserving resize and zero pad to 256x256"
+  },
+  "baselines": [
+    {
+      "name": "Reference Classifier Lookup",
+      "input": "same pooled frozen-F2 512-vector",
+      "architecture": "LayerNorm(512)+Linear(512,3)",
+      "loss": "cross entropy only",
+      "selection": "argmax class to frozen endpoint",
+      "split": "same Subject00 condition-fold cross-fit"
+    },
+    {
+      "name": "Nearest-Centroid Lookup",
+      "input": "same pooled frozen-F2 512-vector",
+      "fit": "train-fold-only feature mean, scale, and three garment centroids",
+      "selection": "squared-L2 nearest standardized centroid with frozen garment-order tie-break",
+      "split": "same Subject00 condition-fold cross-fit"
+    },
+    {
+      "name": "Outfit-ID Oracle",
+      "input": "ground-truth garment ID",
+      "deployable": false,
+      "selection": "registered rank-r endpoint coordinate and frozen basis",
+      "role": "non-deployable endpoint oracle"
+    },
+    {
+      "name": "Teacher Endpoint",
+      "input": "ground-truth garment ID",
+      "deployable": false,
+      "selection": "full independent Teacher Endpoint residual",
+      "role": "non-deployable optimization upper bound"
+    }
+  ],
+  "hard_lookup_adjudication": {
+    "required_statement": "Report CanonDressGS-Endpoint against both trainable Reference Classifier Lookup and non-trainable Nearest-Centroid Lookup under identical folds and inputs.",
+    "superiority_assumed": false,
+    "allowed_outcomes": [
+      "CanonDressGS-Endpoint outperforms hard lookup",
+      "CanonDressGS-Endpoint matches hard lookup",
+      "CanonDressGS-Endpoint underperforms hard lookup",
+      "inconclusive under confidence or resource limits"
+    ],
+    "historical_subject02_metrics_reusable": false
+  },
+  "perturbation_and_safety": {
+    "required": ["assignment permutation", "single reference", "one-reference dropout", "complete reference dropout", "mild blur", "mask erosion", "mask dilation"],
+    "complete_dropout_expected_behavior": "ABSTAIN_EMPTY_REFERENCE and Base Avatar",
+    "default_garment_on_failure_allowed": false
+  },
+  "qualitative_figures": [
+    "Base Avatar versus each Teacher Endpoint at the same pose/camera",
+    "Reference Classifier Lookup versus Nearest-Centroid versus CanonDressGS-Endpoint versus Teacher Endpoint",
+    "all three garments at all sealed visualization conditions",
+    "identity and component safety overlays",
+    "reference swap and dropout failure cases"
+  ],
+  "visual_policy": {
+    "cherry_pick_allowed": false,
+    "allowed_operations": ["concatenate", "aspect-preserving crop", "label", "uniform crop"],
+    "forbidden_operations": ["retouch", "artifact removal", "color change", "successful-region selection"]
+  },
+  "blocking_dependency": "Exact calibration/test/visualization condition IDs and assets are PENDING_CONDITION_RESOURCE.",
+  "formal_renderer_runs_in_this_task": 0,
+  "paper_final": false
+}
