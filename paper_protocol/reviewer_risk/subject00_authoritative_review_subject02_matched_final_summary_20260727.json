@@ -1,0 +1,113 @@
+{
+  "artifact": "SUBJECT00_AUTHORITATIVE_REVIEW_SUBJECT02_MATCHED_FINAL_SUMMARY",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_authoritative_review_subject02_matched",
+  "created_at": "2026-07-27T19:40:49.870273+08:00",
+  "final_classification": "SUBJECT00_REVIEW_FROZEN_SUBJECT02_MATCHED_BLOCKED_BY_ASSET_CONTRACT",
+  "mutations": {
+    "paper": 0,
+    "subject00": 0,
+    "subject02_base": 0,
+    "subject02_old_mainline": 0,
+    "subject02_target": 0,
+    "subject02_teachers": 0
+  },
+  "new_branch": "research/subject00-authoritative-review-subject02-matched-20260727",
+  "next_task": "USER_FREEZE_SUBJECT02_COMMONSAFE4_MATCHED_ASSET_CONTRACT_AND_REAUTHORIZE_EXECUTION",
+  "next_task_executed": false,
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "review_pdf_sha256": "1859c41eaa43f81ecfed8e459251871780401070ccd65e4c6f49a9a67012b874",
+  "schema_version": "canondressgs.subject00_subject02.authoritative_matched.v1",
+  "source_branch": "research/subject00-commonsafe4-review-pack-unique-root-20260727",
+  "source_head": "8de156e2eac0932db5ec70830eedae5381cf22cc",
+  "source_task": "AAAI27-SUBJECT00-COMMONSAFE4-REVIEW-PACK-UNIQUE-ROOT-001",
+  "status": "SEALED_PREOPTIMIZER_BLOCKER",
+  "subject00": {
+    "error_pattern": "O04_TO_O03_ONLY",
+    "experiment_valid": true,
+    "matrix_provenance_decision": "PASS",
+    "method_result_class": "MIXED_NEGATIVE_ON_SECOND_IDENTITY",
+    "method_top1": "30/36",
+    "nearest_centroid_top1": "35/36",
+    "primary_positive_claim_supported": false,
+    "protocol_decision": "PASS_WITH_DISCLOSED_COMMONSAFE4_SUBSTITUTION",
+    "reference_classifier_top1": "31/36",
+    "replacement_decision": "PASS_PRETRAINING_OUTCOME_INDEPENDENT",
+    "teacher_human_visual_decision": "INCONCLUSIVE_INSUFFICIENT_DEDICATED_MULTIVIEW_EVIDENCE",
+    "teacher_technical_status": {
+      "O01": "TECHNICAL_PASS",
+      "O03": "TECHNICAL_PASS",
+      "O04": "TECHNICAL_PASS"
+    }
+  },
+  "subject02": {
+    "actual_baseline_cell_count": 0,
+    "actual_checkpoint_count": 0,
+    "actual_method_run_count": 0,
+    "actual_optimizer_steps": 0,
+    "anchors": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "asset_gate": "BLOCKED_PREOPTIMIZER_ASSET_CONTRACT_AMBIGUITY",
+    "baseline_results": null,
+    "blocking_reasons": [
+      "SLOT_TO_SUBJECT02_CONDITION_CAMERA_BINDING_NOT_UNIQUE",
+      "MATCHED_RUNNER_CONFIG_BINDING_NOT_FROZEN"
+    ],
+    "method_top1": null,
+    "planned_baseline_cell_count": 48,
+    "planned_checkpoint_count": 72,
+    "planned_method_run_count": 12,
+    "planned_optimizer_steps": 3600,
+    "rotations": [
+      {
+        "calibration": "slot03",
+        "rotation": "R0",
+        "test": "slot06",
+        "train": [
+          "slot00",
+          "slot07"
+        ]
+      },
+      {
+        "calibration": "slot06",
+        "rotation": "R1",
+        "test": "slot00",
+        "train": [
+          "slot07",
+          "slot03"
+        ]
+      },
+      {
+        "calibration": "slot00",
+        "rotation": "R2",
+        "test": "slot07",
+        "train": [
+          "slot03",
+          "slot06"
+        ]
+      },
+      {
+        "calibration": "slot07",
+        "rotation": "R3",
+        "test": "slot03",
+        "train": [
+          "slot06",
+          "slot00"
+        ]
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "task_id": "AAAI27-SUBJECT00-AUTHORITATIVE-REVIEW-SUBJECT02-MATCHED-001",
+  "test_result": "PASS_BLOCKER_CLASSIFICATION_26_PASS_9_NOT_RUN_1_BLOCKER",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_authoritative_review_subject02_matched"
+}

@@ -1,0 +1,64 @@
+{
+  "artifact": "SUBJECT00_AUTHORITATIVE_HUMAN_SCIENTIFIC_DECISION",
+  "baseline_fairness_decision": "PASS_WITH_DIFFERENTIAL_COMPUTE_AND_INFORMATION_DISCLOSURE",
+  "baselines": {
+    "Nearest-Centroid Lookup": {
+      "classification": "NON_ORACLE_COMPARISON_BASELINE",
+      "correct": 35,
+      "denominator": 36
+    },
+    "Outfit-ID Oracle": {
+      "classification": "ORACLE_UPPER_REFERENCE",
+      "correct": 36,
+      "denominator": 36
+    },
+    "Reference Classifier Lookup": {
+      "classification": "NON_ORACLE_COMPARISON_BASELINE",
+      "correct": 31,
+      "denominator": 36
+    },
+    "Teacher Endpoint": {
+      "classification": "ORACLE_UPPER_REFERENCE",
+      "correct": 36,
+      "denominator": 36
+    }
+  },
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_authoritative_review_subject02_matched",
+  "created_at": "2026-07-27T19:40:49.870273+08:00",
+  "direct_cross_identity_comparison_authorized": false,
+  "experiment_valid": true,
+  "final_human_scientific_decision": "VALID_EXPERIMENT_MIXED_NEGATIVE_RESULT",
+  "matrix_provenance_decision": "PASS",
+  "method": {
+    "correct": 30,
+    "denominator": 36,
+    "error_class": "SYSTEMATIC_DIRECTIONAL_CLASS_BOUNDARY_CONFUSION",
+    "error_count": 6,
+    "error_pattern": "O04_TO_O03_ONLY",
+    "random_noise_explanation": false,
+    "tie_break_failure": false,
+    "top1": 0.8333333333333334
+  },
+  "method_outperforms_nearest_centroid": false,
+  "method_outperforms_reference_classifier": false,
+  "method_result_class": "MIXED_NEGATIVE_ON_SECOND_IDENTITY",
+  "new_branch": "research/subject00-authoritative-review-subject02-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "primary_positive_claim_supported": false,
+  "protocol_decision": "PASS_WITH_DISCLOSED_COMMONSAFE4_SUBSTITUTION",
+  "replacement_decision": "PASS_PRETRAINING_OUTCOME_INDEPENDENT",
+  "review_pdf": {
+    "bytes": 19797927,
+    "page_count": 12,
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_authoritative_20260727_001/08_indexes/subject00_commonsafe4_method_teacher_baseline_human_scientific_review_pages_authoritative_20260727_001.pdf",
+    "sha256": "1859c41eaa43f81ecfed8e459251871780401070ccd65e4c6f49a9a67012b874"
+  },
+  "schema_version": "canondressgs.subject00_subject02.authoritative_matched.v1",
+  "source_branch": "research/subject00-commonsafe4-review-pack-unique-root-20260727",
+  "source_head": "8de156e2eac0932db5ec70830eedae5381cf22cc",
+  "source_task": "AAAI27-SUBJECT00-COMMONSAFE4-REVIEW-PACK-UNIQUE-ROOT-001",
+  "task_id": "AAAI27-SUBJECT00-AUTHORITATIVE-REVIEW-SUBJECT02-MATCHED-001",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_authoritative_review_subject02_matched"
+}

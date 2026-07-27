@@ -1,0 +1,224 @@
+{
+  "artifact": "SUBJECT00_AUTHORITATIVE_REVIEW_SUBJECT02_MATCHED_TESTS",
+  "blocking_gate": {
+    "expected_action": "DO_NOT_START_OPTIMIZER",
+    "name": "Subject02 matched physical asset and runner binding unique",
+    "status": "BLOCKED"
+  },
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_authoritative_review_subject02_matched",
+  "counts": {
+    "blocker": 1,
+    "not_run": 9,
+    "pass": 26,
+    "total": 36
+  },
+  "created_at": "2026-07-27T19:40:49.870273+08:00",
+  "final_classification": "SUBJECT00_REVIEW_FROZEN_SUBJECT02_MATCHED_BLOCKED_BY_ASSET_CONTRACT",
+  "immutability_verified": {
+    "subject00": true,
+    "subject02_base": true,
+    "subject02_existing_mainline": true,
+    "subject02_target": true,
+    "subject02_teachers": true
+  },
+  "new_branch": "research/subject00-authoritative-review-subject02-matched-20260727",
+  "next_task": "USER_FREEZE_SUBJECT02_COMMONSAFE4_MATCHED_ASSET_CONTRACT_AND_REAUTHORIZE_EXECUTION",
+  "next_task_executed": false,
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "result": "PASS_BLOCKER_CLASSIFICATION_26_PASS_9_NOT_RUN_1_BLOCKER",
+  "schema_version": "canondressgs.subject00_subject02.authoritative_matched.v1",
+  "source_branch": "research/subject00-commonsafe4-review-pack-unique-root-20260727",
+  "source_head": "8de156e2eac0932db5ec70830eedae5381cf22cc",
+  "source_task": "AAAI27-SUBJECT00-COMMONSAFE4-REVIEW-PACK-UNIQUE-ROOT-001",
+  "status": "PASS_EXPECTED_BLOCKER_PATH",
+  "task_id": "AAAI27-SUBJECT00-AUTHORITATIVE-REVIEW-SUBJECT02-MATCHED-001",
+  "tests": [
+    {
+      "name": "Subject00 source task/branch/head exact",
+      "status": "PASS",
+      "test_id": 1
+    },
+    {
+      "name": "Origin/cloud/source worktree preflight synchronized",
+      "status": "PASS",
+      "test_id": 2
+    },
+    {
+      "name": "Execution worktree clean at start",
+      "status": "PASS",
+      "test_id": 3
+    },
+    {
+      "name": "Authoritative PDF path/bytes/SHA/page count exact",
+      "status": "PASS",
+      "test_id": 4
+    },
+    {
+      "name": "Authoritative manifest and index present",
+      "status": "PASS",
+      "test_id": 5
+    },
+    {
+      "name": "Subject00 provenance seal PASS_61_OF_61",
+      "status": "PASS",
+      "test_id": 6
+    },
+    {
+      "name": "Active optimizer/compute process count zero",
+      "status": "PASS",
+      "test_id": 7
+    },
+    {
+      "name": "Subject00 protocol/replacement/matrix decisions frozen",
+      "status": "PASS",
+      "test_id": 8
+    },
+    {
+      "name": "Subject00 mixed-negative result frozen",
+      "status": "PASS",
+      "test_id": 9
+    },
+    {
+      "name": "Three Teacher technical statuses preserved without human PASS",
+      "status": "PASS",
+      "test_id": 10
+    },
+    {
+      "name": "Subject00 method result 30/36",
+      "status": "PASS",
+      "test_id": 11
+    },
+    {
+      "name": "Subject00 non-oracle baselines 31/36 and 35/36",
+      "status": "PASS",
+      "test_id": 12
+    },
+    {
+      "name": "Subject00 six errors O04_TO_O03_ONLY",
+      "status": "PASS",
+      "test_id": 13
+    },
+    {
+      "name": "Tie-break and random-noise explanations rejected",
+      "status": "PASS",
+      "test_id": 14
+    },
+    {
+      "name": "Oracle/non-oracle classifications frozen",
+      "status": "PASS",
+      "test_id": 15
+    },
+    {
+      "name": "Historical Subject02 matched symbolic contract recovered",
+      "status": "PASS",
+      "test_id": 16
+    },
+    {
+      "name": "Matched anchors exact",
+      "status": "PASS",
+      "test_id": 17
+    },
+    {
+      "name": "Matched rotations exact",
+      "status": "PASS",
+      "test_id": 18
+    },
+    {
+      "name": "Matched seeds exact",
+      "status": "PASS",
+      "test_id": 19
+    },
+    {
+      "name": "Subject02 Base path/SHA exact",
+      "status": "PASS",
+      "test_id": 20
+    },
+    {
+      "name": "Subject02 O01/O03/O04 Teacher paths/SHAs exact",
+      "status": "PASS",
+      "test_id": 21
+    },
+    {
+      "name": "Subject02 target root/manifest/SHA exact",
+      "status": "PASS",
+      "test_id": 22
+    },
+    {
+      "name": "Subject02 target exposes four conditions/cameras",
+      "status": "PASS",
+      "test_id": 23
+    },
+    {
+      "name": "Explicit slot binding row count is zero",
+      "status": "PASS",
+      "test_id": 24
+    },
+    {
+      "name": "Reserved method and baseline output roots remain absent",
+      "status": "PASS",
+      "test_id": 25
+    },
+    {
+      "name": "Subject00 and Subject02 existing assets immutable",
+      "status": "PASS",
+      "test_id": 26
+    },
+    {
+      "name": "Subject02 slot-to-condition/camera and runner/config binding unique",
+      "observed": [
+        "SLOT_TO_SUBJECT02_CONDITION_CAMERA_BINDING_NOT_UNIQUE",
+        "MATCHED_RUNNER_CONFIG_BINDING_NOT_FROZEN"
+      ],
+      "status": "BLOCKED_EXPECTED_PREOPTIMIZER_GATE",
+      "test_id": 27
+    },
+    {
+      "name": "Subject02 12-run method execution",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 28
+    },
+    {
+      "name": "Subject02 3600 optimizer steps",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 29
+    },
+    {
+      "name": "Subject02 72 checkpoints",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 30
+    },
+    {
+      "name": "Subject02 formal-test aggregation",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 31
+    },
+    {
+      "name": "Subject02 48 baseline cells",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 32
+    },
+    {
+      "name": "Subject00-vs-Subject02 matched numeric comparison",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 33
+    },
+    {
+      "name": "Protocol-effect decomposition",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 34
+    },
+    {
+      "name": "Identity-effect decomposition",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 35
+    },
+    {
+      "name": "Matched result-class selection",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER",
+      "test_id": 36
+    }
+  ],
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_authoritative_review_subject02_matched"
+}
