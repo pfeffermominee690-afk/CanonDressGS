@@ -240,7 +240,11 @@ def load_samples(
     excluded = set(config["formal_targets"]["excluded_requests"])
     if excluded.intersection(request_ids):
         raise RuntimeError("quarantine request entered formal garment index")
-    dataset = FullDressableTrainingDataset(manifest_path, split="train", reference_count=2, seed=20260718)
+    # Formal materialization freezes native, mixed resolutions and explicitly
+    # validates batch-size-one loading without resize/crop/padding.  Teachers do
+    # not consume references, so one reference exercises the authoritative
+    # loader while preserving every target at its native resolution.
+    dataset = FullDressableTrainingDataset(manifest_path, split="train", reference_count=1, seed=20260718)
     dataset_indices = [
         position for position, (outfit, _) in enumerate(dataset.samples)
         if outfit["outfit_id"] == garment
