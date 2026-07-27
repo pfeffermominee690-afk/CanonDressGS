@@ -363,6 +363,9 @@ def main() -> None:
         if outfit["outfit_id"] == "O03"
         for observation in outfit["observations"]
     }
+    conditions = {
+        condition["condition_id"]: condition for condition in manifest["conditions"]
+    }
     require(
         list(observations) == EXPECTED_REQUESTS,
         "formal manifest O03 observation order changed",
@@ -390,14 +393,149 @@ def main() -> None:
 
     record_by_id = {row["request_id"]: row for row in index["records"]}
     field_rows: list[dict[str, Any]] = []
+    camera_rows: list[dict[str, Any]] = []
     immutable_paths: list[Path] = [formal_index_path, formal_manifest_path]
     for sample in samples:
         request_id = sample["target_condition_id"]
         observation = observations[request_id]
+        condition = conditions[request_id]
         index_record = record_by_id[request_id]
         record_path = formal_root / index_record["record_path"]
         camera_path = formal_root / index_record["camera_path"]
         immutable_paths.extend((record_path, camera_path))
+        formal_record = read_json(record_path)
+        camera_record = read_json(camera_path)
+        require(
+            formal_record["camera_binding"]["sha256"] == sha256_file(camera_path),
+            f"{request_id} camera binding SHA changed",
+        )
+        required_camera_fields = (
+            "condition_id",
+            "source_frame_id",
+            "source_camera_id",
+            "pose",
+            "Rh_raw",
+            "R_global",
+            "Th",
+            "K",
+            "w2c",
+            "c2w",
+            "width",
+            "height",
+            "background",
+            "conventions",
+            "source_checksum",
+        )
+        require(
+            all(field in condition for field in required_camera_fields),
+            f"{request_id} formal condition camera contract is incomplete",
+        )
+        pose = torch.as_tensor(condition["pose"], dtype=torch.float32)
+        rh_raw = torch.as_tensor(condition["Rh_raw"], dtype=torch.float32)
+        r_global = torch.as_tensor(condition["R_global"], dtype=torch.float32)
+        th = torch.as_tensor(condition["Th"], dtype=torch.float32)
+        k = torch.as_tensor(condition["K"], dtype=torch.float32)
+        w2c = torch.as_tensor(condition["w2c"], dtype=torch.float32)
+        c2w = torch.as_tensor(condition["c2w"], dtype=torch.float32)
+        background = torch.as_tensor(condition["background"], dtype=torch.float32)
+        require(tuple(pose.shape) == (165,), f"{request_id} pose shape changed")
+        require(tuple(rh_raw.shape) == (3,), f"{request_id} Rh_raw shape changed")
+        require(tuple(r_global.shape) == (3, 3), f"{request_id} R_global shape changed")
+        require(tuple(th.shape) == (3,), f"{request_id} Th shape changed")
+        require(tuple(k.shape) == (3, 3), f"{request_id} K shape changed")
+        require(tuple(w2c.shape) == (4, 4), f"{request_id} w2c shape changed")
+        require(tuple(c2w.shape) == (4, 4), f"{request_id} c2w shape changed")
+        require(tuple(background.shape) == (3,), f"{request_id} background shape changed")
+        require(
+            all(
+                torch.isfinite(value).all().item()
+                for value in (pose, rh_raw, r_global, th, k, w2c, c2w, background)
+            ),
+            f"{request_id} camera/pose value is non-finite",
+        )
+        loader_geometry = {
+            "target_pose": pose,
+            "target_R_global": r_global,
+            "target_Rh": r_global,
+            "target_Th": th,
+            "target_K": k,
+            "target_w2c": w2c,
+        }
+        for loader_key, expected_value in loader_geometry.items():
+            require(loader_key in sample, f"{request_id} loader lacks {loader_key}")
+            require(
+                torch.equal(sample[loader_key], expected_value),
+                f"{request_id} {loader_key} differs from formal condition",
+            )
+        require(
+            int(sample["target_camera"]["width"]) == int(condition["width"])
+            and int(sample["target_camera"]["height"]) == int(condition["height"]),
+            f"{request_id} loader resolution differs",
+        )
+        require(
+            camera_record["condition_id"] == request_id
+            and camera_record["source_frame_id"] == condition["source_frame_id"]
+            and camera_record["source_camera_id"] == condition["source_camera_id"],
+            f"{request_id} camera identity binding differs",
+        )
+        for field_name, shape in (("K", (3, 3)), ("w2c", (4, 4)), ("c2w", (4, 4))):
+            camera_value = torch.as_tensor(camera_record[field_name], dtype=torch.float32)
+            condition_value = {"K": k, "w2c": w2c, "c2w": c2w}[field_name]
+            require(
+                tuple(camera_value.shape) == shape
+                and torch.equal(camera_value, condition_value),
+                f"{request_id} camera {field_name} differs",
+            )
+        require(
+            int(camera_record["width"]) == int(condition["width"])
+            and int(camera_record["height"]) == int(condition["height"]),
+            f"{request_id} camera dimensions differ",
+        )
+        require(
+            camera_record["conventions"]["intrinsic_update"]
+            == condition["conventions"]["intrinsic_update"]
+            and camera_record["conventions"]["extrinsic_update"]
+            == condition["conventions"]["extrinsic_update"]
+            and camera_record["conventions"]["pixel_coordinates"]
+            == condition["conventions"]["pixel_coordinates"],
+            f"{request_id} camera conventions differ",
+        )
+        require(
+            camera_record["source_checksum"]["sha256"]
+            == condition["source_checksum"]["source_condition_sha256"],
+            f"{request_id} source checksum differs",
+        )
+        camera_rows.append(
+            {
+                "request_id": request_id,
+                "slot": index_record["slot"],
+                "condition_id": condition["condition_id"],
+                "source_frame_id": condition["source_frame_id"],
+                "source_camera_id": condition["source_camera_id"],
+                "camera_record_path": str(camera_path),
+                "camera_record_sha256": sha256_file(camera_path),
+                "pose": {
+                    "shape": list(pose.shape),
+                    "dtype": str(pose.dtype),
+                    "finite": True,
+                    "value_sha256": tensor_sha(pose),
+                },
+                "Rh_raw": condition["Rh_raw"],
+                "R_global": condition["R_global"],
+                "Th": condition["Th"],
+                "K": condition["K"],
+                "w2c": condition["w2c"],
+                "c2w": condition["c2w"],
+                "width": int(condition["width"]),
+                "height": int(condition["height"]),
+                "background": condition["background"],
+                "conventions": condition["conventions"],
+                "source_checksum": condition["source_checksum"],
+                "loader_geometry_binding": "PASS_EXACT",
+                "formal_camera_record_binding": "PASS_EXACT",
+                "finite": True,
+            }
+        )
         for field in REQUIRED_SCIENTIFIC_FIELDS:
             require(field in sample, f"{request_id} loader output lacks {field}")
             value = sample[field]
@@ -599,6 +737,8 @@ def main() -> None:
             "camera_ids": EXPECTED_CAMERAS,
             "excluded_request_ids": [EXCLUDED_REQUEST],
             "slot04_present": False,
+            "camera_rows": camera_rows,
+            "camera_contract_status": "PASS_15_CAMERA_FIELDS_X_7_RECORDS",
             "field_rows": field_rows,
             "required_field_count": len(REQUIRED_SCIENTIFIC_FIELDS),
             "required_fields": REQUIRED_SCIENTIFIC_FIELDS,
