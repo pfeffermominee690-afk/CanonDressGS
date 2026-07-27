@@ -1,0 +1,154 @@
+{
+  "schema_version": "canondressgs.subject00.commonsafe4.fair_baseline_contract.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001",
+  "status": "SEALED_EXECUTION_AUTHORIZED_AFTER_METHOD_MATRIX_12_OF_12",
+  "source_contracts": {
+    "subject00_evaluator_contract": "paper_protocol/reviewer_risk/subject00_second_identity_evaluator_contract.json",
+    "subject00_base60747_baseline_contract": "paper_protocol/reviewer_risk/subject00_base60747_fair_baseline_contract_20260727.json",
+    "subject02_amended_primary_registry_commit": "ce110887a942cf8db082ba688c8d36d2433bfdbe",
+    "subject02_execution_implementation_commit": "195fb887f2cac8a72920b499c44bb66700a97e25"
+  },
+  "exact_baseline_order": [
+    "Reference Classifier Lookup",
+    "Nearest-Centroid Lookup",
+    "Outfit-ID Oracle",
+    "Teacher Endpoint"
+  ],
+  "baselines": [
+    {
+      "name": "Reference Classifier Lookup",
+      "kind": "TRAINABLE_HARD_LOOKUP",
+      "input": "same pooled frozen-F2 512-vector materialized by the completed CommonSafe4 method matrix",
+      "architecture": "LayerNorm(512)+Linear(512,3)",
+      "loss": "cross entropy only",
+      "optimizer": "Adam lr=0.02 betas=(0.9,0.999) eps=1e-8 weight_decay=0 amsgrad=false",
+      "scheduler": "constant LambdaLR multiplier 1.0",
+      "optimizer_steps_per_rotation_seed": 300,
+      "run_count": 12,
+      "optimizer_steps": 3600,
+      "checkpoint_steps": [
+        0,
+        20,
+        50,
+        100,
+        200,
+        300
+      ],
+      "selection": "argmax class to frozen endpoint; ties use frozen garment order"
+    },
+    {
+      "name": "Nearest-Centroid Lookup",
+      "kind": "NON_OPTIMIZER_HARD_LOOKUP",
+      "input": "same pooled frozen-F2 512-vector materialized by the completed CommonSafe4 method matrix",
+      "fit": "train-fold-only per-garment feature mean followed by across-centroid population mean/scale standardization",
+      "distance": "squared L2",
+      "tie_break": [
+        "O01",
+        "O03",
+        "O04"
+      ],
+      "rotation_seed_evaluations": 12,
+      "optimizer_steps": 0
+    },
+    {
+      "name": "Outfit-ID Oracle",
+      "kind": "NON_DEPLOYABLE_ENDPOINT_ORACLE",
+      "input": "ground-truth garment ID",
+      "selection": "registered rank2 endpoint coordinate and frozen basis",
+      "rotation_seed_evaluations": 12,
+      "optimizer_steps": 0
+    },
+    {
+      "name": "Teacher Endpoint",
+      "kind": "NON_DEPLOYABLE_OPTIMIZATION_UPPER_REFERENCE",
+      "input": "ground-truth garment ID",
+      "selection": "full independent frozen Teacher Endpoint residual",
+      "rotation_seed_evaluations": 12,
+      "optimizer_steps": 0
+    }
+  ],
+  "shared_fairness_bindings": {
+    "method_matrix_status_required": "PASS_12_OF_12_FORMAL_VALID",
+    "rotation_contract": "SUBJECT00_COMMONSAFE4_CARDINAL_PROXY_V1",
+    "anchors": [
+      0,
+      7,
+      3,
+      6
+    ],
+    "rotations": [
+      {
+        "rotation": 0,
+        "train_slots": [
+          0,
+          7
+        ],
+        "calibration_slot": 3,
+        "test_slot": 6
+      },
+      {
+        "rotation": 1,
+        "train_slots": [
+          7,
+          3
+        ],
+        "calibration_slot": 6,
+        "test_slot": 0
+      },
+      {
+        "rotation": 2,
+        "train_slots": [
+          3,
+          6
+        ],
+        "calibration_slot": 0,
+        "test_slot": 7
+      },
+      {
+        "rotation": 3,
+        "train_slots": [
+          6,
+          0
+        ],
+        "calibration_slot": 7,
+        "test_slot": 3
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "fold_counts": {
+      "train": 6,
+      "calibration": 3,
+      "test": 3
+    },
+    "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "formal_target_count": 22,
+    "quarantine_count": 2,
+    "quarantine_exact_set": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "endpoint_candidates": [
+      "O01",
+      "O03",
+      "O04"
+    ],
+    "historical_subject02_metrics_reusable": false,
+    "old_slot04_results_reusable": false,
+    "common_evaluator_required": true
+  },
+  "execution": {
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001",
+    "attempt": "attempt_001",
+    "sequential": true,
+    "automatic_retry": false,
+    "attempt_002_allowed": false,
+    "external_baselines_allowed": false,
+    "dual_support_allowed": false
+  },
+  "paper_eligible": false,
+  "paper_final": false
+}
