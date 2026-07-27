@@ -1,0 +1,141 @@
+{
+  "common_safe_slots": [
+    "slot00",
+    "slot01",
+    "slot02",
+    "slot03",
+    "slot05",
+    "slot06",
+    "slot07"
+  ],
+  "independent_input_classes": [
+    "formal target manifest observations and checksums",
+    "24 camera c2w and registration records",
+    "24 teacher-target provenance records"
+  ],
+  "outcome_dependent_evidence_count": 0,
+  "post_training_reselection": false,
+  "previous_selection_summary_used_as_numeric_input": false,
+  "ranking_rule": [
+    "minimum circular yaw distance to slot04",
+    "maximum minimum angular separation from slot00/slot03/slot07",
+    "minimum worst-case registration RMSE",
+    "maximum minimum inlier ratio",
+    "minimum limitation severity",
+    "minimum slot ID tie-break"
+  ],
+  "replacement_candidates": [
+    "slot01",
+    "slot02",
+    "slot05",
+    "slot06"
+  ],
+  "replacement_ranking": [
+    {
+      "camera_id": "cam09",
+      "direction": "back-right",
+      "limitation_count": 2,
+      "limitation_severity": 2,
+      "minimum_anchor_separation_degrees": 53.53488224878765,
+      "minimum_inlier_ratio": 0.9066213921901528,
+      "slot": 6,
+      "slot04_yaw_degrees": 348.7078844075427,
+      "slot_label": "slot06",
+      "sorting_tuple": [
+        28.170253073571075,
+        -53.53488224878765,
+        0.9861065268073442,
+        -0.9066213921901528,
+        2,
+        6
+      ],
+      "worst_case_registration_rmse_px": 0.9861065268073442,
+      "yaw_degrees": 320.5376313339716,
+      "yaw_distance_degrees": 28.170253073571075
+    },
+    {
+      "camera_id": "cam14",
+      "direction": "front-right",
+      "limitation_count": 0,
+      "limitation_severity": 0,
+      "minimum_anchor_separation_degrees": 44.59865321912067,
+      "minimum_inlier_ratio": 0.8779599271402551,
+      "slot": 2,
+      "slot04_yaw_degrees": 348.7078844075427,
+      "slot_label": "slot02",
+      "sorting_tuple": [
+        56.27534245260108,
+        -44.59865321912067,
+        0.9772909805053305,
+        -0.8779599271402551,
+        0,
+        2
+      ],
+      "worst_case_registration_rmse_px": 0.9772909805053305,
+      "yaw_degrees": 44.983226860143766,
+      "yaw_distance_degrees": 56.27534245260108
+    },
+    {
+      "camera_id": "cam02",
+      "direction": "back-left",
+      "limitation_count": 3,
+      "limitation_severity": 3,
+      "minimum_anchor_separation_degrees": 40.7380691788257,
+      "minimum_inlier_ratio": 0.9098228663446055,
+      "slot": 5,
+      "slot04_yaw_degrees": 348.7078844075427,
+      "slot_label": "slot05",
+      "sorting_tuple": [
+        122.44320450118443,
+        -40.7380691788257,
+        1.0083424233147011,
+        -0.9098228663446055,
+        3,
+        5
+      ],
+      "worst_case_registration_rmse_px": 1.0083424233147011,
+      "yaw_degrees": 226.26467990635825,
+      "yaw_distance_degrees": 122.44320450118443
+    },
+    {
+      "camera_id": "cam21",
+      "direction": "front-left",
+      "limitation_count": 0,
+      "limitation_severity": 0,
+      "minimum_anchor_separation_degrees": 30.295226824138382,
+      "minimum_inlier_ratio": 0.875,
+      "slot": 1,
+      "slot04_yaw_degrees": 348.7078844075427,
+      "slot_label": "slot01",
+      "sorting_tuple": [
+        152.96983644456958,
+        -30.295226824138382,
+        0.9537711389199219,
+        -0.875,
+        0,
+        1
+      ],
+      "worst_case_registration_rmse_px": 0.9537711389199219,
+      "yaw_degrees": 141.67772085211226,
+      "yaw_distance_degrees": 152.96983644456958
+    }
+  ],
+  "schema_version": "canondressgs.subject00.commonsafe4.replacement_independent_audit.v1",
+  "selected_replacement_camera": "cam09",
+  "selected_replacement_direction": "back-right",
+  "selected_replacement_slot": "slot06",
+  "selected_slot_written_to_config_before_optimizer": true,
+  "selection_rule_exists_before_first_optimizer_step": true,
+  "slot_yaw_registry": {
+    "slot00": 89.58188007926444,
+    "slot01": 141.67772085211226,
+    "slot02": 44.983226860143766,
+    "slot03": 171.97294767625064,
+    "slot04": 348.7078844075427,
+    "slot05": 226.26467990635825,
+    "slot06": 320.5376313339716,
+    "slot07": 267.00274908518395
+  },
+  "status": "PASS_INDEPENDENT_RAW_CAMERA_AND_CALIBRATION_RECOMPUTE",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-FINAL-HEAD-SEMANTICS-SEAL-REVIEW-001"
+}

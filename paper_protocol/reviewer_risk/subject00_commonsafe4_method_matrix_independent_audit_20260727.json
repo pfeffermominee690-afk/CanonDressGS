@@ -1,0 +1,530 @@
+{
+  "aggregate_or_final_report_used_as_statistical_input": false,
+  "calibration_evaluation_calls": 12,
+  "checkpoint_count": 72,
+  "checkpoint_parse_count": 72,
+  "checkpoint_steps": [
+    0,
+    20,
+    50,
+    100,
+    200,
+    300
+  ],
+  "confusion_matrix": {
+    "O01": {
+      "O01": 12,
+      "O03": 0,
+      "O04": 0
+    },
+    "O03": {
+      "O01": 0,
+      "O03": 12,
+      "O04": 0
+    },
+    "O04": {
+      "O01": 0,
+      "O03": 6,
+      "O04": 6
+    }
+  },
+  "dual_support_call_count": 0,
+  "duplicate_run_count": 0,
+  "endpoint_correct": 30,
+  "endpoint_top1": 0.8333333333333334,
+  "endpoint_total": 36,
+  "error_count": 6,
+  "error_pattern": "O04_TO_O03_ONLY",
+  "evaluation_record_decisions": 72,
+  "execution_snapshot": {
+    "code_switch_count": 0,
+    "config_lf_sha256": "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9",
+    "config_path": "configs/research/subject00_canondressgs_method_base60747_commonsafe4_v1.json",
+    "config_sha256s": [
+      "4175fe7803489ce8d32516a2d7ee9f59ab413779f7687a19c4810e7ff1a886a9"
+    ],
+    "dirty_code_run_count": 0,
+    "git_heads": [
+      "1d97afaafff6180062b41f16ffec6beac9dfdbbf"
+    ],
+    "runner_lf_sha256": "78b619155ddef4bea942d3317fe4098f9d969843bd10b2f4a818c953519714c1",
+    "runner_path": "tools/second_identity/run_subject00_base60747_commonsafe4_matrix.py",
+    "runtime_lf_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+    "runtime_path": "tools/paper/formal_batch_runtime.py"
+  },
+  "extra_run_count": 0,
+  "fold_contract": {
+    "calibration_garment_record_count": 3,
+    "overlap_count": 0,
+    "test_garment_record_count": 3,
+    "three_garment_coverage": "3/3",
+    "train_garment_record_count": 6
+  },
+  "formal_evaluation_calls": 12,
+  "formal_margins": [
+    4.202829301357269,
+    1.1910184025764465,
+    5.526212960481644,
+    3.127447724342346,
+    5.431552329100668,
+    5.5056694289669394,
+    3.404020667076111,
+    4.168026685714722,
+    1.4272707104682922,
+    5.507214814424515,
+    1.3782142996788025,
+    1.3976643085479736,
+    5.323317630216479,
+    5.259152770042419,
+    1.768691062927246,
+    5.619643384590745,
+    4.317960798740387,
+    1.0105173587799072,
+    5.5364069463685155,
+    4.145503029227257,
+    2.4162760376930237,
+    4.647745594382286,
+    5.085844993591309,
+    4.665608659386635,
+    5.251416873186827,
+    4.854340881109238,
+    1.6041970252990723,
+    6.068269480485469,
+    3.3034234642982483,
+    2.8067746758461,
+    5.4603976756334305,
+    4.850524552166462,
+    1.3595117330551147,
+    5.215138182044029,
+    1.3909708261489868,
+    0.4991103410720825
+  ],
+  "formal_test_count": 12,
+  "formal_valid_run_count": 12,
+  "frozen_payload_absent_and_exact_hash_bindings_12_of_12": true,
+  "independent_input_classes": [
+    "12 training/run_summary.json records",
+    "12 calibration_step300.json records",
+    "12 formal_test_step300.json records",
+    "12 pre_run_gate.json records",
+    "72 checkpoint payloads and sidecar SHA maps"
+  ],
+  "method_contract": "PURE_ENDPOINT",
+  "missing_run_count": 0,
+  "nan_inf_status": "NONE",
+  "oom_status": "NONE",
+  "optimizer_steps_per_run": 300,
+  "peak_vram_bytes_max": 18134528,
+  "per_run": [
+    {
+      "calibration_slot": "slot03",
+      "checkpoint_count": 6,
+      "correct": 3,
+      "errors": [],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 0,
+      "run_id": "COMMONSAFE4-METHOD-R0-S0",
+      "seed": 0,
+      "test_slot": "slot06",
+      "top1": 1.0,
+      "total": 3,
+      "train_slots": [
+        "slot00",
+        "slot07"
+      ],
+      "wall_time_seconds": 1.3355767466127872
+    },
+    {
+      "calibration_slot": "slot03",
+      "checkpoint_count": 6,
+      "correct": 3,
+      "errors": [],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 0,
+      "run_id": "COMMONSAFE4-METHOD-R0-S1",
+      "seed": 1,
+      "test_slot": "slot06",
+      "top1": 1.0,
+      "total": 3,
+      "train_slots": [
+        "slot00",
+        "slot07"
+      ],
+      "wall_time_seconds": 1.5146024785935879
+    },
+    {
+      "calibration_slot": "slot03",
+      "checkpoint_count": 6,
+      "correct": 3,
+      "errors": [],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 0,
+      "run_id": "COMMONSAFE4-METHOD-R0-S2",
+      "seed": 2,
+      "test_slot": "slot06",
+      "top1": 1.0,
+      "total": 3,
+      "train_slots": [
+        "slot00",
+        "slot07"
+      ],
+      "wall_time_seconds": 1.534083765000105
+    },
+    {
+      "calibration_slot": "slot06",
+      "checkpoint_count": 6,
+      "correct": 2,
+      "errors": [
+        {
+          "prediction": "O03",
+          "truth": "O04"
+        }
+      ],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 1,
+      "run_id": "COMMONSAFE4-METHOD-R1-S0",
+      "seed": 0,
+      "test_slot": "slot00",
+      "top1": 0.6666666666666666,
+      "total": 3,
+      "train_slots": [
+        "slot07",
+        "slot03"
+      ],
+      "wall_time_seconds": 1.5246685221791267
+    },
+    {
+      "calibration_slot": "slot06",
+      "checkpoint_count": 6,
+      "correct": 2,
+      "errors": [
+        {
+          "prediction": "O03",
+          "truth": "O04"
+        }
+      ],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 1,
+      "run_id": "COMMONSAFE4-METHOD-R1-S1",
+      "seed": 1,
+      "test_slot": "slot00",
+      "top1": 0.6666666666666666,
+      "total": 3,
+      "train_slots": [
+        "slot07",
+        "slot03"
+      ],
+      "wall_time_seconds": 1.3535184003412724
+    },
+    {
+      "calibration_slot": "slot06",
+      "checkpoint_count": 6,
+      "correct": 2,
+      "errors": [
+        {
+          "prediction": "O03",
+          "truth": "O04"
+        }
+      ],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 1,
+      "run_id": "COMMONSAFE4-METHOD-R1-S2",
+      "seed": 2,
+      "test_slot": "slot00",
+      "top1": 0.6666666666666666,
+      "total": 3,
+      "train_slots": [
+        "slot07",
+        "slot03"
+      ],
+      "wall_time_seconds": 1.273820485919714
+    },
+    {
+      "calibration_slot": "slot00",
+      "checkpoint_count": 6,
+      "correct": 2,
+      "errors": [
+        {
+          "prediction": "O03",
+          "truth": "O04"
+        }
+      ],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 2,
+      "run_id": "COMMONSAFE4-METHOD-R2-S0",
+      "seed": 0,
+      "test_slot": "slot07",
+      "top1": 0.6666666666666666,
+      "total": 3,
+      "train_slots": [
+        "slot03",
+        "slot06"
+      ],
+      "wall_time_seconds": 1.3503936566412449
+    },
+    {
+      "calibration_slot": "slot00",
+      "checkpoint_count": 6,
+      "correct": 3,
+      "errors": [],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 2,
+      "run_id": "COMMONSAFE4-METHOD-R2-S1",
+      "seed": 1,
+      "test_slot": "slot07",
+      "top1": 1.0,
+      "total": 3,
+      "train_slots": [
+        "slot03",
+        "slot06"
+      ],
+      "wall_time_seconds": 1.310609895735979
+    },
+    {
+      "calibration_slot": "slot00",
+      "checkpoint_count": 6,
+      "correct": 3,
+      "errors": [],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 2,
+      "run_id": "COMMONSAFE4-METHOD-R2-S2",
+      "seed": 2,
+      "test_slot": "slot07",
+      "top1": 1.0,
+      "total": 3,
+      "train_slots": [
+        "slot03",
+        "slot06"
+      ],
+      "wall_time_seconds": 1.2655972242355347
+    },
+    {
+      "calibration_slot": "slot07",
+      "checkpoint_count": 6,
+      "correct": 2,
+      "errors": [
+        {
+          "prediction": "O03",
+          "truth": "O04"
+        }
+      ],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 3,
+      "run_id": "COMMONSAFE4-METHOD-R3-S0",
+      "seed": 0,
+      "test_slot": "slot03",
+      "top1": 0.6666666666666666,
+      "total": 3,
+      "train_slots": [
+        "slot06",
+        "slot00"
+      ],
+      "wall_time_seconds": 1.2082856222987175
+    },
+    {
+      "calibration_slot": "slot07",
+      "checkpoint_count": 6,
+      "correct": 2,
+      "errors": [
+        {
+          "prediction": "O03",
+          "truth": "O04"
+        }
+      ],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 3,
+      "run_id": "COMMONSAFE4-METHOD-R3-S1",
+      "seed": 1,
+      "test_slot": "slot03",
+      "top1": 0.6666666666666666,
+      "total": 3,
+      "train_slots": [
+        "slot06",
+        "slot00"
+      ],
+      "wall_time_seconds": 1.2218980714678764
+    },
+    {
+      "calibration_slot": "slot07",
+      "checkpoint_count": 6,
+      "correct": 3,
+      "errors": [],
+      "fold_counts": {
+        "calibration": 3,
+        "test": 3,
+        "train": 6
+      },
+      "optimizer_steps": 300,
+      "peak_vram_bytes": 18134528,
+      "rotation": 3,
+      "run_id": "COMMONSAFE4-METHOD-R3-S2",
+      "seed": 2,
+      "test_slot": "slot03",
+      "top1": 1.0,
+      "total": 3,
+      "train_slots": [
+        "slot06",
+        "slot00"
+      ],
+      "wall_time_seconds": 1.2152808643877506
+    }
+  ],
+  "quarantine_usage": {
+    "quarantine_calibration_usage_count": 0,
+    "quarantine_evaluation_usage_count": 0,
+    "quarantine_optimizer_usage_count": 0,
+    "quarantine_test_usage_count": 0
+  },
+  "rotation_effect": {
+    "R0": {
+      "correct": 9,
+      "per_seed_top1": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "top1": 1.0,
+      "total": 9
+    },
+    "R1": {
+      "correct": 6,
+      "per_seed_top1": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "top1": 0.6666666666666666,
+      "total": 9
+    },
+    "R2": {
+      "correct": 8,
+      "per_seed_top1": [
+        0.6666666666666666,
+        1.0,
+        1.0
+      ],
+      "top1": 0.8888888888888888,
+      "total": 9
+    },
+    "R3": {
+      "correct": 7,
+      "per_seed_top1": [
+        0.6666666666666666,
+        0.6666666666666666,
+        1.0
+      ],
+      "top1": 0.7777777777777778,
+      "total": 9
+    }
+  },
+  "run_count": 12,
+  "schema_version": "canondressgs.subject00.commonsafe4.method_independent_audit.v1",
+  "seed_effect": {
+    "S0": {
+      "correct": 9,
+      "per_rotation_top1": [
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "top1": 0.75,
+      "total": 12
+    },
+    "S1": {
+      "correct": 10,
+      "per_rotation_top1": [
+        1.0,
+        0.6666666666666666,
+        1.0,
+        0.6666666666666666
+      ],
+      "top1": 0.8333333333333334,
+      "total": 12
+    },
+    "S2": {
+      "correct": 11,
+      "per_rotation_top1": [
+        1.0,
+        0.6666666666666666,
+        1.0,
+        1.0
+      ],
+      "top1": 0.9166666666666666,
+      "total": 12
+    }
+  },
+  "status": "PASS_INDEPENDENT_PER_RUN_RECOMPUTE",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-FINAL-HEAD-SEMANTICS-SEAL-REVIEW-001",
+  "total_optimizer_steps": 3600,
+  "trainable_changed_12_of_12": true,
+  "trainable_parameter_count": 2050,
+  "training_forward_calls": 3600,
+  "wall_time_seconds_sum": 16.108335733413696
+}

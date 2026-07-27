@@ -1,0 +1,227 @@
+{
+  "O03_O04_endpoint_distance": {
+    "O03": [
+      -0.592439834645462,
+      1.284213000579056
+    ],
+    "O04": [
+      -0.8158777770116935,
+      -1.1550370285853229
+    ],
+    "coordinate_space": "standardized rank2 teacher endpoint",
+    "l2": 2.4494622305451617,
+    "squared_l2": 5.999865218867279
+  },
+  "back_right_proxy_analysis": {
+    "conclusion": "The proxy is not a sufficient causal explanation: R0 tests slot06 and has zero errors, while the six errors occur on slot00/slot03/slot07. Slot06 enters some training/calibration folds, so a causal effect cannot be ruled in or out post hoc.",
+    "error_test_slots": [
+      "slot00",
+      "slot03",
+      "slot07"
+    ],
+    "errors_when_slot06_is_test": 0,
+    "selected_proxy": "slot06/cam09/back-right"
+  },
+  "case_count": 6,
+  "cases": [
+    {
+      "O01_score": 2.921647548675537,
+      "O03_score": 1.0726988315582275,
+      "O04_score": 2.470363140106201,
+      "calibration_result": {
+        "correct": false,
+        "margin": 1.9865721464157104,
+        "predicted_class": "O03",
+        "slot": "slot06"
+      },
+      "camera_direction": "front",
+      "limitations": [],
+      "predicted_class": "O03",
+      "rotation": 1,
+      "run_id": "COMMONSAFE4-METHOD-R1-S0",
+      "scores_are_squared_distances_lower_is_better": true,
+      "seed": 0,
+      "target_request_id": "subject00_O04_slot00_cand01",
+      "teacher_fingerprints": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "test_slot": "slot00",
+      "top1_top2_margin": 1.3976643085479736,
+      "true_class": "O04"
+    },
+    {
+      "O01_score": 4.869681358337402,
+      "O03_score": 0.749061107635498,
+      "O04_score": 2.517752170562744,
+      "calibration_result": {
+        "correct": false,
+        "margin": 1.9776988625526428,
+        "predicted_class": "O03",
+        "slot": "slot06"
+      },
+      "camera_direction": "front",
+      "limitations": [],
+      "predicted_class": "O03",
+      "rotation": 1,
+      "run_id": "COMMONSAFE4-METHOD-R1-S1",
+      "scores_are_squared_distances_lower_is_better": true,
+      "seed": 1,
+      "target_request_id": "subject00_O04_slot00_cand01",
+      "teacher_fingerprints": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "test_slot": "slot00",
+      "top1_top2_margin": 1.768691062927246,
+      "true_class": "O04"
+    },
+    {
+      "O01_score": 3.9872384071350098,
+      "O03_score": 1.0555479526519775,
+      "O04_score": 2.0660653114318848,
+      "calibration_result": {
+        "correct": false,
+        "margin": 2.3567238450050354,
+        "predicted_class": "O03",
+        "slot": "slot06"
+      },
+      "camera_direction": "front",
+      "limitations": [],
+      "predicted_class": "O03",
+      "rotation": 1,
+      "run_id": "COMMONSAFE4-METHOD-R1-S2",
+      "scores_are_squared_distances_lower_is_better": true,
+      "seed": 2,
+      "target_request_id": "subject00_O04_slot00_cand01",
+      "teacher_fingerprints": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "test_slot": "slot00",
+      "top1_top2_margin": 1.0105173587799072,
+      "true_class": "O04"
+    },
+    {
+      "O01_score": 3.6578731536865234,
+      "O03_score": 0.6099290251731873,
+      "O04_score": 3.026205062866211,
+      "calibration_result": {
+        "correct": true,
+        "margin": 6.702546115964651,
+        "predicted_class": "O04",
+        "slot": "slot00"
+      },
+      "camera_direction": "back",
+      "limitations": [],
+      "predicted_class": "O03",
+      "rotation": 2,
+      "run_id": "COMMONSAFE4-METHOD-R2-S0",
+      "scores_are_squared_distances_lower_is_better": true,
+      "seed": 0,
+      "target_request_id": "subject00_O04_slot07_cand01",
+      "teacher_fingerprints": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "test_slot": "slot07",
+      "top1_top2_margin": 2.4162760376930237,
+      "true_class": "O04"
+    },
+    {
+      "O01_score": 3.577422618865967,
+      "O03_score": 0.5265211462974548,
+      "O04_score": 3.3332958221435547,
+      "calibration_result": {
+        "correct": false,
+        "margin": 2.676191568374634,
+        "predicted_class": "O03",
+        "slot": "slot07"
+      },
+      "camera_direction": "left",
+      "limitations": [],
+      "predicted_class": "O03",
+      "rotation": 3,
+      "run_id": "COMMONSAFE4-METHOD-R3-S0",
+      "scores_are_squared_distances_lower_is_better": true,
+      "seed": 0,
+      "target_request_id": "subject00_O04_slot03_cand01",
+      "teacher_fingerprints": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "test_slot": "slot03",
+      "top1_top2_margin": 2.8067746758461,
+      "true_class": "O04"
+    },
+    {
+      "O01_score": 3.095639944076538,
+      "O03_score": 1.044653058052063,
+      "O04_score": 2.4041647911071777,
+      "calibration_result": {
+        "correct": false,
+        "margin": 1.871827483177185,
+        "predicted_class": "O03",
+        "slot": "slot07"
+      },
+      "camera_direction": "left",
+      "limitations": [],
+      "predicted_class": "O03",
+      "rotation": 3,
+      "run_id": "COMMONSAFE4-METHOD-R3-S1",
+      "scores_are_squared_distances_lower_is_better": true,
+      "seed": 1,
+      "target_request_id": "subject00_O04_slot03_cand01",
+      "teacher_fingerprints": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "test_slot": "slot03",
+      "top1_top2_margin": 1.3595117330551147,
+      "true_class": "O04"
+    }
+  ],
+  "class_boundary_analysis": {
+    "classification": "RECURRING_BUT_NOT_UNIVERSAL_O04_O03_BOUNDARY_CONFUSION",
+    "support": "All six errors share O04->O03, span three rotations and all seeds, but only 6 of 12 O04 formal cases fail."
+  },
+  "margin_analysis": {
+    "maximum": 2.8067746758461,
+    "mean": 1.7932391961415608,
+    "minimum": 1.0105173587799072,
+    "numeric_tie_count": 0,
+    "values": [
+      1.3976643085479736,
+      1.768691062927246,
+      1.0105173587799072,
+      2.4162760376930237,
+      2.8067746758461,
+      1.3595117330551147
+    ]
+  },
+  "rotation_concentration": {
+    "R0": 0,
+    "R1": 3,
+    "R2": 1,
+    "R3": 2
+  },
+  "schema_version": "canondressgs.subject00.commonsafe4.O04_to_O03_analysis.v1",
+  "seed_concentration": {
+    "S0": 3,
+    "S1": 2,
+    "S2": 1
+  },
+  "status": "PASS_SIX_CASES_RECOVERED",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-FINAL-HEAD-SEMANTICS-SEAL-REVIEW-001",
+  "teacher_quality_causal_claim": "NOT_AUTHORIZED: all three Teachers pass technical provenance checks, while human visual decisions remain null.",
+  "tie_break_analysis": {
+    "conclusion": "All six error margins are strictly positive; tie order did not decide them.",
+    "tie_break_triggered_in_error_cases": false
+  }
+}

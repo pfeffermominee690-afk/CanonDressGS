@@ -1,0 +1,1219 @@
+{
+  "aggregate_or_final_report_used_as_statistical_input": false,
+  "baseline_cell_count": 48,
+  "baselines": {
+    "Nearest-Centroid Lookup": {
+      "calibration_evaluation_calls": 12,
+      "category": "NON_ORACLE",
+      "cell_count": 12,
+      "checkpoint_count": 0,
+      "confusion_matrix": {
+        "O01": {
+          "O01": 12,
+          "O03": 0,
+          "O04": 0
+        },
+        "O03": {
+          "O01": 0,
+          "O03": 12,
+          "O04": 0
+        },
+        "O04": {
+          "O01": 0,
+          "O03": 1,
+          "O04": 11
+        }
+      },
+      "correct": 35,
+      "errors": [
+        {
+          "margin": 93.03564453125,
+          "predicted_class": "O03",
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S0",
+          "seed": 0,
+          "test_slot": "slot07",
+          "true_class": "O04"
+        }
+      ],
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "kind": "NON_OPTIMIZER_HARD_LOOKUP",
+      "margins": [
+        1257.7568969726562,
+        428.738037109375,
+        645.663330078125,
+        1066.660888671875,
+        474.67547607421875,
+        485.3291015625,
+        1071.7523193359375,
+        621.2711181640625,
+        256.7861328125,
+        2319.3125,
+        395.10009765625,
+        29.512451171875,
+        1606.3508605957031,
+        677.9713134765625,
+        251.90087890625,
+        2227.67578125,
+        454.823486328125,
+        50.388427734375,
+        1083.2705078125,
+        538.2490234375,
+        93.03564453125,
+        1617.4635009765625,
+        608.26953125,
+        488.1636962890625,
+        1549.326904296875,
+        333.6793212890625,
+        341.3212890625,
+        1868.704833984375,
+        196.8388671875,
+        16.911376953125,
+        2012.344970703125,
+        909.8070678710938,
+        387.149658203125,
+        1956.5892333984375,
+        431.4739685058594,
+        118.2086181640625
+      ],
+      "optimizer_steps": 0,
+      "peak_vram_bytes_max": 0,
+      "per_run": [
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R0-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0015745647251605988
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R0-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0014608725905418396
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R0-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.002042483538389206
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R1-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0016612708568572998
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R1-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0014806650578975677
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R1-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0015220344066619873
+        },
+        {
+          "correct": 2,
+          "errors": [
+            {
+              "margin": 93.03564453125,
+              "predicted_class": "O03",
+              "rotation": 2,
+              "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S0",
+              "seed": 0,
+              "test_slot": "slot07",
+              "true_class": "O04"
+            }
+          ],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S0",
+          "seed": 0,
+          "top1": 0.6666666666666666,
+          "total": 3,
+          "wall_time_seconds": 0.001535944640636444
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0014135651290416718
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R2-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0014863573014736176
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R3-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.001961827278137207
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R3-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0015403665602207184
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-NEAREST-CENTROID-LOOKUP-R3-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.001581195741891861
+        }
+      ],
+      "rotation_effect": {
+        "R0": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R1": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R2": {
+          "correct": 8,
+          "per_seed_top1": [
+            0.6666666666666666,
+            1.0,
+            1.0
+          ],
+          "top1": 0.8888888888888888,
+          "total": 9
+        },
+        "R3": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        }
+      },
+      "seed_effect": {
+        "S0": {
+          "correct": 11,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            0.6666666666666666,
+            1.0
+          ],
+          "top1": 0.9166666666666666,
+          "total": 12
+        },
+        "S1": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        },
+        "S2": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        }
+      },
+      "top1": 0.9722222222222222,
+      "total": 36,
+      "trainable_parameter_count": 0,
+      "training_forward_calls": 0,
+      "wall_time_seconds_sum": 0.01926114782691002
+    },
+    "Outfit-ID Oracle": {
+      "calibration_evaluation_calls": 12,
+      "category": "UPPER_REFERENCE",
+      "cell_count": 12,
+      "checkpoint_count": 0,
+      "confusion_matrix": {
+        "O01": {
+          "O01": 12,
+          "O03": 0,
+          "O04": 0
+        },
+        "O03": {
+          "O01": 0,
+          "O03": 12,
+          "O04": 0
+        },
+        "O04": {
+          "O01": 0,
+          "O03": 0,
+          "O04": 12
+        }
+      },
+      "correct": 36,
+      "errors": [],
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "kind": "NON_DEPLOYABLE_ENDPOINT_ORACLE",
+      "margins": [],
+      "optimizer_steps": 0,
+      "peak_vram_bytes_max": 0,
+      "per_run": [
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R0-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.001462981104850769
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R0-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009341947734355927
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R0-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009475052356719971
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R1-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.000903550535440445
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R1-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009915754199028015
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R1-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0010219141840934753
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R2-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.000988103449344635
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R2-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.001432269811630249
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R2-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0008795037865638733
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R3-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009742788970470428
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R3-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009191185235977173
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-OUTFIT-ID-ORACLE-R3-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.000909607857465744
+        }
+      ],
+      "rotation_effect": {
+        "R0": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R1": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R2": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R3": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        }
+      },
+      "seed_effect": {
+        "S0": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        },
+        "S1": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        },
+        "S2": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        }
+      },
+      "top1": 1.0,
+      "total": 36,
+      "trainable_parameter_count": 0,
+      "training_forward_calls": 0,
+      "wall_time_seconds_sum": 0.012364603579044342
+    },
+    "Reference Classifier Lookup": {
+      "calibration_evaluation_calls": 12,
+      "category": "NON_ORACLE",
+      "cell_count": 12,
+      "checkpoint_count": 72,
+      "confusion_matrix": {
+        "O01": {
+          "O01": 12,
+          "O03": 0,
+          "O04": 0
+        },
+        "O03": {
+          "O01": 0,
+          "O03": 12,
+          "O04": 0
+        },
+        "O04": {
+          "O01": 0,
+          "O03": 5,
+          "O04": 7
+        }
+      },
+      "correct": 31,
+      "errors": [
+        {
+          "margin": 1.820265531539917,
+          "predicted_class": "O03",
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+          "seed": 1,
+          "test_slot": "slot00",
+          "true_class": "O04"
+        },
+        {
+          "margin": 0.7418882846832275,
+          "predicted_class": "O03",
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+          "seed": 2,
+          "test_slot": "slot00",
+          "true_class": "O04"
+        },
+        {
+          "margin": 2.169140338897705,
+          "predicted_class": "O03",
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+          "seed": 0,
+          "test_slot": "slot07",
+          "true_class": "O04"
+        },
+        {
+          "margin": 2.863287925720215,
+          "predicted_class": "O03",
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+          "seed": 0,
+          "test_slot": "slot03",
+          "true_class": "O04"
+        },
+        {
+          "margin": 1.3829545974731445,
+          "predicted_class": "O03",
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+          "seed": 1,
+          "test_slot": "slot03",
+          "true_class": "O04"
+        }
+      ],
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "kind": "TRAINABLE_HARD_LOOKUP",
+      "margins": [
+        8.692281723022461,
+        2.6191835403442383,
+        7.707459449768066,
+        8.297869682312012,
+        6.391223430633545,
+        6.299421787261963,
+        6.294075965881348,
+        5.274471759796143,
+        3.2186546325683594,
+        14.693346977233887,
+        3.2761170864105225,
+        0.2155153751373291,
+        10.416633605957031,
+        7.6975226402282715,
+        1.820265531539917,
+        12.360430717468262,
+        5.655462265014648,
+        0.7418882846832275,
+        7.883980751037598,
+        5.128744602203369,
+        2.169140338897705,
+        9.012579917907715,
+        6.232857704162598,
+        5.866900444030762,
+        9.816771507263184,
+        4.378667831420898,
+        3.5523524284362793,
+        12.41097640991211,
+        4.350612640380859,
+        2.863287925720215,
+        12.069538116455078,
+        7.300694942474365,
+        1.3829545974731445,
+        12.828042984008789,
+        3.523092746734619,
+        2.3355331420898438
+      ],
+      "optimizer_steps": 3600,
+      "peak_vram_bytes_max": 18139136,
+      "per_run": [
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.2665052637457848
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.4722993411123753
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R0-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.0122167095541954
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.114014446735382
+        },
+        {
+          "correct": 2,
+          "errors": [
+            {
+              "margin": 1.820265531539917,
+              "predicted_class": "O03",
+              "rotation": 1,
+              "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+              "seed": 1,
+              "test_slot": "slot00",
+              "true_class": "O04"
+            }
+          ],
+          "optimizer_steps": 300,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S1",
+          "seed": 1,
+          "top1": 0.6666666666666666,
+          "total": 3,
+          "wall_time_seconds": 1.2464921362698078
+        },
+        {
+          "correct": 2,
+          "errors": [
+            {
+              "margin": 0.7418882846832275,
+              "predicted_class": "O03",
+              "rotation": 1,
+              "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+              "seed": 2,
+              "test_slot": "slot00",
+              "true_class": "O04"
+            }
+          ],
+          "optimizer_steps": 300,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R1-S2",
+          "seed": 2,
+          "top1": 0.6666666666666666,
+          "total": 3,
+          "wall_time_seconds": 1.1371227353811264
+        },
+        {
+          "correct": 2,
+          "errors": [
+            {
+              "margin": 2.169140338897705,
+              "predicted_class": "O03",
+              "rotation": 2,
+              "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+              "seed": 0,
+              "test_slot": "slot07",
+              "true_class": "O04"
+            }
+          ],
+          "optimizer_steps": 300,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S0",
+          "seed": 0,
+          "top1": 0.6666666666666666,
+          "total": 3,
+          "wall_time_seconds": 1.2144877389073372
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.119145032018423
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R2-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.2080715261399746
+        },
+        {
+          "correct": 2,
+          "errors": [
+            {
+              "margin": 2.863287925720215,
+              "predicted_class": "O03",
+              "rotation": 3,
+              "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+              "seed": 0,
+              "test_slot": "slot03",
+              "true_class": "O04"
+            }
+          ],
+          "optimizer_steps": 300,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S0",
+          "seed": 0,
+          "top1": 0.6666666666666666,
+          "total": 3,
+          "wall_time_seconds": 1.1898351460695267
+        },
+        {
+          "correct": 2,
+          "errors": [
+            {
+              "margin": 1.3829545974731445,
+              "predicted_class": "O03",
+              "rotation": 3,
+              "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+              "seed": 1,
+              "test_slot": "slot03",
+              "true_class": "O04"
+            }
+          ],
+          "optimizer_steps": 300,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S1",
+          "seed": 1,
+          "top1": 0.6666666666666666,
+          "total": 3,
+          "wall_time_seconds": 1.1555390395224094
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 300,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-REFCLASS-R3-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 1.184917364269495
+        }
+      ],
+      "rotation_effect": {
+        "R0": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R1": {
+          "correct": 7,
+          "per_seed_top1": [
+            1.0,
+            0.6666666666666666,
+            0.6666666666666666
+          ],
+          "top1": 0.7777777777777778,
+          "total": 9
+        },
+        "R2": {
+          "correct": 8,
+          "per_seed_top1": [
+            0.6666666666666666,
+            1.0,
+            1.0
+          ],
+          "top1": 0.8888888888888888,
+          "total": 9
+        },
+        "R3": {
+          "correct": 7,
+          "per_seed_top1": [
+            0.6666666666666666,
+            0.6666666666666666,
+            1.0
+          ],
+          "top1": 0.7777777777777778,
+          "total": 9
+        }
+      },
+      "seed_effect": {
+        "S0": {
+          "correct": 10,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            0.6666666666666666,
+            0.6666666666666666
+          ],
+          "top1": 0.8333333333333334,
+          "total": 12
+        },
+        "S1": {
+          "correct": 10,
+          "per_rotation_top1": [
+            1.0,
+            0.6666666666666666,
+            1.0,
+            0.6666666666666666
+          ],
+          "top1": 0.8333333333333334,
+          "total": 12
+        },
+        "S2": {
+          "correct": 11,
+          "per_rotation_top1": [
+            1.0,
+            0.6666666666666666,
+            1.0,
+            1.0
+          ],
+          "top1": 0.9166666666666666,
+          "total": 12
+        }
+      },
+      "top1": 0.8611111111111112,
+      "total": 36,
+      "trainable_parameter_count": 2563,
+      "training_forward_calls": 3600,
+      "wall_time_seconds_sum": 14.320646479725838
+    },
+    "Teacher Endpoint": {
+      "calibration_evaluation_calls": 12,
+      "category": "UPPER_REFERENCE",
+      "cell_count": 12,
+      "checkpoint_count": 0,
+      "confusion_matrix": {
+        "O01": {
+          "O01": 12,
+          "O03": 0,
+          "O04": 0
+        },
+        "O03": {
+          "O01": 0,
+          "O03": 12,
+          "O04": 0
+        },
+        "O04": {
+          "O01": 0,
+          "O03": 0,
+          "O04": 12
+        }
+      },
+      "correct": 36,
+      "errors": [],
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "kind": "NON_DEPLOYABLE_OPTIMIZATION_UPPER_REFERENCE",
+      "margins": [],
+      "optimizer_steps": 0,
+      "peak_vram_bytes_max": 0,
+      "per_run": [
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R0-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009348355233669281
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R0-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009296201169490814
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 0,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R0-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009371712803840637
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R1-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009385347366333008
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R1-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0008974708616733551
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 1,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R1-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009109452366828918
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R2-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009045936167240143
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R2-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009165741503238678
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 2,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R2-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009344331920146942
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R3-S0",
+          "seed": 0,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009045861661434174
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R3-S1",
+          "seed": 1,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009135380387306213
+        },
+        {
+          "correct": 3,
+          "errors": [],
+          "optimizer_steps": 0,
+          "rotation": 3,
+          "run_id": "COMMONSAFE4-BASELINE-TEACHER-ENDPOINT-R3-S2",
+          "seed": 2,
+          "top1": 1.0,
+          "total": 3,
+          "wall_time_seconds": 0.0009143650531768799
+        }
+      ],
+      "rotation_effect": {
+        "R0": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R1": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R2": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        },
+        "R3": {
+          "correct": 9,
+          "per_seed_top1": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 9
+        }
+      },
+      "seed_effect": {
+        "S0": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        },
+        "S1": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        },
+        "S2": {
+          "correct": 12,
+          "per_rotation_top1": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "top1": 1.0,
+          "total": 12
+        }
+      },
+      "top1": 1.0,
+      "total": 36,
+      "trainable_parameter_count": 0,
+      "training_forward_calls": 0,
+      "wall_time_seconds_sum": 0.011036667972803116
+    }
+  },
+  "checkpoint_parse_count": 72,
+  "dual_support_call_count": 0,
+  "duplicate_cell_count": 0,
+  "extra_cell_count": 0,
+  "missing_cell_count": 0,
+  "nonoracle_baseline_names": [
+    "Reference Classifier Lookup",
+    "Nearest-Centroid Lookup"
+  ],
+  "oracle_upper_reference_names": [
+    "Outfit-ID Oracle",
+    "Teacher Endpoint"
+  ],
+  "quarantine_usage_count": 0,
+  "schema_version": "canondressgs.subject00.commonsafe4.baseline_independent_audit.v1",
+  "self_pid_recovery": {
+    "attempt_002_created": false,
+    "classification": "LAUNCHER_SELF_PID_GATE_BUG_AFTER_ONE_COMPLETE_CELL",
+    "continued_same_attempt_001": true,
+    "duplicate_result_count": 0,
+    "first_cell_completed_and_preserved": true,
+    "first_cell_rerun": false,
+    "scientific_retry_count": 0,
+    "second_cell_stopped_before_model_optimizer": true,
+    "status": "PASS_SAME_ATTEMPT_PREOPTIMIZER_CONTINUATION"
+  },
+  "status": "PASS_INDEPENDENT_48_CELL_RECOMPUTE",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-FINAL-HEAD-SEMANTICS-SEAL-REVIEW-001",
+  "writer_provenance": {
+    "cell_schema_status": "PASS_48_OF_48_FORMAL_VALID_BASELINE_CELL",
+    "continuation_preflight": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/input_audit/preoptimizer_continuation_preflight.json",
+    "continuation_preflight_sha256": "7ed2d5205ca84a552be2366d0de06334d5a52a604070f3d06ea99f75a53585b3",
+    "resolved_contract": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-BASELINES-BASE60747-COMMONSAFE4-001/attempt_001/contract/resolved_contract.json",
+    "resolved_contract_sha256": "470295fdcdb160a13f016839efdb1ef65ab20502f38c3fd162e774214d45499f"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "equal_optimizer_budget_claim": false,
+  "optimizer_step_disclosure": {
+    "CanonDressGS": 3600,
+    "Nearest-Centroid Lookup": 0,
+    "Outfit-ID Oracle": 0,
+    "Reference Classifier Lookup": 3600,
+    "Teacher Endpoint": 0
+  },
+  "rows": [
+    {
+      "calibration_evaluation_calls": 12,
+      "category": "METHOD",
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "label_or_oracle_access": "train-fold garment labels only; no test garment ID at inference",
+      "name": "CanonDressGS",
+      "optimizer_steps": 3600,
+      "peak_vram_bytes_max": 18134528,
+      "reference_information": "pooled frozen-F2 references from train-fold slots",
+      "teacher_information": "three frozen Teacher endpoints define rank2 target basis",
+      "trainable_parameter_count": 2050,
+      "training_forward_calls": 3600,
+      "wall_time_seconds_sum": 16.108335733413696
+    },
+    {
+      "calibration_evaluation_calls": 12,
+      "category": "NON_ORACLE",
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "label_or_oracle_access": "train-fold garment labels only; no test garment ID at inference",
+      "name": "Reference Classifier Lookup",
+      "optimizer_steps": 3600,
+      "peak_vram_bytes_max": 18139136,
+      "reference_information": "same pooled frozen-F2 references from train-fold slots",
+      "teacher_information": "frozen endpoint labels only after hard class decision",
+      "trainable_parameter_count": 2563,
+      "training_forward_calls": 3600,
+      "wall_time_seconds_sum": 14.320646479725838
+    },
+    {
+      "calibration_evaluation_calls": 12,
+      "category": "NON_ORACLE",
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "label_or_oracle_access": "train-fold labels; no test garment ID",
+      "name": "Nearest-Centroid Lookup",
+      "optimizer_steps": 0,
+      "peak_vram_bytes_max": 0,
+      "reference_information": "train-fold-only feature centroids",
+      "teacher_information": "registered rank2 endpoints after hard class decision",
+      "trainable_parameter_count": 0,
+      "training_forward_calls": 0,
+      "wall_time_seconds_sum": 0.01926114782691002
+    },
+    {
+      "calibration_evaluation_calls": 12,
+      "category": "UPPER_REFERENCE",
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "label_or_oracle_access": "ground-truth test garment ID; non-deployable",
+      "name": "Outfit-ID Oracle",
+      "optimizer_steps": 0,
+      "peak_vram_bytes_max": 0,
+      "reference_information": "registered rank2 endpoints",
+      "teacher_information": "endpoint coordinate selected by true garment ID",
+      "trainable_parameter_count": 0,
+      "training_forward_calls": 0,
+      "wall_time_seconds_sum": 0.012364603579044342
+    },
+    {
+      "calibration_evaluation_calls": 12,
+      "category": "UPPER_REFERENCE",
+      "evaluation_record_decisions": 72,
+      "formal_evaluation_calls": 12,
+      "label_or_oracle_access": "ground-truth test garment ID; non-deployable",
+      "name": "Teacher Endpoint",
+      "optimizer_steps": 0,
+      "peak_vram_bytes_max": 0,
+      "reference_information": "full independent frozen Teacher residual",
+      "teacher_information": "full Teacher endpoint selected by true garment ID",
+      "trainable_parameter_count": 0,
+      "training_forward_calls": 0,
+      "wall_time_seconds_sum": 0.011036667972803116
+    }
+  ],
+  "schema_version": "canondressgs.subject00.commonsafe4.compute_budget_audit.v1",
+  "status": "PASS_DIFFERENTIAL_BUDGETS_EXPLICITLY_DISCLOSED",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-FINAL-HEAD-SEMANTICS-SEAL-REVIEW-001",
+  "upper_references_are_deployable_competitors": false
+}

@@ -1,0 +1,244 @@
+{
+  "baseline_results": {
+    "Nearest-Centroid Lookup": {
+      "category": "NON_ORACLE",
+      "correct": 35,
+      "top1": 0.9722222222222222,
+      "total": 36
+    },
+    "Outfit-ID Oracle": {
+      "category": "UPPER_REFERENCE",
+      "correct": 36,
+      "top1": 1.0,
+      "total": 36
+    },
+    "Reference Classifier Lookup": {
+      "category": "NON_ORACLE",
+      "correct": 31,
+      "top1": 0.8611111111111112,
+      "total": 36
+    },
+    "Teacher Endpoint": {
+      "category": "UPPER_REFERENCE",
+      "correct": 36,
+      "top1": 1.0,
+      "total": 36
+    }
+  },
+  "branch_rewind_calls": 0,
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_commonsafe4_final_head_seal_review",
+  "final_classification": "SUBJECT00_BASE60747_COMMONSAFE4_MATRIX_BASELINES_POSTHOC_SEALED_REVIEW_PACK_READY",
+  "force_push_calls": 0,
+  "git_content_commit": "TO_BE_CREATED_AFTER_ARTIFACT_VALIDATION",
+  "head_relationship": "REPORTING_CONTENT_HEAD_IS_DIRECT_ANCESTOR_OF_AUTHORITATIVE_HEAD",
+  "human_fields": {
+    "BASELINE_FAIRNESS_REVIEW_DECISION": null,
+    "CROSS_IDENTITY_REVIEW_DECISION": null,
+    "METHOD_HUMAN_REVIEW_DECISION": null,
+    "PAPER_ELIGIBLE": false,
+    "PAPER_FINAL": false,
+    "PROTOCOL_REVIEW_DECISION": null,
+    "SCIENTIFIC_PASS": null,
+    "TEACHER_HUMAN_VISUAL_DECISION": null
+  },
+  "method_result": {
+    "correct": 30,
+    "error_count": 6,
+    "error_pattern": "O04_TO_O03_ONLY",
+    "top1": 0.8333333333333334,
+    "total": 36
+  },
+  "mutations": {
+    "base": 0,
+    "checkpoints": 0,
+    "masks": 0,
+    "paper": 0,
+    "target": 0,
+    "teachers": 0
+  },
+  "new_baseline_optimizer_steps": 0,
+  "new_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "new_method_optimizer_steps": 0,
+  "next_task": "USER_UPLOAD_AND_REVIEW_SUBJECT00_COMMONSAFE4_HUMAN_SCIENTIFIC_REVIEW_PAGES",
+  "next_task_executed": false,
+  "paper_final": false,
+  "reporting_content_head": "fb1066863bcefa4de09242994b51bde0a734a646",
+  "review_pdf": {
+    "bytes": 15203921,
+    "crop_status": "PASS_NO_CROP",
+    "order_status": "PASS_FIXED_1_TO_12",
+    "overlay_status": "PASS_NO_OVERLAY",
+    "page_count": 12,
+    "page_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/subject00_commonsafe4_method_teacher_baseline_human_scientific_review_pages_20260727.pdf",
+    "poppler_qa_pass_count": 12,
+    "poppler_qa_rows": [
+      {
+        "aspect_ratio": 1.6,
+        "page": 1,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 12.743528006076914,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_01_provenance_and_immutability.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.997928060722709
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 2,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 12.19627726671818,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_02_commonsafe4_replacement_yaw_ranking.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9982127035426589
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 3,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 11.498474445913828,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_03_rotations_and_633_folds.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.997795395580971
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 4,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 11.648919799706752,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_04_method_12run_matrix.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9993644337900416
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 5,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 11.895409496244058,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_05_method_confusion_matrix.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9997759343654226
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 6,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 8.407538693042095,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_06_rotation_and_seed_effects.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9980267418331734
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 7,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 16.8157704316018,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_07_six_O04_to_O03_error_cases.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9991688211143319
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 8,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 13.716549713454425,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_08_nonoracle_baseline_comparison.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9993661277718275
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 9,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 13.810197530568972,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_09_oracle_upper_references.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9985700188434936
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 10,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 14.351784180605096,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_10_compute_budget_audit.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9985768428787521
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 11,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 13.260526769639785,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_11_teacher_technical_visual_evidence.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.999530563527851
+      },
+      {
+        "aspect_ratio": 1.6,
+        "page": 12,
+        "rendered_resolution": [
+          1600,
+          1000
+        ],
+        "rms_difference_after_scale": 13.433687823589867,
+        "source_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-COMMONSAFE4-001/review/human_scientific_review_pack_20260727/page_12_scientific_limits_and_next_step.png",
+        "status": "PASS",
+        "thumbnail_correlation": 0.9978953712094414
+      }
+    ],
+    "sha256": "f782724f47d542ff429f21cf1b418c37b3d9107dbd10495874a7a3c0593ec4b9"
+  },
+  "review_png_count": 12,
+  "schema_version": "canondressgs.subject00.commonsafe4.final_seal_summary.v1",
+  "source_authoritative_head": "0d3d7b53dfe21837a5de562c1e9712b6397c50e1",
+  "source_branch": "research/subject00-base60747-commonsafe4-method-matrix-20260727",
+  "status": "PASS",
+  "task_id": "AAAI27-SUBJECT00-COMMONSAFE4-FINAL-HEAD-SEMANTICS-SEAL-REVIEW-001",
+  "test_result": "PASS_45_OF_45",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_commonsafe4_final_head_seal_review"
+}
