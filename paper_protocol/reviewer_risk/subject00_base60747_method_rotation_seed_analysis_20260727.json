@@ -1,0 +1,62 @@
+{
+  "schema_version": "canondressgs.subject00.base60747_method_rotation_seed_analysis.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
+  "status": "NOT_COMPUTABLE_MATRIX_INCOMPLETE",
+  "rotations": {
+    "0": {
+      "train_slots": [0, 7],
+      "calibration_slot": 3,
+      "test_slot": 4,
+      "train_complete": true,
+      "calibration_complete": true,
+      "test_complete": false,
+      "test_counts": {"O01": 0, "O03": 0, "O04": 1},
+      "completed_training_seeds": [0],
+      "formal_test_complete_seeds": []
+    },
+    "1": {
+      "train_slots": [7, 3],
+      "calibration_slot": 4,
+      "test_slot": 0,
+      "train_complete": true,
+      "calibration_complete": false,
+      "test_complete": true,
+      "calibration_counts": {"O01": 0, "O03": 0, "O04": 1},
+      "completed_training_seeds": [],
+      "formal_test_complete_seeds": []
+    },
+    "2": {
+      "train_slots": [3, 4],
+      "calibration_slot": 0,
+      "test_slot": 7,
+      "train_complete": false,
+      "calibration_complete": true,
+      "test_complete": true,
+      "slot04_train_counts": {"O01": 0, "O03": 0, "O04": 1},
+      "completed_training_seeds": [],
+      "formal_test_complete_seeds": []
+    },
+    "3": {
+      "train_slots": [4, 0],
+      "calibration_slot": 7,
+      "test_slot": 3,
+      "train_complete": false,
+      "calibration_complete": true,
+      "test_complete": true,
+      "slot04_train_counts": {"O01": 0, "O03": 0, "O04": 1},
+      "completed_training_seeds": [],
+      "formal_test_complete_seeds": []
+    }
+  },
+  "seeds": {
+    "0": {"training_complete_rotation_count": 1, "formal_test_complete_rotation_count": 0},
+    "1": {"training_complete_rotation_count": 0, "formal_test_complete_rotation_count": 0},
+    "2": {"training_complete_rotation_count": 0, "formal_test_complete_rotation_count": 0}
+  },
+  "rotation_effect": null,
+  "seed_effect": null,
+  "reason": "Rotation and seed effects require all 12 formal test evaluations; reporting the sole training-fold result would be cherry-picking.",
+  "paper_eligible": false,
+  "scientific_pass": null,
+  "paper_final": false
+}

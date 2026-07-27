@@ -1,0 +1,128 @@
+{
+  "schema_version": "canondressgs.subject00.base60747_method_matrix_baseline_final_summary.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-METHOD-MATRIX-AND-FAIR-BASELINES-001",
+  "source_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+  "source_head": "ed44835f950fe369dd3eb64b5eaef8c6cc174175",
+  "new_branch": "research/subject00-base60747-method-matrix-fair-baselines-20260727",
+  "windows_worktree": "E:\\model_train\\canondressgs_subject00_base60747_method_matrix_fair_baselines",
+  "cloud_worktree": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_method_matrix_fair_baselines",
+  "base_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+  "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+  "formal_base_status": "USER_AUTHORIZED_PAUSED",
+  "formal_base_resume_authorized": false,
+  "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+  "training_target_count": 22,
+  "quarantine_count": 2,
+  "teacher_registry_path": "paper_protocol/reviewer_risk/subject00_base60747_three_garment_teacher_registry_20260727.json",
+  "o01_teacher_checkpoint_sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+  "o03_teacher_checkpoint_sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+  "o04_teacher_checkpoint_sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1",
+  "method_contract": "PURE_ENDPOINT",
+  "dual_support_enabled": false,
+  "method_implementation_path": "tools/paper/formal_batch_runtime.py",
+  "method_implementation_sha256": "75211429a628801882d211805a2334fc88c11f6654cfbc4b6cc47fa2906693a6",
+  "method_config_path": "configs/research/subject00_canondressgs_method_base60747_v1.json",
+  "method_config_sha256": "dbe0fd49402767124a42d047e51c25d3c3abe5baf621ee21d8e9298d2ce2c6a1",
+  "matrix_rotations": {
+    "0": {"train": [0, 7], "calibration": 3, "test": 4},
+    "1": {"train": [7, 3], "calibration": 4, "test": 0},
+    "2": {"train": [3, 4], "calibration": 0, "test": 7},
+    "3": {"train": [4, 0], "calibration": 7, "test": 3}
+  },
+  "matrix_seeds": [0, 1, 2],
+  "matrix_expected_run_count": 12,
+  "matrix_completed_run_count_before": 1,
+  "matrix_pending_run_count_before": 11,
+  "validated_completed_run_ids": [],
+  "validated_training_authentic_run_ids": ["METHOD-R0-S0"],
+  "executed_new_run_ids": [],
+  "matrix_completed_run_count_after": 1,
+  "matrix_formal_valid_run_count_after": 0,
+  "matrix_total_optimizer_steps": {
+    "actual": 300,
+    "required": 3600,
+    "status": "NOT_ACHIEVED"
+  },
+  "per_run_optimizer_steps": {
+    "METHOD-R0-S0": 300,
+    "remaining_11": 0
+  },
+  "per_run_checkpoint_status": {
+    "METHOD-R0-S0": "PASS_6_OF_6",
+    "remaining_11": "BLOCKED_NOT_RUN"
+  },
+  "per_run_loss_initial_final": {
+    "METHOD-R0-S0": [0.4773719310760498, 0.019882379099726677],
+    "remaining_11": null
+  },
+  "per_run_endpoint_results": {
+    "METHOD-R0-S0_training_folds": "6_OF_6_CORRECT",
+    "METHOD-R0-S0_formal_test_fold": null,
+    "remaining_11": null
+  },
+  "matrix_endpoint_top1": null,
+  "matrix_mean_std": null,
+  "rotation_effect": null,
+  "seed_effect": null,
+  "nan_inf_status": "NONE_IN_COMPLETED_RUN_NO_NEW_RUNS",
+  "oom_status": "NONE_IN_COMPLETED_RUN_NO_NEW_RUNS",
+  "quarantine_optimizer_usage_count": 0,
+  "method_wall_time": {
+    "METHOD-R0-S0_seconds_by_output_file_mtime": 46.43093943595886,
+    "new_runs_seconds": 0.0
+  },
+  "method_peak_vram": {
+    "METHOD-R0-S0_controller_bytes": 18142208,
+    "new_runs": null
+  },
+  "fair_baseline_contract_status": "UNIQUE_SET_RECOVERED_EXECUTION_BLOCKED",
+  "fair_baseline_names": [
+    "Reference Classifier Lookup",
+    "Nearest-Centroid Lookup",
+    "Outfit-ID Oracle",
+    "Teacher Endpoint"
+  ],
+  "fair_baseline_run_count": 0,
+  "fair_baseline_optimizer_steps": 0,
+  "fair_baseline_results": null,
+  "compute_budget_fairness_status": "NOT_EVALUABLE_EXECUTION_BLOCKED",
+  "method_baseline_comparison_path": "paper_protocol/reviewer_risk/subject00_base60747_method_baseline_comparison_20260727.json",
+  "human_visual_decision": null,
+  "scientific_pass": null,
+  "paper_eligible": false,
+  "base_checkpoint_mutations": 0,
+  "o01_teacher_checkpoint_mutations": 0,
+  "o03_teacher_checkpoint_mutations": 0,
+  "o04_teacher_checkpoint_mutations": 0,
+  "formal_target_mutations": 0,
+  "raw_mutations": 0,
+  "mask_mutations": 0,
+  "camera_record_mutations": 0,
+  "completed_rotation0_seed0_mutations": 0,
+  "paper_modifications": 0,
+  "test_result": "PASS_BLOCKER_DETECTED_NO_UNAUTHORIZED_EXECUTION",
+  "commit_head": "PENDING_ARTIFACT_COMMIT",
+  "final_reporting_head": "RECORDED_BY_GIT_COMMIT_CONTAINING_FINAL_SYNC_UPDATE",
+  "origin_sync_status": "PENDING_FINAL_PUSH",
+  "cloud_git_sync_status": "PENDING_FINAL_PUSH",
+  "worktree_clean_status": "PENDING_ARTIFACT_COMMIT",
+  "paper_final": false,
+  "blocking_evidence": {
+    "slot04_counts": {"O01": 0, "O03": 0, "O04": 1},
+    "rotation0_test_incomplete": true,
+    "rotation1_calibration_incomplete": true,
+    "rotation2_train_incomplete": true,
+    "rotation3_train_incomplete": true,
+    "completed_run_formal_test_evaluation_missing": true,
+    "forbidden_resolutions": [
+      "use quarantine records",
+      "impute missing garment records",
+      "move folds",
+      "change denominators",
+      "change garment-balanced batch",
+      "change rotation set"
+    ]
+  },
+  "final_classification": "SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAIL",
+  "next_task": "USER_REVIEW_SUBJECT00_BASE60747_METHOD_MATRIX_ENGINEERING_FAILURE"
+}
