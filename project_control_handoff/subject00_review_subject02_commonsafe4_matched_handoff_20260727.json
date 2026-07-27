@@ -1,0 +1,25 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00_subject02.matched_handoff.v1",
+  "status": "SUBJECT00_REVIEW_FROZEN_SUBJECT02_MATCHED_BLOCKED_BY_ASSET_CONTRACT",
+  "git_content_commit": "PENDING_FIRST_CONTENT_COMMIT",
+  "subject00_review_frozen": true,
+  "subject02_optimizer_started": false,
+  "subject02_method_output_created": false,
+  "subject02_baseline_output_created": false,
+  "blocker": "Missing authoritative slot00/03/06/07-to-Subject02 condition/camera binding and matched runner/config binding.",
+  "required_resolution": [
+    "Freeze exact slot-to-condition and camera-record mapping.",
+    "Resolve slot06 back-right versus Subject02 right semantics.",
+    "Bind exact runner/config source without importing Subject00 controller state.",
+    "Reauthorize attempt_001 while both reserved output roots remain absent."
+  ],
+  "next_task": "USER_FREEZE_SUBJECT02_COMMONSAFE4_MATCHED_ASSET_CONTRACT_AND_REAUTHORIZE_EXECUTION",
+  "next_task_executed": false
+}

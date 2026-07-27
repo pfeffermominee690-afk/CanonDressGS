@@ -1,0 +1,51 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00.commonsafe4.mixed_negative.v1",
+  "status": "FROZEN_EXPERIMENTALLY_VALID_MIXED_NEGATIVE_RESULT",
+  "classification": "MIXED_NEGATIVE_ON_SECOND_IDENTITY",
+  "method": {
+    "correct": 30,
+    "total": 36,
+    "top1": 0.8333333333333334
+  },
+  "non_oracle_baselines": {
+    "Reference Classifier Lookup": {
+      "correct": 31,
+      "total": 36,
+      "top1": 0.8611111111111112
+    },
+    "Nearest-Centroid Lookup": {
+      "correct": 35,
+      "total": 36,
+      "top1": 0.9722222222222222
+    }
+  },
+  "errors": {
+    "count": 6,
+    "pattern": "O04_TO_O03_ONLY",
+    "tie_break_error_count": 0,
+    "score_margin": {
+      "minimum": 1.011,
+      "maximum": 2.807,
+      "mean_approx": 1.7935
+    },
+    "prohibited_descriptions": [
+      "random noise",
+      "tie",
+      "tie-break error",
+      "single anomalous seed",
+      "single anomalous camera"
+    ]
+  },
+  "claim": {
+    "primary_positive_claim_supported": false,
+    "outperforms_reference_classifier": false,
+    "outperforms_nearest_centroid": false
+  }
+}

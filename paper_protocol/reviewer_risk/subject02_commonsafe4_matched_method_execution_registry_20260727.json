@@ -1,0 +1,133 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject02.commonsafe4.method_execution.v1",
+  "status": "BLOCKED_PREOPTIMIZER_ASSET_CONTRACT_AMBIGUITY",
+  "contract_path": "paper_protocol/reviewer_risk/subject02_commonsafe4_matched_protocol_execution_contract_20260727.json",
+  "planned": {
+    "method": "CanonDressGS-Endpoint",
+    "method_contract": "PURE_ENDPOINT",
+    "dual_support_enabled": false,
+    "anchors": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "rotations": [
+      {
+        "rotation": "R0",
+        "train": [
+          "slot00",
+          "slot07"
+        ],
+        "calibration": "slot03",
+        "test": "slot06"
+      },
+      {
+        "rotation": "R1",
+        "train": [
+          "slot07",
+          "slot03"
+        ],
+        "calibration": "slot06",
+        "test": "slot00"
+      },
+      {
+        "rotation": "R2",
+        "train": [
+          "slot03",
+          "slot06"
+        ],
+        "calibration": "slot00",
+        "test": "slot07"
+      },
+      {
+        "rotation": "R3",
+        "train": [
+          "slot06",
+          "slot00"
+        ],
+        "calibration": "slot07",
+        "test": "slot03"
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "run_count": 12,
+    "optimizer_steps_per_run": 300,
+    "total_optimizer_steps": 3600,
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "checkpoint_count": 72,
+    "records_per_run": {
+      "train": 6,
+      "calibration": 3,
+      "test": 3
+    },
+    "formal_test_denominator": 3
+  },
+  "actual": {
+    "run_ids": [],
+    "run_count": 0,
+    "optimizer_creations": 0,
+    "optimizer_steps": 0,
+    "checkpoint_count": 0,
+    "formal_test_count": 0,
+    "dual_support_call_count": 0,
+    "nan_count": 0,
+    "inf_count": 0,
+    "oom_count": 0
+  },
+  "blocker": {
+    "slot_to_subject02_condition_camera_binding": {
+      "required_slots": [
+        "slot00",
+        "slot07",
+        "slot03",
+        "slot06"
+      ],
+      "explicit_binding_rows_found": 0,
+      "subject02_slot_labeled_target_records_found": 0,
+      "subject02_available_views": [
+        {
+          "condition_id": "cond_000000",
+          "view": "front"
+        },
+        {
+          "condition_id": "cond_000318",
+          "view": "back"
+        },
+        {
+          "condition_id": "cond_000017",
+          "view": "left"
+        },
+        {
+          "condition_id": "cond_000347",
+          "view": "right"
+        }
+      ],
+      "conflict": "The matched contract records Subject00 slot06 as cam09/back-right, while the passed Subject02 registry offers cond_000347/right and contains no authority equating the two."
+    },
+    "matched_runner_and_config_in_new_source_lineage": {
+      "status": "NOT_PRESENT",
+      "historical_runner_recoverable_from_git": true,
+      "historical_runner_directly_authorized_for_new_slot_contract": false,
+      "reason": "The historical Pure Endpoint runner consumes condition IDs and is not an ancestor/present implementation of the new matched slot contract. Porting it requires a new binding decision."
+    }
+  }
+}

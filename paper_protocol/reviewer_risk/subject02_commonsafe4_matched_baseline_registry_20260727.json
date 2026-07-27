@@ -1,0 +1,92 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject02.commonsafe4.baseline_registry.v1",
+  "status": "BLOCKED_NOT_EXECUTED",
+  "shared_contract": {
+    "anchors": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "rotations": [
+      {
+        "rotation": "R0",
+        "train": [
+          "slot00",
+          "slot07"
+        ],
+        "calibration": "slot03",
+        "test": "slot06"
+      },
+      {
+        "rotation": "R1",
+        "train": [
+          "slot07",
+          "slot03"
+        ],
+        "calibration": "slot06",
+        "test": "slot00"
+      },
+      {
+        "rotation": "R2",
+        "train": [
+          "slot03",
+          "slot06"
+        ],
+        "calibration": "slot00",
+        "test": "slot07"
+      },
+      {
+        "rotation": "R3",
+        "train": [
+          "slot06",
+          "slot00"
+        ],
+        "calibration": "slot07",
+        "test": "slot03"
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "records_per_cell": {
+      "train": 6,
+      "calibration": 3,
+      "test": 3
+    },
+    "formal_test_denominator": 3,
+    "same_evaluator_required": true,
+    "same_endpoint_candidates_required": true
+  },
+  "methods": [
+    {
+      "name": "Reference Classifier Lookup",
+      "class": "NON_ORACLE_COMPARISON_BASELINE"
+    },
+    {
+      "name": "Nearest-Centroid Lookup",
+      "class": "NON_ORACLE_COMPARISON_BASELINE"
+    },
+    {
+      "name": "Outfit-ID Oracle",
+      "class": "ORACLE_UPPER_REFERENCE"
+    },
+    {
+      "name": "Teacher Endpoint",
+      "class": "ORACLE_UPPER_REFERENCE"
+    }
+  ],
+  "planned_cell_count": 48,
+  "actual_cell_count": 0,
+  "optimizer_steps": 0,
+  "blocker": "SUBJECT02_SLOT_CAMERA_BINDING_NOT_UNIQUELY_RECOVERED"
+}

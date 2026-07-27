@@ -1,0 +1,29 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00.commonsafe4.claim_boundary.v1",
+  "status": "FROZEN",
+  "authorized_claims": [
+    "The Subject00 CommonSafe4 execution is valid evidence.",
+    "The Subject00 learned method obtains 30/36 endpoint top-1.",
+    "The result is mixed/negative on the second identity.",
+    "All six method errors are O04-to-O03 with non-tie margins.",
+    "Reference Classifier and Nearest-Centroid are non-oracle comparisons.",
+    "Outfit-ID Oracle and Teacher Endpoint are upper references."
+  ],
+  "prohibited_claims": [
+    "The learned method outperforms Reference Classifier on Subject00.",
+    "The learned method outperforms Nearest-Centroid on Subject00.",
+    "The learned controller has a general advantage across identities.",
+    "Subject00 and Subject02 have been directly matched numerically.",
+    "The Teacher endpoints have passed full multi-view human review.",
+    "All five method families have equal optimizer budgets."
+  ],
+  "direct_cross_identity_numeric_comparison_authorized": false,
+  "reason": "Subject02 matched execution was blocked before optimization."
+}

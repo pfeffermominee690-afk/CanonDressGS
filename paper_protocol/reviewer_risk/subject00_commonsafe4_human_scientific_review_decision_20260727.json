@@ -1,0 +1,42 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00.commonsafe4.human_review.v1",
+  "status": "FROZEN",
+  "review_pdf": {
+    "bytes": 15203921,
+    "page_count": 12,
+    "sha256": "f782724f47d542ff429f21cf1b418c37b3d9107dbd10495874a7a3c0593ec4b9",
+    "independent_poppler_render_count": 12,
+    "independent_render_status": "PASS"
+  },
+  "provenance_seal": {
+    "path": "paper_protocol/reviewer_risk/subject00_commonsafe4_method_matrix_baseline_posthoc_provenance_seal_20260727.json",
+    "sha256": "c7321b4e4ada94ddf9062ddcacd36c29794647797dd9dd3bc8761fd87e51c59b",
+    "decision": "PASS"
+  },
+  "decisions": {
+    "SUBJECT00_PROTOCOL_DECISION": "PASS_WITH_DISCLOSED_COMMONSAFE4_SUBSTITUTION",
+    "SUBJECT00_MATRIX_PROVENANCE_DECISION": "PASS",
+    "SUBJECT00_REPLACEMENT_DECISION": "PASS_PRETRAINING_OUTCOME_INDEPENDENT",
+    "SUBJECT00_SCIENTIFIC_EVIDENCE_VALID": true,
+    "SUBJECT00_METHOD_RESULT_CLASS": "MIXED_NEGATIVE_ON_SECOND_IDENTITY",
+    "SUBJECT00_PRIMARY_POSITIVE_CLAIM_SUPPORTED": false,
+    "SUBJECT00_METHOD_OUTPERFORMS_REFERENCE_CLASSIFIER": false,
+    "SUBJECT00_METHOD_OUTPERFORMS_NEAREST_CENTROID": false,
+    "SUBJECT00_DIRECT_CROSS_IDENTITY_COMPARISON_AUTHORIZED": false,
+    "SUBJECT00_PAPER_ELIGIBLE": false
+  },
+  "baseline_fairness": {
+    "decision": "PASS_WITH_DIFFERENTIAL_COMPUTE_DISCLOSURE",
+    "Reference Classifier Lookup": "NON_ORACLE_COMPARISON_BASELINE",
+    "Nearest-Centroid Lookup": "NON_ORACLE_COMPARISON_BASELINE",
+    "Outfit-ID Oracle": "ORACLE_UPPER_REFERENCE",
+    "Teacher Endpoint": "ORACLE_UPPER_REFERENCE"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00.teacher_visual_limitation.v1",
+  "status": "FROZEN",
+  "teachers": {
+    "O01": {
+      "technical_status": "TECHNICAL_PASS",
+      "shown_view_decision": "VISUALLY_RECOGNIZABLE_WITH_BOUNDARY_ARTIFACTS",
+      "human_pass": false,
+      "human_fail": false
+    },
+    "O03": {
+      "technical_status": "TECHNICAL_PASS",
+      "shown_view_decision": "VISUALLY_RECOGNIZABLE_WITH_BOUNDARY_ARTIFACTS",
+      "human_pass": false,
+      "human_fail": false
+    },
+    "O04": {
+      "technical_status": "TECHNICAL_PASS",
+      "shown_view_decision": "VISUALLY_RECOGNIZABLE_WITH_BOUNDARY_ARTIFACTS",
+      "human_pass": false,
+      "human_fail": false
+    }
+  },
+  "TEACHER_HUMAN_VISUAL_DECISION": "INCONCLUSIVE_INSUFFICIENT_MULTI_VIEW_EVIDENCE",
+  "TEACHER_HUMAN_PASS": false,
+  "TEACHER_HUMAN_FAIL": false,
+  "TEACHER_REVIEW_STATUS": "PENDING_DEDICATED_MULTI_VIEW_REVIEW",
+  "limitations": [
+    "The review pack shows only one slot06 Teacher view.",
+    "O03 and O04 both have dark upper-body appearance.",
+    "O03 and O04 endpoint silhouettes are close.",
+    "Head/shoulder and hand/arm boundary noise is visible.",
+    "Front identity, hands, feet, and all training views were not shown."
+  ]
+}

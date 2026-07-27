@@ -1,0 +1,202 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00_subject02.matched_tests.v1",
+  "status": "PASS_EXPECTED_BLOCKER_PATH",
+  "result": "PASS_BLOCKER_CLASSIFICATION_26_PASS_9_NOT_RUN_1_BLOCKER",
+  "blocking_gate": {
+    "name": "Subject02 slot-to-condition/camera binding unique",
+    "status": "BLOCKED",
+    "expected_action": "DO_NOT_START_OPTIMIZER"
+  },
+  "counts": {
+    "pass": 26,
+    "not_run": 9,
+    "blocker": 1
+  },
+  "tests": [
+    {
+      "test": 1,
+      "name": "Subject00 source branch/head exact",
+      "status": "PASS"
+    },
+    {
+      "test": 2,
+      "name": "PDF bytes/SHA/page count exact and independently rendered",
+      "status": "PASS"
+    },
+    {
+      "test": 3,
+      "name": "Subject00 review decisions frozen",
+      "status": "PASS"
+    },
+    {
+      "test": 4,
+      "name": "Subject00 mixed-negative result frozen",
+      "status": "PASS"
+    },
+    {
+      "test": 5,
+      "name": "Teacher visual decision inconclusive",
+      "status": "PASS"
+    },
+    {
+      "test": 6,
+      "name": "Subject00 method result 30/36",
+      "status": "PASS"
+    },
+    {
+      "test": 7,
+      "name": "Reference Classifier 31/36",
+      "status": "PASS"
+    },
+    {
+      "test": 8,
+      "name": "Nearest-Centroid 35/36",
+      "status": "PASS"
+    },
+    {
+      "test": 9,
+      "name": "Errors O04_TO_O03_ONLY",
+      "status": "PASS"
+    },
+    {
+      "test": 10,
+      "name": "Error margins non-tie",
+      "status": "PASS"
+    },
+    {
+      "test": 11,
+      "name": "Subject02 matched symbolic contract exact",
+      "status": "PASS"
+    },
+    {
+      "test": 12,
+      "name": "Subject02 Base path/SHA uniquely bound",
+      "status": "PASS"
+    },
+    {
+      "test": 13,
+      "name": "Subject02 O01/O03/O04 Teacher paths/SHAs uniquely bound",
+      "status": "PASS"
+    },
+    {
+      "test": 14,
+      "name": "Subject02 target root/registry/SHA uniquely bound",
+      "status": "PASS"
+    },
+    {
+      "test": 15,
+      "name": "Exact symbolic anchors preserved; physical binding correctly blocked",
+      "status": "PASS"
+    },
+    {
+      "test": 16,
+      "name": "Exact symbolic rotations preserved",
+      "status": "PASS"
+    },
+    {
+      "test": 17,
+      "name": "Exact seeds preserved",
+      "status": "PASS"
+    },
+    {
+      "test": 18,
+      "name": "Method run count",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 19,
+      "name": "Method total optimizer steps",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 20,
+      "name": "Method checkpoint count",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 21,
+      "name": "Formal tests",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 22,
+      "name": "Dual-Support call count remains zero",
+      "status": "PASS"
+    },
+    {
+      "test": 23,
+      "name": "No NaN/Inf/OOM event because execution never started",
+      "status": "PASS"
+    },
+    {
+      "test": 24,
+      "name": "Baseline cells",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 25,
+      "name": "Oracle versus non-oracle classification frozen",
+      "status": "PASS"
+    },
+    {
+      "test": 26,
+      "name": "Aggregate no-cherry-pick result",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 27,
+      "name": "Matched cross-identity numeric comparison",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 28,
+      "name": "Protocol-effect decomposition",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 29,
+      "name": "Identity-effect decomposition",
+      "status": "NOT_RUN_DUE_TO_PREOPTIMIZER_BLOCKER"
+    },
+    {
+      "test": 30,
+      "name": "Claim recommendation generated without new positive claim",
+      "status": "PASS"
+    },
+    {
+      "test": 31,
+      "name": "Subject00 immutable inputs and outputs untouched",
+      "status": "PASS"
+    },
+    {
+      "test": 32,
+      "name": "Subject02 existing mainline untouched",
+      "status": "PASS"
+    },
+    {
+      "test": 33,
+      "name": "Paper modifications zero",
+      "status": "PASS"
+    },
+    {
+      "test": 34,
+      "name": "Final blocker classification exact",
+      "status": "PASS"
+    },
+    {
+      "test": 35,
+      "name": "Exactly one blocker-resolution NEXT_TASK",
+      "status": "PASS"
+    }
+  ],
+  "final_classification": "SUBJECT00_REVIEW_FROZEN_SUBJECT02_MATCHED_BLOCKED_BY_ASSET_CONTRACT",
+  "next_task": "USER_FREEZE_SUBJECT02_COMMONSAFE4_MATCHED_ASSET_CONTRACT_AND_REAUTHORIZE_EXECUTION",
+  "next_task_executed": false
+}

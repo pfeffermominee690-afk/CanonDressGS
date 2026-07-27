@@ -1,0 +1,220 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject02.commonsafe4.asset_audit.v1",
+  "status": "BLOCKED_PREOPTIMIZER_ASSET_CONTRACT_AMBIGUITY",
+  "matched_contract": {
+    "path": "paper_protocol/reviewer_risk/subject02_commonsafe4_matched_protocol_execution_contract_20260727.json",
+    "sha256": "4d8141dfbbc7e02e4bdb4ea9ce9e3fc72841800fa16de06632475cd78806abf9",
+    "protocol": "COMMONSAFE4_CARDINAL_PROXY_V1",
+    "anchors": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "rotations": [
+      {
+        "rotation": "R0",
+        "train": [
+          "slot00",
+          "slot07"
+        ],
+        "calibration": "slot03",
+        "test": "slot06"
+      },
+      {
+        "rotation": "R1",
+        "train": [
+          "slot07",
+          "slot03"
+        ],
+        "calibration": "slot06",
+        "test": "slot00"
+      },
+      {
+        "rotation": "R2",
+        "train": [
+          "slot03",
+          "slot06"
+        ],
+        "calibration": "slot00",
+        "test": "slot07"
+      },
+      {
+        "rotation": "R3",
+        "train": [
+          "slot06",
+          "slot00"
+        ],
+        "calibration": "slot07",
+        "test": "slot03"
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "historical_execution_authorized": false,
+    "current_task_execution_authority_received": true
+  },
+  "uniquely_recovered": {
+    "base": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt100000.pth",
+      "sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70"
+    },
+    "teachers": {
+      "O01": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+        "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+      },
+      "O03": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+        "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+      },
+      "O04": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+        "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+      }
+    },
+    "target": {
+      "root": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset",
+      "registry": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json",
+      "registry_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf"
+    },
+    "pure_endpoint_runtime_and_contracts": {
+      "sealed_output": "/root/autodl-tmp/canondressgs_work/outputs/PURE-ENDPOINT-CORE-METHOD-CROSSFIT-001/attempt_001",
+      "status": "SEALED",
+      "classification": "PURE_ENDPOINT_CORE_METHOD_SUPPORTED",
+      "execution_branch": "research/pure-endpoint-core-method-crossfit-amended-20260724",
+      "execution_head": "195fb887f2cac8a72920b499c44bb66700a97e25",
+      "final_reporting_head": "1fc5c2de97cb86858c7c070ad80f3dcef9095b5c",
+      "runner_at_execution_head": "tools/paper/run_pure_endpoint_core_method_crossfit_amended.py",
+      "runner_present_in_new_worktree": false,
+      "runtime_at_execution_head": "tools/paper/formal_batch_runtime.py",
+      "rotation_manifest_sha256": "5a86f57ef44a54fd234690c3a133b82a17d982aebad7f451833122eecb9825c9",
+      "model_contract_sha256": "abca0350821fbcc706003c45b9aec0357223168ac7c6ab2913b3ecde617d73d6",
+      "evaluator_contract_sha256": "0f86c6413a0db955d179de139f85b401bc80044f89222219afe5d0506c4aaedd",
+      "run_status_sha256": "6dcbbfc7e45c6b85ea7900999c4cb84ca44e3d8483f8ec8295d8f9e60abe1de8",
+      "condition_order": [
+        "cond_000000",
+        "cond_000318",
+        "cond_000017",
+        "cond_000347"
+      ],
+      "checkpoint_steps": [
+        0,
+        20,
+        50,
+        100,
+        200,
+        300
+      ],
+      "tie_break": "first garment in frozen candidate_order",
+      "endpoint_candidates_available": [
+        "O01",
+        "O03",
+        "O04"
+      ]
+    },
+    "available_subject02_condition_bindings": [
+      {
+        "condition_id": "cond_000000",
+        "view": "front"
+      },
+      {
+        "condition_id": "cond_000318",
+        "view": "back"
+      },
+      {
+        "condition_id": "cond_000017",
+        "view": "left"
+      },
+      {
+        "condition_id": "cond_000347",
+        "view": "right"
+      }
+    ],
+    "optimizer_steps_per_run": 300,
+    "checkpoint_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      300
+    ],
+    "tie_break": "first garment in frozen candidate_order",
+    "endpoint_candidates": [
+      "O01",
+      "O03",
+      "O04"
+    ]
+  },
+  "not_uniquely_recovered": {
+    "slot_to_subject02_condition_camera_binding": {
+      "required_slots": [
+        "slot00",
+        "slot07",
+        "slot03",
+        "slot06"
+      ],
+      "explicit_binding_rows_found": 0,
+      "subject02_slot_labeled_target_records_found": 0,
+      "subject02_available_views": [
+        {
+          "condition_id": "cond_000000",
+          "view": "front"
+        },
+        {
+          "condition_id": "cond_000318",
+          "view": "back"
+        },
+        {
+          "condition_id": "cond_000017",
+          "view": "left"
+        },
+        {
+          "condition_id": "cond_000347",
+          "view": "right"
+        }
+      ],
+      "conflict": "The matched contract records Subject00 slot06 as cam09/back-right, while the passed Subject02 registry offers cond_000347/right and contains no authority equating the two."
+    },
+    "matched_runner_and_config_in_new_source_lineage": {
+      "status": "NOT_PRESENT",
+      "historical_runner_recoverable_from_git": true,
+      "historical_runner_directly_authorized_for_new_slot_contract": false,
+      "reason": "The historical Pure Endpoint runner consumes condition IDs and is not an ancestor/present implementation of the new matched slot contract. Porting it requires a new binding decision."
+    }
+  },
+  "forbidden_inference_not_taken": "No positional/order-based mapping from [slot00,slot07,slot03,slot06] to [front,back,left,right] was invented.",
+  "output_preflight": {
+    "method_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT02-CANONDRESSGS-METHOD-COMMONSAFE4-MATCHED-001",
+    "method_root_absent": true,
+    "baseline_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT02-COMMONSAFE4-MATCHED-BASELINES-001",
+    "baseline_root_absent": true,
+    "active_optimizer_process_count_before": 0,
+    "active_optimizer_process_count_after": 0,
+    "gpu_preflight": "NVIDIA GeForce RTX 4090, 0 %, 0 MiB"
+  },
+  "subject02_existing_mainline_immutability": {
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003",
+    "status": "COMPLETE",
+    "file_count": 2869,
+    "bytes": 1140086291,
+    "metadata_fingerprint_before": "daa61f74e9021ad29408626e6a8afba89ee485dc386eb224fd81c4859bc36d60",
+    "metadata_fingerprint_after": "daa61f74e9021ad29408626e6a8afba89ee485dc386eb224fd81c4859bc36d60",
+    "mutation_count": 0
+  },
+  "decision": "DO_NOT_START_OPTIMIZER",
+  "optimizer_creations": 0,
+  "optimizer_steps": 0,
+  "new_output_roots_created": 0
+}

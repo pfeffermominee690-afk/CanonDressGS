@@ -1,0 +1,126 @@
+{
+  "task_id": "AAAI27-SUBJECT00-REVIEW-FREEZE-AND-SUBJECT02-COMMONSAFE4-MATCHED-001",
+  "source_branch": "research/subject00-commonsafe4-final-head-seal-review-20260727",
+  "source_head": "245977f029b4023798ba55b4f78020e12cdb976e",
+  "new_branch": "research/subject00-review-freeze-subject02-commonsafe4-matched-20260727",
+  "paper_eligible": false,
+  "paper_final": false,
+  "paper_modifications": 0,
+  "schema_version": "canondressgs.subject00_subject02.matched_summary.v1",
+  "status": "SEALED_BLOCKER",
+  "git_content_commit": "PENDING_FIRST_CONTENT_COMMIT",
+  "reporting_head_policy": "BRANCH_HEAD_AFTER_CONTENT_BINDING_COMMIT",
+  "review_pdf_sha256": "f782724f47d542ff429f21cf1b418c37b3d9107dbd10495874a7a3c0593ec4b9",
+  "subject00": {
+    "protocol_decision": "PASS_WITH_DISCLOSED_COMMONSAFE4_SUBSTITUTION",
+    "method_result_class": "MIXED_NEGATIVE_ON_SECOND_IDENTITY",
+    "primary_positive_claim_supported": false,
+    "teacher_human_visual_decision": "INCONCLUSIVE_INSUFFICIENT_MULTI_VIEW_EVIDENCE",
+    "method_top1": "30/36",
+    "reference_classifier_top1": "31/36",
+    "nearest_centroid_top1": "35/36",
+    "error_pattern": "O04_TO_O03_ONLY",
+    "error_margin_range": [
+      1.011,
+      2.807
+    ]
+  },
+  "subject02": {
+    "base": {
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/subject02_formal_800k/chkpnt100000.pth",
+      "sha256": "abbf67b59eadf2cba2dea69dbeec598f9177da45b8ddc74ccbe8108acf9ddf70"
+    },
+    "teachers": {
+      "O01": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-REPRESENTATION-TRIAGE-001/attempt_002/rung_2_shared_same_support/O01/checkpoints/step_001200.pth",
+        "sha256": "af730d138697ab9c7a29f17603303ae41dfa36047b8cee59e2ee89328655ce56"
+      },
+      "O03": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O03/checkpoints/step_001200.pth",
+        "sha256": "16cb235d784e17f4ebb3928e020ceb0be050b5cf80740e56ec72bcbf11d37d93"
+      },
+      "O04": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-MULTI-OUTFIT-EXPLICIT-BASIS-001/attempt_003/stage_a_teacher_bank/O04/checkpoints/step_001200.pth",
+        "sha256": "b39c8d4940325e371cd6db55551c4830b19ab057106c2b9e06df796e8bacd9c3"
+      }
+    },
+    "target": {
+      "root": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset",
+      "registry": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-AAAI27-DATA-CAPACITY-GATE-001/attempt_003/dataset/aaai_gate_28_manifest.json",
+      "registry_sha256": "49bee929edc236af8f37d66be50eb7c44f4011d49e435af903c0e15918a83bbf"
+    },
+    "matched_anchors": [
+      "slot00",
+      "slot07",
+      "slot03",
+      "slot06"
+    ],
+    "matched_rotations": [
+      {
+        "rotation": "R0",
+        "train": [
+          "slot00",
+          "slot07"
+        ],
+        "calibration": "slot03",
+        "test": "slot06"
+      },
+      {
+        "rotation": "R1",
+        "train": [
+          "slot07",
+          "slot03"
+        ],
+        "calibration": "slot06",
+        "test": "slot00"
+      },
+      {
+        "rotation": "R2",
+        "train": [
+          "slot03",
+          "slot06"
+        ],
+        "calibration": "slot00",
+        "test": "slot07"
+      },
+      {
+        "rotation": "R3",
+        "train": [
+          "slot06",
+          "slot00"
+        ],
+        "calibration": "slot07",
+        "test": "slot03"
+      }
+    ],
+    "matched_seeds": [
+      0,
+      1,
+      2
+    ],
+    "method_run_count": 0,
+    "method_optimizer_steps": 0,
+    "method_checkpoint_count": 0,
+    "baseline_cell_count": 0,
+    "planned_method_run_count": 12,
+    "planned_method_optimizer_steps": 3600,
+    "planned_method_checkpoint_count": 72,
+    "planned_baseline_cell_count": 48,
+    "method_top1": null,
+    "reference_classifier_top1": null,
+    "nearest_centroid_top1": null,
+    "oracle_results": null
+  },
+  "mutations": {
+    "subject00": 0,
+    "subject02_existing_mainline": 0,
+    "subject02_base": 0,
+    "subject02_teachers": 0,
+    "subject02_target": 0,
+    "paper": 0
+  },
+  "test_result": "PASS_BLOCKER_CLASSIFICATION_26_PASS_9_NOT_RUN_1_BLOCKER",
+  "final_classification": "SUBJECT00_REVIEW_FROZEN_SUBJECT02_MATCHED_BLOCKED_BY_ASSET_CONTRACT",
+  "next_task": "USER_FREEZE_SUBJECT02_COMMONSAFE4_MATCHED_ASSET_CONTRACT_AND_REAUTHORIZE_EXECUTION",
+  "next_task_executed": false
+}
