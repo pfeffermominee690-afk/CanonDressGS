@@ -464,7 +464,11 @@ def novel_render_checks(
 
 
 def preflight(
-    config: Mapping[str, Any], garment: str, *, recover_preoptimizer: bool = False
+    config: Mapping[str, Any],
+    garment: str,
+    *,
+    recover_preoptimizer: bool = False,
+    finalize_existing: bool = False,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[str, str], Path, Path]:
     git = git_state()
     gpu = require_idle_gpu()
@@ -478,21 +482,46 @@ def preflight(
         status = read_json(status_path) if status_path.is_file() else {}
         checkpoints = list((run_root / "checkpoints").glob("*.pth")) if (run_root / "checkpoints").is_dir() else []
         state_records = run_root / "training/state_records.jsonl"
-        if (
-            not recover_preoptimizer
-            or status.get("status") != "FAILED"
-            or checkpoints
-            or state_records.exists()
-        ):
+        checkpoint_steps = sorted(int(path.stem.split("_")[-1]) for path in checkpoints)
+        state_record_count = (
+            sum(1 for line in state_records.read_text(encoding="utf-8").splitlines() if line.strip())
+            if state_records.is_file()
+            else 0
+        )
+        preoptimizer_valid = (
+            recover_preoptimizer
+            and status.get("status") == "FAILED"
+            and not checkpoints
+            and not state_records.exists()
+        )
+        finalize_valid = (
+            finalize_existing
+            and status.get("status") == "FAILED"
+            and checkpoint_steps == list(CHECKPOINT_STEPS)
+            and state_record_count == 1200
+        )
+        if not preoptimizer_valid and not finalize_valid:
             raise FileExistsError(f"formal Teacher output root already exists: {output_root}")
-        recovery = {
-            "status": "AUTHORIZED_SAME_ATTEMPT_PREOPTIMIZER_RECOVERY",
-            "prior_status_sha256": sha256_file(status_path),
-            "prior_exception": status.get("exception"),
-            "prior_optimizer_steps": 0,
-            "prior_checkpoint_count": 0,
-            "scientific_run_count_consumed": 0,
-        }
+        if preoptimizer_valid:
+            recovery = {
+                "status": "AUTHORIZED_SAME_ATTEMPT_PREOPTIMIZER_RECOVERY",
+                "prior_status_sha256": sha256_file(status_path),
+                "prior_exception": status.get("exception"),
+                "prior_optimizer_steps": 0,
+                "prior_checkpoint_count": 0,
+                "scientific_run_count_consumed": 0,
+            }
+        else:
+            recovery = {
+                "status": "ZERO_OPTIMIZER_FINALIZE_EXISTING_STEP1200",
+                "prior_status_sha256": sha256_file(status_path),
+                "prior_exception": status.get("exception"),
+                "existing_optimizer_steps": 1200,
+                "existing_checkpoint_steps": checkpoint_steps,
+                "existing_state_record_count": state_record_count,
+                "additional_optimizer_steps_authorized": 0,
+                "scientific_run_count": 1,
+            }
     free = shutil.disk_usage(output_root.parent).free
     minimum = int(config["runtime"]["minimum_free_bytes"])
     if free < minimum:
@@ -522,16 +551,24 @@ def run(args: argparse.Namespace) -> int:
     if args.garment not in GARMENTS:
         raise RuntimeError("garment is outside the frozen three-garment contract")
     evidence, cpu_samples, index, asset_hashes, manifest_path, index_path = preflight(
-        config, args.garment, recover_preoptimizer=args.recover_preoptimizer
+        config,
+        args.garment,
+        recover_preoptimizer=args.recover_preoptimizer,
+        finalize_existing=args.finalize_existing,
     )
     if args.preflight_only:
         print(json.dumps(evidence, indent=2))
         return 0
     contract = config["garments"][args.garment]
     run_root = Path(contract["output_root"]) / config["runtime"]["attempt"]
-    if args.recover_preoptimizer:
+    if args.recover_preoptimizer or args.finalize_existing:
         prior_status = read_json(run_root / "RUN_STATUS.json")
-        atomic_json(run_root / "audits/preoptimizer_failure_recovery_01.json", prior_status)
+        recovery_name = (
+            "preoptimizer_failure_recovery_01.json"
+            if args.recover_preoptimizer
+            else "post_training_evaluation_failure_finalize_01.json"
+        )
+        atomic_json(run_root / "audits" / recovery_name, prior_status)
     else:
         run_root.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -593,55 +630,93 @@ def run(args: argparse.Namespace) -> int:
             "execution_head": evidence["git"]["head"],
             "formal_base_resume_authorized": False,
         }
-        checkpoints = [save_checkpoint(run_root, 0, field, optimizer, metadata)]
         gradient_seen = {name: 0 for name, value in field.named_parameters() if value.requires_grad}
         counts: Counter[str] = Counter()
         last_row: dict[str, Any] | None = None
         initial_loss: float | None = None
-        for step in range(1, 1201):
-            index_number = (step - 1) % len(samples)
-            sample = samples[index_number]
-            optimizer.zero_grad(set_to_none=True)
-            rgb, alpha = render_direct(base, states[index_number], field(base), background)
-            parts = loss_for_sample(rgb, alpha, sample, field, config["teacher"]["loss_weights"])
-            if not torch.isfinite(parts["total"]):
-                raise FloatingPointError(f"non-finite loss at optimizer step {step}")
-            parts["total"].backward()
+        if args.finalize_existing:
+            checkpoint_path = run_root / "checkpoints/step_001200.pth"
+            payload = torch.load(checkpoint_path, map_location=device, weights_only=False)
+            if (
+                int(payload.get("global_step", -1)) != 1200
+                or payload.get("task_id") != TASK_ID
+                or payload["metadata"]["base_checkpoint_sha256"] != config["base"]["checkpoint_sha256"]
+                or payload["metadata"]["target_manifest_sha256"] != evidence["manifest_sha256"]
+                or payload["metadata"]["target_index_sha256"] != evidence["index_sha256"]
+            ):
+                raise RuntimeError("existing step1200 checkpoint binding changed")
+            field.load_state_dict(payload["model"], strict=True)
+            optimizer.load_state_dict(payload["optimizer"])
+            records = [
+                json.loads(line)
+                for line in (run_root / "training/state_records.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            if len(records) != 1200 or int(records[-1]["step"]) != 1200:
+                raise RuntimeError("existing training state record count changed")
+            counts.update(row["condition_id"] for row in records)
+            initial_loss = float(records[0]["loss"]["total"])
+            last_row = records[-1]
+            checkpoints = [
+                read_json((run_root / "checkpoints" / f"step_{step:06d}.sidecar.json"))
+                for step in CHECKPOINT_STEPS
+            ]
             for name, parameter in field.named_parameters():
-                if parameter.grad is not None:
-                    if not torch.isfinite(parameter.grad).all():
-                        raise FloatingPointError(f"non-finite gradient at step {step}: {name}")
-                    if bool(torch.count_nonzero(parameter.grad)):
-                        gradient_seen[name] += 1
-            norm = torch.nn.utils.clip_grad_norm_(
-                field.parameters(), float(config["teacher"]["optimizer"]["gradient_clip_norm"])
-            )
-            if not torch.isfinite(norm):
-                raise FloatingPointError(f"non-finite gradient norm at optimizer step {step}")
-            optimizer.step()
-            counts[sample["condition_id"]] += 1
-            last_row = {
-                "step": step,
-                "condition_id": sample["condition_id"],
-                "garment": args.garment,
-                "view_denominator": len(samples),
-                "loss": {name: float(value.detach()) for name, value in parts.items()},
-                "gradient_norm": float(norm),
-                "loss_finite": True,
-                "gradient_finite": True,
-            }
-            if initial_loss is None:
-                initial_loss = last_row["loss"]["total"]
-            append_jsonl(run_root / "training/state_records.jsonl", last_row)
-            if step % 10 == 0 or step in CHECKPOINT_STEPS:
-                atomic_json(run_root / "RUN_STATUS.json", {
-                    "task_id": TASK_ID, "status": "RUNNING", "stage": "TRAINING",
-                    "garment": args.garment, "optimizer_steps": step, "current_step": step,
-                    "loss": last_row["loss"]["total"], "loss_finite": True,
-                    "gradient_finite": True, "paper_eligible": False,
-                })
-            if step in CHECKPOINT_STEPS:
-                checkpoints.append(save_checkpoint(run_root, step, field, optimizer, metadata))
+                state_step = optimizer.state.get(parameter, {}).get("step", 0)
+                gradient_seen[name] = int(state_step.item() if isinstance(state_step, torch.Tensor) else state_step)
+            atomic_json(run_root / "RUN_STATUS.json", {
+                "task_id": TASK_ID, "status": "RUNNING",
+                "stage": "ZERO_OPTIMIZER_FINALIZING_EXISTING_STEP1200",
+                "garment": args.garment, "optimizer_steps": 1200,
+                "additional_optimizer_steps": 0, "paper_eligible": False,
+            })
+            del payload
+        else:
+            checkpoints = [save_checkpoint(run_root, 0, field, optimizer, metadata)]
+            for step in range(1, 1201):
+                index_number = (step - 1) % len(samples)
+                sample = samples[index_number]
+                optimizer.zero_grad(set_to_none=True)
+                rgb, alpha = render_direct(base, states[index_number], field(base), background)
+                parts = loss_for_sample(rgb, alpha, sample, field, config["teacher"]["loss_weights"])
+                if not torch.isfinite(parts["total"]):
+                    raise FloatingPointError(f"non-finite loss at optimizer step {step}")
+                parts["total"].backward()
+                for name, parameter in field.named_parameters():
+                    if parameter.grad is not None:
+                        if not torch.isfinite(parameter.grad).all():
+                            raise FloatingPointError(f"non-finite gradient at step {step}: {name}")
+                        if bool(torch.count_nonzero(parameter.grad)):
+                            gradient_seen[name] += 1
+                norm = torch.nn.utils.clip_grad_norm_(
+                    field.parameters(), float(config["teacher"]["optimizer"]["gradient_clip_norm"])
+                )
+                if not torch.isfinite(norm):
+                    raise FloatingPointError(f"non-finite gradient norm at optimizer step {step}")
+                optimizer.step()
+                counts[sample["condition_id"]] += 1
+                last_row = {
+                    "step": step,
+                    "condition_id": sample["condition_id"],
+                    "garment": args.garment,
+                    "view_denominator": len(samples),
+                    "loss": {name: float(value.detach()) for name, value in parts.items()},
+                    "gradient_norm": float(norm),
+                    "loss_finite": True,
+                    "gradient_finite": True,
+                }
+                if initial_loss is None:
+                    initial_loss = last_row["loss"]["total"]
+                append_jsonl(run_root / "training/state_records.jsonl", last_row)
+                if step % 10 == 0 or step in CHECKPOINT_STEPS:
+                    atomic_json(run_root / "RUN_STATUS.json", {
+                        "task_id": TASK_ID, "status": "RUNNING", "stage": "TRAINING",
+                        "garment": args.garment, "optimizer_steps": step, "current_step": step,
+                        "loss": last_row["loss"]["total"], "loss_finite": True,
+                        "gradient_finite": True, "paper_eligible": False,
+                    })
+                if step in CHECKPOINT_STEPS:
+                    checkpoints.append(save_checkpoint(run_root, step, field, optimizer, metadata))
         if max(counts.values()) - min(counts.values()) > 1 or len(counts) != len(samples):
             raise RuntimeError(f"round-robin sampler is not balanced: {dict(counts)}")
         if args.garment == "O04" and set(counts.values()) != {150}:
@@ -666,6 +741,8 @@ def run(args: argparse.Namespace) -> int:
         with torch.no_grad():
             for sample, state in zip(samples, states, strict=True):
                 rgb, alpha = render_direct(base, state, field(base), background)
+                rgb = rgb.clamp(0, 1)
+                alpha = alpha.clamp(0, 1)
                 metric = evaluate_view(rgb, alpha, sample, lpips_metric)
                 rows.append({"condition_id": sample["condition_id"], **metric})
                 save_png(run_root / "review/target" / f"{sample['condition_id']}.png", sample["target_edit_rgb"])
@@ -755,6 +832,8 @@ def run(args: argparse.Namespace) -> int:
             "formal_base_resume_authorized": False,
             "restore_summary": restore,
             "formal_protocol_loaded": bool(protocol),
+            "zero_optimizer_finalize_existing": bool(args.finalize_existing),
+            "additional_optimizer_steps_during_finalize": 0,
         }
         atomic_json(run_root / "training/training_result.json", result)
         atomic_json(run_root / "audits/post_training_integrity.json", {
@@ -800,7 +879,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--garment", required=True, choices=GARMENTS)
     parser.add_argument("--preflight-only", action="store_true")
     parser.add_argument("--recover-preoptimizer", action="store_true")
-    return parser.parse_args()
+    parser.add_argument("--finalize-existing", action="store_true")
+    args = parser.parse_args()
+    if args.recover_preoptimizer and args.finalize_existing:
+        parser.error("recovery modes are mutually exclusive")
+    return args
 
 
 if __name__ == "__main__":
