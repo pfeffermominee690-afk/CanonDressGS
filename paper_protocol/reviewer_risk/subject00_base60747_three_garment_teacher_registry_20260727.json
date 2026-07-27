@@ -1,0 +1,232 @@
+{
+  "schema_version": "canondressgs.subject00.base60747_three_garment_teacher_registry.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+  "created_at": "2026-07-27T00:00:00Z",
+  "status": "TECHNICAL_PASS_HUMAN_REVIEW_PENDING",
+  "teacher_garment_count": 3,
+  "base": {
+    "selection": "SUBJECT00_ACCELERATED_FIXED_BASE60747_V1",
+    "class": "ACCELERATED_FIXED_BASE60747",
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "step": 60747,
+    "formal_base_status": "USER_AUTHORIZED_PAUSED",
+    "resume_authorized": false,
+    "mutations": 0,
+    "paper_disclosure_required": true
+  },
+  "formal_targets": {
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "manifest": "10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "training_record_count": 22,
+    "quarantine_count": 2,
+    "quarantine_exclusions": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ],
+    "target_mutations": 0,
+    "mask_mutations": 0
+  },
+  "shared_contract": {
+    "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+    "optimizer": "Adam",
+    "learning_rates": {
+      "geometry": 0.001,
+      "appearance": 0.002
+    },
+    "gradient_clip_norm": 1.0,
+    "scheduler": null,
+    "seed": 20260718,
+    "training_steps": 1200,
+    "checkpoint_steps": [
+      0,
+      300,
+      600,
+      900,
+      1200
+    ],
+    "run_count_per_garment": 1,
+    "garment_specific_tuning": false,
+    "best_checkpoint_selection": false
+  },
+  "garments": {
+    "O01": {
+      "garment": "O01",
+      "target_view_count": 7,
+      "excluded_request": "subject00_O01_slot04_remaining_attempt005_cand00",
+      "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+      "base_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "teacher_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+      "teacher_checkpoint_sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+      "optimizer": "Adam",
+      "learning_rates": {
+        "geometry": 0.001,
+        "appearance": 0.002
+      },
+      "seed": 20260718,
+      "steps": 1200,
+      "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+      "view_sample_counts": {
+        "subject00_O01_slot00_cand01": 172,
+        "subject00_O01_slot01_cand01": 172,
+        "subject00_O01_slot02_cand01": 172,
+        "subject00_O01_slot03_cand01": 171,
+        "subject00_O01_slot05_cand00": 171,
+        "subject00_O01_slot06_cand01": 171,
+        "subject00_O01_slot07_remaining_attempt005_cand00": 171
+      },
+      "loss": {
+        "initial": 2.8967480659484863,
+        "final": 1.0805312395095825
+      },
+      "evaluation_metrics": {
+        "garment_region_lpips": 0.02058419611837183,
+        "silhouette_iou": 0.7895648682774346,
+        "boundary_f": 0.2885722710615738,
+        "protected_region_lpips": 0.0008005069186245757,
+        "protected_region_rgb_mae": 0.03019288874098233,
+        "alpha_foreground_error": 0.012696960275726659,
+        "background_alpha_mean": 0.012785804058824266
+      },
+      "different_camera_finite_render": true,
+      "different_pose_finite_render": true,
+      "severe_artifact_flagged_view_count": 0,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "peak_vram_bytes": 5497830400,
+      "limitations": [
+        "One camera-quarantined slot04 record is excluded.",
+        "Human visual review is not yet complete.",
+        "Metric finalization clamped render RGB to [0,1] after the already completed step1200 checkpoint; no optimizer step was repeated."
+      ],
+      "technical_status": "TECHNICAL_PASS",
+      "human_status": null,
+      "scientific_pass": null,
+      "paper_eligible": false
+    },
+    "O03": {
+      "garment": "O03",
+      "target_view_count": 7,
+      "excluded_request": "subject00_O03_slot04_canary_attempt004_cand00",
+      "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+      "base_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "teacher_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+      "teacher_checkpoint_sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "formal_target_equivalence_status": "CLASS_D_SCIENTIFIC_FIELD_MISMATCH_CLEAN_FORMAL_RERUN_COMPLETED",
+      "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+      "optimizer": "Adam",
+      "learning_rates": {
+        "geometry": 0.001,
+        "appearance": 0.002
+      },
+      "seed": 20260718,
+      "steps": 1200,
+      "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+      "view_sample_counts": {
+        "subject00_O03_slot00_canary_attempt004_cand00": 172,
+        "subject00_O03_slot01_remaining_attempt005_cand00": 172,
+        "subject00_O03_slot02_cand00": 172,
+        "subject00_O03_slot03_cand01": 171,
+        "subject00_O03_slot05_canary_attempt004_cand00": 171,
+        "subject00_O03_slot06_remaining_attempt005_cand00": 171,
+        "subject00_O03_slot07_canary_attempt004_cand00": 171
+      },
+      "loss": {
+        "initial": 2.6884806156158447,
+        "final": 1.0583003759384155
+      },
+      "evaluation_metrics": {
+        "garment_region_lpips": 0.021320493891835213,
+        "silhouette_iou": 0.74600762267714,
+        "boundary_f": 0.19572158202101103,
+        "protected_region_lpips": 0.0016152301271046912,
+        "protected_region_rgb_mae": 0.03466429561376572,
+        "alpha_foreground_error": 0.015629791521600316,
+        "background_alpha_mean": 0.016052707630608763
+      },
+      "different_camera_finite_render": true,
+      "different_pose_finite_render": true,
+      "severe_artifact_flagged_view_count": 0,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "peak_vram_bytes": 5518020096,
+      "limitations": [
+        "One camera-quarantined slot04 record is excluded.",
+        "The prior provisional Camera-safe7 checkpoint was not reused because eight scientific supervision fields differed.",
+        "Human visual review is not yet complete."
+      ],
+      "technical_status": "TECHNICAL_PASS",
+      "human_status": null,
+      "scientific_pass": null,
+      "paper_eligible": false
+    },
+    "O04": {
+      "garment": "O04",
+      "target_view_count": 8,
+      "excluded_request": null,
+      "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+      "base_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+      "base_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "teacher_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+      "teacher_checkpoint_sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1",
+      "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+      "optimizer": "Adam",
+      "learning_rates": {
+        "geometry": 0.001,
+        "appearance": 0.002
+      },
+      "seed": 20260718,
+      "steps": 1200,
+      "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+      "view_sample_counts": {
+        "subject00_O04_slot00_cand01": 150,
+        "subject00_O04_slot01_cand01": 150,
+        "subject00_O04_slot02_cand00": 150,
+        "subject00_O04_slot03_cand01": 150,
+        "subject00_O04_slot04_cand01": 150,
+        "subject00_O04_slot05_remaining_attempt005_cand00": 150,
+        "subject00_O04_slot06_remaining_attempt005_cand00": 150,
+        "subject00_O04_slot07_cand01": 150
+      },
+      "loss": {
+        "initial": 2.7841711044311523,
+        "final": 1.6633203029632568
+      },
+      "evaluation_metrics": {
+        "garment_region_lpips": 0.022485350025817752,
+        "silhouette_iou": 0.7573006544415891,
+        "boundary_f": 0.22298032564362935,
+        "protected_region_lpips": 0.0014455274504143745,
+        "protected_region_rgb_mae": 0.034784031799063087,
+        "alpha_foreground_error": 0.014681520289741457,
+        "background_alpha_mean": 0.014884216478094459
+      },
+      "different_camera_finite_render": true,
+      "different_pose_finite_render": true,
+      "severe_artifact_flagged_view_count": 0,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "peak_vram_bytes": 5617306624,
+      "limitations": [
+        "Human visual review is not yet complete."
+      ],
+      "technical_status": "TECHNICAL_PASS",
+      "human_status": null,
+      "scientific_pass": null,
+      "paper_eligible": false
+    }
+  },
+  "status_summary": {
+    "O01_teacher_status": "TECHNICAL_PASS",
+    "O03_teacher_status": "TECHNICAL_PASS",
+    "O04_teacher_status": "TECHNICAL_PASS",
+    "human_visual_status": null,
+    "scientific_pass": null,
+    "paper_eligible": false
+  },
+  "paper_final": false
+}
