@@ -1,0 +1,76 @@
+{
+  "actual_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+  "actual_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+  "actual_writer": {
+    "command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_formal_teacher.py --garment O03 --recover-preoptimizer",
+    "currently_active": false,
+    "cwd": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_accelerated_method_launch",
+    "evidence": "PID/PPID/start/command were captured from ps during the blocked-task collision observation; run-root structured records independently bind task/branch/head/config",
+    "hostname": "autodl-container-ef19489c10-464381bb",
+    "parent_pid": 444267,
+    "pid": 444268,
+    "process_start": "2026-07-27T08:06:40+08:00",
+    "session_or_tmux": "NOT_RECOVERABLE_AFTER_PROCESS_EXIT",
+    "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+  },
+  "adoption_task": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001",
+  "base": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "step": 60747
+  },
+  "checkpoint_sha256": {
+    "0": "20c10d96446c229fb63bdd49a484b959d9eaabd4c8cb3b4ec732c7e2b789691d",
+    "1200": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+    "300": "d1fa93b84593278b21f09c02d775858cd767f824d598a06ea936fa2334dfd6d4",
+    "600": "e9b18ba88b95bc02d038fb3eb0fa74187909f0be8054d72affcb25ede2e70afd",
+    "900": "8f16adbe14cec9576f99b9b454c90870513edbdf0d471a041b9eeb88d3985cbe"
+  },
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "field_access_map_sha256": "acc21f80af9e9f13ea9b6a7ead55ed2eab304f6070bb6ec60902e74299ccc8c1",
+  "launch_command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_formal_teacher.py --garment O03 --recover-preoptimizer",
+  "loader": {
+    "path": "scene/full_dressable_dataset.py",
+    "sha256": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00"
+  },
+  "loss": {
+    "path": "scene/representation_capacity_oracle.py",
+    "sha256": "e4290d8b3e20fd188ca2782f7bbd3e7f9da2ae26834be3d8a32640567494a329"
+  },
+  "no_interleaving_evidence": {
+    "blocked_task_marker_count": 0,
+    "interleaving_status": "PASS_NO_CROSS_TASK_METADATA_LOG_OR_CHECKPOINT_INTERLEAVING",
+    "single_writer_status": "PASS_SINGLE_ACCELERATED_LAUNCH_WRITER_WITH_SAME_TASK_PREOPTIMIZER_RECOVERY"
+  },
+  "original_creation_task": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+  "sample_counts": {
+    "subject00_O03_slot00_canary_attempt004_cand00": 172,
+    "subject00_O03_slot01_remaining_attempt005_cand00": 172,
+    "subject00_O03_slot02_cand00": 172,
+    "subject00_O03_slot03_cand01": 171,
+    "subject00_O03_slot05_canary_attempt004_cand00": 171,
+    "subject00_O03_slot06_remaining_attempt005_cand00": 171,
+    "subject00_O03_slot07_canary_attempt004_cand00": 171
+  },
+  "schema_version": "canondressgs.subject00.o03.concurrent_formal_teacher.posthoc_provenance_seal.v1",
+  "target": {
+    "actual_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+    "actual_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+    "contract_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_provisional_base60747_records.json",
+    "contract_index_sha256": "b9b692cb62f314d99ba5bc6d8bba7f315909e49aa56f5c0db4f895b23aa7e616",
+    "denominator": 7,
+    "request_ids": [
+      "subject00_O03_slot00_canary_attempt004_cand00",
+      "subject00_O03_slot01_remaining_attempt005_cand00",
+      "subject00_O03_slot02_cand00",
+      "subject00_O03_slot03_cand01",
+      "subject00_O03_slot05_canary_attempt004_cand00",
+      "subject00_O03_slot06_remaining_attempt005_cand00",
+      "subject00_O03_slot07_canary_attempt004_cand00"
+    ],
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "semantic_index_alias_exact": true
+  },
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001",
+  "validity_status": "VALID_FORMAL_TARGET_TEACHER"
+}

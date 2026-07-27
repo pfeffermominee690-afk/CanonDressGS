@@ -1,0 +1,127 @@
+{
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "same_class_output_ownership_problem_found": false,
+  "schema_version": "canondressgs.subject00.o01_o04.lightweight_teacher_provenance.v1",
+  "status": "PASS_O01_AND_O04_VALID_FORMAL_TARGET_TEACHERS",
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001",
+  "teachers": {
+    "O01": {
+      "base_binding": "PASS_BASE60747",
+      "base_immutable": true,
+      "checkpoint_count": 5,
+      "checkpoint_parse_count": 5,
+      "final_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+      "final_checkpoint_sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "formal_target_binding": "PASS_MATERIALIZED_TARGET",
+      "formal_target_immutable": true,
+      "garment": "O01",
+      "loss_binding": "PASS_CAPACITY_ORACLE_LOSS_V1",
+      "loss_final": 1.0805312395095825,
+      "loss_initial": 2.8967480659484863,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "optimizer_steps": 1200,
+      "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001",
+      "preflight_git": {
+        "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+        "clean": true,
+        "head": "7825af37de511bd27a47e622a32ae00f350ef78a"
+      },
+      "quarantine_exclusions": [
+        "subject00_O01_slot04_remaining_attempt005_cand00"
+      ],
+      "quarantine_status": "PASS",
+      "sampler_balanced": true,
+      "single_writer": true,
+      "target_request_ids": [
+        "subject00_O01_slot00_cand01",
+        "subject00_O01_slot01_cand01",
+        "subject00_O01_slot02_cand01",
+        "subject00_O01_slot03_cand01",
+        "subject00_O01_slot05_cand00",
+        "subject00_O01_slot06_cand01",
+        "subject00_O01_slot07_remaining_attempt005_cand00"
+      ],
+      "target_view_count": 7,
+      "trainable_parameter_changed": {
+        "raw_log_scaling": true,
+        "raw_opacity": true,
+        "raw_rotvec": true,
+        "raw_sh0": true,
+        "raw_xyz": true
+      },
+      "validity": "VALID_FORMAL_TARGET_TEACHER",
+      "view_update_counts": {
+        "subject00_O01_slot00_cand01": 172,
+        "subject00_O01_slot01_cand01": 172,
+        "subject00_O01_slot02_cand01": 172,
+        "subject00_O01_slot03_cand01": 171,
+        "subject00_O01_slot05_cand00": 171,
+        "subject00_O01_slot06_cand01": 171,
+        "subject00_O01_slot07_remaining_attempt005_cand00": 171
+      },
+      "writer_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+      "writer_task": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    "O04": {
+      "base_binding": "PASS_BASE60747",
+      "base_immutable": true,
+      "checkpoint_count": 5,
+      "checkpoint_parse_count": 5,
+      "final_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+      "final_checkpoint_sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1",
+      "formal_target_binding": "PASS_MATERIALIZED_TARGET",
+      "formal_target_immutable": true,
+      "garment": "O04",
+      "loss_binding": "PASS_CAPACITY_ORACLE_LOSS_V1",
+      "loss_final": 1.6633203029632568,
+      "loss_initial": 2.7841711044311523,
+      "nan_inf_status": "NONE",
+      "oom_status": "NONE",
+      "optimizer_steps": 1200,
+      "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001",
+      "preflight_git": {
+        "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+        "clean": true,
+        "head": "7825af37de511bd27a47e622a32ae00f350ef78a"
+      },
+      "quarantine_exclusions": [],
+      "quarantine_status": "PASS",
+      "sampler_balanced": true,
+      "single_writer": true,
+      "target_request_ids": [
+        "subject00_O04_slot00_cand01",
+        "subject00_O04_slot01_cand01",
+        "subject00_O04_slot02_cand00",
+        "subject00_O04_slot03_cand01",
+        "subject00_O04_slot04_cand01",
+        "subject00_O04_slot05_remaining_attempt005_cand00",
+        "subject00_O04_slot06_remaining_attempt005_cand00",
+        "subject00_O04_slot07_cand01"
+      ],
+      "target_view_count": 8,
+      "trainable_parameter_changed": {
+        "raw_log_scaling": true,
+        "raw_opacity": true,
+        "raw_rotvec": true,
+        "raw_sh0": true,
+        "raw_xyz": true
+      },
+      "validity": "VALID_FORMAL_TARGET_TEACHER",
+      "view_update_counts": {
+        "subject00_O04_slot00_cand01": 150,
+        "subject00_O04_slot01_cand01": 150,
+        "subject00_O04_slot02_cand00": 150,
+        "subject00_O04_slot03_cand01": 150,
+        "subject00_O04_slot04_cand01": 150,
+        "subject00_O04_slot05_remaining_attempt005_cand00": 150,
+        "subject00_O04_slot06_remaining_attempt005_cand00": 150,
+        "subject00_O04_slot07_cand01": 150
+      },
+      "writer_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+      "writer_task": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    }
+  },
+  "writer_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+  "writer_task": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+}

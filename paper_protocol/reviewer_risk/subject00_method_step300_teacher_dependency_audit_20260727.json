@@ -1,0 +1,241 @@
+{
+  "basis_snapshot": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/basis/basis_audit.json",
+    "sha256": "db58820e13fa4f95f3b3e669ba6af1fcab55b3485b2cb2601ca051b9636006da",
+    "status": "PASS",
+    "teacher_bindings": {
+      "O01": {
+        "channel_shapes": {
+          "delta_log_scaling": [
+            200000,
+            3
+          ],
+          "delta_opacity_logit": [
+            200000
+          ],
+          "delta_rotvec": [
+            200000,
+            3
+          ],
+          "delta_sh0": [
+            200000,
+            1,
+            3
+          ],
+          "delta_shN": [
+            200000,
+            3,
+            3
+          ],
+          "delta_xyz": [
+            200000,
+            3
+          ]
+        },
+        "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "global_step": 1200,
+        "sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892"
+      },
+      "O03": {
+        "channel_shapes": {
+          "delta_log_scaling": [
+            200000,
+            3
+          ],
+          "delta_opacity_logit": [
+            200000
+          ],
+          "delta_rotvec": [
+            200000,
+            3
+          ],
+          "delta_sh0": [
+            200000,
+            1,
+            3
+          ],
+          "delta_shN": [
+            200000,
+            3,
+            3
+          ],
+          "delta_xyz": [
+            200000,
+            3
+          ]
+        },
+        "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "global_step": 1200,
+        "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+      },
+      "O04": {
+        "channel_shapes": {
+          "delta_log_scaling": [
+            200000,
+            3
+          ],
+          "delta_opacity_logit": [
+            200000
+          ],
+          "delta_rotvec": [
+            200000,
+            3
+          ],
+          "delta_sh0": [
+            200000,
+            1,
+            3
+          ],
+          "delta_shN": [
+            200000,
+            3,
+            3
+          ],
+          "delta_xyz": [
+            200000,
+            3
+          ]
+        },
+        "checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+        "global_step": 1200,
+        "sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    }
+  },
+  "checkpoint": {
+    "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "git": {
+      "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+      "clean": true,
+      "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+    },
+    "global_step": 300,
+    "model_finite": true,
+    "optimizer_step": 300,
+    "parse_status": "PASS",
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/checkpoints/rotation_00_seed_000/step_000300.pth",
+    "sha256": "6f79082ea32bf4cccffc98ab56da17a0051ab1700715bb9bc9c46d737a0294bf",
+    "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "teacher_checkpoint_sha256": {
+      "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+    }
+  },
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "feature_snapshot": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/features/feature_audit.json",
+    "sha256": "32b8eaef0a1afa6de110e4456a43f2ed12d156e51896d41bb66a59c3b1484f61",
+    "status": "PASS",
+    "target_or_teacher_field_in_prediction_forward": false
+  },
+  "immutable_post_audit": {
+    "checks": {
+      "base_checkpoint_mutations": 0,
+      "base_unchanged": true,
+      "manifest_unchanged": true,
+      "mask_mutations": 0,
+      "target_mutations": 0,
+      "teacher_checkpoint_mutations": 0,
+      "teachers_unchanged": true
+    },
+    "sha256_after": {
+      "base": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "manifest": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+      "teachers": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    },
+    "status": "PASS"
+  },
+  "matrix_counted_cell_count": 1,
+  "method_rotation0_seed0_status": "VALID_TEACHER_DEPENDENCY_INITIAL_CELL_COMPLETE",
+  "method_rotation0_seed0_valid": true,
+  "method_run_status_snapshot": {
+    "current_step": 300,
+    "initial_stability_status": "PASS",
+    "nan_inf_status": "NONE",
+    "oom_status": "NONE",
+    "optimizer_steps_completed": 300,
+    "paper_eligible": false,
+    "stage": "INITIAL_ROTATION_SEED_COMPLETE_REMAINING_RUNS_PENDING",
+    "status": "RUNNING",
+    "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+  },
+  "o03_dependency_status": "PASS_EXACT_VALID_CONCURRENT_FORMAL_O03_CHECKPOINT",
+  "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001",
+  "preflight_snapshot": {
+    "git": {
+      "branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+      "clean": true,
+      "head": "21e696a36b5df539124a01967f7867f735a8bd44"
+    },
+    "gpu": {
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "process_count": 0,
+      "status": "PASS_IDLE"
+    },
+    "method_contract_status": "UNIQUE_RECOVERED_FROM_PASSED_SUBJECT02_MAINLINE",
+    "method_training_authorized": true,
+    "paper_eligible": false,
+    "paths": {
+      "base": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+      "f2_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/pipeline_full/SUBJECT02-EXPLICIT-GAUSSIAN-RESIDUAL-BASIS-001/attempt_001/stage_c/checkpoints/checkpoint_step_000496.pth",
+      "manifest": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json"
+    },
+    "quarantine_count": 2,
+    "quarantine_count_in_manifest": 0,
+    "registry_status": "TECHNICAL_PASS_HUMAN_REVIEW_PENDING",
+    "sha256": {
+      "base": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "f2_checkpoint": "3e4b668fa9f9d5f79c5fd0f56941779c98e78fc3c4bcffa4b3f4268f53f16371",
+      "manifest": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1"
+    },
+    "status": "PASS",
+    "storage": {
+      "free_bytes": 53002260480,
+      "minimum_free_bytes": 32212254720,
+      "status": "PASS"
+    },
+    "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+    "teacher_sha256": {
+      "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "O03": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+    },
+    "training_target_count": 22
+  },
+  "remaining_preregistered_run_count": 11,
+  "schema_version": "canondressgs.subject00.method_step300_teacher_dependency.v1",
+  "startup_config_snapshot": {
+    "execution_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-CANONDRESSGS-METHOD-BASE60747-001/attempt_001/contract/config_resolved.json",
+    "sha256": "32ef5e22097ccab27bb40c4ebe8a9c12e382b3e68408754edf6a9ffd36732125",
+    "teachers": {
+      "O01": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892"
+      },
+      "O03": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+      },
+      "O04": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      }
+    }
+  },
+  "status": "PASS_METHOD_STEP300_DEPENDENCY_VALID",
+  "structured_training": {
+    "gradients_finite": true,
+    "loss_finite": true,
+    "nan_inf_status": "NONE",
+    "oom_status": "NONE",
+    "optimizer_step_monotonic": true,
+    "optimizer_steps_completed": 300
+  },
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001"
+}

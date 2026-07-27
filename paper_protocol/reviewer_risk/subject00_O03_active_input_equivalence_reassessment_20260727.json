@@ -1,0 +1,162 @@
+{
+  "active_field_mismatch_count": 5,
+  "active_field_mismatch_fields": [
+    "target_base_rgb",
+    "target_edit_mask",
+    "target_transition_mask",
+    "target_base_foreground_mask",
+    "target_old_clothing_mask"
+  ],
+  "camera_status": "PASS_CANONICAL_CAMERA_TENSOR_EXACT_7_OF_7_FROM_PRIOR_AUDIT",
+  "classification": "D_ACTIVE_LOSS_INPUT_SCIENTIFIC_MISMATCH",
+  "classification_options_considered": [
+    "A_ACTIVE_LOSS_INPUT_BYTE_EXACT_EQUIVALENCE",
+    "B_ACTIVE_LOSS_INPUT_TENSOR_EXACT_EQUIVALENCE",
+    "C_ACTIVE_LOSS_INPUT_EQUIVALENT_WITH_SCHEMA_SUPERSET_DIFFERENCE",
+    "D_ACTIVE_LOSS_INPUT_SCIENTIFIC_MISMATCH"
+  ],
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "denominator_status": "EXACT_7",
+  "evaluation_active_fields": [
+    "target_edit_rgb",
+    "target_base_rgb",
+    "target_foreground_mask",
+    "target_edit_mask",
+    "target_clothing_mask",
+    "target_old_clothing_mask",
+    "target_protected_mask"
+  ],
+  "field_comparisons": [
+    {
+      "dtype_exact_count": 7,
+      "field": "target_edit_rgb",
+      "formal_present": true,
+      "normalization": "identical float32 CHW loader normalization from byte/pixel-exact PNG inputs",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 7,
+      "status": "TENSOR_EXACT_7_OF_7",
+      "value_hash_exact_count": 7
+    },
+    {
+      "dtype_exact_count": 0,
+      "field": "target_base_rgb",
+      "formal_present": true,
+      "normalization": "not comparable because scientific source/binding differs",
+      "old_binding": "live Base60747 render/alpha",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 0,
+      "status": "SCIENTIFIC_MISMATCH_7_OF_7",
+      "value_hash_exact_count": 0
+    },
+    {
+      "dtype_exact_count": 7,
+      "field": "target_foreground_mask",
+      "formal_present": true,
+      "normalization": "identical float32 CHW loader normalization from byte/pixel-exact PNG inputs",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 7,
+      "status": "TENSOR_EXACT_7_OF_7",
+      "value_hash_exact_count": 7
+    },
+    {
+      "dtype_exact_count": 0,
+      "field": "target_base_foreground_mask",
+      "formal_present": true,
+      "normalization": "not comparable because scientific source/binding differs",
+      "old_binding": "live Base60747 render/alpha",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 0,
+      "status": "SCIENTIFIC_MISMATCH_7_OF_7",
+      "value_hash_exact_count": 0
+    },
+    {
+      "dtype_exact_count": 0,
+      "field": "target_edit_mask",
+      "formal_present": true,
+      "normalization": "not comparable because scientific source/binding differs",
+      "old_binding": "absent",
+      "old_present_or_runtime_bound": false,
+      "shape_exact_count": 0,
+      "status": "SCIENTIFIC_MISMATCH_7_OF_7",
+      "value_hash_exact_count": 0
+    },
+    {
+      "dtype_exact_count": 7,
+      "field": "target_clothing_mask",
+      "formal_present": true,
+      "normalization": "identical float32 CHW loader normalization from byte/pixel-exact PNG inputs",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 7,
+      "status": "TENSOR_EXACT_7_OF_7",
+      "value_hash_exact_count": 7
+    },
+    {
+      "dtype_exact_count": 0,
+      "field": "target_old_clothing_mask",
+      "formal_present": true,
+      "normalization": "not comparable because scientific source/binding differs",
+      "old_binding": "absent",
+      "old_present_or_runtime_bound": false,
+      "shape_exact_count": 0,
+      "status": "SCIENTIFIC_MISMATCH_7_OF_7",
+      "value_hash_exact_count": 0
+    },
+    {
+      "dtype_exact_count": 7,
+      "field": "target_protected_mask",
+      "formal_present": true,
+      "normalization": "identical float32 CHW loader normalization from byte/pixel-exact PNG inputs",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 7,
+      "status": "TENSOR_EXACT_7_OF_7",
+      "value_hash_exact_count": 7
+    },
+    {
+      "dtype_exact_count": 7,
+      "field": "target_transition_mask",
+      "formal_binding": "persisted target_transition_mask",
+      "normalization": "float32 binary mask",
+      "old_binding": "runtime 3x3 garment-mask boundary",
+      "old_present_or_runtime_bound": true,
+      "shape_exact_count": 7,
+      "status": "SCIENTIFIC_MISMATCH_7_OF_7",
+      "value_hash_exact_count": 0
+    }
+  ],
+  "inactive_schema_difference_fields": [
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_revealed_skin_mask"
+  ],
+  "inactive_schema_fields_used_to_maintain_class_d": false,
+  "loss_active_fields": [
+    "target_edit_rgb",
+    "target_base_rgb",
+    "target_foreground_mask",
+    "target_base_foreground_mask",
+    "target_edit_mask",
+    "target_clothing_mask",
+    "target_old_clothing_mask",
+    "target_protected_mask",
+    "target_transition_mask"
+  ],
+  "normalization_status": "PASS_SHARED_FIELDS_USE_IDENTICAL_FLOAT32_CHW_NORMALIZATION",
+  "prior_audit_head": "113f669eac37fa1f178886f3a7dc1a3a81751441",
+  "prior_classification": "D",
+  "raw_pixel_status": "BYTE_EXACT_EQUIVALENT_DIFFERENT_PATH_7_OF_7",
+  "reason": "Five fields actually consumed by the frozen formal loss differ in scientific source or tensor values; the three inactive schema fields are disclosed but are not used to sustain class D.",
+  "request_order_status": "EXACT_7_OF_7",
+  "request_set_status": "EXACT_7_OF_7",
+  "runtime_derived_loss_active_fields": [
+    "protected",
+    "garment_union_unprotected",
+    "foreground",
+    "base_foreground",
+    "new_silhouette",
+    "boundary_unprotected"
+  ],
+  "schema_version": "canondressgs.subject00.o03.active_input_equivalence_reassessment.v1",
+  "shared_active_tensor_exact_field_count": 4,
+  "status": "PASS_REASSESSED_ON_ACTUAL_ACTIVE_FIELDS",
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001"
+}

@@ -1,0 +1,209 @@
+{
+  "access_by_stage": {
+    "evaluation": [
+      "target_edit_rgb",
+      "target_base_rgb",
+      "target_protected_mask",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_foreground_mask"
+    ],
+    "loader_batch_adapter": [
+      "target_condition_id",
+      "outfit_id",
+      "target_pose",
+      "target_Rh",
+      "target_Th",
+      "target_camera",
+      "target_edit_rgb",
+      "target_base_rgb",
+      "target_foreground_mask",
+      "target_base_foreground_mask",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask",
+      "target_transition_mask"
+    ],
+    "loss": [
+      "target_edit_rgb",
+      "target_base_rgb",
+      "target_foreground_mask",
+      "target_base_foreground_mask",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask",
+      "target_transition_mask"
+    ],
+    "render_state": [
+      "target_camera",
+      "target_pose",
+      "target_Rh",
+      "target_Th"
+    ],
+    "to_device_batch_adapter": [
+      "condition_id",
+      "outfit_id",
+      "target_pose",
+      "target_Rh",
+      "target_Th",
+      "target_camera",
+      "target_edit_rgb",
+      "target_base_rgb",
+      "target_foreground_mask",
+      "target_base_foreground_mask",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask",
+      "target_transition_mask"
+    ]
+  },
+  "backward_completed": true,
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "device": "cpu",
+  "evaluation_component_to_field_map": {
+    "alpha_foreground_error": [
+      "target_foreground_mask"
+    ],
+    "background_alpha_mean": [
+      "target_foreground_mask"
+    ],
+    "boundary_f": [
+      "target_foreground_mask"
+    ],
+    "garment_region_lpips": [
+      "target_edit_rgb",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask"
+    ],
+    "protected_region_lpips": [
+      "target_base_rgb",
+      "target_protected_mask"
+    ],
+    "protected_region_rgb_mae": [
+      "target_base_rgb",
+      "target_protected_mask"
+    ],
+    "silhouette_iou": [
+      "target_foreground_mask"
+    ]
+  },
+  "field_access_map_sha256": "acc21f80af9e9f13ea9b6a7ead55ed2eab304f6070bb6ec60902e74299ccc8c1",
+  "forward_scope": "one formal CPU-loader sample; target-free render-state construction; loss construction; backward; evaluation key instrumentation",
+  "gradients_finite": true,
+  "index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+  "index_request_ids": [
+    "subject00_O03_slot00_canary_attempt004_cand00",
+    "subject00_O03_slot01_remaining_attempt005_cand00",
+    "subject00_O03_slot02_cand00",
+    "subject00_O03_slot03_cand01",
+    "subject00_O03_slot05_canary_attempt004_cand00",
+    "subject00_O03_slot06_remaining_attempt005_cand00",
+    "subject00_O03_slot07_canary_attempt004_cand00"
+  ],
+  "loss_component_to_field_map": {
+    "alpha_foreground": [
+      "prediction_alpha",
+      "target_foreground_mask"
+    ],
+    "boundary_rgb": [
+      "prediction_rgb",
+      "target_edit_rgb",
+      "target_transition_mask",
+      "target_protected_mask"
+    ],
+    "garment_rgb": [
+      "prediction_rgb",
+      "target_edit_rgb",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask"
+    ],
+    "new_silhouette_alpha": [
+      "prediction_alpha",
+      "target_foreground_mask",
+      "target_base_foreground_mask"
+    ],
+    "protected_alpha": [
+      "prediction_alpha",
+      "target_base_foreground_mask",
+      "target_protected_mask"
+    ],
+    "protected_rgb": [
+      "prediction_rgb",
+      "target_base_rgb",
+      "target_protected_mask"
+    ],
+    "stability": [
+      "field.raw_xyz",
+      "field.raw_log_scaling",
+      "field.raw_rotvec",
+      "field.raw_opacity",
+      "field.raw_sh0",
+      "field.trainable_support"
+    ]
+  },
+  "loss_components": {
+    "alpha_foreground": 0.00444590812548995,
+    "boundary_rgb": 0.0,
+    "garment_rgb": 0.0,
+    "new_silhouette_alpha": 0.10000002384185791,
+    "protected_alpha": 0.18884944915771484,
+    "protected_rgb": 0.07133559882640839,
+    "stability": 0.0,
+    "total": 1.7598261833190918
+  },
+  "loss_finite": true,
+  "manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+  "optimizer_constructed": false,
+  "optimizer_steps": 0,
+  "runtime_accessed_field_set": [
+    "target_Rh",
+    "target_Th",
+    "target_base_foreground_mask",
+    "target_base_rgb",
+    "target_camera",
+    "target_clothing_mask",
+    "target_edit_mask",
+    "target_edit_rgb",
+    "target_foreground_mask",
+    "target_old_clothing_mask",
+    "target_pose",
+    "target_protected_mask",
+    "target_transition_mask"
+  ],
+  "runtime_unaccessed_loader_field_set": [
+    "outfit_id",
+    "outfit_metadata",
+    "reference_K",
+    "reference_R_global",
+    "reference_Rh",
+    "reference_Th",
+    "reference_cameras",
+    "reference_clothing_masks",
+    "reference_condition_ids",
+    "reference_foreground_masks",
+    "reference_images",
+    "reference_poses",
+    "reference_valid_mask",
+    "reference_w2c",
+    "supervision_mode",
+    "target_K",
+    "target_R_global",
+    "target_condition_id",
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_revealed_skin_mask",
+    "target_w2c"
+  ],
+  "schema_version": "canondressgs.subject00.capacity_oracle_loss_v1.runtime_access.v1",
+  "status": "PASS_ZERO_OPTIMIZER_RUNTIME_ACCESS_TRACE",
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001",
+  "tensor_values_modified_by_instrumentation": false
+}

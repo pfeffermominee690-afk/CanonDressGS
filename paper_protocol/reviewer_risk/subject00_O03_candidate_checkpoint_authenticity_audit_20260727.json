@@ -1,0 +1,400 @@
+{
+  "atomic_writer_evidence": {
+    "implementation": "tools/second_identity/run_subject00_base60747_formal_teacher.py:save_checkpoint uses a same-directory temporary file, fsync, then os.replace",
+    "sidecar_match_count": 5,
+    "status": "PASS",
+    "temporary_or_partial_count": 0
+  },
+  "authenticity_status": "PASS_AUTHENTIC_1200_STEP_FORMAL_TARGET_TEACHER",
+  "base_initialization": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "status": "PASS_EXACT_BASE60747",
+    "step": 60747
+  },
+  "candidate_final_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+  "candidate_final_checkpoint_sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+  "checkpoint_count": 5,
+  "checkpoints": [
+    {
+      "bytes": 17818788,
+      "global_step": 0,
+      "metadata": {
+        "base_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+        "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+        "base_checkpoint_step": 60747,
+        "execution_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+        "formal_base_resume_authorized": false,
+        "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "garment": "O03",
+        "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+        "optimizer": {
+          "appearance_lr": 0.002,
+          "class": "Adam",
+          "geometry_lr": 0.001,
+          "gradient_clip_norm": 1.0
+        },
+        "quarantine_count_in_optimizer": 0,
+        "scheduler": null,
+        "seed": 20260718,
+        "target_count": 7,
+        "target_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+        "target_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+        "target_manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+        "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+        "target_request_ids": [
+          "subject00_O03_slot00_canary_attempt004_cand00",
+          "subject00_O03_slot01_remaining_attempt005_cand00",
+          "subject00_O03_slot02_cand00",
+          "subject00_O03_slot03_cand01",
+          "subject00_O03_slot05_canary_attempt004_cand00",
+          "subject00_O03_slot06_remaining_attempt005_cand00",
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "total_steps": 1200
+      },
+      "model_finite": true,
+      "mtime_utc": "2026-07-27T00:07:08.490028Z",
+      "optimizer_state_finite": true,
+      "optimizer_step": 0,
+      "parse_status": "PASS",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000000.pth",
+      "rng_state_present": true,
+      "schema_version": "canondressgs.subject00.base60747_formal_teacher_checkpoint.v1",
+      "sha256": "20c10d96446c229fb63bdd49a484b959d9eaabd4c8cb3b4ec732c7e2b789691d",
+      "sidecar": {
+        "bytes": 17818788,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000000.pth",
+        "sha256": "20c10d96446c229fb63bdd49a484b959d9eaabd4c8cb3b4ec732c7e2b789691d",
+        "step": 0
+      },
+      "sidecar_matches": true,
+      "sidecar_sha256": "935f727d1a57d8e250ab9884e38cb9ee811558407bbd535777080fa1f4923c41",
+      "step": 0,
+      "target_tensors_stored": false,
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    {
+      "bytes": 38622958,
+      "global_step": 300,
+      "metadata": {
+        "base_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+        "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+        "base_checkpoint_step": 60747,
+        "execution_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+        "formal_base_resume_authorized": false,
+        "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "garment": "O03",
+        "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+        "optimizer": {
+          "appearance_lr": 0.002,
+          "class": "Adam",
+          "geometry_lr": 0.001,
+          "gradient_clip_norm": 1.0
+        },
+        "quarantine_count_in_optimizer": 0,
+        "scheduler": null,
+        "seed": 20260718,
+        "target_count": 7,
+        "target_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+        "target_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+        "target_manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+        "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+        "target_request_ids": [
+          "subject00_O03_slot00_canary_attempt004_cand00",
+          "subject00_O03_slot01_remaining_attempt005_cand00",
+          "subject00_O03_slot02_cand00",
+          "subject00_O03_slot03_cand01",
+          "subject00_O03_slot05_canary_attempt004_cand00",
+          "subject00_O03_slot06_remaining_attempt005_cand00",
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "total_steps": 1200
+      },
+      "model_finite": true,
+      "mtime_utc": "2026-07-27T00:07:18.057894Z",
+      "optimizer_state_finite": true,
+      "optimizer_step": 300,
+      "parse_status": "PASS",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000300.pth",
+      "rng_state_present": true,
+      "schema_version": "canondressgs.subject00.base60747_formal_teacher_checkpoint.v1",
+      "sha256": "d1fa93b84593278b21f09c02d775858cd767f824d598a06ea936fa2334dfd6d4",
+      "sidecar": {
+        "bytes": 38622958,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000300.pth",
+        "sha256": "d1fa93b84593278b21f09c02d775858cd767f824d598a06ea936fa2334dfd6d4",
+        "step": 300
+      },
+      "sidecar_matches": true,
+      "sidecar_sha256": "12260bd19b1463d6957a1c3cc3a252ab1fd71983a8659ae7ad5e6cffecee0879",
+      "step": 300,
+      "target_tensors_stored": false,
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    {
+      "bytes": 38622958,
+      "global_step": 600,
+      "metadata": {
+        "base_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+        "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+        "base_checkpoint_step": 60747,
+        "execution_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+        "formal_base_resume_authorized": false,
+        "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "garment": "O03",
+        "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+        "optimizer": {
+          "appearance_lr": 0.002,
+          "class": "Adam",
+          "geometry_lr": 0.001,
+          "gradient_clip_norm": 1.0
+        },
+        "quarantine_count_in_optimizer": 0,
+        "scheduler": null,
+        "seed": 20260718,
+        "target_count": 7,
+        "target_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+        "target_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+        "target_manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+        "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+        "target_request_ids": [
+          "subject00_O03_slot00_canary_attempt004_cand00",
+          "subject00_O03_slot01_remaining_attempt005_cand00",
+          "subject00_O03_slot02_cand00",
+          "subject00_O03_slot03_cand01",
+          "subject00_O03_slot05_canary_attempt004_cand00",
+          "subject00_O03_slot06_remaining_attempt005_cand00",
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "total_steps": 1200
+      },
+      "model_finite": true,
+      "mtime_utc": "2026-07-27T00:07:24.953798Z",
+      "optimizer_state_finite": true,
+      "optimizer_step": 600,
+      "parse_status": "PASS",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000600.pth",
+      "rng_state_present": true,
+      "schema_version": "canondressgs.subject00.base60747_formal_teacher_checkpoint.v1",
+      "sha256": "e9b18ba88b95bc02d038fb3eb0fa74187909f0be8054d72affcb25ede2e70afd",
+      "sidecar": {
+        "bytes": 38622958,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000600.pth",
+        "sha256": "e9b18ba88b95bc02d038fb3eb0fa74187909f0be8054d72affcb25ede2e70afd",
+        "step": 600
+      },
+      "sidecar_matches": true,
+      "sidecar_sha256": "2623ed15c23d34d93349e7805a1da26d3a169568f6ebf82877ce935f268a23fb",
+      "step": 600,
+      "target_tensors_stored": false,
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    {
+      "bytes": 38622958,
+      "global_step": 900,
+      "metadata": {
+        "base_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+        "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+        "base_checkpoint_step": 60747,
+        "execution_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+        "formal_base_resume_authorized": false,
+        "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "garment": "O03",
+        "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+        "optimizer": {
+          "appearance_lr": 0.002,
+          "class": "Adam",
+          "geometry_lr": 0.001,
+          "gradient_clip_norm": 1.0
+        },
+        "quarantine_count_in_optimizer": 0,
+        "scheduler": null,
+        "seed": 20260718,
+        "target_count": 7,
+        "target_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+        "target_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+        "target_manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+        "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+        "target_request_ids": [
+          "subject00_O03_slot00_canary_attempt004_cand00",
+          "subject00_O03_slot01_remaining_attempt005_cand00",
+          "subject00_O03_slot02_cand00",
+          "subject00_O03_slot03_cand01",
+          "subject00_O03_slot05_canary_attempt004_cand00",
+          "subject00_O03_slot06_remaining_attempt005_cand00",
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "total_steps": 1200
+      },
+      "model_finite": true,
+      "mtime_utc": "2026-07-27T00:07:31.821701Z",
+      "optimizer_state_finite": true,
+      "optimizer_step": 900,
+      "parse_status": "PASS",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000900.pth",
+      "rng_state_present": true,
+      "schema_version": "canondressgs.subject00.base60747_formal_teacher_checkpoint.v1",
+      "sha256": "8f16adbe14cec9576f99b9b454c90870513edbdf0d471a041b9eeb88d3985cbe",
+      "sidecar": {
+        "bytes": 38622958,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000900.pth",
+        "sha256": "8f16adbe14cec9576f99b9b454c90870513edbdf0d471a041b9eeb88d3985cbe",
+        "step": 900
+      },
+      "sidecar_matches": true,
+      "sidecar_sha256": "73341a90f76d0765ac11804045658e9719b69d450e2c5b0ba19cbda947fae40c",
+      "step": 900,
+      "target_tensors_stored": false,
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    {
+      "bytes": 38622958,
+      "global_step": 1200,
+      "metadata": {
+        "base_checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+        "base_checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+        "base_checkpoint_step": 60747,
+        "execution_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+        "formal_base_resume_authorized": false,
+        "formal_target_root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+        "garment": "O03",
+        "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+        "optimizer": {
+          "appearance_lr": 0.002,
+          "class": "Adam",
+          "geometry_lr": 0.001,
+          "gradient_clip_norm": 1.0
+        },
+        "quarantine_count_in_optimizer": 0,
+        "scheduler": null,
+        "seed": 20260718,
+        "target_count": 7,
+        "target_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+        "target_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+        "target_manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+        "target_manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+        "target_request_ids": [
+          "subject00_O03_slot00_canary_attempt004_cand00",
+          "subject00_O03_slot01_remaining_attempt005_cand00",
+          "subject00_O03_slot02_cand00",
+          "subject00_O03_slot03_cand01",
+          "subject00_O03_slot05_canary_attempt004_cand00",
+          "subject00_O03_slot06_remaining_attempt005_cand00",
+          "subject00_O03_slot07_canary_attempt004_cand00"
+        ],
+        "total_steps": 1200
+      },
+      "model_finite": true,
+      "mtime_utc": "2026-07-27T00:07:38.745604Z",
+      "optimizer_state_finite": true,
+      "optimizer_step": 1200,
+      "parse_status": "PASS",
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+      "rng_state_present": true,
+      "schema_version": "canondressgs.subject00.base60747_formal_teacher_checkpoint.v1",
+      "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "sidecar": {
+        "bytes": 38622958,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "step": 1200
+      },
+      "sidecar_matches": true,
+      "sidecar_sha256": "8b958527ece023470fa439dd2190a77d72bffea022a03a3d67de5aff7344df31",
+      "step": 1200,
+      "target_tensors_stored": false,
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    }
+  ],
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "exact_checkpoint_set": true,
+  "expected_steps": [
+    0,
+    300,
+    600,
+    900,
+    1200
+  ],
+  "formal_target": {
+    "actual_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+    "actual_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+    "contract_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_provisional_base60747_records.json",
+    "contract_index_sha256": "b9b692cb62f314d99ba5bc6d8bba7f315909e49aa56f5c0db4f895b23aa7e616",
+    "denominator": 7,
+    "index_alias_only_difference": {
+      "actual": "O03",
+      "contract": "O03_provisional",
+      "field": "index_type"
+    },
+    "index_alias_semantic_exact": true,
+    "manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "request_ids": [
+      "subject00_O03_slot00_canary_attempt004_cand00",
+      "subject00_O03_slot01_remaining_attempt005_cand00",
+      "subject00_O03_slot02_cand00",
+      "subject00_O03_slot03_cand01",
+      "subject00_O03_slot05_canary_attempt004_cand00",
+      "subject00_O03_slot06_remaining_attempt005_cand00",
+      "subject00_O03_slot07_canary_attempt004_cand00"
+    ],
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "slot04_present": false,
+    "status": "PASS_FORMAL_SAFE7_SEMANTIC_EXACT_INDEX_ALIAS"
+  },
+  "frozen_tensors_unchanged": true,
+  "garment": "O03",
+  "immutability": {
+    "base_checkpoint_mutations": 0,
+    "base_checkpoint_sha256_unchanged": true,
+    "base_fingerprint_unchanged": true,
+    "formal_target_assets_unchanged": true,
+    "formal_target_mutations": 0,
+    "mask_mutations": 0
+  },
+  "old_teacher_initialization": {
+    "checkpoint_metadata_old_teacher_reference_count": 0,
+    "old_contaminated_teacher_used": false,
+    "old_runlocal_safe7_teacher_used": false,
+    "status": "PASS_BASE_ONLY_INITIALIZATION"
+  },
+  "parse_count": 5,
+  "root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001",
+  "schema_version": "canondressgs.subject00.o03.candidate_checkpoint_authenticity.v1",
+  "structured_training": {
+    "gradient_steps_nonzero": {
+      "raw_log_scaling": 1200,
+      "raw_opacity": 1200,
+      "raw_rotvec": 1200,
+      "raw_sh0": 1200,
+      "raw_xyz": 1200
+    },
+    "loss_final": 1.0583003759384155,
+    "loss_initial": 2.6884806156158447,
+    "nan_inf_status": "NONE",
+    "oom_status": "NONE",
+    "optimizer_step_sequence": "PASS_1_THROUGH_1200_MONOTONIC",
+    "record_count": 1200,
+    "records_finite": true,
+    "sampler_balanced": true,
+    "view_update_counts": {
+      "subject00_O03_slot00_canary_attempt004_cand00": 172,
+      "subject00_O03_slot01_remaining_attempt005_cand00": 172,
+      "subject00_O03_slot02_cand00": 172,
+      "subject00_O03_slot03_cand01": 171,
+      "subject00_O03_slot05_canary_attempt004_cand00": 171,
+      "subject00_O03_slot06_remaining_attempt005_cand00": 171,
+      "subject00_O03_slot07_canary_attempt004_cand00": 171
+    }
+  },
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001",
+  "temporary_or_partial_files": [],
+  "trainable_parameter_changed": {
+    "raw_log_scaling": true,
+    "raw_opacity": true,
+    "raw_rotvec": true,
+    "raw_sh0": true,
+    "raw_xyz": true
+  }
+}

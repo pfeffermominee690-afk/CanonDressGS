@@ -1,0 +1,597 @@
+{
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "evaluation_component_to_field_map": {
+    "alpha_foreground_error": [
+      "target_foreground_mask"
+    ],
+    "background_alpha_mean": [
+      "target_foreground_mask"
+    ],
+    "boundary_f": [
+      "target_foreground_mask"
+    ],
+    "garment_region_lpips": [
+      "target_edit_rgb",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask"
+    ],
+    "protected_region_lpips": [
+      "target_base_rgb",
+      "target_protected_mask"
+    ],
+    "protected_region_rgb_mae": [
+      "target_base_rgb",
+      "target_protected_mask"
+    ],
+    "silhouette_iou": [
+      "target_foreground_mask"
+    ]
+  },
+  "field_records": [
+    {
+      "classifications": [
+        "REVIEW_ONLY"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "load_samples identity/order binding"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "outfit_id",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "REVIEW_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "outfit_metadata",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_K",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_R_global",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_Rh",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_Th",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_cameras",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_clothing_masks",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_condition_ids",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_foreground_masks",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_images",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_poses",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_valid_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "reference_w2c",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "REVIEW_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "supervision_mode",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "target_K",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "target_R_global",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "RUNTIME_DERIVED_LOSS_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "target_free_state",
+        "render_direct"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_Rh",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "RUNTIME_DERIVED_LOSS_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "target_free_state",
+        "render_direct"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_Th",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_base_foreground_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_base_rgb",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "RUNTIME_DERIVED_LOSS_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "target_free_state",
+        "render_direct"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_camera",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_clothing_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "REVIEW_ONLY"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "load_samples identity/order binding"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_condition_id",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "QA_ONLY",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "target_edit_core_mask",
+      "other_mode_or_qa_consumers": [
+        "scene/trusted_silhouette_semantics_v6_1.py",
+        "tools/run_module4b_canonical_oracle_micropilot.py"
+      ]
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_edit_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_edit_rgb",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_foreground_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_old_clothing_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "RUNTIME_DERIVED_LOSS_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "target_free_state",
+        "render_direct"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_pose",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "QA_ONLY",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "target_preserve_mask",
+      "other_mode_or_qa_consumers": [
+        "scene/trusted_silhouette_semantics_v6_1.py",
+        "scene/support_aware_region_trusted_objective_v6.py"
+      ]
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE",
+        "EVALUATION_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1",
+        "evaluate_view"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_protected_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+        "QA_ONLY",
+        "OTHER_MODE_ONLY"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "target_revealed_skin_mask",
+      "other_mode_or_qa_consumers": [
+        "tools/run_module4b_canonical_oracle_micropilot.py",
+        "tools/run_r3_body_support_design.py"
+      ]
+    },
+    {
+      "classifications": [
+        "LOSS_ACTIVE"
+      ],
+      "current_teacher_consumed": true,
+      "current_teacher_consumers": [
+        "loss_for_sample",
+        "capacity_oracle_loss_v1"
+      ],
+      "dynamic_access_unresolved": false,
+      "field": "target_transition_mask",
+      "other_mode_or_qa_consumers": []
+    },
+    {
+      "classifications": [
+        "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE"
+      ],
+      "current_teacher_consumed": false,
+      "current_teacher_consumers": [],
+      "dynamic_access_unresolved": false,
+      "field": "target_w2c",
+      "other_mode_or_qa_consumers": []
+    }
+  ],
+  "loss_component_to_field_map": {
+    "alpha_foreground": [
+      "prediction_alpha",
+      "target_foreground_mask"
+    ],
+    "boundary_rgb": [
+      "prediction_rgb",
+      "target_edit_rgb",
+      "target_transition_mask",
+      "target_protected_mask"
+    ],
+    "garment_rgb": [
+      "prediction_rgb",
+      "target_edit_rgb",
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask"
+    ],
+    "new_silhouette_alpha": [
+      "prediction_alpha",
+      "target_foreground_mask",
+      "target_base_foreground_mask"
+    ],
+    "protected_alpha": [
+      "prediction_alpha",
+      "target_base_foreground_mask",
+      "target_protected_mask"
+    ],
+    "protected_rgb": [
+      "prediction_rgb",
+      "target_base_rgb",
+      "target_protected_mask"
+    ],
+    "stability": [
+      "field.raw_xyz",
+      "field.raw_log_scaling",
+      "field.raw_rotvec",
+      "field.raw_opacity",
+      "field.raw_sh0",
+      "field.trainable_support"
+    ]
+  },
+  "nodes": {
+    "batch_adapter": "load_samples -> to_device_sample",
+    "evaluation": "evaluate_view",
+    "loader": "FullDressableTrainingDataset.__getitem__",
+    "loss": "capacity_oracle_loss_v1",
+    "loss_callsite": "loss_for_sample",
+    "renderer": "target_free_state -> render_direct"
+  },
+  "runtime_derived_nodes": {
+    "base_foreground": [
+      "target_base_foreground_mask"
+    ],
+    "boundary_unprotected": [
+      "target_transition_mask",
+      "target_protected_mask"
+    ],
+    "foreground": [
+      "target_foreground_mask"
+    ],
+    "garment_union_unprotected": [
+      "target_edit_mask",
+      "target_clothing_mask",
+      "target_old_clothing_mask",
+      "target_protected_mask"
+    ],
+    "new_silhouette": [
+      "target_foreground_mask",
+      "target_base_foreground_mask"
+    ],
+    "protected": [
+      "target_protected_mask"
+    ]
+  },
+  "schema_version": "canondressgs.subject00.capacity_oracle_loss_v1.consumer_graph.v1",
+  "static_analysis": {
+    "conditional_inactive_current_config": [
+      "target_edit_core_mask",
+      "target_preserve_mask",
+      "target_revealed_skin_mask"
+    ],
+    "direct_loss_keyword_bindings": {
+      "base_foreground": "target_base_foreground_mask",
+      "base_rgb": "target_base_rgb",
+      "clothing_mask": "target_clothing_mask",
+      "edit_mask": "target_edit_mask",
+      "old_clothing_mask": "target_old_clothing_mask",
+      "protected_mask": "target_protected_mask",
+      "target_foreground": "target_foreground_mask",
+      "target_rgb": "target_edit_rgb",
+      "transition_mask": "target_transition_mask"
+    },
+    "dynamic_access_unresolved": [],
+    "evaluation_sample_key_accesses": [
+      "target_edit_rgb",
+      "target_base_rgb",
+      "target_protected_mask",
+      "target_foreground_mask",
+      "target_old_clothing_mask",
+      "target_edit_mask",
+      "target_clothing_mask"
+    ],
+    "fallback_or_default_accesses": [],
+    "method": "Python AST Subscript/.get scan plus explicit alias/keyword propagation across frozen load_samples, to_device_sample, loss_for_sample, capacity_oracle_loss_v1, and evaluate_view",
+    "writer_head_to_audit_head_traced_function_ast_equivalence": {
+      "evaluate_view": {
+        "audit_head_ast_sha256": "d625180e8af94a497d4b931caafd285930fa36c3efc056b5bf5241f66239c23a",
+        "writer_head_ast_sha256": "d625180e8af94a497d4b931caafd285930fa36c3efc056b5bf5241f66239c23a"
+      },
+      "load_samples": {
+        "audit_head_ast_sha256": "c45dcf43e2752a6b033e0dfbf62ce02404e72982b49da6ae535db5f57df6a8e0",
+        "writer_head_ast_sha256": "c45dcf43e2752a6b033e0dfbf62ce02404e72982b49da6ae535db5f57df6a8e0"
+      },
+      "loss_for_sample": {
+        "audit_head_ast_sha256": "acd5a27a12355a89969dd4deefb7c48caa5d6f7fb92556b9be8bf031a2253aea",
+        "writer_head_ast_sha256": "acd5a27a12355a89969dd4deefb7c48caa5d6f7fb92556b9be8bf031a2253aea"
+      },
+      "to_device_sample": {
+        "audit_head_ast_sha256": "967619cb047dea93345652998fdaa5d4d03ff8752ec820c93f5869cfb281125d",
+        "writer_head_ast_sha256": "967619cb047dea93345652998fdaa5d4d03ff8752ec820c93f5869cfb281125d"
+      }
+    }
+  },
+  "status": "PASS_STATIC_AST_AND_ALIAS_GRAPH_COMPLETE",
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001"
+}

@@ -1,0 +1,195 @@
+{
+  "active_config": {
+    "path": "configs/research/subject00_base60747_three_garment_teachers_v1.json",
+    "sha256": "50edacab780602381e847ba0388c1ed3abad6d1309afbeb48daa99c061b8fdbf",
+    "snapshot_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/contract/config_snapshot.json",
+    "snapshot_sha256": "478c3b37faa8c92c086adca01baee11a746651a1865cf76c2064a1d1140899fc"
+  },
+  "base": {
+    "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "step": 60747
+  },
+  "batch_adapter": {
+    "functions": [
+      "load_samples",
+      "to_device_sample"
+    ],
+    "path": "tools/second_identity/run_subject00_base60747_formal_teacher.py",
+    "sha256_at_writer_head": "46e25734f33eb441c5a3eaa5d0a6754fd196ab70f26ecee3ad22ae0e421832ae"
+  },
+  "candidate_output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001",
+  "candidate_run_matches_frozen_subject02_loss_path": true,
+  "checkpoint_writer_identity": "task_id and execution_head in all five checkpoint payloads",
+  "concurrent_writer_interleaving_status": "PASS_NO_CROSS_TASK_METADATA_LOG_OR_CHECKPOINT_INTERLEAVING",
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "formal_target": {
+    "actual_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_training_records.json",
+    "actual_index_sha256": "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+    "contract_index_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/indexes/O03_provisional_base60747_records.json",
+    "contract_index_sha256": "b9b692cb62f314d99ba5bc6d8bba7f315909e49aa56f5c0db4f895b23aa7e616",
+    "denominator": 7,
+    "index_alias_only_difference": {
+      "actual": "O03",
+      "contract": "O03_provisional",
+      "field": "index_type"
+    },
+    "index_alias_semantic_exact": true,
+    "manifest_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "manifest_sha256": "602820292fea47fe8116bf64824e6e2a8313a3ec31b8fc7cdd66a90c6bad33c1",
+    "request_ids": [
+      "subject00_O03_slot00_canary_attempt004_cand00",
+      "subject00_O03_slot01_remaining_attempt005_cand00",
+      "subject00_O03_slot02_cand00",
+      "subject00_O03_slot03_cand01",
+      "subject00_O03_slot05_canary_attempt004_cand00",
+      "subject00_O03_slot06_remaining_attempt005_cand00",
+      "subject00_O03_slot07_canary_attempt004_cand00"
+    ],
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "slot04_present": false,
+    "status": "PASS_FORMAL_SAFE7_SEMANTIC_EXACT_INDEX_ALIAS"
+  },
+  "formal_test_evidence": {
+    "formal_teacher_method_pytest": {
+      "command": "python -m pytest -q tests/test_subject00_base60747_formal_teacher_contract.py tests/test_subject00_base60747_method_contract.py",
+      "exit_code": 0,
+      "status": "PASS_5_TESTS",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.04s"
+    },
+    "upstream_contract_replay": {
+      "checks": {
+        "test_aaai_no_go_outputs_are_unchanged": true,
+        "test_audit_reads_full_dataset_v1_nested_manifest": true,
+        "test_capacity_loss_does_not_preserve_old_garment": true,
+        "test_capacity_loss_protects_identity_regions": true,
+        "test_capacity_target_never_enters_forward": true,
+        "test_decision_matrix_is_deterministic": true,
+        "test_garment_layer_does_not_initialize_from_target_rgb": true,
+        "test_garment_layer_uses_fixed_30k_points": true,
+        "test_garment_layer_uses_formal_lbs": true,
+        "test_long_term_branch_is_unchanged": false,
+        "test_shared_oracle_uses_one_canonical_field": true,
+        "test_single_view_runs_are_independent": true,
+        "test_unbounded_oracle_does_not_modify_base": true
+      },
+      "failed": [
+        "test_long_term_branch_is_unchanged"
+      ],
+      "interpretation": "PASS_12_OF_12_CURRENT_SCIENTIFIC_AND_IMPLEMENTATION_ASSERTIONS; historical remote-ref immutability assertion is non-scientific and no longer satisfied by the live remote ref",
+      "passed": 12,
+      "process_exit_code": 1,
+      "status": "FAIL",
+      "total": 13
+    }
+  },
+  "loader": {
+    "path": "scene/full_dressable_dataset.py",
+    "sha256": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00"
+  },
+  "logs": [
+    {
+      "contains_first_preoptimizer_failure": true,
+      "contains_successful_1200_step_result": true,
+      "path": "/root/autodl-tmp/canondressgs_work/logs/subject00_o03_formal_teacher_base60747_20260727.log"
+    }
+  ],
+  "loss": {
+    "callsite_path": "tools/second_identity/run_subject00_base60747_formal_teacher.py",
+    "callsite_sha256_at_writer_head": "46e25734f33eb441c5a3eaa5d0a6754fd196ab70f26ecee3ad22ae0e421832ae",
+    "component_to_field_map": {
+      "alpha_foreground": [
+        "prediction_alpha",
+        "target_foreground_mask"
+      ],
+      "boundary_rgb": [
+        "prediction_rgb",
+        "target_edit_rgb",
+        "target_transition_mask",
+        "target_protected_mask"
+      ],
+      "garment_rgb": [
+        "prediction_rgb",
+        "target_edit_rgb",
+        "target_edit_mask",
+        "target_clothing_mask",
+        "target_old_clothing_mask",
+        "target_protected_mask"
+      ],
+      "new_silhouette_alpha": [
+        "prediction_alpha",
+        "target_foreground_mask",
+        "target_base_foreground_mask"
+      ],
+      "protected_alpha": [
+        "prediction_alpha",
+        "target_base_foreground_mask",
+        "target_protected_mask"
+      ],
+      "protected_rgb": [
+        "prediction_rgb",
+        "target_base_rgb",
+        "target_protected_mask"
+      ],
+      "stability": [
+        "field.raw_xyz",
+        "field.raw_log_scaling",
+        "field.raw_rotvec",
+        "field.raw_opacity",
+        "field.raw_sh0",
+        "field.trainable_support"
+      ]
+    },
+    "contract": "CAPACITY_ORACLE_LOSS_V1",
+    "path": "scene/representation_capacity_oracle.py",
+    "sha256": "e4290d8b3e20fd188ca2782f7bbd3e7f9da2ae26834be3d8a32640567494a329"
+  },
+  "provenance_status": "PASS_UNIQUE_WRITER_AND_EXECUTION_PATH_RECOVERED",
+  "runner": {
+    "path": "tools/second_identity/run_subject00_base60747_formal_teacher.py",
+    "sha256_at_writer_head": "46e25734f33eb441c5a3eaa5d0a6754fd196ab70f26ecee3ad22ae0e421832ae"
+  },
+  "schema_version": "canondressgs.subject00.o03.concurrent_formal_run_provenance.v1",
+  "single_writer_status": "PASS_SINGLE_ACCELERATED_LAUNCH_WRITER_WITH_SAME_TASK_PREOPTIMIZER_RECOVERY",
+  "start_end": {
+    "checkpoint0_mtime_utc": "2026-07-27T00:07:08.490028Z",
+    "checkpoint1200_mtime_utc": "2026-07-27T00:07:38.745604Z",
+    "earliest_file_mtime_utc": "2026-07-27T00:04:50.535909Z",
+    "final_status_mtime_utc": "2026-07-27T00:07:57.117344Z"
+  },
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001",
+  "traced_function_ast_equivalence": {
+    "evaluate_view": {
+      "audit_head_ast_sha256": "d625180e8af94a497d4b931caafd285930fa36c3efc056b5bf5241f66239c23a",
+      "writer_head_ast_sha256": "d625180e8af94a497d4b931caafd285930fa36c3efc056b5bf5241f66239c23a"
+    },
+    "load_samples": {
+      "audit_head_ast_sha256": "c45dcf43e2752a6b033e0dfbf62ce02404e72982b49da6ae535db5f57df6a8e0",
+      "writer_head_ast_sha256": "c45dcf43e2752a6b033e0dfbf62ce02404e72982b49da6ae535db5f57df6a8e0"
+    },
+    "loss_for_sample": {
+      "audit_head_ast_sha256": "acd5a27a12355a89969dd4deefb7c48caa5d6f7fb92556b9be8bf031a2253aea",
+      "writer_head_ast_sha256": "acd5a27a12355a89969dd4deefb7c48caa5d6f7fb92556b9be8bf031a2253aea"
+    },
+    "to_device_sample": {
+      "audit_head_ast_sha256": "967619cb047dea93345652998fdaa5d4d03ff8752ec820c93f5869cfb281125d",
+      "writer_head_ast_sha256": "967619cb047dea93345652998fdaa5d4d03ff8752ec820c93f5869cfb281125d"
+    }
+  },
+  "writer": {
+    "command": "/root/autodl-tmp/conda_envs/mmlphuman/bin/python -u tools/second_identity/run_subject00_base60747_formal_teacher.py --garment O03 --recover-preoptimizer",
+    "currently_active": false,
+    "cwd": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_base60747_accelerated_method_launch",
+    "evidence": "PID/PPID/start/command were captured from ps during the blocked-task collision observation; run-root structured records independently bind task/branch/head/config",
+    "hostname": "autodl-container-ef19489c10-464381bb",
+    "parent_pid": 444267,
+    "pid": 444268,
+    "process_start": "2026-07-27T08:06:40+08:00",
+    "session_or_tmux": "NOT_RECOVERABLE_AFTER_PROCESS_EXIT",
+    "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+  },
+  "writer_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+  "writer_dirty": false,
+  "writer_head": "3d4307f581f74efc173bb27c982277d952e32e31",
+  "writer_task": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+}

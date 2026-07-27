@@ -1,0 +1,425 @@
+{
+  "checks": [
+    {
+      "check": "01_source_branch_head",
+      "evidence": "c4aa2f1b4f58c9b51e3a562f3b4c0993a9c0eeeb",
+      "status": "PASS"
+    },
+    {
+      "check": "02_accelerated_launch_head",
+      "evidence": "ed44835f950fe369dd3eb64b5eaef8c6cc174175",
+      "status": "PASS"
+    },
+    {
+      "check": "03_materialization_head",
+      "evidence": "227fd156d420e4bf291413952f448780b8446b37",
+      "status": "PASS"
+    },
+    {
+      "check": "04_source_worktrees_clean",
+      "evidence": "four authoritative worktrees clean",
+      "status": "PASS"
+    },
+    {
+      "check": "05_active_optimizer_process_count",
+      "evidence": 0,
+      "status": "PASS"
+    },
+    {
+      "check": "06_frozen_subject02_loss_implementation",
+      "evidence": {
+        "sha256": "e4290d8b3e20fd188ca2782f7bbd3e7f9da2ae26834be3d8a32640567494a329",
+        "upstream_contract_replay": "PASS_12_OF_12_CURRENT_SCIENTIFIC_AND_IMPLEMENTATION_ASSERTIONS; historical remote-ref immutability assertion is non-scientific and no longer satisfied by the live remote ref"
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "07_loss_callsite",
+      "evidence": {
+        "base_foreground": "target_base_foreground_mask",
+        "base_rgb": "target_base_rgb",
+        "clothing_mask": "target_clothing_mask",
+        "edit_mask": "target_edit_mask",
+        "old_clothing_mask": "target_old_clothing_mask",
+        "protected_mask": "target_protected_mask",
+        "target_foreground": "target_foreground_mask",
+        "target_rgb": "target_edit_rgb",
+        "transition_mask": "target_transition_mask"
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "08_loader",
+      "evidence": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "status": "PASS"
+    },
+    {
+      "check": "09_batch_adapter",
+      "evidence": [
+        "target_condition_id",
+        "outfit_id",
+        "target_pose",
+        "target_Rh",
+        "target_Th",
+        "target_camera",
+        "target_edit_rgb",
+        "target_base_rgb",
+        "target_foreground_mask",
+        "target_base_foreground_mask",
+        "target_edit_mask",
+        "target_clothing_mask",
+        "target_old_clothing_mask",
+        "target_protected_mask",
+        "target_transition_mask"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "10_config",
+      "evidence": "50edacab780602381e847ba0388c1ed3abad6d1309afbeb48daa99c061b8fdbf",
+      "status": "PASS"
+    },
+    {
+      "check": "11_static_field_graph",
+      "evidence": "PASS_STATIC_AST_AND_ALIAS_GRAPH_COMPLETE",
+      "status": "PASS"
+    },
+    {
+      "check": "12_runtime_field_access",
+      "evidence": [
+        "target_Rh",
+        "target_Th",
+        "target_base_foreground_mask",
+        "target_base_rgb",
+        "target_camera",
+        "target_clothing_mask",
+        "target_edit_mask",
+        "target_edit_rgb",
+        "target_foreground_mask",
+        "target_old_clothing_mask",
+        "target_pose",
+        "target_protected_mask",
+        "target_transition_mask"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "13_active_field_set",
+      "evidence": [
+        "target_edit_rgb",
+        "target_base_rgb",
+        "target_foreground_mask",
+        "target_base_foreground_mask",
+        "target_edit_mask",
+        "target_clothing_mask",
+        "target_old_clothing_mask",
+        "target_protected_mask",
+        "target_transition_mask"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "14_inactive_schema_field_set",
+      "evidence": [
+        "target_edit_core_mask",
+        "target_preserve_mask",
+        "target_revealed_skin_mask"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "15_eight_disputed_field_classification",
+      "evidence": {
+        "target_base_foreground_mask": [
+          "LOSS_ACTIVE"
+        ],
+        "target_base_rgb": [
+          "LOSS_ACTIVE",
+          "EVALUATION_ACTIVE"
+        ],
+        "target_edit_core_mask": [
+          "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+          "QA_ONLY",
+          "OTHER_MODE_ONLY"
+        ],
+        "target_edit_mask": [
+          "LOSS_ACTIVE",
+          "EVALUATION_ACTIVE"
+        ],
+        "target_old_clothing_mask": [
+          "LOSS_ACTIVE",
+          "EVALUATION_ACTIVE"
+        ],
+        "target_preserve_mask": [
+          "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+          "QA_ONLY",
+          "OTHER_MODE_ONLY"
+        ],
+        "target_revealed_skin_mask": [
+          "SCHEMA_REQUIRED_BUT_CURRENT_LOSS_INACTIVE",
+          "QA_ONLY",
+          "OTHER_MODE_ONLY"
+        ],
+        "target_transition_mask": [
+          "LOSS_ACTIVE"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "16_old_snapshot_active_input_equivalence",
+      "evidence": [
+        "target_base_rgb",
+        "target_edit_mask",
+        "target_transition_mask",
+        "target_base_foreground_mask",
+        "target_old_clothing_mask"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "17_output_root_timeline",
+      "evidence": [
+        "2026-07-27T00:04:50.535909Z",
+        "2026-07-27T00:07:57.117344Z"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "18_writer_identity",
+      "evidence": [
+        "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+        "3d4307f581f74efc173bb27c982277d952e32e31"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "19_single_writer_status",
+      "evidence": "PASS_SINGLE_ACCELERATED_LAUNCH_WRITER_WITH_SAME_TASK_PREOPTIMIZER_RECOVERY",
+      "status": "PASS"
+    },
+    {
+      "check": "20_interleaving_status",
+      "evidence": "PASS_NO_CROSS_TASK_METADATA_LOG_OR_CHECKPOINT_INTERLEAVING",
+      "status": "PASS"
+    },
+    {
+      "check": "21_checkpoint_exact_set",
+      "evidence": [
+        0,
+        300,
+        600,
+        900,
+        1200
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "22_checkpoint_parse",
+      "evidence": 5,
+      "status": "PASS"
+    },
+    {
+      "check": "23_base_binding",
+      "evidence": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "status": "PASS"
+    },
+    {
+      "check": "24_formal_target_binding",
+      "evidence": [
+        "c93aece0349fecf81be39c58670d284c5ca45a2d82fadcc4a923c823809975ba",
+        "b9b692cb62f314d99ba5bc6d8bba7f315909e49aa56f5c0db4f895b23aa7e616"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "25_slot04_absence",
+      "evidence": "subject00_O03_slot04_canary_attempt004_cand00",
+      "status": "PASS"
+    },
+    {
+      "check": "26_sampler_counts",
+      "evidence": {
+        "subject00_O03_slot00_canary_attempt004_cand00": 172,
+        "subject00_O03_slot01_remaining_attempt005_cand00": 172,
+        "subject00_O03_slot02_cand00": 172,
+        "subject00_O03_slot03_cand01": 171,
+        "subject00_O03_slot05_canary_attempt004_cand00": 171,
+        "subject00_O03_slot06_remaining_attempt005_cand00": 171,
+        "subject00_O03_slot07_canary_attempt004_cand00": 171
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "27_optimizer_steps_1200",
+      "evidence": 1200,
+      "status": "PASS"
+    },
+    {
+      "check": "28_candidate_loss_path",
+      "evidence": [
+        "scene/representation_capacity_oracle.py",
+        "e4290d8b3e20fd188ca2782f7bbd3e7f9da2ae26834be3d8a32640567494a329"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "29_trainable_changes",
+      "evidence": {
+        "raw_log_scaling": true,
+        "raw_opacity": true,
+        "raw_rotvec": true,
+        "raw_sh0": true,
+        "raw_xyz": true
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "30_frozen_immutability",
+      "evidence": "PASS",
+      "status": "PASS"
+    },
+    {
+      "check": "31_no_nan_inf_oom",
+      "evidence": [
+        "NONE",
+        "NONE"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "32_method_teacher_snapshot",
+      "evidence": {
+        "O01": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+          "sha256": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892"
+        },
+        "O03": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+          "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920"
+        },
+        "O04": {
+          "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001/attempt_001/checkpoints/step_001200.pth",
+          "sha256": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "33_method_o03_checkpoint_sha",
+      "evidence": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+      "status": "PASS"
+    },
+    {
+      "check": "34_method_cell_validity",
+      "evidence": "VALID_TEACHER_DEPENDENCY_INITIAL_CELL_COMPLETE",
+      "status": "PASS"
+    },
+    {
+      "check": "35_o01_provenance",
+      "evidence": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+      "status": "PASS"
+    },
+    {
+      "check": "36_o04_provenance",
+      "evidence": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1",
+      "status": "PASS"
+    },
+    {
+      "check": "37_registry_correction",
+      "evidence": "PASS_THREE_GARMENT_REGISTRY_CORRECTED_BY_OVERLAY",
+      "status": "PASS"
+    },
+    {
+      "check": "38_no_new_optimizer_steps",
+      "evidence": [
+        0,
+        0
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "39_base_immutable",
+      "evidence": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+      "status": "PASS"
+    },
+    {
+      "check": "40_target_immutable",
+      "evidence": "53210ba1aa53a2645c9cbef2e2156431bec05c33651448c09c66ae40cede29a3",
+      "status": "PASS"
+    },
+    {
+      "check": "41_teachers_immutable",
+      "evidence": {
+        "O01": "c7881862c4eddf5f58538a2278ab7765aa047784681fb02e7cd89cfe846c1892",
+        "O03_candidate": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "O03_old": "2bf582771a6d9fcc4e4f0a40f1de7aa7fafb1b69ead348d9b7dd527d2739e212",
+        "O04": "2fa7764097d8577c1610bbf222b26d9ea287bd18074371de400a66cd2270f3a1"
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "42_method_checkpoint_immutable",
+      "evidence": "6f79082ea32bf4cccffc98ab56da17a0051ab1700715bb9bc9c46d737a0294bf",
+      "status": "PASS"
+    },
+    {
+      "check": "43_paper_modification_zero",
+      "evidence": [
+        0,
+        false
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "44_final_classification",
+      "evidence": "SUBJECT00_O03_CONCURRENT_FORMAL_TEACHER_VALID_METHOD_STEP300_VALID_MATRIX_READY_TO_CONTINUE",
+      "status": "PASS"
+    },
+    {
+      "check": "45_next_task_uniqueness",
+      "evidence": "CONTINUE_SUBJECT00_BASE60747_REMAINING_11_METHOD_RUNS_AND_FAIR_BASELINES",
+      "status": "PASS"
+    }
+  ],
+  "created_at": "2026-07-27T01:39:29.766449Z",
+  "failed_count": 0,
+  "formal_test_evidence": {
+    "formal_teacher_method_pytest": {
+      "command": "python -m pytest -q tests/test_subject00_base60747_formal_teacher_contract.py tests/test_subject00_base60747_method_contract.py",
+      "exit_code": 0,
+      "status": "PASS_5_TESTS",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.04s"
+    },
+    "upstream_contract_replay": {
+      "checks": {
+        "test_aaai_no_go_outputs_are_unchanged": true,
+        "test_audit_reads_full_dataset_v1_nested_manifest": true,
+        "test_capacity_loss_does_not_preserve_old_garment": true,
+        "test_capacity_loss_protects_identity_regions": true,
+        "test_capacity_target_never_enters_forward": true,
+        "test_decision_matrix_is_deterministic": true,
+        "test_garment_layer_does_not_initialize_from_target_rgb": true,
+        "test_garment_layer_uses_fixed_30k_points": true,
+        "test_garment_layer_uses_formal_lbs": true,
+        "test_long_term_branch_is_unchanged": false,
+        "test_shared_oracle_uses_one_canonical_field": true,
+        "test_single_view_runs_are_independent": true,
+        "test_unbounded_oracle_does_not_modify_base": true
+      },
+      "failed": [
+        "test_long_term_branch_is_unchanged"
+      ],
+      "interpretation": "PASS_12_OF_12_CURRENT_SCIENTIFIC_AND_IMPLEMENTATION_ASSERTIONS; historical remote-ref immutability assertion is non-scientific and no longer satisfied by the live remote ref",
+      "passed": 12,
+      "process_exit_code": 1,
+      "status": "FAIL",
+      "total": 13
+    }
+  },
+  "optimizer_steps_executed_by_audit": 0,
+  "passed_count": 45,
+  "schema_version": "canondressgs.subject00.o03.loss_binding_concurrent_provenance.tests.v1",
+  "status": "PASS_45_OF_45",
+  "task_id": "AAAI27-SUBJECT00-O03-LOSS-BINDING-CONCURRENT-RUN-PROVENANCE-001"
+}
