@@ -169,7 +169,10 @@ def cpu_checkpoint_audit(config: Mapping[str, Any]) -> dict[str, Any]:
         raise RuntimeError("Base60747 temporary/partial checkpoint exists")
     payload = torch.load(path, map_location="cpu", weights_only=False)
     required = {
-        "model_state", "optimizer_states", "scheduler_states", "python_rng_state",
+        "_xyz", "xyz_offset", "dxyz_vt", "_scaling", "_rotation", "_opacity",
+        "_sh0", "_shN", "_weights", "surface_attachment", "encoder_feat_params",
+        "dxyz_bs", "sh0_bs", "shN_bs", "scaling_bs", "rotation_bs", "opacity_bs",
+        "optimizer_states", "scheduler_states", "python_rng_state",
         "numpy_rng_state", "torch_rng_state", "cuda_rng_states", "data_order_position",
         "sampler_sha256", "global_data_order_sha256", "single_pass_data_order_sha256",
     }
@@ -182,7 +185,11 @@ def cpu_checkpoint_audit(config: Mapping[str, Any]) -> dict[str, Any]:
         "bytes": path.stat().st_size,
         "sha256": actual,
         "training_step": int(payload["training_step"]),
-        "model_state_complete": bool(payload["model_state"]),
+        "model_state_complete": all(payload[name] is not None for name in (
+            "_xyz", "xyz_offset", "dxyz_vt", "_scaling", "_rotation", "_opacity",
+            "_sh0", "_shN", "_weights", "surface_attachment", "encoder_feat_params",
+            "dxyz_bs", "sh0_bs", "shN_bs", "scaling_bs", "rotation_bs", "opacity_bs",
+        )),
         "optimizer_state_complete": bool(payload["optimizer_states"]),
         "scheduler_state_complete": isinstance(payload["scheduler_states"], list),
         "rng_state_complete": all(payload[name] is not None for name in (
