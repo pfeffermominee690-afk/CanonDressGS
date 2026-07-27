@@ -362,7 +362,7 @@ def execution_tests(
             17,
             "each fold counts=6/3/3",
             fold["status"] == "PASS_ALL_ROTATIONS_EXACT_6_3_3"
-            and all(value["status"] == "PASS_EXACT_6_3_3" for value in fold["fold_coverage"]),
+            and all(value["status"] == "PASS_EXACT_6_3_3" for value in fold["folds"]),
         ),
         (
             18,
