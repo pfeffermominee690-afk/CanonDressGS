@@ -1,0 +1,539 @@
+{
+  "schema_version": "canondressgs.subject00.o03.formal_target_execution_tests.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-FORMAL-TARGET-CAMSAFE7-TEACHER-RERUN-001",
+  "created_at": "2026-07-27T00:00:00+08:00",
+  "status": "PASS_BLOCKER_CLASSIFICATION_40_PASS_13_NOT_APPLICABLE_0_FAIL",
+  "passed_count": 40,
+  "not_applicable_blocked_count": 13,
+  "failed_count": 0,
+  "checks": [
+    {
+      "index": 1,
+      "name": "source_branch_head",
+      "status": "PASS",
+      "evidence": "113f669eac37fa1f178886f3a7dc1a3a81751441"
+    },
+    {
+      "index": 2,
+      "name": "materialization_branch_head",
+      "status": "PASS",
+      "evidence": "227fd156d420e4bf291413952f448780b8446b37"
+    },
+    {
+      "index": 3,
+      "name": "source_clean",
+      "status": "PASS",
+      "evidence": "both authoritative worktrees clean at preflight"
+    },
+    {
+      "index": 4,
+      "name": "formal_target_root",
+      "status": "PASS",
+      "evidence": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001"
+    },
+    {
+      "index": 5,
+      "name": "formal_O03_index",
+      "status": "PASS",
+      "evidence": "b9b692cb62f314d99ba5bc6d8bba7f315909e49aa56f5c0db4f895b23aa7e616"
+    },
+    {
+      "index": 6,
+      "name": "exact_seven_request_ids",
+      "status": "PASS",
+      "evidence": [
+        "subject00_O03_slot00_canary_attempt004_cand00",
+        "subject00_O03_slot01_remaining_attempt005_cand00",
+        "subject00_O03_slot02_cand00",
+        "subject00_O03_slot03_cand01",
+        "subject00_O03_slot05_canary_attempt004_cand00",
+        "subject00_O03_slot06_remaining_attempt005_cand00",
+        "subject00_O03_slot07_canary_attempt004_cand00"
+      ]
+    },
+    {
+      "index": 7,
+      "name": "request_order",
+      "status": "PASS",
+      "evidence": [
+        "subject00_O03_slot00_canary_attempt004_cand00",
+        "subject00_O03_slot01_remaining_attempt005_cand00",
+        "subject00_O03_slot02_cand00",
+        "subject00_O03_slot03_cand01",
+        "subject00_O03_slot05_canary_attempt004_cand00",
+        "subject00_O03_slot06_remaining_attempt005_cand00",
+        "subject00_O03_slot07_canary_attempt004_cand00"
+      ]
+    },
+    {
+      "index": 8,
+      "name": "slot04_absent",
+      "status": "PASS",
+      "evidence": "subject00_O03_slot04_canary_attempt004_cand00"
+    },
+    {
+      "index": 9,
+      "name": "raw_sha_7_of_7",
+      "status": "PASS",
+      "evidence": "bound materialized SHA verified through records"
+    },
+    {
+      "index": 10,
+      "name": "person_mask_sha_7_of_7",
+      "status": "PASS",
+      "evidence": "bound materialized SHA verified"
+    },
+    {
+      "index": 11,
+      "name": "garment_mask_sha_7_of_7",
+      "status": "PASS",
+      "evidence": "bound materialized SHA verified"
+    },
+    {
+      "index": 12,
+      "name": "camera_binding_7_of_7",
+      "status": "PASS",
+      "evidence": [
+        "cam17",
+        "cam21",
+        "cam14",
+        "cam23",
+        "cam02",
+        "cam09",
+        "cam05"
+      ]
+    },
+    {
+      "index": 13,
+      "name": "loader_sha",
+      "status": "PASS",
+      "evidence": {
+        "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+        "sha256_lf_runtime": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+        "sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+        "zero_optimizer_smoke": "PASS_7_OF_7_CPU_ONLY",
+        "gpu_forward_calls": 0
+      }
+    },
+    {
+      "index": 14,
+      "name": "schema",
+      "status": "PASS",
+      "evidence": "canondressgs.full_dataset.v1"
+    },
+    {
+      "index": 15,
+      "name": "required_field_inventory",
+      "status": "PASS",
+      "evidence": [
+        "target_edit_rgb",
+        "target_foreground_mask",
+        "target_clothing_mask",
+        "target_base_rgb",
+        "target_edit_mask",
+        "target_edit_core_mask",
+        "target_preserve_mask",
+        "target_transition_mask",
+        "target_protected_mask",
+        "target_base_foreground_mask",
+        "target_old_clothing_mask",
+        "target_revealed_skin_mask"
+      ]
+    },
+    {
+      "index": 16,
+      "name": "eight_mismatch_fields_7_of_7",
+      "status": "PASS",
+      "evidence": "56/56 loaded"
+    },
+    {
+      "index": 17,
+      "name": "mismatch_field_value_hashes",
+      "status": "PASS",
+      "evidence": "56/56 finite value hashes recorded"
+    },
+    {
+      "index": 18,
+      "name": "loss_consumer_map",
+      "status": "PASS_BLOCKER_DETECTED",
+      "evidence": "FAIL_3_FIELDS_UNBOUND_AND_5_BINDINGS_NOT_IN_FROZEN_SOURCE_EXECUTION"
+    },
+    {
+      "index": 19,
+      "name": "target_base_rgb_consumer",
+      "status": "PASS_AUDITED",
+      "evidence": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      }
+    },
+    {
+      "index": 20,
+      "name": "edit_core_preserve_transition_consumers",
+      "status": "PASS_BLOCKER_DETECTED",
+      "evidence": {
+        "target_edit_mask": {
+          "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+          "argument": "edit_mask",
+          "loss_components": [
+            "garment_rgb"
+          ]
+        },
+        "target_edit_core_mask": {
+          "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+          "argument": null,
+          "loss_components": []
+        },
+        "target_preserve_mask": {
+          "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+          "argument": null,
+          "loss_components": []
+        },
+        "target_transition_mask": {
+          "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+          "argument": "transition_mask",
+          "loss_components": [
+            "boundary_rgb"
+          ]
+        }
+      }
+    },
+    {
+      "index": 21,
+      "name": "base_foreground_consumer",
+      "status": "PASS_AUDITED",
+      "evidence": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      }
+    },
+    {
+      "index": 22,
+      "name": "old_clothing_consumer",
+      "status": "PASS_AUDITED",
+      "evidence": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      }
+    },
+    {
+      "index": 23,
+      "name": "revealed_skin_consumer",
+      "status": "PASS_BLOCKER_DETECTED",
+      "evidence": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      }
+    },
+    {
+      "index": 24,
+      "name": "Base60747_SHA",
+      "status": "PASS",
+      "evidence": {
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+        "bytes": 724584413,
+        "sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+        "cpu_torch_load": "PASS",
+        "internal_step": 60747,
+        "top_level_keys": [
+          "_opacity",
+          "_rotation",
+          "_scaling",
+          "_sh0",
+          "_shN",
+          "_weights",
+          "_xyz",
+          "all_poses",
+          "allow_off_surface_fallback",
+          "allow_topology_mutation",
+          "attachment_provenance",
+          "attempt",
+          "camera_split_sha256",
+          "checkpoint_kind",
+          "checkpoint_version",
+          "cuda_rng_states",
+          "data_manifest_sha256",
+          "data_order_position",
+          "derived_manifest_sha256",
+          "dxyz_bs",
+          "dxyz_vt",
+          "elapsed_seconds",
+          "encoder_feat_model_meta",
+          "encoder_feat_params",
+          "execution_head",
+          "global_data_order_sha256",
+          "is_dxyz_bs",
+          "is_gsparam_bs",
+          "iteration",
+          "joint_parents",
+          "lbs_mode",
+          "metrics_snapshot",
+          "nbr_gs",
+          "nbr_gs_invdist",
+          "nbr_gsft",
+          "nbr_gsft_wght",
+          "nbr_vt",
+          "nbr_vtft",
+          "nbr_vtft_wght",
+          "num_basis",
+          "num_vt_basis",
+          "numpy_rng_state",
+          "opacity_bs",
+          "optimizer_states",
+          "pose_split_sha256",
+          "protocol_head",
+          "protocol_sha256",
+          "python_rng_state",
+          "require_surface_attachment",
+          "rotation_bs",
+          "runtime_lbs_counters",
+          "sampler_sha256",
+          "scaling_bs",
+          "scene_scale",
+          "scheduler_states",
+          "sh0_bs",
+          "shN_bs",
+          "sh_degree",
+          "single_pass_data_order_sha256",
+          "source_branch",
+          "source_head",
+          "surface_attachment",
+          "surface_attachment_provenance",
+          "surface_attachment_state_keys",
+          "t_joints",
+          "template_sha256",
+          "topology_call_counts",
+          "torch_rng_state",
+          "training_step",
+          "xyz_ft",
+          "xyz_offset",
+          "xyz_vt"
+        ],
+        "model_state_present_by_key": true,
+        "frozen_state_present_by_key": false,
+        "partial_or_tmp": false,
+        "mutation_count": 0
+      }
+    },
+    {
+      "index": 25,
+      "name": "initialization_not_old_teacher",
+      "status": "PASS",
+      "evidence": {
+        "old_contaminated": false,
+        "old_runlocal_safe7": false,
+        "Base60747_cpu_load": "PASS"
+      }
+    },
+    {
+      "index": 26,
+      "name": "output_root_new",
+      "status": "PASS_STOPPED_ON_EXTERNAL_COLLISION",
+      "evidence": "absent during first complete gate snapshot; a different task later created the path; no overwrite or attempt_002"
+    },
+    {
+      "index": 27,
+      "name": "pre_loop_loader",
+      "status": "PASS",
+      "evidence": "7/7 CPU loader; 84/84 fields finite"
+    },
+    {
+      "index": 28,
+      "name": "pre_loop_forward",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": "0 GPU forwards"
+    },
+    {
+      "index": 29,
+      "name": "pre_loop_loss",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": "no loss construction"
+    },
+    {
+      "index": 30,
+      "name": "pre_loop_backward",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": "0 backward calls"
+    },
+    {
+      "index": 31,
+      "name": "optimizer_steps_1200",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": {
+        "planned": 1200,
+        "actual": 0
+      }
+    },
+    {
+      "index": 32,
+      "name": "sample_counts_balanced",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": {
+        "planned": {
+          "slot_00": 172,
+          "slot_01": 172,
+          "slot_02": 172,
+          "slot_03": 171,
+          "slot_05": 171,
+          "slot_06": 171,
+          "slot_07": 171
+        },
+        "actual": {
+          "slot_00": 0,
+          "slot_01": 0,
+          "slot_02": 0,
+          "slot_03": 0,
+          "slot_05": 0,
+          "slot_06": 0,
+          "slot_07": 0
+        }
+      }
+    },
+    {
+      "index": 33,
+      "name": "slot04_sample_count_zero",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "index": 34,
+      "name": "five_checkpoints",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": []
+    },
+    {
+      "index": 35,
+      "name": "checkpoint_formal_target_binding",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": "no new checkpoint"
+    },
+    {
+      "index": 36,
+      "name": "trainable_parameter_changes",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": "no model construction"
+    },
+    {
+      "index": 37,
+      "name": "frozen_parameter_immutability",
+      "status": "PASS",
+      "evidence": "zero mutations"
+    },
+    {
+      "index": 38,
+      "name": "no_NaN_Inf",
+      "status": "PASS",
+      "evidence": "84/84 loader fields finite; training not executed"
+    },
+    {
+      "index": 39,
+      "name": "no_OOM",
+      "status": "PASS",
+      "evidence": "no CUDA allocation attempted"
+    },
+    {
+      "index": 40,
+      "name": "per_view_metrics_7",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": []
+    },
+    {
+      "index": 41,
+      "name": "evaluation_denominator_7",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": "planned 7"
+    },
+    {
+      "index": 42,
+      "name": "historical_comparison",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": null
+    },
+    {
+      "index": 43,
+      "name": "animation_audit",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": null
+    },
+    {
+      "index": 44,
+      "name": "review_package",
+      "status": "NOT_APPLICABLE_BLOCKED_BY_GATE",
+      "evidence": null
+    },
+    {
+      "index": 45,
+      "name": "human_fields_null",
+      "status": "PASS",
+      "evidence": {
+        "HUMAN_VISUAL_DECISION": null,
+        "SCIENTIFIC_PASS": null
+      }
+    },
+    {
+      "index": 46,
+      "name": "paper_eligible_false",
+      "status": "PASS",
+      "evidence": false
+    },
+    {
+      "index": 47,
+      "name": "formal_target_immutable",
+      "status": "PASS",
+      "evidence": "before/after registry exact"
+    },
+    {
+      "index": 48,
+      "name": "Base_checkpoint_immutable",
+      "status": "PASS",
+      "evidence": "SHA exact before/after"
+    },
+    {
+      "index": 49,
+      "name": "old_runs_immutable",
+      "status": "PASS",
+      "evidence": "zero mutations"
+    },
+    {
+      "index": 50,
+      "name": "Formal_Base_paused",
+      "status": "PASS",
+      "evidence": {
+        "status": "USER_AUTHORIZED_PAUSED",
+        "durable_step": 60747,
+        "resume_authorized": false
+      }
+    },
+    {
+      "index": 51,
+      "name": "paper_modification_zero",
+      "status": "PASS",
+      "evidence": 0
+    },
+    {
+      "index": 52,
+      "name": "final_classification",
+      "status": "PASS",
+      "evidence": "SUBJECT00_O03_FORMAL_TARGET_RERUN_BLOCKED_BY_LOSS_FIELD_BINDING_AMBIGUITY"
+    },
+    {
+      "index": 53,
+      "name": "NEXT_TASK_uniqueness",
+      "status": "PASS",
+      "evidence": "RESOLVE_SUBJECT00_FORMAL_TARGET_LOSS_FIELD_BINDING"
+    }
+  ],
+  "optimizer_steps_completed": 0,
+  "gpu_forward_calls": 0
+}

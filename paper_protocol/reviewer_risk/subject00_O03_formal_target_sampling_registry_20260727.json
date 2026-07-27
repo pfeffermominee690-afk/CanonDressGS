@@ -1,0 +1,47 @@
+{
+  "schema_version": "canondressgs.subject00.o03.formal_target_sampling_registry.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-FORMAL-TARGET-CAMSAFE7-TEACHER-RERUN-001",
+  "created_at": "2026-07-27T00:00:00+08:00",
+  "sampler": "DETERMINISTIC_BALANCED_CYCLIC",
+  "seed": 20260718,
+  "view_order": [
+    "slot_00",
+    "slot_01",
+    "slot_02",
+    "slot_03",
+    "slot_05",
+    "slot_06",
+    "slot_07"
+  ],
+  "request_order": [
+    "subject00_O03_slot00_canary_attempt004_cand00",
+    "subject00_O03_slot01_remaining_attempt005_cand00",
+    "subject00_O03_slot02_cand00",
+    "subject00_O03_slot03_cand01",
+    "subject00_O03_slot05_canary_attempt004_cand00",
+    "subject00_O03_slot06_remaining_attempt005_cand00",
+    "subject00_O03_slot07_canary_attempt004_cand00"
+  ],
+  "planned_training_steps": 1200,
+  "planned_view_sample_counts": {
+    "slot_00": 172,
+    "slot_01": 172,
+    "slot_02": 172,
+    "slot_03": 171,
+    "slot_05": 171,
+    "slot_06": 171,
+    "slot_07": 171
+  },
+  "actual_view_sample_counts": {
+    "slot_00": 0,
+    "slot_01": 0,
+    "slot_02": 0,
+    "slot_03": 0,
+    "slot_05": 0,
+    "slot_06": 0,
+    "slot_07": 0
+  },
+  "actual_optimizer_record_count": 0,
+  "slot04_sample_count": 0,
+  "status": "NOT_RUN_BLOCKED_BY_LOSS_FIELD_BINDING_GATE"
+}

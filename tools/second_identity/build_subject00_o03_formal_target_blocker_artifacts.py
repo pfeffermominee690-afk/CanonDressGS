@@ -144,6 +144,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", type=Path, required=True)
     parser.add_argument("--machine-snapshot", type=Path, required=True)
+    parser.add_argument("--formal-manifest-copy", type=Path, required=True)
+    parser.add_argument("--camera-audit", type=Path, required=True)
+    parser.add_argument("--external-run-status", type=Path, required=True)
+    parser.add_argument("--external-config-snapshot", type=Path, required=True)
+    parser.add_argument("--external-step0-sidecar", type=Path, required=True)
     parser.add_argument("--commit-head", default="PENDING_ARTIFACT_COMMIT")
     parser.add_argument(
         "--final-reporting-head",
@@ -424,7 +429,14 @@ def execution_checks(machine: dict[str, Any]) -> list[dict[str, Any]]:
             "Base60747_cpu_load": "PASS",
         },
     )
-    add("output_root_new", "PASS", "absent before and after blocked preflight")
+    add(
+        "output_root_new",
+        "PASS_STOPPED_ON_EXTERNAL_COLLISION",
+        (
+            "absent during first complete gate snapshot; a different task later "
+            "created the path; no overwrite or attempt_002"
+        ),
+    )
     add("pre_loop_loader", "PASS", "7/7 CPU loader; 84/84 fields finite")
     add("pre_loop_forward", "NOT_APPLICABLE_BLOCKED_BY_GATE", "0 GPU forwards")
     add("pre_loop_loss", "NOT_APPLICABLE_BLOCKED_BY_GATE", "no loss construction")
@@ -533,7 +545,7 @@ run-local snapshot loss 路径。合同中的示意语义不能代替代码绑�
 
 ## 执行边界
 
-- 新 output root：未创建。
+- 本任务未创建新 output root；检测到后续外部任务占用同一路径。
 - CUDA forward / backward：0 / 0。
 - optimizer：未构造；optimizer step：0。
 - 新 checkpoint：0。
@@ -543,6 +555,11 @@ run-local snapshot loss 路径。合同中的示意语义不能代替代码绑�
 - Formal Base 保持 `USER_AUTHORIZED_PAUSED`，durable step=60747，
   resume authorization=false。
 - 论文正文：零修改；paper eligible=false；paper final=false。
+
+首次完整门禁快照完成时固定 output root 不存在。随后另一个已授权任务
+`AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001` 使用同一路径启动，
+形成外部并发碰撞。该进程、其 optimizer steps 和 checkpoint 不属于本任务；本任务
+在检测到路径存在后立即停止，没有覆盖、删除或创建 `attempt_002`。
 
 冻结任务末尾同时列出了 `OPTIMIZER_STEPS_COMPLETED=1200`，但同一合同更早明确
 规定：任一正式字段没有唯一 consumer 时不得启动 optimizer。这里记录实际值 0，
@@ -578,12 +595,27 @@ def main() -> None:
     args = parse_args()
     repo = args.repo_root.resolve()
     machine = read_json(args.machine_snapshot)
+    formal_manifest = read_json(args.formal_manifest_copy)
+    camera_audit = read_json(args.camera_audit)
+    external_run_status = read_json(args.external_run_status)
+    external_config = read_json(args.external_config_snapshot)
+    external_step0 = read_json(args.external_step0_sidecar)
     if machine["task_id"] != TASK_ID:
         raise RuntimeError("machine snapshot task ID differs")
     if machine["loss_binding"]["gate_pass"]:
         raise RuntimeError("builder is only valid for the sealed blocker outcome")
     if machine["final_classification"] != FINAL_CLASSIFICATION:
         raise RuntimeError("machine snapshot classification differs")
+    if formal_manifest["schema_version"] != "canondressgs.full_dataset.v1":
+        raise RuntimeError("formal manifest copy schema differs")
+    if camera_audit["camera_canonical_exact_count"] != 7:
+        raise RuntimeError("authoritative camera audit is not exact 7/7")
+    if external_run_status["task_id"] == TASK_ID:
+        raise RuntimeError("output collision is unexpectedly owned by this task")
+    if external_config["task_id"] != external_run_status["task_id"]:
+        raise RuntimeError("external output ownership evidence disagrees")
+    if external_step0["step"] != 0:
+        raise RuntimeError("external step0 sidecar is not step zero")
     fields = final_fields(args, machine)
     checks = execution_checks(machine)
     pass_count = sum(row["status"].startswith("PASS") for row in checks)
@@ -594,6 +626,64 @@ def main() -> None:
     if failed_count:
         raise RuntimeError("execution checks contain a failure")
 
+    conditions = {
+        condition["condition_id"]: condition
+        for condition in formal_manifest["conditions"]
+        if condition["condition_id"] in EXPECTED_REQUESTS
+    }
+    if list(conditions) != EXPECTED_REQUESTS:
+        raise RuntimeError("formal manifest camera condition order differs")
+    audit_records = {
+        record["request_id"]: record for record in camera_audit["records"]
+    }
+    camera_records = []
+    required_camera_fields = (
+        "condition_id",
+        "source_frame_id",
+        "source_camera_id",
+        "pose",
+        "Rh_raw",
+        "R_global",
+        "Th",
+        "K",
+        "w2c",
+        "c2w",
+        "width",
+        "height",
+        "background",
+        "conventions",
+        "source_checksum",
+    )
+    for request_id in EXPECTED_REQUESTS:
+        condition = conditions[request_id]
+        if not all(field in condition for field in required_camera_fields):
+            raise RuntimeError(f"formal camera condition is incomplete: {request_id}")
+        audit = audit_records[request_id]
+        camera_records.append(
+            {
+                **{field: condition[field] for field in required_camera_fields},
+                "formal_camera_path": audit["formal_camera_path"],
+                "formal_camera_sha256": audit["formal_camera_sha256"],
+                "canonical_comparison": audit["canonical_comparison"],
+                "camera_canonical_exact": audit["camera_canonical_exact"],
+                "finite_status": "PASS_BY_FORMAL_LOADER_AND_CAMERA_AUDIT",
+            }
+        )
+    output_collision = {
+        "status": "EXTERNAL_TASK_COLLISION_DETECTED_AFTER_INITIAL_ABSENCE",
+        "first_successful_preflight_output_root_present": False,
+        "later_output_root_present": True,
+        "external_task_id": external_run_status["task_id"],
+        "external_execution_branch": external_config["execution_branch"],
+        "external_run_status_snapshot": external_run_status,
+        "external_step0_sidecar": external_step0,
+        "owned_by_this_task": False,
+        "external_optimizer_steps_counted_by_this_task": 0,
+        "external_checkpoints_counted_by_this_task": 0,
+        "overwrite_attempted": False,
+        "attempt_002_created": False,
+        "external_process_terminated_by_this_task": False,
+    }
     binding_registry = {
         "schema_version": (
             "canondressgs.subject00.o03.formal_target_camsafe7.binding.v1"
@@ -623,16 +713,19 @@ def main() -> None:
                 "batch_size",
             )
         },
-        "camera_contract_status": machine["formal_target"][
-            "camera_contract_status"
-        ],
-        "camera_records": machine["formal_target"]["camera_rows"],
+        "camera_contract_status": (
+            "PASS_15_CAMERA_FIELDS_X_7_RECORDS_FROM_FORMAL_MANIFEST_AND_"
+            "AUTHORITATIVE_CAMERA_AUDIT"
+        ),
+        "camera_records": camera_records,
         "base_checkpoint": machine["base_checkpoint"],
         "output_root": {
             "path": OUTPUT_ROOT,
             "attempt_id": "attempt_001",
-            "created": False,
+            "created_by_this_task": False,
+            "current_state": output_collision["status"],
         },
+        "output_collision": output_collision,
         "binding_gate": machine["loss_binding"]["status"],
         "final_classification": FINAL_CLASSIFICATION,
     }
@@ -709,8 +802,11 @@ def main() -> None:
             "automatic_retry": False,
         },
         "actual_execution": {
-            "status": "BLOCKED_BEFORE_GPU_FORWARD_AND_OPTIMIZER",
-            "output_root_created": False,
+            "status": (
+                "BLOCKED_BEFORE_GPU_FORWARD_AND_OPTIMIZER; "
+                "EXTERNAL_OUTPUT_COLLISION_OBSERVED_AFTER_GATE"
+            ),
+            "output_root_created_by_this_task": False,
             "pre_loop_loader": "PASS_7_OF_7_CPU_ONLY",
             "pre_loop_forward": "NOT_RUN",
             "pre_loop_loss": "NOT_RUN",
@@ -732,6 +828,7 @@ def main() -> None:
             "resume_authorized": False,
         },
         "final_classification": FINAL_CLASSIFICATION,
+        "output_collision": output_collision,
     }
     sampling_registry = {
         "schema_version": (
@@ -771,6 +868,7 @@ def main() -> None:
             "NOT_CREATED_BLOCKED_BEFORE_CHECKPOINT_0"
         ),
         "status": "NOT_RUN_BLOCKED_BY_LOSS_FIELD_BINDING_GATE",
+        "external_output_collision": output_collision,
     }
 
     not_generated = {
@@ -889,6 +987,7 @@ def main() -> None:
             "formal_target_mutations": 0,
             "Base60747_checkpoint_mutations": 0,
             "paper_modifications": 0,
+            "output_collision": output_collision["status"],
         },
         "blocker": {
             "loss_consumer_map_status": machine["loss_binding"]["status"],
@@ -901,6 +1000,7 @@ def main() -> None:
                 "uniquely consumes all eight formal fields; do not infer it."
             ),
         },
+        "external_output_collision": output_collision,
         "validated_inputs": {
             "formal_target_root": FORMAL_TARGET_ROOT,
             "formal_index_path": FORMAL_INDEX_PATH,

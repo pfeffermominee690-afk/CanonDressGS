@@ -1,0 +1,2650 @@
+{
+  "schema_version": "canondressgs.subject00.o03.formal_target_scientific_fields.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-FORMAL-TARGET-CAMSAFE7-TEACHER-RERUN-001",
+  "created_at": "2026-07-27T00:00:00+08:00",
+  "formal_schema": "canondressgs.full_dataset.v1",
+  "loader": {
+    "path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+    "sha256_lf_runtime": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+    "sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+    "zero_optimizer_smoke": "PASS_7_OF_7_CPU_ONLY",
+    "gpu_forward_calls": 0
+  },
+  "required_field_count": 12,
+  "required_fields": [
+    "target_edit_rgb",
+    "target_foreground_mask",
+    "target_clothing_mask",
+    "target_base_rgb",
+    "target_edit_mask",
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_transition_mask",
+    "target_protected_mask",
+    "target_base_foreground_mask",
+    "target_old_clothing_mask",
+    "target_revealed_skin_mask"
+  ],
+  "previous_mismatch_field_count": 8,
+  "previous_mismatch_fields": [
+    "target_base_rgb",
+    "target_edit_mask",
+    "target_edit_core_mask",
+    "target_preserve_mask",
+    "target_transition_mask",
+    "target_base_foreground_mask",
+    "target_old_clothing_mask",
+    "target_revealed_skin_mask"
+  ],
+  "record_count": 7,
+  "field_record_count": 84,
+  "load_status": "PASS_12_FIELDS_X_7_RECORDS",
+  "value_hash_status": "PASS_84_OF_84_FINITE_VALUE_HASHES_RECORDED",
+  "records": [
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "f5197d9646ccf60ddffe3184e295e2afed2f04ff3ccbe95b5908974f6652e9e1",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718163,
+      "value_sha256": "a7764d7cb1917b0bc1353ed8d6a65887b73376a84f483fb31598effc7b921bf6",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot00_canary_attempt004_cand00_person_mask.png",
+      "source_sha256": "c22ed332c668e1780ab43f895c1a2fbe9df91048ef8b45927f4366e08fa762f7",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 69923,
+      "value_sha256": "f05d98a350b1d929b5eed8cae54c52aa1b72425404fdde1b1ac8527d18f172a5",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot00_canary_attempt004_cand00_garment_mask.png",
+      "source_sha256": "12a0b7f6375969b2e8112746daf3a8414ad62b37b2dd7324a25179c0b3b01703",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 58659,
+      "value_sha256": "35a03c2b78252679e9199b07c50690ef339b79886abed14109e4a3d13ff64e09",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "991d1ba96fecb13f83de43f557238bdcc1916b2a8e59e313a18a71a4c4e161ee",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4713939,
+      "value_sha256": "71cf072db9b504c157ae0112e4c80b091b9596509ff104cae7746bf68399313b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "8ff5815c785c6211e9d434af15ba033f3151249aa45000bbbf9ff9ac69d0d2b7",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 76111,
+      "value_sha256": "799c82c304b3c4c82345323259a563e33b2d5b153e4d4b2506f1e59b2667a805",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "a3642ffaa5fcf6772230f6ab44933798967f8cb93ba46aa67f47fffa1c85c39f",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 49741,
+      "value_sha256": "369226af07744dac3043383c98ec1193d34a3d92f52c39f52281230f04ca91b5",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "99d5a518e6433eea7632895707989bc55c77f06f70c1fd96ca6c7ee70bc4151a",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1496639,
+      "value_sha256": "a82f2ed322364ef838dd083934ee659783e82e520b30a802168cb38de0a9463e",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "c9b920558f3dec5dafcd75e369b1baf65bdbfe37ac611c3627b252238cf5d0f6",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 26370,
+      "value_sha256": "54a8644fc6d36d52eaa7f9151f7d422dc3451c3e763d1bff1e9caf1f2c3121d3",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "400d1ea5f199ae3e896280f2c52f98670e48f9307f9d8ef5e74a83d1036f094f",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 11264,
+      "value_sha256": "56a963e6622dce07fb02617c326a6d16e66d8ecf387d537861989b7062f141ea",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "9467ead6d03e7f79d1f59d03f76b5943cb19501754c0cfa0c1439033ff0ca5a9",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 73191,
+      "value_sha256": "427495ec7e3994eed312a473ecbc9f8cc51b7777d10c2eff9a1c2a52f1893f4a",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "65bd53c28e6d92f2f7daebb3457eb9b72015681246f43e888eb7138cdc069cb1",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 63178,
+      "value_sha256": "2c6be907ee946b08a7249de110bb85eb40425a7f51616407e52110d657dd4547",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot00_canary_attempt004_cand00",
+      "slot": "slot_00",
+      "camera_id": "cam17",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot00_canary_attempt004_cand00.png",
+      "source_sha256": "6df954d4ff8f8d6c4388e1ca04ecb94e8dc643a81e1b70aa1a92149cc44db4ab",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1165,
+        1350
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "39434b136a6d098f209c6e1cce7459c9690199a73f5fee49c42d535c1558faee",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "917d7d74d0b9dba42919cd75a27cdf04c160d8a8084bd8b66a204eb15e089b3f",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718640,
+      "value_sha256": "127f331dfa2118846ca9a6029ee18b45fb45c5442ab63227075440c485eb0c9f",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot01_remaining_attempt005_cand00_person_mask.png",
+      "source_sha256": "bda7ba50815513704f4e6fef1cbcd9c6a4254b66c2a43569d7651b7042f4d595",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 71813,
+      "value_sha256": "ba203008f0263ce89285c362c9273a8866333f1fd63166df61f5415d0ae384ac",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot01_remaining_attempt005_cand00_garment_mask.png",
+      "source_sha256": "9d9701b32b4ccf39e5cc9e0ed1e03f4ba2b161f5ffdd04eecf08346aa75272b7",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 59735,
+      "value_sha256": "3e4c228e3faf04afb18de677f927c95100f5cb83e423a0345818165b3ca5c6ad",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "b63bad5224a90e207554afe6b6c3f0474b6ff521390b092395f322bd291eb3c7",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718582,
+      "value_sha256": "933319ee20712ab3b9e57aa71173473f249069626f42d35d60fa304575221216",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "7ac5685115d4b5058e34d1d20dd380bf3aa1912c43c73a0eb7362b4ccd06ab6d",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 77442,
+      "value_sha256": "75e25292c3f0c2ac82a9ef37255c194c6303d0b58f9283427d05921003347002",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "48d0d32a7d7626480e041d5f83726be8fb8755240476589c938a6a45a39f7859",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 51003,
+      "value_sha256": "0cc7ffcc06c21398b2108f8f17c7c9ce6a579709bd1286ba14a9c5abbbbdc403",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "0930fba73d13d3886654b69517872f56ed20c9f38c47ec8ed2e00a9f29628134",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1495492,
+      "value_sha256": "73e48f3aee0842430a177e6c835da04e81a9aac0950243321f0b065531c5856d",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "e6b30932131238f0868e442612d17da6ecaef725536d574443ecd4b639f119f5",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 26439,
+      "value_sha256": "1385ff03ad8c9835c519d66958069cd25c350e11898a2bee252142307912c684",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "a38da224d4c5c5ff971ede5a3791bcc16aa1565359535d4cdcc0f2f826f28340",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 12078,
+      "value_sha256": "fd7d385272f51230dfb66c6deb341c5d7165e9c940625452acc19611d8c1d47f",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "15c246134fb491219273b3f72755874800ce551930e06fffb42625e9a5b808ed",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 73527,
+      "value_sha256": "be6a1cbe59850f7be6c361dd2e32665d23f6ba32a0570b46f74072c981af4822",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "7edce17b616f401159787be35ce1b738aea539cdb9adc6339934f357e1fae777",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 63275,
+      "value_sha256": "dc796f115bab22be8602199d1cf8fb257c7b44c8c2226d117de116c4cd72c2dc",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot01_remaining_attempt005_cand00",
+      "slot": "slot_01",
+      "camera_id": "cam21",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot01_remaining_attempt005_cand00.png",
+      "source_sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "1d567573a2f09cf8a2bc404538a7512cb20e67e0f8b259dbe7de0c1994dbce9b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "cc48b0e48fc9e09e5a6c9d5cba8f56b818e9deea3b1468251c94f6cccfdc9196",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718665,
+      "value_sha256": "644b96fe8f255a025eca6c7a1010a447818aefff9cb54546a77744591b69b085",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot02_cand00_person_mask.png",
+      "source_sha256": "0d6885d32955e95457a4796187a5c793e05fc45242109743eba90885de52aca6",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 64409,
+      "value_sha256": "06e0c898f9d4f85f7af8ea2ba8754473d6c1ccd42f7d80ddc66c95555f0603a6",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot02_cand00_garment_mask.png",
+      "source_sha256": "1e1292850e66880c69c44bc7a1955ab72c16da7f4f56f43a62f1291255bc704d",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 53284,
+      "value_sha256": "68dacf523546ecb3b36a0e1d320843b804c50c8f0be121fd4c6b5e146f2ef065",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "aea5c26213bcaff497b682416d8c4eeda93241d09b6ea313d25d6d4631ad106f",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718607,
+      "value_sha256": "f8c8faad4f949120189ccfcab7a5e40ab8fefa31457f997e0600892b3b1cbc57",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "8a2518fc1416285a279b793a922886f1fdda969c339099c83d38f5bf601c7204",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 64391,
+      "value_sha256": "4a2f848ab737d2c33761466bab331abfa403ba8ef886247b285d289377384b3a",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "6751145dc7f1378668a8fba0c5b5ffbbdc12d85a40ba80be5afb13c8c6562d30",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 46191,
+      "value_sha256": "1db960ab0ccc3d47212ab919e3b113616b6adf6680af8d18537d49973e296cd3",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "430121be847d5b65abd6ade1978ea0799b8921ace471443fc11940d3c336683e",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1508543,
+      "value_sha256": "303eddde38c3a91d9c4a9ee9166f489bdbe2c3e6e095b4e52a841d5a000245b4",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "9dab28e93090c46e0229f9100c8fbdb7686665f403e5d1f4e879b387231ced2a",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 18200,
+      "value_sha256": "9600eb24f1653d7530395876d6978bd8fb52ed7b63d53762ca3add028aa0d4e1",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "ba1117f32d7624337545e40f693129e98afc62e835907ecb86ff6d0e89494169",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 11125,
+      "value_sha256": "226e6f125f8844b7eacaa225ad2e78d55f7cf67a2682cdb6874ac89c38ed65e6",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "24c2b0af5e0c33aacd1c7d63097477d72ce40a5852cab62f5c946f956df2d577",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 61704,
+      "value_sha256": "fa0ccaf9c6fc7fe0be774857b48a22404068f79a56c3f19a43a71d43473b0367",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "e891cfe6e4ca18968909e43ed2b2065e0f36c6eadc3623fd27641f97e8b6350b",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 51891,
+      "value_sha256": "cfa13f492a94e84a426966d91369f9e0a5333a8f3524e60774496b988c26b160",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot02_cand00",
+      "slot": "slot_02",
+      "camera_id": "cam14",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot02_cand00.png",
+      "source_sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "1d567573a2f09cf8a2bc404538a7512cb20e67e0f8b259dbe7de0c1994dbce9b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "47601e3cde68fdac9461f1fc74c4f47f7db47611e323778fc22cef476944754f",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718728,
+      "value_sha256": "b58ad3e32a40e13005b5dbf64ea5193c32f560b9c78b87227c24f28a9609d505",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot03_cand01_person_mask.png",
+      "source_sha256": "d428a86495d7d3fdd492be35697c08ada501412f9c83aa83196fb180ff15aef7",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 57151,
+      "value_sha256": "4db2725312d59133970d75da38184cb65e6fc1ab83b30a31eb7f2757ce20d066",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot03_cand01_garment_mask.png",
+      "source_sha256": "35da2afb3718b269737e18fe955f3558d8e41720bc1e206a490d942dbecd326e",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 46072,
+      "value_sha256": "4241ab41c094f217cb9a7dfa0deb5675422c7d925160d4414f95133282ad5196",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "127ca452ea48d3cda321e5ba4b1bdf2f8f1873e2c4dc2f85c35ec8078aaa9bfa",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4714629,
+      "value_sha256": "b6c179c55e3cdec06cd45cb38a84479905bdb523ce15fd39d0cb17fea8e03b95",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "6c2c90d5a08b9c83167ebb67a7636002f8bdcef1f73e326003f66411fc6d5fc3",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 58021,
+      "value_sha256": "ef13bb2c7755f1e6c4965395c9360e5ab2c60bf2ba8867cfa2c2e89202764063",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "a91e16ce7496f243aa550f9a243148a9430d5ca09ca301e131f9cb40d5750981",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 40435,
+      "value_sha256": "2b58ea41ccfa3d18cec63d64ce14ee9d77feef9a15949e1df67e156542ff0641",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "410d4d6378d411d03a822b9e776ab9def0b6949a8d8407ec14f5a5f2ebc1073d",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1514913,
+      "value_sha256": "afa923c84b27d10068d86edeb13b52f4189518029df3df0e880b5148d714fd5c",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "500ebd85cfdf3227b6e8571aa45600037d9a3b3b3d7e10f63b0f891387e3f465",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 17586,
+      "value_sha256": "084deca91562f0d870b4fdfa20edcc8541ae4cd92d162ce51f40a7b2a27e374c",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "1a0f92096f48f55523df19721b8370a576ec91e0f268aa0732980ec3884416b5",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 11079,
+      "value_sha256": "2ce60ae6038c71cc145278bba364b425b55d7ab6999ed9a58bac08d4d81ac2d2",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "02c1d44edc05df0e28f4552ba27aae1d092b33372f132d15f70b1acd69e32f14",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 53594,
+      "value_sha256": "127e384281f4d2490cad7ec6ebbba969f50d35564e63b96eb94ca638ae0e6bff",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "d746dbbd0146c775393ab4ba6597ae03d20d301efaa9662f5b66aa7a51374a55",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 44067,
+      "value_sha256": "201ef642462f4deb0cae9645f542725979897db3c086a31175324791f0aaaaa1",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot03_cand01",
+      "slot": "slot_03",
+      "camera_id": "cam23",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot03_cand01.png",
+      "source_sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "1d567573a2f09cf8a2bc404538a7512cb20e67e0f8b259dbe7de0c1994dbce9b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "379562123b1d918d68171b9224068dbe905d2d5e108900408b5da82c49128aa1",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718790,
+      "value_sha256": "e6aefb8107b6714241cce73b22e47886dbef91750695ae39388aa69bb81e7120",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot05_canary_attempt004_cand00_person_mask.png",
+      "source_sha256": "190d8943391bbff1d0a822ecf89201f2f27258f573f186cab62f227f15357b72",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 74596,
+      "value_sha256": "30f7fa18a3544dd06102bfd84d5b85af9b770077c41d4f10c34b4421d2ead597",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot05_canary_attempt004_cand00_garment_mask.png",
+      "source_sha256": "8c955ee53837b69d320dfd7eb4645403a78dec0ef473d40eb6107ae477e7f87d",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 62239,
+      "value_sha256": "b2c1b85f49ad6ab75dc3323fd6b32975b4623c544ed1d5ed2ec272601acd294e",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "d37d9ba5693f2f51742e597e5256a583845778cbc540b53b56b8204c9e5daad1",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718744,
+      "value_sha256": "b3f0e63edd24b3472dcba63bb0da9e9ac8f332a6e9bcae7fb6bedddda36c1c4d",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "c78250d35e36e209c7e1a341b72ea772ea32daff98fa6270f6ce77de87346620",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 73219,
+      "value_sha256": "b0faf50bd2e864f85587589596bf66c4422cf03376775e8f3ca687f33c371e01",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "5bca3db086da10f498c29f8ab57c4de5ad9fbf631fd360979e2c331283ff7225",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 53968,
+      "value_sha256": "a7d62941633bcee75b3c37bc6a497864c5567c220356105ab89f3dd1e26d44e7",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "e77072423ab2c6bc8acf97572722ba05053c8ed932ea04816b463b2019712bc4",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1499715,
+      "value_sha256": "4828d22700c7637ea1b558b63f55a3619830241e758f2039556c95642d020239",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "8b1cdfa1f1605052f24fe283a98a9b5663910094c552c5915cdf15f207ad780f",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 19251,
+      "value_sha256": "d242ece7f1dbb50b8dea5292de55fa850c90ac2f1f8c8e695ab7be532c91c889",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "fe18abcdb04058ddad85ceb1b2550d68fe02e25d3330418584523af97c53e3e3",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 12357,
+      "value_sha256": "7f2811a0e9bf7c9fab867c9a5c33a0a19a5b1b69c3c39824d8f6cb027761c713",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "9e7f379469d826f5805158da14b91bdd99e7f24c50725542228a867eb2b425ae",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 70786,
+      "value_sha256": "90c0a7308326a1b0a57764862c6e0cd2369b2efbf64ead8206625b8c64d9b187",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "c0546ebbc823bdf2ef89a9d83f277c15c3699f7e2a21072084c75fb1409eccb4",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 59795,
+      "value_sha256": "5b9b7f8137949c493f2a1da36f0f575a21ed2ee7dea4c452bcfd6af2221c4479",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot05_canary_attempt004_cand00",
+      "slot": "slot_05",
+      "camera_id": "cam02",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot05_canary_attempt004_cand00.png",
+      "source_sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "1d567573a2f09cf8a2bc404538a7512cb20e67e0f8b259dbe7de0c1994dbce9b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "8f843334c5ecda1003f70fe67482dff5e983387dc7281e336e2546194e2fff14",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718752,
+      "value_sha256": "7b99434d1123b7ac682792883f0b62f95f5e6c372819a8f2acc525665fb8a175",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot06_remaining_attempt005_cand00_person_mask.png",
+      "source_sha256": "ec9eb189d59a13dbc3c17ff3f73910295b8c3c93a63974e614724f6f57f31653",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 72705,
+      "value_sha256": "61e69942c88259f979fadfbba8d42d2184895ae89fd2b34647299b13be0872b9",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot06_remaining_attempt005_cand00_garment_mask.png",
+      "source_sha256": "700767e5145cf1b6be32fac716a764ba484bb2b69c568226189c7664281b75fc",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 62427,
+      "value_sha256": "9800afd019b992f0baa5b7db5610ebe9908c3b95a0fc65776286ac2d82f061e4",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "b67be4b303153903eb3e2155ec2978972b0e11b4c5eaccdc611ad2882b6c1b58",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718677,
+      "value_sha256": "27257df6ea2d2c3084db787e97d4ce28de35c070c0060af8d5d71b11bc1ea3bd",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "c66327c7ddd9e25077a4ecbfaf09eca5e053535e750cb7dd26f723eb9c173ae2",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 74264,
+      "value_sha256": "c886a50b1f6d684fd8e22605fd084513872edccc927a9362cae7255f5867c259",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "c1c3be656b0b03ec46f9a1b790a95a87a8ba8bdbade6d3866a83a5d9070739eb",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 53933,
+      "value_sha256": "389adfc83790e2c6b792c30c93ac39fa10924e09d943f193e356e9ed5d9a9a4b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "661f0cfbfab6202c023a647a89b93e262426b93cb8186467095b55ed1987733d",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1498670,
+      "value_sha256": "2f6cead9983f58883c6e952bb04000c2074efd6f0d3c30c70a2e75984698cf9f",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "9a8b74a29a4b45a25540c5c8c062efdb356df8e71be9eefb7d1084612ef6aaa2",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 20331,
+      "value_sha256": "05b5dadc5a32e450c989d719511b6431a882c702f50c9dfed54831c89b730b55",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "dfb984d65433a12eef6813cabc9adfdc9e34c9be81f5a302d68367e76ca53387",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 10278,
+      "value_sha256": "8554d031553643121a7de3dff463888599778bd8b217ac7488f6dce457630091",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "412b8ecc23764d577ffe40b9e3499c14fed7428c193ba814b309cb5874525127",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 69163,
+      "value_sha256": "b1a73beea73d23206cde433a8c18f255c04ba75b175f523d20cc7c3702fd0590",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "96acc01497ff9fa4946dfc59cfa01eb37c035eaa6cf0ca80a7e991a5979b6fb3",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 60244,
+      "value_sha256": "e9a08951c7322e742867de368d501db1a5b2874882866d3a97dfc34a76b47a33",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot06_remaining_attempt005_cand00",
+      "slot": "slot_06",
+      "camera_id": "cam09",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot06_remaining_attempt005_cand00.png",
+      "source_sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "1d567573a2f09cf8a2bc404538a7512cb20e67e0f8b259dbe7de0c1994dbce9b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_edit_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/03_raw/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "9300293c0b028f5f7f194f5de6d56426404938a84ff61ec37d6ce56afab84441",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4718712,
+      "value_sha256": "eb23ffb16fa2134507865e337b455ef371bff5bbe691a7a83acb7971628be76f",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_rgb",
+        "loss_components": [
+          "garment_rgb",
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/04_person_masks/O03/subject00_O03_slot07_canary_attempt004_cand00_person_mask.png",
+      "source_sha256": "6e6c152e234dfe363c18bcbc273f84fa7b62872fac4cebec83ba98d0c62590db",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 87765,
+      "value_sha256": "06310f956d1e58a1d2fd02b1e26be42f0dbeed790d2cdc5e75f4b4e632f8b5bd",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "target_foreground",
+        "loss_components": [
+          "alpha_foreground",
+          "new_silhouette_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/05_garment_masks/O03/subject00_O03_slot07_canary_attempt004_cand00_garment_mask.png",
+      "source_sha256": "4ea3e7462d74911a7cb7da8edb7ee5c121cedcb9b3abc280f49504487b646f14",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 77527,
+      "value_sha256": "317013341f7344ace1be8c61aa7d0996b78fd60a4cc9864ab0589177a1740576",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_base_rgb",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/r/base/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "476b774d0295347c4f64f92d2d4bf3c8d083ab2baee0b10fb95766a5b4e7b60d",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_rgb",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        3,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 4713323,
+      "value_sha256": "406444ae9b82c27b162cbb070d3ca491d7a438b9606c5c2af700ce26ee49ec70",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_rgb",
+        "loss_components": [
+          "protected_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_edit_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/edit/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "7d59787b646ace01e4877c70602629efbef4544d4966aafe46c3ad5e4f1c6efb",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 94168,
+      "value_sha256": "ccf5a0f1650222d98fc062439225263279458d05b5159b08bb0f1d1aff576681",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "edit_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_edit_core_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/core/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "2b843b96a320d3beef340b119e37377ac62b439070d960393b515d35dabb4c35",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_edit_core_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 67322,
+      "value_sha256": "26d004724bf44137142758caf65249194b56654af9efb47c7ca8011a718d15e9",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_preserve_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/preserve/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "f974d7ecec20ce5d9b13b1dcba8c46d297b3de3dd42ef62c0970a09b6ca43dbd",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_preserve_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 1478766,
+      "value_sha256": "b36257988d6de4d8c9da11578ff04992e5fa1d510969a6936eb6cf08d9cebcf6",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_transition_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/transition/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "2b57a4b8fbbaff88b63b4c536d5dd7911368ce1780416157e19a5678e0cbeeef",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_transition_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 26846,
+      "value_sha256": "2ea9bcc79c89f1a622bc331198689f4a7aca909c5815872e3b9864fcac959b85",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "transition_mask",
+        "loss_components": [
+          "boundary_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_protected_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/protected/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "84d958e73c855ed754dffdc0150775b26616062620dfcafaae252ce315ef2795",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_protected_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 10238,
+      "value_sha256": "4715335d57bc4687edb3c2602f0601671cc6368c2f433f30cad8e7120b87bd53",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "protected_mask",
+        "loss_components": [
+          "garment_rgb_exclusion",
+          "boundary_rgb_exclusion",
+          "protected_rgb",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_base_foreground_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/base_fg/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "b01d933c408921a80e6c78404e0323e7e9883580c599854bb2a69eaa581f04c2",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_base_foreground_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 83242,
+      "value_sha256": "0ea4eb70c93a2bc095892ac94c9d99efc65e1671ebc04fb6524ee77c68ebe031",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "base_foreground",
+        "loss_components": [
+          "new_silhouette_alpha",
+          "protected_alpha"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_old_clothing_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/old_clothing/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "69a6b09a194c3acd537904b5219c652d2c3141078772ce51557c5483227b5c0c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_old_clothing_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "nonzero_count": 74558,
+      "value_sha256": "7c6140bfec4839dfbeaa9a7b3ae6394a3abc00f2b988cd96f96e783cc07f3ab2",
+      "finite": true,
+      "loss_consumer": {
+        "status": "BOUND_IN_MATERIALIZATION_ADAPTER_BUT_NOT_FROZEN_SOURCE_EXECUTION",
+        "argument": "old_clothing_mask",
+        "loss_components": [
+          "garment_rgb"
+        ]
+      },
+      "loss_view_denominator": 7
+    },
+    {
+      "request_id": "subject00_O03_slot07_canary_attempt004_cand00",
+      "slot": "slot_07",
+      "camera_id": "cam05",
+      "field": "target_revealed_skin_mask",
+      "source_path": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001/07_derived_targets/m/revealed_skin/O03/subject00_O03_slot07_canary_attempt004_cand00.png",
+      "source_sha256": "6712982dae3e8ca643ced366dfb86f2770f7216b820d4798071545433451fc2c",
+      "implementation_path": "/root/autodl-tmp/canondressgs_work/worktrees/canondressgs_subject00_teacher_target_materialization_quarantine/scene/full_dressable_dataset.py",
+      "implementation_sha256_lf": "ee1270ca18a4a85698a03f8fdab693ef78d4d7eb303c4fe4effc4efe912c7d00",
+      "implementation_sha256_windows_frozen": "786c93355776093e610dfe1bc74efd61233da134550a220bc06601f4f2365508",
+      "loader_field_key": "target_revealed_skin_mask",
+      "dtype": "torch.float32",
+      "shape_chw": [
+        1,
+        1166,
+        1349
+      ],
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "nonzero_count": 0,
+      "value_sha256": "1d567573a2f09cf8a2bc404538a7512cb20e67e0f8b259dbe7de0c1994dbce9b",
+      "finite": true,
+      "loss_consumer": {
+        "status": "UNBOUND_IN_CAPACITY_ORACLE_LOSS_V1",
+        "argument": null,
+        "loss_components": []
+      },
+      "loss_view_denominator": 7
+    }
+  ],
+  "formal_target_mutations": 0
+}

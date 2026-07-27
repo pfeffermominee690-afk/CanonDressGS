@@ -1,0 +1,90 @@
+{
+  "schema_version": "canondressgs.subject00.o03.formal_target_training_registry.v1",
+  "task_id": "AAAI27-SUBJECT00-O03-FORMAL-TARGET-CAMSAFE7-TEACHER-RERUN-001",
+  "created_at": "2026-07-27T00:00:00+08:00",
+  "intended_run": {
+    "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001",
+    "attempt_id": "attempt_001",
+    "base_checkpoint": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "base_step": 60747,
+    "loss_contract": "CAPACITY_ORACLE_LOSS_V1",
+    "loss_weights": {
+      "garment_rgb": 1.0,
+      "alpha_foreground": 0.5,
+      "new_silhouette_alpha": 1.0,
+      "boundary_rgb": 0.25,
+      "protected_rgb": 10.0,
+      "protected_alpha": 5.0,
+      "stability": 0.0001
+    },
+    "optimizer": "Adam",
+    "learning_rates": {
+      "geometry": 0.001,
+      "appearance": 0.002
+    },
+    "gradient_clip_norm": 1.0,
+    "scheduler": null,
+    "seed": 20260718,
+    "training_steps": 1200,
+    "automatic_retry": false
+  },
+  "actual_execution": {
+    "status": "BLOCKED_BEFORE_GPU_FORWARD_AND_OPTIMIZER; EXTERNAL_OUTPUT_COLLISION_OBSERVED_AFTER_GATE",
+    "output_root_created_by_this_task": false,
+    "pre_loop_loader": "PASS_7_OF_7_CPU_ONLY",
+    "pre_loop_forward": "NOT_RUN",
+    "pre_loop_loss": "NOT_RUN",
+    "pre_loop_backward": "NOT_RUN",
+    "optimizer_constructed": false,
+    "optimizer_steps_completed": 0,
+    "gpu_forward_calls": 0,
+    "backward_calls": 0,
+    "loss_initial": null,
+    "loss_final": null,
+    "peak_vram": 0,
+    "wall_time": null
+  },
+  "formal_base": {
+    "status": "USER_AUTHORIZED_PAUSED",
+    "completed": false,
+    "durable_resume_step": 60747,
+    "resume_ready": true,
+    "resume_authorized": false
+  },
+  "final_classification": "SUBJECT00_O03_FORMAL_TARGET_RERUN_BLOCKED_BY_LOSS_FIELD_BINDING_AMBIGUITY",
+  "output_collision": {
+    "status": "EXTERNAL_TASK_COLLISION_DETECTED_AFTER_INITIAL_ABSENCE",
+    "first_successful_preflight_output_root_present": false,
+    "later_output_root_present": true,
+    "external_task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+    "external_execution_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+    "external_run_status_snapshot": {
+      "current_step": 1200,
+      "final_checkpoint": {
+        "bytes": 38622958,
+        "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_001200.pth",
+        "sha256": "054b9efe1086d89b18310b9831d3ed7aea59e286e31200509b58756545fc3920",
+        "step": 1200
+      },
+      "garment": "O03",
+      "loss": 1.0583003759384155,
+      "optimizer_steps": 1200,
+      "paper_eligible": false,
+      "stage": "TECHNICAL_PASS",
+      "status": "COMPLETE",
+      "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001"
+    },
+    "external_step0_sidecar": {
+      "bytes": 17818788,
+      "path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001/attempt_001/checkpoints/step_000000.pth",
+      "sha256": "20c10d96446c229fb63bdd49a484b959d9eaabd4c8cb3b4ec732c7e2b789691d",
+      "step": 0
+    },
+    "owned_by_this_task": false,
+    "external_optimizer_steps_counted_by_this_task": 0,
+    "external_checkpoints_counted_by_this_task": 0,
+    "overwrite_attempted": false,
+    "attempt_002_created": false,
+    "external_process_terminated_by_this_task": false
+  }
+}
