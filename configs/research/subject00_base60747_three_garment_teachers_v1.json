@@ -1,0 +1,89 @@
+{
+  "schema_version": "canondressgs.subject00.base60747_three_garment_teachers.v1",
+  "task_id": "AAAI27-SUBJECT00-BASE60747-ACCELERATED-METHOD-LAUNCH-001",
+  "execution_branch": "research/subject00-base60747-accelerated-method-launch-20260727",
+  "subject": "Subject00",
+  "base": {
+    "name": "SUBJECT00_ACCELERATED_FIXED_BASE60747_V1",
+    "class": "ACCELERATED_FIXED_BASE60747",
+    "step": 60747,
+    "checkpoint_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.pth",
+    "checkpoint_bytes": 724584413,
+    "checkpoint_sha256": "2d09b1ce6bb19b8b6418314caab8dc1cf92d70e432a9e09e009989332ea4a2f7",
+    "sidecar_path": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-FORMAL-BASE-101245-001/attempt_001/checkpoints/step_060747.sidecar.json",
+    "selection_time": "BEFORE_O01_O04_AND_MAIN_METHOD_TRAINING",
+    "selection_reason": "DEADLINE_CONSTRAINED_ACCELERATED_SECOND_IDENTITY_EXPERIMENT",
+    "formal_base_status": "USER_AUTHORIZED_PAUSED",
+    "formal_base_completed": false,
+    "resume_ready": true,
+    "resume_authorized": false,
+    "paper_disclosure_required": true
+  },
+  "formal_targets": {
+    "root": "/root/autodl-tmp/canondressgs_work/teacher_targets/SUBJECT00-24CELL-001/attempt_001",
+    "manifest": "10_final_registry/subject00_22_training_full_dataset_v1.json",
+    "training_record_count": 22,
+    "quarantine_count": 2,
+    "materialization_branch": "research/subject00-teacher-target-materialization-quarantine-20260727",
+    "materialization_head": "227fd156d420e4bf291413952f448780b8446b37",
+    "excluded_requests": [
+      "subject00_O01_slot04_remaining_attempt005_cand00",
+      "subject00_O03_slot04_canary_attempt004_cand00"
+    ]
+  },
+  "garments": {
+    "O01": {
+      "target_count": 7,
+      "index": "10_final_registry/indexes/O01_training_records.json",
+      "excluded_request": "subject00_O01_slot04_remaining_attempt005_cand00",
+      "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O01-TEACHER-BASE60747-CAMSAFE7-001"
+    },
+    "O03": {
+      "target_count": 7,
+      "index": "10_final_registry/indexes/O03_training_records.json",
+      "excluded_request": "subject00_O03_slot04_canary_attempt004_cand00",
+      "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O03-TEACHER-BASE60747-FORMAL-CAMSAFE7-001",
+      "formal_equivalence_status": "CLASS_D_SCIENTIFIC_FIELD_MISMATCH_CLEAN_FORMAL_RERUN_REQUIRED",
+      "prior_checkpoint_may_initialize": false
+    },
+    "O04": {
+      "target_count": 8,
+      "index": "10_final_registry/indexes/O04_training_records.json",
+      "excluded_request": null,
+      "output_root": "/root/autodl-tmp/canondressgs_work/outputs/SUBJECT00-O04-TEACHER-BASE60747-8VIEW-001"
+    }
+  },
+  "teacher": {
+    "representation": "unbounded_original_200k_gaussian_delta",
+    "loss_name": "CAPACITY_ORACLE_LOSS_V1",
+    "steps": 1200,
+    "seed": 20260718,
+    "view_schedule": "deterministic_index_order_round_robin",
+    "optimizer": {
+      "class": "Adam",
+      "geometry_lr": 0.001,
+      "appearance_lr": 0.002,
+      "gradient_clip_norm": 1.0
+    },
+    "scheduler": null,
+    "loss_weights": {
+      "garment_rgb": 1.0,
+      "alpha_foreground": 0.5,
+      "new_silhouette_alpha": 1.0,
+      "boundary_rgb": 0.25,
+      "protected_rgb": 10.0,
+      "protected_alpha": 5.0,
+      "stability": 0.0001
+    },
+    "checkpoint_steps": [0, 300, 600, 900, 1200]
+  },
+  "runtime": {
+    "data_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/subject00",
+    "assets_root": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/derived_assets/subject00",
+    "availability_manifest": "/root/autodl-tmp/datasets/thuman4_second_identity_staging/reports/SUBJECT00_VALID_FRAME_CAMERA_MANIFEST.json",
+    "minimum_free_bytes": 32212254720,
+    "attempt": "attempt_001"
+  },
+  "paper_eligible": false,
+  "paper_final": false
+}
