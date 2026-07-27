@@ -1,0 +1,60 @@
+{
+  "anchors": [
+    "slot00",
+    "slot07",
+    "slot03",
+    "slot06"
+  ],
+  "rotations": [
+    {
+      "calibration_slot": 3,
+      "rotation": 0,
+      "test_slot": 6,
+      "train_slots": [
+        0,
+        7
+      ]
+    },
+    {
+      "calibration_slot": 6,
+      "rotation": 1,
+      "test_slot": 0,
+      "train_slots": [
+        7,
+        3
+      ]
+    },
+    {
+      "calibration_slot": 0,
+      "rotation": 2,
+      "test_slot": 7,
+      "train_slots": [
+        3,
+        6
+      ]
+    },
+    {
+      "calibration_slot": 7,
+      "rotation": 3,
+      "test_slot": 3,
+      "train_slots": [
+        6,
+        0
+      ]
+    }
+  ],
+  "schema_version": "canondressgs.subject02.commonsafe4.matched_contract.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "status": "FROZEN_NOT_EXECUTED",
+  "subject00_selected_replacement": {
+    "camera": "cam09",
+    "direction": "back-right",
+    "slot": "slot06"
+  },
+  "subject02_matched_run_execution_authorized": false,
+  "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001"
+}

@@ -1,0 +1,74 @@
+{
+  "anchors": [
+    "slot00",
+    "slot07",
+    "slot03",
+    "slot06"
+  ],
+  "checkpoint_steps": [
+    0,
+    20,
+    50,
+    100,
+    200,
+    300
+  ],
+  "contract_name": "SUBJECT00_COMMONSAFE4_CARDINAL_PROXY_V1",
+  "cross_identity_direct_numeric_comparison_requires_matched_protocol": true,
+  "dual_support_enabled": false,
+  "expected_optimizer_steps": 3600,
+  "expected_run_count": 12,
+  "method_contract": "PURE_ENDPOINT",
+  "optimizer_steps_per_run": 300,
+  "original_cardinal_right_replaced": true,
+  "paper_disclosure_required": true,
+  "quarantine_policy_unchanged": true,
+  "replacement_selection_outcome_independent": true,
+  "rotation_count": 4,
+  "rotations": [
+    {
+      "calibration_slot": 3,
+      "rotation": 0,
+      "test_slot": 6,
+      "train_slots": [
+        0,
+        7
+      ]
+    },
+    {
+      "calibration_slot": 6,
+      "rotation": 1,
+      "test_slot": 0,
+      "train_slots": [
+        7,
+        3
+      ]
+    },
+    {
+      "calibration_slot": 0,
+      "rotation": 2,
+      "test_slot": 7,
+      "train_slots": [
+        3,
+        6
+      ]
+    },
+    {
+      "calibration_slot": 7,
+      "rotation": 3,
+      "test_slot": 3,
+      "train_slots": [
+        6,
+        0
+      ]
+    }
+  ],
+  "schema_version": "canondressgs.subject00.commonsafe4.rotation_contract.v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "subject02_original_protocol_identical": false,
+  "task_id": "AAAI27-SUBJECT00-BASE60747-COMMONSAFE4-METHOD-MATRIX-001"
+}
